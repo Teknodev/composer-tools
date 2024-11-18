@@ -59,7 +59,7 @@ class Testimonials9Page extends Testimonials {
               type: "string",
               key: "subtitle",
               value: "18th December 2022",
-              displayer: "subtitle",
+              displayer: "Subtitle",
             },
             {
               type: "string",
@@ -310,7 +310,7 @@ class Testimonials9Page extends Testimonials {
       speed: 500,
       autoplay: true,
       autoplaySpeed: 2500,
-      slidesToShow: Math.min(slider.length, 4),
+      slidesToShow: 4,
       slidesToScroll: 1,
       vertical: true,
       verticalSwiping: true,
@@ -331,30 +331,33 @@ class Testimonials9Page extends Testimonials {
           <div className={this.decorateCSS("wrapper")}>
             {this.castToString(title) && (
               <div className={this.decorateCSS("up-page")}>
-                <Base.H1 className={this.decorateCSS("title")}>{title}</Base.H1>
+                <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>
               </div>
             )}
             <Base.ContainerGrid className={this.decorateCSS("down-page")}>
               <div className={this.decorateCSS("carousel")}>
                 <ComposerSlider {...settings} >
                   {this.castToObject<Card[]>("slider").map(
-                    (item: Card, index: number) => (
-                      <div className={`${this.decorateCSS("card-inner")} ${activeIndex === index ? this.decorateCSS("active") : ""}`}>
-                        {item.image && (
-                          <img alt="" src={item.image} className={this.decorateCSS("img")} />
-                        )}
-                        {(this.castToString(item.title) || this.castToString(item.subtitle)) && (
-                          <Base.VerticalContent className={this.decorateCSS("text")}>
-                            {this.castToString(item.title) && (
-                              <Base.H4 className={this.decorateCSS("title")}>{item.title}</Base.H4>
-                            )}
-                            {this.castToString(item.subtitle) && (
-                              <Base.H5 className={this.decorateCSS("subtitle")}>{item.subtitle}</Base.H5>
-                            )}
-                          </Base.VerticalContent>
-                        )}
-                      </div>
-                    )
+                    (item: Card, index: number) => {
+                      return (
+                        <div className={`${this.decorateCSS("card-inner")} ${activeIndex === index ? this.decorateCSS("active") : ""}`}>
+                          {item.image && (
+                            <img alt="" src={item.image} className={this.decorateCSS("img")} />
+                          )}
+                          {(this.castToString(item.title) || this.castToString(item.subtitle)) && (
+                            <Base.VerticalContent className={this.decorateCSS("text")}>
+                              {this.castToString(item.title) && (
+                                <Base.H4 className={this.decorateCSS("title")}>{item.title}</Base.H4>
+                              )}
+                              {this.castToString(item.subtitle) && (
+                                <Base.H5 className={this.decorateCSS("subtitle")}>{item.subtitle}</Base.H5>
+                              )}
+                            </Base.VerticalContent>
+                          )}
+                        </div>
+                      )
+
+                    }
                   )}
                 </ComposerSlider>
               </div>
