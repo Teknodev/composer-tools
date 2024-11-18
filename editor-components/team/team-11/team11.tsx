@@ -106,7 +106,7 @@ class Team11 extends Team {
           type: "image",
           key: "image",
           displayer: "Image",
-          value: "https://images.pexels.com/photos/5792639/pexels-photo-5792639.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b588bd2970002c6282c6?alt=media&timestamp=1719558632841",
         },
         {
           type: "array",
@@ -143,7 +143,7 @@ class Team11 extends Team {
           type: "image",
           key: "image",
           displayer: "Image",
-          value: "https://images.pexels.com/photos/5792639/pexels-photo-5792639.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64370fa168c3c2002cd30833?alt=media&timestamp=1719558632843",
         },
         {
           type: "array",
@@ -179,7 +179,7 @@ class Team11 extends Team {
           type: "image",
           key: "image",
           displayer: "Image",
-          value: "https://images.pexels.com/photos/5792639/pexels-photo-5792639.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64370fa168c3c2002cd30832?alt=media&timestamp=1719558632843",
         },
         {
           type: "array",

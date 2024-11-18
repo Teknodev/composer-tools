@@ -5,31 +5,36 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type Pricing = {
-  title: string;
+  title: JSX.Element;
   product: Array<{
     cardTitle1: string;
-    list: {
-      property: string;
-      is_active: boolean;
-    }[];
-    buttons: { buttonTitle: string; url: string; isPrimary: boolean }[];
     description: string;
-    activeTag: string;
-    active: boolean;
-    badge: string;
+    badge: JSX.Element;
     property: string;
-    title: string;
+    title: JSX.Element;
     subtitle: string;
-    dash_icon: string;
     product: {
       per: string;
-      price: number;
-      currency: string;
+      price: string;
       plan: string;
-      tag: string;
+      tag: JSX.Element;
       check_icon: string;
       circle_icon: string;
     }[];
+    right_items: {
+      badge: JSX.Element;
+      title: JSX.Element;
+      list: {
+        property: string;
+        dash_icon: string;
+      }[];
+      buttons: {
+        buttonTitle: JSX.Element;
+        url: string;
+        buttonText: JSX.Element;
+        disabled: boolean;
+      }[];
+    };
   }>;
 };
 
@@ -41,14 +46,14 @@ class PricingMultipleTwo extends BasePricingTable {
       type: "string",
       key: "badge",
       displayer: "Badge",
-      value: "Ödeme Planlarımız",
+      value: "Affordable pricing",
     });
 
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "SİZİN İÇİN EN UYGUN OLANI TERCİH EDİN",
+      value: "Choose the plan that's right for you",
     });
 
     this.addProp({
@@ -65,7 +70,7 @@ class PricingMultipleTwo extends BasePricingTable {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Aylık",
+              value: "Annual",
             },
             {
               type: "array",
@@ -81,7 +86,7 @@ class PricingMultipleTwo extends BasePricingTable {
                       type: "icon",
                       key: "circle_icon",
                       displayer: "Circle Icon",
-                      value: "GiCircle",
+                      value: "GoCircle",
                     },
                     {
                       type: "icon",
@@ -93,136 +98,137 @@ class PricingMultipleTwo extends BasePricingTable {
                       type: "string",
                       key: "plan",
                       displayer: "Plan",
-                      value: "Ürün 1",
+                      value: "Product 1",
                     },
                     {
                       type: "string",
                       key: "tag",
-                      displayer: "tag",
-                      value: "%10 kar edin",
-                    },
-                    {
-                      type: "number",
-                      key: "price",
-                      displayer: "Price",
-                      value: 3000,
+                      displayer: "Tag",
+                      value: "SAVE 10%",
                     },
                     {
                       type: "string",
-                      key: "currency",
-                      displayer: "Currency",
-                      value: "TL",
+                      key: "price",
+                      displayer: "Price",
+                      value: "3000$",
                     },
-
                     {
                       type: "string",
                       key: "per",
                       displayer: "Per",
-                      value: "Aylık",
+                      value: "Per month",
                     },
                     {
-                      type: "array",
-                      key: "list",
+                      type: "object",
+                      key: "right_items",
                       displayer: "Right Items",
                       value: [
                         {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
+                          type: "string",
+                          key: "badge",
+                          displayer: "Badge",
+                          value: "Product 1",
+                        },
+                        {
+                          type: "string",
+                          key: "title",
+                          displayer: "Title",
+                          value: "60 hour package per month",
+                        },
+                        {
+                          type: "array",
+                          key: "list",
+                          displayer: "List Items",
                           value: [
                             {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value: "3 saatlik eğitim(VR terapi + platform kullanımı)",
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value:
+                                    "3 hours of training (VR therapy + platform use)",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
                             },
                             {
-                              type: "boolean",
-                              displayer: "Is Active",
-                              key: "is_active",
-                              value: true,
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value: "Unlimited technical support",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
+                            },
+                            {
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value: "Hours of supervision per month",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
                             },
                           ],
                         },
                         {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
+                          type: "array",
+                          key: "buttons",
+                          displayer: "Buttons",
                           value: [
                             {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value: "Sınırsız teknik destek",
-                            },
-                            {
-                              type: "boolean",
-                              displayer: "Is Active",
-                              key: "is_active",
-                              value: false,
-                            },
-                          ],
-                        },
-                        {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value: "Ayda 3 saat süpervizyon",
-                            },
-                            {
-                              type: "boolean",
-                              displayer: "Is Active",
-                              key: "is_active",
-                              value: false,
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                    {
-                      type: "icon",
-                      key: "dash_icon",
-                      displayer: "Dash Icon",
-                      value: "GoDash",
-                    },
-                    {
-                      type: "string",
-                      key: "badge",
-                      displayer: "Badge",
-                      value: "Ürün 1",
-                    },
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "title",
-                      value: "Ayda 60 saatlik paket",
-                    },
-                    {
-                      type: "array",
-                      key: "buttons",
-                      displayer: "Buttons",
-                      value: [
-                        {
-                          type: "object",
-                          key: "button",
-                          displayer: "Button",
-                          value: [
-                            {
-                              type: "string",
-                              key: "buttonText",
-                              displayer: "Button Text",
-                              value: "Bu planı satın al",
-                            },
-                            {
-                              type: "page",
-                              key: "url",
-                              displayer: "Link",
-                              value: "",
+                              type: "object",
+                              key: "button",
+                              displayer: "Button",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "buttonText",
+                                  displayer: "Button Text",
+                                  value: "Join this plan",
+                                },
+                                {
+                                  type: "page",
+                                  key: "url",
+                                  displayer: "Link",
+                                  value: "",
+                                },
+                                {
+                                  type: "boolean",
+                                  key: "disabled",
+                                  displayer: "Animation Enabled",
+                                  value: true,
+                                },
+                              ],
                             },
                           ],
                         },
@@ -239,7 +245,7 @@ class PricingMultipleTwo extends BasePricingTable {
                       type: "icon",
                       key: "circle_icon",
                       displayer: "Circle Icon",
-                      value: "GiCircle",
+                      value: "GoCircle",
                     },
                     {
                       type: "icon",
@@ -251,136 +257,137 @@ class PricingMultipleTwo extends BasePricingTable {
                       type: "string",
                       key: "plan",
                       displayer: "Plan",
-                      value: "Ürün 2",
+                      value: "Product 2",
                     },
                     {
                       type: "string",
                       key: "tag",
-                      displayer: "tag",
-                      value: "%20 kar edin",
-                    },
-                    {
-                      type: "number",
-                      key: "price",
-                      displayer: "Price",
-                      value: 5000,
+                      displayer: "Tag",
+                      value: "SAVE 20%",
                     },
                     {
                       type: "string",
-                      key: "currency",
-                      displayer: "Currency",
-                      value: "TL",
+                      key: "price",
+                      displayer: "Price",
+                      value: "5000$",
                     },
-
                     {
                       type: "string",
                       key: "per",
                       displayer: "Per",
-                      value: "Aylık",
+                      value: "Per month",
                     },
                     {
-                      type: "array",
-                      key: "list",
+                      type: "object",
+                      key: "right_items",
                       displayer: "Right Items",
                       value: [
                         {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
+                          type: "string",
+                          key: "badge",
+                          displayer: "Badge",
+                          value: "Product 1",
+                        },
+                        {
+                          type: "string",
+                          key: "title",
+                          displayer: "Title",
+                          value: "60 hour package per month",
+                        },
+                        {
+                          type: "array",
+                          key: "list",
+                          displayer: "List Items",
                           value: [
                             {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value: "3 saatlik eğitim(VR terapi + platform kullanımı)",
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value:
+                                    "3 hours of training (VR therapy + platform use)",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
                             },
                             {
-                              type: "boolean",
-                              displayer: "Is Active",
-                              key: "is_active",
-                              value: true,
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value: "Unlimited technical support",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
+                            },
+                            {
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value: "Hours of supervision per month",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
                             },
                           ],
                         },
                         {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
+                          type: "array",
+                          key: "buttons",
+                          displayer: "Buttons",
                           value: [
                             {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value: "Sınırsız teknik destek",
-                            },
-                            {
-                              type: "boolean",
-                              displayer: "Is Active",
-                              key: "is_active",
-                              value: true,
-                            },
-                          ],
-                        },
-                        {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value: "Ayda 3 saat süpervizyon",
-                            },
-                            {
-                              type: "boolean",
-                              displayer: "Is Active",
-                              key: "is_active",
-                              value: false,
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                    {
-                      type: "icon",
-                      key: "dash_icon",
-                      displayer: "Dash Icon",
-                      value: "GoDash",
-                    },
-                    {
-                      type: "string",
-                      key: "badge",
-                      displayer: "Badge",
-                      value: "Ürün 2",
-                    },
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "title",
-                      value: "Ayda 60 saatlik paket",
-                    },
-                    {
-                      type: "array",
-                      key: "buttons",
-                      displayer: "Buttons",
-                      value: [
-                        {
-                          type: "object",
-                          key: "button",
-                          displayer: "Button",
-                          value: [
-                            {
-                              type: "string",
-                              key: "buttonText",
-                              displayer: "Button Text",
-                              value: "Bu planı satın al",
-                            },
-                            {
-                              type: "page",
-                              key: "url",
-                              displayer: "Link",
-                              value: "",
+                              type: "object",
+                              key: "button",
+                              displayer: "Button",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "buttonText",
+                                  displayer: "Button Text",
+                                  value: "Join this plan",
+                                },
+                                {
+                                  type: "page",
+                                  key: "url",
+                                  displayer: "Link",
+                                  value: "",
+                                },
+                                {
+                                  type: "boolean",
+                                  key: "disabled",
+                                  displayer: "Animation Enabled",
+                                  value: true,
+                                },
+                              ],
                             },
                           ],
                         },
@@ -397,7 +404,7 @@ class PricingMultipleTwo extends BasePricingTable {
                       type: "icon",
                       key: "circle_icon",
                       displayer: "Circle Icon",
-                      value: "GiCircle",
+                      value: "GoCircle",
                     },
                     {
                       type: "icon",
@@ -409,135 +416,137 @@ class PricingMultipleTwo extends BasePricingTable {
                       type: "string",
                       key: "plan",
                       displayer: "Plan",
-                      value: "Ürün 3",
+                      value: "Product 3",
                     },
                     {
                       type: "string",
                       key: "tag",
-                      displayer: "tag",
-                      value: "%30 kar edin",
-                    },
-                    {
-                      type: "number",
-                      key: "price",
-                      displayer: "Price",
-                      value: 6000,
+                      displayer: "Tag",
+                      value: "SAVE 30%",
                     },
                     {
                       type: "string",
-                      key: "currency",
-                      displayer: "Currency",
-                      value: "TL",
+                      key: "price",
+                      displayer: "Price",
+                      value: "6000$",
                     },
                     {
                       type: "string",
                       key: "per",
                       displayer: "Per",
-                      value: "Aylık",
+                      value: "Per month",
                     },
                     {
-                      type: "array",
-                      key: "list",
+                      type: "object",
+                      key: "right_items",
                       displayer: "Right Items",
                       value: [
                         {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
+                          type: "string",
+                          key: "badge",
+                          displayer: "Badge",
+                          value: "Product 1",
+                        },
+                        {
+                          type: "string",
+                          key: "title",
+                          displayer: "Title",
+                          value: "60 hour package per month",
+                        },
+                        {
+                          type: "array",
+                          key: "list",
+                          displayer: "List Items",
                           value: [
                             {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value: "3 saatlik eğitim(VR terapi + platform kullanımı)",
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value:
+                                    "3 hours of training (VR therapy + platform use)",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
                             },
                             {
-                              type: "boolean",
-                              displayer: "Is Active",
-                              key: "is_active",
-                              value: true,
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value: "Unlimited technical support",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
+                            },
+                            {
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value: "Hours of supervision per month",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
                             },
                           ],
                         },
                         {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
+                          type: "array",
+                          key: "buttons",
+                          displayer: "Buttons",
                           value: [
                             {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value: "Sınırsız teknik destek",
-                            },
-                            {
-                              type: "boolean",
-                              displayer: "Is Active",
-                              key: "is_active",
-                              value: true,
-                            },
-                          ],
-                        },
-                        {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value: "Ayda 3 saat süpervizyon",
-                            },
-                            {
-                              type: "boolean",
-                              displayer: "Is Active",
-                              key: "is_active",
-                              value: false,
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                    {
-                      type: "icon",
-                      key: "dash_icon",
-                      displayer: "Dash Icon",
-                      value: "GoDash",
-                    },
-                    {
-                      type: "string",
-                      key: "badge",
-                      displayer: "Badge",
-                      value: "Ürün 3",
-                    },
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "title",
-                      value: "Ayda 60 saatlik paket",
-                    },
-                    {
-                      type: "array",
-                      key: "buttons",
-                      displayer: "Buttons",
-                      value: [
-                        {
-                          type: "object",
-                          key: "button",
-                          displayer: "Button",
-                          value: [
-                            {
-                              type: "string",
-                              key: "buttonText",
-                              displayer: "Button Text",
-                              value: "Bu planı satın al",
-                            },
-                            {
-                              type: "page",
-                              key: "url",
-                              displayer: "Link",
-                              value: "",
+                              type: "object",
+                              key: "button",
+                              displayer: "Button",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "buttonText",
+                                  displayer: "Button Text",
+                                  value: "Join this plan",
+                                },
+                                {
+                                  type: "page",
+                                  key: "url",
+                                  displayer: "Link",
+                                  value: "",
+                                },
+                                {
+                                  type: "boolean",
+                                  key: "disabled",
+                                  displayer: "Animation Enabled",
+                                  value: true,
+                                },
+                              ],
                             },
                           ],
                         },
@@ -554,7 +563,7 @@ class PricingMultipleTwo extends BasePricingTable {
                       type: "icon",
                       key: "circle_icon",
                       displayer: "Circle Icon",
-                      value: "GiCircle",
+                      value: "GoCircle",
                     },
                     {
                       type: "icon",
@@ -566,135 +575,137 @@ class PricingMultipleTwo extends BasePricingTable {
                       type: "string",
                       key: "plan",
                       displayer: "Plan",
-                      value: "Ürün 4",
+                      value: "Product 4",
                     },
                     {
                       type: "string",
                       key: "tag",
-                      displayer: "tag",
-                      value: "%40 kar edin",
-                    },
-                    {
-                      type: "number",
-                      key: "price",
-                      displayer: "Price",
-                      value: 20000,
+                      displayer: "Tag",
+                      value: "SAVE 40%",
                     },
                     {
                       type: "string",
-                      key: "currency",
-                      displayer: "Currency",
-                      value: "TL",
+                      key: "price",
+                      displayer: "Price",
+                      value: "20000$",
                     },
                     {
                       type: "string",
                       key: "per",
                       displayer: "Per",
-                      value: "Aylık",
+                      value: "Per month",
                     },
                     {
-                      type: "array",
-                      key: "list",
+                      type: "object",
+                      key: "right_items",
                       displayer: "Right Items",
                       value: [
                         {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
+                          type: "string",
+                          key: "badge",
+                          displayer: "Badge",
+                          value: "Product 1",
+                        },
+                        {
+                          type: "string",
+                          key: "title",
+                          displayer: "Title",
+                          value: "60 hour package per month",
+                        },
+                        {
+                          type: "array",
+                          key: "list",
+                          displayer: "List Items",
                           value: [
                             {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value: "3 saatlik eğitim(VR terapi + platform kullanımı)",
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value:
+                                    "3 hours of training (VR therapy + platform use)",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
                             },
                             {
-                              type: "boolean",
-                              displayer: "Is Active",
-                              key: "is_active",
-                              value: true,
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value: "Unlimited technical support",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
+                            },
+                            {
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value: "Hours of supervision per month",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
                             },
                           ],
                         },
                         {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
+                          type: "array",
+                          key: "buttons",
+                          displayer: "Buttons",
                           value: [
                             {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value: "Sınırsız teknik destek",
-                            },
-                            {
-                              type: "boolean",
-                              displayer: "Is Active",
-                              key: "is_active",
-                              value: true,
-                            },
-                          ],
-                        },
-                        {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value: "Ayda 3 saat süpervizyon",
-                            },
-                            {
-                              type: "boolean",
-                              displayer: "Is Active",
-                              key: "is_active",
-                              value: false,
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                    {
-                      type: "icon",
-                      key: "dash_icon",
-                      displayer: "Dash Icon",
-                      value: "GoDash",
-                    },
-                    {
-                      type: "string",
-                      key: "badge",
-                      displayer: "Badge",
-                      value: "Ürün 4",
-                    },
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "title",
-                      value: "Ayda 60 saatlik paket",
-                    },
-                    {
-                      type: "array",
-                      key: "buttons",
-                      displayer: "Buttons",
-                      value: [
-                        {
-                          type: "object",
-                          key: "button",
-                          displayer: "Button",
-                          value: [
-                            {
-                              type: "string",
-                              key: "buttonText",
-                              displayer: "Button Text",
-                              value: "Bu planı satın al",
-                            },
-                            {
-                              type: "page",
-                              key: "url",
-                              displayer: "Link",
-                              value: "",
+                              type: "object",
+                              key: "button",
+                              displayer: "Button",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "buttonText",
+                                  displayer: "Button Text",
+                                  value: "Join this plan",
+                                },
+                                {
+                                  type: "page",
+                                  key: "url",
+                                  displayer: "Link",
+                                  value: "",
+                                },
+                                {
+                                  type: "boolean",
+                                  key: "disabled",
+                                  displayer: "Animation Enabled",
+                                  value: true,
+                                },
+                              ],
                             },
                           ],
                         },
@@ -715,7 +726,7 @@ class PricingMultipleTwo extends BasePricingTable {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Yıllık",
+              value: "Yearly",
             },
             {
               type: "array",
@@ -731,7 +742,7 @@ class PricingMultipleTwo extends BasePricingTable {
                       type: "icon",
                       key: "circle_icon",
                       displayer: "Circle Icon",
-                      value: "GiCircle",
+                      value: "GoCircle",
                     },
                     {
                       type: "icon",
@@ -743,136 +754,297 @@ class PricingMultipleTwo extends BasePricingTable {
                       type: "string",
                       key: "plan",
                       displayer: "Plan",
-                      value: "Ürün 1",
+                      value: "Product 1",
                     },
                     {
                       type: "string",
                       key: "tag",
-                      displayer: "tag",
-                      value: "%10 kar edin",
-                    },
-                    {
-                      type: "number",
-                      key: "price",
-                      displayer: "Price",
-                      value: 30000,
+                      displayer: "Tag",
+                      value: "SAVE 10%",
                     },
                     {
                       type: "string",
-                      key: "currency",
-                      displayer: "Currency",
-                      value: "TL",
+                      key: "price",
+                      displayer: "Price",
+                      value: "30000$",
+                    },
+                    {
+                      type: "string",
+                      key: "per",
+                      displayer: "Per",
+                      value: "Per year",
+                    },
+                    {
+                      type: "object",
+                      key: "right_items",
+                      displayer: "Right Items",
+                      value: [
+                        {
+                          type: "string",
+                          key: "badge",
+                          displayer: "Badge",
+                          value: "Product 1",
+                        },
+                        {
+                          type: "string",
+                          key: "title",
+                          displayer: "Title",
+                          value: "60 hour package per month",
+                        },
+                        {
+                          type: "array",
+                          key: "list",
+                          displayer: "List Items",
+                          value: [
+                            {
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value:
+                                    "3 hours of training (VR therapy + platform use)",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
+                            },
+                            {
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value: "Unlimited technical support",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
+                            },
+                            {
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value: "Hours of supervision per month",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                        {
+                          type: "array",
+                          key: "buttons",
+                          displayer: "Buttons",
+                          value: [
+                            {
+                              type: "object",
+                              key: "button",
+                              displayer: "Button",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "buttonText",
+                                  displayer: "Button Text",
+                                  value: "Join this plan",
+                                },
+                                {
+                                  type: "page",
+                                  key: "url",
+                                  displayer: "Link",
+                                  value: "",
+                                },
+                                {
+                                  type: "boolean",
+                                  key: "disabled",
+                                  displayer: "Animation Enabled",
+                                  value: true,
+                                },
+                              ],
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "listArray",
+                  displayer: "Left Items",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "circle_icon",
+                      displayer: "Circle Icon",
+                      value: "GoCircle",
+                    },
+                    {
+                      type: "icon",
+                      key: "check_icon",
+                      displayer: "Check Icon",
+                      value: "CiCircleCheck",
+                    },
+                    {
+                      type: "string",
+                      key: "plan",
+                      displayer: "Plan",
+                      value: "Product 2",
+                    },
+                    {
+                      type: "string",
+                      key: "tag",
+                      displayer: "Tag",
+                      value: "SAVE 20%",
+                    },
+                    {
+                      type: "string",
+                      key: "price",
+                      displayer: "Price",
+                      value: "50000$",
                     },
 
                     {
                       type: "string",
                       key: "per",
                       displayer: "Per",
-                      value: "Yıllık",
+                      value: "Per year",
                     },
                     {
-                      type: "array",
-                      key: "list",
+                      type: "object",
+                      key: "right_items",
                       displayer: "Right Items",
                       value: [
                         {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
+                          type: "string",
+                          key: "badge",
+                          displayer: "Badge",
+                          value: "Product 1",
+                        },
+                        {
+                          type: "string",
+                          key: "title",
+                          displayer: "Title",
+                          value: "60 hour package per month",
+                        },
+                        {
+                          type: "array",
+                          key: "list",
+                          displayer: "List Items",
                           value: [
                             {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value: "3 saatlik eğitim(VR terapi + platform kullanımı)",
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value:
+                                    "3 hours of training (VR therapy + platform use)",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
                             },
                             {
-                              type: "boolean",
-                              displayer: "Is Active",
-                              key: "is_active",
-                              value: true,
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value: "Unlimited technical support",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
+                            },
+                            {
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value: "Hours of supervision per month",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
                             },
                           ],
                         },
                         {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
+                          type: "array",
+                          key: "buttons",
+                          displayer: "Buttons",
                           value: [
                             {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value: "Sınırsız teknik destek",
-                            },
-                            {
-                              type: "boolean",
-                              displayer: "Is Active",
-                              key: "is_active",
-                              value: false,
-                            },
-                          ],
-                        },
-                        {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value: "Ayda 3 saat süpervizyon",
-                            },
-                            {
-                              type: "boolean",
-                              displayer: "Is Active",
-                              key: "is_active",
-                              value: false,
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                    {
-                      type: "icon",
-                      key: "dash_icon",
-                      displayer: "Dash Icon",
-                      value: "GoDash",
-                    },
-                    {
-                      type: "string",
-                      key: "badge",
-                      displayer: "Badge",
-                      value: "Ürün 1",
-                    },
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "title",
-                      value: "Ayda 60 saatlik paket",
-                    },
-                    {
-                      type: "array",
-                      key: "buttons",
-                      displayer: "Buttons",
-                      value: [
-                        {
-                          type: "object",
-                          key: "button",
-                          displayer: "Button",
-                          value: [
-                            {
-                              type: "string",
-                              key: "buttonText",
-                              displayer: "Button Text",
-                              value: "Bu planı satın al",
-                            },
-                            {
-                              type: "page",
-                              key: "url",
-                              displayer: "Link",
-                              value: "",
+                              type: "object",
+                              key: "button",
+                              displayer: "Button",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "buttonText",
+                                  displayer: "Button Text",
+                                  value: "Join this plan",
+                                },
+                                {
+                                  type: "page",
+                                  key: "url",
+                                  displayer: "Link",
+                                  value: "",
+                                },
+                                {
+                                  type: "boolean",
+                                  key: "disabled",
+                                  displayer: "Animation Enabled",
+                                  value: true,
+                                },
+                              ],
                             },
                           ],
                         },
@@ -889,7 +1061,7 @@ class PricingMultipleTwo extends BasePricingTable {
                       type: "icon",
                       key: "circle_icon",
                       displayer: "Circle Icon",
-                      value: "GiCircle",
+                      value: "GoCircle",
                     },
                     {
                       type: "icon",
@@ -901,136 +1073,137 @@ class PricingMultipleTwo extends BasePricingTable {
                       type: "string",
                       key: "plan",
                       displayer: "Plan",
-                      value: "Ürün 2",
+                      value: "Product 3",
                     },
                     {
                       type: "string",
                       key: "tag",
-                      displayer: "tag",
-                      value: "%20 kar edin",
-                    },
-                    {
-                      type: "number",
-                      key: "price",
-                      displayer: "Price",
-                      value: 50000,
+                      displayer: "Tag",
+                      value: "SAVE 30%",
                     },
                     {
                       type: "string",
-                      key: "currency",
-                      displayer: "Currency",
-                      value: "TL",
+                      key: "price",
+                      displayer: "Price",
+                      value: "60000$",
                     },
-
                     {
                       type: "string",
                       key: "per",
                       displayer: "Per",
-                      value: "Yıllık",
+                      value: "Per year",
                     },
                     {
-                      type: "array",
-                      key: "list",
+                      type: "object",
+                      key: "right_items",
                       displayer: "Right Items",
                       value: [
                         {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
+                          type: "string",
+                          key: "badge",
+                          displayer: "Badge",
+                          value: "Product 1",
+                        },
+                        {
+                          type: "string",
+                          key: "title",
+                          displayer: "Title",
+                          value: "60 hour package per month",
+                        },
+                        {
+                          type: "array",
+                          key: "list",
+                          displayer: "List Items",
                           value: [
                             {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value: "3 saatlik eğitim(VR terapi + platform kullanımı)",
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value:
+                                    "3 hours of training (VR therapy + platform use)",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
                             },
                             {
-                              type: "boolean",
-                              displayer: "Is Active",
-                              key: "is_active",
-                              value: true,
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value: "Unlimited technical support",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
+                            },
+                            {
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value: "Hours of supervision per month",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
                             },
                           ],
                         },
                         {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
+                          type: "array",
+                          key: "buttons",
+                          displayer: "Buttons",
                           value: [
                             {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value: "Sınırsız teknik destek",
-                            },
-                            {
-                              type: "boolean",
-                              displayer: "Is Active",
-                              key: "is_active",
-                              value: true,
-                            },
-                          ],
-                        },
-                        {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value: "Ayda 3 saat süpervizyon",
-                            },
-                            {
-                              type: "boolean",
-                              displayer: "Is Active",
-                              key: "is_active",
-                              value: false,
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                    {
-                      type: "icon",
-                      key: "dash_icon",
-                      displayer: "Dash Icon",
-                      value: "GoDash",
-                    },
-                    {
-                      type: "string",
-                      key: "badge",
-                      displayer: "Badge",
-                      value: "Ürün 2",
-                    },
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "title",
-                      value: "Ayda 60 saatlik paket",
-                    },
-                    {
-                      type: "array",
-                      key: "buttons",
-                      displayer: "Buttons",
-                      value: [
-                        {
-                          type: "object",
-                          key: "button",
-                          displayer: "Button",
-                          value: [
-                            {
-                              type: "string",
-                              key: "buttonText",
-                              displayer: "Button Text",
-                              value: "Bu planı satın al",
-                            },
-                            {
-                              type: "page",
-                              key: "url",
-                              displayer: "Link",
-                              value: "",
+                              type: "object",
+                              key: "button",
+                              displayer: "Button",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "buttonText",
+                                  displayer: "Button Text",
+                                  value: "Join this plan",
+                                },
+                                {
+                                  type: "page",
+                                  key: "url",
+                                  displayer: "Link",
+                                  value: "",
+                                },
+                                {
+                                  type: "boolean",
+                                  key: "disabled",
+                                  displayer: "Animation Enabled",
+                                  value: true,
+                                },
+                              ],
                             },
                           ],
                         },
@@ -1047,7 +1220,7 @@ class PricingMultipleTwo extends BasePricingTable {
                       type: "icon",
                       key: "circle_icon",
                       displayer: "Circle Icon",
-                      value: "GiCircle",
+                      value: "GoCircle",
                     },
                     {
                       type: "icon",
@@ -1059,292 +1232,137 @@ class PricingMultipleTwo extends BasePricingTable {
                       type: "string",
                       key: "plan",
                       displayer: "Plan",
-                      value: "Ürün 3",
+                      value: "Product 4",
                     },
                     {
                       type: "string",
                       key: "tag",
-                      displayer: "tag",
-                      value: "%30 kar edin",
-                    },
-                    {
-                      type: "number",
-                      key: "price",
-                      displayer: "Price",
-                      value: 60000,
+                      displayer: "Tag",
+                      value: "SAVE 40%",
                     },
                     {
                       type: "string",
-                      key: "currency",
-                      displayer: "Currency",
-                      value: "TL",
+                      key: "price",
+                      displayer: "Price",
+                      value: "80000$",
                     },
                     {
                       type: "string",
                       key: "per",
                       displayer: "Per",
-                      value: "Yıllık",
+                      value: "Per year",
                     },
                     {
-                      type: "array",
-                      key: "list",
+                      type: "object",
+                      key: "right_items",
                       displayer: "Right Items",
                       value: [
                         {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
+                          type: "string",
+                          key: "badge",
+                          displayer: "Badge",
+                          value: "Product 1",
+                        },
+                        {
+                          type: "string",
+                          key: "title",
+                          displayer: "Title",
+                          value: "60 hour package per month",
+                        },
+                        {
+                          type: "array",
+                          key: "list",
+                          displayer: "List Items",
                           value: [
                             {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value: "3 saatlik eğitim(VR terapi + platform kullanımı)",
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value:
+                                    "3 hours of training (VR therapy + platform use)",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
                             },
                             {
-                              type: "boolean",
-                              displayer: "Is Active",
-                              key: "is_active",
-                              value: true,
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value: "Unlimited technical support",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
+                            },
+                            {
+                              type: "object",
+                              key: "list_item",
+                              displayer: "List Item",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "property",
+                                  displayer: "Property",
+                                  value: "Hours of supervision per month",
+                                },
+                                {
+                                  type: "icon",
+                                  key: "dash_icon",
+                                  displayer: "Dash Icon",
+                                  value: "GoDash",
+                                },
+                              ],
                             },
                           ],
                         },
                         {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
+                          type: "array",
+                          key: "buttons",
+                          displayer: "Buttons",
                           value: [
                             {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value: "Sınırsız teknik destek",
-                            },
-                            {
-                              type: "boolean",
-                              displayer: "Is Active",
-                              key: "is_active",
-                              value: true,
-                            },
-                          ],
-                        },
-                        {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value: "Ayda 3 saat süpervizyon",
-                            },
-                            {
-                              type: "boolean",
-                              displayer: "Is Active",
-                              key: "is_active",
-                              value: false,
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                    {
-                      type: "icon",
-                      key: "dash_icon",
-                      displayer: "Dash Icon",
-                      value: "GoDash",
-                    },
-                    {
-                      type: "string",
-                      key: "badge",
-                      displayer: "Badge",
-                      value: "Ürün 3",
-                    },
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "title",
-                      value: "Ayda 60 saatlik paket",
-                    },
-                    {
-                      type: "array",
-                      key: "buttons",
-                      displayer: "Buttons",
-                      value: [
-                        {
-                          type: "object",
-                          key: "button",
-                          displayer: "Button",
-                          value: [
-                            {
-                              type: "string",
-                              key: "buttonText",
-                              displayer: "Button Text",
-                              value: "Bu planı satın al",
-                            },
-                            {
-                              type: "page",
-                              key: "url",
-                              displayer: "Link",
-                              value: "",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "listArray",
-                  displayer: "Left Items",
-                  value: [
-                    {
-                      type: "icon",
-                      key: "circle_icon",
-                      displayer: "Circle Icon",
-                      value: "GiCircle",
-                    },
-                    {
-                      type: "icon",
-                      key: "check_icon",
-                      displayer: "Check Icon",
-                      value: "CiCircleCheck",
-                    },
-                    {
-                      type: "string",
-                      key: "plan",
-                      displayer: "Plan",
-                      value: "Ürün 4",
-                    },
-                    {
-                      type: "string",
-                      key: "tag",
-                      displayer: "tag",
-                      value: "%40 kar edin",
-                    },
-                    {
-                      type: "number",
-                      key: "price",
-                      displayer: "Price",
-                      value: 80000,
-                    },
-                    {
-                      type: "string",
-                      key: "currency",
-                      displayer: "Currency",
-                      value: "TL",
-                    },
-                    {
-                      type: "string",
-                      key: "per",
-                      displayer: "Per",
-                      value: "Yıllık",
-                    },
-                    {
-                      type: "array",
-                      key: "list",
-                      displayer: "Right Items",
-                      value: [
-                        {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value: "3 saatlik eğitim(VR terapi + platform kullanımı)",
-                            },
-                            {
-                              type: "boolean",
-                              displayer: "Is Active",
-                              key: "is_active",
-                              value: true,
-                            },
-                          ],
-                        },
-                        {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value: "Sınırsız teknik destek",
-                            },
-                            {
-                              type: "boolean",
-                              displayer: "Is Active",
-                              key: "is_active",
-                              value: true,
-                            },
-                          ],
-                        },
-                        {
-                          type: "object",
-                          key: "list_item",
-                          displayer: "List Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "property",
-                              displayer: "Property",
-                              value: "Ayda 3 saat süpervizyon",
-                            },
-                            {
-                              type: "boolean",
-                              displayer: "Is Active",
-                              key: "is_active",
-                              value: false,
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                    {
-                      type: "icon",
-                      key: "dash_icon",
-                      displayer: "Dash Icon",
-                      value: "GoDash",
-                    },
-                    {
-                      type: "string",
-                      key: "badge",
-                      displayer: "Badge",
-                      value: "Ürün 4",
-                    },
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "title",
-                      value: "Ayda 60 saatlik paket",
-                    },
-                    {
-                      type: "array",
-                      key: "buttons",
-                      displayer: "Buttons",
-                      value: [
-                        {
-                          type: "object",
-                          key: "button",
-                          displayer: "Button",
-                          value: [
-                            {
-                              type: "string",
-                              key: "buttonText",
-                              displayer: "Button Text",
-                              value: "Bu planı satın al",
-                            },
-                            {
-                              type: "page",
-                              key: "url",
-                              displayer: "Link",
-                              value: "",
+                              type: "object",
+                              key: "button",
+                              displayer: "Button",
+                              value: [
+                                {
+                                  type: "string",
+                                  key: "buttonText",
+                                  displayer: "Button Text",
+                                  value: "Join this plan",
+                                },
+                                {
+                                  type: "page",
+                                  key: "url",
+                                  displayer: "Link",
+                                  value: "",
+                                },
+                                {
+                                  type: "boolean",
+                                  key: "disabled",
+                                  displayer: "Animation Enabled",
+                                  value: true,
+                                },
+                              ],
                             },
                           ],
                         },
@@ -1372,100 +1390,180 @@ class PricingMultipleTwo extends BasePricingTable {
     return "Pricing 6";
   }
   render(): React.ReactNode {
-    const plan =
-      this.castToObject<Pricing[]>("plans")[this.getComponentState("activeTab")].product;
+    const plans = this.castToObject<Pricing[]>("plans");
+    const activeTab = this.getComponentState("activeTab");
+    const hasPlans =
+      Array.isArray(plans) &&
+      plans.length > 0 &&
+      activeTab !== undefined &&
+      plans[activeTab];
+    const plan = hasPlans ? plans[activeTab].product : [];
     const planIndex = this.getComponentState("activePlan");
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
             <div className={this.decorateCSS("up-page")}>
-              <div className={this.decorateCSS("badge")}>
-                {this.getPropValue("badge")}
-              </div>
-              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
-            </div>
-            <div className={this.decorateCSS("plan-items")}>
-              {this.getPropValue("plans").map((plan: any, index: number) => (
-                <div
-                  className={
-                    this.decorateCSS("plan-title") +
-                    " " +
-                    (this.getComponentState("activeTab") == index &&
-                      this.decorateCSS("activeTab"))
-                  }
-                  onClick={() => this.setActiveTab(index)}
-                >
-                  {plan.getPropValue("title")}
+              {this.castToString(this.getPropValue("badge")) && (
+                <div className={this.decorateCSS("badge")}>
+                  {this.getPropValue("badge")}
                 </div>
-              ))}
+              )}
+              {this.castToString(this.getPropValue("title")) && (
+                <h1 className={this.decorateCSS("title")}>
+                  {this.getPropValue("title")}
+                </h1>
+              )}
             </div>
-            <div className={this.decorateCSS("down-page")}>
-              <div className={this.decorateCSS("left-page")}>
-                {plan.map((tab: any, index: number) => (
-                  <div
-                    className={
-                      this.decorateCSS("listArray") +
-                      " " +
-                      (this.getComponentState("activePlan") == index &&
-                        this.decorateCSS("active"))
-                    }
-                    onClick={() => this.setActivePlan(index)}
-                  >
-                    <div className={this.decorateCSS("plan-icons")}>
-                      <div className={this.decorateCSS("icons")}>
-                        <ComposerIcon
-                          name={
-                            this.getComponentState("activePlan") == index
-                              ? tab.check_icon
-                              : tab.circle_icon
-                          }
-                        ></ComposerIcon>
-                      </div>
-                      <div className={this.decorateCSS("plan")}> {tab.plan}</div>
+            {hasPlans && (
+              <div className={this.decorateCSS("plan-items")}>
+                {plans.map((plan: any, index: number) => {
+                  const title2 = this.castToString(plan.getPropValue("title"));
+                  return title2 ? (
+                    <div
+                      className={
+                        this.decorateCSS("plan-title") +
+                        " " +
+                        (this.getComponentState("activeTab") === index &&
+                          this.decorateCSS("activeTab"))
+                      }
+                      onClick={() => this.setActiveTab(index)}
+                    >
+                      {title2}
                     </div>
-                    {tab.tag !== "" && (
-                      <div className={this.decorateCSS("tag")}> {tab.tag}</div>
-                    )}
-
-                    <div className={this.decorateCSS("item-price")}>
-                      <h5 className={this.decorateCSS("price")}> {tab.price}</h5>
-                      <h5 className={this.decorateCSS("currency")}> {tab.currency}</h5>
-                    </div>
-                    <h5 className={this.decorateCSS("per")}> {tab.per}</h5>
-                  </div>
-                ))}
+                  ) : null;
+                })}
               </div>
-              <div className={this.decorateCSS("right-page")}>
-                <span className={this.decorateCSS("badge")}>{plan[planIndex].badge}</span>
-                <h1 className={this.decorateCSS("title")}>{plan[planIndex].title}</h1>
-                <div className={this.decorateCSS("list-body")}>
-                  {plan[planIndex].list.map((item, itemIndex: number) => (
-                    <div className={this.decorateCSS("li")} key={itemIndex}>
-                      <ComposerIcon
-                        propsIcon={{
-                          className: this.decorateCSS("dash_icon"),
-                        }}
-                        name={plan[planIndex].dash_icon}
-                      />
-                      <div className={this.decorateCSS("property")}>{item.property}</div>
-                    </div>
-                  ))}
-                  <div className={this.decorateCSS("body-bottom")}>
-                    <div className={this.decorateCSS("buttons")}>
-                      {plan[planIndex].buttons.map((button: any, buttonIndex: number) => (
-                        <ComposerLink key={buttonIndex} url={button.url}>
-                          <button className={this.decorateCSS("button")}>
-                            {" "}
-                            {button.buttonText}{" "}
-                          </button>
-                        </ComposerLink>
+            )}
+            {hasPlans && (
+              <div className={this.decorateCSS("down-page")}>
+                {plan.length > 0 && (
+                  <>
+                    <div className={this.decorateCSS("left-page")}>
+                      {plan.map((tab: any, index: number) => (
+                        <div
+                          className={
+                            this.decorateCSS("listArray") +
+                            " " +
+                            (this.getComponentState("activePlan") == index &&
+                              this.decorateCSS("active"))
+                          }
+                          onClick={() => this.setActivePlan(index)}
+                          key={index}
+                        >
+                          <div className={this.decorateCSS("plan-icons")}>
+                            <div className={this.decorateCSS("icons")}>
+                              <ComposerIcon
+                                name={
+                                  planIndex == index
+                                    ? tab.check_icon
+                                    : tab.circle_icon
+                                }
+                              ></ComposerIcon>
+                            </div>
+                            <div className={this.decorateCSS("plan")}>
+                              {" "}
+                              {tab.plan}
+                            </div>
+                          </div>
+                          {this.castToString(tab.tag) && (
+                            <div className={this.decorateCSS("tag")}>
+                              {" "}
+                              {tab.tag}
+                            </div>
+                          )}
+                          <div className={this.decorateCSS("item-price")}>
+                            <h5 className={this.decorateCSS("price")}>
+                              {tab.price}
+                            </h5>
+                            <h5 className={this.decorateCSS("per")}>
+                              {" "}
+                              {tab.per}
+                            </h5>
+                          </div>
+                        </div>
                       ))}
                     </div>
-                  </div>
-                </div>
+                    <div className={this.decorateCSS("right-page")}>
+                      <div className={this.decorateCSS("content")}>
+                        {plan[planIndex].right_items.badge &&
+                          this.castToString(
+                            plan[planIndex].right_items.badge
+                          ) && (
+                            <span className={this.decorateCSS("badge")}>
+                              {plan[planIndex].right_items.badge}
+                            </span>
+                          )}
+                        {this.castToString(
+                          plan[planIndex].right_items.title
+                        ) && (
+                          <h1 className={this.decorateCSS("title")}>
+                            {plan[planIndex].right_items.title}
+                          </h1>
+                        )}
+
+                        <div className={this.decorateCSS("list-body")}>
+                          {plan[planIndex]?.right_items?.list?.map(
+                            (listItem: any, listItemIndex: number) => (
+                              <div
+                                key={listItemIndex}
+                                className={this.decorateCSS("list-item")}
+                              >
+                                <ComposerIcon
+                                  propsIcon={{
+                                    className: this.decorateCSS("dash_icon"),
+                                  }}
+                                  name={
+                                    listItem.value.find(
+                                      (item: any) => item.key === "dash_icon"
+                                    ).value
+                                  }
+                                />
+                                <div className={this.decorateCSS("property")}>
+                                  {
+                                    listItem.value.find(
+                                      (item: any) => item.key === "property"
+                                    ).value
+                                  }
+                                </div>
+                              </div>
+                            )
+                          )}
+                        </div>
+                        {plan[planIndex]?.right_items?.buttons.length > 0 && (
+                          <div className={this.decorateCSS("body-bottom")}>
+                            <div className={this.decorateCSS("buttons")}>
+                              {plan[planIndex]?.right_items?.buttons.map(
+                                (button: any, buttonIndex: number) => {
+                                  const buttonText = this.castToString(button.getPropValue("buttonText"));
+                                  const buttonUrl = button.getPropValue("url");
+                                  const isDisabled = button.getPropValue("disabled");
+
+                                  return (
+                                    buttonText && (
+                                      <ComposerLink key={buttonIndex} path={buttonUrl}>
+                                        <button
+                                          className={`${this.decorateCSS("button")} ${
+                                            !isDisabled ? this.decorateCSS("disabled") : ""
+                                          }`}
+                                        >
+                                          {buttonText}
+                                        </button>
+                                      </ComposerLink>
+                                    )
+                                  );
+                                }
+                              )}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>

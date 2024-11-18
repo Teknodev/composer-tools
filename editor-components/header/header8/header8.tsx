@@ -108,7 +108,7 @@ class Header8 extends BaseHeader {
               key: "image",
               displayer: "Image",
               value:
-                "https://eremia-react.vercel.app/img/project/project2/1.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618083bd2970002c6245e9?alt=media&timestamp=1719483639150",
             },
           ],
         },
@@ -140,7 +140,7 @@ class Header8 extends BaseHeader {
               key: "image",
               displayer: "Image",
               value:
-                "https://eremia-react.vercel.app/img/project/project1/1.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618083bd2970002c6245e8?alt=media&timestamp=1719483639150",
             },
           ],
         },
@@ -172,7 +172,7 @@ class Header8 extends BaseHeader {
               key: "image",
               displayer: "Image",
               value:
-                "https://eremia-react.vercel.app/img/project/project2/1.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618083bd2970002c6245e9?alt=media&timestamp=1719483639150",
             },
           ],
         },
@@ -204,7 +204,7 @@ class Header8 extends BaseHeader {
               key: "image",
               displayer: "Image",
               value:
-                "https://eremia-react.vercel.app/img/project/project2/1.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618083bd2970002c6245e8?alt=media&timestamp=1719483639150",
             },
           ],
         },

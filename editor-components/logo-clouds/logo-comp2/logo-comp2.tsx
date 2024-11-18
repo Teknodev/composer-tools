@@ -40,56 +40,56 @@ class LogoComp2Page extends LogoClouds {
           type: "image",
           key: "image",
           value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf056?alt=media&timestamp=1683297977192",
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf056?alt=media&timestamp=1719584962573",
           displayer: "Image",
         },
         {
           type: "image",
           key: "image",
           value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf055?alt=media&timestamp=1683297977192",
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf055?alt=media&timestamp=1719584962573",
           displayer: "Image",
         },
         {
           type: "image",
           key: "image",
           value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf054?alt=media&timestamp=1683297977192",
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf054?alt=media&timestamp=1719584962573",
           displayer: "Image",
         },
         {
           type: "image",
           key: "image",
           value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf053?alt=media&timestamp=1683297977192",
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf053?alt=media&timestamp=1719584962573",
           displayer: "Image",
         },
         {
           type: "image",
           key: "image",
           value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf052?alt=media&timestamp=1683297977192",
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf052?alt=media&timestamp=1719584962573",
           displayer: "Image",
         },
         {
           type: "image",
           key: "image",
           value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf051?alt=media&timestamp=1683297977192",
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf051?alt=media&timestamp=1719584962573",
           displayer: "Image",
         },
         {
           type: "image",
           key: "image",
           value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf050?alt=media&timestamp=1683297977192",
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf050?alt=media&timestamp=1719584962573",
           displayer: "Image",
         },
         {
           type: "image",
           key: "image",
           value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf04f?alt=media&timestamp=1683297977192",
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf04f?alt=media&timestamp=1719584962573",
           displayer: "Image",
 
         },
