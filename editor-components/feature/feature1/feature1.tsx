@@ -60,7 +60,7 @@ class Feature1 extends BaseFeature {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "The nine-to-five Is Dead. Here’s What to Replace It With",
+              value: "The nine-to-five Is Dead. Here's What to Replace It With",
             },
             {
               type: "string",
@@ -412,14 +412,14 @@ class Feature1 extends BaseFeature {
     const timeIcon = this.getPropValue("time_icon");
     const dateIcon = this.getPropValue("date_icon");
 
-    const Card = ({ data, style }: { data: CardData, style?: object }) => {
+    const Card = ({ data, style }: { data: CardData, style?: object; }) => {
       const title = this.castToString(data.title);
       const description = this.castToString(data.description);
 
-      const profileDescriptionExist = this.castToString(data.profileDescription);
-      const fullNameExist = this.castToString(data.fullname);
-      const readTimeExist = this.castToString(data.readTime);
-      const dateExist = this.castToString(data.date);
+      const profileDescriptionExist = !!this.castToString(data.profileDescription);
+      const fullNameExist = !!this.castToString(data.fullname);
+      const readTimeExist = !!this.castToString(data.readTime);
+      const dateExist = !!this.castToString(data.date);
 
       return (
         <div
@@ -515,9 +515,9 @@ class Feature1 extends BaseFeature {
           </div>
         </div>
       );
-    }
+    };
 
-    const Blocks = ({ cards }: { cards: CardData[] }) => {
+    const Blocks = ({ cards }: { cards: CardData[]; }) => {
       const blocks: JSX.Element[] = [];
       const data: any = [];
 
@@ -562,7 +562,7 @@ class Feature1 extends BaseFeature {
       }
 
       return <>{blocks.map((e, index) => <React.Fragment key={index}>{e}</React.Fragment>)}</>;
-    }
+    };
 
     const Block = ({ children }: { children: JSX.Element; }) => {
       return (
@@ -573,7 +573,7 @@ class Feature1 extends BaseFeature {
           {children}
         </div>
       );
-    }
+    };
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
