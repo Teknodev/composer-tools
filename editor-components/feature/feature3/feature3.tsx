@@ -11,7 +11,7 @@ type Logo = {
 };
 
 type Card = {
-  title: string;
+  title: JSX.Element;
   icon: string;
 };
 
@@ -236,27 +236,38 @@ class Feature3 extends BaseFeature {
 
             {cards?.length > 0 && (
               <Base.ContainerGrid className={this.decorateCSS("cards-container")}>
-                {cards.map((card: Card, index: number) => (
-                  <Base.VerticalContent key={index} className={this.decorateCSS("card")}>
-                    <ComposerIcon
-                      name={card.icon}
-                      propsIcon={{ className: this.decorateCSS("card-icon") }}
-                    />
-                    <Base.H2 className={this.decorateCSS("card-title")}>{card.title}</Base.H2>
-                  </Base.VerticalContent>
-                ))}
+                {cards.map((card: Card, index: number) => {
+                  const titleExist = !!this.castToString(card.title);
+                  const iconExist = !!card.icon;
+
+                  if (!titleExist && !iconExist) return null;
+
+                  return (
+                    <Base.VerticalContent key={index} className={this.decorateCSS("card")}>
+                      <ComposerIcon
+                        name={card.icon}
+                        propsIcon={{ className: this.decorateCSS("card-icon") }}
+                      />
+                      <Base.H2 className={this.decorateCSS("card-title")}>{card.title}</Base.H2>
+                    </Base.VerticalContent>
+                  );
+                })}
               </Base.ContainerGrid>
             )}
 
             {logos?.length > 0 && (
               <Base.ContainerGrid className={this.decorateCSS("logos-container")}>
-                {logos.map((logo: Logo, index: number) => (
-                  <Base.VerticalContent key={index} className={this.decorateCSS("logo-container")}>
-                    <ComposerLink path={logo.url}>
-                      <img className={this.decorateCSS("logo-image")} src={logo.image} alt={`logo ${index + 1}`} />
-                    </ComposerLink>
-                  </Base.VerticalContent>
-                ))}
+                {logos.map((logo: Logo, index: number) => {
+                  if (!logo.image) return null;
+
+                  return (
+                    <Base.VerticalContent key={index} className={this.decorateCSS("logo-container")}>
+                      <ComposerLink path={logo.url}>
+                        <img className={this.decorateCSS("logo-image")} src={logo.image} alt={`logo ${index + 1}`} />
+                      </ComposerLink>
+                    </Base.VerticalContent>
+                  );
+                })}
               </Base.ContainerGrid>
             )}
           </Base.VerticalContent>
