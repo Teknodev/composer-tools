@@ -9,6 +9,10 @@
       .text-group {
         width: 100%;
         gap: var(--composer-gap-xs);
+
+        .title2 {
+          color: var(--composer-font-color-primary);
+        }
       }
     }
     .down-page {
