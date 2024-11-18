@@ -139,17 +139,18 @@ class Feature2 extends BaseFeature {
 
   render() {
     const items = this.castToObject<Box[]>("items");
-    const itemCount = this.getPropValue("itemCount");
+    const itemCount: number = this.getPropValue("itemCount");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ContainerGrid className={this.decorateCSS("wrapper")}>
             {items.map((item: Box, index: number) => {
-              const titleExist = this.castToString(item.title);
-              const descExist = this.castToString(item.description);
+              const titleExist = !!this.castToString(item.title);
+              const descExist = !!this.castToString(item.description);
+              const iconExist = !!item.icon;
 
-              if (!!item.icon || !!titleExist || !!descExist) {
+              if (iconExist || titleExist || descExist) {
                 return (
                   <Base.VerticalContent
                     key={index}
@@ -164,23 +165,21 @@ class Feature2 extends BaseFeature {
                     `}
                     style={{ width: 90 / itemCount + "%" }}
                   >
-                    {!!item.icon && (
+                    {iconExist && (
                       <>
                         <span className={this.decorateCSS("item-index")}>{index + 1}.</span>
                         <ComposerIcon
                           name={item.icon}
-                          propsIcon={{
-                            className: this.decorateCSS("icon")
-                          }}
+                          propsIcon={{ className: this.decorateCSS("icon") }}
                         />
                       </>
                     )}
-                    {!!titleExist && (
+                    {titleExist && (
                       <Base.H2 className={this.decorateCSS("title")}>
                         {item.title}
                       </Base.H2>
                     )}
-                    {!!descExist && (
+                    {descExist && (
                       <Base.P className={this.decorateCSS("description")}>
                         {item.description}
                       </Base.P>
