@@ -9,12 +9,10 @@
 
       .header-title {
         margin: 0;
-        font-size: 6rem;
       }
 
       .header-subtitle {
         margin: 0;
-        font-size: 3rem;
       }
 
       .button-container {
@@ -125,14 +123,6 @@
         justify-content: center;
         align-items: center;
         gap: var(--composer-gap-md);
-
-        .header-title {
-          font-size: 4rem;
-        }
-
-        .header-subtitle {
-          font-size: 2rem;
-        }
       }
     }
   }
@@ -167,18 +157,4 @@
   }
 }
 
-@container (max-width: #{$composer-phone-width}) {
-  .container {
-    .max-content {
-      .content {
-        .header-title {
-          font-size: 2rem;
-        }
-
-        .header-subtitle {
-          font-size: 1.5rem;
-        }
-      }
-    }
-  }
-}
+@container (max-width: #{$composer-phone-width}) {}
