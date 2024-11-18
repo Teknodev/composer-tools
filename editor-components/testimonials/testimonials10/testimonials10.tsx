@@ -21,59 +21,18 @@ type Button = {
 class Testimonials10Page extends Testimonials {
   constructor(props?: any) {
     super(props, styles);
-
-    this.addProp({
-      type: "icon",
-      key: "quoteicon",
-      displayer: " quoteicon",
-      value: "FaQuoteLeft",
-    });
-    this.addProp({
-      type: "icon",
-      key: "nexticon",
-      displayer: " nexticon",
-      value: "FaArrowRightLong",
-    });
-    this.addProp({
-      type: "icon",
-      key: "previcon",
-      displayer: "previcon",
-      value: "FaArrowLeftLong",
-    });
-
     this.addProp({
       type: "string",
       key: "subtitle",
-      displayer: "Title",
-      value: "What our client say",
-    });
-    this.addProp({
-      type: "boolean",
-      key: "showLine",
-      displayer: "Show Line",
-      value: true,
-    });
-    this.addProp({
-      type: "string",
-      key: "title",
       displayer: "Subtitle",
       value: "Happy With Customers & Clients",
     });
     this.addProp({
       type: "string",
-      key: "description",
-      displayer: "Description",
-      value:
-        "I feel very happy and be proud to connect with this industry. i presume this is a very productive and professional industry.i wish very good luck & success for this industry",
+      key: "title",
+      displayer: "Title",
+      value: "What our client say",
     });
-
-    this.addProp({
-      type: "string",
-      key: "hiliteTitle",
-      displayer: "Bottom Title",
-      value: "CLIENT SAYS",
-    });
-
     this.addProp({
       type: "array",
       key: "buttons",
@@ -116,14 +75,14 @@ class Testimonials10Page extends Testimonials {
             {
               type: "image",
               key: "image",
-              displayer: "Image",
+              displayer: "Author Image",
               value:
                 "https://gridvalley.net/wp/industroz/wp-content/uploads/2020/04/pic3-5.jpg",
             },
             {
               type: "string",
               key: "text",
-              displayer: "Description",
+              displayer: "Review Text",
               value:
                 "This is not just another nail salon! These ladies are super talented! My nails have never looked/felt more amazing!! the environment here is so happy and cheery!",
             },
@@ -131,13 +90,13 @@ class Testimonials10Page extends Testimonials {
               type: "string",
               key: "author",
               value: "Alex Madson",
-              displayer: "Name",
+              displayer: "Author Name",
             },
             {
               type: "string",
               key: "position",
               value: "Contractor",
-              displayer: "Position",
+              displayer: "Author Position",
             },
           ],
         },
@@ -149,14 +108,14 @@ class Testimonials10Page extends Testimonials {
             {
               type: "image",
               key: "image",
-              displayer: "Image",
+              displayer: "Author Image",
               value:
                 "https://gridvalley.net/wp/industroz/wp-content/uploads/2020/04/pic3-5.jpg",
             },
             {
               type: "string",
               key: "text",
-              displayer: "Description",
+              displayer: "Review Text",
               value:
                 "This is not just another nail salon! These ladies are super talented! My nails have never looked/felt more amazing!! the environment here is so happy and cheery!",
             },
@@ -164,13 +123,13 @@ class Testimonials10Page extends Testimonials {
               type: "string",
               key: "author",
               value: "Helen Lee",
-              displayer: "Name",
+              displayer: "Author Name",
             },
             {
               type: "string",
               key: "position",
               value: "Contractor",
-              displayer: "Position",
+              displayer: "Author Position",
             },
           ],
         },
@@ -182,14 +141,14 @@ class Testimonials10Page extends Testimonials {
             {
               type: "image",
               key: "image",
-              displayer: "Image",
+              displayer: "Author Image",
               value:
                 "https://gridvalley.net/wp/industroz/wp-content/uploads/2020/04/pic3-5.jpg",
             },
             {
               type: "string",
               key: "text",
-              displayer: "Description",
+              displayer: "Review Text",
               value:
                 "This is not just another nail salon! These ladies are super talented! My nails have never looked/felt more amazing!! the environment here is so happy and cheery!",
             },
@@ -197,13 +156,13 @@ class Testimonials10Page extends Testimonials {
               type: "string",
               key: "author",
               value: "Helen Lee",
-              displayer: "Name",
+              displayer: "Author Name",
             },
             {
               type: "string",
               key: "position",
-              value: "Position",
-              displayer: "Contractor",
+              value: "Contractor",
+              displayer: "Author Position",
             },
           ],
         },
@@ -215,14 +174,14 @@ class Testimonials10Page extends Testimonials {
             {
               type: "image",
               key: "image",
-              displayer: "Image",
+              displayer: "Author Image",
               value:
                 "https://gridvalley.net/wp/industroz/wp-content/uploads/2020/04/pic3-5.jpg",
             },
             {
               type: "string",
               key: "text",
-              displayer: "Description",
+              displayer: "Review Text",
               value:
                 "This is not just another nail salon! These ladies are super talented! My nails have never looked/felt more amazing!! the environment here is so happy and cheery!",
             },
@@ -230,13 +189,13 @@ class Testimonials10Page extends Testimonials {
               type: "string",
               key: "author",
               value: "Helen Lee",
-              displayer: "Name",
+              displayer: "Author Name",
             },
             {
               type: "string",
               key: "position",
               value: "Contractor",
-              displayer: "Position",
+              displayer: "Author Position",
             },
           ],
         },
@@ -248,14 +207,14 @@ class Testimonials10Page extends Testimonials {
             {
               type: "image",
               key: "image",
-              displayer: "Image",
+              displayer: "Author Image",
               value:
                 "https://gridvalley.net/wp/industroz/wp-content/uploads/2020/04/pic3-5.jpg",
             },
             {
               type: "string",
               key: "text",
-              displayer: "Description",
+              displayer: "Review Text",
               value:
                 "This is not just another nail salon! These ladies are super talented! My nails have never looked/felt more amazing!! the environment here is so happy and cheery!",
             },
@@ -263,17 +222,57 @@ class Testimonials10Page extends Testimonials {
               type: "string",
               key: "author",
               value: "Helen Lee",
-              displayer: "Name",
+              displayer: "Author Name",
             },
             {
               type: "string",
               key: "position",
               value: "Contractor",
-              displayer: "Position",
+              displayer: "Author Position",
             },
           ],
         },
       ],
+    });
+    this.addProp({
+      type: "boolean",
+      key: "showLine",
+      displayer: "Show Line",
+      value: true,
+    });
+
+    this.addProp({
+      type: "icon",
+      key: "quoteicon",
+      displayer: "Quote Icon",
+      value: "FaQuoteLeft",
+    });
+    this.addProp({
+      type: "icon",
+      key: "nexticon",
+      displayer: " Next Icon",
+      value: "FaArrowRightLong",
+    });
+    this.addProp({
+      type: "icon",
+      key: "previcon",
+      displayer: "Prev Icon",
+      value: "FaArrowLeftLong",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value:
+        "I feel very happy and be proud to connect with this industry. i presume this is a very productive and professional industry.i wish very good luck & success for this industry",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "hiliteTitle",
+      displayer: "Bottom Title",
+      value: "CLIENT SAYS",
     });
 
     this.setComponentState("slider-ref", React.createRef());
@@ -302,20 +301,21 @@ class Testimonials10Page extends Testimonials {
     const showLine = this.getPropValue("showLine");
 
     return (
-      <Base.Container className={this.decorateCSS("container")} isFull={true}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <div className={this.decorateCSS("overlay-left")}> </div>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("container2")}>
-            <Base.ContainerGrid className={this.decorateCSS("testimonials10")}>
+            <div className={this.decorateCSS("testimonials10")}>
               {(title || subtitle || description || hasButtons) && (
-                <Base.GridCell className={this.decorateCSS("left-content")}>
-                  {title && (
+                <div className={this.decorateCSS("left-content")}>
+                  {subtitle && (
                     <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                      {this.getPropValue("title")}
+                      {this.getPropValue("subtitle")}
                     </Base.SectionSubTitle>
                   )}
-                  {subtitle && (
+                  {title && (
                     <Base.SectionTitle className={this.decorateCSS("title")}>
-                      {this.getPropValue("subtitle")}
+                      {this.getPropValue("title")}
                     </Base.SectionTitle>
                   )}
                   {description && (
@@ -342,9 +342,9 @@ class Testimonials10Page extends Testimonials {
                       }
                     )}
                   </div>
-                </Base.GridCell>
+                </div>
               )}
-              <Base.GridCell className={this.decorateCSS("right-content")}>
+              <div className={this.decorateCSS("right-content")}>
                 <div className={this.decorateCSS("slider-style")}>
                   <ComposerSlider
                     {...settings}
@@ -433,15 +433,17 @@ class Testimonials10Page extends Testimonials {
                   </ComposerSlider>
 
                 </div>
-                {hiliteTitle && (
-                  <div className={this.decorateCSS("hiliteTitle")}>
-                    {this.getPropValue("hiliteTitle")}
-                  </div>
-                )}
-              </Base.GridCell>
-            </Base.ContainerGrid>
+
+              </div>
+            </div>
           </div>
         </Base.MaxContent>
+        {hiliteTitle && (
+          <div className={this.decorateCSS("hiliteTitle")}>
+            {this.getPropValue("hiliteTitle")}
+          </div>
+        )}
+        <div className={this.decorateCSS("overlay-right")}> </div>
       </Base.Container>
     );
   }

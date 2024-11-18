@@ -1,10 +1,40 @@
 .container {
-  padding-left: 50px !important;
+  padding: 0px !important;
+  position: relative;
+  .overlay-left{
+    position: absolute;
+    width: 40%;
+    height: 80%;
+    background-color: color-mix(
+      in srgb,
+      var(--composer-html-background),
+      var(--composer-font-color-primary) 5%
+    );
+    width: 100%;
+  }
+  .overlay-right{
+    width: 60%;
+    top: 0px;
+    position: absolute;
+    height: 100%;
+    background-color: color-mix(
+      in srgb,
+      var(--composer-html-background),
+      var(--composer-font-color-primary) 5%
+    );
+    background: var(--composer-font-color-primary);
+    right: 0px;
+  }
   .max-content {
+    position: relative;
+    z-index: 1;
+    padding: 20px 20px 20px 20px;
     .container2 {
       .testimonials10 {
-        flex-wrap: nowrap;
+        display: flex;
         .left-content {
+          flex: 0 0 700px;
+          max-width: 700px;
           .subtitle {
             margin:0px;
           }
@@ -18,10 +48,11 @@
             flex-direction: row;
             gap: var(--composer-gap-md);
             .button {
+              border-radius: var(--composer-border-radius-xs);
               font-size: 1rem;
               border: none;
               color: var(--composer-font-color-secondary);
-              background-color: var(--composer-secondary-color);
+              background-color: var(--composer-primary-color);
               padding: var(--composer-gap-sm) var(--composer-gap-lg);
               transition-duration: 0.3s ease-in-out;
               text-align: center;
@@ -30,11 +61,11 @@
           }
         }
         .right-content{
-          flex-grow: 2;
+          flex-grow: 1;
           height: 100%;
-          background: var(--composer-font-color-primary);
+          padding-bottom: 100px;
           .slider-style {
-            width: 60%;
+            width: 100%;
             height: 100%;
             padding-left: var(--composer-gap-xl);
             .slider-inner-div-with-image, .slider-inner-div  {
@@ -50,7 +81,8 @@
                 display: flex;
                 padding-left: calc(var(--composer-gap-xl) * 2);
                 padding-top: calc(var(--composer-gap-xl) * 2);
-                .header-page {            
+                .header-page {
+                  border-radius: var(--composer-border-radius-xs);            
                   width: 100%;
                   background-color: var(--composer-html-background);
                   padding:var(--composer-gap-md) var(--composer-gap-xl);
@@ -61,6 +93,7 @@
                     max-width: 25%;
                     left:calc(var(--composer-gap-md) * (-5)); 
                     top:calc(var(--composer-gap-md) * (-4)); 
+                    border-radius: var(--composer-border-radius-xs);
                     .img {
                       width: 100%;
                       border: 2px solid var(--composer-html-background);
@@ -77,14 +110,14 @@
                       cursor: pointer;
                       transition: 0.4s;
                       &:hover {
-                        color: var(--composer-secondary-color);
+                        color: var(--composer-primary-color);
                       }
                     }
                   }
                   .iconquote {
                     position: absolute;
                     font-size: 5rem;
-                    color: rgba(var(--composer-font-color-primary-rgb), 0.2);
+                    color: rgba(var(--composer-primary-color-rgb), 0.5);
                     top: var(--composer-gap-md);
                     left: var(--composer-gap-xl);
                   }
@@ -123,16 +156,21 @@
               justify-content: center;
             }
           }
-          .hiliteTitle {
-            font-size: 5rem;
-            color: var(--composer-font-color-secondary);
-            width: 100%;
-            text-align: end;
-          }
         }
 
       }
     }
+  }
+  .hiliteTitle {
+    font-size: 5rem;
+    color: var(--composer-font-color-secondary);
+    width: fit-content;
+    color: white;
+    background-color: black;
+    position: absolute;
+    z-index: 10;
+    right: 0px;
+    bottom:0px
   }
 }
 @media screen and (max-width: 900px){
