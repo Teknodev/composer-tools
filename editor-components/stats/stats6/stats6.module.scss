@@ -1,19 +1,19 @@
 @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
 .container {
+  background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%) !important;
   .max-content {
     .banner {
-      margin-bottom: var(--composer-gap-xl);
+      margin-bottom: calc(2 * var(--composer-gap-lg));
 
       .description {
         width: 100%;
         color: var(--composer-font-color-primary);
+        opacity: 0.5;
       }
     }
 
     .stats6-page {
-      margin-bottom: var(--composer-gap-xl);
-
       .card {
         gap: var(--composer-gap-md);
         width: 100%;
@@ -29,19 +29,49 @@
         .data-card-description {
           margin: 0;
           color: var(--composer-font-color-primary);
+          font-size: 1.5rem;
+          opacity: 0.5;
         }
       }
     }
   }
 }
 
-@container (max-width: #{$composer-phone-width-lg}) {
+@container (max-width: #{$composer-tablet-width-lg}) {
   .container {
     .max-content {
       .banner {
+        margin-bottom: calc(2 * var(--composer-gap-md));
         .description {
           width: 100%;
         }
+      }
+      .stats6-page {
+        gap: var(--composer-gap-xl) !important;
+
+        .card {
+          gap: var(--composer-gap-md);
+          .data-card-title {
+            font-size: 2rem;
+          }
+
+          .data-card-description {
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .banner {
+        margin-bottom: calc(2 * var(--composer-gap-sm));
+      }
+      .stats6-page {
+        gap: var(--composer-gap-lg) !important;
       }
     }
   }
