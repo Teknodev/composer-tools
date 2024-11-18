@@ -22,7 +22,7 @@
         padding-top: 20px;
         padding-bottom: 20px;
         position: relative;
-        .item-container:not(:first-child):not(:last-child)::before {
+        &::before {
           content: '';
           position: absolute;
           top: 0;
@@ -30,6 +30,16 @@
           right: 0;
           bottom: 0;
           border-top: 1px solid var(--composer-border-color, #ddd); /* Çizgi rengi */
+          width: 100%;
+          margin: 0;
+        }
+        &:last-child::after {
+          content: '';
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          border-bottom: 1px solid var(--composer-border-color, #ddd); /* Çizgi rengi */
           width: 100%;
           margin: 0;
         }
