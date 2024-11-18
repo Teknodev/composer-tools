@@ -1,35 +1,20 @@
-.container {
-  width: 100%;
-  padding: 20px 0;
-  background-color: var(--composer-html-background);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 50px;
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
-  .max-content {
-    max-width: var(--composer-content-width);
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  }
+.container {
+  background-color: var(--composer-html-background);
+
+  .max-content {}
 }
 
-.content {
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  margin: 0 50px;
-  width: 100%;
-  gap: 0px;
+.wrapper {
+  gap: 0;
 }
 
 .header {
   min-height: 120px;
   width: 100%;
   max-width: var(--composer-content-width);
+  margin-bottom: var(--composer-gap-lg);
 
   &.min-height-unset {
     min-height: unset;
@@ -37,9 +22,8 @@
 }
 
 .upper-title {
-  font-size: 1.2em;
+  margin: 0;
   color: var(--composer-primary-color);
-  text-align: center;
   width: 100%;
   letter-spacing: 10px;
   position: relative;
@@ -47,29 +31,29 @@
 }
 
 .shadow-header-title {
+  margin: 0;
   color: var(--composer-html-background);
   text-shadow: -1px -1px 0 rgba(var(--composer-font-color-primary-rgb), 0.25), 1px -1px 0 rgba(var(--composer-font-color-primary-rgb), 0.25), -1px 1px 0 rgba(var(--composer-font-color-primary-rgb), 0.25),
     1px 1px 0 rgba(var(--composer-font-color-primary-rgb), 0.25);
   z-index: 0;
   width: 100%;
-  font-size: 12em;
-  line-height: 100px;
-  text-align: center;
-  margin-bottom: -55px;
+  font-size: 12rem;
+  line-height: 6rem;
+  margin-bottom: calc(-1 * var(--composer-gap-xl));
 }
 
 .header-title {
+  margin: 0;
   color: var(--composer-font-color-primary);
   font-weight: 900;
-  font-size: 5em;
+  font-size: 5rem;
   z-index: 2;
   width: 100%;
-  text-align: center;
 }
 
 .card-item-first,
 .card-item-count {
-  min-height: 30rem;
+  min-height: 500px;
 }
 
 .card-item-first {
@@ -84,28 +68,34 @@
 
   .title {
     display: block;
-    font-weight: bold;
-    font-size: x-large;
+    font-weight: 800;
+    font-size: 2rem;
     color: var(--composer-font-color-primary);
     width: 80%;
-    margin-bottom: 30px;
+    margin-bottom: var(--composer-gap-md);
   }
 
   .button {
     align-self: center;
-    padding: 15px 20px;
+    // there is no variable for 15px and we need 15px
+    padding: 15px var(--composer-gap-md);
     align-content: center;
     background-color: transparent;
     color: var(--composer-font-color-primary);
     border: 1px solid var(--composer-font-color-primary);
     width: 80%;
     cursor: pointer;
-    font-size: small;
-    font-weight: bold;
+    font-size: 1rem;
+    font-weight: 600;
     transition: 0.3s;
+
+    >div,>a {
+      display: block;
+      text-align: center;
+    }
   }
 
-  .button:hover + .message {
+  .button:hover+.message {
     color: var(--composer-font-color-primary);
     opacity: 0.7;
   }
@@ -118,6 +108,8 @@
 }
 
 .card-item-count {
+  border-top: 1px solid transparent;
+
   &.border-top {
     border-top: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.1);
   }
@@ -131,8 +123,7 @@
     align-items: center;
     height: 100%;
     overflow: hidden;
-    text-align: center;
-    gap: 20px;
+    gap: var(--composer-gap-md);
 
     .title,
     .long-text {
@@ -144,69 +135,52 @@
 
     .title {
       font-weight: 800;
-      font-size: large;
+      font-size: 1.5rem;
       color: var(--composer-font-color-primary);
     }
 
     .long-text {
-      font-size: medium;
+      font-size: 1rem;
     }
   }
 }
 
-.Icon {
+.icon {
   color: var(--composer-primary-color);
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
 }
 
-@media only screen and (max-width: 1000px) {
+@container (max-width: #{$composer-tablet-width}) {
   .upper-title {
-    font-size: 1em;
-    margin-bottom: -20px;
+    font-size: 1rem;
+    margin-bottom: calc(-1 * var(--composer-gap-md));
   }
 
   .shadow-header-title {
-    font-size: 9em;
-    margin-bottom: -50px;
+    font-size: 9rem;
+    margin-bottom: calc(-1 * var(--composer-gap-xl));
   }
 
   .header-title {
-    font-size: 3.5em;
-  }
-
-  .content {
-    margin: 0 30px;
-
-    .card-item-first,
-    .card-item-count {
-      width: 50% !important;
-    }
+    font-size: 3.5rem;
   }
 }
 
-@media only screen and (max-width: 500px) {
+@container (max-width: #{$composer-phone-width}) {
   .upper-title {
-    font-size: 0.8em;
+    // there is no gap variable for 30px and we need exact 30px
     margin-bottom: -30px;
   }
 
   .shadow-header-title {
-    font-size: 5em;
+    font-size: 5rem;
+    line-height: 4rem;
     word-wrap: break-word;
-    margin-bottom: -50px;
+    margin-bottom: calc(-1 * var(--composer-gap-lg));
   }
 
   .header-title {
-    font-size: 2em;
-  }
-
-  .content {
-    margin: 0 !important;
-
-    .card-item-first,
-    .card-item-count {
-      width: 100% !important;
-    }
+    font-size: 2rem;
   }
 }

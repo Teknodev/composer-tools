@@ -2,6 +2,8 @@ import * as React from "react";
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature12.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type Card = {
   title: JSX.Element;
@@ -55,6 +57,12 @@ class Feature12 extends BaseFeature {
           value: "SEE ALL SERVICES",
         },
         {
+          type: "page",
+          key: "buttonLink",
+          displayer: "Button Link",
+          value: ""
+        },
+        {
           type: "image",
           key: "backgroundImage",
           displayer: "Background Image",
@@ -95,7 +103,7 @@ class Feature12 extends BaseFeature {
               type: "icon",
               key: "icon",
               displayer: "Icon",
-              value: "PiPaintBucketFill",
+              value: "FiBook",
             },
           ],
         },
@@ -199,60 +207,60 @@ class Feature12 extends BaseFeature {
         : "";
 
     return (
-      <div className={this.decorateCSS("container")}>
-        {renderHeader && (
-          <header
-            className={`
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          {renderHeader && (
+            <header
+              className={`
               ${this.decorateCSS("header")}
               ${setMinHeight}
             `}
-          >
-            {upperTitleExist && (
-              <div className={this.decorateCSS("upper-title")}>
-                {upperTitle}
-              </div>
-            )}
-            {behindTitleTextExist && (
-              <div className={this.decorateCSS("shadow-header-title")}>
-                {behindtitleText}
-              </div>
-            )}
-            {titleExist && (
-              <div className={this.decorateCSS("header-title")}>{title}</div>
-            )}
-          </header>
-        )}
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("content")}>
+            >
+              {upperTitleExist && (
+                <Base.SectionSubTitle className={this.decorateCSS("upper-title")}>
+                  {upperTitle}
+                </Base.SectionSubTitle>
+              )}
+              {behindTitleTextExist && (
+                <div className={this.decorateCSS("shadow-header-title")}>
+                  {behindtitleText}
+                </div>
+              )}
+              {titleExist && (
+                <Base.SectionTitle className={this.decorateCSS("header-title")}>{title}</Base.SectionTitle>
+              )}
+            </header>
+          )}
+          <Base.ListGrid gridCount={{ pc: itemCount }} className={this.decorateCSS("wrapper")}>
             {renderFirstItem && (
               <div
                 className={this.decorateCSS("card-item-first")}
                 style={{
-                  width: `${100 / itemCount}%`,
-                  backgroundImage: `${
-                    firstItemOverlay
-                      ? "linear-gradient(color-mix(in srgb, rgba(var(--composer-html-background-rgb), 0.7), rgba(var(--composer-font-color-primary-rgb), 0.8) 5%), color-mix(in srgb, rgba(var(--composer-html-background-rgb), 0.7), rgba(var(--composer-font-color-primary-rgb), 0.8) 5%)),"
-                      : ""
-                  } url(${firstItemBackgroundImage})`,
+                  backgroundImage: `${firstItemOverlay
+                    ? "linear-gradient(color-mix(in srgb, rgba(var(--composer-html-background-rgb), 0.7), rgba(var(--composer-font-color-primary-rgb), 0.8) 5%), color-mix(in srgb, rgba(var(--composer-html-background-rgb), 0.7), rgba(var(--composer-font-color-primary-rgb), 0.8) 5%)),"
+                    : ""
+                    } url(${firstItemBackgroundImage})`,
                 }}
               >
                 {firstCardTitleExist && (
-                  <h3 className={this.decorateCSS("title")}>
+                  <Base.H3 className={this.decorateCSS("title")}>
                     {firstItem.title}
-                  </h3>
+                  </Base.H3>
                 )}
                 {buttonTextExist && (
-                  <button className={this.decorateCSS("button")}>
-                    {firstItem.button}
-                  </button>
+                  <div className={this.decorateCSS("button")}>
+                    <ComposerLink path={this.getPropValue("buttonLink")}>
+                      {firstItem.button}
+                    </ComposerLink>
+                  </div>
                 )}
               </div>
             )}
 
             {cards?.length > 0 &&
-              cards.map((message: Card, index: number) => {
-                const descExist = this.castToString(message.description);
-                const titleExist = this.castToString(message.title);
+              cards.map((card: Card, index: number) => {
+                const descExist = !!this.castToString(card.description);
+                const titleExist = !!this.castToString(card.title);
 
                 const shouldRender = descExist || titleExist;
 
@@ -262,10 +270,9 @@ class Feature12 extends BaseFeature {
                     <div
                       className={`
                         ${this.decorateCSS("card-item-count")}
-                        ${this.decorateCSS(itemCount >= 4 ? "border-top" : "")}
+                        ${this.decorateCSS(index >= itemCount - 1 ? "border-top" : "")}
                       `}
                       style={{
-                        width: `${100 / itemCount}%`,
                         backgroundColor: `
                           color-mix(
                           in srgb,
@@ -275,26 +282,24 @@ class Feature12 extends BaseFeature {
                       }}
                       key={index}
                     >
-                      {(message.icon || titleExist || descExist) && (
+                      {(card.icon || titleExist || descExist) && (
                         <div className={this.decorateCSS("message")}>
-                          {message.icon && (
-                            <div className={this.decorateCSS("Icon")}>
+                          {!!card.icon && (
+                            <div className={this.decorateCSS("icon-container")}>
                               <ComposerIcon
-                                propsIcon={{
-                                  className: this.decorateCSS("Icon"),
-                                }}
-                                name={message.icon}
+                                name={card.icon}
+                                propsIcon={{ className: this.decorateCSS("icon") }}
                               />
                             </div>
                           )}
                           {titleExist && (
                             <h3 className={this.decorateCSS("title")}>
-                              {message.title}
+                              {card.title}
                             </h3>
                           )}
                           {descExist && (
                             <p className={this.decorateCSS("long-text")}>
-                              {message.description}
+                              {card.description}
                             </p>
                           )}
                         </div>
@@ -302,9 +307,9 @@ class Feature12 extends BaseFeature {
                     </div>
                   );
               })}
-          </div>
-        </div>
-      </div>
+          </Base.ListGrid>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
