@@ -588,7 +588,7 @@ class Feature1 extends BaseFeature {
                     propsIcon={{ className: this.decorateCSS("left-side-icon") }}
                   />
                   {leftSideText &&
-                    <Base.SectionTitle className={this.decorateCSS("first-text")}>{this.getPropValue("leftSideText")}</Base.SectionTitle>
+                    <Base.SectionTitle className={this.decorateCSS("section-title")}>{this.getPropValue("leftSideText")}</Base.SectionTitle>
                   }
                 </div>
               )}
