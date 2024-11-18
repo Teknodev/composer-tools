@@ -1,27 +1,20 @@
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+
 .container {
-  width: 100%;
-  height: auto;
-  padding: 20px 0;
   background-color: var(--composer-html-background);
 
-  .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  .max-content {}
 }
 
-/* COMPONENT CONTAINER */
-.comp-container {
+.wrapper {
   width: 90%;
+  margin: 0 auto;
 
   .comp-wrapper {
     display: flex;
     justify-content: center;
     align-items: start;
-    gap: 10%;
+    gap: calc(var(--composer-gap-xl) * 2);
 
     .comp-slider {
       width: 100%;
@@ -30,21 +23,20 @@
     .comp-body-wrapper {
       width: 100%;
       display: grid;
-      gap: 20px;
+      gap: var(--composer-gap-md);
     }
   }
 }
 
 /* HEADER */
 .comp-header {
-  margin-bottom: 2em;
+  margin-bottom: var(--composer-gap-lg);
   color: var(--composer-font-color-primary);
 
   .comp-header-title {
-    padding: 0;
     margin: 0;
-    padding-bottom: 20px;
-    font-size: 7em;
+    padding-bottom: var(--composer-gap-md);
+    font-size: 7rem;
   }
 
   .divider {
@@ -54,8 +46,8 @@
   }
 
   .comp-header-description {
-    padding: 20px 0px;
-    font-size: 2.3em;
+    padding: var(--composer-gap-md) 0;
+    font-size: 2rem;
   }
 }
 
@@ -63,7 +55,7 @@
 .comp-slider {
   position: relative;
   min-height: 500px;
-  padding: 1em;
+  padding: 1rem;
 
   .slider-item {
     width: 100%;
@@ -81,11 +73,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: var(--composer-gap-sm);
 
     .slider-button {
       border: none;
-      font-weight: bold;
       color: var(--composer-font-color-primary);
       background-color: transparent;
 
@@ -103,14 +94,14 @@
     list-style-type: none;
     display: flex;
     justify-content: start;
-    gap: 20px;
+    gap: var(--composer-gap-md);
 
-    .tabs-list-item > .button {
+    .tabs-list-item>.button {
       text-decoration: none;
-      padding-left: 15px;
-      padding-right: 15px;
+      padding-left: var(--composer-gap-sm);
+      padding-right: var(--composer-gap-sm);
       font-weight: 500;
-      font-size: 1.6em;
+      font-size: 1.5rem;
       color: var(--composer-font-color-primary);
       background-color: transparent;
       border: none;
@@ -130,20 +121,20 @@
 }
 
 .comp-body-content {
-  font-size: 1.3em;
-  line-height: 1.7em;
+  font-size: 1.5rem;
+  line-height: 2rem;
   color: var(--composer-font-color-primary);
 }
 
 /* PROGRESS */
 .progress-item {
-  margin-top: 10px;
+  margin-top: var(--composer-gap-sm);
 
   .progress-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 6px;
+    margin-bottom: var(--composer-gap-xs);
     color: var(--composer-font-color-primary);
 
     .progress-percent {
@@ -157,10 +148,10 @@
   }
 }
 
-@media only screen and (max-width: 1024px) {
-  .comp-wrapper {
+@container (max-width: #{$composer-tablet-width}) {
+  .wrapper .comp-wrapper {
     flex-direction: column;
-    gap: 50px !important;
+    gap: var(--composer-gap-xl);
 
     .comp-body-wrapper {
       .tabs {
@@ -170,19 +161,15 @@
           list-style-type: none;
           display: flex;
           justify-content: start;
-          gap: 20px;
+          gap: var(--composer-gap-md);
           flex-wrap: wrap;
         }
       }
     }
   }
 
-  .comp-header-title {
-    font-size: 5em !important;
-  }
-
-  .comp-container {
-    width: 90%;
+  .comp-header .comp-header-title {
+    font-size: 5rem;
   }
 
   .comp-slider {
@@ -190,17 +177,14 @@
   }
 }
 
-@media only screen and (max-width: 468px) {
-  .comp-wrapper {
-    flex-direction: column;
-    gap: 50px !important;
-  }
+@container (max-width: #{$composer-phone-width}) {
+  .comp-header {
+    .comp-header-title {
+      font-size: 2rem;
+    }
 
-  .comp-header-title {
-    font-size: 2em !important;
-  }
-
-  .comp-header-description {
-    font-size: 1.5em !important;
+    .comp-header-description {
+      font-size: 1.5rem;
+    }
   }
 }
