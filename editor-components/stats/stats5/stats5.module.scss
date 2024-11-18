@@ -6,6 +6,7 @@
       .card {
         display: flex;
         justify-content: center;
+        flex-wrap: wrap;
         align-items: center;
         text-align: center;
         min-height: 100px;
@@ -30,6 +31,9 @@
           font-size: 13rem;
           color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
           margin: 0;
+          white-space: normal;
+          word-break: break-word;
+          overflow-wrap: break-word;
         }
 
         .card-data-description {
