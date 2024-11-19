@@ -3,8 +3,14 @@
 .container {
   .max-content {
     display: flex;
-    justify-content: center;
+    // justify-content: center;
     .page {
+      width: 100%;
+      .text-group {
+        .subtitle {
+          width: 98%;
+        }
+      }
       .down-page {
         .all-card {
           width: 100%;
@@ -13,6 +19,14 @@
             max-width: 100%;
             min-width: 300px;
             margin-left: var(--composer-gap-xl);
+            position: relative;
+            padding: var(--composer-gap-md);
+            border: 1px solid color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+          }
+          .no-image-card {
+            height: 100%;
+            max-width: 100%;
+            min-width: 300px;
             position: relative;
             padding: var(--composer-gap-md);
             border: 1px solid color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
@@ -69,6 +83,11 @@
               height: 20px;
               margin: var(--composer-gap-sm);
               color: var(--composer-font-color-primary);
+              transition: 0.3s;
+
+              &:hover {
+                color: var(--composer-primary-color);
+              }
             }
           }
         }
@@ -85,9 +104,18 @@
       }
     }
     .down-page {
-      gap: var(--composer-gap-xl);
+      gap: var(--composer-gap-lg) var(--composer-gap-sm);
       .all-card {
         flex: 1 1 !important;
+        .card {
+          margin-left: var(--composer-gap-md);
+        }
+
+        .box-image {
+          .profile-image {
+            min-height: 140px !important;
+          }
+        }
       }
     }
     .card-item-count {

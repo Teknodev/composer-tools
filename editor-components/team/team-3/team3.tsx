@@ -323,14 +323,15 @@ class Team3 extends Team {
                 {subTitleValue && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
               </Base.VerticalContent>
             </Base.VerticalContent>
-            <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 1, phone: 1 }} className={this.decorateCSS("down-page")}>
+            <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("down-page")}>
               {this.castToObject<Card[]>("team-members").map((item: Card, indexCard: number) => {
                 const itemName = this.castToString(item.name);
                 const itemPosition = this.castToString(item.position);
                 const hasContent = item.profile || itemName || itemPosition || (item.icons && item.icons.length > 0);
+
                 return hasContent ? (
                   <div key={indexCard} className={this.decorateCSS("all-card")}>
-                    <div className={this.decorateCSS("card")}>
+                    <div className={this.decorateCSS(item.profile ? "card" : "no-image-card")}>
                       <div className={this.decorateCSS("card-items")}>
                         <div className={this.decorateCSS("item-content")}>
                           {item.profile && <div className={this.decorateCSS("box-image")}>{item.profile && <img className={this.decorateCSS("profile-image")} src={item.profile} alt="" />}</div>}
