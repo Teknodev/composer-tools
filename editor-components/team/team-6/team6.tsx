@@ -24,14 +24,14 @@ class Team6 extends Team {
     this.addProp({
       type: "string",
       key: "title1",
-      displayer: "Title",
+      displayer: "Subtitle",
       value: "TEAM",
     });
 
     this.addProp({
       type: "string",
       key: "description",
-      displayer: "Description",
+      displayer: "Title",
       value: "Building the future together.",
     });
     this.addProp({
