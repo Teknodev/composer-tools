@@ -154,8 +154,8 @@ class Team4 extends Team {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {hasHeaderExist && (
             <Base.VerticalContent className={this.decorateCSS("up-content")}>
-              {titleExist && <Base.H1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.H1>}
-              {descriptionExist && <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>}
+              {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+              {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
             </Base.VerticalContent>
           )}
 
