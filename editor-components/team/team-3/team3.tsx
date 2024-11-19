@@ -83,14 +83,14 @@ class Team3 extends Team {
 
     this.addProp({
       type: "string",
-      key: "title",
-      displayer: "Title",
+      key: "subtitle",
+      displayer: "Subtitle",
       value: "Our Team",
     });
     this.addProp({
       type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
+      key: "title",
+      displayer: "Title",
       value: "The Best Team Ever!",
     });
 
@@ -319,8 +319,8 @@ class Team3 extends Team {
           <Base.VerticalContent className={this.decorateCSS("page")}>
             <Base.VerticalContent>
               <Base.VerticalContent className={this.decorateCSS("text-group")}>
-                {titleValue && <Base.SectionSubTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionSubTitle>}
-                {subTitleValue && <Base.SectionTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionTitle>}
+                {titleValue && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+                {subTitleValue && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
               </Base.VerticalContent>
             </Base.VerticalContent>
             <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 1, phone: 1 }} className={this.decorateCSS("down-page")}>
@@ -333,10 +333,8 @@ class Team3 extends Team {
                     <div className={this.decorateCSS("card")}>
                       <div className={this.decorateCSS("card-items")}>
                         <div className={this.decorateCSS("item-content")}>
-                          <div className={this.decorateCSS("box-image")}>
-                            <img className={item.profile ? this.decorateCSS("profile-image") : this.decorateCSS("no-image")} src={item.profile} alt="" />
-                          </div>
-                          <Base.VerticalContent className={item.profile ? this.decorateCSS("box-text") : this.decorateCSS("no-image-box")}>
+                          {item.profile && <div className={this.decorateCSS("box-image")}>{item.profile && <img className={this.decorateCSS("profile-image")} src={item.profile} alt="" />}</div>}
+                          <Base.VerticalContent className={item.profile ? this.decorateCSS("box-text") : this.decorateCSS("no-image-box-text")}>
                             <Base.H2 className={this.decorateCSS("item-name")}>{item.name}</Base.H2>
                             <Base.P className={this.decorateCSS("item-position")}>{item.position}</Base.P>
                             <div className={this.decorateCSS("icon-group")}>
