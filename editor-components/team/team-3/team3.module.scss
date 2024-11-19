@@ -3,7 +3,6 @@
 .container {
   .max-content {
     display: flex;
-    // justify-content: center;
     .page {
       width: 100%;
       .text-group {
@@ -79,8 +78,8 @@
             .icons {
               cursor: pointer;
               object-fit: cover;
-              width: 20px;
-              height: 20px;
+              width: var(--composer-gap-md);
+              height: var(--composer-gap-md);
               margin: var(--composer-gap-sm);
               color: var(--composer-font-color-primary);
               transition: 0.3s;
