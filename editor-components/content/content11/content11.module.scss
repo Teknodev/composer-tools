@@ -1,128 +1,79 @@
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+
 .container {
-    background: var(--composer-html-background);
-    width: 100%;
-    padding: 50px;
-
     .max-content {
-        max-width: var(--composer-content-width);
-        margin: auto;
         display: flex;
-        justify-content: center;
         flex-direction: column;
-        width: 100%;
+        justify-content: center;
 
-        .boxs-text-left {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 20px;
-            width: fit-content;
-            
-
-            .box-up {
-                margin: 0;
-                width: fit-content;
-
-                .box {
-                    font-size: 27px;
-                    color: var(--composer-primary-color);
-                    margin: 0;
-                    width: fit-content;
-                }
+        .heading {
+            .section-title {
+                margin-bottom: 0px;
             }
 
-            .text-left {
-                font-size: 60px;
-                color: var(--composer-tertiary-color);
-                display: flex;
-                justify-content: center;
-                align-items: center;
+            .icon {
+                color: var(--composer-primary-color);
+                font-size: 4rem;
             }
+            margin-bottom: var(--composer-gap-md);
         }
 
         .content {
-            display: flex;
-            justify-content: center;
-            gap: 100px;
             width: 100%;
-            height: fit-content;
-
+            align-items: stretch;
             .image-box {
-                flex: 1 1;
                 position: relative;
 
                 .image {
+                    position: absolute;
+                    top: 0px;
+                    left: 0px;
                     width: 100%;
                     height: 100%;
                     object-fit: cover;
-                    position: absolute;
-                    top: 0;
-                    left: 0;
+                    border-radius: var(--composer-border-radius-md);
+                    
                 }
             }
 
             .content-right {
                 display: flex;
                 flex-direction: column;
-                gap: 25px;
-                align-items: stretch;
-                flex: 1 1;
-
-                .item{
+                gap: var(--composer-gap-md);
+                .item {
                     .title {
-                        font-size: 20px;
                         color: var(--composer-primary-color);
                     }
-    
+
                     .description {
                         color: var(--composer-font-color-primary);
-                        font-size: 15px;
                     }
-
                 }
             }
         }
 
         .icons {
-            font-size: 27px;
+            font-size: 1.7rem;
             display: flex;
             justify-content: flex-end;
-            gap: 12px;
-            margin-top: 100px;
-            color: var(--composer-tertiary-color);
+            gap: var(--composer-gap-sm);
+            margin-top: var(--composer-gap-md);
+            color: var(--composer-primary-color);
         }
     }
 }
 
-@media screen and (max-width: 1250px) {
-    .max-content {
 
-
-        .content {
-            flex-direction: column;
-            gap: 0 !important;
-            .image-box {
-                width: 100% !important;
-                min-height: 377px !important;
-            }
-
-            .content-right {
-                gap: 0 !important;
-                width: 100% !important;
-            }
-        }
-    }
-}
-
-@media screen and (max-width: 400px) {
+@media screen and (max-width: $composer-tablet-width-lg) {
     .container{
-        padding: 50px 15px;
-        .max-content {
-            .content {
-                .image-box {
-                    width: 100% !important;
+        .max-content{
+            .content{
+                .image-box{
+                    .image{
+                        position: relative;
+                    }
                 }
             }
         }
     }
-    
 }
