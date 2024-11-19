@@ -108,14 +108,14 @@ class Team1 extends Team {
     });
     this.addProp({
       type: "string",
-      key: "title1",
-      displayer: "Title-1",
+      key: "title",
+      displayer: "Title",
       value: "Our Team",
     });
     this.addProp({
       type: "string",
-      key: "title2",
-      displayer: "Title-3",
+      key: "description",
+      displayer: "Description",
       value: "We work in collaboration, harmony, and trust to achieve our goals.",
     });
 
@@ -289,23 +289,25 @@ class Team1 extends Team {
 
   render() {
     const subtitle = this.getPropValue("subtitle");
-    const title1 = this.getPropValue("title1");
-    const title2 = this.getPropValue("title2");
+    const title = this.getPropValue("title");
+    const description = this.getPropValue("description");
 
-    const title1Value = title1.props.html;
-    const title2Value = title2.props.html;
     const subtitleValue = subtitle.props.html;
+    const title1Value = title.props.html;
+    const descriptionValue = this.castToString(description);
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("up-page")}>
-            <Base.VerticalContent className={this.decorateCSS("text-group")}>
-              {subtitleValue && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
-              {title1Value && <Base.SectionTitle className={this.decorateCSS("title1")}>{this.getPropValue("title1")}</Base.SectionTitle>}
-              {title2Value && <Base.SectionDescription className={this.decorateCSS("title2")}>{this.getPropValue("title2")}</Base.SectionDescription>}
-            </Base.VerticalContent>
-          </div>
+          {(subtitleValue || title1Value || descriptionValue) && (
+            <div className={this.decorateCSS("up-page")}>
+              <Base.VerticalContent className={this.decorateCSS("text-group")}>
+                {subtitleValue && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+                {title1Value && <Base.SectionTitle className={this.decorateCSS("title1")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                {descriptionValue && <Base.SectionDescription className={this.decorateCSS("title2")}>{this.getPropValue("description")}</Base.SectionDescription>}
+              </Base.VerticalContent>
+            </div>
+          )}
           <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("down-page")}>
             {this.castToObject<Card[]>("items").map((card: any, indexItems: number) => {
               return (

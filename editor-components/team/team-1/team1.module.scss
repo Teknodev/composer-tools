@@ -4,6 +4,7 @@
   .max-content {
     display: flex;
     flex-direction: column;
+    gap: var(--composer-gap-md);
     .up-page {
       width: 100%;
       .text-group {
@@ -18,8 +19,6 @@
       }
     }
     .down-page {
-      padding-top: var(--composer-gap-lg);
-
       .all-card {
         min-width: 250px;
 
