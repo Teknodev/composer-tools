@@ -20,13 +20,18 @@
     .container2 {
       .testimonials10 {
         display: flex;
+        gap: var(--composer-gap-xs);
+        align-items: stretch;
         .left-content {
+          height: 100%;
+          flex-grow: 1;
           .title-subtitle{
             display: flex;
             gap: var(--composer-gap-sm);
             flex-direction: column;
             .subtitle {
               margin:0px;
+              width: 90%;
             }
             .title {
               margin:0px;
@@ -34,6 +39,7 @@
           }
 
           .description {
+            color: var(--composer-font-color-primary);
           }
           .button-group {
             display: flex;
@@ -53,8 +59,8 @@
           }
         }
         .right-content, .right-content-padding{
+          flex-grow: 1;
           max-width: 60%;
-          height: 100%;
           position: relative;
           &::after {
             content: ""; 
@@ -90,34 +96,36 @@
                   background-color: var(--composer-html-background);
                   padding:var(--composer-gap-md) var(--composer-gap-xl);
                   position: relative;
-                  .img-div {
-                    position: absolute;
-                    z-index: 2;
-                    width: 150px;
-                    height: 150px;
-                    left:calc(var(--composer-gap-md) * (-5)); 
-                    top:calc(var(--composer-gap-md) * (-4)); 
-                    border-radius: var(--composer-border-radius-xs);
-                    .img {
-                      width: 100%;
-                      border: 2px solid var(--composer-html-background);
-                    }
-                  }
-                  .icons {
-                    font-size: 2rem;
-                    display: flex;
-                    justify-content: flex-end;
-                    gap: 15px;
-                    z-index: 2;
-                    color: var(--composer-font-color-primary);
-                    svg {
-                      cursor: pointer;
-                      transition: 0.4s;
-                      &:hover {
-                        color: var(--composer-primary-color);
+                  .top-container{
+                    .img-div {
+                      position: absolute;
+                      z-index: 2;
+                      width: 150px;
+                      height: 150px;
+                      left:calc(var(--composer-gap-md) * (-5)); 
+                      top:calc(var(--composer-gap-md) * (-4)); 
+                      border-radius: var(--composer-border-radius-xs);
+                      .img {
+                        width: 100%;
+                        border: 2px solid var(--composer-html-background);
                       }
                     }
-                  }
+                    .icons {
+                      font-size: 2rem;
+                      display: flex;
+                      justify-content: flex-end;
+                      gap: 15px;
+                      z-index: 2;
+                      color: var(--composer-font-color-primary);
+                      svg {
+                        cursor: pointer;
+                        transition: 0.4s;
+                        &:hover {
+                          color: var(--composer-primary-color);
+                        }
+                      }
+                    }
+                  }                
                   .iconquote {
                     position: absolute;
                     font-size: 5rem;
@@ -176,7 +184,6 @@
     font-size: 5rem;
     color: var(--composer-font-color-secondary);
     width: fit-content;
-    color: white;
     background-color: var(--composer-font-color-primary);
     position: absolute;
     z-index: 10;
@@ -187,7 +194,11 @@
 @container (max-width: #{$composer-tablet-width}){
   .container {
     padding: 20px 30px !important;
+    .overlay-left{
+      right: 0px;
+    }
     .max-content{
+      padding: 0px;
       .container2{
         .testimonials10{
           flex-direction: column;
@@ -197,15 +208,6 @@
             max-width:100%;
             .slider-style{
               width: 100%;
-              .slider-inner-div-with-image, .slider-inner-div  {
-                .slider-card{
-                  .top-container{
-                    .img-div {
-                      // max-width: 25%;
-                    }
-                  }
-                }
-              }
             }
           }
         }
@@ -221,6 +223,10 @@
       .container2{
         .testimonials10{
           .right-content, .right-content-padding{
+            padding-bottom: 0px;
+            &::after {
+              width: 100%;
+            }
             .slider-style{
               padding-left: 0px;
               .slider-inner-div-with-image, .slider-inner-div  {
@@ -237,7 +243,8 @@
                         .img-div{
                           flex:1;
                           position: static ;
-                          // max-width: 40% ;
+                          width: auto;
+                          height: auto;
                         }
                         .icons{
                           flex:1;
@@ -257,12 +264,12 @@
      
               }
             }
-            .hiliteTitle {
-              display: none;
-            }
           }
         }
       }
+    }
+    .hiliteTitle {
+      display: none;
     }
   }
 }
