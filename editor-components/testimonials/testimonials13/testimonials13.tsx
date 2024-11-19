@@ -324,7 +324,7 @@ class Testimonials13Page extends Testimonials {
                               {(this.castToString(item.text) || this.getPropValue("sliderIcon") || this.castToString(item.author) || this.castToString(item.subtitle)) && (
                                 <div className={this.decorateCSS("header-page")}>
                                   {this.castToString(item.text) && (
-                                    <Base.P className={this.decorateCSS("item-description")}>
+                                    <Base.P className={(this.getPropValue("prevIcon") || this.getPropValue("nextIcon") || item.image) ? this.decorateCSS("item-description") : this.decorateCSS("item-description-no-margin")}>
                                       {item.text}
                                     </Base.P>
                                   )}

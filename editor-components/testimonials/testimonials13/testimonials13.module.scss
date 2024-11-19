@@ -18,6 +18,7 @@
             .carousel {
               width: 100%;
               .slider-inner-div {
+                display: flex !important;
                 height: 100%;
                 background-color: color-mix(
                   in srgb,
@@ -66,11 +67,14 @@
                     align-items: center;
                     gap: var(--composer-gap-xl);
     
-                    .item-description {
+                    .item-description, .item-description-no-margin {
                       color: var(--composer-font-color-primary);
                       font-size: 1.5rem;
                       margin: var(--composer-gap-xl) 0 0 0;
                       text-align: center;
+                    }
+                    .item-description-no-margin{
+                      margin:0px;
                     }
   
                     .bottom-container{
