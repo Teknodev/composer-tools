@@ -215,7 +215,6 @@ class Stats1Page extends BaseStats {
     const buttonText = this.getPropValue("buttonText");
     const isButtonTextExist = this.castToString(buttonText);
     const cardList = this.castToObject<CardData[]>("card-list");
-    const radius = 200;
 
     const badgeColors = ["var(--composer-primary-color)", "var(--composer-secondary-color)", "var(--composer-tertiary-color)"];
 
