@@ -195,7 +195,7 @@
                     gap: var(--composer-gap-xl);
                   }
                   .header-page {
-                    .item-description {
+                    .item-description, .item-description-no-margin {
                       font-size: 1rem;
                     }
                   }
