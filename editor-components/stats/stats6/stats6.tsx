@@ -30,12 +30,12 @@ class Stats6Page extends BaseStats {
     this.addProp({
       type: "array",
       key: "card-list",
-      displayer: "Price List",
+      displayer: "Cards",
       value: [
         {
           type: "object",
           key: "card-lists",
-          displayer: "Pricing List",
+          displayer: "Card Content",
           value: [
             {
               type: "string",
@@ -54,7 +54,7 @@ class Stats6Page extends BaseStats {
         {
           type: "object",
           key: "card-lists",
-          displayer: "Pricing List",
+          displayer: "Card Content",
           value: [
             {
               type: "string",
@@ -73,7 +73,7 @@ class Stats6Page extends BaseStats {
         {
           type: "object",
           key: "card-lists",
-          displayer: "Pricing List",
+          displayer: "Card Content",
           value: [
             {
               type: "string",
