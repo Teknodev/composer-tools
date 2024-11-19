@@ -128,7 +128,8 @@
           .dots {
             position: absolute;
             bottom: 0;
-            left: 40%;
+            left: 0% !important;
+            width: 100% !important;
             display: flex !important;
             flex-direction: row;
             justify-content: center;
