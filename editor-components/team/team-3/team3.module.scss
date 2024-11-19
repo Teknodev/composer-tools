@@ -17,7 +17,7 @@
             height: 100%;
             max-width: 100%;
             min-width: 300px;
-            margin-left: var(--composer-gap-xl);
+            margin-left: var(--composer-gap-lg);
             position: relative;
             padding: var(--composer-gap-md);
             border: 1px solid color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
@@ -107,9 +107,6 @@
       .all-card {
         flex: 1 1 !important;
         .card {
-          margin-left: var(--composer-gap-md);
-        }
-
         .box-image {
           .profile-image {
             min-height: 140px !important;
@@ -125,6 +122,11 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
+    .text-group {
+      .subtitle {
+        width: 88% !important;
+      }
+    }
     .card {
       margin-left: var(--composer-gap-md) !important;
     }
