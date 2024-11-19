@@ -12,17 +12,14 @@
     .list-item {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: var(--composer-gap-sm);
       max-width: 100%;
-
       .item-container {
         width: 100%;
         display: flex;
-        justify-content: flex-start;
         align-items: center;
-        gap: 100px;
-        padding-top: 20px;
-        padding-bottom: 20px;
+        padding-top: var(--composer-gap-md);
+        padding-bottom: var(--composer-gap-md);
         position: relative;
         &::before {
           content: '';
@@ -31,7 +28,8 @@
           left: 0;
           right: 0;
           bottom: 0;
-          border-top: 1px solid var(--composer-border-color, #ddd); /* Çizgi rengi */
+          border-top: 1px solid var(--composer-font-color-primary);
+          opacity: 0.5;
           width: 100%;
           margin: 0;
         }
@@ -41,48 +39,48 @@
           left: 0;
           right: 0;
           bottom: 0;
-          border-bottom: 1px solid var(--composer-border-color, #ddd);
+          border-bottom: 1px solid var(--composer-font-color-primary);
+          opacity: 0.5;
           width: 100%;
           margin: 0;
         }
         .index {
-          font-size: 18px;
+          flex: 1;
+          font-size: 1rem;
           color: var(--composer-font-color-primary);
         }
 
         .cards {
+          flex: 5;
           display: flex;
-          justify-content: space-between;
           align-items: center;
           width: 100%;
           color: var(--composer-font-color-primary);
+          gap: var(--composer-gap-md);
 
           .icon-title-container {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
             width: 100%;
-            gap: 20px;
-          }
-
-          .icon {
-            width: 50px;
-            height: 50px;
-            color: var(--composer-primary-color);
-          }
-
-          .title {
-            text-align: center;
-            white-space: nowrap;
-            font-weight: bold;
-            font-size: 22px;
-            color: var(--composer-font-color-primary);
-          }
-
-          .description {
             display: flex;
-            justify-content: flex-end;
-            text-align: left;
+            gap: var(--composer-gap-md);
+            .icon {
+              min-width: 40px;
+              width: 40px;
+              height: 40px;
+              color: var(--composer-primary-color);
+            }
+  
+            .title {
+              display: flex;
+              align-items: center;
+              font-size: 1.5rem;
+              color: var(--composer-font-color-primary);
+            }
+          }
+          .description {
+            text-align: justify;
+            width: 100%;
+            font-size: 1rem;
+            display: flex;
             color: var(--composer-font-color-primary);
           }
         }
@@ -100,5 +98,42 @@
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+@container (max-width:1200px){
+  .container {
+    .max-content {
+      .list-item {
+        .item-container {
+          .cards {
+            .icon-title-container {
+              .icon {
+                min-width: 30px;
+                width: 30px;
+                height: 30px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@container (max-width:450px){
+  .container {
+    .max-content {
+      .list-item {
+        .item-container {
+          flex-direction: column;
+          gap: var(--composer-gap-md);
+          align-items: flex-start;
+          .cards {
+            flex-direction: column;
+            gap: var(--composer-gap-md);
+
+          }
+        }
+      }
+    }
   }
 }
