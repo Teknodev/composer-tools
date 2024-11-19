@@ -11,8 +11,6 @@
         .title {
           font-size: 7rem;
           margin-top: 0;
-          color: transparent;
-          -webkit-text-stroke: 1px var(--composer-primary-color);
           letter-spacing: var(--composer-gap-sm);
         }
       }
@@ -37,9 +35,9 @@
           }
 
           .person-info {
-            width: 100%;
-            min-height: 140px;
+            width: 95%;
             height: auto;
+            margin-left: var(--composer-gap-lg);
 
             .text-group {
               z-index: 2;
@@ -139,6 +137,7 @@
             left: 40%;
             display: flex !important;
             flex-direction: row;
+            justify-content: center;
             margin: 0 auto;
             width: fit-content;
             gap: var(--composer-gap-md);
@@ -175,7 +174,7 @@
               .text-group {
                 .item-name {
                   margin: 0;
-                  font-size: 2rem;
+                  font-size: 1rem;
                 }
               }
 
@@ -212,8 +211,10 @@
 
         .slider {
           height: 580px;
+
           .dots {
-            left: 35%;
+            left: 0%;
+            width: 100%;
           }
 
           .card {
@@ -221,6 +222,7 @@
             gap: var(--composer-gap-sm);
 
             .person-info {
+              width: 90%;
               gap: var(--composer-gap-sm);
               .text-group {
                 .item-name {
@@ -245,7 +247,7 @@
 @keyframes icon-fade-in {
   from {
     opacity: 0;
-    transform: translateY(50px);
+    transform: translateY(var(--composer-gap-xl));
   }
   to {
     opacity: 1;
