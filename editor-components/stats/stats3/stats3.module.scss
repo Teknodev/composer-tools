@@ -260,7 +260,8 @@
   .container {
     .max-content {
       .page {
-        .left-page {
+        .left-page,
+        .left-page-without-image {
           height: fit-content;
 
           .button-container {
