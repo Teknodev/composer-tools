@@ -10,9 +10,6 @@
         width: 100%;
         gap: var(--composer-gap-xs);
         .subtitle {
-          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-          padding: var(--composer-gap-sm);
-          border-radius: var(--composer-border-radius-xl);
         }
         .title2 {
           color: var(--composer-font-color-primary);
@@ -69,6 +66,13 @@
 
 @container (max-width: #{$composer-tablet-width-sm}) {
   .container {
+    .up-page {
+      .text-group {
+        .subtitle {
+          width: 95%;
+        }
+      }
+    }
     .down-page {
       gap: var(--composer-gap-xl);
       .all-card {
