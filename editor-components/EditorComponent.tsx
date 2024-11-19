@@ -173,9 +173,9 @@ export abstract class Component extends React.Component<{}, { states: any; compo
       const sanitizedHtml = sanitize(htmlWithPrefixAndSuffix, options);
 
       //@ts-ignore
-      return <blinkpage playground-seed={prop.id} prop-type={prop.type} style={{ pointerEvents: "none", display: "inline-block", width: "100%" }} dangerouslySetInnerHTML={sanitizedHtml}></blinkpage>;
+      return <blinkpage playground-seed={prop.id} prop-type={prop.type} style={{ pointerEvents: "none", display: "inline-block", width: "100%", textDecoration: "inherit" }} dangerouslySetInnerHTML={sanitizedHtml}></blinkpage>;
     };
-
+    
     return <SanitizeHTML html={prop?.value}></SanitizeHTML>;
   }
 
