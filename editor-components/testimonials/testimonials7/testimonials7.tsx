@@ -176,7 +176,7 @@ class Testimonials7Page extends Testimonials {
     const sliderRef = this.getComponentState("slider-ref");
     return (
       <Base.Container
-        className={this.decorateCSS("container")}
+        className={this.getPropValue("cover-image") ? this.decorateCSS("container") : this.decorateCSS("container-no-image")}
         style={{
           backgroundImage: `url(${this.getPropValue("cover-image")})`,
         }}

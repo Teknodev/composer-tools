@@ -1,8 +1,7 @@
 @import '../../../composer-base-components/base/utitilities/viewports.module.scss';
-.container {
+.container, .container-no-image {
   background-size: cover;
   background-position: center center;
-  padding: 0px !important;
   .max-content{
     min-height: 70vh;
   }
@@ -41,7 +40,6 @@
           .card, .card-no-image{
             height: 100%;
             display: flex !important;
-            padding: calc(var(--composer-gap-xl)*2) ;
             width: 100%;
             position: relative;
             align-items: center;
@@ -98,8 +96,11 @@
                 height: 25px;
               }
             }
-            .button-right, .button-right-no-image{
+            .button-right{
               right: var(--composer-gap-md);
+            }
+            .button-right-no-image{
+              right: 0px;
             }
             .button-right, .button-left{
               color: white;
@@ -107,15 +108,20 @@
             .button-right-no-image, .button-left-no-image{
               color: var(--composer-font-color-primary);
             }
-            .button-left, .button-left-no-image{
+            .button-left{
               left: var(--composer-gap-md);
+            }
+            .button-left-no-image{
+              left: 0px;
             }
             }
             .card{
               background-color: black;
+              padding: calc(var(--composer-gap-xl)*2) ;
             }
             .card-no-image{
               background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+              padding: 0px calc(var(--composer-gap-xl)*2) ;
             }
             
             }
@@ -130,8 +136,14 @@
         }
       }
     }
+    .container{
+      padding: 0px !important;
+    }
+    .container-no-image {
+    background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+    }
 @container (max-width: #{$composer-tablet-width-lg}) {
-  .container {
+  .container, .container-no-image  {
     .max-content, .max-content-no-image {
       .testimonials7, .testimonials7-no-image {
         width: 80%;
@@ -149,18 +161,12 @@
               .button-right{
                 right: var(--composer-gap-xs);
               }
-              .button-right-no-image{
-                right: 40px;
-              }
               .button-left{
                 left: var(--composer-gap-xs);
               }
-              .button-left-no-image{
-                left: 40px;
-              }
             }
             .card-no-image{
-              padding: var(--composer-gap-xl) calc(var(--composer-gap-lg) * 2);
+              padding: 0px var(--composer-gap-xl);
             }
           }
         }
@@ -169,7 +175,7 @@
   }
 }
 @container (max-width: #{$composer-phone-width}) {
-  .container {
+  .container, .container-no-image  {
     background-image: none !important;
     .max-content, .max-content-no-image {
       min-height: 100%;
@@ -198,7 +204,6 @@
             position: static;
             >ul{
               bottom: 0px;
-              padding-bottom: 20px;
               >li{
                 >button{
                   &::before{
@@ -223,7 +228,10 @@
                 }
   
               }
-           }  
+           } 
+           .card-no-image{
+            padding: 0px 0px var(--composer-gap-lg);
+           } 
           }
         }
       }
