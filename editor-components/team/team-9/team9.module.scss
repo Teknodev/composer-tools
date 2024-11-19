@@ -136,7 +136,7 @@
             width: fit-content;
             gap: var(--composer-gap-md);
             list-style-type: none;
-            margin-top: -var(--composer-gap-md);
+            margin-top: var(--composer-gap-md);
             padding: 0;
 
             li {
