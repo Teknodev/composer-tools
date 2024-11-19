@@ -185,7 +185,7 @@
           .rightWrapper{
             flex-direction: column-reverse;
             gap: var(--composer-gap-xs);
-            .sliderTitle{
+            .sliderTitle, .sliderTitlePrimary{
               writing-mode:unset;
               transform: rotate(0deg);
               text-align: start;
