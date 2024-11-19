@@ -239,9 +239,6 @@ class Testimonials5Page extends Testimonials {
       <Base.Container className={this.decorateCSS("container")}
         style={{
           backgroundImage: `url(${this.getPropValue("background-image")})`,
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          backgroundPosition: "center"
         }}>
         <Base.MaxContent className={this.decorateCSS("maxContent")} >
           <div className={this.decorateCSS("containerGrid")} >

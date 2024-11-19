@@ -1,5 +1,8 @@
 @import '../../../composer-base-components/base/utitilities/viewports.module.scss';
 .container{
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   .maxContent{
     .containerGrid{
       display: flex;
