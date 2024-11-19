@@ -6,10 +6,7 @@
   width: 100%;
 
   .subtitle {
-    background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-    display: inline-block;
     text-transform: uppercase;
-    padding: var(--composer-gap-xs);
     max-width: 95%;
   }
 
