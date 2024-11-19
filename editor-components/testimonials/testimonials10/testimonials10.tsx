@@ -308,15 +308,19 @@ class Testimonials10Page extends Testimonials {
             <div className={this.decorateCSS("testimonials10")}>
               {(title || subtitle || description || hasButtons) && (
                 <div className={this.decorateCSS("left-content")}>
-                  {subtitle && (
-                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                      {this.getPropValue("subtitle")}
-                    </Base.SectionSubTitle>
-                  )}
-                  {title && (
-                    <Base.SectionTitle className={this.decorateCSS("title")}>
-                      {this.getPropValue("title")}
-                    </Base.SectionTitle>
+                  {(title || subtitle) && (
+                    <div className={this.decorateCSS("title-subtitle")}>
+                      {subtitle && (
+                        <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                          {this.getPropValue("subtitle")}
+                        </Base.SectionSubTitle>
+                      )}
+                      {title && (
+                        <Base.SectionTitle className={this.decorateCSS("title")}>
+                          {this.getPropValue("title")}
+                        </Base.SectionTitle>
+                      )}
+                    </div>
                   )}
                   {description && (
                     <Base.P className={this.decorateCSS("description")}>
@@ -344,7 +348,7 @@ class Testimonials10Page extends Testimonials {
                   </div>
                 </div>
               )}
-              <div className={this.decorateCSS("right-content")}>
+              <div className={this.castToString(this.getPropValue("hiliteTitle")) ? this.decorateCSS("right-content-padding") : this.decorateCSS("right-content")}>
                 <div className={this.decorateCSS("slider-style")}>
                   <ComposerSlider
                     {...settings}
@@ -443,7 +447,7 @@ class Testimonials10Page extends Testimonials {
             {this.getPropValue("hiliteTitle")}
           </div>
         )}
-        <div className={this.decorateCSS("overlay-right")}> </div>
+
       </Base.Container>
     );
   }
