@@ -56,22 +56,33 @@
     .max-content {
       .bottom-child {
         .card {
-          padding: 0;
+          padding: 0 !important;
 
           &.stick {
+            &:not(:last-child)::after {
+              content: "" !important;
+              position: absolute !important;
+              right: 0 !important;
+              top: 35% !important;
+              bottom: 35% !important;
+              width: 1px !important;
+              background-color: var(--composer-font-color-primary) !important;
+              opacity: 0.5 !important;
+            }
+
             &:nth-child(2n)::after {
-              display: none;
+              display: none !important;
             }
           }
 
-          margin: 0px;
+          margin: 0px !important;
 
           .card-data-title {
             font-size: 5rem !important;
           }
 
           .card-data-description {
-            font-size: 1.5rem;
+            font-size: 1.5rem !important;
           }
         }
       }
@@ -79,7 +90,7 @@
   }
 }
 
-@container (max-width: #{$composer-phone-width-lg}) {
+@container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
       .bottom-child {
