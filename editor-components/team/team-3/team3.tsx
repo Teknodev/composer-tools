@@ -317,11 +317,9 @@ class Team3 extends Team {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("page")}>
-            <Base.VerticalContent>
-              <Base.VerticalContent className={this.decorateCSS("text-group")}>
-                {subTitleValue && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
-                {titleValue && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-              </Base.VerticalContent>
+            <Base.VerticalContent className={this.decorateCSS("text-group")}>
+              {subTitleValue && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+              {titleValue && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
             </Base.VerticalContent>
             <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("down-page")}>
               {this.castToObject<Card[]>("team-members").map((item: Card, indexCard: number) => {
