@@ -10,6 +10,7 @@
         width: 100%;
         gap: var(--composer-gap-xs);
         .subtitle {
+          width: 97%;
         }
         .title2 {
           color: var(--composer-font-color-primary);
@@ -69,7 +70,7 @@
     .up-page {
       .text-group {
         .subtitle {
-          width: 95%;
+          width: 90% !important;
         }
       }
     }
