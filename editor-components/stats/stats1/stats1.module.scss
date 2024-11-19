@@ -12,6 +12,9 @@
       flex: 1 1;
       .left-container {
         max-width: 100%;
+        .subtitle {
+          width: 98%;
+        }
         .description {
           color: var(--composer-font-color-primary);
         }
@@ -76,7 +79,7 @@
             transform: rotate(var(--angle)) translate(250px) rotate(calc(-1 * var(--angle)));
 
             .counter-value {
-              font-size: 2.5rem;
+              font-size: 2rem;
               margin: 0;
               word-break: break-all;
             }
@@ -84,7 +87,6 @@
             .counter-label {
               margin: 0;
               color: var(--composer-font-color-primary);
-              word-break: break-all;
             }
           }
         }
@@ -107,6 +109,9 @@
             .button-text {
               font-size: 1rem;
             }
+          }
+          .subtitle {
+            width: 90%;
           }
         }
 
@@ -148,7 +153,7 @@
       .stats1-page {
         .left-container {
           .subtitle {
-            width: 90%;
+            width: 88%;
           }
           .button-text-wrapper {
             .button-text {
@@ -165,9 +170,9 @@
             height: 250px !important;
 
             .card {
-              max-width: 85px;
+              max-width: 100px;
               min-width: 60px;
-              max-height: 85px;
+              max-height: 100px;
               min-height: 60px;
               transform: rotate(var(--angle)) translate(120px) rotate(calc(-1 * var(--angle)));
             }
