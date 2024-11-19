@@ -233,7 +233,6 @@ class Testimonials2Page extends Testimonials {
 
   render() {
     const cardCount = this.getPropValue("card-items").length;
-    console.log(cardCount)
     const settings = {
       arrows: false,
       dots: true,
