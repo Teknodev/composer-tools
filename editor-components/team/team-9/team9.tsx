@@ -268,11 +268,7 @@ class Team9 extends Team {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("basic-page")}>
-            {titleExist && (
-              <div className={this.decorateCSS("up-page")}>
-                <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
-              </div>
-            )}
+            {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
             {members && (
               <Base.ListGrid gridCount={{ pc: this.getPropValue("reverse"), tablet: 1, phone: 1 }} className={this.decorateCSS("down-page")}>
                 {members.map((item: Card, index: number) => {
