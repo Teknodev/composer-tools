@@ -2,19 +2,18 @@
 
 .container {
   width: 100%;
+  .background-image {
+    width: auto;
+    height: 100%;
+    background-position: center;
+    max-width: var(--composer-content-width);
+    margin: 0 auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
   .max-content {
     display: flex;
     flex-direction: column;
-
-    .background-image {
-      width: auto;
-      height: 100%;
-      background-position: center;
-      max-width: var(--composer-content-width);
-      margin: 0 auto;
-      background-repeat: no-repeat;
-      background-size: cover;
-    }
 
     .text-box {
       z-index: 2;
