@@ -5,6 +5,12 @@
     display: flex;
     .page {
       width: 100%;
+
+      .text-group {
+        .subtitle {
+          width: 95%;
+        }
+      }
       .down-page {
         .all-card {
           width: 100%;
