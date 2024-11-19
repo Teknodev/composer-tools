@@ -1,9 +1,11 @@
 .container {
   .max-content {
+    display: flex;
+    gap: var(--composer-gap-md);
+    flex-direction: column;
     .sectionTitle, .sectionTitle-no-animation{
       margin:0px;
     }
-
     .sectionTitle{
       animation: fadeInUp 400ms ease-out;
     }
@@ -39,7 +41,7 @@
           left: 0;
           right: 0;
           bottom: 0;
-          border-bottom: 1px solid var(--composer-border-color, #ddd); /* Çizgi rengi */
+          border-bottom: 1px solid var(--composer-border-color, #ddd);
           width: 100%;
           margin: 0;
         }
