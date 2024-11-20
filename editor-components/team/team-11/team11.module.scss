@@ -8,6 +8,10 @@
       .up-page {
         display: flex;
         margin-bottom: var(--composer-gap-lg);
+
+        .title {
+          content: "";
+        }
       }
       .down-page {
         width: 100%;
@@ -69,13 +73,18 @@
                 font-size: 2.2rem;
                 color: var(--composer-font-color-secondary);
                 transform: translateY(var(--composer-gap-xl));
-                opacity: 0;
-                transition: transform 0.5s ease, opacity 0.5s ease;
+                opacity: 1;
+                transition: transform 0.5s ease, opacity 0.5s ease, color 0.3s ease;
               }
 
               &:hover .icon {
                 transform: translateY(0);
                 opacity: 1;
+
+                &:hover {
+                  color: var(--composer-font-color-secondary);
+                  opacity: 0.5;
+                }
               }
             }
           }
@@ -112,6 +121,7 @@
         .prev_icon {
           cursor: pointer;
           color: var(--composer-font-color-primary);
+          opacity: 0.5;
           transition: 0.5s;
 
           &:hover {
@@ -122,8 +132,8 @@
         .next_icon {
           cursor: pointer;
           color: var(--composer-font-color-primary);
+          opacity: 0.5;
           transition: 0.5s;
-
           &:hover {
             color: var(--composer-primary-color);
           }

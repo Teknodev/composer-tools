@@ -345,9 +345,9 @@ class Team11 extends Team {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("basic-page")}>
             {titleExist && (
-              <div className={this.decorateCSS("up-page")}>
+              <Base.VerticalContent className={this.decorateCSS("up-page")}>
                 <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
-              </div>
+              </Base.VerticalContent>
             )}
 
             <ComposerSlider {...settings} ref={this.getComponentState("slider-ref")} className={this.decorateCSS("down-page")}>
@@ -361,7 +361,6 @@ class Team11 extends Team {
                     <div key={indexSlider} className={this.decorateCSS("item")}>
                       <Base.VerticalContent className={this.decorateCSS("card")}>
                         <div className={this.decorateCSS("hover")}>
-                          {/* {item.image && <img className={this.decorateCSS("person-image")} src={item.image} alt="" />} */}
                           <img className={this.decorateCSS("person-image")} src={item.image} alt={" "} />
                           {item.icons && item.icons.length > 0 && (
                             <div className={this.decorateCSS("icons-bar")}>
