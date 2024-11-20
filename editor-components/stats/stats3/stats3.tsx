@@ -3,6 +3,7 @@ import { BaseStats } from "../../EditorComponent";
 import styles from "./stats3.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
 
 class Stats3Page extends BaseStats {
   constructor(props?: any) {
@@ -24,19 +25,15 @@ class Stats3Page extends BaseStats {
       key: "description",
       displayer: "Description",
       value:
-        "Nullam fermentum ullamcorper diam sit amet porta. Etiam ac enim velit.Ut ut mi sed turpis accumsan sagittis ac eu magna.Etiam ac nisi tellus.Morbi at velit nisl.Donec ut felis libero.",
-    });
-    this.addProp({
-      type: "string",
-      key: "descriptionMore",
-      displayer: "DescriptionMore",
-      value:
-        "Nullam fermentum ullamcorper diam sit amet porta. Etiam ac enim velit.Ut ut mi sed turpis accumsan sagittis ac eu magna.",
+        "Nullam fermentum ullamcorper, diam sit amet porta. Etiam ac enim velit.Ut ut mi sed turpis accumsan sagittis ac eu magna.Etiam ac nisi tellus.Morbi at velit nisl.Donec ut felis libero. Nullam fermentum ullamcorper diam sit amet porta. Etiam ac enim velit.Ut ut mi sed turpis accumsan sagittis ac eu magna.Etiam ac nisi tellus.Morbi at velit nisl.Donec ut felis libero. Nullam fermentum ullamcorper diam sit amet porta. Etiam ac enim velit.Ut ut mi sed turpis accumsan sagittis ac eu magna.",
     });
     this.addProp({
       type: "array",
       key: "buttons",
       displayer: "Button",
+      additionalParams: {
+        maxElementCount: 2,
+      },
       value: [
         {
           type: "object",
@@ -47,20 +44,13 @@ class Stats3Page extends BaseStats {
               type: "string",
               key: "buttonText",
               displayer: "Button Text",
-              value: "Read More",
+              value: "READ MORE",
             },
             {
               type: "page",
               key: "url",
               displayer: "Button Link",
               value: "",
-            },
-            {
-              type: "boolean",
-              key: "isPrimary",
-              displayer: "Is primary",
-              value: false,
-              max: 3,
             },
           ],
         },
@@ -70,13 +60,15 @@ class Stats3Page extends BaseStats {
       type: "image",
       key: "backgroundImage",
       displayer: "Card Background Image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661ced0bd2970002c6298e9?alt=media&timestamp=1719584962578",
+      value: "https://vzkit.rometheme.pro/persona/wp-content/uploads/sites/15/2024/01/group-therapy-support-or-mental-health-community-2023-11-27-05-33-38-utc.jpg",
     });
     this.addProp({
       type: "array",
       key: "card-content",
       displayer: "Card Content",
+      additionalParams: {
+        maxElementCount: 3,
+      },
       value: [
         {
           type: "object",
@@ -91,14 +83,14 @@ class Stats3Page extends BaseStats {
             },
             {
               type: "string",
-              key: "text",
-              displayer: "Text",
+              key: "number",
+              displayer: "Number",
               value: "12 th",
             },
             {
               type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
+              key: "text",
+              displayer: "Text",
               value: "Years Experience",
             },
           ],
@@ -116,14 +108,14 @@ class Stats3Page extends BaseStats {
             },
             {
               type: "string",
-              key: "text",
-              displayer: "Text",
+              key: "number",
+              displayer: "Number",
               value: "800 +",
             },
             {
               type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
+              key: "text",
+              displayer: "Text",
               value: "Happy Clients",
             },
           ],
@@ -137,18 +129,18 @@ class Stats3Page extends BaseStats {
               type: "icon",
               key: "icon",
               displayer: "icon",
-              value: "TbHeartPlus",
+              value: "BsHeartPulse",
+            },
+            {
+              type: "string",
+              key: "number",
+              displayer: "Number",
+              value: "100 +",
             },
             {
               type: "string",
               key: "text",
               displayer: "Text",
-              value: "100 +",
-            },
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
               value: "Psycologist",
             },
           ],
@@ -166,81 +158,72 @@ class Stats3Page extends BaseStats {
     return "Stats 3";
   }
   render() {
+    const subtitle = this.castToString(this.getPropValue("subTitle"));
+    const title = this.castToString(this.getPropValue("title"));
+    const description = this.castToString(this.getPropValue("description"));
+    const buttons = this.getPropValue("buttons");
+    const image = this.getPropValue("backgroundImage");
+    const cardContent = this.getPropValue("card-content");
+    const isBoxVisible = this.getPropValue("is_box_visible");
+
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("stats3-page")}>
-            <div className={this.decorateCSS("bottom-child")}>
-              <div className={this.decorateCSS("text")}>
-                <h1 className={this.decorateCSS("subTitle")}>
-                  {this.getPropValue("subTitle")}
-                </h1>
-                <h1 className={this.decorateCSS("title")}>
-                  {this.getPropValue("title")}
-                </h1>
-                <h1 className={this.decorateCSS("description")}>
-                  {this.getPropValue("description")}
-                </h1>
-                {this.getPropValue("descriptionMore") !== "" && (
-                  <h3 className={this.decorateCSS("descriptionMore")}>
-                    {this.getPropValue("descriptionMore")}
-                  </h3>
-                )}
-
-                <div className={this.decorateCSS("box")}>
-                  {this.castToObject<any>("buttons").map((item: any, index: number) => {
-                    return (
-                      <ComposerLink key={`stats-${index}`} path={item.url}>
-                        <button
-                          className={`${this.decorateCSS("button")} ${
-                            item.isPrimary && this.decorateCSS("button-color")
-                          }`}
-                        >
-                          {item.buttonText}
-                        </button>
-                      </ComposerLink>
-                    );
-                  })}
-                </div>
-              </div>
-
-              <div className={this.decorateCSS("card")}>
-                <img
-                  src={this.getPropValue("backgroundImage")}
-                  alt="image"
-                  className={this.decorateCSS("image")}
-                />
-                {this.getPropValue("is_box_visible") && (
-                  <div className={this.decorateCSS("boxs")}>
-                    {this.castToObject<any>("card-content").map(
-                      (item: any, index: number) => {
-                        return (
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <Base.ContainerGrid className={this.decorateCSS("page")}>
+            {(subtitle || title || description || buttons.length > 0) && (
+              <Base.VerticalContent className={this.decorateCSS(image ? "left-page" : "left-page-without-image")}>
+                {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subTitle")}>{this.getPropValue("subTitle")}</Base.SectionSubTitle>}
+                {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+                {buttons.length > 0 && (
+                  <div className={this.decorateCSS("button-container")}>
+                    {this.castToObject<any>("buttons").map((item: any, index: number) => {
+                      const buttonTextExist = this.castToString(item.buttonText);
+                      return (
+                        buttonTextExist && (
                           <ComposerLink key={`stats-${index}`} path={item.url}>
-                            <button>
-                              <ComposerIcon
-                                name={item.icon}
-                                propsIcon={{ className: this.decorateCSS("icon") }}
-                              />
-                              <div className={this.decorateCSS("text")}>
-                                <span className={this.decorateCSS("button-text")}>
-                                  {item.text}
-                                </span>
-                                <span className={this.decorateCSS("button-text")}>
-                                  {item.buttonText}
-                                </span>
-                              </div>
+                            <button className={this.decorateCSS("button")}>
+                              <span className={this.decorateCSS("button-text")}>{item.buttonText}</span>
                             </button>
                           </ComposerLink>
-                        );
-                      }
-                    )}
+                        )
+                      );
+                    })}
                   </div>
                 )}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+              </Base.VerticalContent>
+            )}
+            {(image || (cardContent.length > 0 && isBoxVisible)) && (
+              <Base.VerticalContent className={this.decorateCSS(image ? "right-container" : "right-container-without-image")}>
+                {image && <img src={this.getPropValue("backgroundImage")} alt="image" className={this.decorateCSS("image")} />}
+                {isBoxVisible && cardContent.length > 0 && (
+                  <div className={this.decorateCSS(image ? "card-container" : "card-container-without-image")}>
+                    <div className={this.decorateCSS("card")}>
+                      {this.castToObject<any>("card-content").map((item: any, index: number) => {
+                        return (
+                          <div className={this.decorateCSS("content")}>
+                            <div className={this.decorateCSS("inner-content")}>
+                              <Base.VerticalContent className={this.decorateCSS("text-container")}>
+                                <div className={this.decorateCSS("first-container")}>
+                                  <ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                                  <Base.VerticalContent className={this.decorateCSS("text")}>
+                                    <Base.H5 className={this.decorateCSS("number")}>{item.number}</Base.H5>
+                                    <Base.P className={this.decorateCSS("right-text")}>{item.text}</Base.P>
+                                  </Base.VerticalContent>
+                                </div>
+                              </Base.VerticalContent>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+              </Base.VerticalContent>
+            )}
+          </Base.ContainerGrid>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

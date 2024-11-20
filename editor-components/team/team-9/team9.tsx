@@ -4,17 +4,17 @@ import { Team, TypeUsableComponentProps } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
+import { Base } from "../../../composer-base-components/base/base";
 
-type Icons = {
+type Icon = {
   url: string;
   icon: string;
 };
 
 interface Card {
   image: string;
-  name: string;
-  position: string;
-  icons: { icon: string; url: string }[];
+  name: JSX.Element;
+  icons: Icon[];
 }
 
 class Team9 extends Team {
@@ -89,8 +89,7 @@ class Team9 extends Team {
           type: "image",
           key: "image",
           displayer: "Image",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b493bd2970002c62816a?alt=media&timestamp=1719558632841",
+          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b493bd2970002c62816a?alt=media&timestamp=1719558632841",
         },
         {
           type: "string",
@@ -103,6 +102,9 @@ class Team9 extends Team {
           type: "array",
           key: "icons",
           displayer: "Social Media Platforms",
+          additionalParams: {
+            maxElementCount: 6,
+          },
           value: [twitter, facebook, instagram],
         },
       ],
@@ -117,8 +119,7 @@ class Team9 extends Team {
           type: "image",
           key: "image",
           displayer: "Image",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b493bd2970002c62816b?alt=media&timestamp=1719558632841",
+          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b493bd2970002c62816b?alt=media&timestamp=1719558632841",
         },
         {
           type: "string",
@@ -131,6 +132,9 @@ class Team9 extends Team {
           type: "array",
           key: "icons",
           displayer: "Social Media Platforms",
+          additionalParams: {
+            maxElementCount: 6,
+          },
           value: [twitter, facebook, instagram],
         },
       ],
@@ -145,20 +149,22 @@ class Team9 extends Team {
           type: "image",
           key: "image",
           displayer: "Image",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b493bd2970002c62816c?alt=media&timestamp=1719558632841",
+          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b493bd2970002c62816c?alt=media&timestamp=1719558632841",
         },
         {
           type: "string",
           key: "name",
           displayer: "Person Name",
-          value: "JENIFER",
+          value: "JENNIFER",
         },
 
         {
           type: "array",
           key: "icons",
           displayer: "Social Media Platforms",
+          additionalParams: {
+            maxElementCount: 6,
+          },
           value: [twitter, facebook, instagram],
         },
       ],
@@ -173,8 +179,7 @@ class Team9 extends Team {
           type: "image",
           key: "image",
           displayer: "Image",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b493bd2970002c62816d?alt=media&timestamp=1719558632841",
+          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b493bd2970002c62816d?alt=media&timestamp=1719558632841",
         },
         {
           type: "string",
@@ -187,6 +192,9 @@ class Team9 extends Team {
           type: "array",
           key: "icons",
           displayer: "Social Media Platforms",
+          additionalParams: {
+            maxElementCount: 6,
+          },
           value: [twitter, facebook, instagram],
         },
       ],
@@ -209,9 +217,16 @@ class Team9 extends Team {
     this.addProp({
       type: "number",
       key: "reverse",
-      displayer: "Reverse Item Count",
+      displayer: "Item Count",
       value: 4,
-      max: 4,
+      max: 5,
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "animate",
+      displayer: "Enable Animate",
+      value: true,
     });
   }
 
@@ -221,107 +236,124 @@ class Team9 extends Team {
 
   render() {
     const settings = {
-      dots: false,
+      dots: true,
+      dotsClass: this.decorateCSS("dots"),
       infinite: true,
-      arrows:false,
+      arrows: false,
       speed: 500,
       autoplay: false,
       autoplaySpeed: 3000,
-      slidesToShow: window.innerWidth > 500 ? 2 : 1,
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 2,
+          },
+        },
+        {
+          breakpoint: 500,
+          settings: {
+            slidesToShow: 1,
+          },
+        },
+      ],
     };
+
+    const titleExist = this.getPropValue("title", { as_string: true });
+    const members = this.castToObject<Card[]>("team-members");
+
+    const animate = this.getPropValue("animate");
+
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("basic-page")}>
-            <div className={this.decorateCSS("up-page")}>
-              <h1 className={this.decorateCSS("title")}>
-                {this.getPropValue("title")}
-              </h1>
-            </div>
-            <div className={this.decorateCSS("down-page")}>
-              {this.castToObject<Card[]>("team-members").map(
-                (item: Card, indexCard: number) => {
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <Base.VerticalContent className={this.decorateCSS("basic-page")}>
+            {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+            {members && (
+              <Base.ListGrid gridCount={{ pc: this.getPropValue("reverse"), tablet: 1, phone: 1 }} className={this.decorateCSS("down-page")}>
+                {members.map((item: Card, index: number) => {
+                  const nameExist = this.castToString(item.name);
+
+                  const hasCard = nameExist || item.image || item.icons.length > 0;
                   return (
-                    <div
-                      key={indexCard}
-                      style={{ width: 90 / this.getPropValue("reverse") + "%" }}
-                      className={this.decorateCSS("card")}
-                    >
-                      <img
-                        className={this.decorateCSS("person-image")}
-                        src={item.image}
-                        alt=""
-                      />
-                      <div className={this.decorateCSS("person-info")}>
-                        <div className={this.decorateCSS("text-group")}>
-                          <h1 className={this.decorateCSS("item-name")}>
-                            {item.name}
-                          </h1>
+                    hasCard && (
+                      <Base.VerticalContent key={index} className={this.decorateCSS("card")}>
+                        {item.image && <img className={this.decorateCSS("person-image")} src={item.image} alt={nameExist} />}
+                        <div className={this.decorateCSS("person-info")}>
+                          {item.icons.length > 0 && (
+                            <div className={this.decorateCSS("icons-bar")}>
+                              {item.icons.map((card: Icon, iconIndex: number) => {
+                                if (card.icon) {
+                                  return (
+                                    <ComposerLink key={iconIndex} path={card.url}>
+                                      <ComposerIcon
+                                        name={card.icon}
+                                        propsIcon={{
+                                          className: animate ? this.decorateCSS("icon") : this.decorateCSS("no-animate"),
+                                        }}
+                                      />
+                                    </ComposerLink>
+                                  );
+                                }
+                                return null;
+                              })}
+                            </div>
+                          )}
+                          <div className={this.decorateCSS("text-group")}>
+                            <Base.H3 className={this.decorateCSS("item-name")}>{item.name}</Base.H3>
+                          </div>
                         </div>
-                        <div className={this.decorateCSS("icons-bar")}>
-                          {item.icons &&
-                            item.icons.map(
-                              (card: Icons, indexIcons: number) => (
-                                <ComposerLink key={indexIcons} path={card.url}>
-                                  <ComposerIcon
-                                    name={card.icon}
-                                    propsIcon={{
-                                      className: this.decorateCSS("icon"),
-                                    }}
-                                  />
-                                </ComposerLink>
-                              )
-                            )}
-                        </div>
-                      </div>
-                    </div>
+                      </Base.VerticalContent>
+                    )
                   );
-                }
-              )}
-            </div>
-            <ComposerSlider
-              {...settings}
-              className={this.decorateCSS("slider")}
-            >
-              {this.castToObject<Card[]>("team-members").map(
-                (item: Card, indexCard: number) => {
-                  return (
-                    <div key={indexCard} className={this.decorateCSS("card")}>
-                      <img
-                        className={this.decorateCSS("person-image")}
-                        src={item.image}
-                        alt=""
-                      />
-                      <div className={this.decorateCSS("person-info")}>
-                        <div className={this.decorateCSS("text-group")}>
-                          <h1 className={this.decorateCSS("item-name")}>
-                            {item.name}
-                          </h1>
-                        </div>
-                        <div className={this.decorateCSS("icons-bar")}>
-                          {item.icons &&
-                            item.icons.map(
-                              (card: Icons, indexIcons: number) => (
-                                <ComposerLink key={indexIcons} path={card.url}>
-                                  <ComposerIcon
-                                    name={card.icon}
-                                    propsIcon={{
-                                      className: this.decorateCSS("icon"),
-                                    }}
-                                  />
-                                </ComposerLink>
-                              )
+                })}
+              </Base.ListGrid>
+            )}
+            {members.length > 0 && (
+              <ComposerSlider {...settings} className={this.decorateCSS("slider")}>
+                {members.map((item: Card, indexCard: number) => {
+                  const nameExist = this.castToString(item.name);
+
+                  if (item.image || nameExist || item.icons.length > 0)
+                    return (
+                      <div key={indexCard} className={this.decorateCSS("card")}>
+                        {item.image && <img className={this.decorateCSS("person-image")} src={item.image} alt={nameExist} />}
+                        {(nameExist || item.icons.length > 0) && (
+                          <div className={this.decorateCSS("person-info")}>
+                            {item.icons.length > 0 && (
+                              <div style={!item.image ? { width: "auto" } : {}} className={this.decorateCSS("icons-bar")}>
+                                {item.icons.map((card: Icon, indexIcons: number) => {
+                                  if (card.icon)
+                                    return (
+                                      <ComposerLink key={indexIcons} path={card.url}>
+                                        <ComposerIcon
+                                          name={card.icon}
+                                          propsIcon={{
+                                            className: this.decorateCSS("icon"),
+                                          }}
+                                        />
+                                      </ComposerLink>
+                                    );
+                                  return null;
+                                })}
+                              </div>
                             )}
-                        </div>
+                            {nameExist && (
+                              <div style={!item.image ? { width: "auto" } : {}} className={this.decorateCSS("text-group")}>
+                                <Base.H1 className={this.decorateCSS("item-name")}>{item.name}</Base.H1>
+                              </div>
+                            )}
+                          </div>
+                        )}
                       </div>
-                    </div>
-                  );
-                }
-              )}
-            </ComposerSlider>
-          </div>
-        </div>
-      </div>
+                    );
+                  return null;
+                })}
+              </ComposerSlider>
+            )}
+          </Base.VerticalContent>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
