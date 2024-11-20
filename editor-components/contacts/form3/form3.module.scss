@@ -1,36 +1,22 @@
-.container {
-  background-color: var(--composer-html-background);
-  width: 100%;
-  padding: 20px 50px;
-  .max-content {
-    margin: auto;
-    max-width: var(--composer-content-width);
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-    position: relative;
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
+.container {
+  .max-content {
     .top {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0px;
+      gap: 0;
+
       .topSubtitle {
-        top: -30px;
         color: var(--composer-font-color-primary);
-        font-size: 2rem;
         word-wrap: break-word;
       }
 
       .topTitle {
+        margin-top: 0;
         color: var(--composer-font-color-primary);
-        font-size: 3rem;
         word-wrap: break-word;
-        padding: 5px 0 20px 0;
-      }
-      .no-topTitle {
-        padding: 5px 0 50px 0;
       }
     }
 
@@ -52,13 +38,14 @@
         position: relative;
         height: auto;
         flex-grow: 1;
-        padding: 1rem 0px;
+        padding: var(--composer-gap-md) 0;
+
         .background {
           width: 100%;
           height: 100%;
           object-fit: cover;
           background-position: center center;
-          position: absolute !important;
+          position: absolute;
           opacity: 0.9;
         }
 
@@ -73,10 +60,10 @@
           .textSide {
             justify-content: space-around;
             height: 100%;
-            gap: 20px;
+            gap: var(--composer-gap-md);
             display: flex;
             flex-direction: column;
-            padding: 0px 4rem 0px 4rem;
+            padding: 0 var(--composer-gap-md);
 
             .left-top {
               position: relative;
@@ -85,12 +72,14 @@
               word-wrap: break-word;
               display: flex;
               flex-direction: column;
-              gap: 40px;
+              gap: var(--composer-gap-lg);
+
               .title1 {
                 position: relative;
                 z-index: 1;
                 color: var(--composer-font-color-secondary);
                 word-wrap: break-word;
+
                 .leftTitle {
                   position: relative;
                   color: var(--composer-font-color-primary);
@@ -98,6 +87,7 @@
                   margin: unset;
                   word-break: break-word;
                 }
+
                 .leftSubtitle {
                   position: relative;
                   color: var(--composer-font-color-primary);
@@ -106,24 +96,27 @@
                   word-break: break-word;
                 }
               }
+
               .contacts {
                 width: 100%;
-                gap: 20px;
+                gap: var(--composer-gap-md);
                 display: flex;
                 flex-direction: column;
                 position: relative;
+
                 .contact {
                   display: flex;
-                  gap: 20px;
+                  gap: var(--composer-gap-md);
                   position: relative;
                   align-items: center;
+
                   .icon {
                     color: var(--composer-font-color-primary);
                     font-size: 2.5rem;
                     position: relative;
                   }
+
                   .contactName {
-                    max-width: 200px;
                     color: var(--composer-font-color-primary);
                     font-size: 1.5rem;
                     position: relative;
@@ -132,11 +125,12 @@
                 }
               }
             }
+
             .socials {
               width: 100%;
               display: flex;
               flex-direction: row;
-              gap: 20px;
+              gap: var(--composer-gap-md);
               align-self: center;
               flex-wrap: wrap;
               justify-content: center;
@@ -145,12 +139,13 @@
                 align-content: center;
                 background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 80%);
                 color: var(--composer-font-color-secondary);
-                font-size: 2rem;
                 border-radius: 100%;
                 position: relative;
+
                 .icon {
-                  font-size: 20px;
-                  margin: 8px;
+                  height: 20px;
+                  width: 20px;
+                  margin: var(--composer-gap-sm);
                   display: flex;
                 }
               }
@@ -166,12 +161,13 @@
         position: relative;
         flex-grow: 1;
         height: auto;
-        padding: 40px 100px 40px 40px;
-        gap: 1rem;
+        padding: var(--composer-gap-lg);
+        padding-right: calc(var(--composer-gap-xl) * 2);
+        gap: var(--composer-gap-md);
         justify-content: space-between;
+
         .title2 {
           width: 100%;
-          position: relative;
           height: auto;
           display: grid;
 
@@ -183,9 +179,8 @@
           .rightTitle {
             color: var(--composer-font-color-primary);
             font-size: 2.5rem;
-            margin-top: 30px;
+            margin-top: var(--composer-gap-md);
             word-wrap: break-word;
-            padding-bottom: 25px;
             word-break: break-word;
             z-index: 1;
           }
@@ -197,11 +192,10 @@
             font-size: 5rem;
             word-wrap: break-word;
             word-break: break-word;
-          }
-
-          .no-rightTitle {
-            margin-top: 30px;
-            padding-bottom: 30px;
+            position: absolute;
+            left: var(--composer-gap-lg);
+            top: var(--composer-gap-md);
+            margin: 0;
           }
         }
 
@@ -210,66 +204,76 @@
           transition: 1s;
           display: flex;
           flex-direction: row;
-          margin-top: 25px;
+          margin-top: var(--composer-gap-md);
           width: 100%;
-          gap: 50px;
+          gap: var(--composer-gap-xl);
           height: auto;
+
           .form {
             display: flex;
             flex-direction: column;
             position: relative;
-            gap: 50px;
+            gap: var(--composer-gap-xl);
+
             .inputSide {
               display: flex;
               flex-direction: column;
-              gap: 20px;
+              gap: var(--composer-gap-md);
+
               .input-container {
                 width: 100%;
                 display: flex;
                 flex-direction: row;
                 align-items: center;
-                gap: 50px;
+                gap: var(--composer-gap-xl);
               }
+
               .label {
                 color: var(--composer-font-color-primary);
                 display: flex;
                 align-items: center;
-                gap: 5px;
+                gap: var(--composer-gap-xs);
               }
 
               .require-star {
                 color: var(--composer-font-color-primary);
+                margin: 0;
               }
+
               .inputs {
                 display: flex;
                 flex-direction: column;
-                gap: 20px;
+                gap: var(--composer-gap-md);
               }
+
               .input-box {
                 color: var(--composer-font-color-primary);
                 width: 100%;
               }
+
               .input {
                 color: var(--composer-font-color-primary);
-                padding: 2px 20px;
+                padding: var(--composer-gap-xs) 0;
                 border: none;
                 border-bottom: 1px solid var(--composer-font-color-primary);
                 width: 100%;
                 outline: none;
                 resize: none;
                 background-color: var(--composer-html-background);
+
                 &::placeholder {
                   color: var(--composer-font-color-primary);
                   opacity: 0.7;
                 }
               }
+
               .line-numbers {
                 position: absolute;
                 top: 0;
                 left: 0;
                 width: 30px;
                 text-align: right;
-                padding-right: 10px;
+                padding-right: var(--composer-gap-sm);
                 color: var(--composer-font-color-primary);
                 user-select: none;
                 pointer-events: none;
@@ -279,28 +283,31 @@
               .input:focus {
                 outline: none;
               }
+
               .error-message {
                 color: red;
                 font-size: 0.6rem;
-                margin-top: 3px;
+                margin-top: var(--composer-gap-xs);
               }
             }
           }
         }
+
         .form-button {
-          padding-top: 20px;
+          padding-top: var(--composer-gap-md);
           display: flex;
           flex-direction: row;
-          gap: 1rem;
+          gap: var(--composer-gap-md);
           align-items: center;
           justify-content: center;
+
           .buttonSide {
             align-self: center;
             display: flex;
-            gap: 10px;
+            gap: var(--composer-gap-sm);
             justify-content: center;
             align-items: center;
-            max-width: 50%;
+
             .submit-button {
               word-break: break-word;
               min-height: 45px;
@@ -308,16 +315,16 @@
               font-size: 1.5rem;
               display: flex;
               align-items: center;
-              padding: 10px 15px;
-              width: 50%;
+              padding: var(--composer-gap-sm) var(--composer-gap-md);
               height: auto;
               background-color: var(--composer-secondary-color);
               color: var(--composer-font-color-secondary);
-              border-radius: 7px;
+              border-radius: var(--composer-border-radius-md);
               cursor: pointer;
               transition: 0.1s;
               border: 2px solid var(--composer-secondary-color);
             }
+
             .submit-button:hover {
               background-color: transparent;
               color: var(--composer-secondary-color);
@@ -330,137 +337,223 @@
   }
 }
 
-@media only screen and (max-width: 768px) {
+@container (max-width: #{$composer-tablet-width}) {
   .container {
-    padding: 20px !important;
-
     .max-content {
-      .top {
-        .topSubtitle {
-          font-size: 1.5rem !important;
-          top: -8px;
+      .box {
+
+        .top {
+          .topSubtitle {
+            font-size: 1.5rem;
+            top: -8px;
+          }
+
+          .topTitle {
+            width: 100%;
+          }
         }
 
-        .topTitle {
-          width: 100%;
+        .left-container {
+          height: auto;
+          padding: 0 var(--composer-gap-sm);
+
+          .left {
+            height: 95%;
+
+            .textSide {
+              padding: var(--composer-gap-md);
+
+              .left-top {
+                .title1 {
+                  .leftSubtitle {
+                    font-size: 2rem;
+                  }
+                }
+
+                .contacts {
+                  .contact {
+                    gap: var(--composer-gap-md);
+
+                    .icon {
+                      width: 25px;
+                      height: 25px;
+                    }
+
+                    .contactName {
+                      font-size: 1rem;
+                    }
+                  }
+                }
+              }
+
+              .socials {
+                gap: var(--composer-gap-sm);
+              }
+            }
+          }
         }
-      }
 
-      .left-container {
-        height: auto;
-        padding: 0px 10px;
-      }
+        .right-container {
+          padding: var(--composer-gap-lg) var(--composer-gap-md);
 
-      .left {
-        height: 95% !important;
-      }
+          .title2 {
+            .rightTitle {
+              font-size: 2rem;
+              margin: 0;
+            }
 
-      .leftTitle {
-        font-size: 1.5rem !important;
-      }
-      .leftSubtitle {
-        font-size: 2rem !important;
-      }
-      .contacts {
-        margin-left: 5px !important;
-      }
-      .icon {
-        font-size: 1.2rem !important;
-      }
-      .contactName {
-        font-size: 1.3rem;
-      }
-      .icon-container {
-        padding: unset;
-        font-size: 1rem !important;
-      }
+            .rightSubtitle {
+              font-size: 3rem;
+              left: var(--composer-gap-md);
+            }
+          }
 
-      .right-container {
-        height: auto;
-        padding: 10px 25px !important;
-      }
-      .rightSubtitle {
-        font-size: 3.5rem !important;
-      }
-      .rightTitle {
-        font-size: 2rem !important;
-      }
-      .input-container {
-        width: 100%;
-        display: flex;
-        flex-direction: column !important;
-        align-items: center;
-        gap: 10px !important;
-      }
-      .inputs {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-      }
-      .input-box {
-        width: 100%;
-      }
-      .input:focus {
-        outline: none;
-      }
-      .error-message {
-        color: red;
-        font-size: 0.6rem;
-        margin-top: 3px;
-      }
-      .submit-button {
-        margin-top: 0px !important;
-        width: 100% !important;
+          .form-container {
+            margin: 0;
+
+            .form {
+              .inputSide {
+                .input-container {
+                  width: 100%;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  gap: var(--composer-gap-sm);
+                }
+              }
+            }
+          }
+
+          .form-button {
+            padding: 0;
+
+            .buttonSide {
+              .submit-button {
+                width: 100%;
+              }
+            }
+          }
+        }
       }
     }
   }
 }
 
-@media only screen and (max-width: 575px) {
+@container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: 20px;
-  }
-  .box {
-    display: flex;
-    flex-direction: column !important;
-    width: 100%;
-  }
-  .left-top {
-    gap: 20px !important;
-  }
-  .top {
-    .topSubtitle {
-      font-size: 1rem !important;
-      top: -8px;
-    }
+    .max-content {
+      .top {
+        .topSubtitle {
+          font-size: 1rem;
+        }
 
-    .topTitle {
-      font-size: 2rem !important;
-      width: 100%;
-    }
-  }
-  .left-container {
-    height: auto;
-    padding: 20px !important;
-    width: auto !important;
-  }
-  .left {
-    height: 75% !important;
-  }
-  .leftTitle {
-    font-size: 1.5rem !important;
-  }
-  .socials {
-    gap: 10px !important;
-    padding-top: 20px;
-    width: 100%;
-    overflow: auto;
-  }
+        .topTitle {
+          font-size: 2rem;
+        }
+      }
 
-  .right-container {
-    width: 100% !important;
-  }
-  .rightSubtitle {
-    font-size: 2.7rem !important;
+      .box {
+        flex-direction: column;
+
+        .left-container {
+          padding: var(--composer-gap-md);
+          width: auto;
+
+          .left {
+            height: 75%;
+
+            .textSide {
+              padding: 0;
+              width: 100%;
+
+              .left-top {
+                gap: var(--composer-gap-md);
+
+                .title1 {
+                  .leftSubtitle {
+                    font-size: 2rem;
+                  }
+                }
+
+                .contacts {
+                  .contact {
+                    gap: var(--composer-gap-sm);
+
+                    .icon {
+                      width: 20px;
+                      height: 20px;
+                    }
+
+                    .contactName {
+                      font-size: 1rem;
+                    }
+                  }
+                }
+              }
+
+              .socials {
+                gap: var(--composer-gap-sm) !important;
+                padding-top: var(--composer-gap-md);
+                overflow: auto;
+                padding: 0;
+
+                .icon-container {
+
+                  >div,
+                  >a {
+                    display: block;
+
+                    .icon {
+                      width: 15px;
+                      height: 15px;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .right-container {
+          width: 100%;
+          padding: var(--composer-gap-md);
+
+          .form-container {
+            margin: 0;
+
+            .form {
+              .inputSide {
+                .input-container {
+                  flex-direction: column;
+                  gap: var(--composer-gap-md);
+                }
+              }
+            }
+          }
+
+          .title2 {
+            .rightTitle {
+              font-size: 1.5rem;
+            }
+
+            .rightSubtitle {
+              font-size: 2rem;
+              left: var(--composer-gap-md);
+              top: var(--composer-gap-sm);
+            }
+          }
+
+          .form-button {
+            padding: 0;
+
+            .buttonSide {
+              .submit-button {
+                font-size: 1rem;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }

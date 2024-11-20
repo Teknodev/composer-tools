@@ -621,13 +621,9 @@ class Form3Page extends BaseContacts {
       return newObj;
     }
 
-    function isRequiredInput(inputItem: any): boolean {
-      return inputItem.getPropValue("inputs").some((input: any) => input.getPropValue("is_required"));
-    }
-
     function updateTextareaHeight(el: HTMLTextAreaElement): void {
       if (el) {
-        el.style.height = '20px';
+        el.style.height = '30px';
         const scrollHeight = el.scrollHeight;
         if (scrollHeight < 50) {
           el.style.height = scrollHeight + 'px';
@@ -645,7 +641,7 @@ class Form3Page extends BaseContacts {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {topTitle && (
             <div className={this.decorateCSS("top")}>
-              <h1 className={this.decorateCSS("topTitle")}> {this.getPropValue("topTitle")} </h1>
+              <Base.SectionTitle className={this.decorateCSS("topTitle")}> {this.getPropValue("topTitle")} </Base.SectionTitle>
             </div>
           )}
           <div className={this.decorateCSS("box")}>
@@ -666,7 +662,8 @@ class Form3Page extends BaseContacts {
                             <h3 className={this.decorateCSS("leftTitle")}> {this.getPropValue("leftTitle")} </h3>)}
                           {leftSubtitle && (
                             <h1 className={this.decorateCSS("leftSubtitle")}>{this.getPropValue("leftSubtitle")}  </h1>)}
-                        </div>)}
+                        </div>
+                      )}
                       {(contactInfo || contactIcon) && (
                         <div className={this.decorateCSS("contacts")}>
                           {this.castToObject<Left[]>("contactInfo").map((contact: any, index: number) => (
@@ -681,7 +678,6 @@ class Form3Page extends BaseContacts {
                     {icons.length > 0 &&
                       <div className={this.decorateCSS("socials")}>
                         {icons.map((social: Social, index: number) => {
-
                           if (!social.icon) return null;
 
                           return (
@@ -699,8 +695,6 @@ class Form3Page extends BaseContacts {
                       </div>
                     }
                   </div>
-
-
                 </div>
               </div>}
             {((rightSubtitle || rightTitle) || buttons || inputItems).length > 0 &&
@@ -711,10 +705,7 @@ class Form3Page extends BaseContacts {
                       <h1 className={this.decorateCSS("rightTitle")}> {this.getPropValue("rightTitle")} </h1>)}
                     {rightSubtitle && (
                       <h3 className={this.decorateCSS("rightSubtitle")}> {this.getPropValue("rightSubtitle")} </h3>)}
-                    {!rightTitle && (
-                      <h3 className={this.decorateCSS("rightTitle")}> {this.getPropValue("no-rightTitle")} </h3>)}
                   </div>)}
-
                 {(buttons || inputItems).length > 0 &&
                   <div className={this.decorateCSS("form-container")} >
                     <Formik
@@ -744,7 +735,10 @@ class Form3Page extends BaseContacts {
                                         {inputObj.getPropValue("type") == "Text Area" ? (
                                           <textarea
                                             value={values[getInputName(inputItemIndex, inputObj.getPropValue("label", { as_string: true }), inputIndex)]}
-                                            className={this.decorateCSS("input")}
+                                            className={`
+                                              ${this.decorateCSS("input")}
+                                              ${this.decorateCSS("textarea")}  
+                                            `}
                                             placeholder={inputObj.getPropValue("placeholder", { as_string: true })}
                                             onChange={handleChange}
                                             rows={1}
@@ -769,9 +763,9 @@ class Form3Page extends BaseContacts {
                                       </div> : null
                                   )}
                                 </div>
-
-                              )}</div>}
-
+                              )}
+                            </div>
+                          }
                         </Form>
                       )}
                     </Formik>
