@@ -195,7 +195,27 @@ class Testimonials7Page extends Testimonials {
               >
                 {this.castToObject<Item[]>("card-items").map(
                   (item: Item, index: number) => (
-                    <div className={this.getPropValue("cover-image") ? this.decorateCSS("card") : this.decorateCSS("card-no-image")}>
+                    <div
+                      className={(() => {
+                        const hasCoverImage = this.getPropValue("cover-image");
+                        const hasPrevIcon = this.getPropValue("prevIcon");
+                        const hasNextIcon = this.getPropValue("nextIcon");
+
+                        if (!hasCoverImage) {
+                          if (!hasPrevIcon && !hasNextIcon) {
+                            return this.decorateCSS("card-no-image-padding");
+                          } else if (!hasPrevIcon) {
+                            return this.decorateCSS("card-no-image-left");
+                          } else if (!hasNextIcon) {
+                            return this.decorateCSS("card-no-image-right");
+                          } else {
+                            return this.decorateCSS("card-no-image");
+                          }
+                        } else {
+                          return this.decorateCSS("card");
+                        }
+                      })()}
+                    >
                       {this.getPropValue("prevIcon") && (
                         <button onClick={() => {
                           sliderRef.current.slickPrev();
