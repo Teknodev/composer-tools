@@ -119,8 +119,8 @@ class ConfirmationModal1 extends BaseModal {
 
             <div className={this.decorateCSS("buttom-wrapper")}>
               <div className={this.decorateCSS("second-div")}>
-                {title && <Base.H3 className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.H3>}
-                {description && <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>}
+                {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
               </div>
 
               {validButtons.length > 0 && (
