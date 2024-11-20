@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import { BaseList } from "../../EditorComponent";
 import React from "react";
 import styles from "./list7.module.scss";
+import { Base } from "../../../composer-base-components/base/base";
 
 class List7 extends BaseList {
   getName(): string {
@@ -90,8 +91,8 @@ class List7 extends BaseList {
   }
   render(): ReactNode {
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           {this.getPropValue("list-items").map(
             (listItem: any, index: number) => (
               <div
@@ -102,15 +103,15 @@ class List7 extends BaseList {
                 }}
               >
               <div className={this.decorateCSS("item-content")}>
-                <h3 className={this.decorateCSS("index")}>{index < 9 ? `0${index + 1}` : index + 1}</h3>
-                <h4 className={this.decorateCSS("title")}>{listItem.value[1].value}</h4>
-                <p className={this.decorateCSS("list-item-p")}>{listItem.value[0].value}</p>
+                <Base.H3 className={this.decorateCSS("index")}>{index < 9 ? `0${index + 1}` : index + 1}</Base.H3>
+                <Base.H4 className={this.decorateCSS("title")}>{listItem.value[1].value}</Base.H4>
+                <Base.P className={this.decorateCSS("list-item-p")}>{listItem.value[0].value}</Base.P>
               </div>
               </div>
             )
           )}
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
