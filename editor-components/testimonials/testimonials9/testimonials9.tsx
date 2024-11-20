@@ -300,8 +300,6 @@ class Testimonials9Page extends Testimonials {
   getName(): string {
     return "Testimonials 9";
   }
-
-
   render() {
     const slider = this.getPropValue("slider");
     const settings = {
@@ -316,11 +314,9 @@ class Testimonials9Page extends Testimonials {
       verticalSwiping: slider.length > 1,
       arrows: false,
 
-      beforeChange: (oldIndex: number, newIndex: number) => {
-        let adjustedIndex = (newIndex + 1) % this.castToObject<Card[]>("slider").length;
-        if (oldIndex !== adjustedIndex) {
-          this.setComponentState("active-index", adjustedIndex);
-        }
+      beforeChange: (newIndex: number) => {
+        let adjustedIndex = (newIndex + 1) % this.castToObject<Card[]>("slider").length;;
+        this.setComponentState("active-index", adjustedIndex);
       }
     };
     const activeIndex = this.getComponentState("active-index");
