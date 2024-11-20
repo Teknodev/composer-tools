@@ -1,5 +1,9 @@
+@import "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss";
+
 .container {
-  max-width: 700px;
+  max-width: 900px;
+  max-height: 800px;
+  overflow: auto;
   position: relative;
   padding: 0;
   border-radius: var(--composer-border-radius-lg);
@@ -8,6 +12,7 @@
     .modal-content {
       display: flex;
       position: relative;
+      max-height: 800px;
 
       .close-icon-wrapper {
         position: absolute;
@@ -37,13 +42,7 @@
         justify-content: center;
         padding: var(--composer-gap-lg);
 
-        .title {
-          font-size: 1.5rem;
-          color: var(--composer-font-color-primary);
-        }
-
         .description {
-          font-size: 1rem;
           color: var(--composer-font-color-primary);
           opacity: 0.5;
         }
@@ -52,13 +51,12 @@
           display: flex;
           flex-direction: column;
           gap: var(--composer-gap-sm);
+          margin-top: var(--composer-gap-sm);
 
           .form-group {
-            gap: var(--composer-gap-sm);
-
             .input {
               width: 100%;
-              padding: 12px;
+              padding: var(--composer-gap-md);
               border: 1px solid var(--composer-font-color-primary);
               border-radius: var(--composer-border-radius-md);
               font-size: 1rem;
@@ -73,14 +71,13 @@
 
             .error {
               color: var(--danger-color);
-              font-size: 14px;
-              margin-top: var(--composer-gap-xs);
+              font-size: 1rem;
             }
           }
 
           .button {
             width: 100%;
-            padding: 12px;
+            padding: var(--composer-gap-md);
             background-color: var(--composer-primary-color);
             color: var(--composer-font-color-secondary);
             font-size: 1rem;
@@ -100,9 +97,29 @@
   }
 }
 
+// @container (max-width: #{$composer-tablet-width-lg}) {
+@media (max-width: 1024px) {
+  .container {
+    max-width: 700px;
+    max-height: 600px;
+
+    .max-content {
+      .modal-content {
+        .image {
+          width: 200px;
+          max-height: 100%;
+          border-radius: var(--composer-border-radius-lg);
+        }
+      }
+    }
+  }
+}
+
+// @container (max-width: #{$composer-phone-width-sm}) {
 @media (max-width: 480px) {
   .container {
-    max-width: 350px;
+    max-width: 300px;
+    max-height: 500px;
 
     .max-content {
       .modal-content {
@@ -110,7 +127,14 @@
 
         .image {
           width: 100%;
+          max-height: 250px;
           border-radius: var(--composer-border-radius-lg);
+        }
+
+        .right {
+          .title {
+            font-size: 1.5rem;
+          }
         }
       }
     }

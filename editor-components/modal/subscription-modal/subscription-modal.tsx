@@ -44,7 +44,7 @@ class SubscriptionModal extends BaseModal {
       type: "string",
       key: "placeholder",
       displayer: "Placeholder",
-      value: "Text...",
+      value: "Enter e-mail",
     });
 
     this.addProp({
@@ -106,8 +106,10 @@ class SubscriptionModal extends BaseModal {
             {image && <img className={this.decorateCSS("image")} src={image} alt="Subscription Image" />}
 
             <Base.VerticalContent className={this.decorateCSS("right")}>
-              {title && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
-              {description && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
+              <Base.VerticalContent>
+                {title && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
+                {description && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
+              </Base.VerticalContent>
 
               <Formik
                 initialValues={{ email: "" }}
