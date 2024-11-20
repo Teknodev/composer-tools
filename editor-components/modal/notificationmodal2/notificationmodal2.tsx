@@ -3,6 +3,7 @@ import { BaseModal } from "../../EditorComponent";
 import styles from "./notificationmodal2.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
+import ComposerModalClose from "../../../composer-base-components/close/close";
 
 class NotificationModal2 extends BaseModal {
   constructor(props?: any) {
@@ -42,6 +43,13 @@ class NotificationModal2 extends BaseModal {
       displayer: "Button",
       value: "Subscribe",
     });
+
+    this.addProp({
+      type: "icon",
+      key: "exitIcon",
+      displayer: "ExitIcon",
+      value: "IoCloseSharp",
+    });
   }
 
   getName(): string {
@@ -52,6 +60,9 @@ class NotificationModal2 extends BaseModal {
     const icon = this.getPropValue("icon");
     const buttonval = this.getPropValue("button", { as_string: true });
     const emailPlaceholder = this.getPropValue("email", { as_string: true });
+    const title = this.getPropValue("notificationTitle", {
+      as_string: true,
+    });
     const description = this.getPropValue("displayerMessage", {
       as_string: true,
     });
@@ -59,14 +70,20 @@ class NotificationModal2 extends BaseModal {
     return (
       <Base.Container isModal={true} className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <div className={this.decorateCSS("close-icon-wrapper")}>
+            <ComposerModalClose>
+              <ComposerIcon propsIcon={{ className: this.decorateCSS("exit-icon") }} name={this.getPropValue("exitIcon")} />
+            </ComposerModalClose>
+          </div>
+
           <Base.VerticalContent className={this.decorateCSS("content")}>
             {icon && (
               <div className={this.decorateCSS("icon")}>
                 <ComposerIcon propsIcon={{ className: this.decorateCSS("icon-element") }} name={this.getPropValue("icon")} />
               </div>
             )}
-            <Base.H2 className={this.decorateCSS("notification-title")}>{this.getPropValue("notificationTitle")}</Base.H2>
-            {description && <Base.P className={this.decorateCSS("displayer-message")}>{this.getPropValue("displayerMessage")}</Base.P>}
+            {title && <Base.SectionTitle className={this.decorateCSS("notification-title")}>{this.getPropValue("notificationTitle")}</Base.SectionTitle>}
+            {description && <Base.SectionDescription className={this.decorateCSS("displayer-message")}>{this.getPropValue("displayerMessage")}</Base.SectionDescription>}
 
             {emailPlaceholder && (
               <div className={this.decorateCSS("send-mail")}>

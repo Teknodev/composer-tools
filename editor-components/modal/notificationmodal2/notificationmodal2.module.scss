@@ -2,10 +2,28 @@
 
 .container {
   width: auto;
-  max-width: 450px;
+  max-width: 600px;
+  max-height: 700px;
+  overflow: auto;
   border-radius: var(--composer-border-radius-xl);
 
   .max-content {
+    position: relative;
+    .close-icon-wrapper {
+      position: absolute;
+      top: var(--composer-gap-xs);
+      right: var(--composer-gap-xs);
+      cursor: pointer;
+    }
+
+    .exit-icon {
+      font-size: 1.5rem;
+      color: var(--composer-font-color-primary);
+
+      &:hover {
+        color: var(--composer-primary-color);
+      }
+    }
     .content {
       justify-content: center;
       align-items: center;
@@ -17,12 +35,12 @@
         color: var(--composer-font-color-primary);
 
         .icon-element {
-          font-size: 2rem;
+          font-size: 3rem;
         }
       }
 
       .notification-title {
-        color: var(--composer-font-color-primary);
+        font-size: 2rem;
       }
 
       .displayer-message {
@@ -39,9 +57,9 @@
 
           .input {
             width: 100%;
-            height: 45px;
+            height: var(--composer-gap-xl);
             padding: var(--composer-gap-md) var(--composer-gap-sm);
-            padding-right: 120px;
+            padding-right: 30%;
             border-radius: var(--composer-border-radius-xl);
             border: none;
             background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
@@ -71,6 +89,8 @@
             color: (--composer-font-color-secondary);
             cursor: pointer;
             font-size: 1rem;
+            max-width: 150px;
+            overflow: hidden;
 
             &:hover {
               color: var(--composer-font-color-primary);
@@ -82,10 +102,31 @@
     }
   }
 }
-
+// @container (max-width: #{$composer-phone-width}) {
 @media only screen and (max-width: 480px) {
   .container {
-    width: 90% !important;
-    margin: 0 auto !important;
+    max-width: 300px;
+    max-height: 500px;
+    .max-content {
+      position: relative;
+
+      .content {
+        .notification-title {
+          font-size: 1rem;
+        }
+        .send-mail {
+          .input-group {
+            .input {
+              padding-right: 50%;
+            }
+
+            .button {
+              min-width: 100px;
+              max-width: 100px;
+            }
+          }
+        }
+      }
+    }
   }
 }
