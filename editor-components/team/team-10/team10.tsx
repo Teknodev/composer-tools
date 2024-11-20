@@ -108,7 +108,7 @@ class Team10 extends Team {
       type: "boolean",
       key: "overlay",
       displayer: "Overlay",
-      value: false,
+      value: true,
     });
 
     this.addProp({
@@ -418,9 +418,13 @@ class Team10 extends Team {
 
   render() {
     const backgroundImageExist = this.getPropValue("background-image");
-    const subtitleExist = this.getPropValue("subtitle");
-    const titleExist = this.getPropValue("title");
+    const subtitle = this.getPropValue("subtitle");
+    const title = this.getPropValue("title");
     const overlayExist = this.getPropValue("overlay");
+
+    const subtitleExist = this.castToString(subtitle);
+    const titleExist = this.castToString(title);
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
