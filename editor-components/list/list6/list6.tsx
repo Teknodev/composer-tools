@@ -5,6 +5,7 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
 
 type listItem = {
+  itemIndex: JSX.Element;
   itemTitle: JSX.Element;
   itemIcon: string;
   itemText: JSX.Element;
@@ -30,6 +31,12 @@ class List6 extends BaseList {
       displayer: "Description Animation",
       value: true,
     });
+    this.addProp({
+      type: "boolean",
+      key: "lineActive",
+      displayer: "Line Active",
+      value: true,
+    });
 
     this.addProp({
       type: "array",
@@ -41,6 +48,12 @@ class List6 extends BaseList {
           key: "listItem",
           displayer: "List Item",
           value: [
+            {
+              type: "string",
+              key: "itemIndex",
+              displayer: "Item Index",
+              value: "01",
+            },
             {
               type: "string",
               key: "itemTitle",
@@ -69,6 +82,12 @@ class List6 extends BaseList {
           value: [
             {
               type: "string",
+              key: "itemIndex",
+              displayer: "Item Index",
+              value: "02",
+            },
+            {
+              type: "string",
               key: "itemTitle",
               displayer: "Item Title",
               value: "Development",
@@ -95,6 +114,12 @@ class List6 extends BaseList {
           value: [
             {
               type: "string",
+              key: "itemIndex",
+              displayer: "Item Index",
+              value: "03",
+            },
+            {
+              type: "string",
               key: "itemTitle",
               displayer: "Item Title",
               value: "Marketing",
@@ -119,6 +144,12 @@ class List6 extends BaseList {
           key: "listItem",
           displayer: "List Item",
           value: [
+            {
+              type: "string",
+              key: "itemIndex",
+              displayer: "Item Index",
+              value: "04",
+            },
             {
               type: "string",
               key: "itemTitle",
@@ -164,16 +195,12 @@ class List6 extends BaseList {
           )}
           <div className={this.decorateCSS("list-item")}>
             {listItems.map((listItem: listItem, index: number) => (
-              <div
-                key={index}
-                className={this.decorateCSS("item-container")}
-                style={{
-                  borderTop: !description ? "none" : "",
-                }}
-              >
-                <div className={this.decorateCSS("index")}>
-                  {index < 9 ? `0${index + 1}` : index + 1}
-                </div>
+              <div className={this.getPropValue("lineActive") ? this.decorateCSS("item-container") : this.decorateCSS("item-container-no-line")}>
+                {this.castToString(listItem.itemIndex) && (
+                  <div className={this.decorateCSS("index")}>
+                    {listItem.itemIndex}
+                  </div>
+                )}
                 <div className={this.decorateCSS("cards")}>
                   {(listItem.itemIcon ||
                     this.castToString(listItem.itemTitle)) && (

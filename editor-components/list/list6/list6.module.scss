@@ -1,3 +1,4 @@
+@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
 .container {
   .max-content {
     display: flex;
@@ -14,36 +15,14 @@
       flex-wrap: wrap;
       gap: var(--composer-gap-sm);
       max-width: 100%;
-      .item-container {
+      .item-container, .item-container-no-line {
         width: 100%;
         display: flex;
         align-items: center;
         padding-top: var(--composer-gap-md);
         padding-bottom: var(--composer-gap-md);
         position: relative;
-        &::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          border-top: 1px solid var(--composer-font-color-primary);
-          opacity: 0.5;
-          width: 100%;
-          margin: 0;
-        }
-        &:last-child::after {
-          content: '';
-          position: absolute;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          border-bottom: 1px solid var(--composer-font-color-primary);
-          opacity: 0.5;
-          width: 100%;
-          margin: 0;
-        }
+       
         .index {
           flex: 1;
           font-size: 1rem;
@@ -62,6 +41,7 @@
             width: 100%;
             display: flex;
             gap: var(--composer-gap-md);
+            align-items: center;
             .icon {
               min-width: 40px;
               width: 40px;
@@ -85,6 +65,30 @@
           }
         }
       }
+      .item-container{
+        &::before,
+        &:last-child::after {
+          content: '';
+          position: absolute;
+          left: 0;
+          right: 0;
+          width: 100%;
+          opacity: 0.5;
+          margin: 0;
+        }
+        
+        &::before {
+          top: 0;
+          bottom: auto;
+          border-top: 1px solid var(--composer-font-color-primary);
+        }
+        
+        &:last-child::after {
+          top: auto;
+          bottom: 0;
+          border-bottom: 1px solid var(--composer-font-color-primary);
+        }      
+      }
     }
   }
 }
@@ -100,11 +104,11 @@
     transform: translateY(0);
   }
 }
-@container (max-width:1200px){
+@container (max-width: #{$composer-tablet-width-lg}){
   .container {
     .max-content {
       .list-item {
-        .item-container {
+        .item-container, .item-container-no-line{
           .cards {
             .icon-title-container {
               .icon {
@@ -119,18 +123,17 @@
     }
   }
 }
-@container (max-width:450px){
+@container (max-width: #{$composer-phone-width}){
   .container {
     .max-content {
       .list-item {
-        .item-container {
+        .item-container, .item-container-no-line{
           flex-direction: column;
           gap: var(--composer-gap-md);
           align-items: flex-start;
           .cards {
             flex-direction: column;
             gap: var(--composer-gap-md);
-
           }
         }
       }
