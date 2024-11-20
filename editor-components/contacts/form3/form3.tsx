@@ -6,11 +6,12 @@ import * as Yup from "yup";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { TypeUsableComponentProps } from "../../EditorComponent";
+import { Base } from "../../../composer-base-components/base/base";
 
 type Left = {
   contactName: string;
   contactIcon: string;
-  image: JSX.Element
+  image: JSX.Element;
 };
 
 type Social = {
@@ -18,17 +19,9 @@ type Social = {
   icon: string;
 };
 
-
 class Form3Page extends BaseContacts {
   constructor(props?: any) {
     super(props, styles);
-
-    this.addProp({
-      type: "string",
-      key: "topSubtitle",
-      displayer: "Top Subtitle",
-      value: "Reach Out",
-    });
 
     this.addProp({
       type: "string",
@@ -523,7 +516,7 @@ class Form3Page extends BaseContacts {
           ]
         }
       ]
-    })
+    });
   }
 
   getName(): string {
@@ -533,7 +526,6 @@ class Form3Page extends BaseContacts {
   render() {
     const buttons = this.getPropValue("buttons");
     const topTitle = this.getPropValue("topTitle", { as_string: true });
-    const topSubtitle = this.getPropValue("topSubtitle", { as_string: true });
     const leftTitle = this.getPropValue("leftTitle", { as_string: true });
     const leftSubtitle = this.getPropValue("leftSubtitle", { as_string: true });
     const rightTitle = this.getPropValue("rightTitle", { as_string: true });
@@ -559,9 +551,9 @@ class Form3Page extends BaseContacts {
         case "Tel":
           return "tel";
         case "Number":
-          return "number"
+          return "number";
         default:
-          return "text"
+          return "text";
       }
     }
     function getInputValue(indexOfLabel: number, inputLabel: string, indexOfInput: number): string {
@@ -583,8 +575,8 @@ class Form3Page extends BaseContacts {
         inputItem.getPropValue("inputs")?.map((input: TypeUsableComponentProps, indexOfInput: number) => {
           const key = getInputValue(indexOfItem, input.getPropValue("label", { as_string: true }), indexOfInput);
           value[key] = "";
-        })
-      })
+        });
+      });
       return value;
     }
 
@@ -603,20 +595,20 @@ class Form3Page extends BaseContacts {
           let fieldSchema = Yup.string() as any;
 
           if (isRequired) {
-            fieldSchema = fieldSchema.required(input.getPropValue("required_error_message"))
+            fieldSchema = fieldSchema.required(input.getPropValue("required_error_message"));
           } else {
             fieldSchema = fieldSchema.nullable();
           }
 
           if (isEmail) {
-            fieldSchema = fieldSchema.email(input.getPropValue("type_error_message"))
+            fieldSchema = fieldSchema.email(input.getPropValue("type_error_message"));
           }
 
           schema = schema.shape({
             [key]: fieldSchema,
           });
-        })
-      })
+        });
+      });
 
       return schema;
     };
@@ -625,12 +617,12 @@ class Form3Page extends BaseContacts {
       const newObj: any = {};
       Object.values(obj).forEach((value, index) => {
         newObj["input_" + index] = value;
-      })
+      });
       return newObj;
     }
 
     function isRequiredInput(inputItem: any): boolean {
-      return inputItem.getPropValue("inputs").some((input: any) => input.getPropValue("is_required"))
+      return inputItem.getPropValue("inputs").some((input: any) => input.getPropValue("is_required"));
     }
 
     function updateTextareaHeight(el: HTMLTextAreaElement): void {
@@ -649,17 +641,13 @@ class Form3Page extends BaseContacts {
     const icons = this.castToObject<Social[]>("socials");
     const background = this.getPropValue("background");
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          {(topSubtitle || topTitle) && (
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          {topTitle && (
             <div className={this.decorateCSS("top")}>
-              {topSubtitle && (
-                <h3 className={this.decorateCSS("topSubtitle")}> {this.getPropValue("topSubtitle")} </h3>)}
-              {topTitle && (
-                <h1 className={this.decorateCSS("topTitle")}> {this.getPropValue("topTitle")} </h1>)}
-              {!topTitle && (
-                <h1 className={this.decorateCSS("topTitle")}> {this.getPropValue("no-topTitle")} </h1>)}
-            </div>)}
+              <h1 className={this.decorateCSS("topTitle")}> {this.getPropValue("topTitle")} </h1>
+            </div>
+          )}
           <div className={this.decorateCSS("box")}>
             {(icons || background || leftSubtitle || leftTitle || contactInfo || contactIcon).length > 1 &&
               <div className={this.decorateCSS("left-container")}>
@@ -667,6 +655,7 @@ class Form3Page extends BaseContacts {
                   <img
                     className={this.decorateCSS("background")}
                     src={this.getPropValue("background")}
+                    alt={"image"}
                   />)}
                 <div className={this.decorateCSS("left")}>
                   <div className={this.decorateCSS("textSide")}>
@@ -688,25 +677,24 @@ class Form3Page extends BaseContacts {
                             </div>
                           ))}
                         </div>)}
-
                     </div>
-                    {
-                      icons.length > 0 &&
+                    {icons.length > 0 &&
                       <div className={this.decorateCSS("socials")}>
                         {icons.map((social: Social, index: number) => {
 
-                          if (social.icon)
-                            return (
-                              <div className={this.decorateCSS("icon-container")}>
-                                <ComposerLink key={index} path={social.url}>
-                                  <ComposerIcon
-                                    name={social.icon}
-                                    propsIcon={{
-                                      className: this.decorateCSS("icon")
-                                    }} />
-                                </ComposerLink>
-                              </div>
-                            )
+                          if (!social.icon) return null;
+
+                          return (
+                            <div className={this.decorateCSS("icon-container")}>
+                              <ComposerLink key={index} path={social.url}>
+                                <ComposerIcon
+                                  name={social.icon}
+                                  propsIcon={{
+                                    className: this.decorateCSS("icon")
+                                  }} />
+                              </ComposerLink>
+                            </div>
+                          );
                         })}
                       </div>
                     }
@@ -733,7 +721,7 @@ class Form3Page extends BaseContacts {
                       initialValues={getInitialValue()}
                       validationSchema={getSchema()}
                       onSubmit={(data, { resetForm }) => {
-                        const formData = getFormData(data)
+                        const formData = getFormData(data);
                         this.insertForm("Contact Us", formData);
                         resetForm();
                       }}
@@ -790,9 +778,9 @@ class Form3Page extends BaseContacts {
                   </div>}
                 <div className={this.decorateCSS("form-button")}>
                   {buttons.length > 0 && (
-                    buttons.map((buttonText: any, buttonIndex: number) => {
+                    buttons.map((buttonText: any, index: number) => {
                       return (
-                        <div className={this.decorateCSS("buttonSide")}>
+                        <div className={this.decorateCSS("buttonSide")} key={index}>
                           <button
                             className={this.decorateCSS("submit-button")}
                             type="submit"
@@ -800,16 +788,15 @@ class Form3Page extends BaseContacts {
                             {buttonText.getPropValue("button_text", { as_string: true })}
                           </button>
                         </div>
-                      )
+                      );
 
                     })
-                  )
-                  }
+                  )}
                 </div>
               </div>}
           </div>
-        </div>
-      </div >
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
