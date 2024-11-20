@@ -310,10 +310,10 @@ class Testimonials9Page extends Testimonials {
       speed: 500,
       autoplay: true,
       autoplaySpeed: 2500,
-      slidesToShow: 4,
+      slidesToShow: Math.min(Math.max(slider.length, 1), 4),
       slidesToScroll: 1,
       vertical: true,
-      verticalSwiping: true,
+      verticalSwiping: slider.length > 1,
       arrows: false,
 
       beforeChange: (oldIndex: number, newIndex: number) => {
