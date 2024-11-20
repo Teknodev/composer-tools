@@ -328,7 +328,7 @@ class ImageGallery3 extends BaseImageGallery {
         })
 
         this.setComponentState("default", 0);
-        this.setComponentState("selectedSection", "FASHION");
+        this.setComponentState("selectedSection", null);
         this.setComponentState("currentImageIndex", 0);
     }
 
@@ -337,13 +337,16 @@ class ImageGallery3 extends BaseImageGallery {
     }
     getCurrentGalleryLeft() {
         const galleryCollection = this.castToObject<ImageGalleryContianer[]>("leftContainers");
+        console.log("galleryCollectionLeft ", galleryCollection)
         const selectedSection = this.getComponentState("selectedSection");
+        console.log("selectedSectionLeft ", selectedSection)
 
-        if (!selectedSection) { // `selectedSection` null ise tüm galerileri döndür
+        if (!selectedSection) {
             return galleryCollection.flatMap(item => item.imageGalleries);
         }
 
         const selectedGallery = galleryCollection.find(item => this.castToString(item.title) === selectedSection);
+        console.log("returnLeft ", selectedGallery.imageGalleries)
         return selectedGallery ? selectedGallery.imageGalleries : [];
     }
 
@@ -351,7 +354,7 @@ class ImageGallery3 extends BaseImageGallery {
         const galleryCollection = this.castToObject<ImageGalleryContianer[]>("rightContainers");
         const selectedSection = this.getComponentState("selectedSection");
 
-        if (!selectedSection) { // `selectedSection` null ise tüm galerileri döndür
+        if (!selectedSection) {
             return galleryCollection.flatMap(item => item.imageGalleries);
         }
 
@@ -368,6 +371,7 @@ class ImageGallery3 extends BaseImageGallery {
         const currentGalleryLeft = this.getCurrentGalleryLeft();
         console.log("currentGalleryLeft", currentGalleryLeft)
         const currentGalleryRight = this.getCurrentGalleryRight();
+        console.log("currentGalleryRight", currentGalleryRight)
         const showAll = this.getPropValue("showAll");
         const selectedSection = this.getComponentState("selectedSection");
 
@@ -393,75 +397,78 @@ class ImageGallery3 extends BaseImageGallery {
                     <div className={this.decorateCSS("wrapper")}>
                         {(currentGalleryLeft.length > 0) && (
                             <div className={this.decorateCSS("imageContainer")}>
-                                {currentGalleryLeft.map((item: ImageGallery, index: number) => {
-                                    const containerClass =
+                                <div
+                                    className={this.decorateCSS(
                                         currentGalleryLeft.length === 1
                                             ? "single-image"
                                             : currentGalleryLeft.length === 2
                                                 ? "two-images"
                                                 : currentGalleryLeft.length === 3
                                                     ? "three-images"
-                                                    : "four-images";
-
-                                    return (
-                                        <div key={index} className={this.decorateCSS(containerClass)}>
-                                            {currentGalleryLeft.map((galleryItem: ImageGallery, index: number) => (
-                                                <div key={index} className={this.decorateCSS("imageWrapper")}>
-                                                    {galleryItem.image && (
-                                                        <img src={galleryItem.image} alt={galleryItem.image} className={this.decorateCSS("image")} />
-                                                    )}
-                                                    <div className={this.decorateCSS("text")}>
-                                                        <div className={this.decorateCSS("subtitle")}>
-                                                            {galleryItem.subtitle}
-                                                        </div>
-                                                        <div className={this.decorateCSS("title")}>
-                                                            {galleryItem.title}
-                                                        </div>
-                                                    </div>
+                                                    : "four-images"
+                                    )}
+                                >
+                                    {currentGalleryLeft.map((galleryItem: ImageGallery, index: number) => (
+                                        <div key={index} className={this.decorateCSS("imageWrapper")}>
+                                            {galleryItem.image && (
+                                                <img
+                                                    src={galleryItem.image}
+                                                    alt={galleryItem.image}
+                                                    className={this.decorateCSS("image")}
+                                                />
+                                            )}
+                                            <div className={this.decorateCSS("text")}>
+                                                <div className={this.decorateCSS("subtitle")}>
+                                                    {galleryItem.subtitle}
                                                 </div>
-                                            ))}
+                                                <div className={this.decorateCSS("title")}>
+                                                    {galleryItem.title}
+                                                </div>
+                                            </div>
                                         </div>
-                                    )
-                                })}
+                                    ))}
+                                </div>
                             </div>
                         )}
+
                         {(currentGalleryRight.length > 0) && (
                             <div className={this.decorateCSS("imageContainer")}>
-                                {currentGalleryRight.map((item: ImageGallery, index: number) => {
-                                    const containerClass =
+                                <div
+                                    className={this.decorateCSS(
                                         currentGalleryRight.length === 1
                                             ? "single-image"
                                             : currentGalleryRight.length === 2
                                                 ? "two-images"
                                                 : currentGalleryRight.length === 3
                                                     ? "three-images"
-                                                    : "four-images";
-
-                                    return (
-                                        <div key={index} className={this.decorateCSS(containerClass)}>
-                                            {currentGalleryRight.map((galleryItem: ImageGallery, index: number) => (
-                                                <div key={index} className={this.decorateCSS("imageWrapper")}>
-                                                    {galleryItem.image && (
-                                                        <img src={galleryItem.image} alt={galleryItem.image} className={this.decorateCSS("image")} />
-                                                    )}
-                                                    <div className={this.decorateCSS("text")}>
-                                                        <div className={this.decorateCSS("subtitle")}>
-                                                            {galleryItem.subtitle}
-                                                        </div>
-                                                        <div className={this.decorateCSS("title")}>
-                                                            {galleryItem.title}
-                                                        </div>
-                                                    </div>
-
+                                                    : "four-images"
+                                    )}
+                                >
+                                    {currentGalleryRight.map((galleryItem: ImageGallery, index: number) => (
+                                        <div key={index} className={this.decorateCSS("imageWrapper")}>
+                                            {galleryItem.image && (
+                                                <img
+                                                    src={galleryItem.image}
+                                                    alt={galleryItem.image}
+                                                    className={this.decorateCSS("image")}
+                                                />
+                                            )}
+                                            <div className={this.decorateCSS("text")}>
+                                                <div className={this.decorateCSS("subtitle")}>
+                                                    {galleryItem.subtitle}
                                                 </div>
-                                            ))}
+                                                <div className={this.decorateCSS("title")}>
+                                                    {galleryItem.title}
+                                                </div>
+                                            </div>
                                         </div>
-                                    )
-                                })}
+                                    ))}
+                                </div>
                             </div>
                         )}
 
                     </div>
+
                 </Base.MaxContent>
             </Base.Container >
         );
