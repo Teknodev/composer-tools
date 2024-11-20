@@ -242,13 +242,6 @@ class Testimonials10Page extends Testimonials {
       ],
     });
     this.addProp({
-      type: "boolean",
-      key: "showLine",
-      displayer: "Show Line",
-      value: true,
-    });
-
-    this.addProp({
       type: "icon",
       key: "quoteicon",
       displayer: "Quote Icon",
@@ -308,7 +301,7 @@ class Testimonials10Page extends Testimonials {
               {(title || subtitle || description || hasButtons) && (
                 <div className={this.decorateCSS("left-content")}>
                   {(title || subtitle) && (
-                    <div className={this.decorateCSS("title-subtitle")}>
+                    <Base.VerticalContent className={this.decorateCSS("title-subtitle")}>
                       {subtitle && (
                         <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                           {this.getPropValue("subtitle")}
@@ -319,7 +312,7 @@ class Testimonials10Page extends Testimonials {
                           {this.getPropValue("title")}
                         </Base.SectionTitle>
                       )}
-                    </div>
+                    </Base.VerticalContent>
                   )}
                   {description && (
                     <Base.P className={this.decorateCSS("description")}>
@@ -365,7 +358,7 @@ class Testimonials10Page extends Testimonials {
                               {(this.castToString(item.text) ||
                                 this.castToString(item.position) ||
                                 this.castToString(item.author)) && (
-                                  <div className={this.decorateCSS("header-page-container")}>
+                                  <div className={item.image ? this.decorateCSS("header-page-container") : this.decorateCSS("header-page-container-no-image")}>
                                     <div className={this.decorateCSS("header-page")}>
                                       <div className={this.decorateCSS("top-container")}>
                                         {item.image && (
