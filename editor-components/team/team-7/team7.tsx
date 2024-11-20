@@ -210,6 +210,13 @@ class Team7 extends Team {
 
     this.addProp({
       type: "string",
+      key: "badge",
+      displayer: "Subtitle",
+      value: "Our Team",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "Skilled Team Innovating the Product",
@@ -220,13 +227,6 @@ class Team7 extends Team {
       key: "description",
       displayer: "Description",
       value: "Our skilled team continuously innovates, ensuring our product stays ahead of industry standards.",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "badge",
-      displayer: "Badge",
-      value: "Our Team",
     });
 
     this.addProp({
@@ -256,19 +256,31 @@ class Team7 extends Team {
 
     const badgeValue = badge.props.html;
     const titleValue = title.props.html;
-    const descriptionValue = description.props.html;
+    const descriptionValue = this.castToString(description);
+
+    const contentAligment = Base.getContentAlignment();
+
+    console.log(contentAligment, "contentAligment");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("basic-page")}>
-            <Base.VerticalContent className={this.decorateCSS("up-page")}>
-              {badgeValue && <Base.SectionSubTitle className={this.decorateCSS("badge")}>{this.getPropValue("badge")}</Base.SectionSubTitle>}
-              <Base.VerticalContent className={this.decorateCSS("up-page-bottom")}>
-                {titleValue && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-                {descriptionValue && <Base.SectionDescription className={!titleValue ? this.decorateCSS("description-left") : this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+            {contentAligment === "left" ? (
+              <Base.VerticalContent className={this.decorateCSS("up-page")}>
+                {badgeValue && <Base.SectionSubTitle className={this.decorateCSS("badge")}>{this.getPropValue("badge")}</Base.SectionSubTitle>}
+                <div className={this.decorateCSS("up-page-bottom")}>
+                  {titleValue && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                  {descriptionValue && <Base.SectionDescription className={!titleValue ? this.decorateCSS("description-left") : this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+                </div>
               </Base.VerticalContent>
-            </Base.VerticalContent>
+            ) : contentAligment === "center" ? (
+              <Base.VerticalContent className={this.decorateCSS("up-page-center")}>
+                {badgeValue && <Base.SectionSubTitle className={this.decorateCSS("badge")}>{this.getPropValue("badge")}</Base.SectionSubTitle>}
+                {titleValue && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                {descriptionValue && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+              </Base.VerticalContent>
+            ) : null}
 
             <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("down-page")}>
               {this.castToObject<Card[]>("team-members").map((item: Card, indexCard: number) => {
@@ -283,7 +295,6 @@ class Team7 extends Team {
                         {item.image && (
                           <div className={this.decorateCSS("image-wrapper")}>
                             <img className={this.decorateCSS("person-image")} src={item.image} alt="" />
-                            <div className={this.decorateCSS("overlay")}></div>
                           </div>
                         )}
 
@@ -295,6 +306,7 @@ class Team7 extends Team {
                               </ComposerLink>
                             ))}
                         </div>
+                        <div className={this.decorateCSS("overlay")}></div>
                       </div>
 
                       <Base.VerticalContent className={this.decorateCSS("text-group")}>
