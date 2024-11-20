@@ -379,7 +379,7 @@ class ImageGallery1 extends BaseImageGallery {
           <div className={this.decorateCSS("section-title-container")}>
             {
               <button
-                className={this.decorateCSS("section-title")}
+                className={`${this.decorateCSS("section-title")} ${selectedSection === null ? this.decorateCSS("active-section-title") : ""}`}
                 onClick={() => this.handleSectionClick(null)}
               >
                 All
@@ -398,57 +398,52 @@ class ImageGallery1 extends BaseImageGallery {
             }
 
           </div>
-          {imageGallery
-            .filter(
-              (item: ImageGallery) =>
-                !selectedSection ||
-                (item.sectionTitle &&
-                  selectedSection &&
-                  this.castToString(item.sectionTitle) === this.castToString(selectedSection))
-            )
-            .map((item: ImageGallery, index: number) => (
-              <Base.ListGrid key={index} gridCount={{ pc: 3 }}>
-                {item.images
-                  .filter((image: Image) => {
-                    if (seenImages.has(image.cardImage)) {
-                      return false;
-                    }
-                    seenImages.add(image.cardImage);
-                    return true;
-                  })
-                  .map((image: Image, imgIndex: number) => (
-                    <div
-                      key={imgIndex}
-                      className={this.decorateCSS("card-container")}
-                    >
-                      <div className={this.decorateCSS("image-container")}>
-                        {image.cardImage && (
-                          <img
-                            alt={image.cardImage}
-                            src={image.cardImage}
-                            className={this.decorateCSS("image")}
-                          />
-                        )}
-                      </div>
-                      <div className={this.decorateCSS("text-container")}>
-                        {this.castToString(image.title) && (
-                          <div className={this.decorateCSS("title")}>
-                            {image.title}
-                          </div>
-                        )}
-                        {this.getPropValue("lineActive") && (
-                          <div className={this.decorateCSS("line")}></div>
-                        )}
-                        {this.castToString(image.section) && (
-                          <div className={this.decorateCSS("section")}>
-                            {image.section}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  ))}
-              </Base.ListGrid>
-            ))}
+          <Base.ListGrid gridCount={{ pc: 3 }}>
+            {imageGallery
+              .filter(
+                (item: ImageGallery) =>
+                  !selectedSection ||
+                  (item.sectionTitle &&
+                    selectedSection &&
+                    this.castToString(item.sectionTitle) === this.castToString(selectedSection))
+              )
+              .reduce((acc: Image[], item: ImageGallery) => {
+                acc.push(...item.images);
+                return acc;
+              }, [])
+              .filter((image: Image) => {
+                if (seenImages.has(image.cardImage)) {
+                  return false;
+                }
+                seenImages.add(image.cardImage);
+                return true;
+              })
+              .map((image: Image, imgIndex: number) => (
+                <div key={imgIndex} className={this.decorateCSS("card-container")}>
+                  <div className={this.decorateCSS("image-container")}>
+                    {image.cardImage && (
+                      <img
+                        alt={image.cardImage}
+                        src={image.cardImage}
+                        className={this.decorateCSS("image")}
+                      />
+                    )}
+                  </div>
+                  <div className={this.decorateCSS("text-container")}>
+                    {this.castToString(image.title) && (
+                      <div className={this.decorateCSS("title")}>{image.title}</div>
+                    )}
+                    {this.getPropValue("lineActive") && (
+                      <div className={this.decorateCSS("line")}></div>
+                    )}
+                    {this.castToString(image.section) && (
+                      <div className={this.decorateCSS("section")}>{image.section}</div>
+                    )}
+                  </div>
+                </div>
+              ))}
+          </Base.ListGrid>
+
         </Base.MaxContent>
 
       </Base.Container>
