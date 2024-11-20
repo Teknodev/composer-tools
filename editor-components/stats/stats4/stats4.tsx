@@ -24,13 +24,13 @@ class Stats4Page extends BaseStats {
     this.addProp({
       type: "string",
       key: "mainTitle",
-      displayer: "Main Title",
+      displayer: "Subtitle",
       value: "BRANDING SERVICES",
     });
     this.addProp({
       type: "string",
       key: "mainDescription",
-      displayer: "Main Description",
+      displayer: "Title",
       value: "We create to brands and businesses to stand out in this digital era.",
     });
 
@@ -360,17 +360,13 @@ class Stats4Page extends BaseStats {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("stats-container")}>
-            {mainTitle && (
-              <header className={this.decorateCSS("main-header")}>
-                <Base.SectionSubTitle className={this.decorateCSS("title")}>{this.getPropValue("mainTitle")}</Base.SectionSubTitle>
-              </header>
-            )}
-            {(mainDescription || faqs?.length > 0) && (
+            {(mainDescription | mainTitle || faqs?.length > 0) && (
               <Base.ContainerGrid className={this.decorateCSS("upper-container")}>
-                {mainDescription && (
-                  <main className={this.decorateCSS("upper-container-main")}>
-                    <Base.SectionTitle className={this.decorateCSS("main-description")}>{this.getPropValue("mainDescription")}</Base.SectionTitle>
-                  </main>
+                {(mainDescription || mainTitle) && (
+                  <Base.VerticalContent className={this.decorateCSS("upper-container-main")}>
+                    {mainTitle && <Base.SectionSubTitle className={this.decorateCSS("title")}>{this.getPropValue("mainTitle")}</Base.SectionSubTitle>}
+                    {mainDescription && <Base.SectionTitle className={this.decorateCSS("main-description")}>{this.getPropValue("mainDescription")}</Base.SectionTitle>}
+                  </Base.VerticalContent>
                 )}
                 {faqs?.length > 0 && (
                   <div className={this.decorateCSS("faq")}>

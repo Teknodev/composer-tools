@@ -3,19 +3,10 @@
 .container {
   .max-content {
     display: flex;
-    justify-content: center;
     align-items: center;
 
     .stats-container {
-      .main-header {
-        display: flex;
-        align-items: center;
-        gap: var(--composer-gap-sm);
-
-        .title {
-          margin: 0;
-        }
-      }
+      width: 100%;
 
       .upper-container {
         display: flex;
@@ -23,14 +14,10 @@
         align-items: flex-start;
         gap: var(--composer-gap-md);
         flex-wrap: unset;
+        gap: calc(2 * var(--composer-gap-xl));
 
         .upper-container-main {
-          width: 100%;
-
-          .main-description {
-            width: 100%;
-            margin-top: 0;
-          }
+          width: 50%;
         }
 
         .faq {
