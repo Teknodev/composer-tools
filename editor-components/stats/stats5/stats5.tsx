@@ -171,7 +171,7 @@ class Stats5Page extends BaseStats {
     if (isNaN(number)) {
       return "";
     }
-    return number.toLocaleString("tr-TR");
+    return number.toLocaleString("en-US");
   }
 
   animate() {
