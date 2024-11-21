@@ -1,9 +1,7 @@
 import * as React from "react";
 import { BaseImageGallery } from "../../EditorComponent";
 import styles from "./image-gallery3.module.scss";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
-import { elements } from "chart.js";
 
 interface ImageGalleryContianer {
     imageGalleries: ImageGallery[],
@@ -23,6 +21,12 @@ class ImageGallery3 extends BaseImageGallery {
             key: "showAll",
             displayer: "Show All Category",
             value: true,
+        });
+        this.addProp({
+            type: "string",
+            key: "allTitle",
+            displayer: "Show All Title",
+            value: "ALL",
         });
         this.addProp({
             type: "array",
@@ -337,16 +341,13 @@ class ImageGallery3 extends BaseImageGallery {
     }
     getCurrentGalleryLeft() {
         const galleryCollection = this.castToObject<ImageGalleryContianer[]>("leftContainers");
-        console.log("galleryCollectionLeft ", galleryCollection)
         const selectedSection = this.getComponentState("selectedSection");
-        console.log("selectedSectionLeft ", selectedSection)
 
         if (!selectedSection) {
             return galleryCollection.flatMap(item => item.imageGalleries);
         }
 
         const selectedGallery = galleryCollection.find(item => this.castToString(item.title) === selectedSection);
-        console.log("returnLeft ", selectedGallery.imageGalleries)
         return selectedGallery ? selectedGallery.imageGalleries : [];
     }
 
@@ -364,35 +365,48 @@ class ImageGallery3 extends BaseImageGallery {
 
     render() {
         const leftContainer = this.castToObject<ImageGalleryContianer[]>("leftContainers");
-        // const currentIndex = this.getComponentState("selectedSection");
-        // console.log("leftContainer", this.castToString(leftContainer[0].title))
         const rightContainer = this.castToObject<ImageGalleryContianer[]>("rightContainers");
-        const currentImageIndex = this.getComponentState("currentImageIndex");
         const currentGalleryLeft = this.getCurrentGalleryLeft();
-        console.log("currentGalleryLeft", currentGalleryLeft)
         const currentGalleryRight = this.getCurrentGalleryRight();
-        console.log("currentGalleryRight", currentGalleryRight)
         const showAll = this.getPropValue("showAll");
         const selectedSection = this.getComponentState("selectedSection");
+        const allTitles = [...leftContainer, ...rightContainer];
+        const titleMap = allTitles.reduce((map, item) => {
+            const normalizedTitle = this.castToString(item.title).trim().toLowerCase();
+            if (!map[normalizedTitle]) {
+                map[normalizedTitle] = this.castToString(item.title);
+            }
+            return map;
+        }, {} as Record<string, string>);
+        const uniqueNormalizedTitles = Object.keys(titleMap);
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("maxContent")}>
                     <div className={this.decorateCSS("sectionTextContainer")}>
                         {showAll && (
-                            <h3
-                                className={`${this.decorateCSS("section-text")} ${!selectedSection ? this.decorateCSS("active") : ""}`}
-                                onClick={() => this.setComponentState("selectedSection", null)}
+                            <div
+                                className={`${this.decorateCSS("sectionText")} ${selectedSection === null ? this.decorateCSS("active") : ""}`}
+                                onClick={() => {
+                                    this.setComponentState("selectedSection", null);
+                                }}
                             >
-                                All
-                            </h3>
+                                {this.getPropValue("allTitle")}
+                            </div>
                         )}
-                        {rightContainer.map((item: ImageGalleryContianer, index: number) => (
-                            <div className={this.decorateCSS("sectionText")}
-                                onClick={() => this.setComponentState("selectedSection", this.castToString(item.title))}>
-                                {item.title}
+
+                        {uniqueNormalizedTitles.map((normalizedTitle, index) => (
+                            <div
+                                key={index}
+                                className={`${this.decorateCSS("sectionText")} ${selectedSection === titleMap[normalizedTitle] ? this.decorateCSS("active") : ""}`}
+                                onClick={() => {
+                                    this.setComponentState("selectedSection", titleMap[normalizedTitle])
+                                }}
+                            >
+                                {titleMap[normalizedTitle]}
                             </div>
                         ))}
+
                     </div>
                     <div className={this.decorateCSS("wrapper")}>
                         {(currentGalleryLeft.length > 0) && (

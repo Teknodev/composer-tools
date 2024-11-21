@@ -8,13 +8,16 @@
             gap: var(--composer-gap-xl);
             align-items: center;
             justify-content: center;
+            flex-wrap: wrap;
             .sectionText{
                 font-size: 1rem;
+                &.active{
+                    font-weight: bold;
+                }
             }
         }
         .wrapper{
             display: flex;
-            justify-content: space-between; 
             gap: var(--composer-gap-sm);
             .imageContainer {
                 display: flex;
@@ -33,6 +36,7 @@
                         width: 100%;
                         position: relative;
                         .image{
+                            max-height: 100vh;
                             max-width: 100%;
                             width: 100%;
                             height: 100%;
@@ -112,6 +116,7 @@
                         justify-content: center;
                         align-items: center;
                         .image{
+                            min-height: 250px;
                             max-width: 100%;
                             width: 100%;
                             height: 100%;
@@ -143,14 +148,64 @@
         }
     }
 }
-
-@contianer (max-width: 400px) {
+@container (max-width: 900px) {
     .container{
         .maxContent{
             .wrapper{
-                .imageContainer {
-                    .two-images, .three-images,  {
+                .imageContainer{
+                    .two-images, .three-images, .four-images {
+                        .imageWrapper{
+                            .text{
+                                left: var(--composer-gap-sm);
+                            }
+                        }
+                        
+                    }
+                }
+            }
+        }
+    }
+}
 
+@container (max-width: 400px) {
+    .container{
+        .maxContent{
+            .wrapper{
+                flex-direction: column;
+                .imageContainer {
+
+                    .single-image, .two-images, .three-images, .four-images {
+                        height: 100% ;
+                        display: grid ;
+                        grid-template-columns: 1fr ; 
+                        grid-template-rows: 1fr ; 
+                        gap: var(--composer-gap-sm) ;
+                        .imageWrapper{
+                            width: 100%;
+                            position: relative;
+                            height: 100%;
+                            .image{
+                                min-height: 275px;
+                                max-height: 275px;
+                                height: 275px;
+                                max-width: 100%;
+                                width: 100%;
+                                height: 100%;
+                                object-fit: cover;
+                            }
+                            .text{
+                                position: absolute;
+                                bottom: var(--composer-gap-md);
+                                left: var(--composer-gap-sm);
+                                color: var(--composer-font-color-secondary);
+                                display: flex;
+                                flex-direction: column;
+                                gap: var(--composer-gap-sm);
+                                font-size:1rem;
+                                .subtitle{}
+                                .title{}
+                            }
+                        }
                     }
                 }
             }
