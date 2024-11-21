@@ -331,7 +331,7 @@ class Testimonials9Page extends Testimonials {
               </div>
             )}
             <Base.ContainerGrid className={this.decorateCSS("down-page")}>
-              <div className={this.decorateCSS("carousel")}>
+              <Base.GridCell className={this.decorateCSS("carousel")}>
                 <ComposerSlider {...settings} >
                   {this.castToObject<Card[]>("slider").map(
                     (item: Card, index: number) => {
@@ -356,8 +356,8 @@ class Testimonials9Page extends Testimonials {
                     }
                   )}
                 </ComposerSlider>
-              </div>
-              <div className={this.decorateCSS("right-page")}>
+              </Base.GridCell>
+              <Base.GridCell className={this.decorateCSS("right-page")}>
                 {this.getPropValue("left_icon") && (
                   <ComposerIcon name={this.getPropValue("left_icon")} propsIcon={{
                     className: this.decorateCSS("left-icon")
@@ -375,7 +375,7 @@ class Testimonials9Page extends Testimonials {
                     className: this.decorateCSS("right-icon")
                   }} />
                 )}
-              </div>
+              </Base.GridCell>
             </Base.ContainerGrid>
           </div>
         </Base.MaxContent>
