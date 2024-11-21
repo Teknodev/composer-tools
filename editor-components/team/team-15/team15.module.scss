@@ -6,11 +6,18 @@
     flex-direction: column;
 
     .up-page {
+      display: flex;
+      flex-direction: column;
+      gap: var(--composer-gap-md);
+      .title {
+        margin: 0;
+      }
       .cards-box {
         .card {
           border-radius: var(--composer-border-radius-md);
           overflow: hidden;
-          min-height: 600px;
+          min-height: 400px;
+          max-height: 500px;
           height: 100%;
           width: 100%;
           position: relative;
@@ -71,15 +78,15 @@
 
               color: var(--composer-font-color-secondary);
               &:hover {
-                color: var(--composer-secondary-color);
+                color: var(--composer-primary-color);
               }
             }
 
             .labels {
               position: relative;
-              bottom: 0px;
-              left: 0px;
-              right: 0px;
+              bottom: 0;
+              left: 0;
+              right: 0;
               display: flex;
               align-items: center;
               justify-content: space-between;
@@ -89,7 +96,7 @@
 
               .icon-list-container {
                 position: absolute;
-                right: 8%;
+                right: 1%;
                 bottom: 50%;
                 text-align: center;
                 transform: scaleY(0);
@@ -114,24 +121,6 @@
                 }
               }
 
-              &:hover {
-                .icon-list-container {
-                  transform: scaleY(1);
-                  text-align: end;
-
-                  .icon {
-                    width: var(--composer-gap-md);
-                    height: var(--composer-gap-md);
-                    object-fit: cover;
-                    position: relative;
-                    color: var(--composer-font-color-secondary);
-                    &:hover {
-                      color: var(--composer-secondary-color);
-                    }
-                  }
-                }
-              }
-
               .description {
                 color: var(--composer-font-color-secondary);
                 opacity: 0.5;
@@ -141,7 +130,7 @@
               .icons {
                 display: flex;
                 gap: var(--composer-gap-md);
-                color: var(--composer-secondary-color);
+                color: var(--composer-primary-color);
 
                 .firstIcon,
                 .secondIcon {
@@ -149,6 +138,24 @@
                   height: var(--composer-gap-md);
                   &:hover {
                     color: var(--composer-font-color-secondary);
+                  }
+                }
+              }
+            }
+
+            &:hover {
+              .icon-list-container {
+                transform: scaleY(1);
+                text-align: end;
+
+                .icon {
+                  width: var(--composer-gap-md);
+                  height: var(--composer-gap-md);
+                  object-fit: cover;
+                  position: relative;
+                  color: var(--composer-font-color-secondary);
+                  &:hover {
+                    color: var(--composer-primary-color);
                   }
                 }
               }
@@ -173,17 +180,12 @@
 
       .title {
         font-size: 1rem;
-        margin: 1rem;
+        margin: var(--composer-gap-md);
+        width: 95%;
       }
 
       .description {
         font-size: 1rem;
-      }
-
-      .icon-list-container {
-        right: 15% !important;
-        bottom: 50% !important;
-        padding: calc(2 * var(--composer-gap-xs)) !important;
       }
     }
   }
@@ -195,17 +197,18 @@
 
     .card-content {
       .labels {
-        padding: 0.5rem;
+        padding: var(--composer-gap-sm);
       }
 
       .title {
         font-size: 1rem;
-        margin: 0.5rem;
+        margin: var(--composer-gap-sm);
       }
       .icon-list-container {
-        right: 12% !important;
-        bottom: 50% !important;
-        padding: calc(2 * var(--composer-gap-xs)) !important;
+        padding: var(--composer-gap-xs) !important;
+        .icon {
+          margin-right: var(--composer-gap-xs) !important;
+        }
       }
     }
   }

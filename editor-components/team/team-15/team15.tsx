@@ -124,7 +124,7 @@ class Team15 extends Team {
               type: "icon",
               key: "firstIcon",
               displayer: "First Icon",
-              value: "IoMdShare",
+              value: "IoMdMail",
             },
             {
               type: "page",
@@ -136,7 +136,7 @@ class Team15 extends Team {
               type: "icon",
               key: "secondIcon",
               displayer: "Second Icon",
-              value: "IoMdMail",
+              value: "IoMdShare",
             },
             {
               type: "page",
@@ -179,7 +179,7 @@ class Team15 extends Team {
               type: "icon",
               key: "firstIcon",
               displayer: "First Icon",
-              value: "IoMdShare",
+              value: "IoMdMail",
             },
             {
               type: "page",
@@ -191,62 +191,7 @@ class Team15 extends Team {
               type: "icon",
               key: "secondIcon",
               displayer: "Second Icon",
-              value: "IoMdMail",
-            },
-            {
-              type: "page",
-              key: "secondIconUrl",
-              displayer: "Second Icon URL",
-              value: "",
-            },
-            {
-              type: "array",
-              key: "icons",
-              displayer: "Social Media Platforms",
-              value: [JSON.parse(JSON.stringify(twitter)), JSON.parse(JSON.stringify(facebook)), JSON.parse(JSON.stringify(instagram))],
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "card",
-          displayer: "Card",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Mia Isabella",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "-Counselor",
-            },
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b712bd2970002c6284b3?alt=media&timestamp=1719558632841",
-            },
-            {
-              type: "icon",
-              key: "firstIcon",
-              displayer: "First Icon",
               value: "IoMdShare",
-            },
-            {
-              type: "page",
-              key: "firstIconUrl",
-              displayer: "First Icon URL",
-              value: "",
-            },
-            {
-              type: "icon",
-              key: "secondIcon",
-              displayer: "Second Icon",
-              value: "IoMdMail",
             },
             {
               type: "page",
@@ -290,7 +235,7 @@ class Team15 extends Team {
               type: "icon",
               key: "firstIcon",
               displayer: "First Icon",
-              value: "IoMdShare",
+              value: "IoMdMail",
             },
             {
               type: "page",
@@ -302,62 +247,7 @@ class Team15 extends Team {
               type: "icon",
               key: "secondIcon",
               displayer: "Second Icon",
-              value: "IoMdMail",
-            },
-            {
-              type: "page",
-              key: "secondIconUrl",
-              displayer: "Second Icon URL",
-              value: "",
-            },
-            {
-              type: "array",
-              key: "icons",
-              displayer: "Social Media Platforms",
-              value: [JSON.parse(JSON.stringify(twitter)), JSON.parse(JSON.stringify(facebook)), JSON.parse(JSON.stringify(instagram))],
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "card",
-          displayer: "Card",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Kevin Martins",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "-Therapist",
-            },
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b712bd2970002c6284b4?alt=media&timestamp=1719558632841",
-            },
-            {
-              type: "icon",
-              key: "firstIcon",
-              displayer: "First Icon",
               value: "IoMdShare",
-            },
-            {
-              type: "page",
-              key: "firstIconUrl",
-              displayer: "First Icon URL",
-              value: "",
-            },
-            {
-              type: "icon",
-              key: "secondIcon",
-              displayer: "Second Icon",
-              value: "IoMdMail",
             },
             {
               type: "page",
@@ -400,7 +290,7 @@ class Team15 extends Team {
               type: "icon",
               key: "firstIcon",
               displayer: "First Icon",
-              value: "IoMdShare",
+              value: "IoMdMail",
             },
             {
               type: "page",
@@ -412,7 +302,7 @@ class Team15 extends Team {
               type: "icon",
               key: "secondIcon",
               displayer: "Second Icon",
-              value: "IoMdMail",
+              value: "IoMdShare",
             },
             {
               type: "page",
@@ -435,7 +325,7 @@ class Team15 extends Team {
       type: "number",
       key: "itemCount",
       displayer: "Item count in a row",
-      value: 3,
+      value: 4,
       max: 6,
     });
   }
