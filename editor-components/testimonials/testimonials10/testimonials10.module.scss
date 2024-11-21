@@ -1,9 +1,10 @@
 @import '../../../composer-base-components/base/utitilities/viewports.module.scss';
 .container {
-  padding: 0px !important;
   position: relative;
   .overlay-left{
     position: absolute;
+    left: 0px;
+    top: 0px;
     width: 40%;
     height: 80%;
     background-color: color-mix(
@@ -16,7 +17,6 @@
   .max-content {
     position: relative;
     z-index: 1;
-    padding: 20px 50px;
     .container2 {
       .testimonials10 {
         display: flex;
@@ -68,6 +68,7 @@
             height: 100%;
             background: var(--composer-font-color-primary);
             z-index: -1; 
+            border-radius: var(--composer-gap-xs);
           }
           .slider-style {
             width: 100%;
@@ -100,10 +101,10 @@
                       height: 150px;
                       left:calc(var(--composer-gap-md) * (-5)); 
                       top:calc(var(--composer-gap-md) * (-4)); 
-                      border-radius: var(--composer-border-radius-xs);
                       .img {
                         width: 100%;
                         border: 2px solid var(--composer-html-background);
+                        border-radius: var(--composer-border-radius-xs);
                       }
                     }
                     .icons {
@@ -188,7 +189,7 @@
     z-index: 10;
     right: 50px;
     bottom:20px;
-    max-width: calc(60% - var(--composer-gap-md) - 50px);
+    max-width: calc(var(--composer-content-width) - 40% - var(--composer-gap-md ) - 50px);
     >blinkpage{
       display: block;
       white-space: nowrap;
