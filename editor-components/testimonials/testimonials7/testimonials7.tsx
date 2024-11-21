@@ -257,7 +257,7 @@ class Testimonials7Page extends Testimonials {
                       )}
                       {this.getPropValue("nextIcon") && (
                         <button onClick={() => {
-                          sliderRef.current.slickPrev();
+                          sliderRef.current.slickNext();
                         }} className={this.getPropValue("cover-image") ? this.decorateCSS("button-right") : this.decorateCSS("button-right-no-image")}>
                           <ComposerIcon name={this.getPropValue("nextIcon")} propsIcon={{ className: this.decorateCSS("arrow") }}></ComposerIcon>
                         </button>
