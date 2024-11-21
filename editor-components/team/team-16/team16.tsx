@@ -188,14 +188,24 @@ class Team16 extends Team {
   }
 
   render() {
+    const title = this.getPropValue("title");
+    const description = this.getPropValue("description");
+
+    const titleExist = this.castToString(title);
+    const descriptionExist = this.castToString(description);
+
+    const alignmentValue = Base.getContentAlignment();
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("page")}>
-            <Base.VerticalContent className={this.decorateCSS("up-content")}>
-              <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
-              <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>
-            </Base.VerticalContent>
+            {(titleExist || descriptionExist) && (
+              <Base.VerticalContent className={this.decorateCSS("up-content")}>
+                {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+              </Base.VerticalContent>
+            )}
             <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("down-content")}>
               {this.castToObject<Card[]>("cards").map((card: Card, indexCards: number) => {
                 const nameExist = this.castToString(card.name);
@@ -221,7 +231,7 @@ class Team16 extends Team {
             </Base.ListGrid>
             <ComposerLink path={this.getPropValue("button_url")}>
               <div className={this.decorateCSS("button")}>
-                <Base.H5 className={this.decorateCSS("button-element")}>{this.getPropValue("button-text")}</Base.H5>
+                <Base.H5 className={alignmentValue === "left" ? this.decorateCSS("button-element") : alignmentValue === "center" ? this.decorateCSS("button-element-center") : null}>{this.getPropValue("button-text")}</Base.H5>
               </div>
             </ComposerLink>
           </Base.VerticalContent>
