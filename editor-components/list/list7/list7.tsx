@@ -99,7 +99,7 @@ class List7 extends BaseList {
                 key={index}
                 className={this.decorateCSS("all-card")}
                 style={{
-                  width: 90 / this.getPropValue("itemCount") + "%",
+                  width: 100 / this.getPropValue("itemCount") + "%",
                 }}
               >
               <div className={this.decorateCSS("item-content")}>
