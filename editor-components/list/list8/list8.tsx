@@ -3,6 +3,15 @@ import { BaseList } from "../../EditorComponent";
 import React from "react";
 import styles from "./list8.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
+
+type listItem = {
+  number: number;
+  icon: JSX.Element;
+  title: string;
+  Text: string;
+};
 
 //CLASS
 class List8 extends BaseList {
@@ -15,6 +24,30 @@ class List8 extends BaseList {
   constructor(props?: any) {
     super(props, styles);
 
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "How It Works?",
+    });
+    this.addProp({
+      type: "string",
+      key: "titledesc",
+      displayer: "Description",
+      value: " Lorem, ipsum dolor sit amet consectetur adipisicing elit.Saepe, quis.",
+    });
+    this.addProp({
+      type: "string",
+      key: "button_text",
+      displayer: "Button Text",
+      value: "List your space",
+    });
+    this.addProp({
+      type: "page",
+      key: "button_url",
+      displayer: "Button Url",
+      value: ""
+    });
     this.addProp({
       type: "array",
       key: "list-items",
@@ -32,15 +65,21 @@ class List8 extends BaseList {
               value: 1,
             },
             {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaMapLocationDot",
+            },
+            {
               type: "string",
               key: "title",
-              displayer: "Item Title",
+              displayer: "Title",
               value: "List Your Space",
             },
             {
               type: "string",
               key: "text",
-              displayer: "Item Text",
+              displayer: "Text",
               value:
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, ab",
             },
@@ -58,15 +97,21 @@ class List8 extends BaseList {
               value: 2,
             },
             {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "HiChartBar",
+            },
+            {
               type: "string",
               key: "title",
-              displayer: "Item Title",
+              displayer: "Title",
               value: "Get More Orders",
             },
             {
               type: "string",
               key: "text",
-              displayer: "Item Text",
+              displayer: "Text",
               value:
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, ab",
             },
@@ -84,15 +129,21 @@ class List8 extends BaseList {
               value: 3,
             },
             {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaMoneyBillAlt",
+            },
+            {
               type: "string",
               key: "title",
-              displayer: "Item Title",
+              displayer: "Title",
               value: "Earn Money",
             },
             {
               type: "string",
               key: "text",
-              displayer: "Item Text",
+              displayer: "Text",
               value:
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, ab",
             },
@@ -107,107 +158,69 @@ class List8 extends BaseList {
       value: 3,
       max: 4
     });
-    this.addProp({
-      type: "string",
-      key: "title",
-      displayer: "Title",
-      value: "How It Works?",
-    });
-    this.addProp({
-      type: "string",
-      key: "titledesc",
-      displayer: "Title Description",
-      value:
-        " Lorem, ipsum dolor sit amet consectetur adipisicing elit.Saepe, quis.",
-    });
-    this.addProp({
-        type: "string",
-        key: "button_text",
-        displayer: "Button Text",
-        value:
-          "List your space",
-      });
-      this.addProp({
-        type: "page",
-        key: "button_url",
-        displayer: "Button Url",
-        value: ""
-      });
   }
   //end constructor
 
   render(): ReactNode {
-
-    //RETURN
+    const ListItems = this.castToObject<listItem[]>("list-items");
+  
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("border")}>
-            {/* main start */}
-            <main id="main_id" className={this.decorateCSS("main")}>
-              <div className={this.decorateCSS("container2")}>
-                <section
-                  id="section_id"
-                  className={this.decorateCSS("section")}
-                >
-                  <h1 className={this.decorateCSS("h1")}>
-                    {this.getPropValue("title")}
-                  </h1>
-                  <p className={this.decorateCSS("h1-lowertext")}>
-                    {this.getPropValue("titledesc")}
-                  </p>
-
-                  {/* Boxes Start */}
-
-                  {/* Boxlower */}
-                  <div className={this.decorateCSS("boxes")}>
-                    {/* MAP */}
-                    {this.getPropValue("list-items").map(
-                      (item: any, index: number) => (
-                        <div
-                          key={index}
-                          className={this.decorateCSS("boxlower")}
-                          style={{
-                            width:
-                              this.getPropValue("itemCount") == 1
-                                ? "100%"
-                                : 90 / this.getPropValue("itemCount") + "%",
-                          }}
-                        >
-                          <div className={this.decorateCSS("circle")}>
-                            {item.getPropValue("number")}
-                          </div>
-                          <h3 className={this.decorateCSS("midwriting")}>
-                            {item.getPropValue("title")}
-                          </h3>{" "}
-                          <br />
-                          <span className={this.decorateCSS("text")}>
-                            {item.getPropValue("text")}
-                          </span>
-                        </div>
-                      )
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <section id="section_id" className={this.decorateCSS("section")}>
+            <Base.VerticalContent>
+              <Base.SectionTitle className={this.decorateCSS("h1")}>
+                {this.getPropValue("title")}
+              </Base.SectionTitle>
+              <Base.SectionDescription className={this.decorateCSS("h1-lowertext")}>
+                {this.getPropValue("titledesc")}
+              </Base.SectionDescription>
+            </Base.VerticalContent>
+            <Base.ListGrid
+              className={this.decorateCSS("boxes")}
+              gridCount={{ pc: this.getPropValue("itemCount") }}
+            >
+              {ListItems.map((item: any, index: number) => (
+                <div key={index} className={this.decorateCSS("boxlower")}>
+                  {item.getPropValue("number") && (
+                    <div className={this.decorateCSS("circle")}>
+                      {item.getPropValue("number")}
+                    </div>
+                  )}
+                  <div className={this.decorateCSS("icon-box")}>
+                    {item.icon && (
+                      <ComposerIcon
+                        name={item.icon}
+                        propsIcon={{
+                          className: this.decorateCSS("icon"),
+                        }}
+                      />
                     )}
                   </div>
-                  {/* Boxes end */}
-
-                  {/* Button */}
-                 <div className={this.decorateCSS("button-box")}>
-                    <ComposerLink path={this.getPropValue("button_url")}>
-                        <button className={this.decorateCSS("button")}>
-                            {this.getPropValue("button_text")}
-                        </button>
-                    </ComposerLink>
-                 </div>
-                </section>
-              </div>
-            </main>
-            {/* main end */}
-          </div>
-        </div>
-      </div>
+                  <Base.VerticalContent className={this.decorateCSS("titles")}>
+                    <Base.H3 className={this.decorateCSS("midwriting")}>
+                      {item.getPropValue("title")}
+                    </Base.H3>
+                    <Base.P className={this.decorateCSS("text")}>
+                      {item.getPropValue("text")}
+                    </Base.P>
+                  </Base.VerticalContent>
+                </div>
+              ))}
+            </Base.ListGrid>
+            <div className={this.decorateCSS("button-box")}>
+              <ComposerLink path={this.getPropValue("button_url")}>
+                <button className={this.decorateCSS("button")}>
+                  {this.getPropValue("button_text")}
+                </button>
+              </ComposerLink>
+            </div>
+          </section>
+        </Base.MaxContent>
+      </Base.Container>
     );
-    //end RETURN
   }
+  
 }
 //end CLASS
 
