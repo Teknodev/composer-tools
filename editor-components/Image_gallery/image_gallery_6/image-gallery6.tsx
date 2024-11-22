@@ -13,7 +13,8 @@ interface ImageItem {
   title: JSX.Element,
   description: JSX.Element,
   buttonText: JSX.Element,
-  url: string
+  url: string,
+  nextArrow: string
 }
 
 class ImageGalleryComponent6 extends BaseImageGallery {
@@ -70,6 +71,12 @@ class ImageGalleryComponent6 extends BaseImageGallery {
                       key: "description",
                       displayer: "Description",
                       value: "START A PROJECT",
+                    },
+                    {
+                      type: "icon",
+                      key: "nextArrow",
+                      displayer: "Next Arrow",
+                      value: "FaArrowRightLong",
                     },
                     {
                       type: "string",
@@ -136,6 +143,12 @@ class ImageGalleryComponent6 extends BaseImageGallery {
                       key: "description",
                       displayer: "Description",
                       value: "START A PROJECT",
+                    },
+                    {
+                      type: "icon",
+                      key: "nextArrow",
+                      displayer: "Next Arrow",
+                      value: "FaArrowRightLong",
                     },
                     {
                       type: "string",
@@ -500,7 +513,7 @@ class ImageGalleryComponent6 extends BaseImageGallery {
     const currentImage = currentGallery[currentImageIndex];
     const imgCount = `${currentImageIndex + 1} of ${currentGallery.length}`;
     const selectedSection = this.getComponentState("selectedSection");
-    console.log("selectedSection", selectedSection)
+    console.log()
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -542,23 +555,25 @@ class ImageGalleryComponent6 extends BaseImageGallery {
 
                   return (
                     <div className={`${this.decorateCSS("images")} ${imageClass}`}>
-
                       <div className={this.decorateCSS("image-wrapper")}>
                         <img src={item.image} alt={item.image} className={this.decorateCSS("image")} />
                         <div className={this.decorateCSS("badge")}>
+                          <div className={this.decorateCSS("badge-text")}>
+                            {item.badge}
+                          </div>
                         </div>
                         <div className={this.decorateCSS("badge-container")}>
-
                           <div className={this.decorateCSS("text-container")}>
                             <div className={this.decorateCSS("title")}>
                               {item.title}
                             </div>
                             <div className={this.decorateCSS("bottom-container")}>
-
                               <div className={this.decorateCSS("description")}>
                                 {item.description}
                               </div>
-                              <button className={this.decorateCSS("button")}></button>
+                              <button className={this.decorateCSS("button")}>
+                                <ComposerIcon name={item.nextArrow} propsIcon={{ className: this.decorateCSS("icon") }}></ComposerIcon>
+                              </button>
                             </div>
                           </div>
                         </div>
@@ -567,13 +582,9 @@ class ImageGalleryComponent6 extends BaseImageGallery {
                     </div>
                   );
                 }
-
-
-
                 return null;
               })}
             </div>
-
             <div className={this.decorateCSS("right-container")}>
               {currentGallery.map((item: ImageItem, index: number) => {
                 if (index % 2 === 1) {
@@ -594,19 +605,22 @@ class ImageGalleryComponent6 extends BaseImageGallery {
                       <div className={this.decorateCSS("image-wrapper")}>
                         <img src={item.image} alt={item.image} className={this.decorateCSS("image")} />
                         <div className={this.decorateCSS("badge")}>
+                          <div className={this.decorateCSS("badge-text")}>
+                            {item.badge}
+                          </div>
                         </div>
                         <div className={this.decorateCSS("badge-container")}>
-
                           <div className={this.decorateCSS("text-container")}>
                             <div className={this.decorateCSS("title")}>
                               {item.title}
                             </div>
                             <div className={this.decorateCSS("bottom-container")}>
-
                               <div className={this.decorateCSS("description")}>
                                 {item.description}
                               </div>
-                              <button className={this.decorateCSS("button")}></button>
+                              <button className={this.decorateCSS("button")}>
+                                <ComposerIcon name={item.nextArrow} propsIcon={{ className: this.decorateCSS("icon") }}></ComposerIcon>
+                              </button>
                             </div>
                           </div>
                         </div>
@@ -616,7 +630,6 @@ class ImageGalleryComponent6 extends BaseImageGallery {
                 }
                 return null;
               })}
-
             </div>
           </div>
         </Base.MaxContent>
