@@ -26,7 +26,7 @@ class NotificationModal1 extends BaseModal {
       type: "boolean",
       key: "overlay",
       displayer: "Overlay",
-      value: true,
+      value: false,
     });
 
     this.addProp({
@@ -106,29 +106,21 @@ class NotificationModal1 extends BaseModal {
     }
 
     return (
-      <Base.Container
-        isModal="true"
-        className={this.decorateCSS("container")}>
+      <Base.Container isModal="true" className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
             {(exitIcon || secondTitleExist || descriptionExist) && (
               <div className={this.decorateCSS("top-wrapper")}>
                 {exitIcon && (
                   <div className={this.decorateCSS("exit-icon")}>
-                    <ComposerIcon
-                      propsIcon={{ className: this.decorateCSS("exit-icon") }}
-                      name={this.getPropValue("exitIcon")}
-                    />
+                    <ComposerModalClose>
+                      <ComposerIcon propsIcon={{ className: this.decorateCSS("exit-icon") }} name={this.getPropValue("exitIcon")} />
+                    </ComposerModalClose>
                   </div>
                 )}
                 {(backgroundImage || firstTitleExist) && (
                   <div className={`${this.decorateCSS("wrapper")} ${!backgroundImage && this.decorateCSS("without-image")}`}>
-                    {backgroundImage && (
-                      <img
-                        className={this.decorateCSS("image")}
-                        src={backgroundImage}
-                      />
-                    )}
+                    {backgroundImage && <img className={this.decorateCSS("image")} src={backgroundImage} />}
                     <Base.H1 className={this.decorateCSS("first-header")}>{this.getPropValue("firstTitle")}</Base.H1>
                     {overlay && <div className={this.decorateCSS("overlay")}></div>}
                   </div>
@@ -137,12 +129,8 @@ class NotificationModal1 extends BaseModal {
             )}
             {(secondTitleExist || descriptionExist) && (
               <Base.VerticalContent className={this.decorateCSS("second-div")}>
-                {secondTitleExist && (
-                  <Base.SectionTitle className={this.decorateCSS("second-header")}>{this.getPropValue("secondTitle")}</Base.SectionTitle>
-                )}
-                {descriptionExist && (
-                  <Base.SectionDescription className={this.decorateCSS("notice-content")}>{this.getPropValue("description")}</Base.SectionDescription>
-                )}
+                {secondTitleExist && <Base.H1 className={this.decorateCSS("second-header")}>{this.getPropValue("secondTitle")}</Base.H1>}
+                {descriptionExist && <Base.SectionDescription className={this.decorateCSS("notice-content")}>{this.getPropValue("description")}</Base.SectionDescription>}
               </Base.VerticalContent>
             )}
 

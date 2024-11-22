@@ -1,14 +1,17 @@
+@import "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss";
+
 .container {
   max-width: 650px;
+  min-width: 600px;
+  max-height: 900px;
+  overflow: auto;
   border-radius: var(--composer-border-radius-lg);
+  box-shadow: var(--box-shadow-active);
 
-  container-name: container;
-  container-type: inline-size;
   .max-content {
     .content {
       display: flex;
       flex-direction: column;
-      box-shadow: var(--composer-box-shadow);
       background-color: var(--composer-html-background);
       gap: var(--composer-gap-md);
 
@@ -26,7 +29,8 @@
           top: 0;
           margin-top: var(--composer-gap-xs);
           margin-right: var(--composer-gap-xs);
-          color: var(--composer-font-color-primary);
+          color: white;
+          cursor: pointer;
         }
         .wrapper {
           position: relative;
@@ -57,7 +61,24 @@
           .first-header {
             text-align: center;
             margin: auto;
-            color: var(--composer-font-color-primary);
+            color: white;
+            padding: var(--composer-gap-lg) var(--composer-gap-md);
+            z-index: 3;
+            word-break: break-word;
+            position: relative;
+          }
+        }
+        .without-image {
+          position: relative;
+          width: 100%;
+          text-align: center;
+          height: auto;
+          top: 0;
+
+          .first-header {
+            text-align: center;
+            margin: auto;
+            color: var(--composer-primary-color);
             padding: var(--composer-gap-lg) var(--composer-gap-md);
             z-index: 3;
             word-break: break-word;
@@ -71,10 +92,13 @@
         .second-header {
           text-align: center;
           word-break: break-word;
+          color: var(--composer-secondary-color);
         }
         .notice-content {
           width: 80%;
           word-break: break-word;
+          color: var(--composer-font-color-primary);
+          text-align: center;
         }
       }
     }
@@ -111,25 +135,37 @@
       }
     }
   }
-  @container container (min-width: 480px) {
+}
+
+// @container (max-width: #{$composer-phone-width}) {
+@media only screen and (max-width: 480px) {
+  .container {
+    min-width: 330px !important;
+    max-width: 330px !important;
+    max-height: 550px !important;
+
     .max-content {
-      .button-background {
-        .button {
-          &.first-button {
-            margin-right: 0;
+      .content {
+        .top-wrapper {
+          .exit-icon {
+            width: 1rem;
+            height: 1rem;
+          }
+          .wrapper {
+            .first-header {
+              font-size: 2rem;
+            }
+          }
+          .without-image {
+            .first-header {
+              font-size: 2rem;
+            }
           }
         }
-      }
-    }
-  }
-  @container container (max-width: 480px) {
-    .max-content {
-      .button-background {
-        flex-direction: column;
-        .button {
-          text-align: center;
-          &.first-button {
-            margin-bottom: 0;
+
+        .second-div {
+          .second-header {
+            font-size: 1.5rem;
           }
         }
       }
