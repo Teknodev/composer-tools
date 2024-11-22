@@ -2,6 +2,7 @@ import * as React from "react";
 import { BaseImageGallery } from "../../EditorComponent";
 import styles from "./image-gallery4.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
 
 type NavItem = {
   title: JSX.Element;
@@ -381,6 +382,25 @@ class ImageGallery4 extends BaseImageGallery {
       value: "RxCross1",
     });
 
+    this.addProp({
+      type: "icon",
+      key: "imageIcon",
+      displayer: "Image Icon",
+      value: "IoSearchOutline",
+    });
+    this.addProp({
+      type: "icon",
+      key: "nextIcon",
+      displayer: "Next Icon",
+      value: "HiArrowRight",
+    });
+    this.addProp({
+      type: "icon",
+      key: "prevIcon",
+      displayer: "Prev Icon",
+      value: "HiArrowLeft",
+    });
+
     this.setComponentState("activeNav", 0);
     this.setComponentState("activeSubnav", null);
     this.setComponentState("focusedImage", 0);
@@ -403,6 +423,8 @@ class ImageGallery4 extends BaseImageGallery {
   focusImage(index: number) {
     this.setComponentState("focusedImage", index);
     this.setComponentState("isFocused", true);
+    console.log("focuse", this.getComponentState("focusedImage"))
+    console.log("focuse", this.getComponentState("isFocused"))
   }
 
   closeFocus() {
@@ -454,94 +476,94 @@ class ImageGallery4 extends BaseImageGallery {
     const galleryItems = this.getImages();
 
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("gallery-wrapper")}>
             {(navItems?.length > 0 || subnavItems?.length > 0) && (
-              <nav className={this.decorateCSS("gallery-nav")}>
+              <Base.VerticalContent className={this.decorateCSS("gallery-nav")}>
                 {navItems?.length > 0 && (
-                  <ul
+                  <div
                     className={`${this.decorateCSS("nav-list")} ${this.decorateCSS("hide-scrollbar")}`}
                   >
                     {navItems?.map((item: NavItem, index: number) => {
                       if (!this.castToString(item.title)) return null;
                       return (
-                        <li
+                        <div
                           key={index}
                           className={this.decorateCSS("list-item")}
                         >
                           <button
-                            className={
-                              activeNav === index
-                                ? this.decorateCSS("active")
-                                : ""
-                            }
+                            className={`${this.decorateCSS("button")} ${activeNav === index ? this.decorateCSS("active") : ""}`}
+
                             onClick={() => {
                               this.switchNav(index);
                             }}
                           >
                             {item.title}
                           </button>
-                        </li>
+                        </div>
                       );
                     })}
-                  </ul>
+                  </div>
                 )}
                 {showActiveNavSubnavs && subnavItems?.length > 0 && (
-                  <ul
+                  <div
                     className={`${this.decorateCSS("subnav-list")} ${this.decorateCSS("hide-scrollbar")}`}
                   >
                     {(subnavItems || []).map(
                       (item: SubnavItem, index: number) => {
                         if (!this.castToString(item.title)) return null;
                         return (
-                          <li
+                          <div
                             key={index}
                             className={this.decorateCSS("list-item")}
                           >
                             <button
-                              className={
-                                activeSubnav === index
-                                  ? this.decorateCSS("active")
-                                  : ""
-                              }
+                              className={`${this.decorateCSS("button")} ${activeSubnav === index ? this.decorateCSS("active") : ""}`}
                               onClick={() => {
                                 this.switchSubnav(index);
                               }}
                             >
                               {item.title}
                             </button>
-                          </li>
+                          </div>
                         );
                       },
                     )}
-                  </ul>
+                  </div>
                 )}
-              </nav>
+              </Base.VerticalContent>
             )}
             {galleryItems?.length > 0 && (
-              <div
-                className={this.decorateCSS("gallery-container")}
-                style={{ gridTemplateColumns: `repeat(${itemsPerRow}, 1fr)` }}
-              >
+              <Base.ListGrid gridCount={{ pc: itemsPerRow }} className={this.decorateCSS("gallery-container")}>
                 {galleryItems.map((item: Image, index: number) => {
                   if (!item.image) return null;
                   return (
                     <div
                       key={index}
                       className={this.decorateCSS("gallery-item")}
-                      onClick={() => {
-                        this.focusImage(index);
-                      }}
+
                     >
                       <img
                         src={item.image}
-                        alt="gallery item"
+                        alt={item.image}
+                        className={this.decorateCSS("gallery-image")}
                       />
+                      <div className={this.decorateCSS("icon-overlay")}
+                        onClick={() => {
+                          this.focusImage(index)
+                        }}>
+                        <ComposerIcon
+                          name={this.getPropValue("imageIcon")}
+                          propsIcon={{ className: this.decorateCSS("icon") }}
+
+                        />
+                      </div>
+
                     </div>
                   );
                 })}
-              </div>
+              </Base.ListGrid>
             )}
           </div>
 
@@ -555,6 +577,21 @@ class ImageGallery4 extends BaseImageGallery {
                 this.closeFocus();
               }}
             >
+              <div className={this.decorateCSS("right-arrow")}>
+                <ComposerIcon
+                  name={this.getPropValue("nextIcon")}
+                  propsIcon={{ className: this.decorateCSS("icon") }}
+
+                />
+              </div>
+              <div className={this.decorateCSS("left-arrow")}>
+                <ComposerIcon
+                  name={this.getPropValue("prevIcon")}
+                  propsIcon={{ className: this.decorateCSS("icon") }}
+
+                />
+
+              </div>
               <div className={this.decorateCSS("fullscreen-container")}>
                 <div className={this.decorateCSS("focused-image-container")}>
                   <img
@@ -581,8 +618,8 @@ class ImageGallery4 extends BaseImageGallery {
               </div>
             </div>
           )}
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
