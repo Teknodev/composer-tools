@@ -160,14 +160,14 @@ class list4 extends BaseList {
                 {this.getPropValue("title")}
               </Base.H2>
             </Base.VerticalContent>
-            <div className={this.decorateCSS("card-child")}>
+            <Base.ListGrid className={this.decorateCSS("card-child")} gridCount={{pc: this.getPropValue("itemCount")}}>
               {this.castToObject<Card[]>("content-card").map(
                 (card: any, index: number) => (
                   <div
                     key={index}
                     className={this.decorateCSS("card-item-count")}
                     style={{
-                      width: 90 / this.getPropValue("itemCount") + "%",
+                      width: 95 / this.getPropValue("itemCount") + "%",
                     }}
                   >
                     <div className={this.decorateCSS("line-box")}>
@@ -196,7 +196,7 @@ class list4 extends BaseList {
                   </div>
                 )
               )}
-            </div>
+            </Base.ListGrid>
         </Base.MaxContent>
       </Base.Container>
     );
