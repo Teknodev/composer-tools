@@ -1,18 +1,15 @@
 //container
 .container {
+  background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
     .max-content {
       .section {
         display: flex;
-        background-color: var(--composer-html-background);
+        position: relative;
         flex-direction: column;
 
-        .h1 {
-          font-size: 2.5rem;
-          color: var(--composer-primary-color);
-        }
-
         .h1-lowertext {
-          font-size: 1.5rem;
+          color: var(--composer-font-color-primary);
+          opacity: 0.5;
         }
 
         .boxes {
@@ -21,7 +18,6 @@
 
           .boxlower {
             background-color: var(--composer-html-background);
-            border: 1px solid var(--composer-tertiary-color);
             border-radius: var(--composer-border-radius-md);
             position: relative;
             padding: var(--composer-gap-xl);
@@ -36,14 +32,14 @@
               height: 4rem;
               border-radius: 50%;
               font-size: 2rem;
-              color: var(--composer-primary-color);
+              color: var(--composer-font-color-primary);
 
               display: inline-flex;
               align-items: center;
               justify-content: center;
               text-align: center;
               vertical-align: middle;
-              border: 1px solid var(--composer-tertiary-color);
+              border: 1px solid color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
               background-color: var(--composer-html-background);
             }
 
@@ -58,13 +54,13 @@
               justify-content: center;
 
               .midwriting {
-                color: var(--composer-primary-color);
+                color: var(--composer-font-color-primary);
                 font-size: 1.5rem;
               }
   
               .text {
                 color: var(--composer-font-color-primary);
-                font-size: 1rem;
+                opacity: 0.5;
               }
             }
           }
@@ -85,13 +81,13 @@
               height: auto;
               font-size: 1rem;
               border-radius: var(--composer-border-radius-md);
-              border: 2px solid var(--composer-tertiary-color);
+              border: 1px solid var(--composer-primary-color);
               transition: 0.4s;
             }
         }
 
         .button:hover {
-          background-color: var(--composer-secondary-color);
+          background-color: var(--composer-primary-color);
           color: var(--composer-font-color-secondary);
           cursor: pointer;
         }
