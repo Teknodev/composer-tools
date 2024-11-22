@@ -234,12 +234,12 @@ class ImageGalleryComponent5 extends BaseImageGallery {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ListGrid
             className={this.decorateCSS("images")}
-            gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }}
+            gridCount={{ pc: this.getPropValue("itemCount") }}
           >
             {galleries.map((galleryItem: any, index: number) => {
               const image = galleryItem.value.find((item: any) => item.type === "image").value;
               return (
-                <div className={this.decorateCSS("image-container")} key={index}>
+                <div className={this.decorateCSS("image-container")}>
                   {image && (
                     <img
                       src={image}
@@ -265,15 +265,40 @@ class ImageGalleryComponent5 extends BaseImageGallery {
                     </button>
                   )}
                   {galleries[clickedImageIndex].value.find((item: any) => item.type === "image").value && (
-                    <img
-                      src={galleries[clickedImageIndex].value.find((item: any) => item.type === "image").value}
-                      alt={galleries[clickedImageIndex].value.find((item: any) => item.type === "image").value}
-                      className={this.decorateCSS("large-image")}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        this.handleNextImage();
-                      }}
-                    />
+                    <div className={this.decorateCSS("large-image-container")}>
+                      {prevIcon && (
+                        <button
+                          className={this.decorateCSS("prev-button")}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            this.handlePrevImage();
+                          }}
+                        >
+                          <ComposerIcon name={prevIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                        </button>
+                      )}
+                      <img
+                        src={galleries[clickedImageIndex].value.find((item: any) => item.type === "image").value}
+                        alt={galleries[clickedImageIndex].value.find((item: any) => item.type === "image").value}
+                        className={this.decorateCSS("large-image")}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          this.handleNextImage();
+                        }}
+                      />
+                      {nextIcon && (
+                        <button
+                          className={this.decorateCSS("next-button")}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            this.handleNextImage();
+                          }}
+                        >
+                          <ComposerIcon name={nextIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                        </button>
+                      )}
+                    </div>
+
                   )}
                   <div className={this.decorateCSS("caption-container")}>
                     {imageIndex && (
@@ -286,28 +311,7 @@ class ImageGalleryComponent5 extends BaseImageGallery {
                     </div>
                   </div>
                 </div>
-                {prevIcon && (
-                  <button
-                    className={this.decorateCSS("prev-button")}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      this.handlePrevImage();
-                    }}
-                  >
-                    <ComposerIcon name={prevIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
-                  </button>
-                )}
-                {nextIcon && (
-                  <button
-                    className={this.decorateCSS("next-button")}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      this.handleNextImage();
-                    }}
-                  >
-                    <ComposerIcon name={nextIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
-                  </button>
-                )}
+
               </div>
             </div>
           )}
