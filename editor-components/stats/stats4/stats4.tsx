@@ -360,64 +360,62 @@ class Stats4Page extends BaseStats {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("stats-container")}>
-            {(mainDescription | mainTitle || faqs?.length > 0) && (
-              <Base.ContainerGrid className={this.decorateCSS("upper-container")}>
-                {(mainDescription || mainTitle) && (
-                  <Base.VerticalContent className={this.decorateCSS("upper-container-main")}>
-                    {mainTitle && <Base.SectionSubTitle className={this.decorateCSS("title")}>{this.getPropValue("mainTitle")}</Base.SectionSubTitle>}
-                    {mainDescription && <Base.SectionTitle className={this.decorateCSS("main-description")}>{this.getPropValue("mainDescription")}</Base.SectionTitle>}
-                  </Base.VerticalContent>
-                )}
-                {faqs?.length > 0 && (
-                  <div className={this.decorateCSS("faq")}>
-                    {faqs.map((item: any, index: number) => {
-                      const titleExist = this.castToString(item.title);
-                      const contentExist = this.castToString(item.content);
+            <Base.ContainerGrid className={this.decorateCSS("upper-container")}>
+              {(mainDescription || mainTitle) && (
+                <Base.VerticalContent className={this.decorateCSS("upper-container-main")}>
+                  {mainTitle && <Base.SectionSubTitle className={this.decorateCSS("title")}>{this.getPropValue("mainTitle")}</Base.SectionSubTitle>}
+                  {mainDescription && <Base.SectionTitle className={this.decorateCSS("main-description")}>{this.getPropValue("mainDescription")}</Base.SectionTitle>}
+                </Base.VerticalContent>
+              )}
+              {faqs?.length > 0 && (
+                <div className={this.decorateCSS("faq")}>
+                  {faqs.map((item: any, index: number) => {
+                    const titleExist = this.castToString(item.title);
+                    const contentExist = this.castToString(item.content);
 
-                      if (titleExist || contentExist || item.icon)
-                        return (
-                          <div className={this.decorateCSS("faq-item")} key={index}>
-                            {(titleExist || item.icon) && (
-                              <header className={this.decorateCSS("faq-item-header")}>
-                                {titleExist && <Base.P className={this.decorateCSS("faq-item-title")}>{item.title}</Base.P>}
-                                <button
-                                  className={this.decorateCSS("faq-item-button")}
-                                  onClick={() => {
-                                    this.toggleFaqItem(index);
-                                  }}
-                                >
-                                  {this.getComponentState("selectedFaqIndex") === index ? (
-                                    <ComposerIcon
-                                      propsIcon={{
-                                        className: this.decorateCSS("Icon"),
-                                      }}
-                                      name={collapseIcon}
-                                    />
-                                  ) : (
-                                    <ComposerIcon
-                                      propsIcon={{
-                                        className: this.decorateCSS("Icon"),
-                                      }}
-                                      name={expandIcon}
-                                    />
-                                  )}
-                                </button>
-                              </header>
-                            )}
-                            {contentExist && (
-                              <div className={`${this.decorateCSS("faq-item-content")}  ${this.getComponentState("selectedFaqIndex") === index ? this.decorateCSS("show-faq-item") : ""}`}>
-                                <Base.P>{item.content}</Base.P>
-                              </div>
-                            )}
-                            <hr className={this.decorateCSS("bottom-line")} />
-                          </div>
-                        );
-                      return null;
-                    })}
-                  </div>
-                )}
-              </Base.ContainerGrid>
-            )}
+                    if (titleExist || contentExist || item.icon)
+                      return (
+                        <div className={this.decorateCSS("faq-item")} key={index}>
+                          {(titleExist || item.icon) && (
+                            <header className={this.decorateCSS("faq-item-header")}>
+                              {titleExist && <Base.P className={this.decorateCSS("faq-item-title")}>{item.title}</Base.P>}
+                              <button
+                                className={this.decorateCSS("faq-item-button")}
+                                onClick={() => {
+                                  this.toggleFaqItem(index);
+                                }}
+                              >
+                                {this.getComponentState("selectedFaqIndex") === index ? (
+                                  <ComposerIcon
+                                    propsIcon={{
+                                      className: this.decorateCSS("Icon"),
+                                    }}
+                                    name={collapseIcon}
+                                  />
+                                ) : (
+                                  <ComposerIcon
+                                    propsIcon={{
+                                      className: this.decorateCSS("Icon"),
+                                    }}
+                                    name={expandIcon}
+                                  />
+                                )}
+                              </button>
+                            </header>
+                          )}
+                          {contentExist && (
+                            <div className={`${this.decorateCSS("faq-item-content")}  ${this.getComponentState("selectedFaqIndex") === index ? this.decorateCSS("show-faq-item") : ""}`}>
+                              <Base.P>{item.content}</Base.P>
+                            </div>
+                          )}
+                          <hr className={this.decorateCSS("bottom-line")} />
+                        </div>
+                      );
+                    return null;
+                  })}
+                </div>
+              )}
+            </Base.ContainerGrid>
             {statItems?.length > 0 && (
               <Base.ListGrid gridCount={{ pc: itemCount, tablet: 2, phone: 1 }} className={this.decorateCSS("stats")}>
                 {statItems.map((item: Stat, index: number) => {
