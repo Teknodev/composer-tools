@@ -100,7 +100,7 @@
             left: 0;
             right: 0;
             height: 20%;
-            background: linear-gradient(to top, var(--composer-font-color-primary), transparent);
+            background: linear-gradient(to top, var(--composer-primary-color), transparent);
             opacity: 0;
             transition: opacity 0.3s;
             z-index: 1;
@@ -136,7 +136,7 @@
 
             &:hover {
               transform: translateY(0);
-              color: var(--composer-primary-color);
+              color: var(--composer-secondary-color);
             }
           }
 
