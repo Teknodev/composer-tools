@@ -82,7 +82,7 @@
                 opacity: 1;
 
                 &:hover {
-                  color: var(--composer-font-color-secondary);
+                  color: var(--composer-secondary-color);
                   opacity: 0.5;
                 }
               }
@@ -126,6 +126,7 @@
 
           &:hover {
             color: var(--composer-primary-color);
+            opacity: 1;
           }
         }
 
@@ -136,6 +137,7 @@
           transition: 0.5s;
           &:hover {
             color: var(--composer-primary-color);
+            opacity: 1;
           }
         }
       }
