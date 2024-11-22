@@ -469,7 +469,7 @@ class ImageGalleryComponent6 extends BaseImageGallery {
       ],
     });
     this.setComponentState("default", 0);
-    this.setComponentState("selectedSection", "ARCHITECTURE");
+    this.setComponentState("selectedSection", "ALL");
   }
 
   getName(): string {
@@ -500,13 +500,14 @@ class ImageGalleryComponent6 extends BaseImageGallery {
     const currentImage = currentGallery[currentImageIndex];
     const imgCount = `${currentImageIndex + 1} of ${currentGallery.length}`;
     const selectedSection = this.getComponentState("selectedSection");
+    console.log("selectedSection", selectedSection)
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("section-container")}>
             <Base.H4
-              className={`${this.decorateCSS("section-text")} ${selectedSection === "ALL" ? this.decorateCSS("active") : ""
+              className={`${this.decorateCSS("section-text")} ${(selectedSection === "ALL" || !selectedSection) ? this.decorateCSS("active") : ""
                 }`}
               onClick={() => this.setComponentState("selectedSection", "ALL")}
             >
@@ -526,11 +527,19 @@ class ImageGalleryComponent6 extends BaseImageGallery {
             <div className={this.decorateCSS("left-container")}>
               {currentGallery.map((item: ImageItem, index: number) => {
                 if (index % 2 === 0) {
-                  const imageClass = index === 0 || index === 2
-                    ? this.decorateCSS("normal-image")
-                    : (index / 2) % 2 === 0
-                      ? this.decorateCSS("large-image")
-                      : this.decorateCSS("small-image");
+                  if (currentGallery.length <= 3) {
+                    var imageClass = index === 0 || index === 2
+                      ? this.decorateCSS("normal-image")
+                      : (index / 2) % 2 === 0
+                        ? this.decorateCSS("large-image")
+                        : this.decorateCSS("small-image");
+                  } else {
+                    var imageClass =
+                      (index / 2) % 2 === 0
+                        ? this.decorateCSS("large-image")
+                        : this.decorateCSS("small-image");
+                  }
+
                   return (
                     <div className={`${this.decorateCSS("images")} ${imageClass}`}>
 
@@ -568,16 +577,20 @@ class ImageGalleryComponent6 extends BaseImageGallery {
             <div className={this.decorateCSS("right-container")}>
               {currentGallery.map((item: ImageItem, index: number) => {
                 if (index % 2 === 1) {
+                  if (currentGallery.length <= 3) {
+                    var imageClass = index === 1
+                      ? this.decorateCSS("normal-image")
+                      : ((index - 1) / 2) % 2 === 0
+                        ? this.decorateCSS("small-image")
+                        : this.decorateCSS("large-image");
+                  } else {
+                    var imageClass =
+                      ((index - 1) / 2) % 2 === 0
+                        ? this.decorateCSS("small-image")
+                        : this.decorateCSS("large-image");
+                  }
                   return (
-                    <div
-                      className={`${this.decorateCSS("images")} ${index === 1
-                        ? this.decorateCSS("normal-image")
-                        : ((index - 1) / 2) % 2 === 0
-                          ? this.decorateCSS("small-image")
-                          : this.decorateCSS("large-image")
-                        }`}
-                    >
-
+                    <div className={`${this.decorateCSS("images")} ${imageClass}`}>
                       <div className={this.decorateCSS("image-wrapper")}>
                         <img src={item.image} alt={item.image} className={this.decorateCSS("image")} />
                         <div className={this.decorateCSS("badge")}>
