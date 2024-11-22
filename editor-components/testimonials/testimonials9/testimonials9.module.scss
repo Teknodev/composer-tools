@@ -1,3 +1,4 @@
+@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
 .container {
     .max-content {
         .wrapper{
@@ -100,7 +101,7 @@
         }
     }
 }
-@container (max-width: 800px){
+@container (max-width: #{$composer-tablet-width}){
     .container{
         .max-content{
             .wrapper{
@@ -115,7 +116,7 @@
         }
     }
 }
-@container (max-width: 400px) {
+@container (max-width: #{$composer-phone-width}) {
     .container{
         .max-content{
             .wrapper{
