@@ -312,6 +312,8 @@ class Team11 extends Team {
     return "Team 11";
   }
   render() {
+    const slider = this.castToObject<any[]>("slider");
+
     const settings = {
       dots: false,
       arrows: false,
@@ -320,7 +322,7 @@ class Team11 extends Team {
       autoplay: true,
       dotsClass: this.decorateCSS("dots"),
       autoplaySpeed: 3000,
-      slidesToShow: this.getPropValue("itemCount"),
+      slidesToShow: slider.length < this.getPropValue("itemCount") ? slider.length : this.getPropValue("itemCount"),
       slidesToScroll: 1,
       responsive: [
         {
