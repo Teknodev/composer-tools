@@ -2,154 +2,201 @@ import * as React from "react";
 import styles from "./download3.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseDownload } from "../../EditorComponent";
-
-
-type Button = {
-    buttonText1: string,
-    buttonText2: string,
-    url: string,
-    buttonImage: string,
-};
+import { Base } from "../../../composer-base-components/base/base";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 class Download3 extends BaseDownload {
-    constructor(props?: any) {
-        super(props, styles);
+  constructor(props?: any) {
+    super(props, styles);
 
-        let googlePlayIcon = require("./google-play.png")
-        let appStoreIcon = require("./pngegg.png")
-        let yogaImg = require("./yogaimg.png")
-        this.addProp({
-            type: "string",
-            key: "title",
-            displayer: "Title",
-            value: "Online Yoga, from Home",
-        });
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "Online Yoga, from Home",
+    });
 
-        this.addProp({
-            type: "image",
-            key: "image",
-            displayer: "Image",
-            value: yogaImg,
-        })
+    this.addProp({
+      type: "image",
+      key: "image",
+      displayer: "Image",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/674030b7506a40002c2d16c7?alt=media&timestamp=1732260086754",
+    });
 
-        this.addProp({
-            type: "string",
-            key: "description",
-            displayer: "Description",
-            value: "With the rise of virtual platforms and technology, individuals can now participate in online yoga classes and receive instruction from qualified teachers without leaving their house.",
-        });
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "With the rise of virtual platforms and technology, individuals can now participate in online yoga classes and receive instruction from qualified teachers without leaving their house.",
+    });
 
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        {
+          type: "object",
+          key: "button",
+          displayer: "Displayer",
+          value: [
+            {
+              type: "string",
+              key: "buttonText",
+              displayer: "Button Text",
+              value: "Download",
+            },
+            {
+              type: "icon",
+              key: "buttonIcon",
+              displayer: "Icon",
+              value: "RiDownloadLine",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Button Link",
+              value: "",
+            },
+            {
+              type: "image",
+              key: "buttonImage",
+              displayer: "In Button Icon",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/673f5276506a40002c2cf763?alt=media&timestamp=1732203183915",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "button",
+          displayer: "Displayer",
+          value: [
+            {
+              type: "string",
+              key: "buttonText",
+              displayer: "Button Text",
+              value: "Download",
+            },
+            {
+              type: "icon",
+              key: "buttonIcon",
+              displayer: "Icon",
+              value: "RiDownloadLine",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Button Link",
+              value: "",
+            },
+            {
+              type: "image",
+              key: "buttonImage",
+              displayer: "In Button Icon",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/673f51e4506a40002c2cf6eb?alt=media&timestamp=1732203035257",
+            },
+          ],
+        },
+      ],
+    });
+  }
 
+  getName(): string {
+    return "Download-3";
+  }
 
-        this.addProp({
-            type: "array",
-            key: "buttons",
-            displayer: "Buttons",
-            value: [
-                {
-                    type: "object",
-                    key: "button",
-                    displayer: "Displayer",
-                    value: [
-                        {
-                            type: "string",
-                            key: "buttonText1",
-                            displayer: "Button Text",
-                            value: "DOWNLOAD ON THE",
-                        },
-                        {
-                            type: "string",
-                            key: "buttonText2",
-                            displayer: "Button Text",
-                            value: "App Store",
-                        },
-                        {
-                            type: "page",
-                            key: "url",
-                            displayer: "Button Link",
-                            value: "",
-                        },
-                        {
-                            type: "image",
-                            key: "buttonImage",
-                            displayer: "In Button Icon",
-                            value: appStoreIcon,
-                        }
-                    ],
-                },
-                {
-                    type: "object",
-                    key: "button",
-                    displayer: "Displayer",
-                    value: [
-                        {
-                            type: "string",
-                            key: "buttonText1",
-                            displayer: "Button Text",
-                            value: "GET IT ON",
-                        },
-                        {
-                            type: "string",
-                            key: "buttonText2",
-                            displayer: "Button Text",
-                            value: "Google Play",
-                        },
-                        {
-                            type: "page",
-                            key: "url",
-                            displayer: "Button Link",
-                            value: "",
-                        },
-                        {
-                            type: "image",
-                            key: "buttonImage",
-                            displayer: "In Button Icon",
-                            value: googlePlayIcon,
-                        }
-                    ],
-                }
-            ]
-        });
-    }
+  render() {
+    const title = this.getPropValue("title");
+    const description = this.getPropValue("description");
 
-    getName(): string {
-        return "Download-3";
-    }
+    const imageExist = this.getPropValue("image");
+    const titleExist = this.castToString(title);
+    const descriptionExist = this.castToString(description);
 
+    const alignmentValue = Base.getContentAlignment();
+    return (
+      <Base.Container className={this.decorateCSS("container")}>
+        {imageExist && (
+          <div className={this.decorateCSS("image-container")}>
+            <img src={this.getPropValue("image")} alt="" className={this.decorateCSS("image")} />
+          </div>
+        )}
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <div className={this.decorateCSS("page")}>
+            {alignmentValue === "left" && (
+              <div className={this.decorateCSS("group-container")}>
+                {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+                <Base.VerticalContent className={this.decorateCSS("button-group")}>
+                  {this.castToObject<any[]>("buttons").map((item: any, index: number) => {
+                    const buttonTextExist = this.castToString(item.buttonText);
+                    return (
+                      <div key={`dw-3-btn-${index}`} className={this.decorateCSS("button")}>
+                        <ComposerLink path={item.url}>
+                          {item.buttonImage ? (
+                            <img src={item.buttonImage} alt="" className={this.decorateCSS("button-logo")} />
+                          ) : (
+                            buttonTextExist && (
+                              <div className={this.decorateCSS("button-element")}>
+                                {item.buttonIcon && (
+                                  <ComposerIcon
+                                    name={item.buttonIcon}
+                                    propsIcon={{
+                                      className: this.decorateCSS("button-icon"),
+                                    }}
+                                  />
+                                )}
+                                <Base.P className={this.decorateCSS("button-text")}>{item.buttonText}</Base.P>
+                              </div>
+                            )
+                          )}
+                        </ComposerLink>
+                      </div>
+                    );
+                  })}
+                </Base.VerticalContent>
+              </div>
+            )}
 
-    render() {
-        return (
-            <div className={this.decorateCSS("container")}>
-                <div className={this.decorateCSS("max-content")}>
-                    <div className={this.decorateCSS("page")}>
-                        <div className={this.decorateCSS("image-container")}>
-                            <img src={this.getPropValue("image")} alt="" className={this.decorateCSS("image")} />
-                        </div>
-                        <div className={this.decorateCSS("group-container")}>
-                            <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
-                            <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
-                            <div className={this.decorateCSS("button-group")}>
-                                {this.castToObject<Button[]>("buttons").map((item: Button, index: number) => {
-                                    return (
-                                        <ComposerLink key={`dw-3-btn-${index}`} path={item.url}>
-                                            <div  className={this.decorateCSS("button")}>
-                                                <img src={item.buttonImage} alt="icon" className={this.decorateCSS("button-logo")} />
-                                                <div className={this.decorateCSS("button-texts")}>
-                                                    <p className={this.decorateCSS("up-text")}>{item.buttonText1}</p>
-                                                    <p className={this.decorateCSS("down-text")}>{item.buttonText2}</p>
-                                                </div>
-                                            </div>
-                                        </ComposerLink>
-                                    )
-                                })}
-                            </div>
-                        </div>
-                    </div>
+            {alignmentValue === "center" && (
+              <Base.VerticalContent className={this.decorateCSS("group-container-center")}>
+                {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+                <div className={this.decorateCSS("button-group")}>
+                  {this.castToObject<any[]>("buttons").map((item: any, index: number) => {
+                    const buttonTextExist = this.castToString(item.buttonText);
+                    return (
+                      <div key={`dw-3-btn-${index}`} className={this.decorateCSS("button")}>
+                        <ComposerLink path={item.url}>
+                          {item.buttonImage ? (
+                            <img src={item.buttonImage} alt="" className={this.decorateCSS("button-logo")} />
+                          ) : (
+                            buttonTextExist && (
+                              <div className={this.decorateCSS("button-element")}>
+                                {item.buttonIcon && (
+                                  <ComposerIcon
+                                    name={item.buttonIcon}
+                                    propsIcon={{
+                                      className: this.decorateCSS("button-icon"),
+                                    }}
+                                  />
+                                )}
+                                <Base.P className={this.decorateCSS("button-text")}>{item.buttonText}</Base.P>
+                              </div>
+                            )
+                          )}
+                        </ComposerLink>
+                      </div>
+                    );
+                  })}
                 </div>
-            </div>
-        );
-    }
+              </Base.VerticalContent>
+            )}
+          </div>
+        </Base.MaxContent>
+      </Base.Container>
+    );
+  }
 }
 
 export default Download3;
-
