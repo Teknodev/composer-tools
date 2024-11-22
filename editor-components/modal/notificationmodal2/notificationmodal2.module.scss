@@ -3,6 +3,8 @@
 .container {
   width: auto;
   max-width: 600px;
+  min-width: 500px;
+
   max-height: 700px;
   overflow: auto;
   border-radius: var(--composer-border-radius-xl);
@@ -106,6 +108,7 @@
 @media only screen and (max-width: 480px) {
   .container {
     max-width: 300px;
+    min-width: 200px;
     max-height: 500px;
     .max-content {
       position: relative;
