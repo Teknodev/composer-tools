@@ -291,7 +291,6 @@ class Testimonials10Page extends Testimonials {
     const hiliteTitle = this.castToString(this.getPropValue("hiliteTitle"));
     const hasButtons = this.castToObject<Button[]>("buttons").length > 0;
     const showLine = this.getPropValue("showLine");
-    console.log("length", this.getPropValue("profile-itemList").length > 0);
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("overlay-left")}> </div>

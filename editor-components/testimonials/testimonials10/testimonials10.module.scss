@@ -49,7 +49,7 @@
               color: var(--composer-font-color-secondary);
               background-color: var(--composer-primary-color);
               padding: var(--composer-gap-sm) var(--composer-gap-lg);
-              transition-duration: 0.3s ease-in-out;
+              transition: 0.3s ease-in-out;
               text-align: center;
               cursor: pointer;
             }
@@ -68,7 +68,7 @@
             height: 100%;
             background: var(--composer-font-color-primary);
             z-index: -1; 
-            border-radius: var(--composer-gap-xs);
+            border-radius: var(--composer-border-radius-xs);
           }
           .slider-style {
             width: 100%;
@@ -99,11 +99,14 @@
                       z-index: 2;
                       width: 150px;
                       height: 150px;
+                      border: 2px solid var(--composer-html-background);
                       left:calc(var(--composer-gap-md) * (-5)); 
                       top:calc(var(--composer-gap-md) * (-4)); 
+                      border-radius: var(--composer-border-radius-xs);
+                      background-color: var(--composer-html-background);
                       .img {
                         width: 100%;
-                        border: 2px solid var(--composer-html-background);
+                        
                         border-radius: var(--composer-border-radius-xs);
                       }
                     }
@@ -228,7 +231,7 @@
     .hiliteTitle {
       max-width: calc(100% - 80px);
       margin: 0px 40px;
-      right: 0px
+      right: var(--composer-gap-sm);
     }
   }
 }
@@ -239,6 +242,16 @@
     .max-content{
       .container2{
         .testimonials10{
+          .left-content{
+            .button-group{
+              >div{
+                width: 100% !important;
+              }
+              .button{
+                width: 100%;
+              }
+            }
+          }
           .right-content, .right-content-padding{
             padding-bottom: 0px;
             .slider-style{
