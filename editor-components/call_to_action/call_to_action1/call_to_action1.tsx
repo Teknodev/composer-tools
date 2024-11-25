@@ -2,6 +2,7 @@ import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action1.module.scss";
+import { Base } from "../../../composer-base-components/base/base";
 
 class CallToAction1Page extends BaseCallToAction {
   constructor(props?: any) {
@@ -36,22 +37,33 @@ class CallToAction1Page extends BaseCallToAction {
   getName(): string {
     return "Call To Action 1";
   }
-
   render() {
+    const alignmentValue = Base.getContentAlignment();
+    console.log(alignmentValue)
+
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("call-to-action1-page")}>
-            <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
-            <h3 className={this.decorateCSS("description")}>{this.getPropValue("description")}</h3>
-            <ComposerLink path={this.getPropValue("link")}>
-              <span className={this.decorateCSS("button")}>
-                {this.getPropValue("buttonText")}
-              </span>
-            </ComposerLink>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <div className={this.decorateCSS("content")}>
+            {this.castToString(this.getPropValue("title")) && (
+              <Base.H1 className={alignmentValue == "left" ? this.decorateCSS("title-left") : this.decorateCSS("title-center")}>{this.getPropValue("title")}</Base.H1>
+            )}
+            {this.castToString(this.getPropValue("description")) && (
+              <Base.H2 className={alignmentValue == "left" ? this.decorateCSS("description-left") : this.decorateCSS("description-center")}>{this.getPropValue("description")}</Base.H2>
+            )}
+            {this.castToString(this.getPropValue("buttonText")) && (
+              <div className={alignmentValue == "left" ? this.decorateCSS("button-container-left") : this.decorateCSS("button-container-center")}>
+                <ComposerLink path={this.getPropValue("link")}>
+                  <div className={this.decorateCSS("button")}>
+                    {this.getPropValue("buttonText")}
+                  </div>
+                </ComposerLink>
+              </div>
+            )}
+
           </div>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
