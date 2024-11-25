@@ -1,6 +1,9 @@
+@import "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss";
+
 .container {
   display: flex;
   max-width: 800px;
+  overflow: auto;
   position: relative;
 
   .max-content {
@@ -157,31 +160,75 @@
   }
 }
 
+// @container (max-width: #{$composer-tablet-width-lg}) {
 @media (max-width: 1024px) {
   .container {
-    max-width: 700px;
+    max-width: 750px;
+    max-height: 700px;
   }
 }
 
-@media (max-width: 600px) {
+// @container (max-width: #{$composer-phone-width}) {
+@media (max-width: 468px) {
   .container {
-    max-width: 350px !important;
+    max-width: 320px !important;
+    max-height: 700px !important;
+
     .max-content {
       .modal-content {
-        flex-direction: column !important;
-      }
+        flex-direction: column;
 
-      .left,
-      .image {
-        flex-basis: 100% !important;
-      }
+        .exit-icon {
+          position: absolute;
+          right: var(--composer-gap-md);
+          top: var(--composer-gap-md);
+          margin: var(--composer-gap-xs);
 
-      .left {
-        margin-bottom: var(--composer-gap-md) !important;
-      }
+          .icon {
+            font-size: 1.5rem;
+            color: var(--composer-font-color-primary);
+          }
+        }
 
-      .image {
-        width: 100% !important;
+        .left {
+          .title {
+            font-size: 1.5rem;
+          }
+          .rate-content {
+            gap: var(--composer-gap-sm);
+
+            .rateIconsWrapper {
+              .icons {
+                padding: var(--composer-gap-xs);
+
+                &.selected {
+                  transform: scale(1.1);
+                }
+
+                .icon-wrapper {
+                  .icon {
+                    font-size: 1.5rem;
+                  }
+                }
+              }
+            }
+          }
+
+          .message-section {
+            .input {
+              padding: var(--composer-gap-xs);
+            }
+          }
+
+          .submit-button {
+            padding: var(--composer-gap-xs) var(--composer-gap-sm);
+          }
+        }
+
+        .image {
+          width: 100%;
+          object-fit: cover;
+        }
       }
     }
   }

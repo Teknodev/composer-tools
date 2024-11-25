@@ -16,7 +16,7 @@ class SurveyModal extends BaseModal {
       type: "image",
       key: "image",
       displayer: "Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/672b78707acba6002c5ef5c2?alt=media&timestamp=1730902183410",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66bc845c3292c6002b241956?alt=media&timestamp=1732521893813",
     });
 
     this.addProp({
