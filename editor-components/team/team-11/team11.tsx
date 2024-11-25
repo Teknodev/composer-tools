@@ -387,28 +387,30 @@ class Team11 extends Team {
               })}
             </ComposerSlider>
 
-            <div className={this.decorateCSS("nav-buttons")}>
-              <ComposerIcon
-                name={this.getPropValue("prevIcon")}
-                propsIcon={{
-                  className: `${this.decorateCSS("prev_icon")}`,
-                  size: 45,
-                  onClick: () => {
-                    this.getComponentState("slider-ref").current.slickPrev();
-                  },
-                }}
-              />
-              <ComposerIcon
-                name={this.getPropValue("nextIcon")}
-                propsIcon={{
-                  className: `${this.decorateCSS("next_icon")}`,
-                  size: 45,
-                  onClick: () => {
-                    this.getComponentState("slider-ref").current.slickNext();
-                  },
-                }}
-              />
-            </div>
+            {slider.length > 3 && (
+              <div className={this.decorateCSS("nav-buttons")}>
+                <ComposerIcon
+                  name={this.getPropValue("prevIcon")}
+                  propsIcon={{
+                    className: `${this.decorateCSS("prev_icon")}`,
+                    size: 45,
+                    onClick: () => {
+                      this.getComponentState("slider-ref").current.slickPrev();
+                    },
+                  }}
+                />
+                <ComposerIcon
+                  name={this.getPropValue("nextIcon")}
+                  propsIcon={{
+                    className: `${this.decorateCSS("next_icon")}`,
+                    size: 45,
+                    onClick: () => {
+                      this.getComponentState("slider-ref").current.slickNext();
+                    },
+                  }}
+                />
+              </div>
+            )}
           </Base.VerticalContent>
         </Base.MaxContent>
       </Base.Container>
