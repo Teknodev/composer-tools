@@ -78,14 +78,12 @@
               margin: var(--composer-gap-md);
             }
 
-            .title {
-              color: var(--composer-font-color-secondary);
+            .title,
+            .title-overlay {
+              color: white;
               &:hover {
                 color: var(--composer-primary-color);
               }
-            }
-            .title-overlay {
-              color: white;
             }
 
             .labels {
@@ -129,36 +127,25 @@
 
               .description,
               .description-overlay {
+                color: white;
+
                 opacity: 0.5;
                 margin: 0;
-              }
-
-              .description {
-                color: var(--composer-font-color-secondary);
-              }
-
-              .description-overlay {
-                color: white;
               }
 
               .icons {
                 display: flex;
                 gap: var(--composer-gap-md);
-                color: var(--composer-primary-color);
+                color: var(--composer-font-color-secondary);
 
                 .firstIcon,
-                .secondIcon {
-                  width: var(--composer-gap-md);
-                  height: var(--composer-gap-md);
-                  &:hover {
-                    color: var(--composer-font-color-secondary);
-                  }
-                }
+                .secondIcon,
                 .firstIcon-overlay,
                 .secondIcon-overlay {
                   width: var(--composer-gap-md);
                   height: var(--composer-gap-md);
                   color: white;
+
                   &:hover {
                     color: var(--composer-primary-color);
                   }
