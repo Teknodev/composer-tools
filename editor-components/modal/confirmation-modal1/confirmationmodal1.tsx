@@ -40,7 +40,7 @@ class ConfirmationModal1 extends BaseModal {
       type: "icon",
       key: "exitIcon",
       displayer: "ExitIcon",
-      value: "IoCloseSharp",
+      value: "IoMdCloseCircle",
     });
 
     this.addProp({
@@ -103,21 +103,24 @@ class ConfirmationModal1 extends BaseModal {
     const description = this.castToString(this.getPropValue("description"));
     const buttons = this.castToObject<Button[]>("buttons");
     const validButtons = buttons.filter((item: Button) => this.castToString(item.buttonText));
+    const icon = this.getPropValue("exitIcon");
     return (
       <Base.Container isModal={true} className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("content")}>
             <div className={this.decorateCSS("top-wrapper")}>
-              <div className={this.decorateCSS("exit-icon")}>
-                <ComposerModalClose>
-                  <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={this.getPropValue("exitIcon")} />
-                </ComposerModalClose>
-              </div>
+              {icon && (
+                <div className={this.decorateCSS("exit-icon")}>
+                  <ComposerModalClose>
+                    <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={this.getPropValue("exitIcon")} />
+                  </ComposerModalClose>
+                </div>
+              )}
 
               {image && <img className={this.decorateCSS("image")} src={image} />}
             </div>
 
-            <div className={this.decorateCSS("buttom-wrapper")}>
+            <div className={this.decorateCSS("button-wrapper")}>
               <div className={this.decorateCSS("second-div")}>
                 {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                 {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}

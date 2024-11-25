@@ -1,9 +1,8 @@
 @import "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss";
 
 .container {
-  width: auto;
   max-width: 550px;
-  max-height: 700px;
+  max-height: 800px;
   overflow: auto;
   border-radius: var(--composer-border-radius-xl);
   padding: 0;
@@ -17,7 +16,6 @@
         .exit-icon {
           position: absolute;
           border-radius: 50%;
-          background-color: var(--composer-font-color-secondary);
           color: var(--composer-font-color-primary);
           top: var(--composer-gap-sm);
           right: var(--composer-gap-sm);
@@ -25,7 +23,7 @@
           cursor: pointer;
 
           .icon {
-            font-size: 1rem;
+            font-size: 1.5rem;
           }
         }
 
@@ -38,8 +36,10 @@
         }
       }
 
-      .buttom-wrapper {
+      .button-wrapper {
         padding: var(--composer-gap-md);
+        padding-top: 0;
+        width: 100%;
 
         .second-div {
           text-align: center;
@@ -82,28 +82,20 @@
 }
 
 // @container (max-width: #{$composer-phone-width}) {
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 468px) {
   .container {
+    max-width: 300px;
+    max-height: 700px;
     width: 300px;
-    max-height: 550px;
 
     .max-content {
       .content {
-        .top-wrapper {
-          .exit-icon {
-            padding: 0 var(--composer-gap-xs);
-          }
+        .button-wrapper {
+          .button-background {
+            flex-direction: column;
 
-          .image {
-            width: 100%;
-            height: 150px;
-          }
-        }
-
-        .buttom-wrapper {
-          .second-div {
-            .title {
-              font-size: 1rem;
+            .button {
+              width: 100%;
             }
           }
         }
