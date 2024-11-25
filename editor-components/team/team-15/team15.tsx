@@ -359,7 +359,7 @@ class Team15 extends Team {
                       {overlay && <div className={this.decorateCSS("overlay")}></div>}
                       {overlay && <div className={this.decorateCSS("overlay2")}></div>}
                       <div className={this.decorateCSS("card-content")}>
-                        {titleExists && <Base.H2 className={this.decorateCSS("title")}>{card.getPropValue("title")}</Base.H2>}
+                        {titleExists && <Base.H2 className={overlay ? this.decorateCSS("title-overlay") : this.decorateCSS("title")}>{card.getPropValue("title")}</Base.H2>}
                         <div className={this.decorateCSS("labels")}>
                           {card.icons.length > 0 && firstIcon && (
                             <Base.VerticalContent className={this.decorateCSS("icon-list-container")}>
@@ -374,14 +374,14 @@ class Team15 extends Team {
                               })}
                             </Base.VerticalContent>
                           )}
-                          {descriptionExists && <Base.H5 className={this.decorateCSS("description")}>{card.getPropValue("description")}</Base.H5>}
+                          {descriptionExists && <Base.H5 className={overlay ? this.decorateCSS("description-overlay") : this.decorateCSS("description")}>{card.getPropValue("description")}</Base.H5>}
                           <div className={this.decorateCSS("icons")}>
                             <ComposerLink path={card.getPropValue("firstIconUrl")}>
-                              <ComposerIcon name={card.getPropValue("firstIcon")} propsIcon={{ className: this.decorateCSS("firstIcon") }} />
+                              <ComposerIcon name={card.getPropValue("firstIcon")} propsIcon={{ className: overlay ? this.decorateCSS("firstIcon-overlay") : this.decorateCSS("firstIcon") }} />
                             </ComposerLink>
 
                             <ComposerLink path={card.getPropValue("secondIconUrl")}>
-                              <ComposerIcon name={card.getPropValue("secondIcon")} propsIcon={{ className: this.decorateCSS("secondIcon") }} />
+                              <ComposerIcon name={card.getPropValue("secondIcon")} propsIcon={{ className: overlay ? this.decorateCSS("secondIcon-overlay") : this.decorateCSS("secondIcon") }} />
                             </ComposerLink>
                           </div>
                         </div>

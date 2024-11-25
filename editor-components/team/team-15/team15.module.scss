@@ -47,7 +47,7 @@
           }
 
           .overlay {
-            background: linear-gradient(to bottom, rgba(var(--composer-html-background-rgb), 0) 30%, rgba(var(--composer-font-color-primary-rgb), 0.8) 100%);
+            background: linear-gradient(to bottom, rgba(var(--composer-html-background-rgb), 0) 30%, var(--composer-overlay-color) 100%);
             z-index: 1;
             opacity: 1;
           }
@@ -71,15 +71,21 @@
             color: var(--composer-font-color-secondary);
             z-index: 4;
 
-            .title {
+            .title,
+            .title-overlay {
               min-width: 100px;
               width: 100%;
               margin: var(--composer-gap-md);
+            }
 
+            .title {
               color: var(--composer-font-color-secondary);
               &:hover {
                 color: var(--composer-primary-color);
               }
+            }
+            .title-overlay {
+              color: white;
             }
 
             .labels {
@@ -121,10 +127,18 @@
                 }
               }
 
-              .description {
-                color: var(--composer-font-color-secondary);
+              .description,
+              .description-overlay {
                 opacity: 0.5;
                 margin: 0;
+              }
+
+              .description {
+                color: var(--composer-font-color-secondary);
+              }
+
+              .description-overlay {
+                color: white;
               }
 
               .icons {
@@ -140,6 +154,15 @@
                     color: var(--composer-font-color-secondary);
                   }
                 }
+                .firstIcon-overlay,
+                .secondIcon-overlay {
+                  width: var(--composer-gap-md);
+                  height: var(--composer-gap-md);
+                  color: white;
+                  &:hover {
+                    color: var(--composer-primary-color);
+                  }
+                }
               }
             }
 
@@ -147,6 +170,7 @@
               .icon-list-container {
                 transform: scaleY(1);
                 text-align: end;
+                margin-bottom: var(--composer-gap-md);
 
                 .icon {
                   width: var(--composer-gap-md);
