@@ -1,19 +1,20 @@
 import * as React from "react";
 import { BaseContent } from "../../EditorComponent";
 import styles from "./content17.module.scss";
+import { Base } from "../../../composer-base-components/base/base";
 
 class Content17 extends BaseContent {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
       type: "string",
-      key: "title",
+      key: "subTitle",
       value: "HOW WE WORK?",
       displayer: "Title",
     });
     this.addProp({
       type: "string",
-      key: "description",
+      key: "title",
       displayer: "Description",
       value: "4 steps to get your teeth done in Turkey",
     });
@@ -146,31 +147,35 @@ class Content17 extends BaseContent {
 
   render() {
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("content")}>
-            <div className={this.decorateCSS("top-content")}>
-              <h6 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h6>
-              <h2 className={this.decorateCSS("description")}>{this.getPropValue("description")}</h2>
-            </div>
-            <div className={this.decorateCSS("card-container")}>
-              {this.getPropValue("items").map((item: any, index: number) => (
-                <div
-                  className={this.decorateCSS("card")}
-                  style={{
-                    width: 90 / this.getPropValue("itemCount") + "%",
-                  }}
-                >
-                  <span className={this.decorateCSS("count")}>{index + 1}</span>
-                  <img src={item.value[0].value} alt="" />
-                  <h5 className={this.decorateCSS("item-value1")}>{item.value[1].value}</h5>
-                  <p className={this.decorateCSS("item-value2")}>{item.value[2].value}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <Base.VerticalContent className={this.decorateCSS("heading")}>
+            <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+              {this.getPropValue("subTitle")}
+            </Base.SectionSubTitle>
+            <Base.SectionTitle className={this.decorateCSS("title")}>
+              {this.getPropValue("title")}
+            </Base.SectionTitle>
+          </Base.VerticalContent>
+          <Base.ListGrid
+            gridCount={{ pc: this.getPropValue("itemCount") }}
+            className={this.decorateCSS("card-container")}
+          >
+            {this.getPropValue("items").map((item: any, index: number) => (
+              <div className={this.decorateCSS("card")}>
+                <span className={this.decorateCSS("count")}>{index + 1}</span>
+                <img src={item.value[0].value} className={this.decorateCSS("image")} alt="" />
+                <h5 className={this.decorateCSS("item-value1")}>
+                  {item.value[1].value}
+                </h5>
+                <p className={this.decorateCSS("item-value2")}>
+                  {item.value[2].value}
+                </p>
+              </div>
+            ))}
+          </Base.ListGrid>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
