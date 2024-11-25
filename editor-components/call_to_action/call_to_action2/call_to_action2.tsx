@@ -3,6 +3,7 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action2.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
 
 type Button = {
   text: JSX.Element;
@@ -114,121 +115,110 @@ class CallToAction2Page extends BaseCallToAction {
     const renderHeader: boolean =
       titleExist || subtitleExist || buttons.length > 0;
 
-    const adjustBackground = () => {
-      if (this.getPropValue("image")) {
-        if (renderHeader) return this.decorateCSS("fixedHeightWithMargin");
-        else return this.decorateCSS("heightAutoWithNoMargin");
-      } else return this.decorateCSS("heightAuto");
-    };
-
     return (
-      <div className={this.decorateCSS("container")}>
-        <div
-          className={`${this.decorateCSS("background")} ${adjustBackground()}`}
-        >
-          <div className={this.decorateCSS("max-content")}>
-            <div className={this.decorateCSS("wrapper")}>
-              {renderHeader && (
-                <div className={this.decorateCSS("header")}>
-                  {(titleExist || subtitleExist) && (
-                    <div className={this.decorateCSS("titles")}>
-                      {subtitleExist && (
-                        <h3 className={this.decorateCSS("subtitle")}>
-                          {this.getPropValue("subtitle")}
-                        </h3>
-                      )}
-                      {titleExist && (
-                        <h2 className={this.decorateCSS("title")}>
-                          {this.getPropValue("title")}
-                        </h2>
-                      )}
-                    </div>
-                  )}
-                  {buttons?.length > 0 && (
-                    <div className={this.decorateCSS("button-container")}>
-                      {buttons.map((button: Button, index: number) => {
-                        const buttonTextExist = this.castToString(button.text);
+      <Base.Container className={this.decorateCSS("container")}>
+        <div className={this.decorateCSS("background")}> </div>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
 
-                        if (buttonTextExist || button.icon)
-                          return (
-                            <div
-                              key={index}
-                              className={this.decorateCSS("button")}
-                            >
-                              <ComposerLink path={button.link}>
-                                {button.icon && (
-                                  <ComposerIcon name={button.icon} />
-                                )}
-                                {buttonTextExist && button.text}
-                              </ComposerLink>
-                            </div>
-                          );
+          <div className={this.decorateCSS("wrapper")}>
+            {renderHeader && (
+              <div className={this.decorateCSS("header")}>
+                {(titleExist || subtitleExist) && (
+                  <div className={this.decorateCSS("titles")}>
+                    {subtitleExist && (
+                      <Base.H4 className={this.decorateCSS("subtitle")}>
+                        {this.getPropValue("subtitle")}
+                      </Base.H4>
+                    )}
+                    {titleExist && (
+                      <Base.H1 className={this.decorateCSS("title")}>
+                        {this.getPropValue("title")}
+                      </Base.H1>
+                    )}
+                  </div>
+                )}
+                {buttons?.length > 0 && (
+                  <div className={this.decorateCSS("button-container")}>
+                    {buttons.map((button: Button, index: number) => (
+                      <div
+                        key={index}
+                        className={this.decorateCSS("button")}
+                      >
+                        <ComposerLink path={button.link}>
+                          {button.icon && (
+                            <ComposerIcon name={button.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                          )}
+                          <div className={this.decorateCSS("text")}>
+                            {button.text}
+                          </div>
+                        </ComposerLink>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
 
-                        return <></>;
-                      })}
-                    </div>
-                  )}
-                </div>
-              )}
-
-              {image && (
-                <div
-                  style={{
-                    backgroundImage: `url(${this.getPropValue("image")})`,
-                  }}
-                  className={this.decorateCSS("image-container")}
-                  onClick={this.showVideo}
-                >
-                  {playIcon && (
-                    <div
-                      className={this.decorateCSS("play-icon-box")}
-                      onClick={this.showVideo}
-                    >
-                      <ComposerIcon
-                        name={playIcon}
-                        propsIcon={{ className: this.decorateCSS("play-icon") }}
-                      />
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-        {this.getComponentState("isVideoVisible") &&
-          this.getPropValue("video") && (
-            <div
-              onClick={this.hideVideo}
-              className={this.decorateCSS("overlay")}
-            >
-              <div className={this.decorateCSS("video-container")}>
-                <div
-                  className={this.decorateCSS("video")}
-                  onClick={this.hideVideo}
-                >
-                  <video
-                    controls
-                    className={this.decorateCSS("player")}
-                    src={this.getPropValue("video")}
-                  ></video>
-                  {closeIcon && (
-                    <div
-                      className={this.decorateCSS("close-icon-box")}
-                      onClick={this.hideVideo}
-                    >
-                      <ComposerIcon
-                        propsIcon={{
-                          className: this.decorateCSS("close-icon"),
-                        }}
-                        name={closeIcon}
-                      />
-                    </div>
-                  )}
+            {image && (
+              <div
+                style={{
+                  backgroundImage: `url(${this.getPropValue("image")})`,
+                }}
+                className={this.decorateCSS("image-container")}
+                onClick={this.showVideo}
+              >
+                {playIcon && (
+                  <div
+                    className={this.decorateCSS("play-icon-box")}
+                    onClick={this.showVideo}
+                  >
+                    <ComposerIcon
+                      name={playIcon}
+                      propsIcon={{ className: this.decorateCSS("play-icon") }}
+                    />
+                  </div>
+                )}
+              </div>
+            )}
+            {this.getComponentState("isVideoVisible") && (
+              <div
+                onClick={this.hideVideo}
+                className={this.decorateCSS("overlay")}
+              >
+                <div className={this.decorateCSS("video-container")}>
+                  <div
+                    className={this.decorateCSS("video")}
+                    onClick={this.hideVideo}
+                  >
+                    <video
+                      controls
+                      className={this.decorateCSS("player")}
+                      src={this.getPropValue("video")}
+                    ></video>
+                    {closeIcon && (
+                      <div
+                        className={this.decorateCSS("close-icon-box")}
+                        onClick={this.hideVideo}
+                      >
+                        <ComposerIcon
+                          propsIcon={{
+                            className: this.decorateCSS("close-icon"),
+                          }}
+                          name={closeIcon}
+                        />
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
-          )}
-      </div>
+            )
+
+            }
+          </div>
+
+        </Base.MaxContent>
+
+      </Base.Container >
     );
   }
 }
