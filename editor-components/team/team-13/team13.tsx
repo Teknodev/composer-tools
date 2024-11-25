@@ -187,40 +187,52 @@ class Team13 extends Team {
     const cards = this.castToObject<Card[]>("cards");
     const icons = this.castToObject<Icon[]>("icons");
     const line = this.getPropValue("line");
+
+    const title = this.getPropValue("title");
+    const description = this.getPropValue("description");
+    const buttonText = this.getPropValue("buttonText");
+
+    const titleExist = this.castToString(title);
+    const descriptionExist = this.castToString(description);
+    const buttonTextExist = this.castToString(buttonText);
+
+    const hasFeaturedCard = titleExist || descriptionExist || buttonTextExist || icons.length > 0;
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ListGrid gridCount={{ pc: 3, tablet: 2, phone: 1 }} className={this.decorateCSS("content")}>
-            <Base.VerticalContent className={this.decorateCSS("featured-card")}>
-              <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
-              <Base.VerticalContent>
-                <Base.VerticalContent className={this.decorateCSS("label")}>
-                  <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>
-                  <div className={this.decorateCSS("button-container")}>
-                    <ComposerLink path={this.getPropValue("buttonUrl")}>
-                      <Base.H4 className={this.decorateCSS("button")}>{this.getPropValue("buttonText")}</Base.H4>
-                    </ComposerLink>
-                    {line && <div className={this.decorateCSS("line")}></div>}
+            {hasFeaturedCard && (
+              <Base.VerticalContent className={this.decorateCSS("featured-card")}>
+                <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
+                <Base.VerticalContent>
+                  <Base.VerticalContent className={this.decorateCSS("label")}>
+                    <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>
+                    <div className={this.decorateCSS("button-container")}>
+                      <ComposerLink path={this.getPropValue("buttonUrl")}>
+                        <Base.H4 className={this.decorateCSS("button")}>{this.getPropValue("buttonText")}</Base.H4>
+                      </ComposerLink>
+                      {line && <div className={this.decorateCSS("line")}></div>}
+                    </div>
+                  </Base.VerticalContent>
+                  <div className={this.decorateCSS("icon-container")}>
+                    {icons.map((icon: any, indexIcons: number) => {
+                      return (
+                        <div key={indexIcons} className={this.decorateCSS("icon-item")}>
+                          <ComposerLink path={icon.url}>
+                            <ComposerIcon
+                              name={icon.name}
+                              propsIcon={{
+                                className: this.decorateCSS("icon"),
+                              }}
+                            />
+                          </ComposerLink>
+                        </div>
+                      );
+                    })}
                   </div>
                 </Base.VerticalContent>
-                <div className={this.decorateCSS("icon-container")}>
-                  {icons.map((icon: any, indexIcons: number) => {
-                    return (
-                      <div key={indexIcons} className={this.decorateCSS("icon-item")}>
-                        <ComposerLink path={icon.url}>
-                          <ComposerIcon
-                            name={icon.name}
-                            propsIcon={{
-                              className: this.decorateCSS("icon"),
-                            }}
-                          />
-                        </ComposerLink>
-                      </div>
-                    );
-                  })}
-                </div>
               </Base.VerticalContent>
-            </Base.VerticalContent>
+            )}
 
             {cards.map((card: Card, index: number) => {
               const nameExist = this.castToString(card.name);
