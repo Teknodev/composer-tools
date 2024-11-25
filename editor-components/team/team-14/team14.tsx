@@ -171,6 +171,10 @@ class Team14 extends Team {
   render() {
     const title = this.getPropValue("title");
     const subtitle = this.getPropValue("subtitle");
+
+    const titleValue = this.castToString(title);
+    const subtitleValue = this.castToString(subtitle);
+
     const team = this.castToObject<Card[]>("team");
 
     const itemCount: number = this.getPropValue("itemCount");
@@ -180,8 +184,8 @@ class Team14 extends Team {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(title || subtitle) && (
             <Base.VerticalContent className={this.decorateCSS("up-page")}>
-              {title && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
-              {subtitle && <Base.SectionDescription className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionDescription>}
+              {titleValue && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
+              {subtitleValue && <Base.SectionDescription className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionDescription>}
             </Base.VerticalContent>
           )}
 
