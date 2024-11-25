@@ -169,8 +169,8 @@ class Team14 extends Team {
     return "Team 14";
   }
   render() {
-    const title = this.getPropValue("title", { as_string: true });
-    const subtitle = this.getPropValue("subtitle", { as_string: true });
+    const title = this.getPropValue("title");
+    const subtitle = this.getPropValue("subtitle");
     const team = this.castToObject<Card[]>("team");
 
     const itemCount: number = this.getPropValue("itemCount");
