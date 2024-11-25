@@ -3,6 +3,7 @@ import { Team, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./team3.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
 
 type Icons = {
   url: string;
@@ -11,8 +12,8 @@ type Icons = {
 
 interface Card {
   profile: string;
-  name: string;
-  position: string;
+  name: JSX.Element;
+  position: JSX.Element;
   icons: { icon: string; url: string }[];
 }
 
@@ -82,14 +83,14 @@ class Team3 extends Team {
 
     this.addProp({
       type: "string",
-      key: "title",
-      displayer: "Title",
+      key: "subtitle",
+      displayer: "Subtitle",
       value: "Our Team",
     });
     this.addProp({
       type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
+      key: "title",
+      displayer: "Title",
       value: "The Best Team Ever!",
     });
 
@@ -102,8 +103,7 @@ class Team3 extends Team {
           type: "image",
           key: "profile",
           displayer: "Image",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/643707b368c3c2002cd307c2?alt=media&timestamp=1719483639147",
+          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/643707b368c3c2002cd307c2?alt=media&timestamp=1719483639147",
         },
         {
           type: "string",
@@ -135,8 +135,7 @@ class Team3 extends Team {
           type: "image",
           key: "profile",
           displayer: "Image",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/643707b368c3c2002cd307c1?alt=media&timestamp=1719483639146",
+          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/643707b368c3c2002cd307c1?alt=media&timestamp=1719483639146",
         },
         {
           type: "string",
@@ -168,8 +167,7 @@ class Team3 extends Team {
           type: "image",
           key: "profile",
           displayer: "Image",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/643707b368c3c2002cd307c2?alt=media&timestamp=1719483639147",
+          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/643707b368c3c2002cd307c2?alt=media&timestamp=1719483639147",
         },
         {
           type: "string",
@@ -201,8 +199,7 @@ class Team3 extends Team {
           type: "image",
           key: "profile",
           displayer: "Image",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661ac19bd2970002c627624?alt=media&timestamp=1719502692150",
+          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661ac19bd2970002c627624?alt=media&timestamp=1719502692150",
         },
         {
           type: "string",
@@ -234,8 +231,7 @@ class Team3 extends Team {
           type: "image",
           key: "profile",
           displayer: "Image",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661ac19bd2970002c627623?alt=media&timestamp=1719502692150",
+          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661ac19bd2970002c627623?alt=media&timestamp=1719502692150",
         },
         {
           type: "string",
@@ -267,8 +263,7 @@ class Team3 extends Team {
           type: "image",
           key: "profile",
           displayer: "Image",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661ac19bd2970002c627624?alt=media&timestamp=1719502692150",
+          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661ac19bd2970002c627624?alt=media&timestamp=1719502692150",
         },
         {
           type: "string",
@@ -303,7 +298,7 @@ class Team3 extends Team {
       key: "itemCount",
       displayer: "Item Count in a Row",
       value: 3,
-      max: 3,
+      max: 5,
     });
   }
 
@@ -315,66 +310,56 @@ class Team3 extends Team {
     const title = this.getPropValue("title");
     const subtitle = this.getPropValue("subtitle");
 
+    const titleValue = title.props.html;
+    const subTitleValue = subtitle.props.html;
+
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("page")}>
-            {title && (
-              <div className={this.decorateCSS("text-group")}>
-                <div className={this.decorateCSS("title-up")}>
-                  <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
-                </div>
-                {subtitle && (
-                  <div className={this.decorateCSS("subtitle-up")}>
-                    <p className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</p>
-                  </div>
-                )}
-              </div>
-            )}
-            <div
-              className={this.decorateCSS("down-page")}
-              style={{ gridTemplateColumns: `repeat(${this.getPropValue("itemCount")}, 1fr)` }}
-            >
-              {this.castToObject<Card[]>("team-members").map((item: Card, indexCard: number) => (
-                <div key={indexCard} className={this.decorateCSS("all-card")}>
-                  <div className={this.decorateCSS("card")}>
-                    <div className={this.decorateCSS("card-items")}>
-                      <div className={this.decorateCSS("item-content")}>
-                        <div className={this.decorateCSS("box-image")}>
-                          {item.profile && (
-                            <img
-                              className={this.decorateCSS("profile-image")}
-                              src={item.profile}
-                              alt=""
-                            />
-                          )}
-                        </div>
-                        <div className={this.decorateCSS("box-text")}>
-                          <h2 className={this.decorateCSS("item-name")}>{item.name}</h2>
-                          <p className={this.decorateCSS("item-position")}>{item.position}</p>
-                          <div className={this.decorateCSS("icon-group")}>
-                            {item.icons &&
-                              item.icons.map((card: Icons, indexIcons: number) => (
-                                <ComposerLink key={indexIcons} path={card.url}>
-                                  <ComposerIcon
-                                    name={card.icon}
-                                    propsIcon={{
-                                      className: this.decorateCSS("icons"),
-                                    }}
-                                  />
-                                </ComposerLink>
-                              ))}
-                          </div>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <Base.VerticalContent className={this.decorateCSS("page")}>
+            <Base.VerticalContent className={this.decorateCSS("text-group")}>
+              {subTitleValue && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+              {titleValue && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+            </Base.VerticalContent>
+            <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("down-page")}>
+              {this.castToObject<Card[]>("team-members").map((item: Card, indexCard: number) => {
+                const itemName = this.castToString(item.name);
+                const itemPosition = this.castToString(item.position);
+                const hasContent = item.profile || itemName || itemPosition || (item.icons && item.icons.length > 0);
+
+                return hasContent ? (
+                  <div key={indexCard} className={this.decorateCSS("all-card")}>
+                    <div className={this.decorateCSS(item.profile ? "card" : "no-image-card")}>
+                      <div className={this.decorateCSS("card-items")}>
+                        <div className={this.decorateCSS("item-content")}>
+                          {item.profile && <div className={this.decorateCSS("box-image")}>{item.profile && <img className={this.decorateCSS("profile-image")} src={item.profile} alt="" />}</div>}
+                          <Base.VerticalContent className={item.profile ? this.decorateCSS("box-text") : this.decorateCSS("no-image-box-text")}>
+                            <Base.H2 className={this.decorateCSS("item-name")}>{item.name}</Base.H2>
+                            <Base.P className={this.decorateCSS("item-position")}>{item.position}</Base.P>
+                            <div className={this.decorateCSS("icon-group")}>
+                              {item.icons &&
+                                item.icons.map((card: Icons, indexIcons: number) => (
+                                  <ComposerLink key={indexIcons} path={card.url}>
+                                    <ComposerIcon
+                                      name={card.icon}
+                                      propsIcon={{
+                                        className: this.decorateCSS("icons"),
+                                      }}
+                                    />
+                                  </ComposerLink>
+                                ))}
+                            </div>
+                          </Base.VerticalContent>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
+                ) : null;
+              })}
+            </Base.ListGrid>
+          </Base.VerticalContent>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

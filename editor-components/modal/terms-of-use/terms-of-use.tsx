@@ -19,7 +19,7 @@ class TermsOfUseModal extends BaseModal {
       type: "image",
       key: "image",
       displayer: "Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/672b576c7acba6002c5ee19d?alt=media&timestamp=1730893727358",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b08a9003b007002cc77628?alt=media&timestamp=1732521893813",
     });
 
     this.addProp({
@@ -61,7 +61,7 @@ class TermsOfUseModal extends BaseModal {
       type: "icon",
       key: "exitIcon",
       displayer: "ExitIcon",
-      value: "IoCloseSharp",
+      value: "MdCancel",
     });
 
     this.addProp({
@@ -142,11 +142,11 @@ class TermsOfUseModal extends BaseModal {
 
             <div className={this.decorateCSS("buttom-wrapper")}>
               <div className={this.decorateCSS("second-div")}>
-                {title && <Base.H3 className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.H3>}
+                {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                 <div className={this.decorateCSS("terms-container")}>
                   {(termsDescription || termsText) && (
                     <Base.P className={this.decorateCSS("terms")}>
-                      <span className={this.decorateCSS("termsDescription")}>{termsDescription}</span>
+                      <Base.SectionDescription className={this.decorateCSS("termsDescription")}>{termsDescription}</Base.SectionDescription>
                       <span className={this.decorateCSS("termsText")}>
                         <ComposerLink path={this.getPropValue("termsLink")}> {termsText}</ComposerLink>
                       </span>
@@ -154,7 +154,7 @@ class TermsOfUseModal extends BaseModal {
                   )}
                 </div>
 
-                {description && <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>}
+                {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
               </div>
 
               {validButtons.length > 0 && (
