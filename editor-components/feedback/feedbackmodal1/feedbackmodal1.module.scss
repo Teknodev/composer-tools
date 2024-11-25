@@ -1,7 +1,11 @@
+@import "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss";
+
 .feedback-modal {
   max-width: 480px;
+  max-height: 750px;
+  overflow: auto;
   border-radius: var(--composer-border-radius-lg);
-  box-shadow: 0 4px 6px rgba(var(--composer-font-color-primary-rgb), 0.1);
+  box-shadow: var(--box-shadow-active);
   transition: background-color 0.3s ease;
   display: flex;
   flex-direction: column;
@@ -60,9 +64,6 @@
   }
 
   .modal-content-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: var(--composer-gap-md);
     .modalContent {
       margin: 0;
       text-align: center;
@@ -100,7 +101,7 @@
       .emojiLabel::after {
         content: "";
         position: absolute;
-        top: -15px;
+        top: calc(-1 * var(--composer-gap-md));
         left: 50%;
         transform: translateX(-50%);
         border-width: var(--composer-gap-sm);
@@ -123,15 +124,13 @@
           position: absolute;
           top: 50%;
           left: 50%;
-          width: 4.5rem;
-          height: 4.5rem;
+          width: 70px;
+          height: 70px;
           transform: translate(-50%, -50%);
           border-radius: 50%;
           z-index: -1;
           opacity: 0;
           transition: opacity 0.3s;
-          border-style: solid;
-          border-width: 1px 3px;
           border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
         }
 
@@ -139,8 +138,8 @@
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 4rem;
-          height: 4rem;
+          width: calc(3 * var(--composer-gap-md));
+          height: calc(3 * var(--composer-gap-md));
         }
 
         .feedbackModalEmojiIcon {
@@ -161,8 +160,8 @@
         }
 
         .feedbackModalEmojiImage {
-          width: 4rem;
-          height: 4rem;
+          width: calc(3 * var(--composer-gap-md));
+          height: calc(3 * var(--composer-gap-md));
           object-fit: cover;
           filter: grayscale(100%);
         }
@@ -250,8 +249,19 @@
   }
 }
 
+// @container (max-width: #{$composer-phone-width}) {
 @media (max-width: 480px) {
   .feedback-modal {
-    max-width: 300px !important;
+    max-width: 320px !important;
+    max-height: 700px !important;
+
+    .modal-content-wrapper {
+      .modalContent {
+        font-size: 1.5rem !important;
+      }
+      .descriptionContent {
+        margin-top: var(--composer-gap-sm);
+      }
+    }
   }
 }

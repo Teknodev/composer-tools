@@ -304,11 +304,10 @@ class FeedbackModal1 extends BaseModal {
         </div>
         {isHeaderTitleExist || isDescriptionExist ? (
           <>
-            <div className={this.decorateCSS("modal-content-wrapper")}>
+            <Base.VerticalContent className={this.decorateCSS("modal-content-wrapper")}>
               {isHeaderTitleExist && <Base.SectionTitle className={this.decorateCSS("modalContent")}>{this.getPropValue("headerTitle")}</Base.SectionTitle>}
-
               {isDescriptionExist && <Base.SectionDescription className={this.decorateCSS("descriptionContent")}>{this.getPropValue("description")}</Base.SectionDescription>}
-            </div>
+            </Base.VerticalContent>
           </>
         ) : (
           ""
