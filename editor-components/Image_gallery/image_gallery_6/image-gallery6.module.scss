@@ -1,0 +1,230 @@
+@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
+.container {
+    .max-content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-xl);
+        .section-container{
+            flex-direction: row;
+            gap: var(--composer-gap-xl);
+            .section-text{
+                margin: 0px;
+                padding: var(--composer-gap-sm);
+                color: var(--composer-font-color-primary);
+                &.active{
+                    color: var(--composer-font-color-secondary);
+                    background-color: var(--composer-primary-color);
+                }
+
+            }
+        }
+        .content{
+            display: flex;
+            width: 100%;
+            align-items: stretch;
+            gap: var(--composer-gap-md);
+            .left-container, .right-container{
+                flex: 1;
+                width: 100%;
+                display: flex;
+                flex-direction: column; 
+                gap: var(--composer-gap-md);
+               
+                .images {
+                    position: relative;
+                    background-color:  color-mix(
+                        in srgb,
+                        var(--composer-html-background),
+                        var(--composer-font-color-primary) 5%
+                      );
+                    padding: var(--composer-gap-sm);
+                    border-radius: var(--composer-border-radius-md);
+                    overflow: hidden;
+                    width: 100%;
+                    &.large-image, &.small-image, &.normal-image {
+                        .image-wrapper {
+                            display: flex;
+                            position: relative;
+                            height: 100%;
+                            overflow: hidden;
+                            .image {
+                                width: 100%;
+                                height: 100%;
+                                object-fit: cover;
+                                border-radius: var(--composer-border-radius-md);
+                            }                               
+                            .badge{
+                                position: absolute;
+                                background-color: var(--composer-primary-color);
+                                color: var(--composer-font-color-secondary);
+                                height: 200px;
+                                width: 40px;
+                                bottom: 0px;
+                                left: var(--composer-gap-xl);
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                .badge-text{
+                                    writing-mode: vertical-rl;
+                                    transform: rotate(180deg);
+                                    height: 100%;
+                                    text-align: center;
+                                    overflow: hidden;
+                                }
+                            }
+                            .badge-container {
+                                visibility: hidden;
+                                height:0px;
+                                position: absolute;
+                                bottom: 0px;
+                                width: 100%;
+                                background-color: var(--composer-primary-color);
+                                color: var(--composer-font-color-secondary);
+                                transition: height 1s ease;
+                                display: flex;
+                                align-items: center;
+                                .text-container{
+                                    width: 100%;
+                                    display: flex;
+                                    flex-direction: column;
+                                    justify-content: center;
+                                    gap: var(--composer-gap-md);
+                                    padding: var(--composer-gap-xl) calc(var(--composer-gap-xl) * 3);
+                                    .title{
+                                        font-size: 2rem;
+                                    }
+                                    .bottom-container{
+                                        display: flex;
+                                        gap: var(--composer-gap-md);
+                                        align-items: stretch;
+                                        .description{
+                                            display: flex;
+                                            align-items: center;
+                                            font-size: 1.5rem;
+                                        }
+                                        .button{
+                                            background-color: var(--composer-font-color-secondary);
+                                            color: var(--composer-font-color-primary);
+                                            border: none;
+                                            padding: var(--composer-gap-sm);
+                                            .icon{
+                                                margin: 0px;
+                                                width: 20px;
+                                                height: 20px;
+                                                color: var(--composer-font-color-primary);
+                                            }
+                                        }
+                                        >a{
+                                            display: flex;
+                                            align-items: center;
+                                        }
+                                
+                                    }
+                                }
+                            }
+        
+                        }
+                        &:hover{
+                            .badge{
+                                background-color: var(--composer-font-color-secondary);
+                                color: var(--composer-font-color-primary);
+                                z-index: 2;   
+                            }
+                            .badge-container {
+                                visibility: visible;
+                                min-height:300px;
+                                height: fit-content;
+                                max-height: 100%;
+                            }
+                        }
+                    }
+                    &.large-image{
+                        height: 60%;
+                    }
+                    &.small-image {
+                        height: 40%;
+                    }
+                    &.normal-image{
+                        height: 100%;
+                    }
+                    .button {
+                        cursor: pointer;
+                        border-radius: var(--composer-border-radius-xs);
+                    }   
+                }
+            }
+        }   
+    }
+}
+
+@container (max-width: #{$composer-tablet-width}){
+    .container {
+        .max-content {
+            .content{
+                flex-direction: column;
+                .left-container, .right-container{
+                    .images {
+                        &.large-image, &.small-image, &.normal-image {
+                            .image-wrapper {
+                                .badge{
+                                    width: 30px;
+                                    height: 150px;
+                                }
+                            }
+                            &:hover{
+                                .badge{
+                                    background-color: var(--composer-primary-color);
+                                    color: var(--composer-font-color-secondary);
+                                }
+                                .badge-container {
+                                   display: none;
+                                }
+                            }
+                        }
+                        &.large-image{
+                            aspect-ratio: 5 / 3;
+                        }
+                        &.small-image {
+                            aspect-ratio: 5 / 2;
+                        }
+                    }
+                }
+                .right-container{
+                    flex-direction: column-reverse;
+                }
+            }
+        }
+    }
+}
+@container (max-width: #{$composer-phone-width}){
+    .container {
+        .max-content {
+            .section-container{
+                flex-direction: column;
+                gap: var(--composer-gap-sm);
+            }
+            .content{
+                flex-direction: column;
+                .left-container, .right-container{
+                    .images {
+                        &.large-image, &.small-image, &.normal-image {
+                            .image-wrapper {
+                                display: flex;
+                                .badge{
+                                    width: 30px;
+                                    height: 150px;
+                                }
+                            }
+                        }
+                        &.large-image{
+                            min-height: 300px;
+                        }
+                        &.small-image, &.normal-image{
+                            min-height: 200px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
