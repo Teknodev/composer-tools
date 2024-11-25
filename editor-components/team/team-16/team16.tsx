@@ -204,8 +204,8 @@ class Team16 extends Team {
           <Base.VerticalContent className={this.decorateCSS("page")}>
             {(titleExist || descriptionExist) && (
               <Base.VerticalContent className={this.decorateCSS("up-content")}>
-                {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-                {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+                {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
+                {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
               </Base.VerticalContent>
             )}
             <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("down-content")}>
