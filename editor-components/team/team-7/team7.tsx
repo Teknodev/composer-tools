@@ -251,16 +251,13 @@ class Team7 extends Team {
 
   render() {
     const badge = this.getPropValue("badge");
-    const title = this.getPropValue("title");
+    const titleValue = this.getPropValue("title", { as_string: true });
     const description = this.getPropValue("description");
 
     const badgeValue = badge.props.html;
-    const titleValue = title.props.html;
     const descriptionValue = this.castToString(description);
 
     const contentAligment = Base.getContentAlignment();
-
-    console.log(contentAligment, "contentAligment");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
