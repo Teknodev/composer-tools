@@ -405,11 +405,21 @@ class ImageGallery4 extends BaseImageGallery {
     this.setComponentState("activeSubnav", null);
     this.setComponentState("focusedImage", 0);
     this.setComponentState("isFocused", false);
+    document.addEventListener("keydown", this.handleKeyDown);
   }
 
   getName(): string {
     return "Image Gallery 4";
   }
+  handleKeyDown = (event: KeyboardEvent) => {
+    if (event.key === "ArrowLeft") {
+      this.prevImage();
+    } else if (event.key === "ArrowRight") {
+      this.nextImage();
+    } else if (event.key === "Escape") {
+      this.closeFocus();
+    }
+  };
 
   switchNav(index: number) {
     this.setComponentState("activeNav", index);
@@ -423,8 +433,6 @@ class ImageGallery4 extends BaseImageGallery {
   focusImage(index: number) {
     this.setComponentState("focusedImage", index);
     this.setComponentState("isFocused", true);
-    console.log("focuse", this.getComponentState("focusedImage"))
-    console.log("focuse", this.getComponentState("isFocused"))
   }
 
   closeFocus() {
@@ -441,13 +449,10 @@ class ImageGallery4 extends BaseImageGallery {
   getImages(): Image[] {
     const activeNav: number = this.getComponentState("activeNav");
     const activeSubnav: number = this.getComponentState("activeSubnav");
-
     const navItems = this.castToObject<NavItem[]>("navItems");
 
     if (!navItems || !navItems[activeNav]) return [];
-
     let result: any[] = [];
-
     result = navItems[activeNav]?.images;
 
     if (typeof activeSubnav === "number") {
@@ -461,18 +466,33 @@ class ImageGallery4 extends BaseImageGallery {
 
     return this.makeArrayPure(result);
   }
+  changeImage = (direction: string) => {
+    const focusedImageIndex = this.getComponentState("focusedImage");
+    const currentGallery = this.getImages();
+    const galleryLength = currentGallery.length;
+    let newIndex;
+    if (direction === "prev") {
+      newIndex = (focusedImageIndex - 1 + galleryLength) % galleryLength;
+    } else if (direction === "next") {
+      newIndex = (focusedImageIndex + 1) % galleryLength;
+    }
+    this.setComponentState("focusedImage", newIndex);
+  };
 
+  prevImage = () => {
+    this.changeImage("prev");
+  };
+
+  nextImage = () => {
+    this.changeImage("next");
+  };
   render() {
     const itemsPerRow: number = this.getPropValue("itemsPerRow");
-
     const activeNav: number = this.getComponentState("activeNav");
     const activeSubnav: number = this.getComponentState("activeSubnav");
-
     const navItems = this.castToObject<NavItem[]>("navItems");
     const subnavItems = navItems[activeNav]?.subnavItems;
-
     const showActiveNavSubnavs = navItems[activeNav]?.hasSubnav;
-
     const galleryItems = this.getImages();
 
     return (
@@ -492,15 +512,16 @@ class ImageGallery4 extends BaseImageGallery {
                           key={index}
                           className={this.decorateCSS("list-item")}
                         >
-                          <button
-                            className={`${this.decorateCSS("button")} ${activeNav === index ? this.decorateCSS("active") : ""}`}
-
-                            onClick={() => {
-                              this.switchNav(index);
-                            }}
-                          >
-                            {item.title}
-                          </button>
+                          {this.castToString(item.title) && (
+                            <button
+                              className={`${this.decorateCSS("button")} ${activeNav === index ? this.decorateCSS("active") : ""}`}
+                              onClick={() => {
+                                this.switchNav(index);
+                              }}
+                            >
+                              {item.title}
+                            </button>
+                          )}
                         </div>
                       );
                     })}
@@ -518,14 +539,16 @@ class ImageGallery4 extends BaseImageGallery {
                             key={index}
                             className={this.decorateCSS("list-item")}
                           >
-                            <button
-                              className={`${this.decorateCSS("button")} ${activeSubnav === index ? this.decorateCSS("active") : ""}`}
-                              onClick={() => {
-                                this.switchSubnav(index);
-                              }}
-                            >
-                              {item.title}
-                            </button>
+                            {this.castToString(item.title) && (
+                              <button
+                                className={`${this.decorateCSS("button")} ${activeSubnav === index ? this.decorateCSS("active") : ""}`}
+                                onClick={() => {
+                                  this.switchSubnav(index);
+                                }}
+                              >
+                                {item.title}
+                              </button>
+                            )}
                           </div>
                         );
                       },
@@ -544,22 +567,25 @@ class ImageGallery4 extends BaseImageGallery {
                       className={this.decorateCSS("gallery-item")}
 
                     >
-                      <img
-                        src={item.image}
-                        alt={item.image}
-                        className={this.decorateCSS("gallery-image")}
-                      />
-                      <div className={this.decorateCSS("icon-overlay")}
-                        onClick={() => {
-                          this.focusImage(index)
-                        }}>
-                        <ComposerIcon
-                          name={this.getPropValue("imageIcon")}
-                          propsIcon={{ className: this.decorateCSS("icon") }}
-
+                      {item.image && (
+                        <img
+                          src={item.image}
+                          alt={item.image}
+                          className={this.decorateCSS("gallery-image")}
                         />
-                      </div>
+                      )}
+                      {this.getPropValue("imageIcon") && (
+                        <div className={this.decorateCSS("icon-overlay")}
+                          onClick={() => {
+                            this.focusImage(index)
+                          }}>
+                          <ComposerIcon
+                            name={this.getPropValue("imageIcon")}
+                            propsIcon={{ className: this.decorateCSS("icon") }}
 
+                          />
+                        </div>
+                      )}
                     </div>
                   );
                 })}
@@ -573,34 +599,35 @@ class ImageGallery4 extends BaseImageGallery {
                 ${this.decorateCSS("gallery-item-fullscreen")}
                 ${this.getComponentState("isFocused") ? this.decorateCSS("show-fullscreen") : ""}
               `}
-              onClick={() => {
-                this.closeFocus();
-              }}
             >
-              <div className={this.decorateCSS("right-arrow")}>
-                <ComposerIcon
-                  name={this.getPropValue("nextIcon")}
-                  propsIcon={{ className: this.decorateCSS("icon") }}
+              {this.getPropValue("nextIcon") && (
+                <div className={this.decorateCSS("right-arrow")} onClick={this.nextImage}>
+                  <ComposerIcon
+                    name={this.getPropValue("nextIcon")}
+                    propsIcon={{ className: this.decorateCSS("icon") }}
 
-                />
-              </div>
-              <div className={this.decorateCSS("left-arrow")}>
-                <ComposerIcon
-                  name={this.getPropValue("prevIcon")}
-                  propsIcon={{ className: this.decorateCSS("icon") }}
-
-                />
-
-              </div>
+                  />
+                </div>
+              )}
+              {this.getPropValue("prevIcon") && (
+                <div className={this.decorateCSS("left-arrow")} onClick={this.prevImage}>
+                  <ComposerIcon
+                    name={this.getPropValue("prevIcon")}
+                    propsIcon={{ className: this.decorateCSS("icon") }}
+                  />
+                </div>
+              )}
               <div className={this.decorateCSS("fullscreen-container")}>
                 <div className={this.decorateCSS("focused-image-container")}>
-                  <img
-                    className={this.decorateCSS("focused-image")}
-                    src={
-                      galleryItems[this.getComponentState("focusedImage")].image
-                    }
-                    alt="gallery item"
-                  />
+                  {galleryItems[this.getComponentState("focusedImage")].image && (
+                    <img
+                      className={this.decorateCSS("focused-image")}
+                      src={
+                        galleryItems[this.getComponentState("focusedImage")].image
+                      }
+                      alt={galleryItems[this.getComponentState("focusedImage")].image}
+                    />
+                  )}
                   {this.getPropValue("close-icon") && (
                     <button
                       onClick={() => {
@@ -609,7 +636,7 @@ class ImageGallery4 extends BaseImageGallery {
                       className={this.decorateCSS("close-button")}
                     >
                       <ComposerIcon
-                        propsIcon={{ className: this.decorateCSS("Icon") }}
+                        propsIcon={{ className: this.decorateCSS("close-icon") }}
                         name={this.getPropValue("close-icon")}
                       />
                     </button>
