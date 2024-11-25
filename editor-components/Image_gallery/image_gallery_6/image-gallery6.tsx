@@ -3,6 +3,7 @@ import { BaseImageGallery } from "../../EditorComponent";
 import styles from "./image-gallery6.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 interface GalleryItem {
   sectionTitle: JSX.Element,
   images: ImageItem[],
@@ -20,6 +21,14 @@ interface ImageItem {
 class ImageGalleryComponent6 extends BaseImageGallery {
   constructor(props?: any) {
     super(props, styles);
+    this.addProp(
+      {
+        type: "boolean",
+        key: "showAll",
+        displayer: "Show All",
+        value: true
+      }
+    )
 
     this.addProp({
       type: "array",
@@ -91,8 +100,107 @@ class ImageGalleryComponent6 extends BaseImageGallery {
                       value: "",
                     },
                   ]
+                },
+                {
+                  type: "object",
+                  key: "image",
+                  displayer: "Image",
+                  value: [
+                    {
+                      type: "image",
+                      key: "image",
+                      displayer: "Image",
+                      value:
+                        "https://ruizarch-react.vercel.app/img/covers/2.jpg",
+                    },
+                    {
+                      type: "string",
+                      key: "badge",
+                      displayer: "Badge",
+                      value: "ARCHITECTURE",
+                    },
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "CITY HOUSE",
+                    },
+                    {
+                      type: "string",
+                      key: "description",
+                      displayer: "Description",
+                      value: "START A PROJECT",
+                    },
+                    {
+                      type: "icon",
+                      key: "nextArrow",
+                      displayer: "Next Arrow",
+                      value: "FaArrowRightLong",
+                    },
+                    {
+                      type: "string",
+                      key: "buttonText",
+                      displayer: "Button Text",
+                      value: "Join this plan",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "image",
+                  displayer: "Image",
+                  value: [
+                    {
+                      type: "image",
+                      key: "image",
+                      displayer: "Image",
+                      value:
+                        "https://ruizarch-react.vercel.app/img/covers/3.jpg",
+                    },
+                    {
+                      type: "string",
+                      key: "badge",
+                      displayer: "Badge",
+                      value: "ARCHITECTURE",
+                    },
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "KEMIA INDUSTRIAL FACTORY",
+                    },
+                    {
+                      type: "string",
+                      key: "description",
+                      displayer: "Description",
+                      value: "START A PROJECT",
+                    },
+                    {
+                      type: "icon",
+                      key: "nextArrow",
+                      displayer: "Next Arrow",
+                      value: "FaArrowRightLong",
+                    },
+                    {
+                      type: "string",
+                      key: "buttonText",
+                      displayer: "Button Text",
+                      value: "Join this plan",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ]
                 }
-
               ]
             },
 
@@ -114,6 +222,156 @@ class ImageGalleryComponent6 extends BaseImageGallery {
               key: "images",
               displayer: "Images",
               value: [
+                {
+                  type: "object",
+                  key: "image",
+                  displayer: "Image",
+                  value: [
+                    {
+                      type: "image",
+                      key: "image",
+                      displayer: "Image",
+                      value:
+                        "https://ruizarch-react.vercel.app/img/covers/5.jpg",
+                    },
+                    {
+                      type: "string",
+                      key: "badge",
+                      displayer: "Badge",
+                      value: "INTERIOR",
+                    },
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "SMART HOUSE BY MOLEKULE",
+                    },
+                    {
+                      type: "string",
+                      key: "description",
+                      displayer: "Description",
+                      value: "START A PROJECT",
+                    },
+                    {
+                      type: "icon",
+                      key: "nextArrow",
+                      displayer: "Next Arrow",
+                      value: "FaArrowRightLong",
+                    },
+                    {
+                      type: "string",
+                      key: "buttonText",
+                      displayer: "Button Text",
+                      value: "Join this plan",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "image",
+                  displayer: "Image",
+                  value: [
+                    {
+                      type: "image",
+                      key: "image",
+                      displayer: "Image",
+                      value:
+                        "https://ruizarch-react.vercel.app/img/covers/6.jpg",
+                    },
+                    {
+                      type: "string",
+                      key: "badge",
+                      displayer: "Badge",
+                      value: "INTERIOR",
+                    },
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "TONY'S CHOCOLONELY",
+                    },
+                    {
+                      type: "string",
+                      key: "description",
+                      displayer: "Description",
+                      value: "START A PROJECT",
+                    },
+                    {
+                      type: "icon",
+                      key: "nextArrow",
+                      displayer: "Next Arrow",
+                      value: "FaArrowRightLong",
+                    },
+                    {
+                      type: "string",
+                      key: "buttonText",
+                      displayer: "Button Text",
+                      value: "Join this plan",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "image",
+                  displayer: "Image",
+                  value: [
+                    {
+                      type: "image",
+                      key: "image",
+                      displayer: "Image",
+                      value:
+                        "https://ruizarch-react.vercel.app/img/covers/8.jpg",
+                    },
+                    {
+                      type: "string",
+                      key: "badge",
+                      displayer: "Badge",
+                      value: "INTERIOR",
+                    },
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "DENTAL CLINIC",
+                    },
+                    {
+                      type: "string",
+                      key: "description",
+                      displayer: "Description",
+                      value: "START A PROJECT",
+                    },
+                    {
+                      type: "icon",
+                      key: "nextArrow",
+                      displayer: "Next Arrow",
+                      value: "FaArrowRightLong",
+                    },
+                    {
+                      type: "string",
+                      key: "buttonText",
+                      displayer: "Button Text",
+                      value: "Join this plan",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ]
+                },
                 {
                   type: "object",
                   key: "image",
@@ -164,321 +422,81 @@ class ImageGalleryComponent6 extends BaseImageGallery {
                     },
                   ]
                 }
+              ]
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "gallery",
+          displayer: "Gallery",
+          value: [
+            {
+              type: "string",
+              key: "sectionTitle",
+              displayer: "Section Title",
+              value: "DECOR"
+            },
+            {
+              type: "array",
+              key: "images",
+              displayer: "Images",
+              value: [
+                {
+                  type: "object",
+                  key: "image",
+                  displayer: "Image",
+                  value: [
+                    {
+                      type: "image",
+                      key: "image",
+                      displayer: "Image",
+                      value:
+                        "https://ruizarch-react.vercel.app/img/covers/4.jpg",
+                    },
+                    {
+                      type: "string",
+                      key: "badge",
+                      displayer: "Badge",
+                      value: "INTERIOR",
+                    },
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "CASCADE OF LAVA",
+                    },
+                    {
+                      type: "string",
+                      key: "description",
+                      displayer: "Description",
+                      value: "START A PROJECT",
+                    },
+                    {
+                      type: "icon",
+                      key: "nextArrow",
+                      displayer: "Next Arrow",
+                      value: "FaArrowRightLong",
+                    },
+                    {
+                      type: "string",
+                      key: "buttonText",
+                      displayer: "Button Text",
+                      value: "Join this plan",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ]
+                }
 
               ]
             },
-
-          ],
-        },
-        // {
-        //   type: "object",
-        //   key: "gallery",
-        //   displayer: "Gallery",
-        //   value: [
-        //     {
-        //       type: "image",
-        //       key: "image",
-        //       displayer: "Image",
-        //       value:
-        //         "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67161927b4a116002cfc6483?alt=media",
-        //     },
-        //     {
-        //       type: "string",
-        //       key: "badge",
-        //       displayer: "Badge",
-        //       value: "ARCHITECTURE",
-        //     },
-        //     {
-        //       type: "string",
-        //       key: "title",
-        //       displayer: "Title",
-        //       value: "INTERIOR DESIGN STUDIO",
-        //     },
-        //     {
-        //       type: "string",
-        //       key: "description",
-        //       displayer: "Description",
-        //       value: "START A PROJECT",
-        //     },
-        //     {
-        //       type: "string",
-        //       key: "buttonText",
-        //       displayer: "Button Text",
-        //       value: "Join this plan",
-        //     },
-        //     {
-        //       type: "page",
-        //       key: "url",
-        //       displayer: "Link",
-        //       value: "",
-        //     },
-        //   ],
-        // },
-        // {
-        //   type: "object",
-        //   key: "gallery",
-        //   displayer: "Gallery",
-        //   value: [
-        //     {
-        //       type: "image",
-        //       key: "image",
-        //       displayer: "Image",
-        //       value:
-
-        //         "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67161e2bb4a116002cfc66fd?alt=media",
-        //     },
-        //     {
-        //       type: "string",
-        //       key: "badge",
-        //       displayer: "Badge",
-        //       value: "ARCHITECTURE",
-        //     },
-        //     {
-        //       type: "string",
-        //       key: "title",
-        //       displayer: "Title",
-        //       value: "INTERIOR DESIGN STUDIO",
-        //     },
-        //     {
-        //       type: "string",
-        //       key: "description",
-        //       displayer: "Description",
-        //       value: "START A PROJECT",
-        //     },
-        //     {
-        //       type: "string",
-        //       key: "buttonText",
-        //       displayer: "Button Text",
-        //       value: "Join this plan",
-        //     },
-        //     {
-        //       type: "page",
-        //       key: "url",
-        //       displayer: "Link",
-        //       value: "",
-        //     },
-        //   ],
-        // },
-        // {
-        //   type: "object",
-        //   key: "gallery",
-        //   displayer: "Gallery",
-        //   value: [
-        //     {
-        //       type: "image",
-        //       key: "image",
-        //       displayer: "Image",
-        //       value:
-        //         "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6716195ab4a116002cfc64c8?alt=media",
-        //     },
-        //     {
-        //       type: "string",
-        //       key: "badge",
-        //       displayer: "Badge",
-        //       value: "ARCHITECTURE",
-        //     },
-        //     {
-        //       type: "string",
-        //       key: "title",
-        //       displayer: "Title",
-        //       value: "INTERIOR DESIGN STUDIO",
-        //     },
-        //     {
-        //       type: "string",
-        //       key: "description",
-        //       displayer: "Description",
-        //       value: "START A PROJECT",
-        //     },
-        //     {
-        //       type: "string",
-        //       key: "buttonText",
-        //       displayer: "Button Text",
-        //       value: "Join this plan",
-        //     },
-        //     {
-        //       type: "page",
-        //       key: "url",
-        //       displayer: "Link",
-        //       value: "",
-        //     },
-        //   ],
-        // },
-        // {
-        //   type: "object",
-        //   key: "gallery",
-        //   displayer: "Gallery",
-        //   value: [
-        //     {
-        //       type: "image",
-        //       key: "image",
-        //       displayer: "Image",
-        //       value:
-        //         "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6716195ab4a116002cfc64c8?alt=media",
-        //     },
-        //     {
-        //       type: "string",
-        //       key: "badge",
-        //       displayer: "Badge",
-        //       value: "ARCHITECTURE",
-        //     },
-        //     {
-        //       type: "string",
-        //       key: "title",
-        //       displayer: "Title",
-        //       value: "INTERIOR DESIGN STUDIO",
-        //     },
-        //     {
-        //       type: "string",
-        //       key: "description",
-        //       displayer: "Description",
-        //       value: "START A PROJECT",
-        //     },
-        //     {
-        //       type: "string",
-        //       key: "buttonText",
-        //       displayer: "Button Text",
-        //       value: "Join this plan",
-        //     },
-        //     {
-        //       type: "page",
-        //       key: "url",
-        //       displayer: "Link",
-        //       value: "",
-        //     },
-        //   ],
-        // },
-        // {
-        //   type: "object",
-        //   key: "gallery",
-        //   displayer: "Gallery",
-        //   value: [
-        //     {
-        //       type: "image",
-        //       key: "image",
-        //       displayer: "Image",
-        //       value:
-        //         "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67161ea2b4a116002cfc6726?alt=media",
-        //     },
-        //     {
-        //       type: "string",
-        //       key: "badge",
-        //       displayer: "Badge",
-        //       value: "ARCHITECTURE",
-        //     },
-        //     {
-        //       type: "string",
-        //       key: "title",
-        //       displayer: "Title",
-        //       value: "INTERIOR DESIGN STUDIO",
-        //     },
-        //     {
-        //       type: "string",
-        //       key: "description",
-        //       displayer: "Description",
-        //       value: "START A PROJECT",
-        //     },
-        //     {
-        //       type: "string",
-        //       key: "buttonText",
-        //       displayer: "Button Text",
-        //       value: "Join this plan",
-        //     },
-        //     {
-        //       type: "page",
-        //       key: "url",
-        //       displayer: "Link",
-        //       value: "",
-        //     },
-        //   ],
-        // },
-        // {
-        //   type: "object",
-        //   key: "gallery",
-        //   displayer: "Gallery",
-        //   value: [
-        //     {
-        //       type: "image",
-        //       key: "image",
-        //       displayer: "Image",
-        //       value:
-        //         "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67161ebeb4a116002cfc6733?alt=media",
-        //     },
-        //     {
-        //       type: "string",
-        //       key: "badge",
-        //       displayer: "Badge",
-        //       value: "ARCHITECTURE",
-        //     },
-        //     {
-        //       type: "string",
-        //       key: "title",
-        //       displayer: "Title",
-        //       value: "INTERIOR DESIGN STUDIO",
-        //     },
-        //     {
-        //       type: "string",
-        //       key: "description",
-        //       displayer: "Description",
-        //       value: "START A PROJECT",
-        //     },
-        //     {
-        //       type: "string",
-        //       key: "buttonText",
-        //       displayer: "Button Text",
-        //       value: "Join this plan",
-        //     },
-        //     {
-        //       type: "page",
-        //       key: "url",
-        //       displayer: "Link",
-        //       value: "",
-        //     },
-        //   ],
-        // },
-        // {
-        //   type: "object",
-        //   key: "gallery",
-        //   displayer: "Gallery",
-        //   value: [
-        //     {
-        //       type: "image",
-        //       key: "image",
-        //       displayer: "Image",
-        //       value:
-        //         "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67164553b4a116002cfc7280?alt=media",
-        //     },
-        //     {
-        //       type: "string",
-        //       key: "badge",
-        //       displayer: "Badge",
-        //       value: "ARCHITECTURE",
-        //     },
-        //     {
-        //       type: "string",
-        //       key: "title",
-        //       displayer: "Title",
-        //       value: "INTERIOR DESIGN STUDIO",
-        //     },
-        //     {
-        //       type: "string",
-        //       key: "description",
-        //       displayer: "Description",
-        //       value: "START A PROJECT",
-        //     },
-        //     {
-        //       type: "string",
-        //       key: "buttonText",
-        //       displayer: "Button Text",
-        //       value: "Join this plan",
-        //     },
-        //     {
-        //       type: "page",
-        //       key: "url",
-        //       displayer: "Link",
-        //       value: "",
-        //     },
-        //   ],
-        // },
+          ]
+        }
       ],
     });
     this.setComponentState("default", 0);
@@ -507,25 +525,22 @@ class ImageGalleryComponent6 extends BaseImageGallery {
 
   render() {
     const galleries = this.castToObject<GalleryItem[]>("galleries");
-    const currentIndex = this.getComponentState("default");
     const currentGallery = this.getCurrentGallery();
-    const currentImageIndex = this.getComponentState("currentImageIndex");
-    const currentImage = currentGallery[currentImageIndex];
-    const imgCount = `${currentImageIndex + 1} of ${currentGallery.length}`;
     const selectedSection = this.getComponentState("selectedSection");
-    console.log()
-
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("section-container")}>
-            <Base.H4
-              className={`${this.decorateCSS("section-text")} ${(selectedSection === "ALL" || !selectedSection) ? this.decorateCSS("active") : ""
-                }`}
-              onClick={() => this.setComponentState("selectedSection", "ALL")}
-            >
-              ALL
-            </Base.H4>
+          <Base.VerticalContent className={this.decorateCSS("section-container")}>
+            {this.getPropValue("showAll") && (
+              <Base.H4
+                className={`${this.decorateCSS("section-text")} ${(selectedSection === "ALL" || !selectedSection) ? this.decorateCSS("active") : ""
+                  }`}
+                onClick={() => this.setComponentState("selectedSection", "ALL")}
+              >
+                ALL
+              </Base.H4>
+            )}
+
             {galleries.map((element: any) => (
               <Base.H4
                 className={`${this.decorateCSS("section-text")} ${this.castToString(element.sectionTitle) === this.castToString(this.getComponentState("selectedSection")) ? this.decorateCSS("active") : ""
@@ -535,7 +550,7 @@ class ImageGalleryComponent6 extends BaseImageGallery {
                 {element.getPropValue("sectionTitle")}
               </Base.H4>
             ))}
-          </div>
+          </Base.VerticalContent>
           <div className={this.decorateCSS("content")}>
             <div className={this.decorateCSS("left-container")}>
               {currentGallery.map((item: ImageItem, index: number) => {
@@ -556,29 +571,44 @@ class ImageGalleryComponent6 extends BaseImageGallery {
                   return (
                     <div className={`${this.decorateCSS("images")} ${imageClass}`}>
                       <div className={this.decorateCSS("image-wrapper")}>
-                        <img src={item.image} alt={item.image} className={this.decorateCSS("image")} />
-                        <div className={this.decorateCSS("badge")}>
-                          <div className={this.decorateCSS("badge-text")}>
-                            {item.badge}
-                          </div>
-                        </div>
-                        <div className={this.decorateCSS("badge-container")}>
-                          <div className={this.decorateCSS("text-container")}>
-                            <div className={this.decorateCSS("title")}>
-                              {item.title}
-                            </div>
-                            <div className={this.decorateCSS("bottom-container")}>
-                              <div className={this.decorateCSS("description")}>
-                                {item.description}
-                              </div>
-                              <button className={this.decorateCSS("button")}>
-                                <ComposerIcon name={item.nextArrow} propsIcon={{ className: this.decorateCSS("icon") }}></ComposerIcon>
-                              </button>
+                        {item.image && (
+                          <img src={item.image} alt={item.image} className={this.decorateCSS("image")} />
+                        )}
+                        {this.castToString(item.badge) && (
+                          <div className={this.decorateCSS("badge")}>
+                            <div className={this.decorateCSS("badge-text")}>
+                              {item.badge}
                             </div>
                           </div>
-                        </div>
+                        )}
+                        {(this.castToString(item.title) || this.castToString(item.description) || item.nextArrow) && (
+                          <div className={this.decorateCSS("badge-container")}>
+                            <div className={this.decorateCSS("text-container")}>
+                              {this.castToString(item.title) && (
+                                <div className={this.decorateCSS("title")}>
+                                  {item.title}
+                                </div>
+                              )}
+                              {(this.castToString(item.description) || item.nextArrow) && (
+                                <div className={this.decorateCSS("bottom-container")}>
+                                  {this.castToString(item.description) && (
+                                    <div className={this.decorateCSS("description")}>
+                                      {item.description}
+                                    </div>
+                                  )}
+                                  {item.nextArrow && (
+                                    <ComposerLink path={item.url}>
+                                      <button className={this.decorateCSS("button")}>
+                                        <ComposerIcon name={item.nextArrow} propsIcon={{ className: this.decorateCSS("icon") }}></ComposerIcon>
+                                      </button>
+                                    </ComposerLink>
+                                  )}
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        )}
                       </div>
-
                     </div>
                   );
                 }
@@ -603,27 +633,43 @@ class ImageGalleryComponent6 extends BaseImageGallery {
                   return (
                     <div className={`${this.decorateCSS("images")} ${imageClass}`}>
                       <div className={this.decorateCSS("image-wrapper")}>
-                        <img src={item.image} alt={item.image} className={this.decorateCSS("image")} />
-                        <div className={this.decorateCSS("badge")}>
-                          <div className={this.decorateCSS("badge-text")}>
-                            {item.badge}
-                          </div>
-                        </div>
-                        <div className={this.decorateCSS("badge-container")}>
-                          <div className={this.decorateCSS("text-container")}>
-                            <div className={this.decorateCSS("title")}>
-                              {item.title}
-                            </div>
-                            <div className={this.decorateCSS("bottom-container")}>
-                              <div className={this.decorateCSS("description")}>
-                                {item.description}
-                              </div>
-                              <button className={this.decorateCSS("button")}>
-                                <ComposerIcon name={item.nextArrow} propsIcon={{ className: this.decorateCSS("icon") }}></ComposerIcon>
-                              </button>
+                        {item.image && (
+                          <img src={item.image} alt={item.image} className={this.decorateCSS("image")} />
+                        )}
+                        {this.castToString(item.badge) && (
+                          <div className={this.decorateCSS("badge")}>
+                            <div className={this.decorateCSS("badge-text")}>
+                              {item.badge}
                             </div>
                           </div>
-                        </div>
+                        )}
+                        {(this.castToString(item.title) || this.castToString(item.description) || item.nextArrow) && (
+                          <div className={this.decorateCSS("badge-container")}>
+                            <div className={this.decorateCSS("text-container")}>
+                              {this.castToString(item.title) && (
+                                <div className={this.decorateCSS("title")}>
+                                  {item.title}
+                                </div>
+                              )}
+                              {(this.castToString(item.description) || item.nextArrow) && (
+                                <div className={this.decorateCSS("bottom-container")}>
+                                  {this.castToString(item.description) && (
+                                    <div className={this.decorateCSS("description")}>
+                                      {item.description}
+                                    </div>
+                                  )}
+                                  {item.nextArrow && (
+                                    <ComposerLink path={item.url}>
+                                      <button className={this.decorateCSS("button")}>
+                                        <ComposerIcon name={item.nextArrow} propsIcon={{ className: this.decorateCSS("icon") }}></ComposerIcon>
+                                      </button>
+                                    </ComposerLink>
+                                  )}
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        )}
                       </div>
                     </div>
                   );

@@ -3,10 +3,12 @@
     .max-content {
         display: flex;
         flex-direction: column;
+        gap: var(--composer-gap-xl);
         .section-container{
-            display: flex;
+            flex-direction: row;
             gap: var(--composer-gap-xl);
             .section-text{
+                margin: 0px;
                 padding: var(--composer-gap-sm);
                 color: var(--composer-font-color-primary);
                 &.active{
@@ -26,6 +28,7 @@
                 width: 100%;
                 display: flex;
                 flex-direction: column; 
+                gap: var(--composer-gap-md);
                
                 .images {
                     position: relative;
@@ -40,6 +43,7 @@
                     width: 100%;
                     &.large-image, &.small-image, &.normal-image {
                         .image-wrapper {
+                            display: flex;
                             position: relative;
                             height: 100%;
                             overflow: hidden;
@@ -65,6 +69,7 @@
                                     transform: rotate(180deg);
                                     height: 100%;
                                     text-align: center;
+                                    overflow: hidden;
                                 }
                             }
                             .badge-container {
@@ -77,13 +82,15 @@
                                 color: var(--composer-font-color-secondary);
                                 font-size: 12px;
                                 transition: height 1s ease;
+                                display: flex;
+                                align-items: center;
                                 .text-container{
-                                    height: 100%;
+                                    width: 100%;
                                     display: flex;
                                     flex-direction: column;
                                     justify-content: center;
                                     gap: var(--composer-gap-md);
-                                    padding: 0px calc(var(--composer-gap-xl) * 3);
+                                    padding: var(--composer-gap-xl) calc(var(--composer-gap-xl) * 3);
                                     .title{
                                         font-size: 2rem;
                                     }
@@ -100,12 +107,19 @@
                                             background-color: var(--composer-font-color-secondary);
                                             color: var(--composer-font-color-primary);
                                             border: none;
+                                            padding: var(--composer-gap-sm);
                                             .icon{
+                                                margin: 0px;
                                                 width: 20px;
                                                 height: 20px;
                                                 color: var(--composer-font-color-primary);
                                             }
                                         }
+                                        >a{
+                                            display: flex;
+                                            align-items: center;
+                                        }
+                                
                                     }
                                 }
                             }
@@ -119,7 +133,9 @@
                             }
                             .badge-container {
                                 visibility: visible;
-                                height:300px;
+                                min-height:300px;
+                                height: fit-content;
+                                max-height: 100%;
                             }
                         }
                     }
@@ -136,12 +152,11 @@
                         display: inline-block;
                         background-color: #007bff;
                         color: white;
-                        padding: 10px 15px;
                         border-radius: 5px;
                         text-align: center;
                         font-size: 14px;
                         cursor: pointer;
-                    }
+                    }   
                 }
             }
         }   
@@ -182,6 +197,38 @@
                 }
                 .right-container{
                     flex-direction: column-reverse;
+                }
+            }
+        }
+    }
+}
+@container (max-width: #{$composer-phone-width}){
+    .container {
+        .max-content {
+            .section-container{
+                flex-direction: column;
+                gap: var(--composer-gap-sm);
+            }
+            .content{
+                flex-direction: column;
+                .left-container, .right-container{
+                    .images {
+                        &.large-image, &.small-image, &.normal-image {
+                            .image-wrapper {
+                                display: flex;
+                                .badge{
+                                    width: 30px;
+                                    height: 150px;
+                                }
+                            }
+                        }
+                        &.large-image{
+                            min-height: 300px;
+                        }
+                        &.small-image, &.normal-image{
+                            min-height: 200px;
+                        }
+                    }
                 }
             }
         }
