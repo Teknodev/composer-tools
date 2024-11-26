@@ -2,6 +2,12 @@ import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action4.module.scss";
+import { Base } from "../../../composer-base-components/base/base";
+
+interface ListItem {
+  description: JSX.Element
+}
+
 
 class CallToAction4Page extends BaseCallToAction {
   constructor(props?: any) {
@@ -13,11 +19,32 @@ class CallToAction4Page extends BaseCallToAction {
       displayer: "Title",
     });
     this.addProp({
-      type: "string",
-      key: "description",
-      value: "Our online courses are designed to help you learn new skills and advance your career. Enroll today and join a community of learners who are making a difference in their lives.",
-      displayer: "Description",
+      type: "icon",
+      key: "icon",
+      displayer: "Icon",
+      value: "icon",
     });
+    this.addProp({
+      type: "array",
+      key: "listItems",
+      displayer: "List Items",
+      value: [
+        {
+          type: "object",
+          key: "listItem",
+          displayer: "List Item",
+          value: [
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Unlimited update and project"
+            },
+          ]
+        }
+
+      ]
+    })
     this.addProp({
       type: "image",
       key: "image",
@@ -56,34 +83,48 @@ class CallToAction4Page extends BaseCallToAction {
   }
 
   render() {
+    const listItems = this.getPropValue("listItems");
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("call-to-action4-page")}>
-            <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
-            <h2 className={this.decorateCSS("description")}>{this.getPropValue("description")}</h2>
-            <div className={this.decorateCSS("buttons")}>
-              <ComposerLink path={this.getPropValue("firstButtonLink")}>
-                <span
-                  className={this.decorateCSS("button")}
-                >
-                  {this.getPropValue("firstButtonText")}
-                </span>
-              </ComposerLink>
-              <ComposerLink path={this.getPropValue("secondButtonLink")}>
-                <span
-                  className={this.decorateCSS("button2")}
-                >
-                  {this.getPropValue("secondButtonText")}
-                </span>
-              </ComposerLink>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <div className={this.decorateCSS("content")}>
+            <Base.VerticalContent className={this.decorateCSS("left-page")}>
+              <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
+              {listItems.map((item: ListItem, index: number) => {
+                console.log("item", item)
+                return (<div className={this.decorateCSS("description")}>
+                  {item.description}dlşşsdl
+                </div>)
+              }
+
+              )
+
+              }
+              <div className={this.decorateCSS("buttons")}>
+                <ComposerLink path={this.getPropValue("firstButtonLink")}>
+                  <span
+                    className={this.decorateCSS("button")}
+                  >
+                    {this.getPropValue("firstButtonText")}
+                  </span>
+                </ComposerLink>
+                <ComposerLink path={this.getPropValue("secondButtonLink")}>
+                  <span
+                    className={this.decorateCSS("button2")}
+                  >
+                    {this.getPropValue("secondButtonText")}
+                  </span>
+                </ComposerLink>
+              </div>
+            </Base.VerticalContent>
+            <div className={this.decorateCSS("right-page")}>
+              <div className={this.decorateCSS("image-container")}>
+                <img src={this.getPropValue("image")} alt="" />
+              </div>
             </div>
           </div>
-          <div className={this.decorateCSS("image-container")}>
-            <img src={this.getPropValue("image")} alt="" />
-          </div>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
