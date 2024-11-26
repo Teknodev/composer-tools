@@ -2,6 +2,7 @@ import * as React from "react";
 import { BaseContent } from "../../EditorComponent";
 import styles from "./content18.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
 
 type ProgressItem = {
   progressTitle: string;
@@ -43,8 +44,8 @@ class Content18 extends BaseContent {
     });
     this.addProp({
       type: "string",
-      key: "badge",
-      displayer: "Badge",
+      key: "subtitle",
+      displayer: "Subtitle",
       value: "WHY CHOOSE US",
     });
     this.addProp({
@@ -201,16 +202,16 @@ class Content18 extends BaseContent {
   }
 
   render() {
-    const badge = this.castToString(this.getPropValue("badge"));
+    const subTitle = this.castToString(this.getPropValue("subtitle"));
     const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
     const itemsLength = this.getPropValue("items").length;
     const image1 = this.getPropValue("image1");
     const image2 = this.getPropValue("image2");
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("page")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <Base.ContainerGrid className={this.decorateCSS("page")}>
             {(image1 || image2) && (
               <div className={this.decorateCSS("left-page")}>
                 {image1 && (
@@ -258,22 +259,22 @@ class Content18 extends BaseContent {
               </div>
             )}
 
-            {(badge || title || description || (itemsLength > 0)) && (
-              <div className={this.decorateCSS("right-page")}>
-                {badge && (
-                  <div className={this.decorateCSS("badge")}>
-                    {this.getPropValue("badge")}
-                  </div>
+            {(subTitle || title || description || (itemsLength > 0)) && (
+              <Base.VerticalContent className={this.decorateCSS("right-page")}>
+                {subTitle && (
+                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                    {this.getPropValue("subtitle")}
+                  </Base.SectionSubTitle>
                 )}
                 {title && (
-                  <div className={this.decorateCSS("title")}>
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
                     {this.getPropValue("title")}
-                  </div>
+                  </Base.SectionTitle>
                 )}
                 {description && (
-                  <p className={this.decorateCSS("description")}>
+                  <Base.SectionDescription className={this.decorateCSS("description")}>
                     {this.getPropValue("description")}
-                  </p>
+                  </Base.SectionDescription>
                 )}
 
                 {itemsLength > 0 && (
@@ -285,27 +286,19 @@ class Content18 extends BaseContent {
                             <div
                               className={this.decorateCSS("progress-title-container")}
                             >
-                              <div
-                                className={this.decorateCSS("progress-title-icon")}
-                              >
-                                <ComposerIcon
-                                  name={item.icon}
-                                  propsIcon={{ className: this.decorateCSS("icon") }}
-                                />
-                              </div>
+                              <ComposerIcon
+                                name={item.icon}
+                                propsIcon={{ className: this.decorateCSS("icon") }}
+                              />
                               <div className={this.decorateCSS("progress-title")}>
                                 {item.progressTitle}
                               </div>
 
                             </div>
-                            <div className={this.decorateCSS("progress-text-container")}>
-                              <div className={this.decorateCSS("progress-text")}>
-                                {item.progressText}
-                              </div>
+                            <div className={this.decorateCSS("progress-text")}>
+                              {item.progressText}
                             </div>
                           </div>
-
-
 
                           {this.castToString(item.progressText) && (
                             <div
@@ -328,11 +321,11 @@ class Content18 extends BaseContent {
                   </div>
 
                 )}
-              </div>
+              </Base.VerticalContent>
             )}
-          </div>
-        </div>
-      </div>
+          </Base.ContainerGrid>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
