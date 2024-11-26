@@ -8,9 +8,10 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
         display: flex;
         box-shadow: var(--box-shadow-active);
         color: var(--composer-font-color-primary);
-        border-radius: var(--composer-border-radius-md);
         margin-bottom: var(--composer-gap-md);
-
+        border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.5);
+        border-radius: var(--composer-border-radius-md);
+        width: fit-content;
         .activeTab:first-child {
           border-top-left-radius: var(--composer-border-radius-md);
           border-bottom-left-radius: var(--composer-border-radius-md);
@@ -28,20 +29,17 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
         .plan-title {
           padding: var(--composer-gap-sm) var(--composer-gap-md);
+          margin: 0;
         }
       }
 
       .up-page {
         .title {
-          color: var(--composer-font-color-primary);
+          content: "";
         }
 
         .badge {
-          color: var(--composer-font-color-primary);
-          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-          border: var(--composer-secondary-color);
-          border-radius: var(--composer-border-radius-xl);
-          padding: var(--composer-gap-sm);
+          content: "";
         }
       }
 
@@ -65,7 +63,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             justify-content: space-between;
             align-items: center;
             border-radius: var(--composer-border-radius-md);
-            gap: var(--composer-gap-sm);
+            gap: var(--composer-gap-md);
 
             &.active {
               background-color: var(--composer-secondary-color);
@@ -78,8 +76,8 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               }
 
               .tag {
-                background-color: var(--composer-font-color-secondary);
-                color: var(--composer-font-color-primary);
+                background-color: var(--composer-font-color-primary);
+                color: var(--composer-font-color-secondary);
                 border: var(--composer-font-color-primary);
               }
 
@@ -115,20 +113,25 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               color: var(--composer-font-color-primary);
 
               .icons {
-                font-size: 1.5rem;
-                color: var(--composer-font-color-primary);
+                font-size: 2rem;
+                color: rgba(var(--composer-font-color-primary-rgb), 0.5);
               }
 
               .plan {
+                font-size: 1.5rem;
                 color: var(--composer-font-color-primary);
               }
             }
 
             .tag {
               color: var(--composer-font-color-primary);
-              border-radius: var(--composer-gap-md);
+              border-radius: var(--composer-border-radius-lg);
               padding: var(--composer-gap-xs) var(--composer-gap-md);
               border: 1px solid;
+              font-size: 1rem;
+              background-color: transparent;
+              color: var(--composer-font-color-primary);
+              border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.5);
             }
 
             .item-price {
@@ -139,8 +142,15 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               color: var(--composer-font-color-primary);
               .price,
               .per {
-                display: flex;
                 padding: var(--composer-gap-xs);
+              }
+
+              .per {
+                opacity: 0.5;
+              }
+
+              .price {
+                font-size: 2rem;
               }
             }
             .per {
@@ -153,26 +163,28 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
           width: 40%;
           background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-secondary) 5%);
           box-shadow: var(--box-shadow-active);
-          padding: var(--composer-gap-md) 0 0 0;
-          border-radius: var(--composer-border-radius-xs);
+          border-radius: var(--composer-border-radius-md);
           display: flex;
 
           .content {
             flex-grow: 1;
             padding: 0;
             max-width: 100%;
+            margin-top: var(--composer-gap-md);
 
             .badge {
-              background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+              background-color: transparent;
+              border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.5);
               color: var(--composer-font-color-primary);
               padding: var(--composer-gap-sm);
               align-self: flex-end;
-              border-radius: var(--composer-gap-xs);
-              margin: var(--composer-gap-md);
+              border-radius: var(--composer-border-radius-sm);
+              margin: 0 var(--composer-gap-md);
+              font-size: 1rem;
             }
             .title {
               color: var(--composer-font-color-primary);
-              padding: 0 var(--composer-border-radius-lg);
+              padding: 0 var(--composer-gap-md);
             }
             .list-body {
               flex-grow: 1;
@@ -214,11 +226,11 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 flex-wrap: wrap;
 
                 .button {
-                  background-color: var(--composer-secondary-color);
+                  background-color: var(--composer-font-color-primary);
                   color: var(--composer-font-color-secondary);
-                  padding: var(--composer-gap-sm) var(--composer-gap-md);
+                  padding: var(--composer-gap-md) var(--composer-gap-lg);
                   border-radius: var(--composer-border-radius-xl);
-                  font-size: 1.5rem;
+                  font-size: 1rem;
                   border: none;
                   cursor: pointer;
                   transition: all 0.3s ease;
@@ -274,6 +286,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               flex-direction: column;
               padding: var(--composer-gap-sm);
               height: auto;
+              gap: 0;
 
               .plan-icons .plan,
               .plan-icons .icons,
@@ -289,6 +302,22 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               .per {
                 margin-right: 0;
               }
+
+              .price {
+                font-size: 1.5rem !important;
+              }
+
+              &.active {
+                background-color: var(--composer-secondary-color);
+                color: var(--composer-font-color-secondary);
+                gap: 0;
+
+                .tag {
+                  background-color: var(--composer-font-color-primary);
+                  color: var(--composer-font-color-secondary);
+                  border: var(--composer-font-color-primary);
+                }
+              }
             }
           }
 
@@ -296,6 +325,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             .body-bottom {
               .buttons {
                 .button {
+                  padding: var(--composer-gap-sm) var(--composer-gap-md) !important;
                   font-size: 1rem !important;
                 }
               }
