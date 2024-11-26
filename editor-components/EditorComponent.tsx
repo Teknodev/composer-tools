@@ -22,34 +22,35 @@ type GetPropValueProperties = {
   suffix?: PreSufFix;
   prefix?: PreSufFix;
 };
-type TypeCSSProp = { [key: string]: { id: string; class: string }[] };
+type TypeCSSProp = { [key: string]: { id: string; class: string; }[]; };
 export type iComponent = {
   render(): any;
   getName(): string;
   getProps(): TypeUsableComponentProps[];
   getPropValue(propName: string, properties?: GetPropValueProperties): TypeUsableComponentProps;
-  getExportedCSSClasses(): { [key: string]: string };
+  getExportedCSSClasses(): { [key: string]: string; };
   getCSSClasses(sectionName?: string | null): any;
   addProp(prop: TypeUsableComponentProps): void;
   setProp(key: string, value: any): void;
-  setCSSClasses(key: string, value: { id: string; class: string }[]): void;
+  setCSSClasses(key: string, value: { id: string; class: string; }[]): void;
   decorateCSS(cssValue: string): string;
   getCategory(): CATEGORIES;
-  id: string
+  id: string;
+  customStates: any
 };
 type AvailablePropTypes =
-  | { type: "string"; value: string }
-  | { type: "number"; value: number }
-  | { type: "boolean"; value: boolean }
-  | { type: "page"; value: string }
-  | { type: "array"; value: TypeUsableComponentProps[] }
-  | { type: "object"; value: TypeUsableComponentProps[] }
-  | { type: "image"; value: string }
-  | { type: "video"; value: string }
-  | { type: "select"; value: string }
-  | { type: "color"; value: string }
-  | { type: "icon"; value: string }
-  | { type: "location"; value: TypeLocation };
+  | { type: "string"; value: string; }
+  | { type: "number"; value: number; }
+  | { type: "boolean"; value: boolean; }
+  | { type: "page"; value: string; }
+  | { type: "array"; value: TypeUsableComponentProps[]; }
+  | { type: "object"; value: TypeUsableComponentProps[]; }
+  | { type: "image"; value: string; }
+  | { type: "video"; value: string; }
+  | { type: "select"; value: string; }
+  | { type: "color"; value: string; }
+  | { type: "icon"; value: string; }
+  | { type: "location"; value: TypeLocation; };
 
 export type TypeReactComponent = {
   type: string;
@@ -62,11 +63,11 @@ export type TypeUsableComponentProps = {
   id?: string;
   key: string;
   displayer: string;
-  additionalParams?: { selectItems?: string[]; maxElementCount?: number };
+  additionalParams?: { selectItems?: string[]; maxElementCount?: number; };
   max?: number;
 } & AvailablePropTypes & {
-    getPropValue?: (propName: string, properties?: GetPropValueProperties) => any;
-  };
+  getPropValue?: (propName: string, properties?: GetPropValueProperties) => any;
+};
 
 export enum CATEGORIES {
   NAVIGATOR = "navigator",
@@ -90,9 +91,10 @@ export enum CATEGORIES {
   LOCATION = "Location",
 }
 
-export abstract class Component extends React.Component<{}, { states: any; componentProps: any }> implements iComponent {
+export abstract class Component extends React.Component<{}, { states: any; componentProps: any; }> implements iComponent {
   private styles: any;
   private _props: any;
+  public customStates: any = {};
   public id: string;
   protected category: CATEGORIES;
   abstract getName(): string;
@@ -211,15 +213,17 @@ export abstract class Component extends React.Component<{}, { states: any; compo
   }
 
   setComponentState(key: string, value: any): void {
-    this.state.states[key] = value;
+    this.customStates[key] = value;
     EventEmitter.emit("forceReload");
+    EventEmitter.emit("stateChanged", {id: this.id, key, value});
+
   }
 
   getComponentState(key: string): any {
-    return this.state.states[key];
+    return this.customStates[key];
   }
 
-  setCSSClasses(key: string, value: { id: string; class: string }[]) {
+  setCSSClasses(key: string, value: { id: string; class: string; }[]) {
     this.state.componentProps.cssClasses[key] = value;
     this.setState({ componentProps: this.state.componentProps });
   }
