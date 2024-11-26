@@ -1,94 +1,119 @@
-.container{
-    width: 100%;
-    padding: 50px 0;
-    .max-content{
-        max-width: var(--composer-content-width);
-        margin: auto;
-        .sub-title{
-            width: 50%;
-            font-size: 1.25rem;
-            font-weight: bold;
-            margin: auto;
-            color: var(--composer-secondary-color);
-            text-align: center;
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+
+.container {  
+    .max-content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-xl);
+        .heading{
+            .subtitle {content: ""}
+            .title {content: ""}
+            .description {content: ""}
         }
-        .header{
-            width: 50%;
-            font-size: 5rem;
-            font-weight: bold;
-            margin: auto;
-            color: var(--composer-primary-color);
-            text-align: center;
-        }
-        .tabs{
+  
+        .tabs {
             position: relative;
             width: 100%;
-            .tab-buttons{
+            display: flex;
+            flex-direction: column;
+        
+            .tab-buttons {
                 width: 100%;
                 display: flex;
-                justify-content: flex-start;
-                gap: 40px;
+                gap: var(--composer-gap-lg);
                 border-bottom: 1px solid var(--composer-tertiary-color);
-                margin-bottom: 40px;
-                .tab-button{
+                margin: var(--composer-gap-md) 0px var(--composer-gap-xl); 
+        
+                .tab-button {
+                    flex: 1;
+                    text-align: center;
                     color: var(--composer-font-color-primary);
                     font-weight: bold;
-                    padding: 10px 0px;
-                    font-size: 1.75rem;
-                    font-weight: bold;
-                    &.active{
+                    padding: var(--composer-gap-sm) 0;
+                    font-size: 1.3rem;
+        
+                    &.active {
                         border-bottom: 2px solid var(--composer-secondary-color);
                         color: var(--composer-secondary-color);
                     }
                 }
             }
-            .tab{
+  
+            .tab {
                 width: 100%;
-                display: flex;
-                opacity: 0;
-                transition: all 0.5s ease-out;
                 display: none;
-                &.active{
+                opacity: 0;
+                transition: opacity 0.5s ease-out;
+        
+                &.active {
                     display: flex;
-                }
-                &.start{
                     opacity: 1;
                 }
-                .content{
-                    padding: 0px 60px 0px 0px;
-                    width: 50%;
+        
+                .content {
+                    flex: 1;
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
                     align-items: flex-start;
-                    .title{
-                        font-weight: bold;
-                        font-size: 2.5rem;
-                        line-height: 1.3;
-                    }
-                    .description{
-                        padding: 30px 0px;
-                        font-size: 1.5rem;
-                        line-height: 1.5;
-                    }
-                    .button{
-                        border-radius: var(--composer-border-radius);
-                        background-color: var(--composer-secondary-color);
+                    gap: var(--composer-gap-lg);
+        
+                    .title {content: ""}
+                    .description {content: ""}
+        
+                    .button {
+                        border-radius: var(--composer-border-radius-sm);
+                        background-color: var(--composer-primary-color);
                         color: var(--composer-font-color-secondary);
                         border: none;
-                        padding: 15px;
-                        font-size: 1.5rem;
+                        padding: var(--composer-gap-sm) var(--composer-gap-md);
                         display: inline-block;
+                        cursor: pointer;
                     }
                 }
-                .image-container{
-                    width: 50%;
-                    .image{
+        
+                .image-container {
+                    flex: 1;
+                    align-self: center;
+                    .image {
                         width: 100%;
-                        border-radius: var(--composer-border-radius);
+                        aspect-ratio: 1;
+                        object-fit: cover;
+                        border-radius: var(--composer-border-radius-md);
+                    }
+                }
+            }
+      }
+    }
+}
+
+@media only screen and (max-width: $composer-tablet-width-lg) {
+
+    .container{
+        .max-content{
+            .tabs{
+                .tab{
+                    flex-direction: row;
+                }
+            }
+        }
+    }
+
+}
+  
+@media only screen and (max-width: $composer-phone-width) {
+    .container{
+        .max-content{
+            .tabs{
+                .tab{
+                    gap: var(--composer-gap-sm);
+                    flex-direction: column-reverse;
+                    .content{
+                        gap: var(--composer-gap-sm);
                     }
                 }
             }
         }
     }
 }
+  
