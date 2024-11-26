@@ -1,29 +1,17 @@
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+
 .container {
-  width: 100%;
-  background-color: var(--composer-html-background);
-  height: auto;
-  background-size: cover;
-  background-position: center center;
-  display: flex;
-  padding: 20px 50px;
-
   .max-content {
-    max-width: var(--composer-content-width);
-    width: 100%;
-    margin: auto;
-    padding: 0 20px;
-    flex: 2 1;
-
     .video {
       position: fixed;
       width: 100vw;
       height: 100vh;
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(var(--composer-font-color-primary-rgb), 0.8);
       top: 0;
       left: 0;
       display: grid;
       place-items: center;
-      padding: 20px;
+      padding: var(--composer-gap-md);
       z-index: 9;
 
       .player {
@@ -35,27 +23,12 @@
     }
 
     .content {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 40px;
-
       .text-side {
-        text-align: start;
-        width: 100%;
-
-        .title-text {
-          margin: 0 0 20px;
-          color: var(--composer-font-color-primary);
-          font-size: 3rem;
-          font-weight: 600;
-          line-height: 1.2;
-          text-transform: capitalize;
-        }
+        flex: 1;
+        justify-content: center;
+        .title-text {content: ""}
 
         .description-div {
-          margin-bottom: 30px;
           display: flex;
           align-items: center;
           position: relative;
@@ -67,37 +40,31 @@
             left: 0;
             top: 0;
             bottom: 0;
-            margin-right: 15px;
+            margin-right: var(--composer-gap-sm);
           }
 
           .description {
             width: 100%;
-            margin-left: 20px;
-            font-size: 2rem;
-            font-weight: 300;
-            line-height: 1.5;
-            color: var(--composer-font-color-primary);
+            margin: 0px 0px 0px var(--composer-gap-md);
           }
         }
 
         .description-author {
           display: flex;
           align-items: center;
-          margin-bottom: 30px;
+          gap: var(--composer-gap-md);
 
           .author-icon {
             flex-shrink: 0;
             color: var(--composer-primary-color);
-            background-color: var (--composer-html-background) !important;
             width: 80px;
             height: 80px;
-            border-radius: 50%;
+            border-radius: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 1px 2px 30px 0px var(--composer-tertiary-color);
-
-            margin-right: 20px;
+            box-shadow: var(--composer-box-shadow);
+            margin: var(--composer-gap-md) 0px;
 
             .author-icon-photo {
               width: 40px;
@@ -106,11 +73,10 @@
           }
 
           .author-info {
-
             .author-description-text {
               color: var(--composer-font-color-primary);
               font-weight: 300;
-              margin: 0 0 5px;
+              margin: 0 0 var(--composer-gap-xs);
             }
 
             .author-name-text {
@@ -125,23 +91,21 @@
           display: flex;
           flex-direction: row;
           flex-wrap: wrap;
-          gap: 10px;
+          gap: var(--composer-gap-sm);
           width: 100%;
-        
+
           .button {
+            
             display: flex;
-            background-color: var(--composer-secondary-color);
+            background-color: var(--composer-primary-color);
             color: var(--composer-font-color-secondary);
-            font-size: 14px;
-            letter-spacing: 1px;
-            padding: 12px 20px;
-            text-align: center;
-            text-transform: uppercase;
+            font-size: 1rem;
+            padding: var(--composer-gap-sm) var(--composer-gap-md);
             transition: background-color 0.3s ease;
-            border: none;
+            border: 1px solid transparent;
+            border-radius: var(--composer-border-radius-sm);
             cursor: pointer;
-            min-width: 150px;
-        
+
             &:hover {
               color: var(--composer-secondary-color);
               background: transparent;
@@ -149,23 +113,19 @@
             }
           }
         }
-        
-        
       }
 
       .video-part {
-        justify-content: center;
+        flex: 1;
+        display: flex;
+        aspect-ratio: 1;
         position: relative;
-        width: 100%;
-        height: 100%;
-        max-height: 600px;
-        overflow: hidden;
         align-self: center;
-
         .video-images {
           width: 100%;
-          height: 100%;
+          aspect-ratio: 1;
           object-fit: cover;
+          border-radius: var(--composer-border-radius-md);
         }
 
         .play-part {
@@ -178,7 +138,6 @@
           align-items: center;
           justify-content: center;
 
-
           .play-container {
             position: relative;
             display: flex;
@@ -187,7 +146,7 @@
             width: clamp(50px, 10vw, 70px);
             height: clamp(50px, 10vw, 70px);
             background-color: transparent;
-            border-radius: 50%;
+            border-radius: var(--composer-border-radius-xl);
 
             .outer-circle {
               position: absolute;
@@ -207,15 +166,12 @@
               background-color: var(--composer-html-background);
               opacity: 0.9;
               border-radius: 50%;
-              align-items: center;
-              justify-content: center;
               animation: pulse 1.5s infinite;
               z-index: 2;
             }
 
             .play-image {
               color: var(--composer-primary-color);
-
               width: 70%;
               height: 70%;
               z-index: 3;
@@ -228,9 +184,16 @@
   }
 }
 
-.container .max-content .content {
-  flex-direction: row;
-  align-items: flex-start;
+@media screen and (max-width: $composer-tablet-width-lg) {
+  .container{
+    .max-content{
+      .content {
+        .video-part{
+          width: 100%;
+        }
+      }
+    }
+  }
 }
 
 @keyframes pulse {
@@ -244,90 +207,5 @@
 
   100% {
     transform: scale(1);
-  }
-}
-
-@media (max-width: 950px) {
-  .container .max-content .content {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .container .max-content .content .video-part .play-part .play-container {
-    width: clamp(40px, 8vw, 60px);
-    height: clamp(40px, 8vw, 60px);
-  }
-
-  .container {
-    .max-content {
-      .content {
-        .text-side {
-          .button-container {
-            flex-wrap: nowrap;
-            >div {
-              width: 100% !important;
-              button {
-                width: 100%;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-@media (max-width: 480px) {
-  .container {
-    padding: 30px 0;
-
-    .max-content {
-      .video {
-        .player {
-          width: 80%;
-        }
-      }
-    }
-  }
-
-  .container .max-content .content .video-part .play-part .play-container {
-    width: clamp(30px, 7vw, 50px);
-    height: clamp(30px, 7vw, 50px);
-  }
-
-  .container .max-content .content .video-part {
-    aspect-ratio: 4 / 3;
-
-    .play-part {
-      .play-container {
-        width: 50px;
-        height: 50px;
-
-        .outer-circle {
-          width: 65px;
-          height: 65px;
-        }
-
-        .inner-circle {
-          width: 45px;
-          height: 45px;
-        }
-
-        .play-image {
-          width: 30px;
-          height: 30px;
-        }
-      }
-    }
-  }
-
-  .container .max-content .content .text-side .description-author .author-icon {
-    width: 60px;
-    height: 60px;
-
-    .author-icon-photo {
-      width: 30px;
-      height: 30px;
-    }
   }
 }
