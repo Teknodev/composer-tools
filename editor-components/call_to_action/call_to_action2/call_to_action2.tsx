@@ -52,7 +52,7 @@ class CallToAction2Page extends BaseCallToAction {
               type: "icon",
               key: "icon",
               displayer: "Icon",
-              value: "FaArrowRight",
+              value: "MdOutlineKeyboardArrowRight",
             },
           ],
         },
@@ -145,12 +145,12 @@ class CallToAction2Page extends BaseCallToAction {
                         className={this.decorateCSS("button")}
                       >
                         <ComposerLink path={button.link}>
-                          {button.icon && (
-                            <ComposerIcon name={button.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
-                          )}
                           <div className={this.decorateCSS("text")}>
                             {button.text}
                           </div>
+                          {button.icon && (
+                            <ComposerIcon name={button.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                          )}
                         </ComposerLink>
                       </div>
                     ))}

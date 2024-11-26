@@ -1,4 +1,14 @@
 @import '../../../composer-base-components/base/utitilities/viewports.module.scss';
+@keyframes button {
+  70%{
+    box-shadow: 0 0 0 var(--glow-size, 15px) var(--composer-primary-color);
+    opacity: 0;
+  }
+  100% {
+    box-shadow: 0 0 0 var(--composer-primary-color);
+    opacity: 0;
+  }
+}
 .container {
   .background{
     top: 0px;
@@ -49,7 +59,7 @@
           align-items: stretch;          
           .button {
             padding: var(--composer-gap-sm) var(--composer-gap-md);
-            background-color: var(--composer-secondary-color);
+            background-color: var(--composer-font-color-secondary);
             display: flex;
             border: 1px solid transparent;
             >div{
@@ -58,20 +68,26 @@
             }
             .text{
               flex: 1;
-              color: var(--composer-font-color-primary);
+              color: var(--composer-primary-color);
               display: flex;
               align-items: center;
             }
             .icon{
-              color: var(--composer-font-color-primary);
-              width: 30px;
-              height: 30px;
+              color: var(--composer-primary-color);
+              width: 20px;
+              height: 20px;
             }
           
             &:hover {
               color: var(--composer-font-color-secondary);
               border: 1px solid var(--composer-font-color-secondary);
               background-color: transparent;
+              .text{
+                color: var(--composer-font-color-secondary);
+              }
+              .icon{
+                color: var(--composer-font-color-secondary);
+              }
             }
 
           }
@@ -83,27 +99,69 @@
         background-size: cover;
         position: relative;
         cursor: pointer;
-        min-height: 500px;
+        min-height: 700px;
         &:hover {
           filter: brightness(1.2);
         }
-      
+
         .play-icon-box {
           position: absolute;
           left: 50%;
           top: 50%;
           transform: translate(-50%, -50%);
           border-radius: 50%;
-          background-color: var(--composer-secondary-color);
+          background-color:var(--composer-font-color-secondary);
           width: 80px;
           height: 80px;
           display: grid;
           place-items: center;
           cursor: pointer;
+          transition: all 0.4s ease;
       
           .play-icon {
-            color: var(--composer-font-color-secondary);
+            color: var(--composer-primary-color);
             font-size: 30px;
+          }
+          &::before{
+            color: var(--composer-primary-color);
+            animation-name: button;
+            animation-duration: 3s;
+            animation-iteration-count: infinite;
+            animation-delay: 0.9s;
+            content: " ";
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            box-shadow: 0 0 0 0 var(--composer-primary-color);
+            opacity: 0.6;
+            z-index: -1;
+          }
+          &::after{
+            color: var(--composer-primary-color);
+            animation-name: button;
+            animation-duration: 3s;
+            animation-iteration-count: infinite;
+            animation-delay: 0.3s;
+            content: " ";
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            box-shadow: 0 0 0 0 var(--composer-primary-color);
+            opacity: 0.6;
+            z-index: -1;
+          }
+          &:hover{
+            background-color:var(--composer-primary-color);
+            .play-icon {
+              color: var(--composer-font-color-secondary);
+            }
+
           }
         }
    
@@ -158,6 +216,9 @@
   .container{
     .max-content {
       .wrapper{
+        .image-container {
+          min-height: 500px;      
+        }
         .overlay {
           .video-container {
             width: 90%;
@@ -177,10 +238,16 @@
           gap: var(--composer-gap-md);
           .button-container{
             justify-content: center;
+            width: 100%;
+            .button{
+              width: 100%;
+              justify-content: center;
+            }
           }
         }
         .image-container{
           width: 100%;
+          min-height: 300px;
         }
       }
     }
