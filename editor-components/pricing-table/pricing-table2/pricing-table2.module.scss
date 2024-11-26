@@ -1,12 +1,14 @@
+@import "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss";
+
 .container {
   .max-content {
     .table {
       .up-content {
         .title {
-          color: var(--composer-font-color-primary);
+          content: "";
         }
         .subtitle {
-          color: var(--composer-font-color-primary);
+          content: "";
         }
         .description {
           color: var(--composer-font-color-primary);
@@ -28,7 +30,7 @@
 
               .card-title {
                 letter-spacing: 1px;
-                color: var(--composer-font-color-primary);
+                color: var(--composer-font-color-secondary);
               }
 
               .card-price {
@@ -37,12 +39,12 @@
                 gap: var(--composer-gap-sm);
 
                 .price {
-                  color: var(--composer-font-color-primary);
+                  color: var(--composer-font-color-secondary);
                   letter-spacing: 1px;
                 }
 
                 .duration {
-                  color: var(--composer-font-color-primary);
+                  color: var(--composer-font-color-secondary);
                 }
               }
             }
@@ -88,20 +90,21 @@
                   }
 
                   .list-icon {
-                    width: 24px;
-                    height: 24px;
+                    width: var(--composer-gap-md);
+                    height: var(--composer-gap-md);
+                    color: var(composer-primary-color);
                   }
                 }
               }
 
               .card-button {
                 width: 100%;
-                padding: var(--composer-gap-xs) var(--composer-gap-sm);
+                padding: var(--composer-gap-sm) var(--composer-gap-md);
                 border-radius: var(--composer-border-radius-xl);
                 background-color: transparent;
-                color: var(--composer-secondary-color);
+                color: var(--composer-primary-color);
                 font-size: 1.5rem;
-                border: 2px solid var(--composer-secondary-color);
+                border: 2px solid var(--composer-primary-color);
                 cursor: pointer;
                 transition: all 0.3s ease-in-out;
 
@@ -118,7 +121,7 @@
   }
 }
 
-@media only screen and (max-width: 475px) {
+@container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
       .table {

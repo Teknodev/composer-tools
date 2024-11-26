@@ -659,7 +659,7 @@ class PricingTable2 extends BasePricingTable {
             <Base.ListGrid
               gridCount={{
                 pc: this.getPropValue("itemCount"),
-                tablet: 1,
+                tablet: 2,
                 phone: 1,
               }}
               className={this.decorateCSS("item-div")}
