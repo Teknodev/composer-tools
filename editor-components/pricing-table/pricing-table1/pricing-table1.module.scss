@@ -9,8 +9,8 @@
       flex-direction: column;
       width: 100%;
       @media only screen and (max-width: 800px) {
-        .items{
-          .item-card{
+        .items {
+          .item-card {
             width: 100% !important;
             flex: unset !important;
             border: 1px solid var(--composer-primary-color);
@@ -31,7 +31,6 @@
         align-items: center;
         width: 100%;
 
-
         .item-card {
           display: flex;
           flex-direction: column;
@@ -50,12 +49,7 @@
             opacity: 0;
             width: 100%;
             text-align: center;
-            background-image: linear-gradient(
-              to right,
-              var(--composer-font-color-primary),
-              var(--composer-secondary-color)
-            );
-
+            background-image: linear-gradient(to right, var(--composer-primary-color), var(--composer-secondary-color));
             padding: var(--composer-gap-sm) 0;
 
             &.active {
@@ -72,14 +66,13 @@
             padding: var(--composer-gap-xs) var(--composer-gap-md);
             border-radius: var(--composer-border-radius-xl);
             font-weight: 500;
-            font-size: 0.75rem;
+            font-size: 1rem;
           }
 
           .card-title {
             margin: 0 0 var(--composer-gap-sm) 0;
             font-size: 1.4rem;
             color: var(--composer-font-color-primary);
-
           }
 
           .card-list {
