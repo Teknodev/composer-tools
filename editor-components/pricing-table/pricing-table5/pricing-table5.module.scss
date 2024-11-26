@@ -1,3 +1,5 @@
+@import "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss";
+
 .container {
   .max-content {
     .content {
@@ -15,13 +17,10 @@
 
       .left-content {
         .subtitle {
-          padding: 0.5rem;
-          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-          border-radius: var(--composer-border-radius-xl);
-          color: var(--composer-primary-color);
+          content: "";
         }
         .title {
-          color: var(--composer-font-color-primary);
+          content: "";
         }
 
         .description {
@@ -37,7 +36,7 @@
             display: flex;
 
             .button-text {
-              padding: var(--composer-gap-sm) var(--composer-gap-md);
+              padding: var(--composer-gap-md) var(--composer-gap-lg);
               min-width: 150px;
               width: 100%;
               border-radius: var(--composer-border-radius-xl);
@@ -49,7 +48,8 @@
         }
       }
 
-      .right-content {
+      .right-content,
+      .right-content-single {
         justify-content: center;
         gap: var(--composer-gap-md);
 
@@ -81,6 +81,8 @@
             }
 
             .plan-upper {
+              margin: 0;
+              margin-top: var(--composer-gap-md);
               .icon-box {
                 svg {
                   margin-top: 0px;
@@ -98,11 +100,12 @@
               margin: 0;
             }
 
-            .icon-box {
+            .icon-box,
+            .icon-box-active {
               color: var(--composer-font-color-secondary);
               background-color: var(--composer-font-color-primary);
-              width: 25px;
-              height: 25px;
+              width: var(--composer-gap-md);
+              height: var(--composer-gap-md);
               display: flex;
               justify-content: center;
               align-items: center;
@@ -111,11 +114,22 @@
                 margin-top: 2px;
               }
             }
+
+            .icon-box-active {
+              background-color: var(--composer-font-color-primary);
+              opacity: 0.5;
+              svg {
+                margin-top: 1px;
+              }
+            }
           }
           .plan-price-box,
           .plan-description {
             height: 0;
             overflow: hidden;
+          }
+          .plan-upper {
+            margin: var(--composer-gap-sm);
           }
           .plan-price-box {
             display: flex;
@@ -124,12 +138,17 @@
 
             .labels {
               display: flex;
+              align-items: center;
               gap: var(--composer-gap-sm);
+
+              .price {
+                font-size: 2rem;
+              }
             }
 
             .plan-button {
               background-color: transparent;
-              border: 1px solid var(--composer-font-color-secondary);
+              border: 1px solid rgba(var(--composer-font-color-secondary-rgb), 0.5);
               border-radius: var(--composer-gap-lg);
               padding: var(--composer-gap-sm) var(--composer-gap-md);
               cursor: pointer;
@@ -143,18 +162,22 @@
           }
         }
       }
+
+      .right-content-single {
+        width: 100%;
+      }
     }
   }
 }
 
-@media only screen and (max-width: 768px) {
+@container (max-width: #{$composer-tablet-width-lg}) {
   .container {
     position: relative;
 
     .max-content {
       .content {
         flex-direction: column;
-        gap: var(--composer-gap-sm);
+        gap: var(--composer-gap-lg) !important;
 
         .left-content,
         .right-content {
@@ -202,7 +225,7 @@
   }
 }
 
-@media only screen and (max-width: 390px) {
+@container (max-width: #{$composer-phone-width}) {
   .container {
     position: relative;
     justify-content: space-between;
@@ -230,9 +253,14 @@
             .plan-price-box {
               display: flex;
               .plan-button {
-                border: 2px solid var(--composer-tertiary-color);
                 font-size: 1rem;
                 text-align: center;
+              }
+
+              .labels {
+                .price {
+                  font-size: 1rem;
+                }
               }
             }
           }
