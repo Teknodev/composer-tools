@@ -1,6 +1,8 @@
 import * as React from "react";
 import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action5.module.scss";
+import { Base } from "../../../composer-base-components/base/base";
+import { Form, Formik } from "formik";
 
 type Field = {
   placeholder: JSX.Element;
@@ -17,19 +19,24 @@ class CallToAction5Page extends BaseCallToAction {
       displayer: "Background Image",
       value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66bb46cb3292c6002b23faeb?alt=media"
     });
-
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true
+    });
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "NEWSLETTER SIGN UP",
+      value: "Start building today",
     });
 
     this.addProp({
       type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "JOIN FOR NEW UPDATES.",
+      key: "description",
+      displayer: "Description",
+      value: "Get immediate and full access to our solution for 10 days completely free. Onlt $19 per month afterwards.",
     });
 
     this.addProp({
@@ -41,8 +48,8 @@ class CallToAction5Page extends BaseCallToAction {
 
     this.addProp({
       type: "object",
-      key: "email",
-      displayer: "E-mail Field",
+      key: "input",
+      displayer: "Input",
       value: [
         {
           type: "string",
@@ -50,44 +57,6 @@ class CallToAction5Page extends BaseCallToAction {
           displayer: "Placeholder",
           value: "Enter e-mail address"
         },
-        {
-          type: "boolean",
-          key: "isVisible",
-          displayer: "Is visible?",
-          value: true
-        },
-        {
-          type: "boolean",
-          key: "isRequired",
-          displayer: "Is required?",
-          value: true
-        }
-      ]
-    });
-
-    this.addProp({
-      type: "object",
-      key: "phone",
-      displayer: "Phone Field",
-      value: [
-        {
-          type: "string",
-          key: "placeholder",
-          displayer: "Placeholder",
-          value: "Enter phone number"
-        },
-        {
-          type: "boolean",
-          key: "isVisible",
-          displayer: "Is visible?",
-          value: true
-        },
-        {
-          type: "boolean",
-          key: "isRequired",
-          displayer: "Is required?",
-          value: true
-        }
       ]
     });
   }
@@ -96,67 +65,87 @@ class CallToAction5Page extends BaseCallToAction {
     return "Call To Action 5";
   }
 
+
   render() {
 
     const titleExist = this.getPropValue("title", { as_string: true });
-    const subtitleExist = this.getPropValue("subtitle", { as_string: true });
+    const subtitleExist = this.getPropValue("description", { as_string: true });
     const buttonTextExist = this.getPropValue("buttonText", { as_string: true });
-
-    const email = this.castToObject<Field>("email");
-    const phone = this.castToObject<Field>("phone");
-
+    const input = this.castToObject<Field>("input");
     const backgroundImage = this.getPropValue("background");
-
-    const insertBackground = backgroundImage
-      ? {
-        background: `url(${backgroundImage})`,
-        backgroundPosition: "center",
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat"
-      }
+    const insertBackground = backgroundImage ? {
+      background: `url(${backgroundImage})`,
+      backgroundPosition: "center",
+      backgroundSize: "cover",
+      backgroundRepeat: "no-repeat"
+    }
       : {};
 
     return (
-      <div className={this.decorateCSS("container")}
+      <Base.Container
+        className={`${this.getPropValue("background") ? this.decorateCSS("container") :
+          this.decorateCSS("container-no-image")} ${this.getPropValue("overlay") ? this.decorateCSS("overlay-active") : ""}`}
         style={insertBackground}
       >
-        <div className={this.decorateCSS("max-content")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(titleExist || subtitleExist) &&
-            <div className={this.decorateCSS("header")}>
+            <Base.VerticalContent className={this.getPropValue("background") ? this.decorateCSS("header") : this.decorateCSS("header-no-image")}>
               {titleExist && (
-                <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
+                <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
               )}
               {subtitleExist && (
-                <p className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</p>
+                <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>
               )}
-            </div>
+            </Base.VerticalContent>
           }
-          {(email.isVisible || phone.isVisible || buttonTextExist) &&
-            <div className={`${this.decorateCSS("newsletter")} 
-              ${email.isVisible && phone.isVisible ? this.decorateCSS("vertical") : ""}`}
-            >
-              {(email.isVisible || phone.isVisible) &&
+          {(input.isVisible || buttonTextExist) &&
+            <div>
+              <Formik
+                initialValues={{ email: "" }}
+                onSubmit={(data, { resetForm }) => {
+                  console.log("Submitted Data:", data);
+                  this.insertForm("Contact Us", data);
+                  resetForm();
+                }}
+              >
+                {({ handleChange, values }) => (
+                  <Form className={this.decorateCSS("newsletter")}>
+                    <div className={this.decorateCSS("inputs")}>
+                      <input
+                        placeholder="Placeholder"
+                        type="text"
+                        onChange={handleChange}
+                        value={values.email}
+                        name="email"
+                        className={this.getPropValue("background") ? this.decorateCSS("input") : this.decorateCSS("input-no-image")}
+                      />
+                    </div>
+                    <button
+                      className={this.decorateCSS("submit-button")}
+                      type="submit"
+                    >
+                      {this.getPropValue("buttonText")}
+                    </button>
+                  </Form>
+                )}
+              </Formik>
+              {/* <div className={this.decorateCSS("newsletter")}>
                 <div className={this.decorateCSS("inputs")}>
-                  {email.isVisible &&
-                    <input className={this.decorateCSS("input")} type="email" placeholder={this.castToString(email.placeholder)} required={email.isRequired} />
-                  }
-                  {phone.isVisible &&
-                    <input className={this.decorateCSS("input")} type="tel" placeholder={this.castToString(phone.placeholder)} required={phone.isRequired} />
-                  }
+                  <input className={this.decorateCSS("input")} type="email" placeholder={this.castToString(input.placeholder)} required={input.isRequired} />
                 </div>
-              }
-              {buttonTextExist &&
-                <button
-                  className={this.decorateCSS("submit-button")}
-                  type="submit"
-                >
-                  {this.getPropValue("buttonText")}
-                </button>
-              }
+                {buttonTextExist &&
+                  <button
+                    className={this.decorateCSS("submit-button")}
+                    type="submit"
+                  >
+                    {this.getPropValue("buttonText")}
+                  </button>
+                }
+              </div> */}
             </div>
           }
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
