@@ -36,10 +36,17 @@ class Content18 extends BaseContent {
 
     });
     this.addProp({
+      type: "icon",
+      key: "closeIcon",
+      displayer: "Close Icon",
+      value: "IoClose"
+
+    });
+    this.addProp({
       type: "page",
       displayer: "Video",
       key: "video",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e75d50181a1002c334f4f?alt=media&timestamp=1719563750188"
+      value: ""
     });
     this.addProp({
       type: "string",
@@ -195,6 +202,7 @@ class Content18 extends BaseContent {
       ],
     });
     this.setComponentState("is_video_visible", false);
+    this.setComponentState("isVideoPlayerDone", false);
   }
   getName(): string {
     return "Content 18";
@@ -207,6 +215,7 @@ class Content18 extends BaseContent {
     const itemsLength = this.getPropValue("items").length;
     const image1 = this.getPropValue("image1");
     const image2 = this.getPropValue("image2");
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
@@ -224,37 +233,52 @@ class Content18 extends BaseContent {
                 )}
                 {image2 && (
                   <div className={image1 ? this.decorateCSS("down-image") : this.decorateCSS("without-image1")}>
+
                     <img
                       className={this.decorateCSS("image2")}
                       src={this.getPropValue("image2")}
                       alt={this.getPropValue("image2")}
                     />
-                    <div className={this.decorateCSS("player-container")} onClick={() => {
-                      this.setComponentState("is_video_visible", true)
-                    }}>
+
+                    <div
+                      className={this.decorateCSS("player-container")}
+                      onClick={() => this.setComponentState("is_video_visible", !this.getComponentState("is_video_visible"))}
+                    >
                       <div className={this.decorateCSS("icon-container")}>
                         <ComposerIcon name={this.getPropValue("playIcon")} propsIcon={{ className: this.decorateCSS("icon") }} />
                       </div>
                     </div>
-                    {this.getComponentState("is_video_visible") && (
-                      <div
-                        className={this.decorateCSS(this.getPropValue("image1") ? "down-image-video" : "without-image1")}
-                        onClick={() => this.setComponentState("is_video_visible", false)}
-                      >
-                        <div className={this.decorateCSS("player")}>
-                          <video
-                            onClick={(event) => event.stopPropagation()}
-                            controls
-                            className={this.decorateCSS("image2")}
-                            src={this.getPropValue("video")}
-                          ></video>
-                        </div>
 
+                    {this.getPropValue("video") && (
+                      <div className={this.decorateCSS("player-image")}>
+                        {this.getComponentState("is_video_visible") && (
+                          <div
+                            className={this.decorateCSS(this.getPropValue("image1") ? "down-image-video" : "without-image1")}
+                          >
+                            <div className={this.decorateCSS("player")}>
+                              <iframe
+                                className={this.decorateCSS("image2")}
+                                src={this.getPropValue("video")}
+                              >
+                              </iframe>
+                              <div
+                                className={this.decorateCSS("click-overlay")}
+                              >
+                                <div
+                                  onClick={() => {
+                                    this.setComponentState("is_video_visible", false);
+                                  }}>
+                                  <ComposerIcon name={this.getPropValue("closeIcon")} propsIcon={{ className: this.decorateCSS("close-icon") }} ></ComposerIcon>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        )}
                       </div>
                     )}
-
                   </div>
                 )}
+
               </div>
             )}
 
@@ -304,9 +328,6 @@ class Content18 extends BaseContent {
                               </div>
                             </div>
                           </div>
-
-
-
                           {this.castToString(item.progressText) && (
                             <div
                               className={this.decorateCSS("progress-bar-container")}
@@ -332,7 +353,7 @@ class Content18 extends BaseContent {
             )}
           </div>
         </div>
-      </div>
+      </div >
     );
   }
 }
