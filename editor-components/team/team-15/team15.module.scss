@@ -106,7 +106,7 @@
                 transform: scaleY(0);
                 transition: height 0.5s, gap 0.5s;
                 -webkit-transition: all 0.5s linear;
-                background-color: var(--composer-font-color-primary);
+                background-color: white;
                 border-radius: var(--composer-border-radius-sm);
                 padding: calc(3 * var(--composer-gap-xs));
                 margin-bottom: var(--composer-gap-sm);
@@ -119,9 +119,9 @@
                 justify-content: center;
 
                 .icon {
-                  width: 0;
-                  height: 0;
-                  color: var(--composer-font-color-primary);
+                  width: var(--composer-gap-md);
+                  height: var(--composer-gap-md);
+                  color: black;
                 }
               }
 
@@ -164,7 +164,7 @@
                   height: var(--composer-gap-md);
                   object-fit: cover;
                   position: relative;
-                  color: var(--composer-font-color-secondary);
+                  color: black;
                   &:hover {
                     color: var(--composer-primary-color);
                   }
