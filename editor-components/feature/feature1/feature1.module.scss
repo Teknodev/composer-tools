@@ -17,19 +17,19 @@
 .container {
   .max-content {
     .header {
-      margin-bottom: var(--composer-gap-md);
       position: relative;
 
       .left-side {
         display: flex;
-        column-gap: var(--composer-gap-xs);
         align-items: center;
+        column-gap: var(--composer-gap-xs);
         width: 100%;
 
         .section-title {
           display: flex;
           align-items: center;
-          gap: var(--composer-gap-sm);
+          column-gap: var(--composer-gap-sm);
+          margin-top: 0;
         }
 
         .left-side-icon {
@@ -117,7 +117,8 @@
           display: flex;
           flex-direction: column;
           font-size: 1rem;
-  
+          gap: var(--composer-gap-md);
+          
           &.mini {
             height: 50%;
             display: flex;

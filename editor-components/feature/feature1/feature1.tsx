@@ -358,7 +358,7 @@ class Feature1 extends BaseFeature {
       type: "number",
       key: "itemCountInARow",
       displayer: "ITEM COUNT IN A ROW",
-      value: 4,
+      value: 3,
       max: 4
     });
 
@@ -388,6 +388,7 @@ class Feature1 extends BaseFeature {
       key: "maxTitleLength",
       displayer: "TITLE MAX LENGTH",
       value: 60,
+      max: 90
     });
 
     this.addProp({
@@ -395,6 +396,7 @@ class Feature1 extends BaseFeature {
       key: "maxDescriptionLength",
       displayer: "DESCRIPTION MAX LENGTH",
       value: 90,
+      max: 200
     });
   }
 
@@ -416,10 +418,10 @@ class Feature1 extends BaseFeature {
 
     const underlineAnimation = !!this.getPropValue("underlineAnimation");
 
-    const leftSideText = this.getPropValue("leftSideText", {as_string: true});
+    const leftSideTextExist = !!this.getPropValue("leftSideText", { as_string: true });
     const leftSideIcon = this.getPropValue("leftSideIcon");
 
-    const rightSideText = this.getPropValue("rightSideText", {as_string: true});
+    const rightSideTextExist = !!this.getPropValue("rightSideText", { as_string: true });
     const rightSideIcon = this.getPropValue("rightSideIcon");
     const rightSideUrl = this.getPropValue("url");
 
@@ -598,33 +600,39 @@ class Feature1 extends BaseFeature {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {/* Header */}
-          {(leftSideIcon || leftSideText || rightSideIcon || rightSideText) && (
+          {(!!leftSideIcon || leftSideTextExist || !!rightSideIcon || rightSideTextExist) && (
             <header className={this.decorateCSS("header")}>
-              {(rightSideText || rightSideIcon) && (
+              {(rightSideTextExist || !!rightSideIcon) && (
                 <div className={this.decorateCSS("right-side")}>
                   <ComposerLink path={rightSideUrl}>
                     <div className={this.decorateCSS("link-container")}>
                       <span className={this.decorateCSS("link-text")}>
-                        {this.getPropValue("rightSideText")}
-                        <ComposerIcon
-                          name={rightSideIcon}
-                          propsIcon={{ className: this.decorateCSS("right-side-icon") }}
-                        />
+                        {rightSideTextExist && (
+                          this.getPropValue("rightSideText")
+                        )}
+                        {!!rightSideIcon && (
+                          <ComposerIcon
+                            name={rightSideIcon}
+                            propsIcon={{ className: this.decorateCSS("right-side-icon") }}
+                          />
+                        )}
                       </span>
                     </div>
                   </ComposerLink>
                 </div>
               )}
-              {(leftSideText || leftSideIcon) && (
+              {(leftSideTextExist || !!leftSideIcon) && (
                 <div className={this.decorateCSS("left-side")}>
                   <Base.SectionTitle className={this.decorateCSS("section-title")}>
-                    {!!this.getPropValue("leftSideIcon") && (
+                    {!!leftSideIcon && (
                       <ComposerIcon
-                        name={this.getPropValue("leftSideIcon")}
+                        name={leftSideIcon}
                         propsIcon={{ className: this.decorateCSS("left-side-icon") }}
                       />
                     )}
-                    {leftSideText && this.getPropValue("leftSideText")}
+                    {leftSideTextExist && (
+                      this.getPropValue("leftSideText")
+                    )}
                   </Base.SectionTitle>
                 </div>
               )}
