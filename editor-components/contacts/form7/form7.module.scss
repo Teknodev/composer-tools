@@ -1,54 +1,47 @@
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+
 .container {
-  width: 100%;
-  background-color: var(--composer-font-color-primary);
-
   .max-content {
-    max-width: var(--composer-content-width);
-    margin: 0 auto;
-
-    .content {
-      display: flex;
-      flex-direction: column;
+    .wrapper {
       position: relative;
-      padding: 80px 0;
-      width: 100%;
+      padding: var(--composer-gap-xl) 0;
+      padding-bottom: 0;
 
       .texts {
-        overflow: hidden;
-        margin-bottom: 70px;
+        margin-bottom: var(--composer-gap-md);
 
         .badge {
+          color: var(--composer-font-color-primary);
           position: absolute;
-          right: 80px;
-          top: 20px;
+          right: var(--composer-gap-md);
+          top: var(--composer-gap-md);
           font-size: 1.5rem;
-          font-weight: bold;
-          color: var(--composer-font-color-secondary);
+          font-weight: 700;
         }
 
         .text {
           display: flex;
-          position: relative;
-          left: 15%;
-          flex-flow: nowrap;
-          gap: 20px;
-          font-weight: bold;
+          gap: var(--composer-gap-md);
 
           .subtitle {
-            font-size: 1rem;
-            color: var(--composer-font-color-secondary);
+            margin: 0;
+            margin-top: calc(-1 * var(--composer-gap-md));
+            color: var(--composer-font-color-primary);
           }
 
           .title {
-            font-size: 5rem;
-            color: var(--composer-font-color-secondary);
+            margin: 0;
           }
         }
       }
+
       .input-items {
         display: flex;
         flex-direction: column;
         align-items: center;
+        margin: 0 auto;
+        width: 100%;
+
         .form {
           display: flex;
           flex-direction: column;
@@ -59,16 +52,16 @@
             position: relative;
             width: 100%;
             justify-content: center;
-            gap: 50px;
-            padding: 0 100px;
+            gap: var(--composer-gap-xl);
+            padding: 0 calc(2 * var(--composer-gap-lg));
           }
 
           .first-inputs,
           .second-inputs {
             display: flex;
             flex-direction: column;
-            gap: 20px;
-            width: 70%;
+            gap: var(--composer-gap-md);
+            width: 100%;
 
             .input-container {
               position: relative;
@@ -76,18 +69,17 @@
               .placeholder {
                 position: absolute;
                 left: 0;
-                bottom: 25px;
+                font-size: 1rem;
+                bottom: var(--composer-gap-md);
                 transition: all 0.2s ease;
-                font-size: 14px;
-                pointer-events: none;
-                color: var(--composer-font-color-secondary);
+                color: var(--composer-font-color-primary);
               }
 
               .error-message {
                 color: red;
                 font-size: 0.6rem;
                 position: absolute;
-                top: 20px;
+                top: var(--composer-gap-md);
                 left: 0;
               }
             }
@@ -95,75 +87,65 @@
 
           .input {
             border: none;
-            border-bottom: 1px solid var(--composer-font-color-secondary);
+            border-bottom: 1px solid var(--composer-font-color-primary);
             height: 30px;
-            line-height: 1.33;
-            font-size: 1rem;
-            margin-bottom: 10px;
+            margin-bottom: var(--composer-gap-sm);
             outline: none;
             width: 100%;
             background-color: transparent;
-            color: var(--composer-font-color-secondary);
-            font-family: inherit;
+            color: var(--composer-font-color-primary);
           }
 
-          .input:focus + .placeholder,
-          .input:not(:placeholder-shown) + .placeholder {
-            bottom: 45px;
-            font-size: 1rem;
+          .input:focus+.placeholder,
+          .input:not(:placeholder-shown)+.placeholder {
+            bottom: var(--composer-gap-lg);
           }
 
           .select {
             border: none;
-            border-bottom: 1px solid var(--composer-font-color-secondary);
+            border-bottom: 1px solid var(--composer-font-color-primary);
             height: 30px;
-            line-height: 1.33;
-            font-size: 1rem;
-            margin-bottom: 30px;
             outline: none;
             width: 100%;
             background-color: transparent;
-            color: var(--composer-font-color-secondary);
+            font-size: 1rem;
+            color: var(--composer-font-color-primary);
+            margin-bottom: var(--composer-gap-sm);
 
-            > option {
-              background-color: var(--composer-font-color-primary) !important;
-              color: var(--composer-font-color-secondary) !important;
-              padding: 10px;
+            option {
+              background-color: var(--composer-font-color-secondary);
+              color: var(--composer-font-color-primary);
+              padding: var(--composer-gap-sm);
             }
           }
 
-          .select:focus + .placeholder,
-          .select:valid + .placeholder {
+          .select:focus+.placeholder,
+          .select:valid+.placeholder {
             bottom: 45px;
-            font-size: 1rem;
           }
 
-          .select:invalid + .placeholder {
+          .select:invalid+.placeholder {
             bottom: 25px;
-            font-size: 1rem;
           }
         }
       }
 
       .submit-button {
-        width: fit-content;
-        height: fit-content;
         text-align: center;
         font-weight: 700;
         cursor: pointer;
-        margin-top: 30px;
-        margin-bottom: 10px;
-        background-color: var(--composer-html-background);
+        background-color: var(--composer-font-color-primary);
+        color: var(--composer-font-color-secondary);
         border: none;
-        position: absolute;
-        bottom: -30px;
-        right: 60px;
+        align-self: flex-end;
+        margin-right: calc(2 * var(--composer-gap-lg));
+        margin-top: var(--composer-gap-md);
+        padding: var(--composer-gap-md) var(--composer-gap-lg);
 
         .button-inner {
           width: 100%;
           height: 100%;
           position: relative;
-          margin: 20px 45px;
 
           .button-circle {
             background: var(--composer-secondary-color);
@@ -172,25 +154,22 @@
             position: absolute;
             transition: 0.3s;
             border-radius: 50px;
-            transform: translate(-10px, -50%);
+            transform: translateY(-50%);
             top: 50%;
-          }
-          .button-text {
-            color: var(--composer-font-color-primary);
-            position: relative;
-            z-index: 1;
-            width: fit-content;
-            display: block;
-            font-size: 1.2rem;
+            left: calc(-1 * var(--composer-gap-sm));
           }
 
           &:hover {
             .button-circle {
-              width: calc(100% - 70px);
+              width: calc(100% + var(--composer-gap-md));
             }
-            .button-text {
-              color: var(--composer-font-color-secondary);
-            }
+          }
+
+          .button-text {
+            color: var(--composer-font-color-secondary);
+            font-size: 1.5rem;
+            position: relative;
+            z-index: 1;
           }
         }
       }
@@ -198,60 +177,37 @@
   }
 }
 
-@media only screen and (max-width: 1024px) {
+@container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
-      .texts {
-        .badge {
-          right: 40px !important;
-          top: 30px !important;
-          font-size: 1rem !important;
-        }
-        .text {
-          left: 20% !important;
-          .title {
-            font-size: 3rem !important;
-          }
-          .subtitle {
-            font-size: 1rem !important;
-          }
-        }
-      }
+      .wrapper {
+        .texts {
+          .text {
+            .title {}
 
-      .form {
-        .inputs {
-          gap: 40px !important;
-          justify-content: center !important;
-          flex-direction: column;
-          width: 100%;
-          align-items: center;
-          padding: 0 !important;
+            .subtitle {
+              margin-top: 0;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+          }
 
-          .first-inputs,
-          .second-inputs {
-            width: 70% !important;
+          .badge {
+            top: 0;
+            right: 0;
           }
         }
 
-        .input {
-          width: 100%;
-          font-size: 1rem !important;
-        }
-        .placeholder {
-          font-size: 1rem !important;
-        }
+        .input-items {
+          .form {
+            .inputs {
+              padding: 0;
+            }
+          }
 
-        .select {
-          width: 100%;
-          font-size: 1rem !important;
-        }
-      }
-      .submit-button {
-        right: 30px !important;
-        bottom: -30px !important;
-        .button-inner {
-          .button-text {
-            font-size: 1rem !important;
+          .submit-button {
+            margin-right: 0;
           }
         }
       }
@@ -259,55 +215,35 @@
   }
 }
 
-@media only screen and (max-width: 480px) {
+@container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
-      .texts {
-        .badge {
-          right: 15px;
-          top: 15px;
-          font-size: 1rem !important;
-        }
+      .wrapper {
+        .texts {
+          .text {
+            flex-direction: column;
+            gap: 0;
 
-        .text {
-          left: 15% !important;
-          .title {
-            font-size: 2rem !important;
+            .title {}
+
+            .subtitle {
+              justify-content: flex-start;
+            }
           }
-          .subtitle {
-            font-size: 1rem !important;
+
+          .badge {}
+        }
+
+        .input-items {
+          .form {
+            .inputs {
+              flex-direction: column;
+              gap: var(--composer-gap-md);
+            }
           }
-        }
-      }
 
-      .form {
-        .inputs {
-          gap: 25px !important;
-          justify-content: center !important;
-          flex-direction: column;
-          width: 100%;
-          align-items: center;
-        }
-        .input {
-          width: 100% !important;
-          font-size: 0.8rem !important;
-        }
-
-        .select {
-          width: 100% !important;
-          font-size: 0.8rem !important;
-        }
-        .placeholder {
-          font-size: 0.8rem !important;
-        }
-      }
-
-      .submit-button {
-        right: 15px !important;
-        bottom: -30px !important;
-        .button-inner {
-          .button-text {
-            font-size: 0.8rem !important;
+          .submit-button {
+            width: 100%;
           }
         }
       }

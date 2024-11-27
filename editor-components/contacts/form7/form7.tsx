@@ -3,6 +3,7 @@ import { BaseContacts } from "../../EditorComponent";
 import styles from "./form7.module.scss";
 import { ErrorMessage, Form, Formik } from "formik";
 import * as Yup from "yup";
+import { Base } from "../../../composer-base-components/base/base";
 
 class Form7 extends BaseContacts {
   constructor(props?: any) {
@@ -382,10 +383,10 @@ class Form7 extends BaseContacts {
   }
 
   render() {
-    const badge = this.castToString(this.getPropValue("badge"));
-    const title = this.castToString(this.getPropValue("title"));
-    const subtitle = this.castToString(this.getPropValue("subtitle"));
-    const buttonText = this.castToString(this.getPropValue("button_text"));
+    const badge = this.getPropValue("badge", { as_string: true });
+    const title = this.getPropValue("title", { as_string: true });
+    const subtitle = this.getPropValue("subtitle", { as_string: true });
+    const buttonText = this.getPropValue("button_text", { as_string: true });
 
     const firstInputs = this.getPropValue("first_inputs");
     const secondInputs = this.getPropValue("second_inputs");
@@ -458,9 +459,9 @@ class Form7 extends BaseContacts {
     }
 
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("content")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <Base.VerticalContent className={this.decorateCSS("wrapper")}>
             {(badge || title || subtitle) && (
               <div className={this.decorateCSS("texts")}>
                 {badge && (
@@ -469,12 +470,12 @@ class Form7 extends BaseContacts {
                 {(title || subtitle) && (
                   <div className={this.decorateCSS("text")}>
                     {subtitle && (
-                      <span className={this.decorateCSS("subtitle")}>
+                      <Base.H3 className={this.decorateCSS("subtitle")}>
                         {subtitle}
-                      </span>
+                      </Base.H3>
                     )}
                     {title && (
-                      <span className={this.decorateCSS("title")}>{title}</span>
+                      <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>
                     )}
                   </div>
                 )}
@@ -501,7 +502,7 @@ class Form7 extends BaseContacts {
                               className={this.decorateCSS("input-container")}
                             >
                               {getInputType(input.getPropValue("type")) ===
-                              "textarea" ? (
+                                "textarea" ? (
                                 <textarea
                                   value={
                                     values[getInputName(index, input.prefix)]
@@ -552,7 +553,7 @@ class Form7 extends BaseContacts {
                                 />
                               )}
                               {getInputType(input.getPropValue("type")) ===
-                              "select" ? (
+                                "select" ? (
                                 ""
                               ) : (
                                 <span
@@ -578,7 +579,7 @@ class Form7 extends BaseContacts {
                               className={this.decorateCSS("input-container")}
                             >
                               {getInputType(input.getPropValue("type")) ===
-                              "textarea" ? (
+                                "textarea" ? (
                                 <textarea
                                   placeholder=" "
                                   className={`${this.decorateCSS(
@@ -592,10 +593,10 @@ class Form7 extends BaseContacts {
                                   )}
                                   value={
                                     values[
-                                      getInputName(
-                                        index + firstInputs.length,
-                                        input.prefix
-                                      )
+                                    getInputName(
+                                      index + firstInputs.length,
+                                      input.prefix
+                                    )
                                     ]
                                   }
                                 ></textarea>
@@ -604,10 +605,10 @@ class Form7 extends BaseContacts {
                                 <select
                                   value={
                                     values[
-                                      getInputName(
-                                        index + firstInputs.length,
-                                        input.prefix
-                                      )
+                                    getInputName(
+                                      index + firstInputs.length,
+                                      input.prefix
+                                    )
                                     ]
                                   }
                                   onChange={handleChange}
@@ -639,10 +640,10 @@ class Form7 extends BaseContacts {
                                   onChange={handleChange}
                                   value={
                                     values[
-                                      getInputName(
-                                        index + firstInputs.length,
-                                        input.prefix
-                                      )
+                                    getInputName(
+                                      index + firstInputs.length,
+                                      input.prefix
+                                    )
                                     ]
                                   }
                                   name={getInputName(
@@ -653,7 +654,7 @@ class Form7 extends BaseContacts {
                                 />
                               )}
                               {getInputType(input.getPropValue("type")) ===
-                              "select" ? (
+                                "select" ? (
                                 ""
                               ) : (
                                 <span
@@ -691,9 +692,9 @@ class Form7 extends BaseContacts {
                 )}
               </Formik>
             </div>
-          </div>
-        </div>
-      </div>
+          </Base.VerticalContent>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
