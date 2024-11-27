@@ -23,6 +23,7 @@ type Pricing = {
       circle_icon: string;
     }[];
     right_items: {
+      enable: boolean;
       text: JSX.Element;
       badge: JSX.Element;
       title: JSX.Element;
@@ -154,6 +155,12 @@ class PricingMultipleTwo extends BasePricingTable {
                               displayer: "List Item",
                               value: [
                                 {
+                                  type: "boolean",
+                                  key: "enable",
+                                  displayer: "Active",
+                                  value: true,
+                                },
+                                {
                                   type: "string",
                                   key: "property",
                                   displayer: "Property",
@@ -173,6 +180,12 @@ class PricingMultipleTwo extends BasePricingTable {
                               displayer: "List Item",
                               value: [
                                 {
+                                  type: "boolean",
+                                  key: "enable",
+                                  displayer: "Active",
+                                  value: true,
+                                },
+                                {
                                   type: "string",
                                   key: "property",
                                   displayer: "Property",
@@ -191,6 +204,12 @@ class PricingMultipleTwo extends BasePricingTable {
                               key: "list_item",
                               displayer: "List Item",
                               value: [
+                                {
+                                  type: "boolean",
+                                  key: "enable",
+                                  displayer: "Active",
+                                  value: true,
+                                },
                                 {
                                   type: "string",
                                   key: "property",
@@ -318,6 +337,12 @@ class PricingMultipleTwo extends BasePricingTable {
                               displayer: "List Item",
                               value: [
                                 {
+                                  type: "boolean",
+                                  key: "enable",
+                                  displayer: "Active",
+                                  value: true,
+                                },
+                                {
                                   type: "string",
                                   key: "property",
                                   displayer: "Property",
@@ -337,6 +362,12 @@ class PricingMultipleTwo extends BasePricingTable {
                               displayer: "List Item",
                               value: [
                                 {
+                                  type: "boolean",
+                                  key: "enable",
+                                  displayer: "Active",
+                                  value: true,
+                                },
+                                {
                                   type: "string",
                                   key: "property",
                                   displayer: "Property",
@@ -355,6 +386,12 @@ class PricingMultipleTwo extends BasePricingTable {
                               key: "list_item",
                               displayer: "List Item",
                               value: [
+                                {
+                                  type: "boolean",
+                                  key: "enable",
+                                  displayer: "Active",
+                                  value: true,
+                                },
                                 {
                                   type: "string",
                                   key: "property",
@@ -482,6 +519,12 @@ class PricingMultipleTwo extends BasePricingTable {
                               displayer: "List Item",
                               value: [
                                 {
+                                  type: "boolean",
+                                  key: "enable",
+                                  displayer: "Active",
+                                  value: true,
+                                },
+                                {
                                   type: "string",
                                   key: "property",
                                   displayer: "Property",
@@ -501,6 +544,12 @@ class PricingMultipleTwo extends BasePricingTable {
                               displayer: "List Item",
                               value: [
                                 {
+                                  type: "boolean",
+                                  key: "enable",
+                                  displayer: "Active",
+                                  value: true,
+                                },
+                                {
                                   type: "string",
                                   key: "property",
                                   displayer: "Property",
@@ -519,6 +568,12 @@ class PricingMultipleTwo extends BasePricingTable {
                               key: "list_item",
                               displayer: "List Item",
                               value: [
+                                {
+                                  type: "boolean",
+                                  key: "enable",
+                                  displayer: "Active",
+                                  value: true,
+                                },
                                 {
                                   type: "string",
                                   key: "property",
@@ -666,6 +721,12 @@ class PricingMultipleTwo extends BasePricingTable {
                               displayer: "List Item",
                               value: [
                                 {
+                                  type: "boolean",
+                                  key: "enable",
+                                  displayer: "Active",
+                                  value: true,
+                                },
+                                {
                                   type: "string",
                                   key: "property",
                                   displayer: "Property",
@@ -685,6 +746,12 @@ class PricingMultipleTwo extends BasePricingTable {
                               displayer: "List Item",
                               value: [
                                 {
+                                  type: "boolean",
+                                  key: "enable",
+                                  displayer: "Active",
+                                  value: true,
+                                },
+                                {
                                   type: "string",
                                   key: "property",
                                   displayer: "Property",
@@ -703,6 +770,12 @@ class PricingMultipleTwo extends BasePricingTable {
                               key: "list_item",
                               displayer: "List Item",
                               value: [
+                                {
+                                  type: "boolean",
+                                  key: "enable",
+                                  displayer: "Active",
+                                  value: true,
+                                },
                                 {
                                   type: "string",
                                   key: "property",
@@ -831,6 +904,12 @@ class PricingMultipleTwo extends BasePricingTable {
                               displayer: "List Item",
                               value: [
                                 {
+                                  type: "boolean",
+                                  key: "enable",
+                                  displayer: "Active",
+                                  value: true,
+                                },
+                                {
                                   type: "string",
                                   key: "property",
                                   displayer: "Property",
@@ -850,6 +929,12 @@ class PricingMultipleTwo extends BasePricingTable {
                               displayer: "List Item",
                               value: [
                                 {
+                                  type: "boolean",
+                                  key: "enable",
+                                  displayer: "Active",
+                                  value: true,
+                                },
+                                {
                                   type: "string",
                                   key: "property",
                                   displayer: "Property",
@@ -868,6 +953,12 @@ class PricingMultipleTwo extends BasePricingTable {
                               key: "list_item",
                               displayer: "List Item",
                               value: [
+                                {
+                                  type: "boolean",
+                                  key: "enable",
+                                  displayer: "Active",
+                                  value: true,
+                                },
                                 {
                                   type: "string",
                                   key: "property",
@@ -995,6 +1086,12 @@ class PricingMultipleTwo extends BasePricingTable {
                               displayer: "List Item",
                               value: [
                                 {
+                                  type: "boolean",
+                                  key: "enable",
+                                  displayer: "Active",
+                                  value: true,
+                                },
+                                {
                                   type: "string",
                                   key: "property",
                                   displayer: "Property",
@@ -1014,6 +1111,12 @@ class PricingMultipleTwo extends BasePricingTable {
                               displayer: "List Item",
                               value: [
                                 {
+                                  type: "boolean",
+                                  key: "enable",
+                                  displayer: "Active",
+                                  value: true,
+                                },
+                                {
                                   type: "string",
                                   key: "property",
                                   displayer: "Property",
@@ -1032,6 +1135,12 @@ class PricingMultipleTwo extends BasePricingTable {
                               key: "list_item",
                               displayer: "List Item",
                               value: [
+                                {
+                                  type: "boolean",
+                                  key: "enable",
+                                  displayer: "Active",
+                                  value: true,
+                                },
                                 {
                                   type: "string",
                                   key: "property",
@@ -1162,10 +1271,11 @@ class PricingMultipleTwo extends BasePricingTable {
                           {plan[planIndex]?.right_items?.list?.map((listItem: any, listItemIndex: number) => {
                             const listValue = listItem.value.find((item: any) => item.key === "property").value;
                             const iconValue = listItem.value.find((item: any) => item.key === "dash_icon").value;
-                            console.log(listValue, "listValue");
+                            const enableValue = listItem?.value?.find((item: any) => item.key === "enable")?.value;
+
                             return (
                               (listValue || iconValue) && (
-                                <div key={listItemIndex} className={this.decorateCSS("list-item")}>
+                                <div key={listItemIndex} className={enableValue ? this.decorateCSS("list-item") : this.decorateCSS("list-item-disabled")}>
                                   <ComposerIcon
                                     propsIcon={{
                                       className: this.decorateCSS("dash_icon"),
