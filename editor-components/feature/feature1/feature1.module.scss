@@ -1,26 +1,24 @@
 @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
-@mixin itemTitleAfter($visibility, $width, $transition) {
+@mixin itemTitleAfter($visibility, $width) {
   content: "";
   position: absolute;
   word-break: break-word;
   width: $width;
   height: 2px;
-  bottom: 0;
+  bottom: -2px;
   left: 0;
-  background-color: var(--composer-font-color-secondary);
+  background-color: var(--composer-font-color-primary);
   visibility: $visibility;
   transform-origin: left;
-  transition: $transition;
+  transition: .5s;
 }
 
 .container {
   .max-content {
     .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
       margin-bottom: var(--composer-gap-md);
+      position: relative;
 
       .left-side {
         display: flex;
@@ -29,7 +27,9 @@
         width: 100%;
 
         .section-title {
-          margin: 0;
+          display: flex;
+          align-items: center;
+          gap: var(--composer-gap-sm);
         }
 
         .left-side-icon {
@@ -45,7 +45,6 @@
         column-gap: var(--composer-gap-md);
         justify-content: flex-end;
         align-items: center;
-        width: 100%;
 
         .link-container {
           background-color: transparent;
@@ -108,13 +107,15 @@
         gap: var(--composer-gap-md);
 
         .card {
-          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 95%);
+          background-color: color-mix(
+            in srgb,
+             var(--composer-html-background),
+              var(--composer-font-color-primary) 5%);
           border-radius: var(--composer-border-radius-xs);
           padding: 0;
           height: 100%;
           display: flex;
           flex-direction: column;
-          gap: var(--composer-gap-md);
           font-size: 1rem;
   
           &.mini {
@@ -146,6 +147,7 @@
               object-fit: cover;
               transition: transform 0.3s ease;
               cursor: pointer;
+              border-radius: var(--composer-border-radius-xs) var(--composer-border-radius-xs);
             }
   
             &:hover img {
@@ -163,7 +165,7 @@
             .date-time {
               display: flex;
               justify-content: space-between;
-              color: var(--composer-font-color-secondary);
+              color: var(--composer-font-color-primary);
               white-space: nowrap;
   
               .date {
@@ -220,20 +222,20 @@
               position: relative;
               font-size: 1.5rem;
               font-weight: bold;
-              color: var(--composer-font-color-secondary);
+              color: var(--composer-font-color-primary);
               margin: 0;
   
-              &::after {
-                @include itemTitleAfter(hidden, 0, transform 0 ease);
+              &.underline-animation::after {
+                @include itemTitleAfter(hidden, 0);
               }
   
-              &:hover::after {
-                @include itemTitleAfter(visible, 100%, transform 0.5s ease);
+              &.underline-animation:hover::after {
+                @include itemTitleAfter(visible, 100%);
               }
             }
   
             .description {
-              color: var(--composer-font-color-secondary);
+              color: var(--composer-font-color-primary);
               width: 100%;
               margin: 0;
             }
@@ -263,7 +265,7 @@
   
               .profile-description {
                 margin: 0;
-                color: var(--composer-font-color-secondary);
+                color: var(--composer-font-color-primary);
   
                 >blinkpage p {
                   display: -webkit-box;
@@ -277,7 +279,7 @@
               .fullname {
                 margin: 0;
                 font-weight: 600;
-                color: var(--composer-font-color-secondary);
+                color: var(--composer-font-color-primary);
   
                 >blinkpage p {
                   display: -webkit-box;
