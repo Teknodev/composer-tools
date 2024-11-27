@@ -178,7 +178,6 @@ export abstract class Component extends React.Component<{}, { states: any; compo
 
   prepopulatedRichText(editor: LexicalEditor, html: string) {
 
-    // const cleanHTML = this.removeSuffixesAndPrefixes(element.innerHTML);
     this.updateHTML(
       editor,
       html,
