@@ -3,6 +3,7 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action6.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
 
 type Button = {
   text: JSX.Element;
@@ -16,7 +17,7 @@ class CallToAction6Page extends BaseCallToAction {
 
     this.addProp({
       type: "image",
-      key: "background_image",
+      key: "backgroundImage",
       displayer: "Background Image",
       value:
         "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66bdaa2707399d002cb4130f?alt=media",
@@ -85,9 +86,9 @@ class CallToAction6Page extends BaseCallToAction {
 
     this.addProp({
       type: "boolean",
-      key: "removeBackgroundColor",
-      displayer: "Remove Background Color",
-      value: false,
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
     });
   }
 
@@ -97,7 +98,6 @@ class CallToAction6Page extends BaseCallToAction {
 
   render() {
     const spaceLineExist = this.getPropValue("spaceLine");
-    const removeBackground = this.getPropValue("removeBackgroundColor");
 
     const titleExist = this.getPropValue("title", { as_string: true });
     const placeholderExist = this.getPropValue("placeholder", {
@@ -107,78 +107,75 @@ class CallToAction6Page extends BaseCallToAction {
 
     const buttons = this.castToObject<Button[]>("buttons");
     return (
-      <div
-        className={this.decorateCSS("container")}
+      <Base.Container
+        className={`${this.getPropValue("backgroundImage") ? this.decorateCSS("container") : this.decorateCSS("container-no-image")}
+        ${this.getPropValue("overlay") ? this.decorateCSS("overlay-active") : ""}`}
         style={{
-          backgroundImage: `url(${this.getPropValue("background_image")})`,
+          backgroundImage: `url(${this.getPropValue("backgroundImage")})`,
         }}
       >
-        <div className={this.decorateCSS("max-content")}>
-          <div
-            className={`
-            ${this.decorateCSS("call-to-action6-page")}
-            ${removeBackground ? this.decorateCSS("remove-background-color") : ""}
-            `}
-          >
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <Base.VerticalContent className={this.decorateCSS("content")}>
             {titleExist && (
-              <h1 className={this.decorateCSS("title")}>
+              <Base.SectionTitle className={this.decorateCSS("title")}>
                 {this.getPropValue("title")}
-              </h1>
+              </Base.SectionTitle>
             )}
 
             {spaceLineExist && (
               <div className={this.decorateCSS("space-container")}>
-                <hr className={this.decorateCSS("space")} />
+                <div className={this.getPropValue("backgroundImage") ? this.decorateCSS("space") : this.decorateCSS("space-no-image")} />
               </div>
             )}
 
             {placeholderExist && (
               <input
                 type="text"
-                className={this.decorateCSS("placeholder")}
+                className={this.getPropValue("backgroundImage") ? this.decorateCSS("placeholder") : this.decorateCSS("placeholder-no-image")}
                 placeholder={placeholderExist}
               />
             )}
+            {(commentExist || buttons?.length > 0) && (
+              <div className={this.decorateCSS("bottom-container")}>
+                {commentExist && (
+                  <h3 className={this.getPropValue("backgroundImage") ? this.decorateCSS("comment") : this.decorateCSS("comment-no-image")}>
+                    {this.getPropValue("comment")}
+                  </h3>
+                )}
+                {buttons?.length > 0 && (
+                  <div className={this.decorateCSS("buttons")}>
+                    {buttons.map((item: Button, index: number) => {
+                      const textExist = this.castToString(item.text);
 
-            {commentExist && (
-              <h3 className={this.decorateCSS("comment")}>
-                {this.getPropValue("comment")}
-              </h3>
-            )}
-            {buttons?.length > 0 && (
-              <div className={this.decorateCSS("buttons")}>
-                {buttons.map((item: Button, index: number) => {
-                  const textExist = this.castToString(item.text);
-
-                  if (textExist || item.icon)
-                    return (
-                      <ComposerLink key={index} path={item.link}>
-                        <div className={this.decorateCSS("button")}>
-                          {textExist && (
-                            <div className={this.decorateCSS("button_text")}>
-                              {item.text}
+                      if (textExist || item.icon)
+                        return (
+                          <ComposerLink key={index} path={item.link}>
+                            <div className={this.decorateCSS("button")}>
+                              {textExist && (
+                                <div className={this.decorateCSS("button_text")}>
+                                  {item.text}
+                                </div>
+                              )}
+                              {item.icon && (
+                                <ComposerIcon
+                                  name={item.icon}
+                                  propsIcon={{
+                                    className: this.decorateCSS("icon"),
+                                  }}
+                                />
+                              )}
                             </div>
-                          )}
-                          {item.icon && (
-                            <div className={this.decorateCSS("icon-container")}>
-                              <ComposerIcon
-                                name={item.icon}
-                                propsIcon={{
-                                  className: this.decorateCSS("icon"),
-                                }}
-                              />
-                            </div>
-                          )}
-                        </div>
-                      </ComposerLink>
-                    );
-                  return null;
-                })}
+                          </ComposerLink>
+                        );
+                      return null;
+                    })}
+                  </div>
+                )}
               </div>
             )}
-          </div>
-        </div>
-      </div>
+          </Base.VerticalContent>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
