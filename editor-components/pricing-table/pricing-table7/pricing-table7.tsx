@@ -75,7 +75,7 @@ class PricingTable7 extends BasePricingTable {
       type: "icon",
       key: "icon",
       displayer: "Plan's Icon",
-      value: "PiArrowBendDownLeftLight",
+      value: "BsArrowReturnLeft",
     });
     this.addProp({
       type: "string",
@@ -176,7 +176,7 @@ class PricingTable7 extends BasePricingTable {
                       type: "icon",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      value: "FcApproval",
                     },
                     {
                       type: "string",
@@ -195,7 +195,7 @@ class PricingTable7 extends BasePricingTable {
                       type: "icon",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      value: "FcApproval",
                     },
                     {
                       type: "string",
@@ -289,7 +289,7 @@ class PricingTable7 extends BasePricingTable {
                       type: "icon",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      value: "FcApproval",
                     },
                     {
                       type: "string",
@@ -308,7 +308,7 @@ class PricingTable7 extends BasePricingTable {
                       type: "icon",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      value: "FcApproval",
                     },
                     {
                       type: "string",
@@ -327,7 +327,7 @@ class PricingTable7 extends BasePricingTable {
                       type: "icon",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      value: "FcApproval",
                     },
                     {
                       type: "string",
@@ -421,7 +421,7 @@ class PricingTable7 extends BasePricingTable {
                       type: "icon",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      value: "FcApproval",
                     },
                     {
                       type: "string",
@@ -440,7 +440,7 @@ class PricingTable7 extends BasePricingTable {
                       type: "icon",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      value: "FcApproval",
                     },
                     {
                       type: "string",
@@ -459,7 +459,7 @@ class PricingTable7 extends BasePricingTable {
                       type: "icon",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      value: "FcApproval",
                     },
                     {
                       type: "string",
@@ -478,7 +478,7 @@ class PricingTable7 extends BasePricingTable {
                       type: "icon",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      value: "FcApproval",
                     },
                     {
                       type: "string",
@@ -579,7 +579,7 @@ class PricingTable7 extends BasePricingTable {
                       type: "icon",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      value: "FcApproval",
                     },
                     {
                       type: "string",
@@ -598,7 +598,7 @@ class PricingTable7 extends BasePricingTable {
                       type: "icon",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      value: "FcApproval",
                     },
                     {
                       type: "string",
@@ -692,7 +692,7 @@ class PricingTable7 extends BasePricingTable {
                       type: "icon",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      value: "FcApproval",
                     },
                     {
                       type: "string",
@@ -711,7 +711,7 @@ class PricingTable7 extends BasePricingTable {
                       type: "icon",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      value: "FcApproval",
                     },
                     {
                       type: "string",
@@ -730,7 +730,7 @@ class PricingTable7 extends BasePricingTable {
                       type: "icon",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      value: "FcApproval",
                     },
                     {
                       type: "string",
@@ -824,7 +824,7 @@ class PricingTable7 extends BasePricingTable {
                       type: "icon",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      value: "FcApproval",
                     },
                     {
                       type: "string",
@@ -843,7 +843,7 @@ class PricingTable7 extends BasePricingTable {
                       type: "icon",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      value: "FcApproval",
                     },
                     {
                       type: "string",
@@ -862,7 +862,7 @@ class PricingTable7 extends BasePricingTable {
                       type: "icon",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      value: "FcApproval",
                     },
                     {
                       type: "string",
@@ -881,7 +881,7 @@ class PricingTable7 extends BasePricingTable {
                       type: "icon",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck",
+                      value: "FcApproval",
                     },
                     {
                       type: "string",
@@ -928,16 +928,18 @@ class PricingTable7 extends BasePricingTable {
     const durationIcon = this.getPropValue("icon");
     const plansDiscountText = this.getPropValue("text2");
 
+    const alignmentValue = Base.getContentAlignment();
+
     return (
-      <div className={this.decorateCSS("duration-items")}>
+      <div className={alignmentValue === "left" ? this.decorateCSS("duration-items") : alignmentValue === "center" ? this.decorateCSS("duration-items-center") : null}>
         <Base.H5 className={this.decorateCSS("text")}>{monthlyText}</Base.H5>
         <div className={this.decorateCSS("switch")} onClick={this.togglePlanType.bind(this)}>
           <input className={this.decorateCSS("input")} type="checkbox" checked={planType === "yearly-plans"} />
           <span className={`${this.decorateCSS("slider")} ${this.decorateCSS("round")}`}></span>
         </div>
-        <Base.H5 className={this.decorateCSS("text1")}>{yearlyText}</Base.H5>
+        <Base.H5 className={this.decorateCSS("yearlyText")}>{yearlyText}</Base.H5>
         <ComposerIcon name={durationIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
-        <Base.H5 className={this.decorateCSS("text2")}>{plansDiscountText}</Base.H5>
+        <Base.H5 className={this.decorateCSS("planDiscount")}>{plansDiscountText}</Base.H5>
       </div>
     );
   }
