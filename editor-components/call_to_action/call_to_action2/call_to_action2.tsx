@@ -81,7 +81,7 @@ class CallToAction2Page extends BaseCallToAction {
     });
 
     this.addProp({
-      type: "video",
+      type: "page",
       displayer: "Video",
       key: "video",
       value:
