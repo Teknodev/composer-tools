@@ -4,71 +4,32 @@
         flex-wrap: wrap;
         justify-content: center;
         .all-card {
-            width: 90%;
             .item-content {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                margin: var(--composer-gap-sm);
-                box-sizing: border-box;
                 border: 3px solid;
-                border-color: var(--composer-tertiary-color);
+                border-color: var(--composer-primary-color);
                 border-radius: var(--composer-border-radius-md);
-                padding: var(--composer-gap-sm);
+                padding: var(--composer-gap-lg);
                 .index {
-                    margin-top: 0;
-                    margin-right: auto;
-                    margin-bottom: var(--composer-gap-md);
-                    margin-left: var(--composer-gap-md);
-                    padding-top: var(--composer-gap-md);
-                    font-size: 4rem;
+                    font-size: 2.5rem;
                     color: var(--composer-tertiary-color);
                 }
                 .title {
-                    margin-top: 0;
-                    margin-right: auto;
-                    margin-bottom: var(--composer-gap-md);
-                    margin-left: var(--composer-gap-md);
-                    font-size: 3rem;
-                    color: var(--composer-primary-color);
+                    font-size: 1.5rem;
                 }
                 .list-item-p {
-                    text-align: left;
-                    font-size: 1.4rem;
-                    line-height: 2;
-                    width: 85%;
-                    margin-top: 0;
-                    margin-right: auto;
-                    margin-bottom: 0;
-                    padding-bottom: var(--composer-gap-lg);
-                    margin-left: var(--composer-gap-md);
+                    font-size: 1rem;
                     color: var(--composer-font-color-primary);
                 }
             }
         }
     }
-    @media screen and (max-width: 1080px) {
+
+    @media screen and (max-width: 425px) {
         .max-content {
-            display: flex;
-            overflow-x: auto;
-            align-items: flex-start;
-            box-sizing: content-box;
             .all-card {
-                width: 50% !important;
-                .item-content {}
-            }
-        }
-    }
-    @media screen and (max-width: 520px) {
-        .max-content {
-            display: flex;
-            overflow-x: auto;
-            align-items: flex-start;
-            box-sizing: content-box;
-            .all-card {
-                width: 100% !important;
-                .item-content {}
+                .item-content {
+                    padding: var(--composer-gap-md) !important;
+                }
             }
         }
     }
