@@ -1,3 +1,4 @@
+@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
 .container,.container-no-image {
   &.overlay-active {
     &::before{
@@ -29,94 +30,93 @@
         color: var(--composer-font-color-primary);
       }
     }
-    .newsletter {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 30%;
-      .inputs {
-        flex:2;
+    .form{
+      .newsletter {
         display: flex;
-        flex-direction: column;
         justify-content: center;
-        align-items: center;
-        gap: 5px;
-        .input, .input-no-image {
-          padding:var(--composer-gap-sm) var(--composer-gap-md);
-          width: 100%;
-          outline: none;
-          border: 1px solid transparent;
-          border-top-left-radius: var(--composer-border-radius-md);
-          border-bottom-left-radius: var(--composer-border-radius-md);
-
-
+        align-items: stretch;
+        width: 30%;
+        .inputs {
+          flex:2;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          .input, .input-no-image {
+            padding:var(--composer-gap-md) var(--composer-gap-md);
+            height: 100%;
+            width: 100%;
+            outline: none;
+            border: 1px solid transparent;
+            border-top-left-radius: var(--composer-border-radius-md);
+            border-bottom-left-radius: var(--composer-border-radius-md);
+  
+  
+          }
+          .input-no-image {
+            background-color: var(--composer-font-color-primary);
+            &::placeholder {
+              color: var(--composer-font-color-secondary);
+             
+            }
+          }
         }
-        .input-no-image {
-          background-color: var(--composer-font-color-primary);
-          &::placeholder {
-            color: var(--composer-font-color-secondary);
-           
+        .submit-button{
+          flex:1;
+          padding:var(--composer-gap-md) var(--composer-gap-md);
+          border: 1px solid var(--composer-primary-color);
+          background-color: var(--composer-primary-color);
+          color: var(--composer-font-color-secondary);
+          transition: border 0.3s ease, background-color 0.3 ease, color 0.3s ease;
+          width: 100%;
+          border-top-right-radius: var(--composer-border-radius-md);
+          border-bottom-right-radius: var(--composer-border-radius-md);
+          cursor: pointer;
+          &:hover {
+            border: 1px solid var(--composer-primary-color);
+            background-color: transparent;
+            color: var(--composer-primary-color);
           }
         }
       }
-      .submit-button{
-        flex:1;
-        padding:var(--composer-gap-sm) var(--composer-gap-md);
-        border: 1px solid var(--composer-primary-color);
-        background-color: var(--composer-primary-color);
-        color: var(--composer-font-color-secondary);
-        transition: border 0.3s ease, background-color 0.3 ease, color 0.3s ease;
-        width: 100%;
-        border-top-right-radius: var(--composer-border-radius-md);
-        border-bottom-right-radius: var(--composer-border-radius-md);
-        cursor: pointer;
-        &:hover {
-          border: 1px solid var(--composer-primary-color);
-          background-color: transparent;
-          color: var(--composer-primary-color);
-        }
-      }
     }
-    
   }
 }
 .container{
   padding: 100px 50px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-@media only screen and (max-width: 450px) {
-  .title {
-    font-size: 24px;
+@container (max-width: #{$composer-tablet-width}){
+  .container, .container-no-image{
+    .max-content{
+      .form{
+        .newsletter {
+          width: 70%;
+        }
+      }
+    }
   }
+}
 
-  .subtitle {
-    font-size: 16px;
-  }
-
-  .newsletter,
-  .newsletter.vertical {
-    flex-direction: column;
-    width: 100%;
-    padding: 0 20px;
-  }
-
-  .inputs {
-    width: 100%;
-  }
-
-  .submit-button {
-    width: 100%;
+@container (max-width: #{$composer-phone-width}){
+  .container, .container-no-image{
+    .max-content{
+      .form{
+        .newsletter {
+          width: 100%;
+          .inputs{
+            .input, .input-no-image {
+              padding:var(--composer-gap-sm) var(--composer-gap-sm);
+            }
+          }
+          .submit-button{
+            padding:var(--composer-gap-sm) var(--composer-gap-sm);
+          }
+        }
+      }
+    }
   }
 }

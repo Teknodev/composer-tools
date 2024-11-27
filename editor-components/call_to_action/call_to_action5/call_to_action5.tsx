@@ -4,12 +4,6 @@ import styles from "./call_to_action5.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { Form, Formik } from "formik";
 
-type Field = {
-  placeholder: JSX.Element;
-  isVisible: boolean;
-  isRequired: boolean;
-}
-
 class CallToAction5Page extends BaseCallToAction {
   constructor(props?: any) {
     super(props, styles);
@@ -47,17 +41,10 @@ class CallToAction5Page extends BaseCallToAction {
     });
 
     this.addProp({
-      type: "object",
-      key: "input",
-      displayer: "Input",
-      value: [
-        {
-          type: "string",
-          key: "placeholder",
-          displayer: "Placeholder",
-          value: "Enter e-mail address"
-        },
-      ]
+      type: "string",
+      key: "placeholder",
+      displayer: "Placeholder",
+      value: "Enter e-mail address"
     });
   }
 
@@ -68,24 +55,18 @@ class CallToAction5Page extends BaseCallToAction {
 
   render() {
 
-    const titleExist = this.getPropValue("title", { as_string: true });
-    const subtitleExist = this.getPropValue("description", { as_string: true });
-    const buttonTextExist = this.getPropValue("buttonText", { as_string: true });
-    const input = this.castToObject<Field>("input");
-    const backgroundImage = this.getPropValue("background");
-    const insertBackground = backgroundImage ? {
-      background: `url(${backgroundImage})`,
-      backgroundPosition: "center",
-      backgroundSize: "cover",
-      backgroundRepeat: "no-repeat"
-    }
-      : {};
+    const titleExist = this.castToString(this.getPropValue("title"));
+    const subtitleExist = this.castToString(this.getPropValue("description"));
+    const getSelectedItemPlaceholder = (): string => {
+      const placeholder = this.castToString(this.getPropValue("placeholder"));
+      return placeholder;
+    };
 
     return (
       <Base.Container
         className={`${this.getPropValue("background") ? this.decorateCSS("container") :
           this.decorateCSS("container-no-image")} ${this.getPropValue("overlay") ? this.decorateCSS("overlay-active") : ""}`}
-        style={insertBackground}
+        style={{ backgroundImage: `url(${this.getPropValue("background")})` }}
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(titleExist || subtitleExist) &&
@@ -98,50 +79,37 @@ class CallToAction5Page extends BaseCallToAction {
               )}
             </Base.VerticalContent>
           }
-          {(input.isVisible || buttonTextExist) &&
-            <div>
+          {(this.castToString(this.getPropValue("buttonText")) || this.castToString(this.getPropValue("placeholder"))) &&
+            <div className={this.decorateCSS("form")}>
               <Formik
                 initialValues={{ email: "" }}
                 onSubmit={(data, { resetForm }) => {
-                  console.log("Submitted Data:", data);
                   this.insertForm("Contact Us", data);
                   resetForm();
                 }}
               >
                 {({ handleChange, values }) => (
                   <Form className={this.decorateCSS("newsletter")}>
-                    <div className={this.decorateCSS("inputs")}>
-                      <input
-                        placeholder="Placeholder"
-                        type="text"
-                        onChange={handleChange}
-                        value={values.email}
-                        name="email"
-                        className={this.getPropValue("background") ? this.decorateCSS("input") : this.decorateCSS("input-no-image")}
-                      />
-                    </div>
-                    <button
-                      className={this.decorateCSS("submit-button")}
-                      type="submit"
-                    >
-                      {this.getPropValue("buttonText")}
-                    </button>
+                    {this.castToString(this.getPropValue("placeholder")) && (
+                      <div className={this.decorateCSS("inputs")}>
+                        <input
+                          placeholder={getSelectedItemPlaceholder()}
+                          type="text"
+                          onChange={handleChange}
+                          value={values.email}
+                          name="email"
+                          className={this.getPropValue("background") ? this.decorateCSS("input") : this.decorateCSS("input-no-image")}
+                        />
+                      </div>
+                    )}
+                    {this.castToString(this.getPropValue("buttonText")) && (
+                      <button className={this.decorateCSS("submit-button")} type="submit">
+                        {this.getPropValue("buttonText")}
+                      </button>
+                    )}
                   </Form>
                 )}
               </Formik>
-              {/* <div className={this.decorateCSS("newsletter")}>
-                <div className={this.decorateCSS("inputs")}>
-                  <input className={this.decorateCSS("input")} type="email" placeholder={this.castToString(input.placeholder)} required={input.isRequired} />
-                </div>
-                {buttonTextExist &&
-                  <button
-                    className={this.decorateCSS("submit-button")}
-                    type="submit"
-                  >
-                    {this.getPropValue("buttonText")}
-                  </button>
-                }
-              </div> */}
             </div>
           }
         </Base.MaxContent>
