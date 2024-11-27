@@ -1,87 +1,155 @@
 import * as React from "react";
-import { BaseSlider, TypeUsableComponentProps } from "../../EditorComponent";
+import { BaseSlider } from "../../EditorComponent";
 import styles from "./slider1.module.scss";
-
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
+import { Base } from "../../../composer-base-components/base/base";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
-interface Button {
-  buttonText: string;
+type Slider = {
+  subtitle: JSX.Element;
+  title: JSX.Element;
+  image: string;
+};
+
+type Social = {
+  icon: string;
   url: string;
-  isPrimary: boolean;
-}
+};
 
 class Slider1 extends BaseSlider {
   constructor(props?: any) {
     super(props, styles);
 
-    let button: TypeUsableComponentProps = {
-      type: "object",
-      key: "button",
-      displayer: "Button",
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
+    });
+    this.addProp({
+      type: "array",
+      key: "socials",
+      displayer: "Social Media",
       value: [
         {
-          type: "string",
-          key: "buttonText",
-          displayer: "Button Text",
-          value: "Go There",
+          type: "object",
+          key: "social",
+          displayer: "Social",
+          value: [
+            {
+              type: "icon",
+              key: "icon",
+              value: "FaInstagram",
+              displayer: "Icon",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: "",
+            },
+          ]
         },
         {
-          type: "page",
-          key: "url",
-          displayer: "Button Link",
-          value: "",
+          type: "object",
+          key: "social",
+          displayer: "Social",
+          value: [
+            {
+              type: "icon",
+              key: "icon",
+              value: "BiLogoFacebook",
+              displayer: "Icon",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: "",
+            },
+          ]
         },
         {
-          type: "boolean",
-          key: "isPrimary",
-          displayer: "Is Primary",
-          value: true,
+          type: "object",
+          key: "social",
+          displayer: "Social",
+          value: [
+            {
+              type: "icon",
+              key: "icon",
+              value: "FaSquareXTwitter",
+              displayer: "Icon",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: "",
+            },
+          ]
         },
       ],
-    };
-
-    this.addProp({
-      type: "string",
-      key: "title",
-      displayer: "Title",
-      value: "Travel",
     });
-
-    this.addProp({
-      type: "string",
-      key: "description",
-      displayer: "Description",
-      value: "Exploring new places, experiencing different cultures, and meeting new people are all part of the joy of traveling.",
-    });
-
     this.addProp({
       type: "array",
       key: "slider",
       displayer: "Slider",
       value: [
         {
-          type: "image",
-          key: "image",
-          displayer: "Image",
-          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64550f97f72de2002caaeee3?alt=media&timestamp=1719584962573",
+          type: "object",
+          key: "sliderItem",
+          displayer: "Slider Item",
+          value: [
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "EXPLORE",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Travelling",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64550f97f72de2002caaeee3?alt=media&timestamp=1719584962573",
+            }
+          ]
         },
         {
-          type: "image",
-          key: "image",
-          displayer: "Image",
-          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64550f97f72de2002caaeee2?alt=media&timestamp=1719584962573",
+          type: "object",
+          key: "sliderItem",
+          displayer: "Slider Item",
+          value: [
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "This is a wonderful life",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "I LOVE IT",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64550f97f72de2002caaeee2?alt=media&timestamp=1719584962573",
+            },
+          ]
         },
       ],
     });
-
-    this.addProp({
-      type: "array",
-      key: "buttons",
-      displayer: "Buttons",
-      value: [JSON.parse(JSON.stringify(button))],
-    });
   }
+
   getName(): string {
     return "Slider 1";
   }
@@ -94,49 +162,63 @@ class Slider1 extends BaseSlider {
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
+      adaptiveHeight: true,
     };
+
+    const isOverlayActive = this.getPropValue("overlay");
+    const icons = this.castToObject<Social[]>("socials");
+    const sliderItems = this.castToObject<Slider[]>("slider");
+
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+      <Base.Container isFull={true} className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("slider-parent")}>
             <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
-              {this.getPropValue("slider").map(
-                (item: any, indexSlider: number) => (
-                  <img
-                    alt=""
-                    src={item.value}
-                    className={this.decorateCSS("img")}
-                    key={indexSlider}
-                  />
-                )
-              )}
+              {sliderItems.map((item: Slider, indexSlider: number) => (
+                <div key={indexSlider} className={this.decorateCSS("slider-item")}>
+                  <div className={this.decorateCSS("img-wrapper")}>
+                    <img
+                      alt=""
+                      src={item.image}
+                      className={this.decorateCSS("img")}
+                    />
+                    {isOverlayActive && <div className={this.decorateCSS("overlay")}></div>}
+                  </div>
+
+                  <div className={`${this.decorateCSS("content")} ${icons.length < 1 && this.decorateCSS("no-icon")}`}>
+                    <Base.VerticalContent className={`${this.decorateCSS("box")} ${!item.image && this.decorateCSS("no-img")}`}>
+                      {this.castToString(item.subtitle) && < Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${!item.image && this.decorateCSS("no-img")}`}>
+                        {item.subtitle}
+                      </Base.SectionSubTitle>}
+                      {this.castToString(item.title) && <Base.SectionTitle className={`${this.decorateCSS("title")} ${!item.image && this.decorateCSS("no-img")}`}>
+                        {item.title}
+                      </Base.SectionTitle>}
+                    </Base.VerticalContent>
+                    {icons.length > 0 &&
+                      <div className={this.decorateCSS("socials")}>
+                        {icons.map((social: Social, index: number) => {
+                          return (
+                            <ComposerLink key={index} path={social.url}>
+                              <ComposerIcon
+                                name={social.icon}
+                                propsIcon={{
+                                  className: `${this.decorateCSS("icon")} ${!item.image && this.decorateCSS("no-img")}`,
+                                }}
+                              />
+                            </ComposerLink>
+                          );
+                        })}
+                      </div>}
+                  </div>
+
+                </div>
+              ))}
+
             </ComposerSlider>
-            <div className={this.decorateCSS("box")}>
-              <div className={this.decorateCSS("title")}>
-                <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
-              </div>
-              <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
-              <div className={this.decorateCSS("button-group")}>
-                {this.castToObject<Button[]>("buttons").map(
-                  (item: Button, indexButtons: number) => {
-                    return (
-                      <ComposerLink key={indexButtons} path={item.url}>
-                        <div
-                          className={`${this.decorateCSS("button")} ${
-                            item.isPrimary && this.decorateCSS("primary")
-                          }`}
-                        >
-                          {item.buttonText}
-                        </div>
-                      </ComposerLink>
-                    );
-                  }
-                )}
-              </div>
-            </div>
+
           </div>
-        </div>
-      </div>
+        </Base.MaxContent >
+      </Base.Container >
     );
   }
 }
