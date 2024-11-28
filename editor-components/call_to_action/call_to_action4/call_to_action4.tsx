@@ -3,11 +3,15 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action4.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 interface ListItem {
   description: JSX.Element
 }
-
+interface ButtonItem {
+  buttonText: JSX.Element,
+  buttonLink: string
+}
 
 class CallToAction4Page extends BaseCallToAction {
   constructor(props?: any) {
@@ -22,7 +26,7 @@ class CallToAction4Page extends BaseCallToAction {
       type: "icon",
       key: "icon",
       displayer: "Icon",
-      value: "icon",
+      value: "FaCheck",
     });
     this.addProp({
       type: "array",
@@ -41,6 +45,97 @@ class CallToAction4Page extends BaseCallToAction {
               value: "Unlimited update and project"
             },
           ]
+        },
+        {
+          type: "object",
+          key: "listItem",
+          displayer: "List Item",
+          value: [
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "24+7 service"
+            },
+          ]
+        },
+        {
+          type: "object",
+          key: "listItem",
+          displayer: "List Item",
+          value: [
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Chat support"
+            },
+          ]
+        },
+        {
+          type: "object",
+          key: "listItem",
+          displayer: "List Item",
+          value: [
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Analytic and chart"
+            },
+          ]
+        },
+        {
+          type: "object",
+          key: "listItem",
+          displayer: "List Item",
+          value: [
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Darks light mode"
+            },
+          ]
+        },
+        {
+          type: "object",
+          key: "listItem",
+          displayer: "List Item",
+          value: [
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Library of our specialist"
+            },
+          ]
+        },
+        {
+          type: "object",
+          key: "listItem",
+          displayer: "List Item",
+          value: [
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Own analytic platfrom"
+            },
+          ]
+        },
+        {
+          type: "object",
+          key: "listItem",
+          displayer: "List Item",
+          value: [
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Unlimited advice"
+            },
+          ]
         }
 
       ]
@@ -53,29 +148,50 @@ class CallToAction4Page extends BaseCallToAction {
         "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436958968c3c2002cd2f2d8?alt=media&timestamp=1719584962572",
     });
     this.addProp({
-      type: "string",
-      key: "firstButtonText",
-      value: "Enroll Now",
-      displayer: "Button Text",
-    });
-    this.addProp({
-      type: "page",
-      key: "firstButtonLink",
-      displayer: "First Button Link",
-      value: "",
-    });
-    this.addProp({
-      type: "string",
-      key: "secondButtonText",
-      value: "Learn More",
-      displayer: "Button Text",
-    });
-    this.addProp({
-      type: "page",
-      key: "secondButtonLink",
-      displayer: "Second Button Link",
-      value: "",
-    });
+      type: "array",
+      key: "buttonItems",
+      displayer: "Button Items",
+      value: [
+        {
+          type: "object",
+          key: "buttonItem",
+          displayer: "Button Item",
+          value: [
+            {
+              type: "string",
+              key: "buttonText",
+              displayer: "Button Text",
+              value: "Learn More",
+            },
+            {
+              type: "page",
+              key: "buttonLink",
+              displayer: "Button Link",
+              value: "",
+            }
+          ]
+        },
+        {
+          type: "object",
+          key: "buttonItem",
+          displayer: "Button Item",
+          value: [
+            {
+              type: "string",
+              key: "buttonText",
+              displayer: "Button Text",
+              value: "Enroll Now",
+            },
+            {
+              type: "page",
+              key: "buttonLink",
+              displayer: "Button Link",
+              value: "",
+            }
+          ]
+        }
+      ]
+    })
   }
 
   getName(): string {
@@ -83,39 +199,39 @@ class CallToAction4Page extends BaseCallToAction {
   }
 
   render() {
-    const listItems = this.getPropValue("listItems");
+    const listItems = this.castToObject<ListItem[]>("listItems");
+    const buttonItems = this.castToObject<ButtonItem[]>("buttonItems")
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
             <Base.VerticalContent className={this.decorateCSS("left-page")}>
               <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
-              {listItems.map((item: ListItem, index: number) => {
-                console.log("item", item)
-                return (<div className={this.decorateCSS("description")}>
-                  {item.description}dlşşsdl
-                </div>)
-              }
+              <Base.ListGrid gridCount={{ pc: 2 }} className={this.decorateCSS("list-container")}>
+                {listItems.map((item: ListItem, index: number) => (
+                  <div className={this.decorateCSS("list")}>
+                    <div className={this.decorateCSS("icon-container")}>
+                      <ComposerIcon name={this.getPropValue("icon")} propsIcon={{ className: this.decorateCSS("icon") }} />
+                    </div>
+                    <div className={this.decorateCSS("description")}>
+                      {item.description}
+                    </div>
+                  </div>
+                ))}
+              </Base.ListGrid>
 
-              )
-
+              {buttonItems.map((item: ButtonItem, index: number) => (
+                <div className={this.decorateCSS("buttons")}>
+                  <ComposerLink path={item.buttonLink}>
+                    <div
+                      className={this.decorateCSS("button")}
+                    >
+                      {item.buttonText}
+                    </div>
+                  </ComposerLink>
+                </div>
+              ))
               }
-              <div className={this.decorateCSS("buttons")}>
-                <ComposerLink path={this.getPropValue("firstButtonLink")}>
-                  <span
-                    className={this.decorateCSS("button")}
-                  >
-                    {this.getPropValue("firstButtonText")}
-                  </span>
-                </ComposerLink>
-                <ComposerLink path={this.getPropValue("secondButtonLink")}>
-                  <span
-                    className={this.decorateCSS("button2")}
-                  >
-                    {this.getPropValue("secondButtonText")}
-                  </span>
-                </ComposerLink>
-              </div>
             </Base.VerticalContent>
             <div className={this.decorateCSS("right-page")}>
               <div className={this.decorateCSS("image-container")}>
