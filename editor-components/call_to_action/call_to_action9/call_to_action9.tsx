@@ -138,20 +138,30 @@ class CallToAction9Page extends BaseCallToAction {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("call-to-action9-page")}>
-            <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
-            <ComposerLink path={this.getPropValue("link")}>
-              <Base.Button className={this.decorateCSS("button")}>
-                {this.getPropValue("buttonText")}
-              </Base.Button>
-            </ComposerLink>
-            <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>
-            <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("image-container")} >
-              {images.map((item: ImageItem, index: number) => (
-                <div className={this.decorateCSS("image-wrapper")}>
-                  <img alt={item.image} src={item.image} className={this.decorateCSS("image")}></img>
-                </div>
-              ))}
-            </Base.ListGrid>
+            {this.castToString(this.getPropValue("title")) && (
+              <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
+            )}
+            {this.castToString(this.getPropValue("buttonText")) && (
+              <ComposerLink path={this.getPropValue("link")}>
+                <Base.Button className={this.decorateCSS("button")}>
+                  {this.getPropValue("buttonText")}
+                </Base.Button>
+              </ComposerLink>
+            )}
+            {this.castToString(this.getPropValue("description")) && (
+              <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>
+            )}
+            {(images.length > 0) && (
+              <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("image-container")} >
+                {images.map((item: ImageItem, index: number) => (
+                  <div className={this.decorateCSS("image-wrapper")}>
+                    {item.image && (
+                      <img alt={item.image} src={item.image} className={this.decorateCSS("image")}></img>
+                    )}
+                  </div>
+                ))}
+              </Base.ListGrid>
+            )}
           </Base.VerticalContent>
         </Base.MaxContent>
       </Base.Container>
