@@ -1,88 +1,161 @@
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+
 .container {
-    width: 100%;
-    padding: 50px 0;
+    padding: 0 !important;
+
     .max-content {
-        max-width: var(--composer-content-width);
-        margin: auto;
-        .wrapper {
-            width: 100%;
-            padding: 20px;
-            box-shadow: var(--composer-box-shadow);
-            display: flex;
-            justify-content: space-between;
-            gap: 20px;
-            &.wrapper-reverse {
-                flex-flow: row-reverse;
+        width: 100%;
+        box-shadow: var(--composer-box-shadow);
+        display: flex;
+        flex-direction: column;
+
+        .header {
+            flex: 1;
+            padding: var(--composer-gap-md) var(--composer-gap-xl);
+            flex-wrap: nowrap;
+            max-width: var(--composer-content-width);
+
+            @container (max-width: #{$composer-tablet-width}) {
+                padding: var(--composer-gap-md) var(--composer-gap-lg);
             }
-            .slider-parent {
-                width: 50%;
-                .carousel {
-                    width: 100%;
-                    height: 450px;
-                    .img {
-                        height: 450px;
-                        width: auto;
-                        object-fit: cover;
+
+            @container (max-width: #{$composer-phone-width}) {
+                padding: var(--composer-gap-md) var(--composer-gap-md);
+            }
+
+            .header-content {
+                width: 100%;
+
+                .title {
+                    display: flex;
+                    flex-direction: row;
+                    gap: var(--composer-gap-xl);
+
+                    @container (max-width: #{$composer-tablet-width}) {
+                        gap: var(--composer-gap-lg);
                     }
-                    .slick-next {
-                        left: 25px !important;
-                        background-color: red !important;
+
+                    @container (max-width: #{$composer-phone-width}) {
+                        flex-wrap: wrap;
+                        gap: var(--composer-gap-md);
                     }
                 }
             }
-            .header-page {
-                width: 50%;
+
+            .arrows {
                 display: flex;
-                flex-direction: column;
-                justify-content: flex-start;
-                align-items: flex-start;
-                .first-header {
-                    text-transform: capitalize;
-                    font-weight: revert;
-                    margin-top: 0;
-                    font-size: 4.5rem;
+                flex-wrap: nowrap;
+                align-items: center;
+                gap: var(--composer-gap-md);
+                width: fit-content;
+
+                @container (max-width: #{$composer-phone-width}) {
+                    justify-content: space-between;
                     width: 100%;
-                    line-height: 1;
-                    margin-bottom: 20px;
-                    color: var(--composer-primary-color);
                 }
-                .content {
-                    font-weight: 500;
-                    color: black;
-                    font-size: 1.2rem;
+
+                .nextArrow,
+                .prevArrow {
                     color: var(--composer-font-color-primary);
+                    font-size: 3rem;
+
+                    @container (max-width: #{$composer-tablet-width}) {
+                        font-size: 2.5rem;
+                    }
+
                 }
+
             }
         }
-    }
-}
 
-@media only screen and (max-width: 768px) {
-    .container {
-        width: 100%;
-        padding: 50px 20px;
-        .max-content {
-            .wrapper {
-                align-items: center;
-                flex-direction: column !important;
-                width: 100% !important;
-                .slider-parent {
+        .slider-parent {
+            margin-top: var(--composer-gap-md);
+
+            .carousel {
+                width: 100%;
+
+                .card {
+                    flex: 1;
                     width: 100%;
-                    .carousel {
+                    overflow: hidden;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    transition: transform 0.3s;
+                    transform: scale(0.8);
+                    z-index: 1;
+                    border-radius: var(--composer-gap-xs);
+                    max-width: 900px;
+
+                    @container  (max-width: #{$composer-tablet-width}) {
+                        max-width: 500px;
+                    }
+
+                    .img-container {
                         width: 100%;
-                        height: 70%;
+                        overflow: hidden;
+                        z-index: 1;
+                        height: 400px;
+                        padding-bottom: var(--composer-gap-lg);
+
                         .img {
-                            height: auto;
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            transform: scale(1.1);
+                            transform-origin: center;
+                            z-index: 1;
+                            transition: transform 0.5s ease, filter 0.5s ease;
+
+                            &:hover {
+                                transform: scale(1.0);
+                                filter: brightness(80%);
+                            }
+
+                            &:not(:hover) {
+                                transform: scale(1.1);
+                                filter: brightness(100%);
+                            }
+                        }
+                    }
+
+                    .content-container {
+                        opacity: 0;
+                        transition: opacity 1s ease;
+                        padding: var(--composer-gap-md) 0 var(--composer-gap-md) 0;
+                        
+                        &.active {
+                            display: flex;
+                            opacity: 1;
+                            gap: var(--composer-gap-md);
+                        }
+
+                        .header {
+                            padding: 0;
+                            margin: 0;
+                            color: var(--composer-font-color-primary);
+                        }
+
+                        .description {
+                            color: var(--composer-font-color-primary);
                         }
                     }
                 }
-                .slider-parent,
-                .header-page {
-                    width: 100% !important;
+
+                .centerSlide {
+                    transform: scale(1.0);
+                    transition: transform 0.3s ease;
+
                 }
-                .first-header {
-                    font-size: 3rem !important;
-                }
+            }
+
+            .carousel--singleCard {
+                width: 100%;
+            }
+
+            .carousel--multipleCards {
+                width: auto;
             }
         }
     }
