@@ -1,29 +1,32 @@
+@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
 .container {
     .max-content {
         .content {
             display:flex;
             .left-page{
                 flex: 1;
+                gap: var(--composer-gap-lg);
                 .title {
-                    content: "";
+                    margin: 0px;
                 }
                 .list-container{
-                    // display: flex;
-                    // flex-direction: column;
-                    // gap: var(--composer-gap-md);
+                    margin: 0px;
                     .list{
                         display: flex;
                         gap: var(--composer-gap-md);
-                        align-items: stretch;
                         .description {
                             display: flex;
                             align-items: center;
                             font-size: 1rem;
+                            color: var(--composer-font-color-primary);
                         }
                         .icon-container{
                             background-color: var(--composer-primary-color);
                             padding: var(--composer-gap-xs);
                             border-radius: 50%;
+                            align-items: center;
+                            display: flex;
+                            height: fit-content;
                             .icon{
                                 color: var(--composer-font-color-secondary);
                                 width: 10px;
@@ -35,7 +38,8 @@
                 }
 
                 .buttons {
-                                    
+                    display: flex;
+                    gap: var(--composer-gap-md);                   
                 }
              
             }
@@ -46,14 +50,20 @@
                     justify-content: center;
                     align-items: center;
                     img {
-                        // max-height: 60vh;
                         width: 100%;
                         object-fit: cover;
                     }
                 }
             }
-   
         }
-
+    }
+}
+@container (max-width: #{$composer-phone-width}){
+    .container{
+        .max-content{
+            .content{
+                flex-direction: column;
+            }
+        }
     }
 }

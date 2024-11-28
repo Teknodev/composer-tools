@@ -29,6 +29,12 @@ class CallToAction4Page extends BaseCallToAction {
       value: "FaCheck",
     });
     this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item Count in a Row",
+      value: 2,
+    });
+    this.addProp({
       type: "array",
       key: "listItems",
       displayer: "List Items",
@@ -205,39 +211,53 @@ class CallToAction4Page extends BaseCallToAction {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
-            <Base.VerticalContent className={this.decorateCSS("left-page")}>
-              <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
-              <Base.ListGrid gridCount={{ pc: 2 }} className={this.decorateCSS("list-container")}>
-                {listItems.map((item: ListItem, index: number) => (
-                  <div className={this.decorateCSS("list")}>
-                    <div className={this.decorateCSS("icon-container")}>
-                      <ComposerIcon name={this.getPropValue("icon")} propsIcon={{ className: this.decorateCSS("icon") }} />
-                    </div>
-                    <div className={this.decorateCSS("description")}>
-                      {item.description}
-                    </div>
+            {(this.castToString(this.getPropValue("title")) || (listItems.length > 0) || (buttonItems.length > 0)) && (
+              <Base.VerticalContent className={this.decorateCSS("left-page")}>
+                {this.castToString(this.getPropValue("title")) && (
+                  <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
+                )}
+                {(listItems.length > 0) && (
+                  <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("list-container")}>
+                    {listItems.map((item: ListItem, index: number) => (
+                      <div className={this.decorateCSS("list")}>
+                        {this.getPropValue("icon") && (
+                          <div className={this.decorateCSS("icon-container")}>
+                            <ComposerIcon name={this.getPropValue("icon")} propsIcon={{ className: this.decorateCSS("icon") }} />
+                          </div>
+                        )}
+                        {this.castToString(item.description) && (
+                          <div className={this.decorateCSS("description")}>
+                            {item.description}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </Base.ListGrid>
+                )}
+                {(buttonItems.length > 0) && (
+                  <div className={this.decorateCSS("buttons")}>
+                    {buttonItems.map((item: ButtonItem, index: number) => (
+                      <ComposerLink path={item.buttonLink}>
+                        {this.castToString(item.buttonText) && (
+                          <Base.Button
+                            className={this.decorateCSS("button")}
+                          >
+                            {item.buttonText}
+                          </Base.Button>
+                        )}
+                      </ComposerLink>
+                    ))}
                   </div>
-                ))}
-              </Base.ListGrid>
-
-              {buttonItems.map((item: ButtonItem, index: number) => (
-                <div className={this.decorateCSS("buttons")}>
-                  <ComposerLink path={item.buttonLink}>
-                    <div
-                      className={this.decorateCSS("button")}
-                    >
-                      {item.buttonText}
-                    </div>
-                  </ComposerLink>
+                )}
+              </Base.VerticalContent>
+            )}
+            {this.getPropValue("image") && (
+              <div className={this.decorateCSS("right-page")}>
+                <div className={this.decorateCSS("image-container")}>
+                  <img src={this.getPropValue("image")} alt={this.getPropValue("image")} />
                 </div>
-              ))
-              }
-            </Base.VerticalContent>
-            <div className={this.decorateCSS("right-page")}>
-              <div className={this.decorateCSS("image-container")}>
-                <img src={this.getPropValue("image")} alt="" />
               </div>
-            </div>
+            )}
           </div>
         </Base.MaxContent>
       </Base.Container>
