@@ -261,7 +261,7 @@ class ImageGalleryComponent5 extends BaseImageGallery {
                 <div className={this.decorateCSS("middle-content")}>
                   {closeIcon && (
                     <button className={this.decorateCSS("image-close-button")}>
-                      <ComposerIcon name={closeIcon} />
+                      <ComposerIcon name={closeIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
                     </button>
                   )}
                   {galleries[clickedImageIndex].value.find((item: any) => item.type === "image").value && (
