@@ -25,6 +25,12 @@ class ImageGallery1 extends BaseImageGallery {
       value: true
     })
     this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item Count in a Row",
+      value: 3,
+    })
+    this.addProp({
       type: "array",
       key: "imageGalleries",
       displayer: "Image Galleries",
@@ -60,13 +66,13 @@ class ImageGallery1 extends BaseImageGallery {
                     {
                       type: "string",
                       key: "title",
-                      displayer: "Title",
+                      displayer: "Title 1",
                       value: "Design Blast"
                     },
                     {
                       type: "string",
                       key: "section",
-                      displayer: "Title",
+                      displayer: "Title 2",
                       value: "Photography"
                     },
                   ]
@@ -86,13 +92,13 @@ class ImageGallery1 extends BaseImageGallery {
                     {
                       type: "string",
                       key: "title",
-                      displayer: "Title",
+                      displayer: "Title 1",
                       value: "Cropo Identity"
                     },
                     {
                       type: "string",
                       key: "section",
-                      displayer: "Title",
+                      displayer: "Title 2",
                       value: "Packaging"
                     },
                   ]
@@ -112,13 +118,13 @@ class ImageGallery1 extends BaseImageGallery {
                     {
                       type: "string",
                       key: "title",
-                      displayer: "Title",
+                      displayer: "Title 1",
                       value: "Harddot Stone"
                     },
                     {
                       type: "string",
                       key: "section",
-                      displayer: "Title",
+                      displayer: "Title 2",
                       value: "Graphics"
                     },
                   ]
@@ -159,13 +165,13 @@ class ImageGallery1 extends BaseImageGallery {
                     {
                       type: "string",
                       key: "title",
-                      displayer: "Title",
+                      displayer: "Title 1",
                       value: "Tailoring Inteo"
                     },
                     {
                       type: "string",
                       key: "section",
-                      displayer: "Title",
+                      displayer: "Title 2",
                       value: "Branding"
                     },
                   ]
@@ -184,13 +190,13 @@ class ImageGallery1 extends BaseImageGallery {
                     {
                       type: "string",
                       key: "title",
-                      displayer: "Title",
+                      displayer: "Title 1",
                       value: "Herbal Beauty"
                     },
                     {
                       type: "string",
                       key: "section",
-                      displayer: "Title",
+                      displayer: "Title 2",
                       value: "Application"
                     },
                   ]
@@ -209,13 +215,13 @@ class ImageGallery1 extends BaseImageGallery {
                     {
                       type: "string",
                       key: "title",
-                      displayer: "Title",
+                      displayer: "Title 1",
                       value: "Harddot Stone"
                     },
                     {
                       type: "string",
                       key: "section",
-                      displayer: "Title",
+                      displayer: "Title 2",
                       value: "Graphics"
                     },
                   ]
@@ -257,13 +263,13 @@ class ImageGallery1 extends BaseImageGallery {
                     {
                       type: "string",
                       key: "title",
-                      displayer: "Title",
+                      displayer: "Title 1",
                       value: "Design Blast"
                     },
                     {
                       type: "string",
                       key: "section",
-                      displayer: "Title",
+                      displayer: "Title 2",
                       value: "Photograhy"
                     },
                   ]
@@ -283,13 +289,13 @@ class ImageGallery1 extends BaseImageGallery {
                     {
                       type: "string",
                       key: "title",
-                      displayer: "Title",
+                      displayer: "Title 1",
                       value: "Herbal Beauty"
                     },
                     {
                       type: "string",
                       key: "section",
-                      displayer: "Title",
+                      displayer: "Title 2",
                       value: "Application"
                     },
                   ]
@@ -309,13 +315,13 @@ class ImageGallery1 extends BaseImageGallery {
                     {
                       type: "string",
                       key: "title",
-                      displayer: "Title",
+                      displayer: "Title 1",
                       value: "Harddot Stone"
                     },
                     {
                       type: "string",
                       key: "section",
-                      displayer: "Title",
+                      displayer: "Title 2",
                       value: "Graphics"
                     },
                   ]
@@ -335,13 +341,13 @@ class ImageGallery1 extends BaseImageGallery {
                     {
                       type: "string",
                       key: "title",
-                      displayer: "Title",
+                      displayer: "Title 1",
                       value: "Harddot Stone"
                     },
                     {
                       type: "string",
                       key: "section",
-                      displayer: "Title",
+                      displayer: "Title 2",
                       value: "Graphics"
                     },
                   ]
@@ -398,7 +404,7 @@ class ImageGallery1 extends BaseImageGallery {
             }
 
           </div>
-          <Base.ListGrid gridCount={{ pc: 3 }}>
+          <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }}>
             {imageGallery
               .filter(
                 (item: ImageGallery) =>

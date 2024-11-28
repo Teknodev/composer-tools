@@ -14,12 +14,13 @@
         background-color: transparent;
         border: none;
         cursor: pointer;
-        opacity: 0.5;
+        opacity: 0.7;
         transition: opacity 0.3s ease, border-bottom 0.1s ease;
         color:var(--composer-font-color-primary);
         &.active-section-title{
           border-bottom: 2px solid var(--composer-font-color-primary);
           opacity: 1;
+          font-weight: bold;
         }
       }
     }
@@ -58,8 +59,7 @@
   
         }
         .section{
-          color :var(--composer-font-color-primary);
-          opacity: 0.5;
+          color :var(--composer-font-color-tertiary);
           max-width: 40%;
         }
       }
