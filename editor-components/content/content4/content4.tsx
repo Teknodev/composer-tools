@@ -92,7 +92,7 @@ class Content4 extends BaseContent {
           key: "image",
           displayer: "Image",
           value:
-            "https://halstein.qodeinteractive.com/wp-content/uploads/2021/10/h1-img-03.jpg",
+            "https://halstein.qodeinteractive.com/wp-content/uploads/2021/10/h1-img-02.jpg",
         },
       ],
     });
@@ -136,7 +136,7 @@ class Content4 extends BaseContent {
           key: "image",
           displayer: "Image",
           value:
-            "https://halstein.qodeinteractive.com/wp-content/uploads/2021/10/h1-img-02.jpg",
+            "https://halstein.qodeinteractive.com/wp-content/uploads/2021/10/h1-img-03.jpg",
         },
       ],
     });
@@ -247,12 +247,12 @@ class Content4 extends BaseContent {
       itemBottomRight.Visibility;
 
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container isFull={true} className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {itemLeft.Visibility && itemLeft.image ? (
+          {itemLeft.Visibility && (
             <div className={this.decorateCSS("left")}>
               <ComposerLink path={itemLeft.url} isFullWidth={true}>
-                <div className={this.decorateCSS("item")}>
+                <div className={`${this.decorateCSS("item")} ${!itemLeft.image ? this.decorateCSS("no-image") : ""}`}>
                   {itemLeft.image &&
                     <div className={this.decorateCSS("background-image")}>
                       <img
@@ -288,7 +288,7 @@ class Content4 extends BaseContent {
                 </div>
               </ComposerLink>
             </div>
-          ) : null}
+          )}
 
           {renderRight && (
             <div className={this.decorateCSS("right")}>
@@ -296,7 +296,7 @@ class Content4 extends BaseContent {
                 <div className={this.decorateCSS("top")}>
                   {itemTopRight.Visibility ? (
                     <ComposerLink path={itemTopRight.url} isFullWidth={true}>
-                      <div className={this.decorateCSS("item")}>
+                      <div className={`${this.decorateCSS("item")} ${!itemTopLeft.image ? this.decorateCSS("no-image") : ""}`}>
                         {itemTopRight.image && (
                           <div className={this.decorateCSS("background-image")}>
                             <img
@@ -340,7 +340,7 @@ class Content4 extends BaseContent {
                   ) : null}
                   {itemTopLeft.Visibility ? (
                     <ComposerLink path={itemTopLeft.url} isFullWidth={true}>
-                      <div className={this.decorateCSS("item")}>
+                      <div className={`${this.decorateCSS("item")} ${!itemTopLeft.image ? this.decorateCSS("no-image") : ""}`}>
                         {itemTopLeft.image && (
                           <div className={this.decorateCSS("background-image")}>
                             <img
@@ -388,7 +388,7 @@ class Content4 extends BaseContent {
                 <div className={this.decorateCSS("bottom")}>
                   {itemBottomLeft.Visibility ? (
                     <ComposerLink path={itemBottomLeft.url} isFullWidth={true}>
-                      <div className={this.decorateCSS("item")}>
+                      <div className={`${this.decorateCSS("item")} ${!itemBottomLeft.image ? this.decorateCSS("no-image") : ""}`}>
                         {itemBottomLeft.image &&
                           <div className={this.decorateCSS("background-image")}>
                             <img
@@ -432,7 +432,7 @@ class Content4 extends BaseContent {
                   ) : null}
                   {itemBottomRight.Visibility ? (
                     <ComposerLink path={itemBottomRight.url} isFullWidth={true}>
-                      <div className={this.decorateCSS("item")}>
+                      <div className={`${this.decorateCSS("item")} ${!itemBottomRight.image ? this.decorateCSS("no-image") : ""}`}>
                         {itemBottomRight.image &&
                           <div className={this.decorateCSS("background-image")}>
                             <img
