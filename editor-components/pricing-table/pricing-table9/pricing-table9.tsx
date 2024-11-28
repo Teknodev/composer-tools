@@ -21,8 +21,8 @@ class PricingTable9 extends BasePricingTable {
 
     this.addProp({
       type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
+      key: "description",
+      displayer: "Description",
       value: "Decide according to your needs.",
     });
 
@@ -756,15 +756,15 @@ class PricingTable9 extends BasePricingTable {
     };
 
     const titleExist = this.getPropValue("title", { as_string: true });
-    const subtitleExist = this.getPropValue("subtitle", { as_string: true });
+    const descriptionExist = this.getPropValue("description", { as_string: true });
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(titleExist || subtitleExist) && (
+          {(titleExist || descriptionExist) && (
             <Base.VerticalContent className={this.decorateCSS("header")}>
               {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-              {subtitleExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("subtitle")}</Base.SectionDescription>}
+              {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
             </Base.VerticalContent>
           )}
           <div className={this.decorateCSS("container")}>
@@ -777,43 +777,9 @@ class PricingTable9 extends BasePricingTable {
             </div>
 
             <div className={this.decorateCSS("columns-container")}>
-              {this.castToObject<string[]>("columns").map((column: any, index: any) => (
-                <div key={`column-${index}`} className={this.decorateCSS("column-item")}>
-                  <Base.H3 className={this.decorateCSS("column-title")}>{column?.title}</Base.H3>
-                  <div className={this.decorateCSS("column-contents")}>
-                    {column?.contents.map((content: any, contentIndex: any) => (
-                      <div key={`content-${contentIndex}`} className={this.decorateCSS("content-item")}>
-                        {content?.icon && (
-                          <span className={this.decorateCSS("content-icon")}>
-                            <ComposerIcon name={content.icon} />
-                          </span>
-                        )}
-                        <Base.P className={this.decorateCSS("content-text")}>{content?.text}</Base.P>
-                      </div>
-                    ))}
-                  </div>
-                  <div className={this.decorateCSS("column-button-container")}>
-                    <ComposerLink>
-                      <Base.Button className={this.decorateCSS("column-button")}>{column?.button}</Base.Button>
-                    </ComposerLink>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className={this.decorateCSS("slider")}>
-            <div className={this.decorateCSS("benefits-column")}>
-              {this.castToObject<string[]>("benefits").map((benefit: any, index: any) => (
-                <div key={`benefit-${index}`} className={this.decorateCSS("benefit-item")}>
-                  <Base.H5 className={this.decorateCSS("benefit-title")}>{benefit?.title}</Base.H5>
-                </div>
-              ))}
-            </div>
-
-            <div className={this.decorateCSS("slider-container")}>
-              <ComposerSlider {...settings}>
-                {this.castToObject<string[]>("columns").map((column: any, index: any) => (
+              {this.castToObject<string[]>("columns").map((column: any, index: any) => {
+                const buttonTextExist = this.castToString(column?.button);
+                return (
                   <div key={`column-${index}`} className={this.decorateCSS("column-item")}>
                     <Base.H3 className={this.decorateCSS("column-title")}>{column?.title}</Base.H3>
                     <div className={this.decorateCSS("column-contents")}>
@@ -828,13 +794,57 @@ class PricingTable9 extends BasePricingTable {
                         </div>
                       ))}
                     </div>
-                    <div className={this.decorateCSS("column-button-container")}>
-                      <ComposerLink>
-                        <Base.Button className={this.decorateCSS("column-button")}>{column?.button}</Base.Button>
-                      </ComposerLink>
-                    </div>
+                    {buttonTextExist && (
+                      <div className={this.decorateCSS("column-button-container")}>
+                        <ComposerLink>
+                          <Base.Button className={this.decorateCSS("column-button")}>{column?.button}</Base.Button>
+                        </ComposerLink>
+                      </div>
+                    )}
                   </div>
-                ))}
+                );
+              })}
+            </div>
+          </div>
+
+          <div className={this.decorateCSS("slider")}>
+            <div className={this.decorateCSS("benefits-column")}>
+              {this.castToObject<string[]>("benefits").map((benefit: any, index: any) => (
+                <div key={`benefit-${index}`} className={this.decorateCSS("benefit-item")}>
+                  <Base.H5 className={this.decorateCSS("benefit-title")}>{benefit?.title}</Base.H5>
+                </div>
+              ))}
+            </div>
+
+            <div className={this.decorateCSS("slider-container")}>
+              <ComposerSlider {...settings}>
+                {this.castToObject<string[]>("columns").map((column: any, index: any) => {
+                  const buttonTextExist = this.castToString(column?.button);
+                  return (
+                    <div key={`column-${index}`} className={this.decorateCSS("column-item")}>
+                      <Base.H3 className={this.decorateCSS("column-title")}>{column?.title}</Base.H3>
+                      <div className={this.decorateCSS("column-contents")}>
+                        {column?.contents.map((content: any, contentIndex: any) => (
+                          <div key={`content-${contentIndex}`} className={this.decorateCSS("content-item")}>
+                            {content?.icon && (
+                              <span className={this.decorateCSS("content-icon")}>
+                                <ComposerIcon name={content.icon} />
+                              </span>
+                            )}
+                            <Base.P className={this.decorateCSS("content-text")}>{content?.text}</Base.P>
+                          </div>
+                        ))}
+                      </div>
+                      {buttonTextExist && (
+                        <div className={this.decorateCSS("column-button-container")}>
+                          <ComposerLink>
+                            <Base.Button className={this.decorateCSS("column-button")}>{column?.button}</Base.Button>
+                          </ComposerLink>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
               </ComposerSlider>
             </div>
           </div>
