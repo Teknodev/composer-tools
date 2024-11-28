@@ -716,22 +716,22 @@ class ImageGallery2 extends BaseImageGallery {
                     <div className={this.decorateCSS("content")}>
                         <div className={this.decorateCSS("section-selector-text")}>
                             {showAll && (
-                                <Base.H4
+                                <div
                                     className={`${this.decorateCSS("section-text")} ${currentIndex === -1 ? this.decorateCSS("active") : ""
                                         }`}
                                     onClick={() => this.setComponentState("default", -1)}
                                 >
                                     All
-                                </Base.H4>
+                                </div>
                             )}
                             {galleryCollection.map((element: any, index: number) => (
-                                <Base.H4
+                                <div
                                     className={`${this.decorateCSS("section-text")} ${index === currentIndex ? this.decorateCSS("active") : ""
                                         }`}
                                     onClick={() => this.setComponentState("default", index)}
                                 >
                                     {element.getPropValue("title")}
-                                </Base.H4>
+                                </div>
                             ))}
                         </div>
                         <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("gallery-grid")}>
@@ -763,62 +763,64 @@ class ImageGallery2 extends BaseImageGallery {
                         </Base.ListGrid>
                     </div>
                     {modalOpen && (
-                        <div
-                            className={this.decorateCSS("modal")}
-                            onClick={this.closeModal}
-                        >
-                            <div
-                                className={this.decorateCSS("modal-content")}
-                                onClick={(e) => e.stopPropagation()}
-                            >
+                        <div className={this.decorateCSS("modal")}>
+                            <div className={this.decorateCSS("modal-wrapper")}
+                                onClick={this.closeModal}>
                                 <div
-                                    className={this.decorateCSS("close")}
-                                    onClick={this.closeModal}
+                                    className={this.decorateCSS("modal-content")}
+                                    onClick={(e) => e.stopPropagation()}
                                 >
-                                    <ComposerIcon
-                                        propsIcon={{ className: this.decorateCSS("icon") }}
-                                        name={closeModalIcon}
-                                    />
-                                </div>
-                                <div
-                                    className={this.decorateCSS("prev")}
-                                    onClick={this.prevImage}
-                                >
-                                    <ComposerIcon
-                                        propsIcon={{ className: this.decorateCSS("icon") }}
-                                        name={previousImageIcon}
-                                    />
-                                </div>
-                                <div
-                                    className={this.decorateCSS("next")}
-                                    onClick={this.nextImage}
-                                >
-                                    <ComposerIcon
-                                        propsIcon={{ className: this.decorateCSS("icon") }}
-                                        name={nextImageIcon}
-                                    />
-                                </div>
-                                <div className={this.decorateCSS("image-container")}>
-                                    <img
-                                        src={currentImage.image as string}
-                                        className={this.decorateCSS("modal-image")}
-                                    />
-                                </div>
-                                <div className={this.decorateCSS("image-info")}>
-                                    <div className={this.decorateCSS("image-title")}>
-                                        {currentImage.imageTitle}
+                                    <div
+                                        className={this.decorateCSS("close")}
+                                        onClick={this.closeModal}
+                                    >
+                                        <ComposerIcon
+                                            propsIcon={{ className: this.decorateCSS("icon") }}
+                                            name={closeModalIcon}
+                                        />
                                     </div>
-                                    {imgCounter && (
-                                        <div className={this.decorateCSS("image-count")}>
-                                            {imgCount}
+
+                                    <div className={this.decorateCSS("image-container")}>
+                                        <img
+                                            src={currentImage.image as string}
+                                            className={this.decorateCSS("modal-image")}
+                                        />
+                                    </div>
+                                    <div className={this.decorateCSS("image-info")}>
+                                        <div className={this.decorateCSS("image-title")}>
+                                            {currentImage.imageTitle}
                                         </div>
-                                    )}
+                                        {imgCounter && (
+                                            <div className={this.decorateCSS("image-count")}>
+                                                {imgCount}
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
+                            </div>
+
+                            <div
+                                className={this.decorateCSS("prev")}
+                                onClick={this.prevImage}
+                            >
+                                <ComposerIcon
+                                    propsIcon={{ className: this.decorateCSS("icon") }}
+                                    name={previousImageIcon}
+                                />
+                            </div>
+                            <div
+                                className={this.decorateCSS("next")}
+                                onClick={this.nextImage}
+                            >
+                                <ComposerIcon
+                                    propsIcon={{ className: this.decorateCSS("icon") }}
+                                    name={nextImageIcon}
+                                />
                             </div>
                         </div>
                     )}
                 </Base.MaxContent>
-            </Base.Container>
+            </Base.Container >
         );
     }
 }
