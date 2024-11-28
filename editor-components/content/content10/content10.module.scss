@@ -1,23 +1,44 @@
 @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
 .container {
+    position: relative;
+    padding-top: 0px;
+    padding-bottom: 0px;
     .max-content {
         display: flex;
-        @media screen and (max-width: 992px) {
+        @media screen and (max-width: $composer-tablet-width-lg) {
             flex-direction: column;
             gap: 0;
             align-items: center;
+            margin-bottom: var(--composer-gap-md);
+            
         }
 
         .cards {
+            &:before{
+                content: "";
+                position: absolute;
+                right: 0px;
+                top: 0px;
+                width: 2000px;
+                background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);;
+                height: 100%;
+                z-index: 0;
+            }
+            position: relative;
             border-radius: var(--composer-border-radius-sm);
             width: 100%;
             background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
             height: fit-content;
             padding: var(--composer-gap-xl) calc(var(--composer-gap-xl) + 20px) var(--composer-gap-xl) var(--composer-gap-xl);
+            margin-bottom: var(--composer-gap-lg);
 
+            &.no-image{
+                margin-bottom: 0px;
+            }
             @media screen and (max-width: $composer-tablet-width-lg) {
                 padding: var(--composer-gap-md);
+                margin-bottom: 0px;
             }
 
             @media screen and (max-width: $composer-phone-width) {
@@ -25,12 +46,14 @@
             }
 
             .card {
+                z-index: 1;
                 display: flex;
                 transition: 0.4s;
                 color: var(--composer-font-color-primary);
                 padding: var(--composer-gap-md);
                 gap: var(--composer-gap-md);
-                
+                border-radius: var(--composer-border-radius-sm);
+
                 .icon-box {
                     min-width: calc(2.67rem + var(--composer-gap-xs));
                     height: calc(2.67rem + var(--composer-gap-xs));
@@ -44,7 +67,8 @@
                 .labels {
 
                     .subtitle {
-                        content: "";
+                        color: var(--composer-primary-color);
+                        transition: 0.4s;
                     }
 
                     .title {
@@ -59,6 +83,11 @@
                 &:hover {
                     background: var(--composer-primary-color);
                     color: var(--composer-font-color-secondary);
+                    .labels{
+                        .subtitle{
+                            color: var(--composer-font-color-secondary);
+                        }
+                    }
                 }
 
                 @media screen and (max-width: $composer-tablet-width-lg) {
@@ -68,21 +97,16 @@
         }
 
         .video-container {
-            min-width: 460px;
-            max-width: 460px;
-            height: 660px;
+            width: 80%;
             position: relative;
             margin-left: calc(-1 * var(--composer-gap-lg));
             margin-top: var(--composer-gap-lg);
 
-            @media screen and (max-width: $composer-tablet-width-sm) {
-                max-width: 0px;
-                margin: var(--composer-gap-md) 0px 0px;
-            }
-
             @media screen and (max-width: $composer-tablet-width-lg) {
                 height: 370px;
                 min-width: 100%;
+                margin: var(--composer-gap-md) 0px 0px;
+
             }
 
             .image {
@@ -128,6 +152,28 @@
                 @media screen and (max-width: $composer-phone-width) {
                     height: 300px;
                 }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: $composer-tablet-width-lg) {
+    .container {
+        padding: 0px;
+        .max-content {
+            .cards{
+                padding: var(--composer-gap-md) 0px;
+                gap: var(--composer-gap-md);
+                .card{
+                    border-radius: 0px;
+                }
+                &::before{
+                    left: -50%;
+                    right: unset;
+                }
+            }
+            .video-container{
+                padding: 0px var(--composer-gap-md);
             }
         }
     }

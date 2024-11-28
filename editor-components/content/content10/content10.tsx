@@ -50,7 +50,7 @@ class Content10 extends BaseContent {
               type: "icon",
               key: "icon",
               displayer: "Icon",
-              value: "BsFillHandThumbsUpFill",
+              value: "Bs1CircleFill",
             },
             {
               type: "string",
@@ -82,7 +82,7 @@ class Content10 extends BaseContent {
               type: "icon",
               key: "icon",
               displayer: "Icon",
-              value: "BsFillHandThumbsUpFill",
+              value: "Bs2CircleFill",
             },
             {
               type: "string",
@@ -114,7 +114,7 @@ class Content10 extends BaseContent {
               type: "icon",
               key: "icon",
               displayer: "Icon",
-              value: "BsFillHandThumbsUpFill",
+              value: "Bs3CircleFill",
             },
             {
               type: "string",
@@ -146,7 +146,7 @@ class Content10 extends BaseContent {
               type: "icon",
               key: "icon",
               displayer: "Icon",
-              value: "BsFillHandThumbsUpFill",
+              value: "Bs4CircleFill",
             },
             {
               type: "string",
@@ -185,7 +185,7 @@ class Content10 extends BaseContent {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ListGrid
             gridCount={{ pc: 2 }}
-            className={this.decorateCSS("cards")}
+            className={`${!this.getPropValue("cover_image") ? this.decorateCSS("no-image"): ""} ${this.decorateCSS("cards")}`}
           >
             {this.castToObject<Card[]>("cards").map(
               (card: Card, index: number) => (
@@ -219,7 +219,7 @@ class Content10 extends BaseContent {
               )
             )}
           </Base.ListGrid>
-          {this.getPropValue("video") && (
+          {this.getPropValue("cover_image") && (
             <div className={this.decorateCSS("video-container")}>
               <img
                 className={this.decorateCSS("image")}
@@ -227,17 +227,19 @@ class Content10 extends BaseContent {
                 alt="Cover image"
               />
 
-              <div
-                className={this.decorateCSS("play-icon-box")}
-                onClick={() => {
-                  this.setComponentState("is_video_visible", true);
-                }}
-              >
-                <ComposerIcon
-                  name={this.getPropValue("play_icon")}
-                  propsIcon={{ className: this.decorateCSS("play-icon") }}
-                />
-              </div>
+              {this.getPropValue("video") && this.getPropValue("play_icon") && (
+                <div
+                  className={this.decorateCSS("play-icon-box")}
+                  onClick={() => {
+                    this.setComponentState("is_video_visible", true);
+                  }}
+                >
+                  <ComposerIcon
+                    name={this.getPropValue("play_icon")}
+                    propsIcon={{ className: this.decorateCSS("play-icon") }}
+                  />
+                </div>
+              )}
             </div>
           )}
 
