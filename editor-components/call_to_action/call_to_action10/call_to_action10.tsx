@@ -45,6 +45,12 @@ class CallToAction10Page extends BaseCallToAction {
       value: "",
     });
     this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item Count in a Row",
+      value: 3,
+    });
+    this.addProp({
       type: "array",
       key: "cardItems",
       displayer: "Card Items",
@@ -161,7 +167,7 @@ class CallToAction10Page extends BaseCallToAction {
               </ComposerLink>
             )}
             {(cardItem.length > 0) && (
-              <Base.ListGrid gridCount={{ pc: 3 }} className={this.decorateCSS("card-container")}>
+              <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("card-container")}>
                 {cardItem.map((item: CardItem, index: number) => (
                   <div className={this.decorateCSS("card")}>
                     {item.cardIcon && (
