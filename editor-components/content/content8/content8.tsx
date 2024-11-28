@@ -171,7 +171,7 @@ class Content8 extends BaseContent {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(isSubtitleExists || isTitleExist) && (
-            <div className={this.decorateCSS("up-page")}>
+            <div className={`${this.decorateCSS("up-page")} ${styles[Base.getContentAlignment()]} ${styles[Base.getViewType()]}`}>
               {isTitleExist && (
                 <Base.H1 className={this.decorateCSS("title")}>
                   {this.getPropValue("title")}
@@ -207,6 +207,7 @@ class Content8 extends BaseContent {
                         />
                       )}
                     </div>
+                    <div className={styles["gap"]}></div>
                     {descExist && (
                       <Base.H3 className={this.decorateCSS("description")}>
                         {card.description}
