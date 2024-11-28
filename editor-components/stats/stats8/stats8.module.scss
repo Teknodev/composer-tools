@@ -37,10 +37,6 @@ $font-color-primary: var(--composer-font-color-primary);
   align-items: center;
   height: 100%;
 
-  p {
-    color: $font-color-primary;
-  }
-
   .full-width {
     width: 100%;
     text-align: center;
@@ -69,22 +65,11 @@ $font-color-primary: var(--composer-font-color-primary);
         gap: var(--composer-gap-md);
 
         .title {
-          letter-spacing: 2px;
-          color: $font-color-primary;
-          word-break: break-word;
           margin: 0;
         }
 
         .text-uppercase {
           text-transform: uppercase;
-        }
-
-        .subtitle {
-          color: $font-color-primary;
-          word-break: break-word;
-          letter-spacing: 1.5px;
-          font-weight: bold;
-          margin: 0;
         }
 
         .line {
@@ -96,7 +81,6 @@ $font-color-primary: var(--composer-font-color-primary);
         .description {
           color: $font-color-primary;
           margin: 0;
-          word-break: break-word;
         }
 
         .author {
@@ -159,12 +143,12 @@ $font-color-primary: var(--composer-font-color-primary);
 
               &.with-background {
                 background-color: $color-mix;
-                margin: 1rem;
+                margin: var(--composer-gap-md);
               }
 
               &.no-background {
                 background-color: transparent;
-                margin: 1rem;
+                margin: var(--composer-gap-md);
               }
 
               .stat-counter {
@@ -175,13 +159,12 @@ $font-color-primary: var(--composer-font-color-primary);
               }
 
               .stat-description {
-                font-weight: 400;
-                letter-spacing: 1px;
                 @include blinkpageColor;
                 @include threeDotsBlinkPage;
                 margin: 0 var(--composer-gap-xs) 0 0;
                 word-break: break-word;
                 text-overflow: clip;
+                color: $font-color-primary;
               }
             }
           }
@@ -213,7 +196,7 @@ $font-color-primary: var(--composer-font-color-primary);
             position: absolute;
             bottom: 0;
             left: 0;
-            border: 1px solid $color-mix;
+            border: 1px solid white;
             overflow: hidden;
             white-space: normal;
             word-wrap: break-word;
@@ -223,9 +206,8 @@ $font-color-primary: var(--composer-font-color-primary);
 
             .number {
               font-size: 8rem;
-              margin-right: 0.5rem;
-              font-weight: 600;
-              color: $color-mix;
+              margin-right: var(--composer-gap-sm);
+              color: white;
               text-overflow: ellipsis;
               word-break: break-word;
             }
@@ -234,7 +216,7 @@ $font-color-primary: var(--composer-font-color-primary);
               letter-spacing: 1px;
               line-height: 1.5;
               font-weight: 600;
-              color: $color-mix;
+              color: white;
               word-break: break-word;
               margin: 0;
               @include threeDots;
@@ -274,17 +256,17 @@ $font-color-primary: var(--composer-font-color-primary);
             .stat-border {
               width: 48% !important;
               height: auto;
-              padding: 1rem !important;
+              padding: var(--composer-gap-md) !important;
               .with-background {
                 height: 100%;
                 margin: 0 !important;
               }
 
               .stat-counter {
-                margin: 10px !important;
+                margin: var(--composer-gap-sm) !important;
               }
               .stat-description {
-                margin: 5px !important;
+                margin: var(--composer-gap-xs) !important;
               }
             }
           }

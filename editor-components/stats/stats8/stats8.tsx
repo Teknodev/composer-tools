@@ -22,8 +22,8 @@ class Stats8Page extends BaseStats {
 
     this.addProp({
       type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
+      key: "description1",
+      displayer: "First Description",
       value: "We’re a creative agency with an expertise in make custom websites",
     });
 
@@ -37,7 +37,7 @@ class Stats8Page extends BaseStats {
     this.addProp({
       type: "string",
       key: "description",
-      displayer: "Description",
+      displayer: "Second Description",
       value:
         "Founded in 2000, Dsn Grid has become one of the best Digital Agency in Themeforest. Blue money going forward, but deploy to production. First-order optimal strategies build on a culture of contribution and inclusion so those options. Established in 2001, Alpha Creative quickly rose to be a leading design studio on Dribbble. Green energy investments flourish, while scaling to mass adoption. High-performance solutions are built on innovation and teamwork, embracing creativity and forward-thinking.",
     });
@@ -249,8 +249,6 @@ class Stats8Page extends BaseStats {
 
         var updatedValue = currentOverlayNumber > 0 ? newCurrentOverlayPrefix + formattedNextValueWithDots + newCurrentOverlaySuffix : newCurrentOverlayPrefix + formattedNextValueWithDots;
 
-        var updatedValueForControl = currentOverlayNumber > 0 ? newCurrentOverlayPrefix + formattedOverlayValue + newCurrentOverlaySuffix : newCurrentOverlayPrefix + formattedOverlayValue;
-
         this.setComponentState("overlayNumberDisplay", updatedValue);
         this.setComponentState("overlayNumberDisplayForControl", updatedValue);
       }
@@ -266,8 +264,8 @@ class Stats8Page extends BaseStats {
     const imageSrc = this.getPropValue("imageSrc");
     const title = this.getPropValue("headerTitle");
     const isTitleExist = this.castToString(title);
-    const subtitle = this.getPropValue("subtitle");
-    const isSubTitleExist = this.castToString(subtitle);
+    const description1 = this.getPropValue("description1");
+    const isDescription1Exist = this.castToString(description1);
     const description = this.getPropValue("description");
     const isDesExist = this.castToString(description);
     const author = this.getPropValue("author");
@@ -276,9 +274,7 @@ class Stats8Page extends BaseStats {
     const isAuthorRoleExist = this.castToString(authorRole);
     const overlayDescription = this.castToString(this.getPropValue("overlayDescription"));
     const showBackground = this.getPropValue("showBackground");
-    const isContentPresent = isTitleExist || isSubTitleExist || isDesExist || isAuthorExist || isAuthorRoleExist || statsData.length > 0;
-
-    console.log(isContentPresent, "isContentPresent");
+    const isContentPresent = isTitleExist || isDescription1Exist || isDesExist || isAuthorExist || isAuthorRoleExist || statsData.length > 0;
 
     const statsEqual = this.isEqual(this.getStats(), this.getNumbers());
     const overlayNumberState = this.getComponentState("overlayNumberDisplayForControl");
@@ -296,11 +292,11 @@ class Stats8Page extends BaseStats {
             <Base.VerticalContent className={this.decorateCSS("stats8-page")}>
               <div className={this.decorateCSS("content")}>
                 <Base.VerticalContent>{isTitleExist && <Base.SectionTitle className={this.decorateCSS("title") + " " + this.decorateCSS("text-uppercase")}>{title}</Base.SectionTitle>}</Base.VerticalContent>
-                {isSubTitleExist && <Base.P className={this.decorateCSS("subtitle")}>{subtitle}</Base.P>}
+                {isDescription1Exist && <Base.SectionDescription className={this.decorateCSS("description")}>{description1}</Base.SectionDescription>}
 
-                {(isTitleExist || isSubTitleExist) && this.getPropValue("showLine") && <hr className={this.decorateCSS("line")} />}
+                {(isTitleExist || isDescription1Exist) && this.getPropValue("showLine") && <hr className={this.decorateCSS("line")} />}
 
-                {isDesExist && <Base.P className={this.decorateCSS("description")}>{description}</Base.P>}
+                {isDesExist && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
 
                 {isAuthorExist && <Base.P className={this.decorateCSS("author")}>{author}</Base.P>}
                 {isAuthorRoleExist && (

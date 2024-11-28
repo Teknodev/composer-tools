@@ -1,325 +1,311 @@
 import * as React from "react";
 import { Testimonials } from "../../EditorComponent";
 import styles from "./testimonials6.module.scss";
+import { Base } from "../../../composer-base-components/base/base"
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
-type Item = {
-  image: string;
-};
-type ISection = {
-  section: Item[];
-};
+interface CardItem {
+  star: number,
+  description: JSX.Element,
+  profileImage: string,
+  name: JSX.Element,
+  personTitle: string,
+  line: boolean
+}
+
 class Testimonials6Page extends Testimonials {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
       type: "string",
       key: "title",
-      value: "Testimonials",
-      displayer: "title",
+      value: "What our customers say about Pagedone",
+      displayer: "Title",
+    });
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item Count in a Row",
+      value: 3,
+    });
+    this.addProp({
+      type: "icon",
+      key: "starIcon",
+      displayer: "Icon",
+      value: "FaStar",
     });
     this.addProp({
       type: "array",
-      key: "card-items",
-      displayer: "Card Items",
+      key: "cards",
+      displayer: "Cards",
       value: [
         {
           type: "object",
-          key: "section",
-          displayer: "Section",
+          key: "card",
+          displayer: "Card",
           value: [
             {
-              type: "array",
-              key: "items",
-              displayer: "Items",
-              value: [
-                {
-                  type: "object",
-                  key: "card",
-                  displayer: "Card",
-                  value: [
-                    {
-                      type: "number",
-                      key: "star",
-                      value: 5,
-                      displayer: "Star",
-                    },
-                    {
-                      type: "string",
-                      key: "subtitle",
-                      value:
-                        "Their design skills are truly exceptional, and they have a keen eye for aesthetics that sets them apart from others in the field.",
-                      displayer: "Subtitle",
-                    },
-                    {
-                      type: "image",
-                      key: "profileImage",
-                      value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644933b3f72de2002caa9a16?alt=media&timestamp=1719483639147",
-                      displayer: "Profile Image",
-                    },
-                    {
-                      type: "string",
-                      key: "name",
-                      value: "Clover Ruth",
-                      displayer: "Name",
-                    },
-                    {
-                      type: "string",
-                      key: "name-id",
-                      value: "@clover_ruth",
-                      displayer: "Name Id",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "card",
-                  displayer: "Card",
-                  value: [
-                    {
-                      type: "number",
-                      key: "star",
-                      value: 5,
-                      displayer: "Star",
-                    },
-                    {
-                      type: "string",
-                      key: "subtitle",
-                      value:
-                        "An online learning platform can provide access to educational content from anywhere with an internet connection.",
-                      displayer: "Subtitle",
-                    },
-                    {
-                      type: "image",
-                      key: "profileImage",
-                      value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64493501f72de2002caa9a46?alt=media&timestamp=1719483639147",
-                      displayer: "Profile Image",
-                    },
-                    {
-                      type: "string",
-                      key: "name",
-                      value: "Jaylyn Kaleigh",
-                      displayer: "Name",
-                    },
-                    {
-                      type: "string",
-                      key: "name-id",
-                      value: "@Jaylyn_Kaleigh",
-                      displayer: "Name Id",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "card",
-                  displayer: "Card",
-                  value: [
-                    {
-                      type: "number",
-                      key: "star",
-                      value: 5,
-                      displayer: "Star",
-                    },
-                    {
-                      type: "string",
-                      key: "subtitle",
-                      value:
-                        "A personal finance website can be incredibly helpful for people looking to improve their financial literacy and manage their money better.",
-                      displayer: "Subtitle",
-                    },
-                    {
-                      type: "image",
-                      key: "profileImage",
-                      value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6449364af72de2002caa9ad0?alt=media&timestamp=1719483639147",
-                      displayer: "Profile Image",
-                    },
-                    {
-                      type: "string",
-                      key: "name",
-                      value: "Candyce Jeannine",
-                      displayer: "Name",
-                    },
-                    {
-                      type: "string",
-                      key: "name-id",
-                      value: "@Candyce_Jeannine",
-                      displayer: "Name Id",
-                    },
-                  ],
-                },
-              ],
+              type: "boolean",
+              key: "line",
+              displayer: "Line",
+              value: true,
+            },
+            {
+              type: "number",
+              key: "star",
+              value: 5,
+              displayer: "Icon Number",
+            },
+            {
+              type: "string",
+              key: "description",
+              value:
+                "Their design skills are truly exceptional, and they have a keen eye for aesthetics that sets them apart from others in the field.",
+              displayer: "Review Text",
+            },
+            {
+              type: "image",
+              key: "profileImage",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644933b3f72de2002caa9a16?alt=media&timestamp=1719483639147",
+              displayer: "Author Image",
+            },
+            {
+              type: "string",
+              key: "name",
+              value: "Clover Ruth",
+              displayer: "Author Name",
+            },
+            {
+              type: "string",
+              key: "personTitle",
+              value: "Design Lead",
+              displayer: "Author Position",
             },
           ],
         },
         {
           type: "object",
-          key: "section",
-          displayer: "Section",
+          key: "card",
+          displayer: "Card",
           value: [
             {
-              type: "array",
-              key: "items",
-              displayer: "Items",
-              value: [
-                {
-                  type: "object",
-                  key: "card",
-                  displayer: "Card",
-                  value: [
-                    {
-                      type: "number",
-                      key: "star",
-                      value: 5,
-                      displayer: "Star",
-                    },
-                    {
-                      type: "string",
-                      key: "subtitle",
-                      value:
-                        "An e-commerce website can provide a platform for businesses to sell their products online.",
-                      displayer: "Subtitle",
-                    },
-                    {
-                      type: "image",
-                      key: "profileImage",
-                      value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64493a97f72de2002caa9c7b?alt=media&timestamp=1719483639147",
-                      displayer: "Profile Image",
-                    },
-                    {
-                      type: "string",
-                      key: "name",
-                      value: "Kasey Kim",
-                      displayer: "Name",
-                    },
-                    {
-                      type: "string",
-                      key: "name-id",
-                      value: "@Kasey_Kim",
-                      displayer: "Name Id",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "card",
-                  displayer: "Card",
-                  value: [
-                    {
-                      type: "number",
-                      key: "star",
-                      value: 5,
-                      displayer: "Star",
-                    },
-                    {
-                      type: "string",
-                      key: "subtitle",
-                      value:
-                        "A travel blog can offer inspiration and advice for people planning their next trip.",
-                      displayer: "Subtitle",
-                    },
-                    {
-                      type: "image",
-                      key: "profileImage",
-                      value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64495a05f72de2002caa9d3c?alt=media&timestamp=1719483639147",
-                      displayer: "Profile Image",
-                    },
-                    {
-                      type: "string",
-                      key: "name",
-                      value: "Glen Percy",
-                      displayer: "Name",
-                    },
-                    {
-                      type: "string",
-                      key: "name-id",
-                      value: "@Glen_Percy",
-                      displayer: "Name Id",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "card",
-                  displayer: "Card",
-                  value: [
-                    {
-                      type: "number",
-                      key: "star",
-                      value: 5,
-                      displayer: "Star",
-                    },
-                    {
-                      type: "string",
-                      key: "subtitle",
-                      value:
-                        "A fitness website can provide resources for people looking to get in shape and lead a healthy lifestyle.",
-                      displayer: "Subtitle",
-                    },
-                    {
-                      type: "image",
-                      key: "profileImage",
-                      value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64496786f72de2002caa9def?alt=media&timestamp=1719483639147",
-                      displayer: "Profile Image",
-                    },
-                    {
-                      type: "string",
-                      key: "name",
-                      value: "Flo Katrina",
-                      displayer: "Name",
-                    },
-                    {
-                      type: "string",
-                      key: "name-id",
-                      value: "@Flo_Katrina",
-                      displayer: "Name Id",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "card",
-                  displayer: "Card",
-                  value: [
-                    {
-                      type: "number",
-                      key: "star",
-                      value: 5,
-                      displayer: "Star",
-                    },
-                    {
-                      type: "string",
-                      key: "subtitle",
-                      value:
-                        "A recipe sharing website could be a great resource for foodies and home cooks alike.",
-                      displayer: "Subtitle",
-                    },
-                    {
-                      type: "image",
-                      key: "profileImage",
-                      value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644967f1f72de2002caa9df3?alt=media&timestamp=1719483639147",
-                      displayer: "Profile Image",
-                    },
-                    {
-                      type: "string",
-                      key: "name",
-                      value: "Milton Sierra",
-                      displayer: "Name",
-                    },
-                    {
-                      type: "string",
-                      key: "name-id",
-                      value: "@Milton_Sierra",
-                      displayer: "Name Id",
-                    },
-                  ],
-                },
-              ],
+              type: "boolean",
+              key: "line",
+              displayer: "Line",
+              value: true,
+            },
+            {
+              type: "number",
+              key: "star",
+              value: 5,
+              displayer: "Icon Number",
+            },
+            {
+              type: "string",
+              key: "description",
+              value:
+                "An online learning platform can provide access to educational content from anywhere with an internet connection.",
+              displayer: "Review Text",
+            },
+            {
+              type: "image",
+              key: "profileImage",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64493501f72de2002caa9a46?alt=media&timestamp=1719483639147",
+              displayer: "Author Image",
+            },
+            {
+              type: "string",
+              key: "name",
+              value: "Jaylyn Kaleigh",
+              displayer: "Author Name",
+            },
+            {
+              type: "string",
+              key: "personTitle",
+              value: "Product Designer",
+              displayer: "Author Position",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "boolean",
+              key: "line",
+              displayer: "Line",
+              value: true,
+            },
+            {
+              type: "number",
+              key: "star",
+              value: 5,
+              displayer: "Icon Number",
+            },
+            {
+              type: "string",
+              key: "description",
+              value:
+                "A personal finance website can be incredibly helpful for people looking to improve their financial literacy and manage their money better.",
+              displayer: "Review Text",
+            },
+            {
+              type: "image",
+              key: "profileImage",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6449364af72de2002caa9ad0?alt=media&timestamp=1719483639147",
+              displayer: "Author Image",
+            },
+            {
+              type: "string",
+              key: "name",
+              value: "Candyce Jeannine",
+              displayer: "Author Name",
+            },
+            {
+              type: "string",
+              key: "personTitle",
+              value: "CEO",
+              displayer: "Author Position",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "boolean",
+              key: "line",
+              displayer: "Line",
+              value: true,
+            },
+            {
+              type: "number",
+              key: "star",
+              value: 5,
+              displayer: "Icon Number",
+            },
+            {
+              type: "string",
+              key: "description",
+              value:
+                "Their design skills are truly exceptional, and they have a keen eye for aesthetics that sets them apart from others in the field.",
+              displayer: "Review Text",
+            },
+            {
+              type: "image",
+              key: "profileImage",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644933b3f72de2002caa9a16?alt=media&timestamp=1719483639147",
+              displayer: "Author Image",
+            },
+            {
+              type: "string",
+              key: "name",
+              value: "Clover Ruth",
+              displayer: "Author Name",
+            },
+            {
+              type: "string",
+              key: "personTitle",
+              value: "Design Lead",
+              displayer: "Author Position",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "boolean",
+              key: "line",
+              displayer: "Line",
+              value: true,
+            },
+            {
+              type: "number",
+              key: "star",
+              value: 5,
+              displayer: "Icon Number",
+            },
+            {
+              type: "string",
+              key: "description",
+              value:
+                "An online learning platform can provide access to educational content from anywhere with an internet connection.",
+              displayer: "Review Text",
+            },
+            {
+              type: "image",
+              key: "profileImage",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64493501f72de2002caa9a46?alt=media&timestamp=1719483639147",
+              displayer: "Author Image",
+            },
+            {
+              type: "string",
+              key: "name",
+              value: "Jaylyn Kaleigh",
+              displayer: "Author Name",
+            },
+            {
+              type: "string",
+              key: "personTitle",
+              value: "Product Designer",
+              displayer: "Author Position",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "boolean",
+              key: "line",
+              displayer: "Line",
+              value: true,
+            },
+            {
+              type: "number",
+              key: "star",
+              value: 5,
+              displayer: "Icon Number",
+            },
+            {
+              type: "string",
+              key: "description",
+              value:
+                "A personal finance website can be incredibly helpful for people looking to improve their financial literacy and manage their money better.",
+              displayer: "Review Text",
+            },
+            {
+              type: "image",
+              key: "profileImage",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6449364af72de2002caa9ad0?alt=media&timestamp=1719483639147",
+              displayer: "Author Image",
+            },
+            {
+              type: "string",
+              key: "name",
+              value: "Candyce Jeannine",
+              displayer: "Author Name",
+            },
+            {
+              type: "string",
+              key: "personTitle",
+              value: "CEO",
+              displayer: "Author Position",
             },
           ],
         },
@@ -332,63 +318,57 @@ class Testimonials6Page extends Testimonials {
   }
 
   render() {
+    const card = this.castToObject<CardItem[]>("cards");
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("testimonials6")}>
-            <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
-            <section>
-              {this.castToObject<ISection[]>("card-items").map(
-                (section: any, index: number) => (
-                  <div
-                    key={`testimonials6-${index}`}
-                    className={this.decorateCSS("card-child")}
-                  >
-                    {section.items.map((item: any, indexCard: number) => (
-                      <div
-                        key={`testimonials6-card-${indexCard}`}
-                        className={this.decorateCSS("card")}
-                      >
-                      <div className={styles["stars"]}>
-                        {[...Array(Number(item.value[0].value))].map(
-                          (item: any, index: number) => (
-                            <svg
-                            key={`star-testimonials6${index}`}
-                            width="16"
-                            height="16"
-                            viewBox="0 0 16 16"
-                            fill="currentColor"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path d="M8 0L9.3 5.8H15.5L10.7 9.2L12 15L8 11.8L4 15L5.3 9.2L0.5 5.8H6.7L8 0Z" />
-                          </svg>
-                          // <img key={`star-testimonials5${index}`} 
-                          //  alt=""
-                          //  src="https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646c7aa5fba070002b749808?alt=media&timestamp=1684830888295"/>
-                          ))}
-                      </div>
-                        <span className={this.decorateCSS("item-value1")}>{item.value[1].value}</span>
-                        <div className={this.decorateCSS("profile")}>
-                          <img
-                            alt=""
-                            width={50}
-                            height={50}
-                            src={item.value[2].value}
-                          />
-                          <div className={this.decorateCSS("profile-text")}>
-                            <h2 className={this.decorateCSS("item-value3")}>{item.value[3].value}</h2>
-                            <p className={this.decorateCSS("item-value4")}>{item.value[4].value}</p>
-                          </div>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("maxContent")}>
+          {this.castToString(this.getPropValue("title")) && (
+            <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
+          )}
+          <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("cardContainer")}>
+            {card.map((item: any, index: number) => (
+              <div className={this.decorateCSS("card")}>
+                {this.castToString(item.description) && (
+                  <Base.P className={this.decorateCSS("description")}>
+                    {item.description}
+                  </Base.P>
+                )}
+                {item.line && (
+                  <div className={this.decorateCSS("line")}></div>
+                )}
+                {(item.profileImage || this.castToString(item.name) || this.castToString(item.personTitle) || (item.star > 0)) && (
+                  <div className={this.decorateCSS("bottomContainer")}>
+                    {item.profileImage && (
+                      <img src={item.profileImage} alt={item.profileImage} className={this.decorateCSS("image")} />
+                    )}
+                    <Base.VerticalContent className={this.decorateCSS("person")}>
+                      {this.castToString(item.name) && (
+                        <div className={this.decorateCSS("name")}>
+                          {item.name}
                         </div>
+                      )}
+                      {this.castToString(item.personTitle) && (
+                        <div className={this.decorateCSS("personTitle")}>
+                          {item.personTitle}
+                        </div>
+                      )}
+                    </Base.VerticalContent >
+                    {(item.star > 0) && (
+                      <div className={this.decorateCSS("star")}>
+                        {[...Array(Number(item.star))].map(
+                          (_: any, index: number) => (
+                            <ComposerIcon name={this.getPropValue("starIcon")} />
+                          )
+                        )}
                       </div>
-                    ))}
+                    )}
                   </div>
-                )
-              )}
-            </section>
-          </div>
-        </div>
-      </div>
+                )}
+              </div>
+            ))}
+          </Base.ListGrid>
+        </Base.MaxContent>
+      </Base.Container >
     );
   }
 }
