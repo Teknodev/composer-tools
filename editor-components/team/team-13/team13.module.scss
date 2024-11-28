@@ -1,115 +1,154 @@
+@import "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss";
+
 .container {
-    width: 100%;
-    padding: 50px 0;
-    .max-content {
-        max-width: var(--composer-content-width);
-        margin: auto;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        .title{
-            font-size: 3rem;
-            color: var(--composer-primary-color);
-            margin: 0px;
-            display: flex;
-            justify-content: center;
+  .max-content {
+    .content {
+      gap: var(--composer-gap-xl);
+      height: 100%;
+
+      .featured-card {
+        width: 100%;
+        min-height: 700px;
+        height: 100%;
+        justify-content: space-between;
+        .title {
+          color: var(--composer-font-color-primary);
+          font-size: 5rem;
         }
-        .badge{
-            font-weight: 400;
-            font-size: 1.5rem;
-            margin: 16px 0px 50px 0px;
+
+        .label {
+          margin-bottom: var(--composer-gap-lg);
+          .description {
             color: var(--composer-font-color-primary);
-            display: flex;
-            justify-content: center;
-        }
-        .page {
             width: 100%;
+            opacity: 0.5;
+          }
+
+          .button-container {
             display: flex;
-            justify-content: center;
-            gap: 60px;
-            .left-container {
-                flex: 1;
-                display: flex;
-                position: relative;
-                .card {
-                    width: 100%;
-                    display: flex;
-                    justify-content: center;
-                    position: relative;
-                    .person-img {
-                        width: 100%;
-                        height: 480px;
-                        object-fit: cover;
-                        border-radius: 6px;
-                    }
-                    .icon-group {
-                        padding: 0 30px;
-                        height: 15%;
-                        background-color: #fff;
-                        display: flex;
-                        flex-wrap: wrap;
-                        justify-content: center;
-                        align-items: center;
-                        gap: 40px;
-                        opacity: 0.6;
-                        position: absolute;
-                        bottom: 10%;
-                        transition: opacity 0.3s;
-                        border-radius: 6px;
-                        &:hover {
-                            opacity: 1;
-                        }
-                    }
-                    .icon {
-                        width: 16px;
-                    }
-                }
+            width: 100%;
+            align-items: center;
+            gap: var(--composer-gap-xl);
+            .button {
+              color: var(--composer-font-color-primary);
             }
-            .right-container {
-                flex: 1;
-                display: flex;
-                justify-content: flex-start;
-                .text-group {
-                    display: flex;
-                    flex-direction: column;
-                    .badge {
-                        font-size: 1.2rem;
-                        margin: 0 0 30px;
-                        color: var(--composer-primary-color);
-                    }
-                    .name {
-                        font-size: 5rem;
-                        margin: unset;
-                        color: var(--composer-primary-color);
-                    }
-                    .surname {
-                        font-size: 5rem;
-                        margin: unset;
-                        margin-bottom: 20px;
-                        color: var(--composer-primary-color);
-                    }
-                    .paragraph {
-                        font-size: 1.4rem;
-                        line-height: 25px;
-                        color: var(--composer-font-color-primary);
-                    }
-                    .paragraph2 {
-                        font-size: 1.2rem;
-                        line-height: 25px;
-                        opacity: 0.7;
-                        color: var(--composer-font-color-primary);
-                    }
-                }
+
+            .line {
+              height: 2px;
+              min-width: calc(2 * var(--composer-gap-xl));
+              background: var(--composer-font-color-primary);
             }
+          }
         }
+
+        .icon-container {
+          color: var(--composer-font-color-primary);
+          display: flex;
+          gap: var(--composer-gap-md);
+          font-size: 1.5rem;
+        }
+      }
+
+      .team-card {
+        width: 100%;
+        min-height: 700px;
+        height: 100%;
+        gap: var(--composer-gap-sm);
+
+        .image {
+          width: 100%;
+          min-height: 600px;
+          max-height: 600px;
+          height: 100%;
+          object-fit: cover;
+          border-radius: var(--composer-border-radius-sm);
+        }
+
+        .name {
+          color: var(--composer-font-color-primary);
+        }
+        .job {
+          color: var(--composer-font-color-primary);
+          opacity: 0.5;
+        }
+      }
     }
+  }
 }
 
-@media only screen and (max-width: 768px) {
-    .container {
-        padding: 50px 20px;
-        .page {
-            flex-direction: column;
+@container (max-width: #{$composer-tablet-width-lg}) {
+  .container {
+    .max-content {
+      .content {
+        .featured-card {
+          width: 100% !important;
+          height: auto !important;
+          min-height: auto !important;
+          .title {
+            font-size: 4rem !important;
+          }
+
+          .label {
+            margin-bottom: var(--composer-gap-md) !important;
+            .description {
+              width: 100% !important;
+            }
+          }
+
+          .icon-container {
+            .icon-item {
+              .icon {
+                font-size: 1rem;
+              }
+            }
+          }
         }
+        .team-card {
+          width: 300px !important;
+          min-height: 300px !important;
+
+          .image {
+            width: 300px !important;
+            min-height: 500px !important;
+
+            height: auto !important;
+          }
+        }
+      }
     }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .content {
+        .featured-card {
+          gap: var(--composer-gap-xs) !important;
+
+          .icon-container {
+            .icon-item {
+              .icon {
+                font-size: 1.5rem !important;
+              }
+            }
+          }
+        }
+
+        .team-card {
+          width: 100% !important;
+          min-height: 450px !important;
+
+          .image {
+            width: 100% !important;
+            height: 400px !important;
+          }
+        }
+
+        .title {
+          font-size: 3rem !important;
+        }
+      }
+    }
+  }
 }

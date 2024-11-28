@@ -1,97 +1,108 @@
+@import "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss";
+
 .container {
+  padding: 0;
+  .max-content {
     width: 100%;
-    padding: 50px 50px;
+    display: flex;
+    flex-wrap: wrap;
+    .cards {
+      gap: 0;
+      .member {
+        width: 100%;
+        min-height: 500px;
+        position: relative;
+        overflow: hidden;
+
+        .image {
+          width: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          object-fit: cover;
+          height: 100%;
+          transition: height 0.5s ease;
+        }
+        .info {
+          position: relative;
+          transform: translateX(-100%);
+          transition: 0.5s transform ease-out, 0.5s opacity ease-out;
+          opacity: 0;
+          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+          top: 0px;
+          left: 0px;
+          width: 100%;
+          height: 100%;
+          justify-content: center;
+          padding: 1.5rem;
+          gap: var(--composer-gap-sm);
+          .name {
+            color: var(--composer-font-color-primary);
+          }
+          .profession {
+            color: var(--composer-primary-color);
+          }
+          .description {
+            color: var(--composer-font-color-primary);
+          }
+          .platforms {
+            display: flex;
+            align-items: center;
+            gap: var(--composer-gap-md);
+            .platform {
+              .icon {
+                color: var(--composer-font-color-primary);
+                width: 1.5rem;
+                height: 1.5rem;
+                transition: 0.8s;
+
+                &:hover {
+                  color: var(--composer-primary-color);
+                }
+              }
+            }
+          }
+        }
+
+        &:hover {
+          .info {
+            transform: translateX(0px);
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width-lg}) {
+  .container {
     .max-content {
-        max-width: var(--composer-content-width);
-        margin: auto;
-        display: flex;
-        flex-wrap: wrap;
-        .member{
-            width: 25%;
-            position: relative;
-            overflow: hidden;
-
-            .image{
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
+      .cards {
+        .member {
+          .info {
+            gap: var(--composer-gap-xs);
+            .name {
+              font-size: 1rem;
             }
-            .info{
-                position: absolute;
-                transform: translateX(-100%);
-                transition: 0.5s transform ease-out, 0.5s opacity ease-out;
-                opacity: 0;
-                background: var(--composer-secondary-color);
-                top: 0px;
-                left: 0px;
-                width: 100%;
-                height: 100%;
-                display: flex;
-                justify-content: center;
-                flex-direction: column;
-                padding: 30px;
-                .name{
-                    font-size: 2.5rem;
-                    letter-spacing: 1.2px;
-                    color: var(--composer-font-color-secondary);
-                }
-                .profession{
-                    font-size: 1.5rem;
-                    color: var(--composer-primary-color);
-                    padding: 20px 0px;
-                    letter-spacing: 1.5px;
-                }
-                .description{
-                    font-size: 1.5rem;
-                    line-height: 1.5;
-                    color: var(--composer-font-color-secondary);
-                }
-                .platforms{
-                    display: flex;
-                    align-items: center;
-                    gap: 20px;
-                    .platform{
-                        padding: 20px 0px 0px 0px;
-                        .icon{
-                            color: var(--composer-font-color-secondary);
-                            width: 24px;
-                            height: 24px;
-                        }    
-                    }
-                }
+            .profession {
+              font-size: 1rem;
             }
-
-            &:hover{
-                .info{
-                    transform: translateX(0px);
-                    opacity: 1;
-                }
+            .description {
+              font-size: 1rem;
             }
+            .platforms {
+              gap: var(--composer-gap-sm);
+              .platform {
+                .icon {
+                  width: 1rem;
+                  height: 1rem;
+                }
+              }
+            }
+          }
         }
-        
+      }
     }
-}
-
-
-@media only screen and (max-width: 900px) {
-    .container {
-        padding: 50px 20px;
-        .max-content{
-            flex-wrap: wrap;
-            .member{
-                width: 50%;
-            }
-        }
-    }
-}
-
-@media only screen and (max-width: 480px) {
-    .container {
-        padding: 50px 20px;
-        .max-content{
-            .member{
-               width: 100%;   
-            }
-        }
-    }
+  }
 }
