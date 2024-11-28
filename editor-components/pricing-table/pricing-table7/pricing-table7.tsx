@@ -47,18 +47,28 @@ class PricingTable7 extends BasePricingTable {
       displayer: "Subtitle",
       value: "TAILORED PRICING",
     });
+
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
       value: "FLEXIBLE PRICING OPTIONS",
     });
+
     this.addProp({
       type: "string",
       key: "description",
       displayer: "Description ",
       value: "Whether you're a startup,a growing business,or an enterprise,our pricing plans are designed to accommodate various requirements.",
     });
+
+    this.addProp({
+      type: "boolean",
+      key: "line",
+      displayer: "Line",
+      value: true,
+    });
+
     this.addProp({
       type: "string",
       key: "text",
@@ -494,6 +504,7 @@ class PricingTable7 extends BasePricingTable {
         },
       ],
     });
+
     this.addProp({
       type: "array",
       key: "yearly_plans",
@@ -897,6 +908,7 @@ class PricingTable7 extends BasePricingTable {
         },
       ],
     });
+
     this.addProp({
       type: "number",
       key: "itemCount",
@@ -928,18 +940,16 @@ class PricingTable7 extends BasePricingTable {
     const durationIcon = this.getPropValue("icon");
     const plansDiscountText = this.getPropValue("text2");
 
-    const alignmentValue = Base.getContentAlignment();
-
     return (
-      <div className={alignmentValue === "left" ? this.decorateCSS("duration-items") : alignmentValue === "center" ? this.decorateCSS("duration-items-center") : null}>
-        <Base.H5 className={this.decorateCSS("text")}>{monthlyText}</Base.H5>
+      <div className={this.decorateCSS("duration-items")}>
+        <Base.P className={`${this.decorateCSS("text")} ${planType === "monthly-plans" ? this.decorateCSS("active") : ""}`}>{monthlyText}</Base.P>
         <div className={this.decorateCSS("switch")} onClick={this.togglePlanType.bind(this)}>
           <input className={this.decorateCSS("input")} type="checkbox" checked={planType === "yearly-plans"} />
           <span className={`${this.decorateCSS("slider")} ${this.decorateCSS("round")}`}></span>
         </div>
-        <Base.H5 className={this.decorateCSS("yearlyText")}>{yearlyText}</Base.H5>
+        <Base.P className={`${this.decorateCSS("yearlyText")} ${planType === "yearly-plans" ? this.decorateCSS("active") : ""}`}>{yearlyText}</Base.P>
         <ComposerIcon name={durationIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
-        <Base.H5 className={this.decorateCSS("planDiscount")}>{plansDiscountText}</Base.H5>
+        <Base.P className={this.decorateCSS("planDiscount")}>{plansDiscountText}</Base.P>
       </div>
     );
   }
@@ -954,6 +964,8 @@ class PricingTable7 extends BasePricingTable {
     const title = this.getPropValue("title", { as_string: true });
     const description = this.getPropValue("description", { as_string: true });
     const isHoverActive = this.getPropValue("isHoverActive", { as_string: true });
+
+    const line = this.getPropValue("line");
 
     const badgeColors = ["var(--composer-primary-color)", "var(--composer-secondary-color)", "var(--composer-tertiary-color)"];
 
@@ -1001,7 +1013,7 @@ class PricingTable7 extends BasePricingTable {
                       </div>
                     )}
                     {this.castToString(pricing.promoText) && <Base.P className={this.decorateCSS("promoText")}>{pricing.promoText}</Base.P>}
-                    {[pricing.promoText, pricing.price, pricing.duration].some(this.castToString) && (
+                    {[pricing.promoText, pricing.price, pricing.duration].some(this.castToString) && line && (
                       <>
                         <hr className={this.decorateCSS("divider")} />
                       </>
@@ -1022,7 +1034,7 @@ class PricingTable7 extends BasePricingTable {
 
                     {this.castToString(pricing.buttonText) && (
                       <ComposerLink path={pricing.link}>
-                        <span className={`${this.decorateCSS("button")} ${pricing.isActive ? this.decorateCSS("button-active") : ""}`}>{this.castToString(pricing.buttonText)}</span>
+                        <Base.Button className={`${this.decorateCSS("button")} ${pricing.isActive ? this.decorateCSS("button-active") : ""}`}>{this.castToString(pricing.buttonText)}</Base.Button>
                       </ComposerLink>
                     )}
                   </Base.VerticalContent>
