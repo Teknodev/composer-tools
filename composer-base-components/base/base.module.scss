@@ -157,6 +157,9 @@
                 background: color-mix(in srgb, var(--composer-primary-color), var(--composer-html-background) 80%);
             }
         }
+        .sectionDescription{
+            color: var(--composer-font-color-primary);
+        }
     }
     &.monochrome{
         .sectionTitle{
@@ -168,6 +171,9 @@
                 color: var(--composer-html-background);
                 background: color-mix(in srgb, var(--composer-font-color-primary), var(--composer-html-background) 20%);
             }
+        }
+        .sectionDescription{
+            color: var(--composer-font-color-primary);
         }
     }
 }
@@ -245,12 +251,19 @@
     } 
 }
 
-.button {
+.button{
     color: var(--composer-font-color-secondary);
     background-color: var(--composer-primary-color);
+    cursor: pointer;
+    transition: 0.3s;
+    padding: var(--composer-gap-sm) var(--composer-gap-md);
+    border-radius: var(--composer-border-radius-sm);
+    border: 1px solid transparent;
+    font-size: 1rem;
 
     &:hover{
         border: 1px solid var(--composer-primary-color);
+        background-color: transparent;
         color: var(--composer-primary-color);
     }
 }

@@ -62,12 +62,12 @@ class Content1 extends BaseContent {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {this.castToString(this.getPropValue("title")) && (
-            <Base.SectionTitle className={this.decorateCSS("heading-h1")}>
+            <Base.SectionTitle className={this.decorateCSS("title")}>
               {this.getPropValue("title")}
             </Base.SectionTitle>
           )}
           {this.castToString(this.getPropValue("description")) && (
-            <Base.SectionDescription className={this.decorateCSS("heading")}>
+            <Base.SectionDescription className={this.decorateCSS("description")}>
               {this.getPropValue("description")}
             </Base.SectionDescription>
           )}
@@ -77,11 +77,11 @@ class Content1 extends BaseContent {
                 const buttonTextExist = this.castToString(button.text);
                 return (
                   buttonTextExist && (
-                    <div key={index} className={this.decorateCSS("button")}>
+                    <Base.Button key={index} className={this.decorateCSS("button")}>
                       <ComposerLink path={button.link}>
                         {button.text}
                       </ComposerLink>
-                    </div>
+                    </Base.Button>
                   )
                 );
               })}

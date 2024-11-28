@@ -3,11 +3,11 @@
         display: flex;
         flex-direction: column;
         gap: var(--composer-gap-md);
-        .heading {
+        .title {
             margin: 0px;
             text-align: center;
         }
-        .heading-h1 {
+        .description {
             margin: 0px;
             text-align: center;
         }
@@ -16,37 +16,6 @@
             flex-wrap: wrap;
             justify-content: center;
             gap: var(--composer-gap-sm);
-            .button {
-                text-align: center;
-                cursor: pointer;
-                transition: 0.3s;
-                color: var(--composer-font-color-primary);
-                background-color: var(--composer-secondary-color);
-                padding: var(--composer-gap-md) var(--composer-gap-xl);
-                border-radius: var(--composer-border-radius-sm);
-                border: 1px solid transparent;
-                font-size: 1rem;
-                &:hover {
-                    color: var(--composer-secondary-color);
-                    background-color: transparent;
-                    border: 1px solid var(--composer-secondary-color);
-                }
-            }
-            .button-reverse {
-                text-align: center;
-                cursor: pointer;
-                padding: var(--composer-gap-md) var(--composer-gap-xl);
-                transition: 0.3s;
-                width: 150px;
-                border-radius: var(--composer-border-radius-sm);
-                color: var(--composer-secondary-color);
-                background-color: transparent;
-                border: 1px solid var(--composer-secondary-color);
-                &:hover {
-                    color: var(--composer-font-color-primary);
-                    background-color: var(--composer-secondary-color);
-                }
-            }
         }
     }
 }
