@@ -91,9 +91,9 @@ class CallToAction7Page extends BaseCallToAction {
                               />
                             )}
                             {this.castToString(button) && (
-                              <button className={this.decorateCSS("button")} type="submit">
+                              <Base.Button className={this.decorateCSS("button")} type="submit">
                                 {button}
-                              </button>
+                              </Base.Button>
                             )}
                           </Form>
                         )}

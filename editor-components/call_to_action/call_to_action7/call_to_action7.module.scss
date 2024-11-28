@@ -71,31 +71,9 @@
                 }
               }
               .button {
-                flex:2;
-                height: auto;
-                width: 100%;
-                cursor: pointer;
-                transition: 0.3s;
-                color: var(--composer-font-color-secondary);
-                background-color: var(--composer-secondary-color);
-                border-radius: var(--composer-border-radius-md);
-                border: 1px solid transparent;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                .buttonText{
-                  font-size: 1rem;
-                }
-                &:hover{
-                  background-color: transparent;
-                  color: var(--composer-font-color-primary);
-                  border: 1px solid;
-                  border-color: var(--composer-secondary-color);
-                }
+                flex: 2;
               }
             }
-  
-            
           }
         }
       }
