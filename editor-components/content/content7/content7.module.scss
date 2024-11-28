@@ -1,10 +1,12 @@
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+
 .container {
+  background-size: cover;
   .max-content {
     .title {        
-      color: white;
       margin-top: 0px;
-      &.no-image{
-        color: var(--composer-font-color-primary);
+      &:not(.no-image){
+        color: white;
       }
     }
 
@@ -17,6 +19,8 @@
         min-height: 600px;
         height: 100%;
         gap: 0px;
+        border-radius: var(--composer-border-radius-sm);
+        overflow: hidden;
 
         &.reverse{
           flex-direction: row-reverse;
@@ -139,7 +143,7 @@
               }
 
               &:hover {
-                background: rgba(105, 104, 104, 0.5);
+                background: var(--composer-overlay-color);
 
                 .text {
                   opacity: 1;
@@ -219,7 +223,7 @@
   }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: $composer-tablet-width) {
   .container {
     .max-content {
       .down-page {
@@ -229,11 +233,17 @@
           gap: var(--composer-gap-md);
 
           .left-card {
+            flex-basis: unset;
             width: 100%;
+            border-radius: var(--composer-border-radius-sm);
           }
 
           .right-card {
+            flex-basis: unset;
             width: 100%;
+            border-radius: var(--composer-border-radius-sm);
+            overflow: hidden;
+            aspect-ratio: 2;
           }
         }
       }
@@ -241,7 +251,7 @@
   }
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: $composer-phone-width-sm) {
   .container {
     .max-content {
       .down-page {
@@ -249,8 +259,8 @@
           .left-card {
             padding: var(--composer-gap-md);
           }
-
-          .right-card {
+          .right-card{
+            aspect-ratio: 1;
           }
         }
       }
