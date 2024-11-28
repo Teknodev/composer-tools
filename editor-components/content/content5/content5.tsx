@@ -6,10 +6,10 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
 
 type ITabs = {
-  tabText: string;
-  title: string;
-  description: string;
-  buttonText: string;
+  tabText: JSX.Element;
+  title: JSX.Element;
+  description: JSX.Element;
+  buttonText: JSX.Element;
   buttonUrl: string;
   icon: string;
 };
@@ -399,24 +399,24 @@ class Content5 extends BaseContent {
                         />
                       </div>
                     )}
-                    {tab.title && (
+                    {this.castToString(tab.title) && (
                       <Base.SectionTitle className={this.decorateCSS("title")}>
                         {tab.title}
                       </Base.SectionTitle>
                     )}
-                    {tab.description && (
+                    {this.castToString(tab.description) && (
                       <Base.SectionDescription
                         className={this.decorateCSS("description")}
                       >
                         {tab.description}
                       </Base.SectionDescription>
                     )}
-                    {tab.buttonText && (
-                      <button className={this.decorateCSS("button")}>
+                    {this.castToString(tab.buttonText) && (
+                      <Base.Button className={this.decorateCSS("button")}>
                         <ComposerLink path={tab.buttonUrl}>
                           {tab.buttonText}
                         </ComposerLink>
-                      </button>
+                      </Base.Button>
                     )}
                   </Base.VerticalContent>
                 </div>
