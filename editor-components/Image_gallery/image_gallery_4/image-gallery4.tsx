@@ -568,17 +568,23 @@ class ImageGallery4 extends BaseImageGallery {
 
                     >
                       {item.image && (
-                        <img
-                          src={item.image}
-                          alt={item.image}
-                          className={this.decorateCSS("gallery-image")}
-                        />
+                        <div>
+                          <img
+                            src={item.image}
+                            alt={item.image}
+                            className={this.decorateCSS("gallery-image")}
+                          ></img>
+                          <div className={this.decorateCSS("gallery-image-overlay")}
+                            onClick={() => {
+                              this.focusImage(index)
+                            }}></div>
+                        </div>
+
                       )}
                       {this.getPropValue("imageIcon") && (
-                        <div className={this.decorateCSS("icon-overlay")}
-                          onClick={() => {
-                            this.focusImage(index)
-                          }}>
+                        <div className={this.decorateCSS("icon-overlay")} onClick={() => {
+                          this.focusImage(index)
+                        }}>
                           <ComposerIcon
                             name={this.getPropValue("imageIcon")}
                             propsIcon={{ className: this.decorateCSS("icon") }}
@@ -595,10 +601,10 @@ class ImageGallery4 extends BaseImageGallery {
 
           {galleryItems[this.getComponentState("focusedImage")]?.image && (
             <div
-              className={`
-                ${this.decorateCSS("gallery-item-fullscreen")}
-                ${this.getComponentState("isFocused") ? this.decorateCSS("show-fullscreen") : ""}
-              `}
+              className={this.getComponentState("isFocused") ? this.decorateCSS("gallery-item-fullscreen") : ""}
+              onClick={() => {
+                this.closeFocus();
+              }}
             >
               {this.getPropValue("nextIcon") && (
                 <div className={this.decorateCSS("right-arrow")} onClick={this.nextImage}>
