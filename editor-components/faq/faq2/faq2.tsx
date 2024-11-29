@@ -2,6 +2,7 @@ import * as React from "react";
 import styles from "./faq2.module.scss";
 import { BaseFAQ } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { Base } from "../../../composer-base-components/base/base";
 
 type Card = {
   cardTitle: string;
@@ -14,21 +15,14 @@ class FaqContainer extends BaseFAQ {
 
     this.addProp({
       type: "string",
-      key: "badge",
-      displayer: "Badge",
-      value: "FAQ",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "subtitle",
+      key: "title",
       displayer: "Page Title",
       value: "FAQ",
     });
 
     this.addProp({
       type: "string",
-      key: "title",
+      key: "description",
       displayer: "Title Description",
       value:
         "FAQ stands for Frequently Asked Questions.It is a section of a website or document where common questions and their answers are provided to help users better understand a product, service, or topic. The purpose of an FAQ section is to address common concerns and provide helpful information to users, so they can make informed decisions.",
@@ -258,20 +252,17 @@ class FaqContainer extends BaseFAQ {
     };
 
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
-            <div className={this.decorateCSS("up-page")}>
-              <div className={this.decorateCSS("badge")}>
-                {this.getPropValue("badge")}
-              </div>
-              <h1 className={this.decorateCSS("subtitle")}>
-                {this.getPropValue("subtitle")}
-              </h1>
-              <p className={this.decorateCSS("title-p")}>
+            <Base.VerticalContent className={this.decorateCSS("up-page")}>
+              <Base.SectionTitle className={this.decorateCSS("title")}>
                 {this.getPropValue("title")}
-              </p>
-            </div>
+              </Base.SectionTitle>
+              <Base.SectionDescription className={this.decorateCSS("description")}>
+                {this.getPropValue("description")}
+              </Base.SectionDescription>
+            </Base.VerticalContent>
             <div className={this.decorateCSS("card-page")}>
               {this.castToObject<Card[]>("card").map(
                 (item: Card, indexCard: number) => {
@@ -302,7 +293,7 @@ class FaqContainer extends BaseFAQ {
               )}
             </div>
           </div>
-        </div>
+        </Base.MaxContent>
         {this.castToObject<[]>("downContainer").map(
           (item: any, index: number) => (
             <div className={this.decorateCSS("down-container")}>
@@ -341,7 +332,7 @@ class FaqContainer extends BaseFAQ {
             </div>
           )
         )}
-      </div>
+      </Base.Container>
     );
   }
 }
