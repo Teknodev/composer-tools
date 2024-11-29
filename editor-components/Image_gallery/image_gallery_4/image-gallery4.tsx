@@ -624,7 +624,7 @@ class ImageGallery4 extends BaseImageGallery {
                 </div>
               )}
               <div className={this.decorateCSS("fullscreen-container")}>
-                <div className={this.decorateCSS("focused-image-container")}>
+                <div className={this.decorateCSS("focused-image-container")} onClick={(e) => e.stopPropagation()}>
                   {galleryItems[this.getComponentState("focusedImage")].image && (
                     <img
                       className={this.decorateCSS("focused-image")}
