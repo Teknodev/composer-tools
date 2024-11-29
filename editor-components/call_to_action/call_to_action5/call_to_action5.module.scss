@@ -14,12 +14,21 @@
   .max-content {
     position: relative;
     z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-lg);
     .header{
+      align-items: center;
+      gap: var(--composer-gap-md);
       .title {
+        text-align: center;
         color: white;
+        font-size: 3.5rem;
       }
       .description {
+        text-align: center;
         color: white;
+        font-size: 2rem;
       }
     }
     .header-no-image{
@@ -31,11 +40,14 @@
       }
     }
     .form{
+      display: flex;
+      justify-content: center;
       .newsletter {
         display: flex;
         justify-content: center;
         align-items: stretch;
         width: 30%;
+        min-width: 300px;
         .inputs {
           flex:2;
           display: flex;
@@ -62,22 +74,19 @@
           }
         }
         .submit-button{
-          flex:1;
-          padding:var(--composer-gap-md) var(--composer-gap-md);
-          border: 1px solid var(--composer-primary-color);
-          background-color: var(--composer-primary-color);
-          color: var(--composer-font-color-secondary);
-          transition: border 0.3s ease, background-color 0.3 ease, color 0.3s ease;
-          width: 100%;
-          border-top-right-radius: var(--composer-border-radius-md);
-          border-bottom-right-radius: var(--composer-border-radius-md);
-          cursor: pointer;
-          &:hover {
-            border: 1px solid var(--composer-primary-color);
-            background-color: transparent;
-            color: var(--composer-primary-color);
-          }
+          border-top-left-radius: 0px;
+          border-bottom-left-radius: 0px;
+          height: 100%;
         }
+      }
+    }
+    .button-container{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      .button{
+        content: "";
+        height: 100%;
       }
     }
   }

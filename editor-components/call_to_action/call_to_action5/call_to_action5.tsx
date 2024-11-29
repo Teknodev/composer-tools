@@ -3,6 +3,7 @@ import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action5.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { Form, Formik } from "formik";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 class CallToAction5Page extends BaseCallToAction {
   constructor(props?: any) {
@@ -11,7 +12,7 @@ class CallToAction5Page extends BaseCallToAction {
       type: "image",
       key: "background",
       displayer: "Background Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66bb46cb3292c6002b23faeb?alt=media"
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6749ac99506a40002c2f82f5?alt=media"
     });
     this.addProp({
       type: "boolean",
@@ -38,6 +39,12 @@ class CallToAction5Page extends BaseCallToAction {
       key: "buttonText",
       displayer: "Button Text",
       value: "SUBSCRIBE NOW",
+    });
+    this.addProp({
+      type: "page",
+      key: "buttonUrl",
+      displayer: "Button Url",
+      value: "",
     });
 
     this.addProp({
@@ -79,7 +86,7 @@ class CallToAction5Page extends BaseCallToAction {
               )}
             </Base.VerticalContent>
           }
-          {(this.castToString(this.getPropValue("buttonText")) || this.castToString(this.getPropValue("placeholder"))) &&
+          {(this.castToString(this.getPropValue("buttonText")) && this.castToString(this.getPropValue("placeholder"))) &&
             <div className={this.decorateCSS("form")}>
               <Formik
                 initialValues={{ email: "" }}
@@ -90,7 +97,7 @@ class CallToAction5Page extends BaseCallToAction {
               >
                 {({ handleChange, values }) => (
                   <Form className={this.decorateCSS("newsletter")}>
-                    {this.castToString(this.getPropValue("placeholder")) && (
+                    {(this.castToString(this.getPropValue("placeholder")) && this.castToString(this.getPropValue("buttonText"))) && (
                       <div className={this.decorateCSS("inputs")}>
                         <input
                           placeholder={getSelectedItemPlaceholder()}
@@ -103,15 +110,24 @@ class CallToAction5Page extends BaseCallToAction {
                       </div>
                     )}
                     {this.castToString(this.getPropValue("buttonText")) && (
-                      <button className={this.decorateCSS("submit-button")} type="submit">
+                      <Base.Button className={this.decorateCSS("submit-button")} type="submit">
                         {this.getPropValue("buttonText")}
-                      </button>
+                      </Base.Button>
                     )}
                   </Form>
                 )}
               </Formik>
             </div>
           }
+          {(this.castToString(this.getPropValue("buttonText")) && !this.castToString(this.getPropValue("placeholder"))) && (
+            <div className={this.decorateCSS("button-container")}>
+              <ComposerLink path={this.getPropValue("buttonUrl")}>
+                <Base.Button className={this.decorateCSS("button")}>
+                  {this.getPropValue("buttonText")}
+                </Base.Button>
+              </ComposerLink>
+            </div>
+          )}
         </Base.MaxContent>
       </Base.Container>
     );
