@@ -66,12 +66,6 @@ class CallToAction6Page extends BaseCallToAction {
               displayer: "Button Link",
               value: "",
             },
-            {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "IoIosArrowRoundForward",
-            },
           ],
         },
       ],
@@ -108,7 +102,7 @@ class CallToAction6Page extends BaseCallToAction {
     const buttons = this.castToObject<Button[]>("buttons");
     return (
       <Base.Container
-        className={`${this.getPropValue("backgroundImage") ? this.decorateCSS("container") : this.decorateCSS("container-no-image")}
+        className={`${this.decorateCSS("container")}
         ${this.getPropValue("overlay") ? this.decorateCSS("overlay-active") : ""}`}
         style={{
           backgroundImage: `url(${this.getPropValue("backgroundImage")})`,
@@ -124,21 +118,21 @@ class CallToAction6Page extends BaseCallToAction {
 
             {spaceLineExist && (
               <div className={this.decorateCSS("space-container")}>
-                <div className={this.getPropValue("backgroundImage") ? this.decorateCSS("space") : this.decorateCSS("space-no-image")} />
+                <div className={this.decorateCSS("space")} />
               </div>
             )}
 
             {placeholderExist && (
               <input
                 type="text"
-                className={this.getPropValue("backgroundImage") ? this.decorateCSS("placeholder") : this.decorateCSS("placeholder-no-image")}
+                className={this.decorateCSS("placeholder")}
                 placeholder={placeholderExist}
               />
             )}
             {(commentExist || buttons?.length > 0) && (
               <div className={this.decorateCSS("bottom-container")}>
                 {commentExist && (
-                  <h3 className={this.getPropValue("backgroundImage") ? this.decorateCSS("comment") : this.decorateCSS("comment-no-image")}>
+                  <h3 className={this.decorateCSS("comment")}>
                     {this.getPropValue("comment")}
                   </h3>
                 )}
@@ -150,21 +144,13 @@ class CallToAction6Page extends BaseCallToAction {
                       if (textExist || item.icon)
                         return (
                           <ComposerLink key={index} path={item.link}>
-                            <div className={this.decorateCSS("button")}>
+                            <Base.Button className={this.decorateCSS("button")}>
                               {textExist && (
                                 <div className={this.decorateCSS("button_text")}>
                                   {item.text}
                                 </div>
                               )}
-                              {item.icon && (
-                                <ComposerIcon
-                                  name={item.icon}
-                                  propsIcon={{
-                                    className: this.decorateCSS("icon"),
-                                  }}
-                                />
-                              )}
-                            </div>
+                            </Base.Button>
                           </ComposerLink>
                         );
                       return null;
