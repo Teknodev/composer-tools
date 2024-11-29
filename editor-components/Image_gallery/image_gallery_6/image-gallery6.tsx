@@ -566,47 +566,48 @@ class ImageGalleryComponent6 extends BaseImageGallery {
                                     }
 
                                     return (
-                                        <div className={`${this.decorateCSS("images")} ${imageClass}`}>
-                                            <div className={this.decorateCSS("image-wrapper")}>
-                                                {item.image && (
-                                                    <img src={item.image} alt={item.image} className={this.decorateCSS("image")} />
-                                                )}
-                                                {this.castToString(item.badge) && (
-                                                    <div className={this.decorateCSS("badge")}>
-                                                        <div className={this.decorateCSS("badge-text")}>
-                                                            {item.badge}
+                                        <ComposerLink path={item.url}>
+                                            <div className={`${this.decorateCSS("images")} ${imageClass}`}>
+
+                                                <div className={this.decorateCSS("image-wrapper")}>
+                                                    {item.image && (
+                                                        <img src={item.image} alt={item.image} className={this.decorateCSS("image")} />
+                                                    )}
+                                                    {this.castToString(item.badge) && (
+                                                        <div className={this.decorateCSS("badge")}>
+                                                            <div className={this.decorateCSS("badge-text")}>
+                                                                {item.badge}
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                )}
-                                                {(this.castToString(item.title) || this.castToString(item.description) || item.nextArrow) && (
-                                                    <div className={this.decorateCSS("badge-container")}>
-                                                        <div className={this.decorateCSS("text-container")}>
-                                                            {this.castToString(item.title) && (
-                                                                <div className={this.decorateCSS("title")}>
-                                                                    {item.title}
-                                                                </div>
-                                                            )}
-                                                            {(this.castToString(item.description) || item.nextArrow) && (
-                                                                <div className={this.decorateCSS("bottom-container")}>
-                                                                    {this.castToString(item.description) && (
-                                                                        <div className={this.decorateCSS("description")}>
-                                                                            {item.description}
-                                                                        </div>
-                                                                    )}
-                                                                    {item.nextArrow && (
-                                                                        <ComposerLink path={item.url}>
-                                                                            <button className={this.decorateCSS("button")}>
+                                                    )}
+                                                    {(this.castToString(item.title) || this.castToString(item.description) || item.nextArrow) && (
+                                                        <div className={this.decorateCSS("badge-container")}>
+                                                            <div className={this.decorateCSS("text-container")}>
+                                                                {this.castToString(item.title) && (
+                                                                    <div className={this.decorateCSS("title")}>
+                                                                        {item.title}
+                                                                    </div>
+                                                                )}
+                                                                {(this.castToString(item.description) || item.nextArrow) && (
+                                                                    <div className={this.decorateCSS("bottom-container")}>
+                                                                        {this.castToString(item.description) && (
+                                                                            <div className={this.decorateCSS("description")}>
+                                                                                {item.description}
+                                                                            </div>
+                                                                        )}
+                                                                        {item.nextArrow && (
+                                                                            <div className={this.decorateCSS("button")}>
                                                                                 <ComposerIcon name={item.nextArrow} propsIcon={{ className: this.decorateCSS("icon") }}></ComposerIcon>
-                                                                            </button>
-                                                                        </ComposerLink>
-                                                                    )}
-                                                                </div>
-                                                            )}
+                                                                            </div>
+                                                                        )}
+                                                                    </div>
+                                                                )}
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                )}
+                                                    )}
+                                                </div>
                                             </div>
-                                        </div>
+                                        </ComposerLink>
                                     );
                                 }
                                 return null;
@@ -628,47 +629,49 @@ class ImageGalleryComponent6 extends BaseImageGallery {
                                                 : this.decorateCSS("large-image");
                                     }
                                     return (
-                                        <div className={`${this.decorateCSS("images")} ${imageClass}`}>
-                                            <div className={this.decorateCSS("image-wrapper")}>
-                                                {item.image && (
-                                                    <img src={item.image} alt={item.image} className={this.decorateCSS("image")} />
-                                                )}
-                                                {this.castToString(item.badge) && (
-                                                    <div className={this.decorateCSS("badge")}>
-                                                        <div className={this.decorateCSS("badge-text")}>
-                                                            {item.badge}
+                                        <ComposerLink path={item.url}>
+                                            <div className={`${this.decorateCSS("images")} ${imageClass}`}>
+                                                <div className={this.decorateCSS("image-wrapper")}>
+                                                    {item.image && (
+                                                        <img src={item.image} alt={item.image} className={this.decorateCSS("image")} />
+                                                    )}
+                                                    {this.castToString(item.badge) && (
+                                                        <div className={this.decorateCSS("badge")}>
+                                                            <div className={this.decorateCSS("badge-text")}>
+                                                                {item.badge}
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                )}
-                                                {(this.castToString(item.title) || this.castToString(item.description) || item.nextArrow) && (
-                                                    <div className={this.decorateCSS("badge-container")}>
-                                                        <div className={this.decorateCSS("text-container")}>
-                                                            {this.castToString(item.title) && (
-                                                                <div className={this.decorateCSS("title")}>
-                                                                    {item.title}
-                                                                </div>
-                                                            )}
-                                                            {(this.castToString(item.description) || item.nextArrow) && (
-                                                                <div className={this.decorateCSS("bottom-container")}>
-                                                                    {this.castToString(item.description) && (
-                                                                        <div className={this.decorateCSS("description")}>
-                                                                            {item.description}
-                                                                        </div>
-                                                                    )}
-                                                                    {item.nextArrow && (
-                                                                        <ComposerLink path={item.url}>
+                                                    )}
+                                                    {(this.castToString(item.title) || this.castToString(item.description) || item.nextArrow) && (
+                                                        <div className={this.decorateCSS("badge-container")}>
+                                                            <div className={this.decorateCSS("text-container")}>
+                                                                {this.castToString(item.title) && (
+                                                                    <div className={this.decorateCSS("title")}>
+                                                                        {item.title}
+                                                                    </div>
+                                                                )}
+                                                                {(this.castToString(item.description) || item.nextArrow) && (
+                                                                    <div className={this.decorateCSS("bottom-container")}>
+                                                                        {this.castToString(item.description) && (
+                                                                            <div className={this.decorateCSS("description")}>
+                                                                                {item.description}
+                                                                            </div>
+                                                                        )}
+                                                                        {item.nextArrow && (
+
                                                                             <button className={this.decorateCSS("button")}>
                                                                                 <ComposerIcon name={item.nextArrow} propsIcon={{ className: this.decorateCSS("icon") }}></ComposerIcon>
                                                                             </button>
-                                                                        </ComposerLink>
-                                                                    )}
-                                                                </div>
-                                                            )}
+
+                                                                        )}
+                                                                    </div>
+                                                                )}
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                )}
+                                                    )}
+                                                </div>
                                             </div>
-                                        </div>
+                                        </ComposerLink>
                                     );
                                 }
                                 return null;
