@@ -1,6 +1,8 @@
 import * as React from "react";
 import styles from "./faq1.module.scss";
 import { BaseFAQ } from "../../EditorComponent";
+import { Base } from "../../../composer-base-components/base/base";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type FAQ = {
   subtitle: string;
@@ -11,6 +13,24 @@ type FAQ = {
 class Faq extends BaseFAQ {
   constructor(props?: any) {
     super(props, styles);
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "HAVE ANY QUESTIONS?"
+    })
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Frequently Asked Questions"
+    })
+    this.addProp({
+      type: "icon",
+      key: "icon",
+      displayer: "Icon",
+      value: "IoIosArrowUp"
+    })
 
     this.addProp({
       type: "array",
@@ -76,6 +96,7 @@ class Faq extends BaseFAQ {
         },
       ],
     });
+
     this.state["componentProps"]["selectCardIndex"] = null;
   }
 
@@ -83,44 +104,54 @@ class Faq extends BaseFAQ {
     return "FAQ-1";
   }
 
-  cardClicked(index:number) {
-    const currentSelectCardIndex=this.getComponentState("selectCardIndex");
+  cardClicked(index: number) {
+    const currentSelectCardIndex = this.getComponentState("selectCardIndex");
 
-     if(currentSelectCardIndex === index) {
-      this.setComponentState("selectCardIndex",null);
-     }
-     else {
-      this.setComponentState("selectCardIndex",index);
-     }
+    if (currentSelectCardIndex === index) {
+      this.setComponentState("selectCardIndex", null);
+    }
+    else {
+      this.setComponentState("selectCardIndex", index);
+    }
   }
 
   render() {
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <Base.VerticalContent className={this.decorateCSS("title-container")}>
+            <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+              {this.getPropValue("subtitle")}
+            </Base.SectionSubTitle>
+            <Base.SectionTitle className={this.decorateCSS("title")}>
+              {this.getPropValue("title")}
+            </Base.SectionTitle>
+          </Base.VerticalContent>
           <div className={this.decorateCSS("page")}>
             {this.castToObject<FAQ[]>("card").map((card: FAQ, indexCard: number) => (
               <div
-                key={indexCard}
                 className={`${this.decorateCSS("card")}`}
-                onClick={()=>{
+                onClick={() => {
                   this.cardClicked(indexCard);
                 }}
               >
                 <div className={this.decorateCSS("in-box")}>
-                  <h2 className={this.decorateCSS("card-subtitle")}>{card.subtitle}</h2>
-                  <img
-                    alt=""
-                    src={"https://www.svgrepo.com/show/80156/down-arrow.svg"}
-                    className={`${this.decorateCSS("img-1")} ${this.getComponentState("selectCardIndex") === indexCard ? this.decorateCSS("rotate") : ""}`}
-                  />
+                  <div className={this.decorateCSS("card-subtitle")}>{card.subtitle}</div>
+                  <ComposerIcon name={this.getPropValue("icon")} propsIcon={{
+                    className: `${this.decorateCSS("icon")} 
+                  ${this.getComponentState("selectCardIndex") === indexCard ? this.decorateCSS("rotate") : ""}`
+                  }}></ComposerIcon>
                 </div>
-                <p className={`${this.decorateCSS("card-text")} ${this.getComponentState("selectCardIndex") === indexCard ? this.decorateCSS("cardTextActive") : ""}`}>{card.text}</p>
+                <div className={`${this.decorateCSS("card-inner")} ${this.getComponentState("selectCardIndex") === indexCard ? this.decorateCSS("cardTextActive") : ""}`}>
+                  <div className={this.decorateCSS("card-text")}>
+                    {card.text}
+                  </div>
+                </div>
               </div>
             ))}
           </div>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
