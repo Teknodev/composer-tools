@@ -714,7 +714,7 @@ class PricingTable2 extends BasePricingTable {
                         )}
                         {this.castToString(table.cardButtonText) && (
                           <ComposerLink path={table.cardButtonLink}>
-                            <button className={this.decorateCSS("card-button")}>{table.cardButtonText}</button>
+                            <Base.Button className={this.decorateCSS("card-button")}>{table.cardButtonText}</Base.Button>
                           </ComposerLink>
                         )}
                       </Base.VerticalContent>

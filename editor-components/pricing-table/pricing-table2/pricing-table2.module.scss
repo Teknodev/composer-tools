@@ -96,23 +96,6 @@
                   }
                 }
               }
-
-              .card-button {
-                width: 100%;
-                padding: var(--composer-gap-sm) var(--composer-gap-md);
-                border-radius: var(--composer-border-radius-xl);
-                background-color: transparent;
-                color: var(--composer-primary-color);
-                font-size: 1.5rem;
-                border: 2px solid var(--composer-primary-color);
-                cursor: pointer;
-                transition: all 0.3s ease-in-out;
-
-                &:hover {
-                  background-color: var(--composer-secondary-color);
-                  color: var(--composer-font-color-secondary);
-                }
-              }
             }
           }
         }
