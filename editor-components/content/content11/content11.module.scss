@@ -7,6 +7,8 @@
         justify-content: center;
 
         .heading {
+            display: flex;
+            flex-direction: column;
             .section-title {
                 margin-bottom: 0px;
             }
@@ -14,6 +16,7 @@
             .icon {
                 color: var(--composer-primary-color);
                 font-size: 4rem;
+                margin-left: var(--composer-gap-lg);
             }
             margin-bottom: var(--composer-gap-md);
         }
@@ -23,7 +26,10 @@
             align-items: stretch;
             .image-box {
                 position: relative;
-
+                min-height: 200px;
+                &.no-content{
+                    aspect-ratio: 2;
+                }
                 .image {
                     position: absolute;
                     top: 0px;
@@ -39,6 +45,7 @@
             .content-right {
                 display: flex;
                 flex-direction: column;
+                justify-content: center;
                 gap: var(--composer-gap-md);
                 .item {
                     .title {
@@ -69,8 +76,10 @@
         .max-content{
             .content{
                 .image-box{
+                    aspect-ratio: unset;
                     .image{
                         position: relative;
+                        aspect-ratio: 1;
                     }
                 }
             }

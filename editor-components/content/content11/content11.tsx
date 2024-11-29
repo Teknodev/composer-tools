@@ -17,7 +17,7 @@ class Content11 extends BaseContent {
     this.addProp({
       type: "string",
       key: "sectionTitle",
-      displayer: "title",
+      displayer: "Title",
       value: "ABOUT",
     });
 
@@ -196,6 +196,7 @@ class Content11 extends BaseContent {
     const title = this.getPropValue("sectionTitle");
     const icon = this.getPropValue("icon");
     const rightItems = this.getPropValue("right-items");
+    const textContent = this.castToObject<ListItem[]>("items");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -215,7 +216,7 @@ class Content11 extends BaseContent {
           )}
           <Base.ContainerGrid className={this.decorateCSS("content")}>
             {image && (
-              <Base.GridCell className={this.decorateCSS("image-box")}>
+              <Base.GridCell className={`${!textContent.length ? this.decorateCSS("no-content") : ""} ${this.decorateCSS("image-box")}`}>
                 <img
                   className={this.decorateCSS("image")}
                   src={image}
@@ -223,22 +224,24 @@ class Content11 extends BaseContent {
                 />
               </Base.GridCell>
             )}
-            <Base.GridCell className={this.decorateCSS("content-right")}>
-              {this.castToObject<ListItem[]>("items").map((item) => (
-                <Base.VerticalContent className={this.decorateCSS("item")}>
-                  {item.title && (
-                    <Base.H2 className={this.decorateCSS("title")}>
-                      {item.title}
-                    </Base.H2>
-                  )}
-                  {item.description && (
-                    <Base.P className={this.decorateCSS("description")}>
-                      {item.description}
-                    </Base.P>
-                  )}
-                </Base.VerticalContent>
-              ))}
-            </Base.GridCell>
+            {textContent.length > 0 && (
+              <Base.GridCell className={this.decorateCSS("content-right")}>
+                {textContent.map((item) => (
+                  <Base.VerticalContent className={this.decorateCSS("item")}>
+                    {item.title && (
+                      <Base.H2 className={this.decorateCSS("title")}>
+                        {item.title}
+                      </Base.H2>
+                    )}
+                    {item.description && (
+                      <Base.P className={this.decorateCSS("description")}>
+                        {item.description}
+                      </Base.P>
+                    )}
+                  </Base.VerticalContent>
+                ))}
+              </Base.GridCell>
+            )}
           </Base.ContainerGrid>
           {rightItems.length > 0 && (
             <div className={this.decorateCSS("icons")}>
