@@ -57,7 +57,7 @@ class CallToAction7Page extends BaseCallToAction {
     };
 
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container className={this.getPropValue("image") ? this.decorateCSS("container") : this.decorateCSS("container-no-image")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ContainerGrid className={this.decorateCSS("wrapper")}>
             {this.getPropValue("image") &&
