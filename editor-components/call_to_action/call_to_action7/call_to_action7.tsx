@@ -27,6 +27,12 @@ class CallToAction7Page extends BaseCallToAction {
       value: "Get your FREE copy",
     });
     this.addProp({
+      type: "page",
+      key: "buttonUrl",
+      displayer: "Button Url",
+      value: "",
+    });
+    this.addProp({
       type: "string",
       key: "placeholder",
       displayer: "Placeholder",
@@ -69,7 +75,7 @@ class CallToAction7Page extends BaseCallToAction {
               (<Base.GridCell className={this.decorateCSS("right-page")}>
                 <Base.VerticalContent className={this.decorateCSS("right-content")}>
                   {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-                  {(placeholder || this.castToString(button)) &&
+                  {placeholder &&
                     <div className={this.decorateCSS("input-button-wrapper")}>
                       <Formik
                         initialValues={{ email: "" }}
@@ -100,6 +106,13 @@ class CallToAction7Page extends BaseCallToAction {
                       </Formik>
                     </div>
                   }
+                  {(!placeholder && this.castToString(button) && (
+                    <ComposerLink path={this.getPropValue("buttonUrl")}>
+                      <Base.Button className={this.decorateCSS("button")}>
+                        {button}
+                      </Base.Button>
+                    </ComposerLink>
+                  ))}
                 </Base.VerticalContent>
               </Base.GridCell>)}
           </Base.ContainerGrid>
