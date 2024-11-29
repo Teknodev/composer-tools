@@ -1,181 +1,202 @@
-.container {
-  width: 100%;
-  padding: 0px;
-  background-color: var(--composer-html-background);
-
-  .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
-    position: relative;
-
-    .testimonials4 {
-      width: 100%;
-
-
-      .cover-image {
-        width: 100%;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        position: relative;
-        padding-bottom: 150px;
-
-
-        &::before {
-          content: "";
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background-color: rgba(255, 255, 255, 0.5);
-
-        }
-
-        .images {
-          position: absolute;
-          bottom: 50px;
-          display: flex;
-          align-items: center;
-          gap: 15px;
-
-          left: 0;
-          right: 0;
-          margin: 0 auto;
-          width: fit-content;
-
-          .image {
-            width: 60px;
-            height: 60px;
-            object-fit: cover;
-            border-radius: 100%;
-            transition: 0.2s;
-
-
-            &.active {
-              width: 75px;
-              height: 75px;
-            }
-          }
-        }
-      }
-
-      .items {
+@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
+ .container, .container-no-image{
+  position: relative;
+  z-index: 1; 
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  &.overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--composer-primary-color);
+    opacity: 0.5;
+    z-index: 1;
+  }
+    .max-content, .max-content-no-image {
+      position: relative;
+      z-index: 2; 
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding :calc(var(--composer-gap-xl) * 3) 0px;
+      .prevArrow, .nextArrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 0px;
         display: flex;
-        flex-direction: column;
+        align-items: center;
         justify-content: center;
-        padding: 30px 50px;
-
-        .longtext {
-          font-size: 20px;
-          text-align: center;
-          color: black;
-
+        background-color: transparent;      
+        cursor: pointer;
+        border: none;
+        .arrow, .arrow-dark{
+          width: 20px;
+          height: 20px;
         }
-
-        .title {
-          text-transform: capitalize;
-          font-size: 19px;
-          color: black;
-          text-align: center;
-
+        .arrow{
+          color: var(--composer-font-color-secondary);
         }
-
-        .subtitle {
-          font-size: 15px;
-          color: black;
-          text-align: center;
-
-        }
-
-
-
-        .slidercontent {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          text-align: center;
+        .arrow-dark{
+          color: var(--composer-font-color-primary);
         }
       }
-    }
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .container {
-
-    background-color: var(--composer-html-background);
-
-    .max-content {
-      .testimonials4 {
-        text-align: center;
+      
+      .prevArrow {
+        left:0px;
       }
-    }
-  }
-}
-
-
-@media only screen and (max-width: 400px) {
-  .container {
-    background-color: var(--composer-html-background);
-
-    .max-content {
-      .testimonials4 {
-
-        .cover-image {
-          width: 360px;
-
-
-          .images {
-            padding-top: 50px;
-
-            .image {
-              width: 40px;
+      
+      .nextArrow {
+        right: 0px;
+      }
+      
+      .testimonials4 , .testimonials4-no-icon{
+        >div{
+          >div{
+            >div{
+              display: flex;
+              align-items: stretch;
+              height: 100%;
+              >div{
+                height: auto;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              }
+            }
+          }
+        }
+          .items {
+            display: flex !important;
+            flex-direction: column;
+            gap: var(--composer-gap-xl);
+            padding-bottom: var(--composer-gap-xl);
+            .icon, .icon-dark{
+              width: 100%;
               height: 40px;
-
-              &.active {
-                width: 50px;
-                height: 50px;
+            }
+            .icon{
+              color: var(--composer-font-color-secondary);
+            }
+            .icon-dark{
+              color: var(--composer-font-color-primary);
+            }
+            .longtext, .longtext-dark {
+              font-size: 1.5rem;
+              text-align: center; 
+            }
+            .longtext{
+              color: var(--composer-font-color-secondary);
+            }
+            .longtext-dark{
+              color: var(--composer-font-color-primary);
+            }
+            .person-text{
+              display: flex;
+              flex-direction: column;
+              gap: var(--composer-gap-xs);
+              align-items: center;      
+              .title, .title-dark {
+                text-transform: capitalize;
+                font-size: 1.5rem;
+                text-align: center;
+              }
+              .title{
+                color: var(--composer-font-color-secondary);
+              }
+              .title-dark{
+                color: var(--composer-font-color-primary);
+              }
+      
+              .subtitle, .subtitle-dark {
+                font-size: 1rem;
+                text-align: center;
+              }
+              .subtitle{
+                color: var(--composer-font-color-secondary);
+              }
+              .subtitle-dark{
+                color: var(--composer-font-color-primary);
               }
             }
           }
+          .images {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap:var(--composer-gap-md);
+            .image {
+              width: 70px;
+              height: 70px;
+              object-fit: cover;
+              border-radius: 50%;
+              transition: transform 0.3s ease;
+              &.active {
+                transform: scale(1.2);
+              }
+            }
+          }
+        }
+        .testimonials4{
+          width: 50%;
+        }
+        .testimonials4-no-icon{
+          width: 100%;
         }
       }
+      .max-content-no-image{
+        padding: 0px;
+      }
+}
+.container{
+  padding:0px 50px;
+}
+.container-no-image{
+  padding : 20px 50px
+}
 
-      .items {
-        .longtext {
-          font-size: 16px;
-          min-width: 200px;
-
-
-          .title {
-            font-size: 20px;
-          }
-
-          .subtitle {
-            font-size: 15px;
-            padding-bottom: 50px;
-          }
-
-          .slidercontent {
-
-            .images {
-
-              .image {
-                width: 40px;
-                height: 40px;
-
-                &.active {
-                  width: 50px;
-                  height: 50px;
-                }
-              }
-            }
-          }
-        }
+@container (max-width: #{$composer-tablet-width-lg}) {
+  .container, .container-no-image {
+    .max-content, .max-content-no-image {
+      .testimonials4,  .testimonials4-no-icon {
+        width: 75%;
       }
     }
+  }
+  .container{
+    padding: 0px 40px;
+  }
+  .container-no-image{
+    padding: 20px 40px;
+  }
+}
 
 
+
+@container (max-width: #{$composer-phone-width}) {
+  .container, .container-no-image {
+    .max-content, .max-content-no-image {
+      .testimonials4, .testimonials4-no-icon{
+        width: 100%;
+      }
+      .prevArrow{
+        display: none !important;
+      }
+      .nextArrow {
+        display: none !important;
+      }
+    }
+  }
+  .container{
+    padding: 0px 20px;
+  }
+  .container-no-image{
+    padding: 20px;
   }
 }
