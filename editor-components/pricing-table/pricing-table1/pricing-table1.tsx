@@ -719,7 +719,7 @@ class PricingTable1 extends BasePricingTable {
                       </div>
                     )}
                     {cardSubtitleExist && <Base.H3 className={this.decorateCSS("cardsubtitle")}>{table.cardsubtitle}</Base.H3>}
-                    {cardTitleExist && <Base.H3 className={this.decorateCSS("card-title")}>{table.cardTitle}</Base.H3>}
+                    {cardTitleExist && <Base.H3 className={cardSubtitleExist ? this.decorateCSS("card-title") : this.decorateCSS("card-title-no-margin")}>{table.cardTitle}</Base.H3>}
                     <div className={this.decorateCSS("card-list")}>
                       {table.cardList.map((listItem: any, index: number) => {
                         const cardListItemExist = this.castToString(listItem.cardListItem);
