@@ -2,12 +2,12 @@ import * as React from "react";
 import { BaseList } from "../../EditorComponent";
 import styles from "./list4.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type Card = {
-  title: string;
   description: string;
-  image: string;
-  subtitle: string;
+  icon: JSX.Element;
+  title: string;
 };
 
 class list4 extends BaseList {
@@ -42,12 +42,6 @@ class list4 extends BaseList {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "1",
-            },
-            {
-              type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
               value: "Creative Idea",
             },
             {
@@ -58,11 +52,10 @@ class list4 extends BaseList {
                 "Web design encompasses many different skills and disciplines in the production of all web.",
             },
             {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617c20bd2970002c6241eb?alt=media&timestamp=1719483639150",
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaTooth",
             },
           ],
         },
@@ -70,17 +63,11 @@ class list4 extends BaseList {
           type: "object",
           key: "card",
           displayer: "Card",
-          value: [
+          value: [,
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "2",
-            },
-            {
-              type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
               value: "High Creative Minds",
             },
             {
@@ -91,11 +78,10 @@ class list4 extends BaseList {
                 "Web design encompasses many different skills and disciplines in the production of all web.",
             },
             {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617c20bd2970002c6241ec?alt=media&timestamp=1719483639150",
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaPencilAlt",
             },
           ],
         },
@@ -108,12 +94,6 @@ class list4 extends BaseList {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "3",
-            },
-            {
-              type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
               value: "Business Planning",
             },
             {
@@ -124,11 +104,10 @@ class list4 extends BaseList {
                 "Web design encompasses many different skills and disciplines in the production of all web.",
             },
             {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617c20bd2970002c6241ed?alt=media&timestamp=1719483639150",
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaSuitcaseRolling",
             },
           ],
         },
@@ -152,51 +131,65 @@ class list4 extends BaseList {
     return (
       <Base.Container className={this.decorateCSS("container")} >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-        <Base.VerticalContent className={this.decorateCSS("header")}>
-              <Base.H2 className={this.decorateCSS("subtitle")}>
-                {this.getPropValue("subtitle")}
-              </Base.H2>
-              <Base.H2 className={this.decorateCSS("title")}>
-                {this.getPropValue("title")}
-              </Base.H2>
-            </Base.VerticalContent>
-            <Base.ListGrid className={this.decorateCSS("card-child")} gridCount={{pc: this.getPropValue("itemCount")}}>
-              {this.castToObject<Card[]>("content-card").map(
-                (card: any, index: number) => (
+          <Base.VerticalContent>
+            <Base.SectionSubTitle>
+              {this.getPropValue("subtitle")}
+            </Base.SectionSubTitle>
+            <Base.SectionTitle>
+              {this.getPropValue("title")}
+            </Base.SectionTitle>
+          </Base.VerticalContent>
+          <Base.ListGrid className={this.decorateCSS("card-child")} gridCount={{pc: this.getPropValue("itemCount"), tablet: 1}}>
+            {this.castToObject<Card[]>("content-card").map(
+              (card: any, index: number) => (
+                <div
+                  key={index}
+                  className={this.decorateCSS("card-item-count")}
+                >
+                  <div className={this.decorateCSS("line-box")}>
+                    <div className={this.decorateCSS("line-1")}></div>
+                    <div className={this.decorateCSS("line-2")}></div>
+                    <div className={this.decorateCSS("line-3")}></div>
+                    <div className={this.decorateCSS("line-4")}></div>
+                  </div>
+                  <div className={this.decorateCSS("card-title")}>
+                    {(index + 1).toLocaleString("en-US", {
+                      minimumIntegerDigits: 2,
+                      useGrouping: false,
+                    })}
+                  </div>
                   <div
-                    key={index}
-                    className={this.decorateCSS("card-item-count")}
-                    style={{
-                      width: 95 / this.getPropValue("itemCount") + "%",
-                    }}
+                    key={`cnt-4-card-${index}`}
+                    className={this.decorateCSS("card")}
                   >
-                    <div className={this.decorateCSS("line-box")}>
-                      <div className={this.decorateCSS("line-1")}></div>
-                      <div className={this.decorateCSS("line-2")}></div>
-                      <div className={this.decorateCSS("line-3")}></div>
-                      <div className={this.decorateCSS("line-4")}></div>
-                    </div>
-                    <Base.H5 className={this.decorateCSS("card-title")}>
-                      {card.title}
-                    </Base.H5>
-                    <div
-                      key={`cnt-4-card-${index}`}
-                      className={this.decorateCSS("card")}
-                    >
-                      <div className={this.decorateCSS("color-box")}>
-                        <img alt="server" src={card.image} />
-                        <Base.H4 className={this.decorateCSS("card-subtitle")}>
-                          {card.subtitle}
-                        </Base.H4>
-                        <Base.P className={this.decorateCSS("card-description")}>
-                          {card.description}
-                        </Base.P>
-                      </div>
+                    <div className={this.decorateCSS("color-box")}>
+                      {card.icon && (
+                        <ComposerIcon
+                          name={card.icon} 
+                          propsIcon={{
+                          className: this.decorateCSS("icon")
+                          }}
+                        />
+                      )}
+                      
+                      <Base.VerticalContent>
+                        {card.title && (
+                          <Base.SectionTitle className={this.decorateCSS("card-subtitle")}>
+                            {card.title}
+                          </Base.SectionTitle>
+                        )}
+                        {card.description && (
+                          <Base.SectionDescription className={this.decorateCSS("card-description")}>
+                            {card.description}
+                          </Base.SectionDescription>
+                        )}
+                      </Base.VerticalContent>
                     </div>
                   </div>
-                )
-              )}
-            </Base.ListGrid>
+                </div>
+              )
+            )}
+          </Base.ListGrid>
         </Base.MaxContent>
       </Base.Container>
     );
