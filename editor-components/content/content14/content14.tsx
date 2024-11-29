@@ -187,9 +187,9 @@ class Content14 extends BaseContent {
 
             {buttonText && (
               <ComposerLink page={this.getPropValue("link")}>
-                <button className={this.decorateCSS("button")}>
+                <Base.Button className={this.decorateCSS("button")}>
                   {buttonText}
-                </button>
+                </Base.Button>
               </ComposerLink>
             )}
           </div>
