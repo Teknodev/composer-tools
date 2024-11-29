@@ -54,6 +54,7 @@
             flex: 1;
             display: flex;
             align-items: center;
+            justify-content: center;
             .image-container {
                 position: relative;
                 display: flex;
@@ -70,11 +71,13 @@
                     .weak-text {
                         margin: 0px;
                         text-transform: uppercase;
+                        color: var(--composer-font-color-primary);
                     }
 
                     .bold-text {
                         margin: 0px;
                         font-size: 4rem;
+                        color: var(--composer-font-color-primary);
                     }
                 }
 
@@ -82,11 +85,15 @@
                 .image2 {
                     object-fit: cover;
                     border-radius: var(--composer-border-radius-sm);
+                    &.no-image{
+                        position: relative;
+                        width: 75%;
+                    }
                 }
 
                 .image1 {
                     width: 75%;
-                    margin-bottom: 50px;
+                    margin-bottom: var(--composer-gap-xl);
                 }
 
                 .image2 {
@@ -105,6 +112,16 @@
 
         .max-content {
             flex-direction: column;
+            .title-container{
+                .button-icon{
+                    width: 100%;
+                    flex-direction: column;
+                    .phone{
+                        margin-top: 0px;
+                        margin-bottom: 0px;
+                    }
+                }
+            }
             .right-page{
                 .image-container{
                     width: 100%;

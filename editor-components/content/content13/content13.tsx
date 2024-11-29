@@ -42,7 +42,7 @@ class Content13 extends BaseContent {
       type: "page",
       key: "buttonLink",
       displayer: "Button Link",
-      value: "#",
+      value: "",
     });
 
     this.addProp({
@@ -106,59 +106,78 @@ class Content13 extends BaseContent {
       this.getPropValue("buttonText")
     );
     const isPhoneExist = this.castToString(this.getPropValue("phone"));
-    const isRightWeakTextExist = this.castToString(this.getPropValue("rightWeakText"));
-    const isRightBoldTextExist = this.castToString(this.getPropValue("rightBoldText"));
+    const isRightWeakTextExist = this.castToString(
+      this.getPropValue("rightWeakText")
+    );
+    const isRightBoldTextExist = this.castToString(
+      this.getPropValue("rightBoldText")
+    );
     const isImage1Exist = this.getPropValue("image1");
     const isImage2Exist = this.getPropValue("image2");
     const showDiv =
-    isRightWeakTextExist || isRightBoldTextExist || isImage1Exist || isImage2Exist;
+      isRightWeakTextExist ||
+      isRightBoldTextExist ||
+      isImage1Exist ||
+      isImage2Exist;
+    const showLeftDiv =
+      isAboutTitleExist ||
+      isMainTitleExist ||
+      isDescriptionExist ||
+      isButtonTextExist ||
+      isPhoneExist;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={this.decorateCSS("title-container")}>
-            {isAboutTitleExist && (
-              <Base.SectionSubTitle className={this.decorateCSS("about-title")}>
-                {this.getPropValue("aboutTitle")}
-              </Base.SectionSubTitle>
-            )}
-            {isMainTitleExist && (
-              <Base.SectionTitle className={this.decorateCSS("maintitle")}>
-                {this.getPropValue("mainTitle")}
-              </Base.SectionTitle>
-            )}
-            {isDescriptionExist && (
-              <Base.SectionDescription
-                className={this.decorateCSS("description")}
-              >
-                {this.getPropValue("description")}
-              </Base.SectionDescription>
-            )}
-
-            <div className={this.decorateCSS("button-icon")}>
-              {isButtonTextExist && (
-                <ComposerLink path={this.getPropValue("buttonLink")}>
-                  <button className={this.decorateCSS("about-button")}>
-                    {this.getPropValue("buttonText")}
-                  </button>
-                </ComposerLink>
+          {showLeftDiv && (
+            <Base.VerticalContent
+              className={this.decorateCSS("title-container")}
+            >
+              {isAboutTitleExist && (
+                <Base.SectionSubTitle
+                  className={this.decorateCSS("about-title")}
+                >
+                  {this.getPropValue("aboutTitle")}
+                </Base.SectionSubTitle>
+              )}
+              {isMainTitleExist && (
+                <Base.SectionTitle className={this.decorateCSS("maintitle")}>
+                  {this.getPropValue("mainTitle")}
+                </Base.SectionTitle>
+              )}
+              {isDescriptionExist && (
+                <Base.SectionDescription
+                  className={this.decorateCSS("description")}
+                >
+                  {this.getPropValue("description")}
+                </Base.SectionDescription>
               )}
 
-              {(this.getPropValue("phoneIcon") || isPhoneExist) && (
-                <div className={this.decorateCSS("phone-icon")}>
-                  <ComposerIcon
-                    propsIcon={{ className: this.decorateCSS("icon") }}
-                    name={this.getPropValue("phoneIcon")}
-                  />
-                  {isPhoneExist && (
-                    <Base.H2 className={this.decorateCSS("phone")}>
-                      {this.getPropValue("phone")}
-                    </Base.H2>
-                  )}
-                </div>
-              )}
-            </div>
-          </Base.VerticalContent>
+              <div className={this.decorateCSS("button-icon")}>
+                {isButtonTextExist && (
+                  <ComposerLink path={this.getPropValue("buttonLink")}>
+                    <button className={this.decorateCSS("about-button")}>
+                      {this.getPropValue("buttonText")}
+                    </button>
+                  </ComposerLink>
+                )}
+
+                {(this.getPropValue("phoneIcon") || isPhoneExist) && (
+                  <div className={this.decorateCSS("phone-icon")}>
+                    <ComposerIcon
+                      propsIcon={{ className: this.decorateCSS("icon") }}
+                      name={this.getPropValue("phoneIcon")}
+                    />
+                    {isPhoneExist && (
+                      <Base.H2 className={this.decorateCSS("phone")}>
+                        {this.getPropValue("phone")}
+                      </Base.H2>
+                    )}
+                  </div>
+                )}
+              </div>
+            </Base.VerticalContent>
+          )}
 
           {showDiv && (
             <div className={this.decorateCSS("right-page")}>
@@ -179,8 +198,9 @@ class Content13 extends BaseContent {
                   <img
                     src={this.getPropValue("image1")}
                     alt="Image 1"
-                    className={`${this.decorateCSS("image1")}
-                   ${!isImage2Exist ? this.decorateCSS("without-image2") : ""}`}
+                    className={`${
+                      !isImage2Exist ? this.decorateCSS("no-image") : ""
+                    } ${this.decorateCSS("image1")}`}
                   />
                 )}
 
@@ -188,7 +208,9 @@ class Content13 extends BaseContent {
                   <img
                     src={this.getPropValue("image2")}
                     alt="Image 2"
-                    className={this.decorateCSS("image2")}
+                    className={`${
+                      !isImage1Exist ? this.decorateCSS("no-image") : ""
+                    } ${this.decorateCSS("image2")}`}
                   />
                 )}
               </div>
