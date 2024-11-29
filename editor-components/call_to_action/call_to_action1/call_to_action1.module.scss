@@ -42,7 +42,7 @@
         }
     }
 }
-@container (max-width : #{$composer-tablet-width}){
+@container (max-width : #{$composer-phone-width}){
     .container {
         .max-content {
             .content {
