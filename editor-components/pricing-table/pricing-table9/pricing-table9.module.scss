@@ -18,11 +18,11 @@
       align-items: flex-start;
 
       .benefits-column {
-        margin-top: var(--composer-gap-xs);
         display: flex;
         flex-direction: column;
         gap: var(--composer-gap-md);
         flex: 1;
+        margin-top: 15px;
 
         .benefit-item {
           min-height: var(--composer-gap-xl);
@@ -200,6 +200,7 @@
         display: flex;
         .benefits-column {
           .benefit-item {
+            min-height: var(--composer-gap-md);
             .benefit-title {
               font-size: 1rem;
               color: var(--composer-font-color-primary);
@@ -210,6 +211,7 @@
           width: 50%;
           .column-item {
             align-items: center;
+            min-height: var(--composer-gap-md);
 
             .column-title {
               text-align: center;
