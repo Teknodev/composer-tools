@@ -66,7 +66,7 @@ class CallToAction8Page extends BaseCallToAction {
               </div>
             )}
             {this.getPropValue("image") && (
-              <div className={this.decorateCSS("image-box")}>
+              <div className={(title || buttonText) ? this.decorateCSS("image-box") : this.decorateCSS("image-box-no-radius")}>
                 <img
                   className={this.decorateCSS("image")}
                   src={this.getPropValue("image")} alt={this.getPropValue("image")} />
