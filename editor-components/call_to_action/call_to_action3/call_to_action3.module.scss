@@ -19,8 +19,11 @@
     position: relative;
     z-index: 1;
       .content-container {
+        align-items: center;
+        gap: var(--composer-gap-md);
         .title, .title-no-image {        
           content: "";
+          font-size: 3.5rem;
         }
         .title{
           color: white;
@@ -28,6 +31,8 @@
         .description, .description-no-image {
           content: "";
           color: var(--composer-font-color-primary);
+          font-size: 2rem;
+          text-align: center;
         }
         .description{
           color: white;
@@ -37,26 +42,15 @@
           width: 100%;
           flex-wrap: wrap;
           gap: var(--composer-gap-md);
+          justify-content: center;
           .button, .button-no-image {
-            padding: var(--composer-gap-sm) var(--composer-gap-md);
-            border-radius: var(--composer-border-radius-xs);
-            cursor: pointer;
-            transition: all 0.3s ease;
             border: 2px solid white;
             background-color: transparent;
             color: white;
-            text-align: center;
             &:hover {
               background-color: white;
-              color: var(--composer-primary-color);
-            }
-          }
-          .button-no-image{
-            color: var(--composer-primary-color);
-            border: 2px solid var(--composer-primary-color);
-            &:hover {
-              background-color: var(--composer-primary-color);
-              color: var(--composer-font-color-secondary);
+              color: black;
+              border: 2px solid white;
             }
           }
         }

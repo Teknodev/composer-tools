@@ -112,9 +112,9 @@ class CallToAction3Page extends BaseCallToAction {
                     return (
                       <ComposerLink path={button.buttonLink}>
                         {this.castToString(button.buttonText) && (
-                          <button className={this.getPropValue("image") ? this.decorateCSS("button") : this.decorateCSS("button-no-image")}>
+                          <Base.Button className={this.getPropValue("image") ? this.decorateCSS("button") : this.decorateCSS("button-no-image")}>
                             {button.buttonText}
-                          </button>
+                          </Base.Button>
                         )}
                       </ComposerLink>
                     );
