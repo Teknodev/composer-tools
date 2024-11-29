@@ -514,7 +514,6 @@ class PricingTable3 extends BasePricingTable {
                                 className={`${this.decorateCSS("button")}
                                        ${card.button.icon ? this.decorateCSS("has-icon") : ""}`}
                               >
-                                {/* <Base.P className={this.decorateCSS("button-text")}>{card.button.text}</Base.P> */}
                                 {card.button.text}
                                 {card.button.icon && (
                                   <ComposerIcon
