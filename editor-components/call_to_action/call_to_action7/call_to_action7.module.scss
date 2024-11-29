@@ -91,7 +91,13 @@
     .max-content{
       .wrapper{
         flex-direction: column-reverse ;
+        .right-page{
+          .right-content{
+            height: 100%;
+          }
+        }
       }
+      
     }
   }
 }
