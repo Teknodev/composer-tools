@@ -7,7 +7,7 @@
 .wrapper {
   display: flex;
   align-items: center;
-  gap: var(--composer-gap-xl);
+  gap: calc(2 * var(--composer-gap-xl));
 }
 
 .featured,
@@ -48,11 +48,11 @@
   justify-content: center;
   align-items: center;
   background-color: var(--composer-html-background);
-  padding: var(--composer-gap-lg);
+  padding: var(--composer-gap-md);
 }
 
 .card-container.active {
-  scale: 1.1;
+  padding: var(--composer-gap-xl);
   position: relative;
 
   .tag {
@@ -83,6 +83,7 @@
     }
     .title {
       color: var(--composer-font-color-primary);
+      opacity: 0.5;
     }
     .price {
       margin: 0;
@@ -96,7 +97,7 @@
         padding: var(--composer-gap-sm);
         width: 100%;
         color: var(--composer-font-color-primary);
-        border-bottom: 1px solid var(--composer-font-color-primary);
+        border-bottom: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.5);
         text-align: center;
         word-break: break-word;
       }
@@ -110,9 +111,9 @@
   display: flex;
   border-radius: var(--composer-border-radius-sm);
   transition: 0.5s ease;
-  padding: var(--composer-gap-sm) var(--composer-gap-md);
+  padding: var(--composer-gap-md) var(--composer-gap-xl);
   color: var(--composer-font-color-primary);
-  background-color: var(--composer-font-color-secondary);
+  background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
   border: none;
   margin-top: var(--composer-gap-md);
   align-items: center;
@@ -148,7 +149,7 @@
   }
 }
 
-@media only screen and (max-width: $composer-tablet-width-sm) {
+@container (max-width: #{$composer-tablet-width-lg}) {
   .container-alternate {
     margin-top: 0;
   }
@@ -168,7 +169,7 @@
   }
 }
 
-@media only screen and (max-width: $composer-phone-width-sm) {
+@container (max-width: #{$composer-phone-width}) {
   .cards-div,
   .cards-div-alternate {
     width: 100%;
