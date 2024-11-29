@@ -10,8 +10,15 @@
         .cards-container {
             justify-content: center;
             gap: var(--composer-gap-xs);
+            position: relative;
+            min-height: 500px;
 
             .card {
+                position: absolute;
+                top: 60%;
+                left: 50%;
+                transition: 1s left, 1s top, 1s transform;
+                transform: translate(-50%, -50%);
                 width: 275px;
                 min-height: 350px;
                 justify-content: center;

@@ -11,8 +11,13 @@ type Card = {
 };
 
 class Feature8 extends BaseFeature {
+  observer: IntersectionObserver;
+  threshold = 0.6;
+
   constructor(props?: any) {
     super(props, styles);
+
+    this.setupObserver = this.setupObserver.bind(this);
 
     this.addProp({
       type: "string",
@@ -25,6 +30,9 @@ class Feature8 extends BaseFeature {
       type: "array",
       key: "cards",
       displayer: "CARDS",
+      additionalParams: {
+        maxElementCount: 5
+      },
       value: [
         {
           type: "object",
@@ -105,6 +113,53 @@ class Feature8 extends BaseFeature {
     });
   }
 
+  callback: IntersectionObserverCallback = (entries) => {
+    console.log("callback trigger!");
+    const middle = Math.floor(entries.length / 2);
+    const offset = 300;
+
+    entries.forEach((entry, index) => {
+      const target = entry.target as HTMLElement;
+
+      if (entry.intersectionRatio > this.threshold) {
+        target.style.top = "50%";
+
+        if (index === middle) {
+          target.style.zIndex = "1";
+        } else {
+          target.style.left = index > middle
+            ? `calc(50% + ${index + 1 * offset}px)`
+            : `calc(50% - ${index + 1 * offset}px)`;
+
+          target.style.transform += index > middle
+            ? ` rotate(10deg)`
+            : ` rotate(-10deg)`;
+        }
+      } else {
+        target.style.left = "50%";
+        target.style.top = "60%";
+        target.style.transform = "translate(-50%, -50%)";
+      }
+    });
+  };
+
+  options: IntersectionObserverInit = {
+    rootMargin: "0px",
+    threshold: this.threshold,
+  };
+
+  setupObserver = () => {
+    const cardElements = document.querySelectorAll("." + this.decorateCSS("card"));
+
+    this.observer = new IntersectionObserver(this.callback, this.options);
+
+    cardElements.forEach((card) => {
+      this.observer.observe(card);
+    });
+
+    this.setComponentState("cardsCount", cardElements.length);
+  };
+
   getName(): string {
     return "Feature 8";
   }
@@ -114,6 +169,12 @@ class Feature8 extends BaseFeature {
     const title = this.getPropValue("title");
 
     const cards = this.castToObject<Card[]>("cards");
+
+    const cardsCountChanged = this.getComponentState("cardsCount") as number !== cards.length;
+
+    if (cardsCountChanged) {
+      this.setupObserver();
+    }
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
