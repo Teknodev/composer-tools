@@ -30,7 +30,12 @@
                     .image{
                         width: 100%;
                         height: 100%;
-                        object-fit: cover;             
+                        object-fit: cover;     
+                    }
+                }
+                .image-box-no-radius{
+                    .image{
+                        border-radius: var(--composer-gap-xl);        
                     }
                 }
                 .image-box{
