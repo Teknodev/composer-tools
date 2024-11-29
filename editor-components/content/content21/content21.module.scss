@@ -1,3 +1,5 @@
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+
 .container {
   .max-content {
     .image-container {
@@ -15,7 +17,6 @@
           justify-content: center;
           position: relative;
           object-fit: cover;
-          transition: filter 0.3s ease;
           z-index: 1;
         }
 
@@ -30,31 +31,38 @@
           justify-content: center;
           align-items: center;
           text-align: center;
+          transition: all 0.3s ease;
+          z-index: 2;
+          background-color: var(--composer-overlay-color);
 
           &.text-visible {
             opacity: 1;
-
-            .title {
-              color: var(--composer-font-color-primary);
-            }
           }
         }
 
         .category .title {
-          color: var(--composer-font-color-secondary);
+          color: white;
           position: relative;
-          z-index: 2;
           word-break: break-word;
         }
       }
 
-      .card:hover .image {
-        filter: brightness(20%);
-      }
-
       .card:hover .category {
         opacity: 1;
-        z-index: 2;
+      }
+    }
+  }
+}
+
+@media (max-width: $composer-tablet-width-lg) {
+  .container{
+    .max-content{
+      .image-container{
+        .card{
+          .category{
+            opacity: 1;
+          }
+        }
       }
     }
   }
