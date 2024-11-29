@@ -1,4 +1,5 @@
 .container {
+    background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
     .max-content {
         .call-to-action9-page {
             gap: var(--composer-gap-lg);
@@ -14,13 +15,13 @@
                 color: var(--composer-font-color-primary);
             }
             .image-container{
-                width: 100%;
+                width: fit-content;
                 .image-wrapper{
                     display: flex;
                     align-items: center;
                     justify-content: center;
+                    width: fit-content;
                     .image{
-                        width: 50%;
                         height: 100%;
                         object-fit: cover;
                     }
