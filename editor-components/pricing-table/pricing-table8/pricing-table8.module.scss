@@ -12,6 +12,7 @@
       padding-bottom: var(--composer-gap-lg);
       position: relative;
       border-radius: var(--composer-border-radius-md);
+      margin-top: calc(1.5 * var(--composer-gap-xl));
 
       .carousel {
         display: none;
@@ -20,6 +21,9 @@
       .upper-container {
         display: flex;
         justify-content: center;
+        position: relative;
+        margin-top: calc(-1 * var(--composer-gap-xl));
+        width: 100%;
         .card-item-count {
           width: 27%;
           height: 100% !important;
@@ -180,6 +184,7 @@
   .container {
     .max-content {
       .box {
+        margin-top: 0;
         .carousel {
           position: relative;
           display: flex !important;
