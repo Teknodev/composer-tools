@@ -1,46 +1,27 @@
 .container {
     .max-content {
         .content {
-            display: flex;
-            flex-direction: column;
             gap: var(--composer-gap-md);
-            .description-left, .description-center {
-                margin: 0;
-                color: var(--composer-font-color-primary);
-            }
-            .description-center{
-                text-align: center;
-            }
-            .title-left, .title-center {
-                margin: 0;
+            align-items: center;
+            .icon{
+                width: 70px;
+                height: 70px;
                 color: var(--composer-primary-color);
             }
-            .title-center{
+            .title {
+                font-size: 3.5rem;
                 text-align: center;
             }
-            .button-container-left, .button-container-center{
+            .description {
+                font-size: 2rem;
+                color: var(--composer-font-color-primary);
+                text-align: center;
+            }
+
+            .button-container{
                 display: flex;
                 .button {
-                    display: flex;
-                    text-align: center;
-                    cursor: pointer;
-                    transition: 0.3s;
-                    color: var(--composer-font-color-primary);
-                    background-color: var(--composer-secondary-color);
-                    padding: var(--composer-gap-md);
-                    border-radius: var(--composer-border-radius-sm);
-                    border: 1px solid transparent;
-                    font-size: 1.3rem;
-                    width: fit-content;
-                    &:hover {
-                        color: var(--composer-primary-color);
-                        background-color: transparent;
-                        border: 1px solid var(--composer-primary-color);
-                    }
                 }
-            }
-            .button-container-center{
-                justify-content: center;
             }
     
         }
