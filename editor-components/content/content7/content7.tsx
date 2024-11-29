@@ -12,7 +12,6 @@ interface Card {
     buttonText: JSX.Element;
     link: string;
   };
-  next_icon: string;
   leftImage: string;
   rightImage: string;
   description: JSX.Element;
@@ -85,12 +84,6 @@ class Content7 extends BaseContent {
                   value: "",
                 },
               ],
-            },
-            {
-              type: "icon",
-              key: "next_icon",
-              displayer: "Next icon",
-              value: "MdNavigateNext",
             },
             {
               type: "image",
@@ -187,17 +180,9 @@ class Content7 extends BaseContent {
                         )}
                         {this.castToString(card.button.buttonText) && (
                           <ComposerLink path={card.button.link}>
-                            <button className={this.decorateCSS("button")}>
+                            <Base.Button className={this.decorateCSS("button")}>
                               {card.button.buttonText}
-                              {card.next_icon && (
-                                <ComposerIcon
-                                  name={card.next_icon}
-                                  propsIcon={{
-                                    className: this.decorateCSS("icon"),
-                                  }}
-                                />
-                              )}
-                            </button>
+                            </Base.Button>
                           </ComposerLink>
                         )}
                       </Base.VerticalContent>
