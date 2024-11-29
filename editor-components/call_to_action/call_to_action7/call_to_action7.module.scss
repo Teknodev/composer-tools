@@ -39,7 +39,7 @@
       }
       .right-page {
         .right-content{
-          height: 80%;
+          height: 100%;
           display: flex;
           justify-content: center;
           .title {
@@ -91,11 +91,6 @@
     .max-content{
       .wrapper{
         flex-direction: column-reverse ;
-        .right-page{
-          .right-content{
-            height: 100%;
-          }
-        }
       }
       
     }
