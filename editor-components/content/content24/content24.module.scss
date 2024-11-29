@@ -21,20 +21,23 @@
                 width: 100%;
                 display: flex;
                 gap: var(--composer-gap-lg);
-                border-bottom: 1px solid var(--composer-tertiary-color);
                 margin: var(--composer-gap-md) 0px var(--composer-gap-xl); 
         
                 .tab-button {
                     flex: 1;
                     text-align: center;
-                    color: var(--composer-font-color-primary);
+                    color: rgba(var(--compsoer-font-color-primary-rgb), 0.7);
                     font-weight: bold;
                     padding: var(--composer-gap-sm) 0;
                     font-size: 1.3rem;
+                    white-space: nowrap;
+                    position: relative;
+                    display: flex;
         
                     &.active {
-                        border-bottom: 2px solid var(--composer-secondary-color);
-                        color: var(--composer-secondary-color);
+                        border-bottom: 2px solid var(--composer-primary-color);
+                        color: var(--compsoer-font-color-primary);
+                        font-weight: bold;
                     }
                 }
             }
@@ -58,8 +61,8 @@
                     align-items: flex-start;
                     gap: var(--composer-gap-lg);
         
-                    .title {content: ""}
-                    .description {content: ""}
+                    .title {color: var(--composer-font-color-primary)}
+                    .description {color: var(--composer-font-color-tertiary)}
         
                     .button {
                         border-radius: var(--composer-border-radius-sm);
