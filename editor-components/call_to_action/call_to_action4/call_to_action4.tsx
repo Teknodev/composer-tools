@@ -151,7 +151,7 @@ class CallToAction4Page extends BaseCallToAction {
       key: "image",
       displayer: "Image",
       value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436958968c3c2002cd2f2d8?alt=media&timestamp=1719584962572",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6749a012506a40002c2f7882?alt=media",
     });
     this.addProp({
       type: "array",
@@ -254,7 +254,7 @@ class CallToAction4Page extends BaseCallToAction {
             {this.getPropValue("image") && (
               <div className={this.decorateCSS("right-page")}>
                 <div className={this.decorateCSS("image-container")}>
-                  <img src={this.getPropValue("image")} alt={this.getPropValue("image")} />
+                  <img src={this.getPropValue("image")} alt={this.getPropValue("image")} className={this.decorateCSS("image")} />
                 </div>
               </div>
             )}
