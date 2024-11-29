@@ -22,14 +22,13 @@
         align-items: center;
         gap: var(--composer-gap-md);
         .title, .title-no-image {        
-          content: "";
           font-size: 3.5rem;
+          text-align: center;
         }
         .title{
           color: white;
         }
         .description, .description-no-image {
-          content: "";
           color: var(--composer-font-color-primary);
           font-size: 2rem;
           text-align: center;
@@ -61,21 +60,32 @@
 .container{
   padding: 100px 50px !important;
 }
+@container (max-width: #{$composer-tablet-width}){
+  .container, .container-no-image{
+    .max-content{
+      .content-container{
+        .title, .title-no-image {        
+          font-size: 3rem;
+        }
+        .description, .description-no-image {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+}
 
 @container (max-width: #{$composer-phone-width}){
   .container, .container-no-image{
     .max-content {
       .content-container {
-        .buttons {
-          >div{
-            width: 100% !important;
-          }
-          .button, .button-no-image{
-            width: 100%;
-          }
+        .title, .title-no-image {        
+          font-size: 2rem;
+        }
+        .description, .description-no-image {
+          font-size: 1rem;
         }
       }
     }
-
   }
 }
