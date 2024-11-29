@@ -35,7 +35,7 @@
 
           .line {
             width: 3px;
-            background-color: var(--composer-secondary-color);
+            background-color: var(--composer-primary-color);
             position: absolute;
             left: 0;
             top: 0;
@@ -184,7 +184,8 @@
   }
 }
 
-@media screen and (max-width: $composer-tablet-width-lg) {
+
+@media screen and (max-width: $composer-phone-width-sm) {
   .container{
     .max-content{
       .content {
