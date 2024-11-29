@@ -305,6 +305,13 @@ class List2 extends BaseList {
         }
       ]
     })
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item Count in a Row",
+      value: 3,
+      max: 4,
+    });
   }
 
   getName(): string {
@@ -317,14 +324,14 @@ class List2 extends BaseList {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent>
-            <Base.H2 className={this.decorateCSS("title")}>
+            <Base.SectionTitle>
               {this.getPropValue("title")}
-            </Base.H2>
-            <Base.H5 className={this.decorateCSS("description")}>
+            </Base.SectionTitle>
+            <Base.SectionDescription>
               {this.getPropValue("description")}
-              </Base.H5>
+              </Base.SectionDescription>
             </Base.VerticalContent>
-          <div className={this.decorateCSS("cards-box")}>
+          <Base.ListGrid className={this.decorateCSS("cards-box")} gridCount={{pc: this.getPropValue("itemCount")}}>
             {cards.map((card: CardItem, index: number) => (
               <ComposerLink key={index} path={card.page}>
                 <div className={this.decorateCSS("card")}>
@@ -334,20 +341,20 @@ class List2 extends BaseList {
                   <div className={this.decorateCSS("card-content")}>
                     <div className={this.decorateCSS("stick")}></div>
                     <div className={this.decorateCSS("labels")}>
-                      <Base.H2 className={this.decorateCSS("first")}>{card.card_text}</Base.H2>
-                      <Base.P className={this.decorateCSS("second")}>{String(card.count) + " " + this.castToString(card.count_text)}</Base.P>
+                      <span className={this.decorateCSS("first")}>{card.card_text}</span>
+                      <span className={this.decorateCSS("second")}>{String(card.count) + " " + this.castToString(card.count_text)}</span>
                     </div>
                   </div>
                 </div>
               </ComposerLink>)
             )}
-          </div>
+          </Base.ListGrid>
 
           <div className={this.decorateCSS("buttons-box")}>
             {this.getPropValue("buttons").map((button: any) =>
               <ComposerLink path={button.getPropValue("navigate")}>
                 <div className={this.decorateCSS("button")}>
-                  <Base.H5>{button.getPropValue("text")}</Base.H5>
+                  <span>{button.getPropValue("text")}</span>
                 </div>
               </ComposerLink>
             )}
