@@ -317,7 +317,8 @@ class Content16 extends BaseContent {
       speed: 725,
       autoplay: true,
       autoplaySpeed: 3000,
-      slidesToShow: Math.min(items.length, this.getPropValue("slide-count")) || 3,
+      slidesToShow:
+        Math.min(items.length, this.getPropValue("slide-count")) || 3,
       slidesToScroll: 1,
       responsive: [
         {
@@ -402,7 +403,11 @@ class Content16 extends BaseContent {
             )}
           </header>
 
-          <main className={this.decorateCSS("wrapper")}>
+          <main
+            className={`${this.decorateCSS("wrapper")} ${
+              items.length <= 3 ? this.decorateCSS("no-slider") : ""
+            }`}
+          >
             {prevIcon && items.length > 3 && (
               <button
                 onClick={() => {
@@ -419,13 +424,7 @@ class Content16 extends BaseContent {
               </button>
             )}
             {items.length > 0 && (
-              <div
-                className={
-                  this.decorateCSS("slider-parent") + " " + (items.length < 3)
-                    ? this.decorateCSS("no-slider")
-                    : ""
-                }
-              >
+              <div className={this.decorateCSS("slider-parent")}>
                 {
                   <>
                     <ComposerSlider

@@ -92,6 +92,16 @@
       display: flex;
       justify-content: center;
 
+      &.no-slider{
+        display: unset;
+        justify-content: unset;
+        .slider-parent{
+          transform: translateX(-10px);
+          width: calc(100% + 18px);
+
+        }
+      }
+
       .slider-parent {
         width: calc(100% - var(--composer-gap-lg));
         flex: 1;
@@ -99,10 +109,6 @@
         margin: auto;
         display: flex;
         flex-direction: column;
-      }
-
-      .no-slider{
-        width: calc(100% + 28px);
       }
 
       .slider-button-right,
