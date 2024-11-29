@@ -4,6 +4,22 @@
     position: relative;
     padding-top: 0px;
     padding-bottom: 0px;
+
+    &.no-image{
+        padding-top: var(--composer-gap-md);
+        padding-bottom: var(--composer-gap-md);
+        .max-content{
+            .cards{
+                margin-bottom: 0px;
+                background-color: unset;
+                padding: 0px;
+                &::before{
+                    content: unset;
+                }
+            }
+        }
+    }
+
     .max-content {
         display: flex;
         @media screen and (max-width: $composer-tablet-width-lg) {
@@ -30,12 +46,9 @@
             width: 100%;
             background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
             height: fit-content;
-            padding: var(--composer-gap-xl) calc(var(--composer-gap-xl) + 20px) var(--composer-gap-xl) var(--composer-gap-xl);
+            padding: var(--composer-gap-xl) calc(var(--composer-gap-xl) + 20px) var(--composer-gap-xl) 0px;
             margin-bottom: var(--composer-gap-lg);
 
-            &.no-image{
-                margin-bottom: 0px;
-            }
             @media screen and (max-width: $composer-tablet-width-lg) {
                 padding: var(--composer-gap-md);
                 margin-bottom: 0px;
@@ -146,11 +159,12 @@
             z-index: 9;
 
             .player {
+                max-width: 100%;
                 height: 600px;
                 z-index: 10;
 
                 @media screen and (max-width: $composer-phone-width) {
-                    height: 300px;
+                    height: unset
                 }
             }
         }

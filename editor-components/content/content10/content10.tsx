@@ -181,11 +181,11 @@ class Content10 extends BaseContent {
 
   render() {
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container className={`${!this.getPropValue("cover_image") ? this.decorateCSS("no-image"): ""} ${this.decorateCSS("container")}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ListGrid
             gridCount={{ pc: 2 }}
-            className={`${!this.getPropValue("cover_image") ? this.decorateCSS("no-image"): ""} ${this.decorateCSS("cards")}`}
+            className={this.decorateCSS("cards")}
           >
             {this.castToObject<Card[]>("cards").map(
               (card: Card, index: number) => (
