@@ -110,7 +110,7 @@ class CallToAction5Page extends BaseCallToAction {
                       </div>
                     )}
                     {this.castToString(this.getPropValue("buttonText")) && (
-                      <Base.Button className={this.decorateCSS("submit-button")} type="submit">
+                      <Base.Button className={this.getPropValue("background") ? this.decorateCSS("submit-button") : this.decorateCSS("submit-button-no-image")}>
                         {this.getPropValue("buttonText")}
                       </Base.Button>
                     )}

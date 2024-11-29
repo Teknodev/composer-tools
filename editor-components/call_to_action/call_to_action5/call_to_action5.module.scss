@@ -17,26 +17,25 @@
     display: flex;
     flex-direction: column;
     gap: var(--composer-gap-lg);
-    .header{
+    .header, .header-no-image{
       align-items: center;
       gap: var(--composer-gap-md);
       .title {
         text-align: center;
-        color: white;
         font-size: 3.5rem;
       }
       .description {
         text-align: center;
-        color: white;
         font-size: 2rem;
       }
     }
-    .header-no-image{
+    .header{
+      align-items: center;
       .title {
-        content: "";
+        color: white;
       }
       .description {
-        color: var(--composer-font-color-primary);
+        color: white;
       }
     }
     .form{
@@ -47,7 +46,7 @@
         justify-content: center;
         align-items: stretch;
         width: 30%;
-        min-width: 300px;
+        min-width: 500px;
         .inputs {
           flex:2;
           display: flex;
@@ -66,17 +65,23 @@
   
           }
           .input-no-image {
-            background-color: var(--composer-font-color-primary);
+            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
             &::placeholder {
-              color: var(--composer-font-color-secondary);
+              color: var(--composer-font-color-primary);
              
             }
           }
         }
-        .submit-button{
+        .submit-button, .submit-button-no-image{
           border-top-left-radius: 0px;
           border-bottom-left-radius: 0px;
           height: 100%;
+        }
+        .submit-button{
+          &:hover{
+            color: white;
+            border: 1px solid white;
+          }
         }
       }
     }
@@ -101,6 +106,14 @@
 @container (max-width: #{$composer-tablet-width}){
   .container, .container-no-image{
     .max-content{
+      .header{
+        .title {
+          font-size: 3rem;
+        }
+        .description {
+          font-size: 1.5rem;
+        }
+      }
       .form{
         .newsletter {
           width: 70%;
@@ -109,13 +122,27 @@
     }
   }
 }
+@container (max-width: #{$composer-phone-width}){
+  .container{
+    padding: 100px 40px;
+  }
+}
 
 @container (max-width: #{$composer-phone-width}){
   .container, .container-no-image{
     .max-content{
+      .header{
+        .title {
+          font-size: 2rem;
+        }
+        .description {
+          font-size: 1rem;
+        }
+      }
       .form{
         .newsletter {
           width: 100%;
+          min-width: 100%;
           .inputs{
             .input, .input-no-image {
               padding:var(--composer-gap-sm) var(--composer-gap-sm);
@@ -127,5 +154,8 @@
         }
       }
     }
+  }
+  .container{
+    padding: 100px 20px;
   }
 }
