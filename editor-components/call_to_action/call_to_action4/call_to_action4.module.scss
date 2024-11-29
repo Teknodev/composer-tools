@@ -3,6 +3,7 @@
     .max-content {
         .content {
             display:flex;
+            gap: var(--composer-gap-md);
             .left-page{
                 flex: 1;
                 gap: var(--composer-gap-lg);
@@ -14,11 +15,13 @@
                     .list{
                         display: flex;
                         gap: var(--composer-gap-md);
+                        align-items: center;
                         .description {
                             display: flex;
                             align-items: center;
                             font-size: 1rem;
                             color: var(--composer-font-color-primary);
+                            width: 100%;
                         }
                         .icon-container{
                             background-color: var(--composer-primary-color);
@@ -75,6 +78,9 @@
         .max-content{
             .content{
                 flex-direction: column;
+                .right-page{
+                    min-height: 400px;
+                }
             }
         }
     }
