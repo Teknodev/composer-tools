@@ -122,7 +122,7 @@ class CallToAction5Page extends BaseCallToAction {
           {(this.castToString(this.getPropValue("buttonText")) && !this.castToString(this.getPropValue("placeholder"))) && (
             <div className={this.decorateCSS("button-container")}>
               <ComposerLink path={this.getPropValue("buttonUrl")}>
-                <Base.Button className={this.decorateCSS("button")}>
+                <Base.Button className={this.getPropValue("background") ? this.decorateCSS("button") : this.decorateCSS("button-no-image")}>
                   {this.getPropValue("buttonText")}
                 </Base.Button>
               </ComposerLink>

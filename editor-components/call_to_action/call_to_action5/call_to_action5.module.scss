@@ -66,6 +66,7 @@
           }
           .input-no-image {
             background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+            color: var(--composer-font-color-primary);
             &::placeholder {
               color: var(--composer-font-color-primary);
              
@@ -89,9 +90,16 @@
       width: 100%;
       display: flex;
       justify-content: center;
-      .button{
+      .button, .button-no-image{
         content: "";
         height: 100%;
+      }
+      .button{
+        &:hover{
+          color: white;
+          border: 1px solid white;
+          background-color: transparent;
+        }
       }
     }
   }
