@@ -14,20 +14,22 @@
                     justify-content: space-between;
                     .title{
                         .text{
+                            content: "";
                         }
                     }
                     .button{
                         .button-element{
-
+                            content: "";
                         }
                     }
 
                 }
                 .image-box{
                     flex: 2;
+                    max-height: 80vh; 
                     .image{
                         width: 100%;
-                        max-height: 70vh; 
+                        height: 100%;
                         object-fit: cover;                       
                     }
                 }
