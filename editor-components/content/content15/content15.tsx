@@ -14,7 +14,7 @@ type ITabs = {
   image_container: {
     image: string;
     box1_text: JSX.Element;
-    price: JSX.Element;
+    box1_lowerText: JSX.Element;
     box2_text: JSX.Element;
     box2_icon: string;
     link: string;
@@ -30,7 +30,7 @@ class Content15 extends BaseContent {
       tabTitle: string,
       image: string,
       boxText: string,
-      boxPrice: string,
+      box1_lowerText: string,
       box2Text: string,
       contentTitle: string,
       contentSubtitle: string,
@@ -88,14 +88,14 @@ class Content15 extends BaseContent {
               {
                 type: "string",
                 key: "box1_text",
-                displayer: "Text",
+                displayer: "Box1 Text",
                 value: boxText,
               },
               {
                 type: "string",
-                key: "price",
-                displayer: "Price",
-                value: boxPrice,
+                key: "box1_lowerText",
+                displayer: "Box1 Lower Text",
+                value: box1_lowerText,
               },
               {
                 type: "string",
@@ -315,13 +315,12 @@ class Content15 extends BaseContent {
             (tab: ITabs, index: number) => {
               const isBox1Visible =
                 this.castToString(tab.image_container.box1_text) ||
-                this.castToString(tab.image_container.price);
+                this.castToString(tab.image_container.box1_lowerText);
               const isBox2Visible =
                 this.castToString(tab.image_container.box2_text) ||
                 tab.image_container.box2_icon;
               const isBoxContainerVisible = isBox1Visible || isBox2Visible;
-              const isImageContainerVisible =
-                tab.image_container.image || isBoxContainerVisible;
+              const isImageContainerVisible = tab.image_container.image;
 
               const isIconContainerVisible = tab.icons_container.length > 0;
 
@@ -357,8 +356,12 @@ class Content15 extends BaseContent {
                                 <div className={this.decorateCSS("box1-text")}>
                                   {tab.image_container.box1_text}
                                 </div>
-                                <div className={this.decorateCSS("price")}>
-                                  {tab.image_container.price}
+                                <div
+                                  className={this.decorateCSS(
+                                    "box1-lower-text"
+                                  )}
+                                >
+                                  {tab.image_container.box1_lowerText}
                                 </div>
                               </div>
                             )}

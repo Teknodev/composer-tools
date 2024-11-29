@@ -1,6 +1,11 @@
 @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
 .container {
+    background-color: color-mix(
+        in srgb,
+        var(--composer-html-background),
+        var(--composer-font-color-primary) 5%
+      );
     .max-content {
         display: flex;
         position: relative;
@@ -92,7 +97,7 @@
                     left: 0;
                     width: 100%;
                     height: 1px;
-                    background-color: rgba(0,0,0,.1);
+                    background-color: rgba(var(--composer-font-color-primary-rgb), 0.1);
                     z-index: 2;
                 }
             }
@@ -148,22 +153,24 @@
                         }
         
                         .box1 {
-                            background-color: var(--composer-html-background);
+                            background-color: var(--composer-font-color-secondary);
                             flex-direction: column;
             
                             .box1-text {
                                 font-size: 1.2rem;
+                                color: var(--composer-font-color-primary);
                             }
             
-                            .price {
+                            .box1-lower-text {
                                 font-size: 2rem;
                                 font-weight: 700;
+                                color: var(--composer-font-color-primary);
                             }
                         }
         
                         .box2 {
-                            background-color: var(--composer-font-color-secondary);
-                            color: var(--composer-font-color-primary);
+                            background-color: var(--composer-font-color-primary);
+                            color: var(--composer-font-color-secondary);
                             height: 100%;
                             gap: var(--composer-gap-sm);
             
@@ -176,8 +183,12 @@
                                 font-size: 4rem;
                                 padding: var(--composer-gap-md);
                                 cursor: pointer;
-                                background-color: var(--composer-font-color-primary);
-                                color: var(--composer-font-color-secondary);
+                                background-color: color-mix(
+                                    in srgb,
+                                    var(--composer-html-background),
+                                    var(--composer-font-color-primary) 5%
+                                  );
+                                color: var(--composer-font-color-primary);
                                 border-radius: 100%;
                             }
                         }
@@ -232,6 +243,7 @@
                             .text {
                                 font-size: 1.1rem;
                                 padding-top: var(--composer-gap-xs);
+                                color: var(--composer-font-color-primary)
                             }
                         }
                     }
@@ -240,7 +252,8 @@
         }
     }
 }
-  
+
+
 @media screen and (max-width: $composer-tablet-width-lg) {
     .container{
         .max-content{
@@ -267,7 +280,7 @@
                                 .box1-text{
                                     font-size: 1.1rem;
                                 }
-                                .price{
+                                .box1-lower-text{
                                     font-size: 1.6rem;
                                 }
                             }
@@ -286,7 +299,6 @@
                         width: 100%;
                         padding: var(--composer-gap-xl) var(--composer-gap-lg) 0px;
                         .icons-container{
-                            flex-direction: column;
                             .icon-container{
                                 &:after {
                                     display: none;
@@ -300,6 +312,21 @@
     }
 }
 
+@media screen and (max-width: $composer-phone-width) {
+    .container{
+        .max-content{
+            .tab{
+                .content{
+                    .content-container{
+                        .icons-container{
+                            flex-direction: column;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 
 @keyframes show-icon {
     from {
