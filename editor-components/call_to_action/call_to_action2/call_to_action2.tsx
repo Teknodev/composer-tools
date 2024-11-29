@@ -188,21 +188,22 @@ class CallToAction2Page extends BaseCallToAction {
                       className={this.decorateCSS("player")}
                       src={this.getPropValue("video")}
                     ></video>
-                    {closeIcon && (
-                      <div
-                        className={this.decorateCSS("close-icon-box")}
-                        onClick={this.hideVideo}
-                      >
-                        <ComposerIcon
-                          propsIcon={{
-                            className: this.decorateCSS("close-icon"),
-                          }}
-                          name={closeIcon}
-                        />
-                      </div>
-                    )}
+
                   </div>
                 </div>
+                {closeIcon && (
+                  <div
+                    className={this.decorateCSS("close-icon-box")}
+                    onClick={this.hideVideo}
+                  >
+                    <ComposerIcon
+                      propsIcon={{
+                        className: this.decorateCSS("close-icon"),
+                      }}
+                      name={closeIcon}
+                    />
+                  </div>
+                )}
               </div>
             )
 

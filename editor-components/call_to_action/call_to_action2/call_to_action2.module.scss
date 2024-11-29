@@ -43,8 +43,10 @@
         .titles {
           flex: 1;
           .subtitle {
+            content: "";
           }
           .title {
+            content: "";
           }
         }
         .button-container {
@@ -80,8 +82,9 @@
           background-color:var(--composer-font-color-secondary);
           width: 80px;
           height: 80px;
-          display: grid;
-          place-items: center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           cursor: pointer;
           transition: all 0.4s ease;
       
@@ -134,20 +137,23 @@
    
       }
       .overlay {
-        position: absolute;
+        position: fixed;
         width: 100vw;
         height: 100%;
         background-color: var(--composer-overlay-color);
         display: flex;
         align-items: center;
         justify-content: center;
+        top: 0px;
+
         .video-container {
-          height: 100%;
+          height: fit-content;
           width: 70%;
           .video {
             height: 100%;
             display: flex;
             align-items: center;
+            position: relative;
             .player {
               max-height: 100%;
               height: fit-content;
@@ -155,25 +161,21 @@
               width: auto;
               max-width: 100%;
             }
-            .close-icon-box {
-              position: absolute;
-              top: var(--composer-gap-md);
-              right: var(--composer-gap-md);
-              color: var(--composer-font-color-secondary);
-              background-color: transparent;
-              padding: 0.4em;
-              display: grid;
-              place-items: center;
-              border-radius: 50%;   
-              border: 2px solid  var(--composer-font-color-secondary);     
-              .close-icon {
-                width: 1.5em;
-                height: 1.5em;
-              }
-            }
           }
         }
-       
+        .close-icon-box {
+          position: absolute;
+          top: var(--composer-gap-md);
+          right: var(--composer-gap-md);
+          color: var(--composer-font-color-secondary);
+          background-color: transparent;
+          border-radius: 50%;   
+          border: 2px solid  var(--composer-font-color-secondary);     
+          .close-icon {
+            width: 1.5em;
+            height: 1.5em;
+          }
+        }
       }
     }
 
