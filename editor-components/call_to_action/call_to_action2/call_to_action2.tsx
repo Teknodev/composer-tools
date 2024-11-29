@@ -103,6 +103,7 @@ class CallToAction2Page extends BaseCallToAction {
   };
 
   render() {
+    const alignment = Base.getContentAlignment();
     const buttons = this.castToObject<Button[]>("buttons");
 
     const image = this.getPropValue("image");
@@ -117,42 +118,34 @@ class CallToAction2Page extends BaseCallToAction {
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("background")}> </div>
+        <div className={this.getPropValue("image") ? this.decorateCSS("background") : this.decorateCSS("background-no-image")}> </div>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
 
           <div className={this.decorateCSS("wrapper")}>
             {renderHeader && (
-              <div className={this.decorateCSS("header")}>
+              <div className={alignment === "left" ? this.decorateCSS("header") : this.decorateCSS("header-center")}>
                 {(titleExist || subtitleExist) && (
-                  <div className={this.decorateCSS("titles")}>
+                  <Base.VerticalContent className={this.decorateCSS("titles")}>
                     {subtitleExist && (
-                      <Base.H4 className={this.decorateCSS("subtitle")}>
+                      <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                         {this.getPropValue("subtitle")}
-                      </Base.H4>
+                      </Base.SectionSubTitle>
                     )}
                     {titleExist && (
-                      <Base.H1 className={this.decorateCSS("title")}>
+                      <Base.SectionTitle className={this.decorateCSS("title")}>
                         {this.getPropValue("title")}
-                      </Base.H1>
+                      </Base.SectionTitle>
                     )}
-                  </div>
+                  </Base.VerticalContent>
                 )}
                 {buttons?.length > 0 && (
                   <div className={this.decorateCSS("button-container")}>
                     {buttons.map((button: Button, index: number) => (
-                      <div
-                        key={index}
-                        className={this.decorateCSS("button")}
-                      >
-                        <ComposerLink path={button.link}>
-                          <div className={this.decorateCSS("text")}>
-                            {button.text}
-                          </div>
-                          {button.icon && (
-                            <ComposerIcon name={button.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
-                          )}
-                        </ComposerLink>
-                      </div>
+                      <ComposerLink path={button.link}>
+                        <Base.Button className={this.decorateCSS("button")}>
+                          {button.text}
+                        </Base.Button>
+                      </ComposerLink>
                     ))}
                   </div>
                 )}
