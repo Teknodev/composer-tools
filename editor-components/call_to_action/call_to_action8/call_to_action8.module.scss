@@ -27,6 +27,7 @@
                 .image-box, .image-box-no-radius{
                     flex: 2;
                     max-height: 80vh; 
+                    display: flex;
                     .image{
                         width: 100%;
                         height: 100%;
