@@ -180,7 +180,7 @@ class Content13 extends BaseContent {
           )}
 
           {showDiv && (
-            <div className={this.decorateCSS("right-page")}>
+            <div className={`${!showLeftDiv ? this.decorateCSS("no-content") : ""} ${this.decorateCSS("right-page")}`}>
               <div className={this.decorateCSS("image-container")}>
                 <div className={this.decorateCSS("image-text")}>
                   {isRightWeakTextExist && (

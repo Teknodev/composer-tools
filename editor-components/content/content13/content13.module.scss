@@ -54,7 +54,16 @@
             flex: 1;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-end;
+            &.no-content{
+                display: unset;
+                .image-container{
+                    max-height: calc(100vh - 100px);
+                    .image2{
+                        max-height: calc(100vh - 300px)
+                    }
+                }
+            }
             .image-container {
                 position: relative;
                 display: flex;
