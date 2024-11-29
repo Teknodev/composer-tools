@@ -127,12 +127,6 @@ class PricingTable8 extends BasePricingTable {
                       displayer: "Percent",
                       value: 70,
                     },
-                    {
-                      type: "color",
-                      key: "color",
-                      displayer: "Color",
-                      value: "orange",
-                    },
                   ],
                 },
                 {
@@ -151,12 +145,6 @@ class PricingTable8 extends BasePricingTable {
                       key: "percent",
                       displayer: "Percent",
                       value: 50,
-                    },
-                    {
-                      type: "color",
-                      key: "color",
-                      displayer: "Color",
-                      value: "purple",
                     },
                   ],
                 },
@@ -246,12 +234,6 @@ class PricingTable8 extends BasePricingTable {
                       displayer: "Percent",
                       value: 30,
                     },
-                    {
-                      type: "color",
-                      key: "color",
-                      displayer: "Color",
-                      value: "orange",
-                    },
                   ],
                 },
                 {
@@ -270,12 +252,6 @@ class PricingTable8 extends BasePricingTable {
                       key: "percent",
                       displayer: "Percent",
                       value: 30,
-                    },
-                    {
-                      type: "color",
-                      key: "color",
-                      displayer: "Color",
-                      value: "purple",
                     },
                   ],
                 },
@@ -365,12 +341,6 @@ class PricingTable8 extends BasePricingTable {
                       displayer: "Percent",
                       value: 70,
                     },
-                    {
-                      type: "color",
-                      key: "color",
-                      displayer: "Color",
-                      value: "orange",
-                    },
                   ],
                 },
                 {
@@ -389,12 +359,6 @@ class PricingTable8 extends BasePricingTable {
                       key: "percent",
                       displayer: "Percent",
                       value: 70,
-                    },
-                    {
-                      type: "color",
-                      key: "color",
-                      displayer: "Color",
-                      value: "purple",
                     },
                   ],
                 },
@@ -445,6 +409,7 @@ class PricingTable8 extends BasePricingTable {
   render() {
     const settings = {
       dots: true,
+      dotsClass: this.decorateCSS("dots"),
       infinite: true,
       speed: 1000,
       autoplay: false,
@@ -459,7 +424,6 @@ class PricingTable8 extends BasePricingTable {
     const cards = this.castToObject<IIconBoxes[]>("cards");
 
     const handleCardClick = (index: number) => {
-      console.log(index, "indexx");
       this.setComponentState("currentIndex", index);
     };
 
@@ -478,9 +442,11 @@ class PricingTable8 extends BasePricingTable {
                   <div className={this.decorateCSS("card-item-count")} key={index}>
                     <Base.VerticalContent className={this.decorateCSS("pricing")}>
                       {cardTitleExist && <Base.H3 className={this.decorateCSS("title")}>{card.title}</Base.H3>}
-                      {cardPriceExist && <Base.H1 className={this.decorateCSS("price")}>{card.price}</Base.H1>}
                       {cardPriceBigExist && <Base.H1 className={this.decorateCSS("price-big")}>{card.priceBig}</Base.H1>}
-                      {cardPlanExist && <Base.P className={this.decorateCSS("plan")}>{card.plan}</Base.P>}
+                      <div className={this.decorateCSS("pricing-container")}>
+                        {cardPriceExist && <Base.H1 className={this.decorateCSS("price")}>{card.price}</Base.H1>}
+                        {cardPlanExist && <Base.P className={this.decorateCSS("plan")}>{card.plan}</Base.P>}
+                      </div>
 
                       {card.iconsButton.icon && (
                         <ComposerLink path={card.iconsButton.url}>
@@ -508,9 +474,12 @@ class PricingTable8 extends BasePricingTable {
                   <div className={`${this.decorateCSS("card-item-count")} ${index === Math.floor(cards.length / 2) ? this.decorateCSS("middle-card") : ""}`} key={index} onClick={() => handleCardClick(index)}>
                     <Base.VerticalContent className={this.decorateCSS("pricing")}>
                       {cardTitleExist && <Base.H3 className={this.decorateCSS("title")}>{card.title}</Base.H3>}
-                      {cardPriceExist && <Base.H1 className={this.decorateCSS("price")}>{card.price}</Base.H1>}
                       {cardPriceBigExist && <Base.H1 className={this.decorateCSS("price-big")}>{card.priceBig}</Base.H1>}
-                      {cardPlanExist && <Base.P className={this.decorateCSS("plan")}>{card.plan}</Base.P>}
+
+                      <div className={this.decorateCSS("pricing-container")}>
+                        {cardPriceExist && <Base.H1 className={this.decorateCSS("price")}>{card.price}</Base.H1>}
+                        {cardPlanExist && <Base.P className={this.decorateCSS("plan")}>{card.plan}</Base.P>}
+                      </div>
 
                       {card.iconsButton.icon && (
                         <ComposerLink path={card.iconsButton.url}>
@@ -546,7 +515,6 @@ class PricingTable8 extends BasePricingTable {
                             className={this.decorateCSS("percent")}
                             style={{
                               width: `${bar.percent}%`,
-                              backgroundColor: `${bar.color}`,
                             }}
                           ></div>
                         </div>
@@ -563,7 +531,7 @@ class PricingTable8 extends BasePricingTable {
                 return (
                   buttonExist && (
                     <ComposerLink path={item.url} key={index}>
-                      <div className={this.decorateCSS("button")}>{item.buttonText}</div>
+                      <Base.Button className={this.decorateCSS("button")}>{item.buttonText}</Base.Button>
                     </ComposerLink>
                   )
                 );

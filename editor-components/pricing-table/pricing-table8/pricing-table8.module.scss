@@ -8,9 +8,10 @@
     .box {
       margin: var(--composer-gap-lg) 0;
       width: 100%;
-      background: var(--composer-primary-color);
+      background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
       padding-bottom: var(--composer-gap-lg);
       position: relative;
+      border-radius: var(--composer-border-radius-md);
 
       .carousel {
         display: none;
@@ -28,27 +29,42 @@
             position: relative;
             flex-wrap: wrap;
             align-items: center;
+            justify-content: space-between;
             height: 100%;
             min-height: 330px;
-            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+            background-color: var(--composer-html-background);
             border-radius: var(--composer-border-radius-md);
             box-shadow: var(--box-shadow-active);
             padding-top: var(--composer-gap-md);
             .title {
-              font-size: 2.8rem;
+              font-size: 3rem;
               color: var(--composer-primary-color);
               margin: calc(3 * var(--composer-gap-sm));
               text-align: center;
               margin: var(--composer-gap-md);
             }
-            .price {
-              position: relative;
-              font-size: 3rem;
-              font-weight: bold;
-              color: var(--composer-font-color-primary);
-              margin: calc(3 * var(--composer-gap-sm));
-              text-align: center;
-              margin: var(--composer-gap-md);
+
+            .pricing-container {
+              margin-top: var(--composer-gap-xl);
+              .price {
+                position: relative;
+                font-size: 3rem;
+                font-weight: bold;
+                color: var(--composer-font-color-primary);
+                margin: calc(3 * var(--composer-gap-sm));
+                text-align: center;
+                margin: var(--composer-gap-md);
+                margin: 0;
+              }
+
+              .plan {
+                position: relative;
+                display: block;
+                margin: var(--composer-gap-lg);
+                color: var(--composer-font-color-primary);
+                text-align: center;
+                margin: 0;
+              }
             }
 
             .price-big {
@@ -56,25 +72,18 @@
               color: var(--composer-font-color-primary);
               font-size: 10rem;
               font-weight: bold;
-              opacity: 0.07;
-              top: 35%;
+              color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+              top: 15%;
               margin: var(--composer-gap-lg);
             }
-            .plan {
-              position: relative;
-              display: block;
-              margin: var(--composer-gap-lg);
-              color: var(--composer-font-color-primary);
-              text-align: center;
-            }
+
             .icon {
               position: absolute;
-              bottom: calc(-1.5 * var(--composer-gap-lg));
-              left: calc(3.5 * var(--composer-gap-xl));
+              bottom: calc(-1 * var(--composer-gap-lg));
               color: var(--composer-font-color-secondary);
               background-color: var(--composer-secondary-color);
               font-size: 4.5rem;
-              padding: var(--composer-gap-sm);
+              left: 42%;
               border-radius: 50%;
               border: 2px solid var(--composer-secondary-color);
             }
@@ -101,10 +110,10 @@
           width: 50%;
 
           .text {
-            color: var(--composer-font-color-secondary);
+            color: var(--composer-font-color-primary);
           }
           .description-text {
-            color: var(--composer-font-color-secondary);
+            color: var(--composer-font-color-primary);
             opacity: 0.5;
           }
         }
@@ -126,7 +135,7 @@
               gap: var(--composer-gap-md);
 
               .bar-title {
-                color: var(--composer-font-color-secondary);
+                color: var(--composer-font-color-primary);
                 width: 60%;
                 text-align: right;
               }
@@ -145,6 +154,7 @@
                   height: 100%;
                   transition: width 0.3s;
                   border-radius: var(--composer-border-radius-lg);
+                  background-color: var(--composer-secondary-color);
                 }
               }
             }
@@ -161,26 +171,6 @@
         right: 0;
         margin: 0 auto;
         gap: var(--composer-gap-md);
-        .button {
-          position: relative;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding: 0 var(--composer-gap-md);
-          height: var(--composer-gap-xl);
-          background: var(--composer-secondary-color);
-          color: var(--composer-font-color-secondary);
-          border-radius: var(--composer-gap-sm);
-          transition: 0.5s;
-          font-size: 1.5rem;
-          cursor: pointer;
-
-          &:hover {
-            outline: 1px solid var(--composer-secondary-color);
-            color: var(--composer-font-color-secondary);
-            transform: scale(1.1);
-          }
-        }
       }
     }
   }
@@ -190,66 +180,60 @@
   .container {
     .max-content {
       .box {
-        margin: var(--composer-gap-lg) 0;
-        padding-bottom: var(--composer-gap-lg);
-        position: relative;
         .carousel {
           position: relative;
           display: flex !important;
-          margin-left: 0 !important;
+          flex-direction: column;
 
           .card-item-count {
             .pricing {
               width: 100%;
-              align-items: center;
               height: 100%;
-              min-height: 400px;
+              align-items: center;
+              min-height: 300px;
               height: auto;
-              padding-bottom: 3rem;
-              background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-              padding-top: var(--composer-gap-md);
+              justify-content: space-between;
+              background-color: var(--composer-html-background);
+              border: var(--composer-gap-xs) solid color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
 
               .title {
                 color: var(--composer-primary-color);
                 margin: var(--composer-gap-md);
               }
 
-              .price {
-                position: relative;
-                display: block;
-                font-size: 3rem;
-                font-weight: bold;
-                margin: var(--composer-gap-md);
-                top: 15%;
-                color: var(--composer-font-color-primary);
-              }
               .price-big {
                 position: absolute;
-                color: var(--composer-font-color-primary);
                 font-size: 10rem;
                 letter-spacing: calc(-1 * var(--composer-gap-xs));
-                font-weight: 700;
-                opacity: 0.07;
-                top: 35%;
+                color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+                top: 5%;
                 margin: var(--composer-gap-md);
-                color: var(--composer-font-color-primary);
               }
 
-              .plan {
+              .pricing-container {
                 position: relative;
-                display: block;
-                font-size: 1rem;
-                margin: 0;
-                top: 14%;
-                margin: var(--composer-gap-md);
-                color: var(--composer-font-color-primary);
+                text-align: center;
+                .price {
+                  font-size: 3rem;
+                  font-weight: bold;
+                  color: var(--composer-font-color-primary);
+                  margin: 0;
+                  margin-top: var(--composer-gap-xl);
+                }
+
+                .plan {
+                  font-size: 1rem;
+                  margin: 0;
+
+                  color: var(--composer-font-color-primary);
+                }
               }
 
               .icon {
                 position: relative;
-                bottom: calc(-1 * var(--composer-gap-xl));
                 color: var(--composer-font-color-secondary);
                 background-color: var(--composer-secondary-color);
+                bottom: calc(-1 * var(--composer-gap-xl));
                 font-size: 4.5rem;
                 padding: var(--composer-gap-sm);
                 border-radius: 50%;
@@ -262,19 +246,48 @@
         .upper-container {
           display: none !important;
         }
+        .dots {
+          display: flex !important;
+          flex-direction: row;
+          margin: 0 auto;
+          width: fit-content;
+          gap: var(--composer-gap-sm);
+          list-style-type: none;
+          padding: 0;
+          margin-top: var(--composer-gap-md);
 
+          li {
+            button {
+              border: none;
+              color: white;
+              transition: 0.3s;
+              content-visibility: hidden;
+              width: var(--composer-gap-sm);
+              height: var(--composer-gap-sm);
+              background: var(--composer-font-color-primary);
+              border-radius: calc(2 * var(--composer-gap-xl));
+              margin: 0;
+              padding: 0;
+              cursor: pointer;
+            }
+          }
+        }
+        .dots :global(li.slick-active) button {
+          opacity: 0.5;
+        }
         .lower-container {
           flex-direction: column !important;
           gap: 0 !important;
           padding: 0 !important;
-          margin-top: calc(2 * var(--composer-gap-sm)) !important;
+          margin-top: calc(2 * var(--composer-gap-md)) !important;
+
           .plan-desc {
             margin-bottom: var(--composer-gap-sm);
             width: 78% !important;
           }
 
           .bar-rows {
-            width: 70% !important;
+            width: 78% !important;
             .bar-row {
               .bar-desc {
                 .bar-title {
