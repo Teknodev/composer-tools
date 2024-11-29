@@ -3,12 +3,13 @@ import { BaseList } from "../../EditorComponent";
 import styles from "./list3.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type Item = {
-  itemTitle: JSX.Element;
-  itemText1: JSX.Element;
-  itemText2: JSX.Element;
-  itemText3: JSX.Element;
+  itemTitle: string;
+  itemText1: string;
+  itemText2: string;
+  itemText3: string;
 };
 
 class List3 extends BaseList {
@@ -162,68 +163,71 @@ class List3 extends BaseList {
     const buttonExist = this.castToString(this.getPropValue("button"));
 
     return (
-      <Base.Container className={this.decorateCSS("container")} isFull="true" >
+      <Base.Container className={this.decorateCSS("container")} isFull="true">
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ListGrid className={this.decorateCSS("row")} gridCount={{ pc: this.getPropValue("itemCount") }}>
             {(title || description) && (
               <div className={this.decorateCSS("first")}>
-                <div className={this.decorateCSS("firstContent")}>
+                <Base.VerticalContent>
                   {title && (
                     <Base.SectionTitle className={this.decorateCSS("title")}>
-                      <Base.H1 className={this.decorateCSS("title-inner")}>{this.getPropValue("title")}</Base.H1>
+                      {title}
                     </Base.SectionTitle>
                   )}
                   {description && (
                     <Base.SectionDescription className={this.decorateCSS("description")}>
-                      <Base.H2 className={this.decorateCSS("description-inner")}>{this.getPropValue("description")}</Base.H2>
+                      {description}
                     </Base.SectionDescription>
                   )}
-                  {buttonExist && (
-                    <div className={this.decorateCSS("buttondiv")}>
-                      <ComposerLink path={this.getPropValue("buttonUrl")}>
-                        <button className={`${this.decorateCSS("button")}`}>
-                          {this.getPropValue("button")}
-                        </button>
-                      </ComposerLink>
-                    </div>
-                  )}
-                </div>
+                </Base.VerticalContent>
+                {buttonExist && (
+                  <div className={this.decorateCSS("buttondiv")}>
+                    <ComposerLink path={this.getPropValue("buttonUrl")}>
+                      <button className={`${this.decorateCSS("button")}`}>
+                        <span>
+                          <span className={this.decorateCSS("btn-text")}>{this.getPropValue("button")}</span>
+                          <span className={this.decorateCSS("btn-icon")}>
+                            <ComposerIcon 
+                              name={"FaArrowRightLong"}
+                            />
+                          </span>
+                        </span>
+                      </button>
+                    </ComposerLink>
+                  </div>
+                )}
               </div>
             )}
             {listItems.map((listItem: Item, index: number) => {
-              const itemTitle = this.castToString(listItem.itemTitle);
-              const itemText1 = this.castToString(listItem.itemText1);
-              const itemText2 = this.castToString(listItem.itemText2);
-              const itemText3 = this.castToString(listItem.itemText3);
 
               return (
                 <div key={index} className={this.decorateCSS("card")}>
                   <div className={this.decorateCSS("card-content")}>
-                    {itemTitle && (
-                      <Base.P className={this.decorateCSS("itemTitle")}>
+                    {listItem.itemTitle && (
+                      <Base.SectionTitle className={this.decorateCSS("itemTitle")}>
                         {listItem.itemTitle}
-                      </Base.P>
+                      </Base.SectionTitle>
                     )}
-                    {itemText1 && (
-                      <Base.P className={this.decorateCSS("itemText")}>
+                    {listItem.itemText1 && (
+                      <Base.SectionDescription className={this.decorateCSS("itemText")}>
                         {listItem.itemText1}
-                      </Base.P>
+                      </Base.SectionDescription>
                     )}
-                    {itemText2 && (
+                    {listItem.itemText2 && (
                       <span className={this.decorateCSS("spanItem")}></span>
                     )}
-                    {itemText2 && (
-                      <Base.P className={this.decorateCSS("itemText")}>
+                    {listItem.itemText2 && (
+                      <Base.SectionDescription className={this.decorateCSS("itemText")}>
                         {listItem.itemText2}
-                      </Base.P>
+                      </Base.SectionDescription>
                     )}
-                    {itemText3 && (
+                    {listItem.itemText3 && (
                       <span className={this.decorateCSS("spanItem")}></span>
                     )}
-                    {itemText3 && (
-                      <Base.P className={this.decorateCSS("itemText")}>
+                    {listItem.itemText3 && (
+                      <Base.SectionDescription className={this.decorateCSS("itemText")}>
                         {listItem.itemText3}
-                      </Base.P>
+                      </Base.SectionDescription>
                     )}
                   </div>
                   <Base.H2 className={this.decorateCSS("index")}>

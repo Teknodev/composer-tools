@@ -1,110 +1,170 @@
 .container {
-
-  .max-content {
-    max-width: var(--composer-content-width);
-    margin: 0 auto;
-  }
-
-  .row {
-    display: grid;
-    gap: 0;
-  }
-
-  .first {
-    padding: var(--composer-gap-lg);
-    color: var(--composer-font-color-primary);
-    border: 1px solid var(--composer-primary-color);
-
-    .title {
-      font-weight: bold;
-      margin-bottom: var(--composer-gap-md);
+  .max-content {  
+    .row {
+      gap: 0;
     }
 
-    .description {
-      margin-bottom: var(--composer-gap-lg);
-      opacity: 0.8;
-    }
-
-    .button {
-      background-color: transparent;
-      color: var(--composer-font-color-primary);
-      border: 1px solid var(--composer-primary-color);
-      padding: var(--composer-gap-sm) var(--composer-gap-md);
-      font-size: 1.5rem;
-      border-radius: var(--composer-border-radius-sm);
-      cursor: pointer;
-      transition: all 0.3s ease;
-
-      &:hover {
-        transform: scale(1.05);
-      }
-    }
-  }
-
-  .card {
-    padding: var(--composer-gap-xl) var(--composer-gap-xl) calc(var(--composer-gap-xl) + 3rem) var(--composer-gap-xl);
-    position: relative;
-    overflow: hidden;
-    transition: background-color 0.3s ease;
-    color: var(--composer-font-color-primary);
-    border: 1px solid var(--composer-primary-color);
-
-    &:not(.first):hover {
-      background-color: var(--composer-primary-color);
-      color: var(--composer-font-color-secondary);
-      .spanItem {
-        background-color: var(--composer-font-color-secondary);
-      }
-    }
-    .card-content{
-      position: relative;
-      height: 100%;
+    .first {
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      
-      .itemTitle {
-        font-size: 1.8rem;
+      justify-content: flex-start;
+      padding: var(--composer-gap-xl) var(--composer-gap-xl) var(--composer-gap-xl) var(--composer-gap-xl);
+      min-height: 30rem;
+      min-width: calc(100% / 4);
+      border: 1px solid var(--composer-primary-color);
+
+      .title {
         font-weight: bold;
-        margin-bottom: 0px;
+        color: var(--composer-font-color-primary);
+        word-break: break-word; 
       }
-  
-      .itemText {
-        font-size: 1.5rem;
-        margin-bottom: 10px;
+
+      .description {
         opacity: 0.8;
+        line-height: 1.5;
+        word-break: break-word; 
       }
+
+      .button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+        color: var(--composer-font-color-primary);
+        margin-top: var(--composer-gap-md);
+        min-width: 250px;
+        min-height: 70px;
+        border: none !important;
+        border-radius: var(--composer-border-radius-sm);
+        cursor: pointer;
+        transition: transform .5s;
+
+        &:hover {
+          transform: translateY(-5px);
+
+          span {
+            display: inline-flex;
+            align-items: center;
   
-      .spanItem {
-        display: block;
-        height: 1px;
-        background-color: var(--composer-primary-color);
-        margin: 10px 0;
+            .btn-text {
+              font-size: 1rem;
+              font-weight: 700;
+              text-transform: uppercase;
+              white-space: normal;
+              transform: translateX(-12px);
+              transition: transform .5s;
+            }
+    
+            .btn-icon {
+              font-size: 1rem;
+              opacity: 1;
+              transform: translateX(12px);
+            }
+          }
+        }
+
+        span {
+          display: inline-flex;
+          align-items: center;
+
+          .btn-text {
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-left: 0;
+            position: relative;
+            z-index: 3;
+            transition: transform .5s;
+          }
+  
+          .btn-icon {
+            display: inline-block;
+            top: 0;
+            margin-top: 1px;
+            margin-left: -20px;
+            opacity: 0;
+            transition: opacity .25s, transform .5s;
+          }
+        }
       }
     }
-      .index {
-        position: absolute;
-        font-size: 11rem;
-        -webkit-text-stroke-width: 1px;
-        letter-spacing: -5px;
-        -webkit-text-fill-color: transparent;
-        margin: 0;
-        bottom: -17%;
+
+    .card {
+      padding: var(--composer-gap-xl) var(--composer-gap-xl) var(--composer-gap-xl) var(--composer-gap-xl);
+      min-height: 30rem;
+      min-width: calc(var(--composer-) / 4);
+      position: relative;
+      overflow: hidden;
+      transition: background-color 0.3s ease;
+      color: var(--composer-font-color-primary);
+      border: 1px solid var(--composer-primary-color);
+
+      &:not(.first):hover {
+        background-color: var(--composer-primary-color);
+        color: var(--composer-font-color-secondary);
+
+        .itemTitle {
+          color: var(--composer-font-color-secondary);
+        }
+
+        .itemText {
+          color: var(--composer-font-color-secondary);
+        }
+
+        .spanItem {
+          background-color: var(--composer-font-color-secondary);
+        }
+      }
+      .card-content{
+        position: relative;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        
+        .itemTitle {
+          font-size: 1.5rem;
+          font-weight: bold;
+          margin: 0;
+          color: var(--composer-font-color-primary);
+        }
+    
+        .itemText {
+          font-size: 1rem;
+          margin-bottom: 10px;
+          opacity: 0.8;
+          color: var(--composer-font-color-primary);
+        }
+    
+        .spanItem {
+          display: block;
+          height: 1px;
+          background-color: var(--composer-primary-color);
+          margin: 10px 0;
+          color: var(--composer-font-color-primary);
+        }
+      }
+        .index {
+          position: absolute;
+          font-size: 7.5rem;
+          -webkit-text-stroke-width: 1px;
+          letter-spacing: -5px;
+          -webkit-text-fill-color: transparent;
+          margin: 0;
+          bottom: -65px
+      }
     }
-
-
   }
 }
 
 @media (max-width: 768px) {
   .container {
-    .row {
-      grid-template-columns: 1fr !important;
+    .first {
+      padding: var(--composer-gap-xl) !important;
     }
-
     .card {
       .index {
-        bottom: -21%;
+        bottom: -65px !important;
       }
     }
   }
@@ -114,7 +174,7 @@
   .container {
     .card {
       .index {
-        bottom: -15%;
+        bottom: -65px
       }
     }
   }
