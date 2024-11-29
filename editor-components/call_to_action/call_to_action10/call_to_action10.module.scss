@@ -23,7 +23,7 @@
                 content: " ";
             }
             .card-container{
-                width: fit-content;
+                width: 100%;
                 .card{
                     display: flex;
                     flex-direction: column;
@@ -42,11 +42,12 @@
 
                         }
                     }
-                    .title{
+                    .card-title{
                         color: var(--composer-font-color-primary);
+                        margin:0px;
                     }
-                    .description{
-    
+                    .card-description{
+                        margin: 0px;
                     }
                 }
             }
