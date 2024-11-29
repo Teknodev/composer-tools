@@ -11,6 +11,7 @@
 }
 
 .container, .container-no-image {
+  position: relative;
   &::before{
     content: " ";
     position: absolute;
