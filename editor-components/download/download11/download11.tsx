@@ -181,9 +181,6 @@ class Download11 extends BaseDownload {
       return titleExist || buttonExist;
     });
 
-    console.log(hasValidBottomRightCard, "hasValidBottomRightCard");
-    console.log(hasValidRightCard, "hasValidRightCard");
-
     const hasValidRightCards = hasValidRightCard || hasValidBottomRightCard;
 
     return (
