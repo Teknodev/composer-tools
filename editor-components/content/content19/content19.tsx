@@ -17,7 +17,7 @@ class Content19 extends BaseContent {
       type: "video",
       displayer: "Video Link",
       key: "video",
-      value: "https://www.youtube.com/embed/yB7MtnWmYzI",
+      value: "https://www.youtube.com/embed/fPO76Jlnz6c",
     });
     this.addProp({
       type: "image",
@@ -234,9 +234,9 @@ class Content19 extends BaseContent {
                       if (buttonText.trim() !== "") {
                         return (
                           <ComposerLink key={index} path={url}>
-                            <button className={this.decorateCSS("button")}>
+                            <Base.Button className={this.decorateCSS("button")}>
                               {buttonText}
-                            </button>
+                            </Base.Button>
                           </ComposerLink>
                         );
                       }

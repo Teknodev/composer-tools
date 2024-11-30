@@ -1,27 +1,24 @@
 @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
 .container {
-  .max-content {
-    .video {
-      position: fixed;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(var(--composer-font-color-primary-rgb), 0.8);
-      top: 0;
-      left: 0;
-      display: grid;
-      place-items: center;
-      padding: var(--composer-gap-md);
-      z-index: 9;
+  .video {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: var(--composer-overlay-color);
+    top: 0;
+    left: 0;
+    display: grid;
+    place-items: center;
+    padding: var(--composer-gap-md);
+    z-index: 9;
 
-      .player {
-        width: 60%;
-        height: 56.25vw;
-        max-height: 450px;
-        z-index: 10;
-      }
+    .player {
+      width: 60%;
+      z-index: 10;
     }
-
+  }
+  .max-content {
     .content {
       .text-side {
         flex: 1;
@@ -94,24 +91,7 @@
           gap: var(--composer-gap-sm);
           width: 100%;
 
-          .button {
-            
-            display: flex;
-            background-color: var(--composer-primary-color);
-            color: var(--composer-font-color-secondary);
-            font-size: 1rem;
-            padding: var(--composer-gap-sm) var(--composer-gap-md);
-            transition: background-color 0.3s ease;
-            border: 1px solid transparent;
-            border-radius: var(--composer-border-radius-sm);
-            cursor: pointer;
-
-            &:hover {
-              color: var(--composer-secondary-color);
-              background: transparent;
-              border: 1px solid var(--composer-secondary-color);
-            }
-          }
+          .button {content: ""}
         }
       }
 
@@ -185,7 +165,7 @@
 }
 
 
-@media screen and (max-width: $composer-phone-width-sm) {
+@media screen and (max-width: $composer-tablet-width-lg) {
   .container{
     .max-content{
       .content {
