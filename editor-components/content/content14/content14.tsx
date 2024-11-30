@@ -123,78 +123,86 @@ class Content14 extends BaseContent {
     const description = this.getPropValue("description");
     const buttonText = this.getPropValue("buttonText");
     const list = this.castToObject<ListItem[]>("items");
+    const isAnyContentExists =
+      this.castToString(subTitle) ||
+      this.castToString(title) ||
+      this.castToString(description) ||
+      this.castToString(buttonText) || 
+      list.length > 0;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("content")}>
-            {(this.castToString(subTitle) ||
-              this.castToString(title) ||
-              this.castToString(description)) && (
-              <Base.VerticalContent className={this.decorateCSS("header")}>
-                {this.castToString(subTitle) && (
-                  <Base.SectionSubTitle
-                    className={this.decorateCSS("subtitle")}
-                  >
-                    {subTitle}
-                  </Base.SectionSubTitle>
-                )}
-                {this.castToString(title) && (
-                  <Base.SectionTitle className={this.decorateCSS("title")}>
-                    {title}
-                  </Base.SectionTitle>
-                )}
-                {this.castToString(description) && (
-                  <Base.SectionDescription
-                    className={this.decorateCSS("description")}
-                  >
-                    {description}
-                  </Base.SectionDescription>
-                )}
-              </Base.VerticalContent>
-            )}
+          {isAnyContentExists && (
+            <div className={this.decorateCSS("content")}>
+              {(this.castToString(subTitle) ||
+                this.castToString(title) ||
+                this.castToString(description)) && (
+                <Base.VerticalContent className={this.decorateCSS("header")}>
+                  {this.castToString(subTitle) && (
+                    <Base.SectionSubTitle
+                      className={this.decorateCSS("subtitle")}
+                    >
+                      {subTitle}
+                    </Base.SectionSubTitle>
+                  )}
+                  {this.castToString(title) && (
+                    <Base.SectionTitle className={this.decorateCSS("title")}>
+                      {title}
+                    </Base.SectionTitle>
+                  )}
+                  {this.castToString(description) && (
+                    <Base.SectionDescription
+                      className={this.decorateCSS("description")}
+                    >
+                      {description}
+                    </Base.SectionDescription>
+                  )}
+                </Base.VerticalContent>
+              )}
 
-            {list.length > 0 && (
-              <div className={this.decorateCSS("item-block")}>
-                {list.map((listItem: any, index: number) => (
-                  <div className={this.decorateCSS("texts")}>
-                    {listItem.icon && (
-                      <ComposerIcon
-                        name={listItem.icon}
-                        propsIcon={{
-                          className: this.decorateCSS("icon"),
-                        }}
-                      />
-                    )}
-                    <div className={this.decorateCSS("list-item-content")}>
-                      {this.castToString(listItem.title) && (
-                        <Base.H2
-                          className={this.decorateCSS("list-item-title")}
-                        >
-                          {listItem.title}
-                        </Base.H2>
+              {list.length > 0 && (
+                <div className={this.decorateCSS("item-block")}>
+                  {list.map((listItem: any, index: number) => (
+                    <div className={this.decorateCSS("texts")}>
+                      {listItem.icon && (
+                        <ComposerIcon
+                          name={listItem.icon}
+                          propsIcon={{
+                            className: this.decorateCSS("icon"),
+                          }}
+                        />
                       )}
-                      {this.castToString(listItem.text) && (
-                        <Base.P className={this.decorateCSS("texts-inside")}>
-                          {listItem.text}
-                        </Base.P>
-                      )}
+                      <div className={this.decorateCSS("list-item-content")}>
+                        {this.castToString(listItem.title) && (
+                          <Base.H2
+                            className={this.decorateCSS("list-item-title")}
+                          >
+                            {listItem.title}
+                          </Base.H2>
+                        )}
+                        {this.castToString(listItem.text) && (
+                          <Base.P className={this.decorateCSS("texts-inside")}>
+                            {listItem.text}
+                          </Base.P>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </div>
-            )}
+                  ))}
+                </div>
+              )}
 
-            {buttonText && (
-              <ComposerLink page={this.getPropValue("link")}>
-                <Base.Button className={this.decorateCSS("button")}>
-                  {buttonText}
-                </Base.Button>
-              </ComposerLink>
-            )}
-          </div>
+              {this.castToString(buttonText) && (
+                <ComposerLink page={this.getPropValue("link")}>
+                  <Base.Button className={this.decorateCSS("button")}>
+                    {buttonText}
+                  </Base.Button>
+                </ComposerLink>
+              )}
+            </div>
+          )}
           {this.getPropValue("image") && (
-            <div className={this.decorateCSS("right-image")}>
+            <div className={`${!isAnyContentExists ? this.decorateCSS("no-content") : ""} ${this.decorateCSS("right-image")}`}>
               <img
                 src={this.getPropValue("image")}
                 alt="blockPhoto"
