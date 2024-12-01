@@ -3,18 +3,21 @@ import { BaseSlider } from "../../EditorComponent";
 import styles from "./slider2.module.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
+import { Base } from "../../../composer-base-components/base/base";
 
 type Card = {
   image: string;
-  text: string;
-  button: string;
+  text: JSX.Element;
+  button: JSX.Element;
   url: string;
-  number: string;
+  number: JSX.Element;
 };
 
+
 class Slider2 extends BaseSlider {
+  windowWidth: number;
+
   constructor(props?: any) {
     super(props, styles);
 
@@ -151,7 +154,7 @@ class Slider2 extends BaseSlider {
     });
 
     this.setComponentState("active_image", this.castToObject<Card[]>("slider")[0].image)
-    this.setComponentState("text", this.castToObject<Card[]>("slider")[0].text)
+    this.setComponentState("text", this.castToString(this.castToObject<Card[]>("slider")[0].text))
     this.setComponentState("text_visibility", true)
   }
 
@@ -159,19 +162,38 @@ class Slider2 extends BaseSlider {
     return "Slider 2";
   }
 
-
-
   render() {
 
     const settings = {
       dots: false,
       infinite: true,
       speed: 1000,
-      slidesToShow: window.innerWidth < 400 ? 1.2 : 3,
+      variableWidth: true,
+      slidesToShow: 2.5,
+      slidesToScroll: 1,
+      centerMode: false,
+      initialSlide: 0,
+      responsive: [
+        {
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 2.2,
+            slidesToScroll: 1,
+          },
+        },
+        {
+          breakpoint: 640,
+          settings: {
+            slidesToShow: 1.5,
+            slidesToScroll: 1
+          },
+        },
+      ],
     };
+
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+      <Base.Container isFull={true} className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("image-box")}>
             <div className={this.decorateCSS("overlay")}>
               {this.castToObject<Card[]>("slider").map((slide, index) => {
@@ -187,7 +209,7 @@ class Slider2 extends BaseSlider {
             </div>
           </div>
           <div className={this.decorateCSS("text-box")}>
-            <span className={`${this.decorateCSS("text")} ${this.getComponentState("text_visibility") && this.decorateCSS("visible")}`}>{this.getComponentState("text")}</span>
+            <Base.P className={`${this.decorateCSS("text")} ${this.getComponentState("text_visibility") && this.decorateCSS("visible")}`}>{this.getComponentState("text")}</Base.P>
           </div>
           <ComposerSlider
             {...settings}
@@ -205,20 +227,21 @@ class Slider2 extends BaseSlider {
                     this.setComponentState("text_visibility", false);
                     setTimeout(() => {
                       this.setComponentState("text_visibility", true);
-                      this.setComponentState("text", item.text);
+                      this.setComponentState("text", this.castToString(item.text));
                     }, 200)
                   }}>
-                    <p className={this.decorateCSS("number")}>{item.number}</p>
-                    <span className={`${this.decorateCSS("text")} ${isActive && this.decorateCSS("active")}`}>{item.button}</span>
+                    {this.castToString(item.number) &&
+                      <p className={this.decorateCSS("number")}>{item.number}</p>}
+                    {this.castToString(item.button) &&
+                      <span className={`${this.decorateCSS("text")} ${isActive && this.decorateCSS("active")}`}>{item.button}</span>}
                   </button>
 
                 </div>
               }
             )}
           </ComposerSlider>
-
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
