@@ -292,7 +292,7 @@ export abstract class Component extends React.Component<{}, { states: any; compo
 
       return <InlineEditor initialConfig={editorConfig} onChange={this.onChange} />
     };
-
+    
     return <SanitizeHTML html={prop?.value}></SanitizeHTML>;
   }
 
