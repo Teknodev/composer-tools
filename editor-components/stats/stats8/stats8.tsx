@@ -195,64 +195,73 @@ class Stats8Page extends BaseStats {
     const incrementValue = this.getPropValue("incrementValue");
 
     this.interval = setInterval(() => {
-      if (this.isEqual(this.getStats(), this.getNumbers()) || this.isOverlayNumbersEqual(this.castToString(this.getPropValue("overlayNumber")), this.getComponentState("overlayNumberDisplayForControl"))) {
+      if (this.isAnimationComplete()) {
         clearInterval(this.interval);
         this.interval = null;
       }
-      this.castToObject<CardData[]>("stats").map((statData: CardData, index: number) => {
-        let currentNumberState = this.getComponentState(`number-${index}`);
-        const currentString = typeof currentNumberState === "string" ? currentNumberState : "";
-        const currentNonNumericPrefix = currentString.match(/^\D+/)?.[0] || "";
-        const currentNonNumericSuffix = currentString.match(/\D+$/)?.[0] || "";
-        const currentNumber = parseInt(currentString.replace(/\D+/g, ""), 10) || 0;
-
-        const counterString = this.castToString(statData.counter);
-        const newNonNumericPrefix = counterString.match(/^\D+/)?.[0] || "";
-        const newNonNumericSuffix = counterString.match(/\D+$/)?.[0] || "";
-        const numericPart = parseInt(counterString.replace(/[^\d]/g, ""), 10) || 0;
-
-        if (currentNumber !== numericPart || currentNonNumericPrefix !== newNonNumericPrefix || currentNonNumericSuffix !== newNonNumericSuffix) {
-          let nextValue = Math.min(numericPart, currentNumber + Math.ceil(numericPart / Math.round(incrementValue / 30)));
-
-          let formattedNextValue = nextValue ? nextValue.toString() : "";
-
-          const formattedNextValueWithDots = this.formatNumberWithDots(formattedNextValue) === "0" ? "" : this.formatNumberWithDots(formattedNextValue);
-
-          var updatedValue = currentNumber > 0 ? newNonNumericPrefix + formattedNextValueWithDots + newNonNumericSuffix : newNonNumericPrefix + formattedNextValueWithDots;
-
-          var updatedValueForControl = currentNumber > 0 ? newNonNumericPrefix + formattedNextValue + newNonNumericSuffix : newNonNumericPrefix + formattedNextValue;
-
-          this.setComponentState(`number-${index}`, updatedValue);
-
-          this.setComponentState(`numberForControl-${index}`, updatedValueForControl);
-        }
-      });
-
-      const overlayNumberState = this.getComponentState("overlayNumberDisplay");
-
-      const overlayString = typeof overlayNumberState === "string" ? overlayNumberState : "";
-      const currentOverlayPrefix = overlayString.match(/^\D+/)?.[0] || "";
-      const currentOverlaySuffix = overlayString.match(/\D+$/)?.[0] || "";
-      const currentOverlayNumber = parseInt(overlayString.replace(/\D+/g, ""), 10) || 0;
-
-      const overlayNumberProp = this.castToString(this.getPropValue("overlayNumber"));
-      const newCurrentOverlayPrefix = overlayNumberProp.match(/^\D+/)?.[0] || "";
-      const newCurrentOverlaySuffix = overlayNumberProp.match(/\D+$/)?.[0] || "";
-      const overlayNumericPart = parseInt(overlayNumberProp.replace(/[^\d]/g, ""), 10) || 0;
-
-      if (currentOverlayNumber !== overlayNumericPart || newCurrentOverlayPrefix !== currentOverlayPrefix || newCurrentOverlaySuffix !== currentOverlaySuffix) {
-        let nextOverlayValue = Math.min(overlayNumericPart, currentOverlayNumber + Math.ceil(overlayNumericPart / Math.round(incrementValue / 30)));
-
-        let formattedOverlayValue = nextOverlayValue ? nextOverlayValue.toString() : "";
-
-        const formattedNextValueWithDots = this.formatNumberWithDots(formattedOverlayValue) === "0" ? "" : this.formatNumberWithDots(formattedOverlayValue);
-
-        var updatedValue = currentOverlayNumber > 0 ? newCurrentOverlayPrefix + formattedNextValueWithDots + newCurrentOverlaySuffix : newCurrentOverlayPrefix + formattedNextValueWithDots;
-
-        this.setComponentState("overlayNumberDisplay", updatedValue);
-        this.setComponentState("overlayNumberDisplayForControl", updatedValue);
-      }
+      this.updateStats(incrementValue);
+      this.updateOverlay(incrementValue);
     }, animationDuration);
+  }
+
+  isAnimationComplete() {
+    const isStatsEqual = this.isEqual(this.getStats(), this.getNumbers());
+    const isOverlayEqual = this.isOverlayNumbersEqual(this.castToString(this.getPropValue("overlayNumber")), this.getComponentState("overlayNumberDisplayForControl"));
+    return isStatsEqual || isOverlayEqual;
+  }
+
+  updateStats(incrementValue: number) {
+    this.castToObject<CardData[]>("stats").forEach((statData: CardData, index: number) => {
+      const currentState = this.getComponentState(`number-${index}`);
+      const { numberPart: currentNumber, prefix: currentNonNumericPrefix, suffix: currentNonNumericSuffix } = this.extractNumberParts(currentState);
+
+      const counterString = this.castToString(statData.counter);
+      const { numberPart: numericPart, prefix: newNonNumericPrefix, suffix: newNonNumericSuffix } = this.extractNumberParts(counterString);
+
+      if (this.shouldUpdateValue(currentNumber, numericPart, currentNonNumericPrefix, currentNonNumericSuffix, newNonNumericPrefix, newNonNumericSuffix)) {
+        const nextValue = this.calculateNextValue(currentNumber, numericPart, incrementValue);
+        const updatedValue = this.formatValue(nextValue, newNonNumericPrefix, newNonNumericSuffix);
+        this.setComponentState(`number-${index}`, updatedValue);
+        this.setComponentState(`numberForControl-${index}`, updatedValue);
+      }
+    });
+  }
+
+  updateOverlay(incrementValue: number) {
+    const overlayNumberState = this.getComponentState("overlayNumberDisplay");
+    const { numberPart: currentOverlayNumber, prefix: currentOverlayPrefix, suffix: currentOverlaySuffix } = this.extractNumberParts(overlayNumberState);
+
+    const overlayNumberProp = this.castToString(this.getPropValue("overlayNumber"));
+    const { numberPart: overlayNumericPart, prefix: newOverlayPrefix, suffix: newOverlaySuffix } = this.extractNumberParts(overlayNumberProp);
+
+    if (this.shouldUpdateValue(currentOverlayNumber, overlayNumericPart, currentOverlayPrefix, currentOverlaySuffix, newOverlayPrefix, newOverlaySuffix)) {
+      const nextOverlayValue = this.calculateNextValue(currentOverlayNumber, overlayNumericPart, incrementValue);
+      const updatedOverlayValue = this.formatValue(nextOverlayValue, newOverlayPrefix, newOverlaySuffix);
+      this.setComponentState("overlayNumberDisplay", updatedOverlayValue);
+      this.setComponentState("overlayNumberDisplayForControl", updatedOverlayValue);
+    }
+  }
+
+  extractNumberParts(input: string | number) {
+    const stringValue = typeof input === "string" ? input : "";
+    const prefix = stringValue.match(/^\D+/)?.[0] || "";
+    const suffix = stringValue.match(/\D+$/)?.[0] || "";
+    const numberPart = parseInt(stringValue.replace(/\D+/g, ""), 10) || 0;
+    return { numberPart, prefix, suffix };
+  }
+
+  shouldUpdateValue(currentNumber: number, newNumber: number, currentPrefix: string, currentSuffix: string, newPrefix: string, newSuffix: string) {
+    return currentNumber !== newNumber || currentPrefix !== newPrefix || currentSuffix !== newSuffix;
+  }
+
+  calculateNextValue(currentNumber: number, targetNumber: number, incrementValue: number) {
+    return Math.min(targetNumber, currentNumber + Math.ceil(targetNumber / Math.round(incrementValue / 30)));
+  }
+
+  formatValue(value: number, prefix: string, suffix: string) {
+    const formattedValue = value ? value.toString() : "";
+    const formattedWithDots = this.formatNumberWithDots(formattedValue) === "0" ? "" : this.formatNumberWithDots(formattedValue);
+    return prefix + formattedWithDots + suffix;
   }
 
   getName(): string {
