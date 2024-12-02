@@ -299,33 +299,22 @@ class Stats4Page extends BaseStats {
     const animationDuration = this.getPropValue("animationDuration");
     const incrementValue = this.getPropValue("incrementValue");
 
-    this.interval = setInterval(() => {
-      const statItems = this.castToObject<Stat[]>("statItems");
+    // this.interval = setInterval(() => {
+    //   const statItems = this.castToObject<Stat[]>("statItems");
 
-      if (this.isEqual(this.getStats(), this.getNumbers())) {
-        clearInterval(this.interval);
-        this.interval = null;
-      }
+    //   if (this.isEqual(this.getStats(), this.getNumbers())) {
+    //     this.interval = clearInterval(this.interval);
+    //     return; // return to stop animate()
+    //   }
+    //   statItems.forEach((item: Stat, index: number) => {
+    //     const statNumber = this.getComponentState(`number-${index}`) ?? 0;
 
-      statItems.forEach((item: Stat, index: number) => {
-        let currentNumber = this.getComponentState(`number-${index}`) ?? 0;
-
-        if (typeof currentNumber === "string") {
-          currentNumber = parseInt(currentNumber.replace(/\D+/g, ""), 10) || 0;
-        }
-
-        if (typeof item.stat === "number") {
-          if (currentNumber !== item.stat) {
-            let nextValue = Math.min(item.stat, currentNumber + Math.ceil(item.stat / Math.round(incrementValue / 30)));
-
-            const formattedNextValue = this.formatNumberWithDots(nextValue);
-
-            this.setComponentState(`number-${index}`, formattedNextValue);
-            this.setComponentState(`numberForControl-${index}`, nextValue);
-          }
-        }
-      });
-    }, animationDuration);
+    //     this.setComponentState(
+    //       `number-${index}`,
+    //       Math.min(item.stat, statNumber + incrementValue),
+    //     );
+    //   });
+    // }, animationDuration);
   }
 
   getName(): string {

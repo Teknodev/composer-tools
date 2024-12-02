@@ -99,6 +99,7 @@ export enum CATEGORIES {
   LOCATION = "Location",
 }
 
+//@ts-ignore
 export abstract class Component extends React.Component<{}, { states: any; componentProps: any; }> implements iComponent {
   private styles: any;
   private _props: any;
@@ -289,8 +290,17 @@ export abstract class Component extends React.Component<{}, { states: any; compo
           CodeHighlightNode
         ]
       };
-
-      return <InlineEditor initialConfig={editorConfig} onChange={this.onChange} />
+      
+      return (
+        <InlineEditor
+          initialConfig={editorConfig}
+          onChange={this.onChange}
+          HTML={
+            //@ts-ignore
+            () => <blinkpage dangerouslySetInnerHTML={sanitizedHtml}></blinkpage>
+          }
+        />
+      );
     };
 
     return <SanitizeHTML html={prop?.value}></SanitizeHTML>;
