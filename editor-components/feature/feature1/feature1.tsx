@@ -25,122 +25,115 @@ class Feature1 extends BaseFeature {
     this.addProp({
       type: "string",
       key: "leftSideText",
-      displayer: "LEFT SIDE TEXT",
+      displayer: "Left Side Text",
       value: "Featured Posts",
-    });
-
-    this.addProp({
-      type: "icon",
-      key: "leftSideIcon",
-      displayer: "LEFT SIDE ICON",
-      value: "FaStarOfLife",
     });
 
     this.addProp({
       type: "string",
       key: "rightSideText",
-      displayer: "RIGHT SIDE TEXT",
+      displayer: "Right Side Text",
       value: "Featured Posts",
     });
 
     this.addProp({
       type: "page",
       key: "url",
-      displayer: "RIGHT SIDE TEXT URL",
+      displayer: "Right Side Text Url",
       value: "",
     });
 
     this.addProp({
       type: "icon",
       key: "rightSideIcon",
-      displayer: "RIGHT SIDE ICON",
+      displayer: "Right Side Icon",
       value: "MdArrowOutward",
     });
 
     this.addProp({
       type: "icon",
       key: "dateIcon",
-      displayer: "DATE ICON",
+      displayer: "Date Icon",
       value: "CiCalendarDate",
     });
 
     this.addProp({
       type: "icon",
       key: "timeIcon",
-      displayer: "TIME ICON",
+      displayer: "Time Icon",
       value: "CiClock2",
     });
 
     this.addProp({
       type: "array",
       key: "cards",
-      displayer: "CARDS",
+      displayer: "Cards",
       value: [
         {
           type: "object",
           key: "cardInfo",
-          displayer: "CARD",
+          displayer: "Card",
           value: [
             {
               type: "boolean",
               key: "mini",
-              displayer: "MINI",
+              displayer: "Mini",
               value: false,
             },
             {
               type: "image",
               key: "image",
-              displayer: "IMAGE",
+              displayer: "Image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667adc8a4fe95d002b35e5b1?alt=media&timestamp=1719327900554",
             },
             {
               type: "string",
               key: "date",
-              displayer: "DATE",
+              displayer: "Date",
               value: "Jun 28, 2022",
             },
             {
               type: "string",
               key: "readTime",
-              displayer: "TIME",
+              displayer: "Time",
               value: "2 min read",
             },
             {
               type: "string",
               key: "title",
-              displayer: "TITLE",
+              displayer: "Title",
               value: "The nine-to-five Is Dead. Here's What to Replace It With",
             },
             {
               type: "string",
               key: "description",
-              displayer: "DESCRIPTION",
+              displayer: "Description",
               value: "Without even reducing the 40-hour work week. Time is money, right?",
             },
             {
               type: "image",
               key: "profileImage",
-              displayer: "PROFILE IMAGE",
+              displayer: "Profile Image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667adc8a4fe95d002b35e5b2?alt=media&timestamp=1719327900554",
             },
             {
               type: "string",
               key: "fullname",
-              displayer: "FULL NAME",
+              displayer: "Full Name",
               value: "Alexander Hipp",
             },
             {
               type: "string",
               key: "profileDescription",
-              displayer: "PROFILE Description",
+              displayer: "Profile Description",
               value: "written by",
             },
             {
               type: "page",
               key: "url",
-              displayer: "URL",
+              displayer: "Url",
               value: "",
             },
           ],
@@ -148,69 +141,69 @@ class Feature1 extends BaseFeature {
         {
           type: "object",
           key: "cardInfo",
-          displayer: "CARD",
+          displayer: "Card",
           value: [
             {
               type: "boolean",
               key: "mini",
-              displayer: "MINI",
+              displayer: "Mini",
               value: true,
             },
             {
               type: "image",
               key: "image",
-              displayer: "IMAGE",
+              displayer: "Image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667adc8a4fe95d002b35e5b0?alt=media&timestamp=1719327900554",
             },
             {
               type: "string",
               key: "date",
-              displayer: "DATE",
+              displayer: "Date",
               value: "Jun 21, 2022",
             },
             {
               type: "string",
               key: "readTime",
-              displayer: "TIME",
+              displayer: "Time",
               value: "2 min read",
             },
             {
               type: "string",
               key: "title",
-              displayer: "TITLE",
+              displayer: "Title",
               value: "The Power of Visualization in the 21st century",
             },
             {
               type: "string",
               key: "description",
-              displayer: "DESCRIPTION",
+              displayer: "Description",
               value:
                 "While futurists and fundraisers used to make bullish predictions about artificial general intelligence, they’ve become quieter lately. Peter Thiel — the tech billionaire and rumored vampire — says Silicon Valley big brains have lost enthusiasm for AGI.",
             },
             {
               type: "image",
               key: "profileImage",
-              displayer: "PROFILE IMAGE",
+              displayer: "Profile Image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667adc8a4fe95d002b35e5b3?alt=media&timestamp=1719327900554",
             },
             {
               type: "string",
               key: "fullname",
-              displayer: "FULL NAME",
+              displayer: "Full Name",
               value: "Anil Vugels",
             },
             {
               type: "string",
               key: "profileDescription",
-              displayer: "PROFILE Description",
+              displayer: "Profile Description",
               value: "written by",
             },
             {
               type: "page",
               key: "url",
-              displayer: "URL",
+              displayer: "Url",
               value: "",
             },
           ],
@@ -218,67 +211,67 @@ class Feature1 extends BaseFeature {
         {
           type: "object",
           key: "cardInfo",
-          displayer: "CARD",
+          displayer: "Card",
           value: [
             {
               type: "boolean",
               key: "mini",
-              displayer: "MINI",
+              displayer: "Mini",
               value: true,
             },
             {
               type: "image",
               key: "image",
-              displayer: "IMAGE",
+              displayer: "Image",
               value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6711136797fe08002c76fc1f?alt=media",
             },
             {
               type: "string",
               key: "date",
-              displayer: "DATE",
+              displayer: "Date",
               value: "Jun 28, 2022",
             },
             {
               type: "string",
               key: "readTime",
-              displayer: "TIME",
+              displayer: "Time",
               value: "2 min read",
             },
             {
               type: "string",
               key: "title",
-              displayer: "TITLE",
+              displayer: "Title",
               value: "Why the security engineers loves working in fosec",
             },
             {
               type: "string",
               key: "description",
-              displayer: "DESCRIPTION",
+              displayer: "Description",
               value:
                 "Working in cybersecurity means you’re constantly playing a game of catch-up. Every day you learn something new, but your work is also never finished.",
             },
             {
               type: "image",
               key: "profileImage",
-              displayer: "PROFILE IMAGE",
+              displayer: "Profile Image",
               value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6711136797fe08002c76fc1f?alt=media",
             },
             {
               type: "string",
               key: "fullname",
-              displayer: "FULL NAME",
+              displayer: "Full Name",
               value: "Alexander Hipp",
             },
             {
               type: "string",
               key: "profileDescription",
-              displayer: "PROFILE Description",
+              displayer: "Profile Description",
               value: "written by",
             },
             {
               type: "page",
               key: "url",
-              displayer: "URL",
+              displayer: "Url",
               value: "",
             },
           ],
@@ -286,67 +279,67 @@ class Feature1 extends BaseFeature {
         {
           type: "object",
           key: "cardInfo",
-          displayer: "CARD",
+          displayer: "Card",
           value: [
             {
               type: "boolean",
               key: "mini",
-              displayer: "MINI",
+              displayer: "Mini",
               value: false,
             },
             {
               type: "image",
               key: "image",
-              displayer: "IMAGE",
+              displayer: "Image",
               value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6711143197fe08002c76fccc?alt=media",
             },
             {
               type: "string",
               key: "date",
-              displayer: "DATE",
+              displayer: "Date",
               value: "Apr 9, 2022",
             },
             {
               type: "string",
               key: "readTime",
-              displayer: "TIME",
+              displayer: "Time",
               value: "2 min read",
             },
             {
               type: "string",
               key: "title",
-              displayer: "TITLE",
+              displayer: "Title",
               value: "There Are Zero Bridges Across The Amazon. Here Is Why",
             },
             {
               type: "string",
               key: "description",
-              displayer: "DESCRIPTION",
+              displayer: "Description",
               value:
                 "Here is a fun fact to stick in the back of your mind for trivia night or to use as an interesting ice breaker: the Amazon River has no bridges. None. Zero. Zilch. That is in spite of the fact that the Amazon is 4,345 miles long.",
             },
             {
               type: "image",
               key: "profileImage",
-              displayer: "PROFILE IMAGE",
+              displayer: "Profile Image",
               value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6711143197fe08002c76fccc?alt=media",
             },
             {
               type: "string",
               key: "fullname",
-              displayer: "FULL NAME",
+              displayer: "Full Name",
               value: "Anil Vugels",
             },
             {
               type: "string",
               key: "profileDescription",
-              displayer: "PROFILE Description",
+              displayer: "Profile Description",
               value: "written by",
             },
             {
               type: "page",
               key: "url",
-              displayer: "URL",
+              displayer: "Url",
               value: "",
             },
           ],
@@ -357,7 +350,7 @@ class Feature1 extends BaseFeature {
     this.addProp({
       type: "number",
       key: "itemCountInARow",
-      displayer: "ITEM COUNT IN A ROW",
+      displayer: "Item Count In A Row",
       value: 3,
       max: 4
     });
@@ -365,28 +358,28 @@ class Feature1 extends BaseFeature {
     this.addProp({
       type: "boolean",
       key: "underlineAnimation",
-      displayer: "CARD TITLE UNDERLINE ANIMATION",
+      displayer: "Card Title Underline Animation",
       value: true
     });
 
     this.addProp({
       type: "boolean",
       key: "enableEllipsisTitle",
-      displayer: "ELLIPSIS FOR TITLE",
+      displayer: "Ellipsis For Title",
       value: true,
     });
 
     this.addProp({
       type: "boolean",
       key: "enableEllipsisDesc",
-      displayer: "ELLIPSIS FOR DESCRIPTION",
+      displayer: "Ellipsis For Description",
       value: true,
     });
 
     this.addProp({
       type: "number",
       key: "maxTitleLength",
-      displayer: "TITLE MAX LENGTH",
+      displayer: "Title Max Length",
       value: 60,
       max: 90
     });
@@ -394,7 +387,7 @@ class Feature1 extends BaseFeature {
     this.addProp({
       type: "number",
       key: "maxDescriptionLength",
-      displayer: "DESCRIPTION MAX LENGTH",
+      displayer: "Description Max Length",
       value: 90,
       max: 200
     });
@@ -419,7 +412,6 @@ class Feature1 extends BaseFeature {
     const underlineAnimation = !!this.getPropValue("underlineAnimation");
 
     const leftSideTextExist = !!this.getPropValue("leftSideText", { as_string: true });
-    const leftSideIcon = this.getPropValue("leftSideIcon");
 
     const rightSideTextExist = !!this.getPropValue("rightSideText", { as_string: true });
     const rightSideIcon = this.getPropValue("rightSideIcon");
@@ -463,7 +455,7 @@ class Feature1 extends BaseFeature {
                       <ComposerIcon
                         name={dateIcon}
                         propsIcon={{
-                          className: this.decorateCSS("dateIcon"),
+                          className: this.decorateCSS("date-icon"),
                         }}
                       />
                     }
@@ -478,7 +470,7 @@ class Feature1 extends BaseFeature {
                       <ComposerIcon
                         name={timeIcon}
                         propsIcon={{
-                          className: this.decorateCSS("timeIcon"),
+                          className: this.decorateCSS("time-icon"),
                         }}
                       />
                     }
@@ -600,7 +592,7 @@ class Feature1 extends BaseFeature {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {/* Header */}
-          {(!!leftSideIcon || leftSideTextExist || !!rightSideIcon || rightSideTextExist) && (
+          {(leftSideTextExist || !!rightSideIcon || rightSideTextExist) && (
             <header className={this.decorateCSS("header")}>
               {(rightSideTextExist || !!rightSideIcon) && (
                 <div className={this.decorateCSS("right-side")}>
@@ -621,18 +613,10 @@ class Feature1 extends BaseFeature {
                   </ComposerLink>
                 </div>
               )}
-              {(leftSideTextExist || !!leftSideIcon) && (
+              {leftSideTextExist && (
                 <div className={this.decorateCSS("left-side")}>
                   <Base.SectionTitle className={this.decorateCSS("section-title")}>
-                    {!!leftSideIcon && (
-                      <ComposerIcon
-                        name={leftSideIcon}
-                        propsIcon={{ className: this.decorateCSS("left-side-icon") }}
-                      />
-                    )}
-                    {leftSideTextExist && (
-                      this.getPropValue("leftSideText")
-                    )}
+                    {this.getPropValue("leftSideText")}
                   </Base.SectionTitle>
                 </div>
               )}
