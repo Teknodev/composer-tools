@@ -4,10 +4,8 @@
   background: var(--composer-html-background);
 
   .max-content {
-    .title {
-      margin: 0;
-      display: flex;
-      color: var(--composer-primary-color);
+    .section-title {
+      margin-top: 0;
       margin-bottom: var(--composer-gap-md);
     }
 
@@ -37,6 +35,7 @@
       }
 
       .title {
+        display: flex;
         margin: 0;
         margin-left: var(--composer-gap-md);
         max-width: 40%;
@@ -56,7 +55,7 @@
 
     .row1:hover .title,
     .row1:hover .left-image+.title {
-      color: var(--composer-secondary-color);
+      color: var(--composer-primary-color);
     }
 
     .row2 {
@@ -91,10 +90,11 @@
           width: 100%;
           flex-direction: column;
           padding: var(--composer-gap-lg);
+          gap: var(--composer-gap-sm);
 
           .description {
             font-size: 1rem;
-            margin: var(--composer-gap-md) 0;
+            margin: 0;
             max-width: 80%;
             line-height: 2rem;
           }
@@ -115,8 +115,8 @@
       }
 
       .first .first-items-wrapper .button-text-container .button-text:hover {
-        color: var(--composer-secondary-color);
-        border-color: var(--composer-secondary-color);
+        color: var(--composer-primary-color);
+        border-color: var(--composer-primary-color);
       }
 
       .second {
@@ -142,7 +142,7 @@
       }
 
       .second .text:hover {
-        color: var(--composer-secondary-color);
+        color: var(--composer-primary-color);
       }
 
       .third .image {
@@ -166,7 +166,7 @@
     .row3 {
       display: flex;
       width: 100%;
-      background: var(--composer-html-background);
+      background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
       color: var(--composer-font-color-primary);
 
       .image.row3-images-less {
@@ -180,7 +180,6 @@
         flex-direction: column;
         object-fit: cover;
         height: 100%;
-        gap: var(--composer-gap-md);
 
         .image {
           width: 100%;
@@ -201,7 +200,7 @@
 
       .image_and_subtitle_1:hover .subtitle,
       .image_and_subtitle_1:hover .image+.subtitle {
-        color: var(--composer-secondary-color);
+        color: var(--composer-primary-color);
       }
 
       .image_and_subtitle_2 {
@@ -210,7 +209,6 @@
         flex-direction: column;
         object-fit: cover;
         height: 100%;
-        gap: var(--composer-gap-md);
 
         .image {
           width: 100%;
@@ -231,7 +229,7 @@
 
       .image_and_subtitle_2:hover .subtitle,
       .image_and_subtitle_2:hover .image+.subtitle {
-        color: var(--composer-secondary-color);
+        color: var(--composer-primary-color);
       }
 
       .image_and_subtitle_3 {
@@ -240,7 +238,6 @@
         flex-direction: column;
         object-fit: cover;
         height: 100%;
-        gap: var(--composer-gap-md);
 
         .image {
           width: 100%;
@@ -261,7 +258,7 @@
 
       .image_and_subtitle_3:hover .subtitle,
       .image_and_subtitle_3:hover .image+.subtitle {
-        color: var(--composer-secondary-color);
+        color: var(--composer-primary-color);
       }
 
     }
@@ -275,8 +272,7 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
-      .title {
-        padding: 0;
+      .section-title {
       }
 
       .row1 {
@@ -321,9 +317,7 @@
             padding: 0;
 
             .description {
-              font-size: 1rem;
               line-height: 1.5rem;
-              margin-bottom: 0;
             }
           }
         }
@@ -339,7 +333,6 @@
 
         .image_and_subtitle_1 {
           width: 100%;
-          gap: var(--composer-gap-xs);
 
           .image {
             width: 100%;
@@ -350,7 +343,7 @@
             height: auto;
             align-items: center;
             justify-content: center;
-            padding: 0 var(--composer-gap-xs);
+            padding: var(--composer-gap-sm);
             margin: 0;
             font-size: 1rem;
             width: 100%;
@@ -359,7 +352,6 @@
 
         .image_and_subtitle_2 {
           width: 100%;
-          gap: var(--composer-gap-xs);
 
           .image {
             width: 100%;
@@ -370,7 +362,7 @@
             height: auto;
             align-items: center;
             justify-content: center;
-            padding: 0 var(--composer-gap-xs);
+            padding: var(--composer-gap-sm);
             margin: 0;
             font-size: 1rem;
             width: 100%;
@@ -379,7 +371,6 @@
 
         .image_and_subtitle_3 {
           width: 100%;
-          gap: var(--composer-gap-xs);
 
           .image {
             width: 100%;
@@ -390,7 +381,7 @@
             height: auto;
             align-items: center;
             justify-content: center;
-            padding: 0 var(--composer-gap-xs);
+            padding: var(--composer-gap-sm);
             margin: 0;
             font-size: 1rem;
             width: 100%;
@@ -405,17 +396,24 @@
   .container {
     .max-content {
       .row1 {
-        flex-direction: row;
+        flex-direction: column;
 
         .image-wrapper {
-          width: 50%;
+          width: 100%;
           min-height: 160px;
         }
 
         .title {
           font-weight: 700;
-          min-height: 160px;
-          width: 50%;
+          width: 100%;
+          min-height: auto;
+          margin-left: 0;
+          max-width: none;
+          margin-top: var(--composer-gap-lg);
+
+          >div {
+            width: 100%;
+          }
         }
 
         .title.row1-title-only {
@@ -441,10 +439,6 @@
             gap: var(--composer-gap-sm);
 
             .description {
-              font-size: 1rem;
-              margin: 0;
-              max-width: 100%;
-              padding-left: 0;
             }
 
             .button-text {
@@ -496,7 +490,6 @@
           display: flex;
           width: 100%;
           height: 100%;
-          gap: 10px;
 
           .image {
             width: 50%;
@@ -520,7 +513,7 @@
             width: 100%;
             max-width: 100%;
             height: auto;
-            padding: 0;
+            padding: var(--composer-gap-sm);
           }
         }
 
@@ -528,7 +521,6 @@
           flex-direction: row;
           display: flex;
           width: 100%;
-          gap: var(--composer-gap-sm);
 
           .image {
             width: 50%;
@@ -542,7 +534,7 @@
             width: 100%;
             max-width: 100%;
             height: auto;
-            padding: 0;
+            gap: var(--composer-gap-sm);
           }
         }
 
@@ -550,7 +542,6 @@
           flex-direction: row;
           display: flex;
           width: 100%;
-          gap: 10px;
 
           .image {
             width: 50%;
@@ -563,7 +554,7 @@
             width: 100%;
             max-width: 100%;
             height: auto;
-            padding: 0;
+            padding: var(--composer-gap-sm);
           }
         }
       }

@@ -36,7 +36,7 @@ class Feature5 extends BaseFeature {
         {
           type: "page",
           key: "link",
-          displayer: "link",
+          displayer: "URL",
           value: "",
         },
       ],
@@ -68,7 +68,7 @@ class Feature5 extends BaseFeature {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "URL",
               value: "",
             },
           ],
@@ -87,7 +87,7 @@ class Feature5 extends BaseFeature {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "URL",
               value: "",
             },
           ],
@@ -107,7 +107,7 @@ class Feature5 extends BaseFeature {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "URL",
               value: "",
             },
           ],
@@ -135,13 +135,13 @@ class Feature5 extends BaseFeature {
             {
               type: "string",
               key: "sub_title",
-              displayer: "Sub-Title",
+              displayer: "Subtitle",
               value: "Girl's Guide: Tricks to Save Time in the Morning",
             },
             {
               type: "page",
               key: "link",
-              displayer: "link",
+              displayer: "URL",
               value: "",
             },
           ],
@@ -161,13 +161,13 @@ class Feature5 extends BaseFeature {
             {
               type: "string",
               key: "sub_title",
-              displayer: "Sub-Title",
+              displayer: "Subtitle",
               value: "Motivation Monday: Only 3 Days Left of Summer",
             },
             {
               type: "page",
               key: "link",
-              displayer: "link",
+              displayer: "URL",
               value: "",
             },
           ],
@@ -187,13 +187,13 @@ class Feature5 extends BaseFeature {
             {
               type: "string",
               key: "sub_title",
-              displayer: "Sub-Title",
+              displayer: "Subtitle",
               value: "Five Rules For a Long, Healthy and Happy Life",
             },
             {
               type: "page",
               key: "link",
-              displayer: "link",
+              displayer: "URL",
               value: "",
             },
           ],
@@ -294,7 +294,7 @@ class Feature5 extends BaseFeature {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {title && (
-            <Base.SectionTitle className={this.decorateCSS("title")}>
+            <Base.SectionTitle className={this.decorateCSS("section-title")}>
               {this.getPropValue("title")}
             </Base.SectionTitle>
           )}
