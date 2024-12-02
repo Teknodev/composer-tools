@@ -1,8 +1,11 @@
-$transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
+@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
 
 .container {
   .max-content {
     .page {
+      display: flex;
+      flex-direction: column;
+      gap:var(--composer-gap-xl);
       .up-page {
 
         .title {
@@ -15,148 +18,96 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
       }
 
       .card-page {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 20px;
-
         .card {
-          min-width: 100%;
-          min-height: 200px;
           display: flex;
-          flex-direction: column;
-          overflow: hidden;
-          white-space: pre-line;
-          text-overflow: ellipsis;
-          margin-bottom: 5rem;
-          overflow: hidden;
-
-          .title {
-            font-size: 1.5rem;
-            letter-spacing: 0.02em;
-            margin: unset;
-            color: var(--composer-primary-color);
-            opacity: 0.9;
-            font-weight: bold;
-          }
-
-          .description {
-            font-size: 1.6rem;
-            color: var(--composer-font-color-primary);
-            opacity: 0.9;
-            margin: unset;
-          }
-
-          .icon {
+          gap: var(--composer-gap-md);
+          flex-direction: column;  
+          background-color: color-mix(in srgb, var(--composer-html-background),var(--composer-font-color-primary) 5%);   
+          border-radius: var(--composer-border-radius-xs);
+          padding: var(--composer-gap-xl);   
+          .icon-wrapper {
             display: flex;
             justify-content: center;
-            width: 50px;
-            height: 50px;
             border-radius: 50%;
             background: var(--composer-primary-color);
             position: relative;
             align-items: center;
-
-            div {
-              color: #fff;
-              font-size: 2rem;
+            width: fit-content;
+            padding: var(--composer-gap-sm);
+            .icon{
+              width: 30px;
+              height: 30px;
+              color: var(--composer-font-color-secondary);
             }
           }
+          .title {
+            color: var(--composer-primary-color);
+            margin: 0px;
+          }
+
+          .description {
+            color: var(--composer-tertiary-color);
+            margin: 0px;
+          }
         }
       }
-    }
-  }
-
-  .down-container {
-    width: 100%;
-    height: 300px;
-    margin-top: 200px;
-    background-color: var(--composer-secondary-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-
-    .child-container {
-      min-height: 300px;
-      height: fit-content;
-      width: 90%;
-      max-width: var(--composer-content-width);
-      background-color: var(--composer-primary-color);
-      display: flex;
-      justify-content: center;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px;
-      text-align: center;
-      margin-bottom: 300px;
-
-      .title2 {
-        font-size: 2rem;
-        letter-spacing: 0.02em;
-        margin: unset;
-        color: var(--composer-font-color-secondary);
-        opacity: 0.9;
-      }
-
-      .description {
-        font-size: 1.5rem;
-        color: var(--composer-font-color-secondary);
-      }
-
-      .button-group {
+      .down-container {
+        width: 100%;
+        height: 100%;
+        background-color:color-mix(in srgb, var(--composer-html-background),var(--composer-font-color-primary) 5%); 
         display: flex;
-        justify-content: center;
+        padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
+        border-radius: var(--composer-border-radius-xs);
+        gap: var(--composer-gap-md);
         align-items: center;
-        gap: 2rem;
-        margin-top: 2rem;
-
-        .button {
-          border: 0px solid;
-          border-radius: 6px;
-          color: #fff;
-          cursor: pointer;
-          padding: 10px;
-          background: transparent;
-          transition: $transition;
-          opacity: 0.9;
-
-          &:hover {
-            opacity: 1;
+        .content{
+          display: flex;
+          flex-direction: column;
+          flex: 1;
+          gap: var(--composer-gap-lg);
+          .title{
+            margin: 0;
+            color: var(--composer-font-color-primary);
           }
-
-          &.primary {
-            background-color: var(--composer-secondary-color);
+          .description{
+            margin: 0;
+            color: var(--composer-font-color-primary);
           }
+    
+        }
+        .buttons{
+          display: flex;
+          align-items: center;
+          gap: var(--composer-gap-md);
+          flex-wrap: wrap;
+          max-width: 50%;
+          justify-content: end;
+          height: fit-content;
+          .button{
+    
+          }
+        }
+    
+      }
+      
+    }
 
-          &.secondary {
-            border: 1px solid rgb(200, 200, 200);
-            color: black;
+  }
+}
+
+@container (max-width: #{$composer-phone-width}){
+  .container{
+    .max-content{
+      .page{
+        .down-container{
+          flex-direction: column;
+          gap: var(--composer-gap-xl);
+          .buttons{
+            max-width: 100%;
+            justify-content: start;
           }
         }
       }
     }
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .container {
-    .max-content {
-      .card-item-count {
-        min-width: 100%;
-      }
-
-      .up-page,
-      .card-page {
-        padding: 0px 20px;
-      }
-    }
-  }
-}
-
-@media only screen and (max-width: 400px) {
-  .container {
-    padding: 10px;
   }
 }
