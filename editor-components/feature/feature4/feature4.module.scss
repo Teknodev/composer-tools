@@ -7,25 +7,13 @@
 
   .max-content {
     .content {
-      display: flex;
-      justify-content: space-around;
-      flex-wrap: wrap;
-      gap: var(--composer-gap-md);
-
       .featured-card {
         justify-content: center;
 
-        .subtitle {
-          color: var(--composer-primary-color);
-          text-transform: uppercase;
+        .section-subtitle {
         }
 
-        .title {
-          color: color-mix(in srgb,
-              var(--composer-font-color-primary),
-              var(--composer-font-color-secondary) 50%);
-          text-transform: uppercase;
-          font-weight: 400;
+        .section-title {
         }
 
         .featured-card-link {
@@ -76,13 +64,16 @@
           gap: var(--composer-gap-sm);
 
           &.apply-overlay {
-            background-color: color-mix(in srgb,
-                rgba(var(--composer-html-background-rgb), 0.6),
-                rgba(var(--composer-font-color-primary-rgb), 0.6) 95%);
+            background-color: var(--composer-overlay-color);
           }
 
           .long-text {
             font-size: 1rem;
+            color: var(--composer-font-color-primary);
+
+            &.image-or-overlay-exist {
+              color: var(--text-color-white);
+            }
           }
 
           .overlay-links-container {
@@ -93,10 +84,19 @@
 
             .overlay-link {
               text-decoration: none;
-              color: var(--composer-font-color-secondary);
-              border: 1px solid var(--composer-font-color-secondary);
-              padding: 0.7rem 1rem;
+              padding: var(--composer-gap-sm) var(--composer-gap-md);
               text-transform: uppercase;
+
+              &.image-or-overlay-exist {
+                color: white;
+                border: 1px solid white;
+                background-color: transparent;
+
+                &:hover {
+                  color: black;
+                  background-color: white;
+                }
+              }
             }
           }
         }
@@ -106,13 +106,12 @@
           justify-content: center;
           align-items: center;
           min-height: 250px;
-          border: 1px solid rgba(var(--composer-tertiary-color-rgb), 0.4);
-          padding: 3.5rem 5rem;
+          height: 100%;
+          padding: var(--composer-gap-lg) var(--composer-gap-xl);
           transition: opacity 0.6s ease;
 
           .icon-container {
-            color: var(--composer-font-color-secondary);
-            background-color: rgba(var(--composer-primary-color-rgb), 0.7);
+            background-color: var(--composer-primary-color);
             width: 75px;
             height: 75px;
             border-radius: 50%;
@@ -124,6 +123,7 @@
               margin: 0;
               width: 50px;
               height: 50px;
+              color: var(--composer-font-color-secondary);
             }
           }
 
@@ -132,10 +132,6 @@
           }
 
           .subtitle {
-            color: var(--secondary-text-color);
-          }
-
-          .long-text {
             color: var(--composer-font-color-primary);
           }
         }
@@ -149,10 +145,6 @@
     .max-content {
       .content {
         gap: var(--composer-gap-sm);
-
-        .featured-card {
-          width: 100% !important;
-        }
 
         .card-item-count {
           .vertical {
@@ -175,14 +167,4 @@
 }
 
 
-@container (max-width: #{$composer-phone-width}) {
-  .container {
-    .max-content {
-      .content {
-        .card-item-count {
-          width: 100% !important;
-        }
-      }
-    }
-  }
-}
+@container (max-width: #{$composer-phone-width}) {}

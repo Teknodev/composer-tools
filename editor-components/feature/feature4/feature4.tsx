@@ -437,19 +437,19 @@ class Feature4 extends BaseFeature {
         style={{ backgroundImage: `url(${this.getPropValue("backgroundImage")})` }}
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("content")}>
+          <Base.ListGrid gridCount={{ pc: itemCount }} className={this.decorateCSS("content")}>
             {(subtitleExist || titleExist) && (
               <Base.VerticalContent
                 className={this.decorateCSS("featured-card")}
-                style={{ width: `${95 / itemCount}%` }}
+                // style={{ width: `${95 / itemCount}%` }}
               >
                 {subtitleExist && (
-                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  <Base.SectionSubTitle className={this.decorateCSS("section-subtitle")}>
                     {this.getPropValue("subtitle")}
                   </Base.SectionSubTitle>
                 )}
                 {titleExist && (
-                  <Base.SectionTitle className={this.decorateCSS("title")}>
+                  <Base.SectionTitle className={this.decorateCSS("section-title")}>
                     {this.getPropValue("title")}
                   </Base.SectionTitle>
                 )}
@@ -473,7 +473,7 @@ class Feature4 extends BaseFeature {
                   <div
                     key={index}
                     className={this.decorateCSS("card-item-count")}
-                    style={{ width: 95 / itemCount + "%" }}
+                    // style={{ width: 95 / itemCount + "%" }}
                   >
                     <Base.VerticalContent className={this.decorateCSS("vertical")}>
                       {!!card.icon && (
@@ -508,28 +508,34 @@ class Feature4 extends BaseFeature {
                           `}
                         >
                           {descExist && (
-                            <Base.P className={this.decorateCSS("long-text")}>
+                            <Base.P
+                              className={`
+                                ${this.decorateCSS("long-text")}
+                                ${card.image || imageOverlay ? this.decorateCSS("image-or-overlay-exist") : ""}
+                              `}
+                            >
                               {card.description}
                             </Base.P>
                           )}
 
                           {card?.buttons?.length > 0 && (
-                            <div
-                              className={this.decorateCSS("overlay-links-container")}
-                            >
+                            <div className={this.decorateCSS("overlay-links-container")}>
                               {card?.buttons.map(
                                 (item: Button, index: number) => {
                                   if (!this.castToString(item.text)) return null;
 
                                   return (
-                                    <span
+                                    <Base.Button
                                       key={index}
-                                      className={this.decorateCSS("overlay-link")}
+                                      className={`
+                                        ${this.decorateCSS("overlay-link")}
+                                        ${card.image || imageOverlay ? this.decorateCSS("image-or-overlay-exist") : ""}
+                                      `}
                                     >
                                       <ComposerLink path={item.link}>
                                         {item.text}
                                       </ComposerLink>
-                                    </span>
+                                    </Base.Button>
                                   );
                                 }
                               )}
@@ -544,7 +550,7 @@ class Feature4 extends BaseFeature {
 
               return null;
             })}
-          </div>
+          </Base.ListGrid>
         </Base.MaxContent>
       </Base.Container>
     );
