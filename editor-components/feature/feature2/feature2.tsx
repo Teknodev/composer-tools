@@ -16,15 +16,12 @@ class Feature2 extends BaseFeature {
     this.addProp({
       type: "array",
       key: "items",
-      displayer: "Boxes",
-      additionalParams: {
-        maxElementCount: 6
-      },
+      displayer: "List Items",
       value: [
         {
           type: "object",
           key: "item",
-          displayer: "Box",
+          displayer: "List Item",
           value: [
             {
               type: "string",
@@ -49,7 +46,7 @@ class Feature2 extends BaseFeature {
         {
           type: "object",
           key: "item",
-          displayer: "Box",
+          displayer: "List Item",
           value: [
             {
               type: "string",
@@ -67,14 +64,14 @@ class Feature2 extends BaseFeature {
               type: "icon",
               key: "icon",
               displayer: "Icon",
-              value: "FaGlobe",
+              value: "SiAltiumdesigner",
             },
           ],
         },
         {
           type: "object",
           key: "item",
-          displayer: "Icon Box",
+          displayer: "List Item",
           value: [
             {
               type: "string",
@@ -92,14 +89,14 @@ class Feature2 extends BaseFeature {
               type: "icon",
               key: "icon",
               displayer: "Icon",
-              value: "FaGlobe",
+              value: "CgIfDesign",
             },
           ],
         },
         {
           type: "object",
           key: "item",
-          displayer: "Icon Box",
+          displayer: "List Item",
           value: [
             {
               type: "string",
@@ -117,7 +114,7 @@ class Feature2 extends BaseFeature {
               type: "icon",
               key: "icon",
               displayer: "Icon",
-              value: "FaGlobe",
+              value: "FaRegNewspaper",
             },
           ],
         }
@@ -129,7 +126,14 @@ class Feature2 extends BaseFeature {
       key: "itemCount",
       displayer: "Item Count in a Row",
       value: 4,
-      max: 6
+      max: 4
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "showBadge",
+      displayer: "Show Badge",
+      value: true
     });
   }
 
@@ -140,11 +144,12 @@ class Feature2 extends BaseFeature {
   render() {
     const items = this.castToObject<Box[]>("items");
     const itemCount: number = this.getPropValue("itemCount");
+    const showBadge = !!this.getPropValue("showBadge");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.ContainerGrid className={this.decorateCSS("wrapper")}>
+          <Base.ListGrid gridCount={{ pc: itemCount }} className={this.decorateCSS("wrapper")}>
             {items.map((item: Box, index: number) => {
               const titleExist = !!this.castToString(item.title);
               const descExist = !!this.castToString(item.description);
@@ -163,11 +168,12 @@ class Feature2 extends BaseFeature {
                         : ""
                       }
                     `}
-                    style={{ width: 90 / itemCount + "%" }}
                   >
                     {iconExist && (
                       <>
-                        <span className={this.decorateCSS("item-index")}>{index + 1}.</span>
+                        {showBadge && (
+                          <span className={this.decorateCSS("item-index")}>{index + 1}</span>
+                        )}
                         <ComposerIcon
                           name={item.icon}
                           propsIcon={{ className: this.decorateCSS("icon") }}
@@ -189,7 +195,7 @@ class Feature2 extends BaseFeature {
               }
               return null;
             })}
-          </Base.ContainerGrid>
+          </Base.ListGrid>
         </Base.MaxContent>
       </Base.Container>
     );
