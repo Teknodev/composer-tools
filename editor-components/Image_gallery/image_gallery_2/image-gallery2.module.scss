@@ -94,6 +94,12 @@
             pointer-events: all;
           }
         }
+        .button-wrapper{
+          display: flex;
+          align-items: center;
+          .button{
+          }
+        }
       }
       .modal {
         position: fixed;

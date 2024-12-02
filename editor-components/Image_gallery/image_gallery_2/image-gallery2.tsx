@@ -17,16 +17,18 @@ type sectionType = {
 class ImageGallery2 extends BaseImageGallery {
     constructor(props?: any) {
         super(props, styles);
-        this.setComponentState("default", 0);
-        this.setComponentState("modalOpen", false);
-        this.setComponentState("currentImageIndex", 0);
-
         this.addProp({
             type: "boolean",
             key: "showAll",
             displayer: "Show All Category",
             value: true,
         });
+        this.addProp({
+            type: "number",
+            key: "imageCount",
+            displayer: "Image Count",
+            value: 3
+        })
         this.addProp({
             type: "number",
             key: "itemCount",
@@ -636,8 +638,18 @@ class ImageGallery2 extends BaseImageGallery {
             displayer: "Image Page Number",
             value: true,
         });
+        this.addProp({
+            type: "string",
+            key: "buttonText",
+            displayer: "Button Text",
+            value: "Load More",
+        });
 
         document.addEventListener("keydown", this.handleKeyDown);
+        this.setComponentState("default", 0);
+        this.setComponentState("modalOpen", false);
+        this.setComponentState("currentImageIndex", 0);
+        this.setComponentState("imageCount", this.getPropValue("imageCount"));
 
     }
 
@@ -694,7 +706,13 @@ class ImageGallery2 extends BaseImageGallery {
     getName(): string {
         return "Image Gallery 2";
     }
-
+    handleLoadMoreButton = () => {
+        this.setComponentState("imageCount", this.getComponentState("imageCount") + this.getPropValue("imageCount"))
+    };
+    handleSectionClick(index: number): void {
+        this.setComponentState("default", index)
+        this.setComponentState("imageCount", this.getPropValue("imageCount"));
+    }
     render() {
         const galleryCollection = this.getPropValue("gallery");
         const currentIndex = this.getComponentState("default");
@@ -709,6 +727,7 @@ class ImageGallery2 extends BaseImageGallery {
         const magnifierIcon = this.getPropValue("icon");
         const imgCount = `${currentImageIndex + 1} of ${currentGallery.length}`;
         const showAll = this.getPropValue("showAll");
+        console.log("currentGallery", currentGallery)
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
@@ -719,7 +738,7 @@ class ImageGallery2 extends BaseImageGallery {
                                 <div
                                     className={`${this.decorateCSS("section-text")} ${currentIndex === -1 ? this.decorateCSS("active") : ""
                                         }`}
-                                    onClick={() => this.setComponentState("default", -1)}
+                                    onClick={() => this.handleSectionClick(-1)}
                                 >
                                     All
                                 </div>
@@ -728,14 +747,14 @@ class ImageGallery2 extends BaseImageGallery {
                                 <div
                                     className={`${this.decorateCSS("section-text")} ${index === currentIndex ? this.decorateCSS("active") : ""
                                         }`}
-                                    onClick={() => this.setComponentState("default", index)}
+                                    onClick={() => this.handleSectionClick(index)}
                                 >
                                     {element.getPropValue("title")}
                                 </div>
                             ))}
                         </div>
                         <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("gallery-grid")}>
-                            {currentGallery.map((section: ImageType, imageIndex: number) => {
+                            {currentGallery.slice(0, this.getComponentState("imageCount")).map((section: ImageType, imageIndex: number) => {
                                 if (!section.image) return null;
                                 return (
                                     <div
@@ -761,6 +780,12 @@ class ImageGallery2 extends BaseImageGallery {
                                 );
                             })}
                         </Base.ListGrid>
+                        {(currentGallery.length > this.getComponentState("imageCount")) && (
+                            <div className={this.decorateCSS("button-wrapper")}>
+                                <Base.Button className={this.decorateCSS("button")} onClick={this.handleLoadMoreButton}> {this.getPropValue("buttonText")}</Base.Button>
+                            </div>
+                        )}
+
                     </div>
                     {modalOpen && (
                         <div className={this.decorateCSS("modal")}>
