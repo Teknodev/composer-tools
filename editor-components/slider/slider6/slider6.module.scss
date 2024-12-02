@@ -9,7 +9,6 @@
         flex-direction: column;
         flex-wrap: nowrap;
         justify-content: center;
-        align-items: center;
 
         .header {
             max-width: var(--composer-content-width);
@@ -31,7 +30,6 @@
                         border: 2px solid color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
                         transition: transform 0.3s, filter 0.3s;
                         min-height: 250px;
-                        align-items: center;
                         height: 100%;
                         gap: 0;
 
@@ -46,7 +44,7 @@
                             flex-wrap: nowrap;
                             justify-content: center;
                             width: 100%;
-
+                            
                             @container (max-width: #{$composer-phone-width}) {
                                 flex-direction: column;
                                 flex-wrap: wrap;
@@ -72,7 +70,7 @@
                                 position: relative;
                                 min-height: 250px;
                                 flex: 1;
-
+                                
                                 @container (max-width: #{$composer-phone-width}) {
                                     flex: unset;
                                 }

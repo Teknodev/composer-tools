@@ -264,7 +264,7 @@ class Slider6 extends BaseSlider {
       dots: true,
       infinite: true,
       speed: 700,
-      autoplay: false,
+      autoplay: true,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
