@@ -579,10 +579,7 @@ class Feature1 extends BaseFeature {
 
     const Block = ({ children }: { children: JSX.Element; }) => {
       return (
-        <div
-          style={{ width: `${95 / itemCountInARow}%` }}
-          className={this.decorateCSS("block")}
-        >
+        <div className={this.decorateCSS("block")}>
           {children}
         </div>
       );
@@ -614,19 +611,17 @@ class Feature1 extends BaseFeature {
                 </div>
               )}
               {leftSideTextExist && (
-                <div className={this.decorateCSS("left-side")}>
-                  <Base.SectionTitle className={this.decorateCSS("section-title")}>
-                    {this.getPropValue("leftSideText")}
-                  </Base.SectionTitle>
-                </div>
+                <Base.SectionTitle className={this.decorateCSS("section-title")}>
+                  {this.getPropValue("leftSideText")}
+                </Base.SectionTitle>
               )}
             </header>
           )}
 
           {/* Cards */}
-          <div className={this.decorateCSS("cards-row")}>
+          <Base.ListGrid gridCount={{ pc: itemCountInARow }} className={this.decorateCSS("cards-row")}>
             <Blocks cards={this.castToObject<CardData[]>("cards")} />
-          </div>
+          </Base.ListGrid>
         </Base.MaxContent>
       </Base.Container>
     );
