@@ -19,6 +19,7 @@ type Button = {
   button_link: string;
 };
 
+
 class Header33 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
@@ -29,6 +30,7 @@ class Header33 extends BaseHeader {
       displayer: "Prev icon",
       value: "FaLongArrowAltLeft",
     });
+    
     this.addProp({
       type: "icon",
       key: "next_icon",
