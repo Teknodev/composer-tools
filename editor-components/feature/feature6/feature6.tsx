@@ -29,8 +29,8 @@ class Feature6 extends BaseFeature {
 
     this.addProp({
       type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
+      key: "description",
+      displayer: "Description",
       value: "from vision to reality",
     });
 
@@ -131,7 +131,7 @@ class Feature6 extends BaseFeature {
       key: "itemCount",
       displayer: "Item count in a row",
       value: 3,
-      max: 3,
+      max: 4,
     });
 
     this.addProp({
@@ -174,7 +174,7 @@ class Feature6 extends BaseFeature {
     const buttons = this.castToObject<Button[]>("buttons");
 
     const titleExist = !!this.getPropValue("title", { as_string: true });
-    const subtitleExist = !!this.getPropValue("subtitle", { as_string: true });
+    const descExist = !!this.getPropValue("description", { as_string: true });
 
     const overlay: boolean = this.getPropValue("overlay");
 
@@ -187,60 +187,55 @@ class Feature6 extends BaseFeature {
                 {this.getPropValue("title")}
               </Base.SectionTitle>
             )}
-            {subtitleExist && (
-              <Base.SectionSubTitle className={this.decorateCSS("header-subtitle")}>
-                {this.getPropValue("subtitle")}
-              </Base.SectionSubTitle>
+            {descExist && (
+              <Base.SectionDescription className={this.decorateCSS("header-description")}>
+                {this.getPropValue("description")}
+              </Base.SectionDescription>
             )}
 
             {cards?.length > 0 && (
-              <Base.ContainerGrid className={this.decorateCSS("cards-container")}>
+              <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("cards-container")}>
                 {cards.map((card: Card, index: number) => {
                   const titleExist = !!this.castToString(card.title);
 
                   return (
-                    <Base.GridCell
+                    <div
                       key={index}
                       className={this.decorateCSS("card-item-count")}
-                      style={{
-                        width: 90 / this.getPropValue("itemCount") + "%",
-                      }}
                     >
-                      <ComposerLink isFullWidth={true} path={card.link || ""}>
-                        {(!!card.image || titleExist) && (
-                          <div
-                            className={`
+                      {(!!card.image || titleExist) && (
+                        <div
+                          className={`
                               ${this.decorateCSS("listed")}
                               ${!card.image ? this.decorateCSS("listed-height-modify") : ""}
                             `}
-                          >
-                            {!!card.image && (
-                              <img
-                                className={this.decorateCSS("image")}
-                                src={card.image}
-                                alt={"item" + index}
-                              />
-                            )}
-                            <div
-                              className={`
+                        >
+                          {!!card.image && (
+                            <img
+                              className={this.decorateCSS("image")}
+                              src={card.image}
+                              alt={"item" + index}
+                            />
+                          )}
+                          <div
+                            className={`
                                 ${this.decorateCSS("image-shadow")}
                                 ${overlay ? this.decorateCSS("overlay") : ""}
                                 ${!card.image ? this.decorateCSS("image-shadow-full-height") : ""}
                               `}
-                            >
-                              {titleExist && (
-                                <Base.H3 className={this.decorateCSS("title")}>
-                                  {card.title}
-                                </Base.H3>
-                              )}
-                            </div>
+                          >
+                            {titleExist && (
+                              <Base.H3 className={this.decorateCSS("title")}>
+                                {card.title}
+                              </Base.H3>
+                            )}
                           </div>
-                        )}
-                      </ComposerLink>
-                    </Base.GridCell>
+                        </div>
+                      )}
+                    </div>
                   );
                 })}
-              </Base.ContainerGrid>
+              </Base.ListGrid>
             )}
 
             {buttons?.length > 0 && (
@@ -248,11 +243,9 @@ class Feature6 extends BaseFeature {
                 {buttons.map((item: Button, index: number) => {
                   if (!this.castToString(item.text)) return null;
                   return (
-                    <ComposerLink path={item.link} key={index}>
-                      <div className={this.decorateCSS("button")}>
-                        {item.text}
-                      </div>
-                    </ComposerLink>
+                    <Base.Button className={this.decorateCSS("button")} path={item.link} key={index}>
+                      {item.text}
+                    </Base.Button>
                   );
                 })}
               </Base.ContainerGrid>
