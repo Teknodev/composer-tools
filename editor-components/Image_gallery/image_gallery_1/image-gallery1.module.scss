@@ -1,3 +1,4 @@
+@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
 .container{
   .max-content{
     display: flex;
@@ -70,10 +71,18 @@
         }
       }
     }
+    .button-wrapper{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .button{
+        width: fit-content;
+      }
+    }
   }
 }
 
-@container (max-width: 900px){
+@container (max-width: #{$composer-tablet-width}){
   .container{
     .max-content{
       .card-container{
@@ -86,7 +95,7 @@
     }
   }
 }
-@container (max-width: 450px){
+@container (max-width: #{$composer-phone-width}){
   .container{
     .max-content{
       .section-title-container{

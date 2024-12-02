@@ -2,6 +2,7 @@ import * as React from "react";
 import { BaseImageGallery } from "../../EditorComponent";
 import styles from "./image-gallery1.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import { TiHeadphones } from "react-icons/ti";
 
 interface ImageGallery {
   sectionTitle: JSX.Element;
@@ -23,6 +24,12 @@ class ImageGallery1 extends BaseImageGallery {
       key: "lineActive",
       displayer: "Line Active",
       value: true
+    })
+    this.addProp({
+      type: "number",
+      key: "imageCount",
+      displayer: "Image Count",
+      value: 3
     })
     this.addProp({
       type: "number",
@@ -360,25 +367,49 @@ class ImageGallery1 extends BaseImageGallery {
       ]
 
     })
+    this.addProp({
+      type: "string",
+      key: "buttonText",
+      displayer: "Button Text",
+      value: "Load More"
+    })
     this.setComponentState("selectedSection", null as JSX.Element);
-
+    this.setComponentState("selectedIndex", -1);
+    this.setComponentState("imageCount", this.getPropValue("imageCount"));
   }
 
 
   getName(): string {
     return "Image Gallery 1";
   }
-  handleSectionClick(sectionTitle: JSX.Element): void {
-    return this.setComponentState("selectedSection", sectionTitle);
+  handleSectionClick(sectionTitle: JSX.Element, index: number): void {
+    this.setComponentState("selectedSection", sectionTitle);
+    this.setComponentState("selectedIndex", index)
+    this.setComponentState("imageCount", this.getPropValue("imageCount"));
   }
 
+  handleButtonClick = () => {
+    this.setComponentState("imageCount", this.getComponentState("imageCount") + this.getPropValue("imageCount"))
+
+  };
 
   render() {
     const imageGallery = this.castToObject<ImageGallery[]>("imageGalleries");
     const selectedSection = this.getComponentState("selectedSection");
-    console.log(selectedSection)
     const seenImages = new Set<string>();
-    console.log("render", selectedSection)
+    const allImages = imageGallery.reduce((acc: Image[], gallery: ImageGallery) => {
+      gallery.images.forEach((image) => {
+        if (!acc.some((img) => img.cardImage === image.cardImage)) {
+          acc.push(image);
+        }
+      });
+      return acc;
+    }, []);
+    const sectionImage = (this.getComponentState("selectedIndex") != -1) ? imageGallery[this.getComponentState("selectedIndex")].images : "";
+    const selectedImageGallery =
+      this.getComponentState("selectedIndex") == -1 ? allImages
+        : sectionImage;
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -386,7 +417,7 @@ class ImageGallery1 extends BaseImageGallery {
             {
               <button
                 className={`${this.decorateCSS("section-title")} ${selectedSection === null ? this.decorateCSS("active-section-title") : ""}`}
-                onClick={() => this.handleSectionClick(null)}
+                onClick={() => this.handleSectionClick(null, -1)}
               >
                 All
               </button>
@@ -396,13 +427,12 @@ class ImageGallery1 extends BaseImageGallery {
                 <button
                   key={index}
                   className={`${this.decorateCSS("section-title")} ${selectedSection !== null && this.castToString(item.sectionTitle) === this.castToString(selectedSection) ? this.decorateCSS("active-section-title") : ""}`}
-                  onClick={() => this.handleSectionClick(item.sectionTitle)}
+                  onClick={() => this.handleSectionClick(item.sectionTitle, index)}
                 >
                   {item.sectionTitle}
                 </button>
               ))
             }
-
           </div>
           <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }}>
             {imageGallery
@@ -424,6 +454,7 @@ class ImageGallery1 extends BaseImageGallery {
                 seenImages.add(image.cardImage);
                 return true;
               })
+              .slice(0, this.getComponentState("imageCount"))
               .map((image: Image, imgIndex: number) => (
                 <div key={imgIndex} className={this.decorateCSS("card-container")}>
                   <div className={this.decorateCSS("image-container")}>
@@ -449,9 +480,14 @@ class ImageGallery1 extends BaseImageGallery {
                 </div>
               ))}
           </Base.ListGrid>
-
+          {(this.getComponentState("imageCount") < selectedImageGallery.length) && (
+            <div className={this.decorateCSS("button-wrapper")}>
+              <Base.Button className={this.decorateCSS("button")} onClick={this.handleButtonClick} >
+                {this.getPropValue("buttonText")}
+              </Base.Button>
+            </div>
+          )}
         </Base.MaxContent>
-
       </Base.Container>
     );
   }
