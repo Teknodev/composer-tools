@@ -101,26 +101,26 @@ class Stats6Page extends BaseStats {
       this.setComponentState(`number-${index}`, 0)
     );
 
-    let x = setInterval(() => {
-      this.castToObject<CardData[]>("card-list").map(
-        (statsData: CardData, index: number) => {
-          let statNumber = this.getComponentState(`number-${index}`);
-          if (statNumber != statsData.CardTitle) {
-            this.setComponentState(
-              `number-${index}`,
-              Math.min(
-                statsData.CardTitle,
-                statNumber +
-                  Math.ceil(
-                    statsData.CardTitle /
-                      Math.round(this.getPropValue("animation-duration") / 30)
-                  )
-              ) || 0
-            );
-          }
-        }
-      );
-    }, 30);
+    // let x = setInterval(() => {
+    //   this.castToObject<CardData[]>("card-list").map(
+    //     (statsData: CardData, index: number) => {
+    //       let statNumber = this.getComponentState(`number-${index}`);
+    //       if (statNumber != statsData.CardTitle) {
+    //         this.setComponentState(
+    //           `number-${index}`,
+    //           Math.min(
+    //             statsData.CardTitle,
+    //             statNumber +
+    //               Math.ceil(
+    //                 statsData.CardTitle /
+    //                   Math.round(this.getPropValue("animation-duration") / 30)
+    //               )
+    //           ) || 0
+    //         );
+    //       }
+    //     }
+    //   );
+    // }, 30);
   }
 
   getName(): string {
