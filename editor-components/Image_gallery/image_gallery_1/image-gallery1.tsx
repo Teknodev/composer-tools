@@ -33,6 +33,12 @@ class ImageGallery1 extends BaseImageGallery {
     })
     this.addProp({
       type: "number",
+      key: "imageCountInitial",
+      displayer: "Image Count Initial",
+      value: 3
+    })
+    this.addProp({
+      type: "number",
       key: "itemCount",
       displayer: "Item Count in a Row",
       value: 3,
@@ -375,7 +381,8 @@ class ImageGallery1 extends BaseImageGallery {
     })
     this.setComponentState("selectedSection", null as JSX.Element);
     this.setComponentState("selectedIndex", -1);
-    this.setComponentState("imageCount", this.getPropValue("imageCount"));
+    this.setComponentState("initialImageCount", this.getPropValue("imageCountInitial"));
+    this.setComponentState("imageCount", this.getPropValue("imageCountInitial"));
   }
 
 
@@ -409,6 +416,13 @@ class ImageGallery1 extends BaseImageGallery {
     const selectedImageGallery =
       this.getComponentState("selectedIndex") == -1 ? allImages
         : sectionImage;
+
+
+
+    if (this.getComponentState("initialImageCount") != this.getPropValue("imageCountInitial")) {
+      this.setComponentState("initialImageCount", this.getPropValue("imageCountInitial"));
+    }
+
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -454,7 +468,7 @@ class ImageGallery1 extends BaseImageGallery {
                 seenImages.add(image.cardImage);
                 return true;
               })
-              .slice(0, this.getComponentState("imageCount"))
+              .slice(0, this.getComponentState("initialImageCount"))
               .map((image: Image, imgIndex: number) => (
                 <div key={imgIndex} className={this.decorateCSS("card-container")}>
                   <div className={this.decorateCSS("image-container")}>
