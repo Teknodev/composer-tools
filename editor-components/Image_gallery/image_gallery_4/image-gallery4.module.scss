@@ -94,7 +94,15 @@
               }
           }
         }
-      }      
+      }    
+      .button-wrapper{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .button{
+          content: "";
+        }
+      }  
     }
     .gallery-item-fullscreen {
       display: none;
@@ -103,7 +111,7 @@
       left: 0;
       background-color:var(--composer-overlay-color);
       width: 100vw;
-      height: 100vh;
+      height: 100%;
       z-index: 1;
       display: block;
       cursor: pointer;      

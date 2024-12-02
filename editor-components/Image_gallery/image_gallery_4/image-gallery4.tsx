@@ -374,14 +374,24 @@ class ImageGallery4 extends BaseImageGallery {
       value: 3,
       max: 4,
     });
-
+    this.addProp({
+      type: "number",
+      key: "imageCount",
+      displayer: "Image Count",
+      value: 3
+    })
+    this.addProp({
+      type: "string",
+      key: "buttonText",
+      displayer: "Button Text",
+      value: "Load More"
+    })
     this.addProp({
       type: "icon",
       key: "close-icon",
       displayer: "Close Icon",
       value: "RxCross1",
     });
-
     this.addProp({
       type: "icon",
       key: "imageIcon",
@@ -401,10 +411,12 @@ class ImageGallery4 extends BaseImageGallery {
       value: "HiArrowLeft",
     });
 
+
     this.setComponentState("activeNav", 0);
     this.setComponentState("activeSubnav", null);
-    this.setComponentState("focusedImage", 0);
+    this.setComponentState("focusedImage", null);
     this.setComponentState("isFocused", false);
+    this.setComponentState("imageCount", this.getPropValue("imageCount"));
     document.addEventListener("keydown", this.handleKeyDown);
   }
 
@@ -420,15 +432,16 @@ class ImageGallery4 extends BaseImageGallery {
       this.closeFocus();
     }
   };
-
-  switchNav(index: number) {
+  handleSectionClick(index: number): void {
     this.setComponentState("activeNav", index);
     this.setComponentState("activeSubnav", null);
+    this.setComponentState("imageCount", this.getPropValue("imageCount"));
+  }
+  handleSubSectionClick(index: number): void {
+    this.setComponentState("activeSubnav", index);
+    this.setComponentState("imageCount", this.getPropValue("imageCount"));
   }
 
-  switchSubnav(index: number) {
-    this.setComponentState("activeSubnav", index);
-  }
 
   focusImage(index: number) {
     this.setComponentState("focusedImage", index);
@@ -486,6 +499,11 @@ class ImageGallery4 extends BaseImageGallery {
   nextImage = () => {
     this.changeImage("next");
   };
+
+  handleButtonClick = () => {
+    this.setComponentState("imageCount", this.getComponentState("imageCount") + this.getPropValue("imageCount"))
+
+  };
   render() {
     const itemsPerRow: number = this.getPropValue("itemsPerRow");
     const activeNav: number = this.getComponentState("activeNav");
@@ -516,7 +534,7 @@ class ImageGallery4 extends BaseImageGallery {
                             <button
                               className={`${this.decorateCSS("button")} ${activeNav === index ? this.decorateCSS("active") : ""}`}
                               onClick={() => {
-                                this.switchNav(index);
+                                this.handleSectionClick(index);
                               }}
                             >
                               {item.title}
@@ -543,7 +561,7 @@ class ImageGallery4 extends BaseImageGallery {
                               <button
                                 className={`${this.decorateCSS("button")} ${activeSubnav === index ? this.decorateCSS("active") : ""}`}
                                 onClick={() => {
-                                  this.switchSubnav(index);
+                                  this.handleSubSectionClick(index);
                                 }}
                               >
                                 {item.title}
@@ -559,7 +577,7 @@ class ImageGallery4 extends BaseImageGallery {
             )}
             {galleryItems?.length > 0 && (
               <Base.ListGrid gridCount={{ pc: itemsPerRow }} className={this.decorateCSS("gallery-container")}>
-                {galleryItems.map((item: Image, index: number) => {
+                {galleryItems.slice(0, this.getComponentState("imageCount")).map((item: Image, index: number) => {
                   if (!item.image) return null;
                   return (
                     <div
@@ -597,6 +615,9 @@ class ImageGallery4 extends BaseImageGallery {
                 })}
               </Base.ListGrid>
             )}
+            <div className={this.decorateCSS("button-wrapper")}>
+              <Base.Button className={this.decorateCSS("button")} onClick={this.handleButtonClick} >{this.getPropValue("buttonText")}</Base.Button>
+            </div>
           </div>
 
           {galleryItems[this.getComponentState("focusedImage")]?.image && (
