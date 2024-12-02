@@ -1,9 +1,10 @@
 import * as React from "react";
 import { BaseStats } from "../../EditorComponent";
 import styles from "./stats5.module.scss";
+import { Base } from "../../../composer-base-components/base/base";
 
 type Card = {
-  stat: number;
+  stat: JSX.Element;
   title: JSX.Element;
 };
 
@@ -95,34 +96,30 @@ class Stats5Page extends BaseStats {
         },
       ],
     });
-
+    this.addProp({
+      type: "boolean",
+      key: "lines",
+      displayer: "Toggle Lines",
+      value: true,
+    });
+    this.addProp({
+      type: "number",
+      key: "animationDuration",
+      displayer: "Stat Animation Duration (ms)",
+      value: 30,
+    });
+    this.addProp({
+      type: "number",
+      key: "incrementValue",
+      displayer: "Stat Animation Increment Value",
+      value: 200,
+    });
     this.addProp({
       type: "number",
       key: "itemCountInRow",
       displayer: "Item Count in a Row",
       value: 4,
       max: 4,
-    });
-
-    this.addProp({
-      type: "number",
-      key: "animation-duration",
-      displayer: "Stat Animation Duration (ms)",
-      value: 30,
-    });
-
-    this.addProp({
-      type: "number",
-      key: "increment-value",
-      displayer: "Stat Animation Increment Value",
-      value: 20,
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "lines",
-      displayer: "Toggle Lines",
-      value: true,
     });
 
     this.init();
@@ -134,32 +131,52 @@ class Stats5Page extends BaseStats {
   }
 
   init() {
-    this.castToObject<Card[]>("cards").map((card, index) =>
-      this.setComponentState(`number-${index}`, 0),
-    );
+    this.castToObject<Card[]>("cards").map((card, index) => {
+      this.setComponentState(`number-${index}`, 0);
+      this.setComponentState(`numberForControl-${index}`, 0);
+    });
+  }
+
+  isEqual(arr1: any[], arr2: any[]) {
+    for (let i = 0; i < arr1.length; i++) {
+      const val1 = arr1[i];
+      const val2 = arr2[i];
+
+      if (val1 === null || val2 === null) continue;
+
+      if (Number(val1) !== Number(val2)) {
+        return false;
+      }
+    }
+    return true;
   }
 
   getStats() {
     const cards = this.castToObject<Card[]>("cards");
-    const stats = cards.map((card: any) => (card.stat === "" ? 0 : card.stat));
+    const stats = cards.map((card: any) => (card.stat === "" ? null : card.stat));
     return stats;
   }
 
   getNumbers() {
     const cards = this.castToObject<Card[]>("cards");
-    const numbers = cards.map((_, index) =>
-      this.getComponentState(`number-${index}`),
-    );
+    const numbers = cards.map((_, index) => {
+      const number = this.getComponentState(`numberForControl-${index}`);
+      return number !== undefined ? number : "";
+    });
     return numbers;
   }
 
-  isEqual(arr1: any[], arr2: any[]) {
-    return JSON.stringify(arr1) === JSON.stringify(arr2);
+  formatNumberWithDots(value: any) {
+    const number = Number(value);
+    if (isNaN(number)) {
+      return "";
+    }
+    return number.toLocaleString("en-US");
   }
 
   animate() {
-    const animationDuration = this.getPropValue("animation-duration");
-    const incrementValue = this.getPropValue("increment-value");
+    const animationDuration = this.getPropValue("animationDuration");
+    const incrementValue = this.getPropValue("incrementValue");
 
     // this.interval = setInterval(() => {
     //   const cards = this.castToObject<Card[]>("cards");
@@ -181,47 +198,27 @@ class Stats5Page extends BaseStats {
 
   getCardClasses(index: number, itemCountInRow: number) {
     const totalCards = this.castToObject<Card[]>("cards").length;
-    const isLastInRow =
-      (index + 1) % itemCountInRow === 0 || index === totalCards - 1;
+    const isLastInRow = (index + 1) % itemCountInRow === 0 || index === totalCards - 1;
 
-    return !isLastInRow && this.getPropValue("lines")
-      ? this.decorateCSS("stick")
-      : "";
+    return !isLastInRow && this.getPropValue("lines") ? this.decorateCSS("stick") : "";
   }
 
   render() {
     const itemCountInRow = this.getPropValue("itemCountInRow");
-
     const cards = this.castToObject<Card[]>("cards");
 
-    /**
-     * Execute animate() only if:
-     *    it is executed and it's interval is cleared before
-     * AND,
-     *    prop values of stats and state values are not equal.
-     * (user may change it after animation. so we need to check that)
-     */
     if (!this.interval && !this.isEqual(this.getStats(), this.getNumbers())) {
       this.animate();
     }
 
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           {cards?.length > 0 && (
-            <div
-              className={this.decorateCSS("bottom-child")}
-              style={{
-                gridTemplateColumns: `repeat(${itemCountInRow}, 1fr)`,
-              }}
-            >
+            <Base.ListGrid gridCount={{ pc: itemCountInRow, tablet: 2, phone: 1 }} className={this.decorateCSS("bottom-child")}>
               {cards.map((item: Card, index: number) => {
                 const titleExist = this.castToString(item.title);
-
-                const statValue =
-                  item.stat === this.getComponentState(`number-${index}`)
-                    ? item.stat
-                    : this.getComponentState(`number-${index}`);
+                const statValue = item.stat === this.getComponentState(`number-${index}`) ? item.stat : this.getComponentState(`number-${index}`);
 
                 if (titleExist || item.stat)
                   return (
@@ -232,26 +229,16 @@ class Stats5Page extends BaseStats {
                           ${this.getCardClasses(index, itemCountInRow)}
                         `}
                     >
-                      {item.stat && (
-                        <h4 className={this.decorateCSS("card-data-title")}>
-                          {statValue}
-                        </h4>
-                      )}
-                      {titleExist && (
-                        <p
-                          className={this.decorateCSS("card-data-description")}
-                        >
-                          {item.title}
-                        </p>
-                      )}
+                      {item.stat && <Base.SectionTitle className={this.decorateCSS("card-data-title")}>{statValue}</Base.SectionTitle>}
+                      {titleExist && <Base.SectionDescription className={this.decorateCSS("card-data-description")}>{item.title}</Base.SectionDescription>}
                     </div>
                   );
                 return null;
               })}
-            </div>
+            </Base.ListGrid>
           )}
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
