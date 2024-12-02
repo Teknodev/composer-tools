@@ -173,9 +173,22 @@ class ImageGalleryComponent5 extends BaseImageGallery {
       displayer: "Image Index Enabled",
       value: true,
     });
+    this.addProp({
+      type: "number",
+      key: "imageCount",
+      displayer: "Image Count",
+      value: 3
+    })
+    this.addProp({
+      type: "string",
+      key: "buttonText",
+      displayer: "Button Text",
+      value: "Load More"
+    })
 
     this.setComponentState("is_image_clicked", false);
     this.setComponentState("clicked_image_index", 0);
+    this.setComponentState("imageCount", this.getPropValue("imageCount"));
   }
 
   getName(): string {
@@ -214,7 +227,10 @@ class ImageGalleryComponent5 extends BaseImageGallery {
       this.handleNextImage();
     }
   }
+  handleButtonClick = () => {
+    this.setComponentState("imageCount", this.getComponentState("imageCount") + this.getPropValue("imageCount"))
 
+  };
   render() {
     const galleries = this.getPropValue("gallery");
     const isImageClicked = this.getComponentState("is_image_clicked");
@@ -236,7 +252,7 @@ class ImageGalleryComponent5 extends BaseImageGallery {
             className={this.decorateCSS("images")}
             gridCount={{ pc: this.getPropValue("itemCount") }}
           >
-            {galleries.map((galleryItem: any, index: number) => {
+            {galleries.slice(0, this.getComponentState("imageCount")).map((galleryItem: any, index: number) => {
               const image = galleryItem.value.find((item: any) => item.type === "image").value;
               return (
                 <div className={this.decorateCSS("image-container")}>
@@ -252,6 +268,14 @@ class ImageGalleryComponent5 extends BaseImageGallery {
               );
             })}
           </Base.ListGrid>
+          {(galleries.length > this.getComponentState("imageCount")) && (
+            <div className={this.decorateCSS("button-wrapper")}>
+              <Base.Button className={this.decorateCSS("button")} onClick={this.handleButtonClick} >
+                {this.getPropValue("buttonText")}
+              </Base.Button>
+            </div>
+          )}
+
           {isImageClicked && (
             <div
               className={this.decorateCSS("overlay")}
