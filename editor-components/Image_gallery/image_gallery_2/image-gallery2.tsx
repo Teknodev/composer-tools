@@ -660,12 +660,18 @@ class ImageGallery2 extends BaseImageGallery {
     }
 
     handleKeyDown = (event: KeyboardEvent) => {
-        if (event.key === "ArrowLeft") {
-            this.prevImage();
-        } else if (event.key === "ArrowRight") {
-            this.nextImage();
-        } else if (event.key === "Escape") {
-            this.closeModal();
+        switch (event.key) {
+            case "ArrowLeft":
+                this.prevImage();
+                break;
+            case "ArrowRight":
+                this.nextImage();
+                break;
+            case "Escape":
+                this.closeModal();
+                break;
+            default:
+                break;
         }
     };
 
