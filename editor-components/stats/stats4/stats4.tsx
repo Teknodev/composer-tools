@@ -283,22 +283,22 @@ class Stats4Page extends BaseStats {
     const animationDuration = this.getPropValue("animation-duration");
     const incrementValue = this.getPropValue("increment-value");
 
-    this.interval = setInterval(() => {
-      const statItems = this.castToObject<Stat[]>("statItems");
+    // this.interval = setInterval(() => {
+    //   const statItems = this.castToObject<Stat[]>("statItems");
 
-      if (this.isEqual(this.getStats(), this.getNumbers())) {
-        this.interval = clearInterval(this.interval);
-        return; // return to stop animate()
-      }
-      statItems.forEach((item: Stat, index: number) => {
-        const statNumber = this.getComponentState(`number-${index}`) ?? 0;
+    //   if (this.isEqual(this.getStats(), this.getNumbers())) {
+    //     this.interval = clearInterval(this.interval);
+    //     return; // return to stop animate()
+    //   }
+    //   statItems.forEach((item: Stat, index: number) => {
+    //     const statNumber = this.getComponentState(`number-${index}`) ?? 0;
 
-        this.setComponentState(
-          `number-${index}`,
-          Math.min(item.stat, statNumber + incrementValue),
-        );
-      });
-    }, animationDuration);
+    //     this.setComponentState(
+    //       `number-${index}`,
+    //       Math.min(item.stat, statNumber + incrementValue),
+    //     );
+    //   });
+    // }, animationDuration);
   }
 
   getName(): string {
