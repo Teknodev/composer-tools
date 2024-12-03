@@ -22,7 +22,6 @@ type TagSettings = {
 type Button = {
   text: JSX.Element;
   link: string;
-  icon: string;
 };
 
 class PricingTable3 extends BasePricingTable {
@@ -59,12 +58,6 @@ class PricingTable3 extends BasePricingTable {
           key: "link",
           displayer: "Button Link",
           value: "",
-        },
-        {
-          type: "icon",
-          key: "icon",
-          displayer: "Icon",
-          value: "FaArrowRight",
         },
       ],
     });
@@ -182,12 +175,6 @@ class PricingTable3 extends BasePricingTable {
                   displayer: "Button Link",
                   value: "",
                 },
-                {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Icon",
-                  value: "FaArrowRight",
-                },
               ],
             },
           ],
@@ -296,12 +283,6 @@ class PricingTable3 extends BasePricingTable {
                   key: "link",
                   displayer: "Button Link",
                   value: "",
-                },
-                {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Icon",
-                  value: "FaArrowRight",
                 },
               ],
             },
@@ -412,12 +393,6 @@ class PricingTable3 extends BasePricingTable {
                   displayer: "Button Link",
                   value: "",
                 },
-                {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Icon",
-                  value: "FaArrowRight",
-                },
               ],
             },
           ],
@@ -450,21 +425,7 @@ class PricingTable3 extends BasePricingTable {
                 {buttonExist && (
                   <ComposerLink path={featuredButton.link}>
                     <div className={this.decorateCSS("featured-button-container")}>
-                      <button
-                        className={`${this.decorateCSS("button")}
-                      ${featuredButton.icon ? this.decorateCSS("has-icon") : ""}`}
-                        onClick={(event) => {
-                          event.preventDefault();
-                        }}
-                      >
-                        {featuredButton.text}
-                        <ComposerIcon
-                          name={featuredButton.icon}
-                          propsIcon={{
-                            className: this.decorateCSS("button-icon"),
-                          }}
-                        />
-                      </button>
+                      <Base.Button>{featuredButton.text}</Base.Button>
                     </div>
                   </ComposerLink>
                 )}
@@ -497,10 +458,13 @@ class PricingTable3 extends BasePricingTable {
                           <div className={this.decorateCSS("body")}>
                             <Base.VerticalContent className={this.decorateCSS("items")}>
                               {card.items.map((item: { value: JSX.Element }, idx: number) => {
+                                const itemExist = this.castToString(item.value);
                                 return (
-                                  <Base.P key={idx} className={this.decorateCSS("item")}>
-                                    {item.value}
-                                  </Base.P>
+                                  itemExist && (
+                                    <Base.P key={idx} className={this.decorateCSS("item")}>
+                                      {item.value}
+                                    </Base.P>
+                                  )
                                 );
                               })}
                             </Base.VerticalContent>
@@ -510,21 +474,7 @@ class PricingTable3 extends BasePricingTable {
                         {this.castToString(card.button.text) && (
                           <div className={this.decorateCSS("footer")}>
                             <ComposerLink path={card.button.link}>
-                              <button
-                                className={`${this.decorateCSS("button")}
-                                       ${card.button.icon ? this.decorateCSS("has-icon") : ""}`}
-                              >
-                                {/* <Base.P className={this.decorateCSS("button-text")}>{card.button.text}</Base.P> */}
-                                {card.button.text}
-                                {card.button.icon && (
-                                  <ComposerIcon
-                                    name={card.button.icon}
-                                    propsIcon={{
-                                      className: this.decorateCSS("button-icon"),
-                                    }}
-                                  />
-                                )}
-                              </button>
+                              <Base.Button>{card.button.text}</Base.Button>
                             </ComposerLink>
                           </div>
                         )}
