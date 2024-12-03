@@ -25,14 +25,14 @@ class ImageGallery2 extends BaseImageGallery {
         });
         this.addProp({
             type: "number",
-            key: "initialImageCount",
-            displayer: "Initial Image Count",
+            key: "imageCountInitial",
+            displayer: "Image Count Initial",
             value: 3
         })
         this.addProp({
             type: "number",
-            key: "moreImges",
-            displayer: "More Images Count",
+            key: "imageCount",
+            displayer: "More Image Count",
             value: 3
         })
         this.addProp({
@@ -655,7 +655,7 @@ class ImageGallery2 extends BaseImageGallery {
         this.setComponentState("default", 0);
         this.setComponentState("modalOpen", false);
         this.setComponentState("currentImageIndex", 0);
-        this.setComponentState("imageCount", this.getPropValue("imageCount"));
+        this.setComponentState("moreImages", 0);
 
     }
 
@@ -713,15 +713,17 @@ class ImageGallery2 extends BaseImageGallery {
         return "Image Gallery 2";
     }
     handleLoadMoreButton = () => {
-        this.setComponentState("imageCount", this.getComponentState("imageCount") + this.getPropValue("imageCount"))
+        this.setComponentState("moreImages", this.getComponentState("moreImages") + this.getPropValue("imageCount"))
     };
     handleSectionClick(index: number): void {
         this.setComponentState("default", index)
-        this.setComponentState("imageCount", this.getPropValue("imageCount"));
-        this.setComponentState("initalImageCount", this.getPropValue("initialImageCount"))
+        this.setComponentState("imageCount", this.getPropValue("imageCountInitial"));
+        this.setComponentState("moreImages", 0);
     }
     render() {
-        this.setComponentState("initalImageCount", this.getComponentState("imageCount") + this.getPropValue("initialImageCount"));
+        if (this.getComponentState("imageCount") != this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"))
+            this.setComponentState("imageCount", this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"));
+
         const galleryCollection = this.getPropValue("gallery");
         const currentIndex = this.getComponentState("default");
         const modalOpen = this.getComponentState("modalOpen");
@@ -735,6 +737,7 @@ class ImageGallery2 extends BaseImageGallery {
         const magnifierIcon = this.getPropValue("icon");
         const imgCount = `${currentImageIndex + 1} of ${currentGallery.length}`;
         const showAll = this.getPropValue("showAll");
+        console.log("count", this.getComponentState("imageCount"))
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
@@ -787,7 +790,7 @@ class ImageGallery2 extends BaseImageGallery {
                                 );
                             })}
                         </Base.ListGrid>
-                        {(currentGallery.length > this.getComponentState("imageCount")) && (
+                        {(currentGallery.length >= this.getComponentState("imageCount")) && (
                             <div className={this.decorateCSS("button-wrapper")}>
                                 <Base.Button className={this.decorateCSS("button")} onClick={this.handleLoadMoreButton}> {this.getPropValue("buttonText")}</Base.Button>
                             </div>
