@@ -4,6 +4,7 @@ import { getProjectHook } from "../custom-hooks/project";
 import { EventEmitter } from "../EventEmitter";
 import sanitizeHtml from "sanitize-html";
 import { renderToString } from "react-dom/server";
+import { THEMES, TTheme } from "./location/themes";
 
 type PreSufFix = {
   label: string;
@@ -13,7 +14,6 @@ type PreSufFix = {
 export type TypeLocation = {
   lat: number;
   lng: number;
-
 };
 
 type GetPropValueProperties = {
@@ -35,7 +35,7 @@ export type iComponent = {
   setCSSClasses(key: string, value: { id: string; class: string }[]): void;
   decorateCSS(cssValue: string): string;
   getCategory(): CATEGORIES;
-  id: string
+  id: string;
 };
 type AvailablePropTypes =
   | { type: "string"; value: string }
@@ -405,6 +405,27 @@ export abstract class LogoClouds extends Component {
 
 export abstract class Location extends Component {
   protected category = CATEGORIES.LOCATION;
+  protected themes: TTheme[] = THEMES;
+
+  constructor(props: any, styles: any) {
+    super(props, styles);
+    this.addProp({
+      type: "select",
+      key: "theme",
+      displayer: "Map Theme",
+      value: "Theme-0",
+      additionalParams: {
+        selectItems: ["Theme-0", "Theme-1", "Theme-2", "Theme-3", "Theme-4", "Theme-5"],
+      },
+    });
+  }
+
+  selectTheme(selectedTheme: string) {
+    return this.themes.find((theme: TTheme) => {
+      console.log(theme);
+      return theme.name == selectedTheme;
+    });
+  }
 }
 
 export abstract class BaseStats extends Component {
