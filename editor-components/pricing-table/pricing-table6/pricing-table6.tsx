@@ -1219,6 +1219,8 @@ class PricingMultipleTwo extends BasePricingTable {
     const plan = hasPlans ? plans[activeTab].product : [];
     const planIndex = this.getComponentState("activePlan");
 
+    const rightItemExist = plan[planIndex]?.right_items?.list.length > 0;
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -1262,55 +1264,57 @@ class PricingMultipleTwo extends BasePricingTable {
                         </div>
                       ))}
                     </div>
-                    <div className={this.decorateCSS("right-page")}>
-                      <Base.VerticalContent className={this.decorateCSS("content")}>
-                        {plan[planIndex].right_items.badge && this.castToString(plan[planIndex].right_items.badge) && <Base.H5 className={this.decorateCSS("badge")}>{plan[planIndex].right_items.badge}</Base.H5>}
-                        {this.castToString(plan[planIndex].right_items.title) && <Base.H2 className={this.decorateCSS("title")}>{plan[planIndex].right_items.title}</Base.H2>}
+                    {rightItemExist && (
+                      <div className={this.decorateCSS("right-page")}>
+                        <Base.VerticalContent className={this.decorateCSS("content")}>
+                          {plan[planIndex].right_items.badge && this.castToString(plan[planIndex].right_items.badge) && <Base.H5 className={this.decorateCSS("badge")}>{plan[planIndex].right_items.badge}</Base.H5>}
+                          {this.castToString(plan[planIndex].right_items.title) && <Base.H2 className={this.decorateCSS("title")}>{plan[planIndex].right_items.title}</Base.H2>}
 
-                        <div className={this.decorateCSS("list-body")}>
-                          {plan[planIndex]?.right_items?.list?.map((listItem: any, listItemIndex: number) => {
-                            const listValue = listItem.value.find((item: any) => item.key === "property").value;
-                            const iconValue = listItem.value.find((item: any) => item.key === "dash_icon").value;
-                            const enableValue = listItem?.value?.find((item: any) => item.key === "enable")?.value;
+                          <div className={this.decorateCSS("list-body")}>
+                            {plan[planIndex]?.right_items?.list?.map((listItem: any, listItemIndex: number) => {
+                              const listValue = listItem.value.find((item: any) => item.key === "property").value;
+                              const iconValue = listItem.value.find((item: any) => item.key === "dash_icon").value;
+                              const enableValue = listItem?.value?.find((item: any) => item.key === "enable")?.value;
 
-                            return (
-                              (listValue || iconValue) && (
-                                <div key={listItemIndex} className={enableValue ? this.decorateCSS("list-item") : this.decorateCSS("list-item-disabled")}>
-                                  <ComposerIcon
-                                    propsIcon={{
-                                      className: this.decorateCSS("dash_icon"),
-                                    }}
-                                    name={iconValue}
-                                  />
-                                  <Base.P className={this.decorateCSS("property")}>{listValue}</Base.P>
-                                </div>
-                              )
-                            );
-                          })}
-                        </div>
-
-                        {plan[planIndex]?.right_items?.buttons.length > 0 && (
-                          <div className={this.decorateCSS("body-bottom")}>
-                            <div className={this.decorateCSS("buttons")}>
-                              {plan[planIndex]?.right_items?.buttons.map((button: any, buttonIndex: number) => {
-                                const buttonText = this.castToString(button.getPropValue("buttonText"));
-                                const buttonUrl = button.getPropValue("url");
-                                const isDisabled = button.getPropValue("disabled");
-
-                                return (
-                                  buttonText && (
-                                    <ComposerLink key={buttonIndex} path={buttonUrl}>
-                                      <button className={`${this.decorateCSS("button")} ${!isDisabled ? this.decorateCSS("disabled") : ""}`}>{buttonText}</button>
-                                    </ComposerLink>
-                                  )
-                                );
-                              })}
-                            </div>
-                            {plan[planIndex].right_items.text && <Base.P className={this.decorateCSS("bottom-text")}>{plan[planIndex].right_items.text}</Base.P>}
+                              return (
+                                (listValue || iconValue) && (
+                                  <div key={listItemIndex} className={enableValue ? this.decorateCSS("list-item") : this.decorateCSS("list-item-disabled")}>
+                                    <ComposerIcon
+                                      propsIcon={{
+                                        className: this.decorateCSS("dash_icon"),
+                                      }}
+                                      name={iconValue}
+                                    />
+                                    <Base.P className={this.decorateCSS("property")}>{listValue}</Base.P>
+                                  </div>
+                                )
+                              );
+                            })}
                           </div>
-                        )}
-                      </Base.VerticalContent>
-                    </div>
+
+                          {plan[planIndex]?.right_items?.buttons.length > 0 && (
+                            <div className={this.decorateCSS("body-bottom")}>
+                              <div className={this.decorateCSS("buttons")}>
+                                {plan[planIndex]?.right_items?.buttons.map((button: any, buttonIndex: number) => {
+                                  const buttonText = this.castToString(button.getPropValue("buttonText"));
+                                  const buttonUrl = button.getPropValue("url");
+                                  const isDisabled = button.getPropValue("disabled");
+
+                                  return (
+                                    buttonText && (
+                                      <ComposerLink key={buttonIndex} path={buttonUrl}>
+                                        <Base.Button className={`${this.decorateCSS("button")} ${!isDisabled ? this.decorateCSS("disabled") : ""}`}>{buttonText}</Base.Button>
+                                      </ComposerLink>
+                                    )
+                                  );
+                                })}
+                              </div>
+                              {plan[planIndex].right_items.text && <Base.P className={this.decorateCSS("bottom-text")}>{plan[planIndex].right_items.text}</Base.P>}
+                            </div>
+                          )}
+                        </Base.VerticalContent>
+                      </div>
+                    )}
                   </>
                 )}
               </div>
