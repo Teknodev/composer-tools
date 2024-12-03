@@ -6,6 +6,7 @@ import { Base } from "../../../composer-base-components/base/base";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 class Slider9 extends BaseSlider {
+
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
@@ -64,31 +65,34 @@ class Slider9 extends BaseSlider {
     });
     this.addProp({
       type: "icon",
-      key: "previousArrow",
-      displayer: "Previous Arrow Icon",
+      key: "verticalPreviousArrow",
+      displayer: "Vertical Previous Arrow Icon",
       value: "MdOutlineKeyboardArrowUp"
     });
     this.addProp({
       type: "icon",
-      key: "nextArrow",
-      displayer: "Next Arrow Icon",
+      key: "verticalNextArrow",
+      displayer: "Vertical Next Arrow Icon",
       value: "MdOutlineKeyboardArrowDown"
     });
 
-    this.setComponentState("slider-ref", React.createRef());
+    this.addProp({
+      type: "icon",
+      key: "horizontalPreviousArrow",
+      displayer: "Horizontal Previous Arrow Icon",
+      value: "MdOutlineKeyboardArrowLeft"
+    });
+    this.addProp({
+      type: "icon",
+      key: "horizontalNextArrow",
+      displayer: "Horizontal Next Arrow Icon",
+      value: "MdOutlineKeyboardArrowRight"
+    });
+
+    this.setComponentState("vertical-slider-ref", React.createRef());
+    this.setComponentState("horizontal-slider-ref", React.createRef());
     this.setComponentState("currentSlideIndex", 0);
-  }
 
-  componentDidUpdate(prevProps: any, prevState: any) {
-    const currentSlideIndex = this.getComponentState("currentSlideIndex");
-    const sliderRef = this.getComponentState("slider-ref");
-
-    // Eğer currentSlideIndex değiştiyse HorizontalSlider'ı güncelle
-    if (currentSlideIndex !== prevState.currentSlideIndex) {
-      if (sliderRef.current) {
-        sliderRef.current.slickGoTo(currentSlideIndex);
-      }
-    }
   }
 
   getName(): string {
@@ -105,13 +109,22 @@ class Slider9 extends BaseSlider {
       slidesToShow: 3,
       slidesToScroll: 1,
       vertical: true,
+      afterChange: (current: number) => {
+        const horizontalSliderRef = this.getComponentState("horizontal-slider-ref");
+        if (horizontalSliderRef.current) {
+          horizontalSliderRef.current.slickGoTo(current);
+        }
+      }
     };
+
+
+
 
     const horizontalSettings = {
       arrows: true,
       dots: false,
-      infinite: true,
-      speed: 500,
+      infinite: false,
+      speed: 800,
       autoplay: false,
       autoplaySpeed: 3000,
       slidesToShow: 1,
@@ -121,14 +134,13 @@ class Slider9 extends BaseSlider {
     const title = this.getPropValue("title");
     const price = this.getPropValue("price");
     const description = this.getPropValue("description");
-    const nextArrow = this.getPropValue("nextArrow");
-    const previousArrow = this.getPropValue("previousArrow");
+    const verticalNextArrow = this.getPropValue("verticalNextArrow");
+    const verticalPreviousArrow = this.getPropValue("verticalPreviousArrow");
 
-    const sliderRef = this.getComponentState("slider-ref");
-    const currentSlideIndex = this.getComponentState("currentSlideIndex");
-
+    const horizontalPreviousArrow = this.getPropValue("horizontalPreviousArrow");
+    const horizontalNextArrow = this.getPropValue("horizontalNextArrow");
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container className={this.decorateCSS("container")} >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ContainerGrid className={this.decorateCSS("content")}>
             <div className={this.decorateCSS("sliders-parent")}>
@@ -137,12 +149,19 @@ class Slider9 extends BaseSlider {
                 <ComposerSlider
                   {...verticalSettings}
                   className={this.decorateCSS("carousel-vertical")}
-                  ref={sliderRef}
+                  ref={this.getComponentState("vertical-slider-ref")}
                 >
                   {this.getPropValue("sliderItems").map(
                     (item: any, indexSlider: number) => (
                       <div className={this.decorateCSS("img-container")}
-                        onClick={() => this.setComponentState("currentSlideIndex", indexSlider)}
+                        onClick={() => {
+                          this.setComponentState("currentSlideIndex", indexSlider);
+                          const horizontalSliderRef = this.getComponentState("horizontal-slider-ref");
+                          if (horizontalSliderRef.current) {
+                            horizontalSliderRef.current.slickGoTo(indexSlider);
+                          }
+                        }}
+
                         key={indexSlider}
                       >
                         <img
@@ -154,25 +173,28 @@ class Slider9 extends BaseSlider {
                     )
                   )}
                 </ComposerSlider>
-                {(previousArrow || nextArrow) &&
-                  <div className={this.decorateCSS("arrows")}>
-                    {previousArrow &&
+
+                {(verticalPreviousArrow || verticalNextArrow) &&
+                  <div className={this.decorateCSS("verticalArrows")}>
+                    {verticalPreviousArrow &&
                       <ComposerIcon
-                        name={this.getPropValue("previousArrow")}
+                        name={verticalPreviousArrow}
                         propsIcon={{
-                          className: this.decorateCSS("prevArrow"),
+                          className: this.decorateCSS("verticalPreviousArrow"),
                           onClick: () => {
-                            sliderRef.current.slickPrev();
+                            const verticalSliderRef = this.getComponentState("vertical-slider-ref");
+                            verticalSliderRef.current.slickPrev();
                           },
                         }}
                       />}
-                    {nextArrow &&
+                    {verticalNextArrow &&
                       <ComposerIcon
-                        name={this.getPropValue("nextArrow")}
+                        name={verticalNextArrow}
                         propsIcon={{
-                          className: this.decorateCSS("nextArrow"),
+                          className: this.decorateCSS("verticalNextArrow"),
                           onClick: () => {
-                            sliderRef.current.slickNext();
+                            const verticalSliderRef = this.getComponentState("vertical-slider-ref");
+                            verticalSliderRef.current.slickNext();
                           },
                         }}
                       />}
@@ -183,7 +205,7 @@ class Slider9 extends BaseSlider {
                 <ComposerSlider
                   {...horizontalSettings}
                   className={this.decorateCSS("carousel-horizontal")}
-                  ref={sliderRef}
+                  ref={this.getComponentState("horizontal-slider-ref")}
                 >
                   {this.getPropValue("sliderItems").map(
                     (item: any, indexSlider: number) => (
@@ -197,6 +219,30 @@ class Slider9 extends BaseSlider {
                     )
                   )}
                 </ComposerSlider>
+
+                {(horizontalPreviousArrow || horizontalNextArrow) &&
+                  <div className={this.decorateCSS("verticalArrows")}>
+                    {horizontalPreviousArrow &&
+                      <ComposerIcon name={horizontalPreviousArrow}
+                        propsIcon={{
+                          className: this.decorateCSS("horizontalPreviousArrow"),
+                          onClick: () => {
+                            const horizontalSliderRef = this.getComponentState("horizontal-slider-ref");
+                            horizontalSliderRef.current.slickPrev();
+                          },
+                        }}
+                      />}
+                    {horizontalNextArrow &&
+                      <ComposerIcon name={horizontalNextArrow}
+                        propsIcon={{
+                          className: this.decorateCSS("horizontalNextArrow"),
+                          onClick: () => {
+                            const horizontalSliderRef = this.getComponentState("horizontal-slider-ref");
+                            horizontalSliderRef.current.slickNext();
+                          },
+                        }}
+                      />}
+                  </div>}
               </div>
             </div>
             <Base.VerticalContent className={this.decorateCSS("right-content")}>
