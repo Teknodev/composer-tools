@@ -289,21 +289,19 @@ class Slider8 extends BaseSlider {
     const linesContainer = this.getPropValue("lines-container");
     const animation = this.getPropValue("animation");
     const cards = this.castToObject<Card[]>("slider");
-    const item = cards[this.getComponentState("activeSlide")];
-    const noImages = item.image || item.backgroundImage;
+    const noImages = cards[this.getComponentState("activeSlide")]?.image || cards[this.getComponentState("activeSlide")]?.backgroundImage;
 
     const settings = {
       fade: true,
       duration: 1500,
       arrows: false,
-      dots: true,
+      dots: false,
       infinite: cards.length > 1,
       speed: 3000,
       autoplay: false,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
-      dotsClass: this.decorateCSS(noImages ? "dots" : "dots-2"),
       beforeChange: (_: number, newIndex: number) => {
         if (this.getComponentState("activeSlide") !== newIndex) {
           this.setComponentState("activeSlide", newIndex);
@@ -311,12 +309,10 @@ class Slider8 extends BaseSlider {
       },
     };
     const shouldDisplayOverlay = (index: number): boolean => {
-      const shouldDisplay = !!this.castToObject<Card[]>("slider")[index].backgroundImage && overlay;
-      return shouldDisplay;
+      return !!cards[index].backgroundImage && overlay;
     };
     const shouldDisplayForegroundOverlay = (index: number): boolean => {
-      const shouldDisplay = !!this.castToObject<Card[]>("slider")[index].image && foregroundOverlay;
-      return shouldDisplay;
+      return !!cards[index].image && foregroundOverlay;
     };
 
     return (
@@ -425,8 +421,18 @@ class Slider8 extends BaseSlider {
               </ComposerSlider>
             )}
           </div>
+          <ul className={`${this.decorateCSS(noImages ? "dots" : "dots-2")}`}>
+            {cards.map((_, index) => (
+              <li
+                key={`dot-${index}`}
+                className={this.getComponentState("activeSlide") === index && this.decorateCSS("slick-active")}
+                onClick={() => this.getComponentState("slider-ref").current.slickGoTo(index)}>
+                <button />
+              </li>
+            ))}
+          </ul>
         </Base.MaxContent>
-      </Base.Container>
+      </Base.Container >
     );
   }
 }
