@@ -96,9 +96,8 @@
     .max-content{
       .card-container{
         .image-container{
-          .image{
-            max-height: 250px;
-          }
+          max-height: 250px;
+          min-height: 250px;
         }
       }
     }
