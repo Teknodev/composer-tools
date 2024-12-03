@@ -1,0 +1,173 @@
+@import "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss";
+
+.container {
+  padding: var(--composer-gap-md) 0;
+  .max-content {
+    .wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: stretch;
+      width: 100%;
+      height: 100%;
+      .left-side {
+        display: flex;
+        flex-direction: column;
+        padding: 0 var(--composer-gap-xl);
+        gap: var(--composer-gap-md);
+
+        .subtitle {
+          content: "";
+        }
+
+        .title {
+          content: "";
+        }
+
+        .button-container {
+          row-gap: var(--composer-gap-sm);
+
+          .button {
+            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+            color: var(--composer-font-color-primary);
+            padding: var(--composer-gap-sm);
+            width: 80%;
+            word-break: break-all;
+            .button-element {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              .button-text {
+                display: flex;
+                align-items: center;
+                gap: var(--composer-gap-xs);
+                .text {
+                  font-size: 1.5rem;
+                }
+                .info {
+                  font-size: 1rem;
+                }
+              }
+              .icon {
+                width: var(--composer-gap-md);
+                height: var(--composer-gap-md);
+              }
+            }
+          }
+        }
+      }
+      .map-container {
+        margin-top: calc(2 * var(--composer-gap-xl));
+        width: 50%;
+        .map {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+}
+
+.popup {
+  background: var(--composer-font-color-primary);
+  color: var(--composer-font-color-secondary);
+  padding: var(--composer-gap-sm);
+  border-radius: calc(2 * var(--composer-border-radius-xl));
+  width: 200px;
+  max-width: 400px;
+  text-align: center;
+  margin-bottom: var(--composer-gap-md);
+
+  .popup-balloon {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border: var(--composer-gap-md) solid transparent;
+    border-top-color: var(--composer-font-color-primary);
+    border-bottom: 0;
+    margin-left: calc(-1 * var(--composer-gap-md));
+    margin-bottom: 0;
+  }
+}
+
+@container (max-width: #{$composer-tablet-width-lg}) {
+  .container {
+    .max-content {
+      .wrapper {
+        flex-direction: column;
+        .left-side {
+          width: 100%;
+
+          .title {
+            margin-top: 0 !important;
+          }
+
+          .button-container {
+            flex-direction: row;
+            flex-wrap: wrap;
+            .button {
+              width: 100% !important;
+              padding: var(--composer-gap-sm) !important;
+              .button-element {
+                .icon {
+                  width: var(--composer-gap-md);
+                  height: var(--composer-gap-md);
+                }
+              }
+            }
+          }
+        }
+        .map-container {
+          margin-top: var(--composer-gap-md) !important;
+          width: 100% !important;
+          .map {
+            width: 100%;
+            height: 500px !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .wrapper {
+        flex-direction: column;
+        .left-side {
+          width: 100%;
+
+          .title {
+            margin: 0 !important;
+          }
+
+          .button-container {
+            .button {
+              .button-element {
+                .button-text {
+                  .text {
+                    font-size: 1rem !important;
+                  }
+                  .info {
+                    font-size: 1rem !important;
+                  }
+                }
+              }
+            }
+          }
+        }
+        .map-container {
+          margin-top: var(--composer-gap-md) !important;
+          width: 100% !important;
+          .map {
+            width: 100%;
+            height: 400px !important;
+          }
+        }
+      }
+    }
+  }
+}
