@@ -10,14 +10,6 @@
   gap: calc(2 * var(--composer-gap-xl));
 }
 
-.featured,
-.featured-alternate {
-  .description {
-    color: var(--composer-font-color-primary);
-    opacity: 0.5;
-  }
-}
-
 .featured {
   width: 40%;
   gap: var(--composer-gap-md);
@@ -82,8 +74,7 @@
       height: var(--composer-gap-xl);
     }
     .title {
-      color: var(--composer-font-color-primary);
-      opacity: 0.5;
+      color: var(--composer-tertiary-color);
     }
     .price {
       margin: 0;
