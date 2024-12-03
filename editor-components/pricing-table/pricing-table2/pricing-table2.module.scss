@@ -41,6 +41,7 @@
                 .price {
                   color: var(--composer-font-color-secondary);
                   letter-spacing: 1px;
+                  margin-top: var(--composer-gap-sm);
                 }
 
                 .duration {
@@ -81,18 +82,18 @@
                 .card-list-item {
                   display: flex;
                   padding: var(--composer-gap-sm);
-                  opacity: 0.5;
                   gap: var(--composer-gap-md);
                   align-items: center;
 
                   .list-item {
                     width: 100%;
+                    color: var(--composer-font-color-primary);
                   }
 
                   .list-icon {
                     width: var(--composer-gap-md);
                     height: var(--composer-gap-md);
-                    color: var(composer-primary-color);
+                    color: var(--composer-font-color-primary);
                   }
                 }
               }
