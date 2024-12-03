@@ -376,10 +376,17 @@ class ImageGallery4 extends BaseImageGallery {
     });
     this.addProp({
       type: "number",
-      key: "imageCount",
-      displayer: "Image Count",
+      key: "imageCountInitial",
+      displayer: "Image Count Initial",
       value: 3
     })
+    this.addProp({
+      type: "number",
+      key: "imageCount",
+      displayer: "More Image Count",
+      value: 3
+    })
+
     this.addProp({
       type: "string",
       key: "buttonText",
@@ -416,7 +423,7 @@ class ImageGallery4 extends BaseImageGallery {
     this.setComponentState("activeSubnav", null);
     this.setComponentState("focusedImage", null);
     this.setComponentState("isFocused", false);
-    this.setComponentState("imageCount", this.getPropValue("imageCount"));
+    this.setComponentState("moreImages", 0);
     document.addEventListener("keydown", this.handleKeyDown);
   }
 
@@ -435,11 +442,13 @@ class ImageGallery4 extends BaseImageGallery {
   handleSectionClick(index: number): void {
     this.setComponentState("activeNav", index);
     this.setComponentState("activeSubnav", null);
-    this.setComponentState("imageCount", this.getPropValue("imageCount"));
+    this.setComponentState("imageCount", this.getPropValue("imageCountInitial"));
+    this.setComponentState("moreImages", 0);
   }
   handleSubSectionClick(index: number): void {
     this.setComponentState("activeSubnav", index);
-    this.setComponentState("imageCount", this.getPropValue("imageCount"));
+    this.setComponentState("imageCount", this.getPropValue("imageCountInitial"));
+    this.setComponentState("moreImages", 0);
   }
 
 
@@ -501,7 +510,7 @@ class ImageGallery4 extends BaseImageGallery {
   };
 
   handleButtonClick = () => {
-    this.setComponentState("imageCount", this.getComponentState("imageCount") + this.getPropValue("imageCount"))
+    this.setComponentState("moreImages", this.getComponentState("moreImages") + this.getPropValue("imageCount"))
 
   };
   render() {
@@ -512,6 +521,8 @@ class ImageGallery4 extends BaseImageGallery {
     const subnavItems = navItems[activeNav]?.subnavItems;
     const showActiveNavSubnavs = navItems[activeNav]?.hasSubnav;
     const galleryItems = this.getImages();
+    if (this.getComponentState("imageCount") != this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"))
+      this.setComponentState("imageCount", this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"));
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -615,9 +626,12 @@ class ImageGallery4 extends BaseImageGallery {
                 })}
               </Base.ListGrid>
             )}
-            <div className={this.decorateCSS("button-wrapper")}>
-              <Base.Button className={this.decorateCSS("button")} onClick={this.handleButtonClick} >{this.getPropValue("buttonText")}</Base.Button>
-            </div>
+            {(this.getComponentState("imageCount") <= galleryItems.length) && (
+              <div className={this.decorateCSS("button-wrapper")}>
+                <Base.Button className={this.decorateCSS("button")} onClick={this.handleButtonClick} >{this.getPropValue("buttonText")}</Base.Button>
+              </div>
+            )}
+
           </div>
 
           {galleryItems[this.getComponentState("focusedImage")]?.image && (
