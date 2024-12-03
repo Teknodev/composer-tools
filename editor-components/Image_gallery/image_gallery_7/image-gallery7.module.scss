@@ -19,15 +19,20 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            .image {
+            .image, .full-image{
               width: 100%;
-              height: 80%;
               transition: opacity 0.3s ease;
               opacity: 1;
               object-fit: cover;
               &:hover {
                 opacity: 0.8;
               }
+            }
+            .image{
+              height: 80%;
+            }
+            .full-image{
+              height: 100%;
             }
             .textContainer {
               display: flex;

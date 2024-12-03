@@ -16,13 +16,13 @@ class ImageGallery7 extends BaseImageGallery {
             type: "number",
             key: "imageCountInitial",
             displayer: "Image Count Initial",
-            value: 3
+            value: 8
         })
         this.addProp({
             type: "number",
             key: "imageCount",
             displayer: "More Image Count",
-            value: 3
+            value: 4
         })
         this.addProp({
             type: "array",
@@ -422,7 +422,7 @@ class ImageGallery7 extends BaseImageGallery {
                                         {(this.castToString(cards.title) || this.castToString(cards.subtitle) || cards.image) &&
                                             <div className={this.decorateCSS("card")}>
                                                 {cards.image && (
-                                                    <img src={cards.image} alt={cards.image} className={this.decorateCSS("image")} />
+                                                    <img src={cards.image} alt={cards.image} className={this.castToString(cards.title) || this.castToString(cards.subtitle) ? this.decorateCSS("image") : this.decorateCSS("full-image")} />
                                                 )}
                                                 {(this.castToString(cards.title) || this.castToString(cards.subtitle)) && (
                                                     <div className={this.decorateCSS("textContainer")}>
