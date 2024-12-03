@@ -422,7 +422,6 @@ export abstract class Location extends Component {
 
   selectTheme(selectedTheme: string) {
     return this.themes.find((theme: TTheme) => {
-      console.log(theme);
       return theme.name == selectedTheme;
     });
   }
