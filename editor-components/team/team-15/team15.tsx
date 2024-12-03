@@ -374,7 +374,7 @@ class Team15 extends Team {
                               })}
                             </Base.VerticalContent>
                           )}
-                          {descriptionExists && <Base.H5 className={overlay ? this.decorateCSS("description-overlay") : this.decorateCSS("description")}>{card.getPropValue("description")}</Base.H5>}
+                          {descriptionExists && <Base.P className={overlay ? this.decorateCSS("description-overlay") : this.decorateCSS("description")}>{card.getPropValue("description")}</Base.P>}
                           <div className={this.decorateCSS("icons")}>
                             <ComposerLink path={card.getPropValue("firstIconUrl")}>
                               <ComposerIcon name={card.getPropValue("firstIcon")} propsIcon={{ className: overlay ? this.decorateCSS("firstIcon-overlay") : this.decorateCSS("firstIcon") }} />
