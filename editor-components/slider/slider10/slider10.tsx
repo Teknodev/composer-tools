@@ -6,6 +6,7 @@ import ComposerSlider from "../../../composer-base-components/slider/slider";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styles from "./slider10.module.scss";
+import { Base } from "../../../composer-base-components/base/base";
 
 type SliderItem = {
   title: JSX.Element;
@@ -328,11 +329,10 @@ class Slider10 extends BaseSlider {
     ).length;
 
     const adjustFooterWidth = {
-      width: `${
-        featuredItemsNonEmptyLength === 1
-          ? "25%"
-          : featuredItemsNonEmptyLength * 20 + "%"
-      }`,
+      width: `${featuredItemsNonEmptyLength === 1
+        ? "25%"
+        : featuredItemsNonEmptyLength * 25 + "%"
+        }`,
     };
 
     const getButtonClass = () => {
@@ -354,17 +354,17 @@ class Slider10 extends BaseSlider {
     const nextIcon: string = this.getPropValue("next-button-icon");
 
     return (
-      <div className={this.decorateCSS("container")}>
+      <Base.Container className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("slider-wrapper")}>
           <div className={this.decorateCSS("slider")}>
             {slides?.length > 0 && (
-              <ComposerSlider ref={sliderRef} {...settings}>
+              <ComposerSlider ref={sliderRef} {...settings} className={this.decorateCSS("carousel")}>
                 {slides.map((item: SliderItem, index: number) => {
                   const titleExist = this.castToString(item.title);
 
                   if (item.image || titleExist)
                     return (
-                      <div key={index}>
+                      <div className={this.decorateCSS("card")} key={index}>
                         <div
                           className={this.decorateCSS("slider-item")}
                           style={{
@@ -373,19 +373,19 @@ class Slider10 extends BaseSlider {
                         >
                           <div className={this.decorateCSS("max-content")}>
                             {titleExist && (
-                              <p
+                              <Base.SectionTitle
                                 className={`
                                 ${this.decorateCSS("slider-item-title")}
-                                ${
-                                  this.getComponentState("active") === index ||
-                                  textAnimation
+                                ${item.image && this.decorateCSS("slider-item-title-with-img")}
+                                ${this.getComponentState("active") === index ||
+                                    textAnimation
                                     ? this.decorateCSS("show")
                                     : ""
-                                }
+                                  }
                               `}
                               >
                                 {item.title}
-                              </p>
+                              </Base.SectionTitle>
                             )}
                           </div>
                           {overlay && (
@@ -405,7 +405,7 @@ class Slider10 extends BaseSlider {
           </div>
           {(featuredItems?.length > 0 || prevIcon || nextIcon) && (
             <div className={this.decorateCSS("footer-max-content")}>
-              <footer
+              <div
                 className={`
                   ${this.decorateCSS("slider-footer")}
                   ${this.decorateCSS(featuredItemsNonEmptyLength === 0 ? "footer-disappear" : "")}
@@ -433,12 +433,11 @@ class Slider10 extends BaseSlider {
                               <img
                                 className={`
                                   ${this.decorateCSS(
-                                    "slider-footer-item-image",
-                                  )}
-                                  ${
-                                    hoverAnimation
-                                      ? this.decorateCSS("hover-animation")
-                                      : ""
+                                  "slider-footer-item-image",
+                                )}
+                                  ${hoverAnimation
+                                    ? this.decorateCSS("hover-animation")
+                                    : ""
                                   }
                                 `}
                                 src={item.image}
@@ -536,11 +535,11 @@ class Slider10 extends BaseSlider {
                     )}
                   </div>
                 )}
-              </footer>
+              </div>
             </div>
           )}
         </div>
-      </div>
+      </Base.Container>
     );
   }
 }
