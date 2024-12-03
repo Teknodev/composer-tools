@@ -213,6 +213,7 @@ import NoticeModal from "./modal/notice-modal/notice";
 import NotificationModal2 from "./modal/notificationmodal2/notificationmodal2";
 import SubscriptionModal from "./modal/subscription-modal/subscription-modal";
 import FormModal1 from "./modal/formmodal1/formmodal1";
+import LocationComponent5 from "./location/location5/location5";
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
     new NotificationModal1(),
@@ -429,6 +430,7 @@ function Registerables(composer: ComponentsRegistery) {
     new SubscriptionModal(),
     new FormModal1(),
     new LocationComponent1(),
+    new LocationComponent5(),
   ]);
 }
 

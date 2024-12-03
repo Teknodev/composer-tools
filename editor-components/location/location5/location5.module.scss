@@ -1,0 +1,77 @@
+@import "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss";
+
+.container {
+  .max-content {
+    .title {
+      margin-top: 0;
+    }
+  }
+
+  .wrapper {
+    display: flex;
+    gap: var(--composer-gap-lg);
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .map-container {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      gap: var(--composer-gap-lg);
+      .location-item {
+        display: flex;
+        text-align: left;
+        color: var(--composer-font-color-primary);
+        .location-items {
+          width: 40%;
+          .location-index {
+            font-size: 1.5rem;
+          }
+          .location-city {
+            font-size: 2rem;
+          }
+          .location-adress {
+            font-size: 1rem;
+          }
+          .location-description {
+            font-size: 1rem;
+          }
+        }
+      }
+
+      .location-map {
+        width: 60%;
+        min-height: 300px;
+        box-shadow: rgba(var(--composer-font-color-primary-rgb), 0.3) 0px 1px 3px -1px, rgba(var(--composer-font-color-primary-rgb), 0.3) 0px 1px 3px -1px;
+      }
+
+      .location-map-full-width {
+        box-shadow: rgba(var(--composer-font-color-primary-rgb), 0.3) 0px 1px 3px -1px, rgba(var(--composer-font-color-primary-rgb), 0.3) 0px 1px 3px -1px;
+        width: 100%;
+        min-height: 300px;
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .wrapper {
+        .map-container {
+          .location-item {
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-md);
+            .location-items {
+              width: 100%;
+            }
+          }
+          .location-map {
+            width: 100%;
+            max-width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
