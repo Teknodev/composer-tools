@@ -779,18 +779,20 @@ class ImageGallery2 extends BaseImageGallery {
                                                 className={this.decorateCSS("gallery-image")}
                                             />
                                             <div className={this.decorateCSS("overlay")} />
-                                            <ComposerIcon
-                                                propsIcon={{
-                                                    className: this.decorateCSS("magnifier-icon"),
-                                                }}
-                                                name={magnifierIcon}
-                                            />
+                                            <div className={this.decorateCSS("magnifier-icon-wrapper")}>
+                                                <ComposerIcon
+                                                    propsIcon={{
+                                                        className: this.decorateCSS("magnifier-icon"),
+                                                    }}
+                                                    name={magnifierIcon}
+                                                />
+                                            </div>
                                         </div>
                                     </div>
                                 );
                             })}
                         </Base.ListGrid>
-                        {(currentGallery.length >= this.getComponentState("imageCount")) && (
+                        {(currentGallery.length > this.getComponentState("imageCount")) && (
                             <div className={this.decorateCSS("button-wrapper")}>
                                 <Base.Button className={this.decorateCSS("button")} onClick={this.handleLoadMoreButton}> {this.getPropValue("buttonText")}</Base.Button>
                             </div>

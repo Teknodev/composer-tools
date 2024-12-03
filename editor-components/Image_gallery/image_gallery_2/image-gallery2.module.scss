@@ -8,8 +8,8 @@
         align-items: center;
         .section-selector-text {
           display: flex;
-          justify-content: center;
           gap: var(--composer-gap-xl);
+          flex-wrap: wrap;
           .section-text {
             display: flex;
             background: transparent;
@@ -18,10 +18,8 @@
             transition: color 0.3s ease;
             margin: 0px;
             font-size: 1.5rem;
-            opacity: 0.7;
             &:hover,
             &.active {
-              color: var(--composer-primary-color);
               text-decoration: underline;
               text-underline-offset: var(--composer-gap-xs);
               opacity: 1;
@@ -59,11 +57,7 @@
                 transition: opacity 0.5s ease;
                 pointer-events: none;
               }
-  
-              .magnifier-icon {
-                width: 40px;
-                height: 40px;
-                color: var(--composer-font-color-secondary);
+              .magnifier-icon-wrapper{
                 background-color: var(--composer-font-color-primary);
                 border-radius: 50%;
                 padding: var(--composer-gap-sm);
@@ -74,6 +68,14 @@
                 opacity: 0;
                 transition: opacity 0.6s ease-in-out, top 0.6s ease-in-out;
                 z-index: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                .magnifier-icon {
+                  width: 20px;
+                  height: 20px;
+                  color: var(--composer-font-color-secondary);
+                }
               }
             }
   
@@ -82,8 +84,7 @@
                 transform: scale(1.1);
                 transition: transform 1s ease-in-out;
               }
-  
-              .magnifier-icon {
+              .magnifier-icon-wrapper{
                 opacity: 1;
                 top: 50%;
               }
@@ -209,9 +210,11 @@
           .gallery-grid{
             .gallery-item{
               .image-container {
-                .magnifier-icon {
-                  width: 30px;
-                  height: 30px;
+                .magnifier-icon-wrapper {
+                  .magnifier-icon{
+                    width: 15px;
+                    height: 15px;
+                  }
                 }
                 .modal-image {
                   min-width: 500px;
@@ -261,6 +264,9 @@
           .section-selector-text {
             flex-direction: column;
             align-items: center ;
+            .section-text{
+              text-align: center;
+            }
           }
           .gallery-grid {
             .gallery-item{
