@@ -597,7 +597,7 @@ class ImageGallery4 extends BaseImageGallery {
 
                     >
                       {item.image && (
-                        <div>
+                        <div className={this.decorateCSS("gallery-image-container")}>
                           <img
                             src={item.image}
                             alt={item.image}
@@ -626,7 +626,7 @@ class ImageGallery4 extends BaseImageGallery {
                 })}
               </Base.ListGrid>
             )}
-            {(this.getComponentState("imageCount") <= galleryItems.length) && (
+            {(this.getComponentState("imageCount") < galleryItems.length) && (
               <div className={this.decorateCSS("button-wrapper")}>
                 <Base.Button className={this.decorateCSS("button")} onClick={this.handleButtonClick} >{this.getPropValue("buttonText")}</Base.Button>
               </div>
