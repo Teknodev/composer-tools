@@ -228,12 +228,16 @@ class PricingTable5 extends BasePricingTable {
     const descriptionExist = this.castToString(description);
     const showLeftContent = subtitleExist || titleExist || descriptionExist || buttons.length > 0;
 
+    const plans = this.getPropValue("plans");
+    const rightItemsExist = plans.length > 0;
+    console.log(rightItemsExist, "rightItemsExist");
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
             {showLeftContent && (
-              <Base.VerticalContent className={this.decorateCSS("left-content")}>
+              <Base.VerticalContent className={rightItemsExist ? this.decorateCSS("left-content") : this.decorateCSS("left-content-single")}>
                 {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
                 {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                 {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
@@ -244,7 +248,7 @@ class PricingTable5 extends BasePricingTable {
                       buttonText && (
                         <ComposerLink path={button.getPropValue("url")}>
                           <div className={this.decorateCSS("button-box")}>
-                            <button className={this.decorateCSS("button-text")}>{buttonText}</button>
+                            <Base.Button className={this.decorateCSS("button-text")}>{buttonText}</Base.Button>
                           </div>
                         </ComposerLink>
                       )
@@ -253,40 +257,40 @@ class PricingTable5 extends BasePricingTable {
                 </div>
               </Base.VerticalContent>
             )}
-            <div className={showLeftContent ? this.decorateCSS("right-content") : this.decorateCSS("right-content-single")}>
-              {this.getPropValue("plans").map((plan: any, index: number) => {
-                const isActive = index === this.getComponentState("activePlan");
-                const planTitleExist = this.castToString(plan.getPropValue("planTitle"));
-                const priceExist = this.castToString(plan.getPropValue("price"));
-                const planDescription = this.castToString(plan.getPropValue("priceDescription"));
-                const planButtonText = this.castToString(plan.getPropValue("buttonText"));
-                return (
-                  <div className={`${this.decorateCSS("plan")} ${isActive ? this.decorateCSS("active") : ""}`} onClick={() => this.onPlanClicked(index)}>
-                    <div className={this.decorateCSS("plan-upper")}>
-                      {planTitleExist && <Base.H5 className={this.decorateCSS("plan-title")}>{plan.getPropValue("planTitle")}</Base.H5>}
-                      <div className={isActive ? this.decorateCSS("icon-box-active") : this.decorateCSS("icon-box")}>
-                        <ComposerIcon name={this.getPropValue(isActive ? "lessIcon" : "moreIcon")} />
+            {rightItemsExist && (
+              <div className={showLeftContent ? this.decorateCSS("right-content") : this.decorateCSS("right-content-single")}>
+                {this.getPropValue("plans").map((plan: any, index: number) => {
+                  const isActive = index === this.getComponentState("activePlan");
+                  const planTitleExist = this.castToString(plan.getPropValue("planTitle"));
+                  const priceExist = this.castToString(plan.getPropValue("price"));
+                  const planDescription = this.castToString(plan.getPropValue("priceDescription"));
+                  const planButtonText = this.castToString(plan.getPropValue("buttonText"));
+                  return (
+                    <div className={`${this.decorateCSS("plan")} ${isActive ? this.decorateCSS("active") : ""}`} onClick={() => this.onPlanClicked(index)}>
+                      <div className={this.decorateCSS("plan-upper")}>
+                        {planTitleExist && <Base.H5 className={this.decorateCSS("plan-title")}>{plan.getPropValue("planTitle")}</Base.H5>}
+                        <div className={isActive ? this.decorateCSS("icon-box-active") : this.decorateCSS("icon-box")}>
+                          <ComposerIcon name={this.getPropValue(isActive ? "lessIcon" : "moreIcon")} />
+                        </div>
+                      </div>
+
+                      {isActive && <Base.P className={this.decorateCSS("plan-description")}>{plan.getPropValue("description")}</Base.P>}
+
+                      <div className={this.decorateCSS("plan-price-box")}>
+                        {(priceExist || planDescription) && (
+                          <div className={this.decorateCSS("labels")}>
+                            {priceExist && <Base.H5 className={this.decorateCSS("price")}>{plan.getPropValue("price")}</Base.H5>}
+                            {planDescription && <Base.P className={this.decorateCSS("price-description")}>{plan.getPropValue("priceDescription")}</Base.P>}
+                          </div>
+                        )}
+
+                        <ComposerLink path={plan.getPropValue("link")}>{planButtonText && <Base.Button className={this.decorateCSS("plan-button")}>{plan.getPropValue("buttonText")}</Base.Button>}</ComposerLink>
                       </div>
                     </div>
-
-                    {isActive && <Base.P className={this.decorateCSS("plan-description")}>{plan.getPropValue("description")}</Base.P>}
-
-                    <div className={this.decorateCSS("plan-price-box")}>
-                      {(priceExist || planDescription) && (
-                        <div className={this.decorateCSS("labels")}>
-                          {priceExist && <Base.H5 className={this.decorateCSS("price")}>{plan.getPropValue("price")}</Base.H5>}
-                          {planDescription && <Base.P className={this.decorateCSS("price-description")}>{plan.getPropValue("priceDescription")}</Base.P>}
-                        </div>
-                      )}
-
-                      <ComposerLink path={plan.getPropValue("link")}>
-                        {planButtonText && <div className={this.decorateCSS("plan-button")}>{planButtonText && <Base.H5 className={this.decorateCSS("plan-button-text")}>{plan.getPropValue("buttonText")}</Base.H5>}</div>}
-                      </ComposerLink>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+                  );
+                })}
+              </div>
+            )}
           </div>
         </Base.MaxContent>
       </Base.Container>

@@ -15,7 +15,8 @@
         gap: var(--composer-gap-md);
       }
 
-      .left-content {
+      .left-content,
+      .left-content-single {
         .subtitle {
           content: "";
         }
@@ -34,16 +35,6 @@
 
           .button-box {
             display: flex;
-
-            .button-text {
-              padding: var(--composer-gap-md) var(--composer-gap-lg);
-              min-width: 150px;
-              width: 100%;
-              border-radius: var(--composer-border-radius-xl);
-              background-color: var(--composer-primary-color);
-              color: var(--composer-font-color-secondary);
-              border: none;
-            }
           }
         }
       }
@@ -76,8 +67,7 @@
             }
             .plan-description,
             .price-description {
-              color: var(--composer-font-color-secondary);
-              opacity: 0.5;
+              color: var(--composer-tertiary-color);
             }
 
             .plan-upper {
@@ -148,15 +138,12 @@
 
             .plan-button {
               background-color: transparent;
-              border: 1px solid rgba(var(--composer-font-color-secondary-rgb), 0.5);
-              border-radius: var(--composer-gap-lg);
-              padding: var(--composer-gap-sm) var(--composer-gap-md);
-              cursor: pointer;
-              transition: all 0.4s ease;
-              font-size: 1rem;
-
-              .plan-button-text {
-                margin: 0;
+              border: 1px solid var(--composer-font-color-secondary);
+              color: var(--composer-font-color-secondary);
+              &:hover {
+                background-color: white;
+                border: 1px solid white;
+                color: black;
               }
             }
           }
@@ -164,7 +151,17 @@
       }
 
       .right-content-single {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-md);
         width: 100%;
+      }
+
+      .left-content-single {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-md);
       }
     }
   }
@@ -195,30 +192,11 @@
           .buttons {
             .button-box {
               width: fit-content;
-              .button-text {
-                border: none;
-                font-size: 1rem;
-              }
             }
           }
         }
         .right-content {
           width: 100%;
-
-          .plan {
-            .plan-price-box {
-              .plan-button {
-                width: 100%;
-                font-size: 1rem;
-                padding: var(--composer-gap-xs) var(--composer-gap-sm);
-              }
-            }
-          }
-          .button-box {
-            .button-text {
-              font-size: 1rem;
-            }
-          }
         }
       }
     }
@@ -239,11 +217,6 @@
         .left-content {
           .buttons {
             justify-content: center;
-            .button-box {
-              .button-text {
-                font-size: 1rem;
-              }
-            }
           }
         }
         .right-content {
@@ -252,10 +225,6 @@
           .plan {
             .plan-price-box {
               display: flex;
-              .plan-button {
-                font-size: 1rem;
-                text-align: center;
-              }
 
               .labels {
                 .price {
