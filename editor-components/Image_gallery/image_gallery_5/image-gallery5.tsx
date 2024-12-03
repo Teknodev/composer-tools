@@ -144,7 +144,6 @@ class ImageGalleryComponent5 extends BaseImageGallery {
       key: "itemCount",
       displayer: "Item Count in a Row",
       value: 3,
-      max: 5,
     });
 
     this.addProp({
@@ -175,8 +174,14 @@ class ImageGalleryComponent5 extends BaseImageGallery {
     });
     this.addProp({
       type: "number",
+      key: "imageCountInitial",
+      displayer: "Image Count Initial",
+      value: 3
+    })
+    this.addProp({
+      type: "number",
       key: "imageCount",
-      displayer: "Image Count",
+      displayer: "More Image Count",
       value: 3
     })
     this.addProp({
@@ -188,7 +193,7 @@ class ImageGalleryComponent5 extends BaseImageGallery {
 
     this.setComponentState("is_image_clicked", false);
     this.setComponentState("clicked_image_index", 0);
-    this.setComponentState("imageCount", this.getPropValue("imageCount"));
+    this.setComponentState("moreImages", 0);
   }
 
   getName(): string {
@@ -228,7 +233,7 @@ class ImageGalleryComponent5 extends BaseImageGallery {
     }
   }
   handleButtonClick = () => {
-    this.setComponentState("imageCount", this.getComponentState("imageCount") + this.getPropValue("imageCount"))
+    this.setComponentState("moreImages", this.getComponentState("moreImages") + this.getPropValue("imageCount"))
 
   };
   render() {
@@ -239,6 +244,8 @@ class ImageGalleryComponent5 extends BaseImageGallery {
     const prevIcon = this.getPropValue("prevIcon");
     const imageIndex = this.getPropValue("imageIndex");
     const closeIcon = this.getPropValue("closeIcon");
+    if (this.getComponentState("imageCount") != this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"))
+      this.setComponentState("imageCount", this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"));
 
     return (
       <Base.Container
