@@ -195,4 +195,8 @@ export namespace Base {
       <P className={`${styles.sectionDescription} ${className}`} {...props}></P>
     );
   }
+
+  export function Button({className, ...props}: any){
+    return <button className={`${styles.button} ${className}`} {...props}></button>
+  }
 }
