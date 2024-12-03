@@ -27,14 +27,14 @@ class ImageGallery1 extends BaseImageGallery {
     })
     this.addProp({
       type: "number",
-      key: "imageCount",
-      displayer: "Image Count",
+      key: "imageCountInitial",
+      displayer: "Image Count Initial",
       value: 3
     })
     this.addProp({
       type: "number",
-      key: "imageCountInitial",
-      displayer: "Image Count Initial",
+      key: "imageCount",
+      displayer: "More Image Count",
       value: 3
     })
     this.addProp({
@@ -381,8 +381,7 @@ class ImageGallery1 extends BaseImageGallery {
     })
     this.setComponentState("selectedSection", null as JSX.Element);
     this.setComponentState("selectedIndex", -1);
-    this.setComponentState("initialImageCount", this.getPropValue("imageCountInitial"));
-    this.setComponentState("imageCount", this.getPropValue("imageCountInitial"));
+    this.setComponentState("moreImages", 0);
   }
 
 
@@ -392,15 +391,17 @@ class ImageGallery1 extends BaseImageGallery {
   handleSectionClick(sectionTitle: JSX.Element, index: number): void {
     this.setComponentState("selectedSection", sectionTitle);
     this.setComponentState("selectedIndex", index)
-    this.setComponentState("imageCount", this.getPropValue("imageCount"));
+    this.setComponentState("imageCount", this.getPropValue("imageCountInitial"));
+    this.setComponentState("moreImages", 0);
   }
 
   handleButtonClick = () => {
-    this.setComponentState("imageCount", this.getComponentState("imageCount") + this.getPropValue("imageCount"))
+    this.setComponentState("moreImages", this.getComponentState("moreImages") + this.getPropValue("imageCount"))
 
   };
 
   render() {
+    this.setComponentState("imageCount", this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"));
     const imageGallery = this.castToObject<ImageGallery[]>("imageGalleries");
     const selectedSection = this.getComponentState("selectedSection");
     const seenImages = new Set<string>();
@@ -416,14 +417,6 @@ class ImageGallery1 extends BaseImageGallery {
     const selectedImageGallery =
       this.getComponentState("selectedIndex") == -1 ? allImages
         : sectionImage;
-
-
-
-    if (this.getComponentState("initialImageCount") != this.getPropValue("imageCountInitial")) {
-      this.setComponentState("initialImageCount", this.getPropValue("imageCountInitial"));
-    }
-
-
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -468,7 +461,7 @@ class ImageGallery1 extends BaseImageGallery {
                 seenImages.add(image.cardImage);
                 return true;
               })
-              .slice(0, this.getComponentState("initialImageCount"))
+              .slice(0, this.getComponentState("imageCount"))
               .map((image: Image, imgIndex: number) => (
                 <div key={imgIndex} className={this.decorateCSS("card-container")}>
                   <div className={this.decorateCSS("image-container")}>
