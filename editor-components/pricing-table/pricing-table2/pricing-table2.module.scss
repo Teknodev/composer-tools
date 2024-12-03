@@ -37,11 +37,12 @@
                 display: flex;
                 align-items: center;
                 gap: var(--composer-gap-sm);
+                margin-bottom: var(--composer-gap-sm);
 
                 .price {
                   color: var(--composer-font-color-secondary);
                   letter-spacing: 1px;
-                  margin-top: var(--composer-gap-sm);
+                  margin: 0;
                 }
 
                 .duration {
@@ -61,17 +62,17 @@
               box-shadow: var(--box-shadow-active);
               padding: var(--composer-gap-md) var(--composer-gap-md);
               margin-top: calc(-1 * var(--composer-gap-xl));
-              background-color: white;
+              background-color: var(--composer-html-background);
               border-radius: var(--composer-border-radius-lg);
 
               .card-img {
                 padding: var(--composer-gap-md);
                 background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-                color: var(--composer-font-color-primary);
                 border-radius: var(--composer-border-radius-lg);
                 box-shadow: var(--box-shadow-active);
                 width: max-content;
                 margin-top: calc(-1 * var(--composer-gap-xl));
+                color: var(--composer-primary-color);
 
                 svg {
                   font-size: 2rem;
