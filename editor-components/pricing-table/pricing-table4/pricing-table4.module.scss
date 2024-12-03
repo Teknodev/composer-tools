@@ -63,7 +63,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 padding: var(--composer-gap-lg);
 
                 .price-title2 {
-                  opacity: 0.5;
+                  color: var(--composer-tertiary-color);
                 }
               }
             }

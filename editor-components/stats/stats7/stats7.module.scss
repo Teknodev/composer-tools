@@ -1,95 +1,103 @@
-.container {
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+
+@mixin title-child {
+  display: block;
+  margin: auto;
+  width: 100%;
+
+  .subtitle {
+    text-transform: uppercase;
+    max-width: 95%;
+  }
+
+  .title {
     width: 100%;
-    padding: 50px 0;
-    background-repeat: no-repeat;
-    background-size: cover;
-    .max-content {
-        display: flex;
-        justify-content: space-around;
-        max-width: var(--composer-content-width);
-        margin: auto;
-        .stats1-page {
-            display: block;
-            width: 100%;
-            .title-child {
-                display: flex;
-                justify-content: space-around;
-                align-items: center;
-                padding: 20px;
-                .title {
-                    text-align: center;
-                    width: 40%;
-                    margin: 0;
-                    font-size: 4rem;
-                    color: var(--composer-primary-color);
-                }
-                .description {
-                    text-align: center;
-                    width: 40%;
-                    margin: 0;
-                    font-size: 1.5rem;
-                    color: var(--composer-font-color-primary);
-                }
-            }
-            .bottom-child {
-                display: flex;
-                justify-content: space-around;
-                box-shadow: var(--composer-box-shadow);
-                width: 100%;
-                margin: 0 auto;
-                border-radius: 6px;
-                padding: 60px 0;
-                .card {
-                    .card-data-title {
-                        text-align: center;
-                        font-size: 4rem;
-                        margin: 0;
-                        color: var(--composer-font-color-primary);
-                    }
-                    .card-data-subtitle {
-                        text-align: center;
-                        font-size: 1.8rem;
-                        color: var(--composer-primary-color);
-                        margin: 20px 0;
-                    }
-                    .card-data-description {
-                        text-align: center;
-                        font-size: 1.5rem;
-                        color: var(--composer-font-color-primary);
-                    }
-                }
-            }
-        }
-    }
+  }
+
+  .description {
+    width: 100%;
+    color: var(--composer-font-color-primary);
+    margin: 0;
+  }
 }
 
-@media only screen and (max-width: 768px) {
-    .container {
-        .max-content {
-            padding: 0 20px;
-            justify-content: center;
-            .stats1-page {
-                .title-child {
-                    gap: 20px;
-                    flex-direction: column;
-                    .title {
-                        width: 100%;
-                    }
-                    .description {
-                        width: 100%;
-                    }
-                }
-                .bottom-child {
-                    width: 100%;
-                    display: flex;
-                    flex-direction: column;
-                    padding: 20px;
-                    gap: 20px;
-                    .card {
-                        width: 100%;
-                    }
-                }
-            }
-        }
+@mixin progress-container {
+  gap: var(--composer-gap-md);
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+
+  .item {
+    transition: 0.3s;
+    width: 100%;
+
+    .progress-title {
+      display: flex;
+      font-size: 1rem;
+      font-weight: bold;
+      color: var(--composer-font-color-primary);
+      margin-bottom: var(--composer-gap-xs);
+      gap: var(--composer-gap-md);
+      align-items: end;
     }
+
+    .progress-percent {
+      display: flex;
+      font-weight: bold;
+      margin-bottom: var(--composer-gap-xs);
+      color: (--composer-font-color-primary);
+      align-items: end;
+      text-align: end;
+      max-width: 50%;
+
+      .progress-text {
+        width: max-content;
+      }
+    }
+  }
+
+  .progress-active {
+    background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+
+    .progress-passive {
+      animation: fillProgress 2s ease-in-out forwards;
+      height: 3px;
+      background-color: var(--composer-secondary-color);
+    }
+
+    @keyframes fillProgress {
+      from {
+        width: 0%;
+      }
+
+      to {
+        width: progress;
+      }
+    }
+  }
+}
+
+.container {
+  .max-content {
+    display: flex;
+    justify-content: center;
+    gap: var(--composer-gap-lg);
+
+    .title-child {
+      @include title-child;
+    }
+
+    .progress-container {
+      @include progress-container;
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width-lg}) {
+  .container {
+    .max-content {
+      flex-direction: column;
+    }
+  }
 }
