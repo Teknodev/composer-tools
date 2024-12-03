@@ -538,6 +538,17 @@ class ImageGalleryComponent6 extends BaseImageGallery {
       return currentGallery?.images || [];
     }
   }
+  handleSectionClickAll(): void {
+    this.setComponentState("selectedSection", "ALL");
+    this.setComponentState("imageCount", this.getPropValue("imageCountInitial"));
+    this.setComponentState("moreImages", 0);
+  }
+  handleSectionClick(element: any): void {
+    this.setComponentState("selectedSection", element.sectionTitle)
+    this.setComponentState("imageCount", this.getPropValue("imageCountInitial"));
+    this.setComponentState("moreImages", 0);
+  }
+
   handleButtonClick = () => {
     this.setComponentState("moreImages", this.getComponentState("moreImages") + this.getPropValue("imageCount"))
 
@@ -558,7 +569,7 @@ class ImageGalleryComponent6 extends BaseImageGallery {
               <Base.H4
                 className={`${this.decorateCSS("section-text")} ${(selectedSection === "ALL" || !selectedSection) ? this.decorateCSS("active") : ""
                   }`}
-                onClick={() => this.setComponentState("selectedSection", "ALL")}
+                onClick={() => this.handleSectionClickAll()}
               >
                 ALL
               </Base.H4>
@@ -568,7 +579,7 @@ class ImageGalleryComponent6 extends BaseImageGallery {
               <Base.H4
                 className={`${this.decorateCSS("section-text")} ${this.castToString(element.sectionTitle) === this.castToString(this.getComponentState("selectedSection")) ? this.decorateCSS("active") : ""
                   }`}
-                onClick={() => this.setComponentState("selectedSection", element.sectionTitle)}
+                onClick={() => this.handleSectionClick(element)}
               >
                 {element.getPropValue("sectionTitle")}
               </Base.H4>
