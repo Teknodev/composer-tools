@@ -3,6 +3,7 @@ import styles from "./faq3.module.scss";
 import { BaseFAQ } from "../../EditorComponent";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { Base } from "../../../composer-base-components/base/base";
 
 type Faq = {
   title: JSX.Element;
@@ -293,128 +294,123 @@ class FaqContainerTwo extends BaseFAQ {
   }
 
   render() {
-    const mainTitleExist = this.getPropValue("mainTitle", { as_string: true });
-    const mainSubtitleExist = this.getPropValue("mainSubtitle", {
-      as_string: true,
-    });
+    const mainTitleExist = this.castToString(this.getPropValue("mainTitle"));
+    const mainSubtitleExist = this.castToString(this.getPropValue("mainSubtitle"));
     const infoArray = this.castToObject<InfoArrayItem[]>("infoArray");
     const faqItems = this.castToObject<Faq[]>("faqItems");
     const showLine = this.getPropValue("showLine");
 
     return (
-      <div className={this.decorateCSS("Main-container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("containerTop")}>
-            {(mainTitleExist || mainSubtitleExist) && (
-              <div className={this.decorateCSS("header")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <div className={this.decorateCSS("content")}>
+            {(mainTitleExist || mainSubtitleExist || showLine) && (
+              <Base.VerticalContent className={this.decorateCSS("header")}>
                 {mainTitleExist && (
-                  <div className={this.decorateCSS("caption")}>
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
                     {this.getPropValue("mainTitle")}
+                  </Base.SectionTitle>
+                )}
+                {mainTitleExist && mainSubtitleExist && showLine && (
+                  <div className={this.decorateCSS("divider-wrapper")}>
+                    <div className={this.decorateCSS("divider")} />
+                  </div>)}
+                {mainSubtitleExist && (
+                  <Base.SectionDescription className={this.decorateCSS("description")}>
+                    {this.getPropValue("mainSubtitle")}
+                  </Base.SectionDescription>
+                )}
+              </Base.VerticalContent>
+            )}
+            {((faqItems?.length > 0) || (infoArray?.length > 0)) && (
+              <div className={this.decorateCSS("contentContainer")}>
+                {faqItems?.length > 0 && (
+                  <div className={this.decorateCSS("content-left")}>
+                    {faqItems.map((item: Faq, index: number) => {
+                      const is_active =
+                        this.getComponentState("active_index") == index;
+                      const titleExist = this.castToString(item.title);
+                      const descExist = this.castToString(item.description);
+
+                      if (titleExist || descExist)
+                        return (
+                          <div
+                            key={index}
+                            className={this.decorateCSS("card")}
+                            onClick={() => this.onItemClick(index)}
+                          >
+                            {(titleExist || descExist || item.index) && (
+                              <div className={this.decorateCSS("top-card")}>
+                                <div className={this.decorateCSS("card-left")}>
+                                  {item.index && (
+                                    <div className={this.decorateCSS("question-index")}>
+                                      {item.index}.
+                                    </div>
+                                  )}
+                                  {titleExist && (
+                                    <div className={this.decorateCSS("card-subtitle")}>
+                                      {item.title}
+                                    </div>
+                                  )}
+                                </div>
+                                {(this.getPropValue("inactive_icon") || this.getPropValue("active_icon")) && (
+                                  <div className={this.decorateCSS("card-right")}>
+                                    <ComposerIcon
+                                      propsIcon={{
+                                        className: this.decorateCSS("icon"),
+                                      }}
+                                      name={
+                                        is_active
+                                          ? this.getPropValue("inactive_icon")
+                                          : this.getPropValue("active_icon")
+                                      }
+                                    />
+                                  </div>
+                                )}
+                              </div>
+                            )}
+                            {descExist && (
+                              <div className={`${this.decorateCSS("text-box")} ${is_active && this.decorateCSS("active")}`} >
+                                <div className={`$this.decorateCSS("card-text") ${is_active && this.decorateCSS("active")}`}>
+                                  {item.description}
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        );
+                    })}
                   </div>
                 )}
-
-                <div>
-                  {mainTitleExist && mainSubtitleExist && showLine && (
-                    <hr className={this.decorateCSS("divider")} />
-                  )}
-                </div>
-
-                {mainSubtitleExist && (
-                  <div className={this.decorateCSS("subtitle")}>
-                    {this.getPropValue("mainSubtitle")}
+                {infoArray?.length > 0 && (
+                  <div className={this.decorateCSS("content-right")}>
+                    {infoArray.map((item: InfoArrayItem, index: number) => (
+                      <div key={index} className={this.decorateCSS("info-items")}>
+                        {this.castToString(item.title) && (
+                          <Base.H2 className={this.decorateCSS("title-info")}>
+                            {item.title}
+                          </Base.H2>
+                        )}
+                        {this.castToString(item.description) && (
+                          <Base.P className={this.decorateCSS("description-info")}>
+                            {item.description}
+                          </Base.P>
+                        )}
+                        {this.castToString(item.buttonText) && (
+                          <Base.Button className={this.decorateCSS("button-info")}>
+                            <ComposerLink path={item.buttonLink}>
+                              {item.buttonText}
+                            </ComposerLink>
+                          </Base.Button>
+                        )}
+                      </div>
+                    ))}
                   </div>
                 )}
               </div>
             )}
-            <div className={this.decorateCSS("contentContainer")}>
-              {faqItems?.length > 0 && (
-                <div className={this.decorateCSS("content-left")}>
-                  {faqItems.map((item: Faq, index: number) => {
-                    const is_active =
-                      this.getComponentState("active_index") == index;
-                    const titleExist = this.castToString(item.title);
-                    const descExist = this.castToString(item.description);
-                    const questionIndex =
-                      item.index !== undefined ? item.index : null;
-
-                    if (titleExist || descExist)
-                      return (
-                        <div
-                          key={index}
-                          className={this.decorateCSS("card")}
-                          onClick={() => this.onItemClick(index)}
-                        >
-                          {titleExist && (
-                            <div className={this.decorateCSS("top-card")}>
-                              {questionIndex !== null && (
-                                <span
-                                  className={this.decorateCSS("question-index")}
-                                >
-                                  {questionIndex}.
-                                </span>
-                              )}
-                              <span
-                                className={this.decorateCSS("card-subtitle")}
-                              >
-                                {item.title}
-                              </span>
-                              <ComposerIcon
-                                propsIcon={{
-                                  className: this.decorateCSS("icon"),
-                                }}
-                                name={
-                                  is_active
-                                    ? this.getPropValue("inactive_icon")
-                                    : this.getPropValue("active_icon")
-                                }
-                              />
-                            </div>
-                          )}
-                          {descExist && (
-                            <div
-                              className={`${this.decorateCSS("text-box")} ${
-                                is_active && this.decorateCSS("active")
-                              }`}
-                            >
-                              <p className={this.decorateCSS("card-text")}>
-                                {item.description}
-                              </p>
-                            </div>
-                          )}
-                        </div>
-                      );
-                  })}
-                </div>
-              )}
-              {infoArray?.length > 0 && (
-                <div className={this.decorateCSS("content-right")}>
-                  {infoArray.map((item: InfoArrayItem, index: number) => (
-                    <div key={index} className={this.decorateCSS("info-items")}>
-                      {this.castToString(item.title) && (
-                        <h2 className={this.decorateCSS("title-info")}>
-                          {item.title}
-                        </h2>
-                      )}
-                      {this.castToString(item.description) && (
-                        <p className={this.decorateCSS("description-info")}>
-                          {item.description}
-                        </p>
-                      )}
-                      {this.castToString(item.buttonText) && (
-                        <div className={this.decorateCSS("button-info")}>
-                          <ComposerLink path={item.buttonLink}>
-                            {item.buttonText}
-                          </ComposerLink>
-                        </div>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
           </div>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
