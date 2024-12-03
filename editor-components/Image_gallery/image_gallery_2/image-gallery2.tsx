@@ -737,7 +737,6 @@ class ImageGallery2 extends BaseImageGallery {
         const magnifierIcon = this.getPropValue("icon");
         const imgCount = `${currentImageIndex + 1} of ${currentGallery.length}`;
         const showAll = this.getPropValue("showAll");
-        console.log("count", this.getComponentState("imageCount"))
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
