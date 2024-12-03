@@ -517,7 +517,6 @@ class ImageGalleryComponent6 extends BaseImageGallery {
         }
       ],
     });
-    this.setComponentState("default", 0);
     this.setComponentState("selectedSection", "ALL");
     this.setComponentState("moreImages", 0);
   }

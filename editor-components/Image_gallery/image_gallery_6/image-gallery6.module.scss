@@ -7,6 +7,7 @@
         .section-container{
             flex-direction: row;
             gap: var(--composer-gap-xl);
+            flex-wrap: wrap;
             .section-text{
                 margin: 0px;
                 padding: var(--composer-gap-sm);
@@ -43,6 +44,7 @@
                     overflow: hidden;
                     width: 100%;
                     &.large-image, &.small-image, &.normal-image {
+                        aspect-ratio: 2 / 1;
                             .image-wrapper {
                                 display: flex;
                                 position: relative;
@@ -51,6 +53,7 @@
                                 .image {
                                     width: 100%;
                                     height: 100%;
+                                    object-fit: cover;
                                 }                               
                                 .badge{
                                     position: absolute;
@@ -89,7 +92,7 @@
                                         flex-direction: column;
                                         justify-content: center;
                                         gap: var(--composer-gap-md);
-                                        padding: var(--composer-gap-xl) calc(var(--composer-gap-xl) * 3);
+                                        padding: var(--composer-gap-lg) calc(var(--composer-gap-xl) * 3);
                                         .title{
                                             font-size: 2rem;
                                         }
@@ -125,7 +128,7 @@
                                         z-index: 2;   
                                     }
                                     .badge-container {
-                                        padding: var(--composer-gap-xl) 0px;
+                                        padding: var(--composer-gap-md) 0px;
                                         visibility: visible;                     
                                         max-height: 100%;
                                     }
@@ -141,6 +144,7 @@
                     }
                     &.normal-image{
                         height: 100%;
+
                     }
                     .button {
                         cursor: pointer;
@@ -184,12 +188,6 @@
                                 }
                             }
                         }
-                        &.large-image{
-                            aspect-ratio: 5 / 3;
-                        }
-                        &.small-image {
-                            aspect-ratio: 5 / 2;
-                        }
                     }
                 }
                 .right-container{
@@ -219,11 +217,8 @@
                                 }
                             }
                         }
-                        &.large-image{
+                        &.large-image, &.small-image, &.normal-image{
                             min-height: 300px;
-                        }
-                        &.small-image, &.normal-image{
-                            min-height: 200px;
                         }
                     }
                 }
