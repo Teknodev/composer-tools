@@ -401,7 +401,8 @@ class ImageGallery1 extends BaseImageGallery {
   };
 
   render() {
-    this.setComponentState("imageCount", this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"));
+    if (this.getComponentState("imageCount") != this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"))
+      this.setComponentState("imageCount", this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"));
     const imageGallery = this.castToObject<ImageGallery[]>("imageGalleries");
     const selectedSection = this.getComponentState("selectedSection");
     const seenImages = new Set<string>();
