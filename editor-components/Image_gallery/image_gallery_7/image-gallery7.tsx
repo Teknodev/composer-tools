@@ -13,6 +13,18 @@ class ImageGallery7 extends BaseImageGallery {
     constructor(props?: any) {
         super(props, styles);
         this.addProp({
+            type: "number",
+            key: "imageCountInitial",
+            displayer: "Image Count Initial",
+            value: 3
+        })
+        this.addProp({
+            type: "number",
+            key: "imageCount",
+            displayer: "More Image Count",
+            value: 3
+        })
+        this.addProp({
             type: "array",
             key: "gallery",
             displayer: "Gallery",
@@ -336,8 +348,16 @@ class ImageGallery7 extends BaseImageGallery {
                     }
                 ]
         });
+        this.addProp({
+            type: "string",
+            key: "buttonText",
+            displayer: "Button Text",
+            value: "Load More"
+        })
+
         this.setComponentState("scroll", 0);
         this.handleScroll = this.handleScroll.bind(this);
+        this.setComponentState("moreImages", 0);
     }
 
 
@@ -378,14 +398,20 @@ class ImageGallery7 extends BaseImageGallery {
     }
 
     debouncedHandleScroll = this.debounce(this.handleScroll, 12);
+    handleButtonClick = () => {
+        this.setComponentState("moreImages", this.getComponentState("moreImages") + this.getPropValue("imageCount"))
+
+    };
 
     render() {
         const gallery = this.castToObject<CardItemType[]>("gallery");
+        if (this.getComponentState("imageCount") != this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"))
+            this.setComponentState("imageCount", this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"));
         return (
             <Base.Container className={this.decorateCSS("container")} onScroll={this.debouncedHandleScroll}>
                 <Base.MaxContent className={this.decorateCSS("maxContent")}>
                     <Base.ListGrid gridCount={{ pc: 4, tablet: 1, phone: 1 }} className={this.decorateCSS("gridContainer")} >
-                        {gallery.map((cards: CardItemType, columnIndex: number) => {
+                        {gallery.slice(0, this.getComponentState("imageCount")).map((cards: CardItemType, columnIndex: number) => {
                             const isEven = (columnIndex) % 2 !== 0;
                             const columnClass = isEven ? "columnEven" : "columnOdd";
                             const style = isEven ? null : { transform: `translateY(-${this.scrollOffset}px)` };
@@ -415,6 +441,11 @@ class ImageGallery7 extends BaseImageGallery {
                             );
                         })}
                     </Base.ListGrid>
+                    {(this.getComponentState("imageCount") <= gallery.length) && (
+                        <div className={this.decorateCSS("button-wrapper")}>
+                            <Base.Button className={this.decorateCSS("button")} onClick={this.handleButtonClick} >{this.getPropValue("buttonText")}</Base.Button>
+                        </div>
+                    )}
                 </Base.MaxContent>
             </Base.Container>
         );

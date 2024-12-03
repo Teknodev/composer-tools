@@ -3,6 +3,9 @@
   overflow-y: scroll;
   height:100vh;
   .maxContent {
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-md);
     .gridContainer{
       .column {
         height: 100%;
@@ -56,6 +59,14 @@
       }
       .columnEven {
         transform: translateY(-250px);
+      }
+    }
+    .button-wrapper{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .button{
+        content: ""
       }
     }
 
