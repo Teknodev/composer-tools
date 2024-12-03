@@ -18,7 +18,6 @@ type Pricing = {
   cardDuration1: JSX.Element;
   cardList: string[];
   pricingTableTitle: JSX.Element;
-  buttonColor: string;
   isActive: boolean;
   popular_settings: any;
   text3: string;
@@ -166,12 +165,6 @@ class PricingTable1 extends BasePricingTable {
                       displayer: "In Button Icon",
                       value: "FaCheckCircle",
                     },
-                    {
-                      type: "color",
-                      key: "buttonColor",
-                      displayer: "Button Color",
-                      value: "green",
-                    },
                   ],
                 },
                 {
@@ -190,12 +183,6 @@ class PricingTable1 extends BasePricingTable {
                       key: "buttonIcon",
                       displayer: "In Button Icon",
                       value: "FaCheckCircle",
-                    },
-                    {
-                      type: "color",
-                      key: "buttonColor",
-                      displayer: "Button Color",
-                      value: "green",
                     },
                   ],
                 },
@@ -216,12 +203,6 @@ class PricingTable1 extends BasePricingTable {
                       displayer: "In Button Icon",
                       value: "IoMdCloseCircle",
                     },
-                    {
-                      type: "color",
-                      key: "buttonColor",
-                      displayer: "Button Color",
-                      value: "red",
-                    },
                   ],
                 },
                 {
@@ -240,12 +221,6 @@ class PricingTable1 extends BasePricingTable {
                       key: "buttonIcon",
                       displayer: "In Button Icon",
                       value: "IoMdCloseCircle",
-                    },
-                    {
-                      type: "color",
-                      key: "buttonColor",
-                      displayer: "Button Color",
-                      value: "red",
                     },
                   ],
                 },
@@ -354,12 +329,6 @@ class PricingTable1 extends BasePricingTable {
                       displayer: "In Button Icon",
                       value: "FaCheckCircle",
                     },
-                    {
-                      type: "color",
-                      key: "buttonColor",
-                      displayer: "Button Color",
-                      value: "green",
-                    },
                   ],
                 },
                 {
@@ -378,12 +347,6 @@ class PricingTable1 extends BasePricingTable {
                       key: "buttonIcon",
                       displayer: "In Button Icon",
                       value: "FaCheckCircle",
-                    },
-                    {
-                      type: "color",
-                      key: "buttonColor",
-                      displayer: "Button Color",
-                      value: "green",
                     },
                   ],
                 },
@@ -404,12 +367,6 @@ class PricingTable1 extends BasePricingTable {
                       displayer: "In Button Icon",
                       value: "FaCheckCircle",
                     },
-                    {
-                      type: "color",
-                      key: "buttonColor",
-                      displayer: "Button Color",
-                      value: "green",
-                    },
                   ],
                 },
                 {
@@ -428,12 +385,6 @@ class PricingTable1 extends BasePricingTable {
                       key: "buttonIcon",
                       displayer: "In Button Icon",
                       value: "IoMdCloseCircle",
-                    },
-                    {
-                      type: "color",
-                      key: "buttonColor",
-                      displayer: "Button Color",
-                      value: "red",
                     },
                   ],
                 },
@@ -541,12 +492,6 @@ class PricingTable1 extends BasePricingTable {
                       displayer: "In Button Icon",
                       value: "FaCheckCircle",
                     },
-                    {
-                      type: "color",
-                      key: "buttonColor",
-                      displayer: "Button Color",
-                      value: "green",
-                    },
                   ],
                 },
                 {
@@ -565,12 +510,6 @@ class PricingTable1 extends BasePricingTable {
                       key: "buttonIcon",
                       displayer: "In Button Icon",
                       value: "FaCheckCircle",
-                    },
-                    {
-                      type: "color",
-                      key: "buttonColor",
-                      displayer: "Button Color",
-                      value: "green",
                     },
                   ],
                 },
@@ -591,12 +530,6 @@ class PricingTable1 extends BasePricingTable {
                       displayer: "In Button Icon",
                       value: "FaCheckCircle",
                     },
-                    {
-                      type: "color",
-                      key: "buttonColor",
-                      displayer: "Button Color",
-                      value: "green",
-                    },
                   ],
                 },
                 {
@@ -615,12 +548,6 @@ class PricingTable1 extends BasePricingTable {
                       key: "buttonIcon",
                       displayer: "In Button Icon",
                       value: "FaCheckCircle",
-                    },
-                    {
-                      type: "color",
-                      key: "buttonColor",
-                      displayer: "Button Color",
-                      value: "green",
                     },
                   ],
                 },
@@ -732,7 +659,6 @@ class PricingTable1 extends BasePricingTable {
                                 name={listItem.buttonIcon}
                                 propsIcon={{
                                   className: this.decorateCSS("icon"),
-                                  color: listItem.buttonColor,
                                 }}
                               />
                               <span className={this.decorateCSS("list-item")}>{listItem.cardListItem}</span>
