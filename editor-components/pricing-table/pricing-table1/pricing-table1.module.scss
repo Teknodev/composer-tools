@@ -91,7 +91,7 @@
               align-items: center;
               gap: var(--composer-gap-xs);
               padding: var(--composer-gap-sm) var(--composer-gap-lg);
-              border-top: 1px solid var(--composer-tertiary-color);
+              border-top: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.5);
               color: var(--composer-font-color-primary);
 
               .icon {
