@@ -25,8 +25,14 @@ class ImageGallery2 extends BaseImageGallery {
         });
         this.addProp({
             type: "number",
-            key: "imageCount",
-            displayer: "Image Count",
+            key: "initialImageCount",
+            displayer: "Initial Image Count",
+            value: 3
+        })
+        this.addProp({
+            type: "number",
+            key: "moreImges",
+            displayer: "More Images Count",
             value: 3
         })
         this.addProp({
@@ -712,8 +718,10 @@ class ImageGallery2 extends BaseImageGallery {
     handleSectionClick(index: number): void {
         this.setComponentState("default", index)
         this.setComponentState("imageCount", this.getPropValue("imageCount"));
+        this.setComponentState("initalImageCount", this.getPropValue("initialImageCount"))
     }
     render() {
+        this.setComponentState("initalImageCount", this.getComponentState("imageCount") + this.getPropValue("initialImageCount"));
         const galleryCollection = this.getPropValue("gallery");
         const currentIndex = this.getComponentState("default");
         const modalOpen = this.getComponentState("modalOpen");
@@ -727,7 +735,6 @@ class ImageGallery2 extends BaseImageGallery {
         const magnifierIcon = this.getPropValue("icon");
         const imgCount = `${currentImageIndex + 1} of ${currentGallery.length}`;
         const showAll = this.getPropValue("showAll");
-        console.log("currentGallery", currentGallery)
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
