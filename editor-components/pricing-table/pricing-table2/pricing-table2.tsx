@@ -686,7 +686,7 @@ class PricingTable2 extends BasePricingTable {
                       <Base.VerticalContent className={this.decorateCSS("card-bottom")}>
                         {table.cardIcon && (
                           <div className={this.decorateCSS("card-img")}>
-                            <ComposerIcon name={table.cardIcon} />
+                            <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={table.cardIcon} />
                           </div>
                         )}
                         {table.cardList.length > 0 && (
