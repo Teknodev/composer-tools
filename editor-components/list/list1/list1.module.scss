@@ -1,17 +1,17 @@
 .container {
+  background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
   .max-content {
-    height: 100%;
-    .carousel-div {
       display: flex;
+      flex-direction: column;
       .carousel {
-        overflow: hidden;
         width: 100%;
+        overflow: hidden;
         .dots {
           display: flex !important;
           flex-direction: row;
           margin: 0 auto;
           width: fit-content;
-          gap: 10px;
+          gap: var(--composer-gap-sm);
           list-style-type: none;
           padding: 0;
           bottom: 20px;
@@ -32,55 +32,42 @@
               width: 10px;
               height: 10px;
               border-radius: 100px;
+              cursor: pointer;
             }
           }
         }
 
         .dots :global(li.slick-active) button {
-          padding: 0 10px;
-        }
-
-        .right-card-padding {
-          padding-right: 0px !important;
-          padding-left: 20px !important;
-        }
-
-        .left-card-padding {
-          padding-left: 0px !important;
-          padding-right: 20px !important;
+          padding: 0 var(--composer-gap-md);
         }
 
         .card {
-          width: 100%;
+          width: 95% !important;
           height: 100%;
-          padding: 0px var(--composer-gap-sm) var(--composer-gap-xl)
-            var(--composer-gap-sm);
+          padding: 0px var(--composer-gap-sm) var(--composer-gap-xl) var(--composer-gap-sm);
           position: relative;
 
           &.active {
-            &::before {
+            &::after {
               content: "";
               position: absolute;
-              width: calc(100% + var(--composer-gap-lg));
-              height: 65%;
-              bottom: 0px;
-              left: -1.25rem;
+              width: 114%;
+              height: 85%;
+              bottom: -60px;
+              left: -40px;
               background-color: var(--composer-primary-color);
               z-index: -1;
+              opacity: .93;
             }
           }
 
           .card-inner {
-            background-color: color-mix(
-              in srgb,
-              var(--composer-html-background),
-              var(--composer-font-color-primary) 5%
-            );
+            background-color: var(--composer-html-background);
             z-index: 0;
             position: static;
             display: flex;
             flex-direction: column;
-            padding: 3rem;
+            padding: var(--composer-gap-lg);
             aspect-ratio: 1.52;
 
             .img-div {
@@ -93,12 +80,31 @@
               }
             }
 
+            .card-titles {
+              margin-top: var(--composer-gap-md);
+
+              .title {
+                font-size: 1.5rem;
+
+                &:hover {
+                  color: var(--composer-primary-color);
+                  transition: 1s;
+                }
+              }
+  
+              .subtitle {
+                font-size: 1rem;
+                opacity: 0.8;
+              }
+            }
+
             .link {
               margin: var(--composer-gap-md) 0 0;
               color: var(--composer-font-color-primary);
               display: flex;
               align-items: center;
-              gap: 5px;
+              gap: var(--composer-gap-xs);
+              cursor: pointer;
 
               > svg {
                 font-size: 1rem;
@@ -107,62 +113,59 @@
               }
 
               &:hover {
-                color: var(--composer-secondary-color);
+                color: var(--composer-primary-color);
+                transition: 1s;
               }
 
               .text {
-                > blinkpage {
-                  display: -webkit-box !important;
-                  -webkit-line-clamp: 1;
-                  -webkit-box-orient: vertical;
-                  overflow: hidden;
-                  text-overflow: ellipsis;
-                }
+                display: -webkit-box !important;
+                line-clamp: 1;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-size: 1rem;
               }
             }
           }
         }
       }
-    }
   }
 }
 
 @media only screen and (max-width: 800px) {
   .container {
     .max-content {
-      .carousel-div {
-        .carousel {
-          .dots {
-            display: flex !important;
-            position: absolute;
-            li {
-              button {
-                border: none;
-                transition: 0.3s;
-                content-visibility: hidden;
-                background: color-mix(
-                  in srgb,
-                  var(--composer-html-background),
-                  var(--composer-font-color-primary) 5%
-                ) !important;
-                width: 10px;
-                height: 10px;
-                border-radius: 100px;
-              }
+      .carousel {
+        .dots {
+          display: flex !important;
+          position: absolute;
+          li {
+            button {
+              border: none;
+              transition: 0.3s;
+              content-visibility: hidden;
+              background: color-mix(
+                in srgb,
+                var(--composer-html-background),
+                var(--composer-font-color-primary) 5%
+              ) !important;
+              width: 10px;
+              height: 10px;
+              border-radius: 100px;
             }
           }
-          .card {
-            &.active {
-              &::before {
-                visibility: hidden;
-              }
+        }
+        .card {
+          &.active {
+            &::before {
+              visibility: hidden;
             }
+          }
 
-            .card-inner {
-              margin-left: 0px;
-              .img {
-                margin: 0 auto;
-              }
+          .card-inner {
+            margin-left: 0px;
+            .img {
+              margin: 0 auto;
             }
           }
         }
@@ -174,21 +177,19 @@
 @media only screen and (max-width: 475px) {
   .container {
     .max-content {
-      .carousel-div {
-        .carousel {
-          .dots {
-            position: absolute;
+      .carousel {
+        .dots {
+          position: absolute;
+        }
+        .card {
+          &.active::before {
+            display: none !important;
           }
-          .card {
-            &.active::before {
-              display: none !important;
-            }
 
-            .card-inner {
-              margin-left: 0px;
-              img {
-                margin: 0 auto;
-              }
+          .card-inner {
+            margin-left: 0px;
+            img {
+              margin: 0 auto;
             }
           }
         }

@@ -329,8 +329,8 @@ class List1 extends BaseList {
         window.innerWidth < 475
           ? 1
           : window.innerWidth < 775
-          ? 2
-          : Math.min(3, sliderItems.length),
+            ? 2
+            : Math.min(3, sliderItems.length),
       slidesToScroll: 1,
       initialSlide: 1,
       arrows: false,
@@ -358,84 +358,71 @@ class List1 extends BaseList {
               )}
             </Base.VerticalContent>
           </div>
-          <Base.ListGrid className={this.decorateCSS("carousel-div")}>
-            <ComposerSlider
-              {...settings}
-              className={this.decorateCSS("carousel")}
-            >
-              {sliderItems.map((item: Card, indexSlider: number) => {
-                const activeIndex = this.getComponentState("active-index");
-                const rightCardIndex = (activeIndex + 1) % sliderItems.length;
-                const leftCardIndex = activeIndex === 0 ? sliderItems.length - 1 : activeIndex - 1;
+          <ComposerSlider
+            {...settings}
+            className={this.decorateCSS("carousel")}
+          >
+            {sliderItems.map((item: Card, indexSlider: number) => {
+              const activeIndex = this.getComponentState("active-index");
 
-                return (
-                  <Base.VerticalContent
-                    key={indexSlider}
-                    className={`${this.decorateCSS("card")}
-                    ${
-                      indexSlider === rightCardIndex
-                        ? this.decorateCSS("right-card-padding")
-                        : ""
+              return (
+                <div
+                  key={indexSlider}
+                  className={`${this.decorateCSS("card")}
+                    ${backgroundColor &&
+                      this.getComponentState("active-index") === indexSlider
+                      ? this.decorateCSS("active")
+                      : ""
                     }
-                    ${
-                      indexSlider === leftCardIndex
-                        ? this.decorateCSS("left-card-padding")
-                        : ""
-                    }
-                   ${
-                     backgroundColor &&
-                     this.getComponentState("active-index") === indexSlider
-                       ? this.decorateCSS("active")
-                       : ""
-                   }
-                   `}
-                  >
-                    <div className={this.decorateCSS("card-inner")}>
-                      {item.image && (
-                        <div className={this.decorateCSS("img-div")}>
-                          <img
-                            className={this.decorateCSS("img")}
-                            src={item.image}
-                            alt=""
-                          />
-                        </div>
-                      )}
+                    `}
+                >
+                  <div className={this.decorateCSS("card-inner")}>
+                    {item.image && (
+                      <div className={this.decorateCSS("img-div")}>
+                        <img
+                          className={this.decorateCSS("img")}
+                          src={item.image}
+                          alt=""
+                        />
+                      </div>
+                    )}
 
+                    <Base.VerticalContent className={this.decorateCSS("card-titles")}>
                       {this.castToString(item.title) && (
-                        <Base.H2 className={this.decorateCSS("title")}>
+                        <Base.SectionTitle className={this.decorateCSS("title")}>
                           {item.title}
-                        </Base.H2 >
+                        </Base.SectionTitle >
                       )}
 
                       {this.castToString(item.subtitle) && (
-                        <Base.P  className={this.decorateCSS("subtitle")}>
+                        <Base.SectionDescription className={this.decorateCSS("subtitle")}>
                           {item.subtitle}
-                        </Base.P >
+                        </Base.SectionDescription>
                       )}
+                    </Base.VerticalContent>
 
-                      {this.castToString(item.text) && (
-                        <>
-                          <ComposerLink path={item.url}>
-                            <div className={this.decorateCSS("link")}>
-                              <Base.H3  className={this.decorateCSS("text")}>
-                                {item.text}
-                              </Base.H3 >
-                              <ComposerIcon
-                                name={item.icon}
-                                propsIcon={{
-                                  className: this.decorateCSS("icon"),
-                                }}
-                              />
-                            </div>
-                          </ComposerLink>
-                        </>
-                      )}
-                    </div>
-                  </Base.VerticalContent>
-                );
-              })}
-            </ComposerSlider>
-          </Base.ListGrid>
+                    {this.castToString(item.text) && (
+                      <>
+                        <ComposerLink path={item.url}>
+                          <div className={this.decorateCSS("link")}>
+                            <span className={this.decorateCSS("text")}>
+                              {item.text}
+                            </span >
+                            <ComposerIcon
+                              name={item.icon}
+                              propsIcon={{
+                                className: this.decorateCSS("icon"),
+                              }}
+                            />
+                          </div>
+                        </ComposerLink>
+                      </>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </ComposerSlider>
         </Base.MaxContent>
       </Base.Container>
     );
