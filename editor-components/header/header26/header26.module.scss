@@ -8,7 +8,10 @@
 .max-content {
   margin: 0 auto;
   height: 100%;
-  width: var(--composer-content-width);
+
+  > div > div > div > div {
+    border: none !important;
+  }
 }
 
 .sliders {
@@ -31,22 +34,31 @@
 }
 
 .left-side {
-  width: calc(100% - 100px);
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-left: 100px;
+  padding-left: 50px;
+  padding-right: 30px;
 }
 
 .left-side-content {
-  width: 80%;
-  cursor: pointer;
+  width: 100%;
 }
 
 .title {
   font-size: 5rem;
   font-weight: bold;
   color: var(--composer-font-color-primary);
+  margin: 0px;
+  cursor: pointer;
+
+  blinkpage p {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 
   &:hover {
     color: var(--composer-primary-color);
@@ -64,6 +76,14 @@
 .subtitle {
   font-size: 2rem;
   color: var(--composer-font-color-primary);
+  margin-top: 25px;
+
+  blinkpage p {
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 }
 
 .arrows {
@@ -103,6 +123,11 @@
 @media (max-width: 1024px) {
   .title {
     font-size: 4rem;
+    margin-bottom: 0 !important;
+
+    blinkpage p {
+      -webkit-line-clamp: 3 !important;
+    }
   }
 
   .subtitle {
@@ -122,6 +147,7 @@
 
   .left-side {
     flex: 1;
+    padding: 20px 30px;
   }
 
   .right-side {
@@ -130,6 +156,7 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    margin: 0 auto;
   }
 
   .image {
@@ -139,10 +166,10 @@
   }
 
   .arrows {
-    top: 50%;
+    top: 90%;
     transform: translateY(-50%);
     bottom: unset;
-    margin-top: -60px;
+    left: 50px;
   }
 }
 
@@ -168,7 +195,6 @@
 
   .left-side {
     margin: 0 auto;
-    padding: 0;
     width: 100%;
   }
 
@@ -177,21 +203,21 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    margin: 0;
   }
 
   .image {
-    /* height: auto; */
+    margin: 0 !important;
   }
 
   .arrows {
-    flex-direction: row;
+    position: absolute;
+    flex-direction: column;
     justify-content: center;
     gap: 10px;
-    left: 20px;
-
-    top: 50%;
+    left: 40px;
+    top: 90% !important;
     transform: translateY(-50%);
-    margin-top: -30px;
   }
 }
 
