@@ -50,7 +50,7 @@
           border-radius: var(--composer-gap-xs) !important;
           display: flex;
           flex-direction: column;
-          transition: 0.5s;
+          transition: all 0.5s ease;
           box-shadow: var(--box-shadow-active);
           color: var(--composer-font-color-primary);
           cursor: pointer;
@@ -61,8 +61,10 @@
             color: var(--composer-font-color-secondary);
             .plan-price-box,
             .plan-description {
-              height: unset !important;
-              overflow: unset !important;
+              max-height: 250px;
+              overflow: auto;
+              padding: var(--composer-gap-md) 0;
+              opacity: 1;
             }
             .plan-description,
             .price-description {
@@ -112,14 +114,19 @@
               }
             }
           }
+
           .plan-price-box,
           .plan-description {
-            height: 0;
+            max-height: 0;
+            opacity: 0;
             overflow: hidden;
+            transition: all 0.5s ease;
           }
+
           .plan-upper {
             margin: var(--composer-gap-sm);
           }
+
           .plan-price-box {
             display: flex;
             align-items: center;
@@ -148,7 +155,6 @@
           }
         }
       }
-
       .right-content-single {
         display: flex;
         flex-direction: column;
