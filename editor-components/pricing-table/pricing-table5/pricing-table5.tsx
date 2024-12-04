@@ -230,7 +230,6 @@ class PricingTable5 extends BasePricingTable {
 
     const plans = this.getPropValue("plans");
     const rightItemsExist = plans.length > 0;
-    console.log(rightItemsExist, "rightItemsExist");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -270,7 +269,7 @@ class PricingTable5 extends BasePricingTable {
                       <div className={this.decorateCSS("plan-upper")}>
                         {planTitleExist && <Base.H5 className={this.decorateCSS("plan-title")}>{plan.getPropValue("planTitle")}</Base.H5>}
                         <div className={isActive ? this.decorateCSS("icon-box-active") : this.decorateCSS("icon-box")}>
-                          <ComposerIcon name={this.getPropValue(isActive ? "lessIcon" : "moreIcon")} />
+                          <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={this.getPropValue(isActive ? "lessIcon" : "moreIcon")} />
                         </div>
                       </div>
 

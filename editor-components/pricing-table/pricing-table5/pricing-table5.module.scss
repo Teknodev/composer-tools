@@ -45,7 +45,7 @@
 
         .plan {
           width: 100%;
-          background: var(--composer-html-background);
+          background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
           padding: var(--composer-gap-sm) var(--composer-gap-md);
           border-radius: var(--composer-gap-xs) !important;
           display: flex;
@@ -80,10 +80,9 @@
 
             .plan-upper {
               margin: 0;
-              margin-top: var(--composer-gap-md);
 
               .icon-box {
-                svg {
+                .icon {
                   margin-top: 0px;
                 }
               }
@@ -97,7 +96,7 @@
 
             .plan-title {
               margin: 0;
-              transition: color 0.5s ease; /* Plan başlığına geçiş ekle */
+              transition: color 0.5s ease;
             }
 
             .icon-box,
@@ -111,7 +110,7 @@
               align-items: center;
               border-radius: var(--composer-border-radius-xl);
 
-              svg {
+              .icon {
                 margin-top: 2px;
               }
             }
@@ -120,7 +119,7 @@
               background-color: var(--composer-font-color-primary);
               opacity: 0.5;
 
-              svg {
+              .icon {
                 margin-top: 1px;
               }
             }
@@ -132,6 +131,7 @@
             overflow: hidden;
             opacity: 0;
             transition: all 0.5s ease, opacity 0.2s ease;
+            margin: 0;
           }
 
           .plan:not(.active) .plan-price-box {
@@ -144,7 +144,7 @@
           }
 
           .plan-upper {
-            margin-top: var(--composer-gap-md);
+            padding: var(--composer-gap-sm) 0;
           }
 
           .plan-price-box {
