@@ -58,7 +58,7 @@
           &.active {
             background: var(--composer-primary-color);
             gap: var(--composer-gap-sm);
-            color: var(--composer-font-color-secondary);
+
             .plan-price-box,
             .plan-description {
               max-height: 250px;
@@ -66,6 +66,7 @@
               padding: var(--composer-gap-md) 0;
               opacity: 1;
             }
+
             .plan-description,
             .price-description {
               color: var(--composer-tertiary-color);
@@ -74,6 +75,7 @@
             .plan-upper {
               margin: 0;
               margin-top: var(--composer-gap-md);
+
               .icon-box {
                 svg {
                   margin-top: 0px;
@@ -101,6 +103,7 @@
               justify-content: center;
               align-items: center;
               border-radius: var(--composer-border-radius-xl);
+
               svg {
                 margin-top: 2px;
               }
@@ -109,6 +112,7 @@
             .icon-box-active {
               background-color: var(--composer-font-color-primary);
               opacity: 0.5;
+
               svg {
                 margin-top: 1px;
               }
@@ -118,9 +122,18 @@
           .plan-price-box,
           .plan-description {
             max-height: 0;
-            opacity: 0;
             overflow: hidden;
-            transition: all 0.5s ease;
+            opacity: 0;
+            transition: all 0.5s ease, opacity 0.2s ease;
+          }
+
+          .plan:not(.active) .plan-price-box {
+            opacity: 0;
+            pointer-events: none;
+          }
+
+          .plan.active .plan-price-box {
+            opacity: 1;
           }
 
           .plan-upper {
@@ -146,6 +159,7 @@
               background-color: transparent;
               border: 1px solid var(--composer-font-color-secondary);
               color: var(--composer-font-color-secondary);
+
               &:hover {
                 background-color: white;
                 border: 1px solid white;
