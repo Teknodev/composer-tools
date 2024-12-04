@@ -6,7 +6,7 @@ import { Base } from "../../../composer-base-components/base/base";
 
 type Card = {
   sectionTitle: JSX.Element;
-  item: Item[];
+  items: Item[];
 };
 type Item = {
   title: JSX.Element;
@@ -187,22 +187,25 @@ class FaqButton extends BaseFAQ {
         },
       ],
     });
+    this.setComponentState("selectedSection", 0);
+    this.setComponentState("cardIndex", -1);
+    this.setComponentState("onclick", false);
   }
 
   getName(): string {
     return "FAQ-4";
   }
-
-  activeIndex: number = -1;
-
+  sectionButton(index: number): void {
+    this.setComponentState("cardIndex", -1);
+    this.setComponentState("selectedSection", index);
+  }
+  cardButton(index: number): void {
+    this.setComponentState("cardIndex", index);
+    this.setComponentState("onclick", !this.getComponentState("onclick"));
+    console.log(this.getComponentState("onclick"))
+  }
   render() {
-    const handleButton = (index: number) => {
-      this.activeIndex = this.activeIndex === index ? -1 : index;
-      console.log("click button")
-    };
     const card = this.castToObject<Card[]>("cards")
-    console.log("card", card)
-
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -220,50 +223,41 @@ class FaqButton extends BaseFAQ {
             </Base.VerticalContent>
             <div className={this.decorateCSS("middle-page")}>
               {card.map((card: Card, index: number) => (
-                <div className={this.decorateCSS("sections")}>
+                <div className={this.decorateCSS("sections")} onClick={() => this.sectionButton(index)}>
                   <div className={this.decorateCSS("title")}>
                     {card.sectionTitle}
                   </div>
                 </div>
               ))}
             </div>
-            {/* <div className={this.decorateCSS("down-page")}>
-              {this.castToObject<Card[]>("card").map(
-                (card: Card, indexCard: any) => {
-                  return (
-                    <div className={this.decorateCSS("card")} key={indexCard}>
-                      <div className={this.decorateCSS("child-container")}>
-                        <div className={this.decorateCSS("card-left")}>
-                          <Base.H3 className={this.decorateCSS("card-title")}>
-                            {card.title}
-                          </Base.H3>
-                        </div>
-                        <div className={this.decorateCSS("card-right")} onClick={() => handleButton(indexCard)}>
-                          <div className={this.decorateCSS("icon-wrapper")}>
-                            <ComposerIcon
-                              propsIcon={{ className: this.decorateCSS("icon") }}
-                              name={
-                                this.activeIndex === indexCard
-                                  ? "FaAngleUp"
-                                  : "FaAngleDown"
-                              }
-                            />
-                          </div>
+            <div className={this.decorateCSS("down-page")}>
+              <div className={this.decorateCSS("card-wrapper")}>
+                {card[this.getComponentState("selectedSection")].items.map((item: Item, index: number) => (
+                  <div className={this.decorateCSS("card")} onClick={() => this.cardButton(index)}>
+                    <div className={this.decorateCSS("child-container")}>
+                      <div className={this.decorateCSS("card-left")}>
+                        <Base.H3 className={this.decorateCSS("card-title")}>
+                          {item.title}
+                        </Base.H3>
+                      </div>
+                      <div className={this.decorateCSS("card-right")}>
+                        <div className={this.decorateCSS("icon-wrapper")}>
+                          <ComposerIcon
+                            propsIcon={{ className: this.decorateCSS("icon") }}
+                            name={
+                              "FaAngleUp"
+                            }
+                          />
                         </div>
                       </div>
-                      <p
-                        className={`${this.activeIndex === indexCard
-                          ? this.decorateCSS("text")
-                          : this.decorateCSS("hide")
-                          }`}
-                      >
-                        {card.description}
-                      </p>
                     </div>
-                  );
-                }
-              )}
-            </div> */}
+                    <p className={`${this.decorateCSS("hide")} ${this.getComponentState("cardIndex") === index ? (this.getComponentState("onclick") ? this.decorateCSS("text") : "") : ""}`}>
+                      {item.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </Base.MaxContent>
       </Base.Container>
