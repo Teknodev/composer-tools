@@ -22,7 +22,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
         }
 
         .activeTab {
-          background: var(--composer-secondary-color);
+          background: var(--composer-primary-color);
           color: var(--composer-font-color-secondary);
         }
 
@@ -65,7 +65,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             gap: var(--composer-gap-md);
 
             &.active {
-              background-color: var(--composer-secondary-color);
+              background-color: var(--composer-primary-color);
               color: var(--composer-font-color-secondary);
               .tag,
               .item-price {
@@ -90,7 +90,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               }
             }
             &:not(.active):hover {
-              background-color: var(--composer-secondary-color);
+              background-color: var(--composer-primary-color);
               .plan-icons,
               .tag,
               .item-price {
