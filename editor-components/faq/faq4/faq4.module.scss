@@ -17,6 +17,8 @@
       .middle-page{
         width: 100%;
         border-bottom: 1px solid var(--composer-tertiary-color);
+        display: flex;
+        gap: var(--composer-gap-xl);
         .sections{
           display: flex;
           .title{

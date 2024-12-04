@@ -5,8 +5,12 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
 
 type Card = {
-  title: string;
-  description: string;
+  sectionTitle: JSX.Element;
+  item: Item[];
+};
+type Item = {
+  title: JSX.Element;
+  description: JSX.Element;
 };
 
 class FaqButton extends BaseFAQ {
@@ -75,15 +79,36 @@ class FaqButton extends BaseFAQ {
                         "We offer standard and express shipping options. Standard shipping usually takes 5-7 business days, while express shipping takes 1-3 business days.",
                     },
                   ]
+                },
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "How can I contact customer support?",
+                    },
+                    {
+                      type: "string",
+                      key: "description",
+                      displayer: "Description",
+                      value:
+                        "You can contact our customer support team by email or phone. Our email address and phone number can be found on our website's contact page.",
+                    },
+                  ]
                 }
+
               ]
             }
           ],
         },
         {
           type: "object",
-          key: "items",
-          displayer: "Items",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "string",
@@ -92,58 +117,72 @@ class FaqButton extends BaseFAQ {
               value: "Returns",
             },
             {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "How can I track my order?",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value:
-                "Once your order has been shipped, you will receive a tracking number via email. You can use this tracking number to track your order on our website or on the carrier's ",
-            },
+              type: "array",
+              key: "items",
+              displayer: "Items",
+              value: [
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "How can I track my order?",
+                    },
+                    {
+                      type: "string",
+                      key: "description",
+                      displayer: "Description",
+                      value:
+                        "Once your order has been shipped, you will receive a tracking number via email. You can use this tracking number to track your order on our website or on the carrier's",
+                    },
+                  ]
+                }
+              ]
+            }
           ],
         },
         {
           type: "object",
-          key: "items",
-          displayer: "Items",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "string",
-              key: "title",
-              displayer: "Title",
-              value: " What is your return policy?",
+              key: "sectionTitle",
+              displayer: "Section Title",
+              value: "Refunds",
             },
             {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value:
-                " We offer a 30-day return policy for most products. If you are not satisfied with your purchase, you can return it within 30 days for a full refund or exchange.",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "items",
-          displayer: "Items",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: " How can I contact customer support?",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value:
-                "You can contact our customer support team by email or phone. Our email address and phone number can be found on our website's contact page.",
-            },
+              type: "array",
+              key: "items",
+              displayer: "Items",
+              value: [
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "What is your return policy?",
+                    },
+                    {
+                      type: "string",
+                      key: "description",
+                      displayer: "Description",
+                      value:
+                        "We offer a 30-day return policy for most products. If you are not satisfied with your purchase, you can return it within 30 days for a full refund or exchange.",
+                    },
+                  ]
+                }
+              ]
+            }
           ],
         },
       ],
@@ -161,6 +200,8 @@ class FaqButton extends BaseFAQ {
       this.activeIndex = this.activeIndex === index ? -1 : index;
       console.log("click button")
     };
+    const card = this.castToObject<Card[]>("cards")
+    console.log("card", card)
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -178,13 +219,15 @@ class FaqButton extends BaseFAQ {
               </Base.SectionDescription>
             </Base.VerticalContent>
             <div className={this.decorateCSS("middle-page")}>
-              <div className={this.decorateCSS("sections")}>
-                <div className={this.decorateCSS("title")}>
-                  BURCU
+              {card.map((card: Card, index: number) => (
+                <div className={this.decorateCSS("sections")}>
+                  <div className={this.decorateCSS("title")}>
+                    {card.sectionTitle}
+                  </div>
                 </div>
-              </div>
+              ))}
             </div>
-            <div className={this.decorateCSS("down-page")}>
+            {/* <div className={this.decorateCSS("down-page")}>
               {this.castToObject<Card[]>("card").map(
                 (card: Card, indexCard: any) => {
                   return (
@@ -220,7 +263,7 @@ class FaqButton extends BaseFAQ {
                   );
                 }
               )}
-            </div>
+            </div> */}
           </div>
         </Base.MaxContent>
       </Base.Container>
