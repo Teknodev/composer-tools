@@ -4,6 +4,14 @@ import { getProjectHook } from "../custom-hooks/project";
 import { EventEmitter } from "../EventEmitter";
 import sanitizeHtml from "sanitize-html";
 import { renderToString } from "react-dom/server";
+import { LexicalEditor } from "lexical/LexicalEditor";
+import { $createParagraphNode, $getRoot, EditorState, TextNode } from "lexical";
+import { $generateHtmlFromNodes, $generateNodesFromDOM } from "@lexical/html";
+import { ExtendedTextNode } from "../../prefabs/playground/plugins/ExtendedTextNode";
+import { ListNode, ListItemNode } from "@lexical/list";
+import { HeadingNode, QuoteNode } from '@lexical/rich-text';
+import { CodeHighlightNode, CodeNode } from '@lexical/code';
+import InlineEditor from "../../prefabs/playground/inline-editor";
 
 type PreSufFix = {
   label: string;
@@ -11,8 +19,8 @@ type PreSufFix = {
 };
 
 export type TypeLocation = {
-  lat: number;
   lng: number;
+  lat: number;
 
 };
 
@@ -22,34 +30,35 @@ type GetPropValueProperties = {
   suffix?: PreSufFix;
   prefix?: PreSufFix;
 };
-type TypeCSSProp = { [key: string]: { id: string; class: string }[] };
+type TypeCSSProp = { [key: string]: { id: string; class: string; }[]; };
 export type iComponent = {
   render(): any;
   getName(): string;
   getProps(): TypeUsableComponentProps[];
   getPropValue(propName: string, properties?: GetPropValueProperties): TypeUsableComponentProps;
-  getExportedCSSClasses(): { [key: string]: string };
+  getExportedCSSClasses(): { [key: string]: string; };
   getCSSClasses(sectionName?: string | null): any;
   addProp(prop: TypeUsableComponentProps): void;
   setProp(key: string, value: any): void;
-  setCSSClasses(key: string, value: { id: string; class: string }[]): void;
+  setCSSClasses(key: string, value: { id: string; class: string; }[]): void;
   decorateCSS(cssValue: string): string;
   getCategory(): CATEGORIES;
-  id: string
+  id: string;
+  customStates: any
 };
 type AvailablePropTypes =
-  | { type: "string"; value: string }
-  | { type: "number"; value: number }
-  | { type: "boolean"; value: boolean }
-  | { type: "page"; value: string }
-  | { type: "array"; value: TypeUsableComponentProps[] }
-  | { type: "object"; value: TypeUsableComponentProps[] }
-  | { type: "image"; value: string }
-  | { type: "video"; value: string }
-  | { type: "select"; value: string }
-  | { type: "color"; value: string }
-  | { type: "icon"; value: string }
-  | { type: "location"; value: TypeLocation };
+  | { type: "string"; value: string; }
+  | { type: "number"; value: number; }
+  | { type: "boolean"; value: boolean; }
+  | { type: "page"; value: string; }
+  | { type: "array"; value: TypeUsableComponentProps[]; }
+  | { type: "object"; value: TypeUsableComponentProps[]; }
+  | { type: "image"; value: string; }
+  | { type: "video"; value: string; }
+  | { type: "select"; value: string; }
+  | { type: "color"; value: string; }
+  | { type: "icon"; value: string; }
+  | { type: "location"; value: TypeLocation; };
 
 export type TypeReactComponent = {
   type: string;
@@ -62,11 +71,11 @@ export type TypeUsableComponentProps = {
   id?: string;
   key: string;
   displayer: string;
-  additionalParams?: { selectItems?: string[]; maxElementCount?: number };
+  additionalParams?: { selectItems?: string[]; maxElementCount?: number; };
   max?: number;
 } & AvailablePropTypes & {
-    getPropValue?: (propName: string, properties?: GetPropValueProperties) => any;
-  };
+  getPropValue?: (propName: string, properties?: GetPropValueProperties) => any;
+};
 
 export enum CATEGORIES {
   NAVIGATOR = "navigator",
@@ -90,9 +99,10 @@ export enum CATEGORIES {
   LOCATION = "Location",
 }
 
-export abstract class Component extends React.Component<{}, { states: any; componentProps: any }> implements iComponent {
+export abstract class Component extends React.Component<{}, { states: any; componentProps: any; }> implements iComponent {
   private styles: any;
   private _props: any;
+  public customStates: any = {};
   public id: string;
   protected category: CATEGORIES;
   abstract getName(): string;
@@ -102,6 +112,7 @@ export abstract class Component extends React.Component<{}, { states: any; compo
     this._props = props;
     this.styles = styles;
     this.id = Math.random().toString();
+    this.onChange = this.onChange.bind(this);
     let sectionsKeyValue: any = {};
     Object.keys(this.styles).forEach((key, index) => {
       sectionsKeyValue[key] = (props && props[key]) || [];
@@ -134,6 +145,95 @@ export abstract class Component extends React.Component<{}, { states: any; compo
 
     return isStringMustBeElement ? this.getPropValueAsElement(prop, properties) : prop?.value;
   }
+
+  removeSuffixesAndPrefixes(htmlString: any) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(htmlString, 'text/html');
+
+    const elementsWithClass = doc.querySelectorAll('[class]');
+    elementsWithClass.forEach(element => {
+      const isSuffixOrPrefixElement = element.className.includes("suffix-prefix-elem");
+      if (isSuffixOrPrefixElement) element.remove();
+    });
+
+    return doc.body.innerHTML;
+  }
+
+  updateHTML(editor: LexicalEditor, value: string, clear: boolean) {
+    const root = $getRoot();
+    const parser = new DOMParser();
+    const dom = parser.parseFromString(value, "text/html");
+    const nodes = $generateNodesFromDOM(editor, dom);
+    if (clear) {
+      root.clear();
+    }
+    try {
+      root.append(...nodes);
+    } catch {
+      const p = $createParagraphNode();
+      p.append(...nodes);
+      root.append(p);
+    }
+  };
+
+  prepopulatedRichText(editor: LexicalEditor, html: string) {
+
+    this.updateHTML(
+      editor,
+      html,
+      true
+    );
+
+    return editor;
+  };
+
+  findObjectById(arr: any, targetId: string) {
+    for (let i in arr) {
+      if (arr[i].id === targetId) {
+        return i.toString();
+      }
+      if (arr[i].value) {
+        let result: any = this.findObjectById(arr[i].value, targetId);
+        if (result) {
+          return i.toString() + "." + result;
+        }
+      }
+    }
+    return null;
+  };
+
+  setValueAtPath(obj: any, path: string[], value: string) {
+    let current = obj;
+    for (let i = 0; i < path.length - 1; i++) {
+      current = current[path[i]].value;
+    }
+    current[path[path.length - 1]].value = value;
+    return current;
+  };
+
+  onStateReady(editor: LexicalEditor) {
+    const htmlString = $generateHtmlFromNodes(editor, null);
+
+    let propRoute: string[] = this.findObjectById(
+      this.getProps(),
+      editor._config.namespace,
+    ).split(".");
+    let componentProps = this.getProps();
+    this.setValueAtPath(componentProps, propRoute, htmlString);
+
+    EventEmitter.emit("propUpdated", {
+      component: this,
+      type: componentProps[parseInt(propRoute[0])].type,
+      key: componentProps[parseInt(propRoute[0])].key,
+      value: componentProps[parseInt(propRoute[0])].value,
+
+    });
+  }
+
+  onChange(editorState: EditorState, editor: LexicalEditor) {
+    editorState.read.bind(this);
+    editorState.read(() => this.onStateReady(editor));
+  };
 
   getPropValueAsElement(prop: TypeUsableComponentProps, properties?: GetPropValueProperties) {
     const sanitize = (dirty: string, options: sanitizeHtml.IOptions) => ({
@@ -172,8 +272,25 @@ export abstract class Component extends React.Component<{}, { states: any; compo
 
       const sanitizedHtml = sanitize(htmlWithPrefixAndSuffix, options);
 
-      //@ts-ignore
-      return <blinkpage playground-seed={prop.id} prop-type={prop.type} style={{ pointerEvents: "none", display: "inline-block", width: "100%" }} dangerouslySetInnerHTML={sanitizedHtml}></blinkpage>;
+      const editorConfig = {
+        namespace: prop.id,
+        onError: (error: Error) => {
+          console.error('Lexical Error:', error);
+        },
+        editorState: (editor: any) => this.prepopulatedRichText(editor, prop.value as string),
+        nodes: [
+          ExtendedTextNode,
+          { replace: TextNode, with: (node: TextNode) => new ExtendedTextNode(node.__text) },
+          ListNode,
+          ListItemNode,
+          HeadingNode,
+          QuoteNode,
+          CodeNode,
+          CodeHighlightNode
+        ]
+      };
+
+      return <InlineEditor initialConfig={editorConfig} onChange={this.onChange} />
     };
 
     return <SanitizeHTML html={prop?.value}></SanitizeHTML>;
@@ -211,15 +328,17 @@ export abstract class Component extends React.Component<{}, { states: any; compo
   }
 
   setComponentState(key: string, value: any): void {
-    this.state.states[key] = value;
+    this.customStates[key] = value;
     EventEmitter.emit("forceReload");
+    EventEmitter.emit("stateChanged", {id: this.id, key, value});
+
   }
 
   getComponentState(key: string): any {
-    return this.state.states[key];
+    return this.customStates[key];
   }
 
-  setCSSClasses(key: string, value: { id: string; class: string }[]) {
+  setCSSClasses(key: string, value: { id: string; class: string; }[]) {
     this.state.componentProps.cssClasses[key] = value;
     this.setState({ componentProps: this.state.componentProps });
   }
