@@ -431,14 +431,21 @@ class ImageGallery4 extends BaseImageGallery {
     return "Image Gallery 4";
   }
   handleKeyDown = (event: KeyboardEvent) => {
-    if (event.key === "ArrowLeft") {
-      this.prevImage();
-    } else if (event.key === "ArrowRight") {
-      this.nextImage();
-    } else if (event.key === "Escape") {
-      this.closeFocus();
+    switch (event.key) {
+      case "ArrowLeft":
+        this.prevImage();
+        break;
+      case "ArrowRight":
+        this.nextImage();
+        break;
+      case "Escape":
+        this.closeFocus();
+        break;
+      default:
+        break;
     }
   };
+
   handleSectionClick(index: number): void {
     this.setComponentState("activeNav", index);
     this.setComponentState("activeSubnav", null);
