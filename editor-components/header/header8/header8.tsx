@@ -10,70 +10,99 @@ type ISliderData = {
   topWriting: string;
 };
 
-
 let words;
 function AnimatedText({ children, mode, animationStarted, randomizedFontSize }: any) {
-    const [wordArray, setWordArray] = React.useState([]);
-    const [fontSizeArray, setFontSizeArray] = React.useState([]);
-    const [_animationStarted, set_animationStarted] = React.useState(false);
-    React.useEffect(() => {
-        words = children.split("");
-        setWordArray(words)
-        if (randomizedFontSize && randomizedFontSize.hasOwnProperty("max")) {
-            let fontSizes = words.map(() => randomizedFontSize.min + (Math.random() * (randomizedFontSize.max - randomizedFontSize.min)));
-            setFontSizeArray(fontSizes);
-        }
-    }, [])
+  const [wordArray, setWordArray] = React.useState([]);
+  const [fontSizeArray, setFontSizeArray] = React.useState([]);
+  const [_animationStarted, set_animationStarted] = React.useState(false);
 
-    React.useEffect(() => {
-      if(animationStarted){
-        setTimeout(() => {
-          set_animationStarted(true);
-        }, 30);
-      }
-      else{
-        set_animationStarted(false);
-      }
-    }, [animationStarted])
+  React.useEffect(() => {
+    words = children.split("");
+    setWordArray(words);
+    if (randomizedFontSize && randomizedFontSize.hasOwnProperty("max")) {
+      let fontSizes = words.map(() => randomizedFontSize.min + Math.random() * (randomizedFontSize.max - randomizedFontSize.min));
+      setFontSizeArray(fontSizes);
+    }
+  }, []);
 
-    return (
-        <div className={styles['wrapper'] + " " + styles["wrapper--" + mode]}>
-            {wordArray.map((letter, index) => <div key={"letter" + index} style={{ fontSize: `${fontSizeArray[index]}rem` }} className={styles['letter'] + " " + (_animationStarted && styles['wrapper--activated'])}>{letter}</div>)}
+  React.useEffect(() => {
+    if (animationStarted) {
+      setTimeout(() => {
+        set_animationStarted(true);
+      }, 300);
+    } else {
+      set_animationStarted(false);
+    }
+  }, [animationStarted]);
+
+  return (
+    <div className={styles["wrapper"] + " " + styles["wrapper--" + mode]}>
+      {wordArray.map((letter, index) => (
+        <div key={"letter" + index} style={{ fontSize: `${fontSizeArray[index]}rem` }} className={styles["letter"] + " " + (_animationStarted && styles["wrapper--activated"])}>
+          {letter}
         </div>
-    );
+      ))}
+    </div>
+  );
 }
 
 function SampleNextArrow(props: any) {
-  const { className, style, onClick, customOnClick } = props;
+  const { className, style, onClick, customOnClick, disabled } = props;
   return (
     <div
       className={className + " " + styles["arrow-next"]}
-      style={{ ...style }}
+      style={{ ...style, pointerEvents: disabled ? "none" : "auto", opacity: disabled ? 0.5 : 1 }}
       onClick={() => {
-        onClick();
-        customOnClick();
+        if (!disabled) {
+          onClick();
+          customOnClick();
+        }
       }}
     ></div>
   );
 }
 
 function SamplePrevArrow(props: any) {
-  const { className, style, onClick, customOnClick } = props;
+  const { className, style, onClick, customOnClick, disabled } = props;
   return (
     <div
       className={className + " " + styles["arrow-prev"]}
-      style={{ ...style }}
+      style={{ ...style, pointerEvents: disabled ? "none" : "auto", opacity: disabled ? 0.5 : 1 }}
       onClick={() => {
-        onClick();
-        customOnClick();
+        if (!disabled) {
+          onClick();
+          customOnClick();
+        }
       }}
     ></div>
   );
 }
+
 //CLASS
 class Header8 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "boolean",
+      key: "text_animation",
+      displayer: "Text Animation",
+      value: true,
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "slider_animation",
+      displayer: "Slider Animation",
+      value: true,
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "line",
+      displayer: "Line Enabled",
+      value: true,
+    });
 
     this.addProp({
       type: "array",
@@ -107,8 +136,7 @@ class Header8 extends BaseHeader {
               type: "image",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618083bd2970002c6245e9?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618083bd2970002c6245e9?alt=media&timestamp=1719483639150",
             },
           ],
         },
@@ -139,8 +167,7 @@ class Header8 extends BaseHeader {
               type: "image",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618083bd2970002c6245e8?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618083bd2970002c6245e8?alt=media&timestamp=1719483639150",
             },
           ],
         },
@@ -171,8 +198,7 @@ class Header8 extends BaseHeader {
               type: "image",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618083bd2970002c6245e9?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618083bd2970002c6245e9?alt=media&timestamp=1719483639150",
             },
           ],
         },
@@ -203,16 +229,16 @@ class Header8 extends BaseHeader {
               type: "image",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618083bd2970002c6245e8?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618083bd2970002c6245e8?alt=media&timestamp=1719483639150",
             },
           ],
         },
       ],
     });
 
-    this.setComponentState("prevIndex", 1)
+    this.setComponentState("prevIndex", 1);
     this.setComponentState("currentIndex", 1);
+    this.setComponentState("arrowDisabled", false);
   }
 
   getName(): string {
@@ -220,37 +246,53 @@ class Header8 extends BaseHeader {
   }
 
   changeCurrentSlide(slideIndex: number) {
-    this.setComponentState("prevIndex", this.getComponentState("currentIndex"))
+    this.setComponentState("prevIndex", this.getComponentState("currentIndex"));
     this.setComponentState("currentIndex", slideIndex);
+  }
+
+  handleArrowClick(slideIndex: number, direction: "next" | "prev") {
+    if (!this.getComponentState("arrowDisabled")) {
+      this.changeCurrentSlide(slideIndex);
+      this.setComponentState("arrowDisabled", true);
+      setTimeout(() => {
+        this.setComponentState("arrowDisabled", false);
+      }, 1500);
+    }
   }
 
   render() {
     let currentSlide = this.getComponentState("currentIndex");
     let slideCount = this.castToObject<ISliderData[]>("slider").length;
 
+    let sliderEffect = this.getPropValue("slider_animation") ? true : false;
+    console.log(sliderEffect, "sliderEffectsliderEffect");
+
     const settings = {
       dots: false,
       infinite: true,
-      speed: 1000,
+      speed: 1500,
+      fade: sliderEffect,
+      swipe: true,
       autoplay: false,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
+
       prevArrow: (
         <SamplePrevArrow
+          disabled={this.getComponentState("arrowDisabled")}
           customOnClick={() => {
-            this.changeCurrentSlide(
-              currentSlide - 1 < 1 ? slideCount : currentSlide - 1
-            );
+            const newIndex = currentSlide === 1 ? slideCount : currentSlide - 1;
+            this.handleArrowClick(newIndex, "prev");
           }}
         />
       ),
       nextArrow: (
         <SampleNextArrow
+          disabled={this.getComponentState("arrowDisabled")}
           customOnClick={() => {
-            this.changeCurrentSlide(
-              currentSlide + 1 > slideCount ? 1 : currentSlide + 1
-            );
+            const newIndex = currentSlide === slideCount ? 1 : currentSlide + 1;
+            this.handleArrowClick(newIndex, "next");
           }}
         />
       ),
@@ -259,43 +301,42 @@ class Header8 extends BaseHeader {
     return (
       <div className={this.decorateCSS("container")}>
         <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
-          {this.castToObject<ISliderData[]>("slider").map(
-            (item: ISliderData, index: number) => (
-              <div
-                className={
-                  this.decorateCSS("slide") +
-                  " " +
-                  (currentSlide == index + 1 && this.decorateCSS("active"))
-                }
-              >
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className={this.decorateCSS("image")}
-                />
-              </div>
-            )
-          )}
+          {this.castToObject<ISliderData[]>("slider").map((item: ISliderData, index: number) => (
+            <div
+              className={
+                this.getPropValue("disabled") ? this.decorateCSS("slide-disabled-animate") : this.decorateCSS("slide") + " " + (currentSlide == index + 1 && this.decorateCSS("disabled") ? this.decorateCSS("active-disabled") : this.decorateCSS("active"))
+              }
+            >
+              <img src={item.image} alt={item.title} className={this.getPropValue("disabled") ? this.decorateCSS("image-disabled-animate") : this.decorateCSS("image")} />
+            </div>
+          ))}
         </ComposerSlider>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("pagination")}>
-            <div className={this.decorateCSS("current-page")}>
-              {currentSlide}
-            </div>
+            <div className={this.decorateCSS("current-page")}>{currentSlide}</div>
             <div className={this.decorateCSS("slash")}> / </div>
             <div className={this.decorateCSS("total-page")}>{slideCount}</div>
           </div>
-          {this.castToObject<ISliderData[]>("slider").map(
-            (item: ISliderData, index: number) => (
-              <div className={this.decorateCSS("info-box") + " " + (currentSlide == index + 1 && this.decorateCSS("active"))}>
-                <div className={this.decorateCSS("tag")}>{item.topWriting}</div>
-                <div className={this.decorateCSS("title")}><AnimatedText mode={(this.getComponentState("prevIndex") <= this.getComponentState("currentIndex")) ? "to_right" : "to_left"} animationStarted={currentSlide == index + 1}>{this.castToString(item.title as any)}</AnimatedText></div>
-                <div className={this.decorateCSS("description")}>
-                  {item.description}
+          {this.castToObject<ISliderData[]>("slider").map((item: ISliderData, index: number) => (
+            <div className={this.decorateCSS("info-box") + " " + (currentSlide == index + 1 && this.decorateCSS("active"))}>
+              {item.topWriting && <div className={this.getPropValue("text_animation") ? this.decorateCSS("tag") : this.decorateCSS("tag-disabled-animate")}>{item.topWriting}</div>}
+              {this.castToString(item.title as any) && (
+                <div className={this.getPropValue("text_animation") ? this.decorateCSS("title") : this.decorateCSS("title-disabled-animate")}>
+                  {this.getPropValue("text_animation") ? (
+                    <AnimatedText mode={this.getComponentState("prevIndex") <= this.getComponentState("currentIndex") ? "to_right" : "to_left"} animationStarted={currentSlide === index + 1}>
+                      {this.castToString(item.title as any)}
+                    </AnimatedText>
+                  ) : (
+                    <div>{this.castToString(item.title as any)}</div>
+                  )}
                 </div>
-              </div>
-            )
-          )}
+              )}
+
+              {this.getPropValue("line") ? <div className={this.decorateCSS("line")}></div> : <div></div>}
+
+              {item.description && <div className={this.getPropValue("text_animation") ? this.decorateCSS("description") : this.decorateCSS("description-disabled-animate")}>{item.description}</div>}
+            </div>
+          ))}
         </div>
       </div>
     );
