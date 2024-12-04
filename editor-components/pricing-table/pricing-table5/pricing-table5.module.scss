@@ -72,6 +72,12 @@
               color: var(--composer-tertiary-color);
             }
 
+            .plan-title,
+            .price {
+              color: var(--composer-font-color-secondary);
+              transition: color 0.5s ease;
+            }
+
             .plan-upper {
               margin: 0;
               margin-top: var(--composer-gap-md);
@@ -91,6 +97,7 @@
 
             .plan-title {
               margin: 0;
+              transition: color 0.5s ease; /* Plan başlığına geçiş ekle */
             }
 
             .icon-box,
@@ -137,7 +144,7 @@
           }
 
           .plan-upper {
-            margin: var(--composer-gap-sm);
+            margin-top: var(--composer-gap-md);
           }
 
           .plan-price-box {
@@ -152,6 +159,7 @@
 
               .price {
                 font-size: 2rem;
+                transition: color 0.5s ease;
               }
             }
 

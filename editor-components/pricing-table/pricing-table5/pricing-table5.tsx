@@ -274,7 +274,7 @@ class PricingTable5 extends BasePricingTable {
                         </div>
                       </div>
 
-                      {isActive && <Base.P className={this.decorateCSS("plan-description")}>{plan.getPropValue("description")}</Base.P>}
+                      <Base.P className={this.decorateCSS("plan-description")}>{plan.getPropValue("description")}</Base.P>
 
                       <div className={this.decorateCSS("plan-price-box")}>
                         {(priceExist || planDescription) && (
