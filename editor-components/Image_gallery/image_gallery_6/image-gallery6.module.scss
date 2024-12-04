@@ -66,6 +66,7 @@
                                     display: flex;
                                     align-items: center;
                                     justify-content: center;
+                                    transition: color, background-color 2s ease;
                                     .badge-text{
                                         writing-mode: vertical-rl;
                                         transform: rotate(180deg);
@@ -95,11 +96,15 @@
                                         padding: var(--composer-gap-lg) calc(var(--composer-gap-xl) * 3);
                                         .title{
                                             font-size: 2rem;
+                                            opacity: 0;
+                                            transition: opacity 2s ease;
                                         }
                                         .bottom-container{
                                             display: flex;
                                             gap: var(--composer-gap-md);
                                             align-items: stretch;
+                                            opacity: 0;
+                                            transition: opacity 2s ease;
                                             .description{
                                                 display: flex;
                                                 align-items: center;
@@ -131,6 +136,14 @@
                                         padding: var(--composer-gap-md) 0px;
                                         visibility: visible;                     
                                         max-height: 100%;
+                                        .text-container{
+                                            .title{
+                                                opacity: 1;
+                                            }
+                                            .bottom-container{
+                                                opacity: 1;
+                                            }
+                                        }
                                     }
                                 }
             

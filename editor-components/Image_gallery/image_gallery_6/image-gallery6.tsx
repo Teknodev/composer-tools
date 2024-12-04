@@ -532,7 +532,7 @@ class ImageGalleryComponent6 extends BaseImageGallery {
       return galleryCollection.flatMap(gallery => gallery.images);
     } else {
       const currentGallery = galleryCollection.find(
-        gallery => this.castToString(gallery.sectionTitle) === this.castToString(selectedSection)
+        gallery => this.castToString(gallery.sectionTitle) === selectedSection
       );
       return currentGallery?.images || [];
     }
@@ -543,7 +543,7 @@ class ImageGalleryComponent6 extends BaseImageGallery {
     this.setComponentState("moreImages", 0);
   }
   handleSectionClick(element: any): void {
-    this.setComponentState("selectedSection", element.sectionTitle)
+    this.setComponentState("selectedSection", this.castToString(element.sectionTitle))
     this.setComponentState("imageCount", this.getPropValue("imageCountInitial"));
     this.setComponentState("moreImages", 0);
   }
@@ -576,7 +576,7 @@ class ImageGalleryComponent6 extends BaseImageGallery {
 
             {galleries.map((element: any) => (
               <Base.H4
-                className={`${this.decorateCSS("section-text")} ${this.castToString(element.sectionTitle) === this.castToString(this.getComponentState("selectedSection")) ? this.decorateCSS("active") : ""
+                className={`${this.decorateCSS("section-text")} ${this.castToString(element.sectionTitle) === this.getComponentState("selectedSection") ? this.decorateCSS("active") : ""
                   }`}
                 onClick={() => this.handleSectionClick(element)}
               >
