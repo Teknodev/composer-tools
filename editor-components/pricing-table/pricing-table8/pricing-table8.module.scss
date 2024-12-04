@@ -83,7 +83,8 @@
 
             .icon {
               position: absolute;
-              bottom: calc(-1 * var(--composer-gap-lg));
+              // bottom: calc(-1 * var(--composer-gap-lg));
+              bottom: -35px;
               color: var(--composer-font-color-secondary);
               background-color: var(--composer-secondary-color);
               font-size: 4.5rem;
@@ -176,6 +177,14 @@
         margin: 0 auto;
         gap: var(--composer-gap-md);
       }
+
+      .prev_icon {
+        display: none;
+      }
+
+      .next_icon {
+        display: none;
+      }
     }
   }
 }
@@ -235,10 +244,8 @@
               }
 
               .icon {
-                position: relative;
                 color: var(--composer-font-color-secondary);
                 background-color: var(--composer-secondary-color);
-                bottom: calc(-1 * var(--composer-gap-xl));
                 font-size: 4.5rem;
                 padding: var(--composer-gap-sm);
                 border-radius: 50%;
@@ -251,35 +258,7 @@
         .upper-container {
           display: none !important;
         }
-        .dots {
-          display: flex !important;
-          flex-direction: row;
-          margin: 0 auto;
-          width: fit-content;
-          gap: var(--composer-gap-sm);
-          list-style-type: none;
-          padding: 0;
-          margin-top: var(--composer-gap-md);
 
-          li {
-            button {
-              border: none;
-              color: white;
-              transition: 0.3s;
-              content-visibility: hidden;
-              width: var(--composer-gap-sm);
-              height: var(--composer-gap-sm);
-              background: var(--composer-font-color-primary);
-              border-radius: calc(2 * var(--composer-gap-xl));
-              margin: 0;
-              padding: 0;
-              cursor: pointer;
-            }
-          }
-        }
-        .dots :global(li.slick-active) button {
-          opacity: 0.5;
-        }
         .lower-container {
           flex-direction: column !important;
           gap: 0 !important;
@@ -305,6 +284,48 @@
               }
             }
           }
+        }
+
+        .prev_icon {
+          display: block;
+          position: absolute;
+          left: calc(-1 * var(--composer-gap-lg));
+          top: 25%;
+          font-size: 2rem;
+          color: var(--composer-font-color-primary);
+          cursor: pointer;
+        }
+
+        .next_icon {
+          display: block;
+          position: absolute;
+          right: calc(-1 * var(--composer-gap-lg));
+          top: 25%;
+          font-size: 2.5rem;
+          color: var(--composer-font-color-primary);
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .box {
+        margin-top: 0;
+
+        .prev_icon {
+          left: calc(-1 * var(--composer-gap-md));
+          top: 20%;
+          font-size: 1.5rem;
+        }
+
+        .next_icon {
+          right: calc(-1 * var(--composer-gap-md));
+          top: 20%;
+          font-size: 1.5rem;
         }
       }
     }

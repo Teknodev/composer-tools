@@ -30,12 +30,6 @@ type Buttons = {
   url: string;
 };
 
-type Bar = {
-  barTitle: string;
-  percent: string;
-  color: any;
-};
-
 class PricingTable8 extends BasePricingTable {
   constructor(props?: any) {
     super(props, styles);
@@ -393,12 +387,27 @@ class PricingTable8 extends BasePricingTable {
     };
 
     this.setComponentState("currentIndex", 0);
+    this.setComponentState("slider-ref", React.createRef());
 
     this.addProp({
       type: "array",
       key: "buttons",
       displayer: "Buttons",
       value: [JSON.parse(JSON.stringify(button))],
+    });
+
+    this.addProp({
+      type: "icon",
+      key: "prevIcon",
+      displayer: "Prev icon",
+      value: "IoMdArrowDropleft",
+    });
+
+    this.addProp({
+      type: "icon",
+      key: "nextIcon",
+      displayer: "Next icon",
+      value: "IoMdArrowDropright",
     });
   }
 
@@ -408,8 +417,7 @@ class PricingTable8 extends BasePricingTable {
 
   render() {
     const settings = {
-      dots: true,
-      dotsClass: this.decorateCSS("dots"),
+      dots: false,
       infinite: true,
       speed: 1000,
       autoplay: false,
@@ -423,6 +431,9 @@ class PricingTable8 extends BasePricingTable {
 
     const cards = this.castToObject<IIconBoxes[]>("cards");
 
+    const prevIcon = this.getPropValue("prevIcon");
+    const nextIcon = this.getPropValue("nextIcon");
+
     const handleCardClick = (index: number) => {
       this.setComponentState("currentIndex", index);
     };
@@ -431,7 +442,7 @@ class PricingTable8 extends BasePricingTable {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("box")}>
-            <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
+            <ComposerSlider {...settings} className={this.decorateCSS("carousel")} ref={this.getComponentState("slider-ref")}>
               {this.castToObject<IIconBoxes[]>("cards").map((card: IIconBoxes, index: number) => {
                 const cardTitleExist = this.castToString(card.title);
                 const cardPriceExist = this.castToString(card.price);
@@ -463,6 +474,31 @@ class PricingTable8 extends BasePricingTable {
                 );
               })}
             </ComposerSlider>
+
+            {prevIcon && (
+              <ComposerIcon
+                name={this.getPropValue("prevIcon")}
+                propsIcon={{
+                  className: `${this.decorateCSS("prev_icon")}`,
+
+                  onClick: () => {
+                    this.getComponentState("slider-ref").current.slickPrev();
+                  },
+                }}
+              />
+            )}
+            {nextIcon && (
+              <ComposerIcon
+                name={this.getPropValue("nextIcon")}
+                propsIcon={{
+                  className: `${this.decorateCSS("next_icon")}`,
+
+                  onClick: () => {
+                    this.getComponentState("slider-ref").current.slickNext();
+                  },
+                }}
+              />
+            )}
 
             <div className={this.decorateCSS("upper-container")}>
               {this.castToObject<IIconBoxes[]>("cards").map((card, index) => {
