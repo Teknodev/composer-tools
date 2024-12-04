@@ -474,7 +474,7 @@ class PricingTable3 extends BasePricingTable {
                         {this.castToString(card.button.text) && (
                           <div className={this.decorateCSS("footer")}>
                             <ComposerLink path={card.button.link}>
-                              <Base.Button>{card.button.text}</Base.Button>
+                              <Base.Button className={this.decorateCSS("button-text")}>{card.button.text}</Base.Button>
                             </ComposerLink>
                           </div>
                         )}

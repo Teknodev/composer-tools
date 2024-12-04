@@ -82,6 +82,16 @@
     }
   }
 
+  .footer {
+    .button-text {
+      div {
+        p {
+          word-break: normal;
+        }
+      }
+    }
+  }
+
   .body {
     .items {
       .item {
