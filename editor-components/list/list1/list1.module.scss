@@ -1,170 +1,172 @@
+@import "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss";
+
 .container {
-  width: 100%;
-  height: 100%;
-  padding: 50px 0px;
-  background-color: var(--composer-html-background);
-
+  background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
   .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    place-items: center;
-
-    .up-text {
-      text-align: center;
-
-      .subtitle {
-        font-size: 18px;
-        margin-top: 0;
-        margin-bottom: 10px;
-        color: var(--composer-font-color-primary);
-      }
-
-      .title {
-        margin-top: 0;
-        margin-bottom: 0;
-        font-size: 35px;
-        color: var(--composer-primary-color);
-      }
-    }
-
-    .carousel-div {
-      width: 80%;
-      gap: 50px;
-
+      display: flex;
+      flex-direction: column;
       .carousel {
+        width: 100%;
+        overflow: hidden;
         .dots {
           display: flex !important;
           flex-direction: row;
           margin: 0 auto;
           width: fit-content;
-          gap: 10px;
+          gap: var(--composer-gap-sm);
           list-style-type: none;
-          margin-top: -24px;
           padding: 0;
+          bottom: 20px;
+          left: 50%;
+          transform: translateX(-50%);
+          position: absolute;
 
           li {
             button {
               border: none;
               transition: 0.3s;
               content-visibility: hidden;
+              background: color-mix(
+                in srgb,
+                var(--composer-html-background),
+                var(--composer-font-color-primary) 5%
+              ) !important;
               width: 10px;
               height: 10px;
-              background: var(--composer-font-color-primary);
               border-radius: 100px;
-              margin: 0;
-              padding: 0;
+              cursor: pointer;
             }
           }
         }
 
         .dots :global(li.slick-active) button {
-          padding: 0 10px;
+          padding: 0 var(--composer-gap-md);
         }
 
         .card {
-          width: 100%;
+          width: 95% !important;
           height: 100%;
-          padding: 2.5rem 2rem;
+          padding: 0px var(--composer-gap-sm) var(--composer-gap-xl) var(--composer-gap-sm);
           position: relative;
 
           &.active {
-            &::before {
+            &::after {
               content: "";
               position: absolute;
-              width: calc(100% + 4rem);
-              height: 65%;
-              bottom: 5px;
-              left: -2rem;
+              width: 114%;
+              height: 85%;
+              bottom: -60px;
+              left: -40px;
               background-color: var(--composer-primary-color);
               z-index: -1;
+              opacity: .93;
             }
           }
 
           .card-inner {
-            padding: 3rem;
-            background-color: color-mix(
-              in srgb,
-              var(--composer-font-color-primary),
-              var(--composer-html-background) 90%
-            );
+            background-color: var(--composer-html-background);
+            z-index: 0;
+            position: static;
             display: flex;
             flex-direction: column;
-            z-index: 0;
-            gap: 10px;
-            position: static;
+            padding: var(--composer-gap-lg);
+            aspect-ratio: 1.52;
 
-            .img {
-              border-radius: 999px;
-              width: 100%;
-              height: 100%;
-              max-width: 200px;
-              max-height: 200px;
+            .img-div {
+              .img {
+                border-radius: 50%;
+                width: 100%;
+                height: 100%;
+                max-width: 200px;
+                max-height: 200px;
+              }
             }
 
-            .title {
-              font-size: 20px;
-              font-weight: 700;
-              color: var(--composer-font-color-primary);
-            }
+            .card-titles {
+              margin-top: var(--composer-gap-md);
 
-            .subtitle {
-              font-size: 14px;
-              color: var(--composer-font-color-primary);
+              .title {
+                font-size: 1.5rem;
+
+                &:hover {
+                  color: var(--composer-primary-color);
+                  transition: 1s;
+                }
+              }
+  
+              .subtitle {
+                font-size: 1rem;
+                opacity: 0.8;
+              }
             }
 
             .link {
-              margin: 20px 0 0;
+              margin: var(--composer-gap-md) 0 0;
               color: var(--composer-font-color-primary);
+              display: flex;
+              align-items: center;
+              gap: var(--composer-gap-xs);
+              cursor: pointer;
+
+              > svg {
+                font-size: 1rem;
+                display: flex;
+                flex-shrink: 0;
+              }
 
               &:hover {
-                color: var(--composer-secondary-color);
+                color: var(--composer-primary-color);
+                transition: 1s;
               }
 
               .text {
-                font-size: 14px;
+                display: -webkit-box !important;
+                line-clamp: 1;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-size: 1rem;
               }
             }
           }
         }
       }
-    }
   }
 }
 
-@media only screen and (max-width: 768px) {
+@container (max-width: #{$composer-tablet-width-lg}) {
   .container {
     .max-content {
-      display: flex !important;
-      flex-direction: column !important;
-      place-items: center;
-
       .carousel {
-        width: 100%;
-
         .dots {
-          margin-top: 0;
-        }
-
-        .card {
           display: flex !important;
-          flex-direction: column !important;
-
+          position: absolute;
+          li {
+            button {
+              border: none;
+              transition: 0.3s;
+              content-visibility: hidden;
+              background: color-mix(
+                in srgb,
+                var(--composer-html-background),
+                var(--composer-font-color-primary) 5%
+              ) !important;
+              width: 10px;
+              height: 10px;
+              border-radius: 100px;
+            }
+          }
+        }
+        .card {
           &.active {
-            ::before {
-              width: calc(100% + 4rem);
-              left: -11rem !important;
-              content: "";
-              display: none;
+            &::before {
+              visibility: hidden;
             }
           }
 
           .card-inner {
-            text-align: center;
-            img {
+            margin-left: 0px;
+            .img {
               margin: 0 auto;
             }
           }
@@ -174,27 +176,22 @@
   }
 }
 
-@media only screen and (max-width: 400px) {
+@container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
-      display: flex;
-      flex-direction: column;
-      place-items: center;
-
       .carousel {
-        width: 100%;
-
         .dots {
-          margin-top: 0;
+          position: absolute;
         }
-
         .card {
-          left: 0rem !important;
-          &.active {
-            ::before {
-              content: "";
-              display: none;
-              left: 0rem !important;
+          &.active::before {
+            display: none !important;
+          }
+
+          .card-inner {
+            margin-left: 0px;
+            img {
+              margin: 0 auto;
             }
           }
         }

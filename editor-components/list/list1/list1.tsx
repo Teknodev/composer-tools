@@ -4,12 +4,13 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import styles from "./list1.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
 
 type Card = {
   image: string;
-  title: string;
-  subtitle: string;
-  text: string;
+  title: JSX.Element;
+  subtitle: JSX.Element;
+  text: JSX.Element;
   url: string;
   icon: string;
 };
@@ -21,13 +22,13 @@ class List1 extends BaseList {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "Delicious Taste of"
+      value: "Delicious Taste of",
     });
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "TODAY RECIPES"
+      value: "TODAY RECIPES",
     });
     this.addProp({
       type: "array",
@@ -74,8 +75,7 @@ class List1 extends BaseList {
               type: "icon",
               key: "icon",
               displayer: "Icon",
-              value: "MdNavigateNext"
-
+              value: "MdNavigateNext",
             },
           ],
         },
@@ -119,7 +119,7 @@ class List1 extends BaseList {
               type: "icon",
               key: "icon",
               displayer: "Icon",
-              value: "MdNavigateNext"
+              value: "MdNavigateNext",
             },
           ],
         },
@@ -163,7 +163,7 @@ class List1 extends BaseList {
               type: "icon",
               key: "icon",
               displayer: "Icon",
-              value: "MdNavigateNext"
+              value: "MdNavigateNext",
             },
           ],
         },
@@ -207,7 +207,7 @@ class List1 extends BaseList {
               type: "icon",
               key: "icon",
               displayer: "Icon",
-              value: "MdNavigateNext"
+              value: "MdNavigateNext",
             },
           ],
         },
@@ -251,8 +251,7 @@ class List1 extends BaseList {
               type: "icon",
               key: "icon",
               displayer: "Icon",
-              value: "MdNavigateNext"
-
+              value: "MdNavigateNext",
             },
           ],
         },
@@ -296,83 +295,136 @@ class List1 extends BaseList {
               type: "icon",
               key: "icon",
               displayer: "Icon",
-              value: "MdNavigateNext"
+              value: "MdNavigateNext",
             },
           ],
         },
       ],
     });
+    this.addProp({
+      type: "boolean",
+      key: "backgroundColor",
+      displayer: "Colored Area",
+      value: true,
+    });
 
-    this.setComponentState("active-index", 1)
+    this.setComponentState("active-index", 1);
   }
-
 
   getName(): string {
     return "List 1";
   }
 
   render() {
+    const sliderItems = this.castToObject<Card[]>("slider");
+    const backgroundColor = this.getPropValue("backgroundColor");
+    const title: JSX.Element = this.getPropValue("title");
+    const subTitle: JSX.Element = this.getPropValue("subtitle");
     const settings = {
       dots: true,
-      infinite: true,
-      speed: 200,
+      infinite: sliderItems.length > 1,
       autoplay: false,
       autoplaySpeed: 3000,
-      slidesToShow: window.innerWidth < 769 ? (window.innerWidth < 500 ? 1 : 1) : 3,
+      slidesToShow:
+        window.innerWidth < 475
+          ? 1
+          : window.innerWidth < 775
+            ? 2
+            : Math.min(3, sliderItems.length),
       slidesToScroll: 1,
       initialSlide: 1,
       arrows: false,
       centerMode: true,
       dotsClass: this.decorateCSS("dots"),
-      centerPadding: '0px',
+      centerPadding: "0px",
       beforeChange: (previndex: number, currindex: number) => {
-        this.setComponentState("active-index", currindex)
+        this.setComponentState("active-index", currindex);
       },
     };
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("up-text")}>
-            <h4 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h4>
-            <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
-          </div>
-          <div className={this.decorateCSS("carousel-div")}>
-            <ComposerSlider
-              {...settings}
-              className={this.decorateCSS("carousel")}
-            >
-              {this.castToObject<Card[]>("slider").map(
-               (item: Card, indexSlider: number) => (
-                  <div key={indexSlider} className={`${this.decorateCSS("card")} ${this.getComponentState("active-index") == indexSlider ? this.decorateCSS("active") : ""}`}>
-                    <div className={this.decorateCSS("card-inner")}>
-                      
-                    {item.image && <div className={this.decorateCSS("img-div")}>
-                      <img
-                        className={this.decorateCSS("img")}
-                        src={item.image}
-                        alt=""
-                      /></div>}
-
-                      <span className={this.decorateCSS("title")}>
-                        {item.title}
-                      </span>
-                      <span className={this.decorateCSS("subtitle")}>
-                        {item.subtitle}
-                      </span>
-                      <ComposerLink path={item.url}>
-                        <div className={this.decorateCSS("link")}>
-                          <span className={this.decorateCSS("text")}>{item.text}</span>
-                          <ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
-                        </div>
-                      </ComposerLink>
-                    </div>
-                  </div>
-                )
+            <Base.VerticalContent>
+              {this.castToString(subTitle) && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {this.castToString(subTitle)}
+                </Base.SectionSubTitle>
               )}
-            </ComposerSlider>
+              {this.castToString(title) && (
+                <Base.SectionTitle className={this.decorateCSS("title")}>
+                  {this.castToString(title)}
+                </Base.SectionTitle>
+              )}
+            </Base.VerticalContent>
           </div>
-        </div>
-      </div>
+          <ComposerSlider
+            {...settings}
+            className={this.decorateCSS("carousel")}
+          >
+            {sliderItems.map((item: Card, indexSlider: number) => {
+              const activeIndex = this.getComponentState("active-index");
+
+              return (
+                <div
+                  key={indexSlider}
+                  className={`${this.decorateCSS("card")}
+                    ${backgroundColor &&
+                      this.getComponentState("active-index") === indexSlider
+                      ? this.decorateCSS("active")
+                      : ""
+                    }
+                    `}
+                >
+                  <div className={this.decorateCSS("card-inner")}>
+                    {item.image && (
+                      <div className={this.decorateCSS("img-div")}>
+                        <img
+                          className={this.decorateCSS("img")}
+                          src={item.image}
+                          alt=""
+                        />
+                      </div>
+                    )}
+
+                    <Base.VerticalContent className={this.decorateCSS("card-titles")}>
+                      {this.castToString(item.title) && (
+                        <Base.SectionTitle className={this.decorateCSS("title")}>
+                          {item.title}
+                        </Base.SectionTitle >
+                      )}
+
+                      {this.castToString(item.subtitle) && (
+                        <Base.SectionDescription className={this.decorateCSS("subtitle")}>
+                          {item.subtitle}
+                        </Base.SectionDescription>
+                      )}
+                    </Base.VerticalContent>
+
+                    {this.castToString(item.text) && (
+                      <>
+                        <ComposerLink path={item.url}>
+                          <div className={this.decorateCSS("link")}>
+                            <span className={this.decorateCSS("text")}>
+                              {item.text}
+                            </span >
+                            <ComposerIcon
+                              name={item.icon}
+                              propsIcon={{
+                                className: this.decorateCSS("icon"),
+                              }}
+                            />
+                          </div>
+                        </ComposerLink>
+                      </>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </ComposerSlider>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
