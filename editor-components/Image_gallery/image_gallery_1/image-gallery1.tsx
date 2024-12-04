@@ -411,7 +411,6 @@ class ImageGallery1 extends BaseImageGallery {
       this.setComponentState("imageCount", this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"));
     const imageGallery = this.castToObject<ImageGallery[]>("imageGalleries");
     const selectedSection = this.getComponentState("selectedSection");
-    console.log("selectedSection", selectedSection)
     const seenImages = new Set<string>();
     const allImages = imageGallery.reduce((acc: Image[], gallery: ImageGallery) => {
       gallery.images.forEach((image) => {
@@ -462,13 +461,6 @@ class ImageGallery1 extends BaseImageGallery {
                 acc.push(...item.images);
                 return acc;
               }, [])
-              .filter((image: Image) => {
-                if (seenImages.has(image.cardImage)) {
-                  return false;
-                }
-                seenImages.add(image.cardImage);
-                return true;
-              })
               .slice(0, this.getComponentState("imageCount"))
               .map((image: Image, imgIndex: number) => (
                 <div key={imgIndex} className={this.decorateCSS("card-container")}>
