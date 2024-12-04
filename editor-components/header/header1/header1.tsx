@@ -10,7 +10,8 @@ interface Slider {
   image: string;
 }
 class Header1 extends BaseHeader {
-  sliderRef = React.createRef<any>();
+  sliderRef: React.RefObject<any>;
+  
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
@@ -230,7 +231,10 @@ class Header1 extends BaseHeader {
         },
       ],
     });
+    
+    this.sliderRef = React.createRef();
     this.setActiveTab(0);
+    this.setComponentState("titleAnimation", true);
     this.setComponentState("animationDuration", 20);
   }
 
@@ -254,6 +258,8 @@ class Header1 extends BaseHeader {
     };
   };
   handleWheel = this.throttle((event: React.WheelEvent) => {
+    // ref isn't work;
+    return; 
     if (event.deltaY < 0) {
       this.handleUpClick();
     } else if (event.deltaY > 0) {
@@ -267,7 +273,9 @@ class Header1 extends BaseHeader {
     const newIndex = currentIndex > 0 ? currentIndex - 1 : sliders.length - 1;
 
     this.setActiveTab(newIndex);
-    this.sliderRef.current.slickGoTo(newIndex);
+    if(this.sliderRef.current){
+      this.sliderRef.current.slickGoTo(newIndex);
+    }
   };
 
   handleDownClick = () => {
@@ -275,8 +283,10 @@ class Header1 extends BaseHeader {
     const sliders = this.castToObject<[]>("sliders");
     const newIndex = currentIndex < sliders.length - 1 ? currentIndex + 1 : 0;
 
-    this.setActiveTab(newIndex);
-    this.sliderRef.current.slickGoTo(newIndex);
+    this.setActiveTab(newIndex);    
+    if(this.sliderRef.current){
+      this.sliderRef.current.slickGoTo(newIndex);
+    }
   };
 
   getStyle = (text: string, active: boolean) => {
@@ -311,11 +321,16 @@ class Header1 extends BaseHeader {
       dotsClass: this.getPropValue("background-layout") ? this.decorateCSS("dots") : this.decorateCSS("dark-dots"),
       beforeChange: (current: number, next: number) => {
         this.setActiveTab(next);
+        this.setComponentState("titleAnimation", false)
+        setTimeout(() => {
+          this.setComponentState("titleAnimation", true)
+        }, 1000)
       },
     };
     const isLineActive = this.getPropValue("numberLine");
     const backgroundLayout = this.getPropValue("background-layout");
-
+    const titleAnimation = this.getComponentState("titleAnimation");
+    
     return (
       <div className={this.decorateCSS("container")} onWheel={this.handleWheel} style={{ backgroundImage: `url(${this.getPropValue("background-layout")})` }}>
         <img className={this.decorateCSS("image-container-2")} src={this.getPropValue("sun")} alt="" />
@@ -358,6 +373,14 @@ class Header1 extends BaseHeader {
                             src={item.image}
                             alt=""
                           />
+                          {item.title && <h1 className={
+                            (titleAnimation ? this.decorateCSS("titleAnimation") : " ") + " " + 
+                            (backgroundLayout
+                              ? (item.image ? this.decorateCSS("title") : this.decorateCSS("without-image-title"))
+                              : (item.image ? this.decorateCSS("dark-title") : this.decorateCSS("dark-without-image-title")))
+                            }>
+                            {item.title}
+                          </h1>}
 
                           <h1 className={this.decorateCSS("sliderNumber")}>
                             {isLineActive && (
@@ -369,14 +392,6 @@ class Header1 extends BaseHeader {
                             </span>
                           </h1>
                         </div>
-
-                        <h1 className={
-                          backgroundLayout
-                            ? (item.image ? this.decorateCSS("title") : this.decorateCSS("without-image-title"))
-                            : (item.image ? this.decorateCSS("dark-title") : this.decorateCSS("dark-without-image-title"))
-                        }>
-                          {item.title}
-                        </h1>
                       </div>
                     </div>
                   );

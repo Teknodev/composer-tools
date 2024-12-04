@@ -1,3 +1,19 @@
+@mixin titleSize($size) {
+  .container{
+    .max-content {
+      .title, .without-image-title, .dark-title, .dark-without-image-title  {
+        font-size: $size !important;
+      }
+    }
+  }
+}
+
+@mixin absoluteCenter {
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+}
+
 @keyframes moveUpDown {
   0% {
     transform: translateY(0);
@@ -116,7 +132,8 @@
           .active-text {
             opacity: 0.4;
             height: 100vh;
-            font-size: calc(60rem + 25vh);
+            font-size: calc(65rem + 25vh);
+            line-height: 0.8;
             >blinkpage{
               height: 100vh;
               display: flex !important;
@@ -145,10 +162,11 @@
           justify-content: flex-end;
           position: relative;
           width: 90%;
-          min-height: 40vh;
+          
           .subtitle, .subtitle-dark {
             position: absolute;
             color:white;
+            text-align: center;
             transform: rotateZ(-90deg) translateX(-100%);
             font-size: 12px;
             z-index: 10;
@@ -182,7 +200,7 @@
             color: var(--composer-font-color-primary) !important;
           }
           .image {
-            border-radius: 1rem;
+            border-radius: var(--composer-border-radius-md);
             margin: 0 auto;
             width: 100%;
             object-fit: cover;
@@ -232,12 +250,17 @@
         }
         .title, .without-image-title, .dark-title, .dark-without-image-title {
           position: absolute;
+          margin: 0;
+          top: 50%;
+          right: -130px;
+          transform: translateY(-50%);
+          text-align: center;
           font-weight: 400;
           font-size:calc(9rem + 3vh); 
           color: white;
           z-index: 10;
-          height: fit-content;
-          right: 0px;
+          opacity: 0;
+          
           >blinkpage{
             >p{
               word-break: break-word;
@@ -247,7 +270,7 @@
               overflow: hidden; 
               text-overflow: ellipsis; 
             }
-          }      
+          }   
         }
         .dark-title, .dark-without-image-title{
           color: var(--composer-font-color-primary) !important;
@@ -262,6 +285,12 @@
             }
           }  
         }
+
+
+        .titleAnimation{
+          opacity: 1;
+          transition: all 0.5s linear;
+        }
       }
       }
       .dots , .dark-dots{
@@ -274,7 +303,20 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        li {
+        li {          
+          height: 30px;
+          cursor: pointer;
+          
+          &:hover{
+            *{
+              cursor: pointer;
+            }
+            button{
+              border: 1px solid white;
+              border-radius: 50%;
+            }
+          }
+
           button {
             color: transparent;
             position: relative;
@@ -325,7 +367,71 @@
     }
   }
 }
-@media screen and (max-width: 800px) {
+
+@media screen and (max-width: 399px) {
+  @include titleSize(4rem);
+
+  .image-container-2 {
+    width: 60% !important;
+    max-width: 60% !important;
+  }
+  .image-container-3 {
+    left: -100px !important;
+    max-width: 70% !important;
+    top:45rem !important;
+  }
+  .container{
+    .max-content {
+      .wrapper{
+        .return-container{
+          .background-text {
+            opacity: 0 !important;
+          }
+          .content-container{
+            width: 100% !important;
+            .image-wrapper{
+              min-height: 20vh !important;
+              .image{
+                transform: scale(1) !important;
+              }
+  
+              .subtitle, .subtitle-dark {
+                display: none;
+              }
+              .sliderNumber{
+                top:0px !important;
+                .overlay{
+                  width: 1rem;
+                }
+              }
+
+            }
+            .title, .without-image-title, .dark-title, .dark-without-image-title  {
+              @include absoluteCenter;
+            }
+          }
+
+        }
+      }  
+    }
+  }
+  .dots, .dark-dots{
+    display: flex !important;
+    flex-direction: row !important;
+    width: 100%;
+    justify-content: center !important;
+    align-items: flex-end !important;
+    padding-bottom: 30px !important;
+    max-height: 950px !important;
+  }
+  .dots :global(li.slick-active) button , .dark-dots :global(li.slick-active) button {
+    transform-origin: left !important; 
+  }
+}
+
+@media screen and (min-width: 400px) and (max-width: 799px) {
+  @include titleSize(6rem);
+
   .container{
     .image-container-2{
       max-width: 30%;
@@ -374,18 +480,10 @@
                 width: 50vw !important;
               }
             }
+            
             .title, .without-image-title, .dark-title, .dark-without-image-title  {
-              font-size: 8.75rem;
-              width: 100%;
-              max-height: 80%;
-              >blinkpage{
-                width: 100%;
-                display: flex !important;
-                align-items: center;
-                justify-content: center;
-              }
-             }
-
+                @include absoluteCenter;
+            }
           }
         }
       }
@@ -403,66 +501,15 @@
     }
   }
 }
-@media screen and (max-width: 400px) {
-  .image-container-2 {
-    width: 60% !important;
-    max-width: 60% !important;
-  }
-  .image-container-3 {
-    left: -100px !important;
-    max-width: 70% !important;
-    top:45rem !important;
-  }
-  .container{
-    .max-content {
-      .wrapper{
-        .return-container{
-          .background-text {
-            opacity: 0 !important;
-          }
-          .content-container{
-            width: 100% !important;
-            .image-wrapper{
-              min-height: 20vh !important;
-              .image{
-                transform: scale(1) !important;
-              }
-  
-              .subtitle, .subtitle-dark {
-                display: none;
-              }
-              .sliderNumber{
-                top:0px !important;
-                .overlay{
-                  width: 1rem;
-                }
-              }
 
-            }
-            .title, .without-image-title, .dark-title, .dark-without-image-title  {
-              font-size: 5rem !important;
-              left: auto !important;
-              width: 100% !important;
-              max-width: 100% !important;
-              text-align: center !important;
-        
-            }
-          }
+@media screen and (min-width: 800px) and (max-width: 1200px) {
+  @include titleSize(9rem);
+}
 
-        }
-      }  
-    }
-  }
-  .dots, .dark-dots{
-    display: flex !important;
-    flex-direction: row !important;
-    width: 100%;
-    justify-content: center !important;
-    align-items: flex-end !important;
-    padding-bottom: 30px !important;
-    max-height: 950px !important;
-  }
-  .dots :global(li.slick-active) button , .dark-dots :global(li.slick-active) button {
-    transform-origin: left !important; 
-  }
+@media screen and (min-width: 800px) and (max-width: 1000px) {
+  @include titleSize(7rem);
+}
+
+@media screen and (min-width: 400px) and (max-width: 600px) {
+  @include titleSize(5rem);
 }
