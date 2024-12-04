@@ -2,6 +2,7 @@ import * as React from "react";
 import styles from "./faq4.module.scss";
 import { BaseFAQ } from "../../EditorComponent";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
 
 type Card = {
   title: string;
@@ -36,27 +37,47 @@ class FaqButton extends BaseFAQ {
 
     this.addProp({
       type: "array",
-      key: "card",
-      displayer: "Card",
+      key: "cards",
+      displayer: "Cards",
       value: [
         {
           type: "object",
-          key: "items",
-          displayer: "Items",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "What are the shipping options available?",
+              key: "sectionTitle",
+              displayer: "Section Title",
+              value: "Payment",
             },
             {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value:
-                "We offer standard and express shipping options. Standard shipping usually takes 5-7 business days, while express shipping takes 1-3 business days.",
-            },
+              type: "array",
+              key: "items",
+              displayer: "Items",
+              value: [
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "What are the shipping options available?",
+                    },
+                    {
+                      type: "string",
+                      key: "description",
+                      displayer: "Description",
+                      value:
+                        "We offer standard and express shipping options. Standard shipping usually takes 5-7 business days, while express shipping takes 1-3 business days.",
+                    },
+                  ]
+                }
+              ]
+            }
           ],
         },
         {
@@ -64,6 +85,12 @@ class FaqButton extends BaseFAQ {
           key: "items",
           displayer: "Items",
           value: [
+            {
+              type: "string",
+              key: "sectionTitle",
+              displayer: "Section Title",
+              value: "Returns",
+            },
             {
               type: "string",
               key: "title",
@@ -132,22 +159,30 @@ class FaqButton extends BaseFAQ {
   render() {
     const handleButton = (index: number) => {
       this.activeIndex = this.activeIndex === index ? -1 : index;
+      console.log("click button")
     };
 
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
-            <div className={this.decorateCSS("up-page")}>
-              <div className={this.decorateCSS("badge")}>
+            <Base.VerticalContent className={this.decorateCSS("up-page")}>
+              <Base.SectionSubTitle className={this.decorateCSS("badge")}>
                 {this.getPropValue("badge")}
-              </div>
-              <h1 className={this.decorateCSS("subtitle")}>
+              </Base.SectionSubTitle>
+              <Base.SectionTitle className={this.decorateCSS("subtitle")}>
                 {this.getPropValue("subtitle")}
-              </h1>
-              <p className={this.decorateCSS("text-p")}>
+              </Base.SectionTitle>
+              <Base.SectionDescription className={this.decorateCSS("description")}>
                 {this.getPropValue("text")}
-              </p>
+              </Base.SectionDescription>
+            </Base.VerticalContent>
+            <div className={this.decorateCSS("middle-page")}>
+              <div className={this.decorateCSS("sections")}>
+                <div className={this.decorateCSS("title")}>
+                  BURCU
+                </div>
+              </div>
             </div>
             <div className={this.decorateCSS("down-page")}>
               {this.castToObject<Card[]>("card").map(
@@ -155,21 +190,22 @@ class FaqButton extends BaseFAQ {
                   return (
                     <div className={this.decorateCSS("card")} key={indexCard}>
                       <div className={this.decorateCSS("child-container")}>
-                        <div className={this.decorateCSS("card-title")}>
-                          <h3 className={this.decorateCSS("card-title-h3")}>
+                        <div className={this.decorateCSS("card-left")}>
+                          <Base.H3 className={this.decorateCSS("card-title")}>
                             {card.title}
-                          </h3>
+                          </Base.H3>
                         </div>
-                        <div className={this.decorateCSS("icon")} onClick={() => handleButton(indexCard)}
-                        >
-                          <ComposerIcon
-                            propsIcon={{className: this.decorateCSS("icon-svg")}}
-                            name={
-                              this.activeIndex === indexCard
-                                ? "FaAngleUp"
-                                : "FaAngleDown"
-                            }
-                          />
+                        <div className={this.decorateCSS("card-right")} onClick={() => handleButton(indexCard)}>
+                          <div className={this.decorateCSS("icon-wrapper")}>
+                            <ComposerIcon
+                              propsIcon={{ className: this.decorateCSS("icon") }}
+                              name={
+                                this.activeIndex === indexCard
+                                  ? "FaAngleUp"
+                                  : "FaAngleDown"
+                              }
+                            />
+                          </div>
                         </div>
                       </div>
                       <p
@@ -186,8 +222,8 @@ class FaqButton extends BaseFAQ {
               )}
             </div>
           </div>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
