@@ -276,9 +276,9 @@ class Feature13 extends BaseFeature {
       ],
     });
 
-    this.intervalId = setInterval(() => {
-      this.sliderNext();
-    }, 3000);
+    // this.intervalId = setInterval(() => {
+    //   this.sliderNext();
+    // }, 3000);
 
     this.addProp({
       type: "icon",
@@ -307,9 +307,9 @@ class Feature13 extends BaseFeature {
 
   resetSliderInterval = () => {
     clearInterval(this.intervalId);
-    this.intervalId = setInterval(() => {
-      this.sliderNext();
-    }, 3000);
+    // this.intervalId = setInterval(() => {
+    //   this.sliderNext();
+    // }, 3000);
   }
 
   sliderNext = () => {

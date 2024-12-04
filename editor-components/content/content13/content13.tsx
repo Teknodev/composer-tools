@@ -2,7 +2,8 @@ import * as React from "react";
 import { BaseContent } from "../../EditorComponent";
 import styles from "./content13.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
-
+import { Base } from "../../../composer-base-components/base/base";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 class Content13 extends BaseContent {
   constructor(props?: any) {
@@ -26,61 +27,67 @@ class Content13 extends BaseContent {
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "A design-led approach guides the team, implementing practices, products and services that are thoughtful and environmentally sound. Family of professionals that creates intelligent designs that help the face of hospitality."
-    })
+      value:
+        "A design-led approach guides the team, implementing practices, products and services that are thoughtful and environmentally sound. Family of professionals that creates intelligent designs that help the face of hospitality.",
+    });
 
     this.addProp({
       type: "string",
       key: "buttonText",
       displayer: "Button Text",
-      value: "About resort"
+      value: "About resort",
+    });
+
+    this.addProp({
+      type: "page",
+      key: "buttonLink",
+      displayer: "Button Link",
+      value: "",
     });
 
     this.addProp({
       type: "string",
       key: "phone",
       displayer: "Phone Number",
-      value: "1 800 222 000"
-    })
+      value: "1 800 222 000",
+    });
 
     this.addProp({
       type: "string",
-      key: "text",
-      displayer: "Text",
-      value: "Started In"
-    })
+      key: "rightWeakText",
+      displayer: "Right Weak Text",
+      value: "Started In",
+    });
 
     this.addProp({
       type: "string",
-      key: "year",
-      displayer: "Year",
-      value: "1995"
+      key: "rightBoldText",
+      displayer: "Right Bold Text",
+      value: "1995",
     });
 
     this.addProp({
       type: "icon",
       key: "phoneIcon",
       displayer: "Icon",
-      value: "BsTelephoneOutbound"
+      value: "BsTelephoneOutbound",
     });
 
     this.addProp({
       type: "image",
       key: "image1",
       displayer: "image1",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a39f132f8a5b002ce6b70b?alt=media"
-    })
+      value:
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a39f132f8a5b002ce6b70b?alt=media",
+    });
 
     this.addProp({
       type: "image",
       key: "image2",
       displayer: "image2",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a39f1b2f8a5b002ce6b716?alt=media"
-    })
-
-
-
-
+      value:
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a39f1b2f8a5b002ce6b716?alt=media",
+    });
   }
 
   getName(): string {
@@ -88,68 +95,129 @@ class Content13 extends BaseContent {
   }
 
   render() {
-    const isAboutTitleExist = this.castToString(this.getPropValue("aboutTitle"))
-    const isMainTitleExist = this.castToString(this.getPropValue("mainTitle"))
-    const isDescriptionExist = this.castToString(this.getPropValue("description"))
-    const isButtonTextExist = this.castToString(this.getPropValue("buttonText"))
-    const isPhoneExist = this.castToString(this.getPropValue("phone"))
-    const isTextExist = this.castToString(this.getPropValue("text"))
-    const isYearExist = this.castToString(this.getPropValue("year"))
-    const isImage1Exist = this.getPropValue("image1")
-    const isImage2Exist = this.getPropValue("image2")
-    const showDiv = isTextExist || isYearExist || isImage1Exist || isImage2Exist
-
+    const isAboutTitleExist = this.castToString(
+      this.getPropValue("aboutTitle")
+    );
+    const isMainTitleExist = this.castToString(this.getPropValue("mainTitle"));
+    const isDescriptionExist = this.castToString(
+      this.getPropValue("description")
+    );
+    const isButtonTextExist = this.castToString(
+      this.getPropValue("buttonText")
+    );
+    const isPhoneExist = this.castToString(this.getPropValue("phone"));
+    const isRightWeakTextExist = this.castToString(
+      this.getPropValue("rightWeakText")
+    );
+    const isRightBoldTextExist = this.castToString(
+      this.getPropValue("rightBoldText")
+    );
+    const isImage1Exist = this.getPropValue("image1");
+    const isImage2Exist = this.getPropValue("image2");
+    const showDiv =
+      isRightWeakTextExist ||
+      isRightBoldTextExist ||
+      isImage1Exist ||
+      isImage2Exist;
+    const showLeftDiv =
+      isAboutTitleExist ||
+      isMainTitleExist ||
+      isDescriptionExist ||
+      isButtonTextExist ||
+      isPhoneExist;
 
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("wrapper")}>
-            <div className={this.decorateCSS("title-container")}>
-              {isAboutTitleExist && <span className={this.decorateCSS("about-title")}>{this.getPropValue("aboutTitle")}</span>}
-              {isMainTitleExist && <h2 className={this.decorateCSS("maintitle")}>{this.getPropValue("mainTitle")}</h2>}
-              {isDescriptionExist && <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>}
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          {showLeftDiv && (
+            <Base.VerticalContent
+              className={this.decorateCSS("title-container")}
+            >
+              {isAboutTitleExist && (
+                <Base.SectionSubTitle
+                  className={this.decorateCSS("about-title")}
+                >
+                  {this.getPropValue("aboutTitle")}
+                </Base.SectionSubTitle>
+              )}
+              {isMainTitleExist && (
+                <Base.SectionTitle className={this.decorateCSS("maintitle")}>
+                  {this.getPropValue("mainTitle")}
+                </Base.SectionTitle>
+              )}
+              {isDescriptionExist && (
+                <Base.SectionDescription
+                  className={this.decorateCSS("description")}
+                >
+                  {this.getPropValue("description")}
+                </Base.SectionDescription>
+              )}
 
-              <div className={this.decorateCSS("button-icon")} >
-                {isButtonTextExist &&
-                  <button className={this.decorateCSS("about-button")}>
-                    <div className={this.decorateCSS("buttonText")}>
+              <div className={this.decorateCSS("button-icon")}>
+                {isButtonTextExist && (
+                  <ComposerLink path={this.getPropValue("buttonLink")}>
+                    <button className={this.decorateCSS("about-button")}>
                       {this.getPropValue("buttonText")}
-                    </div>
-                  </button>}
+                    </button>
+                  </ComposerLink>
+                )}
 
-                {(this.getPropValue("phoneIcon") || isPhoneExist) &&
+                {(this.getPropValue("phoneIcon") || isPhoneExist) && (
                   <div className={this.decorateCSS("phone-icon")}>
                     <ComposerIcon
                       propsIcon={{ className: this.decorateCSS("icon") }}
                       name={this.getPropValue("phoneIcon")}
                     />
-                    {isPhoneExist && <h1 className={this.decorateCSS("phone")}>{this.getPropValue("phone")}</h1>}
-                  </div>}
+                    {isPhoneExist && (
+                      <Base.H2 className={this.decorateCSS("phone")}>
+                        {this.getPropValue("phone")}
+                      </Base.H2>
+                    )}
+                  </div>
+                )}
               </div>
-            </div>
+            </Base.VerticalContent>
+          )}
 
-            {showDiv && <div className={this.decorateCSS("right-page")}>
+          {showDiv && (
+            <div className={`${!showLeftDiv ? this.decorateCSS("no-content") : ""} ${this.decorateCSS("right-page")}`}>
               <div className={this.decorateCSS("image-container")}>
                 <div className={this.decorateCSS("image-text")}>
-                  {isTextExist && <h1 className={this.decorateCSS("text")}>{this.getPropValue("text")}</h1>}
-                  {isYearExist && <h2 className={this.decorateCSS("year")}>{this.getPropValue("year")}</h2>}
-
+                  {isRightWeakTextExist && (
+                    <Base.P className={this.decorateCSS("weak-text")}>
+                      {this.getPropValue("rightWeakText")}
+                    </Base.P>
+                  )}
+                  {isRightBoldTextExist && (
+                    <Base.P className={this.decorateCSS("bold-text")}>
+                      {this.getPropValue("rightBoldText")}
+                    </Base.P>
+                  )}
                 </div>
-                {isImage1Exist &&
-                  <img src={this.getPropValue("image1")} alt="Image 1" className={`${this.decorateCSS("image1")}
-                   ${!isImage2Exist ? this.decorateCSS("without-image2") : ""}`}
-                  />}
+                {isImage1Exist && (
+                  <img
+                    src={this.getPropValue("image1")}
+                    alt="Image 1"
+                    className={`${
+                      !isImage2Exist ? this.decorateCSS("no-image") : ""
+                    } ${this.decorateCSS("image1")}`}
+                  />
+                )}
 
-                {isImage2Exist &&
-                  <img src={this.getPropValue("image2")} alt="Image 2" className={this.decorateCSS("image2")} />
-                }
-
+                {isImage2Exist && (
+                  <img
+                    src={this.getPropValue("image2")}
+                    alt="Image 2"
+                    className={`${
+                      !isImage1Exist ? this.decorateCSS("no-image") : ""
+                    } ${this.decorateCSS("image2")}`}
+                  />
+                )}
               </div>
             </div>
-            }
-          </div>
-        </div>
-      </div>
+          )}
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

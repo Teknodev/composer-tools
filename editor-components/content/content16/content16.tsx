@@ -26,7 +26,6 @@ type RightTextItem = {
   value: string;
 };
 
-
 class Content16 extends BaseContent {
   constructor(props?: any) {
     super(props, styles);
@@ -45,17 +44,15 @@ class Content16 extends BaseContent {
           type: "page",
           key: "textUrl",
           displayer: "URL",
-          value: ""
+          value: "",
         },
         {
           type: "string",
           key: "text",
           displayer: "Text",
-          value: "Latest News"
-
-        }
-
-      ]
+          value: "Latest News",
+        },
+      ],
     });
     this.addProp({
       type: "icon",
@@ -65,9 +62,10 @@ class Content16 extends BaseContent {
     });
     this.addProp({
       type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "\"Our team is comprised of experienced architects, designers, and project managers who share a common goal of creating exceptional spaces.\"",
+      key: "description",
+      displayer: "Description",
+      value:
+        '"Our team is comprised of experienced architects, designers, and project managers who share a common goal of creating exceptional spaces."',
     });
     this.addProp({
       type: "boolean",
@@ -102,7 +100,8 @@ class Content16 extends BaseContent {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ac465503b007002cc7448b?alt=media",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ac465503b007002cc7448b?alt=media",
             },
             {
               type: "page",
@@ -133,7 +132,8 @@ class Content16 extends BaseContent {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ac468003b007002cc74497?alt=media",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ac468003b007002cc74497?alt=media",
             },
             {
               type: "page",
@@ -164,7 +164,8 @@ class Content16 extends BaseContent {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ac46a203b007002cc744a3?alt=media",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ac46a203b007002cc744a3?alt=media",
             },
             {
               type: "page",
@@ -195,7 +196,8 @@ class Content16 extends BaseContent {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ac472103b007002cc744b0?alt=media",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ac472103b007002cc744b0?alt=media",
             },
             {
               type: "page",
@@ -226,7 +228,8 @@ class Content16 extends BaseContent {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ac476903b007002cc744bc?alt=media",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ac476903b007002cc744bc?alt=media",
             },
             {
               type: "page",
@@ -257,6 +260,12 @@ class Content16 extends BaseContent {
       displayer: "Next Slide Button",
       value: "FaArrowRight",
     });
+    this.addProp({
+      type: "number",
+      key: "slide-count",
+      displayer: "Item count in a row",
+      value: 3,
+    });
 
     this.setComponentState(
       "prevSlide",
@@ -265,8 +274,10 @@ class Content16 extends BaseContent {
     this.setComponentState("slider-ref", React.createRef());
     this.setComponentState("active", 0);
     this.setComponentState("activeSlideIndex", 0);
-    this.setComponentState("disableAnimation", this.getPropValue("disableAnimation"));
-
+    this.setComponentState(
+      "disableAnimation",
+      this.getPropValue("disableAnimation")
+    );
   }
 
   getName(): string {
@@ -279,7 +290,12 @@ class Content16 extends BaseContent {
     return (
       <ul className={this.decorateCSS("custom-dots")}>
         {items.map((item, index) => (
-          <li key={index} className={index === activeSlideIndex ? this.decorateCSS("slick-active") : ""}>
+          <li
+            key={index}
+            className={
+              index === activeSlideIndex ? this.decorateCSS("slick-active") : ""
+            }
+          >
             <button>
               <span></span>
             </button>
@@ -291,7 +307,8 @@ class Content16 extends BaseContent {
 
   render() {
     const items = this.castToObject<CardType[]>("items").filter(
-      (item: CardType) => item.image || item.imageTitle || item.imageSubtitle || item.url
+      (item: CardType) =>
+        item.image || item.imageTitle || item.imageSubtitle || item.url
     );
     const settings = {
       arrows: false,
@@ -300,14 +317,15 @@ class Content16 extends BaseContent {
       speed: 725,
       autoplay: true,
       autoplaySpeed: 3000,
-      slidesToShow: Math.min(items.length, 3),
+      slidesToShow:
+        Math.min(items.length, this.getPropValue("slide-count")) || 3,
       slidesToScroll: 1,
       responsive: [
         {
           breakpoint: 868,
           settings: {
             arrows: false,
-            slidesToShow: Math.min(items.length, 2),
+            slidesToShow: 2,
             slidesToScroll: 1,
           },
         },
@@ -317,7 +335,7 @@ class Content16 extends BaseContent {
           settings: {
             arrows: false,
             slidesToShow: 1,
-            slidesToScroll: Math.min(items.length, 1),
+            slidesToScroll: 1,
           },
         },
       ],
@@ -328,12 +346,12 @@ class Content16 extends BaseContent {
     };
 
     const title = this.getPropValue("title");
-    const subtitle = this.getPropValue("subtitle");
+    const description = this.getPropValue("description");
     const isTitleExist = this.castToString(title);
-    const isSubTitleExist = this.castToString(subtitle);
+    const isDescriptionExist = this.castToString(description);
     const rightText = this.getPropValue("rightText") as RightTextItem[];
-    const textUrl = rightText.find(item => item.key === "textUrl")?.value;
-    const text = rightText.find(item => item.key === "text")?.value;
+    const textUrl = rightText.find((item) => item.key === "textUrl")?.value;
+    const text = rightText.find((item) => item.key === "text")?.value;
     const sliderRef = this.getComponentState("slider-ref");
     const prevIcon: string = this.getPropValue("prev-button-icon");
     const nextIcon: string = this.getPropValue("next-button-icon");
@@ -341,47 +359,56 @@ class Content16 extends BaseContent {
     const faintLine = this.getPropValue("faintLine");
     const disableAnimation = this.getPropValue("disableAnimation");
 
-
-
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        {(rightTextArrow || text) && (
-          <div className={this.decorateCSS("right-link")}>
-            <ComposerLink path={textUrl}>
-              <div className={this.decorateCSS("inner-right-link")}>
-                <div className={this.decorateCSS(disableAnimation ? "no-animation-inner-div" : "inner-div")}>
-                  {text}
-                </div>
-                <ComposerIcon
-                  name={rightTextArrow}
-                  propsIcon={{
-                    className: disableAnimation ? this.decorateCSS("no-animation-ico") : this.decorateCSS("icon"),
-                  }}
-                ></ComposerIcon>
-              </div>
-            </ComposerLink>
-          </div>
-        )}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
+          {(rightTextArrow || text) && (
+            <div className={this.decorateCSS("right-link")}>
+              <ComposerLink path={textUrl}>
+                <div className={this.decorateCSS("inner-right-link")}>
+                  <div
+                    className={
+                      this.decorateCSS("inner-div") +
+                      " " +
+                      (disableAnimation ? this.decorateCSS("no-animation") : "")
+                    }
+                  >
+                    {text}
+                  </div>
+                  <ComposerIcon
+                    name={rightTextArrow}
+                    propsIcon={{
+                      className: disableAnimation
+                        ? this.decorateCSS("no-animation-ico")
+                        : this.decorateCSS("icon"),
+                    }}
+                  ></ComposerIcon>
+                </div>
+              </ComposerLink>
+            </div>
+          )}
           <header>
             {isTitleExist && (
               <Base.SectionTitle className={this.decorateCSS("title")}>
                 {title}
               </Base.SectionTitle>
             )}
-            {faintLine && (
-              <hr className={this.decorateCSS("faint-line")} />
-            )}
-            {isSubTitleExist && (
-              <Base.SectionDescription className={this.decorateCSS("description")}>
-                {subtitle}
+            {faintLine && <hr className={this.decorateCSS("faint-line")} />}
+            {isDescriptionExist && (
+              <Base.SectionDescription
+                className={this.decorateCSS("description")}
+              >
+                {description}
               </Base.SectionDescription>
             )}
           </header>
 
-
-          <main className={this.decorateCSS("wrapper")}>
-            {prevIcon && (
+          <main
+            className={`${this.decorateCSS("wrapper")} ${
+              items.length <= 3 ? this.decorateCSS("no-slider") : ""
+            }`}
+          >
+            {prevIcon && items.length > 3 && (
               <button
                 onClick={() => {
                   sliderRef.current.slickPrev();
@@ -390,62 +417,58 @@ class Content16 extends BaseContent {
               >
                 <ComposerIcon
                   propsIcon={{
-                    className: this.decorateCSS("icon")
+                    className: this.decorateCSS("icon"),
                   }}
                   name={prevIcon}
                 />
               </button>
             )}
             {items.length > 0 && (
-              <div
-                className={
-                  items.length >= 3
-                    ? this.decorateCSS("slider-parent")
-                    : items.length === 2
-                      ? this.decorateCSS("slider-parent-two")
-                      : this.decorateCSS("slider-parent-one")
-                }
-              >
-                {<>
-                  <ComposerSlider
-                    ref={sliderRef}
-                    {...settings}
-                    className={this.decorateCSS("carousel")}
-                  >
-                    {items.map((item: CardType, index: number) => (
-                      <article
-                        className={`${this.decorateCSS("slider-inner-div")} ${this.getComponentState("prevSlide") === index
-                          ? this.decorateCSS("prevSlide")
-                          : ""
-                          } ${this.getComponentState("nextSlide") === index
-                            ? this.decorateCSS("nextSlide")
-                            : ""
+              <div className={this.decorateCSS("slider-parent")}>
+                {
+                  <>
+                    <ComposerSlider
+                      ref={sliderRef}
+                      {...settings}
+                      className={this.decorateCSS("carousel")}
+                    >
+                      {items.map((item: CardType, index: number) => (
+                        <article
+                          className={`${this.decorateCSS("slider-inner-div")} ${
+                            this.getComponentState("prevSlide") === index
+                              ? this.decorateCSS("prevSlide")
+                              : ""
+                          } ${
+                            this.getComponentState("nextSlide") === index
+                              ? this.decorateCSS("nextSlide")
+                              : ""
                           }`}
-                        key={index}
-                      >
-                        <div
-                          className={this.decorateCSS("content-div")}
+                          key={index}
                         >
-
-                          {item.image && (
-                            <div className={this.decorateCSS("img-div")}>
-                              <ComposerLink path={item.url}>
-                                <img
-                                  alt={
-                                    this.castToString(item.imageTitle) ||
-                                    this.castToString(item.imageSubtitle)
-                                  }
-                                  src={item.image}
-                                  className={this.decorateCSS("img")}
-                                />
-                              </ComposerLink>
-                            </div>
-                          )}
-                          {(this.castToString(item.imageSubtitle) ||
-                            this.castToString(item.imageTitle)) && (
-                              <Base.VerticalContent className={this.decorateCSS("item-page")}>
+                          <div className={this.decorateCSS("content-div")}>
+                            {item.image && (
+                              <div className={this.decorateCSS("img-div")}>
+                                <ComposerLink path={item.url}>
+                                  <img
+                                    alt={
+                                      this.castToString(item.imageTitle) ||
+                                      this.castToString(item.imageSubtitle)
+                                    }
+                                    src={item.image}
+                                    className={this.decorateCSS("img")}
+                                  />
+                                </ComposerLink>
+                              </div>
+                            )}
+                            {(this.castToString(item.imageSubtitle) ||
+                              this.castToString(item.imageTitle)) && (
+                              <Base.VerticalContent
+                                className={this.decorateCSS("item-page")}
+                              >
                                 {this.castToString(item.imageSubtitle) && (
-                                  <Base.P className={this.decorateCSS("first-item")}>
+                                  <Base.P
+                                    className={this.decorateCSS("first-item")}
+                                  >
                                     {item.imageSubtitle}
                                   </Base.P>
                                 )}
@@ -453,25 +476,29 @@ class Content16 extends BaseContent {
                                   <Base.H2
                                     className={`${this.decorateCSS(
                                       "item-title"
-                                    )} ${disableAnimation
-                                      ? this.decorateCSS("no-animation-item-title")
-                                      : ""
-                                      }`}
+                                    )} ${
+                                      disableAnimation
+                                        ? this.decorateCSS(
+                                            "no-animation-item-title"
+                                          )
+                                        : ""
+                                    }`}
                                   >
                                     {item.imageTitle}
                                   </Base.H2>
                                 )}
                               </Base.VerticalContent>
                             )}
-                        </div>
-                      </article>
-                    ))}
-                  </ComposerSlider>
-                  {this.renderDots()}
-                </>}
+                          </div>
+                        </article>
+                      ))}
+                    </ComposerSlider>
+                    {items.length > 3 && this.renderDots()}
+                  </>
+                }
               </div>
             )}
-            {nextIcon && (
+            {nextIcon && items.length > 3 && (
               <button
                 onClick={() => {
                   sliderRef.current.slickNext();
@@ -480,7 +507,7 @@ class Content16 extends BaseContent {
               >
                 <ComposerIcon
                   propsIcon={{
-                    className: this.decorateCSS("icon")
+                    className: this.decorateCSS("icon"),
                   }}
                   name={nextIcon}
                 />
