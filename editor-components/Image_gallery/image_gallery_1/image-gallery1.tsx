@@ -379,7 +379,7 @@ class ImageGallery1 extends BaseImageGallery {
       displayer: "Button Text",
       value: "Load More"
     })
-    this.setComponentState("selectedSection", null as JSX.Element);
+    this.setComponentState("selectedSection", "All");
     this.setComponentState("selectedIndex", -1);
     this.setComponentState("moreImages", 0);
   }
@@ -389,8 +389,14 @@ class ImageGallery1 extends BaseImageGallery {
     return "Image Gallery 1";
   }
   handleSectionClick(sectionTitle: JSX.Element, index: number): void {
-    this.setComponentState("selectedSection", sectionTitle);
+    this.setComponentState("selectedSection", this.castToString(sectionTitle));
     this.setComponentState("selectedIndex", index)
+    this.setComponentState("imageCount", this.getPropValue("imageCountInitial"));
+    this.setComponentState("moreImages", 0);
+  }
+  handleSectionClickAll(): void {
+    this.setComponentState("selectedSection", "All");
+    this.setComponentState("selectedIndex", -1)
     this.setComponentState("imageCount", this.getPropValue("imageCountInitial"));
     this.setComponentState("moreImages", 0);
   }
@@ -405,6 +411,7 @@ class ImageGallery1 extends BaseImageGallery {
       this.setComponentState("imageCount", this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"));
     const imageGallery = this.castToObject<ImageGallery[]>("imageGalleries");
     const selectedSection = this.getComponentState("selectedSection");
+    console.log("selectedSection", selectedSection)
     const seenImages = new Set<string>();
     const allImages = imageGallery.reduce((acc: Image[], gallery: ImageGallery) => {
       gallery.images.forEach((image) => {
@@ -424,8 +431,8 @@ class ImageGallery1 extends BaseImageGallery {
           <div className={this.decorateCSS("section-title-container")}>
             {
               <button
-                className={`${this.decorateCSS("section-title")} ${selectedSection === null ? this.decorateCSS("active-section-title") : ""}`}
-                onClick={() => this.handleSectionClick(null, -1)}
+                className={`${this.decorateCSS("section-title")} ${selectedSection === "All" ? this.decorateCSS("active-section-title") : ""}`}
+                onClick={() => this.handleSectionClickAll()}
               >
                 All
               </button>
@@ -434,7 +441,7 @@ class ImageGallery1 extends BaseImageGallery {
               imageGallery.map((item: ImageGallery, index: number) => (
                 <button
                   key={index}
-                  className={`${this.decorateCSS("section-title")} ${selectedSection !== null && this.castToString(item.sectionTitle) === this.castToString(selectedSection) ? this.decorateCSS("active-section-title") : ""}`}
+                  className={`${this.decorateCSS("section-title")} ${this.castToString(item.sectionTitle) === selectedSection ? this.decorateCSS("active-section-title") : ""}`}
                   onClick={() => this.handleSectionClick(item.sectionTitle, index)}
                 >
                   {item.sectionTitle}
@@ -446,10 +453,10 @@ class ImageGallery1 extends BaseImageGallery {
             {imageGallery
               .filter(
                 (item: ImageGallery) =>
-                  !selectedSection ||
+                  selectedSection == "All" ||
                   (item.sectionTitle &&
                     selectedSection &&
-                    this.castToString(item.sectionTitle) === this.castToString(selectedSection))
+                    this.castToString(item.sectionTitle) === selectedSection)
               )
               .reduce((acc: Image[], item: ImageGallery) => {
                 acc.push(...item.images);
