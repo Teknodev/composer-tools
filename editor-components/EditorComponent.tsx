@@ -292,7 +292,7 @@ export abstract class Component extends React.Component<{}, { states: any; compo
           CodeHighlightNode
         ]
       };
-
+      
       return (
         <InlineEditor
           initialConfig={editorConfig}
@@ -342,7 +342,7 @@ export abstract class Component extends React.Component<{}, { states: any; compo
   setComponentState(key: string, value: any): void {
     this.customStates[key] = value;
     EventEmitter.emit("forceReload");
-    EventEmitter.emit("stateChanged", { id: this.id, key, value });
+    EventEmitter.emit("stateChanged", {id: this.id, key, value});
 
   }
 
