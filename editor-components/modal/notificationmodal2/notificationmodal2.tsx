@@ -89,7 +89,7 @@ class NotificationModal2 extends BaseModal {
               <div className={this.decorateCSS("send-mail")}>
                 <div className={this.decorateCSS("input-group")}>
                   <input placeholder={emailPlaceholder} type="text" className={this.decorateCSS("input")} />
-                  {buttonval && <button className={this.decorateCSS("button")}>{this.getPropValue("button")}</button>}
+                  {buttonval && <Base.Button className={this.decorateCSS("button")}>{this.getPropValue("button")}</Base.Button>}
                 </div>
               </div>
             )}
