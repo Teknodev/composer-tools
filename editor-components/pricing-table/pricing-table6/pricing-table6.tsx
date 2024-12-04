@@ -248,12 +248,6 @@ class PricingMultipleTwo extends BasePricingTable {
                                   displayer: "Link",
                                   value: "",
                                 },
-                                {
-                                  type: "boolean",
-                                  key: "disabled",
-                                  displayer: "Animation Enabled",
-                                  value: true,
-                                },
                               ],
                             },
                           ],
@@ -430,12 +424,6 @@ class PricingMultipleTwo extends BasePricingTable {
                                   displayer: "Link",
                                   value: "",
                                 },
-                                {
-                                  type: "boolean",
-                                  key: "disabled",
-                                  displayer: "Animation Enabled",
-                                  value: true,
-                                },
                               ],
                             },
                           ],
@@ -611,12 +599,6 @@ class PricingMultipleTwo extends BasePricingTable {
                                   key: "url",
                                   displayer: "Link",
                                   value: "",
-                                },
-                                {
-                                  type: "boolean",
-                                  key: "disabled",
-                                  displayer: "Animation Enabled",
-                                  value: true,
                                 },
                               ],
                             },
@@ -814,12 +796,6 @@ class PricingMultipleTwo extends BasePricingTable {
                                   displayer: "Link",
                                   value: "",
                                 },
-                                {
-                                  type: "boolean",
-                                  key: "disabled",
-                                  displayer: "Animation Enabled",
-                                  value: true,
-                                },
                               ],
                             },
                           ],
@@ -997,12 +973,6 @@ class PricingMultipleTwo extends BasePricingTable {
                                   displayer: "Link",
                                   value: "",
                                 },
-                                {
-                                  type: "boolean",
-                                  key: "disabled",
-                                  displayer: "Animation Enabled",
-                                  value: true,
-                                },
                               ],
                             },
                           ],
@@ -1179,12 +1149,6 @@ class PricingMultipleTwo extends BasePricingTable {
                                   displayer: "Link",
                                   value: "",
                                 },
-                                {
-                                  type: "boolean",
-                                  key: "disabled",
-                                  displayer: "Animation Enabled",
-                                  value: true,
-                                },
                               ],
                             },
                           ],
@@ -1251,9 +1215,7 @@ class PricingMultipleTwo extends BasePricingTable {
                       {plan.map((tab: any, index: number) => (
                         <div className={this.decorateCSS("listArray") + " " + (this.getComponentState("activePlan") == index && this.decorateCSS("active"))} onClick={() => this.setActivePlan(index)} key={index}>
                           <div className={this.decorateCSS("plan-icons")}>
-                            <div className={this.decorateCSS("icons")}>
-                              <ComposerIcon name={planIndex == index ? tab.check_icon : tab.circle_icon}></ComposerIcon>
-                            </div>
+                            <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={planIndex == index ? tab.check_icon : tab.circle_icon}></ComposerIcon>
                             <Base.P className={this.decorateCSS("plan")}> {tab.plan}</Base.P>
                           </div>
                           {this.castToString(tab.tag) && <Base.P className={this.decorateCSS("tag")}> {tab.tag}</Base.P>}
@@ -1298,12 +1260,11 @@ class PricingMultipleTwo extends BasePricingTable {
                                 {plan[planIndex]?.right_items?.buttons.map((button: any, buttonIndex: number) => {
                                   const buttonText = this.castToString(button.getPropValue("buttonText"));
                                   const buttonUrl = button.getPropValue("url");
-                                  const isDisabled = button.getPropValue("disabled");
 
                                   return (
                                     buttonText && (
                                       <ComposerLink key={buttonIndex} path={buttonUrl}>
-                                        <Base.Button className={`${this.decorateCSS("button")} ${!isDisabled ? this.decorateCSS("disabled") : ""}`}>{buttonText}</Base.Button>
+                                        <Base.Button className={this.decorateCSS("button")}>{buttonText}</Base.Button>
                                       </ComposerLink>
                                     )
                                   );
