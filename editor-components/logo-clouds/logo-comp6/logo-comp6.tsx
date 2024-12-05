@@ -7,7 +7,7 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 type TImage = {
   image: string;
   imageLink: string;
-  itemText: string;
+  itemText: JSX.Element;
 };
 
 class LogoComp6Page extends LogoClouds {
@@ -204,14 +204,17 @@ class LogoComp6Page extends LogoClouds {
               (listItem: TImage, index: number) => (
                 <ComposerLink path={listItem.imageLink}>
                   <div key={index} className={this.decorateCSS("card")}>
-                    <img
+                    {listItem.image && <img
                       className={this.decorateCSS("image")}
                       src={listItem.image}
                       alt={listItem.imageLink}
-                    />
-                    <Base.P className={this.decorateCSS("text")}>
-                      {listItem.itemText}
-                    </Base.P>
+                    />}
+                    {
+                      this.castToString(listItem.itemText) && <Base.P className={this.decorateCSS("text")}>
+                        {listItem.itemText}
+                      </Base.P>
+                    }
+
                   </div>
                 </ComposerLink>
               )
