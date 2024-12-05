@@ -202,7 +202,6 @@ class FaqButton extends BaseFAQ {
   cardButton(index: number): void {
     this.setComponentState("cardIndex", index);
     this.setComponentState("onclick", !this.getComponentState("onclick"));
-    console.log(this.getComponentState("onclick"))
   }
   render() {
     const card = this.castToObject<Card[]>("cards")
@@ -224,7 +223,7 @@ class FaqButton extends BaseFAQ {
             <div className={this.decorateCSS("middle-page")}>
               {card.map((card: Card, index: number) => (
                 <div className={this.decorateCSS("sections")} onClick={() => this.sectionButton(index)}>
-                  <div className={this.decorateCSS("title")}>
+                  <div className={`${this.decorateCSS("title")} ${this.getComponentState("selectedSection") === index ? this.decorateCSS("active") : ""}`}>
                     {card.sectionTitle}
                   </div>
                 </div>
@@ -233,7 +232,7 @@ class FaqButton extends BaseFAQ {
             <div className={this.decorateCSS("down-page")}>
               <div className={this.decorateCSS("card-wrapper")}>
                 {card[this.getComponentState("selectedSection")].items.map((item: Item, index: number) => (
-                  <div className={this.decorateCSS("card")} onClick={() => this.cardButton(index)}>
+                  <div className={`${this.decorateCSS("card")} ${this.getComponentState("cardIndex") === index ? (this.getComponentState("onclick") ? this.decorateCSS("active") : "") : ""}`} onClick={() => this.cardButton(index)}>
                     <div className={this.decorateCSS("child-container")}>
                       <div className={this.decorateCSS("card-left")}>
                         <Base.H3 className={this.decorateCSS("card-title")}>
@@ -243,7 +242,14 @@ class FaqButton extends BaseFAQ {
                       <div className={this.decorateCSS("card-right")}>
                         <div className={this.decorateCSS("icon-wrapper")}>
                           <ComposerIcon
-                            propsIcon={{ className: this.decorateCSS("icon") }}
+                            propsIcon={{
+                              className: `${this.decorateCSS("icon")} ${this.getComponentState("cardIndex") === index
+                                ? this.getComponentState("onclick")
+                                  ? this.decorateCSS("active")
+                                  : ""
+                                : ""
+                                }`,
+                            }}
                             name={
                               "FaAngleUp"
                             }
@@ -251,9 +257,11 @@ class FaqButton extends BaseFAQ {
                         </div>
                       </div>
                     </div>
-                    <p className={`${this.decorateCSS("hide")} ${this.getComponentState("cardIndex") === index ? (this.getComponentState("onclick") ? this.decorateCSS("text") : "") : ""}`}>
-                      {item.description}
-                    </p>
+                    <div className={`${this.decorateCSS("hide")} ${this.getComponentState("cardIndex") === index ? (this.getComponentState("onclick") ? this.decorateCSS("active") : "") : ""}`}>
+                      <div className={this.decorateCSS("text")}>
+                        {item.description}
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>
