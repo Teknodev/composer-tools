@@ -45,14 +45,14 @@ class LogoComp5Page extends LogoClouds {
       key: "image-items",
       displayer: "Images",
       value: [
-       this.LOGOINPUT(),
-       this.LOGOINPUT(),
-       this.LOGOINPUT(),
-       this.LOGOINPUT(),
-       this.LOGOINPUT(),
-       this.LOGOINPUT(),
-       this.LOGOINPUT(),
-       this.LOGOINPUT(),
+        this.LOGOINPUT(),
+        this.LOGOINPUT(),
+        this.LOGOINPUT(),
+        this.LOGOINPUT(),
+        this.LOGOINPUT(),
+        this.LOGOINPUT(),
+        this.LOGOINPUT(),
+        this.LOGOINPUT(),
       ],
     });
   }
@@ -67,6 +67,7 @@ class LogoComp5Page extends LogoClouds {
     const isDescriptionExists = this.castToString(
       this.getPropValue("description")
     );
+    const images = this.castToObject<TImage[]>("image-items");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -93,8 +94,8 @@ class LogoComp5Page extends LogoClouds {
             </Base.VerticalContent>
           )}
 
-          <Base.ListGrid gridCount={{pc: this.getPropValue("imageCount")}} className={this.decorateCSS("right")}>
-            {this.castToObject<TImage[]>("image-items").map(
+          {images.length > 0 && <Base.ListGrid gridCount={{ pc: this.getPropValue("imageCount") }} className={this.decorateCSS("right")}>
+            {images.map(
               (image: TImage, index: number) => (
                 <ComposerLink path={image.imageLink}>
                   <div key={index} className={this.decorateCSS("image-item")}>
@@ -103,7 +104,8 @@ class LogoComp5Page extends LogoClouds {
                 </ComposerLink>
               )
             )}
-          </Base.ListGrid>
+          </Base.ListGrid>}
+
         </Base.MaxContent>
       </Base.Container>
     );
