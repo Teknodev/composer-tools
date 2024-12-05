@@ -127,7 +127,6 @@ class Slider3 extends BaseSlider {
 
     this.setComponentState("centerSlide", 0);
     this.setComponentState("slider-ref", React.createRef());
-
   }
 
   getName(): string {
@@ -138,25 +137,25 @@ class Slider3 extends BaseSlider {
     const items = this.castToObject<Card[]>("slider").filter(
       (item: Card) => item.image
     );
+
     const isCardExist = items.length > 0;
     const nextArrow = this.getPropValue("nextArrow");
     const previousArrow = this.getPropValue("previousArrow");
     const cardNumber = String(3);
     const visibleItemCount = Math.min(items.length, 1.2);
     const sliderRef = this.getComponentState("slider-ref");
-    console.log(sliderRef);
 
     const settings = {
       dots: false,
       infinite: true,
       speed: 1000,
-      autoplay: false,
+      autoplay: true,
       autoplaySpeed: 3000,
       slidesToShow: visibleItemCount,
       variableWidth: true,
       centerMode: true,
       slidesToScroll: 1,
-      arrows: true,
+      arrows: false,
       beforeChange: (current: number, next: number) => {
         this.setComponentState("centerSlide", next);
       },
@@ -165,30 +164,16 @@ class Slider3 extends BaseSlider {
           breakpoint: 960,
           settings: {
             dots: false,
-            infinite: true,
-            speed: 1000,
-            autoplay: false,
-            autoplaySpeed: 3000,
             slidesToShow: visibleItemCount,
             variableWidth: true,
-            centerMode: true,
-            slidesToScroll: 1,
-            arrows: true,
           }
         },
         {
           breakpoint: 640,
           settings: {
-            dots: false,
-            infinite: true,
-            speed: 1000,
-            autoplay: false,
-            autoplaySpeed: 3000,
+            dots: true,
             slidesToShow: 1,
             variableWidth: false,
-            centerMode: true,
-            slidesToScroll: 1,
-            arrows: true,
           }
         },
       ]
@@ -199,7 +184,7 @@ class Slider3 extends BaseSlider {
     const carouselClass = cardNumber === "1" ? "carousel--singleCard" : "carousel--multipleCards";
 
     return (
-      <Base.Container isFull={true} className={this.decorateCSS("container")}>
+      <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(this.castToString(title) || this.castToString(subtitle) || previousArrow || nextArrow) &&
             < Base.ContainerGrid className={this.decorateCSS("header")}>
@@ -210,31 +195,32 @@ class Slider3 extends BaseSlider {
                 {(this.castToString(title) || previousArrow || nextArrow) &&
                   <Base.SectionTitle className={this.decorateCSS("title")}>
                     {title}
-                    {(previousArrow || nextArrow) &&
-                      <div className={this.decorateCSS("arrows")}>
-                        {previousArrow &&
-                          <ComposerIcon
-                            name={this.getPropValue("previousArrow")}
-                            propsIcon={{
-                              className: this.decorateCSS("prevArrow"),
-                              onClick: () => {
-                                sliderRef.current.slickPrev();
-                              },
-                            }}
-                          />}
-                        {nextArrow &&
-                          <ComposerIcon
-                            name={this.getPropValue("nextArrow")}
-                            propsIcon={{
-                              className: this.decorateCSS("nextArrow"),
-                              onClick: () => {
-                                sliderRef.current.slickNext();
-                              },
-                            }}
-                          />}
-                      </div>}
                   </Base.SectionTitle>}
               </Base.VerticalContent>
+
+              {((previousArrow || nextArrow) && items.length > 1) &&
+                <div className={this.decorateCSS("arrows")}>
+                  {previousArrow &&
+                    <ComposerIcon
+                      name={this.getPropValue("previousArrow")}
+                      propsIcon={{
+                        className: this.decorateCSS("prevArrow"),
+                        onClick: () => {
+                          sliderRef.current.slickPrev();
+                        },
+                      }}
+                    />}
+                  {nextArrow &&
+                    <ComposerIcon
+                      name={this.getPropValue("nextArrow")}
+                      propsIcon={{
+                        className: this.decorateCSS("nextArrow"),
+                        onClick: () => {
+                          sliderRef.current.slickNext();
+                        },
+                      }}
+                    />}
+                </div>}
             </Base.ContainerGrid>}
 
           <div className={this.decorateCSS("slider-parent")}>
