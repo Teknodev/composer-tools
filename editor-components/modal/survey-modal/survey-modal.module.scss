@@ -5,18 +5,33 @@
   max-width: 800px;
   overflow: auto;
   position: relative;
+  padding: 0;
 
   .max-content {
     .modal-content {
-      border: 1px solid var(--composer-primary-color);
       display: flex;
       width: 100%;
       min-height: 500px;
 
+      .border {
+        border: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.5);
+        position: absolute;
+        left: 1.5%;
+        right: 1.5%;
+        height: auto;
+        top: 0;
+        bottom: 0;
+        margin: var(--composer-gap-sm) 0;
+        margin: var(--composer-gap-md);
+        right: 0%;
+        left: 0%;
+        pointer-events: none;
+      }
+
       .exit-icon {
         position: absolute;
-        right: var(--composer-gap-md);
-        top: var(--composer-gap-md);
+        right: var(--composer-gap-lg);
+        top: var(--composer-gap-lg);
 
         .icon {
           font-size: 1.5rem;
@@ -31,22 +46,27 @@
         flex-basis: 100%;
       }
 
+      .left {
+        padding: var(--composer-gap-md);
+      }
+
       .left,
       .image {
         flex-basis: 50%;
         display: flex;
-        padding: var(--composer-gap-md);
         gap: var(--composer-gap-xs);
 
         &:only-child {
           flex-basis: 100%;
           justify-content: center;
           margin: 0 auto;
+          margin: var(--composer-gap-md);
         }
       }
 
       .left {
         .title {
+          font-size: 2rem;
           color: var(--composer-font-color-primary);
         }
         .rate-question {
@@ -70,7 +90,7 @@
               transition: background-color 0.3s ease, transform 0.3s ease;
 
               &.selected {
-                background-color: var(--composer-secondary-color);
+                background-color: var(--composer-primary-color);
                 color: var(--composer-font-color-primary);
                 transform: scale(1.2);
               }
@@ -102,7 +122,7 @@
             margin-bottom: var(--composer-gap-sm);
             color: var(--composer-font-color-primary);
             .radio-input:checked {
-              outline: 2px solid blue;
+              color: var(--composer-primary-color);
             }
           }
 
@@ -132,23 +152,12 @@
             font-size: 1rem;
             background-color: transparent;
             outline: none;
+            color: var(--composer-font-color-primary);
           }
         }
 
         .submit-button {
-          padding: var(--composer-gap-sm) var(--composer-gap-md);
-          background-color: transparent;
-          color: var(--composer-font-color-primary);
-          border: 2px solid var(--composer-font-color-primary);
-          cursor: pointer;
-          font-size: 1rem;
-          transition: background-color 0.3s ease;
           width: 100%;
-
-          &:hover {
-            background-color: var(--composer-primary-color);
-            color: var(--composer-font-color-secondary);
-          }
         }
       }
 
@@ -176,12 +185,16 @@
 
     .max-content {
       .modal-content {
-        flex-direction: column;
+        flex-direction: column-reverse;
+
+        .border {
+          display: none;
+        }
 
         .exit-icon {
           position: absolute;
-          right: var(--composer-gap-md);
-          top: var(--composer-gap-md);
+          right: var(--composer-gap-sm);
+          top: var(--composer-gap-sm);
           margin: var(--composer-gap-xs);
 
           .icon {
@@ -219,14 +232,19 @@
               padding: var(--composer-gap-xs);
             }
           }
+        }
 
-          .submit-button {
-            padding: var(--composer-gap-xs) var(--composer-gap-sm);
+        .left,
+        .image {
+          &:only-child {
+            margin: var(--composer-gap-sm);
           }
         }
 
         .image {
           width: 100%;
+          height: 200px;
+          flex-basis: auto;
           object-fit: cover;
         }
       }

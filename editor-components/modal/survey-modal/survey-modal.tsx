@@ -202,6 +202,7 @@ class SurveyModal extends BaseModal {
       <Base.Container isModal={true} className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("modal-content")}>
+            <div className={this.decorateCSS("border")}></div>
             <div className={this.decorateCSS("exit-icon")}>
               <ComposerModalClose>
                 <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={this.getPropValue("exitIcon")} />
@@ -271,9 +272,9 @@ class SurveyModal extends BaseModal {
                       <div style={{ width: "100%" }}>
                         {buttonText && (
                           <ComposerLink page={this.getPropValue("buttonUrl")}>
-                            <button type="submit" className={this.decorateCSS("submit-button")}>
+                            <Base.Button type="submit" className={this.decorateCSS("submit-button")}>
                               {buttonText}
-                            </button>
+                            </Base.Button>
                           </ComposerLink>
                         )}
                       </div>
