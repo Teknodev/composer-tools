@@ -77,7 +77,7 @@ class SubscriptionModal extends BaseModal {
   }
 
   getName(): string {
-    return "SubscriptionModal";
+    return "Subscription Modal";
   }
 
   render() {
@@ -103,10 +103,10 @@ class SubscriptionModal extends BaseModal {
               </ComposerModalClose>
             </div>
 
-            {image && <img className={this.decorateCSS("image")} src={image} alt="Subscription Image" />}
+            {image && <img className={this.decorateCSS("image")} src={image} alt="" />}
 
             <Base.VerticalContent className={this.decorateCSS("right")}>
-              <Base.VerticalContent>
+              <Base.VerticalContent className={this.decorateCSS("header")}>
                 {title && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
                 {description && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
               </Base.VerticalContent>
@@ -121,16 +121,18 @@ class SubscriptionModal extends BaseModal {
               >
                 {({ isSubmitting }) => (
                   <Form className={this.decorateCSS("form")}>
-                    <Base.VerticalContent className={this.decorateCSS("form-group")}>
-                      {placeholder && <Field type="email" name="email" placeholder={placeholder} className={this.decorateCSS("input")} />}
-                      {errorMessage && <ErrorMessage name="email" component="div" className={this.decorateCSS("error")} />}
-                    </Base.VerticalContent>
+                    {placeholder && (
+                      <Base.VerticalContent className={this.decorateCSS("form-group")}>
+                        {placeholder && <Field type="email" name="email" placeholder={placeholder} className={this.decorateCSS("input")} />}
+                        {errorMessage && <ErrorMessage name="email" component="div" className={this.decorateCSS("error")} />}
+                      </Base.VerticalContent>
+                    )}
 
                     {buttonText && (
                       <ComposerLink path={this.getPropValue("buttonUrl")}>
-                        <button type="submit" className={this.decorateCSS("button")} disabled={isSubmitting}>
+                        <Base.Button type="submit" className={this.decorateCSS("button")} disabled={isSubmitting}>
                           {buttonText}
-                        </button>
+                        </Base.Button>
                       </ComposerLink>
                     )}
                   </Form>

@@ -3,6 +3,7 @@
 .container {
   max-width: 800px;
   max-height: 800px;
+  width: auto;
   overflow: auto;
   position: relative;
   padding: 0;
@@ -13,11 +14,12 @@
       display: flex;
       position: relative;
       max-height: 800px;
+      justify-content: center;
 
       .close-icon-wrapper {
         position: absolute;
-        top: var(--composer-gap-xs);
-        right: var(--composer-gap-xs);
+        top: var(--composer-gap-md);
+        right: var(--composer-gap-md);
         cursor: pointer;
       }
 
@@ -43,8 +45,7 @@
         padding: var(--composer-gap-lg);
 
         .description {
-          color: var(--composer-font-color-primary);
-          opacity: 0.5;
+          color: var(--composer-tertiary-color);
         }
 
         .form {
@@ -56,16 +57,16 @@
           .form-group {
             .input {
               width: 100%;
-              padding: var(--composer-gap-md);
-              border: 1px solid var(--composer-font-color-primary);
-              border-radius: var(--composer-border-radius-md);
+              padding: var(--composer-gap-sm) var(--composer-gap-md);
+              border: 1px solid var(--composer-font-color-secondary);
+              border-radius: var(--composer-border-radius-sm);
               font-size: 1rem;
-              background-color: var(--composer-font-color-secondary);
+              background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
               color: var(--composer-font-color-primary);
 
               &:focus {
                 outline: none;
-                border-color: var(--composer-primary-color);
+                border-color: var(--composer-font-color-secondary);
               }
             }
 
@@ -77,19 +78,6 @@
 
           .button {
             width: 100%;
-            padding: var(--composer-gap-md);
-            background-color: var(--composer-primary-color);
-            color: var(--composer-font-color-secondary);
-            font-size: 1rem;
-            border: none;
-            border-radius: var(--composer-border-radius-md);
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-
-            &:hover {
-              background-color: var(--composer-secondary-color);
-              color: var(--composer-font-color-primary);
-            }
           }
         }
       }
@@ -132,8 +120,11 @@
         }
 
         .right {
-          .title {
-            font-size: 1.5rem;
+          .header {
+            margin: 0 !important;
+            .title {
+              font-size: 1.5rem;
+            }
           }
           .form {
             display: flex;
@@ -145,10 +136,6 @@
               .input {
                 padding: var(--composer-gap-sm);
               }
-            }
-
-            .button {
-              padding: var(--composer-gap-sm);
             }
           }
         }
