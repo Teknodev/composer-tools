@@ -109,8 +109,8 @@ class LogoComp4Page extends LogoClouds {
           <Base.ListGrid
             gridCount={{
               pc: this.getPropValue("itemCount"),
-              tablet: 3,
-              phone: 2,
+              tablet: 4,
+              phone: 1,
             }}
             className={this.decorateCSS("images-container")}
           >
