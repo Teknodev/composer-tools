@@ -1,15 +1,16 @@
 @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
 .container {
-    padding: 0 !important;
+    padding: 0;
+    height: 100vh;
 
     .max-content {
         max-width: unset;
 
         .slider-parent {
-            height: 100vh;
 
             .carousel {
+                background-color: var(--composer-html-background);
                 .slider-item {
                     height: 100vh;
                     position: relative;
@@ -60,6 +61,11 @@
                             flex-direction: column;
                             max-width: var(--composer-content-width);
 
+                            .subtitle {
+                                color: #fff;
+                                letter-spacing: var(--composer-gap-sm);
+                            }
+
                             .title {
                                 width: 100%;
                                 color: #fff;
@@ -68,13 +74,6 @@
 
                             ::before {
                                 background-color: #fff;
-                            }
-
-                            .subtitle {
-                                width: 100%;
-                                color: #fff;
-                                font-size: 1.5rem;
-                                letter-spacing: var(--composer-gap-sm);
                             }
 
                             .no-img {
@@ -95,9 +94,10 @@
                             align-items: flex-end;
                             gap: var(--composer-gap-md);
                             position: absolute;
-                            right: var(--composer-gap-md);
+                            right: var(--composer-gap-xl);
                             top: 50%;
                             transform: translateY(-50%);
+
                             .icon {
                                 flex-shrink: 0;
                                 width: 30px;
@@ -117,10 +117,59 @@
                         }
                     }
 
-                    .no-icon{
+                    .no-icon {
                         padding: var(--composer-gap-md) var(--composer-gap-xl);
                     }
 
+                }
+            }
+        }
+
+        .dots,
+        .dots-2 {
+            position: absolute;
+            bottom: 5%;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            text-align: center;
+            right: 0;
+            width: auto;
+
+            li {
+                margin: 0 var(--composer-gap-sm);
+
+                button {
+                    color: transparent;
+                    position: relative;
+                    width: 12px;
+                    height: 12px;
+                    border: none;
+                    border-radius: 50%;
+                    background: #fff;
+                    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+                    transform: scale(0.65);
+
+                    &::before {
+                        content: "";
+                    }
+                }
+            }
+
+            .slick-active {
+                transform: scale(1.35);
+            }
+        }
+
+        .dots-2 {
+            li {
+                button {
+                    background: var(--composer-font-color-primary);
                 }
             }
         }
@@ -147,14 +196,16 @@
                                 }
                             }
 
-                            .socials{
-                                .icon{
+                            .socials {
+                                right: var(--composer-gap-lg);
+                                .icon {
                                     width: 25px;
                                     height: 25px;
                                 }
                             }
                         }
-                        .no-icon{
+
+                        .no-icon {
                             padding: var(--composer-gap-md) var(--composer-gap-lg);
                         }
                     }
@@ -166,10 +217,14 @@
 
 @container (max-width: #{$composer-phone-width}) {
     .container {
+        height: 50vh;
+
         .max-content {
             .slider-parent {
                 .carousel {
                     .slider-item {
+                        height: 50vh;
+
                         .content {
                             padding: var(--composer-gap-md) 65px var(--composer-gap-md) var(--composer-gap-md);
 
@@ -183,14 +238,17 @@
                                     font-size: 1rem;
                                 }
                             }
-                            .socials{
-                                .icon{
+
+                            .socials {
+                                right: var(--composer-gap-md);
+                                .icon {
                                     width: 25px;
                                     height: 25px;
                                 }
                             }
                         }
-                        .no-icon{
+
+                        .no-icon {
                             padding: var(--composer-gap-md) var(--composer-gap-md);
                         }
                     }

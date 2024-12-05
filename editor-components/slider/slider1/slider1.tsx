@@ -29,6 +29,63 @@ class Slider1 extends BaseSlider {
     });
     this.addProp({
       type: "array",
+      key: "slider",
+      displayer: "Slider",
+      value: [
+        {
+          type: "object",
+          key: "sliderItem",
+          displayer: "Slider Item",
+          value: [
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "EXPLORE",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Travelling",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67516278506a40002c316b2b?alt=media",
+            }
+          ]
+        },
+        {
+          type: "object",
+          key: "sliderItem",
+          displayer: "Slider Item",
+          value: [
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "This is a wonderful life",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "I LOVE IT",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67516251506a40002c316acd?alt=media",
+            },
+          ]
+        },
+      ],
+    });
+    this.addProp({
+      type: "array",
       key: "socials",
       displayer: "Social Media",
       value: [
@@ -91,63 +148,8 @@ class Slider1 extends BaseSlider {
         },
       ],
     });
-    this.addProp({
-      type: "array",
-      key: "slider",
-      displayer: "Slider",
-      value: [
-        {
-          type: "object",
-          key: "sliderItem",
-          displayer: "Slider Item",
-          value: [
-            {
-              type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
-              value: "EXPLORE",
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Travelling",
-            },
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64550f97f72de2002caaeee3?alt=media&timestamp=1719584962573",
-            }
-          ]
-        },
-        {
-          type: "object",
-          key: "sliderItem",
-          displayer: "Slider Item",
-          value: [
-            {
-              type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
-              value: "This is a wonderful life",
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "I LOVE IT",
-            },
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64550f97f72de2002caaeee2?alt=media&timestamp=1719584962573",
-            },
-          ]
-        },
-      ],
-    });
+    this.setComponentState("slider-ref", React.createRef());
+    this.setComponentState("activeSlide", 0);
   }
 
   getName(): string {
@@ -163,31 +165,42 @@ class Slider1 extends BaseSlider {
       slidesToShow: 1,
       slidesToScroll: 1,
       adaptiveHeight: true,
+      afterChange: (current: number, next: number) => {
+        if (this.getComponentState("activeSlide") !== current) {
+          this.setComponentState("activeSlide", current);
+        }
+      },
     };
 
     const isOverlayActive = this.getPropValue("overlay");
     const icons = this.castToObject<Social[]>("socials");
     const sliderItems = this.castToObject<Slider[]>("slider");
+    const noImage = sliderItems[this.getComponentState("activeSlide")]?.image;
 
     return (
-      <Base.Container isFull={true} className={this.decorateCSS("container")}>
+      <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("slider-parent")}>
-            <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
+            <ComposerSlider {...settings} className={this.decorateCSS("carousel")} ref={this.getComponentState("slider-ref")}>
               {sliderItems.map((item: Slider, indexSlider: number) => (
                 <div key={indexSlider} className={this.decorateCSS("slider-item")}>
-                  <div className={this.decorateCSS("img-wrapper")}>
-                    <img
-                      alt=""
-                      src={item.image}
-                      className={this.decorateCSS("img")}
-                    />
-                    {isOverlayActive && <div className={this.decorateCSS("overlay")}></div>}
-                  </div>
+                  {item.image &&
+                    <div className={this.decorateCSS("img-wrapper")}>
+                      <img
+                        alt=""
+                        src={item.image}
+                        className={this.decorateCSS("img")}
+                      />
+                      {isOverlayActive && <div className={this.decorateCSS("overlay")}></div>}
+                    </div>}
 
                   <div className={`${this.decorateCSS("content")} ${icons.length < 1 && this.decorateCSS("no-icon")}`}>
                     <Base.VerticalContent className={`${this.decorateCSS("box")} ${!item.image && this.decorateCSS("no-img")}`}>
-                      {this.castToString(item.subtitle) && < Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${!item.image && this.decorateCSS("no-img")}`}>
+                      {this.castToString(item.subtitle) && < Base.SectionSubTitle
+                        className={`
+                        ${this.decorateCSS("subtitle")} 
+                        ${!item.image && this.decorateCSS("no-img")}
+                        `}>
                         {item.subtitle}
                       </Base.SectionSubTitle>}
                       {this.castToString(item.title) && <Base.SectionTitle className={`${this.decorateCSS("title")} ${!item.image && this.decorateCSS("no-img")}`}>
@@ -215,8 +228,17 @@ class Slider1 extends BaseSlider {
               ))}
 
             </ComposerSlider>
-
           </div>
+          {sliderItems.length > 1 && <ul className={`${this.decorateCSS(noImage ? "dots" : "dots-2")}`}>
+            {sliderItems.map((_, index) => (
+              <li
+                key={`dot-${index}`}
+                className={this.getComponentState("activeSlide") === index && this.decorateCSS("slick-active")}
+                onClick={() => this.getComponentState("slider-ref").current.slickGoTo(index)}>
+                <button />
+              </li>
+            ))}
+          </ul>}
         </Base.MaxContent >
       </Base.Container >
     );
