@@ -205,7 +205,7 @@ class SurveyModal extends BaseModal {
             <div className={this.decorateCSS("border")}></div>
             <div className={this.decorateCSS("exit-icon")}>
               <ComposerModalClose>
-                <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={this.getPropValue("exitIcon")} />
+                <ComposerIcon propsIcon={{ className: image ? this.decorateCSS("icon") : this.decorateCSS("icon-no-image") }} name={this.getPropValue("exitIcon")} />
               </ComposerModalClose>
             </div>
             <Formik

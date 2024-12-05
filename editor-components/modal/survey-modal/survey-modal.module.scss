@@ -36,6 +36,10 @@
 
         .icon {
           font-size: 1.5rem;
+          color: white;
+        }
+        .icon-no-image {
+          font-size: 1.5rem;
           color: var(--composer-font-color-primary);
         }
       }
@@ -173,16 +177,14 @@
   }
 }
 
-// @container (max-width: #{$composer-tablet-width-lg}) {
-@media (max-width: 1024px) {
+@container (max-width: #{$composer-tablet-width-lg}) {
   .container {
     max-width: 750px;
     max-height: 700px;
   }
 }
 
-// @container (max-width: #{$composer-phone-width}) {
-@media (max-width: 468px) {
+@container (max-width: #{$composer-phone-width}) {
   .container {
     max-width: 320px !important;
     max-height: 700px !important;
