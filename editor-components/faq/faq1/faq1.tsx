@@ -142,7 +142,7 @@ class Faq extends BaseFAQ {
                   ${this.getComponentState("selectCardIndex") === indexCard ? this.decorateCSS("rotate") : ""}`
                   }}></ComposerIcon>
                 </div>
-                <div className={`${this.decorateCSS("card-inner")} ${this.getComponentState("selectCardIndex") === indexCard ? this.decorateCSS("cardTextActive") : ""}`}>
+                <div className={`${this.decorateCSS("card-inner")} ${this.getComponentState("selectCardIndex") === indexCard ? this.decorateCSS("cardActive") : ""}`}>
                   <div className={this.decorateCSS("card-text")}>
                     {card.text}
                   </div>
