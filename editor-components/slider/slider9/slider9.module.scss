@@ -171,7 +171,8 @@
                         left: 10px;
                         bottom: 10px;
 
-                        .button-wrapper {
+                        .button-wrapper-video,
+                        .button-wrapper-fs {
                             display: flex;
                             align-items: center;
                             gap: 0;
@@ -222,37 +223,26 @@
                                 }
                             }
 
-                            &:hover {
+                            &:hover .button-text-wrapper-video,
+                            &:hover .button-text-wrapper-fs {
+                                max-width: 150px;
+                                padding: 0 5px;
+                            }
 
-                                .button-text-wrapper-video,
-                                .button-text-wrapper-fs {
-                                    max-width: 150px;
-                                    padding: 0 5px;
-                                }
-
-                                .button-text {
-                                    opacity: 1
-                                }
+                            &:hover .button-text {
+                                opacity: 1;
                             }
                         }
-
-                        .button-wrapper:hover~.button-wrapper .button-text-wrapper-video,
-                        .button-wrapper:hover~.button-wrapper .button-text-wrapper-fs {
-                            max-width: 0;
-                            padding: 0;
-                        }
-
-                        .button-wrapper:hover~.button-wrapper .button-text {
-                            opacity: 0;
-                        }
                     }
+
+
 
                     .fullscreen-modal {
                         position: fixed;
                         top: 0;
                         left: 0;
                         width: 100vw;
-                        height: 100vh;
+                        height: 70vh;
                         display: flex;
                         justify-content: center;
                         align-items: center;
@@ -267,75 +257,115 @@
                             cursor: pointer;
                         }
 
-                        .fullscreen-image {
+                        .fullscreen-content {
+                            position: relative;
+                            display: inline-block;
                             max-width: 90%;
-                            max-height: 90%;
-                            z-index: 10000;
+                            max-height: 65vh;
                         }
 
-                        .close-fullscreen {
-                            position: absolute;
-                            top: 20px;
-                            right: 20px;
-                            z-index: 10001;
-                            cursor: pointer;
+                        .fullscreen-image {
+                            max-width: 100%;
+                            max-height: 65vh;
+                            border-radius: 5px;
+                            display: block;
+                        }
 
-                            .close-button-icon {
-                                font-size: 24px;
-                                color: #fff;
+                        .close-button-wrapper {
+                            position: absolute;
+                            top: 10px;
+                            right: 10px;
+                            background-color: #ff4d4f;
+                            border: none;
+                            border-radius: 8px;
+                            padding: 8px 12px;
+                            cursor: pointer;
+                            color: #fff;
+                            font-size: 14px;
+                            font-weight: bold;
+                            z-index: 1001;
+                            transition: background-color 0.3s ease, color 0.3s ease;
+
+                            &:hover {
+                                background-color: #fff;
+                                color: #ff4d4f;
+                            }
+
+                            .close-button {
+                                font-size: 16px;
+                                color: inherit;
                             }
                         }
                     }
 
-                    .play-button {
-                        position: absolute;
-                        top: 50%;
-                        left: 50%;
-                        border-radius: 150px;
-                        text-align: center;
-                        font-size: 20px;
-                        width: 80px;
-                        height: 80px;
-                        line-height: 80px;
-                        margin-top: -35px;
-                        margin-left: -40px;
-                        border: 6px solid rgba(255, 255, 255, 0.45);
-                        color: #fff;
-                        z-index: 10;
-                        display: grid;
-                        place-items: center;
+
+
+                    .video-modal {
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100vw;
+                        height: 70vh;
+                        background: rgba(0, 0, 0, 0.8);
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        z-index: 1000;
                     }
 
-                    .video-player-container {
-                        width: 100%;
-                        height: 100%;
+                    .video-overlay {
                         position: absolute;
                         top: 0;
                         left: 0;
-                        background: rgba(0, 0, 0, 0.68);
-                        display: none;
-                        z-index: 999;
+                        width: 100%;
+                        height: 100%;
+                        background: rgba(0, 0, 0, 0.5);
+                        z-index: 1;
+                    }
 
-                        &.video-player {
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                        }
+                    .video-content {
+                        position: relative;
+                        z-index: 2;
+                        background: #000;
+                        padding: 20px;
+                        border-radius: 10px;
+                        max-width: 90%;
+                        max-height: 70vh;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        overflow: hidden;
+                        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+                    }
 
-                        .close-button {
-                            position: absolute;
-                            background: white;
-                            height: auto;
-                            top: 18%;
-                            right: 14%;
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            font-size: 20px;
-                            border-radius: 50px;
-                            padding: 5px;
+                    .video-player {
+                        width: 100%;
+                        height: auto;
+                        max-height: 60vh;
+                        border-radius: 5px;
+                    }
+
+                    .close-button-wrapper {
+                        position: absolute;
+                        top: 10px;
+                        right: 10px;
+                        background-color: #ff4d4f;
+                        border: none;
+                        border-radius: 8px;
+                        cursor: pointer;
+                        z-index: 3;
+                        color: #fff;
+                        padding: 8px 12px;
+                        font-size: 14px;
+                        font-weight: bold;
+                        transition: background-color 0.3s ease, color 0.3s ease;
+
+                        &:hover {
+                            background-color: #fff;
+                            color: #ff4d4f;
                         }
                     }
+
                 }
             }
 

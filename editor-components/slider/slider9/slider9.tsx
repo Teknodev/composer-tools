@@ -51,7 +51,7 @@ class Slider9 extends BaseSlider {
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/674dcc6d506a40002c305aa6?alt=media",
             },
             {
-              type: "video",
+              type: "page",
               key: "video",
               displayer: "Video",
               value:
@@ -72,11 +72,11 @@ class Slider9 extends BaseSlider {
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/674dcc83506a40002c305ab2?alt=media",
             },
             {
-              type: "video",
+              type: "page",
               key: "video",
               displayer: "Video",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e77bd0181a1002c334f66?alt=media&timestamp=1719564238038",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b08ebb03b007002cc77877?alt=media",
             },
           ],
         },
@@ -93,7 +93,7 @@ class Slider9 extends BaseSlider {
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/674dcc99506a40002c305abc?alt=media",
             },
             {
-              type: "video",
+              type: "page",
               key: "video",
               displayer: "Video",
               value:
@@ -114,7 +114,7 @@ class Slider9 extends BaseSlider {
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/674dccaa506a40002c305ac7?alt=media",
             },
             {
-              type: "video",
+              type: "page",
               key: "video",
               displayer: "Video",
               value:
@@ -180,7 +180,10 @@ class Slider9 extends BaseSlider {
     this.setComponentState("currentSlideIndex", 0);
 
     this.setComponentState("isFullscreen", false);
-    this.setComponentState("fullscreenImageUrl", null);
+
+    this.setComponentState("isVideoModalOpen", false);
+    this.setComponentState("videoUrl", null);
+
   }
 
   handleFullscreen = () => {
@@ -190,9 +193,7 @@ class Slider9 extends BaseSlider {
 
     if (selectedImage) {
       this.setComponentState("isFullscreen", true);
-      this.setComponentState("fullscreenImageUrl", selectedImage);
     } else {
-      this.setComponentState("fullscreenImageUrl", null);
       this.setComponentState("isFullscreen", false);
     }
   };
@@ -201,6 +202,25 @@ class Slider9 extends BaseSlider {
     this.setComponentState("isFullscreen", false)
     this.setComponentState("fullscreenImageUrl", null);
   };
+
+  handlePlayVideo = () => {
+    const currentIndex = this.getComponentState("currentSlideIndex");
+    const sliderItems = this.castToObject<SliderItem[]>("sliderItems");
+    const selectedVideo = sliderItems[currentIndex]?.video;
+
+    if (selectedVideo) {
+      this.setComponentState("isVideoModalOpen", true);
+      this.setComponentState("videoUrl", selectedVideo);
+    }
+  };
+
+
+  handleCloseVideoModal = () => {
+    this.setComponentState("isVideoModalOpen", false);
+    this.setComponentState("videoUrl", null);
+  };
+
+
 
   getName(): string {
     return "Slider 9";
@@ -222,16 +242,11 @@ class Slider9 extends BaseSlider {
           horizontalSliderRef.current.slickGoTo(current);
         }
 
-        this.setComponentState("animation-active", false);
-        this.setComponentState("display-none", false);
       },
       beforeChange: (oldIndex: number, newIndex: number) => {
         if (oldIndex === newIndex) return;
         if (this.getPropValue("textAnimation"))
-          this.setComponentState("animation-active", true);
-        this.setComponentState("from", oldIndex > newIndex ? "left" : "right");
-
-        this.setComponentState("display-none", true);
+          this.setComponentState("from", oldIndex > newIndex ? "left" : "right");
 
         this.setComponentState("active-index", newIndex);
       },
@@ -292,9 +307,7 @@ class Slider9 extends BaseSlider {
                             horizontalSliderRef.current.slickGoTo(indexSlider);
                           }
                         }}
-
-                        key={indexSlider}
-                      >
+                        key={indexSlider}>
                         <img
                           src={item.image}
                           alt=""
@@ -375,15 +388,14 @@ class Slider9 extends BaseSlider {
                       />}
                   </div>}
 
-
                 <div className={this.decorateCSS("buttons")}>
-                  <div className={this.decorateCSS("button-wrapper")}>
+                  <div className={this.decorateCSS("button-wrapper-video")}>
                     <div className={this.decorateCSS("icon-wrapper")}>
                       <ComposerIcon
                         name={videoButton}
                         propsIcon={{
                           className: this.decorateCSS("video-button"),
-                          onClick: () => { },
+                          onClick: () => this.handlePlayVideo(),
                         }}
                       />
                     </div>
@@ -392,7 +404,7 @@ class Slider9 extends BaseSlider {
                     </div>
                   </div>
 
-                  <div className={this.decorateCSS("button-wrapper")}>
+                  <div className={this.decorateCSS("button-wrapper-fs")}>
                     <div className={this.decorateCSS("icon-wrapper")}>
                       <ComposerIcon
                         name={fsButton}
@@ -408,29 +420,59 @@ class Slider9 extends BaseSlider {
                   </div>
                 </div>
 
-                {isFullscreen && fullscreenImageUrl && (
+                {isFullscreen && (
                   <div className={this.decorateCSS("fullscreen-modal")}>
                     <div
                       className={this.decorateCSS("fullscreen-overlay")}
                       onClick={this.handleCloseFullscreen}
                     ></div>
-                    <img
-                      src={fullscreenImageUrl}
-                      alt="Fullscreen"
-                      className={this.decorateCSS("fullscreen-image")}
-                    />
+                    <div className={this.decorateCSS("fullscreen-content")}>
+                      <img
+                        src={sliderItems[this.getComponentState("currentSlideIndex")]?.image}
+                        alt="Fullscreen"
+                        className={this.decorateCSS("fullscreen-image")}
+                      />
+                      <button className={this.decorateCSS("close-button-wrapper")}
+                        onClick={this.handleCloseFullscreen}>
+                        <ComposerIcon
+                          name={"IoMdClose"}
+                          propsIcon={{
+                            className: this.decorateCSS("close-button"),
+                          }}
+                        />
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+
+                {this.getComponentState("isVideoModalOpen") && (
+                  <div className={this.decorateCSS("video-modal")}>
                     <div
-                      className={this.decorateCSS("close-fullscreen")}
-                      onClick={this.handleCloseFullscreen}
-                    >
-                      <ComposerIcon
-                        name="CiClose"
-                        propsIcon={{
-                          className: this.decorateCSS("close-button-icon"),
-                        }}
+                      className={this.decorateCSS("video-overlay")}
+                      onClick={this.handleCloseVideoModal}
+                    ></div>
+                    <div className={this.decorateCSS("video-content")}>
+                      <button
+                        className={this.decorateCSS("close-button-wrapper")}
+                        onClick={this.handleCloseVideoModal}
+                      >
+                        <ComposerIcon name={"IoMdClose"}
+                          propsIcon={{
+                            className: this.decorateCSS("close-button"),
+                          }}
+                        />
+                      </button>
+
+                      <video
+                        src={this.getComponentState("videoUrl")}
+                        controls
+                        className={this.decorateCSS("video-player")}
+                        autoPlay
                       />
                     </div>
-                  </div>)}
+                  </div>
+                )}
 
               </div>
             </div>
