@@ -1,7 +1,7 @@
 @import "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss";
 
 .container {
-  max-width: 650px;
+  max-width: 600px;
   min-width: 600px;
   max-height: 900px;
   overflow: auto;
@@ -74,6 +74,7 @@
             z-index: 3;
             word-break: break-word;
             position: relative;
+            font-size: 2rem;
           }
         }
         .without-image {
@@ -82,6 +83,7 @@
           text-align: center;
           height: auto;
           top: 0;
+          margin-top: var(--composer-gap-lg);
 
           .first-header {
             text-align: center;
@@ -91,6 +93,7 @@
             z-index: 3;
             word-break: break-word;
             position: relative;
+            font-size: 2rem;
           }
         }
       }
@@ -101,12 +104,14 @@
           text-align: center;
           word-break: break-word;
           color: var(--composer-secondary-color);
+          font-size: 1.5rem;
         }
         .notice-content {
           width: 80%;
           word-break: break-word;
           color: var(--composer-font-color-primary);
           text-align: center;
+          font-size: 1rem;
         }
       }
     }
@@ -136,12 +141,12 @@
           }
           .wrapper {
             .first-header {
-              font-size: 2rem;
+              font-size: 1.5rem;
             }
           }
           .without-image {
             .first-header {
-              font-size: 2rem;
+              font-size: 1.5rem;
             }
           }
         }

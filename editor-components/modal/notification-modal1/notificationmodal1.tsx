@@ -109,7 +109,7 @@ class NotificationModal1 extends BaseModal {
       <Base.Container isModal="true" className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
-            {(exitIcon || secondTitleExist || descriptionExist) && (
+            {(exitIcon || firstTitleExist || secondTitleExist || descriptionExist) && (
               <div className={this.decorateCSS("top-wrapper")}>
                 {exitIcon && (
                   <div className={this.decorateCSS("exit-icon")}>
@@ -119,7 +119,7 @@ class NotificationModal1 extends BaseModal {
                   </div>
                 )}
                 {(backgroundImage || firstTitleExist) && (
-                  <div className={`${this.decorateCSS("wrapper")} ${!backgroundImage && this.decorateCSS("without-image")}`}>
+                  <div className={`${this.decorateCSS("wrapper")} ${!backgroundImage && exitIcon && this.decorateCSS("without-image")}`}>
                     {backgroundImage && <img className={this.decorateCSS("image")} src={backgroundImage} />}
                     <Base.H1 className={this.decorateCSS("first-header")}>{this.getPropValue("firstTitle")}</Base.H1>
                     {overlay && backgroundImage && <div className={this.decorateCSS("overlay")}></div>}
