@@ -13,6 +13,7 @@ type Card = {
   content: JSX.Element;
 }
 class Slider4 extends BaseSlider {
+
   constructor(props?: any) {
     super(props, styles);
 
@@ -44,13 +45,13 @@ class Slider4 extends BaseSlider {
       type: "icon",
       key: "previousArrow",
       displayer: "Previous Arrow Icon",
-      value: "BsArrowLeftCircle"
+      value: "RiArrowLeftSLine"
     });
     this.addProp({
       type: "icon",
       key: "nextArrow",
       displayer: "Next Arrow Icon",
-      value: "BsArrowRightCircle"
+      value: "RiArrowRightSLine"
     });
     this.addProp({
       type: "array",
@@ -217,6 +218,7 @@ class Slider4 extends BaseSlider {
     });
     this.setComponentState("slider-ref", React.createRef());
   }
+
   getName(): string {
     return "Slider 4";
   }
@@ -224,6 +226,7 @@ class Slider4 extends BaseSlider {
     const cards = this.castToObject<Card[]>("slider");
 
     const settings = {
+      arrows: false,
       dots: false,
       infinite: true,
       speed: 500,
@@ -275,32 +278,39 @@ class Slider4 extends BaseSlider {
                 <Base.P className={this.decorateCSS("control-description")}>{controlDescription}</Base.P>}
               {(previousArrow || nextArrow) &&
                 <div className={this.decorateCSS("arrows")}>
+
                   {previousArrow &&
-                    <ComposerIcon
-                      name={this.getPropValue("previousArrow")}
-                      propsIcon={{
-                        className: this.decorateCSS("prevArrow"),
-                        onClick: () => {
-                          sliderRef.current.slickPrev();
-                        },
-                      }}
-                    />}
+                    <div className={this.decorateCSS("icon-wrapper")}>
+                      <ComposerIcon
+                        name={this.getPropValue("previousArrow")}
+                        propsIcon={{
+                          className: this.decorateCSS("prevArrow"),
+                          onClick: () => {
+                            sliderRef.current.slickPrev();
+                          }
+                        }} />
+                    </div>}
+
                   {nextArrow &&
-                    <ComposerIcon
-                      name={this.getPropValue("nextArrow")}
-                      propsIcon={{
-                        className: this.decorateCSS("nextArrow"),
-                        onClick: () => {
-                          sliderRef.current.slickNext();
-                        },
-                      }}
-                    />}
+                    <div className={this.decorateCSS("icon-wrapper")}>
+                      <ComposerIcon
+                        name={this.getPropValue("nextArrow")}
+                        propsIcon={{
+                          className: this.decorateCSS("nextArrow"),
+                          onClick: () => {
+                            sliderRef.current.slickNext();
+                          },
+                        }} />
+                    </div>}
                 </div>}
+
             </Base.VerticalContent>
             <div className={this.decorateCSS("slider-parent")}>
               <ComposerSlider {...settings} className={this.decorateCSS("carousel")} ref={sliderRef}>
                 {cards.map((item: Card, index: number) => (
-                  <div className={this.decorateCSS("card")}>
+                  <div
+                    className={this.decorateCSS("card")}
+                    key={index}>
                     <ComposerIcon
                       name={item.icon}
                       propsIcon={{ className: this.decorateCSS("play-icon") }}
@@ -312,8 +322,8 @@ class Slider4 extends BaseSlider {
               </ComposerSlider>
             </div>
           </Base.ContainerGrid>
-        </Base.MaxContent>
-      </Base.Container>
+        </Base.MaxContent >
+      </Base.Container >
     );
   }
 }
