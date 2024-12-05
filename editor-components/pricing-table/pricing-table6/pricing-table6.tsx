@@ -1234,9 +1234,11 @@ class PricingMultipleTwo extends BasePricingTable {
 
                           <div className={this.decorateCSS("list-body")}>
                             {plan[planIndex]?.right_items?.list?.map((listItem: any, listItemIndex: number) => {
-                              const listValue = listItem.value.find((item: any) => item.key === "property").value;
-                              const iconValue = listItem.value.find((item: any) => item.key === "dash_icon").value;
-                              const enableValue = listItem?.value?.find((item: any) => item.key === "enable")?.value;
+                              const property = listItem.getPropValue("property");
+                              const iconValue = listItem.getPropValue("dash_icon");
+                              const enableValue = listItem.getPropValue("enable");
+
+                              const listValue = this.castToString(property);
 
                               return (
                                 (listValue || iconValue) && (
