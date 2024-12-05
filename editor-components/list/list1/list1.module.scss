@@ -5,9 +5,14 @@
   .max-content {
       display: flex;
       flex-direction: column;
+
+      /*.up-text {
+        margin-bottom: var(--composer-gap-md);
+      }*/
+
       .carousel {
-        width: 100%;
         overflow: hidden;
+
         .dots {
           display: flex !important;
           flex-direction: row;
@@ -26,11 +31,7 @@
               border: none;
               transition: 0.3s;
               content-visibility: hidden;
-              background: color-mix(
-                in srgb,
-                var(--composer-html-background),
-                var(--composer-font-color-primary) 5%
-              ) !important;
+              background: var(--composer-html-background) !important;
               width: 10px;
               height: 10px;
               border-radius: 100px;
@@ -44,19 +45,23 @@
         }
 
         .card {
-          width: 95% !important;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          align-items: center;
+          width: 100% !important;
           height: 100%;
-          padding: 0px var(--composer-gap-sm) var(--composer-gap-xl) var(--composer-gap-sm);
+          padding: var(--composer-gap-xl) var(--composer-gap-md);
           position: relative;
 
           &.active {
             &::after {
               content: "";
               position: absolute;
-              width: 114%;
+              width: calc(100% + var(--composer-gap-md) * 2);
               height: 85%;
               bottom: -60px;
-              left: -40px;
+              left: calc(0px - var(--composer-gap-md));
               background-color: var(--composer-primary-color);
               z-index: -1;
               opacity: .93;
@@ -64,13 +69,15 @@
           }
 
           .card-inner {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%; 
+            padding: var(--composer-gap-lg);
             background-color: var(--composer-html-background);
             z-index: 0;
             position: static;
-            display: flex;
-            flex-direction: column;
-            padding: var(--composer-gap-lg);
-            aspect-ratio: 1.52;
+            aspect-ratio: 1.4;
 
             .img-div {
               .img {
@@ -83,20 +90,20 @@
             }
 
             .card-titles {
-              margin-top: var(--composer-gap-md);
+              margin: var(--composer-gap-md) 0;
 
               .title {
+                color: var(--composer-font-color-primary);
                 font-size: 1.5rem;
 
                 &:hover {
-                  color: var(--composer-primary-color);
                   transition: 1s;
                 }
               }
   
               .subtitle {
+                color: var(--composer-tertiary-color);
                 font-size: 1rem;
-                opacity: 0.8;
               }
             }
 
@@ -146,11 +153,7 @@
               border: none;
               transition: 0.3s;
               content-visibility: hidden;
-              background: color-mix(
-                in srgb,
-                var(--composer-html-background),
-                var(--composer-font-color-primary) 5%
-              ) !important;
+              background: var(--composer-html-background) !important;
               width: 10px;
               height: 10px;
               border-radius: 100px;
@@ -159,12 +162,13 @@
         }
         .card {
           &.active {
-            &::before {
+            &::after {
               visibility: hidden;
             }
           }
 
           .card-inner {
+            aspect-ratio: 0.7;
             margin-left: 0px;
             .img {
               margin: 0 auto;
@@ -182,13 +186,19 @@
       .carousel {
         .dots {
           position: absolute;
+          li {
+            button {
+              background: var(--composer-html-background) !important;
+            }
+          }
         }
         .card {
-          &.active::before {
+          &.active::after {
             display: none !important;
           }
 
           .card-inner {
+            aspect-ratio: 0.6;
             margin-left: 0px;
             img {
               margin: 0 auto;
