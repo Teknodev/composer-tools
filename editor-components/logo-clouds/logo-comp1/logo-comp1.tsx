@@ -189,12 +189,12 @@ class LogoComp1Page extends LogoClouds {
           </Base.VerticalContent>
           <Base.ListGrid
             gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3, phone: 2 }}
-            className={this.decorateCSS("image-container")}
+            className={this.decorateCSS("images-container")}
           >
             {this.castToObject<TImage[]>("image-items").map(
               (image: any, index: number) => (
                 <ComposerLink path={image.imageLink}>
-                  <div key={index} className={this.decorateCSS("image-child")}>
+                  <div key={index} className={this.decorateCSS("image-item")}>
                     <img
                       className={this.decorateCSS("image")}
                       key={index}

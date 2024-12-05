@@ -25,13 +25,6 @@ class LogoComp2Page extends LogoClouds {
     });
 
     this.addProp({
-      type: "boolean",
-      key: "isRow",
-      displayer: "isRow",
-      value: false,
-    })
-
-    this.addProp({
       type: "array",
       key: "image-items",
       displayer: "Images",
@@ -115,16 +108,16 @@ class LogoComp2Page extends LogoClouds {
   render() {
     return (
       <div
-        className={`${this.decorateCSS("container")} ${this.getPropValue("isRow") == true ? this.decorateCSS("row") : ""}`}
+        className={`${this.decorateCSS("container")}`}
 
       >
-        <div className={`${this.decorateCSS("max-content")} ${this.getPropValue("isRow") == true ? this.decorateCSS("row") : ""}`}>
-          <div className={`${this.decorateCSS("logo-comp2-page")} ${this.getPropValue("isRow") == true ? this.decorateCSS("row") : ""}`}>
-            <div className={`${this.decorateCSS("container-title-description")} ${this.getPropValue("isRow") == true ? this.decorateCSS("row") : ""}`}>
-              <h1 className={`${this.decorateCSS("title")} ${this.getPropValue("isRow") == true ? this.decorateCSS("row") : ""}`}>{this.getPropValue("title")}</h1>
-              <h3 className={`${this.decorateCSS("description")} ${this.getPropValue("isRow") == true ? this.decorateCSS("row") : ""}`}>{this.getPropValue("description")}</h3>
+        <div className={`${this.decorateCSS("max-content")}`}>
+          <div className={`${this.decorateCSS("logo-comp2-page")}`}>
+            <div className={`${this.decorateCSS("container-title-description")}`}>
+              <h1 className={`${this.decorateCSS("title")}`}>{this.getPropValue("title")}</h1>
+              <h3 className={`${this.decorateCSS("description")}`}>{this.getPropValue("description")}</h3>
             </div>
-            <section className={`${this.getPropValue("isRow") == true ? this.decorateCSS("row") : ""}`}>
+            <div className={this.decorateCSS("images-container")}>
               <div className={this.decorateCSS("items-layout")}>
                 {this.getPropValue("image-items").map(
                   (imageItems: any, index: number) => (
@@ -143,7 +136,7 @@ class LogoComp2Page extends LogoClouds {
                   )
                 )}
               </div>
-            </section>
+            </div>
           </div>
         </div>
       </div>
