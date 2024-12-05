@@ -2,9 +2,10 @@ import * as React from "react";
 import styles from "./faq8.module.scss";
 import { BaseFAQ } from "../../EditorComponent";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
 
 type Category = {
-  categoryName: string;
+  categoryName: JSX.Element;
   questions: Array<any>;
 };
 
@@ -20,8 +21,14 @@ class FaqButton extends BaseFAQ {
     this.addProp({
       type: "icon",
       key: "arrow-right",
-      displayer: "Arrow icon",
+      displayer: "Right Arrow icon",
       value: "IoMdArrowRoundForward",
+    });
+    this.addProp({
+      type: "icon",
+      key: "arrow-down",
+      displayer: "Down Arrow icon",
+      value: "FaAngleDown",
     });
     this.addProp({
       type: "string",
@@ -51,7 +58,7 @@ class FaqButton extends BaseFAQ {
               type: "string",
               key: "categoryName",
               displayer: "Category Name",
-              value: "Pricing & Support",
+              value: "Theme License",
             },
             {
               type: "array",
@@ -652,12 +659,6 @@ class FaqButton extends BaseFAQ {
     this.setComponentState("activeIndex", index);
     this.setComponentState("activeIndex2", -1);
   }
-  //   if (this.activeIndex == index) {
-  //     ;
-  //   } else {
-  //     this.setComponentState("activeIndex", index);
-  //   }
-  // };
 
   handleAnswer(index: number) {
     this.setComponentState(
@@ -668,26 +669,30 @@ class FaqButton extends BaseFAQ {
 
   render() {
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
-            <div className={this.decorateCSS("up-page")}>
-              <div className={this.decorateCSS("badge")}>
-                {this.getPropValue("badge")}
-              </div>
-              <h1 className={this.decorateCSS("subtitle")}>
-                {this.getPropValue("subtitle")}
-              </h1>
-            </div>
+            {(this.castToString(this.getPropValue("badge")) || this.castToString(this.getPropValue("subtitle"))) && (
+              <Base.VerticalContent className={this.decorateCSS("up-page")}>
+                {this.castToString(this.getPropValue("badge")) && (
+                  <Base.SectionSubTitle className={this.decorateCSS("badge")}>
+                    {this.getPropValue("badge")}
+                  </Base.SectionSubTitle>
+                )}
+                {this.castToString(this.getPropValue("subtitle")) && (
+                  <Base.SectionTitle className={this.decorateCSS("subtitle")}>
+                    {this.getPropValue("subtitle")}
+                  </Base.SectionTitle>
+                )}
+              </Base.VerticalContent>
+            )}
+
             <div className={this.decorateCSS("down-page")}>
-              <div className={this.decorateCSS("category-flex")}>
-                {this.castToObject<Category[]>("categories").map(
-                  (category: Category, indexCategory: any) => {
-                    return (
-                      <div
-                        className={this.decorateCSS("categories-container")}
-                        key={indexCategory}
-                      >
+              {(this.getPropValue("categories").length > 0) && (
+                <div className={this.decorateCSS("category-flex")}>
+                  {this.castToObject<Category[]>("categories").map(
+                    (category: Category, indexCategory: any) => {
+                      return (
                         <div
                           className={`${this.decorateCSS("categories")} ${this.getComponentState("activeIndex") ==
                             indexCategory &&
@@ -695,81 +700,75 @@ class FaqButton extends BaseFAQ {
                             }`}
                           onClick={() => this.handleButton(indexCategory)}
                         >
-                          {/* inline icon */}
-                          <div className={this.decorateCSS("category")}>
-                            <ComposerIcon
-                              name={this.getPropValue("dot_icon")}
-                              propsIcon={{
-                                className: `${this.decorateCSS(
-                                  "bullet-icon"
-                                )}`,
-                              }}
-                            />
-                            <p className={this.decorateCSS("category-name")}>
-                              {category.categoryName}
-                            </p>
-                          </div>
-
-
-                          <div className={this.decorateCSS("right")}>
-                            <ComposerIcon
-                              name={this.getPropValue("arrow-right")}
-                              propsIcon={{
-                                className: this.decorateCSS("arrow-right")
-                              }}
-                            />
-                          </div>
-
+                          {(this.getPropValue("dot_icon") || this.getPropValue("arrow-right") || this.castToString(category.categoryName)) && (
+                            <div className={this.decorateCSS("category")}>
+                              {this.getPropValue("dot_icon") && (
+                                <ComposerIcon
+                                  name={this.getPropValue("dot_icon")}
+                                  propsIcon={{
+                                    className: `${this.decorateCSS(
+                                      "bullet-icon"
+                                    )}`,
+                                  }}
+                                />
+                              )}
+                              {this.castToString(category.categoryName) && (
+                                <div className={this.decorateCSS("category-name")}>
+                                  {category.categoryName}
+                                </div>
+                              )}
+                            </div>
+                          )}
+                          {this.getPropValue("arrow-right") && (
+                            <div className={this.decorateCSS("right")}>
+                              <ComposerIcon
+                                name={this.getPropValue("arrow-right")}
+                                propsIcon={{
+                                  className: this.decorateCSS("arrow-right")
+                                }}
+                              />
+                            </div>
+                          )}
                         </div>
-
-                      </div>
-                    );
-                  }
-                )}
-              </div>
-              <div className={this.decorateCSS("questions")}>
-                {this.castToObject<Category[]>("categories")[
-                  this.getComponentState("activeIndex")
-                ]?.questions.map((question, questionIndex) => {
-                  return (
-                    <div className={this.decorateCSS("categories-container")}>
+                      );
+                    }
+                  )}
+                </div>
+              )}
+              {(this.castToObject<Category[]>("categories")[this.getComponentState("activeIndex")]?.questions.length > 0) && (
+                <div className={this.decorateCSS("questions")}>
+                  {this.castToObject<Category[]>("categories")[
+                    this.getComponentState("activeIndex")
+                  ]?.questions.map((question, questionIndex) => {
+                    return (
                       <div
                         onClick={() => this.handleAnswer(questionIndex)}
-                        className={`${this.decorateCSS("text")} ${this.decorateCSS("box")}`}
+                        className={this.decorateCSS("text")}
                       >
-                        <div className={this.decorateCSS("question")}>
-                          <p
-                            className={
-                              this.getComponentState("activeIndex2") ===
-                              questionIndex ? this.decorateCSS("active") : ""
-                            }
-                          >
-                            {question.qq}
-                          </p>
-                          <ComposerIcon name="FaAngleDown" propsIcon={{className: this.decorateCSS("icon")}} />
-                        </div>
-
-                        <div
-                          className={`${this.decorateCSS("text")} ${this.getComponentState("activeIndex2") ===
-                            questionIndex
-                            ? `${this.decorateCSS(
-                              "answer-text"
-                            )}`
-                            : // this.decorateCSS("answer-text")
-                            this.decorateCSS("hide")
-                            }`}
-                        >
-                          <p>{question.answer}</p>
-                        </div>
+                        {(this.castToString(question.qq)) && (
+                          <div className={this.decorateCSS("question")}>
+                            <div className={this.decorateCSS("question-title")}>
+                              {question.qq}
+                            </div>
+                            <ComposerIcon name={this.getPropValue("arrow-down")} propsIcon={{ className: `${this.decorateCSS("question-icon")} ${this.getComponentState("activeIndex2") === questionIndex ? this.decorateCSS("active") : ""}` }} />
+                          </div>
+                        )}
+                        {this.castToString(question.answer) && (
+                          <div className={`${this.decorateCSS("inner-text-wrapper")} ${this.getComponentState("activeIndex2") === questionIndex ? this.decorateCSS("active") : ""}`}>
+                            <div className={this.decorateCSS("inner-text")}>
+                              {question.answer}
+                            </div>
+                          </div>
+                        )}
                       </div>
-                    </div>
-                  );
-                })}
-              </div>
+                    );
+                  })}
+                </div>
+              )}
             </div>
           </div>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
