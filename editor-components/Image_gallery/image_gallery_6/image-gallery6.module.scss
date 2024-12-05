@@ -95,15 +95,14 @@
                                         justify-content: center;
                                         gap: var(--composer-gap-md);
                                         padding: var(--composer-gap-lg) calc(var(--composer-gap-xl) * 3);
+                                        opacity: 0;
                                         .title{
                                             font-size: 2rem;
-                                            opacity: 0;
                                         }
                                         .bottom-container{
                                             display: flex;
                                             gap: var(--composer-gap-md);
                                             align-items: stretch;
-                                            opacity: 0;
                                             .description{
                                                 display: flex;
                                                 align-items: center;
@@ -139,12 +138,7 @@
                                         visibility: visible;                     
                                         max-height: 100%;
                                         .text-container{
-                                            .title{
-                                                opacity: 1;
-                                            }
-                                            .bottom-container{
-                                                opacity: 1;
-                                            }
+                                            opacity: 1;
                                         }
                                     }
                                 }
