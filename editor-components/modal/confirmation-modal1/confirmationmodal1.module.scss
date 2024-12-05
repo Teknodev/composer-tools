@@ -24,6 +24,11 @@
 
           .icon {
             font-size: 1.5rem;
+            color: white;
+          }
+          .icon-no-image {
+            font-size: 1.5rem;
+            color: var(--composer-font-color-primary);
           }
         }
 
@@ -48,9 +53,11 @@
 
           .title {
             margin: 0;
+            font-size: 2rem;
           }
           .title-no-image {
             margin: 0;
+            font-size: 2rem;
             width: 95%;
             margin-top: var(--composer-gap-md);
           }
@@ -62,7 +69,7 @@
 
         .button-background {
           display: flex;
-          justify-content: space-evenly;
+          justify-content: center;
           gap: var(--composer-gap-md);
           margin: var(--composer-gap-md);
         }
@@ -81,6 +88,17 @@
     .max-content {
       .content {
         .button-wrapper {
+          .second-div {
+            text-align: center;
+
+            .title {
+              font-size: 1.5rem;
+            }
+            .title-no-image {
+              font-size: 1.5rem;
+            }
+          }
+
           .button-background {
             flex-direction: column;
 
