@@ -49,6 +49,10 @@
                             .card-title {
                                 font-size:1rem;
                                 color: var(--composer-font-color-primary);
+                                transition: color 0.5s ease;
+                                &.active{
+                                   color: var(--composer-primary-color); 
+                                }
                             }
                         }
                         .icon-wrapper{                        

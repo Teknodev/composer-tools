@@ -220,7 +220,7 @@ class FaqButton extends BaseFAQ {
                       <div className={this.decorateCSS("line")}></div>
                       <div className={this.decorateCSS("child-container")}>
                         <div className={this.decorateCSS("card-title-wrapper")}>
-                          <div className={this.decorateCSS("card-title")}>{card.title}</div>
+                          <div className={`${this.decorateCSS("card-title")} ${isActive ? this.decorateCSS("active") : ""}`}>{card.title}</div>
                         </div>
                         <div className={this.decorateCSS("icon-wrapper")}>
                           <ComposerIcon name={isActive ? this.getPropValue("iconActive") : this.getPropValue("iconInactive")} propsIcon={{ className: this.decorateCSS("icon") }} />
