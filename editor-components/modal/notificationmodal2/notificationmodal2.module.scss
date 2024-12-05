@@ -78,8 +78,7 @@
     }
   }
 }
-// @container (max-width: #{$composer-phone-width}) {
-@media only screen and (max-width: 480px) {
+@container (max-width: #{$composer-phone-width}) {
   .container {
     max-width: 300px;
     min-width: 200px;
