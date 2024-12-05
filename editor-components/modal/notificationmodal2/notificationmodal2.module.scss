@@ -46,45 +46,31 @@
       }
 
       .displayer-message {
-        color: var(--composer-font-color-primary);
-        opacity: 0.5;
+        color: var(--composer-tertiary-color);
+        text-align: center;
       }
 
       .send-mail {
         width: 100%;
 
         .input-group {
-          position: relative;
+          display: flex;
+          align-items: stretch;
           width: 100%;
 
           .input {
-            width: 100%;
-            height: var(--composer-gap-xl);
+            flex: 1;
             padding: var(--composer-gap-md) var(--composer-gap-sm);
-            padding-right: 30%;
             border-radius: var(--composer-border-radius-sm);
             border: none;
             background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
             color: var(--composer-font-color-primary);
-
-            .input-style {
-              background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-            }
-
-            &:focus {
-              outline-color: var(--composer-secondary-color);
-            }
           }
 
           .button {
-            position: absolute;
-            right: var(--composer-gap-xs);
-            top: 50%;
-            transform: translateY(-50%);
-            width: auto;
-            min-width: 100px;
-            height: calc(85%);
-            overflow: hidden;
+            max-width: 40%;
+            height: auto;
+            padding: 0 var(--composer-gap-md);
           }
         }
       }
