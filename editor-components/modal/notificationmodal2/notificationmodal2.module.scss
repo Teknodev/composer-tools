@@ -60,7 +60,7 @@
 
           .input {
             flex: 1;
-            padding: var(--composer-gap-md) var(--composer-gap-sm);
+            padding: var(--composer-gap-sm) var(--composer-gap-sm);
             border-radius: var(--composer-border-radius-sm);
             border: none;
             background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
@@ -93,7 +93,11 @@
         .send-mail {
           .input-group {
             .input {
-              padding-right: 50%;
+              padding: var(--composer-gap-sm) var(--composer-gap-xs);
+            }
+            .button {
+              max-width: 50%;
+              padding: 0 var(--composer-gap-sm);
             }
           }
         }
