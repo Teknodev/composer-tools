@@ -47,7 +47,7 @@ class LogoComp1Page extends LogoClouds {
         this.LOGOINPUT(),
         this.LOGOINPUT(),
         this.LOGOINPUT(),
-        this.LOGOINPUT()
+        this.LOGOINPUT(),
       ],
     });
   }
@@ -57,28 +57,47 @@ class LogoComp1Page extends LogoClouds {
   }
 
   render() {
+    const isSubtitleExists = this.castToString(this.getPropValue("subtitle"));
+    const isTitleExists = this.castToString(this.getPropValue("title"));
+    const isDescriptionExists = this.castToString(
+      this.getPropValue("description")
+    );
+    const images = this.castToObject<TImage[]>("image-items");
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={this.decorateCSS("heading")}>
-            <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-              {this.getPropValue("subtitle")}
-            </Base.SectionSubTitle>
-            <Base.SectionTitle className={this.decorateCSS("title")}>
-              {this.getPropValue("title")}
-            </Base.SectionTitle>
-            <Base.SectionDescription
-              className={this.decorateCSS("description")}
+          {(isSubtitleExists || isTitleExists || isDescriptionExists) && (
+            <Base.VerticalContent className={this.decorateCSS("heading")}>
+              {isSubtitleExists && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {this.getPropValue("subtitle")}
+                </Base.SectionSubTitle>
+              )}
+              {isTitleExists && (
+                <Base.SectionTitle className={this.decorateCSS("title")}>
+                  {this.getPropValue("title")}
+                </Base.SectionTitle>
+              )}
+              {isDescriptionExists && (
+                <Base.SectionDescription
+                  className={this.decorateCSS("description")}
+                >
+                  {this.getPropValue("description")}
+                </Base.SectionDescription>
+              )}
+            </Base.VerticalContent>
+          )}
+
+          {images.length > 0 && (
+            <Base.ListGrid
+              gridCount={{
+                pc: this.getPropValue("itemCount"),
+                tablet: 3,
+                phone: 2,
+              }}
+              className={this.decorateCSS("images-container")}
             >
-              {this.getPropValue("description")}
-            </Base.SectionDescription>
-          </Base.VerticalContent>
-          <Base.ListGrid
-            gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3, phone: 2 }}
-            className={this.decorateCSS("images-container")}
-          >
-            {this.castToObject<TImage[]>("image-items").map(
-              (image: any, index: number) => (
+              {images.map((image: any, index: number) => (
                 <ComposerLink path={image.imageLink}>
                   <div key={index} className={this.decorateCSS("image-item")}>
                     <img
@@ -89,9 +108,9 @@ class LogoComp1Page extends LogoClouds {
                     />
                   </div>
                 </ComposerLink>
-              )
-            )}
-          </Base.ListGrid>
+              ))}
+            </Base.ListGrid>
+          )}
         </Base.MaxContent>
       </Base.Container>
     );
