@@ -178,7 +178,7 @@ class SurveyModal extends BaseModal {
   }
 
   getName(): string {
-    return "SurveyModal";
+    return "Survey Modal";
   }
 
   render() {
@@ -223,28 +223,30 @@ class SurveyModal extends BaseModal {
                       {title && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
                       {rateQuestion && <Base.SectionDescription className={this.decorateCSS("rate-question")}>{rateQuestion}</Base.SectionDescription>}
 
-                      <div className={this.decorateCSS("rate-content")}>
-                        {rateIcons.map((item, index) => (
-                          <Base.VerticalContent className={this.decorateCSS("rateIconsWrapper")} key={index}>
-                            <div
-                              id={`icon-${index + 1}`}
-                              className={`${this.decorateCSS("icons")} ${index <= this.getComponentState("selectedIconIndex") ? this.decorateCSS("selected") : ""}`}
-                              onClick={() => {
-                                this.handleIconClick(index, setFieldValue);
-                              }}
-                            >
-                              <div className={this.decorateCSS("icon-wrapper")}>
-                                <ComposerIcon
-                                  name={item.icon}
-                                  propsIcon={{
-                                    className: `${this.decorateCSS("icon")}`,
-                                  }}
-                                />
+                      {rateIcons.length > 0 && (
+                        <div className={this.decorateCSS("rate-content")}>
+                          {rateIcons.map((item, index) => (
+                            <Base.VerticalContent className={this.decorateCSS("rateIconsWrapper")} key={index}>
+                              <div
+                                id={`icon-${index + 1}`}
+                                className={`${this.decorateCSS("icons")} ${index <= this.getComponentState("selectedIconIndex") ? this.decorateCSS("selected") : ""}`}
+                                onClick={() => {
+                                  this.handleIconClick(index, setFieldValue);
+                                }}
+                              >
+                                <div className={this.decorateCSS("icon-wrapper")}>
+                                  <ComposerIcon
+                                    name={item.icon}
+                                    propsIcon={{
+                                      className: `${this.decorateCSS("icon")}`,
+                                    }}
+                                  />
+                                </div>
                               </div>
-                            </div>
-                          </Base.VerticalContent>
-                        ))}
-                      </div>
+                            </Base.VerticalContent>
+                          ))}
+                        </div>
+                      )}
                       {errors.rating && touched.foundWhatLookingFor && <div className={this.decorateCSS("error")}>{errors.rating}</div>}
 
                       {radio && <Base.P className={this.decorateCSS("radio-question")}>{radio}</Base.P>}
@@ -269,20 +271,25 @@ class SurveyModal extends BaseModal {
                         </div>
                       )}
 
-                      <div style={{ width: "100%" }}>
-                        {buttonText && (
-                          <ComposerLink page={this.getPropValue("buttonUrl")}>
+                      {buttonText && (
+                        <div className={this.decorateCSS("button-container")}>
+                          {placeholder ? (
                             <Base.Button type="submit" className={this.decorateCSS("submit-button")}>
                               {buttonText}
                             </Base.Button>
-                          </ComposerLink>
-                        )}
-                      </div>
+                          ) : (
+                            <ComposerLink page={this.getPropValue("buttonUrl")}>
+                              <Base.Button className={this.decorateCSS("submit-button")}>{buttonText}</Base.Button>
+                            </ComposerLink>
+                          )}
+                        </div>
+                      )}
                     </Base.VerticalContent>
                   </Form>
                 );
               }}
             </Formik>
+
             {image && <img className={this.decorateCSS("image")} src={image} alt="Notice Image" />}
           </div>
         </Base.MaxContent>

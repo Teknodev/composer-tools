@@ -3,6 +3,7 @@
 .container {
   display: flex;
   max-width: 800px;
+  max-height: 600px;
   overflow: auto;
   position: relative;
   padding: 0;
@@ -156,8 +157,11 @@
           }
         }
 
-        .submit-button {
+        .button-container {
           width: 100%;
+          .submit-button {
+            width: 100%;
+          }
         }
       }
 
