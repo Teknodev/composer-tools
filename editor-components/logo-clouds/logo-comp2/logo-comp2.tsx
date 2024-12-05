@@ -88,7 +88,7 @@ class LogoComp2Page extends LogoClouds {
             className={this.decorateCSS("images-container")}
             style={{ animationDuration: `${images.length * 2}s` }}
           >
-            {images.map((imageItem: any, index: number) => (
+            {images.map((imageItem: TImage, index: number) => (
               <ComposerLink path={imageItem.imageLink}>
                 <div className={this.decorateCSS("image-child")}>
                   <img
@@ -107,7 +107,7 @@ class LogoComp2Page extends LogoClouds {
             )} ${this.decorateCSS("reverse")}`}
             style={{ animationDuration: `${images.length * 2}s` }}
           >
-            {images.map((imageItem: any, index: number) => (
+            {images.map((imageItem: TImage, index: number) => (
               <ComposerLink path={imageItem.imageLink}>
                 <div className={this.decorateCSS("image-child")}>
                   <img
