@@ -9,6 +9,7 @@
       align-items: center;
 
       .card {
+        background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
         border-radius: var(--composer-border-radius-md);
         overflow: hidden;
         height: 350px;
@@ -34,7 +35,7 @@
             opacity: 1;
           }
           .card-content .labels .second {
-            background: var(--composer-tertiary-color);
+            background: var(--composer-primary-color);
           }
         }
 
@@ -54,10 +55,7 @@
         }
 
         .overlay2 {
-          background: linear-gradient(
-            rgba(var(--composer-primary-color-rgb), 0.7),
-            rgba(var(--composer-font-color-primary-rgb), 0.7)
-          );
+          background: linear-gradient(rgba(var(--composer-primary-color-rgb), 0.7), rgba(0, 0, 0, 0.7));
           z-index: 2;
           opacity: 0;
         }
@@ -72,8 +70,8 @@
 
           .stick {
             width: 4px;
-            background: var(--composer-tertiary-color);
-            margin-right: var(--composer-gap-md);
+            background: var(--composer-primary-color);
+            margin-right: var(--composer-gap-sm);
             border-radius: 2px;
           }
 
@@ -91,7 +89,7 @@
             .second {
               font-size: 1rem;
               margin: var(--composer-gap-xs) 0 var(--composer-gap-xs) 0;
-              background: rgba(var(--composer-tertiary-color-rgb), 0.7);
+              background: var(--composer-primary-color);
               padding: 2px var(--composer-gap-xs);
               border-radius: var(--composer-border-radius-sm);
               transition: 0.3s;
@@ -104,38 +102,9 @@
 
     .buttons-box {
       display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
       align-items: center;
       justify-content: center;
-      gap: var(--composer-gap-sm);
       margin: var(--composer-gap-md);
-
-      @media only screen and (max-width: 1000px) {
-        flex-direction: column;
-      }
-      @media only screen and (max-width: 700px) {
-        flex-direction: column;
-      }
-      
-      .button {
-        display: grid;
-        place-items: center;
-        padding: 0 var(--composer-gap-md);
-        height: 55px;
-        background: var(--composer-secondary-color);
-        color: var(--composer-font-color-secondary);
-        border-radius: var(--composer-border-radius-md);
-        transition: 0.4s;
-        cursor: pointer;
-        text-decoration: none;
-  
-        &:hover {
-          background: var(--composer-color-background);
-          outline: 1px solid var(--composer-secondary-color);
-          color: var(--composer-secondary-color);
-        }
-      }
     }
   }
 }
