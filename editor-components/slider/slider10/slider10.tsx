@@ -313,13 +313,12 @@ class Slider10 extends BaseSlider {
       slidesToShow: 1,
       slidesToScroll: 1,
       fade: true,
-      beforeChange: (current: number, next: number) => {
-        this.setComponentState("active", next);
+      afterChange: (current: number, next: number) => {
+        this.setComponentState("active", current);
       },
     };
 
     const slides = this.castToObject<SliderItem[]>("slider-items");
-
     const featuredItems = this.castToObject<FeaturedItem[]>("featured-items");
     const featuredItemsNonEmptyLength = featuredItems.filter(
       (item) =>
@@ -377,11 +376,8 @@ class Slider10 extends BaseSlider {
                                 className={`
                                 ${this.decorateCSS("slider-item-title")}
                                 ${item.image && this.decorateCSS("slider-item-title-with-img")}
-                                ${this.getComponentState("active") === index ||
-                                    textAnimation
-                                    ? this.decorateCSS("show")
-                                    : ""
-                                  }
+                                ${(this.getComponentState("active") === index || textAnimation) &&
+                                  this.decorateCSS("show")}
                               `}
                               >
                                 {item.title}
@@ -405,79 +401,44 @@ class Slider10 extends BaseSlider {
           </div>
           {(featuredItems?.length > 0 || prevIcon || nextIcon) && (
             <div className={this.decorateCSS("footer-max-content")}>
-              <div
-                className={`
+              <div className={`
                   ${this.decorateCSS("slider-footer")}
-                  ${this.decorateCSS(featuredItemsNonEmptyLength === 0 ? "footer-disappear" : "")}
-                `}
+                  ${this.decorateCSS(featuredItemsNonEmptyLength === 0 ? "footer-disappear" : "")}`}
                 style={adjustFooterWidth}
               >
                 {featuredItems?.length > 0 && (
-                  <div
-                    className={this.decorateCSS("slider-footer-items")}
+                  <div className={this.decorateCSS("slider-footer-items")}
                     style={{
                       gridTemplateColumns: `repeat(${featuredItemsNonEmptyLength}, 1fr)`,
-                    }}
-                  >
+                    }}>
+
                     {featuredItems.map((item: FeaturedItem, index: number) => {
                       const titleExist = this.castToString(item.title);
                       const subtitleExist = this.castToString(item.subtitle);
 
                       if (titleExist || subtitleExist || item.image)
                         return (
-                          <div
-                            key={index}
-                            className={this.decorateCSS("slider-footer-item")}
-                          >
+                          <div key={index}
+                            className={this.decorateCSS("slider-footer-item")}>
                             {item.image && (
-                              <img
-                                className={`
-                                  ${this.decorateCSS(
-                                  "slider-footer-item-image",
-                                )}
-                                  ${hoverAnimation
-                                    ? this.decorateCSS("hover-animation")
-                                    : ""
-                                  }
-                                `}
+                              <img className={`
+                                  ${this.decorateCSS("slider-footer-item-image")}
+                                  ${hoverAnimation && this.decorateCSS("hover-animation")}`}
                                 src={item.image}
-                                alt={this.castToString(item.title)}
-                              />
+                                alt={this.castToString(item.title)} />
                             )}
                             {(titleExist || subtitleExist) && (
-                              <div
-                                className={this.decorateCSS(
-                                  "slider-footer-item-body",
-                                )}
-                              >
+                              <div className={this.decorateCSS("slider-footer-item-body",)}>
                                 {titleExist &&
                                   (!item.link ? (
-                                    <h3
-                                      className={this.decorateCSS(
-                                        "slider-footer-item-title",
-                                      )}
-                                    >
-                                      {item.title}
-                                    </h3>
+                                    <Base.H3 className={this.decorateCSS("slider-footer-item-title",)}>{item.title}</Base.H3>
                                   ) : (
                                     <ComposerLink path={item.link}>
-                                      <h3
-                                        className={this.decorateCSS(
-                                          "slider-footer-item-title",
-                                        )}
-                                      >
-                                        {item.title}
-                                      </h3>
+                                      <Base.H3 className={this.decorateCSS("slider-footer-item-title")}>{item.title}</Base.H3>
                                     </ComposerLink>
                                   ))}
                                 {subtitleExist && (
-                                  <h5
-                                    className={this.decorateCSS(
-                                      "slider-footer-item-subtitle",
-                                    )}
-                                  >
-                                    {item.subtitle}
-                                  </h5>
+                                  <span className={this.decorateCSS("slider-footer-item-subtitle",)}>{item.subtitle}</span>
                                 )}
                               </div>
                             )}
@@ -518,19 +479,16 @@ class Slider10 extends BaseSlider {
                       </button>
                     )}
                     {nextIcon && (
-                      <button
+                      <button className={this.decorateCSS("slider-button")}
                         onClick={() => {
                           sliderRef.current.slickNext();
-                        }}
-                        className={this.decorateCSS("slider-button")}
-                      >
+                        }}>
                         <ComposerIcon
+                          name={nextIcon}
                           propsIcon={{
                             className: this.decorateCSS("slider-arrow-icon"),
                             size: "20px",
-                          }}
-                          name={nextIcon}
-                        />
+                          }} />
                       </button>
                     )}
                   </div>

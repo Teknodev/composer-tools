@@ -115,10 +115,10 @@
           display: grid;
           padding: var(--composer-gap-md);
           gap: var(--composer-gap-md);
+          max-height: 170px;
 
           .slider-footer-item {
             display: flex;
-            justify-content: center;
             align-items: center;
             min-height: 85px;
             gap: var(--composer-gap-sm);
