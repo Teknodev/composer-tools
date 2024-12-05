@@ -109,7 +109,8 @@
       li {
         button {
           border: none;
-          color: white;
+          color: var(--composer-font-color-primary);
+          opacity: 0.5;
           transition: 0.3s;
           content-visibility: hidden;
           width: var(--composer-gap-sm);
@@ -123,7 +124,7 @@
       }
     }
     .dots :global(li.slick-active) button {
-      opacity: 0.5;
+      opacity: 1;
     }
 
     .slider {
@@ -151,7 +152,6 @@
             height: var(--composer-gap-xl);
             display: flex;
             align-items: center;
-            border-right: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.5);
 
             &:not(:first-child) {
               border-bottom: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.5);
@@ -182,7 +182,6 @@
             display: flex !important;
             flex-direction: column;
             height: 100%;
-            border-right: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.5);
 
             .title-container {
               margin: 0;
