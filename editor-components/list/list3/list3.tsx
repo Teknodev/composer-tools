@@ -2,6 +2,7 @@ import * as React from "react";
 import { BaseList } from "../../EditorComponent";
 import styles from "./list3.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { Base } from "../../../composer-base-components/base/base";
 
 type Item = {
   itemTitle: JSX.Element;
@@ -161,8 +162,8 @@ class List3 extends BaseList {
     const buttonExist = this.castToString(this.getPropValue("button"));
 
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div
             className={this.decorateCSS("row")}
             style={{
@@ -175,14 +176,14 @@ class List3 extends BaseList {
               <div className={this.decorateCSS("first")}>
                 <div className={this.decorateCSS("firstContent")}>
                   {title && (
-                    <div className={this.decorateCSS("title")}>
-                      <h1 className={this.decorateCSS("title-inner")}>{this.getPropValue("title")}</h1>
-                    </div>
+                    <Base.SectionTitle className={this.decorateCSS("title")}>
+                      <Base.H1 className={this.decorateCSS("title-inner")}>{this.getPropValue("title")}</Base.H1>
+                    </Base.SectionTitle>
                   )}
                   {description && (
-                    <div className={this.decorateCSS("description")}>
-                      <p className={this.decorateCSS("description-inner")}>{this.getPropValue("description")}</p>
-                    </div>
+                    <Base.SectionDescription className={this.decorateCSS("description")}>
+                      <Base.H2 className={this.decorateCSS("description-inner")}>{this.getPropValue("description")}</Base.H2>
+                    </Base.SectionDescription>
                   )}
                   {buttonExist && (
                     <div className={this.decorateCSS("buttondiv")}>
@@ -206,41 +207,41 @@ class List3 extends BaseList {
                 <div key={index} className={this.decorateCSS("card")}>
                   <div className={this.decorateCSS("card-content")}>
                     {itemTitle && (
-                      <p className={this.decorateCSS("itemTitle")}>
+                      <Base.P className={this.decorateCSS("itemTitle")}>
                         {listItem.itemTitle}
-                      </p>
+                      </Base.P>
                     )}
                     {itemText1 && (
-                      <p className={this.decorateCSS("itemText")}>
+                      <Base.P className={this.decorateCSS("itemText")}>
                         {listItem.itemText1}
-                      </p>
+                      </Base.P>
                     )}
                     {itemText2 && (
                       <span className={this.decorateCSS("spanItem")}></span>
                     )}
                     {itemText2 && (
-                      <p className={this.decorateCSS("itemText")}>
+                      <Base.P className={this.decorateCSS("itemText")}>
                         {listItem.itemText2}
-                      </p>
+                      </Base.P>
                     )}
                     {itemText3 && (
                       <span className={this.decorateCSS("spanItem")}></span>
                     )}
                     {itemText3 && (
-                      <p className={this.decorateCSS("itemText")}>
+                      <Base.P className={this.decorateCSS("itemText")}>
                         {listItem.itemText3}
-                      </p>
+                      </Base.P>
                     )}
                   </div>
-                  <h3 className={this.decorateCSS("index")}>
+                  <Base.H2 className={this.decorateCSS("index")}>
                     {index < 9 ? `0${index + 1}` : index + 1}
-                  </h3>
+                  </Base.H2>
                 </div>
               );
             })}
           </div>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

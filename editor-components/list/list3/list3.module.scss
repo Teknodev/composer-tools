@@ -1,5 +1,4 @@
 .container {
-  padding: 25px 0;
 
   .max-content {
     max-width: var(--composer-content-width);
@@ -11,19 +10,17 @@
   }
 
   .first {
-    padding: 40px;
+    padding: var(--composer-gap-lg);
     color: var(--composer-font-color-primary);
     border: 1px solid var(--composer-primary-color);
 
     .title {
-      font-size: 2.5rem;
       font-weight: bold;
-      margin-bottom: 20px;
+      margin-bottom: var(--composer-gap-md);
     }
 
     .description {
-      font-size: 1.5rem;
-      margin-bottom: 30px;
+      margin-bottom: var(--composer-gap-lg);
       opacity: 0.8;
     }
 
@@ -31,9 +28,9 @@
       background-color: transparent;
       color: var(--composer-font-color-primary);
       border: 1px solid var(--composer-primary-color);
-      padding: 12px 24px;
+      padding: var(--composer-gap-sm) var(--composer-gap-md);
       font-size: 1.5rem;
-      border-radius: 5px;
+      border-radius: var(--composer-border-radius-sm);
       cursor: pointer;
       transition: all 0.3s ease;
 
@@ -44,7 +41,7 @@
   }
 
   .card {
-    padding: 60px;
+    padding: var(--composer-gap-xl);
     position: relative;
     overflow: hidden;
     transition: background-color 0.3s ease;
@@ -92,7 +89,7 @@
         -webkit-text-fill-color: transparent;
         margin: 0;
         bottom: -70px;
-           
+        
     }
 
 
