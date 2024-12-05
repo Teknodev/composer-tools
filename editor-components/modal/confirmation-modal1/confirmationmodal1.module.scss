@@ -37,6 +37,8 @@
       }
 
       .button-wrapper {
+        display: flex;
+        flex-direction: column;
         padding: var(--composer-gap-md);
         padding-top: 0;
         width: 100%;
@@ -45,12 +47,16 @@
           text-align: center;
 
           .title {
-            font-size: 1.5rem;
+            margin: 0;
+          }
+          .title-no-image {
+            margin: 0;
+            width: 95%;
+            margin-top: var(--composer-gap-md);
           }
 
           .description {
-            color: var(--composer-font-color-primary);
-            opacity: 0.5;
+            content: "";
           }
         }
 
@@ -58,23 +64,7 @@
           display: flex;
           justify-content: space-evenly;
           gap: var(--composer-gap-md);
-
-          .button {
-            font-size: 1rem;
-            padding: var(--composer-gap-sm);
-            background-color: var(--composer-secondary-color);
-            color: var(--composer-font-color-primary);
-            border-radius: var(--composer-border-radius-md);
-            cursor: pointer;
-            text-align: center;
-            transition: background-color 0.3s;
-            width: 200px;
-
-            &:hover {
-              background-color: var(--composer-primary-color);
-              color: var(--composer-font-color-secondary);
-            }
-          }
+          margin: var(--composer-gap-md);
         }
       }
     }

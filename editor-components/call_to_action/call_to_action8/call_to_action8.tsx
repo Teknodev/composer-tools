@@ -2,6 +2,7 @@ import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action8.module.scss";
+import { Base } from "../../../composer-base-components/base/base";
 
 class CallToAction8Page extends BaseCallToAction {
   constructor(props?: any) {
@@ -21,10 +22,10 @@ class CallToAction8Page extends BaseCallToAction {
       value: "Get Started",
     });
     this.addProp({
-      type:"page",
-      key:"button_url",
-      displayer:"Button Url",
-      value:""
+      type: "page",
+      key: "button_url",
+      displayer: "Button Url",
+      value: ""
     })
 
     this.addProp({
@@ -40,31 +41,40 @@ class CallToAction8Page extends BaseCallToAction {
     return "Call To Action 8";
   }
   render() {
-    const image = this.getPropValue("image")
+    const title = this.castToString(this.getPropValue("title"));
+    const buttonText = this.castToString(this.getPropValue("button-text"));
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS(`content`)}>
-            <div className={this.decorateCSS("title-box")}>
-              <div className={this.decorateCSS("title")}>
-              <h1 className={this.decorateCSS("text")}>{this.getPropValue("title")}</h1>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <div className={this.decorateCSS("content")}>
+            {(title || buttonText) && (
+              <div className={this.decorateCSS("title-box")}>
+                {title && (
+                  <Base.VerticalContent className={this.decorateCSS("title")}>
+                    <Base.SectionTitle className={this.decorateCSS("text")}>{this.getPropValue("title")}</Base.SectionTitle>
+                  </Base.VerticalContent>
+                )}
+                {buttonText && (
+                  <ComposerLink path={this.getPropValue("button_url")}>
+                    <div className={this.decorateCSS("button")}>
+                      <Base.Button className={this.decorateCSS("button-element")}>
+                        {this.getPropValue("button-text")}
+                      </Base.Button>
+                    </div>
+                  </ComposerLink>
+                )}
               </div>
-              <ComposerLink path={this.getPropValue("button_url")}>
-                <div className={this.decorateCSS("button")}>
-                <button className={this.decorateCSS("button-element")}>
-              {this.getPropValue("button-text")}
-              </button>
-                </div>
-            </ComposerLink>
-            </div>
-          {image &&<div className={this.decorateCSS("image-box")}>
-              <img
-                className={this.decorateCSS("image")} 
-                src={this.getPropValue("image")} alt="" />
-            </div>}
+            )}
+            {this.getPropValue("image") && (
+              <div className={(title || buttonText) ? this.decorateCSS("image-box") : this.decorateCSS("image-box-no-radius")}>
+                <img
+                  className={this.decorateCSS("image")}
+                  src={this.getPropValue("image")} alt={this.getPropValue("image")} />
+              </div>)
+            }
           </div>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

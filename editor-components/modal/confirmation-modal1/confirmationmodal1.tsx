@@ -122,7 +122,7 @@ class ConfirmationModal1 extends BaseModal {
 
             <div className={this.decorateCSS("button-wrapper")}>
               <div className={this.decorateCSS("second-div")}>
-                {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                {title && <Base.SectionTitle className={image ? this.decorateCSS("title") : this.decorateCSS("title-no-image")}>{this.getPropValue("title")}</Base.SectionTitle>}
                 {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
               </div>
 
@@ -130,7 +130,7 @@ class ConfirmationModal1 extends BaseModal {
                 <div className={this.decorateCSS("button-background")}>
                   {validButtons.map((item: Button, index: number) => (
                     <ComposerLink path={item.link}>
-                      <div className={this.decorateCSS("button")}>{item.buttonText}</div>
+                      <Base.Button className={this.decorateCSS("button")}>{item.buttonText}</Base.Button>
                     </ComposerLink>
                   ))}
                 </div>
