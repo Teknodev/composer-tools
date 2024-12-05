@@ -1,7 +1,7 @@
 @import "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss";
 
 .feedback-modal {
-  max-width: 480px;
+  max-width: 550px;
   max-height: 750px;
   overflow: auto;
   border-radius: var(--composer-border-radius-lg);
@@ -25,8 +25,8 @@
         position: relative;
         gap: var(--composer-gap-sm);
         .icon {
-          width: 2rem;
-          height: 2rem;
+          width: var(--composer-gap-lg);
+          height: var(--composer-gap-lg);
           color: var(--composer-font-color-primary);
         }
 
@@ -67,12 +67,15 @@
     .modalContent {
       margin: 0;
       text-align: center;
+      font-size: 2rem;
+      width: 100%;
     }
 
     .descriptionContent {
       margin: 0;
       text-align: center;
       color: var(--composer-font-color-primary);
+      margin-top: var(--composer-gap-sm);
     }
   }
 
@@ -231,25 +234,9 @@
 
   .button {
     width: 100%;
-    padding: var(--composer-gap-md);
-    border: 1px solid var(--composer-secondary-color);
-
-    border-radius: var(--composer-border-radius);
-    background: var(--composer-secondary-color);
-    color: var(--composer-font-color-secondary);
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-
-  .button:hover {
-    background: transparent;
-    color: var(--composer-secondary-color);
-    border: 1px solid var(--composer-secondary-color);
   }
 }
 
-// @container (max-width: #{$composer-phone-width}) {
 @media (max-width: 480px) {
   .feedback-modal {
     max-width: 320px !important;
@@ -259,9 +246,58 @@
       .modalContent {
         font-size: 1.5rem !important;
       }
+
       .descriptionContent {
         margin-top: var(--composer-gap-sm);
       }
+    }
+
+    .feedbackModalEmojis {
+      .emojiWrapper {
+        gap: var(--composer-gap-sm);
+
+        .emojiLabel {
+          padding: var(--composer-gap-xs) var(--composer-gap-xs);
+
+          font-size: 1rem;
+        }
+
+        .emojiLabel::after {
+          content: "";
+        }
+
+        .feedbackModalEmoji {
+          &::after {
+            content: "";
+            width: 50px;
+            height: 50px;
+          }
+
+          .emoji-wrapper {
+            width: var(--composer-gap-lg) !important;
+            height: var(--composer-gap-lg) !important;
+          }
+
+          .feedbackModalEmojiIcon {
+            width: var(--composer-gap-md) !important;
+            height: var(--composer-gap-md) !important;
+          }
+
+          .feedbackModalEmojiImage {
+            width: var(--composer-gap-lg);
+            height: var(--composer-gap-lg);
+          }
+
+          &.selected,
+          &:hover {
+            transform: scale(1.1);
+          }
+        }
+      }
+    }
+
+    .button {
+      width: 100%;
     }
   }
 }

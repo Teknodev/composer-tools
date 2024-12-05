@@ -371,9 +371,9 @@ class FeedbackModal1 extends BaseModal {
                     {inputPlaceholder && <textarea placeholder={inputPlaceholder} id="text" name="message" value={values.message} onChange={handleChange} className={this.decorateCSS("input")} rows={5} />}
                     {inputPlaceholder && <ErrorMessage className={this.decorateCSS("error-message")} name="message" component={"span"} />}
                     {buttonval && (
-                      <button className={this.decorateCSS("button")} type="submit">
+                      <Base.Button className={this.decorateCSS("button")} type="submit">
                         {buttonval}
-                      </button>
+                      </Base.Button>
                     )}
                   </Form>
                 </div>
