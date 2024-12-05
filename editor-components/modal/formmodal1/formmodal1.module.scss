@@ -47,7 +47,7 @@
         width: 100%;
         .title {
           .context {
-            color: var(--composer-font-color-primary);
+            content: "";
           }
         }
 
@@ -56,13 +56,14 @@
           .form {
             display: flex;
             flex-direction: column;
+            gap: var(--composer-gap-xs);
 
             .form-input {
               font-size: 1rem;
               width: 100%;
               border: none;
               color: var(--composer-font-color-primary);
-              border-bottom: 1px solid var(--composer-font-color-primary, 0.5);
+              border-bottom: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.5);
               margin-bottom: var(--composer-gap-xs);
               outline: none;
               padding: var(--composer-gap-sm) 0;
@@ -90,23 +91,23 @@
             }
 
             .form-button {
-              cursor: pointer;
-              background-color: var(--composer-secondary-color);
-              color: var(--composer-font-color-secondary);
-              margin-top: var(--composer-gap-md);
-              padding: var(--composer-gap-sm);
+              // cursor: pointer;
+              // background-color: var(--composer-secondary-color);
+              // color: var(--composer-font-color-secondary);
+              // margin-top: var(--composer-gap-md);
+              // padding: var(--composer-gap-sm);
               width: 100%;
-              text-align: center;
-              transition: 0.5s;
-              border-radius: var(--composer-border-radius-md);
-              border: 1px solid var(--composer-secondary-color);
-              padding-right: var(--composer-gap-md);
-              &:hover {
-                background-color: var(--composer-html-background);
-                color: var(--composer-secondary-color);
-                transition: 0.5s;
-                border: 1px solid var(--composer-secondary-color);
-              }
+              // text-align: center;
+              // transition: 0.5s;
+              // border-radius: var(--composer-border-radius-md);
+              // border: 1px solid var(--composer-secondary-color);
+              // padding-right: var(--composer-gap-md);
+              // &:hover {
+              //   background-color: var(--composer-html-background);
+              //   color: var(--composer-secondary-color);
+              //   transition: 0.5s;
+              //   border: 1px solid var(--composer-secondary-color);
+              // }
             }
           }
         }

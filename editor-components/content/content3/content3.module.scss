@@ -1,3 +1,5 @@
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+
 .container {
     .max-content {
         .grid-container{
@@ -7,31 +9,37 @@
                 flex-direction: column;
                 position: relative;
                 width: 100%;
-                height: 480px;
+                aspect-ratio: 8/9;
                 transition: transform 0.3s;
-                transform: scale(1);
+                transform: translateY(0px) scale(1);
                 overflow: hidden;
                 &:hover {
-                    transform: scale(1.1);
+                    transform: translateY(-6px) scale(1.05);
                     z-index: 5;
     
                     .little-container {    
+                        .title{
+                            color: var(--composer-font-color-secondary);
+                        }
+                        .icon{
+                            color: var(--composer-font-color-secondary);
+                        }
                         .description {
+                            color: var(--composer-font-color-secondary);
                             max-height: 300px;
                             opacity: 1;
                         }
                     }
                     .image-container {
-                        transform: scale(1.03) translateY(-1%);
                         height: 100%;
     
                         .image {
-                            transform: scale(1.2);
+                            transform: scale(1.05);
                         }
                         &:after {
                             background: linear-gradient(
                                 0deg,
-                                var(--composer-secondary-color) 0%,
+                                var(--composer-primary-color) 0%,
                                 transparent 85%,
                                 transparent 100%
                             );
@@ -42,11 +50,10 @@
                 .image-container {
                     width: auto;
                     height: 100%;
-                    transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1);
     
                     &:after {
                         content: "";
-                        background: linear-gradient(0deg, var(--composer-font-color-primary) 0%, transparent 85%, transparent 100%);
+                        background: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 100%);
                         width: 100%;
                         height: 100%;
                         position: absolute;
@@ -74,21 +81,24 @@
                     max-height: 480px;
     
                     .title {
+                        transition: all 0.3s ease;
                         width: 100%;
-                        color: var(--composer-font-color-secondary);
+                        color: white;
                     }
 
                     .icon {
-                        color: var(--composer-font-color-secondary);
+                        transition: all 0.3s ease;
+                        color: white;
                         width: 40px;
                         height: 40px;
                     }
                     .description {
+                        transition: all 0.3s ease;
                         max-height: 0;
                         transition: opacity 0.3s, max-height 0.3s;
                         opacity: 0;
                         width: 100%;
-                        color: var(--composer-font-color-secondary);
+                        color: white;
                         white-space: normal;
                         text-overflow: ellipsis;
                     }
@@ -98,14 +108,41 @@
     }
 }
 
-@media only screen and (min-width: 451px) and (max-width: 768px) {
+@media only screen and (max-width: $composer-tablet-width-lg) {
     .container {
         .max-content {
-            .card {
-                .little-container {
-                    .icon {
-                        width: 30px;
-                        height: 30px;
+            .grid-container{
+                .card {
+                    .little-container {
+                        .icon {
+                            width: 30px;
+                            height: 30px;
+                            color: var(--composer-font-color-secondary);
+    
+                        }
+                        .title{
+                            color: var(--composer-font-color-secondary);
+                        }
+                        .description {
+                            color: var(--composer-font-color-secondary);
+                            max-height: 300px;
+                            opacity: 1;
+                        }
+                    }
+                    .image-container {
+                        height: 100%;
+    
+                        .image {
+                            transform: scale(1.05);
+                        }
+                        &:after {
+                            background: linear-gradient(
+                                0deg,
+                                rgb(0,0,0) 0%,
+                                transparent 85%,
+                                transparent 100%
+                            );
+                        }
                     }
                 }
             }

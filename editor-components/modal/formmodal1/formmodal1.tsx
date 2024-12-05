@@ -29,13 +29,13 @@ class FormModal1 extends BaseModal {
     this.addProp({
       type: "string",
       key: "header",
-      displayer: "Header",
+      displayer: "Title",
       value: "Talk to us",
     });
     this.addProp({
       type: "string",
       key: "context",
-      displayer: "Context",
+      displayer: "Description",
       value: "Need a demo? or help with anything? Get in touch with our amazing team of experts at your service.",
     });
     this.addProp({
@@ -411,26 +411,17 @@ class FormModal1 extends BaseModal {
     };
 
     return (
-      <Base.Container
-        isModal="true"
-        className={this.decorateCSS("container")}>
+      <Base.Container isModal="true" className={this.decorateCSS("container")}>
         <Base.MaxContent className={`${this.decorateCSS("page")} ${!imageVal && this.decorateCSS("single-page")}`}>
           <div className={this.decorateCSS("exit-icon")}>
             <ComposerModalClose>
-              <ComposerIcon
-                propsIcon={{ className: this.decorateCSS("exit-icon") }}
-                name={this.getPropValue("exitIcon")}
-              />
+              <ComposerIcon propsIcon={{ className: this.decorateCSS("exit-icon") }} name={this.getPropValue("exitIcon")} />
             </ComposerModalClose>
           </div>
 
           {imageVal && (
             <div className={this.decorateCSS("left-page")}>
-              <img
-                className={this.decorateCSS("image")}
-                src={this.getPropValue("image")}
-                alt=""
-              />
+              <img className={this.decorateCSS("image")} src={this.getPropValue("image")} alt="" />
             </div>
           )}
 
@@ -447,25 +438,18 @@ class FormModal1 extends BaseModal {
                     onSubmit={(data, { resetForm }) => {
                       this.insertForm("Contact Us", data);
                       resetForm();
-                    }}>
+                    }}
+                  >
                     {({ handleChange, values }) => (
                       <Form className={this.decorateCSS("form")}>
                         {this.castToObject<InputItems[]>("inputItems").map((inputItem: any, inputItemIndex: number) =>
-                          inputItem.getPropValue("countryOptions") &&
-                          inputItem.getPropValue("countryOptions").length > 0 &&
-                          inputItem.getPropValue("countrySelection") == true ? (
-                            <div
-                              className={this.decorateCSS("phone-input-container")}
-                              key={`${inputItemIndex}-${inputItemIndex}`}>
-                              <select
-                                className={this.decorateCSS("country-dropdown")}
-                                onChange={(e) => handleSelectChange(e, inputItemIndex)}>
+                          inputItem.getPropValue("countryOptions") && inputItem.getPropValue("countryOptions").length > 0 && inputItem.getPropValue("countrySelection") == true ? (
+                            <div className={this.decorateCSS("phone-input-container")} key={`${inputItemIndex}-${inputItemIndex}`}>
+                              <select className={this.decorateCSS("country-dropdown")} onChange={(e) => handleSelectChange(e, inputItemIndex)}>
                                 {inputItem.getPropValue("countryOptions").map((option: any, idx: number) => {
                                   const label = option.getPropValue("label", { as_string: true });
                                   return (
-                                    <option
-                                      key={idx}
-                                      value={label}>
+                                    <option key={idx} value={label}>
                                       {label}
                                     </option>
                                   );
@@ -482,9 +466,7 @@ class FormModal1 extends BaseModal {
                               />
                             </div>
                           ) : (
-                            <div
-                              className={this.decorateCSS("input-box")}
-                              key={`${inputItemIndex}-${inputItemIndex}`}>
+                            <div className={this.decorateCSS("input-box")} key={`${inputItemIndex}-${inputItemIndex}`}>
                               <input
                                 placeholder={inputItem.getPropValue("placeholder", { as_string: true })}
                                 type={getInputType(inputItem.type)}
@@ -497,11 +479,9 @@ class FormModal1 extends BaseModal {
                           )
                         )}
                         {buttonVal && (
-                          <button
-                            className={this.decorateCSS("form-button")}
-                            type="submit">
+                          <Base.Button className={this.decorateCSS("form-button")} type="submit">
                             {this.getPropValue("buttonText")}
-                          </button>
+                          </Base.Button>
                         )}
                       </Form>
                     )}
