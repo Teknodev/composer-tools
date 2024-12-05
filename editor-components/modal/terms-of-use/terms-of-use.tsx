@@ -122,7 +122,7 @@ class TermsOfUseModal extends BaseModal {
   }
 
   getName(): string {
-    return "TermsOfUseModal";
+    return "Terms Of Use Modal";
   }
 
   render() {
@@ -134,6 +134,7 @@ class TermsOfUseModal extends BaseModal {
     const description = this.castToString(this.getPropValue("description"));
     const buttons = this.castToObject<Button[]>("buttons");
     const validButtons = buttons.filter((item: Button) => this.castToString(item.buttonText));
+
     return (
       <Base.Container isModal={true} className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -146,7 +147,7 @@ class TermsOfUseModal extends BaseModal {
               </div>
 
               {image && <img className={this.decorateCSS("image")} src={image} />}
-              {overlay && <div className={this.decorateCSS("overlay")}></div>}
+              {image && overlay && <div className={this.decorateCSS("overlay")}></div>}
             </div>
 
             <div className={this.decorateCSS("buttom-wrapper")}>
