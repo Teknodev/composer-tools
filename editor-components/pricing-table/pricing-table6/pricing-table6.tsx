@@ -1200,7 +1200,7 @@ class PricingMultipleTwo extends BasePricingTable {
                   return (
                     title2 && (
                       <Base.P className={this.decorateCSS("plan-title") + " " + (this.getComponentState("activeTab") === index && this.decorateCSS("activeTab"))} onClick={() => this.setActiveTab(index)}>
-                        {title2}
+                        {plan.getPropValue("title")}
                       </Base.P>
                     )
                   );
