@@ -5,6 +5,7 @@ import styles from "./header2.module.scss";
 import { BaseHeader } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { Base } from "../../../composer-base-components/base/base";
 
 type SliderItemType = {
   image: string;
@@ -235,13 +236,14 @@ class Header2 extends BaseHeader {
       autoplaySpeed: 5000,
       slidesToShow: 1,
       slidesToScroll: 1,
+      dotsClass: `slick-dots ${this.decorateCSS("customDots")}`,
     };
 
     const sliderItems = this.castToObject<SliderItemType[]>("slider");
 
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div
             className={this.decorateCSS("slider")} 
           >
@@ -339,8 +341,8 @@ class Header2 extends BaseHeader {
               </ComposerSlider>
             )}
           </div>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

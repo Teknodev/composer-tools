@@ -1,13 +1,29 @@
-.container {
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+
+@mixin cardStyle {
+  left: 0;
   width: 100%;
+  height: max-content !important;
+  max-width: unset;
+  right: 0;
+  transform: unset;
+}
+
+.container {
   .max-content {
     .slider {
-      height: 100vh;
+      height: 40vw;
       overflow: hidden;
+
+      .slider-item-inner-container{
+        height: 37vw;
+      }
+
       div {
         height: 100%;
         > ul {
-          margin-bottom: 50px;
+          bottom: 0;
+          margin-bottom: unset;
         }
       }
       .slider-item {
@@ -20,7 +36,7 @@
         position: relative;
         .card {
           height: auto !important;
-          bottom: 50px;
+          bottom: var(--composer-gap-xl);
           width: 100%;
           position: absolute;
           right: 100px;
@@ -29,7 +45,7 @@
           background-color: var(--composer-font-color-primary);
           opacity: 0.8;
           max-width: 30%;
-          padding: 35px 25px;
+          padding: 25px;
           max-height: fit-content;
 
           h3 {
@@ -43,7 +59,7 @@
               }
             }
           }
-
+        
           h1 {
             > blinkpage {
               p {
@@ -55,11 +71,11 @@
               }
             }
           }
-
+        
           div {
             height: auto !important;
           }
-
+        
           p {
             > blinkpage {
               p {
@@ -75,20 +91,20 @@
             background-color: var(--composer-primary-color);
             color: var(--composer-font-color-secondary);
             position: absolute;
-            top: -20px;
-            left: 25px;
-            padding: 0.8em 1em;
+            top: -2.25rem;
+            left: 1.5rem;
+            padding: var(--composer-gap-sm);
             font-weight: 300;
             text-transform: uppercase;
-            letter-spacing: 4px;
-            font-size: 10px;
+            letter-spacing: 1px;
+            font-size: 1rem;
             max-width: 90%;
           }
           .title {
             font-weight: 600;
             font-size: 1.5rem;
             max-width: 100%;
-            margin-bottom: 5px;
+            margin-bottom: var(--composer-gap-xs);
             display: -webkit-box;
             line-height: 1.4em;
             color: var(--composer-font-color-secondary);
@@ -96,9 +112,9 @@
           .description {
             width: 100%;
             color: var(--composer-font-color-secondary);
-            margin-bottom: 20px;
+            margin-bottom: var(--composer-gap-md);
             max-width: 100%;
-            font-size: 14px;
+            font-size: 1rem;
             display: -webkit-box;
             line-height: 1.8em;
           }
@@ -106,11 +122,11 @@
             display: flex;
             justify-content: start;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 20px;
+            gap: var(--composer-gap-sm);
+            margin-bottom: --composer-gap-md;
             .author {
               display: flex;
-              gap: 8px;
+              gap: var(--composer-gap-sm);
               color: var(--composer-font-color-secondary);
               max-width: 50%;
             }
@@ -134,50 +150,101 @@
           }
         }
       }
+      .bottom-card{
+        display: none;
+      }
+    }
+  }
+
+.customDots {
+  bottom: 60px;
+  z-index: 20;
+
+  li {
+    button:before {
+      color: var(--composer-font-color-primary);
+      font-size: 0.875rem;
     }
   }
 }
+}
 
-@media screen and (min-width: 768px) and (max-width: 1024px) {
+@media screen and (min-width: $composer-phone-width-sm) and (max-width: $composer-tablet-width-lg) {
   .container{
     .max-content{
       .slider {
         width: 100%;
-        div {
-          width: 100%;
-          > ul {
-            margin-bottom: 10%;
-          }
+        height: 45vw;
+
+        .slider-item-inner-container{
+          height: 41vw;
         }
+
         .content-max-width{
           .card {
-            max-width: 45%;
+            top: unset;
+            bottom: 0;
+            padding: var(--composer-gap-sm) var(--composer-gap-md);
+            @include cardStyle;
+
+            .description, .link-container{
+              display: none !important;
+            }
+          }
+          .bottom-card{
+            display: none;
+          }
+          .title{
+            margin-bottom: 0;
           }
         }
-  
       }
     }
   } 
 }
-@media screen and (max-width: 430px) {
+
+@media screen and (max-width: $composer-phone-width-sm) {
 .container{
   .max-content{
     .slider {
       width: 100%;
-      div {
-        width: 100%;
-        > ul {
-          margin-bottom: 30%;
-        }
-      }
-      .content-max-width{
-        .card {
-          position: absolute;
-          max-width: 80%;
-          transform: translate(25%, -50%);
-        }
+      height: 62vw;
+
+      .slider-item-inner-container{
+        height: 36vw;
       }
 
+      .content-max-width{
+        .card {
+          top: 36vw;
+          padding: 0;
+          background: none;
+          @include cardStyle;
+          
+          *{
+            color: var(--composer-font-color-primary);
+          }
+
+          .description, .link-container{
+            display: none !important;
+          }
+
+          .category{
+            left: 0;
+            height: fit-content;
+            transform: translateY(-50%);
+          }
+
+          .title{
+            font-size: 1.5rem;
+            margin-bottom: 0;
+            overflow:hidden;
+            display:inline-block;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+        }
+      }
     }
   }
 } 
