@@ -168,34 +168,27 @@ class List3 extends BaseList {
           <Base.ListGrid className={this.decorateCSS("row")} gridCount={{ pc: this.getPropValue("itemCount") }}>
             {(title || description) && (
               <div className={this.decorateCSS("first")}>
-                <Base.VerticalContent>
-                  {title && (
-                    <Base.SectionTitle className={this.decorateCSS("title")}>
-                      {title}
-                    </Base.SectionTitle>
+                <div className={this.decorateCSS("firs-inner")}>
+                  <Base.VerticalContent>
+                    {title && (
+                      <Base.SectionTitle className={this.decorateCSS("title")}>
+                        {title}
+                      </Base.SectionTitle>
+                    )}
+                    {description && (
+                      <Base.SectionDescription className={this.decorateCSS("description")}>
+                        {description}
+                      </Base.SectionDescription>
+                    )}
+                  </Base.VerticalContent>
+                  {buttonExist && (
+                    <Base.Button>
+                      <ComposerLink path={this.getPropValue("buttonUrl")}>
+                        {this.getPropValue("button")}
+                      </ComposerLink>
+                    </Base.Button>
                   )}
-                  {description && (
-                    <Base.SectionDescription className={this.decorateCSS("description")}>
-                      {description}
-                    </Base.SectionDescription>
-                  )}
-                </Base.VerticalContent>
-                {buttonExist && (
-                  <div className={this.decorateCSS("buttondiv")}>
-                    <ComposerLink path={this.getPropValue("buttonUrl")}>
-                      <button className={`${this.decorateCSS("button")}`}>
-                        <span>
-                          <span className={this.decorateCSS("btn-text")}>{this.getPropValue("button")}</span>
-                          <span className={this.decorateCSS("btn-icon")}>
-                            <ComposerIcon 
-                              name={"FaArrowRightLong"}
-                            />
-                          </span>
-                        </span>
-                      </button>
-                    </ComposerLink>
-                  </div>
-                )}
+                </div>
               </div>
             )}
             {listItems.map((listItem: Item, index: number) => {
