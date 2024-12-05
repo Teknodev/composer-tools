@@ -7,9 +7,9 @@
         align-self: center;
         max-width: var(--composer-content-width);
         margin-bottom: var(--composer-gap-xl);
-        margin-right: var(--composer-gap-md);
-        margin-left: var(--composer-gap-md);
-        width: calc(100% - (2 * var(--composer-gap-md)));
+        margin-right: var(--composer-gap-xl);
+        margin-left: var(--composer-gap-xl);
+        width: calc(100% - (2 * var(--composer-gap-xl)));
         .subtitle {content: ""}
         .title {content: ""}
         .description {content: ""}

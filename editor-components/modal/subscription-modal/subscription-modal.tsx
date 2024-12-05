@@ -105,40 +105,48 @@ class SubscriptionModal extends BaseModal {
 
             {image && <img className={this.decorateCSS("image")} src={image} alt="" />}
 
-            <Base.VerticalContent className={this.decorateCSS("right")}>
-              <Base.VerticalContent className={this.decorateCSS("header")}>
-                {title && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
-                {description && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
-              </Base.VerticalContent>
+            {(title || description || placeholder || buttonText) && (
+              <Base.VerticalContent className={this.decorateCSS("right")}>
+                <Base.VerticalContent className={this.decorateCSS("header")}>
+                  {title && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
+                  {description && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
+                </Base.VerticalContent>
 
-              <Formik
-                initialValues={{ email: "" }}
-                validationSchema={SubscriptionSchema}
-                onSubmit={(data, { resetForm }) => {
-                  this.insertForm("Subscribe", data);
-                  resetForm();
-                }}
-              >
-                {({ isSubmitting }) => (
-                  <Form className={this.decorateCSS("form")}>
-                    {placeholder && (
-                      <Base.VerticalContent className={this.decorateCSS("form-group")}>
-                        {placeholder && <Field type="email" name="email" placeholder={placeholder} className={this.decorateCSS("input")} />}
-                        {errorMessage && <ErrorMessage name="email" component="div" className={this.decorateCSS("error")} />}
-                      </Base.VerticalContent>
-                    )}
+                {(placeholder || buttonText) && (
+                  <Formik
+                    initialValues={{ email: "" }}
+                    validationSchema={SubscriptionSchema}
+                    onSubmit={(data, { resetForm }) => {
+                      this.insertForm("Subscribe", data);
+                      resetForm();
+                    }}
+                  >
+                    {({ values, isSubmitting }) =>
+                      (placeholder || buttonText) && (
+                        <Form className={this.decorateCSS("form")}>
+                          {placeholder && (
+                            <Base.VerticalContent className={this.decorateCSS("form-group")}>
+                              <Field type="email" name="email" placeholder={placeholder} className={this.decorateCSS("input")} />
+                              {errorMessage && <ErrorMessage name="email" component="div" className={this.decorateCSS("error")} />}
+                            </Base.VerticalContent>
+                          )}
 
-                    {buttonText && (
-                      <ComposerLink path={this.getPropValue("buttonUrl")}>
-                        <Base.Button type="submit" className={this.decorateCSS("button")} disabled={isSubmitting}>
-                          {buttonText}
-                        </Base.Button>
-                      </ComposerLink>
-                    )}
-                  </Form>
+                          {values.email ? (
+                            <Base.Button type="submit" className={this.decorateCSS("button")} disabled={isSubmitting}>
+                              {this.getPropValue("buttonText")}
+                            </Base.Button>
+                          ) : (
+                            <ComposerLink path={this.getPropValue("buttonUrl")}>
+                              <Base.Button className={this.decorateCSS("button")}>{this.getPropValue("buttonText")}</Base.Button>
+                            </ComposerLink>
+                          )}
+                        </Form>
+                      )
+                    }
+                  </Formik>
                 )}
-              </Formik>
-            </Base.VerticalContent>
+              </Base.VerticalContent>
+            )}
           </div>
         </Base.MaxContent>
       </Base.Container>
