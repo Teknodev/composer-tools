@@ -48,7 +48,7 @@ class LogoComp4Page extends LogoClouds {
       key: "backgroundImage",
       displayer: "Background Image",
       value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661cd92bd2970002c629817?alt=media&timestamp=1719584962578",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67518e9e506a40002c318fef?alt=media",
     });
     this.addProp({
       type: "array",
