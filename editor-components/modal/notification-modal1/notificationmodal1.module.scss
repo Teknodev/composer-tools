@@ -77,7 +77,8 @@
             font-size: 2rem;
           }
         }
-        .without-image {
+        .without-image,
+        .without-icon {
           position: relative;
           width: 100%;
           text-align: center;
@@ -95,6 +96,10 @@
             position: relative;
             font-size: 2rem;
           }
+        }
+
+        .without-icon {
+          margin-top: 0;
         }
       }
 
