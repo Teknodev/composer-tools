@@ -6,7 +6,6 @@ import "slick-carousel/slick/slick-theme.css";
 import styles from "./slider6.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
-import { BsAlignEnd } from "react-icons/bs";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type Card = {
@@ -361,9 +360,7 @@ class Slider6 extends BaseSlider {
                           {this.castToString(item.buttonText) && (
                             <Base.Button key={index} className={this.decorateCSS("button")}>
                               <ComposerLink key={index} path={item.link}>
-                                <Base.P className={this.decorateCSS("submit-button")}>
                                   {item.buttonText}
-                                </Base.P>
                               </ComposerLink>
                             </Base.Button>
                           )}
