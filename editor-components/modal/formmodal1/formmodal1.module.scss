@@ -106,16 +106,14 @@
   }
 }
 
-// @container (max-width: #{$composer-tablet-width-lg}) {
-@media (max-width: 1050px) {
+@container (max-width: #{$composer-tablet-width-lg}) {
   .container {
     max-width: 700px;
     min-width: 700px;
   }
 }
 
-// @container (max-width: #{$composer-phone-width}) {
-@media (max-width: 480px) {
+@container (max-width: #{$composer-phone-width}) {
   .container {
     max-width: 300px;
     min-width: 300px;
