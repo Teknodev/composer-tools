@@ -36,6 +36,10 @@
         height: 900px;
         position: relative;
 
+        @container (max-width: #{$composer-tablet-width}) {
+          height: 600px;
+        }
+
         .button {
           font-size: 6rem;
           border: 0px;
@@ -54,6 +58,7 @@
           align-items: flex-start;
           justify-content: center;
           width: 100%;
+          padding-left: 0;
 
           &:hover {
             color: white;
@@ -137,10 +142,18 @@
     .text-box {
       position: absolute;
       bottom: 300px;
-      left: 5%;
+      left: var(--composer-gap-xl);
+
+      @container (max-width: #{$composer-tablet-width}) {
+        bottom: 200px;
+      }
 
       @container (max-width: #{$composer-tablet-width}) {
         left: var(--composer-gap-lg);
+      }
+
+      @container (max-width: #{$composer-phone-width}) {
+        left: var(--composer-gap-md);
       }
 
       &::after {
