@@ -44,15 +44,9 @@
         text-align: center;
       }
 
-      .subtitle {
-        text-align: center;
-        opacity: 0.5;
-      }
-
       .description {
         color: var(--composer-font-color-primary);
         text-align: center;
-        opacity: 0.5;
       }
 
       .button-container {
@@ -62,19 +56,7 @@
         width: 100%;
 
         .button-element {
-          background-color: var(--composer-secondary-color);
-          color: var(--composer-font-color-primary);
-          border: none;
-          padding: var(--composer-gap-sm) var(--composer-gap-md);
-          font-size: 1rem;
-          border-radius: var(--composer-border-radius-md);
-          cursor: pointer;
-          transition: background-color 0.3s ease;
-
-          &:hover {
-            background-color: var(--composer-primary-color);
-            color: var(--composer-font-color-secondary);
-          }
+          content: "";
         }
       }
     }

@@ -3,6 +3,7 @@ import styles from "./content4.module.scss";
 import { BaseContent } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
 
 class Content4 extends BaseContent {
   constructor(props?: any) {
@@ -91,7 +92,7 @@ class Content4 extends BaseContent {
           key: "image",
           displayer: "Image",
           value:
-            "https://halstein.qodeinteractive.com/wp-content/uploads/2021/10/h1-img-03.jpg",
+            "https://halstein.qodeinteractive.com/wp-content/uploads/2021/10/h1-img-02.jpg",
         },
       ],
     });
@@ -135,7 +136,7 @@ class Content4 extends BaseContent {
           key: "image",
           displayer: "Image",
           value:
-            "https://halstein.qodeinteractive.com/wp-content/uploads/2021/10/h1-img-02.jpg",
+            "https://halstein.qodeinteractive.com/wp-content/uploads/2021/10/h1-img-03.jpg",
         },
       ],
     });
@@ -246,12 +247,12 @@ class Content4 extends BaseContent {
       itemBottomRight.Visibility;
 
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          {itemLeft.Visibility && itemLeft.image ? (
+      <Base.Container isFull={true} className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          {itemLeft.Visibility && (
             <div className={this.decorateCSS("left")}>
               <ComposerLink path={itemLeft.url} isFullWidth={true}>
-                <div className={this.decorateCSS("item")}>
+                <div className={`${this.decorateCSS("item")} ${!itemLeft.image ? this.decorateCSS("no-image") : ""}`}>
                   {itemLeft.image &&
                     <div className={this.decorateCSS("background-image")}>
                       <img
@@ -264,9 +265,9 @@ class Content4 extends BaseContent {
                   {(itemLeft.title || itemLeft.icon || itemLeft.icon2) && (
                     <div className={this.decorateCSS("content")}>
                       {itemLeft.title && (
-                        <h2 className={this.decorateCSS("title")}>
+                        <Base.H2 className={this.decorateCSS("title")}>
                           {itemLeft.title}
-                        </h2>
+                        </Base.H2>
                       )}
                       <div className={this.decorateCSS("icons")}>
                         {itemLeft.icon && (
@@ -287,7 +288,7 @@ class Content4 extends BaseContent {
                 </div>
               </ComposerLink>
             </div>
-          ) : null}
+          )}
 
           {renderRight && (
             <div className={this.decorateCSS("right")}>
@@ -295,7 +296,7 @@ class Content4 extends BaseContent {
                 <div className={this.decorateCSS("top")}>
                   {itemTopRight.Visibility ? (
                     <ComposerLink path={itemTopRight.url} isFullWidth={true}>
-                      <div className={this.decorateCSS("item")}>
+                      <div className={`${this.decorateCSS("item")} ${!itemTopLeft.image ? this.decorateCSS("no-image") : ""}`}>
                         {itemTopRight.image && (
                           <div className={this.decorateCSS("background-image")}>
                             <img
@@ -310,9 +311,9 @@ class Content4 extends BaseContent {
                           itemTopRight.icon2) && (
                             <div className={this.decorateCSS("content")}>
                               {itemTopRight.title && (
-                                <h2 className={this.decorateCSS("title")}>
+                                <Base.H2 className={this.decorateCSS("title")}>
                                   {itemTopRight.title}
-                                </h2>
+                                </Base.H2>
                               )}
                               <div className={this.decorateCSS("icons")}>
                                 {itemTopRight.icon && (
@@ -339,7 +340,7 @@ class Content4 extends BaseContent {
                   ) : null}
                   {itemTopLeft.Visibility ? (
                     <ComposerLink path={itemTopLeft.url} isFullWidth={true}>
-                      <div className={this.decorateCSS("item")}>
+                      <div className={`${this.decorateCSS("item")} ${!itemTopLeft.image ? this.decorateCSS("no-image") : ""}`}>
                         {itemTopLeft.image && (
                           <div className={this.decorateCSS("background-image")}>
                             <img
@@ -354,9 +355,9 @@ class Content4 extends BaseContent {
                           itemTopLeft.icon2) && (
                             <div className={this.decorateCSS("content")}>
                               {itemTopLeft.title && (
-                                <h2 className={this.decorateCSS("title")}>
+                                <Base.H2 className={this.decorateCSS("title")}>
                                   {itemTopLeft.title}
-                                </h2>
+                                </Base.H2>
                               )}
                               <div className={this.decorateCSS("icons")}>
                                 {itemTopLeft.icon && (
@@ -387,7 +388,7 @@ class Content4 extends BaseContent {
                 <div className={this.decorateCSS("bottom")}>
                   {itemBottomLeft.Visibility ? (
                     <ComposerLink path={itemBottomLeft.url} isFullWidth={true}>
-                      <div className={this.decorateCSS("item")}>
+                      <div className={`${this.decorateCSS("item")} ${!itemBottomLeft.image ? this.decorateCSS("no-image") : ""}`}>
                         {itemBottomLeft.image &&
                           <div className={this.decorateCSS("background-image")}>
                             <img
@@ -402,9 +403,9 @@ class Content4 extends BaseContent {
                           itemBottomLeft.icon2) && (
                             <div className={this.decorateCSS("content")}>
                               {itemBottomLeft.title && (
-                                <h2 className={this.decorateCSS("title")}>
+                                <Base.H2 className={this.decorateCSS("title")}>
                                   {itemBottomLeft.title}
-                                </h2>
+                                </Base.H2>
                               )}
                               <div className={this.decorateCSS("icons")}>
                                 {itemBottomLeft.icon && (
@@ -431,7 +432,7 @@ class Content4 extends BaseContent {
                   ) : null}
                   {itemBottomRight.Visibility ? (
                     <ComposerLink path={itemBottomRight.url} isFullWidth={true}>
-                      <div className={this.decorateCSS("item")}>
+                      <div className={`${this.decorateCSS("item")} ${!itemBottomRight.image ? this.decorateCSS("no-image") : ""}`}>
                         {itemBottomRight.image &&
                           <div className={this.decorateCSS("background-image")}>
                             <img
@@ -446,9 +447,9 @@ class Content4 extends BaseContent {
                           itemBottomRight.icon2) && (
                             <div className={this.decorateCSS("content")}>
                               {itemBottomRight.title && (
-                                <h2 className={this.decorateCSS("title")}>
+                                <Base.H2 className={this.decorateCSS("title")}>
                                   {itemBottomRight.title}
-                                </h2>
+                                </Base.H2>
                               )}
                               <div className={this.decorateCSS("icons")}>
                                 {itemBottomRight.icon && (
@@ -477,8 +478,8 @@ class Content4 extends BaseContent {
               ) : null}
             </div>
           )}
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

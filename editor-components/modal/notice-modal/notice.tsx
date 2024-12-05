@@ -27,14 +27,14 @@ class Notice extends BaseModal {
     this.addProp({
       type: "string",
       key: "title",
-      displayer: "Title",
+      displayer: "Title1",
       value: "VPS Servers Now Available",
     });
 
     this.addProp({
       type: "string",
       key: "subtitle",
-      displayer: "SubTitle",
+      displayer: "Title2",
       value: "in New York",
     });
 
@@ -61,7 +61,7 @@ class Notice extends BaseModal {
   }
 
   getName(): string {
-    return "Notice";
+    return "Notice Modal";
   }
 
   render() {
@@ -85,16 +85,20 @@ class Notice extends BaseModal {
                 <ComposerIcon propsIcon={{ className: this.decorateCSS("icon-element") }} name={icon} />
               </div>
             )}
-            {title && <Base.H2 className={this.decorateCSS("title")}>{title}</Base.H2>}
-            {subtitle && <Base.H2 className={this.decorateCSS("subtitle")}>{subtitle}</Base.H2>}
+            <div>
+              {title && <Base.H2 className={this.decorateCSS("title")}>{title}</Base.H2>}
+              {subtitle && <Base.H2 className={this.decorateCSS("subtitle")}>{subtitle}</Base.H2>}
+            </div>
 
             {description && <Base.P className={this.decorateCSS("description")}>{description}</Base.P>}
 
-            <div className={this.decorateCSS("button-container")}>
-              <ComposerLink path={this.getPropValue("buttonUrl")}>
-                <button className={this.decorateCSS("button-element")}>{buttonText}</button>
-              </ComposerLink>
-            </div>
+            {buttonText && (
+              <div className={this.decorateCSS("button-container")}>
+                <ComposerLink path={this.getPropValue("buttonUrl")}>
+                  <Base.Button className={this.decorateCSS("button-element")}>{this.getPropValue("buttonText")}</Base.Button>
+                </ComposerLink>
+              </div>
+            )}
           </Base.VerticalContent>
         </Base.MaxContent>
       </Base.Container>
