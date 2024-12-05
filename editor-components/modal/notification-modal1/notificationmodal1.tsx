@@ -39,7 +39,7 @@ class NotificationModal1 extends BaseModal {
     this.addProp({
       type: "string",
       key: "secondTitle",
-      displayer: "SecondTitle",
+      displayer: "Second Title",
       value: "2 Days remaining",
     });
 
@@ -114,7 +114,7 @@ class NotificationModal1 extends BaseModal {
                 {exitIcon && (
                   <div className={this.decorateCSS("exit-icon")}>
                     <ComposerModalClose>
-                      <ComposerIcon propsIcon={{ className: this.decorateCSS("exit-icon") }} name={this.getPropValue("exitIcon")} />
+                      <ComposerIcon propsIcon={{ className: backgroundImage ? this.decorateCSS("exit-icon") : this.decorateCSS("exit-icon-no-image") }} name={this.getPropValue("exitIcon")} />
                     </ComposerModalClose>
                   </div>
                 )}
@@ -122,7 +122,7 @@ class NotificationModal1 extends BaseModal {
                   <div className={`${this.decorateCSS("wrapper")} ${!backgroundImage && this.decorateCSS("without-image")}`}>
                     {backgroundImage && <img className={this.decorateCSS("image")} src={backgroundImage} />}
                     <Base.H1 className={this.decorateCSS("first-header")}>{this.getPropValue("firstTitle")}</Base.H1>
-                    {overlay && <div className={this.decorateCSS("overlay")}></div>}
+                    {overlay && backgroundImage && <div className={this.decorateCSS("overlay")}></div>}
                   </div>
                 )}
               </div>
@@ -138,7 +138,7 @@ class NotificationModal1 extends BaseModal {
               <div className={this.decorateCSS("button-background")}>
                 {validButtons.map((item: Button) => (
                   <ComposerLink path={item.link}>
-                    <div className={`${this.decorateCSS("button")} `}>{item.buttonText}</div>
+                    <Base.Button className={`${this.decorateCSS("button")} `}>{item.buttonText}</Base.Button>
                   </ComposerLink>
                 ))}
               </div>
