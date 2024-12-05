@@ -1,3 +1,5 @@
+@import "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss";
+
 .container {
   .max-content {
     display: flex;
@@ -8,9 +10,9 @@
       display: flex;
       flex-direction: column;
       width: 100%;
-      @media only screen and (max-width: 800px) {
-        .items{
-          .item-card{
+      @media only screen and (max-width: #{$composer-tablet-width-lg}) {
+        .items {
+          .item-card {
             width: 100% !important;
             flex: unset !important;
             border: 1px solid var(--composer-primary-color);
@@ -21,6 +23,7 @@
 
       .top-titles {
         .title {
+          content: "";
         }
       }
 
@@ -30,7 +33,6 @@
         justify-content: center;
         align-items: center;
         width: 100%;
-
 
         .item-card {
           display: flex;
@@ -50,12 +52,7 @@
             opacity: 0;
             width: 100%;
             text-align: center;
-            background-image: linear-gradient(
-              to right,
-              var(--composer-font-color-primary),
-              var(--composer-secondary-color)
-            );
-
+            background-image: linear-gradient(to right, var(--composer-primary-color), var(--composer-secondary-color));
             padding: var(--composer-gap-sm) 0;
 
             &.active {
@@ -71,15 +68,17 @@
             color: var(--composer-primary-color);
             padding: var(--composer-gap-xs) var(--composer-gap-md);
             border-radius: var(--composer-border-radius-xl);
-            font-weight: 500;
-            font-size: 0.75rem;
+            font-size: 1rem;
           }
 
           .card-title {
             margin: 0 0 var(--composer-gap-sm) 0;
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             color: var(--composer-font-color-primary);
-
+          }
+          .card-title-no-margin {
+            font-size: 1.5rem;
+            color: var(--composer-font-color-primary);
           }
 
           .card-list {
@@ -90,13 +89,14 @@
             .card-list-item {
               display: flex;
               align-items: center;
-              gap: 6px;
+              gap: var(--composer-gap-xs);
               padding: var(--composer-gap-sm) var(--composer-gap-lg);
-              border-top: 1px solid var(--composer-tertiary-color);
+              border-top: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.5);
               color: var(--composer-font-color-primary);
 
               .icon {
-                min-width: 12px;
+                min-width: var(--composer-gap-sm);
+                color: var(--composer-font-color-primary);
               }
             }
           }
@@ -122,13 +122,13 @@
               display: flex;
               align-items: center;
               justify-content: center;
-              gap: 6px;
+              gap: var(--composer-gap-xs);
+              margin: var(--composer-gap-xs);
               .price {
                 font-size: 2.5rem;
-                font-weight: 600;
               }
               .card-duration {
-                font-size: 0.8rem;
+                font-size: 1rem;
               }
             }
 
@@ -143,7 +143,7 @@
 
             .pricingTitle {
               margin-top: var(--composer-gap-md);
-              font-size: 0.8rem;
+              font-size: 1rem;
             }
           }
         }
@@ -155,13 +155,13 @@
         align-items: center;
         margin: var(--composer-gap-lg) 0;
         flex-wrap: wrap;
-        gap: 20px;
+        gap: var(--composer-gap-md);
         color: var(--composer-font-color-primary);
 
         .title-bottom {
           display: flex;
           align-items: center;
-          gap: 5px;
+          gap: var(--composer-gap-xs);
         }
       }
     }
