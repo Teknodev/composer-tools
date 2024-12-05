@@ -1,5 +1,9 @@
+@import '../../../composer-base-components/base/utitilities/viewports.module.scss'; 
 .container {
     .max-content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-lg);
         .title-container{
             .subtitle{
                 content: "";
@@ -18,7 +22,6 @@
                 width: 100%;
                 background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
                 border-radius: var(--composer-border-radius-sm);    
-
                 .in-box {
                     width: 100%;
                     display: flex;
@@ -42,30 +45,51 @@
                     }
                 }
                 .card-inner {
-                    
-                    padding: 0px var(--composer-gap-md);
+                    overflow: hidden;
+                    padding:0px var(--composer-gap-md);
                     display: flex;
                     max-height: 0px;
-                    transition: max-height 1s ease, padding 1s ease;
+                    transition: max-height, padding 1s ease;
                     .card-text{
-                        display: none;
                         opacity: 0; 
                         font-size: 1.5rem;
-                        color: var(--composer-font-color-primary);
-                        transition-property: opacity;
-                        transition-duration: 0.5s;
-                        transition-timing-function: ease; 
-                        transition-delay: 1s;
+                        color: var(--composer-tertiary-color);
+                        transition: opacity 0.5s ease;
                     }
                     &.cardActive {
-                        max-height: 50px;
-                        padding:var(--composer-gap-md) var(--composer-gap-md) ;      
+                        max-height: 500px;   
+                        padding: 0px var(--composer-gap-md) var(--composer-gap-md) var(--composer-gap-md);
                         .card-text{
                             opacity: 1; 
+                      
                         }                  
                     }
                 }
                 
+            }
+        }
+    }
+}
+@container (max-width: #{$composer-phone-width}){
+    .container{
+        .max-content{
+            .page{
+                .card{
+                    .in-box{
+                        .card-subtitle{
+                            font-size: 1rem;
+                        }
+                        .icon {
+                            width: 20px;
+                            height: 20px;
+                        }
+                    }
+                    .card-inner {
+                        .card-text{
+                            font-size: 1rem;
+                        }
+                    }
+                }
             }
         }
     }
