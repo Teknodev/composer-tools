@@ -1,6 +1,8 @@
 import * as React from "react";
 import styles from "./faq7.module.scss";
 import { BaseFAQ } from "../../EditorComponent";
+import { Base } from "../../../composer-base-components/base/base";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type Card = {
   title: string;
@@ -10,20 +12,41 @@ type Card = {
 class FaqButton extends BaseFAQ {
   constructor(props?: any) {
     super(props, styles);
-
-
     this.addProp({
       type: "string",
-      key: "subtitle",
-      displayer: "Page Title",
+      key: "title",
+      displayer: "Title",
       value: "FAQ",
     });
-
     this.addProp({
       type: "string",
-      key: "text",
-      displayer: "Page Title Description",
+      key: "description",
+      displayer: "Description",
       value: "Frequently Asked Questions About Dental Treatments in Turkey",
+    });
+    this.addProp({
+      type: "icon",
+      key: "iconInactive",
+      displayer: "Inactive Icon",
+      value: "SlArrowDown",
+    });
+    this.addProp({
+      type: "icon",
+      key: "iconActive",
+      displayer: "Active Icon",
+      value: "SlArrowUp",
+    });
+    this.addProp({
+      type: "number",
+      key: "initialCardCount",
+      displayer: "Initial Card Count",
+      value: 3,
+    });
+    this.addProp({
+      type: "number",
+      key: "moreCardCount",
+      displayer: "More Card Count",
+      value: 2,
     });
 
     this.addProp({
@@ -90,7 +113,7 @@ class FaqButton extends BaseFAQ {
               value: "As many as 40 million people avoid dental treatment due to dental anxiety. We want to make your treatment as comfortable as possible and sedation simply adds the extra bit of relaxation. It can prevent gag reflexes and help patients who fear the dentist relax. It is completely painless and will give you a sense of calm and happiness! We offer different types of sedation and your dentist will decide which is right for you, for longer or more complicated treatments intravenous sedation may be advisable. Sedation will not make you unconscious, but it will make it unsafe for you to drive or operate any machinery for a while afterwards, so we recommend asking for a friend or family member to join you! At Dental Excellence Turkey we want all our patients to have a very pleasant experience, making sure you are happy with all the aspects of your treatment!.",
             },
           ],
-        },{
+        }, {
           type: "object",
           key: "items",
           displayer: "Items",
@@ -111,111 +134,118 @@ class FaqButton extends BaseFAQ {
           ],
         },
         {
-            type: "object",
-            key: "items",
-            displayer: "Items",
-            value: [
-              {
-                type: "string",
-                key: "title",
-                displayer: "Title",
-                value:
-                  "Is Porcelain Laminate Veneer an invasive or painful treatment?",
-              },
-              {
-                type: "string",
-                key: "description",
-                displayer: "Description",
-                value: "Not at all, nowadays porcelain veneers are getting thinner, so tooth carving is minimal. It is a simple treatment, fast and without pain.",
-              },
-            ],
-          },
-          {
-            type: "object",
-            key: "items",
-            displayer: "Items",
-            value: [
-              {
-                type: "string",
-                key: "title",
-                displayer: "Title",
-                value:
-                  "How to Care for Dental Veneers?",
-              },
-              {
-                type: "string",
-                key: "description",
-                displayer: "Description",
-                value: "Porcelain veneers require the same maintenance as natural teeth. They are made of a material that is not affected by cavities but they are attached to a part of the tooth which is vulnerable to decay, so it is always recommended a good oral hygiene based on tooth brushing 3 times a day and the use of dental floss, once a day.",
-              },
-            ],
-          },
+          type: "object",
+          key: "items",
+          displayer: "Items",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value:
+                "Is Porcelain Laminate Veneer an invasive or painful treatment?",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Not at all, nowadays porcelain veneers are getting thinner, so tooth carving is minimal. It is a simple treatment, fast and without pain.",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "items",
+          displayer: "Items",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value:
+                "How to Care for Dental Veneers?",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Porcelain veneers require the same maintenance as natural teeth. They are made of a material that is not affected by cavities but they are attached to a part of the tooth which is vulnerable to decay, so it is always recommended a good oral hygiene based on tooth brushing 3 times a day and the use of dental floss, once a day.",
+            },
+          ],
+        },
       ],
     });
+    this.addProp({
+      type: "string",
+      key: "buttonText",
+      displayer: "Button Text",
+      value: "More",
+    });
+    this.setComponentState("activeIndex", -1);
+    this.setComponentState("moreImages", 0);
+
   }
 
   getName(): string {
     return "FAQ-7";
   }
+  handleButton(index: number): void {
+    if (this.getComponentState("activeIndex") === index) {
+      this.setComponentState("activeIndex", -1);
+    } else {
+      this.setComponentState("activeIndex", index);
+    }
+  }
+  handleButtonClick = () => {
+    this.setComponentState("moreImages", this.getComponentState("moreImages") + this.getPropValue("moreCardCount"))
 
-  activeIndex: number = -1;
-
+  };
   render() {
-    const handleButton = (index: number) => {
-      if(this.activeIndex == index){
-        this.setComponentState("activeIndex", -1)
-      }else{
-        this.setComponentState("activeIndex", index)
-      }
-    };
-
+    if (this.getComponentState("cardCount") != this.getPropValue("initialCardCount") + this.getComponentState("moreImages"))
+      this.setComponentState("cardCount", this.getPropValue("initialCardCount") + this.getComponentState("moreImages"));
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
-            <div className={this.decorateCSS("up-page")}>
-
-              <h1 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h1>
-              <p className={this.decorateCSS("text-p")}>{this.getPropValue("text")}</p>
-            </div>
+            <Base.VerticalContent className={this.decorateCSS("up-page")}>
+              <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
+              <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>
+            </Base.VerticalContent>
             <div className={this.decorateCSS("down-page")}>
-              {this.castToObject<Card[]>("card").map(
+              {this.castToObject<Card[]>("card").slice(0, this.getComponentState("cardCount")).map(
                 (card: Card, indexCard: any) => {
+                  const isActive = this.getComponentState("activeIndex") === indexCard;
                   return (
-                    <div className={this.decorateCSS("card")} key={indexCard}>
+                    <div className={this.decorateCSS("card")} key={indexCard} onClick={() => this.handleButton(indexCard)}>
+                      <div className={this.decorateCSS("line")}></div>
                       <div className={this.decorateCSS("child-container")}>
-                        <div className={this.decorateCSS("card-title")}>
-                          <h3 className={this.decorateCSS("card-title-h3")}>{card.title}</h3>
+                        <div className={this.decorateCSS("card-title-wrapper")}>
+                          <div className={this.decorateCSS("card-title")}>{card.title}</div>
                         </div>
-                        <div className={this.decorateCSS("icon")}>
-                          <img
-                            alt=""
-                            src={
-                              this.getComponentState("activeIndex") === indexCard
-                                ? "https://cdn-icons-png.flaticon.com/512/130/130906.png"
-                                : "https://cdn-icons-png.flaticon.com/512/656/656979.png"
-                            }
-                            onClick={() => handleButton(indexCard)}
-                          />
+                        <div className={this.decorateCSS("icon-wrapper")}>
+                          <ComposerIcon name={isActive ? this.getPropValue("iconActive") : this.getPropValue("iconInactive")} propsIcon={{ className: this.decorateCSS("icon") }} />
                         </div>
                       </div>
-                      <p
-                        className={`${
-                          this.getComponentState("activeIndex") === indexCard
-                            ? this.decorateCSS("text")
-                            : this.decorateCSS("hide")
-                        }`}
-                      >
-                        {card.description}
-                      </p>
+                      <div className={`${this.decorateCSS("inner-card")} ${isActive ? this.decorateCSS("active") : ""}`} >
+                        <div className={`${this.decorateCSS("inner-text")} ${isActive ? this.decorateCSS("active") : ""}`}>
+                          {card.description}
+                        </div>
+                      </div>
                     </div>
                   );
                 }
               )}
             </div>
+            {(this.getPropValue("card").length > this.getComponentState("cardCount")) && (
+              <div className={this.decorateCSS("button-wrapper")}>
+                <Base.Button className={this.decorateCSS("button")} onClick={this.handleButtonClick} >
+                  {this.getPropValue("buttonText")}
+                </Base.Button>
+              </div>
+            )}
           </div>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
