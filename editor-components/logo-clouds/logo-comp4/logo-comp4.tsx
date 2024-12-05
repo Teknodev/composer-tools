@@ -81,7 +81,7 @@ class LogoComp4Page extends LogoClouds {
     const images = this.castToObject<TImage[]>("image-items");
 
     return (
-      <Base.Container className={`${this.getPropValue("overlay") ? this.decorateCSS("overlay-active") : ""} ${this.decorateCSS("container")}`} style={styling}>
+      <Base.Container className={`${this.getPropValue("backgroundImage") ? this.decorateCSS("image-active") : ""} ${this.getPropValue("overlay") ? this.decorateCSS("overlay-active") : ""} ${this.decorateCSS("container")}`} style={styling}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(isTitleExists || isSubtitleExists || isDescriptionExists) && (
             <Base.VerticalContent className={this.decorateCSS("heading")}>

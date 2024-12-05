@@ -1,4 +1,8 @@
 .container {
+    &.image-active{
+        background-size: cover;
+        padding: 160px var(--composer-gap-xl);
+    }
     &.overlay-active{
         position: relative;
         &::before{
