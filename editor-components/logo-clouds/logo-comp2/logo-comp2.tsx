@@ -60,67 +60,86 @@ class LogoComp2Page extends LogoClouds {
   render() {
     const originalImageArray = this.castToObject<TImage[]>("image-items");
     let lineOfLogos: any[] = [];
-    for(let x = 0; x < Math.round(14 / originalImageArray.length); x++)
-    {
+    for (let x = 0; x < Math.round(14 / originalImageArray.length); x++) {
       lineOfLogos.push(...originalImageArray);
-    } 
-    const images = [...lineOfLogos,...lineOfLogos];
+    }
+    const images = [...lineOfLogos, ...lineOfLogos];
+
+    const isSubtitleExists = this.castToString(this.getPropValue("subtitle"));
+    const isTitleExists = this.castToString(this.getPropValue("title"));
+    const isDescriptionExists = this.castToString(
+      this.getPropValue("description")
+    );
+
     return (
       <Base.Container
         isFull={true}
         className={`${this.decorateCSS("container")}`}
       >
-        <Base.VerticalContent className={`${this.decorateCSS("heading")}`}>
-          <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} `}>
-            {this.getPropValue("subtitle")}
-          </Base.SectionSubTitle>
-          <Base.SectionTitle className={`${this.decorateCSS("title")}`}>
-            {this.getPropValue("title")}
-          </Base.SectionTitle>
-          <Base.SectionDescription
-            className={`${this.decorateCSS("description")} `}
-          >
-            {this.getPropValue("description")}
-          </Base.SectionDescription>
-        </Base.VerticalContent>
-        <div className={this.decorateCSS("gallery")}>
-          <div
-            className={this.decorateCSS("images-container")}
-            style={{ animationDuration: `${images.length * 2}s` }}
-          >
-            {images.map((imageItem: TImage, index: number) => (
-              <ComposerLink path={imageItem.imageLink}>
-                <div className={this.decorateCSS("image-child")}>
-                  <img
-                    key={index}
-                    className={this.decorateCSS("image")}
-                    src={imageItem.image}
-                    alt={imageItem.imageLink || ""}
-                  />
-                </div>
-              </ComposerLink>
-            ))}
+        {(isSubtitleExists || isTitleExists || isDescriptionExists) && (
+          <Base.VerticalContent className={`${this.decorateCSS("heading")}`}>
+            {isSubtitleExists && (
+              <Base.SectionSubTitle
+                className={`${this.decorateCSS("subtitle")} `}
+              >
+                {this.getPropValue("subtitle")}
+              </Base.SectionSubTitle>
+            )}
+            {isTitleExists && (
+              <Base.SectionTitle className={`${this.decorateCSS("title")}`}>
+                {this.getPropValue("title")}
+              </Base.SectionTitle>
+            )}
+            {isDescriptionExists && (
+              <Base.SectionDescription
+                className={`${this.decorateCSS("description")} `}
+              >
+                {this.getPropValue("description")}
+              </Base.SectionDescription>
+            )}
+          </Base.VerticalContent>
+        )}
+
+        {images.length > 0 && (
+          <div className={this.decorateCSS("gallery")}>
+            <div
+              className={this.decorateCSS("images-container")}
+              style={{ animationDuration: `${images.length * 2}s` }}
+            >
+              {images.map((imageItem: TImage, index: number) => (
+                <ComposerLink path={imageItem.imageLink}>
+                  <div className={this.decorateCSS("image-child")}>
+                    <img
+                      key={index}
+                      className={this.decorateCSS("image")}
+                      src={imageItem.image}
+                      alt={imageItem.imageLink || ""}
+                    />
+                  </div>
+                </ComposerLink>
+              ))}
+            </div>
+            <div
+              className={`${this.decorateCSS(
+                "images-container"
+              )} ${this.decorateCSS("reverse")}`}
+              style={{ animationDuration: `${images.length * 2}s` }}
+            >
+              {images.map((imageItem: TImage, index: number) => (
+                <ComposerLink path={imageItem.imageLink}>
+                  <div className={this.decorateCSS("image-child")}>
+                    <img
+                      key={index}
+                      className={this.decorateCSS("image")}
+                      src={imageItem.image}
+                      alt={imageItem.imageLink || ""}
+                    />
+                  </div>
+                </ComposerLink>
+              ))}
+            </div>
           </div>
-          <div
-            className={`${this.decorateCSS(
-              "images-container"
-            )} ${this.decorateCSS("reverse")}`}
-            style={{ animationDuration: `${images.length * 2}s` }}
-          >
-            {images.map((imageItem: TImage, index: number) => (
-              <ComposerLink path={imageItem.imageLink}>
-                <div className={this.decorateCSS("image-child")}>
-                  <img
-                    key={index}
-                    className={this.decorateCSS("image")}
-                    src={imageItem.image}
-                    alt={imageItem.imageLink ||  ""}
-                  />
-                </div>
-              </ComposerLink>
-            ))}
-          </div>
-        </div>
+        )}
       </Base.Container>
     );
   }
