@@ -38,7 +38,9 @@
 
     .images-container {
       gap: 1px;
-      background-color: rgba(var(--composer-font-color-primary-rgb), 0.5);
+      &.lines-active{
+        background-color: rgba(var(--composer-font-color-primary-rgb), 0.5);
+      }
       .image-item{
         background-color: var(--composer-html-background);
         display: flex;

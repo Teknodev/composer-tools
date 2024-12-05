@@ -24,6 +24,12 @@ class LogoComp3Page extends LogoClouds {
       value: "Brands Available",
     });
     this.addProp({
+      type: "boolean",
+      key: "toggleDividerLine",
+      displayer: "Toggle Title Divider Line",
+      value: true,
+    });
+    this.addProp({
       type: "number",
       key: "itemCount",
       displayer: "Item Count in a Row",
@@ -61,6 +67,10 @@ class LogoComp3Page extends LogoClouds {
   render() {
     const items = this.castToObject<TImage[]>("items");
 
+
+    const emptyGridCount = !!(items.length % this.getPropValue("itemCount")) ? (this.getPropValue("itemCount") - (items.length % this.getPropValue("itemCount"))) : 0;
+    const emptyGrids = new Array(emptyGridCount).fill(true);
+
     const titleExist = this.castToString(this.getPropValue("title"));
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
 
@@ -74,7 +84,7 @@ class LogoComp3Page extends LogoClouds {
                   {this.getPropValue("title")}
                 </Base.H1>
               )}
-              {titleExist && subtitleExist && (
+              {titleExist && subtitleExist && this.getPropValue("toggleDividerLine") && (
                 <div className={this.decorateCSS("title-line")}></div>
               )}
               {subtitleExist && (
@@ -88,10 +98,10 @@ class LogoComp3Page extends LogoClouds {
             <Base.ListGrid
               gridCount={{
                 pc: this.getPropValue("itemCount"),
-                tablet: 2,
+                tablet: this.getPropValue("itemCount"),
                 phone: 1,
               }}
-              className={this.decorateCSS("images-container")}
+              className={`${this.getPropValue("toggleLines") ? this.decorateCSS("lines-active") : ""} ${this.decorateCSS("images-container")}`}
             >
               {items.map((item: TImage, index: number) => {
                 return (
@@ -104,6 +114,13 @@ class LogoComp3Page extends LogoClouds {
                       />
                     </div>
                   </ComposerLink>
+                );
+                return null;
+              })}
+              {emptyGrids.map((item: TImage, index: number) => {
+                return (
+                  <div className={this.decorateCSS("image-item")} key={index}>
+                  </div>
                 );
                 return null;
               })}
