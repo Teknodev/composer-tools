@@ -23,6 +23,13 @@ class TermsOfUseModal extends BaseModal {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
+    });
+
+    this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
@@ -120,6 +127,7 @@ class TermsOfUseModal extends BaseModal {
 
   render() {
     const image = this.getPropValue("image");
+    const overlay = this.getPropValue("overlay");
     const title = this.castToString(this.getPropValue("title"));
     const termsText = this.castToString(this.getPropValue("termsText"));
     const termsDescription = this.castToString(this.getPropValue("termsDescription"));
@@ -133,11 +141,12 @@ class TermsOfUseModal extends BaseModal {
             <div className={this.decorateCSS("top-wrapper")}>
               <div className={this.decorateCSS("exit-icon")}>
                 <ComposerModalClose>
-                  <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={this.getPropValue("exitIcon")} />
+                  <ComposerIcon propsIcon={{ className: image ? this.decorateCSS("icon") : this.decorateCSS("icon-no-image") }} name={this.getPropValue("exitIcon")} />
                 </ComposerModalClose>
               </div>
 
               {image && <img className={this.decorateCSS("image")} src={image} />}
+              {overlay && <div className={this.decorateCSS("overlay")}></div>}
             </div>
 
             <div className={this.decorateCSS("buttom-wrapper")}>
@@ -145,12 +154,12 @@ class TermsOfUseModal extends BaseModal {
                 {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                 <div className={this.decorateCSS("terms-container")}>
                   {(termsDescription || termsText) && (
-                    <Base.P className={this.decorateCSS("terms")}>
+                    <Base.SectionDescription className={this.decorateCSS("terms")}>
                       <Base.SectionDescription className={this.decorateCSS("termsDescription")}>{termsDescription}</Base.SectionDescription>
                       <span className={this.decorateCSS("termsText")}>
                         <ComposerLink path={this.getPropValue("termsLink")}> {termsText}</ComposerLink>
                       </span>
-                    </Base.P>
+                    </Base.SectionDescription>
                   )}
                 </div>
 
@@ -161,7 +170,7 @@ class TermsOfUseModal extends BaseModal {
                 <div className={this.decorateCSS("button-background")}>
                   {validButtons.map((item: Button, index: number) => (
                     <ComposerLink path={item.link}>
-                      <div className={this.decorateCSS("button")}>{item.buttonText}</div>
+                      <Base.Button className={this.decorateCSS("button")}>{item.buttonText}</Base.Button>
                     </ComposerLink>
                   ))}
                 </div>
