@@ -12,19 +12,22 @@
                 gap: var(--composer-gap-sm);
                 flex-direction: row;
                 width: 50%;
-                height: 450px;
 
                 .vertical-parent {
                     width: 25%;
-                    height: 100%;
+                    height: 500px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
 
                     .carousel-vertical {
                         width: 100%;
+                        height: 100%;
 
                         >div {
                             >div {
                                 >div {
-                                    height: 142px !important;
+                                    height: 150px !important;
                                     padding-bottom: var(--composer-gap-sm);
 
                                     >div {
@@ -62,17 +65,33 @@
                     }
                 }
 
+
                 .horizontal-parent {
                     width: 75%;
+                    height: 500px;
+                    position: relative;
 
                     .carousel-horizontal {
                         width: 100%;
                         height: 100%;
-                        position: relative;
+
+                        >div {
+                            height: 100%;
+
+                            >div {
+                                height: 100%;
+
+                                >div {
+                                    >div {
+                                        height: 100%;
+                                    }
+                                }
+                            }
+                        }
 
                         .img-container {
                             position: relative;
-                            height: 450px;
+                            height: 100%;
                             width: 100%;
                             overflow: hidden;
 
@@ -102,8 +121,220 @@
                         button:last-of-type {
                             right: 10px;
                         }
+                    }
 
+                    .horizontalArrows {
+                        position: absolute;
+                        top: 50%;
+                        left: 0;
+                        right: 0;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        pointer-events: none;
 
+                        .horizontalPreviousArrow,
+                        .horizontalNextArrow {
+                            position: absolute;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            pointer-events: all;
+                            z-index: 10;
+                            width: 40px;
+                            height: 40px;
+                            color: black;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            cursor: pointer;
+
+                            &:hover {
+                                color: var(--composer-overlay-color);
+                            }
+                        }
+
+                        .horizontalPreviousArrow {
+                            left: 10px;
+                        }
+
+                        .horizontalNextArrow {
+                            right: 10px;
+                        }
+                    }
+
+                    .buttons {
+                        display: flex;
+                        flex-direction: column;
+                        gap: var(--composer-gap-sm);
+                        z-index: 20;
+                        position: absolute;
+                        left: 10px;
+                        bottom: 10px;
+
+                        .button-wrapper {
+                            display: flex;
+                            align-items: center;
+                            gap: 0;
+                            background-color: var(--composer-html-background);
+                            border-radius: 50px;
+                            overflow: hidden;
+                            transition: background-color 0.2s ease;
+
+                            .icon-wrapper {
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                width: 50px;
+                                height: 50px;
+                                border-radius: 50%;
+                                background-color: var(--composer-html-background);
+
+                                .video-button,
+                                .fs-button {
+                                    width: 25px;
+                                    height: 25px;
+                                    cursor: pointer;
+                                    transition: transform 0.2s ease;
+                                    color: var(--composer-font-color-primary);
+                                }
+                            }
+
+                            .button-text-wrapper-video,
+                            .button-text-wrapper-fs {
+                                display: flex;
+                                align-items: center;
+                                justify-content: flex-start;
+                                height: 50px;
+                                background-color: var(--composer-html-background);
+                                color: var(--composer-font-color-primary);
+                                border-radius: 0 50px 50px 0;
+                                white-space: nowrap;
+                                overflow: hidden;
+                                box-sizing: border-box;
+                                max-width: 0;
+                                padding: 0;
+                                transition: max-width 0.3s ease, padding 0.3s ease;
+
+                                .button-text {
+                                    margin-left: 0;
+                                    opacity: 0;
+                                    transition: opacity 0.3s ease;
+                                }
+                            }
+
+                            &:hover {
+
+                                .button-text-wrapper-video,
+                                .button-text-wrapper-fs {
+                                    max-width: 150px;
+                                    padding: 0 5px;
+                                }
+
+                                .button-text {
+                                    opacity: 1
+                                }
+                            }
+                        }
+
+                        .button-wrapper:hover~.button-wrapper .button-text-wrapper-video,
+                        .button-wrapper:hover~.button-wrapper .button-text-wrapper-fs {
+                            max-width: 0;
+                            padding: 0;
+                        }
+
+                        .button-wrapper:hover~.button-wrapper .button-text {
+                            opacity: 0;
+                        }
+                    }
+
+                    .fullscreen-modal {
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100vw;
+                        height: 100vh;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        background-color: rgba(0, 0, 0, 0.8);
+                        z-index: 9999;
+
+                        .fullscreen-overlay {
+                            position: absolute;
+                            width: 100%;
+                            height: 100%;
+                            background: transparent;
+                            cursor: pointer;
+                        }
+
+                        .fullscreen-image {
+                            max-width: 90%;
+                            max-height: 90%;
+                            z-index: 10000;
+                        }
+
+                        .close-fullscreen {
+                            position: absolute;
+                            top: 20px;
+                            right: 20px;
+                            z-index: 10001;
+                            cursor: pointer;
+
+                            .close-button-icon {
+                                font-size: 24px;
+                                color: #fff;
+                            }
+                        }
+                    }
+
+                    .play-button {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        border-radius: 150px;
+                        text-align: center;
+                        font-size: 20px;
+                        width: 80px;
+                        height: 80px;
+                        line-height: 80px;
+                        margin-top: -35px;
+                        margin-left: -40px;
+                        border: 6px solid rgba(255, 255, 255, 0.45);
+                        color: #fff;
+                        z-index: 10;
+                        display: grid;
+                        place-items: center;
+                    }
+
+                    .video-player-container {
+                        width: 100%;
+                        height: 100%;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        background: rgba(0, 0, 0, 0.68);
+                        display: none;
+                        z-index: 999;
+
+                        &.video-player {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                        }
+
+                        .close-button {
+                            position: absolute;
+                            background: white;
+                            height: auto;
+                            top: 18%;
+                            right: 14%;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            font-size: 20px;
+                            border-radius: 50px;
+                            padding: 5px;
+                        }
                     }
                 }
             }
