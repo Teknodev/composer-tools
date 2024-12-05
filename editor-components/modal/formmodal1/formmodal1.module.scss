@@ -3,6 +3,8 @@
 .container {
   min-width: 700px;
   max-width: 800px;
+  max-height: 800px;
+  overflow: auto;
   border-radius: var(--composer-border-radius-md);
 
   .page {
@@ -79,7 +81,7 @@
                 cursor: pointer;
                 text-align: center;
                 border: none;
-                border-bottom: 1px solid var(--composer-font-color-primary, 0.5);
+                border-bottom: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.5);
                 outline: none;
                 background-color: transparent;
                 color: var(--composer-font-color-primary);
@@ -91,28 +93,16 @@
             }
 
             .form-button {
-              // cursor: pointer;
-              // background-color: var(--composer-secondary-color);
-              // color: var(--composer-font-color-secondary);
-              // margin-top: var(--composer-gap-md);
-              // padding: var(--composer-gap-sm);
               width: 100%;
-              // text-align: center;
-              // transition: 0.5s;
-              // border-radius: var(--composer-border-radius-md);
-              // border: 1px solid var(--composer-secondary-color);
-              // padding-right: var(--composer-gap-md);
-              // &:hover {
-              //   background-color: var(--composer-html-background);
-              //   color: var(--composer-secondary-color);
-              //   transition: 0.5s;
-              //   border: 1px solid var(--composer-secondary-color);
-              // }
             }
           }
         }
       }
     }
+  }
+
+  .single-image {
+    display: flex;
   }
 }
 

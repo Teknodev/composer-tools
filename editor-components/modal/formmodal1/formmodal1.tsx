@@ -24,7 +24,7 @@ class FormModal1 extends BaseModal {
       type: "image",
       key: "image",
       displayer: "Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a2698b2f8a5b002ce67e10?alt=media",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675207f7506a40002c31e64a?alt=media",
     });
     this.addProp({
       type: "string",
@@ -357,12 +357,17 @@ class FormModal1 extends BaseModal {
   }
 
   render() {
-    const header = this.getPropValue("header", { as_string: true });
-    const context = this.getPropValue("context", { as_string: true });
+    const header = this.getPropValue("header");
+    const context = this.getPropValue("context");
     const inputItems = this.getPropValue("inputItems")!;
     const imageVal = this.getPropValue("image");
-    const buttonVal = this.getPropValue("buttonText", { as_string: true });
-    const hasRightPageProps = header || context || inputItems.length > 0 || buttonVal;
+    const buttonVal = this.getPropValue("buttonText");
+
+    const headerExist = this.castToString(header);
+    const contextExist = this.castToString(context);
+    const buttonTextExist = this.castToString(buttonVal);
+
+    const hasRightPageProps = headerExist || contextExist || inputItems.length > 0 || buttonTextExist;
 
     function getInputType(type: string): string {
       switch (type) {
@@ -412,7 +417,7 @@ class FormModal1 extends BaseModal {
 
     return (
       <Base.Container isModal="true" className={this.decorateCSS("container")}>
-        <Base.MaxContent className={`${this.decorateCSS("page")} ${!imageVal && this.decorateCSS("single-page")}`}>
+        <Base.MaxContent className={`${this.decorateCSS("page")} ${!imageVal && this.decorateCSS("single-page")} ${!hasRightPageProps && this.decorateCSS("single-image")}`}>
           <div className={this.decorateCSS("exit-icon")}>
             <ComposerModalClose>
               <ComposerIcon propsIcon={{ className: this.decorateCSS("exit-icon") }} name={this.getPropValue("exitIcon")} />
@@ -429,8 +434,8 @@ class FormModal1 extends BaseModal {
             <div className={this.decorateCSS("right-page")}>
               <div className={this.decorateCSS("right-page-content")}>
                 <Base.VerticalContent className={this.decorateCSS("title")}>
-                  <Base.SectionTitle className={this.decorateCSS("header")}>{header && this.getPropValue("header")}</Base.SectionTitle>
-                  <Base.SectionDescription className={this.decorateCSS("context")}>{context && this.getPropValue("context")}</Base.SectionDescription>
+                  {headerExist && <Base.SectionTitle className={this.decorateCSS("header")}>{this.getPropValue("header")}</Base.SectionTitle>}
+                  {contextExist && <Base.SectionDescription className={this.decorateCSS("context")}>{this.getPropValue("context")}</Base.SectionDescription>}
                 </Base.VerticalContent>
                 <div className={this.decorateCSS("form-content")}>
                   <Formik
@@ -478,7 +483,7 @@ class FormModal1 extends BaseModal {
                             </div>
                           )
                         )}
-                        {buttonVal && (
+                        {buttonTextExist && (
                           <Base.Button className={this.decorateCSS("form-button")} type="submit">
                             {this.getPropValue("buttonText")}
                           </Base.Button>
