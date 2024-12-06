@@ -321,6 +321,7 @@ class List1 extends BaseList {
     const title: JSX.Element = this.getPropValue("title");
     const subTitle: JSX.Element = this.getPropValue("subtitle");
     const settings = {
+      // adaptiveHeight: true,
       dots: true,
       infinite: sliderItems.length > 1,
       autoplay: false,

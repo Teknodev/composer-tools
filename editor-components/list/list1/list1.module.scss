@@ -6,12 +6,20 @@
       display: flex;
       flex-direction: column;
 
-      /*.up-text {
-        margin-bottom: var(--composer-gap-md);
-      }*/
-
       .carousel {
         overflow: hidden;
+        >div{
+          >div{
+            display: flex;
+            align-items: stretch;
+            >div{
+              height: auto;
+              >div{
+                height: 100%;
+              }
+            }
+          }
+        }
 
         .dots {
           display: flex !important;
@@ -71,13 +79,11 @@
           .card-inner {
             display: flex;
             flex-direction: column;
-            justify-content: center;
             height: 100%; 
             padding: var(--composer-gap-lg);
             background-color: var(--composer-html-background);
             z-index: 0;
             position: static;
-            aspect-ratio: 1.4;
 
             .img-div {
               .img {
@@ -91,6 +97,7 @@
 
             .card-titles {
               margin: var(--composer-gap-md) 0;
+              overflow: hidden;
 
               .title {
                 color: var(--composer-font-color-primary);
@@ -161,6 +168,7 @@
           }
         }
         .card {
+          padding: var(--composer-gap-xl) var(--composer-gap-sm);
           &.active {
             &::after {
               visibility: hidden;
@@ -168,7 +176,6 @@
           }
 
           .card-inner {
-            aspect-ratio: 0.7;
             margin-left: 0px;
             .img {
               margin: 0 auto;
@@ -198,7 +205,6 @@
           }
 
           .card-inner {
-            aspect-ratio: 0.6;
             margin-left: 0px;
             img {
               margin: 0 auto;
