@@ -50,9 +50,7 @@ class HTTP_CODES2 extends BaseHTTPCodes {
   render() {
     const title = this.getPropValue("title");
     const label_404 = this.getPropValue("404");
-    const home = this.getPropValue("home");
-    const homeText = home.props.html;
-
+    const home = this.castToString(this.getPropValue("home"));
     const words = title.props.html.split(" ");
     const errorCode = label_404.props.html;
 
@@ -60,23 +58,19 @@ class HTTP_CODES2 extends BaseHTTPCodes {
       <Base.Container className={this.decorateCSS("container")} style={{ backgroundImage: `url(${this.getPropValue("backgroundImage")})` }} >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
-            <div className={this.decorateCSS("left-side")}>
-              <div>
-                {words.length > 0 ? (
-                  <>
-                    <div className={this.decorateCSS("title")}>{words[0]}</div>
-                    <div className={this.decorateCSS("error-code")}>
-                      {errorCode.length > 0 && <div className={this.decorateCSS("label-404")}>{errorCode}</div>}
-                      <div className={this.decorateCSS("title")}>{words[1]}</div>
-                    </div>
-                    <div className={this.decorateCSS("title")}>{words.slice(2).join(" ")}</div>
-                  </>
-                ) : (
-                  <span>No title provided</span>
-                )}
+            {(words.length > 0) && (
+              <div className={this.decorateCSS("left-side")}>
+                <div className={this.decorateCSS("left-text")}>
+                  <div className={this.decorateCSS("title")}>{words[0]}</div>
+                  <div className={this.decorateCSS("error-code")}>
+                    {errorCode.length > 0 && <div className={this.decorateCSS("label-404")}>{errorCode}</div>}
+                    <div className={this.decorateCSS("title")}>{words[1]}</div>
+                  </div>
+                  <div className={this.decorateCSS("title")}>{words.slice(2).join(" ")}</div>
+                </div>
               </div>
-            </div>
-            {homeText && (
+            )}
+            {home && (
               <div className={this.decorateCSS("right-side")}>
                 <ComposerLink path={this.getPropValue("url")}>
                   <div className={this.decorateCSS("home")}>
@@ -89,7 +83,7 @@ class HTTP_CODES2 extends BaseHTTPCodes {
             )}
           </div>
         </Base.MaxContent>
-      </Base.Container>
+      </Base.Container >
     );
   }
 }
