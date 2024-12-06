@@ -15,21 +15,21 @@ class Faq extends BaseFAQ {
     super(props, styles);
     this.addProp({
       type: "string",
-      key: "title",
-      displayer: "Title",
-      value: "Have Any Questions?"
-    })
-    this.addProp({
-      type: "string",
       key: "subtitle",
       displayer: "Subtitle",
       value: "Frequently Asked Questions"
     })
     this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "Have Any Questions?"
+    })
+    this.addProp({
       type: "icon",
       key: "icon",
       displayer: "Icon",
-      value: "IoIosArrowUp"
+      value: "IoIosArrowDown"
     })
 
     this.addProp({
