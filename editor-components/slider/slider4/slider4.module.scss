@@ -115,10 +115,17 @@
                     >div {
                         >div {
                             padding: var(--composer-gap-md) 0;
+                            display: flex;
+                            align-items: stretch;
+                            height: 100%;
 
                             >div {
                                 padding: 0 var(--composer-gap-md);
-                                height: 100%;
+                                height: auto;
+
+                                >div {
+                                    height: 100%;
+                                }
                             }
                         }
                     }
@@ -132,6 +139,7 @@
                         display: flex !important;
                         flex-direction: column;
                         gap: var(--composer-gap-md);
+                        height: 100%;
 
                         &:hover {
                             transform: scale(1.05);
