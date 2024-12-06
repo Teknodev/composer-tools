@@ -59,12 +59,6 @@ class ConfirmationModal2 extends BaseModal {
       value: "Conference",
     });
     this.addProp({
-      type: "boolean",
-      key: "headerHighlightLine",
-      displayer: "Header Highlight Line Active",
-      value: true,
-    });
-    this.addProp({
       type: "string",
       key: "subheader",
       displayer: "Subheader Text",
@@ -271,13 +265,10 @@ class ConfirmationModal2 extends BaseModal {
     const yearTextExist = this.castToString(yearText);
     const header = this.getPropValue("header");
     const headerHighlight = this.getPropValue("headerHighlight");
-    const headerHighlightLine = this.getPropValue("headerHighlightLine");
     const subheader = this.getPropValue("subheader");
     const subheaderHighlight = this.getPropValue("subheaderHighlight");
     const speakers = this.castToObject<Speaker[]>("speakers");
     const backgroundImage = this.getPropValue("backgroundImage");
-    const composerPrimaryColor = getComputedStyle(document.documentElement).getPropertyValue("--composer-primary-color").trim();
-    const encodedColor = encodeURIComponent(composerPrimaryColor);
     const eventDetails = this.castToObject<EventDetail>("eventDetails");
     const contactInfos = this.castToObject<ContactInfo[]>("contactInfos");
 
@@ -291,20 +282,9 @@ class ConfirmationModal2 extends BaseModal {
                 <Base.H2 className={backgroundImage ? this.decorateCSS("header-text") : this.decorateCSS("header-text-no-image")}>
                   {this.getPropValue("header")}
                   {this.castToString(headerHighlight) && (
-                    <span className={this.decorateCSS("theme-color")}>
-                      {this.castToString(headerHighlight).split(" ").slice(0, -1).join(" ")}{" "}
-                      <span
-                        className={this.decorateCSS("sketch-underline")}
-                        style={
-                          headerHighlightLine
-                            ? {
-                                backgroundImage: `url("data:image/svg+xml;charset=utf-8,%3Csvg preserveAspectRatio='none' width='100%' height='6' viewBox='0 0 119 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M117.434 3.853C59.027 5.933 84.784-2.46 1.566 3.436' stroke='${encodedColor}' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E")`,
-                              }
-                            : {}
-                        }
-                      >
-                        {this.castToString(headerHighlight).split(" ").slice(-1)}
-                      </span>
+                    <span>
+                      {this.castToString(headerHighlight).split(" ").slice(0, -1).join(" ")}
+                      <span className={this.decorateCSS("sketch-underline")}>{this.castToString(headerHighlight).split(" ").slice(-1)}</span>
                     </span>
                   )}
                 </Base.H2>
