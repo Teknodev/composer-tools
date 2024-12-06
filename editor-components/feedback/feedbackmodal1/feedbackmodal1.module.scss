@@ -237,14 +237,7 @@
   }
 }
 
-@media (max-width: 1025px) {
-  .feedback-modal {
-    // max-width: 500px;
-    // max-height: 700px;
-  }
-}
-
-@media (max-width: 480px) {
+@container (max-width: #{$composer-phone-width}) {
   .feedback-modal {
     max-width: 320px !important;
     max-height: 700px !important;
