@@ -41,7 +41,7 @@
             }
           }
           .title {
-            color: var(--composer-primary-color);
+            color: var(--composer-font-color-primary);
             margin: 0px;
           }
 
@@ -102,6 +102,14 @@
         .down-container{
           flex-direction: column;
           gap: var(--composer-gap-xl);
+          .content{
+            .title{
+              text-align: center;
+            }
+            .description{
+              text-align: center;
+            }
+          }
           .buttons{
             max-width: 100%;
             justify-content: start;

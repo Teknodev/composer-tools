@@ -26,13 +26,13 @@ class FaqContainer extends BaseFAQ {
     this.addProp({
       type: "string",
       key: "title",
-      displayer: "Page Title",
+      displayer: "Title",
       value: "Frequently asked questions",
     });
     this.addProp({
       type: "string",
       key: "description",
-      displayer: "Title Description",
+      displayer: "Description",
       value:
         "If you have ever wondered how to developed your brand, this is the place fot you. Take a big step forward in growing your business with this great tool.",
     });
