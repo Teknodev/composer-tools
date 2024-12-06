@@ -22,7 +22,7 @@
       }
 
       @container (max-width: #{$composer-phone-width}) {
-        padding: var(--composer-gap-md) var(--composer-gap-md);
+        display: none;
       }
     }
 
@@ -37,6 +37,18 @@
     .carousel {
       width: 100%;
 
+      >ul {
+        bottom: -19px;
+
+        >li {
+          >button {
+            &:before {
+              color: var(--composer-font-color-primary);
+            }
+          }
+        }
+      }
+
       .card {
         height: 360px;
         overflow: hidden;
@@ -50,12 +62,18 @@
         border-radius: var(--composer-border-radius-xs);
 
         .imgContainer {
-          width: 100%;
+          position: relative;
+          width: 470px;
           height: 100%;
           overflow: hidden;
           z-index: 1;
 
+          @container (max-width: #{$composer-phone-width}) {
+            width: 100%;
+          }
+
           .img {
+            position: absolute;
             width: 100%;
             height: 100%;
             object-fit: cover;

@@ -167,53 +167,31 @@ class Slider7 extends BaseSlider {
     const isCardExist = items.length > 0;
     const nextArrow = this.getPropValue("nextArrow");
     const previousArrow = this.getPropValue("previousArrow");
-    const visibleItemCount = Math.min(items.length, 3);
     const sliderRef = this.getComponentState("slider-ref");
-
 
     const settings = {
       dots: false,
+      arrows: true,
       infinite: true,
       speed: 500,
       autoplay: true,
       centerMode: true,
       autoplaySpeed: 3000,
-      slidesToShow: visibleItemCount,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      centerPadding: "0px",
+      variableWidth: true,
       responsive: [
         {
-          breakpoint: 1024,
+          breakpoint: 640,
           settings: {
-            slidesToShow: Math.min(visibleItemCount, 3),
-            slidesToScroll: 3,
-            centerPadding: "60px",
-            infinite: true,
-          }
-        },
-        {
-          breakpoint: 768,
-          settings: {
-            slidesToShow: Math.min(visibleItemCount, 1),
-            slidesToScroll: 2,
-            initialSlide: 2,
-            centerPadding: "180px",
-            infinite: true,
-          }
-        },
-        {
-          breakpoint: 480,
-          settings: {
-            slidesToShow: Math.min(visibleItemCount, 1),
-            slidesToScroll: 1,
-            infinite: true,
-            centerPadding: "0px",
+            dots: true,
+            arrows: false,
+            variableWidth: false,
           }
         }
       ],
-      centerPadding: "240px",
-      slidesToScroll: 1,
-      swipe: true,
-      swipeToSlide: true,
-      arrows: true,
+
       beforeChange: (current: number, next: number) => {
         this.setComponentState("centerSlide", next);
       },
