@@ -21,7 +21,7 @@ class FaqMiddle extends BaseFAQ {
     this.addProp({
       type: "string",
       key: "badge",
-      displayer: "Badge",
+      displayer: "Subtitle",
       value: "FAQ",
     });
     this.addProp({
@@ -33,7 +33,7 @@ class FaqMiddle extends BaseFAQ {
     this.addProp({
       type: "string",
       key: "title",
-      displayer: "Title Description",
+      displayer: "Description",
       value: "FAQ stands for Frequently Asked Questions. It is a section of a website or document where common questions and their answers are provided to help users better understand a product, service, or topic. The purpose of an FAQ section is to address common concerns and provide helpful information to users, so they can make informed decisions. ",
     });
     this.addProp({
@@ -94,7 +94,85 @@ class FaqMiddle extends BaseFAQ {
                       value: " We offer standard and express shipping options. Standard shipping usually takes 5-7 business days, while express shipping takes 1-3 business days.",
                     },
                   ]
-                }
+                },
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "cardIndex",
+                      displayer: "Card Index",
+                      value: "2"
+                    },
+                    {
+                      type: "string",
+                      key: "cardTitle",
+                      displayer: "Question",
+                      value:
+                        "What are the shipping options available?",
+                    },
+                    {
+                      type: "string",
+                      key: "description",
+                      displayer: "Answer",
+                      value: " We offer standard and express shipping options. Standard shipping usually takes 5-7 business days, while express shipping takes 1-3 business days.",
+                    },
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "cardIndex",
+                      displayer: "Card Index",
+                      value: "3"
+                    },
+                    {
+                      type: "string",
+                      key: "cardTitle",
+                      displayer: "Question",
+                      value:
+                        "What are the shipping options available?",
+                    },
+                    {
+                      type: "string",
+                      key: "description",
+                      displayer: "Answer",
+                      value: " We offer standard and express shipping options. Standard shipping usually takes 5-7 business days, while express shipping takes 1-3 business days.",
+                    },
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "cardIndex",
+                      displayer: "Card Index",
+                      value: "4"
+                    },
+                    {
+                      type: "string",
+                      key: "cardTitle",
+                      displayer: "Question",
+                      value:
+                        "What are the shipping options available?",
+                    },
+                    {
+                      type: "string",
+                      key: "description",
+                      displayer: "Answer",
+                      value: " We offer standard and express shipping options. Standard shipping usually takes 5-7 business days, while express shipping takes 1-3 business days.",
+                    },
+                  ]
+                },
               ]
             }
           ],
@@ -125,6 +203,58 @@ class FaqMiddle extends BaseFAQ {
                       key: "cardIndex",
                       displayer: "Card Index",
                       value: "1"
+                    },
+                    {
+                      type: "string",
+                      key: "cardTitle",
+                      displayer: "Question",
+                      value:
+                        "How can I track my order?",
+                    },
+                    {
+                      type: "string",
+                      key: "description",
+                      displayer: "Answer",
+                      value: "Once your order has been shipped, you will receive a tracking number via email. You can use this tracking number to track your order on our website or on the carrier's website.",
+                    },
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "cardIndex",
+                      displayer: "Card Index",
+                      value: "2"
+                    },
+                    {
+                      type: "string",
+                      key: "cardTitle",
+                      displayer: "Question",
+                      value:
+                        "How can I track my order?",
+                    },
+                    {
+                      type: "string",
+                      key: "description",
+                      displayer: "Answer",
+                      value: "Once your order has been shipped, you will receive a tracking number via email. You can use this tracking number to track your order on our website or on the carrier's website.",
+                    },
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "cardIndex",
+                      displayer: "Card Index",
+                      value: "3"
                     },
                     {
                       type: "string",
@@ -186,6 +316,110 @@ class FaqMiddle extends BaseFAQ {
                       value: "We offer a 30-day return policy for most products. If you are not satisfied with your purchase, you can return it within 30 days for a full refund or exchange.",
                     },
                   ]
+                },
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "cardIndex",
+                      displayer: "Card Index",
+                      value: "2"
+                    },
+                    {
+                      type: "string",
+                      key: "cardTitle",
+                      displayer: "Question",
+                      value:
+                        "What is your return policy?",
+                    },
+                    {
+                      type: "string",
+                      key: "description",
+                      displayer: "Answer",
+                      value: "We offer a 30-day return policy for most products. If you are not satisfied with your purchase, you can return it within 30 days for a full refund or exchange.",
+                    },
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "cardIndex",
+                      displayer: "Card Index",
+                      value: "3"
+                    },
+                    {
+                      type: "string",
+                      key: "cardTitle",
+                      displayer: "Question",
+                      value:
+                        "What is your return policy?",
+                    },
+                    {
+                      type: "string",
+                      key: "description",
+                      displayer: "Answer",
+                      value: "We offer a 30-day return policy for most products. If you are not satisfied with your purchase, you can return it within 30 days for a full refund or exchange.",
+                    },
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "cardIndex",
+                      displayer: "Card Index",
+                      value: "4"
+                    },
+                    {
+                      type: "string",
+                      key: "cardTitle",
+                      displayer: "Question",
+                      value:
+                        "What is your return policy?",
+                    },
+                    {
+                      type: "string",
+                      key: "description",
+                      displayer: "Answer",
+                      value: "We offer a 30-day return policy for most products. If you are not satisfied with your purchase, you can return it within 30 days for a full refund or exchange.",
+                    },
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "cardIndex",
+                      displayer: "Card Index",
+                      value: "5"
+                    },
+                    {
+                      type: "string",
+                      key: "cardTitle",
+                      displayer: "Question",
+                      value:
+                        "What is your return policy?",
+                    },
+                    {
+                      type: "string",
+                      key: "description",
+                      displayer: "Answer",
+                      value: "We offer a 30-day return policy for most products. If you are not satisfied with your purchase, you can return it within 30 days for a full refund or exchange.",
+                    },
+                  ]
                 }
               ]
             }
@@ -217,6 +451,32 @@ class FaqMiddle extends BaseFAQ {
                       key: "cardIndex",
                       displayer: "Card Index",
                       value: "1"
+                    },
+                    {
+                      type: "string",
+                      key: "cardTitle",
+                      displayer: "Question",
+                      value:
+                        "How can I contact customer support?",
+                    },
+                    {
+                      type: "string",
+                      key: "description",
+                      displayer: "Answer",
+                      value: "You can contact our customer support team by email or phone. Our email address and phone number can be found on our website's contact page.",
+                    },
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "cardIndex",
+                      displayer: "Card Index",
+                      value: "2"
                     },
                     {
                       type: "string",
