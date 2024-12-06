@@ -10,13 +10,10 @@
         .title {
           margin: 0px;
         }
-        .divider-wrapper{
-          margin: 0px;
-          .divider {
-            background-color: var(--composer-font-color-primary);
-            height: 2px;
-            width: 50px;
-          }
+        .divider {
+          background-color: var(--composer-primary-color);
+          height: 2px;
+          width: 50px;
         }
         .description {
         }
@@ -33,7 +30,7 @@
           gap: var(--composer-gap-md);
           .card {
             color: var(--composer-font-color-primary);
-            border-bottom: 1px solid var(--composer-font-color-primary);
+            border-bottom: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.5);
             cursor: pointer;
             .top-card {
               display: flex;
@@ -85,7 +82,7 @@
                 color:var(--composer-tertiary-color);
               }
               &.active {
-                padding: var(--composer-gap-md) 0px;
+                padding-bottom: var(--composer-gap-md);
                 height: 100%;
                 .card-text {
                   display: flex;
@@ -112,6 +109,7 @@
             flex-direction: column;
             gap: var(--composer-gap-md);
             .title-info {
+              font-size: 1.5rem;
               margin: 0px;
               color: var(--composer-font-color-primary);
             }
@@ -123,6 +121,17 @@
               width: fit-content;
             }
           }
+        }
+      }
+    }
+  }
+}
+@container (max-width: #{$composer-tablet-width}){
+  .container{
+    .max-content{
+      .content{
+        .contentContainer {
+          gap: var(--composer-gap-xl);
         }
       }
     }

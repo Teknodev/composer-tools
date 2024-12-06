@@ -39,7 +39,7 @@ class FaqContainerTwo extends BaseFAQ {
     this.addProp({
       type: "string",
       key: "mainSubtitle",
-      displayer: "Subtitle",
+      displayer: "Description",
       value:
         "Below is a list of frequently asked questions to help you understand how this works.",
     });
@@ -83,13 +83,13 @@ class FaqContainerTwo extends BaseFAQ {
             {
               type: "string",
               key: "title",
-              displayer: "Title",
+              displayer: "Question",
               value: "How do I go about conducting market research?",
             },
             {
               type: "string",
               key: "description",
-              displayer: "Description",
+              displayer: "Answer",
               value:
                 "Tincidunt elit magnis nulla facilisis. Dolor sagittis maecenas. Sapien nunc amet ultrices, dolores sit ipsum velit purus aliquet, massa fringilla leo orci.",
             },
@@ -312,9 +312,8 @@ class FaqContainerTwo extends BaseFAQ {
                   </Base.SectionTitle>
                 )}
                 {mainTitleExist && mainSubtitleExist && showLine && (
-                  <div className={this.decorateCSS("divider-wrapper")}>
-                    <div className={this.decorateCSS("divider")} />
-                  </div>)}
+                  <div className={this.decorateCSS("divider")} />
+                )}
                 {mainSubtitleExist && (
                   <Base.SectionDescription className={this.decorateCSS("description")}>
                     {this.getPropValue("mainSubtitle")}
@@ -371,7 +370,7 @@ class FaqContainerTwo extends BaseFAQ {
                             )}
                             {descExist && (
                               <div className={`${this.decorateCSS("text-box")} ${is_active && this.decorateCSS("active")}`} >
-                                <div className={`$this.decorateCSS("card-text") ${is_active && this.decorateCSS("active")}`}>
+                                <div className={`${this.decorateCSS("card-text")} ${is_active && this.decorateCSS("active")}`}>
                                   {item.description}
                                 </div>
                               </div>
@@ -386,9 +385,9 @@ class FaqContainerTwo extends BaseFAQ {
                     {infoArray.map((item: InfoArrayItem, index: number) => (
                       <div key={index} className={this.decorateCSS("info-items")}>
                         {this.castToString(item.title) && (
-                          <Base.H2 className={this.decorateCSS("title-info")}>
+                          <div className={this.decorateCSS("title-info")}>
                             {item.title}
-                          </Base.H2>
+                          </div>
                         )}
                         {this.castToString(item.description) && (
                           <Base.P className={this.decorateCSS("description-info")}>
