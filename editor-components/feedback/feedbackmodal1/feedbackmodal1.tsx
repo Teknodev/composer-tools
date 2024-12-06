@@ -229,6 +229,8 @@ class FeedbackModal1 extends BaseModal {
       displayer: "Button Text",
       value: "Submit Now",
     });
+
+    this.setComponentState("selectedEmojiId", null);
   }
 
   handleEmojiClick(emojiId: number, setFieldValue: (field: string, value: any) => void) {
@@ -240,7 +242,12 @@ class FeedbackModal1 extends BaseModal {
     const selectedElement = document.getElementById(`emoji-${emojiId}`);
     if (selectedElement) {
       selectedElement.classList.add(styles.selected);
-      setFieldValue("selectedEmojiLabel", this.getComponentState("selectedEmojiLabel"));
+
+      const emojis = this.castToObject<Emoji[]>("emojis");
+      const selectedEmojiLabel = emojis[emojiId - 1]?.label;
+
+      setFieldValue("selectedEmojiLabel", selectedEmojiLabel);
+      this.setComponentState("selectedEmojiLabel", selectedEmojiLabel);
     } else {
       console.error(`Element with id emoji-${emojiId} not found.`);
     }
@@ -342,7 +349,6 @@ class FeedbackModal1 extends BaseModal {
                         id={`emoji-${index + 1}`}
                         className={`${this.decorateCSS("feedbackModalEmoji")} ${index === 2 && this.decorateCSS("selected")}`}
                         onClick={() => {
-                          this.setComponentState("selectedEmojiLabel", this.castToString(item.label));
                           this.handleEmojiClick(index + 1, setFieldValue);
                         }}
                       >
