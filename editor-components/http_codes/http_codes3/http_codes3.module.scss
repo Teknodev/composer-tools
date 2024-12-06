@@ -1,281 +1,139 @@
 .container {
-  width: 100%;
-  margin-top: 0;
   height: 100vh;
-}
-
-.max-content {
-  max-width: var(--composer-content-width);
-  background: var(--composer-html-background);
-  margin: 0 auto;
-  height: 100%;
-}
-
-.content {
-  display: flex;
-  flex-direction: column;
-  row-gap: 50px;
-  height: 100%;
-  justify-content: center;
-  margin: 0 auto;
-  text-align: center;
-  padding: 20px 50px;
-
-  .title {
-    position: relative;
-    font-size: 12rem;
-    opacity: 0;
-    color: var(--composer-font-color-primary);
-    word-break: break-all;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    animation: fadeIn 1s ease-in-out forwards;
-
-    .word {
-      display: inline-block;
-      opacity: 0;
-      transform: translateY(100px);
-      animation: wordSlideIn 0.8s ease-in-out forwards;
-    }
-
-    @keyframes wordSlideIn {
-      0% {
+  .max-content {
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--composer-gap-md);
+      .title {
+        position: relative;
+        font-size: 5rem;
         opacity: 0;
-        transform: translateY(100px);
+        color: var(--composer-font-color-primary);
+        display: flex;
+        justify-content: center;
+        animation: fadeIn 1s ease-in-out forwards;
+        position: relative;
+        width: fit-content;
+        .label-404 {
+          position: absolute;
+          padding: var(--composer-gap-xs);
+          left: 0px;
+          bottom: 0px;
+          width: fit-content;
+          background-color: var(--composer-secondary-color);
+          border-radius: var(--composer-border-radius-md);
+          opacity: 0;
+          transform: scale(0.5);
+          animation: appearAndScale 1s ease-in-out forwards;
+          animation-delay: 0.5s;
+          .text{
+            color: var(--composer-font-color-primary);
+            font-size: 1rem;
+          }
+        }
+    
+        .word {
+          display: inline-block;
+          opacity: 0;
+          transform: translateY(100px);
+          animation: wordSlideIn 0.8s ease-in-out forwards;
+        }
+    
+        @keyframes wordSlideIn {
+          0% {
+            opacity: 0;
+            transform: translateY(100px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+  
+ 
+    
+        @keyframes appearAndScale {
+          0% {
+            opacity: 0;
+            transform: scale(0.5);
+          }
+          60% {
+            opacity: 1;
+            transform: scale(1.1);
+          }
+          100% {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
       }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .top-left {
-      position: absolute;
-      background-color: var(--composer-primary-color);
-      top: -20px;
-      left: 10%;
-      height: 5px;
-      width: 0;
-      opacity: 0;
-      animation: lineRevealTopLeft 0.6s ease forwards;
-      animation-delay: 0.5s;
-    }
-
-    .bottom-right {
-      position: absolute;
-      background-color: var(--composer-primary-color);
-      bottom: -20px;
-      right: 15%;
-      height: 5px;
-      width: 0;
-      opacity: 0;
-      animation: lineRevealBottomRight 0.6s ease forwards;
-      animation-delay: 0.5s;
-    }
-
-    .label-404 {
-      position: absolute;
-      padding: 5px;
-      left: 11%;
-      top: 45%;
-      font-size: 2rem;
-      width: 10%;
-      background-color: var(--composer-secondary-color);
-      color: var(--composer-font-color-primary);
-      border-radius: 20px;
-      opacity: 0;
-      word-break: break-all;
-      transform: scale(0.5);
-      animation: appearAndScale 1s ease-in-out forwards;
-      animation-delay: 0.5s;
-    }
-
-    @keyframes appearAndScale {
-      0% {
+    
+      .description {
+        font-size: 2rem;
         opacity: 0;
-        transform: scale(0.5);
+        color: var(--composer-font-color-primary);
+        animation: revealWords 3s ease-in-out forwards;
+        animation-delay: 0s;
       }
-      60% {
-        opacity: 1;
-        transform: scale(1.1);
+    
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
-      100% {
-        opacity: 1;
-        transform: scale(1);
+    
+      @keyframes revealWords {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
       }
-    }
-  }
-
-  .description {
-    font-size: 2rem;
-    width: 35%;
-    word-break: break-all;
-    margin: 0 auto;
-    opacity: 0;
-    color: var(--composer-font-color-primary);
-    animation: revealWords 3s ease-in-out forwards;
-    animation-delay: 0s;
-  }
-
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-      transform: translateY(-20px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes revealWords {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-
-  .word {
-    opacity: 0;
-    display: inline-block;
-    animation: revealWord 0.5s ease-in-out forwards;
-  }
-
-  @keyframes revealWord {
-    0% {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .button {
-    padding: 10px 20px;
-    text-align: center;
-    align-items: center;
-    word-break: normal;
-    background-color: var(--composer-primary-color);
-    color: var(--composer-font-color-secondary);
-    width: 17%;
-    font-size: 24px;
-    margin: 0 auto;
-    opacity: 0;
-    border-radius: 5px;
-    cursor: pointer;
-    animation: buttonReveal 1.2s ease-out forwards;
-    animation-delay: 1.5s;
-    transition: background-color 0.3s ease, border 0.3s ease, color 0.3s ease;
-  }
-
-  @keyframes buttonReveal {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-
-  .button:hover {
-    background-color: transparent;
-    border: 2px solid var(--composer-primary-color);
-    color: var(--composer-font-color-primary);
-  }
+    
+      .word {
+        opacity: 0;
+        display: inline-block;
+        animation: revealWord 0.5s ease-in-out forwards;
+      }
+    
+      @keyframes revealWord {
+        0% {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    
+      .button {
+        background-color: var(--composer-primary-color);
+        color: var(--composer-font-color-secondary);
+        opacity: 0;
+        animation: buttonReveal 1.2s ease-out forwards;
+        animation-delay: 1.5s;
+        transition: background-color 0.3s ease, border 0.3s ease, color 0.3s ease;
+      }
+    
+      @keyframes buttonReveal {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+    }    
+  }  
 }
 
-@media (max-width: 768px) {
-  .container {
-    height: 100vh !important;
-    margin: 20px 0px !important;
-  }
-  .content {
-    row-gap: 20px !important;
-    padding: 20px 30px !important;
 
-    .title {
-      font-size: 8rem !important;
-
-      .top-left {
-        top: -20px;
-        left: 10%;
-        height: 5px;
-        width: 0;
-      }
-
-      .bottom-right {
-        bottom: -20px;
-        right: 15%;
-        height: 5px;
-        width: 0;
-      }
-
-      .label-404 {
-        left: 12%;
-        top: 24%;
-        font-size: 1.5rem;
-        width: 18%;
-      }
-    }
-
-    .description {
-      font-size: 2rem !important;
-      width: 90% !important;
-    }
-
-    .button {
-      padding: 15px !important;
-      width: 30% !important;
-      font-size: 20px !important;
-    }
-  }
-}
-
-@media (max-width: 468px) {
-  .content {
-    padding: 20px 30px !important;
-    row-gap: 30px !important;
-
-    .title {
-      font-size: 4rem !important;
-
-      .top-left {
-        top: -20px;
-        left: 10%;
-        height: 5px;
-        width: 0;
-      }
-
-      .bottom-right {
-        bottom: -20px;
-        right: 15%;
-        height: 5px;
-        width: 0;
-      }
-
-      .label-404 {
-        padding: 0px !important;
-        left: 2% !important;
-        top: 25% !important;
-        font-size: 1rem !important;
-        width: 25% !important;
-      }
-    }
-
-    .description {
-      font-size: 2rem !important;
-      width: 100% !important;
-    }
-
-    .button {
-      padding: 15px !important;
-      width: 80% !important;
-      font-size: 20px !important;
-    }
-  }
-}

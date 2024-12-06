@@ -2,6 +2,7 @@ import React from "react";
 import { BaseHTTPCodes } from "../../EditorComponent";
 import styles from "./http_codes3.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { Base } from "../../../composer-base-components/base/base";
 
 class HTTP_CODES3 extends BaseHTTPCodes {
   constructor(props?: any) {
@@ -82,24 +83,26 @@ class HTTP_CODES3 extends BaseHTTPCodes {
     const titleWords = title_words.props.html;
 
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
             <div className={this.decorateCSS("title")}>
-              {titleWords && <div className={this.decorateCSS("top-left")}></div>}
               {this.renderTitle()}
-              {titleWords && <div className={this.decorateCSS("bottom-right")}></div>}
-              {label404Word && <div className={this.decorateCSS("label-404")}>{this.getPropValue("404")}</div>}
+              {label404Word && <div className={this.decorateCSS("label-404")}>
+                <div className={this.decorateCSS("text")}>
+                  {this.getPropValue("404")}
+                </div>
+              </div>}
             </div>
             <div className={this.decorateCSS("description")}>{this.renderDescription()}</div>
             {buttonWords && (
-              <div className={this.decorateCSS("button")}>
+              <Base.Button className={this.decorateCSS("button")}>
                 <ComposerLink path={this.getPropValue("url")}>{this.getPropValue("button")}</ComposerLink>
-              </div>
+              </Base.Button>
             )}
           </div>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
