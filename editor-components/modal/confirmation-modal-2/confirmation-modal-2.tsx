@@ -197,12 +197,6 @@ class ConfirmationModal2 extends BaseModal {
     });
 
     this.addProp({
-      type: "boolean",
-      key: "bottomDivider",
-      displayer: "Bottom Divider",
-      value: true,
-    });
-    this.addProp({
       type: "array",
       key: "contactInfos",
       displayer: "Contact Infos",
@@ -285,7 +279,6 @@ class ConfirmationModal2 extends BaseModal {
     const composerPrimaryColor = getComputedStyle(document.documentElement).getPropertyValue("--composer-primary-color").trim();
     const encodedColor = encodeURIComponent(composerPrimaryColor);
     const eventDetails = this.castToObject<EventDetail>("eventDetails");
-    const bottomDivider = this.getPropValue("bottomDivider");
     const contactInfos = this.castToObject<ContactInfo[]>("contactInfos");
 
     return (
@@ -332,12 +325,10 @@ class ConfirmationModal2 extends BaseModal {
             <div className={this.decorateCSS("event-content")}>
               {(speakers.length > 0 || this.castToString(subheaderHighlight) || this.castToString(subheader)) && (
                 <div className={this.decorateCSS("event-speakers")}>
-                  {(this.castToString(subheaderHighlight) || this.castToString(subheader)) && (
-                    <div className={this.decorateCSS("subheader")}>
-                      <Base.H2 className={this.decorateCSS("subheader")}>{subheader} </Base.H2>
-                      {this.castToString(subheaderHighlight) && <Base.H2 className={this.decorateCSS("highlight")}>{subheaderHighlight}</Base.H2>}
-                    </div>
-                  )}
+                  <div className={this.decorateCSS("subheader")}>
+                    <Base.H2 className={this.decorateCSS("subheader-text")}>{subheader} </Base.H2>
+                    <Base.H2 className={this.decorateCSS("highlight")}>{subheaderHighlight}</Base.H2>
+                  </div>
                   {speakers.length > 0 && (
                     <div className={this.decorateCSS("speakers")}>
                       {speakers.map((speaker, index) => (
@@ -369,7 +360,6 @@ class ConfirmationModal2 extends BaseModal {
               )}
             </div>
           </Base.VerticalContent>
-          {bottomDivider && <hr className={this.decorateCSS("line")}></hr>}
           {contactInfos.length > 0 && (
             <div className={this.decorateCSS("contact-infos")}>
               {contactInfos.map((value: ContactInfo, item: number) => (
