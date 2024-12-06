@@ -535,9 +535,15 @@ class Feature1 extends BaseFeature {
       const data: any = [];
 
       for (let i = 0; i < cards.length; i++) {
-        if (!(this.castToString(cards[i].title) ||
+        if (!(
+          this.castToString(cards[i].title) ||
           this.castToString(cards[i].description) ||
-          cards[i].image)) {
+          this.castToString(cards[i].date) ||
+          this.castToString(cards[i].readTime) ||
+          this.castToString(cards[i].fullname) ||
+          this.castToString(cards[i].profileDescription) ||
+          cards[i].image
+        )) {
           continue;
         }
 
