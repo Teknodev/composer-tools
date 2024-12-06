@@ -253,7 +253,7 @@ class FeedbackModal1 extends BaseModal {
   }
 
   getName(): string {
-    return "FeedbackModal1";
+    return "Feedback Modal 1";
   }
 
   render() {
@@ -372,7 +372,7 @@ class FeedbackModal1 extends BaseModal {
                     {inputPlaceholder && <ErrorMessage className={this.decorateCSS("error-message")} name="message" component={"span"} />}
                     {buttonval && (
                       <Base.Button className={this.decorateCSS("button")} type="submit">
-                        {buttonval}
+                        {this.getPropValue("buttonText")}
                       </Base.Button>
                     )}
                   </Form>

@@ -172,7 +172,7 @@
         &.selected,
         &:hover {
           z-index: 1;
-          background: radial-gradient(circle, rgba(var(--composer-secondary-color-rgb, 1), 0.8), rgba(var(--composer-html-background-rgb, 1), 1));
+          background: radial-gradient(circle, rgba(var(--composer-primary-color-rgb, 1), 0.8), rgba(var(--composer-html-background-rgb, 1), 1));
           transform: scale(1.2);
 
           &::after {
@@ -184,7 +184,7 @@
           }
 
           .feedbackModalEmojiIcon {
-            background-color: rgba(var(--composer-secondary-color-rgb), 1);
+            background-color: rgba(var(--composer-primary-color-rgb), 1);
             filter: grayscale(0%);
           }
 
@@ -227,13 +227,20 @@
       resize: none;
 
       &:focus {
-        outline-color: var(--composer-secondary-color);
+        outline-color: var(--composer-primary-color);
       }
     }
   }
 
   .button {
     width: 100%;
+  }
+}
+
+@media (max-width: 1025px) {
+  .feedback-modal {
+    // max-width: 500px;
+    // max-height: 700px;
   }
 }
 
