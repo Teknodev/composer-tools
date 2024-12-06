@@ -2,12 +2,13 @@ import * as React from "react";
 import { BaseContent } from "../../EditorComponent";
 import styles from "./content3.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
 
 type Card = {
   icon: string;
   image: string;
-  title: string;
-  description: string;
+  title: JSX.Element;
+  description: JSX.Element;
 };
 
 class Content3 extends BaseContent {
@@ -39,7 +40,8 @@ class Content3 extends BaseContent {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Creating a higher spacing for people through a unique campaigns.",
+              value:
+                "Creating a higher spacing for people through a unique campaigns.",
             },
             {
               type: "image",
@@ -71,7 +73,8 @@ class Content3 extends BaseContent {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Creating a higher spacing for people through a unique campaigns.",
+              value:
+                "Creating a higher spacing for people through a unique campaigns.",
             },
             {
               type: "image",
@@ -103,7 +106,8 @@ class Content3 extends BaseContent {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Creating a higher spacing for people through a unique campaigns.",
+              value:
+                "Creating a higher spacing for people through a unique campaigns.",
             },
             {
               type: "image",
@@ -135,7 +139,8 @@ class Content3 extends BaseContent {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Creating a higher spacing for people through a unique campaigns.",
+              value:
+                "Creating a higher spacing for people through a unique campaigns.",
             },
             {
               type: "image",
@@ -154,7 +159,7 @@ class Content3 extends BaseContent {
       key: "itemCount",
       displayer: "Item count in a row",
       value: 4,
-      max: 4
+      max: 4,
     });
   }
 
@@ -164,37 +169,48 @@ class Content3 extends BaseContent {
 
   render() {
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          {this.castToObject<Card[]>("cards").map(
-            (card: Card, indexCard: number) => (
-              <div key={indexCard} className={this.decorateCSS("card-item-count")} style={{
-                width: 100 / this.getPropValue("itemCount") + "%",
-              }}>
-                <div className={this.decorateCSS("card")}>
+      <Base.Container isFull={true} className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <Base.ListGrid
+            gridCount={{ pc: this.getPropValue("itemCount") }}
+            className={this.decorateCSS("grid-container")}
+          >
+            {this.castToObject<Card[]>("cards").map(
+              (card: Card, indexCard: number) => (
+                <div key={indexCard} className={this.decorateCSS("card")}>
                   <div className={this.decorateCSS("image-container")}>
-                    <img className={this.decorateCSS("image")} src={card.image} alt="" />
+                    <img
+                      className={this.decorateCSS("image")}
+                      src={card.image}
+                      alt=""
+                    />
                   </div>
-                  <div className={this.decorateCSS("little-container")}>
-                    <div className={this.decorateCSS("icon-title-container")}>
-                      <ComposerIcon name={card.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
-                      <h3 className={this.decorateCSS("title")}>
+                  <Base.VerticalContent
+                    className={this.decorateCSS("little-container")}
+                  >
+                    {card.icon && (
+                      <ComposerIcon
+                        name={card.icon}
+                        propsIcon={{ className: this.decorateCSS("icon") }}
+                      />
+                    )}
+                    {this.castToString(card.title) && (
+                      <Base.H2 className={this.decorateCSS("title")}>
                         {card.title}
-                      </h3>
-                    </div>
-                    <div className={this.decorateCSS("description-box")}>
-                      <p className={this.decorateCSS("description")}>
+                      </Base.H2>
+                    )}
+                    {this.castToString(card.description) && (
+                      <Base.P className={this.decorateCSS("description")}>
                         {card.description}
-                      </p>
-                    </div>
-                  </div>
+                      </Base.P>
+                    )}
+                  </Base.VerticalContent>
                 </div>
-              </div>
-            )
-          )}
-
-        </div>
-      </div>
+              )
+            )}
+          </Base.ListGrid>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

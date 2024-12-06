@@ -3,11 +3,12 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { Team, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./team2.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
 
-type Platform={
+type Platform = {
   icon: string;
   url: string;
-}
+};
 
 type TeamCardMember = {
   name: string;
@@ -83,13 +84,13 @@ class Team2 extends Team {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Our Team",
+      value: "The amazing team behind all results",
     });
     this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "Discover our domain expert team.",
+      value: "Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.",
     });
 
     this.addProp({
@@ -110,29 +111,28 @@ class Team2 extends Team {
             },
             {
               type: "string",
+              key: "position",
+              displayer: "Position",
+              value: "Ceo/Founder",
+            },
+            {
+              type: "string",
               key: "description",
-              value:
-                "Their design skills are truly exceptional, and they have a keen eye for aesthetics that sets them apart from others in the field.",
+              value: "Their design skills are truly exceptional, and they have a keen eye for aesthetics that sets them apart from others in the field.",
               displayer: "Description",
             },
             {
               type: "image",
               key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437073668c3c2002cd307a8?alt=media&timestamp=1719483639146",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437073668c3c2002cd307a8?alt=media&timestamp=1719483639146",
               displayer: "Image",
             },
             {
               type: "array",
               key: "platforms",
               displayer: "Sosial Medias",
-              value: [
-                facebook,
-                twitter,
-                instagram,
-              ],
+              value: [facebook, twitter, instagram],
             },
-
           ],
         },
         {
@@ -148,29 +148,28 @@ class Team2 extends Team {
             },
             {
               type: "string",
+              key: "position",
+              displayer: "Position",
+              value: "Ceo/Founder",
+            },
+            {
+              type: "string",
               key: "description",
-              value:
-                "We are a group of experienced professionals with diverse backgrounds and skill sets, working together to achieve common goals.",
+              value: "We are a group of experienced professionals with diverse backgrounds and skill sets, working together to achieve.",
               displayer: "Description",
             },
             {
               type: "image",
               key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437073668c3c2002cd307a4?alt=media&timestamp=1719483639146",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437073668c3c2002cd307a4?alt=media&timestamp=1719483639146",
               displayer: "Image",
             },
             {
               type: "array",
               key: "platforms",
               displayer: "Sosial Medias",
-              value: [
-                facebook,
-                twitter,
-                instagram,
-              ],
+              value: [facebook, twitter, instagram],
             },
-
           ],
         },
         {
@@ -186,29 +185,139 @@ class Team2 extends Team {
             },
             {
               type: "string",
+              key: "position",
+              displayer: "Position",
+              value: "Ceo/Founder",
+            },
+            {
+              type: "string",
               key: "description",
-              value:
-                "An online learning platform can provide access to educational content from anywhere with an internet connection.",
+              value: "An online learning platform can provide access to educational content from anywhere with an internet connection.",
               displayer: "Description",
             },
             {
               type: "image",
               key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437073668c3c2002cd307a0?alt=media&timestamp=1719483639146",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437073668c3c2002cd307a0?alt=media&timestamp=1719483639146",
               displayer: "Image",
             },
             {
               type: "array",
               key: "platforms",
               displayer: "Sosial Medias",
-              value: [
-                facebook,
-                twitter,
-                instagram,
-              ],
+              value: [facebook, twitter, instagram],
             },
-
+          ],
+        },
+        {
+          type: "object",
+          key: "team",
+          displayer: "Team",
+          value: [
+            {
+              type: "string",
+              key: "name",
+              value: "Clover Ruth",
+              displayer: "Name",
+            },
+            {
+              type: "string",
+              key: "position",
+              displayer: "Position",
+              value: "Ceo/Founder",
+            },
+            {
+              type: "string",
+              key: "description",
+              value: "Their design skills are truly exceptional, and they have a keen eye for aesthetics that sets them apart from others in the field.",
+              displayer: "Description",
+            },
+            {
+              type: "image",
+              key: "image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437073668c3c2002cd307a8?alt=media&timestamp=1719483639146",
+              displayer: "Image",
+            },
+            {
+              type: "array",
+              key: "platforms",
+              displayer: "Sosial Medias",
+              value: [facebook, twitter, instagram],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "team",
+          displayer: "Team",
+          value: [
+            {
+              type: "string",
+              key: "name",
+              value: "Jacklyn Mia",
+              displayer: "Name",
+            },
+            {
+              type: "string",
+              key: "position",
+              displayer: "Position",
+              value: "Ceo/Founder",
+            },
+            {
+              type: "string",
+              key: "description",
+              value: "We are a group of experienced professionals with diverse backgrounds and skill sets, working together to achieve.",
+              displayer: "Description",
+            },
+            {
+              type: "image",
+              key: "image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437073668c3c2002cd307a4?alt=media&timestamp=1719483639146",
+              displayer: "Image",
+            },
+            {
+              type: "array",
+              key: "platforms",
+              displayer: "Sosial Medias",
+              value: [facebook, twitter, instagram],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "team",
+          displayer: "Team",
+          value: [
+            {
+              type: "string",
+              key: "name",
+              value: "Jaylyn Kaleigh",
+              displayer: "Name",
+            },
+            {
+              type: "string",
+              key: "position",
+              displayer: "Position",
+              value: "Ceo/Founder",
+            },
+            {
+              type: "string",
+              key: "description",
+              value: "An online learning platform can provide access to educational content from anywhere with an internet connection.",
+              displayer: "Description",
+            },
+            {
+              type: "image",
+              key: "image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437073668c3c2002cd307a0?alt=media&timestamp=1719483639146",
+              displayer: "Image",
+            },
+            {
+              type: "array",
+              key: "platforms",
+              displayer: "Sosial Medias",
+              value: [facebook, twitter, instagram],
+            },
           ],
         },
       ],
@@ -226,60 +335,52 @@ class Team2 extends Team {
   }
 
   render() {
-   
-    return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <h2 className={this.decorateCSS("title")}>
-            {this.getPropValue("title")}
-          </h2>
-          <h4 className={this.decorateCSS("description")}>
-            {this.getPropValue("description")}
-          </h4>
-          <div className={this.decorateCSS("team-members")}>
-            {this.castToObject<TeamCardMember[]>("team-card").map(
-              (team: any, index: number) => (
-                <div
-                  className={this.decorateCSS("card-item-count")}
-                  style={{
-                    width: 90 / this.getPropValue("itemCount") + "%",
-                  }}
-                >
-                  <div
-                    className={`${this.decorateCSS("team")}`}
-                    key={index}
-                  >
-                    <img
-                      className={this.decorateCSS("image")}
-                      src={team.image}
-                      alt=""
-                    ></img>
-                    <h3 className={this.decorateCSS("title")}>{team.name}</h3>
-                    <p className={this.decorateCSS("long-text")}>
-                      {team.description}
-                    </p>
-                    <div className={this.decorateCSS("icon-group")}>
+    const title = this.getPropValue("title");
+    const description = this.getPropValue("description");
 
-                    {team.platforms && team.platforms.map(
-                        (item: Platform, indexPlatforms: number) => {
-                          return(
-                            <ComposerLink key={indexPlatforms} path={item.url}>
+    const titleValue = this.castToString(title);
+    const descriptionValue = this.castToString(description);
+    return (
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          {(titleValue || descriptionValue) && (
+            <Base.VerticalContent className={this.decorateCSS("up-content")}>
+              {titleValue && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+              {descriptionValue && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+            </Base.VerticalContent>
+          )}
+
+          <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("team-members")}>
+            {this.castToObject<TeamCardMember[]>("team-card").map((team: any, index: number) => {
+              const name = this.castToString(team.name);
+              const position = this.castToString(team.position);
+              const description = this.castToString(team.description);
+
+              return (
+                <Base.VerticalContent className={`${this.decorateCSS("team")}`} key={index}>
+                  {team.image && <img className={this.decorateCSS("image")} src={team.image} alt="" />}
+                  {name && <Base.H3 className={this.decorateCSS("title")}>{team.name}</Base.H3>}
+                  {position && <Base.H4 className={this.decorateCSS("position")}>{position}</Base.H4>}
+                  {description && <Base.P className={this.decorateCSS("long-text")}>{team.description}</Base.P>}
+                  <div className={this.decorateCSS("icon-group")}>
+                    {team.platforms &&
+                      team.platforms.map((item: Platform, indexPlatforms: number) => (
+                        <ComposerLink key={indexPlatforms} path={item.url}>
                           <ComposerIcon
                             name={item.icon}
                             propsIcon={{
-                              className: this.decorateCSS("icon")
-                            }}/>
-                          </ComposerLink>
-                        );
-                      })}
-                    </div>
+                              className: this.decorateCSS("icon"),
+                            }}
+                          />
+                        </ComposerLink>
+                      ))}
                   </div>
-                </div>
-              )
-            )}
-          </div>
-        </div>
-      </div>
+                </Base.VerticalContent>
+              );
+            })}
+          </Base.ListGrid>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
