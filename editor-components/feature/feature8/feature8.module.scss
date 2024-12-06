@@ -8,26 +8,18 @@
         }
 
         .cards-container {
-            justify-content: center;
-            gap: var(--composer-gap-xs);
-            position: relative;
+            gap: var(--composer-gap-sm);
             min-height: 500px;
+            justify-content: center;
 
             .card {
-                position: absolute;
-                top: 60%;
-                left: 50%;
-                transition: 1s left, 1s top, 1s transform;
-                transform: translate(-50%, -50%);
-                width: 275px;
+                position: relative;
+                transition: 1s;
                 min-height: 350px;
                 justify-content: center;
                 align-items: center;
                 border-radius: var(--composer-border-radius-xl);
                 padding: var(--composer-gap-md);
-                background-color: color-mix(in srgb,
-                        var(--composer-html-background),
-                        var(--composer-font-color-primary) 10%);
 
                 .icon {
                     width: 50px;
@@ -50,6 +42,33 @@
     }
 }
 
-@container (max-width: #{$composer-tablet-width}) {}
+@container (max-width: #{$composer-tablet-width}) {
+    .container {
+        .max-content {
+            .cards-container {
+                flex-direction: row;
 
-@container (max-width: #{$composer-phone-width}) {}
+                .card {
+                    // !important to override inline style
+                    margin: 0 !important;
+                    width: 47% !important;
+                    transform: none !important;
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        .max-content {
+            .cards-container {
+                flex-direction: column;
+
+                .card {
+                    width: 100% !important;
+                }
+            }
+        }
+    }
+}

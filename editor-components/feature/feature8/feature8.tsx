@@ -116,29 +116,26 @@ class Feature8 extends BaseFeature {
   callback: IntersectionObserverCallback = (entries) => {
     console.log("callback trigger!");
     const middle = Math.floor(entries.length / 2);
-    const offset = 300;
 
     entries.forEach((entry, index) => {
-      const target = entry.target as HTMLElement;
+      const style = (entry.target as HTMLElement).style;
+
+      style.zIndex = `${index + 1}`;
 
       if (entry.intersectionRatio > this.threshold) {
-        target.style.top = "50%";
+        style.transform = "";
+        style.margin = "0";
 
-        if (index === middle) {
-          target.style.zIndex = "1";
-        } else {
-          target.style.left = index > middle
-            ? `calc(50% + ${index + 1 * offset}px)`
-            : `calc(50% - ${index + 1 * offset}px)`;
-
-          target.style.transform += index > middle
-            ? ` rotate(10deg)`
-            : ` rotate(-10deg)`;
-        }
       } else {
-        target.style.left = "50%";
-        target.style.top = "60%";
-        target.style.transform = "translate(-50%, -50%)";
+        style.marginTop = "100px";
+
+        if (index > middle) {
+          style.marginLeft = "calc(-1* var(--composer-gap-xl))";
+          style.transform = `rotate(${Math.abs(index - middle)*5}deg)`;
+        } else if (index < middle) {
+          style.marginRight = "calc(-1* var(--composer-gap-xl))";
+          style.transform = `rotate(-${Math.abs(index - middle)*5}deg)`;
+        }
       }
     });
   };
@@ -194,6 +191,12 @@ class Feature8 extends BaseFeature {
                   <Base.VerticalContent
                     key={i}
                     className={this.decorateCSS("card")}
+                    style={{
+                      backgroundColor: `color-mix(in srgb,
+                        var(--composer-html-background),
+                        var(--composer-font-color-primary) ${(i+1)*5}%)`,
+                      width: 90 / cards.length + "%"
+                    }}
                   >
                     {!!card.icon && (
                       <ComposerIcon
