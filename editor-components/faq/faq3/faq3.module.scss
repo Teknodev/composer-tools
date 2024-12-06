@@ -6,16 +6,11 @@
       flex-direction: column;
       gap: var(--composer-gap-xl);
       .header {
-        gap: var(--composer-gap-md);
         .title {
-          margin: 0px;
-        }
-        .divider {
-          background-color: var(--composer-primary-color);
-          height: 2px;
-          width: 50px;
+          content: "";
         }
         .description {
+          content: "";
         }
       }
       .contentContainer {
