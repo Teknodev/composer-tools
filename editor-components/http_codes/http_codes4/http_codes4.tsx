@@ -3,6 +3,7 @@ import { BaseHTTPCodes } from "../../EditorComponent";
 import styles from "./http_codes4.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
 
 class HTTP_CODES4 extends BaseHTTPCodes {
   constructor(props?: any) {
@@ -68,47 +69,50 @@ class HTTP_CODES4 extends BaseHTTPCodes {
   }
 
   render() {
-    const title_words = this.getPropValue("title");
-    const titleWords = title_words.props.html;
+    const titleWords = this.castToString(this.getPropValue("title"));
     const description_words = this.getPropValue("description");
     const descriptionWords = description_words.props.html;
-
     const buttons = this.castToObject<any[]>("buttons");
 
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
-            <div className={this.decorateCSS("left-side")}>
-              {titleWords && <div className={this.decorateCSS("title")}>{this.getPropValue("title")}</div>}
-              {descriptionWords && <div className={this.decorateCSS("description")}>{this.getPropValue("description")}</div>}
+            {(titleWords || descriptionWords || (buttons?.length > 0)) && (
+              <div className={this.decorateCSS("left-side")}>
+                {titleWords && <div className={this.decorateCSS("title")}>{this.getPropValue("title")}</div>}
+                {descriptionWords && <div className={this.decorateCSS("description")}>{this.getPropValue("description")}</div>}
 
-              {buttons?.length > 0 && (
-                <div className={this.decorateCSS("button-container")}>
-                  {buttons.map((button: any, index: number) => {
-                    const buttonTextExist = this.castToString(button.text);
-
-                    if (buttonTextExist || button.icon)
+                {(buttons?.length > 0) && (
+                  <div className={this.decorateCSS("button-container")}>
+                    {buttons.map((button: any, index: number) => {
+                      const buttonTextExist = this.castToString(button.text);
                       return (
                         <ComposerLink path={button.link}>
                           <div key={index} className={this.decorateCSS("button")}>
-                            <div className={this.decorateCSS("icon")}> {button.icon && <ComposerIcon name={button.icon} />}</div>
-                            <div className={this.decorateCSS("button-text")}> {buttonTextExist && button.text}</div>
+                            {button.icon && (
+                              <ComposerIcon name={button.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                            )}
+                            {buttonTextExist && (
+                              <div className={this.decorateCSS("button-text")}> {button.text}</div>
+                            )}
                           </div>
                         </ComposerLink>
                       );
+                    })}
+                  </div>
+                )}
+              </div>
+            )}
 
-                    return <></>;
-                  })}
-                </div>
-              )}
-            </div>
-            <div className={this.decorateCSS("right-side")}>
-              <div className={this.decorateCSS("text")}>{this.getPropValue("right")}</div>
-            </div>
+            {this.castToString(this.getPropValue("right")) && (
+              <div className={this.decorateCSS("right-side")}>
+                <div className={this.decorateCSS("text")}>{this.getPropValue("right")}</div>
+              </div>
+            )}
           </div>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
