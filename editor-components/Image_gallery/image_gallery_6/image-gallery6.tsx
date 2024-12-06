@@ -107,12 +107,6 @@ class ImageGalleryComponent6 extends BaseImageGallery {
                                             value: "FaArrowRightLong",
                                         },
                                         {
-                                            type: "string",
-                                            key: "buttonText",
-                                            displayer: "Button Text",
-                                            value: "Join this plan",
-                                        },
-                                        {
                                             type: "page",
                                             key: "url",
                                             displayer: "Link",
@@ -155,12 +149,6 @@ class ImageGalleryComponent6 extends BaseImageGallery {
                                             key: "nextArrow",
                                             displayer: "Next Arrow",
                                             value: "FaArrowRightLong",
-                                        },
-                                        {
-                                            type: "string",
-                                            key: "buttonText",
-                                            displayer: "Button Text",
-                                            value: "Join this plan",
                                         },
                                         {
                                             type: "page",
@@ -206,12 +194,7 @@ class ImageGalleryComponent6 extends BaseImageGallery {
                                             displayer: "Next Arrow",
                                             value: "FaArrowRightLong",
                                         },
-                                        {
-                                            type: "string",
-                                            key: "buttonText",
-                                            displayer: "Button Text",
-                                            value: "Join this plan",
-                                        },
+
                                         {
                                             type: "page",
                                             key: "url",
@@ -278,12 +261,6 @@ class ImageGalleryComponent6 extends BaseImageGallery {
                                             value: "FaArrowRightLong",
                                         },
                                         {
-                                            type: "string",
-                                            key: "buttonText",
-                                            displayer: "Button Text",
-                                            value: "Join this plan",
-                                        },
-                                        {
                                             type: "page",
                                             key: "url",
                                             displayer: "Link",
@@ -326,12 +303,6 @@ class ImageGalleryComponent6 extends BaseImageGallery {
                                             key: "nextArrow",
                                             displayer: "Next Arrow",
                                             value: "FaArrowRightLong",
-                                        },
-                                        {
-                                            type: "string",
-                                            key: "buttonText",
-                                            displayer: "Button Text",
-                                            value: "Join this plan",
                                         },
                                         {
                                             type: "page",
@@ -378,12 +349,6 @@ class ImageGalleryComponent6 extends BaseImageGallery {
                                             value: "FaArrowRightLong",
                                         },
                                         {
-                                            type: "string",
-                                            key: "buttonText",
-                                            displayer: "Button Text",
-                                            value: "Join this plan",
-                                        },
-                                        {
                                             type: "page",
                                             key: "url",
                                             displayer: "Link",
@@ -426,12 +391,6 @@ class ImageGalleryComponent6 extends BaseImageGallery {
                                             key: "nextArrow",
                                             displayer: "Next Arrow",
                                             value: "FaArrowRightLong",
-                                        },
-                                        {
-                                            type: "string",
-                                            key: "buttonText",
-                                            displayer: "Button Text",
-                                            value: "Join this plan",
                                         },
                                         {
                                             type: "page",
@@ -496,12 +455,6 @@ class ImageGalleryComponent6 extends BaseImageGallery {
                                             key: "nextArrow",
                                             displayer: "Next Arrow",
                                             value: "FaArrowRightLong",
-                                        },
-                                        {
-                                            type: "string",
-                                            key: "buttonText",
-                                            displayer: "Button Text",
-                                            value: "Join this plan",
                                         },
                                         {
                                             type: "page",

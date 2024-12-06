@@ -96,12 +96,17 @@
                                         gap: var(--composer-gap-md);
                                         padding: var(--composer-gap-lg) calc(var(--composer-gap-xl) * 3);
                                         opacity: 0;
+                                        transition: opacity 2s ease;
                                         .title{
                                             font-size: 2rem;
+                                            opacity: 0;
+                                            transition: opacity 2s ease;
                                         }
                                         .bottom-container{
                                             display: flex;
                                             gap: var(--composer-gap-md);
+                                            opacity: 0;
+                                            transition: opacity 2s ease;
                                             .description{
                                                 display: flex;
                                                 align-items: center;
@@ -139,6 +144,12 @@
                                         max-height: 100%;
                                         .text-container{
                                             opacity: 1;
+                                            .title{
+                                                opacity: 1;
+                                            }
+                                            .bottom-container{
+                                                opacity: 1;
+                                            }
                                         }
                                     }
                                 }
