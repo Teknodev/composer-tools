@@ -102,7 +102,6 @@
                                         .bottom-container{
                                             display: flex;
                                             gap: var(--composer-gap-md);
-                                            align-items: stretch;
                                             .description{
                                                 display: flex;
                                                 align-items: center;
@@ -113,6 +112,7 @@
                                                 color: var(--composer-font-color-primary);
                                                 border: none;
                                                 padding: var(--composer-gap-sm);
+                                                height: fit-content;
                                                 .icon{
                                                     margin: 0px;
                                                     width: 20px;
