@@ -14,13 +14,13 @@
         display: flex;
         justify-content: center;
         animation: fadeIn 1s ease-in-out forwards;
-        position: relative;
         width: fit-content;
+        padding: 0px var(--composer-gap-sm);
         .label-404 {
           position: absolute;
           padding: var(--composer-gap-xs);
           left: 0px;
-          bottom: 0px;
+          bottom: 10px;
           width: fit-content;
           background-color: var(--composer-secondary-color);
           border-radius: var(--composer-border-radius-md);
@@ -60,11 +60,11 @@
             transform: scale(0.5);
           }
           60% {
-            opacity: 1;
+            opacity: 0.5;
             transform: scale(1.1);
           }
           100% {
-            opacity: 1;
+            opacity: 0.8;
             transform: scale(1);
           }
         }
