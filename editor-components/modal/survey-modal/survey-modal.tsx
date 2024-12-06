@@ -37,55 +37,7 @@ class SurveyModal extends BaseModal {
       type: "string",
       key: "rateError",
       displayer: "Rate Error Message",
-      value: "Lütfen bir puan seçin.",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "radio",
-      displayer: "Radio Text",
-      value: "Did you find what you were looking for?",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "radioError",
-      displayer: "Radio Error Message",
-      value: "Lütfen bir seçenek seçin.",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "message",
-      displayer: "Message",
-      value: "Had any problems?",
-    });
-
-    this.addProp({
-      type: "page",
-      key: "buttonUrl",
-      displayer: "Button URL",
-      value: "",
-    });
-    this.addProp({
-      type: "string",
-      key: "buttonText",
-      displayer: "Button Text",
-      value: "Send",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "placeholder",
-      displayer: "Placeholder Text",
-      value: "Enter your message",
-    });
-
-    this.addProp({
-      type: "icon",
-      key: "exitIcon",
-      displayer: "ExitIcon",
-      value: "IoCloseSharp",
+      value: "Please select a score.",
     });
 
     this.addProp({
@@ -165,6 +117,20 @@ class SurveyModal extends BaseModal {
     });
 
     this.addProp({
+      type: "string",
+      key: "radio",
+      displayer: "Radio Text",
+      value: "Did you find what you were looking for?",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "radioError",
+      displayer: "Radio Error Message",
+      value: "Please select an option.",
+    });
+
+    this.addProp({
       type: "array",
       key: "radioOptions",
       displayer: "Radio Options",
@@ -178,7 +144,7 @@ class SurveyModal extends BaseModal {
               type: "string",
               key: "label",
               displayer: "Label",
-              value: "Evet",
+              value: "Yes",
             },
           ],
         },
@@ -191,11 +157,46 @@ class SurveyModal extends BaseModal {
               type: "string",
               key: "label",
               displayer: "Label",
-              value: "Hayır",
+              value: "No",
             },
           ],
         },
       ],
+    });
+
+    this.addProp({
+      type: "string",
+      key: "message",
+      displayer: "Message",
+      value: "Had any problems?",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "placeholder",
+      displayer: "Placeholder Text",
+      value: "Enter your message",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "buttonText",
+      displayer: "Button Text",
+      value: "Send",
+    });
+
+    this.addProp({
+      type: "page",
+      key: "buttonUrl",
+      displayer: "Button URL",
+      value: "",
+    });
+
+    this.addProp({
+      type: "icon",
+      key: "exitIcon",
+      displayer: "ExitIcon",
+      value: "IoCloseSharp",
     });
 
     this.getComponentState("selectedIconIndex");
