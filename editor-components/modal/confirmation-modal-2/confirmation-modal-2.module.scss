@@ -44,17 +44,17 @@
           width: 100%;
         }
 
-        .theme-color {
-          color: var(--composer-primary-color);
-        }
+        // .theme-color {
+        //   color: var(--composer-primary-color);
+        // }
 
         .sketch-underline {
-          padding-bottom: 0.1rem;
+          // padding-bottom: 0.1rem;
           color: var(--composer-primary-color);
-          background-size: 100% var(--composer-gap-sm);
+          // background-size: 100% var(--composer-gap-sm);
           display: inline-block;
-          background-position: bottom left;
-          background-repeat: no-repeat;
+          // background-position: bottom left;
+          // background-repeat: no-repeat;
         }
       }
 
