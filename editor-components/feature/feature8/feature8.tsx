@@ -22,14 +22,14 @@ class Feature8 extends BaseFeature {
     this.addProp({
       type: "string",
       key: "title",
-      displayer: "TITLE",
+      displayer: "Title",
       value: "Collections are your most important pages, but are frustrating to manage",
     });
 
     this.addProp({
       type: "array",
       key: "cards",
-      displayer: "CARDS",
+      displayer: "Cards",
       additionalParams: {
         maxElementCount: 5
       },
@@ -37,24 +37,24 @@ class Feature8 extends BaseFeature {
         {
           type: "object",
           key: "card",
-          displayer: "CARD",
+          displayer: "Card",
           value: [
             {
               type: "icon",
               key: "icon",
-              displayer: "ICON",
+              displayer: "Icon",
               value: "FaHandPointer",
             },
             {
               type: "string",
               key: "title",
-              displayer: "TITLE",
+              displayer: "Title",
               value: "Non-visual Curation",
             },
             {
               type: "string",
               key: "description",
-              displayer: "DESCRIPTION",
+              displayer: "Description",
               value: "Manually curating your collections feels like doing your taxes.",
             },
           ]
@@ -62,24 +62,24 @@ class Feature8 extends BaseFeature {
         {
           type: "object",
           key: "card",
-          displayer: "CARD",
+          displayer: "Card",
           value: [
             {
               type: "icon",
               key: "icon",
-              displayer: "ICON",
+              displayer: "Icon",
               value: "FaArrowsAltV",
             },
             {
               type: "string",
               key: "title",
-              displayer: "TITLE",
+              displayer: "Title",
               value: "Limited Sorting",
             },
             {
               type: "string",
               key: "description",
-              displayer: "DESCRIPTION",
+              displayer: "Description",
               value: "It's too basic to sort your collections by 'New In' or 'Best Sellers'.",
             },
           ]
@@ -87,24 +87,24 @@ class Feature8 extends BaseFeature {
         {
           type: "object",
           key: "card",
-          displayer: "CARD",
+          displayer: "Card",
           value: [
             {
               type: "icon",
               key: "icon",
-              displayer: "ICON",
+              displayer: "Icon",
               value: "RiFoldersFill",
             },
             {
               type: "string",
               key: "title",
-              displayer: "TITLE",
+              displayer: "Title",
               value: "Messy Data",
             },
             {
               type: "string",
               key: "description",
-              displayer: "DESCRIPTION",
+              displayer: "Description",
               value: "You need 5 tabs open to take data-driven decisions from excel sheets.",
             },
           ]
@@ -114,8 +114,8 @@ class Feature8 extends BaseFeature {
   }
 
   callback: IntersectionObserverCallback = (entries) => {
-    console.log("callback trigger!");
     const middle = Math.floor(entries.length / 2);
+    const offset = "calc(-1* var(--composer-gap-xl))";
 
     entries.forEach((entry, index) => {
       const style = (entry.target as HTMLElement).style;
@@ -130,10 +130,10 @@ class Feature8 extends BaseFeature {
         style.marginTop = "100px";
 
         if (index > middle) {
-          style.marginLeft = "calc(-1* var(--composer-gap-xl))";
+          style.marginLeft = offset;
           style.transform = `rotate(${Math.abs(index - middle)*5}deg)`;
         } else if (index < middle) {
-          style.marginRight = "calc(-1* var(--composer-gap-xl))";
+          style.marginRight = offset;
           style.transform = `rotate(-${Math.abs(index - middle)*5}deg)`;
         }
       }
