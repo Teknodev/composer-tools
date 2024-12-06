@@ -24,21 +24,19 @@ class FormModal1 extends BaseModal {
       type: "image",
       key: "image",
       displayer: "Image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a2698b2f8a5b002ce67e10?alt=media",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675207f7506a40002c31e64a?alt=media",
     });
     this.addProp({
       type: "string",
       key: "header",
-      displayer: "Header",
+      displayer: "Title",
       value: "Talk to us",
     });
     this.addProp({
       type: "string",
       key: "context",
-      displayer: "Context",
-      value:
-        "Need a demo? or help with anything? Get in touch with our amazing team of experts at your service.",
+      displayer: "Description",
+      value: "Need a demo? or help with anything? Get in touch with our amazing team of experts at your service.",
     });
     this.addProp({
       type: "array",
@@ -359,13 +357,17 @@ class FormModal1 extends BaseModal {
   }
 
   render() {
-    const header = this.getPropValue("header", { as_string: true });
-    const context = this.getPropValue("context", { as_string: true });
+    const header = this.getPropValue("header");
+    const context = this.getPropValue("context");
     const inputItems = this.getPropValue("inputItems")!;
     const imageVal = this.getPropValue("image");
-    const buttonVal = this.getPropValue("buttonText", { as_string: true });
-    const hasRightPageProps =
-      header || context || inputItems.length > 0 || buttonVal;
+    const buttonVal = this.getPropValue("buttonText");
+
+    const headerExist = this.castToString(header);
+    const contextExist = this.castToString(context);
+    const buttonTextExist = this.castToString(buttonVal);
+
+    const hasRightPageProps = headerExist || contextExist || inputItems.length > 0 || buttonTextExist;
 
     function getInputType(type: string): string {
       switch (type) {
@@ -384,90 +386,57 @@ class FormModal1 extends BaseModal {
 
     function getInitialValue() {
       let value: any = {};
-      inputItems.map(
-        (_: any, indexOfItem: number) => (value["input_" + indexOfItem] = "")
-      );
+      inputItems.map((_: any, indexOfItem: number) => (value["input_" + indexOfItem] = ""));
       return value;
     }
 
-    function handleInputChange(
-      e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
-      handleChange: any
-    ) {
+    function handleInputChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>, handleChange: any) {
       handleChange(e);
     }
 
-    const getSelectedItemPlaceholder = (
-      input: any,
-      indexOfInput: number
-    ): string => {
+    const getSelectedItemPlaceholder = (input: any, indexOfInput: number): string => {
       const selectOptions = input.getPropValue("countryOptions");
       const stateKey = "input_placeholder_" + indexOfInput;
       const selectedItemPlaceholder = this.getComponentState(stateKey);
 
       if (!selectedItemPlaceholder) {
-        const placeholder =
-          selectOptions[0]?.getPropValue("placeholder", { as_string: true }) ||
-          "";
+        const placeholder = selectOptions[0]?.getPropValue("placeholder", { as_string: true }) || "";
         this.setComponentState(stateKey, placeholder);
       }
 
       return selectedItemPlaceholder;
     };
 
-    const handleSelectChange = (
-      event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
-      index: number
-    ) => {
+    const handleSelectChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>, index: number) => {
       const selectOptions = inputItems[index].getPropValue("countryOptions");
-      const selectedOption = selectOptions.find(
-        (option: any) =>
-          option.getPropValue("label", { as_string: true }) ==
-          event.target.value
-      );
+      const selectedOption = selectOptions.find((option: any) => option.getPropValue("label", { as_string: true }) == event.target.value);
       const stateKey = "input_placeholder_" + index;
-      const placeholder =
-        selectedOption.getPropValue("placeholder", { as_string: true }) || "";
+      const placeholder = selectedOption.getPropValue("placeholder", { as_string: true }) || "";
       this.setComponentState(stateKey, placeholder);
     };
 
     return (
-      <Base.Container className={this.decorateCSS("container")} isModal={true}>
-        <div
-          className={`${this.decorateCSS("page")} ${
-            !imageVal && this.decorateCSS("single-page")
-          }`}
-        >
+      <Base.Container isModal="true" className={this.decorateCSS("container")}>
+        <Base.MaxContent className={`${this.decorateCSS("page")} ${!imageVal && this.decorateCSS("single-page")} ${!hasRightPageProps && this.decorateCSS("single-image")}`}>
           <div className={this.decorateCSS("exit-icon")}>
             <ComposerModalClose>
-              <ComposerIcon
-                propsIcon={{ className: this.decorateCSS("exit-icon") }}
-                name={this.getPropValue("exitIcon")}
-              />
+              <ComposerIcon propsIcon={{ className: this.decorateCSS("exit-icon") }} name={this.getPropValue("exitIcon")} />
             </ComposerModalClose>
           </div>
 
           {imageVal && (
             <div className={this.decorateCSS("left-page")}>
-              <img
-                className={this.decorateCSS("image")}
-                src={this.getPropValue("image")}
-                alt=""
-              />
+              <img className={this.decorateCSS("image")} src={this.getPropValue("image")} alt="" />
             </div>
           )}
 
           {hasRightPageProps && (
             <div className={this.decorateCSS("right-page")}>
               <div className={this.decorateCSS("right-page-content")}>
-                <div className={this.decorateCSS("title")}>
-                  <h1 className={this.decorateCSS("header")}>
-                    {header && this.getPropValue("header")}
-                  </h1>
-                  <p className={this.decorateCSS("context")}>
-                    {context && this.getPropValue("context")}
-                  </p>
-                </div>
+                <Base.VerticalContent className={this.decorateCSS("title")}>
+                  {headerExist && <Base.SectionTitle className={this.decorateCSS("header")}>{this.getPropValue("header")}</Base.SectionTitle>}
+                  {contextExist && <Base.SectionDescription className={this.decorateCSS("context")}>{this.getPropValue("context")}</Base.SectionDescription>}
+                </Base.VerticalContent>
                 <div className={this.decorateCSS("form-content")}>
                   <Formik
                     initialValues={{ ...getInitialValue() }}
@@ -478,84 +447,46 @@ class FormModal1 extends BaseModal {
                   >
                     {({ handleChange, values }) => (
                       <Form className={this.decorateCSS("form")}>
-                        {this.castToObject<InputItems[]>("inputItems").map(
-                          (inputItem: any, inputItemIndex: number) =>
-                            inputItem.getPropValue("countryOptions") &&
-                            inputItem.getPropValue("countryOptions").length >
-                              0 &&
-                            inputItem.getPropValue("countrySelection") ==
-                              true ? (
-                              <div
-                                className={this.decorateCSS(
-                                  "phone-input-container"
-                                )}
-                                key={`${inputItemIndex}-${inputItemIndex}`}
-                              >
-                                <select
-                                  className={this.decorateCSS(
-                                    "country-dropdown"
-                                  )}
-                                  onChange={(e) =>
-                                    handleSelectChange(e, inputItemIndex)
-                                  }
-                                >
-                                  {inputItem
-                                    .getPropValue("countryOptions")
-                                    .map((option: any, idx: number) => {
-                                      const label = option.getPropValue(
-                                        "label",
-                                        { as_string: true }
-                                      );
-                                      return (
-                                        <option key={idx} value={label}>
-                                          {label}
-                                        </option>
-                                      );
-                                    })}
-                                </select>
+                        {this.castToObject<InputItems[]>("inputItems").map((inputItem: any, inputItemIndex: number) =>
+                          inputItem.getPropValue("countryOptions") && inputItem.getPropValue("countryOptions").length > 0 && inputItem.getPropValue("countrySelection") == true ? (
+                            <div className={this.decorateCSS("phone-input-container")} key={`${inputItemIndex}-${inputItemIndex}`}>
+                              <select className={this.decorateCSS("country-dropdown")} onChange={(e) => handleSelectChange(e, inputItemIndex)}>
+                                {inputItem.getPropValue("countryOptions").map((option: any, idx: number) => {
+                                  const label = option.getPropValue("label", { as_string: true });
+                                  return (
+                                    <option key={idx} value={label}>
+                                      {label}
+                                    </option>
+                                  );
+                                })}
+                              </select>
 
-                                <input
-                                  placeholder={getSelectedItemPlaceholder(
-                                    inputItem,
-                                    inputItemIndex
-                                  )}
-                                  type={getInputType(inputItem.type)}
-                                  onChange={(e) =>
-                                    handleInputChange(e, handleChange)
-                                  }
-                                  value={values["input_" + inputItemIndex]}
-                                  name={"input_" + inputItemIndex}
-                                  className={this.decorateCSS("form-input")}
-                                />
-                              </div>
-                            ) : (
-                              <div
-                                className={this.decorateCSS("input-box")}
-                                key={`${inputItemIndex}-${inputItemIndex}`}
-                              >
-                                <input
-                                  placeholder={inputItem.getPropValue(
-                                    "placeholder",
-                                    { as_string: true }
-                                  )}
-                                  type={getInputType(inputItem.type)}
-                                  onChange={(e) =>
-                                    handleInputChange(e, handleChange)
-                                  }
-                                  value={values["input_" + inputItemIndex]}
-                                  name={"input_" + inputItemIndex}
-                                  className={this.decorateCSS("form-input")}
-                                />
-                              </div>
-                            )
+                              <input
+                                placeholder={getSelectedItemPlaceholder(inputItem, inputItemIndex)}
+                                type={getInputType(inputItem.type)}
+                                onChange={(e) => handleInputChange(e, handleChange)}
+                                value={values["input_" + inputItemIndex]}
+                                name={"input_" + inputItemIndex}
+                                className={this.decorateCSS("form-input")}
+                              />
+                            </div>
+                          ) : (
+                            <div className={this.decorateCSS("input-box")} key={`${inputItemIndex}-${inputItemIndex}`}>
+                              <input
+                                placeholder={inputItem.getPropValue("placeholder", { as_string: true })}
+                                type={getInputType(inputItem.type)}
+                                onChange={(e) => handleInputChange(e, handleChange)}
+                                value={values["input_" + inputItemIndex]}
+                                name={"input_" + inputItemIndex}
+                                className={this.decorateCSS("form-input")}
+                              />
+                            </div>
+                          )
                         )}
-                        {buttonVal && (
-                          <button
-                            className={this.decorateCSS("form-button")}
-                            type="submit"
-                          >
+                        {buttonTextExist && (
+                          <Base.Button className={this.decorateCSS("form-button")} type="submit">
                             {this.getPropValue("buttonText")}
-                          </button>
+                          </Base.Button>
                         )}
                       </Form>
                     )}
@@ -564,7 +495,7 @@ class FormModal1 extends BaseModal {
               </div>
             </div>
           )}
-        </div>
+        </Base.MaxContent>
       </Base.Container>
     );
   }
