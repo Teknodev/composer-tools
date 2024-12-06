@@ -574,7 +574,11 @@ class Feature1 extends BaseFeature {
         }
       }
 
+<<<<<<< Updated upstream
       return <>{blocks.map((e, index) => <React.Fragment key={index}>{e}</React.Fragment>)}</>;
+=======
+      return <>{blocks.map((block, index) => <React.Fragment key={index}>{block}</React.Fragment>)}</>;
+>>>>>>> Stashed changes
     };
 
     const Block = ({ children }: { children: JSX.Element; }) => {
