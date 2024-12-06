@@ -43,7 +43,7 @@ class FaqButton extends BaseFAQ {
       key: "icon",
       displayer: "Icon",
       value:
-        "FaAngleUp",
+        "FaAngleDown",
     });
     this.addProp({
       type: "array",
