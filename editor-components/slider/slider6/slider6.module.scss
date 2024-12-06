@@ -21,13 +21,28 @@
 
             .carousel {
                 width: 100%;
+                margin-bottom: var(--composer-gap-md);
+
+                >div {
+                    >div {
+                        >div {
+
+                            @container (max-width: #{$composer-tablet-width}) {
+                                padding: 0 var(--composer-gap-md);
+                            }
+
+                            @container (max-width: #{$composer-phone-width}) {
+                                padding: 0;
+                            }
+                        }
+                    }
+                }
 
                 .card {
                     width: 100%;
-                    margin-bottom: var(--composer-gap-md);
 
                     .content-div {
-                        border: 2px solid color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+                        border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.5);
                         transition: transform 0.3s, filter 0.3s;
                         min-height: 250px;
                         height: 100%;
@@ -42,15 +57,19 @@
                             display: flex;
                             flex-direction: row;
                             flex-wrap: nowrap;
-                            justify-content: center;
                             width: 100%;
-                            
+                            align-items: stretch;
+                            height: 100%;
+                            align-items: center;
+                            justify-content: center;
+
                             @container (max-width: #{$composer-phone-width}) {
                                 flex-direction: column;
                                 flex-wrap: wrap;
+                                align-items: unset;
                             }
 
-                            .descriptions {
+                            .vert-text {
                                 writing-mode: vertical-rl;
                                 text-orientation: mixed;
                                 transform: rotate(180deg);
@@ -59,6 +78,11 @@
                                 font-weight: 500;
                                 text-align: center;
                                 margin: var(--composer-gap-sm);
+                                white-space: nowrap;
+                                max-height: 100%;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                max-height: 25%;
 
                                 @container (max-width: #{$composer-phone-width}) {
                                     writing-mode: unset;
@@ -70,7 +94,7 @@
                                 position: relative;
                                 min-height: 250px;
                                 flex: 1;
-                                
+
                                 @container (max-width: #{$composer-phone-width}) {
                                     flex: unset;
                                 }
@@ -127,7 +151,11 @@
 
                 >ul {
                     >li {
+                        height: 15px;
+
                         >button {
+                            height: inherit;
+
                             &::before {
                                 content: "";
                                 background-color: var(--composer-font-color-primary);
@@ -135,8 +163,11 @@
                             }
                         }
                     }
-
                 }
+            }
+
+            .no-header {
+                margin-bottom: 0;
             }
         }
     }

@@ -1,4 +1,3 @@
-import Slider from "react-slick";
 import * as React from "react";
 import { BaseSlider } from "../../EditorComponent";
 import "slick-carousel/slick/slick.css";
@@ -11,7 +10,7 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 type Card = {
   subtitle: JSX.Element;
   title: JSX.Element;
-  description: JSX.Element;
+  vertText: JSX.Element;
   image_subtitle: JSX.Element;
   image_title: JSX.Element;
   image_description: JSX.Element;
@@ -39,7 +38,7 @@ class Slider6 extends BaseSlider {
     this.addProp({
       type: "array",
       key: "header",
-      displayer: "Header",
+      displayer: "Slider",
       value: [
         {
           type: "object",
@@ -73,8 +72,8 @@ class Slider6 extends BaseSlider {
             },
             {
               type: "string",
-              key: "description",
-              displayer: "Description",
+              key: "vertText",
+              displayer: "Vertical Text",
               value: "Dsn Grid - March , 17th 2020",
             },
             {
@@ -124,8 +123,8 @@ class Slider6 extends BaseSlider {
             },
             {
               type: "string",
-              key: "description",
-              displayer: "Description",
+              key: "vertText",
+              displayer: "Vertical Text",
               value: "Dsn Grid - March , 17th 2020",
             },
             {
@@ -175,8 +174,8 @@ class Slider6 extends BaseSlider {
             },
             {
               type: "string",
-              key: "description",
-              displayer: "Description",
+              key: "vertText",
+              displayer: "Vertical Text",
               value: "Dsn Grid - March , 17th 2020",
             },
             {
@@ -226,8 +225,8 @@ class Slider6 extends BaseSlider {
             },
             {
               type: "string",
-              key: "description",
-              displayer: "Description",
+              key: "vertText",
+              displayer: "Vertical Text",
               value: "Dsn Grid - March , 17th 2020",
             },
             {
@@ -267,13 +266,14 @@ class Slider6 extends BaseSlider {
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
+      adaptiveHeight: true,
       centerMode: true,
       centerPadding: "300px",
       responsive: [
         {
           breakpoint: 960,
           settings: {
-            centerPadding: "100px",
+            centerPadding: "150px",
           },
         },
         {
@@ -316,7 +316,11 @@ class Slider6 extends BaseSlider {
               </Base.SectionTitle>}
             </Base.VerticalContent>}
           <div className={this.decorateCSS("slider-parent")}>
-            <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
+            <ComposerSlider {...settings}
+              className={`
+                ${this.decorateCSS("carousel")}
+                ${(!this.castToString(subtitle) && !this.castToString(title)) &&
+                this.decorateCSS("no-header")}`}>
               {this.castToObject<Card[]>("header").map(
                 (item: Card, index: number) => (
                   <div className={`${this.decorateCSS("card")} 
@@ -326,10 +330,10 @@ class Slider6 extends BaseSlider {
                   >
                     <Base.ContainerGrid className={this.decorateCSS("content-div")}>
 
-                      {(this.castToString(item.description) || item.image) &&
+                      {(this.castToString(item.vertText) || item.image) &&
                         <div className={`${this.decorateCSS("left-part")} ${!item.image && this.decorateCSS("no-img")}`}>
-                          {this.castToString(item.description) && <span className={this.decorateCSS("descriptions")}>
-                            {item.description}
+                          {this.castToString(item.vertText) && <span className={this.decorateCSS("vert-text")}>
+                            {item.vertText}
                           </span>}
                           {item.image && <div className={this.decorateCSS("image-wrapper")}>
                             <img
@@ -360,15 +364,13 @@ class Slider6 extends BaseSlider {
                           {this.castToString(item.buttonText) && (
                             <Base.Button key={index} className={this.decorateCSS("button")}>
                               <ComposerLink key={index} path={item.link}>
-                                  {item.buttonText}
+                                {item.buttonText}
                               </ComposerLink>
                             </Base.Button>
                           )}
                         </Base.VerticalContent>}
                     </Base.ContainerGrid>
-                  </div>
-                )
-              )}
+                  </div>))}
             </ComposerSlider>
           </div>
         </Base.MaxContent >
