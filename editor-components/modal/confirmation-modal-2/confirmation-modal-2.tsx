@@ -274,6 +274,7 @@ class ConfirmationModal2 extends BaseModal {
 
   render() {
     const yearText = this.getPropValue("year");
+    const yearTextExist = this.castToString(yearText);
     const header = this.getPropValue("header");
     const headerHighlight = this.getPropValue("headerHighlight");
     const headerHighlightLine = this.getPropValue("headerHighlightLine");
@@ -281,8 +282,8 @@ class ConfirmationModal2 extends BaseModal {
     const subheaderHighlight = this.getPropValue("subheaderHighlight");
     const speakers = this.castToObject<Speaker[]>("speakers");
     const backgroundImage = this.getPropValue("backgroundImage");
-    const composerSecondaryColor = getComputedStyle(document.documentElement).getPropertyValue("--composer-secondary-color").trim();
-    const encodedColor = encodeURIComponent(composerSecondaryColor);
+    const composerPrimaryColor = getComputedStyle(document.documentElement).getPropertyValue("--composer-primary-color").trim();
+    const encodedColor = encodeURIComponent(composerPrimaryColor);
     const eventDetails = this.castToObject<EventDetail>("eventDetails");
     const bottomDivider = this.getPropValue("bottomDivider");
     const contactInfos = this.castToObject<ContactInfo[]>("contactInfos");
@@ -290,12 +291,12 @@ class ConfirmationModal2 extends BaseModal {
     return (
       <Base.Container isModal={true} className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={this.decorateCSS("content")}>
-            {this.castToString(yearText) && <Base.H1 className={this.decorateCSS("year-text")}>{yearText}</Base.H1>}
+          <Base.VerticalContent className={yearTextExist ? this.decorateCSS("content") : this.decorateCSS("content-no-yeartext")}>
+            {yearTextExist && <Base.H1 className={this.decorateCSS("year-text")}>{yearText}</Base.H1>}
             {(this.castToString(headerHighlight) || this.castToString(header)) && (
               <div className={this.decorateCSS("header")}>
-                <Base.H2 className={this.decorateCSS("header-text")}>
-                  {header}
+                <Base.H2 className={backgroundImage ? this.decorateCSS("header-text") : this.decorateCSS("header-text-no-image")}>
+                  {this.getPropValue("header")}
                   {this.castToString(headerHighlight) && (
                     <span className={this.decorateCSS("theme-color")}>
                       {this.castToString(headerHighlight).split(" ").slice(0, -1).join(" ")}{" "}
@@ -319,7 +320,7 @@ class ConfirmationModal2 extends BaseModal {
 
             <div className={this.decorateCSS("exit-icon-container")}>
               <ComposerModalClose>
-                <ComposerIcon propsIcon={{ className: this.decorateCSS("exit-icon") }} name={this.getPropValue("exitIcon")} />
+                <ComposerIcon propsIcon={{ className: backgroundImage ? this.decorateCSS("exit-icon") : this.decorateCSS("exit-icon-no-image") }} name={this.getPropValue("exitIcon")} />
               </ComposerModalClose>
             </div>
 
@@ -332,20 +333,15 @@ class ConfirmationModal2 extends BaseModal {
               {(speakers.length > 0 || this.castToString(subheaderHighlight) || this.castToString(subheader)) && (
                 <div className={this.decorateCSS("event-speakers")}>
                   {(this.castToString(subheaderHighlight) || this.castToString(subheader)) && (
-                    <Base.H2 className={this.decorateCSS("subheader")}>
-                      {subheader} {this.castToString(subheaderHighlight) && <Base.H2 className={this.decorateCSS("highlight")}>{subheaderHighlight}</Base.H2>}
-                    </Base.H2>
+                    <div className={this.decorateCSS("subheader")}>
+                      <Base.H2 className={this.decorateCSS("subheader")}>{subheader} </Base.H2>
+                      {this.castToString(subheaderHighlight) && <Base.H2 className={this.decorateCSS("highlight")}>{subheaderHighlight}</Base.H2>}
+                    </div>
                   )}
                   {speakers.length > 0 && (
                     <div className={this.decorateCSS("speakers")}>
                       {speakers.map((speaker, index) => (
-                        <Base.VerticalContent
-                          className={this.decorateCSS("speaker")}
-                          key={index}
-                          style={{
-                            maxWidth: `calc((100% / ${speakers.length}))`,
-                          }}
-                        >
+                        <Base.VerticalContent className={this.decorateCSS("speaker")} key={index}>
                           {speaker.image && <img src={speaker.image} alt={this.castToString(speaker.name)} />}
                           {this.castToString(speaker.name) && <Base.P className={this.decorateCSS("speaker-name")}>{speaker.name}</Base.P>}
                           {this.castToString(speaker.title) && <Base.P className={this.decorateCSS("speaker-title")}>{speaker.title}</Base.P>}
@@ -359,7 +355,7 @@ class ConfirmationModal2 extends BaseModal {
                 <Base.VerticalContent className={this.decorateCSS("event-details")}>
                   {this.castToString(eventDetails.eventButton) && (
                     <ComposerLink path={this.getPropValue("eventButtonLink")}>
-                      <Base.H3 className={this.decorateCSS("event-button")}>{eventDetails.eventButton}</Base.H3>
+                      <Base.Button className={this.decorateCSS("event-button")}>{eventDetails.eventButton}</Base.Button>
                     </ComposerLink>
                   )}
                   {(this.castToString(eventDetails.eventDateFirstPart) || this.castToString(eventDetails.eventDateSecondPart)) && (
@@ -379,7 +375,7 @@ class ConfirmationModal2 extends BaseModal {
               {contactInfos.map((value: ContactInfo, item: number) => (
                 <div className={this.decorateCSS("contact-info")}>
                   {value.icon && <ComposerIcon name={value.icon} propsIcon={{ className: this.decorateCSS("contact-icon") }}></ComposerIcon>}
-                  {this.castToString(value.text) && <Base.H4 className={this.decorateCSS("contact-text")}>{value.text}</Base.H4>}
+                  {this.castToString(value.text) && <Base.P className={this.decorateCSS("contact-text")}>{value.text}</Base.P>}
                 </div>
               ))}
             </div>
