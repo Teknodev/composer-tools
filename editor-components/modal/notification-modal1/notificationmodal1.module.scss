@@ -21,8 +21,8 @@
         text-align: center;
         .exit-icon,
         .exit-icon-no-image {
-          width: 1.5rem;
-          height: 1.5rem;
+          width: var(--composer-gap-md);
+          height: var(--composer-gap-md);
           display: flex;
           position: absolute;
           z-index: 10;
@@ -133,8 +133,7 @@
   }
 }
 
-// @container (max-width: #{$composer-phone-width}) {
-@media only screen and (max-width: 480px) {
+@container (max-width: #{$composer-phone-width}) {
   .container {
     min-width: 330px !important;
     max-width: 330px !important;
@@ -144,8 +143,8 @@
       .content {
         .top-wrapper {
           .exit-icon {
-            width: 1rem;
-            height: 1rem;
+            width: var(--composer-gap-md);
+            height: var(--composer-gap-md);
           }
           .wrapper {
             .first-header {
