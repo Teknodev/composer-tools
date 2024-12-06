@@ -31,7 +31,8 @@ type GetPropValueProperties = {
   prefix?: PreSufFix;
 };
 type TypeCSSProp = { [key: string]: { id: string; class: string; }[]; };
-export type iComponent = {
+export interface iComponent{
+
   render(): any;
   getName(): string;
   getProps(): TypeUsableComponentProps[];
@@ -63,10 +64,9 @@ type AvailablePropTypes =
 
 export type TypeReactComponent = {
   type: string;
-  props: TypeUsableComponentProps[];
-  cssClasses: TypeCSSProp;
-  children: string;
-  id: string;
+  props?: TypeUsableComponentProps[];
+  cssClasses?: TypeCSSProp;
+  id?: string;
 };
 export type TypeUsableComponentProps = {
   id?: string;
@@ -106,8 +106,11 @@ export abstract class Component extends React.Component<{}, { states: any; compo
   private _props: any;
   public customStates: any = {};
   public id: string;
-  protected category: CATEGORIES;
-  abstract getName(): string;
+  static category: CATEGORIES;
+  public static getName(): string{
+    // console.error("Static Method Not Implemented", this.name);
+    return this.name;
+  };
 
   constructor(props: any, styles: any) {
     super(props);
@@ -128,7 +131,7 @@ export abstract class Component extends React.Component<{}, { states: any; compo
     };
   }
 
-  getCategory(): CATEGORIES {
+  public static getCategory(): CATEGORIES {
     return this.category;
   }
   getProps(): TypeUsableComponentProps[] {
@@ -444,27 +447,27 @@ export abstract class Component extends React.Component<{}, { states: any; compo
 }
 
 export abstract class BaseNavigator extends Component {
-  protected category = CATEGORIES.NAVIGATOR;
+  static category = CATEGORIES.NAVIGATOR;
 }
 
 export abstract class Testimonials extends Component {
-  protected category = CATEGORIES.TESTIMONIALS;
+  static category = CATEGORIES.TESTIMONIALS;
 }
 
 export abstract class BaseList extends Component {
-  protected category = CATEGORIES.LIST;
+  static category = CATEGORIES.LIST;
 }
 
 export abstract class BaseHeader extends Component {
-  protected category = CATEGORIES.HEADER;
+  static category = CATEGORIES.HEADER;
 }
 
 export abstract class BasePricingTable extends Component {
-  protected category = CATEGORIES.PRICING;
+  static category = CATEGORIES.PRICING;
 }
 
 export abstract class BaseFooter extends Component {
-  protected category = CATEGORIES.FOOTER;
+  static category = CATEGORIES.FOOTER;
 
   insertForm(name: string, data: Object) {
     const project = getProjectHook()._id;
@@ -478,19 +481,19 @@ export abstract class BaseFooter extends Component {
 }
 
 export abstract class Team extends Component {
-  protected category = CATEGORIES.TEAM;
+  static category = CATEGORIES.TEAM;
 }
 
 export abstract class BaseContent extends Component {
-  protected category = CATEGORIES.CONTENT;
+  static category = CATEGORIES.CONTENT;
 }
 
 export abstract class BaseDownload extends Component {
-  protected category = CATEGORIES.DOWNLOAD;
+  static category = CATEGORIES.DOWNLOAD;
 }
 
 export abstract class BaseCallToAction extends Component {
-  protected category = CATEGORIES.CALLTOACTION;
+  static category = CATEGORIES.CALLTOACTION;
   insertForm(name: string, data: Object) {
     const projectSettings = JSON.parse(getProjectHook().data);
     const project = projectSettings._id;
@@ -504,19 +507,19 @@ export abstract class BaseCallToAction extends Component {
 }
 
 export abstract class BaseSlider extends Component {
-  protected category = CATEGORIES.SLIDER;
+  static category = CATEGORIES.SLIDER;
 }
 
 export abstract class BaseFAQ extends Component {
-  protected category = CATEGORIES.FAQ;
+  static category = CATEGORIES.FAQ;
 }
 
 export abstract class BaseImageGallery extends Component {
-  protected category = CATEGORIES.IMAGEGALLERY;
+  static category = CATEGORIES.IMAGEGALLERY;
 }
 
 export abstract class BaseModal extends Component {
-  protected category = CATEGORIES.MODAL;
+  static category = CATEGORIES.MODAL;
 
   insertForm(name: string, data: Object) {
     const project = getProjectHook()._id;
@@ -530,11 +533,11 @@ export abstract class BaseModal extends Component {
 }
 
 export abstract class LogoClouds extends Component {
-  protected category = CATEGORIES.LOGOCLOUDS;
+  static category = CATEGORIES.LOGOCLOUDS;
 }
 
 export abstract class Location extends Component {
-  protected category = CATEGORIES.LOCATION;
+  static category = CATEGORIES.LOCATION;
   protected themes: TTheme[] = THEMES;
 
   constructor(props: any, styles: any) {
@@ -558,11 +561,11 @@ export abstract class Location extends Component {
 }
 
 export abstract class BaseStats extends Component {
-  protected category = CATEGORIES.STATS;
+  static category = CATEGORIES.STATS;
 }
 
 export abstract class BaseContacts extends Component {
-  protected category = CATEGORIES.FORM;
+  static category = CATEGORIES.FORM;
 
   insertForm(name: string, data: Object) {
     const projectSettings = JSON.parse(getProjectHook().data);
@@ -577,5 +580,5 @@ export abstract class BaseContacts extends Component {
 }
 
 export abstract class BaseFeature extends Component {
-  protected category = CATEGORIES.FEATURE;
+  static category = CATEGORIES.FEATURE;
 }
