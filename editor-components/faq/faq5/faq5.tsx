@@ -559,21 +559,27 @@ class FaqMiddle extends BaseFAQ {
                         <div className={this.decorateCSS("card")} onClick={() => this.handleCard(index)}>
                           {(this.castToString(item.cardIndex) || this.castToString(item.cardTitle) || this.getPropValue("activeIcon") || this.getPropValue("inactiveIcon")) && (
                             <div className={this.decorateCSS("little-container")}>
-                              <div className={`${this.decorateCSS("card-index")} ${this.getComponentState("activeCard") === index ? this.decorateCSS("active") : ""}`}>
-                                <div className={this.decorateCSS("index")}>
-                                  {item.cardIndex}
+                              {this.castToString(item.cardIndex) && (
+                                <div className={`${this.decorateCSS("card-index")} ${this.getComponentState("activeCard") === index ? this.decorateCSS("active") : ""}`}>
+                                  <div className={this.decorateCSS("index")}>
+                                    {item.cardIndex}
+                                  </div>
                                 </div>
-                              </div>
-                              <div className={this.decorateCSS("title")}>
-                                <div className={this.decorateCSS("card-title")}>{item.cardTitle}</div>
-                              </div>
-                              <div className={this.decorateCSS("icon-wrapper")}>
-                                <ComposerIcon name={this.getComponentState("activeCard") === index
-                                  ? this.getPropValue("activeIcon")
-                                  : this.getPropValue("inactiveIcon")}
-                                  propsIcon={{ className: this.decorateCSS("icon") }}
-                                />
-                              </div>
+                              )}
+                              {this.castToString(item.cardTitle) && (
+                                <div className={this.decorateCSS("title")}>
+                                  <div className={this.decorateCSS("card-title")}>{item.cardTitle}</div>
+                                </div>
+                              )}
+                              {(this.getPropValue("activeIcon") || this.getPropValue("inactiveIcon")) && (
+                                <div className={this.decorateCSS("icon-wrapper")}>
+                                  <ComposerIcon name={this.getComponentState("activeCard") === index
+                                    ? this.getPropValue("activeIcon")
+                                    : this.getPropValue("inactiveIcon")}
+                                    propsIcon={{ className: this.decorateCSS("icon") }}
+                                  />
+                                </div>
+                              )}
                             </div>
                           )}
                           {this.castToString(item.description) && (
