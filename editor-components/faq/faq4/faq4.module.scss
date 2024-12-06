@@ -1,3 +1,4 @@
+@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
 .container {
   .max-content {
     .page {
@@ -23,15 +24,18 @@
         flex-wrap: wrap;
         .sections{
           display: flex;
-         
           .title{
             color: var(--composer-font-color-primary);
             font-size: 1rem;
             border-bottom: 1px solid transparent;
             padding-bottom: var(--composer-gap-sm);
             font-size: 1rem;
+            opacity: 0.7;
+            transition: all 0.5s ease;
             &.active{
               border-bottom: 1px solid var(--composer-primary-color);
+              opacity: 1;
+              font-weight: bold;
             }
           }
         }
@@ -48,7 +52,7 @@
           .card {
             display: flex;
             flex-direction: column;
-            padding-bottom: var(--composer-gap-md);
+            padding-bottom: var(--composer-gap-lg);
             border-bottom: 1px solid  var(--composer-tertiary-color);
             .child-container {
               display: flex;
@@ -56,8 +60,8 @@
               .card-left { 
                 flex: 1;
                 .card-title {
-                  margin: 0px;
-                  content: "";
+                  color: var(--composer-font-color-primary);
+                  font-size: 1.5rem;
                 }
               }
     
@@ -94,7 +98,7 @@
               padding: 0px;
               transition:padding 0.5s linear;
               .text{
-                font-size: 1.5rem;
+                font-size: 1rem;
                 max-height: 0px;
                 opacity: 0;
                 transition: opacity 0.3s linear;
@@ -113,6 +117,17 @@
           }
         }
       }  
+    }
+  }
+}
+@container (max-width: #{$composer-tablet-width}){
+  .container{
+    .max-content{
+      .page{
+        .middle-page{
+          border-bottom: none;
+        }
+      }
     }
   }
 }

@@ -16,38 +16,44 @@ type Item = {
 class FaqButton extends BaseFAQ {
   constructor(props?: any) {
     super(props, styles);
+    this.addProp({
+      type: "string",
+      key: "badge",
+      displayer: "Subtitle",
+      value: "FAQ",
+    });
 
     this.addProp({
       type: "string",
       key: "subtitle",
-      displayer: "Page Title",
+      displayer: "Title",
       value: "FAQ",
     });
 
     this.addProp({
       type: "string",
       key: "text",
-      displayer: "Page Title Description",
+      displayer: "Description",
       value:
         "FAQ stands for Frequently Asked Questions.It is a section of a website or document where common questions and their answers are provided to help users better understand a product, service, or topic. The purpose of an FAQ section is to address common concerns and provide helpful information to users, so they can make informed decisions.",
     });
 
     this.addProp({
-      type: "string",
-      key: "badge",
-      displayer: "Badge",
-      value: "FAQ",
+      type: "icon",
+      key: "icon",
+      displayer: "Icon",
+      value:
+        "FaAngleUp",
     });
-
     this.addProp({
       type: "array",
       key: "cards",
-      displayer: "Cards",
+      displayer: "Tabs",
       value: [
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "Tab",
           value: [
             {
               type: "string",
@@ -68,13 +74,13 @@ class FaqButton extends BaseFAQ {
                     {
                       type: "string",
                       key: "title",
-                      displayer: "Title",
+                      displayer: "Question",
                       value: "What are the shipping options available?",
                     },
                     {
                       type: "string",
                       key: "description",
-                      displayer: "Description",
+                      displayer: "Answer",
                       value:
                         "We offer standard and express shipping options. Standard shipping usually takes 5-7 business days, while express shipping takes 1-3 business days.",
                     },
@@ -88,13 +94,13 @@ class FaqButton extends BaseFAQ {
                     {
                       type: "string",
                       key: "title",
-                      displayer: "Title",
+                      displayer: "Question",
                       value: "How can I contact customer support?",
                     },
                     {
                       type: "string",
                       key: "description",
-                      displayer: "Description",
+                      displayer: "Answer",
                       value:
                         "You can contact our customer support team by email or phone. Our email address and phone number can be found on our website's contact page.",
                     },
@@ -129,13 +135,13 @@ class FaqButton extends BaseFAQ {
                     {
                       type: "string",
                       key: "title",
-                      displayer: "Title",
+                      displayer: "Question",
                       value: "How can I track my order?",
                     },
                     {
                       type: "string",
                       key: "description",
-                      displayer: "Description",
+                      displayer: "Answer",
                       value:
                         "Once your order has been shipped, you will receive a tracking number via email. You can use this tracking number to track your order on our website or on the carrier's",
                     },
@@ -169,13 +175,13 @@ class FaqButton extends BaseFAQ {
                     {
                       type: "string",
                       key: "title",
-                      displayer: "Title",
+                      displayer: "Question",
                       value: "What is your return policy?",
                     },
                     {
                       type: "string",
                       key: "description",
-                      displayer: "Description",
+                      displayer: "Answer",
                       value:
                         "We offer a 30-day return policy for most products. If you are not satisfied with your purchase, you can return it within 30 days for a full refund or exchange.",
                     },
@@ -209,63 +215,81 @@ class FaqButton extends BaseFAQ {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
-            <Base.VerticalContent className={this.decorateCSS("up-page")}>
-              <Base.SectionSubTitle className={this.decorateCSS("badge")}>
-                {this.getPropValue("badge")}
-              </Base.SectionSubTitle>
-              <Base.SectionTitle className={this.decorateCSS("subtitle")}>
-                {this.getPropValue("subtitle")}
-              </Base.SectionTitle>
-              <Base.SectionDescription className={this.decorateCSS("description")}>
-                {this.getPropValue("text")}
-              </Base.SectionDescription>
-            </Base.VerticalContent>
-            <div className={this.decorateCSS("middle-page")}>
-              {card.map((card: Card, index: number) => (
-                <div className={this.decorateCSS("sections")} onClick={() => this.sectionButton(index)}>
-                  <div className={`${this.decorateCSS("title")} ${this.getComponentState("selectedSection") === index ? this.decorateCSS("active") : ""}`}>
-                    {card.sectionTitle}
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className={this.decorateCSS("down-page")}>
-              <div className={this.decorateCSS("card-wrapper")}>
-                {card[this.getComponentState("selectedSection")].items.map((item: Item, index: number) => (
-                  <div className={`${this.decorateCSS("card")} ${this.getComponentState("cardIndex") === index ? (this.getComponentState("onclick") ? this.decorateCSS("active") : "") : ""}`} onClick={() => this.cardButton(index)}>
-                    <div className={this.decorateCSS("child-container")}>
-                      <div className={this.decorateCSS("card-left")}>
-                        <Base.H3 className={this.decorateCSS("card-title")}>
-                          {item.title}
-                        </Base.H3>
-                      </div>
-                      <div className={this.decorateCSS("card-right")}>
-                        <div className={this.decorateCSS("icon-wrapper")}>
-                          <ComposerIcon
-                            propsIcon={{
-                              className: `${this.decorateCSS("icon")} ${this.getComponentState("cardIndex") === index
-                                ? this.getComponentState("onclick")
-                                  ? this.decorateCSS("active")
-                                  : ""
-                                : ""
-                                }`,
-                            }}
-                            name={
-                              "FaAngleUp"
-                            }
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div className={`${this.decorateCSS("hide")} ${this.getComponentState("cardIndex") === index ? (this.getComponentState("onclick") ? this.decorateCSS("active") : "") : ""}`}>
-                      <div className={this.decorateCSS("text")}>
-                        {item.description}
-                      </div>
+            {(this.castToString(this.getPropValue("badge")) || this.castToString(this.getPropValue("subtitle")) || this.castToString(this.getPropValue("text"))) && (
+              <Base.VerticalContent className={this.decorateCSS("up-page")}>
+                {this.castToString(this.getPropValue("badge")) && (
+                  <Base.SectionSubTitle className={this.decorateCSS("badge")}>
+                    {this.getPropValue("badge")}
+                  </Base.SectionSubTitle>
+                )}
+                {this.castToString(this.getPropValue("subtitle")) && (
+                  <Base.SectionTitle className={this.decorateCSS("subtitle")}>
+                    {this.getPropValue("subtitle")}
+                  </Base.SectionTitle>
+                )}
+                {this.castToString(this.getPropValue("text")) && (
+                  <Base.SectionDescription className={this.decorateCSS("description")}>
+                    {this.getPropValue("text")}
+                  </Base.SectionDescription>
+                )}
+              </Base.VerticalContent>
+            )}
+            {(card.length > 0) && (
+              <div className={this.decorateCSS("middle-page")}>
+                {card.map((card: Card, index: number) => (
+                  <div className={this.decorateCSS("sections")} onClick={() => this.sectionButton(index)}>
+                    <div className={`${this.decorateCSS("title")} ${this.getComponentState("selectedSection") === index ? this.decorateCSS("active") : ""}`}>
+                      {card.sectionTitle}
                     </div>
                   </div>
                 ))}
               </div>
-            </div>
+            )}
+            {(card[this.getComponentState("selectedSection")]?.items.length > 0) && (
+              <div className={this.decorateCSS("down-page")}>
+                <div className={this.decorateCSS("card-wrapper")}>
+                  {card[this.getComponentState("selectedSection")]?.items.map((item: Item, index: number) => (
+                    <div className={`${this.decorateCSS("card")} ${this.getComponentState("cardIndex") === index ? (this.getComponentState("onclick") ? this.decorateCSS("active") : "") : ""}`} onClick={() => this.cardButton(index)}>
+                      {(this.castToString(item.title) || this.getPropValue("icon")) && (
+                        <div className={this.decorateCSS("child-container")}>
+                          {this.castToString(item.title) && (
+                            <div className={this.decorateCSS("card-left")}>
+                              <div className={this.decorateCSS("card-title")}>
+                                {item.title}
+                              </div>
+                            </div>
+                          )}
+                          {this.getPropValue("icon") && (
+                            <div className={this.decorateCSS("card-right")}>
+                              <div className={this.decorateCSS("icon-wrapper")}>
+                                <ComposerIcon
+                                  propsIcon={{
+                                    className: `${this.decorateCSS("icon")} ${this.getComponentState("cardIndex") === index
+                                      ? this.getComponentState("onclick")
+                                        ? this.decorateCSS("active")
+                                        : ""
+                                      : ""
+                                      }`,
+                                  }}
+                                  name={this.getPropValue("icon")}
+                                />
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      )}
+                      {this.castToString(item.description) && (
+                        <div className={`${this.decorateCSS("hide")} ${this.getComponentState("cardIndex") === index ? (this.getComponentState("onclick") ? this.decorateCSS("active") : "") : ""}`}>
+                          <div className={this.decorateCSS("text")}>
+                            {item.description}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </Base.MaxContent>
       </Base.Container>
