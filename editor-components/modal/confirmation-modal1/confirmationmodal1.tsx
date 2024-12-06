@@ -94,7 +94,7 @@ class ConfirmationModal1 extends BaseModal {
   }
 
   getName(): string {
-    return "ConfirmationModal1";
+    return "Confirmation Modal 1";
   }
 
   render() {
