@@ -3,12 +3,13 @@ import { BaseContacts, TypeUsableComponentProps } from "../../EditorComponent";
 import * as Yup from "yup";
 import styles from "./form11.module.scss";
 import { ErrorMessage, Formik, Form } from "formik";
+import { Base } from "composer-tools/composer-base-components/base/base";
 
+type ContactItem = {
+  text: JSX.Element;
+};
 
 class Form11Page extends BaseContacts {
-  getName(): string {
-    return "Form 11";
-  }
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
@@ -16,19 +17,19 @@ class Form11Page extends BaseContacts {
       key: "title",
       displayer: "Title",
       value:
-        "Let's work together! <br> Feel free to <span><i>contact</i></span> us any time.",
+        "Let's work together! <br> Feel free to <i><u>contact us</u></i> any time.",
     });
     this.addProp({
       type: "string",
-      key: "1th-text",
-      displayer: "1th Text",
+      key: "first-text",
+      displayer: "First Text",
       value:
         "Phasellus sit amet scelerisque sapien. Aliquam erat volutpat. Nam ut lectus at velit dapibus sollicitudin eu.",
     });
     this.addProp({
       type: "string",
-      key: "2th-text",
-      displayer: "2th Text",
+      key: "second-text",
+      displayer: "Second Text",
       value:
         "Because they are hard, because that goal will serve to organize and measure the best of our energies and skills, because that challenge is one that we are willing to accept, one we are unwilling to postpone and one.",
     });
@@ -46,7 +47,7 @@ class Form11Page extends BaseContacts {
             {
               type: "string",
               key: "text",
-              value: "<b>Email:</b>hello@yoursite.com",
+              value: "<b>Email:</b> hello@yoursite.com",
               displayer: "Text",
             }
           ],
@@ -59,7 +60,7 @@ class Form11Page extends BaseContacts {
             {
               type: "string",
               key: "text",
-              value: "<b>Phone:</b>+123.456.789",
+              value: "<b>Phone:</b> +123.456.789",
               displayer: "Text",
             }
           ],
@@ -72,19 +73,12 @@ class Form11Page extends BaseContacts {
             {
               type: "string",
               key: "text",
-              value: "<b>Skype:</b>donec.sit.amet",
+              value: "<b>Skype:</b> donec.sit.amet",
               displayer: "Text",
             }
           ],
         }
       ],
-    });
-
-    this.addProp({
-      type: "string",
-      key: "button_text",
-      displayer: "Button Text",
-      value: "SEND",
     });
 
     this.addProp({
@@ -127,9 +121,9 @@ class Form11Page extends BaseContacts {
                     },
                     {
                       type: "string",
-                      key: "requared_error_message",
-                      displayer: "Requared error message",
-                      value: "Requared",
+                      key: "required_error_message",
+                      displayer: "Required error message",
+                      value: "Required",
                     },
                     {
                       type: "select",
@@ -187,15 +181,15 @@ class Form11Page extends BaseContacts {
                     },
                     {
                       type: "string",
-                      key: "requared_error_message",
-                      displayer: "Requared Error Message",
-                      value: "Requared",
+                      key: "required_error_message",
+                      displayer: "Required Error Message",
+                      value: "Required",
                     },
                     {
                       type: "select",
                       key: "type",
                       displayer: "Type",
-                      value: "text",
+                      value: "Text",
                       additionalParams: {
                         selectItems: ["Text", "E-mail", "Number", "Text Area"],
                       },
@@ -231,7 +225,7 @@ class Form11Page extends BaseContacts {
                       type: "string",
                       key: "placeholder",
                       displayer: "Placeholder",
-                      value: "Message",
+                      value: "Message...",
                     },
                     {
                       type: "boolean",
@@ -241,15 +235,15 @@ class Form11Page extends BaseContacts {
                     },
                     {
                       type: "string",
-                      key: "requared_error_message",
-                      displayer: "Requared Error Message",
-                      value: "Requared",
+                      key: "required_error_message",
+                      displayer: "Required Error Message",
+                      value: "Required",
                     },
                     {
                       type: "select",
                       key: "type",
                       displayer: "Type",
-                      value: "text",
+                      value: "Text Area",
                       additionalParams: {
                         selectItems: ["Text", "E-mail", "Number", "Text Area"],
                       },
@@ -268,16 +262,26 @@ class Form11Page extends BaseContacts {
         },
       ],
     });
+
+    this.addProp({
+      type: "string",
+      key: "button_text",
+      displayer: "Button Text",
+      value: "SEND",
+    });
+  }
+
+  getName(): string {
+    return "Form 11";
   }
 
   render() {
-    const title = this.getPropValue("title", { as_string: true });
-    const text1th = this.getPropValue("1th-text", { as_string: true });
-    const text2th = this.getPropValue("2th-text", { as_string: true });
+    const titleExist = !!this.getPropValue("title", { as_string: true });
+    const firstTextExist = !!this.getPropValue("first-text", { as_string: true });
+    const secondTextExist = !!this.getPropValue("second-text", { as_string: true });
+    const contactTexts = this.castToObject<ContactItem[]>("contact-items");
 
     const inputItems = this.getPropValue("input-items")!;
-
-
 
     function toObjectKey(str: string) {
       if (/^\d/.test(str)) {
@@ -341,14 +345,14 @@ class Form11Page extends BaseContacts {
               indexOfInput
             );
 
-            const isRequired = input.getPropValue("is_Requared");
+            const isRequired = input.getPropValue("is_required");
             const isEmail = getInputType(input.getPropValue("type")) == "email";
 
             let fieldSchema = Yup.string() as any;
 
             if (isRequired) {
-              fieldSchema = fieldSchema.requared(
-                input.getPropValue("requared_error_message")
+              fieldSchema = fieldSchema.required(
+                input.getPropValue("required_error_message")
               );
             } else {
               fieldSchema = fieldSchema.nullable();
@@ -389,32 +393,42 @@ class Form11Page extends BaseContacts {
     function isRequiredInput(inputItem: any): boolean {
       return inputItem
         .getPropValue("inputs")
-        .some((input: any) => input.getPropValue("is_Requared"));
+        .some((input: any) => input.getPropValue("is_required"));
     }
 
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("title")}>
-            <h1 className={this.decorateCSS("text")}>{title && this.getPropValue("title")}</h1>
-          </div>
-          <div className={this.decorateCSS("page-content")}>
-            <div className={this.decorateCSS("text-content")}>
-             <p className={this.decorateCSS("th1-text")}> {text1th && this.getPropValue("1th-text")} </p>
-              <p className={this.decorateCSS("th2-text")}> {text2th && this.getPropValue("2th-text")} </p>
-              {
-                this.castToObject<string[]>("contact-items").map(
-                  (item : any , index:number)=>(
-                      <p key={index} className={this.decorateCSS("th3-text")}>{item.text}</p>
-                  ))
-              }
-            </div>
-            <div className={this.decorateCSS("form-content")}>
-            <Formik
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          {titleExist && (
+            <Base.SectionTitle className={this.decorateCSS("section-title")}>{this.getPropValue("title")}</Base.SectionTitle>
+          )}
+          <Base.ListGrid gridCount={{ pc: 2, tablet: 1, phone: 1 }} className={this.decorateCSS("page-content")}>
+            {(firstTextExist || secondTextExist || contactTexts?.length > 0) && (
+              <Base.VerticalContent className={this.decorateCSS("text-content")}>
+                {firstTextExist && (
+                  <Base.P className={this.decorateCSS("paragraph")}> {this.getPropValue("first-text")} </Base.P>
+                )}
+                {secondTextExist && (
+                  <Base.P className={this.decorateCSS("paragraph")}> {this.getPropValue("second-text")} </Base.P>
+                )}
+                <Base.VerticalContent className={this.decorateCSS("contact-texts")}>
+                  {contactTexts.map((item, i) => {
+                    const textExist = !!this.castToString(item.text);
+                    if (!textExist) return null;
+
+                    return (
+                      <Base.P key={i} className={this.decorateCSS("contact-text")}>{item.text}</Base.P>
+                    );
+                  })}
+                </Base.VerticalContent>
+              </Base.VerticalContent>
+            )}
+            <Base.VerticalContent className={this.decorateCSS("form-content")}>
+              <Formik
                 initialValues={getInitialValue()}
                 validationSchema={getSchema()}
                 onSubmit={(data, { resetForm }) => {
-                  const formData = getFormDataWithConvertedKeys(data)
+                  const formData = getFormDataWithConvertedKeys(data);
                   this.insertForm("Contact Me", formData);
                   resetForm();
                 }}
@@ -422,41 +436,39 @@ class Form11Page extends BaseContacts {
                 {({ handleChange, values }) => (
                   <Form className={this.decorateCSS("form")}>
                     {inputItems.map((inputItem: any, inputItemIndex: number) =>
-                          inputItem.getPropValue("inputs").map((inputObj: any, inputIndex: number) =>
-                            <div className={this.decorateCSS("input-box")}>
-                              {inputObj.getPropValue("type") == "Text Area" ?
-                                <textarea
-                                  value={values[getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)]}
-                                  className={this.decorateCSS("form-input")} placeholder={inputObj.getPropValue("placeholder",{ as_string: true })} rows={12} onChange={handleChange}
-                                  name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)} cols={30}></textarea> :
-                                <input
-                                  placeholder={inputObj.getPropValue("placeholder",{ as_string: true })}
-                                  type={getInputType(inputObj.getPropValue("type"))}
-                                  onChange={handleChange}
-                                  value={values[getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)]}
-                                  name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)}
-                                  className={this.decorateCSS("form-input")}
-                                />}
-                              <ErrorMessage
-                                className={this.decorateCSS("error-message")}
-                                name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)}
-                                component={"span"}
-                              />
-                            </div>
-                          )
+                      inputItem.getPropValue("inputs").map((inputObj: any, inputIndex: number) =>
+                        <div className={this.decorateCSS("input-box")}>
+                          {inputObj.getPropValue("type") == "Text Area" ?
+                            <textarea
+                              value={values[getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)]}
+                              className={this.decorateCSS("form-input")} placeholder={inputObj.getPropValue("placeholder", { as_string: true })} rows={12} onChange={handleChange}
+                              name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)} cols={30}></textarea> :
+                            <input
+                              placeholder={inputObj.getPropValue("placeholder", { as_string: true })}
+                              type={getInputType(inputObj.getPropValue("type"))}
+                              onChange={handleChange}
+                              value={values[getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)]}
+                              name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)}
+                              className={this.decorateCSS("form-input")}
+                            />}
+                          <ErrorMessage
+                            className={this.decorateCSS("error-message")}
+                            name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)}
+                            component={"span"}
+                          />
+                        </div>
+                      )
                     )}
-                    <button
-                      className={this.decorateCSS("form-button")}
-                      type="submit">
+                    <Base.Button className={this.decorateCSS("form-button")}>
                       {this.getPropValue("button_text")}
-                    </button>
+                    </Base.Button>
                   </Form>
                 )}
               </Formik>
-            </div>
-          </div>
-        </div>
-      </div>
+            </Base.VerticalContent>
+          </Base.ListGrid>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
