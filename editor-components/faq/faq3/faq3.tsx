@@ -30,13 +30,6 @@ class FaqContainerTwo extends BaseFAQ {
     });
 
     this.addProp({
-      type: "boolean",
-      key: "showLine",
-      displayer: "Show Line",
-      value: true,
-    });
-
-    this.addProp({
       type: "string",
       key: "mainSubtitle",
       displayer: "Description",
