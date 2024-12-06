@@ -139,7 +139,8 @@
         .error {
           color: var(--danger-color);
           font-size: 1rem;
-          margin-top: var(--composer-gap-xs);
+
+          margin: 0;
         }
 
         .message-question {

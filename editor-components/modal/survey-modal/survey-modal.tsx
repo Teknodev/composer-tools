@@ -163,12 +163,47 @@ class SurveyModal extends BaseModal {
         },
       ],
     });
+
+    this.addProp({
+      type: "array",
+      key: "radioOptions",
+      displayer: "Radio Options",
+      value: [
+        {
+          type: "object",
+          key: "radioOption",
+          displayer: "Option",
+          value: [
+            {
+              type: "string",
+              key: "label",
+              displayer: "Label",
+              value: "Evet",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "radioOption",
+          displayer: "Option",
+          value: [
+            {
+              type: "string",
+              key: "label",
+              displayer: "Label",
+              value: "Hayır",
+            },
+          ],
+        },
+      ],
+    });
+
     this.getComponentState("selectedIconIndex");
   }
 
   handleIconClick(iconId: number, setFieldValue: (field: string, value: any) => void) {
     this.setComponentState("selectedIconIndex", iconId);
-    setFieldValue("rating", iconId);
+    setFieldValue("rating", iconId + 1);
   }
 
   createValidationSchema(minLength: number, minLengthMessage: string, requiredMessage: string) {
@@ -192,6 +227,8 @@ class SurveyModal extends BaseModal {
     const buttonText = this.castToString(this.getPropValue("buttonText"));
     const placeholder = this.castToString(this.getPropValue("placeholder"));
     const rateIcons = this.castToObject<any[]>("rateIcons");
+
+    const radioOptions = this.castToObject<any[]>("radioOptions");
 
     const validationSchema = Yup.object({
       rating: Yup.number().min(1, rateError).required(rateError),
@@ -220,8 +257,8 @@ class SurveyModal extends BaseModal {
                 return (
                   <Form className={this.decorateCSS("form")}>
                     <Base.VerticalContent className={this.decorateCSS("left")}>
-                      {title && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
-                      {rateQuestion && <Base.SectionDescription className={this.decorateCSS("rate-question")}>{rateQuestion}</Base.SectionDescription>}
+                      {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                      {rateQuestion && <Base.SectionDescription className={this.decorateCSS("rate-question")}>{this.getPropValue("rateQuestion")}</Base.SectionDescription>}
 
                       {rateIcons.length > 0 && (
                         <div className={this.decorateCSS("rate-content")}>
@@ -249,22 +286,23 @@ class SurveyModal extends BaseModal {
                       )}
                       {errors.rating && touched.foundWhatLookingFor && <div className={this.decorateCSS("error")}>{errors.rating}</div>}
 
-                      {radio && <Base.P className={this.decorateCSS("radio-question")}>{radio}</Base.P>}
-                      {radio && (
+                      {radio && <Base.P className={this.decorateCSS("radio-question")}>{this.getPropValue("radio")}</Base.P>}
+                      {radioOptions.length > 0 && (
                         <div className={this.decorateCSS("question-section")}>
-                          <label className={this.decorateCSS("radio-label")}>
-                            <Field type="radio" name="foundWhatLookingFor" value="yes" className={this.decorateCSS("radio-input")} />
-                            Evet
-                          </label>
-                          <label className={this.decorateCSS("radio-label")}>
-                            <Field type="radio" name="foundWhatLookingFor" value="no" className={this.decorateCSS("radio-input")} />
-                            Hayır
-                          </label>
+                          {radioOptions.map((option, index) => {
+                            const labelExist = this.castToString(option.label);
+                            return (
+                              <label key={index} className={this.decorateCSS("radio-label")}>
+                                <Field type="radio" name="foundWhatLookingFor" value={labelExist} className={this.decorateCSS("radio-input")} />
+                                {option.label}
+                              </label>
+                            );
+                          })}
                           {errors.foundWhatLookingFor && touched.foundWhatLookingFor && <div className={this.decorateCSS("error")}>{errors.foundWhatLookingFor}</div>}
                         </div>
                       )}
 
-                      {message && <p className={this.decorateCSS("message-question")}>{message}</p>}
+                      {message && <p className={this.decorateCSS("message-question")}>{this.getPropValue("message")}</p>}
                       {placeholder && (
                         <div className={this.decorateCSS("message-section")}>
                           <Field as="input" name="message" type="text" className={this.decorateCSS("input")} placeholder={placeholder} />
@@ -275,11 +313,11 @@ class SurveyModal extends BaseModal {
                         <div className={this.decorateCSS("button-container")}>
                           {placeholder ? (
                             <Base.Button type="submit" className={this.decorateCSS("submit-button")}>
-                              {buttonText}
+                              {this.getPropValue("buttonText")}
                             </Base.Button>
                           ) : (
                             <ComposerLink page={this.getPropValue("buttonUrl")}>
-                              <Base.Button className={this.decorateCSS("submit-button")}>{buttonText}</Base.Button>
+                              <Base.Button className={this.decorateCSS("submit-button")}>{this.getPropValue("buttonText")}</Base.Button>
                             </ComposerLink>
                           )}
                         </div>
