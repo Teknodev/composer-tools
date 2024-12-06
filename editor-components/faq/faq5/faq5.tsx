@@ -20,11 +20,16 @@ class FaqMiddle extends BaseFAQ {
 
     this.addProp({
       type: "string",
+      key: "badge",
+      displayer: "Badge",
+      value: "FAQ",
+    });
+    this.addProp({
+      type: "string",
       key: "subtitle",
       displayer: "Title",
       value: "FAQ",
     });
-
     this.addProp({
       type: "string",
       key: "title",
@@ -73,7 +78,7 @@ class FaqMiddle extends BaseFAQ {
                       type: "string",
                       key: "cardIndex",
                       displayer: "Card Index",
-                      value: "01"
+                      value: "1"
                     },
                     {
                       type: "string",
@@ -119,7 +124,7 @@ class FaqMiddle extends BaseFAQ {
                       type: "string",
                       key: "cardIndex",
                       displayer: "Card Index",
-                      value: "01"
+                      value: "1"
                     },
                     {
                       type: "string",
@@ -165,7 +170,7 @@ class FaqMiddle extends BaseFAQ {
                       type: "string",
                       key: "cardIndex",
                       displayer: "Card Index",
-                      value: "01"
+                      value: "1"
                     },
                     {
                       type: "string",
@@ -211,7 +216,7 @@ class FaqMiddle extends BaseFAQ {
                       type: "string",
                       key: "cardIndex",
                       displayer: "Card Index",
-                      value: "01"
+                      value: "1"
                     },
                     {
                       type: "string",
@@ -236,12 +241,6 @@ class FaqMiddle extends BaseFAQ {
       ],
     });
 
-    this.addProp({
-      type: "string",
-      key: "badge",
-      displayer: "Badge",
-      value: "FAQ",
-    });
     this.setComponentState("activeSection", 0);
     this.setComponentState("activeCard", -1);
   }
@@ -266,53 +265,71 @@ class FaqMiddle extends BaseFAQ {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
-            <Base.VerticalContent className={this.decorateCSS("left-page")}>
-              <Base.SectionSubTitle className={this.decorateCSS("badge")}>
-                {this.getPropValue("badge")}
-              </Base.SectionSubTitle>
-              <Base.SectionTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionTitle>
-              <Base.SectionDescription className={this.decorateCSS("title-p")}>{this.getPropValue("title")}</Base.SectionDescription>
-            </Base.VerticalContent>
-            <div className={this.decorateCSS("right")}>
-              <div className={this.decorateCSS("section-wrapper")}>
-                {cards.map((card: Card, indexCard: any) => (
-                  <div className={`${this.decorateCSS("section")} 
-                  ${this.getComponentState("activeSection") === indexCard ? this.decorateCSS("active") : ""}`}
-                    onClick={() => this.handleSection(indexCard)}>
-                    {card.sectionTitle}
-                  </div>
-                ))}
-              </div>
-              <div className={this.decorateCSS("right-page")}>
-                <div className={this.decorateCSS("right-wrapper")} >
-                  {cards[this.getComponentState("activeSection")].items.map((item: Item, index: number) => (
-                    <div className={this.decorateCSS("card")} onClick={() => this.handleCard(index)}>
-                      <div className={this.decorateCSS("little-container")}>
-                        <div className={this.decorateCSS("card-index")}>
-                          <div className={this.decorateCSS("index")}>
-                            {item.cardIndex}
-                          </div>
-                        </div>
-                        <div className={this.decorateCSS("title")}>
-                          <div className={this.decorateCSS("card-title")}>{item.cardTitle}</div>
-                        </div>
-                        <div className={this.decorateCSS("icon-wrapper")}>
-                          <ComposerIcon name={this.getComponentState("activeCard") === index
-                            ? this.getPropValue("activeIcon")
-                            : this.getPropValue("inactiveIcon")}
-                            propsIcon={{ className: this.decorateCSS("icon") }}
-                          />
-                        </div>
-                      </div>
-                      <div
-                        className={`${this.decorateCSS("text")} ${this.getComponentState("activeCard") === index ? this.decorateCSS("active") : ""}`}>
-                        {item.description}
-                      </div>
+            {(this.castToString(this.getPropValue("badge")) ||
+              this.castToString(this.getPropValue("subtitle")) || this.castToString(this.getPropValue("title"))) && (
+                <Base.VerticalContent className={this.decorateCSS("left-page")}>
+                  {this.castToString(this.getPropValue("badge")) && (
+                    <Base.SectionSubTitle className={this.decorateCSS("badge")}>
+                      {this.getPropValue("badge")}
+                    </Base.SectionSubTitle>
+                  )}
+                  {this.castToString(this.getPropValue("subtitle")) && (
+                    <Base.SectionTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionTitle>
+                  )}
+                  {this.castToString(this.getPropValue("title")) && (
+                    <Base.SectionDescription className={this.decorateCSS("title-p")}>{this.getPropValue("title")}</Base.SectionDescription>
+                  )}
+                </Base.VerticalContent>
+              )}
+            {(cards.length > 0) && (
+              <div className={this.decorateCSS("right")}>
+                <div className={this.decorateCSS("section-wrapper")}>
+                  {cards.map((card: Card, indexCard: any) => (
+                    <div className={`${this.decorateCSS("section")} 
+                          ${this.getComponentState("activeSection") === indexCard ? this.decorateCSS("active") : ""}`}
+                      onClick={() => this.handleSection(indexCard)}>
+                      {card.sectionTitle}
                     </div>
                   ))}
                 </div>
+                {(cards[this.getComponentState("activeSection")].items.length > 0) && (
+                  <div className={this.decorateCSS("right-page")}>
+                    <div className={this.decorateCSS("right-wrapper")} >
+                      {cards[this.getComponentState("activeSection")].items.map((item: Item, index: number) => (
+                        <div className={this.decorateCSS("card")} onClick={() => this.handleCard(index)}>
+                          {(this.castToString(item.cardIndex) || this.castToString(item.cardTitle) || this.getPropValue("activeIcon") || this.getPropValue("inactiveIcon")) && (
+                            <div className={this.decorateCSS("little-container")}>
+                              <div className={`${this.decorateCSS("card-index")} ${this.getComponentState("activeCard") === index ? this.decorateCSS("active") : ""}`}>
+                                <div className={this.decorateCSS("index")}>
+                                  {item.cardIndex}
+                                </div>
+                              </div>
+                              <div className={this.decorateCSS("title")}>
+                                <div className={this.decorateCSS("card-title")}>{item.cardTitle}</div>
+                              </div>
+                              <div className={this.decorateCSS("icon-wrapper")}>
+                                <ComposerIcon name={this.getComponentState("activeCard") === index
+                                  ? this.getPropValue("activeIcon")
+                                  : this.getPropValue("inactiveIcon")}
+                                  propsIcon={{ className: this.decorateCSS("icon") }}
+                                />
+                              </div>
+                            </div>
+                          )}
+                          {this.castToString(item.description) && (
+                            <div className={`${this.decorateCSS("text-wrapper")} ${this.getComponentState("activeCard") === index ? this.decorateCSS("active") : ""}`}>
+                              <div className={`${this.decorateCSS("text")} ${this.getComponentState("activeCard") === index ? this.decorateCSS("active") : ""}`}>
+                                {item.description}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
-            </div>
+            )}
           </div>
         </Base.MaxContent>
       </Base.Container>
