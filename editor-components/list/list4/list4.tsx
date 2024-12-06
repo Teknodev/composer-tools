@@ -129,7 +129,7 @@ class list4 extends BaseList {
 
   render() {
     return (
-      <Base.Container className={this.decorateCSS("container")} >
+      <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent>
             <Base.SectionSubTitle>
