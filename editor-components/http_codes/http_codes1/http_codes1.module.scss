@@ -1,107 +1,62 @@
+@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
 .container {
-  width: 100%;
-  padding: 50px 100px;
   height: 100vh;
-}
-
-.max-content {
-  max-width: var(--composer-content-width);
-  margin: 0 auto;
-  margin-top: 5%;
-
-  background-color: var(--composer-html-background-color);
-}
-
-.content-box {
-  display: flex;
-  flex-direction: column;
-  column-gap: 50px;
-  background-color: var(--composer-font-color-secondary);
-  padding: 30px;
-  width: 80%;
-  height: auto;
-  margin: 0 auto;
-  border-radius: 20px;
-  box-shadow: 0 4px 20px rgba(var(--composer-font-color-primary-rgb), 0.3);
-
-  .icons {
-    display: flex;
-    justify-content: space-between;
-
-    .icon {
-      font-size: 30px;
-      color: var(--composer-font-color-primary);
-    }
-  }
-
-  .content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    column-gap: 50px;
-    background-color: var(--composer-font-color-secondary);
-    padding: 30px;
-    width: 100%;
-
-    .left-side {
-      width: 100%;
-      .image {
-        width: 450px;
-      }
-    }
-    .right-side {
+  .max-content {
+    height: 100%;
+    .content-box {
+      height: 100%;
       display: flex;
-      flex-direction: column;
-      flex-wrap: wrap;
-      width: 100%;
-
-      .title {
-        text-align: center;
-        font-size: 5.5rem;
-        text-align: left;
-        color: var(--composer-font-color-primary);
-      }
-      .description {
-        text-align: center;
-        font-size: 3rem;
-        text-align: left;
-        width: 100%;
-        font-weight: 400;
-        color: var(--composer-font-color-primary);
-      }
-
-      .button {
+      border-radius: var(--composer-border-radius-xl);
+      background-color: color-mix(
+        in srgb,
+        var(--composer-html-background),
+        var(--composer-font-color-primary) 5%
+      );
+      .content {
+        height: 100%;
         display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-
-        .button-container {
+        gap: var(--composer-gap-xl);
+        width: 100%;
+        .left-side {
+          flex: 1;
+          width: 100%;
           display: flex;
-
-          .button-content {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            column-gap: 10px;
-            background-color: var(--composer-font-color-primary);
-            color: var(--composer-font-color-secondary);
-            padding: 15px;
-            min-width: 150px;
+          align-items: center;
+          .image-box{
             width: 100%;
-            max-width: auto;
-            height: auto;
-            text-align: center;
-            border-radius: 30px;
-            font-size: 1rem;
-
-            .button-icon {
-              font-size: 16px;
+            display: flex;
+            justify-content: center;
+            padding: var(--composer-gap-xl);
+            align-items: center;
+            height: 100%;
+            .image {
+              max-height: 100%;
+              width: 75%;
+              object-fit: cover;
             }
-
-            .button-text {
-              font-size: 18px;
-              white-space: normal;
-              flex-wrap: wrap;
+          }
+        }
+        .right-side {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          .right-content{
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-md);
+            .title {
+              color: var(--composer-font-color-primary);
+              font-size:4rem;
+            }
+            .description {
+              color: var(--composer-tertiary-color);
+              font-size: 1.5rem;
+            }
+            .button-wrapper{
+              .button{
+                font-size: 1.5rem;
+              }
             }
           }
         }
@@ -110,100 +65,61 @@
   }
 }
 
-// RESPONSIVE
-
-@media (max-width: 768px) {
-  .container {
-    padding: 20px 30px !important;
-  }
-
-  .max-content {
-    margin-top: 15% !important;
-  }
-
-  .content-box {
-    width: 100%;
-  }
-
-  .content {
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .left-side {
-    display: flex !important;
-    justify-content: center !important;
-    margin: 0 auto !important;
-    .image {
-      width: 300px !important;
-      margin: 0 auto !important;
+@container (max-width: #{$composer-tablet-width}){
+  .container{
+    .max-content{
+      .content-box {
+        .content {
+          flex-direction: column;
+          gap: 0px;
+          padding: var(--composer-gap-md);
+          .left-side{
+            justify-content: center;
+            .image-box{
+              width: auto;
+              padding: 0px;
+              .image{
+                max-height: 50%;
+              }
+            }
+          }
+          .right-side{
+            .right-content{
+              align-items: center;
+              .title{
+                text-align: center;
+              }
+              .description{
+                text-align: center;
+              }
+            }
+          }
+        }
+      }
     }
-  }
-
-  .title {
-    font-size: 3rem !important;
-  }
-
-  .description {
-    font-size: 2rem !important;
-  }
-
-  .button-content {
-    padding: 10px !important;
-    font-size: 0.9rem !important;
-  }
-
-  .button-icon {
-    font-size: 14px !important;
-  }
-
-  .button-text {
-    font-size: 16px !important;
   }
 }
-
-@media (max-width: 480px) {
-  .container {
-    padding: 20px 30px !important;
-  }
-
-  .max-content {
-    margin-top: 40% !important;
-  }
-
-  .icons {
-    .icon {
-      font-size: 20px !important;
+@container (max-width: #{$composer-phone-width}){
+  .container{
+    .max-content{
+      .content-box {
+        align-items: center;
+        .content {
+          flex-direction: column;
+          gap: 0px;
+          height: 80%;
+          .left-side{
+            justify-content: center;
+            .image-box{
+              width: auto;
+              .image{
+                max-height: auto;
+                width: 100%;
+              }
+            }
+          }
+        }
+      }
     }
-  }
-
-  .content {
-    gap: 10px !important;
-  }
-
-  .left-side .image {
-    width: 100% !important;
-  }
-
-  .title {
-    font-size: 2rem !important;
-  }
-
-  .description {
-    font-size: 1.2rem !important;
-  }
-
-  .button-content {
-    padding: 8px !important;
-    font-size: 0.8rem !important;
-    min-width: 110px !important;
-  }
-
-  .button-icon {
-    font-size: 12px !important;
-  }
-
-  .button-text {
-    font-size: 14px !important;
   }
 }
