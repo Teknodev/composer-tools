@@ -88,7 +88,7 @@ class NotificationModal1 extends BaseModal {
   }
 
   getName(): string {
-    return "NotificationModal1";
+    return "Notification Modal 1";
   }
 
   render() {
