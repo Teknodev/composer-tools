@@ -44,6 +44,7 @@
                         background-repeat: no-repeat;
                         background-size: cover;
                         background-position: center;
+                        padding: var(--composer-gap-xl);
 
                         .overlay {
                             position: absolute;
@@ -70,7 +71,6 @@
                             background-size: cover;
                             background-repeat: no-repeat;
                             object-fit: cover;
-                            padding: var(--composer-gap-xl);
                             transform: translateY(-100px);
                             opacity: 0;
                             z-index: 1;
@@ -187,7 +187,6 @@
                                 width: 100%;
                                 margin-bottom: var(--composer-gap-xl);
                                 flex-direction: row;
-                                flex-wrap: wrap;
                                 gap: var(--composer-gap-md);
                                 z-index: 1;
 
@@ -412,8 +411,9 @@
                 .carousel {
                     .slider-inner-div {
                         .content {
+                            padding: var(--composer-gap-lg);
+
                             .content-div {
-                                padding: var(--composer-gap-md);
 
                                 &::before,
                                 &::after {
@@ -494,8 +494,9 @@
                 .carousel {
                     .slider-inner-div {
                         .content {
+                            padding: var(--composer-gap-md);
+
                             .content-div {
-                                padding: var(--composer-gap-md);
                                 margin: 0;
 
                                 &::before,

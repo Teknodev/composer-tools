@@ -5,7 +5,6 @@ import "slick-carousel/slick/slick-theme.css";
 import styles from "./slider8.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
-import Slider from "react-slick";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 
@@ -13,7 +12,6 @@ type Card = {
   image: string;
   backgroundImage: string;
   imageTitle: JSX.Element;
-  url: string;
   buttons: Button[];
 };
 
@@ -42,12 +40,6 @@ class Slider8 extends BaseSlider {
               key: "imageTitle",
               displayer: "Image Title",
               value: "The Petronas Twin Towers",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "URL",
-              value: "",
             },
             {
               type: "image",
@@ -110,12 +102,6 @@ class Slider8 extends BaseSlider {
               value: "Multi-Family Housing",
             },
             {
-              type: "page",
-              key: "url",
-              displayer: "URL",
-              value: "",
-            },
-            {
               type: "image",
               key: "image",
               displayer: "Image",
@@ -174,12 +160,6 @@ class Slider8 extends BaseSlider {
               key: "imageTitle",
               displayer: "Image Title",
               value: "The Lighthouse",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "URL",
-              value: "",
             },
             {
               type: "image",
@@ -264,7 +244,7 @@ class Slider8 extends BaseSlider {
     this.addProp({
       type: "boolean",
       key: "lines-container",
-      displayer: "Lines Container",
+      displayer: "Line",
       value: true,
     });
 
@@ -298,7 +278,7 @@ class Slider8 extends BaseSlider {
       dots: false,
       infinite: cards.length > 1,
       speed: 3000,
-      autoplay: false,
+      autoplay: true,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
