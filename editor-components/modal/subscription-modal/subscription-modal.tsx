@@ -108,8 +108,8 @@ class SubscriptionModal extends BaseModal {
             {(title || description || placeholder || buttonText) && (
               <Base.VerticalContent className={this.decorateCSS("right")}>
                 <Base.VerticalContent className={this.decorateCSS("header")}>
-                  {title && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
-                  {description && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
+                  {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                  {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
                 </Base.VerticalContent>
 
                 {(placeholder || buttonText) && (
