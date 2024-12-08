@@ -1,16 +1,11 @@
-.container {
-    background-color: var(--composer-html-background);
-    width: 100%;
-    padding: 60px;
-}
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
-.max-content {
-    margin: auto;
-    max-width: var(--composer-content-width);
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
+.container {
+    .max-content {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
 }
 
 .top-container {
@@ -19,60 +14,73 @@
     justify-content: space-between;
     width: 100%;
 
-    height: fit-content;
-
     .contact {
-        width: 63%;
+        width: 66%;
+
+        .title {
+            margin: 0;
+            color: var(--composer-primary-color);
+            word-wrap: break-word;
+            width: 100%;
+            text-transform: uppercase;
+        }
+
+        .description {
+            margin: 0;
+            margin-top: var(--composer-gap-md);
+        }
     }
+
     .address {
         display: flex;
         align-items: flex-end;
         flex-direction: column;
         width: 33%;
-        text-align: end;
+        text-align: right;
+
+        .title-2 {
+            margin: 0;
+            color: color-mix(in srgb,
+                    var(--composer-font-color-primary) 10%,
+                    var(--composer-html-background) 90%);
+            word-wrap: break-word;
+            width: 100%;
+            text-transform: uppercase;
+        }
+
+        .description-2 {
+            margin: 0;
+            margin-top: var(--composer-gap-md);
+        }
     }
 }
 
 .lower-container {
     transition: 1s;
     display: flex;
-    flex-direction: row;
-
-    height: fit-content;
-
-    margin-top: 25px;
+    margin-top: var(--composer-gap-md);
     width: 100%;
-    gap: 50px;
+    gap: var(--composer-gap-xl);
+
     .form-container {
         width: 100%;
     }
+
     .image-container {
         background-size: cover;
-        width: 40%;
+        width: 50%;
         position: relative;
+
         .image {
             object-fit: cover;
             width: 100%;
-            height: calc(100% - 22px);
-            position: absolute;
-            bottom: 0;
+            height: 100%;
         }
     }
 }
 
-.title, .title-2 {
-    margin: 0;
-    color: var(--composer-primary-color);
-    word-wrap: break-word;
-    width: 100%;
-    text-transform: uppercase;
-    font-weight: 600;
-    letter-spacing: 8px;
-}
-
 .description {
     color: var(--composer-font-color-primary);
-    size: 1.5rem;
     word-wrap: break-word;
     width: 100%;
 }
@@ -80,26 +88,30 @@
 .form {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: var(--composer-gap-xs);
+
     .input-container {
         width: 100%;
-        margin-bottom: 15px;
+        margin-bottom: var(--composer-gap-md);
         display: flex;
         flex-direction: column;
+
         .label {
             color: var(--composer-font-color-primary);
-            margin-bottom: 8px;
+            margin-bottom: var(--composer-gap-sm);
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: var(--composer-gap-xs);
 
             .require-star {
                 color: var(--composer-tertiary-color);
             }
         }
+
         .inputs {
             display: flex;
-            gap: 20px;
+            gap: var(--composer-gap-md);
+
             .input-box {
                 width: 100%;
             }
@@ -113,7 +125,7 @@
 
 .input {
     resize: vertical;
-    padding: 16px 10px;
+    padding: var(--composer-gap-md) var(--composer-gap-sm);
     border: 1px solid var(--composer-tertiary-color);
     background: color-mix(in srgb, var(--composer-html-background), #fff 80%);
     width: 100%;
@@ -127,13 +139,12 @@
 .error-message {
     color: red;
     font-size: 0.6rem;
-    margin-top: 3px;
+    margin-top: var(--composer-gap-xs);
 }
 
 .submit-button {
     height: 50px;
     background-color: var(--composer-secondary-color);
-    border-radius: 0;
     color: var(--composer-font-color-secondary);
     border: none;
     cursor: pointer;
@@ -148,55 +159,43 @@
     border: 1px solid var(--composer-secondary-color);
 }
 
-.div {
-    display: flex;
-    flex-direction: row;
-    gap: 15px;
-}
-.h2 {
-    font-size: 2rem;
-}
-
-@media only screen and (max-width: 900px) {
-    .container {
-        padding: 40px 20px;
-    }
-    .title {
-        font-size: 1.3rem;
-    }
-
-    .description {
-        font-size: 1rem;
-    }
-
+@container (max-width: #{$composer-tablet-width}) {
     .top-container {
         flex-direction: column;
-        gap: 20px;
+        gap: var(--composer-gap-md);
 
         .contact,
         .address {
             width: 100%;
-            text-align: left;
+        }
+
+        .address {
+            .title-2 {
+                text-align: left;
+            }
+
+            .description-2 {
+                width: 100%;
+                text-align: left;
+            }
         }
     }
+
     .lower-container {
         display: flex;
         flex-direction: column-reverse;
         flex-wrap: wrap;
-        margin-top: 0;
         gap: 0;
-    }
-    .image-container {
-        width: 100% !important;
-        height: 400px;
-    }
 
-    .div {
-        display: flex;
-        flex-direction: column !important;
+        .image-container {
+            width: 100%;
+            height: 400px;
+        }
     }
 
     .form {
-        margin-top: 15px;
+        margin-top: var(--composer-gap-md);
     }
 }
+
+@container (max-width: #{$composer-phone-width}) {}
