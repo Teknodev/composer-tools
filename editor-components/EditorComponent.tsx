@@ -34,6 +34,7 @@ type TypeCSSProp = { [key: string]: { id: string; class: string; }[]; };
 export interface iComponent{
 
   render(): any;
+  getInstanceName(): string;
   getName(): string;
   getProps(): TypeUsableComponentProps[];
   getPropValue(propName: string, properties?: GetPropValueProperties): TypeUsableComponentProps;
@@ -107,33 +108,52 @@ export abstract class Component extends React.Component<{}, { states: any; compo
   public customStates: any = {};
   public id: string;
   static category: CATEGORIES;
-  public static getName(): string{
-    // console.error("Static Method Not Implemented", this.name);
-    return this.name;
-  };
 
   constructor(props: any, styles: any) {
     super(props);
     this._props = props;
     this.styles = styles;
-    this.id = Math.random().toString();
+    this.id = props?.id || Math.random().toString();
+
     this.onChange = this.onChange.bind(this);
     let sectionsKeyValue: any = {};
     Object.keys(this.styles).forEach((key, index) => {
       sectionsKeyValue[key] = (props && props[key]) || [];
     });
+
+    console.log(sectionsKeyValue);
+
     this.state = {
       states: {},
       componentProps: {
-        props: [],
-        cssClasses: sectionsKeyValue,
+        props: props?.props || [],
+        cssClasses: props?.cssClasses || sectionsKeyValue,
       },
     };
   }
 
-  public static getCategory(): CATEGORIES {
+  static getName(): string {
+    // console.error("Static Method Not Implemented", this.name);
+    return this.name;
+  }
+
+  getName(): string {
+    // console.error("Static Method Not Implemented", this.name);
+    return (this.constructor as typeof Component).getName();
+  }
+
+  getInstanceName(): string {
+    return (this.constructor as typeof Component).name;
+  }
+
+  static getCategory(): CATEGORIES {
     return this.category;
   }
+
+  getCategory(): CATEGORIES {
+    return (this.constructor as typeof Component).category;
+  }
+  
   getProps(): TypeUsableComponentProps[] {
     return this.state.componentProps.props;
   }
@@ -343,9 +363,7 @@ export abstract class Component extends React.Component<{}, { states: any; compo
 
   setComponentState(key: string, value: any): void {
     this.customStates[key] = value;
-    EventEmitter.emit("forceReload");
     EventEmitter.emit("stateChanged", {id: this.id, key, value});
-
   }
 
   getComponentState(key: string): any {
