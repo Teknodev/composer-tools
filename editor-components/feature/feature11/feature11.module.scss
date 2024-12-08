@@ -1,68 +1,70 @@
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+
 .container {
-    width: 100%;
-    padding: 50px 0;
     .max-content {
-        max-width: var(--composer-content-width);
-        margin: auto;
-        display: flex;
-        justify-content: space-around;
-        .content {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
+        .wrapper {
+            gap: calc(var(--composer-gap-xl) * 2);
 
-            .card-item-count {
+            .left {
+                .section-subtitle {}
 
-                .message {
-                    display: flex;
-                    flex-direction: column;
-                    min-height: 100px;
-                    border: 2px solid var(--composer-tertiary-color);
-                    // border-left: 5px solid var(--composer-tertiary-color);
-                    // border-top: 2px solid var(--composer-tertiary-color);
-                    // border-bottom: 2px solid var(--composer-tertiary-color);
-                    // border-right: 2px solid var(--composer-tertiary-color);
-                    box-shadow: var(--composer-box-shadow);
-                    border-radius: 6px;
-                    padding: 20px;
-                    flex: 1 1;
+                .section-title {
+                    margin-bottom: var(--composer-gap-md);
+                }
 
-                    &.setBorderThickness {
-                        border-left : 5px solid var(--composer-tertiary-color);
+                .section-description {
+                    margin-bottom: var(--composer-gap-md);
+                }
+
+                .button {
+
+                    >div,
+                    >a {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        gap: var(--composer-gap-sm);
+                        flex-shrink: 0;
+
+                        .button-icon {}
                     }
 
-                    .title {
-                        margin: 0;
-                        width: 100%;
-                        .message-title {
-                            width: 100%;
-                            display: block;
-                            font-weight: bold;
-                            color: var(--composer-primary-color);
+                    flex-shrink: 0;
+                    background-color: var(--composer-primary-color);
+                    color: var(--composer-font-color-secondary);
+                    padding: var(--composer-gap-sm) var(--composer-gap-md);
+                    border-radius: var(--composer-border-radius-md);
+                }
+            }
+
+            .right {
+                gap: var(--composer-gap-lg);
+
+                .card-container {
+                    display: flex;
+                    justify-content: space-between;
+                    gap: var(--composer-gap-md);
+
+                    .card-icon {
+                        flex-shrink: 0;
+                        height: 35px;
+                        width: 35px;
+                        color: var(--composer-primary-color);
+                    }
+
+                    .card-content {
+                        .card-title {}
+
+                        .card-description {
+                            opacity: 0.6;
                         }
                     }
-                    .long-text {
-                        padding-bottom: 10px;
-                        margin: 0;
-                        display: block;
-                        color: var(--composer-font-color-primary);
-                    }
                 }
             }
         }
     }
 }
 
-@media only screen and (max-width: 768px) {
-    .container {
-        padding: 50px 20px;
-        .max-content {
-            .content {
-                .card-item-count {
-                    min-width: 100%;
-                }
-            }
-        }
-    }
-}
+@container (max-width: #{$composer-tablet-width}) {}
+
+@container (max-width: #{$composer-phone-width}) {}
