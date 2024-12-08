@@ -4,6 +4,7 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature9.module.scss";
+import { Base } from "../../../composer-base-components/base/base";
 
 type Card = {
   icon: string;
@@ -43,7 +44,7 @@ class Feature9 extends BaseFeature {
           value: [
             {
               type: "string",
-              key: "num",  
+              key: "num",
               displayer: "Card Number",
               value: "1"
             },
@@ -74,7 +75,7 @@ class Feature9 extends BaseFeature {
           value: [
             {
               type: "string",
-              key: "num",  
+              key: "num",
               displayer: "Card Number",
               value: "2"
             },
@@ -105,7 +106,7 @@ class Feature9 extends BaseFeature {
           value: [
             {
               type: "string",
-              key: "num",  
+              key: "num",
               displayer: "Card Number",
               value: "3"
             },
@@ -136,7 +137,7 @@ class Feature9 extends BaseFeature {
           value: [
             {
               type: "string",
-              key: "num",  
+              key: "num",
               displayer: "Card Number",
               value: "4"
             },
@@ -167,7 +168,7 @@ class Feature9 extends BaseFeature {
           value: [
             {
               type: "string",
-              key: "num",  
+              key: "num",
               displayer: "Card Number",
               value: "5"
             },
@@ -253,42 +254,38 @@ class Feature9 extends BaseFeature {
     const cards = this.castToObject<Card[]>("cards");
     const buttons = this.castToObject<Button[]>("buttons");
     const cardElements = document.querySelectorAll("." + this.decorateCSS("card"));
-  
-    const titleExist = this.getPropValue("title", { as_string: true });
+
+    const titleExist = !!this.getPropValue("title", { as_string: true });
     const title = this.getPropValue("title");
 
     const cardsLengthIsChanged = this.getComponentState("cardLength") != cardElements.length;
 
-    if(cardsLengthIsChanged) {
-     this.setupObserver();
-   }
-   
+    if (cardsLengthIsChanged) {
+      this.setupObserver();
+    }
+
     return (
-      <div
-        className={this.decorateCSS("container")}
-      >
-        <div className={this.decorateCSS("max-content")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             {/* left page */}
             {titleExist &&
               <div className={this.decorateCSS("title-container")}>
                 <div className={this.decorateCSS("title-wrapper")}>
-                  <h1 className={this.decorateCSS("title")}>
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
                     {title}
-                  </h1>
+                  </Base.SectionTitle>
                 </div>
               </div>
             }
             {/* right page */}
             {cards?.length > 0 &&
-              <div
-                className={this.decorateCSS("cards-container")}
-              >
+              <div className={this.decorateCSS("cards-container")}>
                 {cards.map((card: Card, index: number) => {
-                  const titleExist = this.castToString(card.title);
-                  const descExist = this.castToString(card.description);
-                  const numExist = this.castToString(card.num);
-                  
+                  const titleExist = !!this.castToString(card.title);
+                  const descExist = !!this.castToString(card.description);
+                  const numExist = !!this.castToString(card.num);
+
                   const render = titleExist || descExist || card.icon;
 
                   if (!render) return null;
@@ -297,18 +294,19 @@ class Feature9 extends BaseFeature {
                       key={index}
                       className={this.decorateCSS("card")}
                     >
-                      {numExist && 
-                      <div className={this.decorateCSS("card-number")}>
-                        {card.num}
-                      </div>
-                    }
+                      {numExist &&
+                        <div className={this.decorateCSS("card-number")}>
+                          {card.num}
+                        </div>
+                      }
                       {/* card header */}
                       {(card.icon || titleExist) &&
                         <header className={this.decorateCSS("card-header")}>
                           {/* card icon */}
                           {card.icon &&
                             <div className={this.decorateCSS("icon-container")}>
-                              <ComposerIcon name={card.icon}
+                              <ComposerIcon
+                                name={card.icon}
                                 propsIcon={{
                                   className: this.decorateCSS("icon"),
                                   size: "40px"
@@ -319,9 +317,9 @@ class Feature9 extends BaseFeature {
                           {/* card title */}
                           {titleExist &&
                             <div className={this.decorateCSS("card-title-container")}>
-                              <h2 className={this.decorateCSS("card-title")}>
+                              <Base.H2 className={this.decorateCSS("card-title")}>
                                 {card.title}
-                              </h2>
+                              </Base.H2>
                             </div>
                           }
                         </header>
@@ -329,9 +327,9 @@ class Feature9 extends BaseFeature {
                       {/* card content */}
                       {descExist &&
                         <main className={this.decorateCSS("description-container")}>
-                          <p className={this.decorateCSS("description")}>
+                          <Base.P className={this.decorateCSS("description")}>
                             {card.description}
-                          </p>
+                          </Base.P>
                         </main>
                       }
                     </div>
@@ -342,7 +340,7 @@ class Feature9 extends BaseFeature {
           </div>
           {/* buttons */}
           {buttons?.length > 0 &&
-            <footer className={this.decorateCSS("buttons-container")}>
+            <Base.ContainerGrid className={this.decorateCSS("buttons-container")}>
               {buttons.map((button: Button, index: number) => {
                 const textExist = this.castToString(button.text);
                 if (!textExist) return null;
@@ -354,10 +352,10 @@ class Feature9 extends BaseFeature {
                   </ComposerLink>
                 );
               })}
-            </footer>
+            </Base.ContainerGrid>
           }
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
