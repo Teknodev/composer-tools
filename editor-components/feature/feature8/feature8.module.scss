@@ -1,96 +1,72 @@
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+
 .container {
-    width: 100%;
-    padding: 50px 0;
     .max-content {
-        max-width: var(--composer-content-width);
-        margin: auto;
-        display: flex;
-        justify-content: space-around;
-        .content {
-            display: flex;
+        .section-title {
+            margin-top: 0;
+            margin-bottom: var(--composer-gap-md);
+        }
+
+        .cards-container {
+            gap: var(--composer-gap-sm);
+            min-height: 500px;
             justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            .card-title {
-                text-align: center;
-                font-size: 3rem;
-                margin: 40px 0;
-                color: var(--composer-primary-color);
-            }
+
             .card {
-                width: 100%;
-                display: flex;
+                position: relative;
+                transition: 1s;
+                min-height: 350px;
                 justify-content: center;
-                flex-wrap: wrap;
-                gap: 20px;
-                .features {
-                    transition: all 0.6s;
-                    display: flex;
-                    flex-direction: column;
-                    text-align: center;
-                    border-radius: 6px;
-                    min-height: 350px;
-                    border: 1px solid transparent;
-                    box-shadow: var(--composer-box-shadow);
-                    padding: 20px;
-                    flex: 1 1;
-                    &:hover {
-                        border: 1px solid var(--composer-tertiary-color);
-                    }
-                    .image {
-                        display: block;
-                        margin: auto;
-                        width: 100%;
-                        max-width: 250px;
-                        padding: 0;
-                        object-fit: cover;
-                        border-radius: 6px;
-                    }
-                    .title {
-                        display: block;
-                        font-weight: bold;
-                        color: var(--composer-primary-color);
-                    }
-                    .long-text {
-                        display: block;
-                        color: var(--composer-font-color-primary);
-                        margin: 0;
-                    }
-                }
-            }
-            .button {
-                width: 100%;
-                cursor: pointer;
-                text-decoration: none;
-                text-align: center;
-                transition: 0.3s;
-                display: block;
-                margin: 10px auto 10px auto;
-                color: white;
-                background-color: var(--composer-secondary-color);
-                padding: 10px 30px;
-                border-radius: 6px;
-                border: 1px solid transparent;
-                width: 200px;
-                font-weight: 400;
-                font-size: 1.5em;
-                &:hover {
+                align-items: center;
+                border-radius: var(--composer-border-radius-xl);
+                padding: var(--composer-gap-md);
+
+                .icon {
+                    width: 50px;
+                    height: 50px;
                     color: var(--composer-primary-color);
-                    background-color: transparent;
-                    border: 1px solid var(--composer-primary-color);
+                }
+
+                .title {
+                    text-align: center;
+                    color: var(--composer-font-color-primary);
+                    font-size: 2rem;
+                }
+
+                .description {
+                    text-align: center;
+                    color: var(--composer-font-color-primary);
                 }
             }
         }
     }
 }
 
-@media only screen and (max-width: 768px) {
+@container (max-width: #{$composer-tablet-width}) {
     .container {
-        padding: 50px 20px;
         .max-content {
-            .content {
-                .card-item-count {
-                    min-width: 100%;
+            .cards-container {
+                flex-direction: row;
+
+                .card {
+                    // !important to override inline style
+                    margin: 0 !important;
+                    width: 47% !important;
+                    transform: none !important;
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        .max-content {
+            .cards-container {
+                flex-direction: column;
+
+                .card {
+                    width: 100% !important;
                 }
             }
         }
