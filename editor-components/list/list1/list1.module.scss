@@ -5,53 +5,49 @@
   .max-content {
       display: flex;
       flex-direction: column;
-
-      /*.up-text {
-        margin-bottom: var(--composer-gap-md);
-      }*/
-
       .carousel {
         overflow: hidden;
+        >div{
+          >div{
+            display: flex;
+            align-items: stretch;
+            >div{
+              height: auto;
+              >div{
+                height: 100%;
+              }
+            }
+          }
+        }
 
         .dots {
           display: flex !important;
-          flex-direction: row;
-          margin: 0 auto;
-          width: fit-content;
+          width: 100%;
           gap: var(--composer-gap-sm);
           list-style-type: none;
           padding: 0;
-          bottom: 20px;
-          left: 50%;
-          transform: translateX(-50%);
+          bottom: 10px;
           position: absolute;
-
+          justify-content: center;
           li {
             button {
               border: none;
               transition: 0.3s;
               content-visibility: hidden;
-              background: var(--composer-html-background) !important;
+              background-color: var(--composer-html-background) ;
               width: 10px;
               height: 10px;
-              border-radius: 100px;
+              border-radius: var(--composer-border-radius-xl);
               cursor: pointer;
             }
           }
         }
-
         .dots :global(li.slick-active) button {
           padding: 0 var(--composer-gap-md);
         }
-
         .card {
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          align-items: center;
-          width: 100% !important;
           height: 100%;
-          padding: var(--composer-gap-xl) var(--composer-gap-md);
+          padding: 0px var(--composer-gap-md) var(--composer-gap-xl) var(--composer-gap-md); 
           position: relative;
 
           &.active {
@@ -64,20 +60,18 @@
               left: calc(0px - var(--composer-gap-md));
               background-color: var(--composer-primary-color);
               z-index: -1;
-              opacity: .93;
+              opacity: 1;
+              border-radius: var(--composer-border-radius-xs);
             }
           }
 
           .card-inner {
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            height: 100%; 
             padding: var(--composer-gap-lg);
             background-color: var(--composer-html-background);
-            z-index: 0;
-            position: static;
-            aspect-ratio: 1.4;
+            border-radius: var(--composer-border-radius-xs);
+            gap: var(--composer-gap-md);
 
             .img-div {
               .img {
@@ -90,49 +84,34 @@
             }
 
             .card-titles {
-              margin: var(--composer-gap-md) 0;
-
               .title {
                 color: var(--composer-font-color-primary);
                 font-size: 1.5rem;
-
                 &:hover {
                   transition: 1s;
                 }
               }
-  
               .subtitle {
                 color: var(--composer-tertiary-color);
                 font-size: 1rem;
               }
             }
-
             .link {
-              margin: var(--composer-gap-md) 0 0;
               color: var(--composer-font-color-primary);
               display: flex;
               align-items: center;
               gap: var(--composer-gap-xs);
               cursor: pointer;
 
-              > svg {
+              .icon {
                 font-size: 1rem;
-                display: flex;
-                flex-shrink: 0;
               }
-
+              .text {
+                font-size: 1rem;
+              }
               &:hover {
                 color: var(--composer-primary-color);
                 transition: 1s;
-              }
-
-              .text {
-                display: -webkit-box !important;
-                line-clamp: 1;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                font-size: 1rem;
               }
             }
           }
@@ -145,63 +124,10 @@
   .container {
     .max-content {
       .carousel {
-        .dots {
-          display: flex !important;
-          position: absolute;
-          li {
-            button {
-              border: none;
-              transition: 0.3s;
-              content-visibility: hidden;
-              background: var(--composer-html-background) !important;
-              width: 10px;
-              height: 10px;
-              border-radius: 100px;
-            }
-          }
-        }
         .card {
           &.active {
             &::after {
               visibility: hidden;
-            }
-          }
-
-          .card-inner {
-            aspect-ratio: 0.7;
-            margin-left: 0px;
-            .img {
-              margin: 0 auto;
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-@container (max-width: #{$composer-phone-width}) {
-  .container {
-    .max-content {
-      .carousel {
-        .dots {
-          position: absolute;
-          li {
-            button {
-              background: var(--composer-html-background) !important;
-            }
-          }
-        }
-        .card {
-          &.active::after {
-            display: none !important;
-          }
-
-          .card-inner {
-            aspect-ratio: 0.6;
-            margin-left: 0px;
-            img {
-              margin: 0 auto;
             }
           }
         }
