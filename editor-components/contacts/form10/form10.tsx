@@ -351,9 +351,9 @@ class Form10 extends BaseContacts {
                   >
                     {({ handleChange, values }) => (
                       <Form className={this.decorateCSS("form")}>
-                        {inputItems.map(
-                          (inputItem: any, inputItemIndex: number) => (
-                            <div className={this.decorateCSS("input-container")}>
+                        {inputItems.map((inputItem: any, inputItemIndex: number) => (
+                          <div className={this.decorateCSS("input-container")}>
+                            {!!inputItem.getPropValue("placeholder", { as_string: true }) && (
                               <span className={this.decorateCSS("placeholder")}>
                                 {inputItem.getPropValue("placeholder", {
                                   suffix: {
@@ -362,10 +362,12 @@ class Form10 extends BaseContacts {
                                   },
                                 })}
                               </span>
-                              <div className={this.decorateCSS("inputs")}>
-                                {inputItem
-                                  .getPropValue("inputs")
-                                  .map((inputObj: any, inputIndex: number) => (
+                            )}
+                            <div className={this.decorateCSS("inputs")}>
+                              {inputItem
+                                .getPropValue("inputs")
+                                .map((inputObj: any, inputIndex: number) => {
+                                  return (
                                     <div key={inputIndex} className={this.decorateCSS("input-box")}>
                                       <div className={this.decorateCSS("input-container")}>
                                         {inputObj.getPropValue("type") ===
@@ -433,31 +435,33 @@ class Form10 extends BaseContacts {
                                         component={"span"}
                                       />
                                     </div>
-                                  ))}
-                              </div>
+                                  );
+                                })}
                             </div>
-                          ),
-                        )}
+                          </div>
+                        ))}
 
-                        <div className={this.decorateCSS("bottom-section")}>
-                          {descriptionExist && (
-                            <div className={this.decorateCSS("description")}>
-                              <Base.P className={this.decorateCSS("description-text")}>
-                                {descriptionExist}
-                              </Base.P>
-                            </div>
-                          )}
-                          {this.getPropValue("buttonText", { as_string: true }) && (
-                            <div className={this.decorateCSS("button-box")}>
-                              <Base.Button
-                                className={this.decorateCSS("submit-button")}
-                                type="submit"
-                              >
-                                <span className={this.decorateCSS("button-text")}>{this.getPropValue("buttonText")}</span>
-                              </Base.Button>
-                            </div>
-                          )}
-                        </div>
+                        {(descriptionExist || this.getPropValue("buttonText", { as_string: true })) && (
+                          <div className={this.decorateCSS("bottom-section")}>
+                            {descriptionExist && (
+                              <div className={this.decorateCSS("description")}>
+                                <Base.P className={this.decorateCSS("description-text")}>
+                                  {descriptionExist}
+                                </Base.P>
+                              </div>
+                            )}
+                            {this.getPropValue("buttonText", { as_string: true }) && (
+                              <div className={this.decorateCSS("button-box")}>
+                                <Base.Button
+                                  className={this.decorateCSS("submit-button")}
+                                  type="submit"
+                                >
+                                  <span className={this.decorateCSS("button-text")}>{this.getPropValue("buttonText")}</span>
+                                </Base.Button>
+                              </div>
+                            )}
+                          </div>
+                        )}
                       </Form>
                     )}
                   </Formik>

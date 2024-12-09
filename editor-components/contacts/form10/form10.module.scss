@@ -116,7 +116,7 @@
 
               .icon {
                 position: absolute;
-                right: 0;
+                right: var(--composer-gap-sm);
                 top: 50%;
                 transform: translateY(-50%);
                 width: 1rem;
