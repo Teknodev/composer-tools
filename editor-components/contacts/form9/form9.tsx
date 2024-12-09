@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseContacts } from "../../EditorComponent";
+import { BaseContacts, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./form9.module.scss";
 import { ErrorMessage, Formik, Form } from "formik";
 import * as Yup from "yup";
@@ -270,13 +270,51 @@ class Form9Page extends BaseContacts {
     }
   }
 
+
   render() {
     const imageExist = !!this.getPropValue("image");
 
     const formItems = this.castToObject<FormItem[]>("form-items");
 
+    function toObjectKey(str: string) {
+      if (/^\d/.test(str)) {
+        str = "_" + str;
+      }
+      str = str.replace(/[^a-zA-Z0-9_]/g, "_").toLowerCase();
+      return str;
+    }
+
+    function getInputName(
+      indexOfLabel: number,
+      inputLabel: string,
+      indexOfInput: number
+    ): string {
+      const name = toObjectKey(`${indexOfLabel} ${inputLabel} ${indexOfInput}`);
+      return toObjectKey(name);
+    }
+
+    const getInitialValues = () => {
+      let value: any = {};
+      formItems.map((inputItem: any, indexOfItem: number) => {
+        inputItem
+          .getPropValue("inputs")
+          ?.map((_: TypeUsableComponentProps, indexOfInput: number) => {
+            const key = getInputName(
+              indexOfItem,
+              inputItem.getPropValue("label"),
+              indexOfInput
+            );
+            value[key] = "";
+          });
+      });
+      return value;
+    };
+
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container className={`
+        ${this.decorateCSS("container")}
+        ${imageExist ? this.decorateCSS("with-image") : ""}
+      `}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             {imageExist && (
@@ -288,7 +326,12 @@ class Form9Page extends BaseContacts {
                 />
               </div>
             )}
-            <div className={this.decorateCSS("form-container")}>
+            <div
+              className={`
+                ${this.decorateCSS("form-container")}
+                ${imageExist ? this.decorateCSS("with-image") : ""}
+              `}
+            >
               <Base.VerticalContent className={this.decorateCSS("header")}>
                 <Base.SectionTitle className={this.decorateCSS("title")}>
                   {this.getPropValue("title")}
@@ -298,7 +341,7 @@ class Form9Page extends BaseContacts {
                 </Base.SectionDescription>
               </Base.VerticalContent>
               <Formik
-                initialValues={{ name: "", email: "", message: "" }}
+                initialValues={getInitialValues()}
                 validationSchema={this.validationSchema}
                 onSubmit={(data, { resetForm }) => {
                   this.insertForm("Contact Us", data);
@@ -308,7 +351,6 @@ class Form9Page extends BaseContacts {
                 {({ handleChange, values }) => (
                   <Form className={this.decorateCSS("form")}>
                     {formItems.map((item, index) => {
-
                       return (
                         <div
                           key={index}
@@ -324,27 +366,27 @@ class Form9Page extends BaseContacts {
                             {this.getInputType(item.type) === "textarea"
                               ? (
                                 <textarea
-                                  className={this.decorateCSS("input-textarea")}
-                                  placeholder={this.castToString(item.placeholder)}
-                                ></textarea>
+                                  value={values[getInputName(index, this.castToString(item.label), index)]}
+                                  className={this.decorateCSS("input-textarea")} placeholder={this.castToString(item.placeholder)} onChange={handleChange}
+                                  name={getInputName(index, this.castToString(item.label), index)} cols={30}></textarea>
                               )
                               : <>
                                 <ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("input-icon") }} />
                                 <input
                                   placeholder={this.castToString(item.placeholder)}
-                                  type={item.type}
-                                  value={values.name}
+                                  type={this.getInputType(item.type)}
                                   onChange={handleChange}
+                                  value={values[getInputName(index, this.castToString(item.label), index)]}
+                                  name={getInputName(index, this.castToString(item.label), index)}
                                   className={this.decorateCSS("input")}
                                 />
                               </>}
+                            <ErrorMessage
+                              className={this.decorateCSS("error-message")}
+                              name={getInputName(index, this.castToString(item.label), index)}
+                              component={"span"}
+                            />
                           </div>
-                          <ErrorMessage
-                            className={this.decorateCSS("error-message")}
-                            name="error-message"
-                            component={"span"}
-                            children={() => <>{item.errorMessage}</>}
-                          />
                         </div>
                       );
                     })}

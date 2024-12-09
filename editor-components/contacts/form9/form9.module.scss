@@ -1,7 +1,9 @@
 @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
 .container {
-    padding: 0;
+    &.with-image {
+        padding: 0;
+    }
 
     .max-content {
         .wrapper {
@@ -25,7 +27,10 @@
                 flex-direction: column;
                 justify-content: center;
                 gap: var(--composer-gap-xl);
-                padding-right: var(--composer-gap-md);
+
+                &.with-image {
+                    padding-right: var(--composer-gap-md);
+                }
 
                 .header {}
 
@@ -130,7 +135,11 @@
                 }
 
                 .form-container {
-                    padding: var(--composer-gap-md) var(--composer-gap-lg);
+                    padding: 0;
+
+                    &.with-image {
+                        padding: var(--composer-gap-md) var(--composer-gap-lg);
+                    }
                 }
             }
         }
@@ -142,7 +151,15 @@
         .max-content {
             .wrapper {
                 .form-container {
-                    padding: var(--composer-gap-md);
+                    &.with-image {
+                        padding: var(--composer-gap-md);
+                    }
+
+                    .form {
+                        .form-item {
+                            width: 100%;
+                        }
+                    }
                 }
             }
         }
