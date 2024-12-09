@@ -2,16 +2,40 @@ import * as React from "react";
 import { BaseList } from "../../EditorComponent";
 import styles from "./list2.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { Base } from "../../../composer-base-components/base/base";
 
-interface List2Items {
-  listEmoji: string;
-  listTitle: string;
-  listDesc: string;
-  link: string;
+type CardItem = {
+  page: string,
+  image: string,
+  count: number,
+  count_text: JSX.Element,
+  card_text: JSX.Element,
 }
+
 class List2 extends BaseList {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "number",
+      key: "imageCountInitial",
+      displayer: "Image Count Initial",
+      value: 3
+  })
+  this.addProp({
+      type: "number",
+      key: "imageCount",
+      displayer: "More Image Count",
+      value: 1
+  })
+
+    this.addProp({
+      type: "number",
+      key: "itemCountRow",
+      displayer: "Item Count in a Row",
+      value: 3,
+      max: 4,
+    });
 
     this.addProp({
       type: "string",
@@ -28,23 +52,10 @@ class List2 extends BaseList {
     });
 
     this.addProp({
-      type: "object",
+      type: "string",
       key: "button",
-      displayer: "Action Button",
-      value: [
-        {
-          type: "string",
-          key: "text",
-          displayer: "Text of Button",
-          value: "View More Categories"
-        },
-        {
-          type: "page",
-          displayer: "Navigate",
-          value: "",
-          key: "navigate"
-        }
-      ]
+      displayer: "Button Text",
+      value: "View More Categories"
     });
 
     this.addProp({
@@ -276,50 +287,75 @@ class List2 extends BaseList {
         }
       ]
     })
+    this.addProp({
+      type: "boolean",
+      key: "stick",
+      displayer: "Show Line",
+      value: true
+    });
+
+    this.setComponentState("moreImages", 0);
   }
 
   getName(): string {
     return "List 2";
   }
 
+  handleLoadMoreButton = () => {
+    this.setComponentState("moreImages", this.getComponentState("moreImages") + this.getPropValue("imageCount"))
+  };
+
   render() {
-    return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <h3 className={this.decorateCSS("title")}>
-            {this.getPropValue("title")}
-          </h3>
-          <span className={this.decorateCSS("description")}>
-            {this.getPropValue("description")}
-          </span>
-          <div className={this.decorateCSS("cards-box")}>
-            {this.getPropValue("cards").map((card: any, index: number) =>
-              <ComposerLink key={index} path={card.getPropValue("page")}>
+    if (this.getComponentState("imageCount") != this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"))
+      this.setComponentState("imageCount", this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"));
+
+    const cards = this.castToObject<any>("cards");
+
+    return(
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <Base.VerticalContent>
+            <Base.SectionTitle>
+              {this.getPropValue("title")}
+            </Base.SectionTitle>
+            <Base.SectionDescription>
+              {this.getPropValue("description")}
+              </Base.SectionDescription>
+            </Base.VerticalContent>
+          <Base.ListGrid className={this.decorateCSS("cards-box")} gridCount={{pc: this.getPropValue("itemCountRow")}}>
+            {cards.slice(0, this.getComponentState("imageCount")).map((card: CardItem, index: number) => (
+              <ComposerLink key={index} path={card.page}>
                 <div className={this.decorateCSS("card")}>
-                  <img src={card.getPropValue("image")} alt={card.getPropValue("card_text")} />
+                  {card.image && (
+                    <img src={card.image} alt={this.castToString(card.card_text)} />
+                  )}
                   <div className={this.decorateCSS("overlay")}></div>
                   <div className={this.decorateCSS("overlay2")}></div>
                   <div className={this.decorateCSS("card-content")}>
-                    <div className={this.decorateCSS("stick")}></div>
+                    {this.getPropValue("stick") && (
+                      <div className={this.decorateCSS("stick")}></div>
+                    )}
                     <div className={this.decorateCSS("labels")}>
-                      <span className={this.decorateCSS("first")}>{card.getPropValue("card_text")}</span>
-                      <p className={this.decorateCSS("second")}>{card.getPropValue("count") + " " + card.getPropValue("count_text")}</p>
-
+                      <span className={this.decorateCSS("first")}>{card.card_text}</span>
+                      <span className={this.decorateCSS("second")}>{(card.count || 0) + " " + this.castToString(card.count_text)}</span>
                     </div>
-
                   </div>
                 </div>
-              </ComposerLink>
+              </ComposerLink>)
             )}
-          </div>
+          </Base.ListGrid>
 
-          <ComposerLink path={this.getPropValue("button")[1].value}>
-            <div className={this.decorateCSS("button")}>
-              <span>{this.getPropValue("button")[0].value}</span>
+          {this.getPropValue("button") && (
+            <div className={this.decorateCSS("buttons-box")}>
+              <Base.Button onClick={this.handleLoadMoreButton}>
+                <div className={this.decorateCSS("button")}>
+                  <span>{this.getPropValue("button")}</span>
+                </div>
+              </Base.Button>
             </div>
-          </ComposerLink>
-        </div>
-      </div>
+          )}
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
