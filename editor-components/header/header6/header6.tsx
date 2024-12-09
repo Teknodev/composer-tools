@@ -2,7 +2,7 @@ import * as React from "react";
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header6.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { Button } from "../../contacts/form2/form2";
+import { Base } from "../../../composer-base-components/base/base";
 
 interface TitleItem {
   title: JSX.Element;
@@ -45,9 +45,9 @@ class Header6 extends BaseHeader {
           key: "titleAnimation",
           displayer: "Title Animation",
           value: true,
-        }
-      ]
-    })
+        },
+      ],
+    });
     this.addProp({
       type: "object",
       key: "title2Item",
@@ -64,9 +64,9 @@ class Header6 extends BaseHeader {
           key: "title2Animation",
           displayer: "Title Animation",
           value: true,
-        }
-      ]
-    })
+        },
+      ],
+    });
     this.addProp({
       type: "object",
       key: "descriptionItem",
@@ -83,9 +83,9 @@ class Header6 extends BaseHeader {
           key: "descriptionAnimation",
           displayer: "Description Animation",
           value: true,
-        }
-      ]
-    })
+        },
+      ],
+    });
     this.addProp({
       type: "image",
       key: "image1",
@@ -103,16 +103,17 @@ class Header6 extends BaseHeader {
           type: "image",
           key: "image2",
           displayer: "Image2",
-          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617f52bd2970002c624524?alt=media&timestamp=1719483639150",
+          value:
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617f52bd2970002c624524?alt=media&timestamp=1719483639150",
         },
         {
           type: "boolean",
           key: "image2Animation",
           displayer: "Image2 Animation",
           value: true,
-        }
-      ]
-    })
+        },
+      ],
+    });
 
     this.addProp({
       type: "array",
@@ -144,7 +145,7 @@ class Header6 extends BaseHeader {
               key: "buttonAnimation",
               displayer: "Button Animation",
               value: true,
-            }
+            },
           ],
         },
       ],
@@ -164,33 +165,50 @@ class Header6 extends BaseHeader {
       this.castToString(title.title) ||
       this.castToString(title2.title2) ||
       this.castToString(description.description) ||
-      (this.getPropValue("buttons") && this.getPropValue("buttons").length > 0);
+      this.castToObject<ButtonItem[]>("buttons").some((el) => this.castToString(el.buttonText));
 
-    const showRightContent =
-      this.getPropValue("image1") || image2.image2;
+    const showRightContent = this.getPropValue("image1") || image2.image2;
 
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <section className={this.decorateCSS("child-container")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <section className={`${this.decorateCSS("child-container")}`}>
             {showLeftContent ? (
               <div className={this.decorateCSS("left-content")}>
                 {(this.castToString(title.title) || this.castToString(title2.title2)) && (
                   <div className={this.decorateCSS("title-container")}>
                     {this.castToString(title.title) && (
-                      <h2 className={title.titleAnimation ? this.decorateCSS("title") : this.decorateCSS("title-noanimation")}>
+                      <h2
+                        className={
+                          title.titleAnimation
+                            ? this.decorateCSS("title")
+                            : this.decorateCSS("title-noanimation")
+                        }
+                      >
                         {this.castToString(title.title)}
                       </h2>
                     )}
                     {this.castToString(title2.title2) && (
-                      <h3 className={title2.title2Animation ? this.decorateCSS("title2") : this.decorateCSS("title2-noanimation")}>
+                      <h3
+                        className={
+                          title2.title2Animation
+                            ? this.decorateCSS("title2")
+                            : this.decorateCSS("title2-noanimation")
+                        }
+                      >
                         {this.castToString(title2.title2)}
                       </h3>
                     )}
                   </div>
                 )}
                 {this.castToString(description.description) && (
-                  <p className={description.descriptionAnimation ? this.decorateCSS("description") : this.decorateCSS("description-noanimation")}>
+                  <p
+                    className={
+                      description.descriptionAnimation
+                        ? this.decorateCSS("description")
+                        : this.decorateCSS("description-noanimation")
+                    }
+                  >
                     {this.castToString(description.description)}
                   </p>
                 )}
@@ -200,13 +218,16 @@ class Header6 extends BaseHeader {
                       (item: any, indexButtons: number) => {
                         const buttonText = this.castToString(item.buttonText);
                         return buttonText ? (
-                          <ComposerLink
-                            key={indexButtons}
-                            path={item.url}
-                          >
-                            <button className={item.buttonAnimation ? this.decorateCSS("button") : this.decorateCSS("button-noanimation")}>
+                          <ComposerLink path={item.url} key={indexButtons}>
+                            <Base.Button
+                              className={
+                                item.buttonAnimation
+                                  ? this.decorateCSS("button")
+                                  : this.decorateCSS("button-noanimation")
+                              }
+                            >
                               {buttonText}
-                            </button>
+                            </Base.Button>
                           </ComposerLink>
                         ) : null;
                       }
@@ -229,15 +250,22 @@ class Header6 extends BaseHeader {
                   <img
                     src={image2.image2}
                     alt=""
-                    className={this.getPropValue("image1") ? (image2.image2Animation ? this.decorateCSS("image2") : this.decorateCSS("image2-noanimation"))
-                      : (image2.image2Animation ? this.decorateCSS("image2-without-image1") : this.decorateCSS("image2-noanimation"))}
+                    className={
+                      this.getPropValue("image1")
+                        ? image2.image2Animation
+                          ? this.decorateCSS("image2")
+                          : this.decorateCSS("image2-noanimation")
+                        : image2.image2Animation
+                        ? this.decorateCSS("image2-without-image1")
+                        : this.decorateCSS("image2-noanimation")
+                    }
                   />
                 )}
               </div>
             ) : null}
           </section>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
