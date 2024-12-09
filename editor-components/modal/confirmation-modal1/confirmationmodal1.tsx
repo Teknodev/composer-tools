@@ -1,7 +1,7 @@
 import * as React from "react";
 import ComposerModalClose from "../../../composer-base-components/close/close";
 import { BaseModal } from "../../EditorComponent";
-import styles from "./terms-of-use.module.scss";
+import styles from "./confirmationmodal1.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
@@ -11,7 +11,7 @@ type Button = {
   link: string;
 };
 
-class TermsOfUseModal extends BaseModal {
+class ConfirmationModal1 extends BaseModal {
   constructor(props?: any) {
     super(props, styles);
 
@@ -19,56 +19,28 @@ class TermsOfUseModal extends BaseModal {
       type: "image",
       key: "image",
       displayer: "Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b08a9003b007002cc77628?alt=media&timestamp=1732521893813",
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: true,
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/672a3e2d7acba6002c5eb556?alt=media&timestamp=1730821678662",
     });
 
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Accept Terms and Conditions",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "termsDescription",
-      displayer: "Terms Description",
-      value: "To proceed, please accept our",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "termsText",
-      displayer: "Terms Text",
-      value: "Terms and Conditions",
-    });
-
-    this.addProp({
-      type: "page",
-      key: "termsLink",
-      displayer: "Terms Link",
-      value: "",
+      value: "Hang On a Sec!",
     });
 
     this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "It's important that you read and understand them before continuing to use our services.",
+      value: "Ready to rock and roll? Confirm your choice, and let's make some magic happen!",
     });
 
     this.addProp({
       type: "icon",
       key: "exitIcon",
       displayer: "ExitIcon",
-      value: "MdCancel",
+      value: "IoMdCloseCircle",
     });
 
     this.addProp({
@@ -88,7 +60,7 @@ class TermsOfUseModal extends BaseModal {
               type: "string",
               key: "buttonText",
               displayer: "Button Text",
-              value: "Maybe later",
+              value: "Count Me In",
             },
             {
               type: "page",
@@ -107,7 +79,7 @@ class TermsOfUseModal extends BaseModal {
               type: "string",
               key: "buttonText",
               displayer: "Button Text",
-              value: "Accept",
+              value: "Let Me Rethink",
             },
             {
               type: "page",
@@ -122,48 +94,35 @@ class TermsOfUseModal extends BaseModal {
   }
 
   getName(): string {
-    return "Terms Of Use Modal";
+    return "Confirmation Modal 1";
   }
 
   render() {
     const image = this.getPropValue("image");
-    const overlay = this.getPropValue("overlay");
     const title = this.castToString(this.getPropValue("title"));
-    const termsText = this.castToString(this.getPropValue("termsText"));
-    const termsDescription = this.castToString(this.getPropValue("termsDescription"));
     const description = this.castToString(this.getPropValue("description"));
     const buttons = this.castToObject<Button[]>("buttons");
     const validButtons = buttons.filter((item: Button) => this.castToString(item.buttonText));
-
+    const icon = this.getPropValue("exitIcon");
     return (
       <Base.Container isModal={true} className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("content")}>
             <div className={this.decorateCSS("top-wrapper")}>
-              <div className={this.decorateCSS("exit-icon")}>
-                <ComposerModalClose>
-                  <ComposerIcon propsIcon={{ className: image ? this.decorateCSS("icon") : this.decorateCSS("icon-no-image") }} name={this.getPropValue("exitIcon")} />
-                </ComposerModalClose>
-              </div>
+              {icon && (
+                <div className={this.decorateCSS("exit-icon")}>
+                  <ComposerModalClose>
+                    <ComposerIcon propsIcon={{ className: image ? this.decorateCSS("icon") : this.decorateCSS("icon-no-image") }} name={this.getPropValue("exitIcon")} />
+                  </ComposerModalClose>
+                </div>
+              )}
 
               {image && <img className={this.decorateCSS("image")} src={image} />}
-              {image && overlay && <div className={this.decorateCSS("overlay")}></div>}
             </div>
 
-            <div className={this.decorateCSS("buttom-wrapper")}>
+            <div className={this.decorateCSS("button-wrapper")}>
               <div className={this.decorateCSS("second-div")}>
-                {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-                <div className={this.decorateCSS("terms-container")}>
-                  {(termsDescription || termsText) && (
-                    <Base.SectionDescription className={this.decorateCSS("terms")}>
-                      <Base.SectionDescription className={this.decorateCSS("termsDescription")}>{termsDescription}</Base.SectionDescription>
-                      <span className={this.decorateCSS("termsText")}>
-                        <ComposerLink path={this.getPropValue("termsLink")}> {termsText}</ComposerLink>
-                      </span>
-                    </Base.SectionDescription>
-                  )}
-                </div>
-
+                {title && <Base.SectionTitle className={image ? this.decorateCSS("title") : this.decorateCSS("title-no-image")}>{this.getPropValue("title")}</Base.SectionTitle>}
                 {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
               </div>
 
@@ -184,4 +143,4 @@ class TermsOfUseModal extends BaseModal {
   }
 }
 
-export default TermsOfUseModal;
+export default ConfirmationModal1;
