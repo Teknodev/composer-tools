@@ -262,7 +262,7 @@ class Slider6 extends BaseSlider {
       dots: true,
       infinite: true,
       speed: 700,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -303,6 +303,8 @@ class Slider6 extends BaseSlider {
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
 
+    const imageHeight = window.document.getElementById("slider6Image")?.clientHeight
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -332,13 +334,14 @@ class Slider6 extends BaseSlider {
 
                       {(this.castToString(item.vertText) || item.image) &&
                         <div className={`${this.decorateCSS("left-part")} ${!item.image && this.decorateCSS("no-img")}`}>
-                          {this.castToString(item.vertText) && <span className={this.decorateCSS("vert-text")}>
+                          {this.castToString(item.vertText) && <span style={{maxHeight: imageHeight}} className={this.decorateCSS("vert-text")}>
                             {item.vertText}
                           </span>}
                           {item.image && <div className={this.decorateCSS("image-wrapper")}>
                             <img
                               alt=""
                               src={item.image}
+                              id="slider6Image"
                               className={this.decorateCSS("image")}
                             />
                           </div>}
