@@ -307,7 +307,7 @@ class Slider10 extends BaseSlider {
       dots: false,
       arrows: false,
       infinite: true,
-      autoplay: false,
+      autoplay: true,
       speed: 1500,
       autoplaySpeed: 3000,
       slidesToShow: 1,
