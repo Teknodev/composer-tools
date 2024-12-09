@@ -5,6 +5,11 @@ import styles from "./header34.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
+interface Slider {
+  image: string;
+  title: JSX.Element
+}
 
 class HeaderComponent34 extends BaseHeader {
   constructor(props?: any) {
@@ -135,12 +140,14 @@ class HeaderComponent34 extends BaseHeader {
   }
 
   render() {
+    console.log(this.getPropValue("slider")[
+      this.getComponentState("active-index")].getPropValue("image"))
     const settings = {
       arrows: false,
-      dots: false,
+      dots: true,
       infinite: true,
       accessibility: false,
-      speed: 1700,
+      speed: 3000,
       autoplay: false,
       autoplaySpeed: 3000,
       slidesToShow: 1,
@@ -171,17 +178,16 @@ class HeaderComponent34 extends BaseHeader {
         >
           {this.getPropValue("slider").map((item: any, indexSlider: number) => (
             <div className={this.decorateCSS("content")} key={indexSlider}>
-              <img src={item.getPropValue("image")} />
+              <img src={item.getPropValue("image")} className={this.decorateCSS("image")} />
               <div className={this.decorateCSS("overlay")}></div>
               <div
-                className={`${this.decorateCSS("text-and-button")} ${
-                  this.getComponentState("animation-active") &&
+                className={`${this.decorateCSS("text-and-button")} ${this.getComponentState("animation-active") &&
                   this.decorateCSS("un-visible")
-                }`}
+                  }`}
               >
-                <h1>{item.getPropValue("title")}</h1>
+                <div className={this.decorateCSS("text")}>{item.getPropValue("title")}</div>
                 <ComposerLink path={item.getPropValue("button_link")}>
-                  <button>{item.getPropValue("button_text")}</button>
+                  <Base.Button className={this.decorateCSS("button")}>{item.getPropValue("button_text")}</Base.Button>
                 </ComposerLink>
               </div>
               <ComposerIcon
@@ -189,10 +195,9 @@ class HeaderComponent34 extends BaseHeader {
                 propsIcon={{
                   className: `${this.decorateCSS(
                     "next-icon"
-                  )} ${this.decorateCSS("arrow")} ${
-                    !this.getComponentState("display-none") &&
-                    this.decorateCSS("un-visible")
-                  }`,
+                  )} ${this.decorateCSS("arrow")} ${!this.getComponentState("display-none") &&
+                  this.decorateCSS("un-visible")
+                    }`,
                   size: 40,
                   onClick: () => {
                     this.getComponentState("slider-ref").current.slickNext();
@@ -204,10 +209,9 @@ class HeaderComponent34 extends BaseHeader {
                 propsIcon={{
                   className: `${this.decorateCSS(
                     "prev-icon"
-                  )} ${this.decorateCSS("arrow")} ${
-                    !this.getComponentState("display-none") &&
-                    this.decorateCSS("un-visible")
-                  }`,
+                  )} ${this.decorateCSS("arrow")} ${!this.getComponentState("display-none") &&
+                  this.decorateCSS("un-visible")
+                    }`,
                   size: 40,
                   onClick: () => {
                     this.getComponentState("slider-ref").current.slickPrev();
@@ -218,19 +222,18 @@ class HeaderComponent34 extends BaseHeader {
           ))}
         </ComposerSlider>
         <div
-          className={`${this.decorateCSS("overlay-animation-box")} ${
-            this.getComponentState("animation-active") &&
+          className={`${this.decorateCSS("overlay-animation-box")} ${this.getComponentState("animation-active") &&
             this.decorateCSS("visible")
-          } ${
-            this.getComponentState("display-none") &&
+            } ${this.getComponentState("display-none") &&
             this.decorateCSS("display-none")
-          } ${this.decorateCSS(this.getComponentState("from"))}`}
+            } ${this.decorateCSS(this.getComponentState("from"))}`}
         >
+          <div className={this.decorateCSS("overlay")}></div>
           <img
+            className={this.decorateCSS("animation-image")}
             src={
               this.getPropValue("slider")[
-                this.getComponentState("active-index")
-              ].value
+                this.getComponentState("active-index")].getPropValue("image")
             }
           />
         </div>
