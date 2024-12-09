@@ -217,6 +217,7 @@ import NoticeModal from "./modal/notice-modal/notice";
 import NotificationModal2 from "./modal/notificationmodal2/notificationmodal2";
 import SubscriptionModal from "./modal/subscription-modal/subscription-modal";
 import FormModal1 from "./modal/formmodal1/formmodal1";
+import FeedbackModal1 from "./feedback/feedbackmodal1/feedbackmodal1";
 import ConfirmationModal2 from "./modal/confirmation-modal-2/confirmation-modal-2";
 
 function Registerables(composer: ComponentsRegistery) {
@@ -433,6 +434,7 @@ function Registerables(composer: ComponentsRegistery) {
     new FooterComponent11(),
     new FooterComponent12(),
     new TermsOfUseModal(),
+    new FeedbackModal1(),
     new SurveyModal(),
     new NoticeModal(),
     new NotificationModal2(),
