@@ -2,7 +2,7 @@
 .container {
   .max-content {
     display: flex;
-    gap: var(--composer-gap-md);
+    gap: var(--composer-gap-xl);
     flex-direction: column;
     .sectionTitle, .sectionTitle-no-animation{
       margin:0px;
@@ -13,19 +13,17 @@
     .list-item {
       display: flex;
       flex-wrap: wrap;
-      gap: var(--composer-gap-sm);
       max-width: 100%;
       .item-container, .item-container-no-line {
         width: 100%;
         display: flex;
         align-items: center;
-        padding-top: var(--composer-gap-md);
-        padding-bottom: var(--composer-gap-md);
+        padding: var(--composer-gap-lg) 0px;
         position: relative;
        
         .index {
           flex: 1;
-          font-size: 1rem;
+          font-size: 1.5rem;
           color: var(--composer-font-color-primary);
         }
 
@@ -52,16 +50,15 @@
             .title {
               display: flex;
               align-items: center;
-              font-size: 1.5rem;
+              font-size: 2rem;
               color: var(--composer-font-color-primary);
             }
           }
           .description {
-            text-align: justify;
             width: 100%;
-            font-size: 1rem;
+            font-size: 1.5rem;
             display: flex;
-            color: var(--composer-font-color-primary);
+            color: var(--composer-tertiary-color);
           }
         }
       }
@@ -81,12 +78,14 @@
           top: 0;
           bottom: auto;
           border-top: 1px solid var(--composer-font-color-primary);
+          opacity: 0.2;
         }
         
         &:last-child::after {
           top: auto;
           bottom: 0;
           border-bottom: 1px solid var(--composer-font-color-primary);
+          opacity: 0.2;
         }      
       }
     }
