@@ -4,10 +4,11 @@ import styles from "./form2.module.scss";
 import { ErrorMessage, Form, Formik } from "formik";
 import * as Yup from "yup";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { Base } from "composer-tools/composer-base-components/base/base";
 
 export type Button = {
   buttonText?: string;
-}
+};
 
 class Form2Page extends BaseContacts {
   constructor(props?: any) {
@@ -194,17 +195,10 @@ class Form2Page extends BaseContacts {
       ],
     });
     this.addProp({
-      type: "array",
-      key: "button_array",
+      type: "string",
+      key: "buttonText",
       displayer: "Button Text",
-      value: [
-        {
-          type: "string",
-          key: "button_object",
-          displayer: "Button",
-          value: "Contact Us"
-        }
-      ],
+      value: "Contact Us"
     });
   }
 
@@ -215,8 +209,10 @@ class Form2Page extends BaseContacts {
   render() {
     const inputs = this.getPropValue("inputs");
     const initialValue = getInitialValue();
-    const title: JSX.Element = this.getPropValue("title");
-    const buttons = this.getPropValue("button_array");
+    const title = this.getPropValue("title");
+    const titleExist = !!this.getPropValue("title", { as_string: true });
+    const buttonText = this.getPropValue("buttonText");
+    const buttonTextExist = !!this.getPropValue("buttonText", { as_string: true });
 
     function getInputType(type: string): string {
       switch (type) {
@@ -290,85 +286,85 @@ class Form2Page extends BaseContacts {
     }
 
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("input-items")}>
-            {(inputs.length > 0 || title && buttons.length > 0) && <div className={this.decorateCSS("input-item")}>
-              {this.castToString(title) && <span className={this.decorateCSS("title")}>{title}</span>}
-              <Formik
-                initialValues={initialValue}
-                validationSchema={getSchema()}
-                onSubmit={(data, { resetForm }) => {
-                  const formData = getFormDataWithConvertedKeys(data);
-                  this.insertForm("Contact Me", formData);
-                  resetForm();
-                }}
-              >
-                {({ handleChange, values }) => (
-                  <Form className={this.decorateCSS("form")}>
-                    {this.getPropValue("inputs").map((input: any, index: number) => (
-                      <>
-                        <div className={this.decorateCSS("input-container")}>
-                          {input.getPropValue("type") == "Text Area" ? (
-                            <textarea
-                              id={getInputName(index)}
-                              value={values[getInputName(index)]}
-                              placeholder=" "
-                              className={`${this.decorateCSS("input")} ${this.decorateCSS(
-                                "textarea"
-                              )}`}
-                              rows={12}
-                              onChange={handleChange}
-                            />
-                          ) : (
-                            <input
-                              id={getInputName(index)}
-                              placeholder=" "
-                              type={getInputType(input.getPropValue("type"))}
-                              onChange={handleChange}
-                              value={values[getInputName(index)]}
-                              name={getInputName(index)}
-                              className={this.decorateCSS("input")}
-                            />
-                          )}
-                          <span className={this.decorateCSS("placeholder")}>
-                            {input.getPropValue("placeholder")}{" "}
-                          </span>
-                          <ErrorMessage
-                            className={this.decorateCSS("error-message")}
-                            name={getInputName(index)}
-                            component={"span"}
-                          />
-                        </div>
-                      </>
-                    ))}
-                    {buttons.length > 0 && <div className={this.decorateCSS("button-div")}>
-                      {buttons.map((button: any, index: number) => (
-                        button.value && <button key={index} className={this.decorateCSS("submit-button")} type="submit">
-                          {button.value}
-                        </button>
-                      ))}
-                    </div>}
-
-                  </Form>
+      <Base.Container
+        style={{ backgroundImage: `url(${this.getPropValue("background-img")})` }}
+        className={this.decorateCSS("container")}
+      >
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          {(inputs.length > 0 || titleExist && buttonTextExist) &&
+            <div className={this.decorateCSS("input-items")}>
+              <div className={this.decorateCSS("input-item")}>
+                {titleExist && (
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
+                    {title}
+                  </Base.SectionTitle>
                 )}
-              </Formik>
-            </div>
-
-            }
-
-            {this.getPropValue("background-img") && (
-              <div className={this.decorateCSS("background-image")}>
-                <img
-                  src={this.getPropValue("background-img")}
-                  alt="backgroundPhoto"
-                  className={this.decorateCSS("img")}
-                />
+                {(inputs.length > 0 || buttonTextExist) && (
+                  <Formik
+                    initialValues={initialValue}
+                    validationSchema={getSchema()}
+                    onSubmit={(data, { resetForm }) => {
+                      const formData = getFormDataWithConvertedKeys(data);
+                      this.insertForm("Contact Me", formData);
+                      resetForm();
+                    }}
+                  >
+                    {({ handleChange, values }) => (
+                      <Form className={this.decorateCSS("form")}>
+                        {this.getPropValue("inputs").map((input: any, index: number) => (
+                          <>
+                            <div className={this.decorateCSS("input-container")}>
+                              {input.getPropValue("type") == "Text Area" ? (
+                                <textarea
+                                  id={getInputName(index)}
+                                  value={values[getInputName(index)]}
+                                  placeholder=" "
+                                  className={`${this.decorateCSS("input")} ${this.decorateCSS(
+                                    "textarea"
+                                  )}`}
+                                  rows={12}
+                                  onChange={handleChange}
+                                />
+                              ) : (
+                                <input
+                                  id={getInputName(index)}
+                                  placeholder=" "
+                                  type={getInputType(input.getPropValue("type"))}
+                                  onChange={handleChange}
+                                  value={values[getInputName(index)]}
+                                  name={getInputName(index)}
+                                  className={this.decorateCSS("input")}
+                                />
+                              )}
+                              {input.getPropValue("placeholder", { as_string: true }) && (
+                                <span className={this.decorateCSS("placeholder")}>
+                                  {input.getPropValue("placeholder")}
+                                </span>
+                              )}
+                              <ErrorMessage
+                                className={this.decorateCSS("error-message")}
+                                name={getInputName(index)}
+                                component={"span"}
+                              />
+                            </div>
+                          </>
+                        ))}
+                        {buttonTextExist && (
+                          <div className={this.decorateCSS("button-div")}>
+                            <Base.Button className={this.decorateCSS("submit-button")} type="submit">
+                              {buttonText}
+                            </Base.Button>
+                          </div>
+                        )}
+                      </Form>
+                    )}
+                  </Formik>
+                )}
               </div>
-            )}
-          </div>
-        </div>
-      </div>
+            </div>
+          }
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
