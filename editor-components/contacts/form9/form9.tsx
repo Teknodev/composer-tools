@@ -332,14 +332,20 @@ class Form9Page extends BaseContacts {
                 ${imageExist ? this.decorateCSS("with-image") : ""}
               `}
             >
-              <Base.VerticalContent className={this.decorateCSS("header")}>
-                <Base.SectionTitle className={this.decorateCSS("title")}>
-                  {this.getPropValue("title")}
-                </Base.SectionTitle>
-                <Base.SectionDescription className={this.decorateCSS("description")}>
-                  {this.getPropValue("description")}
-                </Base.SectionDescription>
-              </Base.VerticalContent>
+              {(this.getPropValue("title", { as_string: true }) || this.getPropValue("description", { as_string: true })) && (
+                <Base.VerticalContent className={this.decorateCSS("header")}>
+                  {this.getPropValue("title", { as_string: true }) && (
+                    <Base.SectionTitle className={this.decorateCSS("title")}>
+                      {this.getPropValue("title")}
+                    </Base.SectionTitle>
+                  )}
+                  {this.getPropValue("description", { as_string: true }) && (
+                    <Base.SectionDescription className={this.decorateCSS("description")}>
+                      {this.getPropValue("description")}
+                    </Base.SectionDescription>
+                  )}
+                </Base.VerticalContent>
+              )}
               <Formik
                 initialValues={getInitialValues()}
                 validationSchema={this.validationSchema}
@@ -359,9 +365,11 @@ class Form9Page extends BaseContacts {
                             ${item.isFull ? this.decorateCSS("full") : ""}
                           `}
                         >
-                          <label className={this.decorateCSS("form-item-label")}>
-                            {item.label}
-                          </label>
+                          {this.castToString(item.label) && (
+                            <label className={this.decorateCSS("form-item-label")}>
+                              {item.label}
+                            </label>
+                          )}
                           <div className={this.decorateCSS("input-container")}>
                             {this.getInputType(item.type) === "textarea"
                               ? (
@@ -390,15 +398,19 @@ class Form9Page extends BaseContacts {
                         </div>
                       );
                     })}
-                    <Base.Button
-                      className={this.decorateCSS("submit-button")}
-                      type="submit"
-                    >
-                      <div className={this.decorateCSS("button-inner")}>
-                        {this.getPropValue("button-text")}
-                        <ComposerIcon name={this.getPropValue("button-icon")} />
-                      </div>
-                    </Base.Button>
+                    {(this.getPropValue("button-text", { as_string: true }) || this.getPropValue("button-icon")) && (
+                      <Base.Button
+                        className={this.decorateCSS("submit-button")}
+                        type="submit"
+                      >
+                        <div className={this.decorateCSS("button-inner")}>
+                          {this.getPropValue("button-text")}
+                          {this.getPropValue("button-icon") && (
+                            <ComposerIcon name={this.getPropValue("button-icon")} propsIcon={{ className: this.decorateCSS("button-icon") }} />
+                          )}
+                        </div>
+                      </Base.Button>
+                    )}
                   </Form>
                 )}
               </Formik>
