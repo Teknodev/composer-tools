@@ -214,17 +214,35 @@ class Slider9 extends BaseSlider {
     }
   };
 
-
   handleCloseVideoModal = () => {
     this.setComponentState("isVideoModalOpen", false);
     this.setComponentState("videoUrl", null);
   };
 
-
-
   getName(): string {
     return "Slider 9";
   }
+
+  handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const container = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - container.left) / container.width) * 100;
+    const y = ((e.clientY - container.top) / container.height) * 100;
+
+    const imgElement = e.currentTarget.querySelector("img");
+    if (imgElement) {
+      (imgElement as HTMLElement).style.transformOrigin = `${x}% ${y}%`;
+      (imgElement as HTMLElement).style.transform = "scale(1.5)";
+    }
+  };
+
+  handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+    const imgElement = e.currentTarget.querySelector("img");
+    if (imgElement) {
+      (imgElement as HTMLElement).style.transform = "scale(1)";
+      (imgElement as HTMLElement).style.transformOrigin = "center";
+    }
+  };
+
 
   render() {
     const verticalSettings = {
@@ -281,9 +299,9 @@ class Slider9 extends BaseSlider {
     const fsButtonText = this.getPropValue("fsButtonText");
 
     const isFullscreen = this.getComponentState("isFullscreen");
-    const fullscreenImageUrl = this.getComponentState("fullscreenImageUrl");
 
     const sliderItems = this.castToObject<SliderItem[]>("sliderItems");
+    const hoveredIndex = this.getComponentState("hoveredIndex");
 
     return (
       <Base.Container className={this.decorateCSS("container")} >
@@ -298,23 +316,35 @@ class Slider9 extends BaseSlider {
                   ref={this.getComponentState("vertical-slider-ref")}
                 >
                   {sliderItems.map(
-                    (item: SliderItem, indexSlider: number) => (
-                      <div className={this.decorateCSS("img-container")}
-                        onClick={() => {
-                          this.setComponentState("currentSlideIndex", indexSlider);
-                          const horizontalSliderRef = this.getComponentState("horizontal-slider-ref");
-                          if (horizontalSliderRef.current) {
-                            horizontalSliderRef.current.slickGoTo(indexSlider);
-                          }
-                        }}
-                        key={indexSlider}>
-                        <img
-                          src={item.image}
-                          alt=""
-                          className={this.decorateCSS("img")}
-                        />
-                      </div>
-                    )
+                    (item: SliderItem, indexSlider: number) => {
+                      const isActive = this.getComponentState("currentSlideIndex") === indexSlider;
+                      const isHovered = hoveredIndex === indexSlider;
+
+                      return (
+                        <div
+                          key={indexSlider}
+                          className={this.decorateCSS("img-container")}
+                          onClick={() => {
+                            this.setComponentState("currentSlideIndex", indexSlider);
+                            const horizontalSliderRef = this.getComponentState("horizontal-slider-ref");
+                            if (horizontalSliderRef.current) {
+                              horizontalSliderRef.current.slickGoTo(indexSlider);
+                            }
+                          }}
+                          onMouseEnter={() => {
+                            this.setComponentState("hoveredIndex", indexSlider);
+                          }}
+                          onMouseLeave={() => {
+                            this.setComponentState("hoveredIndex", null);
+                          }}
+                        >
+                          <img src={item.image} alt="" className={this.decorateCSS("img")} />
+                          {(isActive || isHovered) && (
+                            <div className={this.decorateCSS("overlay")}></div>
+                          )}
+                        </div>
+                      );
+                    }
                   )}
                 </ComposerSlider>
 
@@ -353,7 +383,9 @@ class Slider9 extends BaseSlider {
                 >
                   {sliderItems.map(
                     (item: SliderItem, indexSlider: number) => (
-                      <div className={this.decorateCSS("img-container")} key={indexSlider}>
+                      <div className={this.decorateCSS("img-container")} key={indexSlider}
+                        onMouseMove={this.handleMouseMove}
+                        onMouseLeave={this.handleMouseLeave}>
                         <img
                           src={item.image}
                           alt=""
@@ -486,7 +518,7 @@ class Slider9 extends BaseSlider {
               </Base.P>
             </Base.VerticalContent>
           </Base.ContainerGrid>
-        </Base.MaxContent>
+        </Base.MaxContent >
       </Base.Container >
     );
   }
