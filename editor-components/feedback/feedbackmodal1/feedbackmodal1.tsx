@@ -230,27 +230,20 @@ class FeedbackModal1 extends BaseModal {
       value: "Submit Now",
     });
 
-    this.setComponentState("selectedEmojiId", null);
+    const emojis = this.castToObject<Emoji[]>("emojis");
+    const middleIndex = emojis.length > 0 ? Math.floor(emojis.length / 2) : null;
+    const initialSelectedEmojiId = middleIndex !== null ? middleIndex + 1 : null;
+
+    this.setComponentState("selectedEmojiId", initialSelectedEmojiId);
   }
 
   handleEmojiClick(emojiId: number, setFieldValue: (field: string, value: any) => void) {
-    const emojiElements = document.querySelectorAll(`.${styles.feedbackModalEmoji}`);
-    emojiElements.forEach((element) => {
-      element.classList.remove(styles.selected);
-    });
+    const emojis = this.castToObject<Emoji[]>("emojis");
+    const selectedEmojiLabel = emojis[emojiId - 1]?.label;
 
-    const selectedElement = document.getElementById(`emoji-${emojiId}`);
-    if (selectedElement) {
-      selectedElement.classList.add(styles.selected);
+    setFieldValue("selectedEmojiLabel", selectedEmojiLabel);
 
-      const emojis = this.castToObject<Emoji[]>("emojis");
-      const selectedEmojiLabel = emojis[emojiId - 1]?.label;
-
-      setFieldValue("selectedEmojiLabel", selectedEmojiLabel);
-      this.setComponentState("selectedEmojiLabel", selectedEmojiLabel);
-    } else {
-      console.error(`Element with id emoji-${emojiId} not found.`);
-    }
+    this.setComponentState("selectedEmojiId", emojiId);
   }
 
   createValidationSchema(minLength: number, minLengthMessage: string, requiredMessage: string) {
@@ -347,7 +340,7 @@ class FeedbackModal1 extends BaseModal {
                     >
                       <div
                         id={`emoji-${index + 1}`}
-                        className={`${this.decorateCSS("feedbackModalEmoji")} ${index === 2 && this.decorateCSS("selected")}`}
+                        className={`${this.decorateCSS("feedbackModalEmoji")} ${this.getComponentState("selectedEmojiId") === index + 1 ? this.decorateCSS("selected") : ""}`}
                         onClick={() => {
                           this.handleEmojiClick(index + 1, setFieldValue);
                         }}
@@ -368,10 +361,11 @@ class FeedbackModal1 extends BaseModal {
                         )}
                       </div>
 
-                      {<>{this.castToString(item.label) && <Base.P className={this.decorateCSS("emojiLabel")}>{item.label}</Base.P>}</>}
+                      {this.castToString(item.label) && <Base.P className={this.decorateCSS("emojiLabel")}>{item.label}</Base.P>}
                     </Base.VerticalContent>
                   ))}
                 </div>
+
                 <div className={this.decorateCSS("contact-form")}>
                   <Form className={this.decorateCSS("form-container")}>
                     {inputPlaceholder && <textarea placeholder={inputPlaceholder} id="text" name="message" value={values.message} onChange={handleChange} className={this.decorateCSS("input")} rows={5} />}
