@@ -11,6 +11,7 @@
 
             .carousel {
                 background-color: var(--composer-html-background);
+
                 .slider-item {
                     height: 100vh;
                     position: relative;
@@ -48,7 +49,7 @@
                         flex: 1;
                         display: flex;
                         align-items: center;
-                        padding: var(--composer-gap-md) 70px var(--composer-gap-md) var(--composer-gap-xl);
+                        padding: var(--composer-gap-md) 80px var(--composer-gap-md) var(--composer-gap-xl);
                         z-index: 1;
                         height: 100%;
                         width: 100%;
@@ -62,28 +63,21 @@
                             max-width: var(--composer-content-width);
 
                             .subtitle {
-                                color: #fff;
                                 letter-spacing: var(--composer-gap-sm);
                             }
 
                             .title {
-                                width: 100%;
-                                color: #fff;
                                 font-size: 8rem;
                             }
 
-                            ::before {
-                                background-color: #fff;
-                            }
-
-                            .no-img {
-                                color: var(--composer-font-color-primary);
+                            .with-img {
+                                color: #fff;
                             }
                         }
 
-                        .no-img {
-                            ::before {
-                                background-color: var(--composer-font-color-primary);
+                        .with-img {
+                            &::before {
+                                background-color: #fff;
                             }
                         }
 
@@ -186,6 +180,7 @@
                             padding: var(--composer-gap-md) 65px var(--composer-gap-md) var(--composer-gap-lg);
 
                             .box {
+
                                 .title {
                                     font-size: 4rem;
                                 }
@@ -198,6 +193,7 @@
 
                             .socials {
                                 right: var(--composer-gap-lg);
+
                                 .icon {
                                     width: 25px;
                                     height: 25px;
@@ -226,7 +222,7 @@
                         height: 50vh;
 
                         .content {
-                            padding: var(--composer-gap-md) 65px var(--composer-gap-md) var(--composer-gap-md);
+                            padding: var(--composer-gap-md) 45px var(--composer-gap-md) var(--composer-gap-md);
 
                             .box {
                                 .title {
@@ -241,6 +237,7 @@
 
                             .socials {
                                 right: var(--composer-gap-md);
+
                                 .icon {
                                     width: 25px;
                                     height: 25px;

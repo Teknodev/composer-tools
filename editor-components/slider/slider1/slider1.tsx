@@ -160,7 +160,7 @@ class Slider1 extends BaseSlider {
       dots: false,
       infinite: true,
       speed: 500,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -184,26 +184,27 @@ class Slider1 extends BaseSlider {
             <ComposerSlider {...settings} className={this.decorateCSS("carousel")} ref={this.getComponentState("slider-ref")}>
               {sliderItems.map((item: Slider, indexSlider: number) => (
                 <div key={indexSlider} className={this.decorateCSS("slider-item")}>
-                  {item.image &&
-                    <div className={this.decorateCSS("img-wrapper")}>
+
+                  <div className={this.decorateCSS("img-wrapper")}>
+                    {item.image &&
                       <img
                         alt=""
                         src={item.image}
                         className={this.decorateCSS("img")}
-                      />
-                      {isOverlayActive && <div className={this.decorateCSS("overlay")}></div>}
-                    </div>}
+                      />}
+                    {isOverlayActive && <div className={this.decorateCSS("overlay")}></div>}
+                  </div>
 
                   <div className={`${this.decorateCSS("content")} ${icons.length < 1 && this.decorateCSS("no-icon")}`}>
-                    <Base.VerticalContent className={`${this.decorateCSS("box")} ${!item.image && this.decorateCSS("no-img")}`}>
+                    <Base.VerticalContent className={`${this.decorateCSS("box")} ${item.image && this.decorateCSS("with-img")}`}>
                       {this.castToString(item.subtitle) && < Base.SectionSubTitle
                         className={`
                         ${this.decorateCSS("subtitle")} 
-                        ${!item.image && this.decorateCSS("no-img")}
+                        ${item.image && this.decorateCSS("with-img")}
                         `}>
                         {item.subtitle}
                       </Base.SectionSubTitle>}
-                      {this.castToString(item.title) && <Base.SectionTitle className={`${this.decorateCSS("title")} ${!item.image && this.decorateCSS("no-img")}`}>
+                      {this.castToString(item.title) && <Base.SectionTitle className={`${this.decorateCSS("title")} ${item.image && this.decorateCSS("with-img")}`}>
                         {item.title}
                       </Base.SectionTitle>}
                     </Base.VerticalContent>
