@@ -1,779 +1,222 @@
-$animationDuration: 2s;
-$animationEasing: cubic-bezier(0.25, 1, 0.5, 1);
-.container {
-  height: calc(100vh - 80px);
-  width: 100%;
-  .pagination {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    .page-number {
-      font-size: bold;
-      font-size: 2rem;
-      cursor: pointer;
-    }
-    z-index: 15;
-  }
-  .wrapper {
-    height: 100%;
-    width: 100%;
-    position: relative;
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+
+@mixin transition {
+  transition: all 1s ease-out;
+}
+
+@mixin textEllipsis($line, $important: "") {
+  * {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
     overflow: hidden;
-    .item {
-      top: 0px;
-      left: 0px;
-      position: absolute;
-      overflow: hidden;
-      height: calc(100vh - 80px);
-      width: 100%;
-      display: none;
-
-      &.setup-primary {
-        border-radius: 5px;
-        align-items: center;
-        justify-content: center;
-        &.prepare {
-          display: flex;
-          .background-image {
-            left: 100vw;
-          }
-          .content-background {
-            left: -100vw;
-          }
-          .title,
-          .description,
-          .subtitle,
-          .button {
-            opacity: 0;
-          }
-          .subtitle,
-          .title {
-            transform: translateY(-600px);
-          }
-          .description,
-          .button {
-            transform: translateY(600px);
-          }
-        }
-        &.active {
-          background: transparent;
-          display: flex;
-          .background-image {
-            left: 30%;
-            height: 100%;
-            transition: all $animationDuration $animationEasing;
-          }
-
-          .content-background {
-            left: 0px;
-            transition: all $animationDuration $animationEasing;
-          }
-          .title,
-          .description,
-          .subtitle,
-          .button {
-            transform: translateY(0px);
-            opacity: 1;
-            transition: all $animationDuration $animationEasing;
-          }
-          .button,
-          .subtitle {
-            transition-delay: 100ms;
-          }
-          .content {
-            margin-left: 2rem;
-            margin-bottom: 8rem;
-            // background: rgb(202, 182, 182);
-          }
-        }
-        .max-content {
-          .content-background {
-            background: white;
-            width: 100%;
-            height: 100%;
-            position: absolute;
-          }
-        }
-        .background-image {
-          z-index: 1;
-          width: 70%;
-          height: 100%;
-          position: absolute;
-          left: 40%;
-          top: -100px;
-          .image {
-            object-fit: cover;
-            width: 100%;
-            height: 100%;
-          }
-        }
-      }
-      .max-content {
-        position: relative;
-        margin: 350px auto 150px;
-        width: var(--composer-content-width);
-
-        .content {
-          width: 50%;
-          display: flex;
-          flex-direction: column;
-          z-index: 5;
-          position: relative;
-          right: 0;
-          padding: 100px;
-          .title {
-            text-align: left;
-          }
-        }
-      }
-    }
-
-    .content {
-      .button {
-        font-size: 1.5rem;
-        text-transform: uppercase;
-        font-weight: bold;
-        color: var(--composer-font-color-secondary);
-        border-color: var(--composer-secondary-color);
-        background: var(--composer-secondary-color);
-        cursor: pointer;
-        padding: 30px 50px;
-        transition: all 0.7s ease;
-        border-radius: var(--composer-border-radius);
-        &:hover {
-          background: transparent;
-          color: var(--font-color-primary);
-        }
-      }
-
-      .title {
-        color: rgb(103, 109, 69);
-        line-height: 1.2;
-        font-weight: bold;
-        font-size: 5rem;
-        margin: 30px 0px;
-        max-width: 75%;
-      }
-
-      .subtitle {
-        font-size: 2rem;
-        font-weight: 200;
-        line-height: 1.5;
-        margin-bottom: -10px;
-        padding: 20px 0px;
-      }
-
-      .description {
-        font-size: 2.5rem;
-        line-height: 1.5;
-        margin: 30px 0px;
-        width: 70%;
-      }
-    }
+    text-overflow: ellipsis;
+    -webkit-line-clamp: $line#{$important};
   }
 }
 
 .container {
-  height: calc(100vh - 80px);
-  width: 100%;
-  .pagination {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    .page-number {
-      font-size: bold;
-      font-size: 2rem;
-      cursor: pointer;
-    }
-    z-index: 15;
-  }
-  .wrapper {
-    height: 100%;
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-    .item {
-      top: 0px;
-      left: 0px;
-      position: absolute;
-      overflow: hidden;
-      height: calc(100vh - 80px);
-      width: 100%;
-      display: none;
-
-      &.setup-secondary {
-        border-radius: 5px;
-        align-items: center;
-        justify-content: center;
-        &.prepare {
-          display: flex;
-          .background-image {
-            left: -100vw; // - +
-          }
-          .content-background {
-            left: 100vw;
-          }
-          .title,
-          .description,
-          .subtitle,
-          .button {
-            opacity: 0;
-          }
-          .subtitle,
-          .title {
-            transform: translateY(-600px);
-          }
-          .description,
-          .button {
-            transform: translateY(600px);
-          }
-        }
-        &.active {
-          display: flex;
-          // background: #6e6f69;
-
-          .background-image {
-            // left: 30%;
-            left: 0;
-            top: -10;
-            height: 100%;
-            transition: all $animationDuration $animationEasing;
-          }
-
-          .content-background {
-            margin-left: 20%;
-            left: 0; // look here
-            transition: all $animationDuration $animationEasing;
-          }
-          .title,
-          .description,
-          .subtitle,
-          .button {
-            transform: translateY(0px);
-            opacity: 1;
-            transition: all $animationDuration $animationEasing;
-          }
-          .button,
-          .subtitle {
-            transition-delay: 100ms;
-          }
-          .content {
-            margin-left: 70%;
-            margin-bottom: 30rem;
-
-            // background: rgb(202, 182, 182);
-          }
-        }
-        .max-content {
-          // background: #6e6f69;
-          .content-background {
-            background: white;
-            width: 100%;
-            height: 100%;
-            position: absolute;
-          }
-        }
-        .background-image {
-          z-index: 1;
-          width: 70%;
-          height: 100%;
-          position: absolute;
-          left: 40%;
-          top: -215px;
-          .image {
-            object-fit: cover;
-            width: 100%;
-            height: 100%;
-          }
-        }
-      }
-      .max-content {
-        position: relative;
-        margin: 350px auto 150px;
-        width: var(--composer-content-width);
-
-        .content {
-          width: 50%;
-          display: flex;
-          flex-direction: column;
-          z-index: 5;
-          position: relative;
-          padding: 100px;
-          .title {
-            text-align: left;
-          }
-        }
-      }
-    }
-
-    .content {
-      .button {
-        font-size: 1.5rem;
-        text-transform: uppercase;
-        font-weight: bold;
-        color: var(--composer-font-color-secondary);
-        border-color: var(--composer-secondary-color);
-        background: var(--composer-secondary-color);
-        cursor: pointer;
-        padding: 30px 50px;
-        transition: all 0.7s ease;
-        border-radius: var(--composer-border-radius);
-
-        &:hover {
-          background: transparent;
-          color: var(--font-color-primary);
-        }
-      }
-
-      .title {
-        color: rgb(103, 109, 69);
-        line-height: 1.2;
-        font-weight: bold;
-        font-size: 5rem;
-        margin: 30px 0px;
-        max-width: 75%;
-      }
-
-      .subtitle {
-        font-size: 2rem;
-        font-weight: 200;
-        line-height: 1.5;
-        margin-bottom: -10px;
-        padding: 20px 0px;
-      }
-
-      .description {
-        font-size: 2.5rem;
-        line-height: 1.5;
-        margin: 30px 0px;
-        width: 60%;
-      }
-    }
-  }
-}
-
-.container {
-  height: calc(100vh - 80px);
-  width: 100%;
-  .pagination {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    .page-number {
-      font-size: bold;
-      font-size: 2rem;
-      cursor: pointer;
-    }
-    z-index: 15;
-  }
-  .wrapper {
-    height: 100%;
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-    .item {
-      top: 0px;
-      left: 0px;
-      position: absolute;
-      overflow: hidden;
-      height: calc(100vh - 80px);
-      width: 100%;
-      display: none;
-
-      &.setup-third {
-        border-radius: 5px;
-        align-items: center;
-        justify-content: center;
-        &.prepare {
-          display: flex;
-          .background-image {
-            left: -100vw; // - +
-          }
-          .content-background {
-            left: 100vw;
-          }
-          .title,
-          .description,
-          .subtitle,
-          .button {
-            opacity: 0;
-          }
-          .subtitle,
-          .title {
-            transform: translateY(-600px);
-          }
-          .description,
-          .button {
-            transform: translateY(600px);
-          }
-        }
-        &.active {
-          display: flex;
-          // background: #6e6f69;
-
-          .background-image {
-            // left: 30%;
-            left: 0;
-            top: -10;
-            height: 100%;
-            transition: all $animationDuration $animationEasing;
-          }
-
-          .content-background {
-            margin-left: 20%;
-            left: 0; // look here
-            transition: all $animationDuration $animationEasing;
-          }
-          .title,
-          .description,
-          .subtitle,
-          .button {
-            transform: translateY(0px);
-            opacity: 1;
-            transition: all $animationDuration $animationEasing;
-          }
-          .button,
-          .subtitle {
-            transition-delay: 100ms;
-          }
-          .content {
-            box-shadow: rgba(114, 116, 101, 0.2) 0px 0px 70px;
-            margin-left: 45%;
-            margin-bottom: 15%;
-            margin-top: 8rem;
-            text-align: center;
-            background: white;
-            .title {
-              // padding-left: 15rem;
-              text-align: right;
-              font-size: 4rem;
-              margin-left: 5%;
-            }
-            .title,
-            .description {
-              width: 100%;
-            }
-            // background: rgb(202, 182, 182);
-          }
-        }
-        .max-content {
-          // background: #6e6f69;
-          .content-background {
-            // background: #6e6f69;
-            width: 100%;
-            height: 100%;
-            position: absolute;
-          }
-        }
-        .background-image {
-          z-index: 1;
-          width: 70%;
-          height: 100%;
-          position: absolute;
-          left: 40%;
-          padding-bottom: 10px;
-          margin-left: 8rem;
-
-          // top: -215px;
-          .image {
-            object-fit: cover;
-            width: 100%;
-            height: 100%;
-            padding-bottom: 10px;
-          }
-        }
-      }
-      .max-content {
-        position: relative;
-        margin: 350px auto 150px;
-        width: var(--composer-content-width);
-
-        .content {
-          width: 50%;
-          display: flex;
-          flex-direction: column;
-          z-index: 5;
-          position: relative;
-          padding: 100px;
-          .title {
-            text-align: left;
-          }
-        }
-      }
-    }
-
-    .content {
-      .button {
-        font-size: 1.5rem;
-        text-transform: uppercase;
-        font-weight: bold;
-        color: var(--composer-font-color-secondary);
-        border-color: var(--composer-secondary-color);
-        background: var(--composer-secondary-color);
-        cursor: pointer;
-        padding: 30px 50px;
-        transition: all 0.7s ease;
-        border-radius: var(--composer-border-radius);
-
-        &:hover {
-          background: transparent;
-          color: var(--font-color-primary);
-        }
-      }
-
-      .title {
-        color: rgb(103, 109, 69);
-        line-height: 1.2;
-        font-weight: bold;
-        font-size: 5rem;
-        margin: 30px 0px;
-        // max-width: 75%;
-      }
-
-      .subtitle {
-        font-size: 2rem;
-        font-weight: 200;
-        line-height: 1.5;
-        margin-bottom: -10px;
-        padding: 20px 0px;
-      }
-
-      .description {
-        font-size: 2.5rem;
-        line-height: 1.5;
-        margin: 30px 0px;
-        width: 60%;
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .container {
-    height: calc(100vh - 80px);
-    width: 100%;
-
+  background: white;
+  .max-content {
     .pagination {
+      width: max-content;
       position: absolute;
+      right: 10px;
       top: 50%;
       transform: translateY(-50%);
-      right: 10px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
+
       .page-number {
-        font-size: bold;
-        font-size: 2rem;
         cursor: pointer;
-      }
-      z-index: 15;
-    }
-    .wrapper {
-      height: 100%;
-      width: 100%;
-      position: relative;
-      overflow: hidden;
-      background: transparent;
-      .item {
-        // top: 0px;
-        // left: 0px;
-        // position: absolute;
-        // height: calc(100vh - 80px);
-        overflow: hidden;
-        width: 100%;
-        display: none;
-        background: transparent;
+        font-size: 1rem;
+        padding: var(--composer-gap-xs);
+        margin: var(--composer-gap-xs) 0;
+        color: rgba(#000, 0.4);
 
-        &.setup-third,
-        &.setup-secondary,
-        &.setup-primary {
-          border-radius: 5px;
-          align-items: center;
-          justify-content: center;
-          &.prepare {
-            display: flex;
-            .background-image {
-              left: 100vw; // - +
-              margin-left: -8px;
-            }
-            // .content-background {
-            //   left: 100vw;
-            // }
-            .title,
-            .description,
-            .subtitle,
-            .button {
-              opacity: 0;
-            }
-            .subtitle,
-            .title {
-              transform: translateY(-600px);
-            }
-            .description,
-            .button {
-              transform: translateY(600px);
-            }
-          }
-          &.active {
-            .max-content {
-              height: 100%;
-              width: 100%;
-            }
-            display: flex;
-            // background: #6e6f69;
-            // background: red;
-
-            .background-image {
-              left: 0;
-              top: 0;
-              transition: all $animationDuration $animationEasing;
-            }
-
-            // .content-background {
-            //   margin-left: 20%;
-            //   left: 0; // look here
-            //   transition: all $animationDuration $animationEasing;
-            // }
-            .title,
-            .description,
-            .subtitle,
-            .button {
-              transform: translateY(0px);
-              opacity: 1;
-              transition: all $animationDuration $animationEasing;
-            }
-            .button,
-            .subtitle {
-              transition-delay: 100ms;
-            }
-            .content {
-              width: 100%;
-              height: auto;
-              text-align: center;
-              background: white;
-              margin: 20px;
-              padding: 20px;
-
-              .title {
-                // padding-left: 15rem;
-                text-align: center;
-                font-size: 1rem;
-                padding-left: 40px;
-              }
-              .title,
-              .description {
-                width: 100%;
-              }
-              .button {
-                padding: 20px;
-                font-size: 1rem;
-              }
-              // background: rgb(202, 182, 182);
-            }
-          }
-          .max-content {
-            // background: #6e6f69;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            .content-background {
-              //   background: #6e6f69;
-              //   width: 100%;
-              //   height: 100%;
-              //   position: absolute;
-              display: none;
-            }
-            margin: 0;
-          }
-          .background-image {
-            z-index: 1;
-            width: 100%;
-            height: 100%;
-            // position: absolute;
-            // left: 0%;
-            margin: 0;
-
-            // top: -215px;
-            .image {
-              object-fit: cover;
-              width: 100%;
-              height: 100%;
-            }
-          }
+        &.active,
+        &:hover {
+          color: #000;
         }
-        .max-content {
-          background: transparent;
-          position: relative;
-          margin: 350px auto 150px;
-          width: var(--composer-content-width);
+      }
+    }
+
+    .slider {
+      height: 42vw;
+
+      .wrapper {
+        padding: 0 12vw;
+        position: relative;
+        height: 100%;
+        opacity: 0;
+        @include transition;
+
+        &.start-animation {
+          opacity: 1;
 
           .content {
-            width: 50%;
+            left: 0vw;
+          }
+
+          .text-container {
+            .title {
+              top: 0;
+              opacity: 1;
+              @include textEllipsis(2);
+            }
+            .bottom-section {
+              bottom: 0;
+              opacity: 1;
+            }
+          }
+
+          .image {
+            right: 9vw;
+            box-shadow: rgba(114, 116, 101, 0.2) 0px 0px 20px;
+
+            &.full-image{
+              right: 50% !important;
+              transform: translateX(50%) !important;
+            }
+          }
+        }
+
+        .content {
+          width: 100%;
+          height: 32vw;
+          margin-top: 5vw;
+          background: white;
+          position: relative;
+          left: -100vw;
+          border-radius: var(--composer-border-radius-sm);
+          @include transition;
+        }
+
+        .text-container {
+          padding: 5vw;
+          width: 40vw;
+          position: absolute;
+          top: 5vw;
+          z-index: 1;
+
+          &.full-text-container{
+            width: 76vw;
+            text-align: center;
+          }
+
+          .title {
+            font-size: 3rem;
+            position: relative;
+            top: -40vh;
+            opacity: 0;
+            @include transition;
+          }
+
+          .bottom-section {
+            position: relative;
             display: flex;
             flex-direction: column;
-            z-index: 5;
-            position: relative;
-            // padding: 100px;
-            .title {
-              text-align: left;
+            justify-content: center;
+            align-items: center;
+            width: 25vw;
+            margin: auto;
+            gap: var(--composer-gap-lg);
+            bottom: -20vw;
+            opacity: 0;
+            @include transition;
+
+            .description {
+              font-size: 1.5rem;
+              text-align: center;
+              margin-bottom: 0;
+              color: rgba($color: #000000, $alpha: 0.5);
+              @include textEllipsis(4);
+            }
+
+            .button {
+            }
+
+            &.bottom-section-line {
+              &::before {
+                content: "";
+                position: absolute;
+                width: 6vw;
+                height: 1px;
+                background: rgba($color: #000000, $alpha: 0.5);
+                z-index: 99999;
+                left: -7vw;
+                top: 1.75vw;
+              }
+            }
+          }
+        }
+
+        .image {
+          position: absolute;
+          right: -60vw;
+          top: 1vw;
+          width: 50vw;
+          height: 30vw;
+          @include transition;
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-desktop-width}) {
+  .container {
+    .max-content {
+      padding: 0 4vw !important;
+      .slider {
+        .wrapper {
+          padding: 0 !important;
+        }
+        .text-container {
+          .title {
+            font-size: 2rem !important;
+          }
+
+          .bottom-section {
+            width: 30vw !important;
+            gap: var(--composer-gap-md) !important;
+            .description {
+              font-size: 1rem !important;
             }
           }
         }
       }
+    }
+  }
+}
 
-      .content {
-        .button {
-          font-size: 1.5rem;
-          text-transform: uppercase;
-          font-weight: bold;
-          color: var(--composer-font-color-secondary);
-          border-color: var(--composer-secondary-color);
-          background: var(--composer-secondary-color);
-          cursor: pointer;
-          padding: 30px 50px;
-          transition: all 0.7s ease;
-          border-radius: var(--composer-border-radius);
-
-          &:hover {
-            background: transparent;
-            color: var(--font-color-primary);
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .slider {
+        .text-container {
+          .title {
+            font-size: 1.5rem !important;
           }
         }
+      }
+    }
+  }
+}
 
-        .title {
-          color: rgb(103, 109, 69);
-          line-height: 1.2;
-          font-weight: 100;
-          font-size: 3rem;
-          margin: 30px 0px;
-          // max-width: 75%;
-        }
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .slider {
+        .text-container {
+          padding: 0 !important;
+          .title {
+            font-size: 1rem !important;
+          }
 
-        .subtitle {
-          font-size: 0.75rem;
-          font-weight: 200;
-          line-height: 1.5;
-          margin-bottom: -10px;
-          padding: 20px 0px;
-        }
-
-        .description {
-          font-size: 1rem;
-          line-height: 1.5;
-          margin: 30px 0px;
-          width: 60%;
+          .bottom-section {
+            gap: var(--composer-gap-sm) !important;
+            .description {
+              font-size: 0.5rem !important;
+            }
+          }
         }
       }
     }
