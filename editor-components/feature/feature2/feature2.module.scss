@@ -8,6 +8,8 @@ $icon-size: 56px;
 
     .max-content {
         .wrapper {
+            row-gap: var(--composer-gap-xl);
+
             .item {
                 align-items: center;
                 gap: var(--composer-gap-md);
