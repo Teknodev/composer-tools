@@ -17,12 +17,14 @@
         display: flex;
         gap: var(--composer-gap-xl);
         width: 100%;
-        .left-side {
+        padding: var(--composer-gap-md);
+        overflow: hidden;
+        .left-side, .left-side-full-width {
           flex: 1;
           width: 100%;
           display: flex;
           align-items: center;
-          .image-box{
+          .image-box, .image-box-full-width{
             width: 100%;
             display: flex;
             justify-content: center;
@@ -32,6 +34,14 @@
             .image {
               max-height: 100%;
               width: 75%;
+              object-fit: cover;
+            }
+          }
+          .image-box-full-width{
+            .image {
+              height: 100%;
+              max-height: 100%;
+              width: auto;
               object-fit: cover;
             }
           }
@@ -45,18 +55,33 @@
             display: flex;
             flex-direction: column;
             gap: var(--composer-gap-md);
-            .title {
+            .title, .title-no-image {
               color: var(--composer-font-color-primary);
               font-size:4rem;
             }
-            .description {
+            .title-no-image{
+              text-align: center;
+            }
+            .description, .description-no-image {
               color: var(--composer-tertiary-color);
               font-size: 1.5rem;
             }
-            .button-wrapper{
+            .description-no-image{
+              text-align: center;
+            }
+            .button-wrapper, .button-wrapper-no-image{
+              display: flex;
+              flex-wrap: wrap;
+              gap: var(--composer-gap-md);
+              align-items: stretch;
               .button{
+                height: 100%;
                 font-size: 1.5rem;
               }
+            }
+            .button-wrapper-no-image{
+              display: flex;
+              justify-content: center;
             }
           }
         }
@@ -73,15 +98,19 @@
           flex-direction: column;
           gap: 0px;
           padding: var(--composer-gap-md);
-          .left-side{
+          .left-side, .left-side-full-width{
             justify-content: center;
+            max-height: 50vh;
             .image-box{
-              width: auto;
+              width: 100%;
               padding: 0px;
               .image{
-                max-height: 50%;
+                width: auto;
               }
             }
+          }
+          .left-side-full-width{
+            max-height: 100%;
           }
           .right-side{
             .right-content{
@@ -108,13 +137,28 @@
           flex-direction: column;
           gap: 0px;
           height: 80%;
-          .left-side{
+          .left-side, .left-side-full-width{
             justify-content: center;
             .image-box{
               width: auto;
               .image{
                 max-height: auto;
                 width: 100%;
+              }
+            }
+            .image-box-full-width{
+              padding: 0px;
+              .image{
+                width: 100%;
+                max-height: auto;
+                height: auto;
+              }
+            }
+          }
+          .right-side{
+            .right-content{
+              .button-wrapper, .button-wrapper-no-image{
+                justify-content: center;
               }
             }
           }

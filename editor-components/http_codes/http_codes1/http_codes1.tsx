@@ -70,29 +70,30 @@ class HTTP_CODES1 extends BaseHTTPCodes {
   render() {
     const image = this.getPropValue("image");
     const buttons = this.castToObject<ButtonsArray>("buttons");
+    const hasRightSide = this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("description")) || (buttons.length > 0);
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content-box")}>
             <div className={this.decorateCSS("content")}>
               {image && (
-                <div className={this.decorateCSS("left-side")}>
-                  <div className={this.decorateCSS("image-box")}>
+                <div className={hasRightSide ? this.decorateCSS("left-side") : this.decorateCSS("left-side-full-width")}>
+                  <div className={hasRightSide ? this.decorateCSS("image-box") : this.decorateCSS("image-box-full-width")} >
                     <img className={this.decorateCSS("image")} src={this.getPropValue("image")} alt="" />
                   </div>
                 </div>
               )}
-              {(this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("description")) || (buttons.length > 0)) && (
+              {(hasRightSide) && (
                 <div className={this.decorateCSS("right-side")}>
                   <div className={this.decorateCSS("right-content")}>
                     {this.castToString(this.getPropValue("title")) && (
-                      <div className={this.decorateCSS("title")}>{this.getPropValue("title")}</div>
+                      <div className={image ? this.decorateCSS("title") : this.decorateCSS("title-no-image")}>{this.getPropValue("title")}</div>
                     )}
                     {this.castToString(this.getPropValue("description")) && (
-                      <div className={this.decorateCSS("description")}>{this.getPropValue("description")}</div>
+                      <div className={image ? this.decorateCSS("description") : this.decorateCSS("description-no-image")}>{this.getPropValue("description")}</div>
                     )}
                     {(buttons.length > 0) && (
-                      <div className={this.decorateCSS("button-wrapper")}>
+                      <div className={image ? this.decorateCSS("button-wrapper") : this.decorateCSS("button-wrapper-no-image")}>
                         {buttons.map((button: ButtonType, index: number) => {
                           return (
                             <ComposerLink path={button.url}>
