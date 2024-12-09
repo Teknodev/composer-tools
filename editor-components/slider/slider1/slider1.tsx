@@ -160,7 +160,7 @@ class Slider1 extends BaseSlider {
       dots: false,
       infinite: true,
       speed: 500,
-      autoplay: false,
+      autoplay: true,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -195,7 +195,7 @@ class Slider1 extends BaseSlider {
                     {isOverlayActive && <div className={this.decorateCSS("overlay")}></div>}
                   </div>
 
-                  <div className={`${this.decorateCSS("content")} ${icons.length < 1 && this.decorateCSS("no-icon")}`}>
+                  <div className={this.decorateCSS("content")}>
                     <Base.VerticalContent className={`${this.decorateCSS("box")} ${item.image && this.decorateCSS("with-img")}`}>
                       {this.castToString(item.subtitle) && < Base.SectionSubTitle
                         className={`

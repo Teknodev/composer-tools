@@ -49,7 +49,7 @@
                         flex: 1;
                         display: flex;
                         align-items: center;
-                        padding: var(--composer-gap-md) 80px var(--composer-gap-md) var(--composer-gap-xl);
+                        padding: var(--composer-gap-md) var(--composer-gap-xl);
                         z-index: 1;
                         height: 100%;
                         width: 100%;
@@ -110,11 +110,6 @@
                             }
                         }
                     }
-
-                    .no-icon {
-                        padding: var(--composer-gap-md) var(--composer-gap-xl);
-                    }
-
                 }
             }
         }
@@ -177,7 +172,7 @@
                 .carousel {
                     .slider-item {
                         .content {
-                            padding: var(--composer-gap-md) 65px var(--composer-gap-md) var(--composer-gap-lg);
+                            padding: var(--composer-gap-md) var(--composer-gap-lg);
 
                             .box {
 
@@ -200,10 +195,6 @@
                                 }
                             }
                         }
-
-                        .no-icon {
-                            padding: var(--composer-gap-md) var(--composer-gap-lg);
-                        }
                     }
                 }
             }
@@ -222,7 +213,7 @@
                         height: 50vh;
 
                         .content {
-                            padding: var(--composer-gap-md) 45px var(--composer-gap-md) var(--composer-gap-md);
+                            padding: var(--composer-gap-md) var(--composer-gap-md);
 
                             .box {
                                 .title {
@@ -243,10 +234,6 @@
                                     height: 25px;
                                 }
                             }
-                        }
-
-                        .no-icon {
-                            padding: var(--composer-gap-md) var(--composer-gap-md);
                         }
                     }
                 }
