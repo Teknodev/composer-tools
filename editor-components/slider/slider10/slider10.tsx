@@ -327,22 +327,6 @@ class Slider10 extends BaseSlider {
         this.castToString(item.subtitle),
     ).length;
 
-    const adjustFooterWidth = {
-      width: `${featuredItems
-        .map((item) => {
-          const hasImage = !!item.image;
-          const hasTitle = !!this.castToString(item.title);
-          const hasSubtitle = !!this.castToString(item.subtitle);
-
-          if ((hasTitle || hasSubtitle) && !hasImage) return 11.5;
-          if (hasImage && !hasTitle && !hasSubtitle) return 11.5;
-
-          return 23;
-        })
-        .reduce((acc, width) => acc + width, 0)}%`,
-    };
-
-
 
     const sliderRef = this.getComponentState("slider-ref");
     const overlay: boolean = this.getPropValue("overlay");
@@ -400,80 +384,76 @@ class Slider10 extends BaseSlider {
             )}
           </div>
           {(featuredItems?.length > 0) && (
-            <div className={this.decorateCSS("footer-max-content")}
-              style={adjustFooterWidth}>
-              <div className={this.decorateCSS("slider-footer")}>
-                {featuredItems?.length > 0 && (
-                  <div className={this.decorateCSS("slider-footer-items")}>
-                    {featuredItems.map((item: FeaturedItem, index: number) => {
-                      const titleExist = this.castToString(item.title);
-                      const subtitleExist = this.castToString(item.subtitle);
+            <div className={this.decorateCSS("footer-max-content")}>
+              {featuredItems.length > 0 && <div className={this.decorateCSS("slider-footer")}>
+                <div className={this.decorateCSS("slider-footer-items")}>
+                  {featuredItems.map((item: FeaturedItem, index: number) => {
+                    const titleExist = this.castToString(item.title);
+                    const subtitleExist = this.castToString(item.subtitle);
 
-                      if (titleExist || subtitleExist || item.image)
-                        return (
-                          <div key={index}
-                            className={this.decorateCSS("slider-footer-item")}>
-                            {item.image && (
-                              <img className={`
+                    if (titleExist || subtitleExist || item.image)
+                      return (
+                        <div key={index}
+                          className={`${this.decorateCSS("slider-footer-item")} ${(!item.image || (!titleExist && !subtitleExist)) && this.decorateCSS("half-width")}`}>
+                          {item.image && (
+                            <img className={`
                                   ${this.decorateCSS("slider-footer-item-image")}
                                   ${hoverAnimation && this.decorateCSS("hover-animation")}`}
-                                src={item.image}
-                                alt={this.castToString(item.title)} />
-                            )}
-                            {(titleExist || subtitleExist) && (
-                              <div className={this.decorateCSS("slider-footer-item-body")}>
-                                {titleExist &&
-                                  (!item.link ? (
-                                    <Base.P className={this.decorateCSS("slider-footer-item-title",)}>{item.title}</Base.P>
-                                  ) : (
-                                    <ComposerLink path={item.link}>
-                                      <Base.P className={this.decorateCSS("slider-footer-item-title")}>{item.title}</Base.P>
-                                    </ComposerLink>
-                                  ))}
-                                {subtitleExist && (
-                                  <Base.P className={this.decorateCSS("slider-footer-item-subtitle",)}>{item.subtitle}</Base.P>
-                                )}
-                              </div>
-                            )}
-                          </div>
-                        );
-                      return null;
-                    })}
+                              src={item.image}
+                              alt={this.castToString(item.title)} />
+                          )}
+                          {(titleExist || subtitleExist) && (
+                            <div className={this.decorateCSS("slider-footer-item-body")}>
+                              {titleExist &&
+                                (!item.link ? (
+                                  <Base.P className={this.decorateCSS("slider-footer-item-title",)}>{item.title}</Base.P>
+                                ) : (
+                                  <ComposerLink path={item.link}>
+                                    <Base.P className={this.decorateCSS("slider-footer-item-title")}>{item.title}</Base.P>
+                                  </ComposerLink>
+                                ))}
+                              {subtitleExist && (
+                                <Base.P className={this.decorateCSS("slider-footer-item-subtitle",)}>{item.subtitle}</Base.P>
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      );
+                    return null;
+                  })}
+                </div>
+                {(prevIcon || nextIcon) && (
+                  <div className={this.decorateCSS("slider-buttons")}>
+                    {prevIcon && (
+                      <button
+                        onClick={() => {
+                          sliderRef.current.slickPrev();
+                        }}
+                        className={this.decorateCSS("slider-button")}
+                      >
+                        <ComposerIcon
+                          propsIcon={{
+                            className: this.decorateCSS("slider-arrow-icon"),
+                          }}
+                          name={prevIcon}
+                        />
+                      </button>
+                    )}
+                    {nextIcon && (
+                      <button className={this.decorateCSS("slider-button")}
+                        onClick={() => {
+                          sliderRef.current.slickNext();
+                        }}>
+                        <ComposerIcon
+                          name={nextIcon}
+                          propsIcon={{
+                            className: this.decorateCSS("slider-arrow-icon"),
+                          }} />
+                      </button>
+                    )}
                   </div>
                 )}
-              </div>
-            </div>
-          )}
-
-          {(prevIcon || nextIcon) && (
-            <div className={this.decorateCSS("slider-buttons")}>
-              {prevIcon && (
-                <button
-                  onClick={() => {
-                    sliderRef.current.slickPrev();
-                  }}
-                  className={this.decorateCSS("slider-button")}
-                >
-                  <ComposerIcon
-                    propsIcon={{
-                      className: this.decorateCSS("slider-arrow-icon"),
-                    }}
-                    name={prevIcon}
-                  />
-                </button>
-              )}
-              {nextIcon && (
-                <button className={this.decorateCSS("slider-button")}
-                  onClick={() => {
-                    sliderRef.current.slickNext();
-                  }}>
-                  <ComposerIcon
-                    name={nextIcon}
-                    propsIcon={{
-                      className: this.decorateCSS("slider-arrow-icon"),
-                    }} />
-                </button>
-              )}
+              </div>}
             </div>
           )}
         </div>
