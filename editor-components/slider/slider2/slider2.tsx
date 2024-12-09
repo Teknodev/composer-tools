@@ -236,7 +236,7 @@ class Slider2 extends BaseSlider {
     };
 
     return (
-      <Base.Container isFull={true} className={this.decorateCSS("container")}>
+      <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("image-box")}>
             <div className={this.decorateCSS("overlay")}>

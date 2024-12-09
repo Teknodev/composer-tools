@@ -3,7 +3,7 @@
 .container {
   height: 100%;
   position: relative;
-  padding: 0 !important;
+  padding: 0;
 
   .max-content {
     position: relative;
@@ -141,19 +141,19 @@
 
     .text-box {
       position: absolute;
-      bottom: 300px;
-      left: var(--composer-gap-xl);
+      bottom: 30%;
+      left: 0;
+      width: 35%;
+      padding: 0 var(--composer-gap-xl);
 
       @container (max-width: #{$composer-tablet-width}) {
-        bottom: 200px;
-      }
-
-      @container (max-width: #{$composer-tablet-width}) {
-        left: var(--composer-gap-lg);
+        width: 100%;
+        bottom: 25%;
+        padding: 0 var(--composer-gap-lg)
       }
 
       @container (max-width: #{$composer-phone-width}) {
-        left: var(--composer-gap-md);
+        padding: 0 var(--composer-gap-md)
       }
 
       &::after {
@@ -162,8 +162,7 @@
         width: 20px;
         height: 2px;
         position: absolute;
-        left: 0px;
-        top: -25px;
+        top: -15px;
       }
 
       .text {
