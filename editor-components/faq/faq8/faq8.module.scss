@@ -29,7 +29,7 @@
           .categories {
             display: flex;
             align-items: center;
-            padding: var(--composer-gap-sm) 0px var(--composer-gap-xs) 0px;
+            padding: var(--composer-gap-sm) 0px var(--composer-gap-sm) 0px;
             cursor: pointer;
             color: var(--composer-font-color-primary);
             transition: all 0.5s ease ;
@@ -46,7 +46,7 @@
               .category-name {
                 text-align: left;
                 margin: 0;
-                font-size: 1rem;
+                font-size: 1.5rem;
                 color: var(--composer-font-color-primary);
                 opacity: 0.7;
               }
@@ -63,6 +63,8 @@
               .arrow-right {
                 transform: rotate(-30deg);
                 transition: transform 0.5s ease;
+                width: 15px;
+                height: 15px;
               }
             }
             &.active-category {
@@ -75,6 +77,7 @@
                 .category-name {
                   font-weight: bold;
                   color: var(--composer-primary-color);
+                  opacity: 1;
                 }
               }
               .right {
@@ -147,7 +150,7 @@
               .question-title{
                 color: var(--composer-font-color-primary);
                 flex:1;
-                font-size:1rem;
+                font-size:1.5rem;
               }
               .question-icon{
                 width: 15px;
@@ -165,7 +168,7 @@
               .inner-text{
                 overflow: hidden;
                 opacity: 0;
-                font-size: 1rem;
+                font-size: 1.5rem;
                 color: var(--composer-font-color-primary);
                 transition: opacity 0.5s ease;
               }            

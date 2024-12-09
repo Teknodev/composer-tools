@@ -13,6 +13,18 @@ class FaqButton extends BaseFAQ {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
+      type: "string",
+      key: "badge",
+      displayer: "Subtitle",
+      value: "FAQ",
+    });
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Title",
+      value: "Frequently Asked Questions",
+    });
+    this.addProp({
       type: "icon",
       key: "dot_icon",
       displayer: "Dot icon",
@@ -29,19 +41,6 @@ class FaqButton extends BaseFAQ {
       key: "arrow-down",
       displayer: "Down Arrow icon",
       value: "FaAngleDown",
-    });
-    this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Page Title",
-      value: "Frequently Asked Questions",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "badge",
-      displayer: "Badge",
-      value: "FAQ",
     });
 
     this.addProp({
