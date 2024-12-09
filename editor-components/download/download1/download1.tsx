@@ -132,17 +132,22 @@ class DownloadCard1 extends BaseDownload {
   }
 
   render() {
-    const title = this.getPropValue("title", { as_string: true });
-    const subtitle = this.getPropValue("subtitle", { as_string: true });
-    const description = this.getPropValue("description", { as_string: true });
+    const title = this.getPropValue("title");
+    const subtitle = this.getPropValue("subtitle");
+    const description = this.getPropValue("description");
+
+    const titleExist = this.castToString(title);
+    const subtitleExist = this.castToString(subtitle);
+    const descriptionExist = this.castToString(description);
     const line = this.getPropValue("line");
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent>
-            {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
-            {title && <Base.SectionTitle className={line ? this.decorateCSS("title") : this.decorateCSS("disable-line-title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-            {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")} </Base.SectionDescription>}
+          <Base.VerticalContent className={this.decorateCSS("header")}>
+            {titleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+            {subtitleExist && <Base.SectionTitle className={line ? this.decorateCSS("title") : this.decorateCSS("disable-line-title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+            {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")} </Base.SectionDescription>}
           </Base.VerticalContent>
 
           <div className={this.decorateCSS("box")}>
@@ -150,7 +155,7 @@ class DownloadCard1 extends BaseDownload {
               return (
                 <div className={this.decorateCSS("button-wrapper")}>
                   <ComposerLink key={`dw-1-btn-${index}`} path={item.url}>
-                    <button className={`${this.decorateCSS("button")} ${item.isPrimary && this.decorateCSS("button-color")}`}>
+                    <Base.Button className={`${this.decorateCSS("button")} ${item.isPrimary && this.decorateCSS("button-color")}`}>
                       <ComposerIcon
                         name={item.buttonIcon}
                         propsIcon={{
@@ -158,7 +163,7 @@ class DownloadCard1 extends BaseDownload {
                         }}
                       />
                       {item.buttonText}
-                    </button>
+                    </Base.Button>
                   </ComposerLink>
                 </div>
               );
