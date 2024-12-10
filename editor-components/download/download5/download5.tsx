@@ -34,14 +34,13 @@ class Download5 extends BaseDownload {
       type: "boolean",
       key: "overlay",
       displayer: "Overlay",
-      value: false,
+      value: true,
     });
 
     this.addProp({
       type: "array",
       key: "buttons",
       displayer: "Button",
-
       value: [
         {
           type: "object",
@@ -126,8 +125,6 @@ class Download5 extends BaseDownload {
 
     const buttons = this.castToObject<any[]>("buttons");
 
-    const widenContent = backgroundImage ? { width: "58%" } : {};
-
     const alignmentValue = Base.getContentAlignment();
 
     const buttonContainerClass = alignmentValue === "left" ? this.decorateCSS("buttons-container") : alignmentValue === "center" ? this.decorateCSS("buttons-container-center") : null;
@@ -135,7 +132,7 @@ class Download5 extends BaseDownload {
     return (
       <Base.Container className={this.decorateCSS("container")} style={{ backgroundImage: `url(${backgroundImage})` }}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("page")} style={widenContent}>
+          <div className={backgroundImage ? this.decorateCSS("page") : this.decorateCSS("page-no-image")}>
             <Base.VerticalContent className={this.decorateCSS("header")}>
               {titleExist && <Base.SectionTitle className={backgroundImage ? this.decorateCSS("title") : this.decorateCSS("title-no-image")}>{title}</Base.SectionTitle>}
               {descExist && <Base.SectionDescription className={backgroundImage ? this.decorateCSS("description") : this.decorateCSS("description-no-image")}>{desc}</Base.SectionDescription>}
@@ -155,15 +152,17 @@ class Download5 extends BaseDownload {
                           </div>
                         ) : (
                           (buttonTextExist || item.icon) && (
-                            <div className={this.decorateCSS("button-element")}>
-                              <ComposerIcon
-                                name={item.icon}
-                                propsIcon={{
-                                  className: this.decorateCSS("icon"),
-                                }}
-                              />
+                            <Base.Button className={this.decorateCSS("button-element")}>
+                              {item.icon && (
+                                <ComposerIcon
+                                  name={item.icon}
+                                  propsIcon={{
+                                    className: this.decorateCSS("icon"),
+                                  }}
+                                />
+                              )}
                               {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.buttonText}</Base.P>}
-                            </div>
+                            </Base.Button>
                           )
                         )}
                       </ComposerLink>

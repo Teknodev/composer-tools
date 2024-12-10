@@ -141,6 +141,9 @@
           }
         }
       }
+      .visible-navs {
+        display: none;
+      }
     }
   }
 }
@@ -166,6 +169,34 @@
                   font-size: 1.5rem;
                 }
               }
+            }
+          }
+        }
+        .visible-navs {
+          display: flex;
+          align-items: center;
+          gap: var(--composer-gap-md);
+          margin: 0 auto;
+          .prev_icon {
+            cursor: pointer;
+            color: var(--composer-font-color-primary);
+            opacity: 0.5;
+            transition: 0.5s;
+
+            &:hover {
+              color: var(--composer-primary-color);
+              opacity: 1;
+            }
+          }
+
+          .next_icon {
+            cursor: pointer;
+            color: var(--composer-font-color-primary);
+            opacity: 0.5;
+            transition: 0.5s;
+            &:hover {
+              color: var(--composer-primary-color);
+              opacity: 1;
             }
           }
         }

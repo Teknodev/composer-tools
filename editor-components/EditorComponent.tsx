@@ -4,6 +4,15 @@ import { getProjectHook } from "../custom-hooks/project";
 import { EventEmitter } from "../EventEmitter";
 import sanitizeHtml from "sanitize-html";
 import { renderToString } from "react-dom/server";
+import { THEMES, TTheme } from "./location/themes";
+import { LexicalEditor } from "lexical/LexicalEditor";
+import { $createParagraphNode, $getRoot, EditorState, TextNode } from "lexical";
+import { $generateHtmlFromNodes, $generateNodesFromDOM } from "@lexical/html";
+import { ExtendedTextNode } from "../../prefabs/playground/plugins/ExtendedTextNode";
+import { ListNode, ListItemNode } from "@lexical/list";
+import { HeadingNode, QuoteNode } from "@lexical/rich-text";
+import { CodeHighlightNode, CodeNode } from "@lexical/code";
+import InlineEditor from "../../prefabs/playground/inline-editor";
 
 type PreSufFix = {
   label: string;
@@ -13,7 +22,6 @@ type PreSufFix = {
 export type TypeLocation = {
   lng: number;
   lat: number;
-
 };
 
 type GetPropValueProperties = {
@@ -27,7 +35,10 @@ export type iComponent = {
   render(): any;
   getName(): string;
   getProps(): TypeUsableComponentProps[];
-  getPropValue(propName: string, properties?: GetPropValueProperties): TypeUsableComponentProps;
+  getPropValue(
+    propName: string,
+    properties?: GetPropValueProperties
+  ): TypeUsableComponentProps;
   getExportedCSSClasses(): { [key: string]: string };
   getCSSClasses(sectionName?: string | null): any;
   addProp(prop: TypeUsableComponentProps): void;
@@ -35,7 +46,9 @@ export type iComponent = {
   setCSSClasses(key: string, value: { id: string; class: string }[]): void;
   decorateCSS(cssValue: string): string;
   getCategory(): CATEGORIES;
-  id: string
+  id: string;
+
+  customStates: any;
 };
 type AvailablePropTypes =
   | { type: "string"; value: string }
@@ -65,8 +78,11 @@ export type TypeUsableComponentProps = {
   additionalParams?: { selectItems?: string[]; maxElementCount?: number };
   max?: number;
 } & AvailablePropTypes & {
-    getPropValue?: (propName: string, properties?: GetPropValueProperties) => any;
-  };
+  getPropValue?: (
+    propName: string,
+    properties?: GetPropValueProperties
+  ) => any;
+};
 
 export enum CATEGORIES {
   NAVIGATOR = "navigator",
@@ -88,11 +104,16 @@ export enum CATEGORIES {
   FEATURE = "feature",
   IMAGEGALLERY = "imageGallery",
   LOCATION = "Location",
+  HTTP_CODES = "HTTPCodes",
 }
 
-export abstract class Component extends React.Component<{}, { states: any; componentProps: any }> implements iComponent {
+//@ts-ignore
+export abstract class Component
+  extends React.Component<{}, { states: any; componentProps: any }>
+  implements iComponent {
   private styles: any;
   private _props: any;
+  public customStates: any = {};
   public id: string;
   protected category: CATEGORIES;
   abstract getName(): string;
@@ -102,6 +123,7 @@ export abstract class Component extends React.Component<{}, { states: any; compo
     this._props = props;
     this.styles = styles;
     this.id = Math.random().toString();
+    this.onChange = this.onChange.bind(this);
     let sectionsKeyValue: any = {};
     Object.keys(this.styles).forEach((key, index) => {
       sectionsKeyValue[key] = (props && props[key]) || [];
@@ -122,20 +144,116 @@ export abstract class Component extends React.Component<{}, { states: any; compo
     return this.state.componentProps.props;
   }
   getProp(key: string) {
-    let props: TypeUsableComponentProps[] = this.state.componentProps.props.filter((prop: TypeUsableComponentProps) => prop.key === key);
+    let props: TypeUsableComponentProps[] =
+      this.state.componentProps.props.filter(
+        (prop: TypeUsableComponentProps) => prop.key === key
+      );
     let prop = props[0] || null;
     return prop;
   }
 
   getPropValue(propName: string, properties?: GetPropValueProperties): any {
-    let prop = properties?.parent_object?.filter((prop: TypeUsableComponentProps) => prop.key === propName)[0] || this.getProp(propName);
+    let prop =
+      properties?.parent_object?.filter(
+        (prop: TypeUsableComponentProps) => prop.key === propName
+      )[0] || this.getProp(propName);
 
-    const isStringMustBeElement = prop?.type == "string" && !properties?.as_string;
+    const isStringMustBeElement =
+      prop?.type == "string" && !properties?.as_string;
 
-    return isStringMustBeElement ? this.getPropValueAsElement(prop, properties) : prop?.value;
+    return isStringMustBeElement
+      ? this.getPropValueAsElement(prop, properties)
+      : prop?.value;
   }
 
-  getPropValueAsElement(prop: TypeUsableComponentProps, properties?: GetPropValueProperties) {
+  removeSuffixesAndPrefixes(htmlString: any) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(htmlString, "text/html");
+
+    const elementsWithClass = doc.querySelectorAll("[class]");
+    elementsWithClass.forEach((element) => {
+      const isSuffixOrPrefixElement =
+        element.className.includes("suffix-prefix-elem");
+      if (isSuffixOrPrefixElement) element.remove();
+    });
+
+    return doc.body.innerHTML;
+  }
+
+  updateHTML(editor: LexicalEditor, value: string, clear: boolean) {
+    const root = $getRoot();
+    const parser = new DOMParser();
+    const dom = parser.parseFromString(value, "text/html");
+    const nodes = $generateNodesFromDOM(editor, dom);
+    if (clear) {
+      root.clear();
+    }
+    try {
+      root.append(...nodes);
+    } catch {
+      const p = $createParagraphNode();
+      p.append(...nodes);
+      root.append(p);
+    }
+  }
+
+  prepopulatedRichText(editor: LexicalEditor, html: string) {
+    this.updateHTML(editor, html, true);
+
+    return editor;
+  }
+
+  findObjectById(arr: any, targetId: string) {
+    for (let i in arr) {
+      if (arr[i].id === targetId) {
+        return i.toString();
+      }
+      if (arr[i].value) {
+        let result: any = this.findObjectById(arr[i].value, targetId);
+        if (result) {
+          return i.toString() + "." + result;
+        }
+      }
+    }
+    return null;
+  }
+
+  setValueAtPath(obj: any, path: string[], value: string) {
+    let current = obj;
+    for (let i = 0; i < path.length - 1; i++) {
+      current = current[path[i]].value;
+    }
+    current[path[path.length - 1]].value = value;
+    return current;
+  }
+
+  onStateReady(editor: LexicalEditor) {
+    const htmlString = $generateHtmlFromNodes(editor, null);
+
+    let propRoute: string[] = this.findObjectById(
+      this.getProps(),
+      editor._config.namespace
+    ).split(".");
+    let componentProps = this.getProps();
+    this.setValueAtPath(componentProps, propRoute, htmlString);
+
+    EventEmitter.emit("propUpdated", {
+      component: this,
+      type: componentProps[parseInt(propRoute[0])].type,
+      key: componentProps[parseInt(propRoute[0])].key,
+      value: componentProps[parseInt(propRoute[0])].value,
+    });
+  }
+
+  onChange(editorState: EditorState, editor: LexicalEditor) {
+    editorState.read.bind(this);
+    editorState.read(() => this.onStateReady(editor));
+  }
+
+  getPropValueAsElement(
+    prop: TypeUsableComponentProps,
+    properties?: GetPropValueProperties
+  ) {
     const sanitize = (dirty: string, options: sanitizeHtml.IOptions) => ({
       __html: sanitizeHtml(dirty, {
         allowedAttributes: {
@@ -149,7 +267,10 @@ export abstract class Component extends React.Component<{}, { states: any; compo
     const preSufFixToElement = (elem?: PreSufFix) => {
       if (!elem) return null;
 
-      return React.createElement("span", { className: `${elem.className} suffix-prefix-elem`, children: elem.label });
+      return React.createElement("span", {
+        className: `${elem.className} suffix-prefix-elem`,
+        children: elem.label,
+      });
     };
 
     const SanitizeHTML = ({ html, options }: any) => {
@@ -168,12 +289,47 @@ export abstract class Component extends React.Component<{}, { states: any; compo
       const firstTagStartIndex = html.indexOf(">") + 1;
       const firstTagEndIndex = html.lastIndexOf("<");
 
-      const htmlWithPrefixAndSuffix = html.substring(0, firstTagStartIndex) + stringPrefix + html.substring(firstTagStartIndex, firstTagEndIndex) + stringSuffix + html.substring(firstTagEndIndex);
+      const htmlWithPrefixAndSuffix =
+        html.substring(0, firstTagStartIndex) +
+        stringPrefix +
+        html.substring(firstTagStartIndex, firstTagEndIndex) +
+        stringSuffix +
+        html.substring(firstTagEndIndex);
 
       const sanitizedHtml = sanitize(htmlWithPrefixAndSuffix, options);
 
-      //@ts-ignore
-      return <blinkpage playground-seed={prop.id} prop-type={prop.type} style={{ pointerEvents: "none", display: "inline-block", width: "100%" }} dangerouslySetInnerHTML={sanitizedHtml}></blinkpage>;
+      const editorConfig = {
+        namespace: prop.id,
+        onError: (error: Error) => {
+          console.error("Lexical Error:", error);
+        },
+        editorState: (editor: any) =>
+          this.prepopulatedRichText(editor, prop.value as string),
+        nodes: [
+          ExtendedTextNode,
+          {
+            replace: TextNode,
+            with: (node: TextNode) => new ExtendedTextNode(node.__text),
+          },
+          ListNode,
+          ListItemNode,
+          HeadingNode,
+          QuoteNode,
+          CodeNode,
+          CodeHighlightNode,
+        ],
+      };
+
+      return (
+        <InlineEditor
+          initialConfig={editorConfig}
+          onChange={this.onChange}
+          HTML={
+            //@ts-ignore
+            () => <blinkpage dangerouslySetInnerHTML={sanitizedHtml}></blinkpage>
+          }
+        />
+      );
     };
 
     return <SanitizeHTML html={prop?.value}></SanitizeHTML>;
@@ -183,14 +339,19 @@ export abstract class Component extends React.Component<{}, { states: any; compo
     return this.styles;
   }
   getCSSClasses(sectionName: string | null = null): string {
-    return sectionName ? this.state.componentProps.cssClasses[sectionName] : this.state.componentProps.cssClasses;
+    return sectionName
+      ? this.state.componentProps.cssClasses[sectionName]
+      : this.state.componentProps.cssClasses;
   }
   addProp(prop: TypeUsableComponentProps) {
     const attachPropId = (_prop: TypeUsableComponentProps) => {
       if (_prop.type == "array" || _prop.type == "object") {
-        _prop.value = (_prop.value as TypeUsableComponentProps[]).map((v: TypeUsableComponentProps) => attachPropId(v));
+        _prop.value = (_prop.value as TypeUsableComponentProps[]).map(
+          (v: TypeUsableComponentProps) => attachPropId(v)
+        );
       } else {
-        _prop.id = _prop.key + "-" + Math.round(Math.random() * 1000000000).toString();
+        _prop.id =
+          _prop.key + "-" + Math.round(Math.random() * 1000000000).toString();
       }
       return _prop;
     };
@@ -201,22 +362,27 @@ export abstract class Component extends React.Component<{}, { states: any; compo
   }
 
   setProp(key: string, value: any): void {
-    let i = this.state.componentProps.props.map((prop: any) => prop.key).indexOf(key);
+    let i = this.state.componentProps.props
+      .map((prop: any) => prop.key)
+      .indexOf(key);
 
     if (i == -1) return;
 
     this.state.componentProps.props[i].value = value;
-    this.state.componentProps.props[i] = this.attachValueGetter(this.state.componentProps.props[i]);
+    this.state.componentProps.props[i] = this.attachValueGetter(
+      this.state.componentProps.props[i]
+    );
     this.setState({ componentProps: { ...this.state.componentProps } });
   }
 
   setComponentState(key: string, value: any): void {
-    this.state.states[key] = value;
+    this.customStates[key] = value;
     EventEmitter.emit("forceReload");
+    EventEmitter.emit("stateChanged", { id: this.id, key, value });
   }
 
   getComponentState(key: string): any {
-    return this.state.states[key];
+    return this.customStates[key];
   }
 
   setCSSClasses(key: string, value: { id: string; class: string }[]) {
@@ -226,7 +392,9 @@ export abstract class Component extends React.Component<{}, { states: any; compo
 
   decorateCSS(cssValue: string) {
     let cssClass = [this.styles[cssValue]];
-    let cssManuplations = Object.entries(this.getCSSClasses()).filter(([p, v]) => v.length > 0);
+    let cssManuplations = Object.entries(this.getCSSClasses()).filter(
+      ([p, v]) => v.length > 0
+    );
     cssManuplations.forEach(([key, value]: any) => {
       if (key === cssValue) {
         value.forEach((el: any) => {
@@ -240,24 +408,32 @@ export abstract class Component extends React.Component<{}, { states: any; compo
   private attachValueGetter(propValue: TypeUsableComponentProps) {
     if (Array.isArray(propValue.value)) {
       propValue.value = propValue.value.filter((value) => value != null);
-      propValue.value = propValue.value.map((propValueItem: TypeUsableComponentProps) => {
-        if (Array.isArray(propValueItem.value)) {
-          propValueItem = this.attachValueGetter(propValueItem);
-          propValueItem["getPropValue"] = (propName: string, properties?: GetPropValueProperties) => {
-            if (!properties) properties = {};
-            properties.parent_object = propValueItem.value as TypeUsableComponentProps[];
-            return this.getPropValue(propName, properties);
-          };
-        }
+      propValue.value = propValue.value.map(
+        (propValueItem: TypeUsableComponentProps) => {
+          if (Array.isArray(propValueItem.value)) {
+            propValueItem = this.attachValueGetter(propValueItem);
+            propValueItem["getPropValue"] = (
+              propName: string,
+              properties?: GetPropValueProperties
+            ) => {
+              if (!properties) properties = {};
+              properties.parent_object =
+                propValueItem.value as TypeUsableComponentProps[];
+              return this.getPropValue(propName, properties);
+            };
+          }
 
-        return propValueItem;
-      });
+          return propValueItem;
+        }
+      );
     }
     return propValue;
   }
 
   castToObject<Type>(propName: string): Type {
-    let i = this.state.componentProps.props.map((prop: any) => prop.key).indexOf(propName);
+    let i = this.state.componentProps.props
+      .map((prop: any) => prop.key)
+      .indexOf(propName);
 
     let castedObject = this.castingProcess(this.state.componentProps.props[i]);
     return castedObject;
@@ -272,13 +448,18 @@ export abstract class Component extends React.Component<{}, { states: any; compo
       let clonedPropValue = { ...propValue };
       if (clonedPropValue.hasOwnProperty("getPropValue")) {
         clonedPropValue.value.forEach((nestedObject: any, index: number) => {
-          clonedPropValue[nestedObject.key] = clonedPropValue.getPropValue(nestedObject.key);
+          clonedPropValue[nestedObject.key] = clonedPropValue.getPropValue(
+            nestedObject.key
+          );
           if (nestedObject.hasOwnProperty("getPropValue")) {
-            clonedPropValue[nestedObject.key] = this.castingProcess(nestedObject);
+            clonedPropValue[nestedObject.key] =
+              this.castingProcess(nestedObject);
           }
         });
       } else {
-        const value = this.getPropValue(clonedPropValue.key, { parent_object: object.value });
+        const value = this.getPropValue(clonedPropValue.key, {
+          parent_object: object.value,
+        });
         clonedPropValue = {
           key: clonedPropValue.key,
           value,
@@ -288,7 +469,9 @@ export abstract class Component extends React.Component<{}, { states: any; compo
     });
 
     if (object.type == "object") {
-      const isObjectContainsAnotherObject = object.value.some((val: TypeUsableComponentProps) => val.type == "object");
+      const isObjectContainsAnotherObject = object.value.some(
+        (val: TypeUsableComponentProps) => val.type == "object"
+      );
 
       let tmpCasted = [...casted];
       casted = {};
@@ -367,7 +550,10 @@ export abstract class BaseCallToAction extends Component {
     let config = {
       ...{ data: { name, data, project } },
       method: "post",
-      url: process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : process.env.NEXT_PUBLIC_PUBLIC_URL + "/fn-execute/project/insert-form",
+      url: process.env.REACT_APP_API_URL
+        ? process.env.REACT_APP_API_URL
+        : process.env.NEXT_PUBLIC_PUBLIC_URL +
+        "/fn-execute/project/insert-form",
     };
     return axios.request(config).then((r: any) => r.data);
   }
@@ -379,6 +565,9 @@ export abstract class BaseSlider extends Component {
 
 export abstract class BaseFAQ extends Component {
   protected category = CATEGORIES.FAQ;
+}
+export abstract class BaseHTTPCodes extends Component {
+  protected category = CATEGORIES.HTTP_CODES;
 }
 
 export abstract class BaseImageGallery extends Component {
@@ -401,10 +590,60 @@ export abstract class BaseModal extends Component {
 
 export abstract class LogoClouds extends Component {
   protected category = CATEGORIES.LOGOCLOUDS;
+
+  LOGOINPUT() {
+    return {
+      type: "object",
+      key: "section",
+      displayer: "Section",
+      value: [
+        {
+          type: "image",
+          key: "image",
+          value:
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1719584962573",
+          displayer: "Image",
+        },
+        {
+          type: "page",
+          key: "imageLink",
+          value: "",
+          displayer: "Image Link",
+        },
+      ],
+    } as TypeUsableComponentProps;
+  }
 }
 
 export abstract class Location extends Component {
   protected category = CATEGORIES.LOCATION;
+  protected themes: TTheme[] = THEMES;
+
+  constructor(props: any, styles: any) {
+    super(props, styles);
+    this.addProp({
+      type: "select",
+      key: "theme",
+      displayer: "Map Theme",
+      value: "Theme-0",
+      additionalParams: {
+        selectItems: [
+          "Theme-0",
+          "Theme-1",
+          "Theme-2",
+          "Theme-3",
+          "Theme-4",
+          "Theme-5",
+        ],
+      },
+    });
+  }
+
+  selectTheme(selectedTheme: string) {
+    return this.themes.find((theme: TTheme) => {
+      return theme.name == selectedTheme;
+    });
+  }
 }
 
 export abstract class BaseStats extends Component {
@@ -420,7 +659,10 @@ export abstract class BaseContacts extends Component {
     let config = {
       ...{ data: { name, data, project } },
       method: "post",
-      url: process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : process.env.NEXT_PUBLIC_PUBLIC_URL + "/fn-execute/project/insert-form",
+      url: process.env.REACT_APP_API_URL
+        ? process.env.REACT_APP_API_URL
+        : process.env.NEXT_PUBLIC_PUBLIC_URL +
+        "/fn-execute/project/insert-form",
     };
     return axios.request(config).then((r: any) => r.data);
   }
