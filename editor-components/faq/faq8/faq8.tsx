@@ -746,7 +746,7 @@ class FaqButton extends BaseFAQ {
                       >
                         {(this.castToString(question.qq)) && (
                           <div className={this.decorateCSS("question")}>
-                            <div className={this.decorateCSS("question-title")}>
+                            <div className={`${this.decorateCSS("question-title")} ${this.getComponentState("activeIndex2") === questionIndex ? this.decorateCSS("active") : ""}`}>
                               {question.qq}
                             </div>
                             <ComposerIcon name={this.getPropValue("arrow-down")} propsIcon={{ className: `${this.decorateCSS("question-icon")} ${this.getComponentState("activeIndex2") === questionIndex ? this.decorateCSS("active") : ""}` }} />
