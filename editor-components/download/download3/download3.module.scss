@@ -141,6 +141,7 @@
             flex-wrap: wrap;
             justify-content: space-between;
             gap: var(--composer-gap-md);
+            justify-content: unset;
             width: 100%;
             .button {
               width: auto;
