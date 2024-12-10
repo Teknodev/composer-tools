@@ -56,7 +56,7 @@
               position: absolute;
               width: calc(100% + var(--composer-gap-md) * 2);
               height: 85%;
-              bottom: -60px;
+              bottom: 0px;
               left: calc(0px - var(--composer-gap-md));
               background-color: var(--composer-primary-color);
               z-index: -1;
@@ -72,6 +72,7 @@
             background-color: var(--composer-html-background);
             border-radius: var(--composer-border-radius-xs);
             gap: var(--composer-gap-md);
+            height: 100%;
 
             .img-div {
               .img {
@@ -105,6 +106,7 @@
 
               .icon {
                 font-size: 1rem;
+                min-width: fit-content;
               }
               .text {
                 font-size: 1rem;
