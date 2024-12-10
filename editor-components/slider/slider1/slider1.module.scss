@@ -63,7 +63,7 @@
                             max-width: var(--composer-content-width);
 
                             .subtitle {
-                                letter-spacing: var(--composer-gap-sm);
+                                letter-spacing: var(--composer-gap-xs);
                             }
 
                             .title {
@@ -230,8 +230,8 @@
                                 right: var(--composer-gap-md);
 
                                 .icon {
-                                    width: 25px;
-                                    height: 25px;
+                                    width: 20px;
+                                    height: 20px;
                                 }
                             }
                         }
