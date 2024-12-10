@@ -37,6 +37,15 @@
     .carousel {
       width: 100%;
 
+      :global(.slick-active) {
+        >div {
+          .centerSlide {
+            transform: scale(1.0);
+            transition: transform 0.3s ease;
+          }
+        }
+      }
+
       >ul {
         bottom: -19px;
 
@@ -95,13 +104,18 @@
         }
       }
 
-      .centerSlide {
-        transform: scale(1.0);
-        transition: transform 0.3s ease;
-      }
+
+      // .centerSlide {
+      //   transform: scale(1.0);
+      //   transition: transform 0.3s ease;
+      // }
 
     }
   }
+}
+
+.one-card {
+  padding: var(--composer-gap-md) var(--composer-gap-xl) !important;
 }
 
 @container (max-width: #{$composer-tablet-width}) {
@@ -114,5 +128,15 @@
         }
       }
     }
+  }
+
+  .one-card {
+    padding: var(--composer-gap-md) var(--composer-gap-lg) !important;
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .one-card {
+    padding: var(--composer-gap-md) 0 !important;
   }
 }

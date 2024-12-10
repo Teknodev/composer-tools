@@ -161,13 +161,19 @@ class Slider7 extends BaseSlider {
 
   render() {
 
-    const items = this.castToObject<Card[]>("slider").filter(
+    let items = this.castToObject<Card[]>("slider").filter(
       (item: Card) => item.image
     );
     const isCardExist = items.length > 0;
     const nextArrow = this.getPropValue("nextArrow");
     const previousArrow = this.getPropValue("previousArrow");
     const sliderRef = this.getComponentState("slider-ref");
+    let slidesToShowNumber = 1;
+
+    if (items.length === 2) {
+      items = [...items, ...items];
+      slidesToShowNumber = 3;
+    }
 
     const settings = {
       dots: false,
@@ -177,17 +183,24 @@ class Slider7 extends BaseSlider {
       autoplay: true,
       centerMode: true,
       autoplaySpeed: 3000,
-      slidesToShow: 1,
+      slidesToShow: slidesToShowNumber,
       slidesToScroll: 1,
       centerPadding: "0px",
       variableWidth: true,
       responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 1,
+          }
+        },
         {
           breakpoint: 640,
           settings: {
             dots: true,
             arrows: false,
             variableWidth: false,
+            slidesToShow: 1,
           }
         }
       ],
@@ -197,8 +210,10 @@ class Slider7 extends BaseSlider {
       },
     };
 
+
     return (
-      <Base.Container isFull={true} className={this.decorateCSS("container")}>
+      <Base.Container isFull={true} className={`${this.decorateCSS("container")}
+      ${items.length === 1 && this.decorateCSS("one-card")}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
 
           {previousArrow &&
