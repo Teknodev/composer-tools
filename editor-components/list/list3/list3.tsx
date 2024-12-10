@@ -2,12 +2,14 @@ import * as React from "react";
 import { BaseList } from "../../EditorComponent";
 import styles from "./list3.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { Base } from "../../../composer-base-components/base/base";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type Item = {
-  itemTitle: JSX.Element;
-  itemText1: JSX.Element;
-  itemText2: JSX.Element;
-  itemText3: JSX.Element;
+  itemTitle: string;
+  itemText1: string;
+  itemText2: string;
+  itemText3: string;
 };
 
 class List3 extends BaseList {
@@ -161,86 +163,75 @@ class List3 extends BaseList {
     const buttonExist = this.castToString(this.getPropValue("button"));
 
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div
-            className={this.decorateCSS("row")}
-            style={{
-              gridTemplateColumns: `repeat(${this.getPropValue(
-                "itemCount"
-              )}, 1fr)`,
-            }}
-          >
+      <Base.Container className={this.decorateCSS("container")} isFull="true">
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <Base.ListGrid className={this.decorateCSS("row")} gridCount={{ pc: this.getPropValue("itemCount") }}>
             {(title || description) && (
               <div className={this.decorateCSS("first")}>
-                <div className={this.decorateCSS("firstContent")}>
-                  {title && (
-                    <div className={this.decorateCSS("title")}>
-                      <h1 className={this.decorateCSS("title-inner")}>{this.getPropValue("title")}</h1>
-                    </div>
-                  )}
-                  {description && (
-                    <div className={this.decorateCSS("description")}>
-                      <p className={this.decorateCSS("description-inner")}>{this.getPropValue("description")}</p>
-                    </div>
-                  )}
+                <div className={this.decorateCSS("firs-inner")}>
+                  <Base.VerticalContent>
+                    {title && (
+                      <Base.SectionTitle className={this.decorateCSS("title")}>
+                        {title}
+                      </Base.SectionTitle>
+                    )}
+                    {description && (
+                      <Base.SectionDescription className={this.decorateCSS("description")}>
+                        {description}
+                      </Base.SectionDescription>
+                    )}
+                  </Base.VerticalContent>
                   {buttonExist && (
-                    <div className={this.decorateCSS("buttondiv")}>
+                    <Base.Button>
                       <ComposerLink path={this.getPropValue("buttonUrl")}>
-                        <button className={`${this.decorateCSS("button")}`}>
-                          {this.getPropValue("button")}
-                        </button>
+                        {this.getPropValue("button")}
                       </ComposerLink>
-                    </div>
+                    </Base.Button>
                   )}
                 </div>
               </div>
             )}
             {listItems.map((listItem: Item, index: number) => {
-              const itemTitle = this.castToString(listItem.itemTitle);
-              const itemText1 = this.castToString(listItem.itemText1);
-              const itemText2 = this.castToString(listItem.itemText2);
-              const itemText3 = this.castToString(listItem.itemText3);
 
               return (
                 <div key={index} className={this.decorateCSS("card")}>
                   <div className={this.decorateCSS("card-content")}>
-                    {itemTitle && (
-                      <p className={this.decorateCSS("itemTitle")}>
+                    {listItem.itemTitle && (
+                      <Base.SectionTitle className={this.decorateCSS("itemTitle")}>
                         {listItem.itemTitle}
-                      </p>
+                      </Base.SectionTitle>
                     )}
-                    {itemText1 && (
-                      <p className={this.decorateCSS("itemText")}>
+                    {listItem.itemText1 && (
+                      <Base.SectionDescription className={this.decorateCSS("itemText")}>
                         {listItem.itemText1}
-                      </p>
+                      </Base.SectionDescription>
                     )}
-                    {itemText2 && (
+                    {listItem.itemText2 && (
                       <span className={this.decorateCSS("spanItem")}></span>
                     )}
-                    {itemText2 && (
-                      <p className={this.decorateCSS("itemText")}>
+                    {listItem.itemText2 && (
+                      <Base.SectionDescription className={this.decorateCSS("itemText")}>
                         {listItem.itemText2}
-                      </p>
+                      </Base.SectionDescription>
                     )}
-                    {itemText3 && (
+                    {listItem.itemText3 && (
                       <span className={this.decorateCSS("spanItem")}></span>
                     )}
-                    {itemText3 && (
-                      <p className={this.decorateCSS("itemText")}>
+                    {listItem.itemText3 && (
+                      <Base.SectionDescription className={this.decorateCSS("itemText")}>
                         {listItem.itemText3}
-                      </p>
+                      </Base.SectionDescription>
                     )}
                   </div>
-                  <h3 className={this.decorateCSS("index")}>
+                  <Base.H2 className={this.decorateCSS("index")}>
                     {index < 9 ? `0${index + 1}` : index + 1}
-                  </h3>
+                  </Base.H2>
                 </div>
               );
             })}
-          </div>
-        </div>
-      </div>
+          </Base.ListGrid>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
