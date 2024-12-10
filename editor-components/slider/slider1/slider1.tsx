@@ -41,7 +41,7 @@ class Slider1 extends BaseSlider {
               type: "string",
               key: "subtitle",
               displayer: "Subtitle",
-              value: "EXPLORE",
+              value: "Explore",
             },
             {
               type: "string",
@@ -160,7 +160,7 @@ class Slider1 extends BaseSlider {
       dots: false,
       infinite: true,
       speed: 500,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
