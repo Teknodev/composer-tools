@@ -1,139 +1,109 @@
+@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
+@keyframes slide-in {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 .container {
   height: 100vh;
   .max-content {
+    height: 100%;
     .content {
       display: flex;
       flex-direction: column;
-      align-items: center;
       gap: var(--composer-gap-md);
-      .title {
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+
+      
+      .title-wrapper {
         position: relative;
-        font-size: 5rem;
-        opacity: 0;
-        color: var(--composer-font-color-primary);
-        display: flex;
-        justify-content: center;
-        animation: fadeIn 1s ease-in-out forwards;
-        width: fit-content;
         padding: 0px var(--composer-gap-sm);
-        .label-404 {
-          position: absolute;
-          padding: var(--composer-gap-xs);
-          left: 0px;
-          bottom: 10px;
-          width: fit-content;
-          background-color: var(--composer-secondary-color);
-          border-radius: var(--composer-border-radius-md);
-          opacity: 0;
-          transform: scale(0.5);
-          animation: appearAndScale 1s ease-in-out forwards;
-          animation-delay: 0.5s;
-          .text{
+        width: 75%;
+        justify-content: center;
+        display: flex;
+        animation: slide-in 1s ease-out 0.3s;
+        .title{
+          justify-content: center;
+          display: flex;
+          position: relative;
+          .title-text{
+            font-size: 8rem;
             color: var(--composer-font-color-primary);
-            font-size: 1rem;
+          }
+          .error-message {
+            position: absolute;
+            padding: var(--composer-gap-xs);
+            left: 0px;
+            bottom: 50px;
+            width: fit-content;
+            background-color: var(--composer-primary-color);
+            border-radius: var(--composer-border-radius-md);
+            
+            .text{
+              color: var(--composer-font-color-secondary);
+              font-size: 1.5rem;
+            }
           }
         }
-    
-        .word {
-          display: inline-block;
-          opacity: 0;
-          transform: translateY(100px);
-          animation: wordSlideIn 0.8s ease-in-out forwards;
+        .line-right, .line-left{
+          position: absolute;
+          background-color: var(--composer-font-color-primary);
+          content: "";
+          height: 2px;
+          width: 150px;
         }
-    
-        @keyframes wordSlideIn {
-          0% {
-            opacity: 0;
-            transform: translateY(100px);
-          }
-          100% {
-            opacity: 1;
-            transform: translateY(0);
-          }
+        .line-right{
+          bottom: 0px;
+          right: 0px;
         }
-  
- 
-    
-        @keyframes appearAndScale {
-          0% {
-            opacity: 0;
-            transform: scale(0.5);
-          }
-          60% {
-            opacity: 0.5;
-            transform: scale(1.1);
-          }
-          100% {
-            opacity: 0.8;
-            transform: scale(1);
-          }
+        .line-left{
+          top: 0px;
+          left: 0px;
         }
       }
     
       .description {
         font-size: 2rem;
-        opacity: 0;
         color: var(--composer-font-color-primary);
-        animation: revealWords 3s ease-in-out forwards;
-        animation-delay: 0s;
-      }
-    
-      @keyframes fadeIn {
-        0% {
-          opacity: 0;
-          transform: translateY(-20px);
-        }
-        100% {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-    
-      @keyframes revealWords {
-        0% {
-          opacity: 0;
-        }
-        100% {
-          opacity: 1;
-        }
-      }
-    
-      .word {
-        opacity: 0;
-        display: inline-block;
-        animation: revealWord 0.5s ease-in-out forwards;
-      }
-    
-      @keyframes revealWord {
-        0% {
-          opacity: 0;
-          transform: translateY(10px);
-        }
-        100% {
-          opacity: 1;
-          transform: translateY(0);
-        }
+        width: 50%;
+        animation: slide-in 1s ease-out 0.6s;
       }
     
       .button {
-        background-color: var(--composer-primary-color);
-        color: var(--composer-font-color-secondary);
-        opacity: 0;
-        animation: buttonReveal 1.2s ease-out forwards;
-        animation-delay: 1.5s;
-        transition: background-color 0.3s ease, border 0.3s ease, color 0.3s ease;
-      }
-    
-      @keyframes buttonReveal {
-        0% {
-          opacity: 0;
-        }
-        100% {
-          opacity: 1;
-        }
+        animation: slide-in 1s ease-out 0.9s;
+        content: "";
       }
     }    
   }  
 }
-
-
+@container (max-width: #{$composer-tablet-width}){
+  .container{
+    .max-content{
+      .content{
+        .title-wrapper{
+          width: 100%;
+          .title{
+            .title-text{
+              font-size: 7rem;
+            }
+            .error-message{
+              bottom: 30px;
+            }
+          }
+        }
+        .description {
+          width: 100%;
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+}

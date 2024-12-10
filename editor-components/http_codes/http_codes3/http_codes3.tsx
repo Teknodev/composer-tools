@@ -48,54 +48,34 @@ class HTTP_CODES3 extends BaseHTTPCodes {
     return "HTTP Codes 3";
   }
 
-  renderTitle() {
-    const title = this.getPropValue("title");
-    const title_word = title?.props?.html;
-    const titleWords = title_word.split(" ");
-
-    return titleWords.map((word: string, index: number) => (
-      <span key={index} className={this.decorateCSS("word")} style={{ animationDelay: `${index * 0.2}s` }}>
-        {word}&nbsp;
-      </span>
-    ));
-  }
-
-  renderDescription() {
-    const description = this.getPropValue("description");
-    const description_word = description?.props?.html;
-    const words = description_word.split(" ");
-
-    return words.map((word: string, index: number) => (
-      <span key={index} className={this.decorateCSS("word")} style={{ animationDelay: `${index * 0.1}s` }}>
-        {word}&nbsp;
-      </span>
-    ));
-  }
-
   render() {
-    const label_404 = this.getPropValue("404");
-    const label404Word = label_404.props.html;
-
-    const button_words = this.getPropValue("button");
-    const buttonWords = button_words.props.html;
-
-    const title_words = this.getPropValue("title");
-    const titleWords = title_words.props.html;
+    const error = this.getPropValue("404");
+    const buttonText = this.getPropValue("button");
+    const title = this.getPropValue("title");
+    const description = this.getPropValue("description");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
-            <div className={this.decorateCSS("title")}>
-              {this.renderTitle()}
-              {label404Word && <div className={this.decorateCSS("label-404")}>
-                <div className={this.decorateCSS("text")}>
-                  {this.getPropValue("404")}
+            <div className={this.decorateCSS("title-wrapper")}>
+              <div className={this.decorateCSS("line-left")}></div>
+              <div className={this.decorateCSS("title")}>
+                <div className={this.decorateCSS("title-text")}>
+                  {title}
                 </div>
-              </div>}
+                {this.castToString(error) &&
+                  <div className={this.decorateCSS("error-message")}>
+                    <div className={this.decorateCSS("text")}>
+                      {this.getPropValue("404")}
+                    </div>
+                  </div>
+                }
+              </div>
+              <div className={this.decorateCSS("line-right")}></div>
             </div>
-            <div className={this.decorateCSS("description")}>{this.renderDescription()}</div>
-            {buttonWords && (
+            <div className={this.decorateCSS("description")}>{description}</div>
+            {this.castToString(buttonText) && (
               <Base.Button className={this.decorateCSS("button")}>
                 <ComposerLink path={this.getPropValue("url")}>{this.getPropValue("button")}</ComposerLink>
               </Base.Button>
