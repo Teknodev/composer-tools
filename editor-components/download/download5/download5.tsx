@@ -34,7 +34,7 @@ class Download5 extends BaseDownload {
       type: "boolean",
       key: "overlay",
       displayer: "Overlay",
-      value: true,
+      value: false,
     });
 
     this.addProp({
@@ -134,8 +134,8 @@ class Download5 extends BaseDownload {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={backgroundImage ? this.decorateCSS("page") : this.decorateCSS("page-no-image")}>
             <Base.VerticalContent className={this.decorateCSS("header")}>
-              {titleExist && <Base.SectionTitle className={backgroundImage ? this.decorateCSS("title") : this.decorateCSS("title-no-image")}>{title}</Base.SectionTitle>}
-              {descExist && <Base.SectionDescription className={backgroundImage ? this.decorateCSS("description") : this.decorateCSS("description-no-image")}>{desc}</Base.SectionDescription>}
+              {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
+              {descExist && <Base.SectionDescription className={this.decorateCSS("description")}>{desc}</Base.SectionDescription>}
             </Base.VerticalContent>
 
             {buttons.length > 0 && (

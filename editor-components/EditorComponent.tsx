@@ -569,7 +569,6 @@ export abstract class BaseFAQ extends Component {
 export abstract class BaseHTTPCodes extends Component {
   protected category = CATEGORIES.HTTP_CODES;
 }
-
 export abstract class BaseImageGallery extends Component {
   protected category = CATEGORIES.IMAGEGALLERY;
 }
