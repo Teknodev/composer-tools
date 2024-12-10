@@ -130,7 +130,7 @@ class Download5 extends BaseDownload {
     const buttonContainerClass = alignmentValue === "left" ? this.decorateCSS("buttons-container") : alignmentValue === "center" ? this.decorateCSS("buttons-container-center") : null;
 
     return (
-      <Base.Container className={this.decorateCSS("container")} style={{ backgroundImage: `url(${backgroundImage})` }}>
+      <Base.Container className={backgroundImage ? this.decorateCSS("container") : this.decorateCSS("container-single")} style={{ backgroundImage: backgroundImage ? `url(${backgroundImage})` : "none" }}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={backgroundImage ? this.decorateCSS("page") : this.decorateCSS("page-no-image")}>
             <Base.VerticalContent className={this.decorateCSS("header")}>

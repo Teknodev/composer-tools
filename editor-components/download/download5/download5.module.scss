@@ -2,16 +2,15 @@
 
 $min-height: 500px;
 
-.container {
+.container,
+.container-single {
   background-size: cover;
   background-position: center;
-  min-height: $min-height;
   position: relative;
 
   .max-content {
     display: flex;
     align-items: center;
-    min-height: $min-height;
     position: relative;
     z-index: 2;
 
@@ -81,6 +80,19 @@ $min-height: 500px;
     height: 100%;
     z-index: 1;
     background-color: var(--composer-overlay-color);
+  }
+}
+
+.container {
+  min-height: $min-height;
+  .max-content {
+    min-height: $min-height;
+  }
+}
+.container-single {
+  height: auto;
+  .max-content {
+    min-height: auto;
   }
 }
 
