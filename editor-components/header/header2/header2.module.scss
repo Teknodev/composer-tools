@@ -184,8 +184,8 @@
             display: none;
           }
           .category {
-            font-size: 0.5rem !important;
-            top: -1.75rem !important;
+            font-size: 1rem !important;
+            top: -2.5rem !important;
             left: 0.625rem !important;
           }
           .title {
@@ -202,7 +202,7 @@
   }
 }
 
-@container (min-width: $composer-phone-width-sm) and (max-width: $composer-tablet-width-lg) {
+@container (min-width: #{$composer-phone-width-sm}) and (max-width: #{$composer-tablet-width-lg}) {
   .container {
     .max-content {
       .slider {
