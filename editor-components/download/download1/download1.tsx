@@ -6,21 +6,13 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
 
 type Button = {
-  buttonText: string;
+  buttonText: JSX.Element;
   url: string;
-  isPrimary: boolean;
   buttonIcon: string;
 };
 class DownloadCard1 extends BaseDownload {
   constructor(props?: any) {
     super(props, styles);
-
-    this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "DON'T WASTE TIME,",
-    });
 
     this.addProp({
       type: "string",
@@ -133,42 +125,48 @@ class DownloadCard1 extends BaseDownload {
 
   render() {
     const title = this.getPropValue("title");
-    const subtitle = this.getPropValue("subtitle");
     const description = this.getPropValue("description");
 
     const titleExist = this.castToString(title);
-    const subtitleExist = this.castToString(subtitle);
     const descriptionExist = this.castToString(description);
     const line = this.getPropValue("line");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={this.decorateCSS("header")}>
-            {titleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
-            {subtitleExist && <Base.SectionTitle className={line ? this.decorateCSS("title") : this.decorateCSS("disable-line-title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-            {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")} </Base.SectionDescription>}
-          </Base.VerticalContent>
+          {(titleExist || descriptionExist) && (
+            <Base.VerticalContent className={this.decorateCSS("header")}>
+              {titleExist && <Base.SectionTitle className={line ? this.decorateCSS("title") : this.decorateCSS("disable-line-title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+              {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")} </Base.SectionDescription>}
+            </Base.VerticalContent>
+          )}
 
-          <div className={this.decorateCSS("box")}>
-            {this.castToObject<Button[]>("buttons").map((item: Button, index: number) => {
-              return (
-                <div className={this.decorateCSS("button-wrapper")}>
-                  <ComposerLink key={`dw-1-btn-${index}`} path={item.url}>
-                    <Base.Button className={`${this.decorateCSS("button")} ${item.isPrimary && this.decorateCSS("button-color")}`}>
-                      <ComposerIcon
-                        name={item.buttonIcon}
-                        propsIcon={{
-                          className: this.decorateCSS("icon"),
-                        }}
-                      />
-                      {item.buttonText}
-                    </Base.Button>
-                  </ComposerLink>
-                </div>
-              );
-            })}
-          </div>
+          {this.castToObject<Button[]>("buttons").length > 0 && (
+            <div className={this.decorateCSS("box")}>
+              {this.castToObject<Button[]>("buttons").map((item: Button, index: number) => {
+                const buttonTitleExist = this.castToString(item.buttonText);
+                const iconExist = item.buttonIcon;
+                const buttonExist = buttonTitleExist || iconExist;
+                return (
+                  buttonExist && (
+                    <div className={this.decorateCSS("button-wrapper")}>
+                      <ComposerLink key={`dw-1-btn-${index}`} path={item.url}>
+                        <Base.Button className={this.decorateCSS("button")}>
+                          <ComposerIcon
+                            name={item.buttonIcon}
+                            propsIcon={{
+                              className: this.decorateCSS("icon"),
+                            }}
+                          />
+                          <Base.P className={this.decorateCSS("button-text")}> {item.buttonText}</Base.P>
+                        </Base.Button>
+                      </ComposerLink>
+                    </div>
+                  )
+                );
+              })}
+            </div>
+          )}
         </Base.MaxContent>
       </Base.Container>
     );

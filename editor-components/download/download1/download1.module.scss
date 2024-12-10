@@ -12,6 +12,7 @@
       .title {
         position: relative;
         margin-bottom: var(--composer-gap-lg);
+        text-align: center;
       }
 
       .title::after {
@@ -24,12 +25,9 @@
         border-bottom: var(--composer-gap-xs) solid var(--composer-primary-color);
       }
 
-      .subtitle {
-        content: "";
-      }
-
       .description {
         color: var(--composer-font-color-primary);
+        text-align: center;
       }
     }
 
@@ -46,7 +44,13 @@
           gap: var(--composer-gap-sm);
           justify-content: center;
           align-items: center;
-          padding: var(--composer-gap-md) var(--composer-gap-lg);
+          min-width: 250px;
+          .button-text {
+            font-size: 1.5rem;
+          }
+          .icon {
+            font-size: 1.5rem;
+          }
         }
       }
     }
@@ -59,9 +63,15 @@
       .box {
         justify-content: space-between;
         .button-wrapper {
-          width: 45%;
           .button {
-            width: 100%;
+            padding: var(--composer-gap-sm) var(--composer-gap-md);
+            min-width: 200px;
+            .button-text {
+              font-size: 1rem;
+            }
+            .icon {
+              font-size: 1rem;
+            }
           }
         }
       }
@@ -72,12 +82,21 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
+      gap: var(--composer-gap-sm);
       .box {
         flex-direction: column;
+        justify-content: center;
         .button-wrapper {
           width: 100%;
           .button {
-            width: 100%;
+            padding: var(--composer-gap-xs) var(--composer-gap-sm);
+            margin: 0 auto;
+            .button-text {
+              font-size: 1rem;
+            }
+            .icon {
+              font-size: 1rem;
+            }
           }
         }
       }
