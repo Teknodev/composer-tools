@@ -6,16 +6,16 @@
     .max-content {
         display: flex;
         flex-direction: column;
+        max-width: unset;
 
         .header {
             flex-direction: column;
             align-items: center;
-            padding: var(--composer-gap-md) var(--composer-gap-xl);
-            max-width: var(--composer-content-width);
             margin: 0 auto;
             position: relative;
             flex: 1;
             flex-wrap: nowrap;
+            padding: var(--composer-gap-md) var(--composer-gap-xl);
 
             @container (max-width: #{$composer-tablet-width}) {
                 padding: var(--composer-gap-md) var(--composer-gap-lg);
@@ -29,6 +29,7 @@
                 flex: 1;
                 width: 100%;
                 margin-bottom: var(--composer-gap-lg);
+                max-width: var(--composer-content-width);
 
                 @container (max-width: #{$composer-phone-width}) {
                     margin-bottom: 0;
@@ -41,7 +42,10 @@
                         margin-bottom: 0;
                     }
                 }
+            }
 
+            .no-arrows{
+                margin-bottom: 0;
             }
 
             .arrows {
@@ -76,12 +80,29 @@
         .slider-parent {
             margin-top: var(--composer-gap-md);
 
-            >ul {
-                bottom: 0;
-            }
-
             .carousel {
                 width: 100%;
+
+                >div{
+                    >div{
+                        display: flex;
+                        height: 100%;
+                        >div{
+                            height: auto;
+                            >div{
+                                height: 100%;
+                                >div{
+                                    height: 100%;
+                                    display: flex;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                >ul {
+                    bottom: 0;
+                }
 
                 .card {
                     flex: 1;
@@ -89,13 +110,13 @@
                     overflow: hidden;
                     display: flex;
                     flex-direction: column;
-                    justify-content: center;
+                    justify-content: start;
                     align-items: center;
                     transition: transform 0.3s;
                     transform: scale(0.8);
                     z-index: 1;
-                    border-radius: var(--composer-gap-xs);
                     max-width: 900px;
+                    height: 100%;
 
                     @container (max-width: #{$composer-tablet-width}) {
                         max-width: 500px;
@@ -106,7 +127,7 @@
                         overflow: hidden;
                         z-index: 1;
                         height: 400px;
-                        padding-bottom: var(--composer-gap-lg);
+                        border-radius: var(--composer-gap-xs);
 
                         .img {
                             width: 100%;
@@ -132,12 +153,16 @@
                     .content-container {
                         opacity: 0;
                         transition: opacity 0.5s ease;
-                        padding: var(--composer-gap-md) 0 var(--composer-gap-md) 0;
+                        padding: var(--composer-gap-xl) 0 var(--composer-gap-md) 0;
+                        gap: var(--composer-gap-md);
+
+                        @container (max-width: #{$composer-phone-width}) {
+                            padding: var(--composer-gap-md) var(--composer-gap-md);
+                        }
 
                         &.active {
                             display: flex;
                             opacity: 1;
-                            gap: var(--composer-gap-md);
                         }
 
                         .header {
