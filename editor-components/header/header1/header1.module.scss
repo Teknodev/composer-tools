@@ -10,14 +10,14 @@
   }
 }
 
-@mixin titleSize($size) {
+@mixin titleSize($size, $important: "") {
   .container {
     .max-content {
       .title,
       .without-image-title,
       .dark-title,
       .dark-without-image-title {
-        font-size: $size !important;
+        font-size: $size#{$important};
       }
     }
   }
@@ -268,6 +268,7 @@
             z-index: 10;
             opacity: 0;
             transition: all 0.3s linear;
+            @include textEllipsis(3);
 
             > blinkpage {
               > p {
@@ -458,8 +459,8 @@
   }
 }
 
-@container (min-width: $composer-phone-width-sm) and (max-width: $composer-tablet-width-sm) {
-  @include titleSize(6rem);
+@container (min-width: #{$composer-phone-width-sm}) and (max-width: #{$composer-phone-width-lg}) {
+  @include titleSize(6rem !important);
 
   .container {
     .image-container-2 {
@@ -476,19 +477,12 @@
     .max-content {
       .wrapper {
         .background-text {
-          > blinkpage {
-            height: fit-content;
-            transform: translateY(20%);
-            > p {
-              font-size: 40rem !important;
-            }
-          }
+          line-height: 1 !important;
+          font-size: calc(60rem + 10vh) !important;
         }
         .return-container {
           .content-container {
-            display: flex;
-            align-items: center;
-            width: 80%;
+            width: 80% !important;
             .image-wrapper,
             .without-image-wrapper {
               width: 100%;
@@ -515,6 +509,7 @@
             .without-image-title,
             .dark-title,
             .dark-without-image-title {
+              right: unset;
               @include absoluteCenter;
             }
           }
@@ -534,14 +529,10 @@
   }
 }
 
-@container (min-width: $composer-tablet-width-sm) and (max-width: $composer-desktop-width) {
-  @include titleSize(9rem);
-}
-
-@container (max-width : #{$composer-tablet-width-lg}) {
-  @include titleSize(7rem);
+@container (min-width: #{$composer-phone-width-lg}) and (max-width: #{$composer-desktop-width}) {
+  @include titleSize(9rem !important);
 }
 
 @container (max-width : #{$composer-phone-width-sm}) {
-  @include titleSize(4rem);
+  @include titleSize(4rem !important);
 }
