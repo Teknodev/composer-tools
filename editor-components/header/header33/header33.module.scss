@@ -21,14 +21,23 @@
     overflow: hidden;
     cursor: pointer;
     z-index: 1;
-    outline: 2px solid color-mix(in srgb, var(--composer-primary-color), rgba(0, 0, 0, 0.3) 60%);
+    outline: 2px solid rgba(0, 0, 0, 0.3);
 
-    
-    &:not(.withCenterDot) {
-      background: color-mix(in srgb, var(--composer-primary-color), rgba(0, 0, 0, 0.3) 60%);
+    &.primaryBackground {
+      outline-color: var(--composer-font-color-primary);
+      &.withCenterDot::after {
+        background-color: var(--composer-font-color-primary);
+      }
+      &:not(.withCenterDot) {
+        background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+      }
     }
 
-    &:hover{
+    &:not(.withCenterDot) {
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    &:hover {
       background: none;
     }
 
@@ -49,7 +58,7 @@
       content: "";
       width: 0;
       height: 0;
-      background-color: var(--composer-primary-color);
+      background-color: black;
       border-radius: 50%;
       position: absolute;
       transition:
@@ -65,8 +74,7 @@
     &.withCenterDot::after {
       width: 6px;
       height: 6px;
-      background-color: var(--composer-primary-color);
-      
+      background-color: black;
     }
   }
 }
@@ -152,7 +160,7 @@
             margin: 0;
             word-break: break-all;
 
-            &.blackColor{
+            &.blackColor {
               color: black;
             }
 
@@ -191,7 +199,7 @@
               cursor: pointer;
               transition: transform 0.4s ease;
 
-              &.blackColor{
+              &.blackColor {
                 color: black;
                 border-bottom-color: black;
               }
