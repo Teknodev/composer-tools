@@ -45,8 +45,9 @@
 
             .button-logo {
               width: 200px;
-              height: 70px;
+              height: 55px;
               object-fit: cover;
+              border-radius: var(--composer-border-radius-sm);
             }
 
             .button-element {
@@ -87,8 +88,9 @@
           .button {
             .button-logo {
               width: 200px;
-              height: 70px;
+              height: 55px;
               object-fit: cover;
+              border-radius: var(--composer-border-radius-sm);
             }
 
             .button-element {
@@ -137,7 +139,6 @@
           }
           .button-group {
             flex-direction: row;
-            align-items: center;
             flex-wrap: wrap;
             justify-content: space-between;
             gap: var(--composer-gap-md);
@@ -148,8 +149,9 @@
 
               .button-logo {
                 width: 200px;
-                height: 70px;
+                height: 55px;
                 object-fit: cover;
+                border-radius: var(--composer-border-radius-sm);
               }
 
               .button-element {
@@ -204,8 +206,9 @@
             width: 100%;
             .button {
               .button-logo {
-                height: 70px;
+                height: 55px;
                 object-fit: cover;
+                border-radius: var(--composer-border-radius-sm);
               }
 
               .button-element {
@@ -236,8 +239,9 @@
               width: 100%;
 
               .button-logo {
-                height: 70px;
+                height: 55px;
                 object-fit: cover;
+                border-radius: var(--composer-border-radius-sm);
               }
 
               .button-element {
