@@ -61,14 +61,14 @@
                             display: flex;
                             flex-direction: column;
                             max-width: var(--composer-content-width);
+                            width: 95%;
 
                             .subtitle {
-                                width: 95%;
+                                font-size: 1.5rem;
                             }
 
                             .title {
                                 font-size: 8rem;
-                                width: 95%;
                             }
 
                             .with-img {
@@ -176,16 +176,13 @@
                             padding: var(--composer-gap-md) var(--composer-gap-lg);
 
                             .box {
-
+                                width: 92%;
                                 .title {
                                     font-size: 4rem;
-                                    width: 92%;
                                 }
 
                                 .subtitle {
-                                    font-size: 1.5rem;
                                     letter-spacing: var(--composer-gap-xs);
-                                    width: 92%;
                                 }
                             }
 
@@ -220,15 +217,15 @@
                             width: 100%;
 
                             .box {
+                                width: 87%;
+
                                 .title {
                                     font-size: 2rem;
-                                    width: 87%;
                                 }
 
                                 .subtitle {
                                     letter-spacing: var(--composer-gap-xs);
                                     font-size: 1rem;
-                                    width: 87%;
                                 }
                             }
 
