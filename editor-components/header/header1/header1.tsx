@@ -322,7 +322,7 @@ class Header1 extends BaseHeader {
     const animation = this.getComponentState("animation");
 
     return (
-      <Base.Container className={this.decorateCSS("container")} isFull={true}>
+      <Base.Container className={this.decorateCSS("container")} isFull={true} onWheel={this.handleWheel} style={{ backgroundImage: `url(${this.getPropValue("background-layout")})`}}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <img
             className={this.decorateCSS("image-container-2")}
