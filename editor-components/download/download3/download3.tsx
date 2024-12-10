@@ -139,7 +139,7 @@ class Download3 extends BaseDownload {
                             {item.buttonImage ? (
                               <img src={item.buttonImage} alt="" className={this.decorateCSS("button-logo")} />
                             ) : (
-                              buttonTextExist && (
+                              (buttonTextExist || item.buttonIcon) && (
                                 <Base.Button className={this.decorateCSS("button-element")}>
                                   {item.buttonIcon && (
                                     <ComposerIcon
@@ -149,7 +149,7 @@ class Download3 extends BaseDownload {
                                       }}
                                     />
                                   )}
-                                  <Base.P className={this.decorateCSS("button-text")}>{item.buttonText}</Base.P>
+                                  {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.buttonText}</Base.P>}
                                 </Base.Button>
                               )
                             )}

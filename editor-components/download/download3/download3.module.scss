@@ -52,11 +52,12 @@
 
             .button-element {
               display: flex;
+              flex-shrink: 0;
               align-items: center;
               justify-content: center;
               text-align: center;
               gap: var(--composer-gap-sm);
-              width: 200px;
+              min-width: 200px;
               height: 55px;
               .button-text {
                 content: "";
@@ -64,6 +65,7 @@
               }
               .button-icon {
                 font-size: 1rem;
+                flex-shrink: 0;
               }
             }
           }
@@ -100,7 +102,7 @@
               justify-content: center;
               text-align: center;
               gap: var(--composer-gap-sm);
-              width: 200px;
+              min-width: 200px;
               height: 55px;
 
               .button-text {
@@ -162,7 +164,7 @@
                 justify-content: center;
                 text-align: center;
                 gap: var(--composer-gap-sm);
-                width: 200px;
+                min-width: 200px;
                 height: 55px;
                 .button-text {
                   content: "";
@@ -249,7 +251,7 @@
 
               .button-element {
                 display: flex;
-                width: 200px;
+                min-width: 200px;
                 .button-text {
                   content: "";
                 }
