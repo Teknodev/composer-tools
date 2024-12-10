@@ -1,3 +1,5 @@
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+
 @keyframes textBottomToUp {
   from {
     transform: translateY(80%);
@@ -70,11 +72,11 @@
           display: flex !important;
           flex-direction: row;
           rotate: 90deg;
-          gap: 12px;
+          gap: var(--composer-gap-sm);
           padding: 0;
           list-style-type: none;
           position: absolute;
-          bottom: 70px;
+          bottom: var(--composer-gap-xl);
           left: var(--composer-gap-xl);
           animation: ease-out;
           max-width: 70px;
@@ -100,7 +102,7 @@
               margin-top: -30px;
               transform: translateY(-10%);
               rotate: 270deg;
-              padding-left: 3px;
+              padding-left: var(--composer-gap-xs);
             }
           }
         }
@@ -201,7 +203,7 @@
                     text-align: start;
                     margin: 0;
                     line-height: 1.5;
-                    padding-left: 1rem;
+                    padding-left: var(--composer-gap-md);
                     opacity: 1;
                   }
                   .animate {
@@ -241,7 +243,7 @@
 
                 .nav-buttons {
                   display: flex;
-                  gap: 20px;
+                  gap: var(--composer-gap-md);
                   flex-direction: column;
                   position: absolute;
                   right: var(--composer-gap-xl);
@@ -294,8 +296,7 @@
     }
   }
 }
-
-@media only screen and (min-width: 481px) and (max-width: 1024px) {
+@container (max-width: #{$composer-tablet-width-lg}) {
   .container .max-content .wrapper .slider-parent .dots {
     bottom: 60px;
     left: 30px;
@@ -316,7 +317,6 @@
       width: 70%;
       height: 15%;
       .description {
-        padding-right: 1;
         font-size: 1rem;
       }
       .stick {
@@ -331,7 +331,7 @@
       }
     }
     .nav-buttons {
-      gap: 10px;
+      gap: var(--composer-gap-sm);
       .nav-button {
         width: 60px;
         height: 60px;
@@ -340,7 +340,7 @@
   }
 }
 
-@media only screen and (max-width: 480px) {
+@container (max-width: #{$composer-tablet-width-sm}) {
   .container .max-content .wrapper .slider-parent .dots {
     content-visibility: hidden;
   }
@@ -361,10 +361,10 @@
     }
 
     .nav-buttons {
-      gap: 5px;
+      gap: var(--composer-gap-xs);
       flex-direction: row;
       justify-content: center;
-      bottom: 2rem;
+      bottom: var(--composer-gap-lg);
       top: auto;
       left: 50%;
       transform: translateX(-50%);
