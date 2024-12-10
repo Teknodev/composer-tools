@@ -7,7 +7,7 @@
         flex-direction: column;
         justify-content: center;
         padding: var(--composer-gap-xl);
-        border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.5);
+        border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
   
         .first-inner {
           .title {
@@ -18,13 +18,16 @@
             content: "";
           }
         }
+        .button{
+          content: "";
+        }
       }
       .card {
         padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-xl);
         position: relative;
         overflow: hidden;
         transition: background-color 0.3s ease;
-        border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.5);
+        border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
 
         &:not(.first):hover {
           background-color: var(--composer-primary-color);

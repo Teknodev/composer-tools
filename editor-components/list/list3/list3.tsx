@@ -274,11 +274,11 @@ class List3 extends BaseList {
                   </Base.VerticalContent>
                 )}
                 {buttonExist && (
-                  <Base.Button>
-                    <ComposerLink path={this.getPropValue("buttonUrl")}>
+                  <ComposerLink path={this.getPropValue("buttonUrl")}>
+                    <Base.Button className={this.decorateCSS("button")}>
                       {this.getPropValue("button")}
-                    </ComposerLink>
-                  </Base.Button>
+                    </Base.Button>
+                  </ComposerLink>
                 )}
               </div>
             )}
