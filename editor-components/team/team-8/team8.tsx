@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styles from "./team8.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
+import { Base } from "../../../composer-base-components/base/base";
 
 type Card = {
   title: JSX.Element;
@@ -35,8 +36,7 @@ class Team8 extends Team {
       type: "image",
       key: "backroundImage",
       displayer: "Background Image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ace46d03b007002cc763cb?alt=media",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ace46d03b007002cc763cb?alt=media",
     });
     this.addProp({
       type: "boolean",
@@ -71,8 +71,7 @@ class Team8 extends Team {
               type: "image",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0822803b007002cc7714f?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0822803b007002cc7714f?alt=media",
             },
           ],
         },
@@ -97,8 +96,7 @@ class Team8 extends Team {
               type: "image",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0828d03b007002cc77195?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0828d03b007002cc77195?alt=media",
             },
           ],
         },
@@ -123,8 +121,7 @@ class Team8 extends Team {
               type: "image",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b082e503b007002cc771bb?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b082e503b007002cc771bb?alt=media",
             },
           ],
         },
@@ -149,8 +146,7 @@ class Team8 extends Team {
               type: "image",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0833903b007002cc771e4?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0833903b007002cc771e4?alt=media",
             },
           ],
         },
@@ -175,8 +171,7 @@ class Team8 extends Team {
               type: "image",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0838203b007002cc771fe?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0838203b007002cc771fe?alt=media",
             },
           ],
         },
@@ -201,8 +196,7 @@ class Team8 extends Team {
               type: "image",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0884803b007002cc77454?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0884803b007002cc77454?alt=media",
             },
           ],
         },
@@ -227,8 +221,7 @@ class Team8 extends Team {
               type: "image",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0e2e803b007002cc79759?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0e2e803b007002cc79759?alt=media",
             },
           ],
         },
@@ -239,6 +232,7 @@ class Team8 extends Team {
       key: "slidesToShow",
       displayer: "Slides To Show",
       value: 5,
+      max: 10,
     });
   }
 
@@ -258,19 +252,8 @@ class Team8 extends Team {
       autoplay: true,
       autoplaySpeed: 3000,
       centerMode: true,
-      customPaging: (i: number) => (
-        <button
-          style={
-            this.getComponentState("current-slide") === i
-              ? { background: "white" }
-              : {}
-          }
-        ></button>
-      ),
-      slidesToShow:
-        slides.length < this.getPropValue("slidesToShow")
-          ? slides.length
-          : this.getPropValue("slidesToShow"),
+      customPaging: (i: number) => <button className={this.getComponentState("current-slide") === i ? this.decorateCSS("currentPaging") : ""}></button>,
+      slidesToShow: slides.length < this.getPropValue("slidesToShow") ? slides.length : this.getPropValue("slidesToShow"),
       slidesToScroll: 1,
       afterChange: (currentSlide: number) => {
         this.setComponentState("current-slide", currentSlide);
@@ -279,7 +262,7 @@ class Team8 extends Team {
         {
           breakpoint: 1024,
           settings: {
-            slidesToShow: 2,
+            slidesToShow: 3,
             slidesToScroll: 1,
           },
         },
@@ -298,84 +281,59 @@ class Team8 extends Team {
     const descriptionExist = this.getPropValue("description", {
       as_string: true,
     });
+
+    const imageExist = this.getPropValue("backroundImage");
+
     return (
       <div className={this.decorateCSS("container")}>
-        <div
+        <Base.Container
           className={this.decorateCSS("background-image")}
           style={{
             backgroundImage: `url(${this.getPropValue("backroundImage")})`,
           }}
         >
-          <div className={this.decorateCSS("max-content")}>
-            <div className={this.decorateCSS("text-box")}>
-              {titleExist && (
-                <h2 className={this.decorateCSS("title")}>
-                  {this.getPropValue("title")}
-                </h2>
-              )}
-              {descriptionExist && (
-                <h3 className={this.decorateCSS("description")}>
-                  {this.getPropValue("description")}
-                </h3>
-              )}
-            </div>
+          <Base.MaxContent className={this.decorateCSS("max-content")}>
+            <Base.VerticalContent className={this.decorateCSS("text-box")}>
+              {titleExist && <Base.SectionTitle className={imageExist ? this.decorateCSS("title") : this.decorateCSS("no-image-title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+              {descriptionExist && <Base.SectionDescription className={imageExist ? this.decorateCSS("description") : this.decorateCSS("no-image")}>{this.getPropValue("description")}</Base.SectionDescription>}
+            </Base.VerticalContent>
 
             <div className={this.decorateCSS("wrapper")}>
               <div className={this.decorateCSS("slider-parent")}>
-                <ComposerSlider
-                  {...settings}
-                  className={this.decorateCSS("carousel")}
-                >
+                <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
                   {slides.map((item: Card, index: number) => {
                     const titleExist = this.castToString(item.imagetitle);
                     const subtitleExist = this.castToString(item.imagesubtitle);
+                    const hasSlider = titleExist || subtitleExist || item.image;
 
                     return (
-                      <div
-                        className={this.decorateCSS("slider-inner-div")}
-                        key={index}
-                      >
-                        <div className={this.decorateCSS("content-div")}>
-                          {item.image && (
-                            <div className={this.decorateCSS("img-div")}>
-                              <div className={this.decorateCSS("image-box")}>
-                                <img
-                                  alt=""
-                                  src={item.image}
-                                  className={this.decorateCSS("img")}
-                                />
+                      hasSlider && (
+                        <div className={this.decorateCSS("slider-inner-div")} key={index}>
+                          <Base.VerticalContent className={this.decorateCSS("content-div")}>
+                            {item.image && (
+                              <div className={this.decorateCSS("img-div")}>
+                                <div className={this.decorateCSS("image-box")}>
+                                  <img alt="" src={item.image} className={this.decorateCSS("img")} />
+                                </div>
                               </div>
-                            </div>
-                          )}
-                          {(titleExist || subtitleExist) && (
-                            <div className={this.decorateCSS("header-page")}>
-                              {titleExist && (
-                                <h3 className={this.decorateCSS("item-title")}>
-                                  {item.imagetitle}
-                                </h3>
-                              )}
-
-                              {subtitleExist && (
-                                <h1
-                                  className={this.decorateCSS("first-header")}
-                                >
-                                  {item.imagesubtitle}
-                                </h1>
-                              )}
-                            </div>
-                          )}
+                            )}
+                            {(titleExist || subtitleExist) && (
+                              <Base.VerticalContent className={this.decorateCSS("header-page")}>
+                                {titleExist && <Base.P className={imageExist ? this.decorateCSS("item-title") : this.decorateCSS("no-image")}>{item.imagetitle}</Base.P>}
+                                {subtitleExist && <Base.H2 className={imageExist ? this.decorateCSS("first-header") : this.decorateCSS("no-image")}>{item.imagesubtitle}</Base.H2>}
+                              </Base.VerticalContent>
+                            )}
+                          </Base.VerticalContent>
                         </div>
-                      </div>
+                      )
                     );
                   })}
                 </ComposerSlider>
               </div>
             </div>
-            {this.getPropValue("overlay") && (
-              <div className={this.decorateCSS("overlay")} />
-            )}
-          </div>
-        </div>
+            {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
+          </Base.MaxContent>
+        </Base.Container>
       </div>
     );
   }

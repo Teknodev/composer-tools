@@ -2,6 +2,7 @@ import * as React from "react";
 import { BaseStats } from "../../EditorComponent";
 import styles from "./stats4.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
 
 type Faq = {
   title: JSX.Element;
@@ -11,7 +12,7 @@ type Faq = {
 type Stat = {
   title: JSX.Element;
   content: JSX.Element;
-  stat: number;
+  stat: JSX.Element;
 };
 
 class Stats4Page extends BaseStats {
@@ -23,15 +24,14 @@ class Stats4Page extends BaseStats {
     this.addProp({
       type: "string",
       key: "mainTitle",
-      displayer: "Main Title",
-      value: "Branding services",
+      displayer: "Subtitle",
+      value: "BRANDING SERVICES",
     });
     this.addProp({
       type: "string",
       key: "mainDescription",
-      displayer: "Main Description",
-      value:
-        "We create to brands and businesses to stand out in this digital era.",
+      displayer: "Title",
+      value: "We create to brands and businesses to stand out in this digital era.",
     });
 
     this.addProp({
@@ -54,8 +54,7 @@ class Stats4Page extends BaseStats {
               type: "string",
               key: "content",
               displayer: "Content",
-              value:
-                "We strive to develop real-world web solutions that are ideal for small to large project.",
+              value: "We strive to develop real-world web solutions that are ideal for small to large project.",
             },
           ],
         },
@@ -74,8 +73,7 @@ class Stats4Page extends BaseStats {
               type: "string",
               key: "content",
               displayer: "Content",
-              value:
-                "We strive to develop real-world web solutions that are ideal for small to large project.",
+              value: "We strive to develop real-world web solutions that are ideal for small to large project.",
             },
           ],
         },
@@ -94,8 +92,7 @@ class Stats4Page extends BaseStats {
               type: "string",
               key: "content",
               displayer: "Content",
-              value:
-                "We strive to develop real-world web solutions that are ideal for small to large project.",
+              value: "We strive to develop real-world web solutions that are ideal for small to large project.",
             },
           ],
         },
@@ -224,33 +221,30 @@ class Stats4Page extends BaseStats {
       displayer: "Icon",
       value: "FaMinus",
     });
-
     this.addProp({
       type: "icon",
       key: "statIcon",
       displayer: "Stat Value Icon",
       value: "FaPlus",
     });
-
-    this.addProp({
-      type: "boolean",
-      key: "lineExist",
-      displayer: "Title Line",
-      value: true,
-    });
-
     this.addProp({
       type: "number",
-      key: "animation-duration",
+      key: "animationDuration",
       displayer: "Stat Animation Duration (ms)",
       value: 30,
     });
-
     this.addProp({
       type: "number",
-      key: "increment-value",
+      key: "incrementValue",
       displayer: "Stat Animation Increment Value",
-      value: 20,
+      value: 200,
+    });
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item Count in a Row",
+      value: 4,
+      max: 4,
     });
 
     this.init();
@@ -258,55 +252,84 @@ class Stats4Page extends BaseStats {
   }
 
   init() {
-    this.castToObject<Stat[]>("statItems").map((statsData, index) =>
-      this.setComponentState(`number-${index}`, 0),
-    );
+    this.castToObject<Stat[]>("statItems").map((card, index) => {
+      this.setComponentState(`number-${index}`, 0);
+      this.setComponentState(`numberForControl-${index}`, 0);
+    });
+  }
+
+  isEqual(arr1: any[], arr2: any[]) {
+    for (let i = 0; i < arr1.length; i++) {
+      const val1 = arr1[i];
+      const val2 = arr2[i];
+
+      if (val1 === null || val2 === null) continue;
+
+      if (Number(val1) !== Number(val2)) {
+        return false;
+      }
+    }
+    return true;
   }
 
   getStats() {
     const statItems = this.castToObject<Stat[]>("statItems");
-    const stats = statItems.map((card: any) =>
-      card.stat === "" ? 0 : card.stat,
-    );
+    const stats = statItems.map((card: any) => (card.stat === "" ? null : card.stat));
     return stats;
   }
 
   getNumbers() {
     const statItems = this.castToObject<Stat[]>("statItems");
-    const numbers = statItems.map((_, index) =>
-      this.getComponentState(`number-${index}`),
-    );
+    const numbers = statItems.map((_, index) => {
+      const number = this.getComponentState(`numberForControl-${index}`);
+      return number !== undefined ? number : "";
+    });
     return numbers;
   }
 
+  formatNumberWithDots(value: any) {
+    const number = Number(value);
+    if (isNaN(number)) {
+      return "";
+    }
+    return number.toLocaleString("tr-TR");
+  }
+
   animate() {
-    const animationDuration = this.getPropValue("animation-duration");
-    const incrementValue = this.getPropValue("increment-value");
+    const animationDuration = this.getPropValue("animationDuration");
+    const incrementValue = this.getPropValue("incrementValue");
 
-    // this.interval = setInterval(() => {
-    //   const statItems = this.castToObject<Stat[]>("statItems");
+    this.interval = setInterval(() => {
+      const statItems = this.castToObject<Stat[]>("statItems");
 
-    //   if (this.isEqual(this.getStats(), this.getNumbers())) {
-    //     this.interval = clearInterval(this.interval);
-    //     return; // return to stop animate()
-    //   }
-    //   statItems.forEach((item: Stat, index: number) => {
-    //     const statNumber = this.getComponentState(`number-${index}`) ?? 0;
+      if (this.isEqual(this.getStats(), this.getNumbers())) {
+        clearInterval(this.interval);
+        this.interval = null;
+      }
 
-    //     this.setComponentState(
-    //       `number-${index}`,
-    //       Math.min(item.stat, statNumber + incrementValue),
-    //     );
-    //   });
-    // }, animationDuration);
+      statItems.forEach((item: Stat, index: number) => {
+        let currentNumber = this.getComponentState(`number-${index}`) ?? 0;
+
+        if (typeof currentNumber === "string") {
+          currentNumber = parseInt(currentNumber.replace(/\D+/g, ""), 10) || 0;
+        }
+
+        if (typeof item.stat === "number") {
+          if (currentNumber !== item.stat) {
+            let nextValue = Math.min(item.stat, currentNumber + Math.ceil(item.stat / Math.round(incrementValue / 30)));
+
+            const formattedNextValue = this.formatNumberWithDots(nextValue);
+
+            this.setComponentState(`number-${index}`, formattedNextValue);
+            this.setComponentState(`numberForControl-${index}`, nextValue);
+          }
+        }
+      });
+    }, animationDuration);
   }
 
   getName(): string {
     return "Stats 4";
-  }
-
-  isEqual(arr1: any[], arr2: any[]) {
-    return JSON.stringify(arr1) === JSON.stringify(arr2);
   }
 
   toggleFaqItem = (index: number) => {
@@ -321,170 +344,103 @@ class Stats4Page extends BaseStats {
 
   render() {
     const mainTitle = this.getPropValue("mainTitle", { as_string: true });
-    const mainDescription = this.getPropValue("mainDescription", {
-      as_string: true,
-    });
+    const mainDescription = this.getPropValue("mainDescription", { as_string: true });
     const faqs = this.castToObject<Faq[]>("faqItems");
     const statItems = this.castToObject<Stat[]>("statItems");
-
     const expandIcon = this.getPropValue("expandIcon");
     const collapseIcon = this.getPropValue("collapseIcon");
     const statIcon = this.getPropValue("statIcon");
-    const lineExist = this.getPropValue("lineExist");
+    const itemCount = this.getPropValue("itemCount");
 
-    /**
-     * Execute animate() only if:
-     *    it is executed and it's interval is cleared before
-     * AND,
-     *    prop values of stats and state values are not equal.
-     * (user may change it after animation. so we need to check that)
-     */
     if (!this.interval && !this.isEqual(this.getStats(), this.getNumbers())) {
       this.animate();
     }
 
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("stats-container")}>
-            {mainTitle && (
-              <header className={this.decorateCSS("main-header")}>
-                {lineExist && (
-                  <span className={this.decorateCSS("title-line")} />
-                )}
-                <h3 className={this.decorateCSS("title")}>
-                  {this.getPropValue("mainTitle")}
-                </h3>
-              </header>
-            )}
-            {(mainDescription || faqs?.length > 0) && (
-              <div className={this.decorateCSS("upper-container")}>
-                {mainDescription && (
-                  <main className={this.decorateCSS("upper-container-main")}>
-                    <p className={this.decorateCSS("main-description")}>
-                      {this.getPropValue("mainDescription")}
-                    </p>
-                  </main>
-                )}
-                {faqs?.length > 0 && (
-                  <div className={this.decorateCSS("faq")}>
-                    {faqs.map((item: any, index: number) => {
-                      const titleExist = this.castToString(item.title);
-                      const contentExist = this.castToString(item.content);
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <Base.VerticalContent className={this.decorateCSS("stats-container")}>
+            <Base.ContainerGrid className={this.decorateCSS("upper-container")}>
+              {(mainDescription || mainTitle) && (
+                <Base.VerticalContent className={this.decorateCSS("upper-container-main")}>
+                  {mainTitle && <Base.SectionSubTitle className={this.decorateCSS("title")}>{this.getPropValue("mainTitle")}</Base.SectionSubTitle>}
+                  {mainDescription && <Base.SectionTitle className={this.decorateCSS("main-description")}>{this.getPropValue("mainDescription")}</Base.SectionTitle>}
+                </Base.VerticalContent>
+              )}
+              {faqs?.length > 0 && (
+                <div className={this.decorateCSS("faq")}>
+                  {faqs.map((item: any, index: number) => {
+                    const titleExist = this.castToString(item.title);
+                    const contentExist = this.castToString(item.content);
 
-                      if (titleExist || contentExist || item.icon)
-                        return (
-                          <div
-                            className={this.decorateCSS("faq-item")}
-                            key={index}
-                          >
-                            {(titleExist || item.icon) && (
-                              <header
-                                className={this.decorateCSS("faq-item-header")}
+                    if (titleExist || contentExist || item.icon)
+                      return (
+                        <div className={this.decorateCSS("faq-item")} key={index}>
+                          {(titleExist || item.icon) && (
+                            <header className={this.decorateCSS("faq-item-header")}>
+                              {titleExist && <Base.P className={this.decorateCSS("faq-item-title")}>{item.title}</Base.P>}
+                              <button
+                                className={this.decorateCSS("faq-item-button")}
+                                onClick={() => {
+                                  this.toggleFaqItem(index);
+                                }}
                               >
-                                {titleExist && (
-                                  <h3
-                                    className={this.decorateCSS(
-                                      "faq-item-title",
-                                    )}
-                                  >
-                                    {item.title}
-                                  </h3>
+                                {this.getComponentState("selectedFaqIndex") === index ? (
+                                  <ComposerIcon
+                                    propsIcon={{
+                                      className: this.decorateCSS("Icon"),
+                                    }}
+                                    name={collapseIcon}
+                                  />
+                                ) : (
+                                  <ComposerIcon
+                                    propsIcon={{
+                                      className: this.decorateCSS("Icon"),
+                                    }}
+                                    name={expandIcon}
+                                  />
                                 )}
-                                <button
-                                  className={this.decorateCSS(
-                                    "faq-item-button",
-                                  )}
-                                  onClick={() => {
-                                    this.toggleFaqItem(index);
-                                  }}
-                                >
-                                  {this.getComponentState(
-                                    "selectedFaqIndex",
-                                  ) === index ? (
-                                    <ComposerIcon
-                                      propsIcon={{
-                                        className: this.decorateCSS("Icon"),
-                                      }}
-                                      name={collapseIcon}
-                                    />
-                                  ) : (
-                                    <ComposerIcon
-                                      propsIcon={{
-                                        className: this.decorateCSS("Icon"),
-                                      }}
-                                      name={expandIcon}
-                                    />
-                                  )}
-                                </button>
-                              </header>
-                            )}
-                            {contentExist && (
-                              <p
-                                className={`${this.decorateCSS("faq-item-content")}  ${this.getComponentState("selectedFaqIndex") === index ? this.decorateCSS("show-faq-item") : ""}`}
-                              >
-                                {item.content}
-                              </p>
-                            )}
-                          </div>
-                        );
-                      return null;
-                    })}
-                  </div>
-                )}
-              </div>
-            )}
+                              </button>
+                            </header>
+                          )}
+                          {contentExist && (
+                            <div className={`${this.decorateCSS("faq-item-content")}  ${this.getComponentState("selectedFaqIndex") === index ? this.decorateCSS("show-faq-item") : ""}`}>
+                              <Base.P>{item.content}</Base.P>
+                            </div>
+                          )}
+                          <hr className={this.decorateCSS("bottom-line")} />
+                        </div>
+                      );
+                    return null;
+                  })}
+                </div>
+              )}
+            </Base.ContainerGrid>
             {statItems?.length > 0 && (
-              <section className={this.decorateCSS("stats")}>
+              <Base.ListGrid gridCount={{ pc: itemCount, tablet: 2, phone: 1 }} className={this.decorateCSS("stats")}>
                 {statItems.map((item: Stat, index: number) => {
                   const titleExist = this.castToString(item.title);
                   const contentExist = this.castToString(item.content);
 
-                  const statValue =
-                    item.stat === this.getComponentState(`number-${index}`)
-                      ? item.stat
-                      : this.getComponentState(`number-${index}`);
+                  const statValue = item.stat === this.getComponentState(`number-${index}`) ? item.stat : this.getComponentState(`number-${index}`);
 
                   if (titleExist || contentExist || item.stat)
                     return (
-                      <article
-                        className={this.decorateCSS("stat-item")}
-                        key={index}
-                      >
+                      <article className={this.decorateCSS("stat-item")} key={index}>
                         {(titleExist || contentExist) && (
                           <>
                             <div className={this.decorateCSS("stat-item-body")}>
-                              {titleExist && (
-                                <h4
-                                  className={this.decorateCSS(
-                                    "stat-item-title",
-                                  )}
-                                >
-                                  {item.title}
-                                </h4>
-                              )}
-                              {contentExist && (
-                                <p
-                                  className={this.decorateCSS(
-                                    "stat-item-content",
-                                  )}
-                                >
-                                  {item.content}
-                                </p>
-                              )}
+                              {titleExist && <Base.P className={this.decorateCSS("stat-item-title")}>{item.title}</Base.P>}
+                              {contentExist && <Base.P className={this.decorateCSS("stat-item-content")}>{item.content}</Base.P>}
                             </div>
                             <div className={this.decorateCSS("stat-line")} />
                           </>
                         )}
                         {item.stat && (
-                          <h3
-                            className={this.decorateCSS("stat-item-stat-value")}
-                          >
+                          <Base.P className={this.decorateCSS("stat-item-stat-value")}>
                             {statValue}
                             {statIcon && (
-                              <span
-                                className={this.decorateCSS("stat-value-icon")}
-                              >
+                              <span className={this.decorateCSS("stat-value-icon")}>
                                 <ComposerIcon
                                   propsIcon={{
                                     className: this.decorateCSS("stat-icon"),
@@ -493,17 +449,17 @@ class Stats4Page extends BaseStats {
                                 />
                               </span>
                             )}
-                          </h3>
+                          </Base.P>
                         )}
                       </article>
                     );
                   return null;
                 })}
-              </section>
+              </Base.ListGrid>
             )}
-          </div>
-        </div>
-      </div>
+          </Base.VerticalContent>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
