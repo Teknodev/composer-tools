@@ -1,8 +1,21 @@
 import * as React from "react";
 import { Testimonials } from "../../EditorComponent";
 import styles from "./testimonials4.module.scss";
-
 import ComposerSlider from "../../../composer-base-components/slider/slider";
+import { Base } from "../../../composer-base-components/base/base"
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
+interface SliderItem {
+  icon: string,
+  description: JSX.Element,
+  title: JSX.Element,
+  subtitle: JSX.Element,
+  image: string,
+}
+interface ArrowItem {
+  nextArrow: string,
+  prevArrow: string
+}
 
 
 class Testimonials4Page extends Testimonials {
@@ -16,141 +29,117 @@ class Testimonials4Page extends Testimonials {
       value: [
         {
           type: "object",
-          key: "slidercontent",
-          displayer: "Slider Content",
+          key: "item",
+          displayer: "Item",
           value: [
             {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "ImQuotesRight",
+            },
+            {
               type: "string",
-              key: "longtext",
-              displayer: "Long Text",
+              key: "description",
+              displayer: "Review Text",
               value:
                 "I really like the clean and simple aesthetic of flat design. It's great for creating a modern and minimal look, and it also works well for responsive design since it's easy to adapt to different screen sizes. Plus, the lack of textures and gradients makes it easier to focus on the content itself.",
             },
             {
               type: "string",
               key: "title",
-              displayer: "Title",
+              displayer: "Author Name",
               value: "Jerrie Corinna",
             },
             {
               type: "string",
               key: "subtitle",
-              displayer: "Subtitle",
+              displayer: "Author Position",
               value: "UX Developer",
             },
             {
-              type: "object",
-              key: "button",
-              displayer: "Button",
-              value: [
-                {
-                  type: "image",
-                  key: "image-button",
-                  displayer: "Image-button",
-                  value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661701bbd2970002c623724?alt=media&timestamp=1719483639150",
-                },
-                {
-                  type: "page",
-                  key: "src",
-                  displayer: "Button Link",
-                  value: "",
-                }
-              ]
+              type: "image",
+              key: "image",
+              displayer: "Author Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661701bbd2970002c623724?alt=media&timestamp=1719483639150",
             },
-
           ],
         },
         {
           type: "object",
-          key: "slidercontent",
-          displayer: "Slider Content",
+          key: "item",
+          displayer: "Item",
           value: [
             {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "ImQuotesRight",
+            },
+            {
               type: "string",
-              key: "longtext",
-              displayer: "Long Text",
+              key: "description",
+              displayer: "Review Text",
               value:
                 "This product has changed my life! It's incredibly useful and packed with creative features. I would highly recommend it to everyone!",
             },
             {
               type: "string",
               key: "title",
-              displayer: "Title",
+              displayer: "Author Name",
               value: "Kevin Corinna",
             },
             {
               type: "string",
               key: "subtitle",
-              displayer: "Subtitle",
+              displayer: "Author Position",
               value: "Solutions Architect",
             },
             {
-              type: "object",
-              key: "button",
-              displayer: "Button",
-              value: [
-                {
-                  type: "image",
-                  key: "image-button",
-                  displayer: "Image-button",
-                  value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661701bbd2970002c623723?alt=media&timestamp=1719483639150",
-                },
-                {
-                  type: "page",
-                  key: "src",
-                  displayer: "Button Link",
-                  value: "",
-                },
-              ],
+              type: "image",
+              key: "image",
+              displayer: "Author Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661701bbd2970002c623723?alt=media&timestamp=1719483639150",
             },
 
           ],
         },
         {
           type: "object",
-          key: "slidercontent",
-          displayer: "Slider Content",
+          key: "item",
+          displayer: "Item",
           value: [
             {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "ImQuotesRight",
+            },
+            {
               type: "string",
-              key: "longtext",
-              displayer: "Long Text",
+              key: "description",
+              displayer: "Review Text",
               value:
                 "I have been consistently impressed with the results achieved by this team. Their strategic approach and innovative ideas have greatly contributed to our marketing success.",
             },
             {
               type: "string",
               key: "title",
-              displayer: "Title",
+              displayer: "Author Name",
               value: "John Corinna",
             },
             {
               type: "string",
               key: "subtitle",
-              displayer: "Subtitle",
+              displayer: "Author Position",
               value: "UX Developer",
             },
             {
-              type: "object",
-              key: "button",
-              displayer: "Button",
-              value: [
-                {
-                  type: "image",
-                  key: "image-button",
-                  displayer: "Image-button",
-                  value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661701bbd2970002c623726?alt=media&timestamp=1719483639150",
-                },
-                {
-                  type: "page",
-                  key: "src",
-                  displayer: "Button Link",
-                  value: "",
-                },
-              ],
+              type: "image",
+              key: "image",
+              displayer: "Author Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661701bbd2970002c623726?alt=media&timestamp=1719483639150",
             },
-
-
           ],
         },
       ],
@@ -162,10 +151,33 @@ class Testimonials4Page extends Testimonials {
       key: "cover-image",
       displayer: "Background Image",
       value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661701bbd2970002c623725?alt=media&timestamp=1719483639150"
-
-
     });
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true
+    });
+    this.addProp({
+      type: "object",
+      key: "arrows",
+      displayer: "Arrows",
+      value: [
+        {
+          type: "icon",
+          key: "prevArrow",
+          displayer: "Prev Icon",
+          value: "GrLinkPrevious"
+        },
+        {
+          type: "icon",
+          key: "nextArrow",
+          displayer: "Next Icon",
+          value: "GrLinkNext"
+        }
 
+      ]
+    });
     this.setComponentState("active_index", 0);
     this.setComponentState("slider-ref", React.createRef());
   }
@@ -185,7 +197,7 @@ class Testimonials4Page extends Testimonials {
     const settings = {
       dots: false,
       infinite: true,
-      arrows:false,
+      arrows: false,
       speed: 700,
       autoplay: false,
       autoplaySpeed: 3000,
@@ -193,63 +205,84 @@ class Testimonials4Page extends Testimonials {
       beforeChange: (oldIndex: number, nextIndex: number) => {
         this.setComponentState("active_index", nextIndex)
       }
-
     };
+    const sliderItem = this.castToObject<SliderItem[]>("items");
+    const sliderRef = this.getComponentState("slider-ref");
+    const arrows = this.castToObject<ArrowItem>("arrows");
 
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("testimonials4")}>
+      <Base.Container
+        className={`${this.getPropValue("cover-image") ? this.decorateCSS("container") : this.decorateCSS("container-no-image")} ${this.getPropValue("overlay") ? this.decorateCSS("overlay") : ""}`}
+        style={{
+          backgroundImage: `url(${this.getPropValue("cover-image")})`,
+        }}
+      >
+        <Base.MaxContent className={this.getPropValue("cover-image") ? this.decorateCSS("max-content") : this.decorateCSS("max-content-no-image")}>
+          {(arrows.prevArrow && (sliderItem.length > 1)) && (
+            <button className={this.decorateCSS("prevArrow")} onClick={() => {
+              sliderRef.current.slickPrev();
+            }}>
+              <ComposerIcon name={arrows.prevArrow} propsIcon={{ className: this.getPropValue("cover-image") ? this.decorateCSS("arrow") : this.decorateCSS("arrow-dark") }}></ComposerIcon>
+            </button>
+          )}
 
+          <div className={(arrows.nextArrow || arrows.prevArrow) ? this.decorateCSS("testimonials4") : this.decorateCSS("testimonials4-no-icon")}>
+            <ComposerSlider {...settings} ref={this.getComponentState("slider-ref")}>
+              {sliderItem.map((item: any, index: number) => {
+                const hasContent = item.icon || this.castToString(item.description) || this.castToString(item.title) || this.castToString(item.subtitle);
+                return (
+                  <div className={hasContent ? this.decorateCSS("items") : ""}>
+                    {item.icon && (
+                      <ComposerIcon name={item.icon} propsIcon={{ className: this.getPropValue("cover-image") ? this.decorateCSS("icon") : this.decorateCSS("icon-dark") }} />
+                    )}
+                    {this.castToString(item.description) && (
+                      <Base.P className={this.getPropValue("cover-image") ? this.decorateCSS("longtext") : this.decorateCSS("longtext-dark")}>
+                        {item.description}
+                      </Base.P>
+                    )}
+                    {(this.castToString(item.title) || this.castToString(item.subtitle)) && (
+                      <div className={this.decorateCSS("person-text")}>
 
-            <div className={this.decorateCSS("cover-image")}
-
-              style={{
-                backgroundImage: `url(${this.getPropValue("cover-image")})`,
-              }}>
-
-              <ComposerSlider {...settings} ref={this.getComponentState("slider-ref")}>
-
-                {this.getPropValue("items").map((item: any, index: number) => (
-                  <div className={this.decorateCSS("items")}>
-
-                    <h1 className={this.decorateCSS("longtext")}>
-                      {item.value[0].value}
-                    </h1>
-                    <h3 className={this.decorateCSS("title")}>
-                      {item.value[1].value}
-                    </h3>
-                    <h4 className={this.decorateCSS("subtitle")}>
-                      {item.value[2].value}
-                    </h4>
-
-
+                        {this.castToString(item.title) && (
+                          <div className={this.getPropValue("cover-image") ? this.decorateCSS("title") : this.decorateCSS("title-dark")}>
+                            {item.title}
+                          </div>
+                        )}
+                        {this.castToString(item.subtitle) && (
+                          <div className={this.getPropValue("cover-image") ? this.decorateCSS("subtitle") : this.decorateCSS("subtitle-dark")}>
+                            {item.subtitle}
+                          </div>
+                        )}
+                      </div>
+                    )}
                   </div>
-                ))}
-
-              </ComposerSlider>
-              <div className={this.decorateCSS("arrows")}>
-
-              </div>
+                );
+              })}
+            </ComposerSlider>
+            {sliderItem.length > 0 && (
               <div className={this.decorateCSS("images")}>
-                {this.getPropValue("items").map((item: any, itemIndex: number) => {
-
-                  const imageSrc = item.getPropValue("button")[0].value;
-
-                  return <img
-                    src={imageSrc}
-                    className={`${this.decorateCSS("image")} ${this.getComponentState("active_index") == itemIndex && this.decorateCSS("active")}`}
-                    onClick={() => this.onImageClick(itemIndex)} />
-                }
-                )}
+                {sliderItem.map((item: any, itemIndex: number) => {
+                  return item.image ? (
+                    <img
+                      src={item.image}
+                      className={`${this.decorateCSS("image")} ${this.getComponentState("active_index") === itemIndex ? this.decorateCSS("active") : ""}`}
+                      onClick={() => this.onImageClick(itemIndex)}
+                    />
+                  ) : null;
+                })}
               </div>
-            </div>
-
+            )}
 
           </div>
-        </div>
-      </div>
-
+          {(arrows.nextArrow && (sliderItem.length > 1)) && (
+            <button className={this.decorateCSS("nextArrow")} onClick={() => {
+              sliderRef.current.slickNext();
+            }}>
+              <ComposerIcon name={arrows.nextArrow} propsIcon={{ className: this.getPropValue("cover-image") ? this.decorateCSS("arrow") : this.decorateCSS("arrow-dark") }}></ComposerIcon>
+            </button>
+          )}
+        </Base.MaxContent>
+      </Base.Container >
     );
   }
 }

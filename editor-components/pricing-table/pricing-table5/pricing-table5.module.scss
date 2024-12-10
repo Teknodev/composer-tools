@@ -1,332 +1,264 @@
-.container {
-  width: 100%;
-  padding: 50px 45px;
-  background-color: var(--composer-html-background);
-  display: flex;
-  justify-content: center;
+@import "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss";
 
+.container {
   .max-content {
-    display: flex;
-    max-width: var(--composer-content-width);
     .content {
       display: flex;
-      gap: 40px;
+      gap: calc(3 * var(--composer-gap-xl));
+      width: 100%;
 
       .left-content,
       .right-content {
-        flex: 1;
-        max-width: 500px;
+        width: 50%;
         display: flex;
         flex-direction: column;
       }
 
-      .left-content {
+      .left-content,
+      .left-content-single {
         .subtitle {
-          font-size: 13px !important;
-          padding: 12px 15px;
-          width: fit-content;
-          background-color: color-mix(in srgb, var(--composer-html-background), #fff 50%);
-          border-radius: 20px;
-          color: var(--composer-primary-color);
-          margin-top: 0;
-          margin-bottom: 25px;
+          content: "";
         }
         .title {
-          font-size: 3.2rem;
-          line-height: 3.125rem;
-          margin: 0px;
-          margin-bottom: 20px;
-          max-width: 350px;
-          color: var(--composer-primary-color);
+          content: "";
         }
 
         .description {
           color: var(--composer-font-color-primary);
-          margin-top: 0;
-          margin-bottom: 25px;
-          font-size: 17px;
-          line-height: 32px;
-          max-width: 600px;
         }
         .buttons {
           display: flex;
+          flex-wrap: wrap;
           align-items: center;
-          flex-direction: column;
-          background-color: var(--composer-secondary-color);
-          width: fit-content;
-          border-radius: 20px;
+          gap: var(--composer-gap-sm);
 
           .button-box {
             display: flex;
-            padding: 12px 30px;
-            border-radius: 20px;
-            .button-text {
-              font-size: 1.2rem;
-              font-weight: 500;
-              color: var(--composer-font-color-secondary);
-            }
           }
         }
       }
-      .right-content {
-        font-size: 1.5rem;
+
+      .right-content,
+      .right-content-single {
         justify-content: center;
-        gap: 15px;
+        gap: var(--composer-gap-md);
 
         .plan {
           width: 100%;
-          border: 1px solid var(--composer-secondary-color);
-          background: var(--composer-html-background);
-          padding: 16px 35px;
-          border-radius: 5px !important;
+          background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+          padding: var(--composer-gap-sm) var(--composer-gap-md);
+          border-radius: var(--composer-gap-xs) !important;
           display: flex;
           flex-direction: column;
-          transition: 0.3s;
-          font-size: 1.3rem;
-          box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+          transition: all 0.5s ease;
+          box-shadow: var(--box-shadow-active);
           color: var(--composer-font-color-primary);
+          cursor: pointer;
+
           &.active {
-            background: var(--composer-secondary-color);
-            gap: 15px;
-            color: var(--composer-font-color-secondary);
+            background: var(--composer-primary-color);
+            gap: var(--composer-gap-sm);
+
             .plan-price-box,
             .plan-description {
-              height: unset !important;
-              overflow: unset !important;
-              font-size: 1.5rem;
+              max-height: 250px;
+              overflow: auto;
+              padding: var(--composer-gap-md) 0;
+              opacity: 1;
             }
+
             .plan-description,
             .price-description {
+              color: var(--composer-tertiary-color);
+            }
+
+            .plan-title,
+            .price {
               color: var(--composer-font-color-secondary);
-              font-size: 1.4rem;
-              opacity: 0.6;
+              transition: color 0.5s ease;
             }
-            .plan-price-box {
-              font-size: 2.2rem;
-            }
-            .price-description {
-              font-size: 1rem;
-            }
+
             .plan-upper {
+              margin: 0;
+
               .icon-box {
-                svg {
+                .icon {
                   margin-top: 0px;
                 }
               }
             }
           }
+
           .plan-upper {
             display: flex;
             justify-content: space-between;
             align-items: center;
 
-            .icon-box {
-              border: 1px solid var(--composer-tertiary-color);
-              color: var(--composer-tertiary-color);
-              width: 25px;
-              height: 25px;
+            .plan-title {
+              margin: 0;
+              transition: color 0.5s ease;
+            }
+
+            .icon-box,
+            .icon-box-active {
+              color: var(--composer-font-color-secondary);
+              background-color: var(--composer-font-color-primary);
+              width: var(--composer-gap-md);
+              height: var(--composer-gap-md);
               display: flex;
               justify-content: center;
               align-items: center;
-              border-radius: 25px;
-              svg {
+              border-radius: var(--composer-border-radius-xl);
+
+              .icon {
                 margin-top: 2px;
               }
             }
+
+            .icon-box-active {
+              background-color: var(--composer-font-color-primary);
+              opacity: 0.5;
+
+              .icon {
+                margin-top: 1px;
+              }
+            }
           }
+
           .plan-price-box,
           .plan-description {
-            height: 0;
+            max-height: 0;
             overflow: hidden;
+            opacity: 0;
+            transition: all 0.5s ease, opacity 0.2s ease;
+            margin: 0;
           }
+
+          .plan:not(.active) .plan-price-box {
+            opacity: 0;
+            pointer-events: none;
+          }
+
+          .plan.active .plan-price-box {
+            opacity: 1;
+          }
+
+          .plan-upper {
+            padding: var(--composer-gap-sm) 0;
+          }
+
           .plan-price-box {
             display: flex;
             align-items: center;
             justify-content: space-between;
+
+            .labels {
+              display: flex;
+              align-items: center;
+              gap: var(--composer-gap-sm);
+
+              .price {
+                font-size: 2rem;
+                transition: color 0.5s ease;
+              }
+            }
+
             .plan-button {
               background-color: transparent;
-              border: 1px solid var(--composer-tertiary-color);
-              border-radius: 35px;
-              padding: 15px 25px;
-              cursor: pointer;
-              transition: all 0.4s ease;
-              font-size: 1rem;
+              border: 1px solid var(--composer-font-color-secondary);
+              color: var(--composer-font-color-secondary);
+
               &:hover {
-                background-color: var(--composer-tertiary-color);
+                background-color: white;
+                border: 1px solid white;
+                color: black;
               }
             }
           }
         }
       }
+      .right-content-single {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-md);
+        width: 100%;
+      }
+
+      .left-content-single {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-md);
+      }
     }
   }
 }
-@media only screen and (max-width: 768px) {
+
+@container (max-width: #{$composer-tablet-width-lg}) {
   .container {
     position: relative;
-    padding: 5px 10px;
-    padding-bottom: 50px;
 
     .max-content {
       .content {
-        display: flex;
         flex-direction: column;
-        gap: 10px;
-        align-items: center;
-        
+        gap: var(--composer-gap-lg) !important;
+
         .left-content,
-        .right-content{
+        .right-content {
           max-width: unset;
         }
-        
+
         .left-content {
-          text-align: center;
-          width: 78%;
-          margin-left: 0%;
-          .subtitle {
-            margin-bottom: 25px;
-            width: fit-content;
-            margin: auto;
-            font-size: 0.8rem;
-            margin-top: 10%;
-          }
-          .title {
-            font-size: 2rem;
-            max-width: none;
-            margin-top: 20px;
-            margin-bottom: 20px;
-          }
-          .description {
-            font-size: 17px;
-          }
+          width: 100%;
+          text-align: left;
+
           .buttons,
           .button-box {
             margin: auto;
           }
           .buttons {
-            display: flex;
-            align-items: center;
-            justify-content: center;
             .button-box {
               width: fit-content;
-              border-radius: 25px;
-              .button-text {
-                font-size: 0.8rem;
-              }
             }
           }
         }
         .right-content {
-          margin-top: 30px;
-          border-radius: 15px;
-          align-items: center;
-
-          .plan {
-            width: 74%;
-            margin-left: 0%;
-            font-size: 1.6rem;
-            margin-bottom: 0%;
-            .plan-price-box {
-              margin-bottom: 5px;
-              .plan-button {
-                width: 100%;
-                max-width: none;
-                margin-left: auto;
-                margin-right: auto;
-                border: 2px solid var(--composer-tertiary-color);
-                font-size: 0.8rem;
-                padding: 10px 15px;
-                margin-left: 6px;
-              }
-            }
-          }
-          .button-box {
-            font-size: 1.4rem;
-            margin-left: 4px;
-          }
+          width: 100%;
         }
       }
     }
   }
 }
-@media only screen and (max-width: 390px) {
+
+@container (max-width: #{$composer-phone-width}) {
   .container {
     position: relative;
-    padding: 5px 10px;
     justify-content: space-between;
-    padding-bottom: 50px;
 
     .max-content {
       .content {
-        display: flex;
         flex-direction: column;
-        gap: 20px;
-        margin-top: 25px;
+        gap: var(--composer-gap-md);
         align-items: center;
 
         .left-content {
-          text-align: center;
-          margin-top: 20px;
-          width: 91%;
-          .subtitle {
-            margin-bottom: 25px;
-            width: fit-content;
-            margin: auto;
-            font-size: 0.8rem;
-          }
-          .title {
-            font-size: 2rem;
-          }
-          .description {
-            font-size: 13px;
-          }
-          .buttons,
-          .button-box {
-            margin: auto;
-          }
           .buttons {
-            display: flex;
-            align-items: center;
             justify-content: center;
-            .button-box {
-              width: fit-content;
-              border-radius: 25px;
-
-              .button-text {
-                font-size: 0.8rem;
-              }
-            }
           }
         }
         .right-content {
-          margin-top: 30px;
           width: 100%;
-          border-radius: 15px;
-          gap: 15px;
 
           .plan {
-            width: 100%;
-            font-size: 1.6rem;
-            margin-bottom: 0%;
             .plan-price-box {
               display: flex;
-              justify-content: flex-end;
-              .plan-button {
-                width: 80%;
-                max-width: none;
-                margin-left: auto;
-                margin-right: auto;
-                border: 2px solid var(--composer-tertiary-color);
-                font-size: 0.8rem;
-                padding: 10px 15px;
-                margin-left: 20px;
-                text-align: center;
+
+              .labels {
+                .price {
+                  font-size: 1rem;
+                }
               }
             }
-          }
-          .button-box {
-            font-size: 1.4rem;
-            margin-left: 4px;
           }
         }
       }

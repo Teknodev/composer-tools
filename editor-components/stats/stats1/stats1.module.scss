@@ -1,75 +1,184 @@
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+
 .container {
-    width: 100%;
-    padding: 50px 0;
-    .max-content {
-        display: flex;
-        justify-content: space-around;
-        max-width: var(--composer-content-width);
-        margin: auto;
-        .stats1-page {
-            display: block;
-            width: 100%;
-            .title {
-                text-align: center;
-                width: 100%;
-                margin: 0;
-                color: var(--composer-primary-color);
-            }
-            .description {
-                text-align: center;
-                width: calc(100% - 50px);
-                margin: 40px auto;
-                color: var(--composer-font-color-primary);
-            }
-            .bottom-child {
-                display: flex;
-                justify-content: space-around;
-                box-shadow: var(--composer-box-shadow);
-                width: 100%;
-                margin: 0 auto;
-                border-radius: 6px;
-                padding: 40px 0;
-                .card {
-                    .card-data-title {
-                        text-align: center;
-                        font-size: 3rem;
-                        margin: 0;
-                        color: var(--composer-font-color-primary);
-                    }
-                    .card-data-subtitle {
-                        text-align: center;
-                        font-size: 1.5rem;
-                        color: var(--composer-primary-color);
-                        margin: 20px 0;
-                    }
-                    .card-data-description {
-                        text-align: center;
-                        font-size: 1.5rem;
-                        color: var(--composer-font-color-primary);
-                    }
-                }
-            }
+  .max-content {
+    padding-bottom: 1.5rem;
+    .stats1-page {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: calc(5 * var(--composer-gap-xl));
+      flex: 1 1;
+      .left-container {
+        max-width: 100%;
+        .subtitle {
+          width: 98%;
         }
+        .description {
+          color: var(--composer-font-color-primary);
+        }
+
+        .button-text-wrapper {
+          background-color: var(--composer-primary-color);
+          padding: var(--composer-gap-sm) var(--composer-gap-md);
+          border-radius: var(--composer-border-radius-sm);
+
+          .button-text {
+            color: var(--composer-font-color-secondary);
+            font-size: 1.5rem;
+          }
+        }
+      }
+
+      .right-container {
+        margin-right: 1%;
+        padding: var(--composer-gap-xl);
+        margin: var(--composer-gap-xs) 0;
+
+        .content-div {
+          position: relative;
+          width: 500px;
+          height: 500px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 50%;
+
+          .content-item {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
+            border-radius: 50%;
+          }
+
+          .card {
+            position: absolute;
+            width: 100%;
+            max-width: 150px;
+            min-width: 100px;
+            aspect-ratio: 1;
+            max-height: 150px;
+            min-height: 100px;
+            overflow: hidden;
+            padding: var(--composer-gap-md);
+            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-primary-color) 5%);
+            border-radius: 50%;
+            box-shadow: var(--box-shadow-active);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex-direction: column;
+            transform: rotate(var(--angle)) translate(250px) rotate(calc(-1 * var(--angle)));
+
+            .counter-value {
+              font-size: 2rem;
+              margin: 0;
+              word-break: break-all;
+            }
+
+            .counter-label {
+              margin: 0;
+              color: var(--composer-font-color-primary);
+            }
+          }
+        }
+      }
     }
+  }
 }
 
-@media only screen and (max-width: 768px) {
-    .container {
+@container (max-width: #{$composer-tablet-width-lg}) {
+  .container {
+    .max-content {
+      .stats1-page {
         flex-direction: column;
-        gap: 60px;
-        .max-content {
-            padding: 0 20px;
-            .stats1-page {
-                text-align: center;
-                .bottom-child {
-                    width: 100%;
-                    display: flex;
-                    flex-direction: column;
-                    .card {
-                        width: 100%;
-                    }
-                }
+        gap: var(--composer-gap-lg);
+
+        .left-container {
+          max-width: 100%;
+
+          .button-text-wrapper {
+            .button-text {
+              font-size: 1rem;
             }
+          }
+          .subtitle {
+            width: 90%;
+          }
         }
+
+        .right-container {
+          padding: 0;
+          margin: var(--composer-gap-lg) 0;
+
+          .content-div {
+            width: 500px !important;
+            height: 500px !important;
+
+            .card {
+              max-width: 130px;
+              min-width: 100px;
+              max-height: 130px;
+              min-height: 100px;
+              transform: rotate(var(--angle)) translate(250px) rotate(calc(-1 * var(--angle)));
+
+              .counter-value {
+                margin: 0;
+                font-size: 1rem !important;
+              }
+
+              .counter-label {
+                margin: 0;
+                font-size: 1rem !important;
+              }
+            }
+          }
+        }
+      }
     }
+  }
+}
+
+@container (max-width: #{$composer-phone-width-sm}) {
+  .container {
+    .max-content {
+      .stats1-page {
+        .left-container {
+          .subtitle {
+            width: 88%;
+          }
+          .button-text-wrapper {
+            .button-text {
+              font-size: 1rem;
+            }
+          }
+        }
+
+        .right-container {
+          margin-right: 5% !important;
+          margin: var(--composer-gap-sm) 0;
+          .content-div {
+            width: 250px !important;
+            height: 250px !important;
+
+            .card {
+              max-width: 100px;
+              min-width: 60px;
+              max-height: 100px;
+              min-height: 60px;
+              transform: rotate(var(--angle)) translate(120px) rotate(calc(-1 * var(--angle)));
+            }
+          }
+        }
+      }
+    }
+  }
 }
