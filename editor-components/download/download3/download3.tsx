@@ -62,7 +62,7 @@ class Download3 extends BaseDownload {
               type: "image",
               key: "buttonImage",
               displayer: "In Button Icon",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/673f5276506a40002c2cf763?alt=media&timestamp=1732203183915",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67586eb80655f8002ca57e58?alt=media",
             },
           ],
         },
