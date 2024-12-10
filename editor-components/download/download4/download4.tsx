@@ -70,7 +70,7 @@ class Download4 extends BaseDownload {
               type: "image",
               key: "buttonImage",
               displayer: "Button Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/673f5276506a40002c2cf763?alt=media&timestamp=1732790517206",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67586eb80655f8002ca57e58?alt=media",
             },
           ],
         },
@@ -125,31 +125,35 @@ class Download4 extends BaseDownload {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
-            <Base.VerticalContent className={this.decorateCSS("header")}>
-              {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
-              {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
-            </Base.VerticalContent>
-            <div className={this.decorateCSS("buttons-container")}>
-              {this.castToObject<Button[]>("buttons").map((item: Button, index: number) => {
-                const buttonTextExist = this.castToString(item.buttonText);
-                return (
-                  <ComposerLink key={`dw-4-btn-${index}`} path={item.url}>
-                    {item.buttonImage ? (
-                      <div className={this.decorateCSS("image-container")}>
-                        <img src={item.buttonImage} className={this.decorateCSS("image")} />
-                      </div>
-                    ) : (
-                      (item.buttonIcon || buttonTextExist) && (
-                        <Base.Button className={this.decorateCSS("button")}>
-                          {item.buttonIcon && <ComposerIcon name={item.buttonIcon} propsIcon={{ className: this.decorateCSS("icon") }} />}
-                          {buttonTextExist && item.buttonText && <Base.P className={this.decorateCSS("text")}>{item.buttonText}</Base.P>}
-                        </Base.Button>
-                      )
-                    )}
-                  </ComposerLink>
-                );
-              })}
-            </div>
+            {(titleExist || descriptionExist) && (
+              <Base.VerticalContent className={this.decorateCSS("header")}>
+                {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
+                {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
+              </Base.VerticalContent>
+            )}
+            {this.castToObject<Button[]>("buttons").length > 0 && (
+              <div className={this.decorateCSS("buttons-container")}>
+                {this.castToObject<Button[]>("buttons").map((item: Button, index: number) => {
+                  const buttonTextExist = this.castToString(item.buttonText);
+                  return (
+                    <ComposerLink key={`dw-4-btn-${index}`} path={item.url}>
+                      {item.buttonImage ? (
+                        <div className={this.decorateCSS("image-container")}>
+                          <img src={item.buttonImage} className={this.decorateCSS("image")} />
+                        </div>
+                      ) : (
+                        (item.buttonIcon || buttonTextExist) && (
+                          <Base.Button className={this.decorateCSS("button")}>
+                            {item.buttonIcon && <ComposerIcon name={item.buttonIcon} propsIcon={{ className: this.decorateCSS("icon") }} />}
+                            {buttonTextExist && item.buttonText && <Base.P className={this.decorateCSS("text")}>{item.buttonText}</Base.P>}
+                          </Base.Button>
+                        )
+                      )}
+                    </ComposerLink>
+                  );
+                })}
+              </div>
+            )}
             {image && (
               <div className={this.decorateCSS("image-container")}>
                 <img className={this.decorateCSS("image")} src={this.getPropValue("image")} />

@@ -38,9 +38,11 @@
         }
         .button {
           display: flex;
+          justify-content: center;
           align-items: center;
           gap: var(--composer-gap-xs);
           height: 60px;
+          min-width: 200px;
           .icon {
             font-size: 1.5rem;
           }
