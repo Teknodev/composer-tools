@@ -118,10 +118,10 @@ class Download5 extends BaseDownload {
     const overlay = this.getPropValue("overlay");
 
     const title = this.getPropValue("title");
-    const titleExist = this.getPropValue("title", { as_string: true });
+    const titleExist = this.castToString(title);
 
     const desc = this.getPropValue("description");
-    const descExist = this.getPropValue("description", { as_string: true });
+    const descExist = this.castToString(desc);
 
     const buttons = this.castToObject<any[]>("buttons");
 
@@ -144,29 +144,31 @@ class Download5 extends BaseDownload {
                   const buttonTextExist = this.castToString(item?.buttonText);
 
                   return (
-                    <div className={this.decorateCSS("button-wrapper")}>
-                      <ComposerLink key={index} path={item.url}>
-                        {item.buttonImage ? (
-                          <div>
-                            <img src={item.buttonImage} className={this.decorateCSS("button-image")} />
-                          </div>
-                        ) : (
-                          (buttonTextExist || item.icon) && (
-                            <Base.Button className={this.decorateCSS("button-element")}>
-                              {item.icon && (
-                                <ComposerIcon
-                                  name={item.icon}
-                                  propsIcon={{
-                                    className: this.decorateCSS("icon"),
-                                  }}
-                                />
-                              )}
-                              {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.buttonText}</Base.P>}
-                            </Base.Button>
-                          )
-                        )}
-                      </ComposerLink>
-                    </div>
+                    (item.buttonImage || item.icon || buttonTextExist) && (
+                      <div className={this.decorateCSS("button-wrapper")}>
+                        <ComposerLink key={index} path={item.url}>
+                          {item.buttonImage ? (
+                            <div>
+                              <img src={item.buttonImage} className={this.decorateCSS("button-image")} />
+                            </div>
+                          ) : (
+                            (buttonTextExist || item.icon) && (
+                              <Base.Button className={this.decorateCSS("button-element")}>
+                                {item.icon && (
+                                  <ComposerIcon
+                                    name={item.icon}
+                                    propsIcon={{
+                                      className: this.decorateCSS("icon"),
+                                    }}
+                                  />
+                                )}
+                                {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.buttonText}</Base.P>}
+                              </Base.Button>
+                            )
+                          )}
+                        </ComposerLink>
+                      </div>
+                    )
                   );
                 })}
               </div>
