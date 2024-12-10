@@ -2,6 +2,7 @@ import * as React from "react";
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header1.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
+import { Base } from "../../../composer-base-components/base/base";
 interface Slider {
   title: string;
   subtitle: string;
@@ -11,7 +12,7 @@ interface Slider {
 }
 class Header1 extends BaseHeader {
   sliderRef: React.RefObject<any>;
-  
+
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
@@ -231,10 +232,10 @@ class Header1 extends BaseHeader {
         },
       ],
     });
-    
+
     this.sliderRef = React.createRef();
     this.setActiveTab(0);
-    this.setComponentState("titleAnimation", true);
+    this.setComponentState("animation", true);
     this.setComponentState("animationDuration", 20);
   }
 
@@ -247,7 +248,10 @@ class Header1 extends BaseHeader {
       this.setComponentState("startedIndex", activeTabIndex);
     }, 20);
   }
-  throttle = <T extends (...args: any[]) => void>(func: T, limit: number): ((...args: Parameters<T>) => void) => {
+  throttle = <T extends (...args: any[]) => void>(
+    func: T,
+    limit: number
+  ): ((...args: Parameters<T>) => void) => {
     let inThrottle: boolean;
     return (...args: Parameters<T>) => {
       if (!inThrottle) {
@@ -259,7 +263,7 @@ class Header1 extends BaseHeader {
   };
   handleWheel = this.throttle((event: React.WheelEvent) => {
     // ref isn't work;
-    return; 
+    return;
     if (event.deltaY < 0) {
       this.handleUpClick();
     } else if (event.deltaY > 0) {
@@ -273,7 +277,7 @@ class Header1 extends BaseHeader {
     const newIndex = currentIndex > 0 ? currentIndex - 1 : sliders.length - 1;
 
     this.setActiveTab(newIndex);
-    if(this.sliderRef.current){
+    if (this.sliderRef.current) {
       this.sliderRef.current.slickGoTo(newIndex);
     }
   };
@@ -283,27 +287,11 @@ class Header1 extends BaseHeader {
     const sliders = this.castToObject<[]>("sliders");
     const newIndex = currentIndex < sliders.length - 1 ? currentIndex + 1 : 0;
 
-    this.setActiveTab(newIndex);    
-    if(this.sliderRef.current){
+    this.setActiveTab(newIndex);
+    if (this.sliderRef.current) {
       this.sliderRef.current.slickGoTo(newIndex);
     }
   };
-
-  getStyle = (text: string, active: boolean) => {
-    if (!active) {
-      return {
-        animation: "none"
-      }
-    }
-    const widthOfText = text.length;
-    const speedFactor = 1.5;
-    const duration = ((widthOfText) * speedFactor) + "s";
-    let style: React.CSSProperties = {
-      animationDuration: duration
-    };
-
-    return style;
-  }
 
   render() {
     const settings = {
@@ -318,89 +306,126 @@ class Header1 extends BaseHeader {
       vertical: true,
       verticalSwiping: true,
       adaptiveHeight: true,
-      dotsClass: this.getPropValue("background-layout") ? this.decorateCSS("dots") : this.decorateCSS("dark-dots"),
+      dotsClass: this.getPropValue("background-layout")
+        ? this.decorateCSS("dots")
+        : this.decorateCSS("dark-dots"),
       beforeChange: (current: number, next: number) => {
         this.setActiveTab(next);
-        this.setComponentState("titleAnimation", false)
+        this.setComponentState("animation", false);
         setTimeout(() => {
-          this.setComponentState("titleAnimation", true)
-        }, 1000)
+          this.setComponentState("animation", true);
+        }, 1000);
       },
     };
     const isLineActive = this.getPropValue("numberLine");
     const backgroundLayout = this.getPropValue("background-layout");
-    const titleAnimation = this.getComponentState("titleAnimation");
-    
+    const animation = this.getComponentState("animation");
+
     return (
-      <div className={this.decorateCSS("container")} onWheel={this.handleWheel} style={{ backgroundImage: `url(${this.getPropValue("background-layout")})` }}>
-        <img className={this.decorateCSS("image-container-2")} src={this.getPropValue("sun")} alt="" />
-        <img className={this.decorateCSS("image-container-3")} src={this.getPropValue("sun")} alt="" />
-        <div className={this.decorateCSS("max-content")}>
+      <Base.Container className={this.decorateCSS("container")} isFull={true}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <img
+            className={this.decorateCSS("image-container-2")}
+            src={this.getPropValue("sun")}
+            alt=""
+          />
+          <img
+            className={this.decorateCSS("image-container-3")}
+            src={this.getPropValue("sun")}
+            alt=""
+          />
           <div className={this.decorateCSS("wrapper")}>
             <ComposerSlider ref={this.sliderRef} {...settings}>
-              {this.castToObject<[]>("sliders").map(
-                (item: any, index: number) => {
-                  const isActive = this.getComponentState("activeTab") === index;
-                  return (
-                    <div
-                      className={this.decorateCSS("return-container")}
-                      key={index}
-                    >
-                      <div className={this.decorateCSS("background-container")}>
-                        <div
-                          className={
-                            this.decorateCSS("background-text") +
-                            " " +
-                            (isActive ? this.decorateCSS("active-text") : "")
-                          }
-                          style={this.getStyle(this.castToString(item.backgroundTitle), isActive)}
-                        >
-                          {item.backgroundTitle}
-                        </div>
-                      </div>
-
-                      <div className={this.decorateCSS("content-container")}>
-                        <div className={item.image ? this.decorateCSS("image-wrapper") : this.decorateCSS("without-image-wrapper")}>
-                          <h1 className={backgroundLayout ? this.decorateCSS("subtitle") : this.decorateCSS("subtitle-dark")}>
-                            {item.subtitle}
-                          </h1>
-                          <img
-                            className={
-                              this.decorateCSS("image") +
-                              " " +
-                              (isActive && this.decorateCSS("active-image"))
-                            }
-                            src={item.image}
-                            alt=""
-                          />
-                          {item.title && <h1 className={
-                            (titleAnimation ? this.decorateCSS("titleAnimation") : " ") + " " + 
-                            (backgroundLayout
-                              ? (item.image ? this.decorateCSS("title") : this.decorateCSS("without-image-title"))
-                              : (item.image ? this.decorateCSS("dark-title") : this.decorateCSS("dark-without-image-title")))
-                            }>
-                            {item.title}
-                          </h1>}
-
-                          <h1 className={this.decorateCSS("sliderNumber")}>
-                            {isLineActive && (
-                              <span className={backgroundLayout ? this.decorateCSS("overlay") : this.decorateCSS("dark-overlay")}></span>
-                            )
-                            }
-                            <span className={backgroundLayout ? this.decorateCSS("slider-number") : this.decorateCSS("dark-slider-number")}>
-                              {item.sliderNumber}
-                            </span>
-                          </h1>
-                        </div>
+              {this.castToObject<[]>("sliders").map((item: any, index: number) => {
+                const isActive = this.getComponentState("activeTab") === index;
+                return (
+                  <div
+                    className={`${this.decorateCSS("return-container")} ${
+                      animation && this.decorateCSS("animation")
+                    }`}
+                    key={index}
+                  >
+                    <div className={this.decorateCSS("background-container")}>
+                      <div
+                        className={`${this.decorateCSS("background-text")} ${
+                          isActive && this.decorateCSS("active-text")
+                        }`}
+                      >
+                        {item.backgroundTitle}
                       </div>
                     </div>
-                  );
-                }
-              )}
+
+                    <div className={this.decorateCSS("content-container")}>
+                      <div
+                        className={
+                          item.image
+                            ? this.decorateCSS("image-wrapper")
+                            : this.decorateCSS("without-image-wrapper")
+                        }
+                      >
+                        <h1
+                          className={
+                            backgroundLayout
+                              ? this.decorateCSS("subtitle")
+                              : this.decorateCSS("subtitle-dark")
+                          }
+                        >
+                          {item.subtitle}
+                        </h1>
+                        <img
+                          className={
+                            this.decorateCSS("image") +
+                            " " +
+                            (isActive && this.decorateCSS("active-image"))
+                          }
+                          src={item.image}
+                          alt=""
+                        />
+                        {item.title && (
+                          <h1
+                            className={
+                              backgroundLayout
+                                ? item.image
+                                  ? this.decorateCSS("title")
+                                  : this.decorateCSS("without-image-title")
+                                : item.image
+                                ? this.decorateCSS("dark-title")
+                                : this.decorateCSS("dark-without-image-title")
+                            }
+                          >
+                            {item.title}
+                          </h1>
+                        )}
+
+                        <h1 className={this.decorateCSS("sliderNumber")}>
+                          {isLineActive && (
+                            <span
+                              className={
+                                backgroundLayout
+                                  ? this.decorateCSS("overlay")
+                                  : this.decorateCSS("dark-overlay")
+                              }
+                            ></span>
+                          )}
+                          <span
+                            className={
+                              backgroundLayout
+                                ? this.decorateCSS("slider-number")
+                                : this.decorateCSS("dark-slider-number")
+                            }
+                          >
+                            {item.sliderNumber}
+                          </span>
+                        </h1>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
             </ComposerSlider>
           </div>
-        </div >
-      </div >
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
