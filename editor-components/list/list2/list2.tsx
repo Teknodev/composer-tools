@@ -7,10 +7,14 @@ import { Base } from "../../../composer-base-components/base/base";
 type CardItem = {
   page: JSX.Element;
   image: string;
-  count: JSX.Element;
+  count: number;
   count_text: JSX.Element;
-  card_text: string;
+  card_text: JSX.Element;
 };
+type ButtonItem = {
+  navigate: string;
+  text: JSX.Element;
+}
 
 class List2 extends BaseList {
   constructor(props?: any) {
@@ -37,7 +41,18 @@ class List2 extends BaseList {
       displayer: "Item Count in a Row",
       value: 3,
     });
-
+    this.addProp({
+      type: "number",
+      key: "imageCountInitial",
+      displayer: "Image Count Initial",
+      value: 3
+    })
+    this.addProp({
+      type: "number",
+      key: "imageCount",
+      displayer: "More Image Count",
+      value: 3
+    })
     this.addProp({
       type: "array",
       key: "cards",
@@ -292,65 +307,99 @@ class List2 extends BaseList {
         },
       ],
     });
+    this.setComponentState("moreImages", 0);
   }
 
   getName(): string {
     return "List 2";
   }
+  handleButtonClick = () => {
+    this.setComponentState("moreImages", this.getComponentState("moreImages") + this.getPropValue("imageCount"))
+  };
 
   render() {
+    if (this.getComponentState("imageCount") != this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"))
+      this.setComponentState("imageCount", this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"));
+
     const cards = this.castToObject<CardItem[]>("cards");
-    const button = this.getPropValue("button");
+    const button = this.castToObject<ButtonItem>("button");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent>
-            <Base.SectionTitle className={this.decorateCSS("title")}>
-              {this.getPropValue("title")}
-            </Base.SectionTitle>
-            <Base.SectionDescription
-              className={this.decorateCSS("description")}
-            >
-              {this.getPropValue("description")}
-            </Base.SectionDescription>
-          </Base.VerticalContent>
-          <Base.ListGrid
-            className={this.decorateCSS("cards-box")}
-            gridCount={{
-              pc: this.getPropValue("itemCount"),
-              tablet: 2,
-              phone: 1,
-            }}
-          >
-            {cards.map((item: CardItem, index: number) => (
-              <ComposerLink key={index} path={item.page}>
-                <div className={this.decorateCSS("card")}>
-                  <img src={item.image} />
-                  <div className={this.decorateCSS("overlay")}></div>
-                  <div className={this.decorateCSS("overlay2")}></div>
-                  <div className={this.decorateCSS("card-content")}>
-                    <div className={this.decorateCSS("stick")}></div>
-                    <div className={this.decorateCSS("labels")}>
-                      <Base.H2 className={this.decorateCSS("first")}>
-                        {item.card_text}
-                      </Base.H2>
-                      <Base.P className={this.decorateCSS("second")}>
-                        {item.count} {item.count_text}
-                      </Base.P>
+          <div className={this.decorateCSS("wrapper")}>
+            {(this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("description"))) && (
+              <Base.VerticalContent className={this.decorateCSS("up-container")}>
+                {this.castToString(this.getPropValue("title")) && (
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
+                    {this.getPropValue("title")}
+                  </Base.SectionTitle>
+                )}
+                {this.castToString(this.getPropValue("description")) && (
+                  <Base.SectionDescription className={this.decorateCSS("description")} >
+                    {this.getPropValue("description")}
+                  </Base.SectionDescription>
+                )}
+              </Base.VerticalContent>
+            )}
+            {(cards.length > 0) && (
+              <Base.ListGrid
+                className={this.decorateCSS("cards-box")}
+                gridCount={{
+                  pc: this.getPropValue("itemCount"),
+                  tablet: 2,
+                  phone: 1,
+                }}
+              >
+                {cards.slice(0, this.getComponentState("imageCount")).map((item: CardItem, index: number) => (
+                  <ComposerLink key={index} path={item.page}>
+                    <div className={this.decorateCSS("card")}>
+                      {item.image && (
+                        <img className={this.decorateCSS("card-image")} src={item.image} alt={item.image} />
+                      )}
+                      <div className={this.decorateCSS("overlay")}></div>
+                      <div className={this.decorateCSS("overlay2")}></div>
+                      <div className={this.decorateCSS("card-content")}>
+                        <div className={this.decorateCSS("stick")}></div>
+                        {(this.castToString(item.card_text) || item.count || this.castToString(item.count_text)) && (
+                          <div className={this.decorateCSS("labels")}>
+                            {this.castToString(item.card_text) && (
+                              <div className={this.decorateCSS("first")}>
+                                {item.card_text}
+                              </div>
+                            )}
+                            {(item.count || this.castToString(item.count_text)) && (
+                              <div className={this.decorateCSS("second")}>
+                                {item.count && (
+                                  <div className={this.decorateCSS("second-text")}>
+                                    {item.count}
+                                  </div>
+                                )}
+                                {this.castToString(item.count_text) && (
+                                  <div className={this.decorateCSS("second-text")}>
+                                    {item.count_text}
+                                  </div>
+                                )}
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </div>
                     </div>
-                  </div>
+                  </ComposerLink>
+                ))}
+              </Base.ListGrid>
+            )}
+            {((this.getComponentState("imageCount") < cards.length) && this.castToString(button.text)) && (
+              <ComposerLink path={button.navigate}>
+                <div className={this.decorateCSS("button-wrapper")}>
+                  <Base.Button className={this.decorateCSS("button")} onClick={this.handleButtonClick} >
+                    {button.text}
+                  </Base.Button>
                 </div>
               </ComposerLink>
-            ))}
-          </Base.ListGrid>
-          {button[0].value &&(
-          <ComposerLink path={button[1].value}>
-          <div className={this.decorateCSS("button")}>
-            <span>{button[0].value}</span>
+            )}
           </div>
-        </ComposerLink>
-          )} 
         </Base.MaxContent>
       </Base.Container>
     );

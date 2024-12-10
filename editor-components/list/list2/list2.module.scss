@@ -1,153 +1,134 @@
+@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
 .container {
   .max-content {
     display: flex;
     flex-direction: column;
-    .description {
-      max-width: 640px;
-      color: var(--composer-font-color-primary);
-    }
-    .cards-box {
-      margin-top: var(--composer-gap-md);
-
-      .card {
-        border-radius: var(--radius-medium);
-        overflow: hidden;
-        height: 350px;
-        position: relative;
-        cursor: pointer;
-
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transition: 1s;
+    .wrapper{
+      display: flex;
+      flex-direction: column;
+      gap: var(--composer-gap-md);
+      .up-container{
+        .title{
+          content: ""
         }
-
-        &:hover {
-          img {
-            transform: scale(1.2);
+        .description {
+          content: "";
+        }
+      }
+      
+      .cards-box {
+        .card {
+          border-radius: var(--radius-medium);
+          overflow: hidden;
+          position: relative;
+          cursor: pointer;
+          height: 100%;
+          .card-image{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 1s;
+            max-height: 350px;
           }
-
+          .overlay,
+          .overlay2 {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            transition: 0.9s;
+          }
           .overlay {
-            opacity: 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+            z-index: 1;
+            opacity: 1;
           }
           .overlay2 {
-            opacity: 1;
+            background: linear-gradient(
+              (rgba(var(--composer-primary-color-rgb), 0.7), rgba(0, 0, 0, 0.7))
+            );
+            z-index: 2;
+            opacity: 0;
           }
-          .card-content .labels .second {
-            opacity: 1;
-            background: var(--composer-primary-color);
-          }
-
-        }
-
-        .overlay,
-        .overlay2 {
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          top: 0;
-          transition: 0.9s;
-        }
-
-        .overlay {
-          background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
-          z-index: 1;
-          opacity: 1;
-        }
-
-        .overlay2 {
-          background: linear-gradient(
-            rgba(var(--composer-primary-color-rgb), 0.7),
-            rgba(var(--composer-html-background-rgb), 0.7)
-          );
-          z-index: 2;
-          opacity: 0;
-        }
-
-        .card-content {
-          position: absolute;
-          left: var(--composer-gap-md);
-          bottom: var(--composer-gap-md);
-          display: flex;
-          color: white;
-          z-index: 4;
-
-          .stick {
-            width:var(--composer-gap-xs);
-            background: var(--composer-primary-color);
-            margin-right:var(--composer-gap-md);
-            border-radius: var(--radius-medium);
-          }
-
-          .labels {
-            display: flex;
-            flex-direction: column;
-            align-items: start;
-
-            .first {
-              font-size: 1.5rem;
-              margin-bottom:  var(--composer-gap-xs);
-              margin-top: 0;
+          &:hover {
+            .card-image{
+              transform: scale(1.2);
             }
-
-            .second {
-              display:flex;
-              gap: var(--composer-gap-xs);
-              margin: var(--composer-gap-xs) 0;
+            .overlay {
+              opacity: 0;
+            }
+            .overlay2 {
+              opacity: 1;
+            }
+            .card-content .labels .second {
+              opacity: 1;
               background: var(--composer-primary-color);
-              padding: var(--composer-gap-xs) var(--composer-gap-xs);
-              border-radius: var(--radius-medium);
-              transition: 0.3s;
-              opacity: 0.5;
-              color: var(--composer-font-color-secondary);
-            
             }
           }
+          .card-content {
+            position: absolute;
+            left: var(--composer-gap-md);
+            bottom: var(--composer-gap-md);
+            display: flex;
+            color: white;
+            z-index: 4;
+  
+            .stick {
+              width:var(--composer-gap-xs);
+              background: var(--composer-primary-color);
+              margin-right:var(--composer-gap-md);
+              border-radius: var(--radius-medium);
+            }
+  
+            .labels {
+              display: flex;
+              flex-direction: column;
+              align-items: start;
+  
+              .first {
+                font-size: 1.5rem;
+              }
+  
+              .second {
+                display:flex;
+                gap: var(--composer-gap-xs);
+                margin: var(--composer-gap-xs) 0;
+                background:rgba(var(--composer-primary-color-rgb),0.5);
+                padding: var(--composer-gap-xs) var(--composer-gap-xs);
+                border-radius: var(--radius-medium);
+                transition: 0.3s;
+                .second-text{
+                  color: var(--composer-font-color-secondary);
+                  font-size: 1rem;
+                }
+              }
+            }
+          }
+        }
+      }            
+      .button-wrapper{
+        display: flex;
+        justify-content: center;
+        .button {
+          content: "";
         }
       }
     }
 
-    .button {
-      display: grid;
-      place-items: center;
-      justify-self: center;
-      padding: var(--composer-gap-sm) var(--composer-gap-md);
-      height:auto;
-      background: var(--composer-secondary-color);
-      margin: var(--composer-gap-lg) 0 var(--composer-gap-md) 0;
-      color: var(--composer-font-color-secondary);
-      border-radius: var(--radius-medium);
-      transition: 0.4s;
-      font-size: 1rem;
-      cursor: pointer;
-      max-width: 30%;
-  
-
-      &:hover {
-        background: var(--composer-color-background);
-        outline: 1px solid var(--composer-secondary-color);
-        color: var(--composer-secondary-color);
-      }
-    }
   }
 }
-
-@media only screen and (max-width: 800px){
-.container{
-  .max-content{
-    .button{
-      max-width: 100%;
-    }
-  }
-}
-}
-
-@media only screen and (max-width: 450px){
+@container (max-width: #{$composer-phone-width}){
   .container{
     .max-content{
-      .button{
-        max-width: 100%;
+      .wrapper{
+        .cards-box {
+          .card {
+            .card-image{
+              height: 300px;
+              max-height: 300px;
+            }
+          }
+        }
       }
     }
   }
