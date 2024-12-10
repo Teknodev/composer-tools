@@ -2,17 +2,32 @@
 
 .container {
     padding: var(--composer-gap-md) 0;
+    width: 100%;
+    background-color: var(--composer-html-background);
 
     .max-content {
-        max-width: unset;
         display: flex;
         flex-direction: column;
         flex-wrap: nowrap;
         justify-content: center;
+        align-items: center;
+        margin: auto;
+        width: 100%;
 
-        .header {
-            max-width: var(--composer-content-width);
-            padding: 0 var(--composer-gap-xl);
+        .header-container {
+            padding-top: 0;
+            padding-bottom: 0;
+
+            .header-max-content {
+                .header {
+                    width: 100%;
+
+                    .no-title {
+                        margin-bottom: 20px;
+                    }
+
+                }
+            }
         }
 
         .slider-parent {
@@ -21,7 +36,6 @@
 
             .carousel {
                 width: 100%;
-                margin-bottom: var(--composer-gap-md);
 
                 >div {
                     >div {
@@ -73,7 +87,6 @@
 
                             @container (max-width: #{$composer-phone-width}) {
                                 flex-direction: column;
-                                flex-wrap: wrap;
                                 align-items: unset;
                             }
 
@@ -86,9 +99,10 @@
                                 font-weight: 500;
                                 text-align: center;
                                 margin: var(--composer-gap-sm);
-                                white-space: nowrap;
+                                white-space: normal;
                                 overflow: hidden;
                                 text-overflow: ellipsis;
+                                display: block;
 
                                 @container (max-width: #{$composer-phone-width}) {
                                     writing-mode: unset;
@@ -125,6 +139,7 @@
                             flex: 1;
                             gap: var(--composer-gap-md);
                             padding: var(--composer-gap-lg) var(--composer-gap-md);
+                            height: fit-content;
 
                             @container (max-width: #{$composer-phone-width}) {
                                 padding: var(--composer-gap-md);
