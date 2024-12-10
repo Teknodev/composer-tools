@@ -1,3 +1,5 @@
+@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
+
 .dotContainer {
   position: absolute;
   right: var(--composer-gap-xl);
@@ -17,7 +19,7 @@
     justify-content: center;
     align-items: center;
     transition: transform 0.3s ease;
-    margin: 7px 0;
+    margin: var(--composer-gap-sm) 0;
     overflow: hidden;
     cursor: pointer;
     z-index: 1;
@@ -178,7 +180,7 @@
           .buttons-div {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: var(--composer-gap-sm);
             flex-wrap: wrap;
             row-gap: 0;
             width: fit-content;
@@ -195,7 +197,7 @@
               background-color: transparent;
               background: transparent;
               border-bottom: 2px solid var(--composer-font-color-primary);
-              padding-bottom: 5px;
+              padding-bottom: var(--composer-gap-xs);
               cursor: pointer;
               transition: transform 0.4s ease;
 
@@ -230,9 +232,9 @@
   }
 }
 
-@media only screen and (max-width: 1000px) {
+@container (max-width: #{$composer-tablet-width-lg}){
   .content {
-    padding: 0 30px !important;
+    padding: 0 var(--composer-gap-md) !important;
   }
 
   .container .circle {
@@ -252,7 +254,7 @@
       }
 
       .buttons-div {
-        row-gap: 5px !important;
+        row-gap: var(--composer-gap-xs) !important;
 
         > div {
           height: auto !important;
@@ -266,7 +268,7 @@
   }
 }
 
-@media only screen and (max-width: 500px) {
+@container (max-width: #{$composer-phone-width-sm}){
   .container .circle {
     width: 50px;
     height: 50px;
