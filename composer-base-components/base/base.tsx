@@ -1,6 +1,10 @@
 import React from "react";
 import styles from "./base.module.scss";
 
+export type TypeContentView = "monochrome" | "colorful";
+export type TypeContentAlignment = "left" | "center";
+export type TypeSubtitle = "line" | "badge" | "none";
+
 export namespace Base {
   const rootStyles = getComputedStyle(document.documentElement);
 
@@ -8,16 +12,37 @@ export namespace Base {
     return rootStyles.getPropertyValue(cssVariable).trim();
   }
 
+  function setStyleValue(property: string, value: string) {
+    const rootStyle = document.documentElement.style;
+    return rootStyle.setProperty(property, value);
+  }
+
   export function getSectionSubTitleType() {
     return getStyleValue("--composer-subtitle-type");
+  }
+
+  export function setSectionSubTitleType(type: TypeSubtitle) {
+    setStyleValue("--composer-subtitle-type", type);
   }
 
   export function getContentAlignment() {
     return getStyleValue("--composer-content-alignment");
   }
 
+  export function setAlignment(alignment: TypeContentAlignment) {
+    setStyleValue("--composer-content-alignment", alignment);
+  }
+
   export function getViewType() {
     return getStyleValue("--composer-view-type");
+  }
+
+  export function setViewType(viewType: TypeContentView) {
+    setStyleValue("--composer-view-type", viewType);
+  }
+
+  export function setFontSize(size: string) {
+    setStyleValue("--project-font-size", `${size}px`);
   }
 
   export function H1({ className, children, ...props }: any) {
@@ -68,14 +93,22 @@ export namespace Base {
     );
   }
 
-  export function Container({ className, children, isFull, isModal, ...props }: any) {
+  export function Container({
+    className,
+    children,
+    isFull,
+    isModal,
+    ...props
+  }: any) {
     const alignment = getContentAlignment();
     const viewType = getViewType();
     return (
       <div
         className={`${styles.container} ${styles[alignment]} ${
           styles[viewType]
-        } ${className} ${isModal ? styles.modalContainer : ""} ${isFull ? styles.full : ""}`}
+        } ${className} ${isModal ? styles.modalContainer : ""} ${
+          isFull ? styles.full : ""
+        }`}
         {...props}
       >
         {children}
@@ -99,15 +132,25 @@ export namespace Base {
     );
   }
 
-  export function ListGrid({ className, gridCount, children, ...props }: { gridCount: {pc: number, tablet: number, phone: number}, [key: string]: any }) {
+  export function ListGrid({
+    className,
+    gridCount,
+    children,
+    ...props
+  }: {
+    gridCount: { pc?: number; tablet?: number; phone?: number };
+    [key: string]: any;
+  }) {
     return (
       <div
         className={`${styles.listGrid} ${className}`}
-        style={{
-          "--composer-grid-count": gridCount["pc"] || 3,
-          "--composer-grid-count-tablet": gridCount["tablet"] || 2,
-          "--composer-grid-count-phone": gridCount["phone"] || 1,
-        } as React.CSSProperties}
+        style={
+          {
+            "--composer-grid-count": gridCount["pc"] || 3,
+            "--composer-grid-count-tablet": gridCount["tablet"] || 2,
+            "--composer-grid-count-phone": gridCount["phone"] || 1,
+          } as React.CSSProperties
+        }
         {...props}
       >
         {children}
@@ -151,5 +194,9 @@ export namespace Base {
     return (
       <P className={`${styles.sectionDescription} ${className}`} {...props}></P>
     );
+  }
+
+  export function Button({className, ...props}: any){
+    return <button className={`${styles.button} ${className}`} {...props}></button>
   }
 }

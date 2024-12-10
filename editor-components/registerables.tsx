@@ -204,7 +204,9 @@ import NavbarComponent7 from "./navigators/navbar7/navbar7";
 import NavbarComponent8 from "./navigators/navbar8/navbar8";
 import NavbarComponent9 from "./navigators/navbar9/navbar9";
 import ImageGalleryComponent1 from "./Image_gallery/image_gallery_1/image-gallery1";
+import ImageGalleryComponent2 from "./Image_gallery/image_gallery_2/image-gallery2";
 import ImageGalleryCompanent5 from "./Image_gallery/image_gallery_5/image-gallery5";
+import ImageGalleryCompanent7 from "./Image_gallery/image_gallery_7/image-gallery7";
 import NotificationModal1 from "./modal/notification-modal1/notificationmodal1";
 import ImageGalleryComponent4 from "./Image_gallery/image_gallery_4/image-gallery4";
 import TermsOfUseModal from "./modal/terms-of-use/terms-of-use";
@@ -346,7 +348,9 @@ function Registerables(composer: ComponentsRegistery) {
     new NavbarComponent8(),
     new NavbarComponent9(),
     new ImageGalleryComponent1(),
+    new ImageGalleryComponent2(),
     new ImageGalleryCompanent5(),
+    new ImageGalleryCompanent7(),
     new ImageGalleryComponent4(),
     new FeatureComponent1(),
     new FeatureComponent2(),
@@ -394,9 +398,9 @@ function Registerables(composer: ComponentsRegistery) {
     new StatsComponent1(),
     new StatsComponent2(),
     new StatsComponent3(),
-    // new StatsComponent4(),
-    // new StatsComponent5(),
-    // new StatsComponent6(),
+    new StatsComponent4(),
+    new StatsComponent5(),
+    new StatsComponent6(),
     new StatsComponent7(),
     new StatsComponent8(),
     new ContactsComponent1(),
