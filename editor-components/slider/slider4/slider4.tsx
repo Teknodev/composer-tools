@@ -26,7 +26,7 @@ class Slider4 extends BaseSlider {
     this.addProp({
       type: "string",
       key: "description",
-      displayer: "description",
+      displayer: "Description",
       value: "At every step of our process, we prioritize the user, ensuring that our products and services are thoughtfully designed to meet their needs and exceed their expectations."
     });
     this.addProp({
@@ -224,6 +224,9 @@ class Slider4 extends BaseSlider {
   }
   render() {
     const cards = this.castToObject<Card[]>("slider");
+    const cardNumber = cards.length;
+    const visibleItemCount = Math.min(cards.length, 3);
+    const carouselClass = cardNumber === 1 ? "carousel--singleCard" : "carousel--multipleCards";
 
     const settings = {
       arrows: false,
@@ -232,19 +235,19 @@ class Slider4 extends BaseSlider {
       speed: 500,
       autoplay: true,
       autoplaySpeed: 3000,
-      slidesToShow: 3,
+      slidesToShow: visibleItemCount,
       slidesToScroll: 1,
       responsive: [
         {
           breakpoint: 960,
           settings: {
-            slidesToShow: 3,
+            slidesToShow: Math.min(visibleItemCount, 3),
           },
         },
         {
           breakpoint: 640,
           settings: {
-            slidesToShow: 1,
+            slidesToShow: Math.min(visibleItemCount, 1),
           },
         },
       ],
@@ -260,7 +263,8 @@ class Slider4 extends BaseSlider {
     const sliderRef = this.getComponentState("slider-ref");
 
     return (
-      <Base.Container className={this.decorateCSS("container")} >
+      <Base.Container className={`${this.decorateCSS("container")} 
+      ${(!this.castToString(title) && !this.castToString(description)) && this.decorateCSS("no-header")}`} >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(this.castToString(title) || this.castToString(description)) &&
             <Base.VerticalContent className={this.decorateCSS("header")}>
@@ -271,45 +275,56 @@ class Slider4 extends BaseSlider {
             </Base.VerticalContent>}
           <Base.ContainerGrid className={this.decorateCSS("down-page")}>
 
-            <Base.VerticalContent className={this.decorateCSS("control-part")}>
-              {this.castToString(controlTitle) &&
-                <span className={this.decorateCSS("control-title")}>{controlTitle}</span>}
-              {this.castToString(controlDescription) &&
-                <Base.P className={this.decorateCSS("control-description")}>{controlDescription}</Base.P>}
-              {(previousArrow || nextArrow) &&
-                <div className={this.decorateCSS("arrows")}>
+            {(this.castToString(controlTitle) ||
+              this.castToString(controlDescription) ||
+              previousArrow ||
+              nextArrow) &&
+              <Base.VerticalContent className={this.decorateCSS("control-part")}>
+                {this.castToString(controlTitle) &&
+                  <span className={this.decorateCSS("control-title")}>{controlTitle}</span>}
+                {this.castToString(controlDescription) &&
+                  <Base.P className={this.decorateCSS("control-description")}>{controlDescription}</Base.P>}
+                {(previousArrow || nextArrow) &&
+                  <div className={this.decorateCSS("arrows")}>
 
-                  {previousArrow &&
-                    <div className={this.decorateCSS("icon-wrapper")}>
-                      <ComposerIcon
-                        name={this.getPropValue("previousArrow")}
-                        propsIcon={{
-                          className: this.decorateCSS("prevArrow"),
-                          onClick: () => {
-                            sliderRef.current.slickPrev();
-                          }
-                        }} />
-                    </div>}
+                    {previousArrow &&
+                      <div className={this.decorateCSS("icon-wrapper")}>
+                        <ComposerIcon
+                          name={this.getPropValue("previousArrow")}
+                          propsIcon={{
+                            className: this.decorateCSS("prevArrow"),
+                            onClick: () => {
+                              sliderRef.current.slickPrev();
+                            }
+                          }} />
+                      </div>}
 
-                  {nextArrow &&
-                    <div className={this.decorateCSS("icon-wrapper")}>
-                      <ComposerIcon
-                        name={this.getPropValue("nextArrow")}
-                        propsIcon={{
-                          className: this.decorateCSS("nextArrow"),
-                          onClick: () => {
-                            sliderRef.current.slickNext();
-                          },
-                        }} />
-                    </div>}
-                </div>}
+                    {nextArrow &&
+                      <div className={this.decorateCSS("icon-wrapper")}>
+                        <ComposerIcon
+                          name={this.getPropValue("nextArrow")}
+                          propsIcon={{
+                            className: this.decorateCSS("nextArrow"),
+                            onClick: () => {
+                              sliderRef.current.slickNext();
+                            },
+                          }} />
+                      </div>}
+                  </div>}
+              </Base.VerticalContent>}
 
-            </Base.VerticalContent>
-            <div className={this.decorateCSS("slider-parent")}>
-              <ComposerSlider {...settings} className={this.decorateCSS("carousel")} ref={sliderRef}>
+            <div className={`${this.decorateCSS("slider-parent")} 
+            ${(!this.castToString(controlTitle) &&
+                !this.castToString(controlDescription) &&
+                !previousArrow &&
+                !nextArrow) && this.decorateCSS("no-control-part")}`}>
+              <ComposerSlider {...settings}
+                className={`${this.decorateCSS("carousel")} ${this.decorateCSS(carouselClass)}`}
+                ref={sliderRef}>
                 {cards.map((item: Card, index: number) => (
                   <div
-                    className={this.decorateCSS("card")}
+                    className={`${this.decorateCSS("card")} 
+                    ${carouselClass === "carousel--singleCard" && this.decorateCSS("for-single-card")}`}
                     key={index}>
                     <ComposerIcon
                       name={item.icon}
