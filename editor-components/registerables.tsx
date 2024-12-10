@@ -203,7 +203,7 @@ import NavbarComponent6 from "./navigators/navbar6/navbar6";
 import NavbarComponent7 from "./navigators/navbar7/navbar7";
 import NavbarComponent8 from "./navigators/navbar8/navbar8";
 import NavbarComponent9 from "./navigators/navbar9/navbar9";
-import HTTP_CODES2 from "./http_codes/http_codes2/http_codes2";
+import HttpCodes2 from "./http_codes/http_codes2/http_codes2";
 import ImageGalleryComponent1 from "./Image_gallery/image_gallery_1/image-gallery1";
 import ImageGalleryComponent2 from "./Image_gallery/image_gallery_2/image-gallery2";
 import ImageGalleryCompanent5 from "./Image_gallery/image_gallery_5/image-gallery5";
@@ -434,7 +434,7 @@ function Registerables(composer: ComponentsRegistery) {
     new SubscriptionModal(),
     new FormModal1(),
     new LocationComponent1(),
-    new HTTP_CODES2(),
+    new HttpCodes2(),
   ]);
 }
 
