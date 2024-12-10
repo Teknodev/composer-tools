@@ -6,12 +6,15 @@
   padding: 0;
 
   .max-content {
+    max-width: unset;
     position: relative;
     background: black;
 
     .carousel {
       width: 100%;
       text-align: center;
+      max-width: var(--composer-content-width);
+      margin: 0 auto;
 
       >div {
         >div {
@@ -71,6 +74,13 @@
 
           @container (max-width: #{$composer-phone-width}) {
             font-size: 2rem;
+          }
+
+          >div {
+            width: 100%;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
           }
 
           .number {
@@ -141,18 +151,19 @@
 
     .text-box {
       position: absolute;
-      bottom: 30%;
+      top: 63%;
       left: 0;
       width: 35%;
       padding: 0 var(--composer-gap-xl);
+      max-width: var(--composer-content-width);
 
       @container (max-width: #{$composer-tablet-width}) {
         width: 100%;
-        bottom: 25%;
         padding: 0 var(--composer-gap-lg)
       }
 
       @container (max-width: #{$composer-phone-width}) {
+        top: 57%;
         padding: 0 var(--composer-gap-md)
       }
 

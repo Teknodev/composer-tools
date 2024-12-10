@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type Card = {
   image: string;
@@ -35,6 +36,12 @@ class Slider2 extends BaseSlider {
               key: "button",
               displayer: "Title",
               value: "Sonya",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Title Link",
+              value: "",
             },
             {
               type: "string",
@@ -68,6 +75,12 @@ class Slider2 extends BaseSlider {
               value: "Baseball",
             },
             {
+              type: "page",
+              key: "url",
+              displayer: "Title Link",
+              value: "",
+            },
+            {
               type: "string",
               key: "number",
               displayer: "Number",
@@ -97,6 +110,12 @@ class Slider2 extends BaseSlider {
               key: "button",
               displayer: "Title",
               value: "Kitchen",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Title Link",
+              value: "",
             },
             {
               type: "string",
@@ -130,6 +149,12 @@ class Slider2 extends BaseSlider {
               value: "biker",
             },
             {
+              type: "page",
+              key: "url",
+              displayer: "Title Link",
+              value: "",
+            },
+            {
               type: "string",
               key: "number",
               displayer: "Number",
@@ -160,6 +185,12 @@ class Slider2 extends BaseSlider {
               key: "button",
               displayer: "Title",
               value: "Born Wild",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Title Link",
+              value: "",
             },
             {
               type: "string",
@@ -196,7 +227,8 @@ class Slider2 extends BaseSlider {
   render() {
 
     const settings = {
-      autoplay: true,
+      arrows: false,
+      autoplay: false,
       dots: false,
       infinite: true,
       speed: 1000,
@@ -232,7 +264,6 @@ class Slider2 extends BaseSlider {
           this.setComponentState("text", this.castToString(nextSlideData?.text));
         }, 200);
       },
-
     };
 
     return (
@@ -254,12 +285,11 @@ class Slider2 extends BaseSlider {
                   />
                 );
               })}
-
             </div>
           </div>
-          <div className={this.decorateCSS("text-box")}>
+          {this.getComponentState("text") && <div className={this.decorateCSS("text-box")}>
             <Base.P className={`${this.decorateCSS("text")} ${this.getComponentState("text_visibility") && this.decorateCSS("visible")}`}>{this.getComponentState("text")}</Base.P>
-          </div>
+          </div>}
           <ComposerSlider
             {...settings}
             className={this.decorateCSS("carousel")}>
@@ -269,6 +299,7 @@ class Slider2 extends BaseSlider {
 
                 return <div key={indexSlider} className={this.decorateCSS("card")}>
                   <button className={this.decorateCSS("button")} onMouseOver={() => {
+
                     const isIndexSame = this.getComponentState("active_index") === indexSlider;
                     if (isIndexSame) return;
 
@@ -279,18 +310,19 @@ class Slider2 extends BaseSlider {
                       this.setComponentState("text", this.castToString(item.text));
                     }, 200);
                   }}>
-                    {this.castToString(item.number) &&
-                      <p className={this.decorateCSS("number")}>{item.number}</p>}
-                    {this.castToString(item.button) &&
-                      <span className={`${this.decorateCSS("text")} ${isActive && this.decorateCSS("active")}`}>{item.button}</span>}
+                    <ComposerLink key={indexSlider} path={item.url}>
+                      {this.castToString(item.number) &&
+                        <p className={this.decorateCSS("number")}>{item.number}</p>}
+                      {this.castToString(item.button) &&
+                        <span className={`${this.decorateCSS("text")} ${isActive && this.decorateCSS("active")}`}>{item.button}</span>}
+                    </ComposerLink>
                   </button>
-
                 </div>
               }
             )}
           </ComposerSlider>
         </Base.MaxContent>
-      </Base.Container>
+      </Base.Container >
     );
   }
 }
