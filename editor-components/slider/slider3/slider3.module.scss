@@ -44,7 +44,7 @@
                 }
             }
 
-            .no-arrows{
+            .no-arrows {
                 margin-bottom: 0;
             }
 
@@ -83,15 +83,27 @@
             .carousel {
                 width: 100%;
 
-                >div{
-                    >div{
+                >div {
+                    >div {
                         display: flex;
                         height: 100%;
-                        >div{
+
+                        >div {
                             height: auto;
-                            >div{
+                            width: 800px;
+                            
+                            @container (max-width: #{$composer-tablet-width}) {
+                                width: 500px;
+                            }
+
+                            @container (max-width: #{$composer-phone-width}) {
+                                width: auto;
+                            }
+
+                            >div {
                                 height: 100%;
-                                >div{
+
+                                >div {
                                     height: 100%;
                                     display: flex;
                                 }
@@ -102,6 +114,14 @@
 
                 >ul {
                     bottom: 0;
+
+                    >li {
+                        >button {
+                            &::before {
+                                color: var(--composer-font-color-primary);
+                            }
+                        }
+                    }
                 }
 
                 .card {
@@ -155,6 +175,7 @@
                         transition: opacity 0.5s ease;
                         padding: var(--composer-gap-xl) 0 var(--composer-gap-md) 0;
                         gap: var(--composer-gap-md);
+                        width: 100%;
 
                         @container (max-width: #{$composer-phone-width}) {
                             padding: var(--composer-gap-md) var(--composer-gap-md);

@@ -169,7 +169,7 @@ class Slider3 extends BaseSlider {
       dots: false,
       infinite: true,
       speed: 1000,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 3000,
       slidesToShow: visibleItemCount,
       variableWidth: true,
