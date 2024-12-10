@@ -18,13 +18,6 @@ class Download4 extends BaseDownload {
 
     this.addProp({
       type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "Full Time",
-    });
-
-    this.addProp({
-      type: "string",
       key: "title",
       displayer: "Title",
       value: "Download app",
@@ -120,12 +113,10 @@ class Download4 extends BaseDownload {
   }
 
   render() {
-    const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
     const image = this.getPropValue("image");
 
-    const subtitleExist = this.castToString(subtitle);
     const titleExist = this.castToString(title);
     const descriptionExist = this.castToString(description);
 
@@ -134,7 +125,6 @@ class Download4 extends BaseDownload {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
             <Base.VerticalContent className={this.decorateCSS("header")}>
-              {subtitleExist && <Base.SectionSubTitle>{subtitle}</Base.SectionSubTitle>}
               {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
               {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
             </Base.VerticalContent>
@@ -149,12 +139,10 @@ class Download4 extends BaseDownload {
                       </div>
                     ) : (
                       (item.buttonIcon || buttonTextExist) && (
-                        <div className={this.decorateCSS("button")}>
-                          <Base.Button>
-                            {item.buttonIcon && <ComposerIcon name={item.buttonIcon} propsIcon={{ className: this.decorateCSS("icon") }} />}
-                            {buttonTextExist && item.buttonText && <Base.P className={this.decorateCSS("text")}>{item.buttonText}</Base.P>}
-                          </Base.Button>
-                        </div>
+                        <Base.Button className={this.decorateCSS("button")}>
+                          {item.buttonIcon && <ComposerIcon name={item.buttonIcon} propsIcon={{ className: this.decorateCSS("icon") }} />}
+                          {buttonTextExist && item.buttonText && <Base.P className={this.decorateCSS("text")}>{item.buttonText}</Base.P>}
+                        </Base.Button>
                       )
                     )}
                   </ComposerLink>
