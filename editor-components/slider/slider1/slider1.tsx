@@ -196,18 +196,18 @@ class Slider1 extends BaseSlider {
                   </div>
 
                   <div className={this.decorateCSS("content")}>
-                    <Base.VerticalContent className={`${this.decorateCSS("box")} ${item.image && this.decorateCSS("with-img")}`}>
-                      {this.castToString(item.subtitle) && < Base.SectionSubTitle
-                        className={`
+                    {(this.castToString(item.subtitle) || this.castToString(item.title)) &&
+                      <Base.VerticalContent className={`${this.decorateCSS("box")} ${item.image && this.decorateCSS("with-img")}`}>
+                        {this.castToString(item.subtitle) && <Base.SectionSubTitle
+                          className={`
                         ${this.decorateCSS("subtitle")} 
-                        ${item.image && this.decorateCSS("with-img")}
-                        `}>
-                        {item.subtitle}
-                      </Base.SectionSubTitle>}
-                      {this.castToString(item.title) && <Base.SectionTitle className={`${this.decorateCSS("title")} ${item.image && this.decorateCSS("with-img")}`}>
-                        {item.title}
-                      </Base.SectionTitle>}
-                    </Base.VerticalContent>
+                        ${item.image && this.decorateCSS("with-img")}`}>
+                          {item.subtitle}
+                        </Base.SectionSubTitle>}
+                        {this.castToString(item.title) && <Base.SectionTitle className={`${this.decorateCSS("title")} ${item.image && this.decorateCSS("with-img")}`}>
+                          {item.title}
+                        </Base.SectionTitle>}
+                      </Base.VerticalContent>}
                     {icons.length > 0 &&
                       <div className={this.decorateCSS("socials")}>
                         {icons.map((social: Social, index: number) => {

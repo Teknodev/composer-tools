@@ -6,6 +6,7 @@
 
     .max-content {
         max-width: unset;
+        position: relative;
 
         .slider-parent {
 
@@ -52,7 +53,6 @@
                         padding: var(--composer-gap-md) var(--composer-gap-xl);
                         z-index: 1;
                         height: 100%;
-                        width: 100%;
                         gap: var(--composer-gap-md);
                         justify-content: center;
 
@@ -64,10 +64,12 @@
 
                             .subtitle {
                                 letter-spacing: var(--composer-gap-xs);
+                                width: 95%;
                             }
 
                             .title {
                                 font-size: 8rem;
+                                width: 95%;
                             }
 
                             .with-img {
@@ -178,11 +180,13 @@
 
                                 .title {
                                     font-size: 4rem;
+                                    width: 92%;
                                 }
 
                                 .subtitle {
                                     font-size: 1.5rem;
                                     letter-spacing: var(--composer-gap-xs);
+                                    width: 92%;
                                 }
                             }
 
@@ -214,15 +218,18 @@
 
                         .content {
                             padding: var(--composer-gap-md) var(--composer-gap-md);
+                            width: 100%;
 
                             .box {
                                 .title {
                                     font-size: 2rem;
+                                    width: 87%;
                                 }
 
                                 .subtitle {
                                     letter-spacing: var(--composer-gap-xs);
                                     font-size: 1rem;
+                                    width: 87%;
                                 }
                             }
 
