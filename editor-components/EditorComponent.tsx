@@ -78,11 +78,11 @@ export type TypeUsableComponentProps = {
   additionalParams?: { selectItems?: string[]; maxElementCount?: number };
   max?: number;
 } & AvailablePropTypes & {
-    getPropValue?: (
-      propName: string,
-      properties?: GetPropValueProperties
-    ) => any;
-  };
+  getPropValue?: (
+    propName: string,
+    properties?: GetPropValueProperties
+  ) => any;
+};
 
 export enum CATEGORIES {
   NAVIGATOR = "navigator",
@@ -104,13 +104,13 @@ export enum CATEGORIES {
   FEATURE = "feature",
   IMAGEGALLERY = "imageGallery",
   LOCATION = "Location",
+  HTTP_CODES = "HTTPCodes",
 }
 
 //@ts-ignore
 export abstract class Component
   extends React.Component<{}, { states: any; componentProps: any }>
-  implements iComponent
-{
+  implements iComponent {
   private styles: any;
   private _props: any;
   public customStates: any = {};
@@ -553,7 +553,7 @@ export abstract class BaseCallToAction extends Component {
       url: process.env.REACT_APP_API_URL
         ? process.env.REACT_APP_API_URL
         : process.env.NEXT_PUBLIC_PUBLIC_URL +
-          "/fn-execute/project/insert-form",
+        "/fn-execute/project/insert-form",
     };
     return axios.request(config).then((r: any) => r.data);
   }
@@ -566,7 +566,9 @@ export abstract class BaseSlider extends Component {
 export abstract class BaseFAQ extends Component {
   protected category = CATEGORIES.FAQ;
 }
-
+export abstract class BaseHTTPCodes extends Component {
+  protected category = CATEGORIES.HTTP_CODES;
+}
 export abstract class BaseImageGallery extends Component {
   protected category = CATEGORIES.IMAGEGALLERY;
 }
@@ -659,7 +661,7 @@ export abstract class BaseContacts extends Component {
       url: process.env.REACT_APP_API_URL
         ? process.env.REACT_APP_API_URL
         : process.env.NEXT_PUBLIC_PUBLIC_URL +
-          "/fn-execute/project/insert-form",
+        "/fn-execute/project/insert-form",
     };
     return axios.request(config).then((r: any) => r.data);
   }
