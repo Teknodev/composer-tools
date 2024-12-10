@@ -232,7 +232,7 @@ class Header2 extends BaseHeader {
       dots: true,
       infinite: true,
       speed: 500,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 5000,
       slidesToShow: 1,
       slidesToScroll: 1,
