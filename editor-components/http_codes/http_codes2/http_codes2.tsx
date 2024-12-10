@@ -51,22 +51,24 @@ class HTTP_CODES2 extends BaseHTTPCodes {
     const title = this.getPropValue("title");
     const label_404 = this.getPropValue("404");
     const home = this.castToString(this.getPropValue("home"));
-    const words = title.props.html.split(" ");
-    const errorCode = label_404.props.html;
 
     return (
       <Base.Container className={this.decorateCSS("container")} style={{ backgroundImage: `url(${this.getPropValue("backgroundImage")})` }} >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
-            {(words.length > 0) && (
+            {(this.castToString(label_404) || this.castToString(title)) && (
               <div className={this.decorateCSS("left-side")}>
                 <div className={this.decorateCSS("left-text")}>
-                  <div className={this.decorateCSS("title")}>{words[0]}</div>
-                  <div className={this.decorateCSS("error-code")}>
-                    {errorCode.length > 0 && <div className={this.decorateCSS("label-404")}>{errorCode}</div>}
-                    <div className={this.decorateCSS("title")}>{words[1]}</div>
-                  </div>
-                  <div className={this.decorateCSS("title")}>{words.slice(2).join(" ")}</div>
+                  {this.castToString(label_404) && (
+                    <div className={this.decorateCSS("error-message")}>
+                      <div className={this.decorateCSS("text")}>
+                        {label_404}
+                      </div>
+                    </div>
+                  )}
+                  {this.castToString(title) && (
+                    <div className={this.decorateCSS("title")}>{title}</div>
+                  )}
                 </div>
               </div>
             )}
