@@ -1,6 +1,7 @@
 import * as React from "react";
 import styles from "./content22.module.scss";
 import { BaseContent } from "../../EditorComponent";
+import { Base } from "../../../composer-base-components/base/base";
 class ContentComponent22 extends BaseContent {
   constructor(props?: any) {
     super(props, styles);
@@ -105,13 +106,13 @@ class ContentComponent22 extends BaseContent {
 
 
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           {
             header && <div className={this.decorateCSS("header")}>
-              <span className={this.decorateCSS("title")}>{header[0].value}</span>
-              {header[2].value && <div className={this.decorateCSS("line")}></div>}
-              <p className={this.decorateCSS("subtitle")}>{header[1].value}</p>
+              <Base.H2 className={this.decorateCSS("title")}>{header[0].value}</Base.H2>
+              {header[0].value && header[1].value && header[2].value && <div className={this.decorateCSS("line")}></div>}
+              <Base.H3 className={this.decorateCSS("subtitle")}>{header[1].value}</Base.H3>
             </div>
           }
           {
@@ -123,8 +124,8 @@ class ContentComponent22 extends BaseContent {
           {
             image_three && <div className={this.decorateCSS("image-box")}><img className={this.decorateCSS("image")} src={image_three} /></div>
           }
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
 
     );
   }

@@ -12,13 +12,10 @@
       }
 
       .description {
-        color: var(--composer-font-color-primary);
-        font-size: 1.5rem;
-        opacity: 0.5;
+        color: var(--composer-tertiary-color);
       }
 
-      .buttons-container,
-      .buttons-container-center {
+      .buttons-container {
         display: flex;
         align-items: center;
         width: 100%;
@@ -26,39 +23,15 @@
         gap: var(--composer-gap-sm);
       }
 
-      .buttons-container-center {
-        justify-content: center;
-      }
-
       .button {
-        cursor: pointer;
-        padding: var(--composer-gap-xs) var(--composer-gap-sm);
-        transition: 0.5s;
-        color: var(--composer-font-color-primary);
-        background-color: var(--composer-secondary-color);
-        box-shadow: var(--box-shadow-active);
-        border: none;
-        border-radius: var(--composer-border-radius-xl);
-        font-size: 1rem;
         display: flex;
         align-items: center;
         justify-content: center;
         min-height: var(--composer-gap-xl);
-        gap: var(--composer-gap-xs);
-
-        &:hover {
-          background-color: var(--composer-primary-color);
-          color: var(--composer-font-color-secondary);
-          border: none;
-        }
       }
 
       .button_text {
-        content: "";
-      }
-
-      .icon {
-        font-size: 2.5rem;
+        margin: 0;
       }
     }
 
@@ -79,6 +52,7 @@
       .image {
         width: 100%;
         height: 100%;
+        min-height: 500px;
         object-fit: cover;
       }
     }
@@ -101,6 +75,11 @@
           font-size: 1rem;
         }
       }
+      .right-column {
+        .image {
+          min-height: 300px;
+        }
+      }
     }
   }
 }
@@ -113,11 +92,11 @@
       .left-column {
         width: 100%;
 
-        .button-element {
-          width: 100%;
-          .button {
-            width: 100%;
-          }
+        .buttons-container {
+          display: flex;
+          flex-direction: column;
+          align-items: unset;
+          gap: var(--composer-gap-sm);
         }
       }
       .right-column {

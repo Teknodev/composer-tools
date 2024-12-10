@@ -66,12 +66,6 @@ class Download6 extends BaseDownload {
               displayer: "Button Link",
               value: "",
             },
-            {
-              type: "icon",
-              key: "icon",
-              displayer: "Button Icon",
-              value: "IoIosArrowRoundForward",
-            },
           ],
         },
       ],
@@ -115,7 +109,7 @@ class Download6 extends BaseDownload {
               {this.castToString(leftcolumn.description) && <Base.SectionDescription className={this.decorateCSS("description")}>{leftcolumn.description}</Base.SectionDescription>}
 
               {buttons?.length > 0 && (
-                <div className={alignmentValue === "left" ? this.decorateCSS("buttons-container") : this.decorateCSS("buttons-container-center")}>
+                <div className={this.decorateCSS("buttons-container")}>
                   {buttons.map((button: Button, index: number) => {
                     const buttonTextExist = this.castToString(button.button_text);
                     const buttonExist = button.icon || buttonTextExist;
@@ -124,17 +118,7 @@ class Download6 extends BaseDownload {
                       buttonExist && (
                         <div className={this.decorateCSS("button-element")}>
                           <ComposerLink key={index} path={button.link} isFullWidth={false}>
-                            <button className={this.decorateCSS("button")}>
-                              {buttonTextExist && <Base.P className={this.decorateCSS("button_text")}>{button.button_text}</Base.P>}
-                              {button.icon && (
-                                <ComposerIcon
-                                  name={button.icon}
-                                  propsIcon={{
-                                    className: this.decorateCSS("icon"),
-                                  }}
-                                />
-                              )}
-                            </button>
+                            <Base.Button className={this.decorateCSS("button")}>{buttonTextExist && <Base.P className={this.decorateCSS("button_text")}>{button.button_text}</Base.P>}</Base.Button>
                           </ComposerLink>
                         </div>
                       )
