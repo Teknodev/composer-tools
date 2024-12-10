@@ -1,34 +1,22 @@
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+
 .container {
-  width: 100%;
-  padding: 50px 50px;
-  background-color: var(--composer-html-background);
-
   .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
-
     .image-container {
-      width: 100%;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-
       .card {
-        display: flex;
-        justify-content: center;
         width: 100%;
         position: relative;
-
+        cursor: pointer;
+        border-radius: var(--composer-border-radius-sm);
+        overflow: hidden;
 
         .image {
           width: 100%;
-          height: 320px;
+          aspect-ratio: 1;
           display: flex;
           justify-content: center;
           position: relative;
           object-fit: cover;
-          transition: filter 0.3s ease;
           z-index: 1;
         }
 
@@ -43,55 +31,36 @@
           justify-content: center;
           align-items: center;
           text-align: center;
+          transition: all 0.3s ease;
+          z-index: 2;
+          background-color: var(--composer-overlay-color);
 
-          &.text-visible{
+          &.text-visible {
             opacity: 1;
-            .title{
-              color: var(--composer-font-color-primary);
-            }
           }
         }
 
         .category .title {
-          font-size: 2rem;
           color: white;
           position: relative;
-          z-index: 2;
-          word-break: break-all;
+          word-break: break-word;
         }
-      }
-
-      .card:hover .image {
-        filter: brightness(20%);
       }
 
       .card:hover .category {
         opacity: 1;
-        z-index: 2;
       }
-
-      
     }
   }
 }
 
-@media only screen and (max-width: 768px) {
-  .container {
-    padding: 20px 0px;
-
-    .max-content {
-      .image-container {
-        .card {
-          height: 300px !important;
-          width: 300px !important;
-          overflow: hidden;
-          position: relative;
-
-          .image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-
+@media (max-width: $composer-tablet-width-lg) {
+  .container{
+    .max-content{
+      .image-container{
+        .card{
+          .category{
+            opacity: 1;
           }
         }
       }

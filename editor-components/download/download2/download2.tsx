@@ -225,6 +225,7 @@ class Download2 extends BaseDownload {
 
     const titleExist = this.castToString(title);
     const descriptionExist = this.castToString(description);
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -242,7 +243,7 @@ class Download2 extends BaseDownload {
                 const descriptionExist = this.castToString(card.description);
                 const buttonTextExist = this.castToString(card.buttonText);
                 return (
-                  <Base.VerticalContent className={this.decorateCSS("card")} key={index}>
+                  <div className={this.decorateCSS("card")} key={index}>
                     {card.icon && (
                       <div className={this.decorateCSS("icon-container")}>
                         <ComposerIcon name={card.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
@@ -251,9 +252,9 @@ class Download2 extends BaseDownload {
 
                     {deviceExist && <Base.P className={this.decorateCSS("device")}>{card.device}</Base.P>}
 
-                    {platformExist && <Base.SectionTitle className={this.decorateCSS("platform")}>{card.platform}</Base.SectionTitle>}
+                    {platformExist && <Base.P className={this.decorateCSS("platform")}>{card.platform}</Base.P>}
 
-                    {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{card.description}</Base.SectionDescription>}
+                    {descriptionExist && <Base.P className={this.decorateCSS("description")}>{card.description}</Base.P>}
 
                     {(card.buttonLogo || card.buttonText) && (
                       <div className={this.decorateCSS("button-container")}>
@@ -261,21 +262,23 @@ class Download2 extends BaseDownload {
                           {card?.buttonLogo ? (
                             <img src={card?.buttonLogo} alt="" className={this.decorateCSS("image")} />
                           ) : (
-                            <div>
-                              {(buttonTextExist || card.buttonIcon) && (
-                                <div className={this.decorateCSS("button")}>
-                                  <div>
-                                    <ComposerIcon name={card.buttonIcon} propsIcon={{ className: this.decorateCSS("button-icon") }} />
+                            buttonTextExist && (
+                              <Base.Button className={this.decorateCSS("button-element")}>
+                                {(buttonTextExist || card.buttonIcon) && (
+                                  <div className={this.decorateCSS("button")}>
+                                    <div>
+                                      <ComposerIcon name={card.buttonIcon} propsIcon={{ className: this.decorateCSS("button-icon") }} />
+                                    </div>
+                                    <Base.P className={this.decorateCSS("button-text")}>{card.buttonText}</Base.P>
                                   </div>
-                                  <Base.P className={this.decorateCSS("button-text")}>{card.buttonText}</Base.P>
-                                </div>
-                              )}
-                            </div>
+                                )}
+                              </Base.Button>
+                            )
                           )}
                         </ComposerLink>
                       </div>
                     )}
-                  </Base.VerticalContent>
+                  </div>
                 );
               })}
             </Base.ListGrid>

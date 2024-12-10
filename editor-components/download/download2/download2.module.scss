@@ -11,6 +11,9 @@
     .cards-container {
       .cards {
         .card {
+          display: flex;
+          flex-direction: column;
+          gap: var(--composer-gap-md);
           padding: var(--composer-gap-md);
           background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
           border-radius: var(--composer-border-radius-xl);
@@ -22,59 +25,71 @@
             border-radius: 50%;
             margin-bottom: var(--composer-gap-md);
             transition: 0.5s;
+            width: fit-content;
 
             .icon {
               font-size: 2rem;
               color: var(--composer-font-color-primary);
             }
-
-            &:hover {
-              background-color: var(--composer-font-color-primary);
-              .icon {
-                color: var(--composer-font-color-secondary);
-              }
-            }
           }
 
           .device {
+            font-size: 1rem;
             color: var(--composer-font-color-primary);
+            margin: 0;
+          }
+
+          .platform {
+            font-size: 2rem;
+            color: var(--composer-font-color-primary);
+            margin: 0;
           }
 
           .description {
+            font-size: 1rem;
             color: var(--composer-font-color-primary);
+            margin: 0;
           }
 
           .button-container {
-            .button {
-              background-color: var(--composer-secondary-color);
-              color: var(--composer-font-color-secondary);
-              padding: var(--composer-gap-xs);
-              border-radius: var(--composer-border-radius-xl);
-              border: none;
-              min-width: 200px;
-              margin-top: calc(3 * var(--composer-gap-sm));
+            .button-element {
               display: flex;
-              align-items: center;
               justify-content: center;
-              gap: var(--composer-gap-sm);
-              cursor: pointer;
+              margin-top: var(--composer-gap-md);
+              min-width: 200px;
 
-              .button-icon {
-                font-size: 1.5rem;
-              }
-              .button-text {
-                content: "";
+              .button {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: var(--composer-gap-sm);
+
+                .button-icon {
+                  font-size: 1.5rem;
+                }
+                .button-text {
+                  content: "";
+                }
               }
             }
+
             .image {
-              max-width: 250px;
               max-width: 200px;
               cursor: pointer;
             }
           }
 
           &:hover {
-            background-color: var(--composer-primary-color);
+            background-color: var(--composer-font-color-primary);
+
+            .icon-container {
+              background-color: var(--composer-font-color-secondary);
+
+              .icon {
+                color: var(--composer-font-color-primary);
+              }
+            }
+
             .device,
             .platform,
             .description {
