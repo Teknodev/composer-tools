@@ -18,7 +18,7 @@ class HTTP_CODES2 extends BaseHTTPCodes {
       type: "image",
       key: "backgroundImage",
       displayer: "Background Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6708e99597fe08002c753614?alt=media&timestamp=1728637379799",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675828500655f8002ca53fbd?alt=media",
     });
 
     this.addProp({
