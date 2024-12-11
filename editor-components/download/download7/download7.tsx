@@ -163,7 +163,7 @@ class Download7 extends BaseDownload {
                                     name={button.icon}
                                   />
                                 )}
-                                <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                                {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
                               </Base.Button>
                             </ComposerLink>
                           </div>
