@@ -152,5 +152,10 @@
 
   .container .max-content .cards .right-cards .buttom-card .card {
     flex-direction: column;
+    gap: var(--composer-gap-md);
+
+    .title {
+      margin: 0;
+    }
   }
 }
