@@ -44,7 +44,7 @@
             position: absolute;
             padding: var(--composer-gap-xs);
             left: 0px;
-            bottom: 50px;
+            bottom: var(--composer-gap-xl);
             width: fit-content;
             background-color: var(--composer-primary-color);
             border-radius: var(--composer-border-radius-md);
@@ -108,7 +108,7 @@
               font-size: 7rem;
             }
             .error-message{
-              bottom: 30px;
+              bottom: calc(var(--composer-gap-sm) * 3);
             }
           }
           .line-right, .line-left{
@@ -133,9 +133,6 @@
             width: 80%;
             .title-text{
               font-size: 5.5rem;
-            }
-            .error-message{
-              bottom: 30px;
             }
           }
           .line-right, .line-left{
