@@ -157,7 +157,7 @@
 
 @container (max-width: #{$composer-phone-width-lg}) {
   .container {
-    padding: 20px 30px;
+    padding: var(--composer-gap-md) var(--composer-gap-lg);
 
     .max-content {
       position: relative;
