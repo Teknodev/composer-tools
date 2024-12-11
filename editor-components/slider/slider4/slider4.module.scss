@@ -22,11 +22,16 @@
 
         .header {
             @container(max-width: #{$composer-tablet-width}) {
-                padding: var(--composer-gap-md) var(--composer-gap-xl) 0 var(--composer-gap-md);
+                padding: var(--composer-gap-md) var(--composer-gap-lg) 0 var(--composer-gap-lg);
+            }
+
+            @container(max-width: #{$composer-phone-width}) {
+                padding: var(--composer-gap-md) var(--composer-gap-md) 0 var(--composer-gap-md);
             }
 
             .description {
                 color: var(--composer-tertiary-color);
+                margin-bottom: 0;
             }
         }
 
@@ -41,8 +46,6 @@
                 gap: 0;
             }
 
-
-
             .control-part {
                 flex: 1;
                 max-width: 100%;
@@ -56,7 +59,11 @@
                 gap: var(--composer-gap-sm);
 
                 @container(max-width: #{$composer-tablet-width}) {
-                    margin: 0 var(--composer-gap-md) 0 var(--composer-gap-md);
+                    margin: var(--composer-gap-md) var(--composer-gap-lg) 0 var(--composer-gap-lg);
+                }
+
+                @container(max-width: #{$composer-phone-width}) {
+                    margin: var(--composer-gap-md) var(--composer-gap-md) 0 var(--composer-gap-md);
                 }
 
                 .control-title {
@@ -201,7 +208,7 @@
                 }
             }
 
-            .no-control-part{
+            .no-control-part {
                 max-width: 100%;
             }
         }
