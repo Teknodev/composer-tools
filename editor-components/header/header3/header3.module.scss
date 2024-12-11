@@ -1,7 +1,11 @@
 @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
-@mixin transition {
+@mixin transitionAll {
   transition: all 1s ease-out;
+}
+
+@mixin transitionOpacity {
+  transition: opacity 0.1s linear;
 }
 
 @mixin textEllipsis($line, $important: "") {
@@ -11,6 +15,14 @@
     overflow: hidden;
     text-overflow: ellipsis;
     -webkit-line-clamp: $line#{$important};
+  }
+}
+
+@mixin lineBeforeTop($top, $important: "") {
+  &.bottom-section-line {
+    &::before {
+      top: $top#{$important};
+    }
   }
 }
 
@@ -46,32 +58,41 @@
         position: relative;
         height: 100%;
         opacity: 0;
-        @include transition;
 
-        &.start-animation {
+        &.animation {
           opacity: 1;
+          @include transitionAll;
 
           .content {
             left: 0vw;
+            @include transitionAll;
           }
 
           .text-container {
+            &.full-text-container {
+              left: 0;
+            }
+
             .title {
               top: 0;
               opacity: 1;
               @include textEllipsis(2);
+              @include transitionAll;
             }
             .bottom-section {
               bottom: 0;
               opacity: 1;
+              @include transitionAll;
             }
           }
 
           .image {
             right: 9vw;
-            box-shadow: rgba(114, 116, 101, 0.2) 0px 0px 20px;
+            opacity: 1;
+            border-radius: var(--composer-border-radius-xs);
+            @include transitionAll;
 
-            &.full-image{
+            &.full-image {
               right: 50% !important;
               transform: translateX(50%) !important;
             }
@@ -79,26 +100,33 @@
         }
 
         .content {
-          width: 100%;
+          width: calc(100% - 2vw);
           height: 32vw;
           margin-top: 5vw;
           background: white;
           position: relative;
           left: -100vw;
           border-radius: var(--composer-border-radius-sm);
-          @include transition;
+          box-shadow: 0 0 10px rgb(191, 191, 191);
+          margin: 5vw 1vw 1vw 1vw;
         }
 
         .text-container {
           padding: 5vw;
-          width: 40vw;
+          width: 45vw;
           position: absolute;
           top: 5vw;
           z-index: 1;
 
-          &.full-text-container{
-            width: 76vw;
+          &.full-text-container {
+            width: 100%;
             text-align: center;
+            top: 9.5vw;
+
+            .bottom-section {
+              width: max-content; 
+              max-width: 50vw; 
+            }
           }
 
           .title {
@@ -106,7 +134,7 @@
             position: relative;
             top: -40vh;
             opacity: 0;
-            @include transition;
+            @include transitionOpacity;
           }
 
           .bottom-section {
@@ -120,7 +148,7 @@
             gap: var(--composer-gap-lg);
             bottom: -20vw;
             opacity: 0;
-            @include transition;
+            @include transitionOpacity;
 
             .description {
               font-size: 1.5rem;
@@ -154,7 +182,13 @@
           top: 1vw;
           width: 50vw;
           height: 30vw;
-          @include transition;
+          opacity: 0;
+          box-shadow: rgba(114, 116, 101, 0.2) 0px 0px 20px;
+          @include transitionOpacity;
+
+          &.full-image {
+            top: 4vw;
+          }
         }
       }
     }
@@ -175,8 +209,8 @@
           }
 
           .bottom-section {
-            width: 30vw !important;
             gap: var(--composer-gap-md) !important;
+            
             .description {
               font-size: 1rem !important;
             }
@@ -191,9 +225,36 @@
   .container {
     .max-content {
       .slider {
+        .wrapper {
+          .content {
+            width: calc(100% - 4vw);
+            margin: 5vw 2vw 1vw 2vw;
+          }
+
+          &.animation{
+            .image {
+              right: 2vw;
+            }
+
+            .text-container {
+              left: 5vw;
+            }
+          }
+        }
+        .image {
+          box-shadow: rgba(114, 116, 101, 0.2) 0px 0px 10px !important;
+        }
         .text-container {
           .title {
             font-size: 1.5rem !important;
+          }
+
+          .bottom-section {
+            @include lineBeforeTop(2.5vw, !important);
+          }
+
+          &.full-text-container {
+            top: 5.5vw !important;
           }
         }
       }
@@ -205,17 +266,51 @@
   .container {
     .max-content {
       .slider {
+        height: 60vw;
+
+        .wrapper{
+          .content {
+            height: 50vw;
+          }
+        }
+
+        .image {
+          box-shadow: rgba(114, 116, 101, 0.2) 0px 0px 5px !important;
+          top: 0vw;
+          width: 70vw !important;
+          height: 40vw !important;
+
+          &.full-image {
+            top: 6.5vw !important;
+          }
+        }
+
         .text-container {
+          top: 12vw !important;
           padding: 0 !important;
+
           .title {
             font-size: 1rem !important;
           }
 
           .bottom-section {
+            width: 60vw !important;
             gap: var(--composer-gap-sm) !important;
-            .description {
-              font-size: 0.5rem !important;
+            &.bottom-section-line {
+              &::before {
+                display: none;
+              }
             }
+
+            .description {
+              font-size: 1em !important;
+              max-width: 75vw;
+              @include textEllipsis(2, !important);
+            }
+          }
+
+          &.full-text-container {
+            top: 9.5vw !important;
           }
         }
       }

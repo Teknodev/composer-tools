@@ -163,10 +163,6 @@ class Header3 extends BaseHeader {
 
     this.setComponentState("sliderRef", React.createRef());
     this.setComponentState("activeSlide", 0);
-    this.setComponentState("startAnimation", false);
-    setTimeout(() => {
-      this.setComponentState("startAnimation", true);
-    }, 1000);
   }
 
   getName(): string {
@@ -187,15 +183,12 @@ class Header3 extends BaseHeader {
       slidesToShow: 1,
       slidesToScroll: 1,
       beforeChange: (current: number, next: number) => {
-        this.setComponentState("activeSlide", next);
-        this.setComponentState("startAnimation", false);
         setTimeout(() => {
-          this.setComponentState("startAnimation", true);
-        }, 1000);
+          this.setComponentState("activeSlide", next);
+        }, 100);
       },
     };
 
-    const startAnimation = this.getComponentState("startAnimation");
     const activeSlide = this.getComponentState("activeSlide");
 
     return (
@@ -216,7 +209,7 @@ class Header3 extends BaseHeader {
                 <div
                   className={`${this.decorateCSS("wrapper")} ${
                     activeSlide % 2 === 0 && this.decorateCSS("reverse")
-                  } ${startAnimation && this.decorateCSS("start-animation")}`}
+                  } ${index === activeSlide && this.decorateCSS("animation")}`}
                 >
                   {showContent && (
                     <>
