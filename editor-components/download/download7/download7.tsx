@@ -58,7 +58,7 @@ class Download7 extends BaseDownload {
               type: "image",
               key: "image",
               displayer: "Button Image",
-              value: "",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67586eb80655f8002ca57e58?alt=media",
             },
             {
               type: "string",
@@ -89,7 +89,7 @@ class Download7 extends BaseDownload {
               type: "image",
               key: "image",
               displayer: "Button Image",
-              value: "",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6759e80e0655f8002ca61199?alt=media",
             },
             {
               type: "string",
@@ -148,7 +148,7 @@ class Download7 extends BaseDownload {
               {buttons?.length > 0 && (
                 <div className={backgroundImage ? this.decorateCSS("buttons-container-center") : alignmentValue === "left" ? this.decorateCSS("buttons-container") : alignmentValue === "center" ? this.decorateCSS("buttons-container-center") : ""}>
                   {buttons.map((button: Button, index: number) => {
-                    const imageExist = this.decorateCSS("button-image");
+                    const imageExist = button.image;
                     const buttonTextExist = this.castToString(button.text);
                     return !button.image
                       ? (buttonTextExist || button.icon) && (
