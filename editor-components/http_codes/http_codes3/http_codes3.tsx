@@ -68,7 +68,7 @@ class HTTP_CODES3 extends BaseHTTPCodes {
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
+        <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
             <div className={this.getPropValue("animationActive") ? this.decorateCSS("title-wrapper-animation") : this.decorateCSS("title-wrapper")}>
               {this.getPropValue("lineActive") && (
@@ -106,7 +106,7 @@ class HTTP_CODES3 extends BaseHTTPCodes {
               </ComposerLink>
             )}
           </div>
-        </Base.MaxContent>
+        </div>
       </Base.Container>
     );
   }

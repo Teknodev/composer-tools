@@ -35,6 +35,7 @@
           display: flex;
           position: relative;
           min-width: 500px;
+          width: 70%;
           .title-text{
             font-size: 8rem;
             color: var(--composer-font-color-primary);
@@ -47,7 +48,6 @@
             width: fit-content;
             background-color: var(--composer-primary-color);
             border-radius: var(--composer-border-radius-md);
-            
             .text{
               color: var(--composer-font-color-secondary);
               font-size: 1.5rem;
@@ -116,7 +116,34 @@
           }
         }
         .description, .description-animation {
+          width: 65%;
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+}
+@container (max-width: #{$composer-phone-width}){
+  .container{
+    .max-content{
+      .content{
+        .title-wrapper, .title-wrapper-animation{
           width: 100%;
+          .title{
+            width: 80%;
+            .title-text{
+              font-size: 5.5rem;
+            }
+            .error-message{
+              bottom: 30px;
+            }
+          }
+          .line-right, .line-left{
+            width: 100px;
+          }
+        }
+        .description, .description-animation {
+          width: 70%;
           font-size: 1.5rem;
         }
       }
