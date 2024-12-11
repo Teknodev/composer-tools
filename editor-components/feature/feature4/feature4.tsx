@@ -441,7 +441,6 @@ class Feature4 extends BaseFeature {
             {(subtitleExist || titleExist) && (
               <Base.VerticalContent
                 className={this.decorateCSS("featured-card")}
-                // style={{ width: `${95 / itemCount}%` }}
               >
                 {subtitleExist && (
                   <Base.SectionSubTitle className={this.decorateCSS("section-subtitle")}>
@@ -473,7 +472,6 @@ class Feature4 extends BaseFeature {
                   <div
                     key={index}
                     className={this.decorateCSS("card-item-count")}
-                    // style={{ width: 95 / itemCount + "%" }}
                   >
                     <Base.VerticalContent className={this.decorateCSS("vertical")}>
                       {!!card.icon && (
