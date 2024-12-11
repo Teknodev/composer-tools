@@ -140,7 +140,7 @@ class Download7 extends BaseDownload {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")} style={{ backgroundImage: `url(${this.getPropValue("image")})` }}>
-            {overlay && <div className={this.decorateCSS("overlay")}></div>}
+            {overlay && backgroundImage && <div className={this.decorateCSS("overlay")}></div>}
 
             <Base.VerticalContent className={backgroundImage ? this.decorateCSS("content-container") : this.decorateCSS("content-container-no-image")}>
               {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
@@ -154,7 +154,7 @@ class Download7 extends BaseDownload {
                       ? (buttonTextExist || button.icon) && (
                           <div className={this.decorateCSS("button-wrapper")} key={index}>
                             <ComposerLink path={button.link}>
-                              <button className={this.decorateCSS("button")}>
+                              <Base.Button className={this.decorateCSS("button")}>
                                 {button.icon && (
                                   <ComposerIcon
                                     propsIcon={{
@@ -164,7 +164,7 @@ class Download7 extends BaseDownload {
                                   />
                                 )}
                                 <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                              </button>
+                              </Base.Button>
                             </ComposerLink>
                           </div>
                         )
