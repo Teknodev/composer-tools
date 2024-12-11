@@ -162,7 +162,7 @@ class Slider1 extends BaseSlider {
       dots: false,
       infinite: true,
       speed: 500,
-      autoplay: false,
+      autoplay: true,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -199,7 +199,8 @@ class Slider1 extends BaseSlider {
                     {isOverlayActive && <div className={this.decorateCSS("overlay")}></div>}
                   </div>
 
-                  <div className={this.decorateCSS("content")}>
+                  <div className={`${this.decorateCSS("content")}
+                  ${icons.length > 7 && this.decorateCSS("two-row")}`}>
                     <div className={this.decorateCSS("box-parent")}>
                       {(this.castToString(item.subtitle) || this.castToString(item.title)) &&
                         <Base.VerticalContent className={`
@@ -241,16 +242,18 @@ class Slider1 extends BaseSlider {
 
             </ComposerSlider>
           </div>
-          {sliderItems.length > 1 && <ul className={`${this.decorateCSS(noImage ? "dots" : "dots-2")}`}>
-            {sliderItems.map((_, index) => (
-              <li
-                key={`dot-${index}`}
-                className={this.getComponentState("activeSlide") === index && this.decorateCSS("slick-active")}
-                onClick={() => this.getComponentState("slider-ref").current.slickGoTo(index)}>
-                <button />
-              </li>
-            ))}
-          </ul>}
+          {
+            sliderItems.length > 1 && <ul className={`${this.decorateCSS(noImage ? "dots" : "dots-2")}`}>
+              {sliderItems.map((_, index) => (
+                <li
+                  key={`dot-${index}`}
+                  className={this.getComponentState("activeSlide") === index && this.decorateCSS("slick-active")}
+                  onClick={() => this.getComponentState("slider-ref").current.slickGoTo(index)}>
+                  <button />
+                </li>
+              ))}
+            </ul>
+          }
         </Base.MaxContent >
       </Base.Container >
     );
