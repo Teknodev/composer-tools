@@ -79,7 +79,7 @@ class Download10 extends BaseDownload {
           type: "image",
           key: "buttonImage",
           displayer: "Button Image",
-          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/673f5276506a40002c2cf763?alt=media&timestamp=1732480085563",
+          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67586eb80655f8002ca57e58?alt=media",
         },
       ],
     };
@@ -202,17 +202,20 @@ class Download10 extends BaseDownload {
                 {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                 {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
                 {buttons.length > 0 && (
-                  <div className={alignmentValue === "left" ? this.decorateCSS("button-group") : alignmentValue === "center" ? this.decorateCSS("center-button-group") : null}>
+                  <div className={this.decorateCSS("button-group")}>
                     {this.castToObject<any[]>("buttons").map((item: any, index: number) => {
+                      const buttonTextExist = this.castToString(item.buttonText);
                       return (
                         <ComposerLink key={`dw-10-btn-${index}`} path={item.url}>
                           {item.buttonImage ? (
-                            <div className={this.decorateCSS("button")}>{item.buttonImage && <img src={item.buttonImage} alt="icon" className={this.decorateCSS("button-image")} />}</div>
+                            <img src={item.buttonImage} alt="icon" className={this.decorateCSS("button-image")} />
                           ) : (
-                            <div className={this.decorateCSS("button-element")}>
-                              <ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("button-icon") }} />
-                              <Base.P className={this.decorateCSS("button-text")}>{item.buttonText}</Base.P>
-                            </div>
+                            (buttonTextExist || item.icon) && (
+                              <Base.Button className={this.decorateCSS("button-element")}>
+                                {item.icon && <ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("button-icon") }} />}
+                                {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.buttonText}</Base.P>}
+                              </Base.Button>
+                            )
                           )}
                         </ComposerLink>
                       );
@@ -224,11 +227,7 @@ class Download10 extends BaseDownload {
                 <div className={this.decorateCSS("stats")}>
                   {reviewTitle && <Base.H5 className={this.decorateCSS("stats-title")}>{this.getPropValue("text1")}</Base.H5>}
                   <div className={this.decorateCSS("down-description")}>
-                    <div className={this.decorateCSS("stars")}>
-                      {icons.map((icon: any, index: number) => (
-                        <ComposerIcon name={icon.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
-                      ))}
-                    </div>
+                    <div className={this.decorateCSS("stars")}>{icons.map((icon: any, index: number) => icon.icon && <ComposerIcon name={icon.icon} propsIcon={{ className: this.decorateCSS("icon") }} />)}</div>
                     {reviewScore && <Base.P className={this.decorateCSS("info")}>{this.getPropValue("text2")}</Base.P>}
                   </div>
                 </div>
