@@ -5,6 +5,8 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Padding } from "@mui/icons-material";
+import { TiShoppingBag } from "react-icons/ti";
 
 type Slider = {
   subtitle: JSX.Element;
@@ -160,7 +162,7 @@ class Slider1 extends BaseSlider {
       dots: false,
       infinite: true,
       speed: 500,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -176,6 +178,8 @@ class Slider1 extends BaseSlider {
     const icons = this.castToObject<Social[]>("socials");
     const sliderItems = this.castToObject<Slider[]>("slider");
     const noImage = sliderItems[this.getComponentState("activeSlide")]?.image;
+
+    const alignmentValue = Base.getContentAlignment()
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -196,18 +200,25 @@ class Slider1 extends BaseSlider {
                   </div>
 
                   <div className={this.decorateCSS("content")}>
-                    {(this.castToString(item.subtitle) || this.castToString(item.title)) &&
-                      <Base.VerticalContent className={`${this.decorateCSS("box")} ${item.image && this.decorateCSS("with-img")}`}>
-                        {this.castToString(item.subtitle) && <Base.SectionSubTitle
-                          className={`
+                    <div className={this.decorateCSS("box-parent")}>
+                      {(this.castToString(item.subtitle) || this.castToString(item.title)) &&
+                        <Base.VerticalContent className={`
+                        ${this.decorateCSS("box")} 
+                      ${item.image && this.decorateCSS("with-img")}
+                      ${alignmentValue === "center" && this.decorateCSS("center")}`}>
+                          {this.castToString(item.subtitle) &&
+                            <Base.SectionSubTitle
+                              className={`
                         ${this.decorateCSS("subtitle")} 
                         ${item.image && this.decorateCSS("with-img")}`}>
-                          {item.subtitle}
-                        </Base.SectionSubTitle>}
-                        {this.castToString(item.title) && <Base.SectionTitle className={`${this.decorateCSS("title")} ${item.image && this.decorateCSS("with-img")}`}>
-                          {item.title}
-                        </Base.SectionTitle>}
-                      </Base.VerticalContent>}
+                              {item.subtitle}
+                            </Base.SectionSubTitle>}
+                          {this.castToString(item.title) && <Base.SectionTitle className={`${this.decorateCSS("title")} ${item.image && this.decorateCSS("with-img")}`}>
+                            {item.title}
+                          </Base.SectionTitle>}
+                        </Base.VerticalContent>}
+                    </div>
+
                     {icons.length > 0 &&
                       <div className={this.decorateCSS("socials")}>
                         {icons.map((social: Social, index: number) => {
