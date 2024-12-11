@@ -119,8 +119,14 @@ class list4 extends BaseList {
       key: "itemCount",
       displayer: "Item count in a row",
       value: 3,
-      max: 3,
     });
+    this.addProp({
+      type: "boolean",
+      key: "showIndex",
+      displayer: "Show Index",
+      value: true,
+    });
+
   }
 
   getName(): string {
@@ -139,7 +145,7 @@ class list4 extends BaseList {
               {this.getPropValue("title")}
             </Base.SectionTitle>
           </Base.VerticalContent>
-          <Base.ListGrid className={this.decorateCSS("card-child")} gridCount={{pc: this.getPropValue("itemCount"), tablet: 1}}>
+          <Base.ListGrid className={this.decorateCSS("card-child")} gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2 }}>
             {this.castToObject<Card[]>("content-card").map(
               (card: any, index: number) => (
                 <div
@@ -152,7 +158,7 @@ class list4 extends BaseList {
                     <div className={this.decorateCSS("line-3")}></div>
                     <div className={this.decorateCSS("line-4")}></div>
                   </div>
-                  <div className={this.decorateCSS("card-title")}>
+                  <div className={this.getPropValue("showIndex") ? this.decorateCSS("card-title") : this.decorateCSS("card-title-no-index")}>
                     {(index + 1).toLocaleString("en-US", {
                       minimumIntegerDigits: 2,
                       useGrouping: false,
@@ -165,25 +171,25 @@ class list4 extends BaseList {
                     <div className={this.decorateCSS("color-box")}>
                       {card.icon && (
                         <ComposerIcon
-                          name={card.icon} 
+                          name={card.icon}
                           propsIcon={{
-                          className: this.decorateCSS("icon")
+                            className: this.decorateCSS("icon")
                           }}
                         />
                       )}
-                      
-                      <Base.VerticalContent>
+
+                      <div className={this.decorateCSS("card-title-wrapper")}>
                         {card.title && (
-                          <Base.SectionTitle className={this.decorateCSS("card-subtitle")}>
+                          <div className={this.decorateCSS("card-subtitle")}>
                             {card.title}
-                          </Base.SectionTitle>
+                          </div>
                         )}
                         {card.description && (
-                          <Base.SectionDescription className={this.decorateCSS("card-description")}>
+                          <div className={this.decorateCSS("card-description")}>
                             {card.description}
-                          </Base.SectionDescription>
+                          </div>
                         )}
-                      </Base.VerticalContent>
+                      </div>
                     </div>
                   </div>
                 </div>
