@@ -63,10 +63,13 @@
                 .nextArrow,
                 .prevArrow {
                     color: var(--composer-tertiary-color);
-                    font-size: 3rem;
+                    width: 45px;
+                    height: 45px;
+                    cursor: pointer;
 
                     @container (max-width: #{$composer-tablet-width}) {
-                        font-size: 2.5rem;
+                        width: 35px;
+                        height: 35px;
                     }
                 }
 
@@ -145,6 +148,7 @@
                     z-index: 1;
                     max-width: 900px;
                     height: 100%;
+                    cursor: pointer;
 
                     @container (max-width: #{$composer-tablet-width}) {
                         max-width: 500px;
