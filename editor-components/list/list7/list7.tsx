@@ -5,8 +5,8 @@ import styles from "./list7.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
 type listItem = {
-  text: string;
-  title: string;
+  text: JSX.Element;
+  title: JSX.Element;
 }
 
 class List7 extends BaseList {
@@ -93,31 +93,43 @@ class List7 extends BaseList {
       value: 3,
       max: 4,
     });
+    this.addProp({
+      type: "boolean",
+      key: "showIndex",
+      displayer: "Show Index",
+      value: true,
+    });
   }
-  render(): ReactNode {
+  render() {
     const ListItems = this.castToObject<listItem[]>("list-items");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.ListGrid gridCount={{pc: this.getPropValue("itemCount")}}>
-            {ListItems.map((item: any, index: number) => (
-              <div
-                key={index}
-                className={this.decorateCSS("all-card")}
-              >
-                <Base.VerticalContent className={this.decorateCSS("item-content")}>
-                  <div className={this.decorateCSS("index")}>{index < 9 ? `0${index + 1}` : index + 1}</div>
-                  {this.castToString(item.title).trim() && (
-                    <Base.SectionTitle className={this.decorateCSS("title")}>{item.title}</Base.SectionTitle>
+          {(ListItems.length > 0) && (
+            <Base.ListGrid className={this.decorateCSS("card")} gridCount={{ pc: this.getPropValue("itemCount") }} >
+              {ListItems.map((item: any, index: number) => (
+                <div
+                  key={index}
+                  className={this.decorateCSS("all-card")}
+                >
+                  {(this.getPropValue("showIndex") || this.castToString(item.title) || this.castToString(item.text)) && (
+                    <div className={this.decorateCSS("item-content")}>
+                      {this.getPropValue("showIndex") && (
+                        <div className={this.decorateCSS("index")}>{index < 9 ? `0${index + 1}` : index + 1}</div>
+                      )}
+                      {this.castToString(item.title) && (
+                        <div className={this.decorateCSS("title")}>{item.title}</div>
+                      )}
+                      {this.castToString(item.text) && (
+                        <div className={this.decorateCSS("list-item-p")}>{item.text}</div>
+                      )}
+                    </div>
                   )}
-                  {this.castToString(item.text).trim() && (
-                    <Base.SectionDescription className={this.decorateCSS("list-item-p")}>{item.text}</Base.SectionDescription>
-                  )}
-                </Base.VerticalContent>
-              </div>
-            ))}
-          </Base.ListGrid>
+                </div>
+              ))}
+            </Base.ListGrid>
+          )}
         </Base.MaxContent>
       </Base.Container>
     );
