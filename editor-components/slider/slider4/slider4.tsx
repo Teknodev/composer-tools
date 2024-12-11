@@ -241,7 +241,7 @@ class Slider4 extends BaseSlider {
         {
           breakpoint: 960,
           settings: {
-            slidesToShow: Math.min(visibleItemCount, 3),
+            slidesToShow: Math.min(visibleItemCount, 2),
           },
         },
         {
