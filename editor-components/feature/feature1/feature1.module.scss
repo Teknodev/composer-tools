@@ -87,7 +87,8 @@
 
         &:has(.card:nth-child(1).mini):not(:has(.card:nth-child(2).mini)) {
           .card:nth-child(1).mini {
-            height: calc(50% - var(--composer-gap-md) / 2);
+            min-height: calc(50% - var(--composer-gap-md) / 2);
+            height: auto;
           }
         }
 
