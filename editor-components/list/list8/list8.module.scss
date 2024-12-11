@@ -1,120 +1,84 @@
-//container
+@import '../../../composer-base-components/base/utitilities/viewports.module.scss'; 
 .container {
   background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
     .max-content {
       .section {
         display: flex;
-        position: relative;
         flex-direction: column;
-
-        .h1-lowertext {
-          color: var(--composer-font-color-primary);
-          opacity: 0.5;
+        gap: var(--composer-gap-xl);
+        .section-wrapper{
+          .title{
+            content: "";
+          }
+  
+          .description {
+            color: var(--composer-tertiary-color);
+          }
         }
 
         .boxes {
-           margin-top: var(--composer-gap-xl);
-           row-gap: var(--composer-gap-xl);
-
+          gap: var(--composer-gap-xl);
           .boxlower {
             background-color: var(--composer-html-background);
             border-radius: var(--composer-border-radius-md);
             position: relative;
             padding: var(--composer-gap-xl);
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--composer-gap-md);
 
             .circle {
               position: absolute;
               left: 50%;
               top: 0px;
               transform: translate(-50%, -50%);
-              width: 4rem;
-              height: 4rem;
+              width: 5rem;
+              height: 5rem;
               border-radius: 50%;
-              font-size: 2rem;
-              color: var(--composer-font-color-primary);
-
-              display: inline-flex;
-              align-items: center;
-              justify-content: center;
-              text-align: center;
-              vertical-align: middle;
               border: 1px solid color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
               background-color: var(--composer-html-background);
-            }
-
-            .icon {
-              margin: var(--composer-gap-md) 0 var(--composer-gap-md) 0;
-              font-size: 4rem;
-              color: var(--composer-primary-color);
-            }
-
-            .titles {
+              display: flex;
               align-items: center;
               justify-content: center;
-
+              .index{
+                font-size: 3rem;
+                color: var(--composer-font-color-primary);
+              }
+            }
+            .icon-box{
+              .icon {
+                font-size: 4rem;
+                color: var(--composer-primary-color);
+              }
+            }
+            .titles {
+              display: flex;
+              flex-direction: column;
+              gap: var(--composer-gap-md);
+              text-align: center;
               .midwriting {
                 color: var(--composer-font-color-primary);
                 font-size: 1.5rem;
               }
-  
               .text {
-                color: var(--composer-font-color-primary);
-                opacity: 0.5;
+                color: var(--composer-tertiary-color);
+                font-size: 1rem;
               }
             }
           }
         }
         .button-box{
-          display: flex;
-          justify-content: center;
-
+          width: 100%;
+          >div{
+            width: 100% !important;
+            display: flex;
+            justify-content: center;
+          }
           .button {
-              margin: var(--composer-gap-md);
-              padding: var(--composer-gap-sm) var(--composer-gap-md);
-              max-width: fit-content;
-              align-self: center;
-              background-color: transparent;
-              color: var(--composer-primary-color);
-
-              border-color: var(--composer-secondary-color);
-              height: auto;
-              font-size: 1rem;
-              border-radius: var(--composer-border-radius-md);
-              border: 1px solid var(--composer-primary-color);
-              transition: 0.4s;
-            }
-        }
-
-        .button:hover {
-          background-color: var(--composer-primary-color);
-          color: var(--composer-font-color-secondary);
-          cursor: pointer;
+            content: "";
+          }
         }
       }
     }
-  }
-  
-  //container end
-  
-  // For Ipad
-  @media only screen and (max-width: 1024px) {
-    .max-content {
-  
-      .button {
-        max-width: fit-content !important;
-        height: auto;
-      }
-    }
-  }
-  
-  // For Mobile
-  @media only screen and (max-width: 425px) {
-    .max-content {
-  
-      .button {
-        max-width: fit-content;
-        height: auto;
-      }
-    }
-  }
+}

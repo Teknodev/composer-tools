@@ -9,18 +9,15 @@ import { Base } from "../../../composer-base-components/base/base";
 type listItem = {
   number: number;
   icon: JSX.Element;
-  title: string;
-  Text: string;
+  title: JSX.Element;
+  text: JSX.Element;
 };
 
-//CLASS
 class List8 extends BaseList {
-  //getName
   getName(): string {
     return "List 8";
   }
 
-  //constructor
   constructor(props?: any) {
     super(props, styles);
 
@@ -156,83 +153,84 @@ class List8 extends BaseList {
       key: "itemCount",
       displayer: "Item Count in a Row",
       value: 3,
-      max: 4
     });
   }
-  //end constructor
 
-  render(): ReactNode {
-    const ListItems = this.castToObject<listItem[]>("list-items");
+  render() {
+    const listItems = this.castToObject<listItem[]>("list-items");
     const title = this.getPropValue("title");
     const titledesc = this.getPropValue("titledesc");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <section id="section_id" className={this.decorateCSS("section")}>
-            {(this.castToString(title).trim() || this.castToString(titledesc).trim()) && (
-              <Base.VerticalContent>
-                {this.castToString(title).trim() && (
-                  <Base.SectionTitle className={this.decorateCSS("h1")}>
+          <div className={this.decorateCSS("section")}>
+            {(this.castToString(title) || this.castToString(titledesc)) && (
+              <Base.VerticalContent className={this.decorateCSS("section-wrapper")} >
+                {this.castToString(title) && (
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
                     {this.getPropValue("title")}
                   </Base.SectionTitle>
                 )}
-                {this.castToString(titledesc).trim() && (
-                  <Base.SectionDescription className={this.decorateCSS("h1-lowertext")}>
+                {this.castToString(titledesc) && (
+                  <Base.SectionDescription className={this.decorateCSS("description")}>
                     {this.getPropValue("titledesc")}
                   </Base.SectionDescription>
                 )}
               </Base.VerticalContent>
             )}
-            <Base.ListGrid
-              className={this.decorateCSS("boxes")}
-              gridCount={{ pc: this.getPropValue("itemCount") }}
-            >
-              {ListItems.map((item: any, index: number) => (
-                <div key={index} className={this.decorateCSS("boxlower")}>
-                  {item.getPropValue("number") && (
-                    <div className={this.decorateCSS("circle")}>
-                      {item.getPropValue("number")}
-                    </div>
-                  )}
-                  <div className={this.decorateCSS("icon-box")}>
+            {(listItems.length > 0) && (
+              <Base.ListGrid
+                className={this.decorateCSS("boxes")}
+                gridCount={{ pc: this.getPropValue("itemCount") }}
+              >
+                {listItems.map((item: any, index: number) => (
+                  <div key={index} className={this.decorateCSS("boxlower")}>
+                    {item.getPropValue("number") && (
+                      <div className={this.decorateCSS("circle")}>
+                        <div className={this.decorateCSS("index")}>
+                          {item.getPropValue("number")}
+                        </div>
+                      </div>
+                    )}
                     {item.icon && (
-                      <ComposerIcon
-                        name={item.icon}
-                        propsIcon={{
-                          className: this.decorateCSS("icon"),
-                        }}
-                      />
+                      <div className={this.decorateCSS("icon-box")}>
+                        <ComposerIcon
+                          name={item.icon}
+                          propsIcon={{
+                            className: this.decorateCSS("icon"),
+                          }}
+                        />
+                      </div>
+                    )}
+                    {(this.castToString(item.title) || this.castToString(item.text)) && (
+                      <div className={this.decorateCSS("titles")}>
+                        {this.castToString(item.title) && (
+                          <div className={this.decorateCSS("midwriting")}>
+                            {item.title}
+                          </div>
+                        )}
+                        {this.castToString(item.text) && (
+                          <div className={this.decorateCSS("text")}>
+                            {item.text}
+                          </div>
+                        )}
+                      </div>
                     )}
                   </div>
-                  {(this.castToString(item.title) || this.castToString(item.text)) && (
-                    <Base.VerticalContent className={this.decorateCSS("titles")}>
-                      {this.castToString(item.title).trim() && (
-                        <Base.P className={this.decorateCSS("midwriting")}>
-                          {item.title}
-                        </Base.P>
-                      )}
-                        {this.castToString(item.text).trim() && (
-                        <Base.P className={this.decorateCSS("text")}>
-                          {item.text}
-                        </Base.P>
-                      )}
-                    </Base.VerticalContent>
-                  )}
-                </div>
-              ))}
-            </Base.ListGrid>
-            
-            {this.castToString(this.getPropValue("button_text")).trim() && (
+                ))}
+              </Base.ListGrid>
+            )}
+            {this.castToString(this.getPropValue("button_text")) && (
               <div className={this.decorateCSS("button-box")}>
                 <ComposerLink path={this.getPropValue("button_url")}>
-                  <button className={this.decorateCSS("button")}>
+                  <Base.Button className={this.decorateCSS("button")}>
                     {this.getPropValue("button_text")}
-                  </button>
+                  </Base.Button>
                 </ComposerLink>
               </div>
             )}
-          </section>
+          </div>
         </Base.MaxContent>
       </Base.Container>
     );
