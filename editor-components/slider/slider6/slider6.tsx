@@ -312,7 +312,7 @@ class Slider6 extends BaseSlider {
                 <Base.VerticalContent className={this.decorateCSS("header")}>
                   {this.castToString(subtitle) &&
                     <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} 
-                    ${this.castToString(subtitle) && this.decorateCSS("no-title")}`}>
+                    ${!this.castToString(title) && this.decorateCSS("no-title")}`}>
                       {subtitle}
                     </Base.SectionSubTitle>}
                   {this.castToString(title) &&
@@ -375,11 +375,11 @@ class Slider6 extends BaseSlider {
                                 {item.image_description}
                               </Base.P>}
                             {this.castToString(item.buttonText) && (
-                              <Base.Button key={index} className={this.decorateCSS("button")}>
-                                <ComposerLink key={index} path={item.link}>
+                              <ComposerLink key={index} path={item.link}>
+                                <Base.Button key={index} className={this.decorateCSS("button")}>
                                   {item.buttonText}
-                                </ComposerLink>
-                              </Base.Button>
+                                </Base.Button>
+                              </ComposerLink>
                             )}
                           </Base.VerticalContent>}
                       </Base.ContainerGrid>
