@@ -169,7 +169,7 @@ class Slider3 extends BaseSlider {
       dots: false,
       infinite: true,
       speed: 1000,
-      autoplay: false,
+      autoplay: true,
       autoplaySpeed: 3000,
       slidesToShow: visibleItemCount,
       variableWidth: true,
@@ -204,21 +204,26 @@ class Slider3 extends BaseSlider {
     const title = this.getPropValue("title");
     const carouselClass = cardNumber === "1" ? "carousel--singleCard" : "carousel--multipleCards";
     const arrowsExist = (items.length > 1 && (previousArrow || nextArrow))
-
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(this.castToString(title) || this.castToString(subtitle) || previousArrow || nextArrow) &&
-            < Base.ContainerGrid className={this.decorateCSS("header")}>
-              <Base.VerticalContent className={`${this.decorateCSS("header-content")} ${!arrowsExist && this.decorateCSS("no-arrows")}`}>
-                {this.castToString(subtitle) &&
-                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>
-                }
-                {(this.castToString(title) || previousArrow || nextArrow) &&
-                  <Base.SectionTitle className={this.decorateCSS("title")}>
-                    {title}
-                  </Base.SectionTitle>}
-              </Base.VerticalContent>
+            <div className={`${this.decorateCSS("header")}
+            ${(!this.castToString(title) && !this.castToString(subtitle)) && this.decorateCSS("no-header-titles")}
+            `}>
+              {(this.castToString(subtitle) || this.castToString(title)) &&
+                <Base.VerticalContent className={`${this.decorateCSS("header-content")} 
+                ${!arrowsExist && this.decorateCSS("no-arrows")}`}>
+                  {this.castToString(subtitle) &&
+                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                      {subtitle}
+                    </Base.SectionSubTitle>
+                  }
+                  {this.castToString(title) &&
+                    <Base.SectionTitle className={this.decorateCSS("title")}>
+                      {title}
+                    </Base.SectionTitle>}
+                </Base.VerticalContent>}
 
               {arrowsExist &&
                 <div className={this.decorateCSS("arrows")}>
@@ -243,7 +248,7 @@ class Slider3 extends BaseSlider {
                       }}
                     />}
                 </div>}
-            </Base.ContainerGrid>}
+            </div>}
 
           <div className={this.decorateCSS("slider-parent")}>
             {isCardExist && (
@@ -269,8 +274,8 @@ class Slider3 extends BaseSlider {
                       {(this.castToString(item.header) || this.castToString(item.description)) &&
                         <Base.VerticalContent className={`${this.decorateCSS("content-container")} 
                       ${this.getComponentState("centerSlide") === index && this.decorateCSS("active")}`}>
-                          {this.castToString(item.header) && <Base.H2 className={this.decorateCSS("header")}>{item.header}</Base.H2>}
-                          {this.castToString(item.description) && <Base.P className={this.decorateCSS("description")}>{item.description}</Base.P>}
+                          {this.castToString(item.header) && <Base.H2 className={this.decorateCSS("content-title")}>{item.header}</Base.H2>}
+                          {this.castToString(item.description) && <Base.P className={this.decorateCSS("content-description")}>{item.description}</Base.P>}
                         </Base.VerticalContent>}
                     </div>
                   </ComposerLink>

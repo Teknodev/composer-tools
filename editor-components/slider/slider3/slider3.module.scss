@@ -16,6 +16,8 @@
             flex: 1;
             flex-wrap: nowrap;
             padding: var(--composer-gap-md) var(--composer-gap-xl);
+            width: 100%;
+            display: flex;
 
             @container (max-width: #{$composer-tablet-width}) {
                 padding: var(--composer-gap-md) var(--composer-gap-lg);
@@ -28,7 +30,7 @@
             .header-content {
                 flex: 1;
                 width: 100%;
-                margin-bottom: var(--composer-gap-lg);
+                margin-bottom: var(--composer-gap-xl);
                 max-width: var(--composer-content-width);
 
                 @container (max-width: #{$composer-phone-width}) {
@@ -75,10 +77,16 @@
 
         }
 
+        .no-header-titles {
+            padding: var(--composer-gap-lg) var(--composer-gap-xl);
 
+            @container (max-width: #{$composer-phone-width}) {
+                display: none;
+            }
+        }
 
         .slider-parent {
-            margin-top: var(--composer-gap-md);
+            margin: var(--composer-gap-md) 0;
 
             .carousel {
                 width: 100%;
@@ -91,7 +99,7 @@
                         >div {
                             height: auto;
                             width: 800px;
-                            
+
                             @container (max-width: #{$composer-tablet-width}) {
                                 width: 500px;
                             }
@@ -173,7 +181,7 @@
                     .content-container {
                         opacity: 0;
                         transition: opacity 0.5s ease;
-                        padding: var(--composer-gap-xl) 0 var(--composer-gap-md) 0;
+                        padding-top: var(--composer-gap-xl);
                         gap: var(--composer-gap-md);
                         width: 100%;
 
@@ -186,13 +194,13 @@
                             opacity: 1;
                         }
 
-                        .header {
+                        .content-title {
                             padding: 0;
                             margin: 0;
                             color: var(--composer-font-color-primary);
                         }
 
-                        .description {
+                        .content-description {
                             color: var(--composer-font-color-primary);
                         }
                     }
