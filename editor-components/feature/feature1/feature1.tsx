@@ -573,7 +573,7 @@ class Feature1 extends BaseFeature {
         } else {
           blocks.push(
             <Block>
-              <Card style={cards[i].mini ? { height: `275px` } : {}} data={cards[i]} />
+              <Card data={cards[i]} />
             </Block>
           );
           data.push(this.castToString(cards[i].title));
