@@ -110,6 +110,12 @@
           .card-center {
             flex-direction: column;
             justify-content: center;
+            gap: var(--composer-gap-md);
+
+            .title {
+              margin: 0;
+              width: fit-content;
+            }
           }
         }
       }
