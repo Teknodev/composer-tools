@@ -21,7 +21,7 @@ class Download11 extends BaseDownload {
             {
               type: "image",
               key: "image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6749b887506a40002c2f8ab0?alt=media&timestamp=1732884670612",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6759ab4b0655f8002ca5eca4?alt=media",
               displayer: "Image",
             },
             {
@@ -105,7 +105,7 @@ class Download11 extends BaseDownload {
             {
               type: "image",
               key: "image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6749b834506a40002c2f8a7a?alt=media&timestamp=1732884590972",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6759ac1d0655f8002ca5ecee?alt=media",
               displayer: "Image",
             },
           ],

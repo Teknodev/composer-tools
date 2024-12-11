@@ -16,9 +16,11 @@
           justify-content: center;
           padding: var(--composer-gap-md);
           box-shadow: var(--box-shadow-active);
+          display: flex;
+          flex-direction: column;
 
           .image {
-            width: 90%;
+            width: 100%;
             height: 250px;
             margin: 0 auto;
             margin-bottom: var(--composer-gap-lg);
@@ -29,21 +31,25 @@
 
       .left-card {
         width: 35%;
+        display: flex;
+        flex-direction: column;
       }
+
       .left-card-full {
         width: 100%;
       }
 
       .right-cards {
         width: 100%;
-        height: 100%;
         display: flex;
         flex-direction: column;
         gap: var(--composer-gap-md);
+        flex: 1;
 
         .upper-card {
           width: 100%;
-          min-height: 100%;
+          flex: 1;
+          display: flex;
 
           .card {
             background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
@@ -53,6 +59,7 @@
             align-items: center;
             gap: var(--composer-gap-xl);
             box-shadow: var(--box-shadow-active);
+            width: 100%;
 
             .left {
               content: "";
@@ -64,17 +71,21 @@
             }
           }
         }
+
         .buttom-card {
+          flex: 1;
+          display: flex;
+
           .card {
             background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
             border-radius: var(--composer-border-radius-xl);
-            padding: var(--composer-gap-sm);
-            height: 100%;
+            padding: var(--composer-gap-md);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: var(--composer-gap-md);
             box-shadow: var(--box-shadow-active);
+            width: 100%;
+
             .title {
               width: fit-content;
             }
