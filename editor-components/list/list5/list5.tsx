@@ -4,12 +4,14 @@ import React from "react";
 import styles from "./list5.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type ListItem = {
-  title: string;
+  title: JSX.Element;
   uppericon: JSX.Element;
   text: string;
   lowericon: JSX.Element;
+  url: string;
 }
 
 class List5 extends BaseList {
@@ -27,7 +29,7 @@ class List5 extends BaseList {
     this.addProp({
       type: "image",
       key: "image",
-      displayer: "Background Layout",
+      displayer: "Background Image",
       value:
         "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67484143506a40002c2f0020?alt=media",
     });
@@ -65,6 +67,12 @@ class List5 extends BaseList {
               displayer: "Lower Icon",
               value: "FaLongArrowAltRight",
             },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: "",
+            },
           ],
         },
         {
@@ -95,6 +103,12 @@ class List5 extends BaseList {
               key: "lowericon",
               displayer: "Lower Icon",
               value: "FaLongArrowAltRight",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: "",
             },
           ],
         },
@@ -127,6 +141,12 @@ class List5 extends BaseList {
               displayer: "LowerIcon",
               value: "FaLongArrowAltRight",
             },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: "",
+            },
           ],
         },
         {
@@ -158,6 +178,12 @@ class List5 extends BaseList {
               displayer: "Lower Icon",
               value: "FaLongArrowAltRight",
             },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: "",
+            },
           ],
         },
       ],
@@ -166,8 +192,13 @@ class List5 extends BaseList {
       type: "number",
       key: "itemCount",
       displayer: "Item Count in a Row",
-      value: 4,
-      max: 4,
+      value: 4
+    });
+    this.addProp({
+      type: "boolean",
+      key: "showIndex",
+      displayer: "Show Index",
+      value: true
     });
   }
   render(): ReactNode {
@@ -182,72 +213,81 @@ class List5 extends BaseList {
           }}
         >
           <Base.MaxContent className={this.decorateCSS("max-content")}>
-            <Base.VerticalContent>
-              {this.castToString(this.getPropValue("header")).trim() && (
+            {this.castToString(this.getPropValue("header")) && (
+              <Base.VerticalContent className={this.decorateCSS("header")}>
                 <Base.SectionTitle className={this.getPropValue("image") ? this.decorateCSS("header-dark") : this.decorateCSS("header-light")}>
                   {this.getPropValue("header")}
                 </Base.SectionTitle>
-              )}
-              <Base.ListGrid 
-                className={this.decorateCSS("grid")} 
-                gridCount={{pc: this.getPropValue("itemCount")}}
+              </Base.VerticalContent>
+            )}
+            {(ListItems.length > 0) && (
+              <Base.ListGrid
+                className={this.decorateCSS("grid")}
+                gridCount={{ pc: this.getPropValue("itemCount") }}
               >
                 {ListItems.map(
                   (listItem: any, index: number) => {
-                  return (
-                    <div className={this.decorateCSS("item-box")}>
-                      <div
-                        key={index}
-                        className={this.getPropValue("image") ? this.decorateCSS("item-container-dark") : this.decorateCSS("item-container")}
-                      >
-                        <Base.VerticalContent>
-                          <div className={this.decorateCSS("header-line")}>
-                            {listItem.uppericon && (
-                              <div className={this.decorateCSS("out-icon")}>
-                                <div className={this.decorateCSS("icon")}>
-                                  <ComposerIcon
-                                    name={listItem.uppericon}
-                                    propsIcon={{
-                                    className: this.decorateCSS("_icon"),
-                                  }}
-                                  />
-                                </div>
+                    return (
+                      <div className={this.decorateCSS("item-box")}>
+                        <ComposerLink path={listItem.url}>
+                          <div
+                            key={index}
+                            className={this.getPropValue("image") ? this.decorateCSS("item-container-dark") : this.decorateCSS("item-container")}
+                          >
+                            {(listItem.uppericon || this.getPropValue("showIndex")) && (
+                              <div className={this.decorateCSS("header-line")}>
+                                {listItem.uppericon && (
+                                  <div className={this.decorateCSS("left")}>
+                                    <div className={this.decorateCSS("out-icon")}>
+                                      <div className={this.decorateCSS("icon-wrapper")}>
+                                        <ComposerIcon
+                                          name={listItem.uppericon}
+                                          propsIcon={{
+                                            className: this.decorateCSS("icon"),
+                                          }}
+                                        />
+                                      </div>
+                                    </div>
+                                  </div>
+                                )}
+                                {this.getPropValue("showIndex") && (
+                                  <div className={this.decorateCSS("right")}>
+                                    <div className={this.decorateCSS("item-index")}>
+                                      {(index + 1).toLocaleString("en-US", {
+                                        minimumIntegerDigits: 2,
+                                        useGrouping: false,
+                                      })}
+                                    </div>
+                                  </div>
+                                )}
                               </div>
                             )}
-                            <div className={this.decorateCSS("item-index")}>
-                              {(index + 1).toLocaleString("en-US", {
-                              minimumIntegerDigits: 2,
-                              useGrouping: false,
-                              })}
+                            {this.castToString(listItem.title) && (
+                              <div className={this.decorateCSS("list-item-value-h1")}>
+                                {listItem.title}
                               </div>
+                            )}
+                            {this.castToString(listItem.text) && (
+                              <div className={this.decorateCSS("list-item-value-p")}>
+                                {listItem.text}
+                              </div>
+                            )}
+                            {listItem.lowericon && (
+                              <ComposerIcon
+                                name={listItem.lowericon}
+                                propsIcon={{
+                                  className: this.decorateCSS("lower-icon"),
+                                }}
+                              />
+                            )}
                           </div>
-                          {this.castToString(listItem.title).trim() && (
-                            <Base.SectionTitle className={this.decorateCSS("list-item-value-h1")}>
-                              {listItem.title}
-                            </Base.SectionTitle>
-                          )}
-                          {this.castToString(listItem.text).trim() && (
-                            <Base.SectionDescription className={this.decorateCSS("list-item-value-p")}>
-                              {listItem.text}
-                            </Base.SectionDescription>
-                          )}
-                          {listItem.lowericon && (
-                            <ComposerIcon
-                              name={listItem.lowericon}
-                              propsIcon={{
-                              className: this.decorateCSS("lower-icon"),
-                              }} 
-                            />
-                          )}
-
-                        </Base.VerticalContent>
+                        </ComposerLink>
                       </div>
-                    </div>
-                  );
+                    );
                   }
                 )}
               </Base.ListGrid>
-            </Base.VerticalContent>
+            )}
           </Base.MaxContent>
         </Base.Container>
       </>
