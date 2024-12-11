@@ -27,13 +27,20 @@
         position: relative;
         z-index: 2;
         .title {
-          font-size: 2rem;
-          color: white !important;
+          font-size: 1.5rem;
+          content: "";
         }
-        .description {
-          font-size: 3rem;
+        .title-no-image {
+          font-size: 1.5rem;
           color: white;
-          font-weight: bold;
+        }
+
+        .description {
+          font-size: 2rem;
+        }
+        .description-no-image {
+          font-size: 2rem;
+          color: white;
         }
 
         .buttons-container,
@@ -49,20 +56,22 @@
             justify-content: center;
             gap: var(--composer-gap-sm);
             min-width: 200px;
-            height: 50px;
+            height: var(--composer-gap-xl);
 
             .button-icon {
               width: var(--composer-gap-md);
-              height: var(--composer-gap-sm);
+              height: var(--composer-gap-md);
             }
 
             .button-text {
-              font-size: 1rem;
+              font-size: 1.5rem;
             }
           }
 
           .button-wrapper {
             min-width: 200px;
+            height: var(--composer-gap-xl);
+
             .button-image {
               width: 100%;
               border-radius: var(--composer-border-radius-sm);
@@ -81,12 +90,8 @@
       .content-container {
         min-height: 600px;
         padding: var(--composer-gap-md) var(--composer-gap-xl);
-      }
-      .content-container-no-image {
-        .title {
-          font-size: 2rem;
-          color: var(--composer-primary-color) !important;
-        }
+        align-items: center;
+        text-align: center;
       }
     }
   }
@@ -98,10 +103,12 @@
       .wrapper {
         .content-container,
         .content-container-no-image {
-          .title {
+          .title,
+          .title-no-image {
             font-size: 1rem;
           }
-          .description {
+          .description,
+          .description-no-image {
             font-size: 1.5rem;
           }
         }
@@ -143,7 +150,8 @@
             }
 
             .button-wrapper {
-              width: 200px;
+              min-width: 200px;
+              height: var(--composer-gap-xl);
 
               .button-image {
                 width: 100%;

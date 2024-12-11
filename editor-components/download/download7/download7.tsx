@@ -143,10 +143,10 @@ class Download7 extends BaseDownload {
             {overlay && backgroundImage && <div className={this.decorateCSS("overlay")}></div>}
 
             <Base.VerticalContent className={backgroundImage ? this.decorateCSS("content-container") : this.decorateCSS("content-container-no-image")}>
-              {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
-              {descExist && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
+              {titleExist && <Base.SectionTitle className={!backgroundImage ? this.decorateCSS("title") : this.decorateCSS("title-no-image")}>{title}</Base.SectionTitle>}
+              {descExist && <Base.SectionDescription className={!backgroundImage ? this.decorateCSS("description") : this.decorateCSS("description-no-image")}>{description}</Base.SectionDescription>}
               {buttons?.length > 0 && (
-                <div className={alignmentValue === "left" ? this.decorateCSS("buttons-container") : alignmentValue === "center" ? this.decorateCSS("buttons-container-center") : ""}>
+                <div className={backgroundImage ? this.decorateCSS("buttons-container-center") : alignmentValue === "left" ? this.decorateCSS("buttons-container") : alignmentValue === "center" ? this.decorateCSS("buttons-container-center") : ""}>
                   {buttons.map((button: Button, index: number) => {
                     const imageExist = this.decorateCSS("button-image");
                     const buttonTextExist = this.castToString(button.text);
