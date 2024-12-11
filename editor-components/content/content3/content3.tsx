@@ -169,7 +169,7 @@ class Content3 extends BaseContent {
 
   render() {
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container isFull={true} className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ListGrid
             gridCount={{ pc: this.getPropValue("itemCount") }}
