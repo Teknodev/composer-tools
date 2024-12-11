@@ -183,6 +183,8 @@ class Download11 extends BaseDownload {
 
     const hasValidRightCards = hasValidRightCard || hasValidBottomRightCard;
 
+    const alignmentValue = Base.getContentAlignment();
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -195,10 +197,11 @@ class Download11 extends BaseDownload {
                   const descriptionExist = this.castToString(item.description);
                   const buttonTextExist = this.castToString(item.buttonText);
                   const cardExist = subtitleExist || titleExist || descriptionExist || item.image;
+                  const cardTextsExist = subtitleExist || titleExist || descriptionExist;
                   return (
                     cardExist && (
                       <Base.VerticalContent className={this.decorateCSS("card")}>
-                        {item.image && <img src={item.image} className={this.decorateCSS("image")} />}
+                        {item.image && <img src={item.image} className={cardTextsExist ? this.decorateCSS("image") : this.decorateCSS("image-full")} />}
                         {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{item.subtitle}</Base.SectionSubTitle>}
                         {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{item.title}</Base.SectionTitle>}
                         {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{item.description}</Base.SectionDescription>}
@@ -223,20 +226,23 @@ class Download11 extends BaseDownload {
                       const descriptionExist = this.castToString(item.description);
                       const buttonExist = this.castToString(item.buttonText);
                       const cardExist = subtitleExist || titleExist || descriptionExist || buttonExist || item.image;
+                      const cardTextsExist = subtitleExist || titleExist || descriptionExist || buttonExist;
                       return (
                         cardExist && (
                           <div className={this.decorateCSS("card")}>
-                            <Base.VerticalContent className={this.decorateCSS("left")}>
-                              {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{item.subtitle}</Base.SectionSubTitle>}
-                              {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{item.title}</Base.SectionTitle>}
-                              {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{item.description}</Base.SectionDescription>}
-                              {buttonExist && (
-                                <ComposerLink path={item.buttonUrl}>
-                                  <Base.Button>{item.buttonText}</Base.Button>
-                                </ComposerLink>
-                              )}
-                            </Base.VerticalContent>
-                            {item.image && <img src={item.image} className={this.decorateCSS("image")} />}
+                            {cardTextsExist && (
+                              <Base.VerticalContent className={this.decorateCSS("left")}>
+                                {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{item.subtitle}</Base.SectionSubTitle>}
+                                {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{item.title}</Base.SectionTitle>}
+                                {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{item.description}</Base.SectionDescription>}
+                                {buttonExist && (
+                                  <ComposerLink path={item.buttonUrl}>
+                                    <Base.Button>{item.buttonText}</Base.Button>
+                                  </ComposerLink>
+                                )}
+                              </Base.VerticalContent>
+                            )}
+                            {item.image && <img src={item.image} className={cardTextsExist ? this.decorateCSS("image") : this.decorateCSS("image-full")} />}
                           </div>
                         )
                       );
@@ -251,7 +257,7 @@ class Download11 extends BaseDownload {
 
                       return (
                         (titleExist || buttonExist) && (
-                          <div className={this.decorateCSS("card")}>
+                          <div className={alignmentValue === "left" ? this.decorateCSS("card") : alignmentValue === "center" ? this.decorateCSS("card-center") : ""}>
                             {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{item.title}</Base.SectionTitle>}
                             {buttonExist && (
                               <ComposerLink path={item.buttonUrl}>
