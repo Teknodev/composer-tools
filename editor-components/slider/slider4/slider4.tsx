@@ -73,13 +73,13 @@ class Slider4 extends BaseSlider {
               {
                 type: "string",
                 key: "header",
-                displayer: "Header",
+                displayer: "Title",
                 value: "Customer Experience",
               },
               {
                 type: "string",
                 key: "content",
-                displayer: "Content",
+                displayer: "Description",
                 value: "We prioritize our customers' experience, ensuring that every interaction with our platform is not only seamless and intuitive but also consistently exceeds expectations.",
               },
             ]
@@ -99,13 +99,13 @@ class Slider4 extends BaseSlider {
               {
                 type: "string",
                 key: "header",
-                displayer: "Header",
+                displayer: "Title",
                 value: "Sales and Marketing",
               },
               {
                 type: "string",
                 key: "content",
-                displayer: "Content",
+                displayer: "Description",
                 value: "Our sales and marketing team Works together to provide you with a comprehensive solution that is tailored to your needs.",
               },
             ]
@@ -125,13 +125,13 @@ class Slider4 extends BaseSlider {
               {
                 type: "string",
                 key: "header",
-                displayer: "Header",
+                displayer: "Title",
                 value: "Rating and Reviews",
               },
               {
                 type: "string",
                 key: "content",
-                displayer: "Content",
+                displayer: "Description",
                 value: "Our focus on ratings and reviews onsures that you have Access to the most comprehensive and up-to-date information available.",
               },
             ]
@@ -151,13 +151,13 @@ class Slider4 extends BaseSlider {
               {
                 type: "string",
                 key: "header",
-                displayer: "Header",
+                displayer: "Title",
                 value: "Productivity and Efficiency",
               },
               {
                 type: "string",
                 key: "content",
-                displayer: "Content",
+                displayer: "Description",
                 value: "We are committed to fostering innovation and driving growth, providing you with cutting-edge tools and solutions to stay ahead in your industry.",
               },
             ]
@@ -177,13 +177,13 @@ class Slider4 extends BaseSlider {
               {
                 type: "string",
                 key: "header",
-                displayer: "Header",
+                displayer: "Title",
                 value: "Team Collaboration",
               },
               {
                 type: "string",
                 key: "content",
-                displayer: "Content",
+                displayer: "Description",
                 value: "Your trust is our top priority. We ensure reliability in every aspect of our platform, delivering consistent performance and support so you can focus on what matters most.",
               },
             ]
@@ -203,13 +203,13 @@ class Slider4 extends BaseSlider {
               {
                 type: "string",
                 key: "header",
-                displayer: "Header",
+                displayer: "Title",
                 value: "Customer Support",
               },
               {
                 type: "string",
                 key: "content",
-                displayer: "Content",
+                displayer: "Description",
                 value: "Our platform provides data-driven insights and tools to help you make confident decisions, optimize performance, and unlock your potential.",
               },
             ]

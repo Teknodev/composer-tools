@@ -120,6 +120,14 @@
                     overflow: hidden;
                     gap: var(--composer-gap-md);
 
+                    @container(max-width: #{$composer-tablet-width}) {
+                        padding: 0 var(--composer-gap-md);
+                    }
+
+                    @container(max-width: #{$composer-phone-width}) {
+                        padding: 0;
+                    }
+
                     >div {
                         >div {
                             padding: var(--composer-gap-md) 0;
