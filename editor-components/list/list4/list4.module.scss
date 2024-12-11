@@ -117,6 +117,16 @@
   }
 }
 
+@container (max-width: #{$composer-tablet-width}){
+  .container{
+    .max-content{
+      .card-child {
+        gap: var(--composer-gap-xs);
+      }
+    }
+  }
+}
+
 @container (max-width: #{$composer-phone-width}){
   .container{
     .max-content{
@@ -134,9 +144,9 @@
               top: 10px;
             }
           }
-                 &:nth-child(3n + 2){
+          &:nth-child(3n + 2){
           transform: none
-        }    
+          }    
         }
       }
     }
