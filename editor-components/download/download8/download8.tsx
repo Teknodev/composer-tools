@@ -129,7 +129,7 @@ class Download8 extends BaseDownload {
               type: "image",
               key: "buttonImage",
               displayer: "Button Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/673f5276506a40002c2cf763?alt=media&timestamp=1732790517206",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67586eb80655f8002ca57e58?alt=media",
             },
           ],
         },
@@ -185,70 +185,75 @@ class Download8 extends BaseDownload {
     const titleExist = this.castToString(title);
     const descriptionExist = this.castToString(description);
     const cardTitleExist = this.castToString(cardTitle);
+
+    const listExist = this.castToObject<any[]>("list").length > 0;
     return (
       <div className={this.decorateCSS("page")}>
         {imageExist && (
           <div className={this.decorateCSS("image-child")}>
-            <img className={overlay ? this.decorateCSS("background-image") : this.decorateCSS("background-image-no-overlay")} src={this.getPropValue("image")} alt="" />
+            <div className={overlay && this.decorateCSS("overlay")}></div>
+            <img className={this.decorateCSS("background-image")} src={this.getPropValue("image")} alt="" />
           </div>
         )}
         {(titleExist || descriptionExist) && (
           <Base.VerticalContent className={this.decorateCSS("left-content")}>
             {titleExist && <Base.SectionTitle className={imageExist ? this.decorateCSS("title") : ""}>{this.getPropValue("title")}</Base.SectionTitle>}
-            {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+            {descriptionExist && <Base.SectionDescription className={imageExist ? this.decorateCSS("description") : ""}>{this.getPropValue("description")}</Base.SectionDescription>}
           </Base.VerticalContent>
         )}
         <div className={this.decorateCSS("right-content")}>
           <div className={this.decorateCSS("card")}>
             <div className={this.decorateCSS("card-up")}>
               {cardTitleExist && <Base.H3 className={this.decorateCSS("cardTitle")}>{this.getPropValue("cardTitle")}</Base.H3>}
-              <div className={this.decorateCSS("list-group")}>
-                {this.castToObject<any[]>("list").map((item: any, index: number) => {
-                  const itemTextExist = this.castToString(item.itemText);
-                  const hasItemExist = itemTextExist || item.itemIcon;
-                  return (
-                    hasItemExist && (
-                      <div className={this.decorateCSS("list-element")}>
-                        {item.itemIcon && (
-                          <ComposerIcon
-                            name={item.itemIcon}
-                            propsIcon={{
-                              className: this.decorateCSS("icon"),
-                            }}
-                          />
-                        )}
-                        {itemTextExist && <Base.P className={this.decorateCSS("text")}>{item.itemText}</Base.P>}
-                      </div>
-                    )
-                  );
-                })}
-              </div>
-            </div>
-            <div className={this.decorateCSS("card-down")}>
-              <div className={this.decorateCSS("buttons-container")}>
-                {this.castToObject<Button[]>("buttons").map((item: Button, index: number) => {
-                  const buttonTextExist = this.castToString(item.buttonText);
-                  return (
-                    <ComposerLink key={`dw-4-btn-${index}`} path={item.url}>
-                      {item.buttonImage ? (
-                        <div className={this.decorateCSS("image-container")}>
-                          <img src={item.buttonImage} className={this.decorateCSS("image")} alt="button" />
+              {listExist && (
+                <div className={this.decorateCSS("list-group")}>
+                  {this.castToObject<any[]>("list").map((item: any, index: number) => {
+                    const itemTextExist = this.castToString(item.itemText);
+                    const hasItemExist = itemTextExist || item.itemIcon;
+                    return (
+                      hasItemExist && (
+                        <div className={this.decorateCSS("list-element")}>
+                          {item.itemIcon && (
+                            <ComposerIcon
+                              name={item.itemIcon}
+                              propsIcon={{
+                                className: this.decorateCSS("icon"),
+                              }}
+                            />
+                          )}
+                          {itemTextExist && <Base.P className={this.decorateCSS("text")}>{item.itemText}</Base.P>}
                         </div>
-                      ) : (
-                        (item.buttonIcon || buttonTextExist) && (
-                          <div className={this.decorateCSS("button")}>
-                            <Base.Button>
+                      )
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+            {this.castToObject<Button[]>("buttons").length > 0 && (
+              <div className={this.decorateCSS("card-down")}>
+                <div className={this.decorateCSS("buttons-container")}>
+                  {this.castToObject<Button[]>("buttons").map((item: Button, index: number) => {
+                    const buttonTextExist = this.castToString(item.buttonText);
+                    return (
+                      <ComposerLink key={`dw-8-btn-${index}`} path={item.url}>
+                        {item.buttonImage ? (
+                          <div className={this.decorateCSS("image-container")}>
+                            <img src={item.buttonImage} className={this.decorateCSS("image")} alt="button" />
+                          </div>
+                        ) : (
+                          (item.buttonIcon || buttonTextExist) && (
+                            <Base.Button className={this.decorateCSS("button")}>
                               {item.buttonIcon && <ComposerIcon name={item.buttonIcon} propsIcon={{ className: this.decorateCSS("icon") }} />}
                               {buttonTextExist && item.buttonText && <Base.P className={this.decorateCSS("text")}>{item.buttonText}</Base.P>}
                             </Base.Button>
-                          </div>
-                        )
-                      )}
-                    </ComposerLink>
-                  );
-                })}
+                          )
+                        )}
+                      </ComposerLink>
+                    );
+                  })}
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>
