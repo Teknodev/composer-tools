@@ -150,12 +150,15 @@
     }
 
     .text-box {
-      position: absolute;
-      top: 63%;
-      left: 0;
-      width: 35%;
-      padding: 0 var(--composer-gap-xl);
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      height: 100%;
+      margin: auto;
       max-width: var(--composer-content-width);
+      margin: auto;
 
       @container (max-width: #{$composer-tablet-width}) {
         width: 100%;
@@ -179,9 +182,14 @@
       .text {
         color: white;
         font-weight: 700;
-        font-size: 1.05rem;
+        font-size: 1rem;
         transition: 0.3s;
         opacity: 0;
+        width: 100%;
+        padding: 0 var(--composer-gap-xl);
+        width: 100%;
+        max-width: 35%;
+        max-width: calc(35vw - (100vw - var(--composer-content-width)) / 2);
 
         &.visible {
           opacity: 1;

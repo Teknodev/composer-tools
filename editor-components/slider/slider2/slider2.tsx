@@ -225,7 +225,6 @@ class Slider2 extends BaseSlider {
   }
 
   render() {
-
     const settings = {
       arrows: false,
       autoplay: false,
@@ -288,7 +287,11 @@ class Slider2 extends BaseSlider {
             </div>
           </div>
           {this.getComponentState("text") && <div className={this.decorateCSS("text-box")}>
-            <Base.P className={`${this.decorateCSS("text")} ${this.getComponentState("text_visibility") && this.decorateCSS("visible")}`}>{this.getComponentState("text")}</Base.P>
+            <Base.P
+              className={`${this.decorateCSS("text")} 
+              ${this.getComponentState("text_visibility") && this.decorateCSS("visible")}`}>
+              {this.getComponentState("text")}
+            </Base.P>
           </div>}
           <ComposerSlider
             {...settings}
