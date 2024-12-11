@@ -111,30 +111,86 @@ class Stats6Page extends BaseStats {
       max: 4,
     });
 
-    this.castToObject<CardData[]>("card-list").map((statsData, index) =>
-      this.setComponentState(`number-${index}`, 0)
-    );
+    this.init();
+    this.animate();
+  }
 
-    // let x = setInterval(() => {
-    //   this.castToObject<CardData[]>("card-list").map(
-    //     (statsData: CardData, index: number) => {
-    //       let statNumber = this.getComponentState(`number-${index}`);
-    //       if (statNumber != statsData.CardTitle) {
-    //         this.setComponentState(
-    //           `number-${index}`,
-    //           Math.min(
-    //             statsData.CardTitle,
-    //             statNumber +
-    //               Math.ceil(
-    //                 statsData.CardTitle /
-    //                   Math.round(this.getPropValue("animation-duration") / 30)
-    //               )
-    //           ) || 0
-    //         );
-    //       }
-    //     }
-    //   );
-    // }, 30);
+  init() {
+    this.castToObject<CardData[]>("card-list").map((statsData, index) => {
+      this.setComponentState(`number-${index}`, "");
+      this.setComponentState(`numberForControl-${index}`, "");
+    });
+  }
+
+  isEqual(arr1: any[], arr2: any[]) {
+    return arr1.every((value, index) => {
+      const otherValue = arr2[index];
+      return value === otherValue || (value === "" && otherValue === 0) || (value === 0 && otherValue === "");
+    });
+  }
+
+  getStats() {
+    const statItems = this.castToObject<CardData[]>("card-list");
+    const stats = statItems.map((statsData: any) => (statsData.cardValue === "" ? "" : this.castToString(statsData.cardValue)));
+    return stats;
+  }
+
+  getNumbers() {
+    const statItems = this.castToObject<CardData[]>("card-list");
+    const numbers = statItems.map((_, index) => {
+      const number = this.getComponentState(`numberForControl-${index}`);
+      return number !== undefined ? number : "";
+    });
+    return numbers;
+  }
+
+  formatNumberWithDots(value: any) {
+    const number = Number(value);
+    if (isNaN(number)) {
+      return "";
+    }
+    return number.toLocaleString("tr-TR");
+  }
+
+  animate() {
+    const animationDuration = this.getPropValue("animationDuration");
+    const incrementValue = this.getPropValue("incrementValue");
+
+    this.interval = setInterval(() => {
+      if (this.isEqual(this.getStats(), this.getNumbers())) {
+        clearInterval(this.interval);
+        this.interval = null;
+      }
+
+      this.castToObject<CardData[]>("card-list").map((statData: CardData, index: number) => {
+        let currentNumberState = this.getComponentState(`number-${index}`);
+        const currentString = typeof currentNumberState === "string" ? currentNumberState : "";
+        const currentNonNumericPrefix = currentString.match(/^\D+/)?.[0] || "";
+        const currentNonNumericSuffix = currentString.match(/\D+$/)?.[0] || "";
+        const currentNumber = parseInt(currentString.replace(/\D+/g, ""), 10) || 0;
+
+        const counterString = this.castToString(statData.cardValue);
+        const newNonNumericPrefix = counterString.match(/^\D+/)?.[0] || "";
+        const newNonNumericSuffix = counterString.match(/\D+$/)?.[0] || "";
+        const numericPart = parseInt(counterString.replace(/[^\d]/g, ""), 10) || 0;
+
+        if (currentNumber !== numericPart || currentNonNumericPrefix !== newNonNumericPrefix || currentNonNumericSuffix !== newNonNumericSuffix) {
+          let nextValue = Math.min(numericPart, currentNumber + Math.ceil(numericPart / Math.round(incrementValue / 30)));
+
+          let formattedNextValue = nextValue ? nextValue.toString() : "";
+
+          const formattedNextValueWithDots = this.formatNumberWithDots(formattedNextValue) === "0" ? "" : this.formatNumberWithDots(formattedNextValue);
+
+          var updatedValue = currentNumber > 0 ? newNonNumericPrefix + formattedNextValueWithDots + newNonNumericSuffix : newNonNumericPrefix + formattedNextValueWithDots;
+
+          var updatedValueForControl = currentNumber > 0 ? newNonNumericPrefix + formattedNextValue + newNonNumericSuffix : newNonNumericPrefix + formattedNextValue;
+
+          this.setComponentState(`number-${index}`, updatedValue);
+
+          this.setComponentState(`numberForControl-${index}`, updatedValueForControl);
+        }
+      });
+    }, animationDuration);
   }
 
   getName(): string {
@@ -149,9 +205,9 @@ class Stats6Page extends BaseStats {
     const descriptionExist = this.castToString(description);
     const itemCount = this.getPropValue("itemCount");
 
-    // if (!this.interval && !this.isEqual(this.getStats(), this.getNumbers())) {
-    //   this.animate();
-    // }
+    if (!this.interval && !this.isEqual(this.getStats(), this.getNumbers())) {
+      this.animate();
+    }
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
