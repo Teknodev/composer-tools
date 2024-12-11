@@ -2,10 +2,11 @@ import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action3.module.scss";
+import { Base } from "../../../composer-base-components/base/base";
 
 interface Button {
-  buttonText: string;
-  buttonLink: string;
+  buttonText: JSX.Element;
+  buttonLink: JSX.Element;
 }
 class CallToAction3Page extends BaseCallToAction {
   constructor(props?: any) {
@@ -76,6 +77,12 @@ class CallToAction3Page extends BaseCallToAction {
       value:
         "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c962bd2970002c6293bb?alt=media&timestamp=1719584962578",
     });
+    this.addProp({
+      type: "boolean",
+      key: "overlayActive",
+      displayer: "Overlay Active",
+      value: true,
+    });
   }
   getName(): string {
     return "Call To Action 3";
@@ -83,34 +90,41 @@ class CallToAction3Page extends BaseCallToAction {
 
   render() {
     return (
-      <div className={this.decorateCSS("container")} style={{ backgroundImage: `url(${this.getPropValue("image")})` }}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("call-to-action3-page")}>
-            <div className={this.decorateCSS("content-container")}>
-              <h1 className={this.decorateCSS("title")}>
+      <Base.Container
+        className={`${this.getPropValue("image") ? this.decorateCSS("container") : this.decorateCSS("container-no-image")} ${this.getPropValue("overlayActive") ? this.decorateCSS("overlay-active") : ""}`}
+        style={{ backgroundImage: `url(${this.getPropValue("image")})` }}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <Base.VerticalContent className={this.decorateCSS("content-container")}>
+            {this.castToString(this.getPropValue("title")) && (
+              <Base.SectionTitle className={this.getPropValue("image") ? this.decorateCSS("title") : this.decorateCSS("title-no-image")}>
                 {this.getPropValue("title")}
-              </h1>
-              <div className={this.decorateCSS("description")}>
+              </Base.SectionTitle>
+            )}
+            {this.castToString(this.getPropValue("description")) && (
+              <Base.SectionDescription className={this.getPropValue("image") ? this.decorateCSS("description") : this.decorateCSS("description-no-image")}>
                 {this.getPropValue("description")}
-              </div>
-
+              </Base.SectionDescription>
+            )}
+            {(this.getPropValue("buttons").length > 0) && (
               <div className={this.decorateCSS("buttons")}>
                 {this.castToObject<Button[]>("buttons").map(
                   (button: Button, index: number) => {
                     return (
-                      <ComposerLink key={index} page={button.buttonLink}>
-                        <button className={this.decorateCSS("button")}>
-                          {button.buttonText}
-                        </button>
+                      <ComposerLink path={button.buttonLink}>
+                        {this.castToString(button.buttonText) && (
+                          <Base.Button className={this.getPropValue("image") ? this.decorateCSS("button") : this.decorateCSS("button-no-image")}>
+                            {button.buttonText}
+                          </Base.Button>
+                        )}
                       </ComposerLink>
                     );
                   }
                 )}
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
+            )}
+          </Base.VerticalContent>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
