@@ -178,22 +178,33 @@ class Stats5Page extends BaseStats {
     const animationDuration = this.getPropValue("animationDuration");
     const incrementValue = this.getPropValue("incrementValue");
 
-    // this.interval = setInterval(() => {
-    //   const cards = this.castToObject<Card[]>("cards");
+    this.interval = setInterval(() => {
+      const cards = this.castToObject<Card[]>("cards");
 
-    //   if (this.isEqual(this.getStats(), this.getNumbers())) {
-    //     this.interval = clearInterval(this.interval);
-    //     return; // return to stop animate()
-    //   }
-    //   cards.forEach((item: Card, index: number) => {
-    //     const statNumber = this.getComponentState(`number-${index}`) ?? 0;
+      if (this.isEqual(this.getStats(), this.getNumbers())) {
+        clearInterval(this.interval);
+        this.interval = null;
+      }
 
-    //     this.setComponentState(
-    //       `number-${index}`,
-    //       Math.min(item.stat, statNumber + incrementValue),
-    //     );
-    //   });
-    // }, animationDuration);
+      cards.forEach((item: Card, index: number) => {
+        let currentNumber = this.getComponentState(`number-${index}`) ?? 0;
+
+        if (typeof currentNumber === "string") {
+          currentNumber = parseInt(currentNumber.replace(/\D+/g, ""), 10) || 0;
+        }
+
+        if (typeof item.stat === "number") {
+          if (currentNumber !== item.stat) {
+            let nextValue = Math.min(item.stat, currentNumber + Math.ceil(item.stat / Math.round(incrementValue / 30)));
+
+            const formattedNextValue = this.formatNumberWithDots(nextValue);
+
+            this.setComponentState(`number-${index}`, formattedNextValue);
+            this.setComponentState(`numberForControl-${index}`, nextValue);
+          }
+        }
+      });
+    }, animationDuration);
   }
 
   getCardClasses(index: number, itemCountInRow: number) {
