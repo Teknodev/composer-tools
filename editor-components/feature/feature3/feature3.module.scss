@@ -1,103 +1,133 @@
 @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
+$space: calc(var(--composer-gap-xl) * 2 + var(--composer-gap-md));
+$cardsmargintop: -350px;
+$logosmargintop: -$cardsmargintop / 2;
+
 .container {
     .max-content {
         .wrapper {
-            .header {
+            .upper {
                 position: relative;
                 width: 100%;
-                height: 300px;
-                display: flex;
-                align-items: center;
-                justify-content: flex-end;
-                margin: 0;
 
-                .feature-circle {
-                    width: 600px;
-                    height: 600px;
-                    position: absolute;
-                    left: 0;
-                    top: 0;
-                    background-color: var(--composer-secondary-color);
-                    border-radius: 50%;
-                    display: flex;
-                    justify-content: center;
-                    align-items: flex-start;
-                    z-index: 0;
-                    transition: transform 0.3s ease-in-out;
-                    padding-top: 100px;
+                &.no-logos {
+                    padding-bottom: calc($logosmargintop / 2);
+                }
 
-                    .title {
-                        color: var(--composer-font-color-secondary);
-                        width: 70%;
+                .title {
+                    margin-top: 0;
+                    margin-bottom: var(--composer-gap-md);
+
+                    &.circle-exist {
+                        // reset alignment if circle exists
+                        text-align: left;
                         margin: 0;
+
+                        color: var(--composer-font-color-secondary);
                     }
                 }
 
                 .description {
+                    margin-top: 0;
+                    margin-bottom: var(--composer-gap-md);
                     color: var(--composer-font-color-primary);
-                    width: 400px;
-                    margin: 0;
-                    position: relative; // to use z-index
-                    z-index: 1;
+
+                    &.circle-exist {
+                        // reset alignment if circle exists
+                        text-align: left;
+                        margin: 0;
+
+                        position: absolute;
+                        top: $space;
+                        right: 0;
+                        width: 30%;
+                    }
                 }
-            }
 
-            .cards-container {
-                justify-content: space-between;
-                margin-bottom: calc(2 * var(--composer-gap-xl));
+                .circle {
+                    background-color: var(--composer-primary-color);
+                    border-radius: 999px;
+                    width: 65%;
+                    aspect-ratio: 2 / 1.5;
+                    padding: $space;
+                    padding-bottom: -$cardsmargintop;
+                    max-height: 100%;
 
-                .card {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    padding: var(--composer-gap-lg);
-                    gap: var(--composer-gap-md);
-                    background-color: var(--composer-font-color-primary);
-                    width: 290px;
-                    height: 250px;
-                    border-radius: 2.5rem;
-                    z-index: 1;
-                    transition: opacity 0.5s ease, transform 0.5s ease;
+                    &.absolute {
+                        position: absolute;
+                    }
+                }
 
-                    &:hover {
-                        .card-icon {
-                            transform: translateY(-10px);
+                .cards-container {
+                    gap: var(--composer-gap-lg);
+
+                    &.circle-exist {
+                        padding-left: $space;
+                        margin-top: $cardsmargintop;
+                    }
+
+                    .card {
+                        min-height: 250px;
+
+                        .card-content {
+                            width: 100%;
+                            height: 100%;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            padding: var(--composer-gap-lg);
+                            gap: var(--composer-gap-md);
+                            background-color: var(--composer-font-color-primary);
+                            border-radius: var(--composer-border-radius-xl);
+                            z-index: 1;
+                            transition: opacity 0.5s ease, transform 0.5s ease;
+
+                            &:hover {
+                                .card-icon {
+                                    transform: translateY(-10px);
+                                }
+                            }
+
+                            .card-icon {
+                                margin: 0;
+                                width: 75px;
+                                height: 75px;
+                                transition: opacity 0.5s ease, transform 0.5s ease;
+                            }
+
+                            .card-title {
+                                font-size: 1.5rem;
+                                color: var(--composer-font-color-secondary);
+                            }
                         }
                     }
-
-                    .card-icon {
-                        margin: 0;
-                        width: 75px;
-                        height: 75px;
-                        transition: opacity 0.5s ease, transform 0.5s ease;
-                    }
-
-                    .card-title {
-                        font-size: 1.5rem;
-                        color: var(--composer-font-color-secondary);
-                    }
                 }
+
             }
 
             .logos-container {
-                display: flex;
-                justify-content: space-between;
                 gap: var(--composer-gap-md);
-                flex-wrap: wrap;
+
+                &.circle-exist {
+                    margin-top: $logosmargintop;
+                }
+
+                &.no-cards {
+                    margin-top: 0;
+                }
 
                 .logo-container {
                     padding: var(--composer-gap-sm);
                     background-color: var(--composer-font-color-primary);
                     border-radius: var(--composer-border-radius-sm);
-                    width: 210px;
-                    height: 150px;
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     position: relative;
                     overflow: hidden;
                     transition: transform 0.5s ease;
+                    height: 150px;
 
                     .logo-image {
                         width: 90%;
@@ -107,9 +137,10 @@
                         top: 0;
                         left: 5%;
                         transition: opacity 0.5s ease, transform 0.5s ease;
+                        filter: grayscale(100%);
 
                         &:hover {
-                            transform: translateY(-10px);
+                            filter: grayscale(0);
                         }
                     }
                 }
@@ -118,37 +149,50 @@
     }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
+    $space : var(--composer-gap-xl);
+    $cardsmargintop : -150px;
+
     .container {
         .max-content {
             .wrapper {
-                .header {
-                    .feature-circle {
-                        width: 350px;
-                        height: 350px;
-
-                        .title {
-                            font-size: 1.5rem;
-                            width: 80%;
-                            text-align: center;
-                        }
+                .upper {
+                    &.no-logos {
+                        padding-bottom: 0;
+                    }
+                    .circle {
+                        padding: calc($space + var(--composer-gap-md)) $space;
+                        aspect-ratio: 1 / 1;
+                        padding-bottom: -$cardsmargintop;
                     }
 
                     .description {
-                        font-size: 1rem;
-                        width: 300px;
+                        &.circle-exist {
+                            top: $space;
+                        }
+                    }
+
+                    .cards-container {
+                        &.circle-exist {
+                            // padding-left: $space;
+                            padding-left: 0;
+                            margin-top: $cardsmargintop;
+                        }
+
+                        .card {
+                            min-height: auto;
+
+                            .card-content {
+                                padding: var(--composer-gap-md);
+                            }
+                        }
                     }
                 }
 
-                .cards-container {
-                    flex-direction: row;
-                    justify-content: center;
-                    margin-bottom: var(--composer-gap-xl);
-                }
-
                 .logos-container {
-                    flex-direction: row;
-                    justify-content: center;
+                    &.circle-exist {
+                        margin-top: var(--composer-gap-lg);
+                    }
                 }
             }
         }
@@ -159,40 +203,35 @@
     .container {
         .max-content {
             .wrapper {
-                .header {
-                    height: 250px;
+                .upper {
+                    position: static;
 
-                    .feature-circle {
-                        padding-top: 80px;
+                    .circle {
+                        padding: calc(2 * var(--composer-gap-xl)) var(--composer-gap-md);
                         width: 100%;
-                        height: auto;
-                        aspect-ratio: 1 / 1;
-                        display: flex;
-                        justify-content: center;
                     }
 
                     .description {
-                        margin-top: calc(2 * var(--composer-gap-xl));
-                        text-align: center;
+                        &.circle-exist {
+                            width: 100%;
+                            position: static;
+                            color: var(--composer-font-color-secondary);
+                        }
                     }
-                }
 
-                .cards-container {
-                    gap: var(--composer-gap-md);
+                    .cards-container {
+                        gap: var(--composer-gap-md);
 
-                    .card {
-                        width: 100%;
-                        height: auto;
-
-                        .card-title {
-                            font-size: 1.5rem;
+                        &.circle-exist {
+                            margin-top: 0;
+                            padding-left: 0;
                         }
                     }
                 }
 
                 .logos-container {
-                    .logo-container {
-                        width: 100%;
+                    &.circle-exist {
+                        margin-top: 0;
                     }
                 }
             }
