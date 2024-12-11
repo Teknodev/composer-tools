@@ -67,7 +67,7 @@
                     height: 100%;
 
                     .content-div {
-                        border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.5);
+                        border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
                         transition: transform 0.3s, filter 0.3s;
                         min-height: 300px;
                         height: 100%;
@@ -195,6 +195,14 @@
 
             .no-header {
                 margin-bottom: 0;
+            }
+
+            .single-item {
+                >div {
+                    >div {
+                        margin-left: unset !important;
+                    }
+                }
             }
         }
     }

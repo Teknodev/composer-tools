@@ -302,6 +302,7 @@ class Slider6 extends BaseSlider {
 
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
+    const isMultipleItems = this.castToObject<Card[]>("header").length > 1;
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -327,7 +328,8 @@ class Slider6 extends BaseSlider {
               className={`
                 ${this.decorateCSS("carousel")}
                 ${(!this.castToString(subtitle) && !this.castToString(title)) &&
-                this.decorateCSS("no-header")}`}>
+                this.decorateCSS("no-header")}
+                ${!isMultipleItems && this.decorateCSS("single-item")}`}>
               {this.castToObject<Card[]>("header").map(
                 (item: Card, index: number) => {
                   const imageElement = document.getElementById(`slider6Image${index}`);
@@ -335,14 +337,15 @@ class Slider6 extends BaseSlider {
 
                   return (
                     <div className={`${this.decorateCSS("card")} 
-                    ${this.getComponentState("prevSlide") == index && this.decorateCSS("prevSlide")} 
-                    ${this.getComponentState("nextSlide") == index && this.decorateCSS("nextSlide")}`}
-                      key={`sld-8-${index}`}
+                      ${isMultipleItems && this.getComponentState("prevSlide") == index ? this.decorateCSS("prevSlide") : ""} 
+                      ${isMultipleItems && this.getComponentState("nextSlide") == index ? this.decorateCSS("nextSlide") : ""}`}
+
+                      key={`sld - 8 - ${index} `}
                     >
                       <Base.ContainerGrid className={this.decorateCSS("content-div")}>
 
                         {(this.castToString(item.vertText) || item.image) &&
-                          <div className={`${this.decorateCSS("left-part")} ${!item.image && this.decorateCSS("no-img")}`}>
+                          <div className={`${this.decorateCSS("left-part")} ${!item.image && this.decorateCSS("no-img")} `}>
                             {this.castToString(item.vertText) &&
                               <span style={{ maxHeight: imageHeight }} className={this.decorateCSS("vert-text")}>
                                 {item.vertText}
