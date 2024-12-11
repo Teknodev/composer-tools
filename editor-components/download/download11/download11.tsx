@@ -14,6 +14,12 @@ class Download11 extends BaseDownload {
       key: "left",
       value: [
         {
+          type: "boolean",
+          key: "Visibility",
+          displayer: "visibility",
+          value: true,
+        },
+        {
           type: "image",
           key: "image",
           value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6759ab4b0655f8002ca5eca4?alt=media",
@@ -57,6 +63,12 @@ class Download11 extends BaseDownload {
       displayer: "Right Card Upper",
       key: "right",
       value: [
+        {
+          type: "boolean",
+          key: "Visibility",
+          displayer: "visibility",
+          value: true,
+        },
         {
           type: "string",
           key: "subtitle",
@@ -102,6 +114,12 @@ class Download11 extends BaseDownload {
       key: "rightBottom",
       value: [
         {
+          type: "boolean",
+          key: "Visibility",
+          displayer: "visibility",
+          value: true,
+        },
+        {
           type: "string",
           key: "title",
           displayer: "Title",
@@ -138,21 +156,20 @@ class Download11 extends BaseDownload {
     const descriptionExist = this.castToString(leftItems.description);
     const buttonTextExist = this.castToString(leftItems.buttonText);
 
-    const hasValidCard = subtitleExist || titleExist || descriptionExist || buttonTextExist || leftItems.image;
     const leftCardExist = subtitleExist || titleExist || descriptionExist || buttonTextExist;
+    const hasValidCard = (leftCardExist || leftItems.image) && leftItems.Visibility;
 
     const rightSubtitleExist = this.castToString(rightItems.subtitle);
     const rightTitleExist = this.castToString(rightItems.title);
     const rightDescriptionExist = this.castToString(rightItems.description);
     const rightbuttonTextExist = this.castToString(rightItems.buttonText);
 
-    const hasValidRightCard = rightSubtitleExist || rightTitleExist || rightDescriptionExist || rightItems.image || rightbuttonTextExist;
     const hasValidRightCardTexts = rightSubtitleExist || rightTitleExist || rightDescriptionExist || rightbuttonTextExist;
-    const cardRightTextsExist = rightSubtitleExist || rightTitleExist || rightDescriptionExist || rightbuttonTextExist;
+    const hasValidRightCard = (hasValidRightCardTexts || rightItems.image) && rightItems.Visibility;
 
     const rightBottomTitleExist = this.castToString(rightBottomItems.title);
     const rightBottomButtonExist = this.castToString(rightBottomItems.buttonText);
-    const hasValidBottomRightCard = rightBottomTitleExist || rightBottomButtonExist;
+    const hasValidBottomRightCard = (rightBottomTitleExist || rightBottomButtonExist) && rightBottomItems.Visibility;
 
     const hasValidRightCards = hasValidRightCard || hasValidBottomRightCard;
 
@@ -181,10 +198,10 @@ class Download11 extends BaseDownload {
             )}
             {hasValidRightCards && (
               <div className={this.decorateCSS("right-cards")}>
-                {hasValidRightCard && (
+                {hasValidRightCard && rightItems.Visibility && (
                   <div className={this.decorateCSS("upper-card")}>
                     <div className={this.decorateCSS("card")}>
-                      {cardRightTextsExist && (
+                      {hasValidRightCardTexts && (
                         <Base.VerticalContent className={this.decorateCSS("left")}>
                           {rightSubtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{rightItems.subtitle}</Base.SectionSubTitle>}
                           {rightTitleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{rightItems.title}</Base.SectionTitle>}
@@ -200,7 +217,7 @@ class Download11 extends BaseDownload {
                     </div>
                   </div>
                 )}
-                {hasValidBottomRightCard && (
+                {hasValidBottomRightCard && rightBottomItems.Visibility && (
                   <div className={this.decorateCSS("buttom-card")}>
                     <div className={alignmentValue === "left" ? this.decorateCSS("card") : alignmentValue === "center" ? this.decorateCSS("card-center") : ""}>
                       {this.castToString(rightBottomItems.title) && <Base.SectionTitle className={this.decorateCSS("title")}>{rightBottomItems.title}</Base.SectionTitle>}
