@@ -4,6 +4,8 @@ import styles from "./header32.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 type Card = {
   backgroundImage: string;
@@ -238,7 +240,7 @@ class Header32 extends BaseHeader {
       speed: 1000,
       autoplay: true,
       fade: animation,
-      autoplaySpeed: 3000,
+      autoplaySpeed: 5000,
       slidesToShow: 1,
       slidesToScroll: 1,
       beforeChange: (current: number, next: number) => {
