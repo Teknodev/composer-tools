@@ -290,7 +290,7 @@ class LocationComponent1 extends Location {
           const content =
             description || popupTitle || popupButtonText ? (
               <div className={this.decorateCSS("popup")}>
-                {popupTitle && <Base.P className={this.decorateCSS("popup-title")}>{popupTitle} </Base.P>}
+                {popupTitle && <Base.P className={description ? this.decorateCSS("popup-title") : this.decorateCSS("popup-title-no-desc")}>{popupTitle} </Base.P>}
                 {description && <Base.P className={this.decorateCSS("popup-content")}>{description}</Base.P>}
                 {popupButtonText && (
                   <a href={popupButtonUrl} target="_blank" className={this.decorateCSS("popup-link")}>
