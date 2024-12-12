@@ -163,6 +163,7 @@ class Feature14 extends BaseFeature {
       key: "itemCount",
       displayer: "Item count in a row",
       value: 4,
+      max: 4,
     });
   }
 
