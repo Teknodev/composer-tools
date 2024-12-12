@@ -144,7 +144,7 @@ class HeaderComponent34 extends BaseHeader {
       this.getComponentState("active-index")].getPropValue("image"))
     const settings = {
       arrows: false,
-      dots: true,
+      dots: false,
       infinite: true,
       accessibility: false,
       speed: 3000,
@@ -152,9 +152,19 @@ class HeaderComponent34 extends BaseHeader {
       autoplaySpeed: 3000,
       slidesToShow: 1,
       draggable: false,
+    };
+    const settingsText = {
+      arrows: false,
+      dots: true,
+      infinite: true,
+      speed: 3000,
+      autoplay: false,
+      fade: true,
+      autoplaySpeed: 3000,
+      slidesToShow: 1,
       dotsClass: this.decorateCSS("dots"),
       afterChange: (index: number) => {
-        this.setComponentState("animation-active", false);
+        this.setComponentState("animation-active", true);
         this.setComponentState("display-none", true);
       },
       beforeChange: (oldIndex: number, newIndex: number) => {
@@ -164,7 +174,7 @@ class HeaderComponent34 extends BaseHeader {
 
         this.setComponentState("display-none", false);
         setTimeout(() => {
-          this.setComponentState("animation-active", true);
+          this.setComponentState("animation-active", false);
           this.setComponentState("active-index", newIndex);
         }, 100);
       },
@@ -180,6 +190,15 @@ class HeaderComponent34 extends BaseHeader {
             <div className={this.decorateCSS("content")} key={indexSlider}>
               <img src={item.getPropValue("image")} className={this.decorateCSS("image")} />
               <div className={this.decorateCSS("overlay")}></div>
+            </div>
+          ))}
+        </ComposerSlider>
+        <ComposerSlider
+          {...settingsText}
+          ref={this.getComponentState("slider-ref")}
+          className={this.decorateCSS("slider-text")}>
+          {this.getPropValue("slider").map((item: any, indexSlider: number) => (
+            <div className={this.decorateCSS("slider-content")}>
               <div
                 className={`${this.decorateCSS("text-and-button")} ${this.getComponentState("animation-active") &&
                   this.decorateCSS("un-visible")
@@ -190,37 +209,39 @@ class HeaderComponent34 extends BaseHeader {
                   <Base.Button className={this.decorateCSS("button")}>{item.getPropValue("button_text")}</Base.Button>
                 </ComposerLink>
               </div>
-              <ComposerIcon
-                name={this.getPropValue("next_icon")}
-                propsIcon={{
-                  className: `${this.decorateCSS(
-                    "next-icon"
-                  )} ${this.decorateCSS("arrow")} ${!this.getComponentState("display-none") &&
-                  this.decorateCSS("un-visible")
-                    }`,
-                  size: 40,
-                  onClick: () => {
-                    this.getComponentState("slider-ref").current.slickNext();
-                  },
-                }}
-              />
-              <ComposerIcon
-                name={this.getPropValue("prev_icon")}
-                propsIcon={{
-                  className: `${this.decorateCSS(
-                    "prev-icon"
-                  )} ${this.decorateCSS("arrow")} ${!this.getComponentState("display-none") &&
-                  this.decorateCSS("un-visible")
-                    }`,
-                  size: 40,
-                  onClick: () => {
-                    this.getComponentState("slider-ref").current.slickPrev();
-                  },
-                }}
-              />
             </div>
           ))}
         </ComposerSlider>
+        <div className={this.decorateCSS("arrow-content")}>
+          <ComposerIcon
+            name={this.getPropValue("next_icon")}
+            propsIcon={{
+              className: `${this.decorateCSS(
+                "next-icon"
+              )} ${this.decorateCSS("arrow")} ${!this.getComponentState("display-none") &&
+              this.decorateCSS("un-visible")
+                }`,
+              size: 40,
+              onClick: () => {
+                this.getComponentState("slider-ref").current.slickNext();
+              },
+            }}
+          />
+          <ComposerIcon
+            name={this.getPropValue("prev_icon")}
+            propsIcon={{
+              className: `${this.decorateCSS(
+                "prev-icon"
+              )} ${this.decorateCSS("arrow")} ${!this.getComponentState("display-none") &&
+              this.decorateCSS("un-visible")
+                }`,
+              size: 40,
+              onClick: () => {
+                this.getComponentState("slider-ref").current.slickPrev();
+              },
+            }}
+          />
+        </div>
         <div
           className={`${this.decorateCSS("overlay-animation-box")} ${this.getComponentState("animation-active") &&
             this.decorateCSS("visible")
