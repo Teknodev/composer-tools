@@ -3,7 +3,7 @@
 .container {
   padding: 0;
   .page {
-    width: 100%;
+    width: 100vw;
     display: flex;
     align-items: center;
     position: relative;
@@ -32,11 +32,12 @@
     }
     .max-content,
     .max-content-no-image {
-      width: 100%;
+      width: 100vw;
       display: flex;
       overflow: hidden;
       position: relative;
       height: auto;
+      min-width: 100vw;
       .left-content,
       .left-content-no-image {
         width: 100%;
@@ -50,6 +51,7 @@
         min-height: 100%;
         height: auto;
         position: relative;
+        min-width: 100vw;
 
         .title {
           color: white;
@@ -73,27 +75,27 @@
       min-height: 250px;
     }
     .right-content {
-      width: 100%;
+      width: fit-content;
       opacity: 0;
+      display: flex;
       justify-content: center;
       align-items: center;
-      position: absolute;
-      top: 50%;
-      right: calc(-100vw - 100px);
-      transform: translateY(-50%);
+      transform: translatex(-50vw);
       transition: all 0.5s;
       overflow: auto;
       height: auto;
+      width: 50vw;
+      min-width: 50vw;
+      padding: var(--composer-gap-xl) 0;
 
       .card {
-        width: 50%;
+        width: 100%;
         height: 100%;
         display: flex;
         flex-direction: column;
         border-top-left-radius: var(--composer-border-radius-md);
         border-bottom-left-radius: var(--composer-border-radius-md);
         background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-        overflow: hidden;
         .card-up {
           width: 100%;
           height: 90%;
@@ -139,8 +141,6 @@
           .buttons-container {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
             gap: var(--composer-gap-sm);
             margin: var(--composer-gap-sm);
 
@@ -181,7 +181,7 @@
         }
       }
       .right-content {
-        right: calc(-50%);
+        right: calc(-100%);
         opacity: 1;
         .card-down {
           .button-group {
@@ -213,25 +213,19 @@
         .left-content,
         .left-content-no-image {
           padding: var(--composer-gap-md) !important;
-          .title {
-            font-size: 1rem;
-          }
-          .description {
-            font-size: 1rem;
-          }
         }
       }
       .right-content {
         .card {
-          width: 50%;
+          width: 50vw;
           height: 100%;
 
           .card-up {
             .list-group {
               .list-element {
                 .icon {
-                  width: var(--composer-gap-sm);
-                  height: var(--composer-gap-sm);
+                  width: var(--composer-gap-md);
+                  height: var(--composer-gap-md);
                 }
                 .text {
                   font-size: 1rem;
@@ -244,7 +238,7 @@
               align-items: baseline;
               .image-container {
                 width: 120px;
-                height: var(--composer-gap-lg);
+                height: 35px;
 
                 .image {
                   width: 100%;
@@ -252,7 +246,7 @@
                 }
               }
               .button {
-                height: var(--composer-gap-lg);
+                height: 35px;
               }
             }
           }
