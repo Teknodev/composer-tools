@@ -1,25 +1,28 @@
 @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
-
 .container {
     .max-content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-xl);
         .section-title {
             margin-top: 0;
             margin-bottom: var(--composer-gap-md);
         }
 
         .cards-container {
-            gap: var(--composer-gap-sm);
-            min-height: 500px;
-            justify-content: center;
-
+            gap: var(--composer-gap-xl);
             .card {
+                width: 100%;
                 position: relative;
                 transition: 1s;
-                min-height: 350px;
+                display: flex;
+                flex-direction: column;
+                gap: var(--composer-gap-md);
                 justify-content: center;
                 align-items: center;
                 border-radius: var(--composer-border-radius-xl);
-                padding: var(--composer-gap-md);
+                padding:calc(var(--composer-gap-xl) * 2) var(--composer-gap-md);
+                background-color: color-mix(in srgb,var(--composer-html-background), var(--composer-font-color-primary) 5%);;
 
                 .icon {
                     width: 50px;
@@ -30,13 +33,36 @@
                 .title {
                     text-align: center;
                     color: var(--composer-font-color-primary);
-                    font-size: 2rem;
+                    font-size: 2.5rem;
                 }
 
                 .description {
                     text-align: center;
                     color: var(--composer-font-color-primary);
+                    font-size: 1.5rem;
                 }
+
+
+            &.visible {
+                transform: none;
+                margin: 0;
+                transition: transform 1s ease, margin 1s ease;
+            }
+            
+            &.shifted {
+                transition: transform 1s ease, margin 1s ease;
+            }
+            &.shifted[data-position="right"] {
+                transform: rotate(var(--rotate-angle, 20deg));
+            }
+            &.shifted[data-position="left"] {
+                transform: rotate(var(--rotate-angle, -20deg));
+            }
+            
+            &.slick-slide {
+                z-index: auto; 
+            }
+  
             }
         }
     }
@@ -47,12 +73,32 @@
         .max-content {
             .cards-container {
                 flex-direction: row;
-
+                gap: var(--composer-gap-md);
                 .card {
-                    // !important to override inline style
-                    margin: 0 !important;
-                    width: 47% !important;
-                    transform: none !important;
+                    &.visible {
+                        transform: none;
+                        margin: 0;
+                        transition: unset;
+                    }
+                    
+                    &.shifted {
+                        margin-left: 0px;
+                        transform: unset;
+                    }
+                    &.shifted[data-position="right"] {
+                        margin-left: 0px !important;
+                        margin-top: 0px !important;
+                        transform: unset;
+                    }
+                    &.shifted[data-position="left"] {
+                        margin-left: 0px !important;
+                        margin-top: 0px !important;
+                        transform: unset;
+                    }
+                    
+                    &.slick-slide {
+                        z-index: auto; 
+                    }
                 }
             }
         }
@@ -64,10 +110,6 @@
         .max-content {
             .cards-container {
                 flex-direction: column;
-
-                .card {
-                    width: 100% !important;
-                }
             }
         }
     }

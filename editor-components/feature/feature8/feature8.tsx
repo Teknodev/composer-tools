@@ -109,35 +109,107 @@ class Feature8 extends BaseFeature {
             },
           ]
         },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaHandPointer",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Non-visual Curation",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Manually curating your collections feels like doing your taxes.",
+            },
+          ]
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaHandPointer",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Non-visual Curation",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Manually curating your collections feels like doing your taxes.",
+            },
+          ]
+        },
       ],
+    });
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item Count in a Row",
+      value: 5,
+    });
+    this.addProp({
+      type: "boolean",
+      key: "animationEnable",
+      displayer: "Animation Enable",
+      value: true,
     });
   }
 
   callback: IntersectionObserverCallback = (entries) => {
-    const middle = Math.floor(entries.length / 2);
-    const offset = "calc(-1* var(--composer-gap-xl))";
+    if (this.getPropValue("animationEnable")) {
+      const middle = Math.floor(entries.length / 2);
+      entries.forEach((entry, index) => {
+        const element = entry.target as HTMLElement;
+        element.style.zIndex = `${index + 1}`;
+        const visibleClass = this.decorateCSS("visible");
+        const shiftedClass = this.decorateCSS("shifted");
+        if (entry.intersectionRatio > this.threshold) {
+          element.classList.add(visibleClass);
+          element.classList.remove(shiftedClass);
+          element.dataset.position = "";
+          element.style.marginTop = "0px";
+          element.style.marginLeft = "0px";
+        } else {
+          element.classList.remove(visibleClass);
+          element.classList.add(shiftedClass);
+          const distanceFromMiddle = Math.abs(index - middle);
+          const decrementTop = 50;
+          const decrementLeft = 100;
+          const calculatedMarginTop = Math.max(0, distanceFromMiddle * decrementTop);
+          const calculatedMarginLeft = Math.max(0, distanceFromMiddle * decrementLeft);
 
-    entries.forEach((entry, index) => {
-      const style = (entry.target as HTMLElement).style;
-
-      style.zIndex = `${index + 1}`;
-
-      if (entry.intersectionRatio > this.threshold) {
-        style.transform = "";
-        style.margin = "0";
-
-      } else {
-        style.marginTop = "100px";
-
-        if (index > middle) {
-          style.marginLeft = offset;
-          style.transform = `rotate(${Math.abs(index - middle)*5}deg)`;
-        } else if (index < middle) {
-          style.marginRight = offset;
-          style.transform = `rotate(-${Math.abs(index - middle)*5}deg)`;
+          if (index > middle) {
+            element.dataset.position = "right";
+            element.style.marginTop = `${calculatedMarginTop}px`;
+            element.style.marginLeft = `${-1 * calculatedMarginLeft}px`;
+          } else if (index < middle) {
+            element.dataset.position = "left";
+            element.style.marginTop = `${calculatedMarginTop}px`;
+            element.style.marginLeft = `${calculatedMarginLeft}px`;
+          }
         }
-      }
-    });
+      });
+    }
   };
 
   options: IntersectionObserverInit = {
@@ -182,42 +254,33 @@ class Feature8 extends BaseFeature {
             </Base.SectionTitle>
           )}
           {cards?.length > 0 && (
-            <Base.ContainerGrid className={this.decorateCSS("cards-container")}>
-              {cards.map((card, i) => {
-                const titleExist = !!this.castToString(card.title);
-                const descExist = !!this.castToString(card.description);
+            <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("cards-container")}>
+              {cards.map((card: Card, index: number) => {
+                const titleExist = this.castToString(card.title);
+                const descExist = this.castToString(card.description);
 
                 return (
-                  <Base.VerticalContent
-                    key={i}
-                    className={this.decorateCSS("card")}
-                    style={{
-                      backgroundColor: `color-mix(in srgb,
-                        var(--composer-html-background),
-                        var(--composer-font-color-primary) ${(i+1)*5}%)`,
-                      width: 90 / cards.length + "%"
-                    }}
-                  >
-                    {!!card.icon && (
+                  <div className={this.decorateCSS("card")}>
+                    {card.icon && (
                       <ComposerIcon
                         name={card.icon}
                         propsIcon={{ className: this.decorateCSS("icon") }}
                       />
                     )}
                     {titleExist && (
-                      <Base.H2 className={this.decorateCSS("title")}>
+                      <div className={this.decorateCSS("title")}>
                         {card.title}
-                      </Base.H2>
+                      </div>
                     )}
                     {descExist && (
-                      <Base.P className={this.decorateCSS("description")}>
+                      <div className={this.decorateCSS("description")}>
                         {card.description}
-                      </Base.P>
+                      </div>
                     )}
-                  </Base.VerticalContent>
+                  </div>
                 );
               })}
-            </Base.ContainerGrid>
+            </Base.ListGrid>
           )}
         </Base.MaxContent>
       </Base.Container>
