@@ -11,6 +11,7 @@
 
         .cards-container {
             gap: var(--composer-gap-xl);
+            padding-bottom: var(--composer-gap-xl);
             .card {
                 width: 100%;
                 position: relative;
