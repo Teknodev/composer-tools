@@ -14,11 +14,6 @@ type Card = {
   urlTitle: JSX.Element;
   url: string;
 };
-
-type Button = {
-  buttonIcon: string;
-};
-
 class Header32 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
@@ -326,6 +321,10 @@ class Header32 extends BaseHeader {
                                     index
                                     ? this.decorateCSS("imageTitleAnimation")
                                     : ""
+                                } ${
+                                  !enableBackgroundImageOverlay &&
+                                  !item.backgroundImage &&
+                                  this.decorateCSS("primaryColor")
                                 }`}
                               >
                                 {item.imageTitle}
@@ -409,13 +408,17 @@ class Header32 extends BaseHeader {
                             {showNavButtons && (
                               <div className={this.decorateCSS("nav-buttons")}>
                                 {hasleftButtonIcon && (
-                                  <button
+                                  <button 
                                     className={`${this.decorateCSS(
                                       "nav-button"
                                     )} ${
                                       animation
                                         ? this.decorateCSS("enable-before")
                                         : ""
+                                    } ${
+                                      !enableBackgroundImageOverlay &&
+                                      !item.backgroundImage &&
+                                      this.decorateCSS("primaryColor")
                                     }`}
                                     onClick={() => {
                                       this.getComponentState(
@@ -442,6 +445,10 @@ class Header32 extends BaseHeader {
                                       animation
                                         ? this.decorateCSS("enable-before")
                                         : ""
+                                    } ${
+                                      !enableBackgroundImageOverlay &&
+                                      !item.backgroundImage &&
+                                      this.decorateCSS("primaryColor")
                                     }`}
                                     onClick={() => {
                                       this.getComponentState(

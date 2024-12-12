@@ -185,6 +185,10 @@
                   transform: translate(-50%, -50%);
                   z-index: 1;
                   opacity: 1;
+
+                  &.primaryColor{
+                    color: var(--composer-font-color-primary);
+                  }
                 }
                 .imageTitleAnimation {
                   animation: imageTitleRight 0.5s ease-in-out;
@@ -294,6 +298,11 @@
                       color: var(--composer-font-color-secondary);
                       transition: left 0.3s ease;
                       z-index: -1;
+                    }
+
+                    &.primaryColor{
+                      border-color: var(--composer-primary-color);
+                      color: var(--composer-primary-color);
                     }
 
                     &:hover {
