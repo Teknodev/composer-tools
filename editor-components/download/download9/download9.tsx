@@ -90,7 +90,7 @@ class Download9 extends BaseDownload {
               type: "image",
               key: "buttonImage",
               displayer: "Button Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/673f5276506a40002c2cf763?alt=media&timestamp=1732790517206",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675ad1cc0655f8002ca6552d?alt=media",
             },
           ],
         },
