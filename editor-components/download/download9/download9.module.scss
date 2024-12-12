@@ -152,7 +152,8 @@
 
         .hover-container {
           opacity: 1;
-          transition: opacity 0.5s ease 0.2s, transform 0.5s ease 0.2s;
+          transition: opacity 0.5s ease 0.5s, transform 0.5s ease 0.5s;
+          transition: opacity 0.5s ease 0.4s, transform 0.5s ease 0.5s;
         }
       }
     }
