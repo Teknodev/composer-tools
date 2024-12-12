@@ -252,7 +252,7 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, 
           position={{ lat: marker.lat, lng: marker.lng }}
           title="Location"
           icon={{
-            url: defaultMarker,
+            url: marker.icon.url || defaultMarker,
             scaledSize: new google.maps.Size(marker.icon?.scaledSize.width || 32, marker.icon?.scaledSize.height || 32),
           }}
           onClick={() => handleMarkerClick(marker)}
