@@ -183,7 +183,7 @@ class Download9 extends BaseDownload {
             <Base.VerticalContent className={this.decorateCSS("hover-container")}>
               {cardTitleExist && <Base.SectionTitle className={imageExist ? this.decorateCSS("card-title") : ""}>{this.getPropValue("cardTitle")}</Base.SectionTitle>}
               {cardDescriptionExist && <Base.SectionDescription className={imageExist ? this.decorateCSS("card-description") : ""}>{this.getPropValue("cardDescription")}</Base.SectionDescription>}
-              <div className={this.decorateCSS("buttons-container")}>{this.renderButtons()}</div>
+              {this.castToObject<Button[]>("buttons").length > 0 && <div className={this.decorateCSS("buttons-container")}>{this.renderButtons()}</div>}
             </Base.VerticalContent>
           </Base.MaxContent>
         </div>

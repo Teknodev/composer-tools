@@ -4,7 +4,7 @@
   padding: 0;
   .page,
   .page-no-image {
-    width: 100%;
+    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -33,17 +33,19 @@
 
     .max-content,
     .max-content-no-image {
-      width: 100%;
+      width: 100vw;
       display: flex;
       overflow: hidden;
       position: relative;
       height: auto;
       min-height: 250px;
+      min-width: 100vw;
 
       .middle-container {
         padding: var(--composer-gap-md) var(--composer-gap-xl);
         z-index: 3;
         width: 100%;
+        min-width: 100%;
         min-height: 100%;
         height: auto;
         justify-content: center;
@@ -69,16 +71,23 @@
       .hover-container {
         padding: var(--composer-gap-md) var(--composer-gap-xl);
         z-index: 2;
-        width: 100%;
+        width: 100vw;
+        min-width: 100vw;
         min-height: 100%;
         height: auto;
         justify-content: center;
-        position: absolute;
         top: 0;
         opacity: 0;
         transition: opacity 0.5s;
         display: flex;
         flex-direction: column;
+        transform: translatex(-100vw);
+
+        width: fit-content;
+        opacity: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
         .card-title {
           color: white;
@@ -132,7 +141,8 @@
         }
 
         .right-container {
-          right: calc(-50% - 200px);
+          transform: translatex(-50vw);
+
           opacity: 0;
         }
 
@@ -148,7 +158,6 @@
     }
 
     .max-content {
-      justify-content: center;
       align-items: center;
       min-height: 500px;
 
@@ -189,34 +198,10 @@
 
         .middle-container {
           padding: var(--composer-gap-md) var(--composer-gap-lg);
-
-          .title {
-            font-size: 1.5rem;
-          }
-
-          .title-no-image {
-            font-size: 1.5rem;
-          }
-
-          .description {
-            font-size: 1rem;
-          }
-
-          .description-no-image {
-            font-size: 1rem;
-          }
         }
 
         .hover-container {
           padding: var(--composer-gap-md) var(--composer-gap-lg);
-
-          .card-title {
-            font-size: 1.5rem;
-          }
-
-          .card-description {
-            font-size: 1rem;
-          }
 
           .buttons-container {
             .image-container {
@@ -264,34 +249,10 @@
       .max-content {
         .middle-container {
           padding: var(--composer-gap-md);
-
-          .title {
-            font-size: 1.5rem;
-          }
-
-          .title-no-image {
-            font-size: 1.5rem;
-          }
-
-          .description {
-            font-size: 1rem;
-          }
-
-          .description-no-image {
-            font-size: 1rem;
-          }
         }
 
         .hover-container {
           padding: var(--composer-gap-md);
-
-          .card-title {
-            font-size: 1.5rem;
-          }
-
-          .card-description {
-            font-size: 1rem;
-          }
 
           .buttons-container {
             flex-direction: column;
