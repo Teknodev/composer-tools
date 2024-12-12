@@ -235,7 +235,7 @@ class Header32 extends BaseHeader {
       dots: true,
       infinite: itemsCount > 1,
       speed: 1000,
-      autoplay: false,
+      autoplay: true,
       fade: animation,
       autoplaySpeed: 5000,
       slidesToShow: 1,
