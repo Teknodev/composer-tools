@@ -273,18 +273,22 @@ class LocationComponent1 extends Location {
 
     const mapStyle = this.selectTheme(selectedTheme);
 
-    const markers = addresses.reduce((acc: MarkerObject[], address: Address) => {
+    const markers = addresses.reduce((acc: MarkerObject[], address: any) => {
       if (address.type === "object" && Array.isArray(address.value)) {
-        const markerData = address.value.find((addr) => addr.type === "location");
+        const markerData = address.value.find((addr: any) => addr.type === "location");
         const lat = markerData?.value.lat;
         const lng = markerData?.value.lng;
-        const description = address.value.find((a) => a.key.startsWith("description"))?.value || "";
-        const popupTitle = address.value.find((a) => a.key.startsWith("popupTitle"))?.value || "";
-        const popupButtonText = address.value.find((a) => a.key.startsWith("popupButtonText"))?.value || "";
-        const popupButtonUrl = address.value.find((a) => a.key.startsWith("popupButtonUrl"))?.value || "";
-        const markerImage = address.value.find((a) => a.key.startsWith("marker-image"))?.value;
-        const width = address.value.find((a) => a.key.startsWith("marker-width"))?.value || 32;
-        const height = address.value.find((a) => a.key.startsWith("marker-height"))?.value || 32;
+        const description = this.castToString(address.getPropValue("description"));
+        const popupTitle = this.castToString(address.getPropValue("popupTitle"));
+
+        const popupButtonText = this.castToString(address.getPropValue("popupButtonText"));
+
+        const popupButtonUrl = address.getPropValue("popupButtonUrl");
+
+        const markerImage = address.getPropValue("marker-image");
+
+        const width = address.getPropValue("marker-width") || 32;
+        const height = address.getPropValue("marker-height") || 32;
 
         if (lat !== undefined && lng !== undefined) {
           const content =
@@ -293,9 +297,11 @@ class LocationComponent1 extends Location {
                 {popupTitle && <Base.P className={description ? this.decorateCSS("popup-title") : this.decorateCSS("popup-title-no-desc")}>{popupTitle} </Base.P>}
                 {description && <Base.P className={this.decorateCSS("popup-content")}>{description}</Base.P>}
                 {popupButtonText && (
-                  <a href={popupButtonUrl} target="_blank" className={this.decorateCSS("popup-link")}>
-                    <div className={this.decorateCSS("popup-button")}>{popupButtonText}</div>
-                  </a>
+                  <div className={this.decorateCSS("popup-link")}>
+                    <ComposerLink path={popupButtonUrl}>
+                      <div className={this.decorateCSS("popup-button")}>{popupButtonText}</div>
+                    </ComposerLink>
+                  </div>
                 )}
               </div>
             ) : null;
