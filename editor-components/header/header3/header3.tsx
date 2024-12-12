@@ -9,6 +9,7 @@ type ISliderData = {
   title: string;
   image: string;
   description: string;
+  type: string;
   button: {
     button_text: string;
   };
@@ -45,6 +46,15 @@ class Header3 extends BaseHeader {
               key: "image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617eb2bd2970002c624501?alt=media&timestamp=1719483639150",
+            },
+            {
+              type: "select",
+              key: "type",
+              displayer: "Type",
+              value: "1",
+              additionalParams: {
+                selectItems: ["1", "2", "3"],
+              },
             },
             {
               type: "object",
@@ -90,6 +100,15 @@ class Header3 extends BaseHeader {
               key: "image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617eb2bd2970002c624502?alt=media&timestamp=1719483639150",
+            },
+            {
+              type: "select",
+              key: "type",
+              displayer: "Type",
+              value: "2",
+              additionalParams: {
+                selectItems: ["1", "2", "3"],
+              },
             },
             {
               type: "object",
@@ -138,6 +157,15 @@ class Header3 extends BaseHeader {
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617eb2bd2970002c624503?alt=media&timestamp=1719483639150",
             },
             {
+              type: "select",
+              key: "type",
+              displayer: "Type",
+              value: "3",
+              additionalParams: {
+                selectItems: ["1", "2", "3"],
+              },
+            },
+            {
               type: "object",
               displayer: "Button",
               key: "button",
@@ -159,6 +187,12 @@ class Header3 extends BaseHeader {
           ],
         },
       ],
+    });
+    this.addProp({
+      type: "boolean",
+      key: "animation",
+      displayer: "Enable Animation",
+      value: true,
     });
 
     this.setComponentState("sliderRef", React.createRef());
@@ -182,6 +216,7 @@ class Header3 extends BaseHeader {
       infinite: true,
       slidesToShow: 1,
       slidesToScroll: 1,
+      arrows: false,
       beforeChange: (current: number, next: number) => {
         setTimeout(() => {
           this.setComponentState("activeSlide", next);
@@ -190,6 +225,7 @@ class Header3 extends BaseHeader {
     };
 
     const activeSlide = this.getComponentState("activeSlide");
+    const animation = this.getPropValue("animation");
 
     return (
       <Base.Container className={this.decorateCSS("container")} isFull={true}>
@@ -197,7 +233,7 @@ class Header3 extends BaseHeader {
           <ComposerSlider
             ref={this.getComponentState("sliderRef")}
             {...settings}
-            className={this.decorateCSS("slider")}
+            className={`${this.decorateCSS("slider")} ${animation && this.decorateCSS("with-animation")}`}
           >
             {this.castToObject<ISliderData[]>("slider").map((item: ISliderData, index: number) => {
               const title = this.castToString(item.title as any);
@@ -207,18 +243,20 @@ class Header3 extends BaseHeader {
 
               return (
                 <div
-                  className={`${this.decorateCSS("wrapper")} ${
-                    activeSlide % 2 === 0 && this.decorateCSS("reverse")
-                  } ${index === activeSlide && this.decorateCSS("animation")}`}
+                  className={`${this.decorateCSS("wrapper")} ${this.decorateCSS(
+                    `type-${item.type}`
+                  )} ${index === activeSlide && this.decorateCSS("active-slide")}
+                  ${!item.image && this.decorateCSS("full-text-container")}
+                  ${!showContent && this.decorateCSS("full-image")}
+                  `}
                 >
-                  {showContent && (
-                    <>
-                      <div className={this.decorateCSS("content")}></div>
-                      <div
-                        className={`${this.decorateCSS("text-container")} ${
-                          !item.image && this.decorateCSS("full-text-container")
-                        }`}
-                      >
+                  {!showContent && item.type === "3" ? null : (
+                    <div className={this.decorateCSS("content-bg")} />
+                  )}
+
+                  <div className={this.decorateCSS("content")}>
+                    {showContent && (
+                      <div className={this.decorateCSS("text-container")}>
                         {title && <h1 className={this.decorateCSS("title")}>{item.title}</h1>}
                         {(description || buttonText) && (
                           <div
@@ -241,17 +279,17 @@ class Header3 extends BaseHeader {
                           </div>
                         )}
                       </div>
-                    </>
-                  )}
-                  {item.image && (
-                    <img
-                      className={`${this.decorateCSS("image")} ${
-                        !showContent && this.decorateCSS("full-image")
-                      }`}
-                      src={item.image}
-                      alt={item.title}
-                    />
-                  )}
+                    )}
+                    {item.image && (
+                      <div className={this.decorateCSS("image-container")}>
+                        <img
+                          className={this.decorateCSS("image")}
+                          src={item.image}
+                          alt={item.title}
+                        />
+                      </div>
+                    )}
+                  </div>
                 </div>
               );
             })}
