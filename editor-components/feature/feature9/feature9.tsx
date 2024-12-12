@@ -145,7 +145,7 @@ class Feature9 extends BaseFeature {
               type: "icon",
               key: "icon",
               displayer: "Icon",
-              value: "PiShootingStarLight"
+              value: "FaRegLightbulb"
             },
             {
               type: "string",
@@ -254,8 +254,6 @@ class Feature9 extends BaseFeature {
     const cards = this.castToObject<Card[]>("cards");
     const buttons = this.castToObject<Button[]>("buttons");
     const cardElements = document.querySelectorAll("." + this.decorateCSS("card"));
-
-    const titleExist = !!this.getPropValue("title", { as_string: true });
     const title = this.getPropValue("title");
 
     const cardsLengthIsChanged = this.getComponentState("cardLength") != cardElements.length;
@@ -268,17 +266,13 @@ class Feature9 extends BaseFeature {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
-            {/* left page */}
-            {titleExist &&
-              <div className={this.decorateCSS("title-container")}>
-                <div className={this.decorateCSS("title-wrapper")}>
-                  <Base.SectionTitle className={this.decorateCSS("title")}>
-                    {title}
-                  </Base.SectionTitle>
-                </div>
-              </div>
+            {this.castToString(title) &&
+              <Base.VerticalContent className={this.decorateCSS("title-container")}>
+                <Base.SectionTitle className={this.decorateCSS("title")}>
+                  {title}
+                </Base.SectionTitle>
+              </Base.VerticalContent>
             }
-            {/* right page */}
             {cards?.length > 0 &&
               <div className={this.decorateCSS("cards-container")}>
                 {cards.map((card: Card, index: number) => {
@@ -294,66 +288,65 @@ class Feature9 extends BaseFeature {
                       key={index}
                       className={this.decorateCSS("card")}
                     >
-                      {numExist &&
-                        <div className={this.decorateCSS("card-number")}>
-                          {card.num}
-                        </div>
-                      }
-                      {/* card header */}
-                      {(card.icon || titleExist) &&
-                        <header className={this.decorateCSS("card-header")}>
-                          {/* card icon */}
-                          {card.icon &&
-                            <div className={this.decorateCSS("icon-container")}>
-                              <ComposerIcon
-                                name={card.icon}
-                                propsIcon={{
-                                  className: this.decorateCSS("icon"),
-                                  size: "40px"
-                                }}
-                              />
-                            </div>
-                          }
-                          {/* card title */}
-                          {titleExist &&
+                      <div className={this.decorateCSS("card-inner")}>
+                        {(card.icon || titleExist) &&
+                          <div className={this.decorateCSS("card-header")}>
+                            {card.icon &&
+                              <div className={this.decorateCSS("icon-container")}>
+                                <ComposerIcon
+                                  name={card.icon}
+                                  propsIcon={{
+                                    className: this.decorateCSS("icon"),
+                                    size: "40px"
+                                  }}
+                                />
+                              </div>
+                            }
                             <div className={this.decorateCSS("card-title-container")}>
-                              <Base.H2 className={this.decorateCSS("card-title")}>
-                                {card.title}
-                              </Base.H2>
+                              {numExist &&
+                                <div className={this.decorateCSS("card-number")}>
+                                  {card.num}
+                                </div>
+                              }
+                              {titleExist &&
+                                <div className={this.decorateCSS("card-title")}>
+                                  {card.title}
+                                </div>
+                              }
                             </div>
-                          }
-                        </header>
-                      }
-                      {/* card content */}
-                      {descExist &&
-                        <main className={this.decorateCSS("description-container")}>
-                          <Base.P className={this.decorateCSS("description")}>
-                            {card.description}
-                          </Base.P>
-                        </main>
-                      }
+                          </div>
+                        }
+                        {descExist &&
+                          <div className={this.decorateCSS("description-container")}>
+                            <div className={this.decorateCSS("description")}>
+                              {card.description}
+                            </div>
+                          </div>
+                        }
+                      </div>
                     </div>
                   );
                 })}
               </div>
             }
           </div>
-          {/* buttons */}
-          {buttons?.length > 0 &&
-            <Base.ContainerGrid className={this.decorateCSS("buttons-container")}>
+          {(buttons?.length > 0) && (
+            <div className={this.decorateCSS("buttons-container")}>
               {buttons.map((button: Button, index: number) => {
-                const textExist = this.castToString(button.text);
-                if (!textExist) return null;
-                return (
-                  <ComposerLink key={index} path={button.link}>
-                    <button className={this.decorateCSS("button")}>
-                      {button.text}
-                    </button>
-                  </ComposerLink>
-                );
+                if (this.castToString(button.text)) {
+                  return (
+                    <ComposerLink key={index} path={button.link}>
+                      <Base.Button className={this.decorateCSS("button")}>
+                        {button.text}
+                      </Base.Button>
+                    </ComposerLink>
+                  );
+                }
+                return null;
               })}
-            </Base.ContainerGrid>
-          }
+            </div>
+          )}
+
         </Base.MaxContent>
       </Base.Container>
     );
