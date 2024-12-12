@@ -1,66 +1,172 @@
 @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
 .container {
-    background-color: color-mix(in srgb,
-            var(--composer-html-background) 90%,
-            var(--composer-font-color-primary) 10%);
-
+    background-color:  color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
     .max-content {
         .wrapper {
-            .section-title {}
+            .section-wrapper{
+                .section-title {
+                    content: "";
+                }
 
-            .section-description {}
-
-            .cards-container {
-                justify-content: center;
+                .section-description {
+                    content: "";
+                }
+            }
+            .arrow-container{
+                width: 100%;
+                display: flex;
+                justify-content: end;
                 gap: var(--composer-gap-md);
-
-                .card-container {
-                    border-radius: var(--composer-border-radius-md);
-                    background-color: var(--composer-html-background);
-
-                    .image {
-                        width: 100%;
-                        border-radius: var(--composer-border-radius-md) var(--composer-border-radius-md) 0 0;
-                        object-fit: cover;
-                        height: 300px;
-                    }
-
-                    .title {
-                        margin: 0;
-                        padding: var(--composer-gap-md);
-                        padding-bottom: 0;
-                    }
-
-                    .description {
-                        margin: 0;
-                        padding: var(--composer-gap-md);
+                .arrow-right, .arrow-left{
+                    border: 2px solid var(--composer-font-color-primary);
+                    border-radius: 50%;
+                    padding: var(--composer-gap-xs);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    .icon{
+                        font-size: 2rem;
+                        color: var(--composer-font-color-primary);
                     }
                 }
             }
-
-            .button {
-
-                >div,
-                >a {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    gap: var(--composer-gap-sm);
-                    flex-shrink: 0;
+                .cards-container {
+                    .carousel{
+                        >div{
+                            >div{
+                                display: flex;
+                                gap: var(--composer-gap-xl);
+                                padding: var(--composer-gap-lg) 0px;
+                                align-items: stretch;
+                                margin-left: unset;
+                                >div{
+                                    height: auto;
+                                    >div{
+                                        height: 100%;
+                                    }
+                                }
+                            }
+                        }
+    
+                    .card-container {
+                        border-radius: var(--composer-border-radius-md);
+                        background-color: var(--composer-html-background);
+                        transform: scale(1);
+                        transition: transform 0.5s linear;
+                        height: 100%;
+    
+                        .image {
+                            height: 300px;
+                            width: 100%;
+                            border-radius: var(--composer-border-radius-md) var(--composer-border-radius-md) 0 0;
+                            object-fit: cover;
+                        }
+                        .bottom{
+                            padding: var(--composer-gap-xl);
+                            display: flex;
+                            flex-direction: column;
+                            gap: var(--composer-gap-md);
+                            .title {
+                                font-size: 2rem;
+                            }
+        
+                            .description {
+                                font-size: 1.5rem;
+                            }
+                        }
+    
+ 
+                        &:hover{
+                            transform: scale(1.05)
+                        }
+                    }
+                
+                 }
                 }
-
-                flex-shrink: 0;
-                margin: 0 auto;
-                background-color: var(--composer-primary-color);
-                color: var(--composer-font-color-secondary);
-                padding: var(--composer-gap-sm) var(--composer-gap-md);
-                border-radius: var(--composer-border-radius-md);
+            .button-wrapper{
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                .button {
+                    content: "";
+                }
             }
         }
     }
 }
 
-@container (max-width: #{$composer-tablet-width}) {}
+@container (max-width: #{$composer-tablet-width}) {
+    .container {
+        .max-content {
+            .wrapper {
+                    .cards-container {
+                        .carousel{
+                            >div{
+                                >div{
+                                    gap: var(--composer-gap-md);
+    
+                                }
+                            }
+        
+                        .card-container {        
+                            .image {
+                                height: 200px;
+                            }
+                            .bottom{
+                                padding: var(--composer-gap-md);
 
-@container (max-width: #{$composer-phone-width}) {}
+                                .title {
+                                    font-size: 1.5rem;
+                                }
+            
+                                .description {
+                                    font-size: 1rem;
+                                }
+                            }
+                        }
+                    
+                     }
+                }
+            }
+        }
+    }
+
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        .max-content {
+            .wrapper {
+                gap: var(--composer-gap-xs);
+                .arrow-container{
+                    gap: var(--composer-gap-sm);
+                    .arrow-right, .arrow-left{
+
+                        .icon{
+                            font-size: 1.5rem;
+                        }
+                    }
+                }
+                .cards-container {
+                    .carousel{
+                        >div{
+                            >div{
+                                gap: var(--composer-gap-xs);
+                                padding: var(--composer-gap-md) 0px;
+
+                            }
+                        }
+                        .card-container{
+                            &:hover{
+                                transform: scale(1)
+                            }
+                        }
+                    }
+                }
+    
+            }
+        }
+    }
+}
