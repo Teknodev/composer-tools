@@ -332,23 +332,28 @@ class Feature10 extends BaseFeature {
                 </Base.SectionDescription>
               )}
             </Base.VerticalContent>
-            <div className={this.decorateCSS("arrow-container")}>
-              <button
-                onClick={() => {
-                  sliderRef.current.slickPrev();
-                }}
-                className={this.decorateCSS("arrow-left")}>
-                <ComposerIcon name={this.getPropValue("leftArrow")} propsIcon={{ className: this.decorateCSS("icon") }} ></ComposerIcon>
-              </button>
-              <button
-                onClick={() => {
-                  sliderRef.current.slickNext();
-                }}
-                className={this.decorateCSS("arrow-right")}>
-                <ComposerIcon name={this.getPropValue("rightArrow")} propsIcon={{ className: this.decorateCSS("icon") }}></ComposerIcon>
-              </button>
-            </div>
-
+            {(this.getPropValue("leftArrow") || this.getPropValue("rightArrow")) && (
+              <div className={this.decorateCSS("arrow-container")}>
+                {this.getPropValue("leftArrow") && (
+                  <button
+                    onClick={() => {
+                      sliderRef.current.slickPrev();
+                    }}
+                    className={this.decorateCSS("arrow-left")}>
+                    <ComposerIcon name={this.getPropValue("leftArrow")} propsIcon={{ className: this.decorateCSS("icon") }} ></ComposerIcon>
+                  </button>
+                )}
+                {this.getPropValue("rightArrow") && (
+                  <button
+                    onClick={() => {
+                      sliderRef.current.slickNext();
+                    }}
+                    className={this.decorateCSS("arrow-right")}>
+                    <ComposerIcon name={this.getPropValue("rightArrow")} propsIcon={{ className: this.decorateCSS("icon") }}></ComposerIcon>
+                  </button>
+                )}
+              </div>
+            )}
             <div className={this.decorateCSS("cards-container")}>
               {cards?.length > 0 && (
                 <ComposerSlider
@@ -372,18 +377,20 @@ class Feature10 extends BaseFeature {
                           {item.image && (
                             <img className={this.decorateCSS("image")} src={item.image} alt={this.castToString(item.title)} />
                           )}
-                          <div className={this.decorateCSS("bottom")}>
-                            {titleExist && (
-                              <div className={this.decorateCSS("title")}>
-                                {item.title}
-                              </div>
-                            )}
-                            {descExist && (
-                              <div className={this.decorateCSS("description")}>
-                                {item.description}
-                              </div>
-                            )}
-                          </div>
+                          {(titleExist || descExist) && (
+                            <div className={this.decorateCSS("bottom")}>
+                              {titleExist && (
+                                <div className={this.decorateCSS("title")}>
+                                  {item.title}
+                                </div>
+                              )}
+                              {descExist && (
+                                <div className={this.decorateCSS("description")}>
+                                  {item.description}
+                                </div>
+                              )}
+                            </div>
+                          )}
                         </div>
                       </ComposerLink>
                     );
