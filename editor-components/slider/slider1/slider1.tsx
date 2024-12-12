@@ -178,6 +178,7 @@ class Slider1 extends BaseSlider {
     const ImagesExist = sliderItems[this.getComponentState("activeSlide")]?.image;
 
     const alignmentValue = Base.getContentAlignment()
+    const imageHeight = window.document.getElementById("slider1IconsHeight")?.clientHeight
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -198,7 +199,8 @@ class Slider1 extends BaseSlider {
                   </div>
 
                   <div className={this.decorateCSS("content")}>
-                    <div className={`${this.decorateCSS("box-parent")} ${icons.length > 7 && this.decorateCSS("two-row")}`}>
+                    <div className={`${this.decorateCSS("box-parent")} 
+                    ${imageHeight > 37 && this.decorateCSS("two-row")}`}>
                       {(this.castToString(item.subtitle) || this.castToString(item.title)) &&
                         <Base.VerticalContent className={`
                         ${this.decorateCSS("box")} 
@@ -218,7 +220,7 @@ class Slider1 extends BaseSlider {
                     </div>
 
                     {icons.length > 0 &&
-                      <div className={this.decorateCSS("socials")}>
+                      <div className={this.decorateCSS("socials")} id="slider1IconsHeight">
                         {icons.map((social: Social, index: number) => {
                           return (
                             <ComposerLink key={index} path={social.url}>
