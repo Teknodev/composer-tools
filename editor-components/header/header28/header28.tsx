@@ -13,18 +13,6 @@ class HeaderComponent28 extends BaseHeader {
 
     this.addProp({
       type: "icon",
-      key: "prev_icon",
-      displayer: "Prev icon",
-      value: "GrFormPrevious",
-    });
-    this.addProp({
-      type: "icon",
-      key: "next_icon",
-      displayer: "Next icon",
-      value: "GrFormNext",
-    });
-    this.addProp({
-      type: "icon",
       key: "play_icon",
       displayer: "Play Icon",
       value: "IoPlay",
@@ -186,33 +174,11 @@ class HeaderComponent28 extends BaseHeader {
 
     this.setComponentState("animation-active", false);
     this.setComponentState("active-index", 0);
-    this.setComponentState("display-none", true);
-    this.setComponentState("slider-ref", React.createRef());
-    this.setComponentState("video-player-ref", React.createRef());
     this.setComponentState("play-video", false);
   }
   getName(): string {
     return "Header 28";
   }
-
-  componentDidMount() {
-    super.componentDidMount();
-    document.addEventListener("click", this.handleDocumentClick, true); // Using capture phase for broader catching
-  }
-
-  componentWillUnmount() {
-    super.componentWillUnmount();
-    document.removeEventListener("click", this.handleDocumentClick, true);
-  }
-
-  handleDocumentClick = (event: any) => {
-    if (
-      this.getComponentState("video-player-ref").current &&
-      !this.getComponentState("video-player-ref").current.contains(event.target)
-    ) {
-      this.setComponentState("play-video", false);
-    }
-  };
 
   render() {
     const slides = this.getPropValue("slider");
@@ -222,7 +188,7 @@ class HeaderComponent28 extends BaseHeader {
       dots: true,
       infinite: true,
       accessibility: true,
-      speed: 1000,
+      speed: 800,
       autoplay: false,
       autoplaySpeed: 3000,
       slidesToShow: 1,
@@ -238,18 +204,17 @@ class HeaderComponent28 extends BaseHeader {
         />
       ),
       afterChange: (index: number) => {
-        this.setComponentState("animation-active", false);
-        this.setComponentState("display-none", false);
         this.setComponentState("play-video", false);
       },
       beforeChange: (oldIndex: number, newIndex: number) => {
         if (oldIndex === newIndex) return;
         if (this.getPropValue("textAnimation"))
           this.setComponentState("animation-active", true);
+        setTimeout(() => {
+          this.setComponentState("animation-active", false);
+        },400)
         this.setComponentState("play-video", false);
         this.setComponentState("from", oldIndex > newIndex ? "left" : "right");
-
-        this.setComponentState("display-none", true);
 
         this.setComponentState("active-index", newIndex);
       },
@@ -259,7 +224,6 @@ class HeaderComponent28 extends BaseHeader {
       <div className={this.decorateCSS("container")}>
         <ComposerSlider
           {...settings}
-          ref={this.getComponentState("slider-ref")}
           className={this.decorateCSS("carousel")}
         >
           {slides.map((item: any, indexSlider: number) => (
@@ -380,37 +344,6 @@ class HeaderComponent28 extends BaseHeader {
                   </p>
                 )}
               </div>
-              <ComposerIcon
-                name={this.getPropValue("next_icon")}
-                propsIcon={{
-                  className: `${this.decorateCSS(
-                    "next-icon"
-                  )} ${this.decorateCSS("arrow")} ${
-                    !this.getComponentState("display-none") &&
-                    this.decorateCSS("un-visible")
-                  } ${
-                    item.getPropValue("image") && this.decorateCSS("withImage")
-                  }`,
-                  size: 40,
-                  onClick: () => {
-                    this.getComponentState("slider-ref").current.slickNext();
-                  },
-                }}
-              />
-              <ComposerIcon
-                name={this.getPropValue("prev_icon")}
-                propsIcon={{
-                  className: `${this.decorateCSS(
-                    "prev-icon"
-                  )} ${this.decorateCSS("arrow")} ${
-                    item.getPropValue("image") && this.decorateCSS("withImage")
-                  }`,
-                  size: 40,
-                  onClick: () => {
-                    this.getComponentState("slider-ref").current.slickPrev();
-                  },
-                }}
-              />
             </div>
           ))}
         </ComposerSlider>

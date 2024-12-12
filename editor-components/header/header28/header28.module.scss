@@ -131,27 +131,27 @@
         flex-direction: column;
         padding: var(--composer-gap-md) var(--composer-gap-xl);
         opacity: 0;
-        transition: all 0.2s;
+        transition: all 0.15s;
         cursor: pointer;
         z-index: 2;
+        margin-top: 50px;
 
         .title {
           color: var(--composer-font-color-primary);
-          font-size: 6rem;
+          font-size: 6.5rem;
           line-height: 1.2;
           margin: 0 0 var(--composer-gap-sm) 0;
         }
 
         .sub_title {
-          font-size: 3.5rem;
+          font-size: 4rem;
           color: var(--composer-tertiary-color);
           line-height: 1.2;
           margin: 0 0 var(--composer-gap-md) 0;
         }
 
         .description {
-          font-size: 1rem;
-          letter-spacing: 10px;
+          font-size: 1.5rem;
           text-transform: uppercase;
           font-weight: 400;
           color: var(--composer-tertiary-color);
@@ -161,7 +161,7 @@
 
         .tag {
           color: var(--composer-font-color-primary);
-          font-size: 1rem;
+          font-size: 1.5rem;
           font-weight: 700;
           display: inline-block;
           line-height: 1.2;
@@ -171,31 +171,7 @@
         &.visible {
           opacity: 1;
           margin-top: 0;
-          transition: all 0.2s ease;
-        }
-      }
-
-      .arrow {
-        position: absolute;
-        top: 0;
-        z-index: 10;
-        color: var(--composer-font-color-primary);
-        cursor: pointer;
-        bottom: 0;
-        margin: auto 0;
-
-        &.prev-icon {
-          left: 0;
-        }
-
-        &.next-icon {
-          right: 0;
-        }
-      }
-
-      &:hover {
-        .arrow {
-          opacity: 1;
+          transition: all 0.5s ease;
         }
       }
     }
@@ -243,19 +219,19 @@
 
         .slide-content {
           .title {
-            font-size: 3rem;
+            font-size: 3.5rem;
           }
 
           .sub_title {
-            font-size: 1.5rem;
+            font-size: 2rem;
           }
 
           .description {
-            font-size: 1rem;
+            font-size: 1.5rem;
           }
 
           .tag {
-            font-size: 1rem;
+            font-size: 1.5rem;
           }
         }
         .next-icon,
