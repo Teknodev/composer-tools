@@ -374,7 +374,7 @@ class Feature10 extends BaseFeature {
                           className={(titleExist || descExist) ? this.decorateCSS("card-container") : this.decorateCSS("card-container-fit-content")}
                         >
                           {item.image && (
-                            <img className={this.decorateCSS("image")} src={item.image} alt={this.castToString(item.title)} />
+                            <img className={(titleExist || descExist) ? this.decorateCSS("image") : this.decorateCSS("image-border-radius")} src={item.image} alt={this.castToString(item.title)} />
                           )}
                           {(titleExist || descExist) && (
                             <div className={this.decorateCSS("bottom")}>
