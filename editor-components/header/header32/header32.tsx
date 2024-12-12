@@ -228,7 +228,7 @@ class Header32 extends BaseHeader {
   getName(): string {
     return "Header-32";
   }
-  
+
   render() {
     const animation: boolean = this.getPropValue("animation");
     const itemsCount = this.castToObject<Card[]>("header").length;
@@ -371,9 +371,14 @@ class Header32 extends BaseHeader {
 
                                 {this.castToString(item.urlTitle) && (
                                   <div
-                                    className={this.decorateCSS(
+                                    className={`${this.decorateCSS(
                                       "url-container"
-                                    )}
+                                    )} ${
+                                      !this.castToString(
+                                        item.imageDescription
+                                      ) &&
+                                      this.decorateCSS("withoutDescription")
+                                    }`}
                                   >
                                     <ComposerLink
                                       key={`hdr-32-${index}`}

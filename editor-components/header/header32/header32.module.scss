@@ -131,6 +131,7 @@
               background-position: center !important;
               position: relative;
               object-fit: cover;
+              overflow: hidden;
               .backgroundImage {
                 position: absolute;
                 width: 100%;
@@ -139,7 +140,8 @@
                 left: 0;
                 object-fit: cover;
                 &.zoomInAnimation {
-                  animation: zoomOutToIn 40s;
+                  transform: scale(2);
+                  animation: zoomOutToIn 25s;
                 }
               }
               .content-inner {
@@ -203,6 +205,7 @@
                   );
                   color: var(--composer-font-color-primary);
                   gap: var(--composer-gap-md);
+                  min-height: calc(100px + (var(--composer-gap-md) * 2));
 
                   .description {
                     width: 100%;
@@ -232,7 +235,6 @@
                     > div {
                       display: flex;
                       justify-content: center;
-                      width: 100% !important;
                     }
                     .urlTitles {
                       font-size: 1rem;
@@ -240,6 +242,14 @@
                       text-align: center;
                       margin: 0;
                       opacity: 1;
+                    }
+
+                    &.withoutDescription {
+                      justify-content: unsafe;
+                      width: fit-content;
+                      .urlTitles {
+                        text-align: left !important;
+                      }
                     }
 
                     .urlTitleAnimation {
@@ -360,7 +370,7 @@
     }
 
     .imageTitle {
-      font-size: 2rem;
+      font-size: 3rem;
     }
 
     .image-details {
