@@ -37,7 +37,7 @@
     .carousel {
       width: 100%;
 
-      :global(.slick-active) {
+      :global(.slick-center) {
         >div {
           .centerSlide {
             transform: scale(1.0);
