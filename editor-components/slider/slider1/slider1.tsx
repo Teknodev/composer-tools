@@ -160,7 +160,7 @@ class Slider1 extends BaseSlider {
       dots: false,
       infinite: true,
       speed: 500,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -178,7 +178,6 @@ class Slider1 extends BaseSlider {
     const ImagesExist = sliderItems[this.getComponentState("activeSlide")]?.image;
 
     const alignmentValue = Base.getContentAlignment()
-    const imageHeight = window.document.getElementById("slider1IconsHeight")?.clientHeight
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -199,8 +198,7 @@ class Slider1 extends BaseSlider {
                   </div>
 
                   <div className={this.decorateCSS("content")}>
-                    <div className={`${this.decorateCSS("box-parent")} 
-                    ${imageHeight > 37 && this.decorateCSS("two-row")}`}>
+                    <div className={this.decorateCSS("box-parent")}>
                       {(this.castToString(item.subtitle) || this.castToString(item.title)) &&
                         <Base.VerticalContent className={`
                         ${this.decorateCSS("box")} 
