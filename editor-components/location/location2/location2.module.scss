@@ -107,7 +107,7 @@
     .max-content {
       .middle-content {
         .middle-content-container {
-          padding: var(--composer-gap-md);
+          padding: var(--composer-gap-lg);
           .element-container {
             flex-direction: column;
             width: 50%;
@@ -132,6 +132,10 @@
         padding: var(--composer-gap-md);
         .description-container {
           flex-direction: column;
+
+          .socials {
+            width: 100%;
+          }
         }
       }
 
@@ -142,6 +146,7 @@
           align-items: center;
 
           .element-container {
+            width: 100%;
             .icon {
               width: var(--composer-gap-lg);
               height: var(--composer-gap-lg);

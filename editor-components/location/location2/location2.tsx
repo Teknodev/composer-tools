@@ -405,14 +405,14 @@ class LocationComponent2 extends Location {
 
     const alignmentValue = Base.getContentAlignment();
 
-    const markers = addresses.reduce((acc: MarkerObject[], address: Address) => {
+    const markers = addresses.reduce((acc: MarkerObject[], address: any) => {
       if (address.type === "object" && Array.isArray(address.value)) {
-        const markerData = address.value.find((addr) => addr.type === "location");
+        const markerData = address.value.find((addr: any) => addr.type === "location");
         const lat = markerData?.value.lat;
         const lng = markerData?.value.lng;
-        const markerImage = address.value.find((a) => a.key.startsWith("marker-image"))?.value;
-        const width = address.value.find((a) => a.key.startsWith("marker-width"))?.value || 32;
-        const height = address.value.find((a) => a.key.startsWith("marker-height"))?.value || 32;
+        const markerImage = address.getPropValue("marker-image");
+        const width = address.getPropValue("marker-width") || 32;
+        const height = address.getPropValue("marker-height") || 32;
 
         if (lat !== undefined && lng !== undefined) {
           const content = <></>;
