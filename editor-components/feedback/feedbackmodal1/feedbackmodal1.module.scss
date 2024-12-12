@@ -1,0 +1,303 @@
+@import "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss";
+
+.feedback-modal {
+  max-width: 550px;
+  max-height: 750px;
+  overflow: auto;
+  border-radius: var(--composer-border-radius-lg);
+  box-shadow: var(--box-shadow-active);
+  transition: background-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: var(--composer-gap-md);
+
+  .header-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-border-radius-lg);
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      .feedback-modal-header {
+        display: flex;
+        align-items: center;
+        position: relative;
+        gap: var(--composer-gap-sm);
+        .icon {
+          width: var(--composer-gap-lg);
+          height: var(--composer-gap-lg);
+          color: var(--composer-font-color-primary);
+        }
+
+        .feedback-modal-header-h2 {
+          margin: 0;
+          color: var(--composer-font-color-primary);
+        }
+      }
+    }
+    .feedback-modal-close-button {
+      background-color: var(--composer-html-background);
+      border: none;
+      font-size: 2rem;
+      cursor: pointer;
+      display: flex;
+      color: var(--composer-html-background);
+      align-items: center;
+
+      .close_icon {
+        color: var(--composer-font-color-primary);
+      }
+    }
+    .divider {
+      border: 1px solid rgba((var(--composer-font-color-primary-rgb)), 0.1);
+      border-radius: var(--composer-border-radius-sm);
+      width: 100%;
+      opacity: 1;
+      visibility: visible;
+      margin: 0;
+    }
+
+    .divider-unactive {
+      border: none;
+    }
+  }
+
+  .modal-content-wrapper {
+    .modalContent {
+      margin: 0;
+      text-align: center;
+      font-size: 2rem;
+      width: 100%;
+    }
+
+    .descriptionContent {
+      margin: 0;
+      text-align: center;
+      color: var(--composer-font-color-primary);
+      margin-top: var(--composer-gap-sm);
+    }
+  }
+
+  .feedbackModalEmojis {
+    display: flex;
+    flex-wrap: wrap;
+
+    .emojiWrapper {
+      align-items: center;
+      gap: var(--composer-gap-md);
+
+      .emojiLabel {
+        background-color: var(--composer-font-color-primary);
+        color: var(--composer-font-color-secondary);
+        margin: 0;
+        padding: var(--composer-gap-sm) var(--composer-gap-md);
+        border-radius: var(--composer-border-radius-xl);
+        position: relative;
+        display: inline-block;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        word-wrap: break-word;
+      }
+
+      .emojiLabel::after {
+        content: "";
+        position: absolute;
+        top: calc(-1 * var(--composer-gap-md));
+        left: 50%;
+        transform: translateX(-50%);
+        border-width: var(--composer-gap-sm);
+        border-style: solid;
+        border-color: transparent transparent var(--composer-font-color-primary) transparent;
+      }
+
+      .feedbackModalEmoji {
+        position: relative;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: background-color 0.3s, transform 0.3s;
+        background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
+
+        &::after {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 70px;
+          height: 70px;
+          transform: translate(-50%, -50%);
+          border-radius: 50%;
+          z-index: -1;
+          opacity: 0;
+          transition: opacity 0.3s;
+          border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
+        }
+
+        .emoji-wrapper {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: calc(3 * var(--composer-gap-md));
+          height: calc(3 * var(--composer-gap-md));
+        }
+
+        .feedbackModalEmojiIcon {
+          position: relative;
+          width: var(--composer-gap-lg);
+          height: var(--composer-gap-lg);
+          border-radius: var(--composer-border-radius-xl);
+          transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .emojiImageWrapper {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          object-fit: cover;
+          height: 100%;
+          width: 100%;
+        }
+
+        .feedbackModalEmojiImage {
+          width: calc(3 * var(--composer-gap-md));
+          height: calc(3 * var(--composer-gap-md));
+          object-fit: cover;
+          filter: grayscale(100%);
+        }
+
+        &.selected,
+        &:hover {
+          z-index: 1;
+          background: radial-gradient(circle, rgba(var(--composer-primary-color-rgb, 1), 0.8), rgba(var(--composer-html-background-rgb, 1), 1));
+          transform: scale(1.2);
+
+          &::after {
+            opacity: 1;
+          }
+
+          .feedbackModalEmoji {
+            filter: grayscale(0%);
+          }
+
+          .feedbackModalEmojiIcon {
+            background-color: rgba(var(--composer-primary-color-rgb), 1);
+            filter: grayscale(0%);
+          }
+
+          .feedbackModalEmojiImage {
+            filter: grayscale(0%);
+          }
+
+          ~ .emojiLabel {
+            opacity: 1;
+            visibility: visible;
+          }
+        }
+      }
+    }
+  }
+
+  .contact-form {
+    transition: 1s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .form-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: var(--composer-gap-md);
+    }
+
+    .input {
+      width: 100%;
+      position: relative;
+      border-color: rgba(var(--composer-font-color-primary-rgb), 0.025);
+      border-radius: var(--composer-border-radius);
+      background: rgba(var(--composer-font-color-primary-rgb), 0.1);
+      color: var(--composer-font-color-primary);
+      padding-bottom: var(--composer-gap-xl);
+      padding-left: var(--composer-gap-md);
+      resize: none;
+
+      &:focus {
+        outline-color: var(--composer-primary-color);
+      }
+    }
+  }
+
+  .button {
+    width: 100%;
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .feedback-modal {
+    max-width: 320px !important;
+    max-height: 700px !important;
+
+    .modal-content-wrapper {
+      .modalContent {
+        font-size: 1.5rem !important;
+      }
+
+      .descriptionContent {
+        margin-top: var(--composer-gap-sm);
+      }
+    }
+
+    .feedbackModalEmojis {
+      .emojiWrapper {
+        gap: var(--composer-gap-sm);
+
+        .emojiLabel {
+          padding: var(--composer-gap-xs) var(--composer-gap-xs);
+
+          font-size: 1rem;
+        }
+
+        .emojiLabel::after {
+          content: "";
+        }
+
+        .feedbackModalEmoji {
+          &::after {
+            content: "";
+            width: 50px;
+            height: 50px;
+          }
+
+          .emoji-wrapper {
+            width: var(--composer-gap-lg) !important;
+            height: var(--composer-gap-lg) !important;
+          }
+
+          .feedbackModalEmojiIcon {
+            width: var(--composer-gap-md) !important;
+            height: var(--composer-gap-md) !important;
+          }
+
+          .feedbackModalEmojiImage {
+            width: var(--composer-gap-lg);
+            height: var(--composer-gap-lg);
+          }
+
+          &.selected,
+          &:hover {
+            transform: scale(1.1);
+          }
+        }
+      }
+    }
+
+    .button {
+      width: 100%;
+    }
+  }
+}

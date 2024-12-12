@@ -205,7 +205,7 @@ class LocationComponent1 extends Location {
               type: "image",
               key: "marker-image",
               displayer: "Marker Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66dffd65343034002c462ded?alt=media&timestamp=1725955430378",
+              value: "",
             },
             {
               type: "string",
@@ -266,7 +266,12 @@ class LocationComponent1 extends Location {
     const addresses: Address[] = this.getPropValue("addresses");
 
     const theme = this.getPropValue("theme");
-    const mapStyle = this.selectTheme(theme);
+
+    const selectedTheme = theme || "Theme-2";
+
+    const defaultMarkerIcon = "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675acbf30655f8002ca64e33?alt=media";
+
+    const mapStyle = this.selectTheme(selectedTheme);
 
     const markers = addresses.reduce((acc: MarkerObject[], address: Address) => {
       if (address.type === "object" && Array.isArray(address.value)) {
@@ -283,7 +288,7 @@ class LocationComponent1 extends Location {
 
         if (lat !== undefined && lng !== undefined) {
           const content =
-            description || popupTitle ? (
+            description || popupTitle || popupButtonText ? (
               <div className={this.decorateCSS("popup")}>
                 {popupTitle && <Base.P className={this.decorateCSS("popup-title")}>{popupTitle} </Base.P>}
                 {description && <Base.P className={this.decorateCSS("popup-content")}>{description}</Base.P>}
@@ -346,7 +351,7 @@ class LocationComponent1 extends Location {
             )}
 
             <section className={this.decorateCSS("map-container")}>
-              <ComposerMap defaultZoom={centerZoom} handleMarkerZoom={markerZoom} markers={markers} className={this.decorateCSS("map")} styles={mapStyle.colors} />
+              <ComposerMap defaultMarkerIcon={defaultMarkerIcon} defaultZoom={centerZoom} handleMarkerZoom={markerZoom} markers={markers} className={this.decorateCSS("map")} styles={mapStyle.colors} />
             </section>
 
             {(description || phone) && (

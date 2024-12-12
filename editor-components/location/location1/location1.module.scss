@@ -7,7 +7,7 @@
       align-items: center;
       width: 100%;
       height: 100%;
-      gap: var(--composer-gap-lg);
+      gap: var(--composer-gap-xl);
       .connect {
         display: flex;
         align-items: center;
@@ -66,15 +66,13 @@
         align-items: center;
         justify-content: center;
         .bottom-title {
-          font-size: 1.5rem;
+          font-size: 2.5rem;
           padding-bottom: 2px;
           word-break: break-word;
           color: var(--composer-primary-color);
           max-width: 50%;
         }
-        > a {
-          max-width: 50%;
-        }
+
         .phone-container {
           .phone {
             font-size: 2.5rem;
@@ -97,12 +95,13 @@
 
         .popup-title {
           font-size: 1rem;
-          color: var(--composer-primary-color);
+          color: var(--composer-font-color-primary);
         }
 
         .popup-content {
           font-size: 1rem;
-          color: var(--composer-primary-color);
+          color: var(--composer-tertiary-color);
+          margin: var(--composer-gap-sm);
         }
 
         .popup-link {
@@ -112,11 +111,9 @@
 
           .popup-button {
             background-color: var(--composer-primary-color);
-            color: var(--composer-secondary-color);
+            color: var(--composer-font-color-secondary);
             cursor: pointer;
-
             width: 100%;
-
             padding: var(--composer-gap-md);
           }
         }
@@ -125,13 +122,26 @@
   }
 }
 
-@media only screen and (max-width: $composer-phone-width) {
+@container (max-width: #{$composer-tablet-width-lg}) {
   .container {
     .max-content {
       .wrapper {
+        gap: var(--composer-gap-md);
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .wrapper {
+        gap: var(--composer-gap-md);
+
         .connect {
           display: flex;
           flex-direction: column;
+          gap: var(--composer-gap-sm);
           .title {
             margin: 0;
             text-align: center;
@@ -150,15 +160,15 @@
           margin: 0;
           gap: 0;
           .bottom-title {
-            font-size: 1rem;
+            font-size: 1.5rem;
             max-width: 100%;
+            text-align: center;
           }
-          > a {
-            max-width: 100%;
-          }
+
           .phone-container {
             .phone {
               font-size: 1.5rem;
+              text-align: center;
             }
           }
         }
