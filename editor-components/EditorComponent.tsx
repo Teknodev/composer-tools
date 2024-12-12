@@ -543,7 +543,7 @@ export abstract class Location extends Component {
       type: "select",
       key: "theme",
       displayer: "Map Theme",
-      value: "Theme-0",
+      value: "",
       additionalParams: {
         selectItems: ["Theme-0", "Theme-1", "Theme-2", "Theme-3", "Theme-4", "Theme-5"],
       },
