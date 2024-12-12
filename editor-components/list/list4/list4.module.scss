@@ -4,7 +4,7 @@
     .card-title, .card-title-no-index {
       position: relative;
       font-size: 2rem;
-      margin: var(--composer-gap-xs) 0px 0px 20px;
+      margin: var(--composer-gap-xs) 0px 0px var(--composer-gap-md);
       color: var(--composer-primary-color);
       padding-bottom: var(--composer-gap-md);
     }
