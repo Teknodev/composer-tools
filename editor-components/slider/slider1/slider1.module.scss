@@ -82,7 +82,7 @@
                             flex-direction: column;
                             max-width: var(--composer-content-width);
                             margin: auto;
-                            padding-bottom: 70px;
+                            padding-bottom: calc(var(--composer-gap-lg) * 2);
 
                             .box {
                                 max-width: calc(100% - var(--composer-gap-xl));
@@ -211,7 +211,6 @@
                             padding: var(--composer-gap-md) var(--composer-gap-lg);
 
                             .box-parent {
-                                padding-bottom: 60px;
 
                                 .box {
                                     max-width: calc(100% - var(--composer-gap-lg));
@@ -308,7 +307,7 @@
                                 position: static;
                                 width: 100%;
                                 flex-wrap: wrap;
-                                padding: 0 var(--composer-gap-md);
+                                padding: 0;
                                 height: fit-content;
                                 top: unset;
                                 transform: unset;
