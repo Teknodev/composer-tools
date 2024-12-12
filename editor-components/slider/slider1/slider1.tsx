@@ -5,8 +5,6 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
-import { Padding } from "@mui/icons-material";
-import { TiShoppingBag } from "react-icons/ti";
 
 type Slider = {
   subtitle: JSX.Element;
@@ -166,7 +164,7 @@ class Slider1 extends BaseSlider {
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
-      adaptiveHeight: true,
+      adaptiveHeight: false,
       afterChange: (current: number, next: number) => {
         if (this.getComponentState("activeSlide") !== current) {
           this.setComponentState("activeSlide", current);
@@ -177,7 +175,7 @@ class Slider1 extends BaseSlider {
     const isOverlayActive = this.getPropValue("overlay");
     const icons = this.castToObject<Social[]>("socials");
     const sliderItems = this.castToObject<Slider[]>("slider");
-    const noImage = sliderItems[this.getComponentState("activeSlide")]?.image;
+    const ImagesExist = sliderItems[this.getComponentState("activeSlide")]?.image;
 
     const alignmentValue = Base.getContentAlignment()
 
@@ -199,9 +197,8 @@ class Slider1 extends BaseSlider {
                     {isOverlayActive && <div className={this.decorateCSS("overlay")}></div>}
                   </div>
 
-                  <div className={`${this.decorateCSS("content")}
-                  ${icons.length > 7 && this.decorateCSS("two-row")}`}>
-                    <div className={this.decorateCSS("box-parent")}>
+                  <div className={this.decorateCSS("content")}>
+                    <div className={`${this.decorateCSS("box-parent")} ${icons.length > 7 && this.decorateCSS("two-row")}`}>
                       {(this.castToString(item.subtitle) || this.castToString(item.title)) &&
                         <Base.VerticalContent className={`
                         ${this.decorateCSS("box")} 
@@ -243,7 +240,7 @@ class Slider1 extends BaseSlider {
             </ComposerSlider>
           </div>
           {
-            sliderItems.length > 1 && <ul className={`${this.decorateCSS(noImage ? "dots" : "dots-2")}`}>
+            sliderItems.length > 1 && <ul className={`${this.decorateCSS(ImagesExist ? "dots" : "dots-2")}`}>
               {sliderItems.map((_, index) => (
                 <li
                   key={`dot-${index}`}
