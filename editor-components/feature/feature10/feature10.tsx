@@ -275,10 +275,8 @@ class Feature10 extends BaseFeature {
     const cards = this.castToObject<Card[]>("cards");
 
     const title = this.getPropValue("title");
-    const titleExist = !!this.getPropValue("title", { as_string: true });
 
     const description = this.getPropValue("description");
-    const descriptionExist = !!this.getPropValue("description", { as_string: true });
 
     const button = this.castToObject<Button>("button");
     const settings = {
@@ -321,12 +319,12 @@ class Feature10 extends BaseFeature {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             <Base.VerticalContent className={this.decorateCSS("section-wrapper")}>
-              {titleExist && (
+              {this.castToString(title) && (
                 <Base.SectionTitle className={this.decorateCSS("section-title")}>
                   {title}
                 </Base.SectionTitle>
               )}
-              {descriptionExist && (
+              {this.castToString(description) && (
                 <Base.SectionDescription className={this.decorateCSS("section-description")}>
                   {description}
                 </Base.SectionDescription>
@@ -359,7 +357,8 @@ class Feature10 extends BaseFeature {
                 <ComposerSlider
                   ref={sliderRef}
                   {...settings}
-                  className={this.decorateCSS("carousel")}
+                  className={(this.castToString(title) || this.castToString(description) || this.getPropValue("leftArrow") || this.getPropValue("rightArrow"))
+                    ? this.decorateCSS("carousel") : this.decorateCSS("carousel-no-padding")}
                 >
 
                   {cards.map((item: Card, index: number) => {
@@ -372,7 +371,7 @@ class Feature10 extends BaseFeature {
                       <ComposerLink path={item.url}>
                         <div
                           key={index}
-                          className={this.decorateCSS("card-container")}
+                          className={(titleExist || descExist) ? this.decorateCSS("card-container") : this.decorateCSS("card-container-fit-content")}
                         >
                           {item.image && (
                             <img className={this.decorateCSS("image")} src={item.image} alt={this.castToString(item.title)} />
