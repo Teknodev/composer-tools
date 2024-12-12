@@ -1,23 +1,23 @@
 @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
 .container {
-  padding: var(--composer-gap-md) 0 0 0;
+  padding: 0;
   width: 100%;
   .wrapper {
     display: flex;
     flex-direction: column;
     .max-content {
+      padding: var(--composer-gap-md) 0 0 0;
       .header {
         text-align: center;
         align-items: center;
         .icon-wrapper {
           text-align: center;
           color: var(--composer-primary-color);
-          margin: 0 auto;
 
           .icon {
-            width: var(--composer-gap-lg);
-            height: var(--composer-gap-lg);
+            width: var(--composer-gap-xl);
+            height: var(--composer-gap-xl);
           }
         }
 

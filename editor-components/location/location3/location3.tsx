@@ -268,14 +268,15 @@ class LocationComponent3 extends Location {
 
     const defaultMarkerIcon = "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ffb3d4cf1798002cc7f505?alt=media&timestamp=1728033800047";
 
-    const markers = addresses.reduce((acc: MarkerObject[], address: Address) => {
+    const markers = addresses.reduce((acc: MarkerObject[], address: any) => {
       if (address.type === "object" && Array.isArray(address.value)) {
-        const markerData = address.value.find((addr) => addr.type === "location");
-        const lat = markerData?.value.lat;
-        const lng = markerData?.value.lng;
-        const markerImage = address.value.find((a) => a.key.startsWith("marker-image"))?.value;
-        const width = address.value.find((a) => a.key.startsWith("marker-width"))?.value || 32;
-        const height = address.value.find((a) => a.key.startsWith("marker-height"))?.value || 32;
+        const markerData = address.getPropValue("coordinate");
+
+        const lat = markerData?.lat;
+        const lng = markerData?.lng;
+        const markerImage = address.getPropValue("marker-image");
+        const width = address.getPropValue("marker-width") || 32;
+        const height = address.getPropValue("marker-height") || 32;
 
         if (lat !== undefined && lng !== undefined) {
           const content = <></>;
@@ -296,40 +297,45 @@ class LocationComponent3 extends Location {
       return acc;
     }, []);
 
+    const iconExist = this.getPropValue("icon");
+
+    const topExist = iconExist || titleExist || descriptionExist || continents.length > 0;
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("wrapper")}>
-          <Base.MaxContent className={this.decorateCSS("max-content")}>
-            <Base.VerticalContent className={this.decorateCSS("header")}>
-              {this.getPropValue("icon") && (
-                <div className={this.decorateCSS("icon-wrapper")}>
-                  <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={this.getPropValue("icon")} />
-                </div>
-              )}
-              {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
+          {topExist && (
+            <Base.MaxContent className={this.decorateCSS("max-content")}>
+              <Base.VerticalContent className={this.decorateCSS("header")}>
+                {this.getPropValue("icon") && (
+                  <div className={this.decorateCSS("icon-wrapper")}>
+                    <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={this.getPropValue("icon")} />
+                  </div>
+                )}
+                {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
 
-              {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
+                {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
 
-              {continents.length > 0 && (
-                <div className={styles["continents-wrapper"]}>
-                  {continents.map((continentObj: any, index: number) => {
-                    const continent = continentObj.value;
-                    const name = continent.find((item: any) => item.key === "name")?.value;
-                    const count = continent.find((item: any) => item.key === "count")?.value;
+                {continents.length > 0 && (
+                  <div className={styles["continents-wrapper"]}>
+                    {continents.map((continentObj: any, index: number) => {
+                      const continent = continentObj.value;
+                      const name = continent.find((item: any) => item.key === "name")?.value;
+                      const count = continent.find((item: any) => item.key === "count")?.value;
 
-                    return (
-                      (name || count) && (
-                        <div key={index} className={styles["continent-item"]}>
-                          <Base.P className={this.decorateCSS("continent-name")}>{name}</Base.P>
-                          <Base.P className={this.decorateCSS("continent-count")}>{count}</Base.P>
-                        </div>
-                      )
-                    );
-                  })}
-                </div>
-              )}
-            </Base.VerticalContent>
-          </Base.MaxContent>
+                      return (
+                        (name || count) && (
+                          <div key={index} className={styles["continent-item"]}>
+                            <Base.P className={this.decorateCSS("continent-name")}>{name}</Base.P>
+                            <Base.P className={this.decorateCSS("continent-count")}>{count}</Base.P>
+                          </div>
+                        )
+                      );
+                    })}
+                  </div>
+                )}
+              </Base.VerticalContent>
+            </Base.MaxContent>
+          )}
           <section className={this.decorateCSS("map-container")}>
             <ComposerMap defaultMarkerIcon={defaultMarkerIcon} handleMarkerZoom={markerZoom} defaultZoom={centerZoom} markers={markers} className={this.decorateCSS("map")} styles={mapStyle.colors} />
           </section>
