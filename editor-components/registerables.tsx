@@ -19,6 +19,7 @@ import ListComponent6 from "./list/list6/list6";
 import ListComponent7 from "./list/list7/list7";
 import ListComponent8 from "./list/list8/list8";
 import LocationComponent1 from "./location/location1/location1";
+import LocationComponent3 from "./location/location3/location3";
 import ContentComponent1 from "./content/content1/content1";
 import ContentComponent2 from "./content/content2/content2";
 import ContentComponent3 from "./content/content3/content3";
@@ -445,6 +446,7 @@ function Registerables(composer: ComponentsRegistery) {
     new SubscriptionModal(),
     new FormModal1(),
     new LocationComponent1(),
+    new LocationComponent3(),
     new HttpCodes3(),
     new HttpCodes2(),
     new HttpCodes4(),
