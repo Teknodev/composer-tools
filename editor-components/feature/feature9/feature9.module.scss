@@ -3,7 +3,7 @@
 .container {
   position: relative;
   .max-content {
-    height: 70vh;
+    height: 100vh;
     .wrapper {
       background-color: color-mix(in srgb,var(--composer-html-background), var(--composer-font-color-primary) 5%);
       display: flex;
@@ -107,7 +107,6 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container{
     .max-content{
-      height: 100vh;
       .wrapper {
         flex-direction: column;
         gap: var(--composer-gap-md);
