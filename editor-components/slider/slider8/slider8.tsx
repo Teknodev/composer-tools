@@ -269,7 +269,7 @@ class Slider8 extends BaseSlider {
     const linesContainer = this.getPropValue("lines-container");
     const animation = this.getPropValue("animation");
     const cards = this.castToObject<Card[]>("slider");
-    const noImages = cards[this.getComponentState("activeSlide")]?.image || cards[this.getComponentState("activeSlide")]?.backgroundImage;
+    const ImagesExist = cards[this.getComponentState("activeSlide")]?.image || cards[this.getComponentState("activeSlide")]?.backgroundImage;
 
     const settings = {
       fade: true,
@@ -278,7 +278,7 @@ class Slider8 extends BaseSlider {
       dots: false,
       infinite: cards.length > 1,
       speed: 3000,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -296,7 +296,7 @@ class Slider8 extends BaseSlider {
     };
 
     return (
-      <Base.Container isFull={true} className={this.decorateCSS("container")}>
+      <Base.Container isFull={ImagesExist ? true : false} className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("slider-parent")}>
             {cards?.length && cards?.length > 0 && (
@@ -325,21 +325,15 @@ class Slider8 extends BaseSlider {
                              ${this.getComponentState("activeSlide") === index ? this.decorateCSS("fix-location") : ""}
                           `}>
                           {linesContainer && (
-                            <div className={this.decorateCSS(noImages ? "lines-container" : "lines-container2")}>
+                            <div className={this.decorateCSS(ImagesExist ? "lines-container" : "lines-container2")}>
                               <div className={this.decorateCSS("line-1")}></div>
                               <div className={this.decorateCSS("line-2")}></div>
                             </div>
                           )}
 
-                          <div
-                            className={this.decorateCSS("image")}
-                            style={{ backgroundImage: `url(${item.image})` }}>
-                            {shouldDisplayForegroundOverlay(index) === true && <div className={this.decorateCSS("image-overlay")}></div>}
-                          </div>
-
                           {titleExists && (
                             <Base.SectionTitle
-                              className={`${this.decorateCSS("title")} ${this.decorateCSS(noImages ? "imageTitle" : "imageTitle2")} ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("imageTitleAnimation") : ""
+                              className={`${this.decorateCSS("title")} ${this.decorateCSS(ImagesExist ? "imageTitle" : "imageTitle2")} ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("imageTitleAnimation") : ""
                                 }`}>
                               {item.imageTitle}
                             </Base.SectionTitle>
@@ -347,7 +341,7 @@ class Slider8 extends BaseSlider {
 
                           {buttons?.length > 0 && (
                             <div
-                              className={`${this.decorateCSS(noImages ? "buttons" : "buttons2")} ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("animateButtons") : ""
+                              className={`${this.decorateCSS(ImagesExist ? "buttons" : "buttons2")} ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("animateButtons") : ""
                                 }`}>
                               {buttons.map((buttonItem: Button, buttonIndex: number) => (
                                 this.castToString(buttonItem.buttonText) &&
@@ -363,7 +357,7 @@ class Slider8 extends BaseSlider {
                               ))}
                             </div>
                           )}
-                          <div className={this.decorateCSS(noImages ? "nav-buttons" : "nav-buttons2")}>
+                          <div className={this.decorateCSS(ImagesExist ? "nav-buttons" : "nav-buttons2")}>
                             {this.getPropValue("leftNavButton") && (
                               <button
                                 className={this.decorateCSS("nav-button")}
@@ -395,13 +389,20 @@ class Slider8 extends BaseSlider {
                           </div>
                         </div>
                       </div>
+
+                      <div
+                        className={this.decorateCSS("image")}
+                        style={{ backgroundImage: `url(${item.image})` }}>
+                        {shouldDisplayForegroundOverlay(index) === true && <div className={this.decorateCSS("image-overlay")}></div>}
+                      </div>
+
                     </div>
                   );
                 })}
               </ComposerSlider>
             )}
           </div>
-          <ul className={`${this.decorateCSS(noImages ? "dots" : "dots-2")}`}>
+          <ul className={`${this.decorateCSS(ImagesExist ? "dots" : "dots-2")}`}>
             {cards.map((_, index) => (
               <li
                 key={`dot-${index}`}

@@ -36,6 +36,7 @@
                 .slider-inner-div {
                     border-radius: var(--composer-border-radius-md);
                     width: 100%;
+                    position: relative;
 
                     .content {
                         height: 70vh;
@@ -44,7 +45,7 @@
                         background-repeat: no-repeat;
                         background-size: cover;
                         background-position: center;
-                        padding: var(--composer-gap-xl);
+                        padding: 0 var(--composer-gap-xl);
 
                         .overlay {
                             position: absolute;
@@ -91,7 +92,7 @@
                                 .line-1 {
                                     height: 1px;
                                     width: 225px;
-                                    background-color: white;
+                                    background-color: #fff;
                                 }
 
                                 .line-2 {
@@ -99,7 +100,7 @@
                                     margin-top: -2px;
                                     border-radius: var(--composer-border-radius-lg);
                                     width: 125px;
-                                    background-color: white;
+                                    background-color: #fff;
                                 }
                             }
 
@@ -113,27 +114,7 @@
                                 }
                             }
 
-                            .image {
-                                position: absolute;
-                                right: 0;
-                                bottom: 0;
-                                width: 80%;
-                                height: 85%;
-                                background-size: cover;
-                                background-position: center;
-                                object-fit: cover;
-                                z-index: 0;
-                            }
 
-                            .image-overlay {
-                                position: absolute;
-                                top: 0;
-                                left: 0;
-                                width: 100%;
-                                height: 100%;
-                                background-color: var(--composer-overlay-color);
-                                z-index: 0;
-                            }
 
                             .imageTitle,
                             .imageTitle2 {
@@ -205,8 +186,8 @@
 
                                 .button {
                                     background-color: transparent;
-                                    border: 1px solid white;
-                                    color: white;
+                                    border: 1px solid #fff;
+                                    color: #fff;
                                     gap: var(--composer-gap-sm);
                                     position: relative;
                                     overflow: hidden;
@@ -239,7 +220,7 @@
                                     color: var(--composer-font-color-primary);
 
                                     &:hover {
-                                        color: white;
+                                        color: #fff;
                                     }
                                 }
                             }
@@ -255,11 +236,10 @@
 
                                 .nav-button {
                                     border: none;
-                                    border: 2px solid white;
+                                    border: 2px solid #fff;
                                     background-color: transparent;
                                     border-radius: 50%;
                                     color: #fff;
-                                    border-color: #fff;
                                     width: 50px;
                                     height: 50px;
                                     display: flex;
@@ -276,7 +256,7 @@
                                         top: 0;
                                         width: 100%;
                                         height: 100%;
-                                        background-color: white;
+                                        background-color: #fff;
                                         transition: left 0.3s ease;
                                         z-index: -1;
                                     }
@@ -299,6 +279,10 @@
                                         color: black;
                                     }
                                 }
+
+                                .no-bg {
+                                    color: var(--composer-font-color-primary);
+                                }
                             }
 
                             .nav-buttons2 {
@@ -316,7 +300,33 @@
 
                                 }
                             }
+
+
                         }
+                    }
+
+                    .image {
+                        position: absolute;
+                        right: 0;
+                        bottom: 0;
+                        width: 80%;
+                        height: 85%;
+                        background-size: cover;
+                        background-position: center;
+                        object-fit: cover;
+                        z-index: 0;
+                        border-radius: var(--composer-border-radius-xs);
+                        max-width: var(--composer-content-width);
+                    }
+
+                    .image-overlay {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background-color: var(--composer-overlay-color);
+                        z-index: 0;
                     }
                 }
             }
@@ -351,7 +361,7 @@
 
                     &::before {
                         content: "•";
-                        color: white;
+                        color: #fff;
                         position: absolute;
                         top: 50%;
                         left: 50%;
@@ -362,7 +372,6 @@
                         height: 100%;
                         display: flex;
                         justify-content: center;
-                        align-items: center;
                     }
                 }
             }
@@ -381,11 +390,12 @@
         .dots {
             .slick-active {
                 button {
-                    border: 1px solid white;
+                    border: 1px solid #fff;
                     border-radius: 50%;
                 }
             }
         }
+
         .dots-2 {
             .slick-active {
                 button {
