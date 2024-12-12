@@ -407,9 +407,9 @@ class LocationComponent2 extends Location {
 
     const markers = addresses.reduce((acc: MarkerObject[], address: any) => {
       if (address.type === "object" && Array.isArray(address.value)) {
-        const markerData = address.value.find((addr: any) => addr.type === "location");
-        const lat = markerData?.value.lat;
-        const lng = markerData?.value.lng;
+        const markerData = address.getPropValue("coordinate");
+        const lat = markerData?.lat;
+        const lng = markerData?.lng;
         const markerImage = address.getPropValue("marker-image");
         const width = address.getPropValue("marker-width") || 32;
         const height = address.getPropValue("marker-height") || 32;
