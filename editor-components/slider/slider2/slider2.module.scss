@@ -151,15 +151,15 @@
       top: 63%;
       left: 50%;
       transform: translateX(-50%);
-      height: calc(100vh * 0.37 - var(--composer-gap-md));
+      height: calc(37vh - var(--composer-gap-md));
 
       @container (max-width: #{$composer-tablet-width}) {
         top: 58%;
-        height: calc(100vh * 0.42 - var(--composer-gap-md));
+        height: calc(42vh - var(--composer-gap-md));
       }
 
       @container (max-width: #{$composer-phone-width}) {
-        height: calc(100vh * 0.45 - var(--composer-gap-md));
+        height: calc(45vh - var(--composer-gap-md));
         top: 55%;
       }
 
