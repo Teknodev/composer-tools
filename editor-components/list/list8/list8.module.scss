@@ -1,185 +1,84 @@
-//container
+@import '../../../composer-base-components/base/utitilities/viewports.module.scss'; 
 .container {
-    width: 100%;
-    height: 100%;
-    margin: auto;
-    background-color: var(--composer-html-background);
-  
+  background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
     .max-content {
-      max-width: var(--composer-content-width);
-      margin: auto;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      height: 100%;
-      width: 100%;
+      .section {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-xl);
+        .section-wrapper{
+          .title{
+            content: "";
+          }
   
-      .border {
-        margin-top: 100px;
-        box-sizing: border-box;
-        width: 100%;
-        height: 100%;
-  
-        .main {
-          .container2 {
-            .section {
-              display: flex;
+          .description {
+            color: var(--composer-tertiary-color);
+          }
+        }
+
+        .boxes {
+          gap: var(--composer-gap-xl);
+          .boxlower {
+            background-color: var(--composer-html-background);
+            border-radius: var(--composer-border-radius-md);
+            position: relative;
+            padding: var(--composer-gap-xl);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--composer-gap-md);
+
+            .circle {
+              position: absolute;
+              left: 50%;
+              top: 0px;
+              transform: translate(-50%, -50%);
+              width: 5rem;
+              height: 5rem;
+              border-radius: 50%;
+              border: 1px solid color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
               background-color: var(--composer-html-background);
-              flex-direction: column;
-  
-              .h1 {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              .index{
                 font-size: 3rem;
-                margin: 0 auto 0 auto;
+                color: var(--composer-font-color-primary);
+              }
+            }
+            .icon-box{
+              .icon {
+                font-size: 4rem;
                 color: var(--composer-primary-color);
               }
-  
-              .h1-lowertext {
+            }
+            .titles {
+              display: flex;
+              flex-direction: column;
+              gap: var(--composer-gap-md);
+              text-align: center;
+              .midwriting {
+                color: var(--composer-font-color-primary);
                 font-size: 1.5rem;
-                text-align: center;
               }
-  
-              .boxes {
-                width: 100%;
-                // margin: 0 auto;
-                display: flex;
-                justify-content: space-evenly;
-                margin-top: 90px;
-                gap: 7rem 2rem;
-                flex-wrap: wrap;
-                flex-direction: row;
-  
-                .boxlower {
-                  background-color: var(--composer-html-background);
-                  border: 1px solid var(--composer-tertiary-color);
-                  border-radius: 15px;
-                  position: relative;
-                  padding: 90px 30px 30px;
-                  text-align: center;
-  
-                  .circle {
-                    position: absolute;
-                    left: 50%;
-                    top: 0px;
-                    transform: translate(-50%, -50%);
-                    width: 80px;
-                    height: 80px;
-                    border-radius: 50%;
-                    // display: inline-flex;
-                    // align-items: center;
-                    // justify-content: center;
-                    // text-align: center;
-                    // vertical-align: middle;
-                    font-size: 3rem;
-                    color: var(--composer-primary-color);
-  
-                    display: inline-flex;
-                    align-items: center;
-                    justify-content: center;
-                    text-align: center;
-                    vertical-align: middle;
-                    border: 1px solid var(--composer-tertiary-color);
-                    background-color: var(--composer-html-background);
-                  }
-  
-                  .midwriting {
-                    color: var(--composer-primary-color);
-                    font-size: 1.8rem;
-                  }
-  
-                  .text {
-                    color: var(--composer-font-color-primary);
-                    font-size: 1.5rem;
-                  }
-                }
-              }
-
-              .button-box{
-                display: flex;
-                justify-content: center;
-                .button {
-                    margin: 4rem;
-                    width: 100%;
-                    align-self: center;
-                    background-color: transparent;
-                    color: var(--composer-primary-color);
-      
-                    border-color: var(--composer-secondary-color);
-                    height: 50px;
-                    font-size: 1.5rem;
-                    border-radius: 15px;
-                    border: 2px solid var(--composer-tertiary-color);
-                    transition: 0.4s;
-                  }
-              }
-  
-             
-  
-              .button:hover {
-                background-color: var(--composer-secondary-color);
-                color: var(--composer-font-color-secondary);
-                cursor: pointer;
+              .text {
+                color: var(--composer-tertiary-color);
+                font-size: 1rem;
               }
             }
           }
         }
-      }
-    }
-  }
-  
-  //container end
-  
-  // For Ipad
-  @media only screen and (max-width: 800px) {
-    .max-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-  
-      .border {
-        .button {
-          max-width: 150px !important;
-          height: 50px;
-        }
-  
-        .boxes {
-          padding: 0 20px;
-  
-          .boxlower {
-            margin-bottom: 4rem;
-            width: 45% !important;
-          }
-        }
-      }
-    }
-  }
-  
-  // For Mobile
-  @media only screen and (max-width: 400px) {
-    .max-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-  
-      .border {
-        .button {
-          max-width: 200px;
-          height: 50px;
-        }
-  
-        .boxes {
-          display: flex;
-          flex-direction: column;
-          flex-wrap: wrap !important;
-          padding: 0 20px;
-          gap: 3rem !important;
-  
-          .boxlower {
-            margin-bottom: 4rem;
+        .button-box{
+          width: 100%;
+          >div{
             width: 100% !important;
+            display: flex;
+            justify-content: center;
+          }
+          .button {
+            content: "";
           }
         }
       }
     }
-  }
+}

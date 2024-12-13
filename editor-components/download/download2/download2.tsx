@@ -2,18 +2,37 @@ import * as React from "react";
 import styles from "./download2.module.scss";
 import { BaseDownload } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { Base } from "../../../composer-base-components/base/base";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
-type Card= {
-  backgroundImage: string;
-  logo: string;
-  title: string;
-  buttonText: string;
+type Card = {
+  icon: string;
+  device: JSX.Element;
+  platform: JSX.Element;
+  description: JSX.Element;
+  buttonText: JSX.Element;
+  buttonIcon: string;
+  buttonLogo: string;
   buttonLink: string;
-  information: string;
-}
+};
+
 class Download2 extends BaseDownload {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "Transform your Communication with Instant Connectivity",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "Install snappy on all your devices to stay engaged and continue every conversation.",
+    });
 
     this.addProp({
       type: "array",
@@ -26,42 +45,54 @@ class Download2 extends BaseDownload {
           displayer: "Card",
           value: [
             {
-              type: "image",
-              key: "backgroundImage",
-              displayer: "Background Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c754bd2970002c62916b?alt=media&timestamp=1719564433797"
-            },
-            {
-              type: "image",
-              key: "logo",
-              displayer: "Logo",
-              value: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpdFZ6LTg87NeCR_Ap6gF3pdcXG4ybOHSk3mnxJZRM-xt2R9lAM9mg8O7FM596SmOrdkg&usqp=CAU"
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaDesktop",
             },
             {
               type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Download For"
+              key: "device",
+              displayer: "Device",
+              value: "Desktop",
+            },
+            {
+              type: "string",
+              key: "platform",
+              displayer: "Platform",
+              value: "PC/MAC",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
             },
             {
               type: "string",
               key: "buttonText",
               displayer: "Button Text",
-              value: "IOS"
+              value: "Download",
+            },
+            {
+              type: "icon",
+              key: "buttonIcon",
+              displayer: "Button Icon",
+              value: "RiDownloadLine",
+            },
+            {
+              type: "image",
+              key: "buttonLogo",
+              displayer: "Button Image",
+              value: "",
             },
             {
               type: "page",
               key: "buttonLink",
               displayer: "Button Link",
-              value: ""
+              value: "",
             },
-            {
-              type: "string",
-              key: "information",
-              displayer: "Information",
-              value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor."
-            }
-          ]
+          ],
         },
         {
           type: "object",
@@ -69,42 +100,54 @@ class Download2 extends BaseDownload {
           displayer: "Card",
           value: [
             {
-              type: "image",
-              key: "backgroundImage",
-              displayer: "Background Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c754bd2970002c62916a?alt=media&timestamp=1719564433797"
-            },
-            {
-              type: "image",
-              key: "logo",
-              displayer: "Logo",
-              value: "https://cdn-icons-png.flaticon.com/512/14/14415.png"
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaApple",
             },
             {
               type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Download For"
+              key: "device",
+              displayer: "Device",
+              value: "Mobile Phone",
+            },
+            {
+              type: "string",
+              key: "platform",
+              displayer: "Platform",
+              value: "IOS",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
             },
             {
               type: "string",
               key: "buttonText",
               displayer: "Button Text",
-              value: "Android"
+              value: "",
+            },
+            {
+              type: "icon",
+              key: "buttonIcon",
+              displayer: "Button Icon",
+              value: "",
+            },
+            {
+              type: "image",
+              key: "buttonLogo",
+              displayer: "Button Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/673f5276506a40002c2cf763?alt=media&timestamp=1732203183915",
             },
             {
               type: "page",
               key: "buttonLink",
               displayer: "Button Link",
-              value: ""
+              value: "",
             },
-            {
-              type: "string",
-              key: "information",
-              displayer: "Information",
-              value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor."
-            }
-          ]
+          ],
         },
         {
           type: "object",
@@ -112,45 +155,58 @@ class Download2 extends BaseDownload {
           displayer: "Card",
           value: [
             {
-              type: "image",
-              key: "backgroundImage",
-              displayer: "Background Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c754bd2970002c62916c?alt=media&timestamp=1719564433797"
-            },
-            {
-              type: "image",
-              key: "logo",
-              displayer: "Logo",
-              value: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Windows_logo_2012-Black.svg/1200px-Windows_logo_2012-Black.svg.png"
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "IoLogoAndroid",
             },
             {
               type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Download For"
+              key: "device",
+              displayer: "Device",
+              value: "Mobile Phone / Tablet",
+            },
+            {
+              type: "string",
+              key: "platform",
+              displayer: "Platform",
+              value: "Android",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
             },
             {
               type: "string",
               key: "buttonText",
               displayer: "Button Text",
-              value: "Windows"
+              value: "",
+            },
+            {
+              type: "icon",
+              key: "buttonIcon",
+              displayer: "Button Icon",
+              value: "",
+            },
+            {
+              type: "image",
+              key: "buttonLogo",
+              displayer: "Button Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/673f51e4506a40002c2cf6eb?alt=media&timestamp=1732203035257",
             },
             {
               type: "page",
               key: "buttonLink",
               displayer: "Button Link",
-              value: ""
+              value: "",
             },
-            {
-              type: "string",
-              key: "information",
-              displayer: "Information",
-              value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor."
-            }
-          ]
-        }
-      ]
+          ],
+        },
+      ],
     });
+
     this.addProp({
       type: "number",
       key: "itemCount",
@@ -164,41 +220,73 @@ class Download2 extends BaseDownload {
   }
 
   render() {
+    const title = this.getPropValue("title");
+    const description = this.getPropValue("description");
+
+    const titleExist = this.castToString(title);
+    const descriptionExist = this.castToString(description);
+
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          {(titleExist || descriptionExist) && (
+            <Base.VerticalContent className={this.decorateCSS("header")}>
+              {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+              {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+            </Base.VerticalContent>
+          )}
           <div className={this.decorateCSS("cards-container")}>
-            <div className={this.decorateCSS("cards")}>
-              {this.castToObject<Card[]>("cards").map((card: Card, index: number) => (
-                  <div className={this.decorateCSS("card-item-count")} style={{
-                    width: 90 / this.getPropValue("itemCount") + "%",
-                  }}>
-                    <div className={this.decorateCSS("card")} key={index}>
-                      <div className={this.decorateCSS("card-background")}>
-                        <img src={card.backgroundImage} alt="" />
+            <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 1, phone: 1 }} className={this.decorateCSS("cards")}>
+              {this.castToObject<any[]>("cards").map((card: Card, index: number) => {
+                const deviceExist = this.castToString(card.device);
+                const platformExist = this.castToString(card.platform);
+                const descriptionExist = this.castToString(card.description);
+                const buttonTextExist = this.castToString(card.buttonText);
+                return (
+                  <div className={this.decorateCSS("card")} key={index}>
+                    {card.icon && (
+                      <div className={this.decorateCSS("icon-container")}>
+                        <ComposerIcon name={card.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
                       </div>
-                      <div className={this.decorateCSS("card-logo")}>
-                        <img src={card.logo} alt="" />
-                      </div>
-                      <div className={this.decorateCSS("card-title")}>
-                        <h2 className={this.decorateCSS("card-title1")}>{card.title}</h2>
-                      </div>
-                     <div className={this.decorateCSS("card-button")}>
-                        <ComposerLink path={card.buttonLink}>
-                          <button>{card.buttonText}</button>
+                    )}
+
+                    {deviceExist && <Base.P className={this.decorateCSS("device")}>{card.device}</Base.P>}
+
+                    {platformExist && <Base.P className={this.decorateCSS("platform")}>{card.platform}</Base.P>}
+
+                    {descriptionExist && <Base.P className={this.decorateCSS("description")}>{card.description}</Base.P>}
+
+                    {(card.buttonLogo || card.buttonText) && (
+                      <div className={this.decorateCSS("button-container")}>
+                        <ComposerLink path={card?.buttonLink}>
+                          {card?.buttonLogo ? (
+                            <img src={card?.buttonLogo} alt="" className={this.decorateCSS("image")} />
+                          ) : (
+                            (buttonTextExist || card.buttonIcon) && (
+                              <Base.Button className={this.decorateCSS("button-element")}>
+                                {(buttonTextExist || card.buttonIcon) && (
+                                  <div className={this.decorateCSS("button")}>
+                                    {card.buttonIcon && (
+                                      <div>
+                                        <ComposerIcon name={card.buttonIcon} propsIcon={{ className: this.decorateCSS("button-icon") }} />
+                                      </div>
+                                    )}
+                                    {card.buttonText && <Base.P className={this.decorateCSS("button-text")}>{card.buttonText}</Base.P>}
+                                  </div>
+                                )}
+                              </Base.Button>
+                            )
+                          )}
                         </ComposerLink>
                       </div>
-                      <div className={this.decorateCSS("card-information")}>
-                        <p className={this.decorateCSS("card-information-p")}>{card.information}</p>
-                      </div>
-                    </div>
+                    )}
                   </div>
-                
-              ))}
-            </div>
+                );
+              })}
+            </Base.ListGrid>
           </div>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

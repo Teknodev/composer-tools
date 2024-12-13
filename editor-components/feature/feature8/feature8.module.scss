@@ -1,97 +1,116 @@
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 .container {
-    width: 100%;
-    padding: 50px 0;
     .max-content {
-        max-width: var(--composer-content-width);
-        margin: auto;
         display: flex;
-        justify-content: space-around;
-        .content {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            .card-title {
-                text-align: center;
-                font-size: 3rem;
-                margin: 40px 0;
-                color: var(--composer-primary-color);
-            }
+        flex-direction: column;
+        gap: var(--composer-gap-xl);
+        .section-title {
+            margin-top: 0;
+            margin-bottom: var(--composer-gap-md);
+        }
+
+        .cards-container {
+            gap: var(--composer-gap-xl);
+            padding-bottom: var(--composer-gap-xl);
             .card {
                 width: 100%;
+                position: relative;
+                transition: 1s;
                 display: flex;
+                flex-direction: column;
+                gap: var(--composer-gap-md);
                 justify-content: center;
-                flex-wrap: wrap;
-                gap: 20px;
-                .features {
-                    transition: all 0.6s;
-                    display: flex;
-                    flex-direction: column;
-                    text-align: center;
-                    border-radius: 6px;
-                    min-height: 350px;
-                    border: 1px solid transparent;
-                    box-shadow: var(--composer-box-shadow);
-                    padding: 20px;
-                    flex: 1 1;
-                    &:hover {
-                        border: 1px solid var(--composer-tertiary-color);
-                    }
-                    .image {
-                        display: block;
-                        margin: auto;
-                        width: 100%;
-                        max-width: 250px;
-                        padding: 0;
-                        object-fit: cover;
-                        border-radius: 6px;
-                    }
-                    .title {
-                        display: block;
-                        font-weight: bold;
-                        color: var(--composer-primary-color);
-                    }
-                    .long-text {
-                        display: block;
-                        color: var(--composer-font-color-primary);
-                        margin: 0;
-                    }
-                }
-            }
-            .button {
-                width: 100%;
-                cursor: pointer;
-                text-decoration: none;
-                text-align: center;
-                transition: 0.3s;
-                display: block;
-                margin: 10px auto 10px auto;
-                color: white;
-                background-color: var(--composer-secondary-color);
-                padding: 10px 30px;
-                border-radius: 6px;
-                border: 1px solid transparent;
-                width: 200px;
-                font-weight: 400;
-                font-size: 1.5em;
-                &:hover {
+                align-items: center;
+                border-radius: var(--composer-border-radius-xl);
+                padding:calc(var(--composer-gap-xl) * 2) var(--composer-gap-md);
+                background-color: color-mix(in srgb,var(--composer-html-background), var(--composer-font-color-primary) 5%);;
+
+                .icon {
+                    width: 50px;
+                    height: 50px;
                     color: var(--composer-primary-color);
-                    background-color: transparent;
-                    border: 1px solid var(--composer-primary-color);
+                }
+
+                .title {
+                    text-align: center;
+                    color: var(--composer-font-color-primary);
+                    font-size: 2.5rem;
+                }
+
+                .description {
+                    text-align: center;
+                    color: var(--composer-font-color-primary);
+                    font-size: 1.5rem;
+                }
+
+
+            &.visible {
+                transform: none;
+                margin: 0;
+                transition: transform 1s ease, margin 1s ease;
+            }
+            
+            &.shifted {
+                transition: transform 1s ease, margin 1s ease;
+            }
+            &.shifted[data-position="right"] {
+                transform: rotate(var(--rotate-angle, 20deg));
+            }
+            &.shifted[data-position="left"] {
+                transform: rotate(var(--rotate-angle, -20deg));
+            }
+            
+            &.slick-slide {
+                z-index: auto; 
+            }
+  
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container {
+        .max-content {
+            .cards-container {
+                flex-direction: row;
+                gap: var(--composer-gap-md);
+                .card {
+                    &.visible {
+                        transform: none;
+                        margin: 0;
+                        transition: unset;
+                    }
+                    
+                    &.shifted {
+                        margin-left: 0px;
+                        transform: unset;
+                    }
+                    &.shifted[data-position="right"] {
+                        margin-left: 0px !important;
+                        margin-top: 0px !important;
+                        transform: unset;
+                    }
+                    &.shifted[data-position="left"] {
+                        margin-left: 0px !important;
+                        margin-top: 0px !important;
+                        transform: unset;
+                    }
+                    
+                    &.slick-slide {
+                        z-index: auto; 
+                    }
                 }
             }
         }
     }
 }
 
-@media only screen and (max-width: 768px) {
+@container (max-width: #{$composer-phone-width}) {
     .container {
-        padding: 50px 20px;
         .max-content {
-            .content {
-                .card-item-count {
-                    min-width: 100%;
-                }
+            .cards-container {
+                flex-direction: column;
             }
         }
     }

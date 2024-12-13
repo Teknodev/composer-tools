@@ -1,96 +1,76 @@
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+
 .container {
-    width: 100%;
-    padding: 50px 50px;
-    min-height: min-content;
     .max-content {
-        max-width: var(--composer-content-width);
-        margin: auto;
         display: flex;
         align-items: center;
-        .background-image {
-            width: 50%;
+        gap: var(--composer-gap-lg);
+        .right-image {
+            flex: 1;
+            align-items: center;
             .img {
                 max-height: 100%;
                 width: 100%;
-                float: right;
+                border-radius: var(--composer-border-radius-sm);
+                aspect-ratio: 1;
+                object-fit: cover;
+            }
+            &.no-content{
+                .img{
+                    aspect-ratio: 16/9;
+                }
             }
         }
         .content {
-            width: 50%;
             display: flex;
             flex-direction: column;
-            padding-right: 40px;
+            gap: var(--composer-gap-xl);
+            flex: 1;
             .header {
-                width: 100%;
-                float: left;
+                .subtitle{
+                    content: "";
+                }
                 .title {
-                    font-size: 4rem;
-                    line-height: 1.2;
-                    font-weight: 600;
-                    margin: 20px 0px 20px;
-                    color: var(--composer-primary-color);
+                    content: "";
                 }
                 .description {
-                    font-size: 3rem;
-                    line-height: 1.50;
-                    font-weight: 300;
-                    margin: 0px 0px 60px;
-                    color: var(--composer-font-color-primary);
+                    margin-bottom: 0px
                 }
             }
             .item-block {
+                display: flex;
+                flex-direction: column;
+                gap: var(--composer-gap-lg);
                 .texts {
                     display: flex;
-                    align-items: center;
+                    gap: var(--composer-gap-md);
+                    .icon{
+                        min-width: 3rem;
+                        font-size: 3rem;
+                        color: var(--composer-primary-color);
+                    }
+                    .list-item-content{
 
-                    .texts-inside {
-                        color: var(--composer-font-color-primary);
-                        font-size: 2rem;
-                        font-weight: 300;
-                        margin-left: 20px;
-                        padding: 10px 0px;
-                    }
-                }
-            }
-        }
-        @media screen and (max-width: 1210px) {
-            .content {
-                margin-left: 2%;
-                .background-image {
-                    position: static;
-                    width: 100%;
-                    height: 400px;
-                    margin-top: 20px;
-                }
-                .header {
-                    max-width: 100%;
-                }
-            }
-        }
-        @media screen and (max-width: 560px) {
-            .content {
-                margin-left: 2%;
-                .background-image {
-                    position: static;
-                    width: 100%;
-                    height: 300px;
-                }
-                .header {
-                    padding-top: 0;
-                    margin-left: 10px;
-                    .description {
-                        padding-top: 20px;
-                    }
-                }
-                .item-block {
-                    .texts {
-                        margin-left: 10px;
+                        .list-item-title{
+                            margin-top: 0px;
+                            margin-bottom: var(--composer-gap-sm);
+                            color: var(--composer-font-color-primary);
+                        }
                         .texts-inside {
-                            margin-left: 10px;
+                            margin-bottom: 0px;
+                            color: var(--composer-font-color-primary);
                         }
                     }
                 }
             }
+            .button {content: "";}
+        }
+    }
+}
+@media screen and (max-width: $composer-tablet-width-lg) {
+    .container{
+        .max-content{
+            flex-direction: column;
         }
     }
 }
