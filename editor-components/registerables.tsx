@@ -379,7 +379,7 @@ function Registerables(composer: ComponentsRegistery) {
     new FeatureComponent10(),
     new FeatureComponent11(),
     new FeatureComponent12(),
-    // new FeatureComponent13(),
+    new FeatureComponent13(),
     new FeatureComponent14(),
     new CallToAction1(),
     new CallToAction2(),
