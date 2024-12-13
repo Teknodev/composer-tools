@@ -46,7 +46,7 @@ $bottom-figure-width: 115px;
           font-size: 1.5rem;
 
           .active-slide {
-            color: var(--composer-font-color-primary);
+            color: var(--composer-primary-color);
             font-size: 6rem;
           }
 
@@ -61,14 +61,14 @@ $bottom-figure-width: 115px;
         }
 
         .low-op-text {
-          opacity: 0.1;
           z-index: 4;
           margin-left: 100px;
 
           .background-op-text {
             margin: 0;
             font-size: 8rem;
-            color: var(--composer-font-color-primary);
+            color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary-rgb) 5%);
+            opacity: 0.1;
           }
         }
       }
@@ -101,6 +101,7 @@ $bottom-figure-width: 115px;
 
         .line {
           height: 100%;
+          max-height: 30px;
           width: 1px;
           background-color: var(--composer-font-color-primary);
           opacity: 0.4;
@@ -156,7 +157,7 @@ $bottom-figure-width: 115px;
         }
 
         .arrow-text {
-          content: "";
+          color: var(--composer-font-color-primary);
         }
       }
 
@@ -197,12 +198,6 @@ $bottom-figure-width: 115px;
             }
           }
 
-          .description-and-button {
-            display: flex;
-            flex-direction: column;
-            align-items: end;
-          }
-
           .description {
             width: 100%;
             text-align: right;
@@ -217,23 +212,9 @@ $bottom-figure-width: 115px;
           }
 
           .button {
-            border-radius: 50px;
-            border: solid 1px var(--composer-font-color-primary);
-            outline: none;
             display: flex;
             align-items: center;
             gap: var(--composer-gap-sm);
-            background: transparent;
-            color: var(--composer-font-color-primary);
-            transition: 0.5s all ease;
-
-            &:hover {
-              background: var(--composer-font-color-primary);
-              color: var(--composer-font-color-secondary);
-              transition: 0.5s all ease;
-              cursor: pointer;
-              border: solid 1px transparent;
-            }
 
             .button-icon {
               width: 20px;
@@ -280,16 +261,6 @@ $bottom-figure-width: 115px;
 
             .description {
               color: white;
-            }
-
-            .button {
-              color: white;
-              border: 1px solid white;
-
-              &:hover {
-                background-color: white;
-                color: var(--composer-font-color-primary);
-              }
             }
           }
         }
