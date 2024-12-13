@@ -4,22 +4,25 @@ import styles from "./header27.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { Base } from "../../../composer-base-components/base/base";
 
 type SliderItemType = {
   background: string;
-  upTitle: string;
-  downTitle: string;
+  upTitle: JSX.Element;
+  downTitle: JSX.Element;
   upImage: string;
   imageArray: {
     downImage: string;
   }[];
-  leftDescription: string;
+  leftDescription: JSX.Element;
   itemNo: JSX.Element;
   itemDesc: JSX.Element;
   customerNo: JSX.Element;
   statsLine: Boolean;
   customerDesc: JSX.Element;
-  rightDescription: string;
+  rightDescription: JSX.Element;
   buttonObject: {
     buttonText: JSX.Element;
     buttonLink: JSX.Element;
@@ -28,14 +31,7 @@ type SliderItemType = {
   pageNumberPart: boolean;
 };
 
-interface IAnimationProps {
-  animationState: string;
-  startingAnimation: string;
-  endingAnimation: string;
-}
-
 class Header27 extends BaseHeader {
-
   getName(): string {
     return "Header 27";
   }
@@ -119,7 +115,6 @@ class Header27 extends BaseHeader {
                   key: "images",
                   displayer: "Images",
                   value: [
-
                     {
                       type: "image",
                       displayer: "Down Image 3",
@@ -363,42 +358,18 @@ class Header27 extends BaseHeader {
               value:
                 "Enjoy the balanced taste of our Smooth Medium Roast, offering a harmonious blend of mellow flavors with a subtle hint of sweetness.",
             },
-
-          ]
-        }
-      ]
+          ],
+        },
+      ],
     });
-    this.addProp({
-      type: "boolean",
-      key: "buttonAnimation",
-      displayer: "Button Animation",
-      value: true,
-    })
-
 
     this.setComponentState("active-index", 0);
-    this.setComponentState("titleAnimationClass", "animate__fadeInRight");
-    this.setComponentState("descriptionAnimationClass", "animate__fadeInUp");
-    this.setComponentState("buttonAnimationClass", "animate__fadeInUp");
-
     this.setComponentState("slider-ref", React.createRef());
-    this.setComponentState("slider-ref", "--animate-duration");
-
   }
-  handleAnimationEnd = ({
-    animationState,
-    startingAnimation,
-    endingAnimation,
-  }: IAnimationProps) => {
-    if (this.getComponentState(animationState) === endingAnimation) {
-      this.setComponentState(animationState, startingAnimation);
-    }
-  };
 
   render() {
     const slider = this.castToObject<SliderItemType[]>("slider");
     const sliderCount = slider.length;
-    const buttonAnimationEnabled = this.getPropValue("buttonAnimation");
 
     const settings = {
       dots: true,
@@ -415,148 +386,252 @@ class Header27 extends BaseHeader {
       adaptiveHeight: true,
       beforeChange: (oldIndex: number, newIndex: number) => {
         if (oldIndex === newIndex) return;
-        this.setComponentState("buttonAnimationClass", "animate__fadeOutDown");
-        this.setComponentState("titleAnimationClass", "animate__fadeOutDown");
-        this.setComponentState("descriptionAnimationClass", "animate__fadeOut");
         setTimeout(() => {
           this.setComponentState("active-index", newIndex);
         }, 100);
       },
     };
 
+    const elements = document.getElementsByClassName(
+      this.decorateCSS("slider-parent")
+    );
+
+    const items = [];
+
+    for (let index = 0; index < elements.length; index++) {
+      items.push(elements.item(index));
+    }
+
+    const minHeight = items.sort((a, b) => b.clientHeight - a.clientHeight)[0]
+      ?.clientHeight;
+    console.log("minHeight: ", minHeight);
     return (
-      <div
+      <Base.Container
         className={this.decorateCSS("container")}
         style={{
-          backgroundImage: `url(${slider[this.getComponentState("active-index")].background})`,
+          backgroundImage: `url(${
+            slider[this.getComponentState("active-index")].background
+          })`,
         }}
       >
         <div className={this.decorateCSS("content")}>
-          <div className={this.decorateCSS("slider-parent")}>
-            <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
+          <div
+            className={this.decorateCSS("slider-parent")}
+            style={{
+              minHeight: minHeight + "px",
+            }}
+          >
+            <ComposerSlider
+              {...settings}
+              className={this.decorateCSS("carousel")}
+            >
               {slider.map((item: SliderItemType, sliderIndex: number) => {
                 return (
-                  <div key={sliderIndex} className={this.decorateCSS("max-content")}>
-                    <React.Fragment key={item.upTitle}>
+                  <div
+                    key={sliderIndex}
+                    className={`${this.decorateCSS("max-content")} ${
+                      item.background && this.decorateCSS("withBackgroundImage")
+                    }`}
+                  >
+                    <React.Fragment key={this.castToString(item.upTitle)}>
                       <div className={this.decorateCSS("upperDiv")}>
                         <div className={this.decorateCSS("uppderDiv-content")}>
-                          <div className={this.decorateCSS("upTitle-container")}>
-                            <h3 className={this.decorateCSS('upTitle')}>{item.upTitle}</h3>
-                          </div>
-                          <div className={this.decorateCSS("upImage-container")}>
-                            <img className={this.decorateCSS("upImage")} src={item.upImage} />
-                          </div>
+                          {this.castToString(item.upTitle) && (
+                            <div
+                              className={this.decorateCSS("upTitle-container")}
+                            >
+                              <h3 className={this.decorateCSS("upTitle")}>
+                                {item.upTitle}
+                              </h3>
+                            </div>
+                          )}
+                          {item.upImage && (
+                            <div
+                              className={this.decorateCSS("upImage-container")}
+                            >
+                              <img
+                                className={this.decorateCSS("upImage")}
+                                src={item.upImage}
+                              />
+                            </div>
+                          )}
                         </div>
                       </div>
 
                       <div className={this.decorateCSS("middleDiv")}>
                         <div className={this.decorateCSS("middleDiv-content")}>
-                          <div className={this.decorateCSS("middleImages-container")}>
-
-                            {item.imageArray.map((imageItems, imageIndex: number) => {
-                              return (
-                                imageItems.downImage && (
-                                  <div
-                                    className={this.decorateCSS("image-wrapper")}
-                                    style={{
-                                      width: `${100 / item.imageArray.length}%`,
-                                    }}
-                                    key={imageIndex}
-                                  >
-                                    <img
-                                      className={this.decorateCSS("middleImages")}
-                                      src={imageItems.downImage}
-                                    />
-                                  </div>
-                                )
-                              );
-                            })}
-
+                          <div
+                            className={this.decorateCSS(
+                              "middleImages-container"
+                            )}
+                          >
+                            {item.imageArray.map(
+                              (imageItems, imageIndex: number) => {
+                                return (
+                                  imageItems.downImage && (
+                                    <div
+                                      className={this.decorateCSS(
+                                        "image-wrapper"
+                                      )}
+                                      style={{
+                                        width: `${
+                                          100 / item.imageArray.length
+                                        }%`,
+                                      }}
+                                      key={imageIndex}
+                                    >
+                                      <img
+                                        className={this.decorateCSS(
+                                          "middleImages"
+                                        )}
+                                        src={imageItems.downImage}
+                                      />
+                                    </div>
+                                  )
+                                );
+                              }
+                            )}
                           </div>
-                          <div className={this.decorateCSS("middleTitle-container")}>
-                            <h3 className={this.decorateCSS('middleTitle')}>{item.downTitle}</h3>
+                          <div
+                            className={this.decorateCSS(
+                              "middleTitle-container"
+                            )}
+                          >
+                            <h3 className={this.decorateCSS("middleTitle")}>
+                              {item.downTitle}
+                            </h3>
                           </div>
                         </div>
                       </div>
                     </React.Fragment>
-                    <div key={this.castToString(item.buttonObject.buttonLink)} className={this.decorateCSS("LowerDiv")}>
-                      <div className={this.decorateCSS("button-container")}>
-                        <div className={this.decorateCSS("button-content")}>
-                          <ComposerLink path={item.buttonObject.buttonLink}>
-                            <button
-                              className={`${this.decorateCSS("button")} ${buttonAnimationEnabled ?
-                                "animate__animated" : ""} ${this.getComponentState(
-                                  "buttonAnimationClass"
-                                )}`}
-                              onAnimationEnd={() => {
-                                this.handleAnimationEnd({
-                                  animationState: "buttonAnimationClass",
-                                  startingAnimation: "animate__fadeInUp",
-                                  endingAnimation: "animate__fadeOutDown",
-                                });
-                              }}
+                    <div
+                      key={this.castToString(item.buttonObject.buttonLink)}
+                      className={this.decorateCSS("LowerDiv")}
+                    >
+                      {(this.castToString(item.buttonObject.buttonText) ||
+                        item.buttonObject.buttonIcon) && (
+                        <div className={this.decorateCSS("button-container")}>
+                          <div className={this.decorateCSS("button-content")}>
+                            {(this.castToString(item.buttonObject.buttonText) ||
+                              item.buttonObject.buttonIcon) && (
+                              <ComposerLink path={item.buttonObject.buttonLink}>
+                                <Base.Button
+                                  className={`${this.decorateCSS("button")}`}
+                                >
+                                  {this.castToString(
+                                    item.buttonObject.buttonText
+                                  ) && (
+                                    <span
+                                      className={this.decorateCSS(
+                                        "button-text"
+                                      )}
+                                    >
+                                      {item.buttonObject.buttonText}
+                                    </span>
+                                  )}
+                                  {item.buttonObject.buttonIcon && (
+                                    <ComposerIcon
+                                      name={item.buttonObject.buttonIcon}
+                                      propsIcon={{
+                                        className:
+                                          this.decorateCSS("button-icon"),
+                                        size: 20,
+                                      }}
+                                    />
+                                  )}
+                                </Base.Button>
+                              </ComposerLink>
+                            )}
+                            {item.pageNumberPart && (
+                              <div className={this.decorateCSS("figure")}>
+                                {slider.length > 1 && (
+                                  <div
+                                    className={this.decorateCSS("pagination")}
+                                  >
+                                    <span
+                                      className={this.decorateCSS(
+                                        "active-slide"
+                                      )}
+                                    >
+                                      {(
+                                        this.getComponentState("active-index") +
+                                        1
+                                      )
+                                        .toString()
+                                        .padStart(2, "0")}
+                                    </span>
+                                    <sup
+                                      className={this.decorateCSS(
+                                        "slide-count-power"
+                                      )}
+                                    >
+                                      <span
+                                        className={this.decorateCSS("divider")}
+                                      >
+                                        /{" "}
+                                      </span>
+                                      <span
+                                        className={this.decorateCSS(
+                                          "slide-count"
+                                        )}
+                                      >
+                                        {sliderCount
+                                          .toString()
+                                          .padStart(2, "0")}
+                                      </span>
+                                    </sup>
+                                  </div>
+                                )}
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      )}
 
+                      {(this.castToString(item.leftDescription) ||
+                        this.castToString(item.itemNo) ||
+                        this.castToString(item.itemDesc) ||
+                        this.castToString(item.customerNo) ||
+                        this.castToString(item.customerDesc) ||
+                        this.castToString(item.rightDescription)) && (
+                        <div className={this.decorateCSS("desc-container")}>
+                          <div className={this.decorateCSS("desc-content")}>
+                            <div
+                              className={this.decorateCSS("leftDescription")}
                             >
-                              <span className={this.decorateCSS("button-text")}>
-                                {item.buttonObject.buttonText}
-                              </span>
-                              <ComposerIcon
-                                name={item.buttonObject.buttonIcon}
-                                propsIcon={{
-                                  className: this.decorateCSS("button-icon"),
-                                  size: 20,
-                                }}
-                              />
-                            </button>
-                          </ComposerLink>
-                          {item.pageNumberPart && <div className={this.decorateCSS("figure")}>
-                            {slider.length > 1 &&
-                              <div className={this.decorateCSS("pagination")}>
-                                <span className={this.decorateCSS("active-slide")}>
-                                  {(this.getComponentState("active-index") + 1)
-                                    .toString()
-                                    .padStart(2, "0")}
-                                </span>
-                                <sup className={this.decorateCSS("slide-count-power")}>
-                                  <span className={this.decorateCSS("divider")}>/ </span>
-                                  <span className={this.decorateCSS("slide-count")}>
-                                    {sliderCount.toString().padStart(2, "0")}
-                                  </span>
-                                </sup>
-                              </div>}
-                          </div>}
-                        </div>
-                      </div>
-
-                      <div className={this.decorateCSS("desc-container")}>
-                        <div className={this.decorateCSS('desc-content')}>
-                          <div className={this.decorateCSS("leftDescription")}>
-                            {item.leftDescription}
-                          </div>
-                          <div className={this.decorateCSS("count")}>
-                            <div className={this.decorateCSS("count-items")}>
-                              <div className={this.decorateCSS("itemsNo")}>
-                                {item.itemNo}
+                              {item.leftDescription}
+                            </div>
+                            <div className={this.decorateCSS("count")}>
+                              <div className={this.decorateCSS("count-items")}>
+                                <div className={this.decorateCSS("itemsNo")}>
+                                  {item.itemNo}
+                                </div>
+                                <div className={this.decorateCSS("itemDesc")}>
+                                  {item.itemDesc}
+                                </div>
                               </div>
-                              <div className={this.decorateCSS("itemDesc")}>
-                                {item.itemDesc}
+                              {item.statsLine && (
+                                <div className={this.decorateCSS("line")}></div>
+                              )}
+                              <div className={this.decorateCSS("customers")}>
+                                <div className={this.decorateCSS("customerNo")}>
+                                  {item.customerNo}
+                                </div>
+                                <div
+                                  className={this.decorateCSS("customerDesc")}
+                                >
+                                  {item.customerDesc}
+                                </div>
                               </div>
                             </div>
-                            {item.statsLine && <div className={this.decorateCSS("line")}></div>}
-                            <div className={this.decorateCSS("customers")}>
-                              <div className={this.decorateCSS("customerNo")}>
-                                {item.customerNo}
-                              </div>
-                              <div className={this.decorateCSS("customerDesc")}>
-                                {item.customerDesc}
-                              </div>
+                            <div
+                              className={this.decorateCSS("rightDescription")}
+                            >
+                              {item.rightDescription}
                             </div>
                           </div>
-                          <div className={this.decorateCSS("rightDescription")}>
-                            {item.rightDescription}
-                          </div>
                         </div>
-                      </div>
+                      )}
                     </div>
                   </div>
                 );
@@ -564,7 +639,7 @@ class Header27 extends BaseHeader {
             </ComposerSlider>
           </div>
         </div>
-      </div>
+      </Base.Container>
     );
   }
 }

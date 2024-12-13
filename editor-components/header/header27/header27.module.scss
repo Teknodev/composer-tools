@@ -1,3 +1,5 @@
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+
 @mixin flexCenter {
   display: flex;
   align-items: center;
@@ -5,9 +7,8 @@
 }
 
 .container {
-  width: 100%;
-  padding: 20px 50px;
-
+  background-repeat: no-repeat;
+  background-size: cover;
   .content {
     width: 100%;
     height: 100%;
@@ -18,6 +19,12 @@
     .slider-parent {
       height: 100%;
       width: 100%;
+      @include flexCenter;
+
+
+      :global(.slick-active) {
+        z-index: 1;
+      }
 
       .carousel {
         width: 100%;
@@ -26,13 +33,17 @@
           position: static !important;
         }
 
-        :global(.slick-list) {
-          margin-bottom: 3.2vw;
-        }
-
         .max-content {
           @include flexCenter;
           width: 100%;
+          &.withBackgroundImage {
+            * {
+              color: black !important;
+              &.line{
+                background: black !important;
+              }
+            }
+          }
 
           .upperDiv {
             width: 100%;
@@ -41,7 +52,7 @@
             .uppderDiv-content {
               width: 100%;
               @include flexCenter;
-              gap: 20px;
+              gap: var(--composer-gap-md);
 
               .upTitle-container {
                 display: flex;
@@ -75,7 +86,7 @@
                   max-height: 10vw;
                   border-radius: 100px;
                   object-fit: cover;
-                  height: 100%
+                  height: 100%;
                 }
               }
             }
@@ -83,17 +94,16 @@
 
           .middleDiv {
             width: 100%;
-            padding-bottom: 3.2vw;
 
             .middleDiv-content {
               @include flexCenter;
-              gap: 20px;
+              gap: var(--composer-gap-md);
 
               .middleImages-container {
                 display: flex;
                 align-items: center;
                 flex-direction: row;
-                gap: 20px;
+                gap: var(--composer-gap-md);
                 flex: 1;
                 width: 100%;
 
@@ -110,7 +120,7 @@
                     object-fit: cover;
                     height: auto;
                     width: 100%;
-                    max-width: 100%,
+                    max-width: 100%;
                   }
                 }
               }
@@ -121,7 +131,7 @@
                 max-width: 80%;
 
                 .middleTitle {
-                  font-size: 13vw;
+                  font-size: 13rem;
                   font-weight: bold;
                   margin: 0;
                   padding: 0;
@@ -139,7 +149,7 @@
             .button-container {
               width: 100%;
               @include flexCenter;
-              padding-bottom: 30px;
+              padding-bottom: var(--composer-gap-md);
               height: 100%;
 
               .button-content {
@@ -148,37 +158,11 @@
                 width: 100%;
                 justify-content: space-between;
                 height: 100%;
-
+                align-items: center;
                 .button {
-                  padding: 1vw 1vw;
-                  border-radius: 50px;
-                  border: none;
-                  outline: none;
-                  display: flex;
-                  align-items: center;
-                  gap: 0.25vw;
-                  font-weight: 400;
-                  background: var(--composer-font-color-primary);
-                  color: var(--composer-font-color-secondary);
-                  transition: 0.3s all;
-                  max-width: 15vw;
-                  border: 1px solid var(--composer-font-color-primary);
-                  --animate-duration: 0.2s;
-                  height: 100%;
-                  font-size: 16px;
-
-                  &:hover {
-                    background: transparent;
-                    color: var(--composer-font-color-primary);
-                    transition: 0.3s all;
-                    cursor: pointer;
-                    border: 1px solid var(--composer-font-color-primary);
-                    ;
-                  }
-
-                  .button-text {
-                    word-break: break-word;
-                  }
+                 display: flex;
+                 align-items: center;
+                 animation-duration: 0.2s;
 
                   .button-icon {
                     width: 1.5rem;
@@ -191,20 +175,20 @@
                   @include flexCenter;
 
                   .pagination {
-                    font-size: 20px;
+                    font-size: 1.5rem;
                     width: 100%;
 
                     .active-slide {
                       color: var(--composer-font-color-primary);
                       font-size: 4rem;
-                      padding-right: 15px;
+                      padding-right: var(--composer-gap-sm);
                     }
 
                     .slide-count-power {
                       color: var(--composer-font-color-primary);
 
                       .divider {
-                        font-size: 2.7rem;
+                        font-size: 3rem;
                         margin-right: -10px;
                       }
 
@@ -226,14 +210,13 @@
                 width: 100%;
                 display: flex;
                 justify-content: space-between;
-                gap: 10%;
+                gap: var(--composer-gap-xl);
 
                 .leftDescription,
                 .rightDescription {
-                  font-size: 1rem !important;
+                  font-size: 1rem;
                   text-align: justify !important;
                   flex: 1;
-                  font-size: 1.2rem;
                   overflow: hidden;
                   text-overflow: ellipsis;
                   color: var(--composer-font-color-primary);
@@ -242,7 +225,7 @@
 
                 .count {
                   @include flexCenter;
-                  gap: 15px;
+                  gap: var(--composer-gap-sm);
                   word-break: break-word;
                   flex: 1;
 
@@ -251,10 +234,10 @@
                     flex-direction: column;
                     flex: 1;
                     text-align: end;
-                    gap: 0.6rem;
+                    gap: var(--composer-gap-sm);
 
                     .itemsNo {
-                      font-size: 2.8rem;
+                      font-size: 1.5rem;
                       font-weight: bold;
                       color: var(--composer-font-color-primary);
                       padding: 0;
@@ -264,7 +247,7 @@
                     .itemDesc {
                       padding: 0;
                       margin: 0;
-                      font-size: 1.3rem;
+                      font-size: 1rem;
                       color: var(--composer-font-color-primary);
                     }
                   }
@@ -279,20 +262,20 @@
                   .customers {
                     display: flex;
                     flex-direction: column;
-                    gap: 0.6rem;
+                    gap: var(--composer-gap-sm);
                     flex: 1;
                     text-align: start;
 
                     .customerNo {
                       margin: 0;
                       padding: 0;
-                      font-size: 2.8rem;
+                      font-size: 1.5rem;
                       font-weight: bold;
                       color: var(--composer-font-color-primary);
                     }
 
                     .customerDesc {
-                      font-size: 1.3rem;
+                      font-size: 1rem;
                       color: var(--composer-font-color-primary);
                     }
                   }
@@ -306,24 +289,19 @@
   }
 }
 
-@container (max-width:1100px) {
-  .container {
-    padding: 20px 30px !important;
-  }
-
+@container (max-width : #{$composer-desktop-width-sm}) {
   .slider-parent {
     .carousel {
       .max-content {
         .upperDiv {
-          margin-bottom: 10px !important;
+          margin-bottom: var(--composer-gap-md) !important;
 
           .uppderDiv-content {
-            gap: 10px !important;
+            gap: var(--composer-gap-sm) !important;
 
             .upTitle-container {
-
               .upTitle {
-                font-size: 11vw !important;
+                font-size: 6rem !important;
                 letter-spacing: 5px !important;
               }
             }
@@ -339,7 +317,7 @@
 
         .middleDiv {
           .middleDiv-content {
-            gap: 10px !important;
+            gap: var(--composer-gap-sm) !important;
 
             .middleImages-container {
               .image-wrapper {
@@ -351,7 +329,7 @@
 
             .middleTitle-container {
               .middleTitle {
-                font-size: 11vw !important;
+                font-size: 6rem !important;
                 letter-spacing: 5px !important;
               }
             }
@@ -359,40 +337,11 @@
         }
 
         .LowerDiv {
-          .button-container {
-            .button-content {
-
-              .button {
-                font-size: 0.9rem !important;
-              }
-
-              .figure {
-                .pagination {
-                  font-size: 1rem !important;
-
-                  .active-slide {
-                    font-size: 2rem !important;
-                    padding-right: 5px !important;
-                  }
-
-                  .slide-count-power {
-                    .divider {
-                      margin-right: -5px !important;
-                      font-size: 1.5rem !important;
-                    }
-
-                    .slide-count {
-                      font-size: 1.5rem !important;
-                    }
-                  }
-                }
-              }
-            }
-          }
+          
 
           .desc-container {
             .desc-content {
-              gap: 5% !important;
+              gap: var(--composer-gap-md) !important;
 
               .count {
                 .count-items {
@@ -424,11 +373,7 @@
   }
 }
 
-@container (max-width: 604px) {
-  .container {
-    padding: 20px 30px !important;
-  }
-
+@container (max-width : #{$composer-phone-width}) {
   .slider-parent {
     .carousel {
       .max-content {
@@ -445,7 +390,7 @@
               max-width: 100% !important;
 
               .upTitle {
-                font-size: 12vw !important;
+                font-size: 4rem !important;
                 letter-spacing: 5px !important;
               }
             }
@@ -459,16 +404,16 @@
         }
 
         .middleDiv {
-          padding-bottom: 30px !important;
+          padding-bottom: var(--composer-gap-md) !important;
           max-width: 100% !important;
 
           .middleDiv-content {
-            gap: 10px !important;
+            gap: var(--composer-gap-sm) !important;
             flex-direction: column-reverse !important;
             align-items: end !important;
 
             .middleImages-container {
-              gap: 10px !important;
+              gap: var(--composer-gap-sm) !important;
 
               .image-wrapper {
                 .middleImages {
@@ -482,7 +427,7 @@
               max-width: 100% !important;
 
               .middleTitle {
-                font-size: 12vw !important;
+                font-size: 4rem !important;
                 letter-spacing: 5px !important;
               }
             }
@@ -490,12 +435,11 @@
         }
 
         .LowerDiv {
-
           .button-container {
-            padding-bottom: 20px !important;
+            padding-bottom: var(--composer-gap-md) !important;
 
             .button-content {
-              gap: 5px !important;
+              gap: var(--composer-gap-xs) !important;
               width: 100% !important;
 
               :first-child {
@@ -503,29 +447,11 @@
                 align-items: center !important;
               }
 
-              .button {
-                padding: 1vw 4vw !important;
-                border-radius: 50px !important;
-                gap: 0.5vw !important;
-                font-weight: 400 !important;
-                max-width: fit-content !important;
-                height: auto !important;
-                font-size: 1.1rem !important;
-
-                .button-text {
-                  word-break: normal !important;
-                }
-
-                .button-icon {
-                  height: 1.4rem !important;
-                  width: 1.4rem !important;
-                }
-              }
+           
 
               .figure {
-
                 .pagination {
-                  font-size: 16px !important;
+                  font-size: 1rem !important;
 
                   .active-slide {
                     font-size: 2rem !important;
@@ -533,7 +459,7 @@
 
                   .slide-count-power {
                     display: inline-flex !important;
-                    gap: 10px !important;
+                    gap: var(--composer-gap-sm) !important;
                     align-items: center !important;
                     vertical-align: text-bottom !important;
 
@@ -553,7 +479,7 @@
           .desc-container {
             .desc-content {
               flex-direction: column !important;
-              gap: 1.2rem !important;
+              gap: var(--composer-gap-md) !important;
               width: 100% !important;
 
               .leftDescription,
@@ -563,11 +489,11 @@
               }
 
               .count {
-                gap: 0.6rem !important;
+                gap: var(--composer-gap-sm) !important;
                 justify-content: space-between !important;
 
                 .count-items {
-                  gap: 0.3rem !important;
+                  gap: var(--composer-gap-xs) !important;
                   text-align: start !important;
 
                   .itemsNo {
@@ -588,9 +514,7 @@
                 }
 
                 .line {
-                  opacity: 0.4 !important;
                   width: 1px !important;
-                  background: var(--composer-font-color-primary) !important;
                   align-self: stretch !important;
                   height: auto !important;
                 }
@@ -599,7 +523,7 @@
                   padding-left: 0 !important;
                   display: flex !important;
                   flex-direction: column !important;
-                  gap: 0.3rem !important;
+                  gap: var(--composer-gap-xs) !important;
                   width: auto !important;
                   text-align: end !important;
 
