@@ -313,8 +313,8 @@ class Slider10 extends BaseSlider {
       slidesToShow: 1,
       slidesToScroll: 1,
       fade: true,
-      afterChange: (current: number, next: number) => {
-        this.setComponentState("active", current);
+      beforeChange: (current: number, next: number) => {
+        this.setComponentState("active", next);
       },
     };
 
@@ -335,6 +335,8 @@ class Slider10 extends BaseSlider {
 
     const prevIcon: string = this.getPropValue("prev-button-icon");
     const nextIcon: string = this.getPropValue("next-button-icon");
+
+    const activeIndex = this.getComponentState("active");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -360,7 +362,7 @@ class Slider10 extends BaseSlider {
                                 className={`
                                 ${this.decorateCSS("slider-item-title")}
                                 ${item.image && this.decorateCSS("slider-item-title-with-img")}
-                                ${(this.getComponentState("active") === index || textAnimation) &&
+                                ${(activeIndex === index || textAnimation) &&
                                   this.decorateCSS("show")}
                               `}
                               >
@@ -385,7 +387,8 @@ class Slider10 extends BaseSlider {
           </div>
           {(featuredItems?.length > 0 || nextIcon || prevIcon) && (
             <div className={this.decorateCSS("footer-max-content")}>
-              <div className={this.decorateCSS("slider-footer")}>
+              <div className={`${this.decorateCSS("slider-footer")}
+              ${!slides[activeIndex].image && this.decorateCSS("no-bg-image")}`}>
                 {featuredItems.length > 0 &&
                   <div className={this.decorateCSS("slider-footer-items")}>
                     {featuredItems.map((item: FeaturedItem, index: number) => {

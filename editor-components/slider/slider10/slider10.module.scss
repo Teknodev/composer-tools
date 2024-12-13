@@ -1,7 +1,7 @@
 @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
 .container {
-  height: 500px;
+  height: 550px;
   padding: 0;
 
   .slider-wrapper {
@@ -46,14 +46,12 @@
               transition: 700ms;
               opacity: 0;
               font-size: 4.5rem;
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 3;
+              overflow: hidden;
+              text-overflow: ellipsis;
 
-              >blinkpage {
-                display: -webkit-box !important;
-                -webkit-line-clamp: 3;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-                text-overflow: ellipsis;
-              }
 
               &.show {
                 margin-bottom: clamp(2rem, 4vw, 2.5rem);
@@ -85,6 +83,7 @@
       right: 0;
       z-index: 10;
       display: flex;
+      max-height: 170px;
 
       .slider-footer {
         border-top-left-radius: var(--composer-border-radius-md);
@@ -131,6 +130,8 @@
               justify-content: center;
               flex-direction: column;
               gap: var(--composer-gap-xs);
+              max-height: 130px;
+              overflow: hidden;
 
               .slider-footer-item-title {
                 margin: 0;
@@ -190,6 +191,10 @@
             }
           }
         }
+      }
+
+      .no-bg-image {
+        background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
       }
     }
   }
