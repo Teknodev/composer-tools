@@ -417,14 +417,21 @@ class LocationComponent6 extends Location {
     const subtitleExist = this.castToString(subtitle);
     const titleExist = this.castToString(title);
 
+    const headerExist = subtitleExist || titleExist;
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
+        {headerExist && (
+          <Base.MaxContent className={this.decorateCSS("max-content-header")}>
+            <Base.VerticalContent className={this.decorateCSS("header")}>
+              {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("badge")}</Base.SectionSubTitle>}
+              {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+            </Base.VerticalContent>
+          </Base.MaxContent>
+        )}
         <div className={this.decorateCSS("wrapper")}>
           <Base.MaxContent className={this.decorateCSS("max-content")}>
             <div className={this.decorateCSS("left-side")}>
-              {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("badge")}</Base.SectionSubTitle>}
-              {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-
               <div>
                 {buttons?.length > 0 && (
                   <Base.VerticalContent className={this.decorateCSS("button-container")}>

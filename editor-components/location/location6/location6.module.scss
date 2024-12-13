@@ -2,6 +2,17 @@
 
 .container {
   padding: var(--composer-gap-md) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--composer-gap-sm);
+
+  .max-content-header {
+    max-width: calc(var(--composer-content-width) + 100px);
+
+    .header {
+      padding: 0 var(--composer-gap-xl);
+    }
+  }
   .wrapper {
     display: flex;
     justify-content: space-between;
@@ -16,14 +27,6 @@
         padding: 0 var(--composer-gap-xl);
         min-width: 30vw;
         width: auto;
-
-        .subtitle {
-          margin: 0;
-        }
-
-        .title {
-          margin: var(--composer-gap-sm);
-        }
 
         .button-container {
           row-gap: var(--composer-gap-sm);
@@ -59,7 +62,6 @@
       }
     }
     .map-container {
-      margin-top: calc(2 * var(--composer-gap-xl));
       width: 50%;
       .map {
         width: 100%;
@@ -96,7 +98,10 @@
 
 @container (max-width: #{$composer-tablet-width-lg}) {
   .container {
-    padding: 0;
+    gap: 0;
+    .header {
+      padding: 0 var(--composer-gap-lg);
+    }
     .wrapper {
       flex-direction: column;
       .max-content {
@@ -105,10 +110,6 @@
         .left-side {
           width: 100%;
           padding: var(--composer-gap-md) var(--composer-gap-lg);
-
-          .title {
-            margin-top: 0 !important;
-          }
 
           .button-container {
             flex-direction: row;
@@ -127,7 +128,6 @@
         }
       }
       .map-container {
-        margin-top: var(--composer-gap-md) !important;
         width: 100% !important;
         .map {
           width: 100%;
@@ -140,7 +140,9 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: 0;
+    .header {
+      padding: 0 var(--composer-gap-md) !important;
+    }
     .wrapper {
       flex-direction: column;
       .max-content {
@@ -148,14 +150,6 @@
           width: 100%;
           padding: var(--composer-gap-md);
           gap: var(--composer-gap-sm);
-
-          .subtitle {
-            margin: 0 !important;
-          }
-
-          .title {
-            margin: 0 !important;
-          }
 
           .button-container {
             .button {
@@ -174,7 +168,6 @@
         }
       }
       .map-container {
-        margin-top: var(--composer-gap-md) !important;
         width: 100% !important;
         .map {
           width: 100%;
