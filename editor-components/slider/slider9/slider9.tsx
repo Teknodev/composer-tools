@@ -249,7 +249,7 @@ class Slider9 extends BaseSlider {
       arrows: false,
       dots: false,
       infinite: false,
-      speed: 700,
+      speed: 1500,
       autoplay: false,
       slidesToShow: 3,
       slidesToScroll: 1,
@@ -276,7 +276,7 @@ class Slider9 extends BaseSlider {
       infinite: false,
       speed: 800,
       autoplay: false,
-      autoplaySpeed: 3000,
+      autoplaySpeed: 1500,
       slidesToShow: 1,
       slidesToScroll: 1,
       afterChange: (currentIndex: number) => {
@@ -303,220 +303,235 @@ class Slider9 extends BaseSlider {
     const sliderItems = this.castToObject<SliderItem[]>("sliderItems");
     const hoveredIndex = this.getComponentState("hoveredIndex");
 
+    const RightContentExist = (this.castToString(title) ||
+      this.castToString(price) ||
+      this.castToString(description))
+
     return (
       <Base.Container className={this.decorateCSS("container")} >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.ContainerGrid className={this.decorateCSS("content")}>
-            <div className={this.decorateCSS("sliders-parent")}>
-              <div className={this.decorateCSS("vertical-parent")}>
+          <Base.ContainerGrid className={`${this.decorateCSS("content")}
+          ${this.decorateCSS("no-left-part")}`}>
+            {sliderItems.length > 0 &&
+              <div className={`${this.decorateCSS("sliders-parent")}
+              ${RightContentExist === "" ? this.decorateCSS("empty-right-content") : ""}`}>
+                <div className={this.decorateCSS("vertical-parent")}>
 
-                <ComposerSlider
-                  {...verticalSettings}
-                  className={this.decorateCSS("carousel-vertical")}
-                  ref={this.getComponentState("vertical-slider-ref")}
-                >
-                  {sliderItems.map(
-                    (item: SliderItem, indexSlider: number) => {
-                      const isActive = this.getComponentState("currentSlideIndex") === indexSlider;
-                      const isHovered = hoveredIndex === indexSlider;
+                  <ComposerSlider
+                    {...verticalSettings}
+                    className={this.decorateCSS("carousel-vertical")}
+                    ref={this.getComponentState("vertical-slider-ref")}
+                  >
+                    {sliderItems.map(
+                      (item: SliderItem, indexSlider: number) => {
+                        const isActive = this.getComponentState("currentSlideIndex") === indexSlider;
+                        const isHovered = hoveredIndex === indexSlider;
 
-                      return (
-                        <div
-                          key={indexSlider}
-                          className={this.decorateCSS("img-container")}
-                          onClick={() => {
-                            this.setComponentState("currentSlideIndex", indexSlider);
-                            const horizontalSliderRef = this.getComponentState("horizontal-slider-ref");
-                            if (horizontalSliderRef.current) {
-                              horizontalSliderRef.current.slickGoTo(indexSlider);
-                            }
+                        return (
+                          <div
+                            key={indexSlider}
+                            className={this.decorateCSS("img-container")}
+                            onClick={() => {
+                              this.setComponentState("currentSlideIndex", indexSlider);
+                              const horizontalSliderRef = this.getComponentState("horizontal-slider-ref");
+                              if (horizontalSliderRef.current) {
+                                horizontalSliderRef.current.slickGoTo(indexSlider);
+                              }
+                            }}
+                            onMouseEnter={() => {
+                              this.setComponentState("hoveredIndex", indexSlider);
+                            }}
+                            onMouseLeave={() => {
+                              this.setComponentState("hoveredIndex", null);
+                            }}
+                          >
+                            <img src={item.image} alt="" className={this.decorateCSS("img")} />
+                            {(isActive || isHovered) && (
+                              <div className={this.decorateCSS("overlay")}></div>
+                            )}
+                          </div>
+                        );
+                      }
+                    )}
+                  </ComposerSlider>
+
+                  {(verticalPreviousArrow || verticalNextArrow) &&
+                    <div className={this.decorateCSS("verticalArrows")}>
+                      {verticalPreviousArrow &&
+                        <ComposerIcon
+                          name={verticalPreviousArrow}
+                          propsIcon={{
+                            className: this.decorateCSS("verticalPreviousArrow"),
+                            onClick: () => {
+                              const verticalSliderRef = this.getComponentState("vertical-slider-ref");
+                              verticalSliderRef.current.slickPrev();
+                            },
                           }}
-                          onMouseEnter={() => {
-                            this.setComponentState("hoveredIndex", indexSlider);
+                        />}
+                      {verticalNextArrow &&
+                        <ComposerIcon
+                          name={verticalNextArrow}
+                          propsIcon={{
+                            className: this.decorateCSS("verticalNextArrow"),
+                            onClick: () => {
+                              const verticalSliderRef = this.getComponentState("vertical-slider-ref");
+                              verticalSliderRef.current.slickNext();
+                            },
                           }}
-                          onMouseLeave={() => {
-                            this.setComponentState("hoveredIndex", null);
-                          }}
-                        >
-                          <img src={item.image} alt="" className={this.decorateCSS("img")} />
-                          {(isActive || isHovered) && (
-                            <div className={this.decorateCSS("overlay")}></div>
-                          )}
-                        </div>
-                      );
-                    }
-                  )}
-                </ComposerSlider>
-
-                {(verticalPreviousArrow || verticalNextArrow) &&
-                  <div className={this.decorateCSS("verticalArrows")}>
-                    {verticalPreviousArrow &&
-                      <ComposerIcon
-                        name={verticalPreviousArrow}
-                        propsIcon={{
-                          className: this.decorateCSS("verticalPreviousArrow"),
-                          onClick: () => {
-                            const verticalSliderRef = this.getComponentState("vertical-slider-ref");
-                            verticalSliderRef.current.slickPrev();
-                          },
-                        }}
-                      />}
-                    {verticalNextArrow &&
-                      <ComposerIcon
-                        name={verticalNextArrow}
-                        propsIcon={{
-                          className: this.decorateCSS("verticalNextArrow"),
-                          onClick: () => {
-                            const verticalSliderRef = this.getComponentState("vertical-slider-ref");
-                            verticalSliderRef.current.slickNext();
-                          },
-                        }}
-                      />}
-                  </div>}
-              </div>
-
-              <div className={this.decorateCSS("horizontal-parent")}>
-                <ComposerSlider
-                  {...horizontalSettings}
-                  className={this.decorateCSS("carousel-horizontal")}
-                  ref={this.getComponentState("horizontal-slider-ref")}
-                >
-                  {sliderItems.map(
-                    (item: SliderItem, indexSlider: number) => (
-                      <div className={this.decorateCSS("img-container")} key={indexSlider}
-                        onMouseMove={this.handleMouseMove}
-                        onMouseLeave={this.handleMouseLeave}>
-                        <img
-                          src={item.image}
-                          alt=""
-                          className={this.decorateCSS("img")}
-                        />
-                      </div>
-                    )
-                  )}
-                </ComposerSlider>
-
-                {(horizontalPreviousArrow || horizontalNextArrow) &&
-                  <div className={this.decorateCSS("horizontalArrows")}>
-                    {horizontalPreviousArrow &&
-                      <ComposerIcon name={horizontalPreviousArrow}
-                        propsIcon={{
-                          className: this.decorateCSS("horizontalPreviousArrow"),
-                          onClick: () => {
-                            const horizontalSliderRef = this.getComponentState("horizontal-slider-ref");
-                            horizontalSliderRef.current.slickPrev();
-                          },
-                        }}
-                      />}
-                    {horizontalNextArrow &&
-                      <ComposerIcon name={horizontalNextArrow}
-                        propsIcon={{
-                          className: this.decorateCSS("horizontalNextArrow"),
-                          onClick: () => {
-                            const horizontalSliderRef = this.getComponentState("horizontal-slider-ref");
-                            horizontalSliderRef.current.slickNext();
-                          },
-                        }}
-                      />}
-                  </div>}
-
-                <div className={this.decorateCSS("buttons")}>
-                  <div className={this.decorateCSS("button-wrapper-video")}>
-                    <div className={this.decorateCSS("icon-wrapper")}>
-                      <ComposerIcon
-                        name={videoButton}
-                        propsIcon={{
-                          className: this.decorateCSS("video-button"),
-                          onClick: () => this.handlePlayVideo(),
-                        }}
-                      />
-                    </div>
-                    <div className={this.decorateCSS("button-text-wrapper-video")}>
-                      <span className={this.decorateCSS("button-text")}>{videoButtonText}</span>
-                    </div>
-                  </div>
-
-                  <div className={this.decorateCSS("button-wrapper-fs")}>
-                    <div className={this.decorateCSS("icon-wrapper")}>
-                      <ComposerIcon
-                        name={fsButton}
-                        propsIcon={{
-                          className: this.decorateCSS("fs-button"),
-                          onClick: () => this.handleFullscreen(),
-                        }}
-                      />
-                    </div>
-                    <div className={this.decorateCSS("button-text-wrapper-fs")}>
-                      <span className={this.decorateCSS("button-text")}>{fsButtonText}</span>
-                    </div>
-                  </div>
+                        />}
+                    </div>}
                 </div>
 
-                {isFullscreen && (
-                  <div className={this.decorateCSS("fullscreen-modal")}>
-                    <div
-                      className={this.decorateCSS("fullscreen-overlay")}
-                      onClick={this.handleCloseFullscreen}
-                    ></div>
-                    <div className={this.decorateCSS("fullscreen-content")}>
-                      <img
-                        src={sliderItems[this.getComponentState("currentSlideIndex")]?.image}
-                        alt="Fullscreen"
-                        className={this.decorateCSS("fullscreen-image")}
-                      />
-                      <button className={this.decorateCSS("close-button-wrapper")}
-                        onClick={this.handleCloseFullscreen}>
+                <div className={this.decorateCSS("horizontal-parent")}>
+                  <ComposerSlider
+                    {...horizontalSettings}
+                    className={this.decorateCSS("carousel-horizontal")}
+                    ref={this.getComponentState("horizontal-slider-ref")}
+                  >
+                    {sliderItems.map(
+                      (item: SliderItem, indexSlider: number) => (
+                        <div className={this.decorateCSS("img-container")} key={indexSlider}
+                          onMouseMove={this.handleMouseMove}
+                          onMouseLeave={this.handleMouseLeave}>
+                          <img
+                            src={item.image}
+                            alt=""
+                            className={this.decorateCSS("img")}
+                          />
+                        </div>
+                      )
+                    )}
+                  </ComposerSlider>
+
+                  {(horizontalPreviousArrow || horizontalNextArrow) &&
+                    <div className={this.decorateCSS("horizontalArrows")}>
+                      {horizontalPreviousArrow &&
+                        <ComposerIcon name={horizontalPreviousArrow}
+                          propsIcon={{
+                            className: this.decorateCSS("horizontalPreviousArrow"),
+                            onClick: () => {
+                              const horizontalSliderRef = this.getComponentState("horizontal-slider-ref");
+                              horizontalSliderRef.current.slickPrev();
+                            },
+                          }}
+                        />}
+                      {horizontalNextArrow &&
+                        <ComposerIcon name={horizontalNextArrow}
+                          propsIcon={{
+                            className: this.decorateCSS("horizontalNextArrow"),
+                            onClick: () => {
+                              const horizontalSliderRef = this.getComponentState("horizontal-slider-ref");
+                              horizontalSliderRef.current.slickNext();
+                            },
+                          }}
+                        />}
+                    </div>}
+
+                  <div className={this.decorateCSS("buttons")}>
+                    <div className={this.decorateCSS("button-wrapper")}>
+                      <div className={this.decorateCSS("icon-wrapper")}>
                         <ComposerIcon
-                          name={"IoMdClose"}
+                          name={videoButton}
                           propsIcon={{
-                            className: this.decorateCSS("close-button"),
+                            className: this.decorateCSS("button"),
+                            onClick: () => this.handlePlayVideo(),
                           }}
                         />
-                      </button>
+                      </div>
+                      <div className={this.decorateCSS("button-text-wrapper")}>
+                        <span className={this.decorateCSS("button-text")}>{videoButtonText}</span>
+                      </div>
+                    </div>
+
+                    <div className={this.decorateCSS("button-wrapper")}>
+                      <div className={this.decorateCSS("icon-wrapper")}>
+                        <ComposerIcon
+                          name={fsButton}
+                          propsIcon={{
+                            className: this.decorateCSS("button"),
+                            onClick: () => this.handleFullscreen(),
+                          }}
+                        />
+                      </div>
+                      <div className={this.decorateCSS("button-text-wrapper")}>
+                        <span className={this.decorateCSS("button-text")}>{fsButtonText}</span>
+                      </div>
                     </div>
                   </div>
-                )}
+
+                  {isFullscreen && (
+                    <div className={this.decorateCSS("fullscreen-modal")}>
+                      <div
+                        className={this.decorateCSS("fullscreen-overlay")}
+                        onClick={this.handleCloseFullscreen}
+                      ></div>
+                      <div className={this.decorateCSS("fullscreen-content")}>
+                        <img
+                          src={sliderItems[this.getComponentState("currentSlideIndex")]?.image}
+                          alt="Fullscreen"
+                          className={this.decorateCSS("fullscreen-image")}
+                        />
+                        <button className={this.decorateCSS("close-button-wrapper")}
+                          onClick={this.handleCloseFullscreen}>
+                          <ComposerIcon
+                            name={"IoMdClose"}
+                            propsIcon={{
+                              className: this.decorateCSS("close-button"),
+                            }}
+                          />
+                        </button>
+                      </div>
+                    </div>
+                  )}
 
 
-                {this.getComponentState("isVideoModalOpen") && (
-                  <div className={this.decorateCSS("video-modal")}>
-                    <div
-                      className={this.decorateCSS("video-overlay")}
-                      onClick={this.handleCloseVideoModal}
-                    ></div>
-                    <div className={this.decorateCSS("video-content")}>
-                      <button
-                        className={this.decorateCSS("close-button-wrapper")}
+                  {this.getComponentState("isVideoModalOpen") && (
+                    <div className={this.decorateCSS("video-modal")}>
+                      <div
+                        className={this.decorateCSS("video-overlay")}
                         onClick={this.handleCloseVideoModal}
-                      >
-                        <ComposerIcon name={"IoMdClose"}
-                          propsIcon={{
-                            className: this.decorateCSS("close-button"),
-                          }}
+                      ></div>
+                      <div className={this.decorateCSS("video-content")}>
+                        <button
+                          className={this.decorateCSS("close-button-wrapper")}
+                          onClick={this.handleCloseVideoModal}
+                        >
+                          <ComposerIcon name={"IoMdClose"}
+                            propsIcon={{
+                              className: this.decorateCSS("close-button"),
+                            }}
+                          />
+                        </button>
+
+                        <video
+                          src={this.getComponentState("videoUrl")}
+                          controls
+                          className={this.decorateCSS("video-player")}
+                          autoPlay
                         />
-                      </button>
-
-                      <video
-                        src={this.getComponentState("videoUrl")}
-                        controls
-                        className={this.decorateCSS("video-player")}
-                        autoPlay
-                      />
+                      </div>
                     </div>
-                  </div>
-                )}
+                  )}
 
-              </div>
-            </div>
-            <Base.VerticalContent className={this.decorateCSS("right-content")}>
-              <Base.SectionTitle className={this.decorateCSS("title")}>
-                {title}
-              </Base.SectionTitle>
-              <span className={this.decorateCSS("price")}>{price}</span>
-              <Base.P className={this.decorateCSS("description")}>
-                {description}
-              </Base.P>
-            </Base.VerticalContent>
+                </div>
+              </div>}
+            {RightContentExist &&
+              <div className={this.decorateCSS("right-content")}>
+                <Base.VerticalContent className={this.decorateCSS("text-wrapper")}>
+                  {this.castToString(title) &&
+                    <Base.SectionTitle className={this.decorateCSS("title")}>
+                      {title}
+                    </Base.SectionTitle>}
+                  {this.castToString(price) &&
+                    <span className={this.decorateCSS("price")}>
+                      {price}
+                    </span>}
+                  {this.castToString(description) &&
+                    <Base.P className={this.decorateCSS("description")}>
+                      {description}
+                    </Base.P>}
+                </Base.VerticalContent>
+              </div>}
           </Base.ContainerGrid>
         </Base.MaxContent >
       </Base.Container >
