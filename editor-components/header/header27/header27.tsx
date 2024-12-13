@@ -393,7 +393,7 @@ class Header27 extends BaseHeader {
     };
 
     const elements = document.getElementsByClassName(
-      this.decorateCSS("slider-parent")
+      this.decorateCSS("carousel")
     );
 
     const items = [];
@@ -404,7 +404,8 @@ class Header27 extends BaseHeader {
 
     const minHeight = items.sort((a, b) => b.clientHeight - a.clientHeight)[0]
       ?.clientHeight;
-    console.log("minHeight: ", minHeight);
+    
+    if(!slider.length) return <></>
     return (
       <Base.Container
         className={this.decorateCSS("container")}
