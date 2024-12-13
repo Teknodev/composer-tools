@@ -365,7 +365,9 @@ class LocationComponent6 extends Location {
 
     const theme = this.getPropValue("theme");
 
-    const mapStyle = this.selectTheme(theme);
+    const selectedTheme = theme || "Theme-1";
+
+    const mapStyle = this.selectTheme(selectedTheme);
 
     const markers = addresses.reduce((acc: MarkerObject[], address: Address) => {
       if (address.type === "object" && Array.isArray(address.value)) {
@@ -409,13 +411,19 @@ class LocationComponent6 extends Location {
       }
     };
 
+    const subtitle = this.getPropValue("badge");
+    const title = this.getPropValue("title");
+
+    const subtitleExist = this.castToString(subtitle);
+    const titleExist = this.castToString(title);
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("wrapper")}>
+        <div className={this.decorateCSS("wrapper")}>
+          <Base.MaxContent className={this.decorateCSS("max-content")}>
             <div className={this.decorateCSS("left-side")}>
-              {this.getPropValue("badge") && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("badge")}</Base.SectionSubTitle>}
-              {this.getPropValue("title") && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+              {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("badge")}</Base.SectionSubTitle>}
+              {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
 
               <div>
                 {buttons?.length > 0 && (
@@ -423,33 +431,34 @@ class LocationComponent6 extends Location {
                     {buttons.map((button: any, index: number) => {
                       const buttonTextExist = this.castToString(button?.text);
                       const buttonInfoExist = this.castToString(button?.info);
+                      const buttonExist = buttonTextExist || buttonInfoExist || button.icon;
 
-                      if (buttonTextExist || buttonInfoExist || button.icon)
-                        return (
+                      return (
+                        buttonExist && (
                           <div key={index} className={this.decorateCSS("button")} onClick={() => handleButtonClick(index)}>
                             <ComposerLink path={button.link}>
                               <div className={this.decorateCSS("button-element")}>
                                 <div className={this.decorateCSS("button-text")}>
-                                  <Base.P className={this.decorateCSS("text")}>{buttonTextExist && button?.text}</Base.P>
-                                  <Base.P className={this.decorateCSS("info")}>{buttonInfoExist && button?.info}</Base.P>
+                                  {buttonTextExist && <Base.P className={this.decorateCSS("text")}>{button?.text}</Base.P>}
+                                  {buttonInfoExist && <Base.P className={this.decorateCSS("info")}>{button?.info}</Base.P>}
                                 </div>
                                 {button.icon && <ComposerIcon name={button.icon} propsIcon={{ className: this.decorateCSS("icon") }} />}
                               </div>
                             </ComposerLink>
                           </div>
-                        );
-
-                      return <></>;
+                        )
+                      );
                     })}
                   </Base.VerticalContent>
                 )}
               </div>
             </div>
-            <div className={this.decorateCSS("map-container")}>
-              <ComposerMap defaultZoom={centerZoom} customSelectedMarker={customSelectedMarker} styles={mapStyle.colors} markers={markers} className={this.decorateCSS("map")} handleMarkerZoom={markerZoom} />
-            </div>
+          </Base.MaxContent>
+
+          <div className={this.decorateCSS("map-container")}>
+            <ComposerMap defaultZoom={centerZoom} customSelectedMarker={customSelectedMarker} styles={mapStyle.colors} markers={markers} className={this.decorateCSS("map")} handleMarkerZoom={markerZoom} />
           </div>
-        </Base.MaxContent>
+        </div>
       </Base.Container>
     );
   }
