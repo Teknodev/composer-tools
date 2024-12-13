@@ -169,17 +169,20 @@ class LocationComponent5 extends Location {
     const centerZoom = this.getPropValue("centerZoom");
 
     const theme = this.getPropValue("theme");
-    const mapStyle = this.selectTheme(theme);
+
+    const selectedTheme = theme || "Theme-2";
+
+    const mapStyle = this.selectTheme(selectedTheme);
 
     const createMarkers = (address: any) => {
-      const locData = address.value.find((a: any) => a.key === "loc")?.value;
+      const locData = address.getPropValue("loc");
 
       if (!locData) return [];
 
       return locData
         .map((loc: any) => {
-          const coordinateData = loc.value.find((a: any) => a.key === "coordinate")?.value;
-          const markerImage = loc.value.find((a: any) => a.key === "marker-image")?.value || "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6710dfcc97fe08002c76d871?alt=media";
+          const coordinateData = loc.getPropValue("coordinate");
+          const markerImage = loc.getPropValue("marker-image");
 
           const lat = coordinateData?.lat;
           const lng = coordinateData?.lng;
@@ -200,6 +203,8 @@ class LocationComponent5 extends Location {
         })
         .filter((marker: any) => marker !== null);
     };
+
+    const defaultMarkerIcon = "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6710dfcc97fe08002c76d871?alt=media";
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -231,7 +236,14 @@ class LocationComponent5 extends Location {
                         {descriptionExist && <Base.P className={this.decorateCSS("location-description")}>{description}</Base.P>}
                       </Base.VerticalContent>
                     )}
-                    <ComposerMap markers={markers} styles={mapStyle.colors} className={hasItemsExist ? this.decorateCSS("location-map") : this.decorateCSS("location-map-full-width")} defaultZoom={centerZoom} handleMarkerZoom={markerZoom} />
+                    <ComposerMap
+                      defaultMarkerIcon={defaultMarkerIcon}
+                      markers={markers}
+                      styles={mapStyle.colors}
+                      className={hasItemsExist ? this.decorateCSS("location-map") : this.decorateCSS("location-map-full-width")}
+                      defaultZoom={centerZoom}
+                      handleMarkerZoom={markerZoom}
+                    />
                   </div>
                 );
               })}

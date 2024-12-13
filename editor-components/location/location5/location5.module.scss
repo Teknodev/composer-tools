@@ -1,6 +1,7 @@
 @import "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss";
 
 .container {
+  background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
   .max-content {
     .title {
       margin-top: 0;
@@ -20,20 +21,20 @@
       .location-item {
         display: flex;
         text-align: left;
-        color: var(--composer-font-color-primary);
         .location-items {
           width: 40%;
           .location-index {
             font-size: 1.5rem;
+            color: var(--composer-font-color-primary);
           }
           .location-city {
             font-size: 2rem;
+            color: var(--composer-font-color-primary);
           }
-          .location-adress {
-            font-size: 1rem;
-          }
+          .location-adress,
           .location-description {
             font-size: 1rem;
+            color: var(--composer-tertiary-color);
           }
         }
       }
@@ -41,11 +42,11 @@
       .location-map {
         width: 60%;
         min-height: 300px;
-        box-shadow: rgba(var(--composer-font-color-primary-rgb), 0.3) 0px 1px 3px -1px, rgba(var(--composer-font-color-primary-rgb), 0.3) 0px 1px 3px -1px;
+        box-shadow: var(--composer-box-shadow);
       }
 
       .location-map-full-width {
-        box-shadow: rgba(var(--composer-font-color-primary-rgb), 0.3) 0px 1px 3px -1px, rgba(var(--composer-font-color-primary-rgb), 0.3) 0px 1px 3px -1px;
+        box-shadow: var(--composer-box-shadow);
         width: 100%;
         min-height: 300px;
       }
