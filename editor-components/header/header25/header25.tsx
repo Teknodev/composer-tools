@@ -463,7 +463,7 @@ class Header25 extends BaseHeader {
                 <div
                   className={`
                     ${this.decorateCSS("content-container")}
-                    ${!sliderItem.image ? this.decorateCSS("black-theme") : ""}
+                    ${!!sliderItem.image ? this.decorateCSS("with-image") : ""}
                   `}
                   key={index}
                 >
