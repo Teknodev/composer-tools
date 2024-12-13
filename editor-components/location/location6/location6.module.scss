@@ -17,6 +17,10 @@
         min-width: 30vw;
         width: auto;
 
+        .title {
+          margin: var(--composer-gap-sm);
+        }
+
         .button-container {
           row-gap: var(--composer-gap-sm);
           max-width: 100%;

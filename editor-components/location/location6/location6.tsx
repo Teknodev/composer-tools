@@ -44,7 +44,7 @@ class LocationComponent6 extends Location {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "NEARBY PLACES OF THE PROPERTY",
+      value: "Nearby Places of the Property",
     });
 
     this.addProp({
