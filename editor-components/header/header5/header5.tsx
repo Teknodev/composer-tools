@@ -104,7 +104,9 @@ class Header5 extends BaseHeader {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div
-            className={`${this.decorateCSS("background-layer")} ${!heading.backgroundImage && this.decorateCSS("default-background")}`}
+            className={`${this.decorateCSS("background-layer")} ${
+              !heading.backgroundImage && this.decorateCSS("default-background")
+            }`}
             style={{
               backgroundImage: `url(${heading.backgroundImage})`,
             }}
@@ -112,15 +114,19 @@ class Header5 extends BaseHeader {
             <div className={heading.overlay ? this.decorateCSS("overlay") : ""}>
               <div className={this.decorateCSS("heading-page")}>
                 {isTitleColoredExist && (
-                  <h1 className={this.decorateCSS("heading-section-name")}>
+                  <Base.SectionSubTitle className={this.decorateCSS("sub-title")}>
                     {heading.titleColored}
-                  </h1>
+                  </Base.SectionSubTitle>
                 )}
                 {isTitleExist && (
-                  <h2 className={this.decorateCSS("heading-title")}>{heading.title}</h2>
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
+                    {heading.title}
+                  </Base.SectionTitle>
                 )}
                 {description && (
-                  <h3 className={this.decorateCSS("heading-subtitle")}>{heading.description}</h3>
+                  <Base.SectionDescription className={this.decorateCSS("description")}>
+                    {heading.description}
+                  </Base.SectionDescription>
                 )}
                 <div className={this.decorateCSS("button-container")}>
                   {buttons.map((item: Button, index: number) => {
