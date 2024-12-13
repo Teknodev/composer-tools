@@ -369,15 +369,17 @@ class LocationComponent6 extends Location {
 
     const mapStyle = this.selectTheme(selectedTheme);
 
-    const markers = addresses.reduce((acc: MarkerObject[], address: Address) => {
+    const markers = addresses.reduce((acc: MarkerObject[], address: any) => {
       if (address.type === "object" && Array.isArray(address.value)) {
-        const markerData = address.value.find((addr) => addr.type === "location");
-        const lat = markerData?.value.lat;
-        const lng = markerData?.value.lng;
-        const description = address.value.find((a) => a.key.startsWith("description"))?.value || "";
-        const markerImage = address.value.find((a) => a.key.startsWith("marker-image"))?.value;
-        const width = address.value.find((a) => a.key.startsWith("marker-width"))?.value || 32;
-        const height = address.value.find((a) => a.key.startsWith("marker-height"))?.value || 32;
+        const markerData = address.getPropValue("coordinate");
+        const lat = markerData?.lat;
+        const lng = markerData?.lng;
+
+        const markerImage = address.getPropValue("marker-image");
+        const width = address.getPropValue("marker-width") || 32;
+        const height = address.getPropValue("marker-height") || 32;
+
+        const description = this.castToString(address.getPropValue("description"));
 
         if (lat !== undefined && lng !== undefined) {
           const content = description ? (
