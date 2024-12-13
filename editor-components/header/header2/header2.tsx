@@ -6,6 +6,7 @@ import { BaseHeader } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type SliderItemType = {
   image: string;
@@ -15,8 +16,9 @@ type SliderItemType = {
   date: JSX.Element;
   description: JSX.Element;
   linkText: JSX.Element;
+  icon: string;
   link: string;
-  dot:boolean;
+  dot: boolean;
 };
 
 class Header2 extends BaseHeader {
@@ -38,8 +40,8 @@ class Header2 extends BaseHeader {
               key: "image",
               displayer: "Background Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6710cfaa97fe08002c76ce44?alt=media"
-           },
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6710cfaa97fe08002c76ce44?alt=media",
+            },
             {
               type: "string",
               key: "category",
@@ -59,10 +61,10 @@ class Header2 extends BaseHeader {
               displayer: "Author",
             },
             {
-              type:"boolean",
-              key:"dot",
-              value:true,
-              displayer:"Dot Enabled",
+              type: "boolean",
+              key: "dot",
+              value: true,
+              displayer: "Dot Enabled",
             },
             {
               type: "string",
@@ -82,6 +84,12 @@ class Header2 extends BaseHeader {
               key: "linkText",
               displayer: "Link Text",
               value: "Read More",
+            },
+            {
+              type: "icon",
+              key: "icon",
+              value: "FaArrowRightLong",
+              displayer: "Icon",
             },
             {
               type: "page",
@@ -122,10 +130,10 @@ class Header2 extends BaseHeader {
               displayer: "Author",
             },
             {
-              type:"boolean",
-              key:"dot",
-              value:true,
-              displayer:"Dot Enabled",
+              type: "boolean",
+              key: "dot",
+              value: true,
+              displayer: "Dot Enabled",
             },
             {
               type: "string",
@@ -145,6 +153,12 @@ class Header2 extends BaseHeader {
               key: "linkText",
               displayer: "Link Text",
               value: "Read More",
+            },
+            {
+              type: "icon",
+              key: "icon",
+              value: "FaArrowRightLong",
+              displayer: "Icon",
             },
             {
               type: "page",
@@ -185,10 +199,10 @@ class Header2 extends BaseHeader {
               displayer: "Author",
             },
             {
-              type:"boolean",
-              key:"dot",
-              value:true,
-              displayer:"Dot Enabled",
+              type: "boolean",
+              key: "dot",
+              value: true,
+              displayer: "Dot Enabled",
             },
             {
               type: "string",
@@ -210,6 +224,12 @@ class Header2 extends BaseHeader {
               value: "Read More",
             },
             {
+              type: "icon",
+              key: "icon",
+              value: "FaArrowRightLong",
+              displayer: "Icon",
+            },
+            {
               type: "page",
               key: "link",
               displayer: "Link",
@@ -219,8 +239,6 @@ class Header2 extends BaseHeader {
         },
       ],
     });
-
-
   }
 
   getName(): string {
@@ -244,9 +262,7 @@ class Header2 extends BaseHeader {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div
-            className={this.decorateCSS("slider")} 
-          >
+          <div className={this.decorateCSS("slider")}>
             {sliderItems.length > 0 && (
               <ComposerSlider {...settings}>
                 {sliderItems.map((item: SliderItemType, idx: number) => {
@@ -256,7 +272,6 @@ class Header2 extends BaseHeader {
                   const isDateExist = this.castToString(item.date);
                   const isDescExist = this.castToString(item.description);
                   const isLinkTextExist = this.castToString(item.linkText);
-              
 
                   const cardValues =
                     isLinkTextExist ||
@@ -269,9 +284,7 @@ class Header2 extends BaseHeader {
                   return (
                     <div className={this.decorateCSS("slider-item")} key={idx}>
                       <div
-                        className={this.decorateCSS(
-                          "slider-item-inner-container"
-                        )}
+                        className={this.decorateCSS("slider-item-inner-container")}
                         style={{
                           backgroundImage: `url("${item.image}")`,
                         }}
@@ -280,36 +293,23 @@ class Header2 extends BaseHeader {
                           {cardValues && (
                             <div className={this.decorateCSS("card")}>
                               {isCategoryExist && (
-                                <h3 className={this.decorateCSS("category")}>
-                                  {item.category}
-                                </h3>
+                                <h3 className={this.decorateCSS("category")}>{item.category}</h3>
                               )}
                               {isTitleExist && (
-                                <h1 className={this.decorateCSS("title")}>
-                                  {item.title}
-                                </h1>
+                                <h1 className={this.decorateCSS("title")}>{item.title}</h1>
                               )}
                               {(isAuthorExist || isDateExist) && (
-                                <div
-                                  className={this.decorateCSS("date-author")}
-                                >
+                                <div className={this.decorateCSS("date-author")}>
                                   {isAuthorExist && (
-                                    <span
-                                      className={this.decorateCSS("author")}
-                                    >
+                                    <span className={this.decorateCSS("author")}>
                                       {item.author}
                                     </span>
                                   )}
-                                  {isAuthorExist && isDateExist && item.dot &&(
-                                    <span className={this.decorateCSS("dot")}
-                                    >
-                                      {item.dot}
-                                    </span>
+                                  {isAuthorExist && isDateExist && item.dot && (
+                                    <span className={this.decorateCSS("dot")}>{item.dot}</span>
                                   )}
                                   {isDateExist && (
-                                    <span className={this.decorateCSS("date")}>
-                                      {item.date}
-                                    </span>
+                                    <span className={this.decorateCSS("date")}>{item.date}</span>
                                   )}
                                 </div>
                               )}
@@ -319,14 +319,16 @@ class Header2 extends BaseHeader {
                                 </p>
                               )}
                               {isLinkTextExist && (
-                                <div
-                                  className={this.decorateCSS("link-container")}
-                                >
+                                <div className={this.decorateCSS("link-container")}>
                                   <ComposerLink path={item.link}>
-                                    <span
-                                      className={this.decorateCSS("link-text")}
-                                    >
+                                    <span className={this.decorateCSS("link-text")}>
                                       {item.linkText}
+                                      {item.icon && (
+                                        <ComposerIcon
+                                          name={item.icon}
+                                          propsIcon={{ className: this.decorateCSS("icon") }}
+                                        />
+                                      )}
                                     </span>
                                   </ComposerLink>
                                 </div>
