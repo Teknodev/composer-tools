@@ -1,35 +1,43 @@
 @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
+@mixin subTitle($align, $important: "") {
+  &.subtitle-type-badge {
+    .sub-title {
+      align-self: $align#{$important};
+      width: max-content !important;
+    }
+  }
+}
+
 .container {
+  &.alignment-center {
+    @include subTitle(auto);
+  }
+  &.alignment-left {
+    @include subTitle(flex-start);
+  }
+
   .max-content {
     .background-layer {
+      background-color: var(--composer-html-background);
       width: 100%;
       height: 100%;
-      background-size: cover;
-      background-position: center;
-      border-radius: var(--composer-border-radius-xs);
-      overflow: hidden;
 
-      &.default-background {
-        background-color: var(--composer-html-background);
-        border-radius: unset;
+      &.with-image {
+        border-radius: var(--composer-border-radius-xs);
+        overflow: hidden;
+        background-size: cover;
+        background-position: center;
 
         .sub-title,
         .title,
         .description {
-          width: 100%;
-          color: var(--composer-primary-color);
+          align-self: center;
+          color: #fff;
         }
 
         .heading-page {
           padding: var(--composer-gap-lg) 0;
-        }
-
-        .sub-title {
-          transform: translateX(3rem);
-          &::before{
-            display: unset;
-          }
         }
       }
     }
@@ -52,13 +60,13 @@
       .sub-title,
       .title,
       .description {
-        color: #fff;
+        width: 100%;
       }
 
       .sub-title {
         letter-spacing: 5px;
         transform: unset;
-        &::before{
+        &::before {
           display: none;
         }
       }

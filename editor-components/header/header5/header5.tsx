@@ -99,13 +99,19 @@ class Header5 extends BaseHeader {
     const isTitleExist = this.castToString(heading.title);
     const description = this.castToString(heading.description);
     const isTitleColoredExist = this.castToString(heading.titleColored);
+    const alignmentValue = Base.getContentAlignment();
+    const subTitleType = Base.getSectionSubTitleType();
 
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container
+        className={`${this.decorateCSS("container")} ${this.decorateCSS(
+          `alignment-${alignmentValue}`
+        )} ${this.decorateCSS(`subtitle-type-${subTitleType}`)}`}
+      >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div
             className={`${this.decorateCSS("background-layer")} ${
-              !heading.backgroundImage && this.decorateCSS("default-background")
+              heading.backgroundImage && this.decorateCSS("with-image")
             }`}
             style={{
               backgroundImage: `url(${heading.backgroundImage})`,
