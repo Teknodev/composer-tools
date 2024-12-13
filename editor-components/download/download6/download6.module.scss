@@ -1,36 +1,18 @@
+@import "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss";
+
 .container {
-  width: 100%;
-  padding: 0 50px;
-  background-color: var(--composer-html-backgorund);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
   .max-content {
-    max-width: var(--composer-content-width);
-    width: 100%;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    gap: 30px;
-    height: 100%;
 
-    .left-column {
-      flex-direction: column;
-      width: 70%;
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      padding: 20px 0;
-
+    @mixin column-styles {
       .title {
-        color: var(--composer-primary-color);
         font-size: 4rem;
       }
 
       .description {
-        color: var(--composer-font-color-primary);
-        font-size: 1.7rem;
+        color: var(--composer-tertiary-color);
       }
 
       .buttons-container {
@@ -38,39 +20,29 @@
         align-items: center;
         width: 100%;
         flex-wrap: wrap;
-        gap: 10px;
+        gap: var(--composer-gap-sm);
       }
 
       .button {
-        cursor: pointer;
-        padding: 0.5em 1.25em;
-        transition: 0.1s;
-        color: var(--composer-font-color-secondary);
-        background-color: var(--composer-secondary-color);
-        box-shadow: var(--composer-box-shadow);
-        border: 1px solid var(--composer-secondary-color);
-        border-radius: 30px;
-        font-size: 1.3rem;
         display: flex;
         align-items: center;
         justify-content: center;
-        min-height: 50px;
-
-        &:hover {
-          background-color: transparent;
-          border: 1px solid var(--composer-secondary-color);
-          color: var(--composer-font-color-primary);
-          box-shadow: none;
-        }
+        min-height: var(--composer-gap-xl);
       }
 
       .button_text {
-        flex-direction: row;
+        margin: 0;
       }
+    }
 
-      .icon {
-        font-size: 2.5rem;
-      }
+    .left-column-no-image {
+      width: 100%;
+      @include column-styles;
+    }
+
+    .left-column {
+      width: 70%;
+      @include column-styles;
     }
 
     .right-column {
@@ -80,59 +52,51 @@
       .image {
         width: 100%;
         height: 100%;
-        scale: 1.01;
+        min-height: 500px;
         object-fit: cover;
       }
     }
   }
 }
 
-@media only screen and (max-width: 900px) {
+@container (max-width: #{$composer-tablet-width-lg}) {
   .container {
     .max-content {
       .left-column {
-        gap: 15px;
         .title {
           font-size: 2rem;
         }
 
         .description {
-          font-size: 1.5rem;
+          font-size: 1rem;
         }
 
         .button {
-          font-size: 1.1rem;
-          padding: 0.5em 1em;
-          min-height: unset;
-          height: 40px;
+          font-size: 1rem;
+        }
+      }
+      .right-column {
+        .image {
+          min-height: 300px;
         }
       }
     }
   }
 }
 
-@media only screen and (max-width: 500px) {
+@container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: 40px;
     .max-content {
       flex-direction: column;
-      gap: 25px;
+      gap: var(--composer-gap-lg);
       .left-column {
-        padding: 0;
-        gap: 10px;
         width: 100%;
-        .title {
-          font-size: 2rem;
-        }
 
-        .description {
-          font-size: 1.5rem;
-        }
-
-        .button {
-          font-size: 1.1rem;
-          padding: 0.5em 1em;
-          height: 30px;
+        .buttons-container {
+          display: flex;
+          flex-direction: column;
+          align-items: unset;
+          gap: var(--composer-gap-sm);
         }
       }
       .right-column {
