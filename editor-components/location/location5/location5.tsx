@@ -12,7 +12,7 @@ class LocationComponent5 extends Location {
       type: "string",
       key: "title",
       displayer: "Header Title",
-      value: "OFFICES",
+      value: "Offices",
     });
 
     this.addProp({
