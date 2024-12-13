@@ -1,9 +1,21 @@
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+
+@mixin textEllipsis($line, $important: "") {
+  * {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: $line#{$important};
+  }
+}
+
 .no-image-anm {
   overflow-y: hidden !important;
 }
 
 .container {
-  width: 100%;
+  padding: 0 !important;
   background-color: var(--composer-html-background);
   display: flex;
   align-items: center;
@@ -18,8 +30,6 @@
   }
 
   .max-content {
-    max-width: 100%;
-    width: 100%;
     position: relative;
     height: 100%;
 
@@ -45,31 +55,32 @@
     }
 
     .card {
+      border-radius: var(--composer-border-radius-xs);
       position: absolute;
-      bottom: 20px;
+      bottom: var(--composer-gap-md);
       background: var(--composer-font-color-secondary);
       right: 80px;
       width: 40%;
 
       .box {
-        padding: 3rem;
+        padding: var(--composer-gap-lg);
         display: flex;
-        gap: 16px;
+        gap: var(--composer-gap-sm);
         flex-direction: column;
 
         .heading {
           display: flex;
           flex-direction: column;
           align-items: flex-start;
-          gap: 10px;
+          padding: var(--composer-gap-sm) 0 !important;
 
           .sub-heading-container {
             letter-spacing: 3px;
-            font-size: 16px;
+            font-size: 1rem;
             margin: 0;
             color: var(--composer-font-color-primary);
             display: flex;
-            gap: 10px;
+            padding: var(--composer-gap-sm) 0;
             flex-wrap: nowrap;
 
             .sub-heading-line {
@@ -77,22 +88,25 @@
               background-color: rgba(var(--composer-font-color-primary-rgb), 0.5);
               vertical-align: middle;
               width: 4rem;
+              margin-right: var(--composer-gap-sm);
             }
 
             .sub-heading-title {
               flex: 1;
-              font-size: 16px;
+              font-size: 1rem;
               word-break: break-word;
               color: var(--composer-font-color-primary);
+              @include textEllipsis(2);
             }
           }
 
           .title {
-            font-size: 40px;
+            font-size: 3rem;
             letter-spacing: 2px;
             margin: 0;
             word-break: break-word;
             color: var(--composer-font-color-primary);
+            @include textEllipsis(2);
           }
         }
 
@@ -100,65 +114,35 @@
           line-height: 1.6;
           display: block;
           margin: 0;
-          font-size: 14px;
+          font-size: 1rem;
           word-break: break-word;
           color: var(--composer-font-color-primary);
-        }
-
-        .button-content {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          position: relative;
-          padding: 20px 30px;
-          color: var(--composer-font-color-primary);
-          background: var(--composer-font-color-secondary);
-          border: 1.5px solid var(--composer-font-color-primary);
-          transition: transform 0.3s ease-in-out;
-          cursor: pointer;
-          word-break: break-word;
-          width: fit-content;
-
-          &:hover {
-            transform: scale(1.05);
-          }
-
-          .buttonText {
-            font-size: 13px;
-            line-height: 16px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin: 0;
-          }
-
-          .button-icon {
-            height: auto;
-            min-width: 15px;
-            margin: 0;
-          }
+          max-height: 20rem;
+          overflow: auto;
         }
 
         .note {
-          font-size: 14px;
-          letter-spacing: 1.5px;
+          font-size: 1rem;
+          letter-spacing: 1px;
           color: var(--composer-primary-color);
           word-break: break-word;
           margin: 0;
+          @include textEllipsis(2);
+        }
+
+        .button-container {
+          margin-top: var(--composer-gap-sm);
         }
       }
     }
   }
 }
 
-@container (max-width: 1000px) {
+@container (max-width: #{$composer-tablet-width}) {
   .card {
     width: 45% !important;
 
     .box {
-      padding-top: 3rem !important;
-      padding-bottom: 3rem !important;
-      padding-left: 3rem;
-
       .heading {
         .sub-heading-container {
           .sub-heading-line {
@@ -166,44 +150,36 @@
           }
 
           .sub-heading-title {
-            font-size: 13px !important;
+            font-size: 1rem !important;
           }
         }
 
         .title {
-          font-size: 30px !important;
+          font-size: 2rem !important;
           letter-spacing: 2px;
         }
       }
 
-      .desc {
-        font-size: 13.5px !important;
-      }
-
-      .buttonText {
-        font-size: 11px !important;
-      }
-
+      .desc,
       .note {
-        font-size: 12px !important;
+        font-size: 1rem !important;
       }
     }
   }
 }
 
-@container (max-width: 800px) {
+@container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: 0 0 !important;
     height: fit-content;
-  }
 
-  .image-container {
-    .image {
-      transform: none !important;
+    .max-content {
+      display: flex;
+      flex-direction: column;
     }
   }
 
   .card {
+    border-radius: 0 !important;
     bottom: 0 !important;
     position: relative !important;
     transform: none !important;
@@ -213,28 +189,30 @@
     width: auto !important;
 
     .box {
-      padding: 20px 30px !important;
+      padding: var(--composer-gap-md) !important;
 
-      .desc {
-        font-size: 14px !important;
+      .heading {
+        .sub-heading-container {
+          .sub-heading-line {
+            display: none;
+          }
+        }
       }
 
-      .buttonText {
-        font-size: 12px !important;
-      }
-
-      .note {
-        font-size: 13px !important;
+      .desc{
+        max-height: unset !important;
       }
     }
   }
 
   .image-container {
+    flex: 1;
     height: 50vh !important;
 
     .image {
       scale: 0;
       height: auto;
+      transform: none !important;
     }
   }
 }

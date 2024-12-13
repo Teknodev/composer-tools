@@ -2,7 +2,7 @@ import * as React from "react";
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header4.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
 
 class Header4 extends BaseHeader {
   constructor(props?: any) {
@@ -17,7 +17,7 @@ class Header4 extends BaseHeader {
           type: "boolean",
           key: "subtitle_line",
           displayer: "Subtitle Line",
-          value: true
+          value: true,
         },
         {
           type: "string",
@@ -51,12 +51,6 @@ class Header4 extends BaseHeader {
           value: "",
         },
         {
-          type: "icon",
-          key: "buttonIcon",
-          displayer: "Button Icon",
-          value: "FaArrowRight",
-        },
-        {
           type: "string",
           key: "note",
           displayer: "Note",
@@ -75,7 +69,7 @@ class Header4 extends BaseHeader {
       type: "boolean",
       key: "image-anm",
       displayer: "Image Animation",
-      value: true
+      value: true,
     });
 
     this.setComponentState("scrollY", 1);
@@ -87,7 +81,6 @@ class Header4 extends BaseHeader {
     this.setComponentState("scrollY", scrollY);
   };
 
-
   getName(): string {
     return "Header 4";
   }
@@ -95,68 +88,83 @@ class Header4 extends BaseHeader {
   render() {
     let card: any = this.castToObject("card");
     const imageAnm = this.getPropValue("image-anm");
+    const image = this.getPropValue("image");
+    const subTitle = this.castToString(card.subtitle);
+    const title = this.castToString(card.title);
+    const description = this.castToString(card.desc);
+    const buttonText = this.castToString(card.buttonText);
+    const note = this.castToString(card.note);
+    const showCard = subTitle || title || description || buttonText || note;
+    const scrollY = this.getComponentState("scrollY");
+
+    function getStyle(direction: "up" | "down") {
+      if (!imageAnm) return {};
+      const transform = {
+        up: scrollY / 25,
+        down: -(scrollY / 50),
+      };
+
+      return {
+        transform: `translate(0%, ${transform[direction]}%) translate3d(0px, 0px, 0px)`,
+      };
+    }
 
     return (
-      <div className={`${this.decorateCSS("container")} ${!imageAnm && this.decorateCSS("no-image-anm")}`} onScroll={this.handleScroll}>
-        <div className={this.decorateCSS("max-content")}>
-          {this.getPropValue("image") && (
+      <Base.Container
+        className={`${this.decorateCSS(`container`)} ${
+          !imageAnm && this.decorateCSS("no-image-anm")
+        }`}
+        onScroll={this.handleScroll}
+        isFull={true}
+      >
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          {image && (
             <div className={this.decorateCSS("image-container")}>
               <img
                 alt=""
-                className={`${this.decorateCSS("image")} ${!imageAnm && this.decorateCSS("no-img-anm")}`}
-                src={this.getPropValue("image")}
-                style={
-                  imageAnm ? {
-                    transform: `translate(0%, ${this.getComponentState("scrollY") / 25}%) translate3d(0px, 0px, 0px)`
-                  } : {}
-                }
+                className={`${this.decorateCSS("image")} ${
+                  !imageAnm && this.decorateCSS("no-img-anm")
+                }`}
+                src={image}
+                style={getStyle("up")}
               />
             </div>
           )}
 
-          {(this.castToString(card.subtitle) ||
-            this.castToString(card.title) ||
-            this.castToString(card.desc) ||
-            this.castToString(card.buttonText) ||
-            this.castToString(card.note)) && (
-              <div className={this.decorateCSS("card")}
-                style={
-                  imageAnm ? {
-                    transform: `translate(0%, -${this.getComponentState("scrollY") / 50}%) translate3d(0px, 0px, 0px)`
-                  } : {}
-                }>
-                <div className={this.decorateCSS("box")}>
-                  {(this.castToString(card.subtitle) || this.castToString(card.title)) && (
-                    <div className={this.decorateCSS("heading")}>
-                      {this.castToString(card.subtitle) &&
-                        (
-                          <div className={this.decorateCSS("sub-heading-container")}>
-                            {card.subtitle_line && <hr className={this.decorateCSS("sub-heading-line")} />}
-                            <span className={this.decorateCSS("sub-heading-title")}>{card.subtitle}</span>
-                          </div>
-                        )
-                      }
-                      {this.castToString(card.title) && <h2 className={this.decorateCSS("title")}>{card.title}</h2>}
-                    </div>
-                  )}
-                  {this.castToString(card.desc) && <p className={this.decorateCSS("desc")}>{card.desc}</p>}
-                  {this.castToString(card.buttonText) && (
-                    <ComposerLink path={card.buttonLink}>
-                      <div className={this.decorateCSS("button-content")}>
-                        <p className={this.decorateCSS("buttonText")}>{card.buttonText}</p>
-                        <ComposerIcon
-                          name={card.buttonIcon}
-                          propsIcon={{ className: `${this.decorateCSS("button-icon")}` }}
-                        />
+          {showCard && (
+            <div className={this.decorateCSS("card")} style={getStyle("down")}>
+              <div className={this.decorateCSS("box")}>
+                {(subTitle || title) && (
+                  <div className={this.decorateCSS("heading")}>
+                    {subTitle && (
+                      <div className={this.decorateCSS("sub-heading-container")}>
+                        {card.subtitle_line && (
+                          <hr className={this.decorateCSS("sub-heading-line")} />
+                        )}
+                        <span className={this.decorateCSS("sub-heading-title")}>
+                          {card.subtitle}
+                        </span>
                       </div>
+                    )}
+                    {title && <h2 className={this.decorateCSS("title")}>{card.title}</h2>}
+                  </div>
+                )}
+                {description && <p className={this.decorateCSS("desc")}>{card.desc}</p>}
+                {buttonText && (
+                  <div className={this.decorateCSS("button-container")}>
+                    <ComposerLink path={card.buttonLink}>
+                      <Base.Button className={this.decorateCSS("button")}>{buttonText}</Base.Button>
                     </ComposerLink>
-                  )}
-                  {this.castToString(card.note) && <p className={this.decorateCSS("note")}>{card.note}</p>}
-                </div>
+                  </div>
+                )}
+                {this.castToString(card.note) && (
+                  <p className={this.decorateCSS("note")}>{card.note}</p>
+                )}
               </div>
-            )}
-        </div>
-      </div >
+            </div>
+          )}
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
