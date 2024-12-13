@@ -2,24 +2,20 @@ import * as React from "react";
 import styles from "./download10.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseDownload, TypeUsableComponentProps } from "../../EditorComponent";
-
-type Button = {
-  buttonText1: string;
-  buttonText2: string;
-  url: string;
-  buttonImage: string;
-};
+import { Base } from "../../../composer-base-components/base/base";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 class Download10 extends BaseDownload {
   constructor(props?: any) {
     super(props, styles);
-    let logo = require("./pngegg.png");
+
     this.addProp({
       type: "string",
       key: "badge",
-      displayer: "Badge",
+      displayer: "Subtitle",
       value: "MEET THE APP",
     });
+
     this.addProp({
       type: "string",
       key: "title",
@@ -31,22 +27,28 @@ class Download10 extends BaseDownload {
       type: "string",
       key: "description",
       displayer: "Description",
-      value:
-        "To grow a business, it's important to establish clear goals, identify and target the right audience, continually innovate and adapt to changing market trends, and build strong relationships with customers and stakeholders. ",
+      value: "To grow a business, it's important to establish clear goals, identify and target the right audience, continually innovate and adapt to changing market trends, and build strong relationships with customers and stakeholders. ",
     });
 
     this.addProp({
       type: "string",
       key: "text1",
-      displayer: "Text-1",
+      displayer: "Review Title",
       value: "Trustes by 2M+ customers",
     });
 
     this.addProp({
       type: "string",
       key: "text2",
-      displayer: "Text-2",
+      displayer: "Review Score",
       value: "4.3/5 (55k Reviews)",
+    });
+
+    this.addProp({
+      type: "image",
+      key: "image",
+      displayer: "Image",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67438ea6506a40002c2dca7f?alt=media&timestamp=1732480731550",
     });
 
     let button: TypeUsableComponentProps = {
@@ -56,16 +58,17 @@ class Download10 extends BaseDownload {
       value: [
         {
           type: "string",
-          key: "buttonText1",
+          key: "buttonText",
           displayer: "Button Text",
-          value: "DOWNLOAD ON THE",
+          value: "Download",
         },
         {
-          type: "string",
-          key: "buttonText2",
-          displayer: "Button Text",
-          value: "App Store",
+          type: "icon",
+          key: "icon",
+          displayer: "Icon",
+          value: "FaApple",
         },
+
         {
           type: "page",
           key: "url",
@@ -75,8 +78,8 @@ class Download10 extends BaseDownload {
         {
           type: "image",
           key: "buttonImage",
-          displayer: "In Button Icon",
-          value: logo,
+          displayer: "Button Image",
+          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67586eb80655f8002ca57e58?alt=media",
         },
       ],
     };
@@ -89,10 +92,76 @@ class Download10 extends BaseDownload {
     });
 
     this.addProp({
-      type: "number",
-      key: "stars",
-      value: 5,
-      displayer: "Stars",
+      type: "array",
+      key: "icons",
+      displayer: "Icon",
+      value: [
+        {
+          type: "object",
+          key: "icon",
+          displayer: "Icon",
+          value: [
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "BsFillStarFill",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "icon",
+          displayer: "Icon",
+          value: [
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "BsFillStarFill",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "icon",
+          displayer: "Icon",
+          value: [
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "BsFillStarFill",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "icon",
+          displayer: "Icon",
+          value: [
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "BsFillStarFill",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "icon",
+          displayer: "Icon",
+          value: [
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "BsFillStarFill",
+            },
+          ],
+        },
+      ],
     });
   }
 
@@ -101,94 +170,77 @@ class Download10 extends BaseDownload {
   }
 
   render() {
-    let Image = require("./img.png");
+    const subtitle = this.getPropValue("badge");
+    const title = this.getPropValue("title");
+    const description = this.getPropValue("description");
+
+    const subtitleExist = this.castToString(subtitle);
+    const titleExist = this.castToString(title);
+    const descriptionExist = this.castToString(description);
+
+    const reviewTitle = this.castToString(this.getPropValue("text1"));
+    const reviewScore = this.castToString(this.getPropValue("text2"));
+
+    const icons = this.castToObject<any>("icons");
+    const image = this.getPropValue("image");
+
+    const buttons = this.castToObject<any[]>("buttons");
+
+    const alignmentValue = Base.getContentAlignment();
+
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
-            <div className={this.decorateCSS("left-container")}>
-              <div className={this.decorateCSS("badge")}>
-                <img
-                  src="https://cdn-icons-png.flaticon.com/512/9437/9437505.png"
-                  alt="hello"
-                  className={this.decorateCSS("hand-image")}
-                />
-                <h1 className={this.decorateCSS("badge-text")}>
-                  {this.getPropValue("badge")}
-                </h1>
-              </div>
-              <h1 className={this.decorateCSS("title")}>
-                {this.getPropValue("title")}
-              </h1>
-              <p className={this.decorateCSS("description")}>
-                {this.getPropValue("description")}
-              </p>
-              <div className={this.decorateCSS("button-group")}>
-                {this.castToObject<Button[]>("buttons").map(
-                  (item: Button, index: number) => {
-                    return (
-                      <ComposerLink key={`dw-10-btn-${index}`} path={item.url}>
-                        <div className={this.decorateCSS("button")}>
-                          <img
-                            src={item.buttonImage}
-                            alt="icon"
-                            className={this.decorateCSS("button-logo")}
-                          />
-                          <div className={this.decorateCSS("button-texts")}>
-                            <p className={this.decorateCSS("up-text")}>
-                              {item.buttonText1}
-                            </p>
-                            <p className={this.decorateCSS("down-text")}>
-                              {item.buttonText2}
-                            </p>
-                          </div>
-                        </div>
-                      </ComposerLink>
-                    );
-                  }
-                )}
-              </div>
-              <div className={this.decorateCSS("stats")}>
-                <h1 className={this.decorateCSS("subtitle")}>
-                  {this.getPropValue("text1")}
-                </h1>
-                <div className={this.decorateCSS("down-description")}>
-                  <div className={this.decorateCSS("stars")}>
-                    {[...Array(parseInt(this.getPropValue("stars")))].map(
-                      (item: any, index: number) => (
-                        <svg
-                          key={index}
-                          width="16"
-                          height="16"
-                          viewBox="0 0 16 16"
-                          fill="currentColor"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path d="M8 0L9.3 5.8H15.5L10.7 9.2L12 15L8 11.8L4 15L5.3 9.2L0.5 5.8H6.7L8 0Z" />
-                        </svg>
-                        // <img
-                        // alt=""
-                        // src="https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/646c7aa5fba070002b749808?alt=media&timestamp=1684830888295" />
-                      )
-                    )}
+            <div
+              className={
+                image ? (alignmentValue === "left" ? this.decorateCSS("left-container") : alignmentValue === "center" ? this.decorateCSS("left-container-center") : this.decorateCSS("left-container-no-image")) : this.decorateCSS("left-container-no-image")
+              }
+            >
+              <Base.VerticalContent>
+                {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("badge")}</Base.SectionSubTitle>}
+                {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+                {buttons.length > 0 && (
+                  <div className={this.decorateCSS("button-group")}>
+                    {this.castToObject<any[]>("buttons").map((item: any, index: number) => {
+                      const buttonTextExist = this.castToString(item.buttonText);
+                      return (
+                        <ComposerLink key={`dw-10-btn-${index}`} path={item.url}>
+                          {item.buttonImage ? (
+                            <img src={item.buttonImage} alt="icon" className={this.decorateCSS("button-image")} />
+                          ) : (
+                            (buttonTextExist || item.icon) && (
+                              <Base.Button className={this.decorateCSS("button-element")}>
+                                {item.icon && <ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("button-icon") }} />}
+                                {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.buttonText}</Base.P>}
+                              </Base.Button>
+                            )
+                          )}
+                        </ComposerLink>
+                      );
+                    })}
                   </div>
-                  <h1 className={this.decorateCSS("number")}>''</h1>
-                  <p className={this.decorateCSS("info")}>
-                    {this.getPropValue("text2")}
-                  </p>
+                )}
+              </Base.VerticalContent>
+              {(reviewTitle || reviewScore || icons.length > 0) && (
+                <div className={this.decorateCSS("stats")}>
+                  {reviewTitle && <Base.H5 className={this.decorateCSS("stats-title")}>{this.getPropValue("text1")}</Base.H5>}
+                  <div className={this.decorateCSS("down-description")}>
+                    <div className={this.decorateCSS("stars")}>{icons.map((icon: any, index: number) => icon.icon && <ComposerIcon name={icon.icon} propsIcon={{ className: this.decorateCSS("icon") }} />)}</div>
+                    {reviewScore && <Base.P className={this.decorateCSS("info")}>{this.getPropValue("text2")}</Base.P>}
+                  </div>
                 </div>
+              )}
+            </div>
+            {image && (
+              <div className={this.decorateCSS("right-container")}>
+                <img className={this.decorateCSS("right-image")} src={this.getPropValue("image")} alt="" />
               </div>
-            </div>
-            <div className={this.decorateCSS("right-container")}>
-              <img
-                className={this.decorateCSS("right-image")}
-                src={Image}
-                alt=""
-              />
-            </div>
+            )}
           </div>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

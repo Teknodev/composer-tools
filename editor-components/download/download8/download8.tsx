@@ -187,6 +187,14 @@ class Download8 extends BaseDownload {
     const cardTitleExist = this.castToString(cardTitle);
     const listExist = this.castToObject<any[]>("list").length > 0;
 
+    const rightContent = document.getElementById("right-content");
+    const leftContent = document.getElementById("left-content");
+
+    if (rightContent && leftContent) {
+      const rightHeight = rightContent.clientHeight;
+      leftContent.setAttribute("style", `min-height: ${rightHeight}px`);
+    }
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("page")}>
@@ -198,13 +206,13 @@ class Download8 extends BaseDownload {
           )}
           <Base.MaxContent className={imageExist ? this.decorateCSS("max-content") : this.decorateCSS("max-content-no-image")}>
             {(titleExist || descriptionExist) && (
-              <Base.VerticalContent className={imageExist ? this.decorateCSS("left-content") : this.decorateCSS("left-content-no-image")}>
+              <Base.VerticalContent id={"left-content"} className={imageExist ? this.decorateCSS("left-content") : this.decorateCSS("left-content-no-image")}>
                 {titleExist && <Base.SectionTitle className={imageExist ? this.decorateCSS("title") : ""}>{this.getPropValue("title")}</Base.SectionTitle>}
                 {descriptionExist && <Base.SectionDescription className={imageExist ? this.decorateCSS("description") : ""}>{this.getPropValue("description")}</Base.SectionDescription>}
               </Base.VerticalContent>
             )}
           </Base.MaxContent>
-          <div className={this.decorateCSS("right-content")}>
+          <div id={"right-content"} className={this.decorateCSS("right-content")}>
             <div className={this.decorateCSS("card")}>
               <div className={this.decorateCSS("card-up")}>
                 {cardTitleExist && <Base.H3 className={this.decorateCSS("cardTitle")}>{this.getPropValue("cardTitle")}</Base.H3>}
