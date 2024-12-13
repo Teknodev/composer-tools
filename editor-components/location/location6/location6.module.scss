@@ -145,6 +145,10 @@
           padding: var(--composer-gap-md);
           gap: var(--composer-gap-sm);
 
+          .subtitle {
+            margin: 0 !important;
+          }
+
           .title {
             margin: 0 !important;
           }
