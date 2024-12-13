@@ -1,62 +1,43 @@
 @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
-
 .container {
     .max-content {
         .wrapper {
-            gap: calc(var(--composer-gap-xl) * 2);
-
+            display: flex;
+            gap: var(--composer-gap-xl);
             .left {
-                .section-subtitle {}
+                flex: 1;
+                .section-subtitle {content :""}
 
-                .section-title {
-                    margin-bottom: var(--composer-gap-md);
-                }
+                .section-title {content :""}
 
-                .section-description {
-                    margin-bottom: var(--composer-gap-md);
-                }
+                .section-description {content :""}
 
                 .button {
-
-                    >div,
-                    >a {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        gap: var(--composer-gap-sm);
-                        flex-shrink: 0;
-
-                        .button-icon {}
-                    }
-
-                    flex-shrink: 0;
-                    background-color: var(--composer-primary-color);
-                    color: var(--composer-font-color-secondary);
-                    padding: var(--composer-gap-sm) var(--composer-gap-md);
-                    border-radius: var(--composer-border-radius-md);
+                    content: "";
                 }
             }
 
             .right {
+                flex: 1.5;
                 gap: var(--composer-gap-lg);
-
                 .card-container {
                     display: flex;
-                    justify-content: space-between;
                     gap: var(--composer-gap-md);
-
                     .card-icon {
-                        flex-shrink: 0;
-                        height: 35px;
-                        width: 35px;
+                        font-size: 3.5rem;
                         color: var(--composer-primary-color);
                     }
 
                     .card-content {
-                        .card-title {}
+                        flex: 1;
+                        .card-title {
+                            color: var(--composer-font-color-primary);
+                            font-size: 2rem;
+                        }
 
                         .card-description {
-                            opacity: 0.6;
+                            color: var(--composer-tertiary-color);
+                            font-size: 1.5rem;
                         }
                     }
                 }
@@ -65,6 +46,44 @@
     }
 }
 
-@container (max-width: #{$composer-tablet-width}) {}
+@container (max-width: #{$composer-tablet-width}) {
+    .container{
+        .max-content{
+            .wrapper{
+                flex-direction: column;
+                .right {
+                    .card-container {
+                        .card-icon {
+                            font-size: 3rem;
+                        }
+                        .card-content {
+                            .card-title {
+                                font-size: 1.5rem;
+                            }
+    
+                            .card-description {
+                                font-size: 1rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 
-@container (max-width: #{$composer-phone-width}) {}
+@container (max-width: #{$composer-phone-width}) {
+    .container{
+        .max-content{
+            .wrapper{
+                .right {
+                    .card-container {
+                        .card-icon {
+                            font-size: 2.5rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -68,12 +68,6 @@ class Feature11 extends BaseFeature {
               displayer: "Link",
               value: ""
             },
-            {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "FaArrowRight"
-            }
           ]
         }
       ]
@@ -241,7 +235,7 @@ class Feature11 extends BaseFeature {
       type: "number",
       key: "itemCount",
       displayer: "Item count in a row",
-      value: 3,
+      value: 2,
     });
   }
 
@@ -256,39 +250,37 @@ class Feature11 extends BaseFeature {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.ListGrid
-            className={this.decorateCSS("wrapper")}
-            gridCount={{ pc: 2, tablet: 1, phone: 1 }}
-          >
-            <Base.VerticalContent className={this.decorateCSS("left")}>
-              {!!this.castToString(leftContent.subtitle) && (
-                <Base.SectionSubTitle className={this.decorateCSS("section-subtitle")}>
-                  {leftContent.subtitle}
-                </Base.SectionSubTitle>
-              )}
+          <div className={this.decorateCSS("wrapper")}>
+            {(this.castToString(leftContent.subtitle) || this.castToString(leftContent.title) ||
+              this.castToString(leftContent.description) || this.castToString(leftContent.button.text)) && (
+                <Base.VerticalContent className={this.decorateCSS("left")}>
+                  {this.castToString(leftContent.subtitle) && (
+                    <Base.SectionSubTitle className={this.decorateCSS("section-subtitle")}>
+                      {leftContent.subtitle}
+                    </Base.SectionSubTitle>
+                  )}
 
-              {!!this.castToString(leftContent.title) && (
-                <Base.SectionTitle className={this.decorateCSS("section-title")}>
-                  {leftContent.title}
-                </Base.SectionTitle>
-              )}
+                  {this.castToString(leftContent.title) && (
+                    <Base.SectionTitle className={this.decorateCSS("section-title")}>
+                      {leftContent.title}
+                    </Base.SectionTitle>
+                  )}
 
-              {!!this.castToString(leftContent.description) && (
-                <Base.SectionDescription className={this.decorateCSS("section-description")}>
-                  {leftContent.description}
-                </Base.SectionDescription>
-              )}
+                  {this.castToString(leftContent.description) && (
+                    <Base.SectionDescription className={this.decorateCSS("section-description")}>
+                      {leftContent.description}
+                    </Base.SectionDescription>
+                  )}
 
-              {(!!this.castToString(leftContent.button.text) || !!leftContent.button.icon) && (
-                <div className={this.decorateCSS("button")}>
-                  <ComposerLink path={leftContent.button.link}>
-                    {leftContent.button.text}
-                    <ComposerIcon name={leftContent.button.icon} propsIcon={{ className: this.decorateCSS("button-icon") }} />
-                  </ComposerLink>
-                </div>
+                  {this.castToString(leftContent.button.text) && (
+                    <ComposerLink path={leftContent.button.link}>
+                      <Base.Button className={this.decorateCSS("button")}>
+                        {leftContent.button.text}
+                      </Base.Button>
+                    </ComposerLink>
+                  )}
+                </Base.VerticalContent>
               )}
-
-            </Base.VerticalContent>
 
             {cards?.length > 0 && (
               <Base.ListGrid
@@ -324,7 +316,7 @@ class Feature11 extends BaseFeature {
                 })}
               </Base.ListGrid>
             )}
-          </Base.ListGrid>
+          </div>
         </Base.MaxContent>
       </Base.Container>
     );
