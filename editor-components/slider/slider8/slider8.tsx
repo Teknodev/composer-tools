@@ -268,8 +268,15 @@ class Slider8 extends BaseSlider {
     const overlay = this.getPropValue("overlay");
     const linesContainer = this.getPropValue("lines-container");
     const animation = this.getPropValue("animation");
+
+    const leftNavButton = this.getPropValue("leftNavButton");
+    const rightNavButton = this.getPropValue("rightNavButton");
+
     const cards = this.castToObject<Card[]>("slider");
-    const ImagesExist = cards[this.getComponentState("activeSlide")]?.image || cards[this.getComponentState("activeSlide")]?.backgroundImage;
+    const activeSlide = this.getComponentState("activeSlide");
+    const anyImagesExist = cards[activeSlide]?.image || cards[activeSlide]?.backgroundImage;
+
+    const alignmentValue = Base.getContentAlignment()
 
     const settings = {
       fade: true,
@@ -278,7 +285,7 @@ class Slider8 extends BaseSlider {
       dots: false,
       infinite: cards.length > 1,
       speed: 3000,
-      autoplay: false,
+      autoplay: true,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -296,7 +303,7 @@ class Slider8 extends BaseSlider {
     };
 
     return (
-      <Base.Container isFull={ImagesExist ? true : false} className={this.decorateCSS("container")}>
+      <Base.Container isFull={anyImagesExist ? true : false} className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("slider-parent")}>
             {cards?.length && cards?.length > 0 && (
@@ -313,8 +320,7 @@ class Slider8 extends BaseSlider {
                     <div
                       className={this.decorateCSS("slider-inner-div")}
                       key={`sld-8-${index}`}>
-                      <div
-                        className={this.decorateCSS("content")}
+                      <div className={`${this.decorateCSS("content")} ${anyImagesExist === "" ? this.decorateCSS("no-img") : ""}`}
                         style={{
                           backgroundImage: `url("${item.backgroundImage}")`,
                         }}>
@@ -325,23 +331,27 @@ class Slider8 extends BaseSlider {
                              ${this.getComponentState("activeSlide") === index ? this.decorateCSS("fix-location") : ""}
                           `}>
                           {linesContainer && (
-                            <div className={this.decorateCSS(ImagesExist ? "lines-container" : "lines-container2")}>
+                            <div className={this.decorateCSS(anyImagesExist ? "lines-container" : "lines-container2")}>
                               <div className={this.decorateCSS("line-1")}></div>
                               <div className={this.decorateCSS("line-2")}></div>
                             </div>
                           )}
 
                           {titleExists && (
-                            <Base.SectionTitle
-                              className={`${this.decorateCSS("title")} ${this.decorateCSS(ImagesExist ? "imageTitle" : "imageTitle2")} ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("imageTitleAnimation") : ""
-                                }`}>
-                              {item.imageTitle}
-                            </Base.SectionTitle>
+                            <div className={`${this.decorateCSS("title-wrapper")}
+                            ${alignmentValue === "center" && this.decorateCSS("center")}`}>
+                              <Base.SectionTitle
+                                className={`${this.decorateCSS("title")} 
+                                ${this.decorateCSS(anyImagesExist ? "imageTitle" : "imageTitle2")} 
+                                ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("imageTitleAnimation") : ""}`}>
+                                {item.imageTitle}
+                              </Base.SectionTitle>
+                            </div>
                           )}
 
                           {buttons?.length > 0 && (
                             <div
-                              className={`${this.decorateCSS(ImagesExist ? "buttons" : "buttons2")} ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("animateButtons") : ""
+                              className={`${this.decorateCSS(anyImagesExist ? "buttons" : "buttons2")} ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("animateButtons") : ""
                                 }`}>
                               {buttons.map((buttonItem: Button, buttonIndex: number) => (
                                 this.castToString(buttonItem.buttonText) &&
@@ -357,36 +367,37 @@ class Slider8 extends BaseSlider {
                               ))}
                             </div>
                           )}
-                          <div className={this.decorateCSS(ImagesExist ? "nav-buttons" : "nav-buttons2")}>
-                            {this.getPropValue("leftNavButton") && (
-                              <button
-                                className={this.decorateCSS("nav-button")}
-                                onClick={() => {
-                                  this.getComponentState("slider-ref").current.slickPrev();
-                                }}>
-                                <ComposerIcon
-                                  name={this.getPropValue("leftNavButton")}
-                                  propsIcon={{
-                                    className: `${this.decorateCSS("Icon")}`,
-                                  }}
-                                />
-                              </button>
-                            )}
-                            {this.getPropValue("rightNavButton") && (
-                              <button
-                                className={this.decorateCSS("nav-button")}
-                                onClick={() => {
-                                  this.getComponentState("slider-ref").current.slickNext();
-                                }}>
-                                <ComposerIcon
-                                  name={this.getPropValue("rightNavButton")}
-                                  propsIcon={{
-                                    className: `${this.decorateCSS("Icon")}`,
-                                  }}
-                                />
-                              </button>
-                            )}
-                          </div>
+                          {(leftNavButton || rightNavButton) &&
+                            <div className={this.decorateCSS(anyImagesExist ? "nav-buttons" : "nav-buttons2")}>
+                              {leftNavButton && (
+                                <button
+                                  className={this.decorateCSS("nav-button")}
+                                  onClick={() => {
+                                    this.getComponentState("slider-ref").current.slickPrev();
+                                  }}>
+                                  <ComposerIcon
+                                    name={leftNavButton}
+                                    propsIcon={{
+                                      className: `${this.decorateCSS("Icon")}`,
+                                    }}
+                                  />
+                                </button>
+                              )}
+                              {rightNavButton && (
+                                <button
+                                  className={this.decorateCSS("nav-button")}
+                                  onClick={() => {
+                                    this.getComponentState("slider-ref").current.slickNext();
+                                  }}>
+                                  <ComposerIcon
+                                    name={rightNavButton}
+                                    propsIcon={{
+                                      className: `${this.decorateCSS("Icon")}`,
+                                    }}
+                                  />
+                                </button>
+                              )}
+                            </div>}
                         </div>
                       </div>
 
@@ -402,16 +413,17 @@ class Slider8 extends BaseSlider {
               </ComposerSlider>
             )}
           </div>
-          <ul className={`${this.decorateCSS(ImagesExist ? "dots" : "dots-2")}`}>
-            {cards.map((_, index) => (
-              <li
-                key={`dot-${index}`}
-                className={this.getComponentState("activeSlide") === index && this.decorateCSS("slick-active")}
-                onClick={() => this.getComponentState("slider-ref").current.slickGoTo(index)}>
-                <button />
-              </li>
-            ))}
-          </ul>
+          {cards.length > 1 &&
+            <ul className={`${this.decorateCSS(anyImagesExist ? "dots" : "dots-2")}`}>
+              {cards.map((_, index) => (
+                <li
+                  key={`dot-${index}`}
+                  className={this.getComponentState("activeSlide") === index && this.decorateCSS("slick-active")}
+                  onClick={() => this.getComponentState("slider-ref").current.slickGoTo(index)}>
+                  <button />
+                </li>
+              ))}
+            </ul>}
         </Base.MaxContent>
       </Base.Container >
     );
