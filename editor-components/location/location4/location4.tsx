@@ -151,8 +151,12 @@ class LocationComponent4 extends Location {
             description || popupTitle ? (
               <div className={this.decorateCSS("popup")}>
                 {popupImage && <img className={this.decorateCSS("popup-image")} src={popupImage} />}
-                {popupTitle && <Base.P className={this.decorateCSS("popup-title")}>{popupTitle} </Base.P>}
-                {description && <Base.P className={this.decorateCSS("popup-content")}>{description}</Base.P>}
+                {(popupTitle || description) && (
+                  <div className={this.decorateCSS("popup-texts")}>
+                    {popupTitle && <Base.P className={this.decorateCSS("popup-title")}>{popupTitle} </Base.P>}
+                    {description && <Base.P className={this.decorateCSS("popup-content")}>{description}</Base.P>}
+                  </div>
+                )}
               </div>
             ) : null;
 
