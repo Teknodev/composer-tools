@@ -26,7 +26,7 @@
           position: relative;
           height: calc(450px + var(--composer-gap-md));
           .slider-item {
-            width: calc(100% - 40px);
+            width: calc(100% - 2 * var(--composer-gap-md));
             height: 400px;
             object-fit: cover;
             position: absolute;

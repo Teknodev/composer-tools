@@ -396,8 +396,8 @@ class Feature13 extends BaseFeature {
                         <img
                           key={index}
                           style={{
-                            marginLeft: `${image.imageIndex * 20}px`,
-                            marginTop: `${image.imageIndex * 20}px`,
+                            marginLeft: `calc(${image.imageIndex} * var(--composer-gap-md))`,
+                            marginTop: `calc(${image.imageIndex} * var(--composer-gap-md))`,
                             zIndex: image.imageIndex + 1,
                           }}
                           className={this.decorateCSS("slider-item")}
