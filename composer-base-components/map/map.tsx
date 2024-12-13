@@ -135,7 +135,7 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, 
     prevMarkersRef.current = markers;
   }, [map, markers]);
 
-  const defaultMarker = "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66dffd65343034002c462ded?alt=media&timestamp=1725955430378";
+  const defaultMarker = defaultMarkerIcon || "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66dffd65343034002c462ded?alt=media&timestamp=1725955430378";
 
   const createOverlayView = (marker: Coordinate) => {
     const customStyle: React.CSSProperties = {
@@ -164,7 +164,7 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, 
         }
 
         const panes = this.getPanes();
-        if (panes) panes.overlayLayer.appendChild(this.div);
+        if (panes) panes.overlayMouseTarget.appendChild(this.div);
       }
 
       draw() {
@@ -194,7 +194,6 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, 
 
   const prevSelectedMarkersCountRef = useRef<number>(0);
 
-
   useEffect(() => {
     if (map) {
       map.setOptions({ styles });
@@ -220,7 +219,6 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, 
 
     setSelectedMarkers((prev) => prev.filter((marker) => activeMarkers.has(`${marker.lat},${marker.lng}`)));
   }, [markers]);
-
 
   const handleMarkerClick = (marker: Coordinate) => {
     setSelectedMarkers((prevSelectedMarkers) => {
