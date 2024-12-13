@@ -21,7 +21,6 @@
       width: 100%;
       @include flexCenter;
 
-
       :global(.slick-active) {
         z-index: 1;
       }
@@ -38,8 +37,20 @@
           width: 100%;
           &.withBackgroundImage {
             * {
-              color: black !important;
-              &.line{
+              .leftDescription,
+              .upTitle,
+              .middleTitle,
+              .customerDesc,
+              .customerNo,
+              .active-slide,
+              .divider,
+              .slide-count,
+              .rightDescription,
+              .itemDesc,
+              .itemsNo {
+                color: black !important;
+              }
+              &.line {
                 background: black !important;
               }
             }
@@ -160,9 +171,9 @@
                 height: 100%;
                 align-items: center;
                 .button {
-                 display: flex;
-                 align-items: center;
-                 animation-duration: 0.2s;
+                  display: flex;
+                  align-items: center;
+                  animation-duration: 0.2s;
 
                   .button-icon {
                     width: 1.5rem;
@@ -337,8 +348,6 @@
         }
 
         .LowerDiv {
-          
-
           .desc-container {
             .desc-content {
               gap: var(--composer-gap-md) !important;
@@ -446,8 +455,6 @@
                 display: flex !important;
                 align-items: center !important;
               }
-
-           
 
               .figure {
                 .pagination {
