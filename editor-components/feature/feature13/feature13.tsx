@@ -30,7 +30,7 @@ class Feature13 extends BaseFeature {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: '"Discover Our Story"',
+      value: "Discover Our Story",
     });
     this.addProp({
       type: "boolean",
@@ -371,9 +371,9 @@ class Feature13 extends BaseFeature {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
-            <header className={this.decorateCSS("comp-header")}>
+            <Base.VerticalContent className={this.decorateCSS("header")}>
               {titleExist && (
-                <Base.SectionTitle className={this.decorateCSS("comp-header-title")}>
+                <Base.SectionTitle className={this.decorateCSS("header-title")}>
                   {this.getPropValue("title")}
                 </Base.SectionTitle>
               )}
@@ -381,33 +381,35 @@ class Feature13 extends BaseFeature {
                 <hr className={this.decorateCSS("divider")} />
               }
               {descExist && (
-                <Base.SectionDescription className={this.decorateCSS("comp-header-description")}>
+                <Base.SectionDescription className={this.decorateCSS("header-description")}>
                   {this.getPropValue("description")}
                 </Base.SectionDescription>
               )}
-            </header>
-            <main className={this.decorateCSS("comp-wrapper")}>
+            </Base.VerticalContent>
+            <Base.ContainerGrid className={this.decorateCSS("comp-wrapper")}>
               {sliderImages.length > 0 && (
-                <div className={this.decorateCSS("comp-slider")}>
-                  {this.getComponentState("slider-images").map(
-                    (image: SliderImage, index: number) => {
-                      if (!image.imageSource) return null;
+                <Base.GridCell className={this.decorateCSS("comp-slider")}>
+                  <div className={this.decorateCSS("slider-items")}>
+                    {this.getComponentState("slider-images").map(
+                      (image: SliderImage, index: number) => {
+                        if (!image.imageSource) return null;
 
-                      return (
-                        <img
-                          key={index}
-                          style={{
-                            marginLeft: `${image.imageIndex * 20}px`,
-                            marginTop: `${image.imageIndex * 20}px`,
-                            zIndex: image.imageIndex + 1,
-                          }}
-                          className={this.decorateCSS("slider-item")}
-                          src={image.imageSource}
-                          alt={"Image"}
-                        />
-                      );
-                    }
-                  )}
+                        return (
+                          <img
+                            key={index}
+                            style={{
+                              marginLeft: `${image.imageIndex * 20}px`,
+                              marginTop: `${image.imageIndex * 20}px`,
+                              zIndex: image.imageIndex + 1,
+                            }}
+                            className={this.decorateCSS("slider-item")}
+                            src={image.imageSource}
+                            alt={"Image"}
+                          />
+                        );
+                      }
+                    )}
+                  </div>
                   <footer className={this.decorateCSS("slider-buttons")}>
                     {this.getPropValue("sliderGoLeft") && (
                       <button
@@ -432,11 +434,11 @@ class Feature13 extends BaseFeature {
                       </button>
                     )}
                   </footer>
-                </div>
+                </Base.GridCell>
               )}
 
               {(tabList.length > 0 || progressList.length > 0) && (
-                <div className={this.decorateCSS("comp-body-wrapper")}>
+                <Base.GridCell className={this.decorateCSS("comp-body-wrapper")}>
                   {tabList.length > 0 && (
                     <>
                       <header className={this.decorateCSS("tabs")}>
@@ -490,7 +492,7 @@ class Feature13 extends BaseFeature {
                               <Base.H3 className={this.decorateCSS("progress-title")}>
                                 {item.title}
                               </Base.H3>
-                              {percentage && (<span
+                              {utility && (<span
                                 className={this.decorateCSS(
                                   "progress-percent"
                                 )}
@@ -513,9 +515,9 @@ class Feature13 extends BaseFeature {
                       })}
                     </footer>
                   )}
-                </div>
+                </Base.GridCell>
               )}
-            </main>
+            </Base.ContainerGrid>
           </div>
         </Base.MaxContent>
       </Base.Container>
