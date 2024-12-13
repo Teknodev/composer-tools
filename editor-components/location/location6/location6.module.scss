@@ -17,6 +17,10 @@
         min-width: 30vw;
         width: auto;
 
+        .subtitle {
+          margin: 0;
+        }
+
         .title {
           margin: var(--composer-gap-sm);
         }
@@ -28,7 +32,7 @@
           .button {
             background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
             color: var(--composer-font-color-primary);
-            padding: var(--composer-gap-sm);
+            padding: 0 var(--composer-gap-md);
             width: 100%;
             .button-element {
               display: flex;
