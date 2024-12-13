@@ -4,6 +4,7 @@ import { BaseHeader } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { Base } from "../../../composer-base-components/base/base";
 
 type Slide = {
   title: JSX.Element;
@@ -13,12 +14,8 @@ type Slide = {
 };
 
 class HeaderComponent26 extends BaseHeader {
-  private sliderRef: React.RefObject<any>;
-
   constructor(props?: any) {
     super(props, styles);
-
-    this.sliderRef = React.createRef();
 
     this.addProp({
       type: "array",
@@ -183,6 +180,7 @@ class HeaderComponent26 extends BaseHeader {
       value: true
     })
 
+    this.setComponentState("sliderRef", React.createRef());
     this.setComponentState("next", null);
   }
 
@@ -190,17 +188,19 @@ class HeaderComponent26 extends BaseHeader {
     return "Header-26";
   }
 
-  handlePrevClick = () => {
-    const slider = this.sliderRef.current;
-    if (slider) slider.slickPrev();
-  };
-
-  handleNextClick = () => {
-    const slider = this.sliderRef.current;
-    if (slider) slider.slickNext();
-  };
-
   render() {
+    const sliderRef = this.getComponentState("sliderRef");
+
+    const handlePrevClick = () => {
+      const slider = sliderRef.current;
+      if (slider) slider.slickPrev();
+    };
+  
+    const handleNextClick = () => {
+      const slider = sliderRef.current;
+      if (slider) slider.slickNext();
+    };
+
     const settings = {
       dots: false,
       arrows: false,
@@ -235,7 +235,7 @@ class HeaderComponent26 extends BaseHeader {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           {slides?.length > 0 && (
-            <ComposerSlider {...settings} ref={this.sliderRef}>
+            <ComposerSlider {...settings} ref={sliderRef}>
               {slides.map((item: Slide, index: number) => {
                 const titleExist = this.castToString(item.title);
                 const subtitleExist = this.castToString(item.subtitle);
@@ -298,13 +298,13 @@ class HeaderComponent26 extends BaseHeader {
                       >
                         <div
                           className={this.decorateCSS("up-arrow")}
-                          onClick={this.handlePrevClick}
+                          onClick={handlePrevClick}
                         >
                           <ComposerIcon name={this.getPropValue("up_icon")} />
                         </div>
                         <div
                           className={this.decorateCSS("down-arrow")}
-                          onClick={this.handleNextClick}
+                          onClick={handleNextClick}
                         >
                           <ComposerIcon name={this.getPropValue("down_icon")} />
                         </div>
