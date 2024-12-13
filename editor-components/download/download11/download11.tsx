@@ -41,7 +41,7 @@ class Download11 extends BaseDownload {
             type: "image",
             key: "logoimage",
             displayer: "LogoImage",
-            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaf000?alt=media&timestamp=1683614748003",
+            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c36f40655f8002ca6e303?alt=media&timestamp=1734096646977",
         });
 
 

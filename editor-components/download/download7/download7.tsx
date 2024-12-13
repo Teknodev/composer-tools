@@ -20,7 +20,7 @@ class Download7 extends BaseDownload {
       type: "image",
       key: "image",
       displayer: "Background Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a3651b2f8a5b002ce69dbd?alt=media",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c353b0655f8002ca6e1ce?alt=media&timestamp=1734096206322",
     });
 
     this.addProp({
@@ -58,7 +58,7 @@ class Download7 extends BaseDownload {
               type: "image",
               key: "image",
               displayer: "Button Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67586eb80655f8002ca57e58?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c358d0655f8002ca6e1e7?alt=media&timestamp=1734096287824",
             },
             {
               type: "string",
@@ -89,7 +89,7 @@ class Download7 extends BaseDownload {
               type: "image",
               key: "image",
               displayer: "Button Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6759e80e0655f8002ca61199?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c35b40655f8002ca6e210?alt=media&timestamp=1734096327223",
             },
             {
               type: "string",

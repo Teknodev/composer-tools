@@ -139,7 +139,7 @@ class Download2 extends BaseDownload {
               type: "image",
               key: "buttonLogo",
               displayer: "Button Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/673f5276506a40002c2cf763?alt=media&timestamp=1732203183915",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c30250655f8002ca6dd18?alt=media&timestamp=1734094904287",
             },
             {
               type: "page",
@@ -194,7 +194,7 @@ class Download2 extends BaseDownload {
               type: "image",
               key: "buttonLogo",
               displayer: "Button Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/673f51e4506a40002c2cf6eb?alt=media&timestamp=1732203035257",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c304b0655f8002ca6dd1d?alt=media&timestamp=1734094941757",
             },
             {
               type: "page",

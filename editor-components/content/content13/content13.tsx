@@ -78,7 +78,7 @@ class Content13 extends BaseContent {
       key: "image1",
       displayer: "image1",
       value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a39f132f8a5b002ce6b70b?alt=media",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c49ba0655f8002ca6f9ed?alt=media&timestamp=1734101452896",
     });
 
     this.addProp({
@@ -86,7 +86,7 @@ class Content13 extends BaseContent {
       key: "image2",
       displayer: "image2",
       value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a39f1b2f8a5b002ce6b716?alt=media",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c49dc0655f8002ca6fa0c?alt=media&timestamp=1734101486003",
     });
   }
 

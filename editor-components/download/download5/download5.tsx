@@ -27,7 +27,7 @@ class Download5 extends BaseDownload {
       type: "image",
       key: "backgroundImage",
       displayer: "Background Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66bb0c0a3292c6002b23e266?alt=media",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c34600655f8002ca6e0e4?alt=media&timestamp=1734095986800",
     });
 
     this.addProp({

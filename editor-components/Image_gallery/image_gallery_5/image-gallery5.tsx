@@ -32,7 +32,7 @@ class ImageGalleryComponent5 extends BaseImageGallery {
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20b8c2f8a5b002ce65828?alt=media",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c2a210655f8002ca6d812?alt=media&timestamp=1734093365830",
             },
             {
               type: "string",
@@ -52,7 +52,7 @@ class ImageGalleryComponent5 extends BaseImageGallery {
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20c6a2f8a5b002ce65834?alt=media",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c2a4e0655f8002ca6d819?alt=media&timestamp=1734093407958",
             },
             {
               type: "string",
@@ -72,7 +72,7 @@ class ImageGalleryComponent5 extends BaseImageGallery {
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20c962f8a5b002ce65840?alt=media",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c2a730655f8002ca6d840?alt=media&timestamp=1734093444674",
             },
             {
               type: "string",
@@ -92,7 +92,7 @@ class ImageGalleryComponent5 extends BaseImageGallery {
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20cbc2f8a5b002ce6584c?alt=media",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c2a950655f8002ca6d85e?alt=media&timestamp=1734093479152",
             },
             {
               type: "string",
@@ -112,7 +112,7 @@ class ImageGalleryComponent5 extends BaseImageGallery {
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20cd82f8a5b002ce65858?alt=media",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c2abc0655f8002ca6d866?alt=media&timestamp=1734093517996",
             },
             {
               type: "string",
@@ -132,7 +132,7 @@ class ImageGalleryComponent5 extends BaseImageGallery {
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20cee2f8a5b002ce6586d?alt=media",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c2af10655f8002ca6d888?alt=media&timestamp=1734093573082",
             },
             {
               type: "string",

@@ -127,7 +127,7 @@ class Stats8Page extends BaseStats {
       type: "image",
       key: "imageSrc",
       displayer: "Image Source",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a36aa42f8a5b002ce6a087?alt=media",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c46950655f8002ca6f689?alt=media&timestamp=1734100647952",
     });
 
     this.addProp({

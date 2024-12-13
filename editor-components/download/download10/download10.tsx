@@ -48,7 +48,7 @@ class Download10 extends BaseDownload {
       type: "image",
       key: "image",
       displayer: "Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67438ea6506a40002c2dca7f?alt=media&timestamp=1732480731550",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c36590655f8002ca6e273?alt=media&timestamp=1734096494240",
     });
 
     let button: TypeUsableComponentProps = {
@@ -79,7 +79,7 @@ class Download10 extends BaseDownload {
           type: "image",
           key: "buttonImage",
           displayer: "Button Image",
-          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67586eb80655f8002ca57e58?alt=media",
+          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c36880655f8002ca6e2aa?alt=media&timestamp=1734096538396",
         },
       ],
     };

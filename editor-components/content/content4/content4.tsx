@@ -48,7 +48,7 @@ class Content4 extends BaseContent {
           key: "image",
           displayer: "Image",
           value:
-            "https://halstein.qodeinteractive.com/wp-content/uploads/2021/10/h1-img-01.jpg",
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c47820655f8002ca6f845?alt=media&timestamp=1734100885780",
         },
       ],
     });
@@ -92,7 +92,7 @@ class Content4 extends BaseContent {
           key: "image",
           displayer: "Image",
           value:
-            "https://halstein.qodeinteractive.com/wp-content/uploads/2021/10/h1-img-02.jpg",
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c47ab0655f8002ca6f910?alt=media&timestamp=1734100926146",
         },
       ],
     });
@@ -136,7 +136,7 @@ class Content4 extends BaseContent {
           key: "image",
           displayer: "Image",
           value:
-            "https://halstein.qodeinteractive.com/wp-content/uploads/2021/10/h1-img-03.jpg",
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c47d10655f8002ca6f917?alt=media&timestamp=1734100964346",
         },
       ],
     });
@@ -180,7 +180,7 @@ class Content4 extends BaseContent {
           key: "image",
           displayer: "Image",
           value:
-            "https://halstein.qodeinteractive.com/wp-content/uploads/2021/10/h1-img-04.jpg",
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c47ff0655f8002ca6f935?alt=media&timestamp=1734101009660",
         },
       ],
     });
@@ -224,7 +224,7 @@ class Content4 extends BaseContent {
           key: "image",
           displayer: "Image",
           value:
-            "https://halstein.qodeinteractive.com/wp-content/uploads/2021/10/h1-img-05.jpg",
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c48270655f8002ca6f940?alt=media&timestamp=1734101051782",
         },
       ],
     });

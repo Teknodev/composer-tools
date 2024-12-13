@@ -69,7 +69,7 @@ class Team13 extends Team {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6735ef51506a40002c2a58f4?alt=media&timestamp=1732177851198",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c0af50655f8002ca6b8c6?alt=media&timestamp=1734085381597",
             },
             {
               type: "string",
@@ -94,7 +94,7 @@ class Team13 extends Team {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6735ef51506a40002c2a58f3?alt=media&timestamp=1732177851198",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c0b2e0655f8002ca6b8db?alt=media&timestamp=1734085438864",
             },
             {
               type: "string",

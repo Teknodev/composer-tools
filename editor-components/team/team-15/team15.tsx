@@ -118,7 +118,7 @@ class Team15 extends Team {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b712bd2970002c6284b2?alt=media&timestamp=1719558632841",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b712bd2970002c6284b2?alt=media&timestamp=1734075187275",
             },
             {
               type: "icon",
@@ -173,7 +173,7 @@ class Team15 extends Team {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6727b7ca7acba6002c5dfa2c?alt=media&timestamp=1730656203793",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c0c120655f8002ca6b928?alt=media&timestamp=1734085667235",
             },
             {
               type: "icon",
@@ -229,7 +229,7 @@ class Team15 extends Team {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6727b8437acba6002c5dfa38?alt=media&timestamp=1730656324011",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c0c380655f8002ca6b958?alt=media&timestamp=1734085705101",
             },
             {
               type: "icon",
@@ -284,7 +284,7 @@ class Team15 extends Team {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6727b8527acba6002c5dfa3e?alt=media&timestamp=1730656339472",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c0c600655f8002ca6b970?alt=media&timestamp=1734085745890",
             },
             {
               type: "icon",

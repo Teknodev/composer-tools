@@ -32,7 +32,7 @@ class Content17 extends BaseContent {
               key: "item-image",
               displayer: "Item Image",
               value:
-                "https://dentalexcellenceturkey.com/wp-content/themes/dectheme/images/steps/dental1.png",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c4cc70655f8002ca6fdab?alt=media&timestamp=1734102234550",
             },
             {
               type: "string",
@@ -59,7 +59,7 @@ class Content17 extends BaseContent {
               key: "item-image",
               displayer: "Item Image",
               value:
-                "https://dentalexcellenceturkey.com/wp-content/themes/dectheme/images/steps/dental2.png",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c4cef0655f8002ca6fdb1?alt=media&timestamp=1734102275672",
             },
             {
               type: "string",
@@ -86,7 +86,7 @@ class Content17 extends BaseContent {
               key: "item-image",
               displayer: "Item Image",
               value:
-                "https://dentalexcellenceturkey.com/wp-content/themes/dectheme/images/steps/dental3.png",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c4d230655f8002ca6fdbc?alt=media&timestamp=1734102327930",
             },
             {
               type: "string",
@@ -113,7 +113,7 @@ class Content17 extends BaseContent {
               key: "item-image",
               displayer: "Item Image",
               value:
-                "https://dentalexcellenceturkey.com/wp-content/themes/dectheme/images/steps/dental4.png",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c4d4b0655f8002ca6fde5?alt=media&timestamp=1734102368455",
             },
             {
               type: "string",

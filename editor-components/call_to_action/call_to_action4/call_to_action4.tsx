@@ -151,7 +151,7 @@ class CallToAction4Page extends BaseCallToAction {
       key: "image",
       displayer: "Image",
       value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6749a012506a40002c2f7882?alt=media",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c0ea70655f8002ca6bcb5?alt=media&timestamp=1734086328726",
     });
     this.addProp({
       type: "array",

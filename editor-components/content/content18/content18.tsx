@@ -19,14 +19,14 @@ class Content18 extends BaseContent {
       key: "image1",
       displayer: "1st Image",
       value:
-        "https://vzkit.rometheme.pro/persona/wp-content/uploads/sites/15/2024/01/psychologist-therapy-group-support-writing-notes-2023-11-27-05-30-45-utc.jpg",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c4ded0655f8002ca6ff39?alt=media&timestamp=1734102528975",
     });
     this.addProp({
       type: "image",
       key: "image2",
       displayer: "2nd Image",
       value:
-        "https://vzkit.rometheme.pro/persona/wp-content/uploads/sites/15/2024/01/psychology-mental-health-and-support-with-a-woman-2023-11-27-05-29-05-utc.jpg",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c4e1e0655f8002ca6ffb2?alt=media&timestamp=1734102578880",
     });
     this.addProp({
       type: "icon",

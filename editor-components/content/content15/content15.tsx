@@ -192,7 +192,7 @@ class Content15 extends BaseContent {
       value: [
         dummyData(
           "01 Premium cottage",
-          "https://craftohtml.themezaa.com/images/demo-hotel-and-resort-14.jpg",
+          "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c4abb0655f8002ca6fb08?alt=media&timestamp=1734101709824",
           "Starting from",
           "$50.00",
           "BOOK NOW",
@@ -205,7 +205,7 @@ class Content15 extends BaseContent {
         ),
         dummyData(
           "02 Studios with terrace",
-          "https://craftohtml.themezaa.com/images/demo-hotel-and-resort-16.jpg",
+          "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c4aef0655f8002ca6fbdc?alt=media&timestamp=1734101763091",
           "Starting from",
           "$50.00",
           "BOOK NOW",
@@ -218,7 +218,7 @@ class Content15 extends BaseContent {
         ),
         dummyData(
           "03 Premium pavilions",
-          "https://craftohtml.themezaa.com/images/demo-hotel-and-resort-17.jpg",
+          "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c4b1c0655f8002ca6fcc6?alt=media&timestamp=1734101806703",
           "Starting from",
           "$50.00",
           "BOOK NOW",
@@ -231,7 +231,7 @@ class Content15 extends BaseContent {
         ),
         dummyData(
           "04 The luxury villa",
-          "https://craftohtml.themezaa.com/images/demo-hotel-and-resort-18.jpg",
+          "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c4b440655f8002ca6fcfd?alt=media&timestamp=1734101847607",
           "Starting from",
           "$50.00",
           "BOOK NOW",
@@ -244,7 +244,7 @@ class Content15 extends BaseContent {
         ),
         dummyData(
           "05 Grand deluxe room",
-          "https://craftohtml.themezaa.com/images/demo-hotel-and-resort-19.jpg",
+          "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c4b6c0655f8002ca6fd1d?alt=media&timestamp=1734101887783",
           "Starting from",
           "$50.00",
           "BOOK NOW",

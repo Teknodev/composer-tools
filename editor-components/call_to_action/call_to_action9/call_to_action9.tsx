@@ -55,7 +55,7 @@ class CallToAction9Page extends BaseCallToAction {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1719584962573"
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c10a40655f8002ca6bf3e?alt=media&timestamp=1734086837440"
             }
           ]
         },
@@ -68,7 +68,7 @@ class CallToAction9Page extends BaseCallToAction {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaf003?alt=media&timestamp=1719584962573"
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c10c50655f8002ca6bf54?alt=media&timestamp=1734086869537"
             }
           ]
         },
@@ -81,7 +81,7 @@ class CallToAction9Page extends BaseCallToAction {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf050?alt=media&timestamp=1719584962573"
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c10ed0655f8002ca6bf75?alt=media&timestamp=1734086909423"
             }
           ]
         },
@@ -94,7 +94,7 @@ class CallToAction9Page extends BaseCallToAction {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaf006?alt=media&timestamp=1719584962573"
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c110e0655f8002ca6bf87?alt=media&timestamp=1734086943067"
             }
           ]
         },
@@ -107,7 +107,7 @@ class CallToAction9Page extends BaseCallToAction {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf055?alt=media&timestamp=1719584962573"
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c11330655f8002ca6bfa0?alt=media&timestamp=1734086979767"
             }
           ]
         },
@@ -120,7 +120,7 @@ class CallToAction9Page extends BaseCallToAction {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf054?alt=media&timestamp=1719584962573"
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c11550655f8002ca6bfd0?alt=media&timestamp=1734087022233"
             }
           ]
         },

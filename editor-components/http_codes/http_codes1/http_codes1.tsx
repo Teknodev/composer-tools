@@ -32,7 +32,7 @@ class HTTP_CODES1 extends BaseHTTPCodes {
       type: "image",
       key: "image",
       displayer: "Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6707c9da97fe08002c750ad5?alt=media&timestamp=1728563719607",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c42470655f8002ca6f1cc?alt=media&timestamp=1734099546858",
     });
 
     this.addProp({

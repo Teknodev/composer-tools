@@ -18,7 +18,7 @@ class CallToAction7Page extends BaseCallToAction {
       type: "image",
       key: "image",
       displayer: "Image",
-      value: "https://vault.uicore.co/e-book/wp-content/uploads/sites/51/2022/08/E-Book-Book.webp",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c0ffa0655f8002ca6beac?alt=media&timestamp=1734086668124",
     });
     this.addProp({
       type: "string",

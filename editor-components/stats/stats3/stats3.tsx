@@ -60,7 +60,7 @@ class Stats3Page extends BaseStats {
       type: "image",
       key: "backgroundImage",
       displayer: "Card Background Image",
-      value: "https://vzkit.rometheme.pro/persona/wp-content/uploads/sites/15/2024/01/group-therapy-support-or-mental-health-community-2023-11-27-05-33-38-utc.jpg",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c45fd0655f8002ca6f5dd?alt=media&timestamp=1734100496301",
     });
     this.addProp({
       type: "array",

@@ -12,7 +12,7 @@ class CallToAction5Page extends BaseCallToAction {
       type: "image",
       key: "background",
       displayer: "Background Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6749ac99506a40002c2f82f5?alt=media"
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c0f020655f8002ca6bd74?alt=media&timestamp=1734086418587"
     });
     this.addProp({
       type: "boolean",

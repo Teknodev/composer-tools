@@ -35,7 +35,7 @@ class Download4 extends BaseDownload {
       type: "image",
       key: "image",
       displayer: "Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6748510e506a40002c2f0943?alt=media&timestamp=1732792647249",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c339b0655f8002ca6e04b?alt=media&timestamp=1734095789638",
     });
 
     this.addProp({
@@ -70,7 +70,7 @@ class Download4 extends BaseDownload {
               type: "image",
               key: "buttonImage",
               displayer: "Button Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67586eb80655f8002ca57e58?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c33c80655f8002ca6e075?alt=media&timestamp=1734095838567",
             },
           ],
         },
@@ -101,7 +101,7 @@ class Download4 extends BaseDownload {
               type: "image",
               key: "buttonImage",
               displayer: "Button Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/673f51e4506a40002c2cf6eb?alt=media&timestamp=1732790517206",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c33ef0655f8002ca6e0ac?alt=media&timestamp=1734095874308",
             },
           ],
         },

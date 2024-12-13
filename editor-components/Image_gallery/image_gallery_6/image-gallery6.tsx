@@ -80,7 +80,7 @@ class ImageGalleryComponent6 extends BaseImageGallery {
                                             key: "image",
                                             displayer: "Image",
                                             value:
-                                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/671618cab4a116002cfc6451?alt=media",
+                                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c2b5d0655f8002ca6d8f9?alt=media&timestamp=1734093680322",
                                         },
                                         {
                                             type: "string",
@@ -124,7 +124,7 @@ class ImageGalleryComponent6 extends BaseImageGallery {
                                             key: "image",
                                             displayer: "Image",
                                             value:
-                                                "https://ruizarch-react.vercel.app/img/covers/2.jpg",
+                                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c2b860655f8002ca6d900?alt=media&timestamp=1734093720635",
                                         },
                                         {
                                             type: "string",
@@ -168,7 +168,7 @@ class ImageGalleryComponent6 extends BaseImageGallery {
                                             key: "image",
                                             displayer: "Image",
                                             value:
-                                                "https://ruizarch-react.vercel.app/img/covers/3.jpg",
+                                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c2bab0655f8002ca6d906?alt=media&timestamp=1734093757525",
                                         },
                                         {
                                             type: "string",
@@ -234,7 +234,7 @@ class ImageGalleryComponent6 extends BaseImageGallery {
                                             key: "image",
                                             displayer: "Image",
                                             value:
-                                                "https://ruizarch-react.vercel.app/img/covers/5.jpg",
+                                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c2bcf0655f8002ca6d918?alt=media&timestamp=1734093793935",
                                         },
                                         {
                                             type: "string",
@@ -278,7 +278,7 @@ class ImageGalleryComponent6 extends BaseImageGallery {
                                             key: "image",
                                             displayer: "Image",
                                             value:
-                                                "https://ruizarch-react.vercel.app/img/covers/6.jpg",
+                                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c2bf40655f8002ca6d951?alt=media&timestamp=1734093829470",
                                         },
                                         {
                                             type: "string",
@@ -322,7 +322,7 @@ class ImageGalleryComponent6 extends BaseImageGallery {
                                             key: "image",
                                             displayer: "Image",
                                             value:
-                                                "https://ruizarch-react.vercel.app/img/covers/8.jpg",
+                                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c2c600655f8002ca6d9cf?alt=media&timestamp=1734093938436",
                                         },
                                         {
                                             type: "string",
@@ -366,7 +366,7 @@ class ImageGalleryComponent6 extends BaseImageGallery {
                                             key: "image",
                                             displayer: "Image",
                                             value:
-                                                "https://ruizarch-react.vercel.app/img/covers/7.jpg",
+                                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c2c880655f8002ca6da11?alt=media&timestamp=1734093978686",
                                         },
                                         {
                                             type: "string",
@@ -430,7 +430,7 @@ class ImageGalleryComponent6 extends BaseImageGallery {
                                             key: "image",
                                             displayer: "Image",
                                             value:
-                                                "https://ruizarch-react.vercel.app/img/covers/4.jpg",
+                                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c2cba0655f8002ca6da33?alt=media&timestamp=1734094029522",
                                         },
                                         {
                                             type: "string",

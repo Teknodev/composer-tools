@@ -20,7 +20,7 @@ class CallToAction6Page extends BaseCallToAction {
       key: "backgroundImage",
       displayer: "Background Image",
       value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66bdaa2707399d002cb4130f?alt=media",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c0f7f0655f8002ca6be19?alt=media&timestamp=1734086543932",
     });
 
     this.addProp({

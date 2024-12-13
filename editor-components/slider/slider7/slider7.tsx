@@ -79,7 +79,7 @@ class Slider7 extends BaseSlider {
               key: "image",
               displayer: "Image",
               value:
-                "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/simone-hutsch-D7nSqgT-_GE-unsplash.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c39710655f8002ca6e526?alt=media&timestamp=1734097283246",
             },
           ],
         },
@@ -93,7 +93,7 @@ class Slider7 extends BaseSlider {
               key: "image",
               displayer: "Image",
               value:
-                "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/michael-demarco-oB0r-2a1QfE-unsplash-scaled.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c39a80655f8002ca6e56f?alt=media&timestamp=1734097340969",
             },
             
           ],
@@ -108,7 +108,7 @@ class Slider7 extends BaseSlider {
               key: "image",
               displayer: "Image",
               value:
-                "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/simone-hutsch-xlGKy9UokjQ-unsplash-1.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c39e50655f8002ca6e5c5?alt=media&timestamp=1734097400229",
             },
           ],
         },
@@ -122,7 +122,7 @@ class Slider7 extends BaseSlider {
               key: "image",
               displayer: "Image",
               value:
-                "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/messeplatz-cloudy-sky-basel-switzerland.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c3a120655f8002ca6e5ef?alt=media&timestamp=1734097445130",
             },
           ],
         },
@@ -136,7 +136,7 @@ class Slider7 extends BaseSlider {
               key: "image",
               displayer: "Image",
               value:
-                "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/metal-geometric-modern-building-scaled.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c3a3a0655f8002ca6e60f?alt=media&timestamp=1734097485153",
             },
           ],
         },
@@ -150,7 +150,7 @@ class Slider7 extends BaseSlider {
               key: "image",
               displayer: "Image",
               value:
-                "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/daniel-stone-A4TtfFo_qRw-unsplash.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c3a640655f8002ca6e656?alt=media&timestamp=1734097527024",
             },
           ],
         },
@@ -164,7 +164,7 @@ class Slider7 extends BaseSlider {
               key: "image",
               displayer: "Image",
               value:
-                "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/vertical-shot-high-rise-exotic-skyscraper-blue-sky.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c3a8f0655f8002ca6e6a1?alt=media&timestamp=1734097570547",
             },
           ],
         },
@@ -178,7 +178,7 @@ class Slider7 extends BaseSlider {
               key: "image",
               displayer: "Image",
               value:
-                "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/joel-filipe-PkE6yQwE-6Y-unsplash.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c3aba0655f8002ca6e6d5?alt=media&timestamp=1734097613725",
             },
           ],
         },

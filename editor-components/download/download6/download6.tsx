@@ -80,7 +80,7 @@ class Download6 extends BaseDownload {
           type: "image",
           key: "image",
           displayer: "Image",
-          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66bdb43307399d002cb4160b?alt=media",
+          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c34b90655f8002ca6e138?alt=media&timestamp=1734096076492",
         },
       ],
     });

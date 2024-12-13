@@ -43,7 +43,7 @@ class Content8 extends BaseContent {
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b34f2703b007002cc7f55e?alt=media",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c48f50655f8002ca6f96a?alt=media&timestamp=1734101255902",
             },
             {
               type: "string",
@@ -81,7 +81,7 @@ class Content8 extends BaseContent {
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b34f6f03b007002cc7f56e?alt=media",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c49200655f8002ca6f97f?alt=media&timestamp=1734101299533",
             },
             {
               type: "string",
@@ -119,7 +119,7 @@ class Content8 extends BaseContent {
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b351ed03b007002cc7f6d9?alt=media",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c49430655f8002ca6f994?alt=media&timestamp=1734101332611",
             },
             {
               type: "string",
