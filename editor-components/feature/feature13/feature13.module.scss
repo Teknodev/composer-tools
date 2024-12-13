@@ -116,20 +116,13 @@
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-  .wrapper .comp-wrapper {
-    flex-direction: column;
-    gap: var(--composer-gap-xl);
-
-    .comp-body-wrapper {
-      .tabs {
-        display: flex;
-
-        .tabs-list {
-          list-style-type: none;
-          display: flex;
-          justify-content: start;
-          gap: var(--composer-gap-md);
-          flex-wrap: wrap;
+  .container {
+    .max-content {
+      .wrapper {
+        .comp-wrapper {
+          .comp-slider {
+            flex-basis: auto;
+          }
         }
       }
     }
