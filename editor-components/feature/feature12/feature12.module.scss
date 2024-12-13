@@ -12,6 +12,9 @@
 .container {
   background-color: var(--composer-html-background);
   .max-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-md);
     .header {
       .upper-title {
         content: "";
