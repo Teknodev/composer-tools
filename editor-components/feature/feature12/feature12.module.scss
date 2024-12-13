@@ -1,186 +1,103 @@
 @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
-
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
 .container {
   background-color: var(--composer-html-background);
+  .max-content {
+    .header {
+      .upper-title {
+        content: "";
+      }
+      .header-title {
+        content: "";
+      }
+    }
+    .wrapper {
+      gap: 0;
+      .card-item-first,
+      .card-item-count {
+        padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-xl);
+      }
 
-  .max-content {}
-}
+      .card-item-first {
+        align-items: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+        gap: var(--composer-gap-md);
 
-.wrapper {
-  gap: 0;
-}
+        .title {
+          font-size: 2rem;
+          color: var(--composer-font-color-primary);
+          text-align: center;
+          margin: 0px;
+        }
 
-.header {
-  min-height: 120px;
-  width: 100%;
-  max-width: var(--composer-content-width);
-  margin-bottom: var(--composer-gap-lg);
+        .button {
+          content: "";
+        }
+      }
+      .card-item-count {
+        opacity: 0;
+        transform: translateX(-50px);
+        animation-name: slideInLeft;
+        animation-duration: 0.5s;
+        animation-timing-function: ease;
+        animation-fill-mode: forwards;
+        animation-delay: var(--animation-delay); 
+        .message {
+          color: var(--composer-font-color-primary);
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+          overflow: hidden;
+          gap: var(--composer-gap-md);
 
-  &.min-height-unset {
-    min-height: unset;
-  }
-}
-
-.upper-title {
-  margin: 0;
-  color: var(--composer-primary-color);
-  width: 100%;
-  letter-spacing: 10px;
-  position: relative;
-  z-index: 5;
-}
-
-.shadow-header-title {
-  margin: 0;
-  color: var(--composer-html-background);
-  text-shadow: -1px -1px 0 rgba(var(--composer-font-color-primary-rgb), 0.25), 1px -1px 0 rgba(var(--composer-font-color-primary-rgb), 0.25), -1px 1px 0 rgba(var(--composer-font-color-primary-rgb), 0.25),
-    1px 1px 0 rgba(var(--composer-font-color-primary-rgb), 0.25);
-  z-index: 0;
-  width: 100%;
-  font-size: 12rem;
-  line-height: 6rem;
-  margin-bottom: calc(-1 * var(--composer-gap-xl));
-}
-
-.header-title {
-  margin: 0;
-  color: var(--composer-font-color-primary);
-  font-weight: 900;
-  font-size: 5rem;
-  z-index: 2;
-  width: 100%;
-}
-
-.card-item-first,
-.card-item-count {
-  min-height: 500px;
-}
-
-.card-item-first {
-  align-items: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-content: center;
-  background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-
-  .title {
-    display: block;
-    font-weight: 800;
-    font-size: 2rem;
-    color: var(--composer-font-color-primary);
-    width: 80%;
-    margin-bottom: var(--composer-gap-md);
-  }
-
-  .button {
-    align-self: center;
-    // there is no variable for 15px and we need 15px
-    padding: 15px var(--composer-gap-md);
-    align-content: center;
-    background-color: transparent;
-    color: var(--composer-font-color-primary);
-    border: 1px solid var(--composer-font-color-primary);
-    width: 80%;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 600;
-    transition: 0.3s;
-
-    >div,>a {
-      display: block;
-      text-align: center;
+          .icon-container{
+            .icon {
+              color: var(--composer-primary-color);
+              width: 50px;
+              height: 50px;
+            }
+          }
+          .title,
+          .long-text {
+            color: var(--composer-font-color-primary);
+            text-align: center;
+          }
+      
+          .title {
+            font-size: 1.5rem;
+          }
+      
+          .long-text {
+            font-size: 1.5rem;
+          }
+        }
+      }
     }
   }
-
-  .button:hover+.message {
-    color: var(--composer-font-color-primary);
-    opacity: 0.7;
-  }
-
-  .button:hover {
-    scale: 1.05;
-    background-color: var(--composer-font-color-primary);
-    color: var(--composer-font-color-secondary);
-  }
-}
-
-.card-item-count {
-  border-top: 1px solid transparent;
-
-  &.border-top {
-    border-top: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.1);
-  }
-
-  .message {
-    color: var(--composer-font-color-primary);
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    overflow: hidden;
-    gap: var(--composer-gap-md);
-
-    .title,
-    .long-text {
-      margin: 0;
-      color: var(--composer-font-color-primary);
-      text-align: center;
-      width: 90%;
-    }
-
-    .title {
-      font-weight: 800;
-      font-size: 1.5rem;
-      color: var(--composer-font-color-primary);
-    }
-
-    .long-text {
-      font-size: 1rem;
-    }
-  }
-}
-
-.icon {
-  color: var(--composer-primary-color);
-  width: 50px;
-  height: 50px;
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-  .upper-title {
-    font-size: 1rem;
-    margin-bottom: calc(-1 * var(--composer-gap-md));
-  }
 
-  .shadow-header-title {
-    font-size: 9rem;
-    margin-bottom: calc(-1 * var(--composer-gap-xl));
-  }
-
-  .header-title {
-    font-size: 3.5rem;
-  }
 }
 
 @container (max-width: #{$composer-phone-width}) {
-  .upper-title {
-    // there is no gap variable for 30px and we need exact 30px
-    margin-bottom: -30px;
-  }
 
-  .shadow-header-title {
-    font-size: 5rem;
-    line-height: 4rem;
-    word-wrap: break-word;
-    margin-bottom: calc(-1 * var(--composer-gap-lg));
-  }
-
-  .header-title {
-    font-size: 2rem;
-  }
 }

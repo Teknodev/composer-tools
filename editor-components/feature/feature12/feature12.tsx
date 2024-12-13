@@ -25,19 +25,13 @@ class Feature12 extends BaseFeature {
       type: "string",
       key: "upperTitle",
       displayer: "Upper Title",
-      value: "BEST FEATURES",
+      value: "Best Features",
     });
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "SERVICES",
-    });
-    this.addProp({
-      type: "string",
-      key: "behindTitle",
-      displayer: "Behind the Title",
-      value: "services",
+      value: "Services",
     });
     this.addProp({
       type: "object",
@@ -178,13 +172,9 @@ class Feature12 extends BaseFeature {
       as_string: true,
     });
     const titleExist = this.getPropValue("title", { as_string: true });
-    const behindTitleTextExist = this.getPropValue("behindTitle", {
-      as_string: true,
-    });
 
     const upperTitle = this.getPropValue("upperTitle");
     const title = this.getPropValue("title");
-    const behindtitleText = this.getPropValue("behindTitle");
 
     const itemCount = this.getPropValue("itemCount");
 
@@ -199,37 +189,21 @@ class Feature12 extends BaseFeature {
 
     const renderFirstItem =
       firstCardTitleExist || buttonTextExist || firstItemBackgroundImage;
-    const renderHeader = upperTitleExist || behindTitleTextExist || titleExist;
-
-    const setMinHeight =
-      titleExist || !behindTitleTextExist
-        ? this.decorateCSS("min-height-unset")
-        : "";
-
+    const renderHeader = upperTitleExist || titleExist;
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {renderHeader && (
-            <header
-              className={`
-              ${this.decorateCSS("header")}
-              ${setMinHeight}
-            `}
-            >
+            <Base.VerticalContent className={this.decorateCSS("header")}>
               {upperTitleExist && (
                 <Base.SectionSubTitle className={this.decorateCSS("upper-title")}>
                   {upperTitle}
                 </Base.SectionSubTitle>
               )}
-              {behindTitleTextExist && (
-                <div className={this.decorateCSS("shadow-header-title")}>
-                  {behindtitleText}
-                </div>
-              )}
               {titleExist && (
                 <Base.SectionTitle className={this.decorateCSS("header-title")}>{title}</Base.SectionTitle>
               )}
-            </header>
+            </Base.VerticalContent>
           )}
           <Base.ListGrid gridCount={{ pc: itemCount }} className={this.decorateCSS("wrapper")}>
             {renderFirstItem && (
@@ -240,6 +214,7 @@ class Feature12 extends BaseFeature {
                     ? "linear-gradient(color-mix(in srgb, rgba(var(--composer-html-background-rgb), 0.7), rgba(var(--composer-font-color-primary-rgb), 0.8) 5%), color-mix(in srgb, rgba(var(--composer-html-background-rgb), 0.7), rgba(var(--composer-font-color-primary-rgb), 0.8) 5%)),"
                     : ""
                     } url(${firstItemBackgroundImage})`,
+
                 }}
               >
                 {firstCardTitleExist && (
@@ -248,11 +223,11 @@ class Feature12 extends BaseFeature {
                   </Base.H3>
                 )}
                 {buttonTextExist && (
-                  <div className={this.decorateCSS("button")}>
-                    <ComposerLink path={this.getPropValue("buttonLink")}>
+                  <ComposerLink path={this.getPropValue("buttonLink")}>
+                    <Base.Button className={this.decorateCSS("button")}>
                       {firstItem.button}
-                    </ComposerLink>
-                  </div>
+                    </Base.Button>
+                  </ComposerLink>
                 )}
               </div>
             )}
@@ -268,23 +243,21 @@ class Feature12 extends BaseFeature {
                 else
                   return (
                     <div
-                      className={`
-                        ${this.decorateCSS("card-item-count")}
-                        ${this.decorateCSS(index >= itemCount - 1 ? "border-top" : "")}
-                      `}
+                      className={this.decorateCSS("card-item-count")}
                       style={{
                         backgroundColor: `
-                          color-mix(
-                          in srgb,
-                          var(--composer-html-background),
-                          var(--composer-font-color-primary) ${5 + ((index + 1) % 4) * 5}%
-                        )`,
+                        color-mix(
+                        in srgb,
+                        var(--composer-html-background),
+                        var(--composer-font-color-primary) ${5 + ((index + 1) % 4) * 5}%
+                      )`,
+                        animationDelay: `${index * 0.3}s`,
                       }}
                       key={index}
                     >
                       {(card.icon || titleExist || descExist) && (
                         <div className={this.decorateCSS("message")}>
-                          {!!card.icon && (
+                          {card.icon && (
                             <div className={this.decorateCSS("icon-container")}>
                               <ComposerIcon
                                 name={card.icon}
@@ -293,14 +266,14 @@ class Feature12 extends BaseFeature {
                             </div>
                           )}
                           {titleExist && (
-                            <h3 className={this.decorateCSS("title")}>
+                            <div className={this.decorateCSS("title")}>
                               {card.title}
-                            </h3>
+                            </div>
                           )}
                           {descExist && (
-                            <p className={this.decorateCSS("long-text")}>
+                            <div className={this.decorateCSS("long-text")}>
                               {card.description}
-                            </p>
+                            </div>
                           )}
                         </div>
                       )}
