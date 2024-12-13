@@ -389,27 +389,24 @@ class Feature13 extends BaseFeature {
             <Base.ContainerGrid className={this.decorateCSS("comp-wrapper")}>
               {sliderImages.length > 0 && (
                 <Base.GridCell className={this.decorateCSS("comp-slider")}>
-                  <div className={this.decorateCSS("slider-items")}>
-                    {this.getComponentState("slider-images").map(
-                      (image: SliderImage, index: number) => {
-                        if (!image.imageSource) return null;
-
-                        return (
-                          <img
-                            key={index}
-                            style={{
-                              marginLeft: `${image.imageIndex * 20}px`,
-                              marginTop: `${image.imageIndex * 20}px`,
-                              zIndex: image.imageIndex + 1,
-                            }}
-                            className={this.decorateCSS("slider-item")}
-                            src={image.imageSource}
-                            alt={"Image"}
-                          />
-                        );
-                      }
-                    )}
-                  </div>
+                  {this.getComponentState("slider-images").map(
+                    (image: SliderImage, index: number) => {
+                      if (!image.imageSource) return null;
+                      return (
+                        <img
+                          key={index}
+                          style={{
+                            marginLeft: `${image.imageIndex * 20}px`,
+                            marginTop: `${image.imageIndex * 20}px`,
+                            zIndex: image.imageIndex + 1,
+                          }}
+                          className={this.decorateCSS("slider-item")}
+                          src={image.imageSource}
+                          alt={"Image"}
+                        />
+                      );
+                    }
+                  )}
                   <footer className={this.decorateCSS("slider-buttons")}>
                     {this.getPropValue("sliderGoLeft") && (
                       <button
@@ -441,15 +438,15 @@ class Feature13 extends BaseFeature {
                 <Base.GridCell className={this.decorateCSS("comp-body-wrapper")}>
                   {tabList.length > 0 && (
                     <>
-                      <header className={this.decorateCSS("tabs")}>
-                        <ul className={this.decorateCSS("tabs-list")}>
+                      <div className={this.decorateCSS("tabs")}>
+                        <div className={this.decorateCSS("tabs-list")}>
                           {tabList.map((item: Tab, index: number) => {
                             const titleExist = !!this.castToString(item.title);
 
                             if (!titleExist) return null;
 
                             return (
-                              <li
+                              <div
                                 key={index}
                                 className={this.decorateCSS("tabs-list-item")}
                               >
@@ -464,11 +461,11 @@ class Feature13 extends BaseFeature {
                                 >
                                   {item.title}
                                 </button>
-                              </li>
+                              </div>
                             );
                           })}
-                        </ul>
-                      </header>
+                        </div>
+                      </div>
                       {this.castToString(tabList[this.activeTab].title) &&
                         this.castToString(tabList[this.activeTab].content) && (
                           <Base.P className={this.decorateCSS("comp-body-content")}>

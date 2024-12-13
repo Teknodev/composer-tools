@@ -24,16 +24,14 @@
       .comp-wrapper {
         .comp-slider {
           position: relative;
-          .slider-items{
-            .slider-item {
-              width: calc(100% - 40px);
-              height: 400px;
-              object-fit: cover;
-              position: absolute;
-              transition: 300ms;
-            }
+          height: calc(450px + var(--composer-gap-md));
+          .slider-item {
+            width: calc(100% - 40px);
+            height: 400px;
+            object-fit: cover;
+            position: absolute;
+            transition: 300ms;
           }
-
           .slider-buttons {
             position: absolute;
             bottom: 0;
@@ -47,7 +45,7 @@
               border: none;
               color: var(--composer-font-color-primary);
               background-color: transparent;
-              padding-top: var(--composer-gap-md);
+        
               &:hover {
                 background-color: transparent;
                 cursor: pointer;
@@ -60,7 +58,6 @@
           width: 100%;
           .tabs {
             .tabs-list {
-              list-style-type: none;
               display: flex;
               justify-content: start;
               gap: var(--composer-gap-md);
@@ -69,7 +66,6 @@
                 text-decoration: none;
                 padding-left: var(--composer-gap-sm);
                 padding-right: var(--composer-gap-sm);
-                font-weight: 500;
                 font-size: 1.5rem;
                 color: var(--composer-font-color-primary);
                 background-color: transparent;
