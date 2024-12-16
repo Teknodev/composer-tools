@@ -21,6 +21,7 @@
           background-color: rgba(var(--composer-html-background-rgb), 0.5);
           position: relative;
           max-width: 65%;
+          border-radius: var(--composer-border-radius-sm);
 
           .buttons {
             display: flex;
@@ -115,6 +116,7 @@
         .image {
           width: 100%;
           height: auto;
+          border-radius: var(--composer-border-radius-sm);
         }
       }
 
