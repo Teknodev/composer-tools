@@ -2,6 +2,7 @@ import * as React from "react";
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header8.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
+import { Base } from "../../../composer-base-components/base/base";
 
 type ISliderData = {
   title: string;
@@ -78,7 +79,6 @@ function SamplePrevArrow(props: any) {
   );
 }
 
-//CLASS
 class Header8 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
@@ -102,6 +102,13 @@ class Header8 extends BaseHeader {
       key: "line",
       displayer: "Line Enabled",
       value: true,
+    });
+
+    this.addProp({
+        type: "boolean",
+        key: "overlay",
+        displayer: "Overlay",
+        value: true,
     });
 
     this.addProp({
@@ -236,8 +243,8 @@ class Header8 extends BaseHeader {
       ],
     });
 
-    this.setComponentState("prevIndex", 1);
-    this.setComponentState("currentIndex", 1);
+    this.setComponentState("prevIndex", 0);
+    this.setComponentState("currentIndex", 0);
     this.setComponentState("arrowDisabled", false);
   }
 
@@ -263,9 +270,8 @@ class Header8 extends BaseHeader {
   render() {
     let currentSlide = this.getComponentState("currentIndex");
     let slideCount = this.castToObject<ISliderData[]>("slider").length;
-
     let sliderEffect = this.getPropValue("slider_animation") ? true : false;
-    console.log(sliderEffect, "sliderEffectsliderEffect");
+    const activeImage = this.castToObject<ISliderData[]>("slider")[currentSlide].image;
 
     const settings = {
       dots: false,
@@ -282,7 +288,7 @@ class Header8 extends BaseHeader {
         <SamplePrevArrow
           disabled={this.getComponentState("arrowDisabled")}
           customOnClick={() => {
-            const newIndex = currentSlide === 1 ? slideCount : currentSlide - 1;
+            const newIndex = currentSlide === 0 ? slideCount : currentSlide - 1;
             this.handleArrowClick(newIndex, "prev");
           }}
         />
@@ -291,7 +297,7 @@ class Header8 extends BaseHeader {
         <SampleNextArrow
           disabled={this.getComponentState("arrowDisabled")}
           customOnClick={() => {
-            const newIndex = currentSlide === slideCount ? 1 : currentSlide + 1;
+            const newIndex = currentSlide === slideCount ? 0 : currentSlide + 1;
             this.handleArrowClick(newIndex, "next");
           }}
         />
@@ -299,46 +305,57 @@ class Header8 extends BaseHeader {
     };
 
     return (
-      <div className={this.decorateCSS("container")}>
+      <Base.Container
+        className={`${this.decorateCSS("container")} ${activeImage && this.decorateCSS("with-image")}`}
+        isFull={true}
+      >
         <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
           {this.castToObject<ISliderData[]>("slider").map((item: ISliderData, index: number) => (
             <div
               className={
-                this.getPropValue("disabled") ? this.decorateCSS("slide-disabled-animate") : this.decorateCSS("slide") + " " + (currentSlide == index + 1 && this.decorateCSS("disabled") ? this.decorateCSS("active-disabled") : this.decorateCSS("active"))
+                this.getPropValue("disabled") ? this.decorateCSS("slide-disabled-animate") : this.decorateCSS("slide") + " " + (currentSlide === index + 1 && this.decorateCSS("disabled") ? this.decorateCSS("active-disabled") : this.decorateCSS("active"))
               }
             >
-              <img src={item.image} alt={item.title} className={this.getPropValue("disabled") ? this.decorateCSS("image-disabled-animate") : this.decorateCSS("image")} />
+              {item.image && <img src={item.image} alt={item.title} className={this.getPropValue("disabled") ? this.decorateCSS("image-disabled-animate") : this.decorateCSS("image")} />}
             </div>
           ))}
         </ComposerSlider>
-        <div className={this.decorateCSS("max-content")}>
+        {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")} />}
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("pagination")}>
-            <div className={this.decorateCSS("current-page")}>{currentSlide}</div>
+            <div className={this.decorateCSS("current-page")}>{currentSlide + 1}</div>
             <div className={this.decorateCSS("slash")}> / </div>
             <div className={this.decorateCSS("total-page")}>{slideCount}</div>
           </div>
-          {this.castToObject<ISliderData[]>("slider").map((item: ISliderData, index: number) => (
-            <div className={this.decorateCSS("info-box") + " " + (currentSlide == index + 1 && this.decorateCSS("active"))}>
-              {item.topWriting && <div className={this.getPropValue("text_animation") ? this.decorateCSS("tag") : this.decorateCSS("tag-disabled-animate")}>{item.topWriting}</div>}
-              {this.castToString(item.title as any) && (
-                <div className={this.getPropValue("text_animation") ? this.decorateCSS("title") : this.decorateCSS("title-disabled-animate")}>
-                  {this.getPropValue("text_animation") ? (
-                    <AnimatedText mode={this.getComponentState("prevIndex") <= this.getComponentState("currentIndex") ? "to_right" : "to_left"} animationStarted={currentSlide === index + 1}>
-                      {this.castToString(item.title as any)}
-                    </AnimatedText>
-                  ) : (
-                    <div>{this.castToString(item.title as any)}</div>
-                  )}
-                </div>
-              )}
+          {this.castToObject<ISliderData[]>("slider").map((item: ISliderData, index: number) => {
+            const description = this.castToString(item.description as any);
+            const title = this.castToString(item.title as any);
+            const topWriting = this.castToString(item.topWriting as any);
+            const showLine = title || description || topWriting;
 
-              {this.getPropValue("line") ? <div className={this.decorateCSS("line")}></div> : <div></div>}
-
-              {item.description && <div className={this.getPropValue("text_animation") ? this.decorateCSS("description") : this.decorateCSS("description-disabled-animate")}>{item.description}</div>}
-            </div>
-          ))}
-        </div>
-      </div>
+            return (
+              <div className={this.decorateCSS("info-box") + " " + (currentSlide === index && this.decorateCSS("active"))}>
+                {topWriting && <div className={this.getPropValue("text_animation") ? this.decorateCSS("tag") : this.decorateCSS("tag-disabled-animate")}>{topWriting}</div>}
+                {title && (
+                  <div className={this.getPropValue("text_animation") ? this.decorateCSS("title") : this.decorateCSS("title-disabled-animate")}>
+                    {this.getPropValue("text_animation") ? (
+                      <AnimatedText mode={this.getComponentState("prevIndex") <= this.getComponentState("currentIndex") ? "to_right" : "to_left"} animationStarted={currentSlide === index}>
+                        {title}
+                      </AnimatedText>
+                    ) : (
+                      <div>{title}</div>
+                    )}
+                  </div>
+                )}
+  
+                {this.getPropValue("line") && showLine ? <div className={this.decorateCSS("line")}/> : <div/>}
+  
+                {description && <div className={this.getPropValue("text_animation") ? this.decorateCSS("description") : this.decorateCSS("description-disabled-animate")}>{item.description}</div>}
+              </div>
+            )
+          })}
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
