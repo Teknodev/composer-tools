@@ -1,122 +1,86 @@
+@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
 .container {
-    width: 100%;
-    padding: 50px 0;
-    background-repeat: no-repeat;
-    background-size: cover;
     .max-content {
-        max-width: var(--composer-content-width);
-        margin: auto;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        .call-to-action4-page {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            padding: 0 10px;
-            .description {
-                font-weight: 100;
-                max-width: 550px;
-                margin: 0;
-                font-size: 1.5rem;
-                color: var(--composer-font-color-primary);
+        .content {
+            display:flex;
+            gap: var(--composer-gap-md);
+            .left-page{
+                flex: 1;
+                gap: var(--composer-gap-lg);
+                .title {
+                    margin: 0px;
+                }
+                .list-container{
+                    margin: 0px;
+                    .list{
+                        display: flex;
+                        gap: var(--composer-gap-md);
+                        align-items: center;
+                        .description {
+                            display: flex;
+                            align-items: center;
+                            font-size: 1rem;
+                            color: var(--composer-font-color-primary);
+                            width: 100%;
+                        }
+                        .icon-container{
+                            background-color: var(--composer-primary-color);
+                            padding: var(--composer-gap-xs);
+                            border-radius: 50%;
+                            align-items: center;
+                            display: flex;
+                            height: fit-content;
+                            .icon{
+                                color: var(--composer-font-color-secondary);
+                                width: 10px;
+                                height: 10px;
+                            }
+                        }
+                    }
+
+                }
+
+                .buttons {
+                    display: flex;
+                    gap: var(--composer-gap-md);     
+                    .button{
+                        content:"";
+                    }             
+                }
+             
             }
-            .title {
-                font-size: 3rem;
-                margin: 0;
-                max-width: 550px;
-                color: var(--composer-primary-color)
-            }
-            .buttons {
-                display: flex;
-                flex-direction: row;
-                gap: 20px;
-                .button {
-                    cursor: pointer;
-                    text-decoration: none;
-                    text-align: center;
-                    transition: 0.3s;
-                    display: block;
-                    color: white;
-                    background-color: var(--composer-primary-color);
-                    padding: 15px 30px;
-                    font-size: 1.5rem;
-                    font-weight: 400;
-                    border-radius: 6px;
-                    border: 1px solid transparent;
-                    width: 200px;
-                    &:hover {
-                        background-color: transparent;
-                        color: var(--composer-primary-color);
-                        border: 1px solid var(--composer-primary-color);
+            .right-page{
+                flex: 1;
+                position: relative;
+                .image-container {
+                    position: absolute;
+                    top: 0px;
+                    right: 0px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100%;
+                    width: 100%;
+                    .image{
+                        object-fit: cover;
+                        height: 100%;
+                        width: 100%;
+                        border-radius: var(--composer-border-radius-xs);
+
                     }
                 }
-                .button2 {
-                    cursor: pointer;
-                    text-decoration: none;
-                    text-align: center;
-                    transition: 0.3s;
-                    display: block;
-                    color: white;
-                    background-color: var(--composer-primary-color);
-                    padding: 15px 30px;
-                    font-size: 18px;
-                    font-weight: 400;
-                    border-radius: 6px;
-                    border: 1px solid transparent;
-                    width: 200px;
-                    &:hover {
-                        background-color: transparent;
-                        color: var(--composer-primary-color);
-                        border: 1px solid var(--composer-primary-color);
-                    }
-                }
-            }
-        }
-        .image-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            img {
-                width: 100%;
-                max-width: 500px;
             }
         }
     }
 }
-
-@media only screen and (max-width: 768px) {
-    .container {
-        padding: 50px 20px;
+@container (max-width: #{$composer-phone-width}){
+    .container{
         .max-content{
-            display: flex;
-            
-            flex-direction: column-reverse;
-        .call-to-action4-page {
-            text-align: center;
-            margin: 0;
-            h1,
-            h2 {
-                max-width: 100% !important;
-            }
-            .buttons {
-                width: 100%;
-                display: flex;
-                flex-direction: column !important;
-                .button,
-                .button2 {
-                    width: 100% !important;
+            .content{
+                flex-direction: column;
+                .right-page{
+                    min-height: 400px;
                 }
-            }
-        }
-    }
-        .image-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            img {
-                width: 100%;
-                max-width: 500px;
             }
         }
     }

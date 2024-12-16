@@ -1,59 +1,55 @@
 @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
 .container {
-    color: var(--composer-font-color-primary);
+  color: var(--composer-font-color-primary);
 
-    .max-content {
-        .section-title {
-            margin: 0;
-        }
-
-        .section-description {
-            margin-bottom: var(--composer-gap-xl);
-        }
-
-        .cards-container {
-            .card {
-                align-items: center;
-                border: 1px solid color-mix(in srgb, var(--composer-html-background) 80%, var(--composer-font-color-primary) 20%);
-                padding: var(--composer-gap-md);
-                border-radius: var(--composer-border-radius-sm);
-
-                .icon-container {
-                    width: 50px;
-                    height: 50px;
-                    border-radius: 50%;
-                    border: 1px solid color-mix(in srgb, var(--composer-html-background) 80%, var(--composer-font-color-primary) 20%);
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-
-                    &.filled {
-                        border-color: var(--composer-primary-color);
-                        background-color: var(--composer-primary-color);
-
-                        .icon {
-                            color: var(--composer-font-color-secondary);
-                        }
-                    }
-
-                    .icon {
-                        color: var(--composer-primary-color);
-                        width: 25px;
-                        height: 25px;
-                    }
-                }
-
-                .title {}
-
-                .row1 {}
-
-                .row2 {}
-            }
-        }
+  .max-content {
+    .section-title {
+      margin: 0;
     }
+
+    .section-description {
+      margin-bottom: var(--composer-gap-xl);
+    }
+
+    .cards-container {
+      .card {
+        align-items: center;
+        padding: var(--composer-gap-md);
+        border-radius: var(--composer-border-radius-sm);
+        background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+        border: none;
+        .icon-container {
+          width: var(--composer-gap-xl);
+          height: var(--composer-gap-xl);
+          border-radius: 50%;
+          border: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.2);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          &.filled {
+            border: none;
+            background-color: var(--composer-primary-color);
+
+            .icon {
+              color: var(--composer-font-color-secondary);
+            }
+          }
+
+          .icon {
+            color: var(--composer-primary-color);
+            width: var(--composer-gap-md);
+            height: var(--composer-gap-md);
+          }
+        }
+      }
+    }
+  }
 }
 
-@container (max-width: #{$composer-tablet-width}) {}
+@container (max-width: #{$composer-tablet-width}) {
+}
 
-@container (max-width: #{$composer-phone-width}) {}
+@container (max-width: #{$composer-phone-width}) {
+}
