@@ -4,7 +4,7 @@ import styles from "./form2.module.scss";
 import { ErrorMessage, Form, Formik } from "formik";
 import * as Yup from "yup";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { Base } from "composer-tools/composer-base-components/base/base";
+import { Base } from "../../../composer-base-components/base/base";
 
 export type Button = {
   buttonText?: string;
@@ -18,15 +18,15 @@ class Form2Page extends BaseContacts {
       type: "image",
       key: "background-img",
       displayer: "Background Image",
-      value:
-        "https://telaviv.intercontinental.com/wp-content/uploads/sites/3/2023/07/InterContinental-David-Tel-Aviv-Reception.webp",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67602f840655f8002ca77765?alt=media",
     });
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "CONTACT US",
+      value: "Contact Us",
     });
+
     this.addProp({
       type: "array",
       key: "inputs",
@@ -198,7 +198,7 @@ class Form2Page extends BaseContacts {
       type: "string",
       key: "buttonText",
       displayer: "Button Text",
-      value: "Contact Us"
+      value: "Contact Us",
     });
   }
 
@@ -213,6 +213,8 @@ class Form2Page extends BaseContacts {
     const titleExist = !!this.getPropValue("title", { as_string: true });
     const buttonText = this.getPropValue("buttonText");
     const buttonTextExist = !!this.getPropValue("buttonText", { as_string: true });
+
+    const imageExist = this.getPropValue("background-img");
 
     function getInputType(type: string): string {
       switch (type) {
@@ -286,19 +288,12 @@ class Form2Page extends BaseContacts {
     }
 
     return (
-      <Base.Container
-        style={{ backgroundImage: `url(${this.getPropValue("background-img")})` }}
-        className={this.decorateCSS("container")}
-      >
+      <Base.Container style={{ backgroundImage: `url(${this.getPropValue("background-img")})` }} className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(inputs.length > 0 || titleExist && buttonTextExist) &&
+          {(inputs.length > 0 || (titleExist && buttonTextExist)) && (
             <div className={this.decorateCSS("input-items")}>
-              <div className={this.decorateCSS("input-item")}>
-                {titleExist && (
-                  <Base.SectionTitle className={this.decorateCSS("title")}>
-                    {title}
-                  </Base.SectionTitle>
-                )}
+              <div className={imageExist ? this.decorateCSS("input-item") : this.decorateCSS("input-item-no-image")}>
+                {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
                 {(inputs.length > 0 || buttonTextExist) && (
                   <Formik
                     initialValues={initialValue}
@@ -319,9 +314,7 @@ class Form2Page extends BaseContacts {
                                   id={getInputName(index)}
                                   value={values[getInputName(index)]}
                                   placeholder=" "
-                                  className={`${this.decorateCSS("input")} ${this.decorateCSS(
-                                    "textarea"
-                                  )}`}
+                                  className={`${imageExist ? this.decorateCSS("input") : this.decorateCSS("input-no-image")} ${this.decorateCSS("textarea")}`}
                                   rows={12}
                                   onChange={handleChange}
                                 />
@@ -333,19 +326,11 @@ class Form2Page extends BaseContacts {
                                   onChange={handleChange}
                                   value={values[getInputName(index)]}
                                   name={getInputName(index)}
-                                  className={this.decorateCSS("input")}
+                                  className={imageExist ? this.decorateCSS("input") : this.decorateCSS("input-no-image")}
                                 />
                               )}
-                              {input.getPropValue("placeholder", { as_string: true }) && (
-                                <span className={this.decorateCSS("placeholder")}>
-                                  {input.getPropValue("placeholder")}
-                                </span>
-                              )}
-                              <ErrorMessage
-                                className={this.decorateCSS("error-message")}
-                                name={getInputName(index)}
-                                component={"span"}
-                              />
+                              {input.getPropValue("placeholder", { as_string: true }) && <span className={imageExist ? this.decorateCSS("placeholder") : this.decorateCSS("placeholder-no-image")}>{input.getPropValue("placeholder")}</span>}
+                              <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(index)} component={"span"} />
                             </div>
                           </>
                         ))}
@@ -362,7 +347,7 @@ class Form2Page extends BaseContacts {
                 )}
               </div>
             </div>
-          }
+          )}
         </Base.MaxContent>
       </Base.Container>
     );
