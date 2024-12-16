@@ -27,7 +27,6 @@ class Feature4 extends BaseFeature {
       key: "itemCount",
       displayer: "Item Count in a Row",
       value: 3,
-      max: 3,
     });
     this.addProp({
       type: "image",
@@ -439,9 +438,7 @@ class Feature4 extends BaseFeature {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ListGrid gridCount={{ pc: itemCount }} className={this.decorateCSS("content")}>
             {(subtitleExist || titleExist) && (
-              <Base.VerticalContent
-                className={this.decorateCSS("featured-card")}
-              >
+              <div className={this.decorateCSS("featured-card")}>
                 {subtitleExist && (
                   <Base.SectionSubTitle className={this.decorateCSS("section-subtitle")}>
                     {this.getPropValue("subtitle")}
@@ -459,7 +456,7 @@ class Feature4 extends BaseFeature {
                     </ComposerLink>
                   </span>
                 )}
-              </Base.VerticalContent>
+              </div>
             )}
 
             {cards?.length > 0 && cards.map((card: Card, index: number) => {
@@ -473,7 +470,7 @@ class Feature4 extends BaseFeature {
                     key={index}
                     className={this.decorateCSS("card-item-count")}
                   >
-                    <Base.VerticalContent className={this.decorateCSS("vertical")}>
+                    <div className={this.decorateCSS("vertical")}>
                       {!!card.icon && (
                         <div className={this.decorateCSS("icon-container")}>
                           <ComposerIcon
@@ -488,11 +485,11 @@ class Feature4 extends BaseFeature {
                         </Base.H3>
                       )}
                       {subtitleExist && (
-                        <Base.H4 className={this.decorateCSS("subtitle")}>
+                        <Base.P className={this.decorateCSS("subtitle")}>
                           {card.subtitle}
-                        </Base.H4>
+                        </Base.P>
                       )}
-                    </Base.VerticalContent>
+                    </div>
 
                     {(descExist || card?.buttons?.length > 0) && (
                       <div
