@@ -47,7 +47,7 @@ class Header25 extends BaseHeader {
         {
           type: "boolean",
           key: "page_show",
-          displayer: "Page Show",
+          displayer: "Show Page Index",
           value: true,
         },
       ]
@@ -79,7 +79,7 @@ class Header25 extends BaseHeader {
     });
     this.addProp({
       type: "array",
-      displayer: "Slider Carousel",
+      displayer: "Slider Items",
       key: "slider",
       value: [
         {
@@ -239,13 +239,25 @@ class Header25 extends BaseHeader {
           ],
         },
       ]
-
     });
 
     this.addProp({
+      type: "string",
+      key: "side-text",
+      displayer: "Side Text",
+      value: "ARCHITECTURE BURO",
+    });
+    this.addProp({
+      type: "boolean",
+      key: "lineIsActive",
+      displayer: "Line Active",
+      value: true,
+    });
+    
+    this.addProp({
       type: "array",
       key: "icons",
-      displayer: "Social Medias",
+      displayer: "Social Media Items",
       additionalParams: {
         maxElementCount: 5,
       },
@@ -259,7 +271,7 @@ class Header25 extends BaseHeader {
               type: "page",
               key: "navigate_icon",
               displayer: "Icon Link",
-              value: "https://www.instagram.com/",
+              value: "",
             },
             {
               type: "icon",
@@ -278,7 +290,7 @@ class Header25 extends BaseHeader {
               type: "page",
               key: "navigate_icon",
               displayer: "Icon Link",
-              value: "https://twitter.com/",
+              value: "",
             },
             { type: "icon", key: "icon_name", displayer: "Icon", value: "FaTwitter" },
           ],
@@ -292,7 +304,7 @@ class Header25 extends BaseHeader {
               type: "page",
               key: "navigate_icon",
               displayer: "Icon Link",
-              value: "https://www.behance.net/",
+              value: "",
             },
             { type: "icon", key: "icon_name", displayer: "Icon", value: "FaBehance" },
           ],
@@ -306,25 +318,12 @@ class Header25 extends BaseHeader {
               type: "page",
               key: "navigate_icon",
               displayer: "Icon Link",
-              value: "https://www.facebook.com/",
+              value: "",
             },
             { type: "icon", key: "icon_name", displayer: "Icon", value: "FaFacebookF" },
           ],
         },
       ],
-    });
-
-    this.addProp({
-      type: "string",
-      key: "side-text",
-      displayer: "Side Text",
-      value: "ARCHITECTURE BURO",
-    });
-    this.addProp({
-      type: "boolean",
-      key: "lineIsActive",
-      displayer: "Line Active",
-      value: true,
     });
 
     this.setComponentState("active-index", 0);
@@ -425,12 +424,10 @@ class Header25 extends BaseHeader {
                 <div className={this.decorateCSS("bottom-figure")}>
                   {!!this.getPropValue("side-text", { as_string: true }) && (
                     <div className={this.decorateCSS("side-text")}>
-                      <span className={this.decorateCSS("side-text-content")}>
-                        {this.getPropValue("side-text")}
-                      </span>
+                      {this.getPropValue("side-text")}
                     </div>
                   )}
-                  {!!this.getPropValue("lineIsActive") && (
+                  {(!!this.getPropValue("lineIsActive") && !!this.getPropValue("side-text", { as_string: true }) && this.getPropValue("icons")?.length > 0) && (
                     <div className={this.decorateCSS("line")}></div>
                   )}
                   {this.getPropValue("icons")?.length > 0 && (
