@@ -138,7 +138,7 @@
   resize: vertical;
   padding: var(--composer-gap-md) var(--composer-gap-sm);
   border: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.2);
-  background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+  background-color: var(--composer-html-background);
   width: 100%;
   font-family: inherit;
   color: var(--composer-font-color-primary);
@@ -149,12 +149,13 @@
 }
 
 .input:focus {
-  outline-color: var(--composer-font-color-primary);
+  outline: none;
+  border: 1px solid var(--composer-font-color-primary);
 }
 
 .error-message {
   color: red;
-  font-size: 0.5rem;
+  font-size: 1rem;
   margin-top: var(--composer-gap-xs);
 }
 

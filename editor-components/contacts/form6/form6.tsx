@@ -542,7 +542,7 @@ class Form6 extends BaseContacts {
             )}
             {image && (
               <div className={formContainerExist ? this.decorateCSS("image-container") : this.decorateCSS("image-container-no-form")}>
-                <img className={this.decorateCSS("image")} src={image} alt="contact image" />
+                <img className={this.decorateCSS("image")} src={image} alt="" />
               </div>
             )}
           </div>
