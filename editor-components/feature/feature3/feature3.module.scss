@@ -70,10 +70,12 @@ $circlepaddingbottom: calc(-1 * $cardsmargintop + var(--composer-gap-xl));
 
                 .cards-container {
                     gap: var(--composer-gap-lg);
+                    margin-bottom: var(--composer-gap-md);
 
                     &.circle-exist {
                         padding-left: $space;
                         margin-top: $cardsmargintop;
+                        margin-bottom: 0;
                     }
 
                     .card {
