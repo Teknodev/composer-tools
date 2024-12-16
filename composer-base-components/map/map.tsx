@@ -23,12 +23,14 @@ interface ComposerMapProps {
   handleMarkerZoom?: number;
   allContentShow?: boolean;
   styles?: google.maps.MapTypeStyle[];
+  customSelectedMarker?: any;
 }
 
-const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, allContentShow, handleMarkerZoom, styles }: ComposerMapProps) => {
+const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, allContentShow, handleMarkerZoom, styles, customSelectedMarker }: ComposerMapProps) => {
   const uniqueMapIdRef = useRef<string>(Math.random().toString());
   const uniqueMapId = uniqueMapIdRef.current;
   const map = useMap(uniqueMapId);
+
   const [selectedMarkers, setSelectedMarkers] = useState<Coordinate[]>([]);
   const overlayRefs = useRef<(any | null)[]>([]);
   const prevMarkersRef = useRef<Coordinate[]>([]);
@@ -41,18 +43,17 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, 
 
   const getBounds = () => {
     if (markers.length === 0) return null;
-  
+
     const lngs = markers.map((marker) => marker.lng);
     const lats = markers.map((marker) => marker.lat);
-  
+
     const north = Math.max(...lats);
     const south = Math.min(...lats);
     const east = Math.max(...lngs);
     const west = Math.min(...lngs);
-  
+
     return { north, south, east, west };
   };
-  
 
   useEffect(() => {
     if (allContentShow) {
@@ -69,15 +70,16 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, 
       const bounds = new google.maps.LatLngBounds();
       markers.forEach((marker) => bounds.extend(new google.maps.LatLng(marker.lat, marker.lng)));
 
-      if (markers.length > 1) {
-        map.fitBounds(bounds);
-        google.maps.event.addListenerOnce(map, "idle", () => {
-          const currentZoom = map.getZoom();
-          map.setZoom(defaultZoom ?? currentZoom);
-        });
-      } else {
-        map.setZoom(defaultZoom || 10);
-      }
+      map.fitBounds(bounds);
+
+      google.maps.event.addListenerOnce(map, "idle", () => {
+        const currentZoom = map.getZoom();
+        if (markers.length > 1) {
+          map.setZoom(defaultZoom !== undefined ? defaultZoom : currentZoom);
+        } else {
+          map.setZoom(defaultZoom !== undefined ? defaultZoom : 5);
+        }
+      });
     };
 
     fitMapToMarkers();
@@ -85,17 +87,16 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, 
     return () => {
       google.maps.event.clearListeners(map, "idle");
     };
-  }, [map, markers]);
+  }, [map, defaultZoom, JSON.stringify(markers.map((marker) => ({ lat: marker.lat, lng: marker.lng })))]);
 
   useEffect(() => {
     if (map) {
       if (markers.length === 0) {
-        map.setCenter({ lat: 0, lng: 0 }); 
-        map.setZoom(1); 
+        map.setCenter({ lat: 0, lng: 0 });
+        map.setZoom(1);
       }
     }
   }, [map, markers]);
-  
 
   useEffect(() => {
     if (map && defaultZoom !== undefined) {
@@ -108,32 +109,32 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, 
 
   useEffect(() => {
     if (!map) return;
-  
+
     const bounds = getBounds();
-    if (!bounds) return; 
-  
+    if (!bounds) return;
+
     const calculatedCenter = getCenter(bounds);
-  
+
     const hasMarkersChanged = (markers: Coordinate[], prevMarkers: Coordinate[]) => {
       if (markers.length !== prevMarkers.length) {
         return true;
       }
-  
+
       return markers.some((marker, index) => {
         const prevMarker = prevMarkers[index];
         return prevMarker && (marker.lat !== prevMarker.lat || marker.lng !== prevMarker.lng);
       });
     };
-  
+
     if (hasMarkersChanged(markers, prevMarkersRef.current)) {
       map.fitBounds(bounds);
       map.setCenter(calculatedCenter);
-      map.panTo(calculatedCenter); 
+      map.panTo(calculatedCenter);
     }
-  
+
     prevMarkersRef.current = markers;
   }, [map, markers]);
-  
+
   const defaultMarker = defaultMarkerIcon || "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66dffd65343034002c462ded?alt=media&timestamp=1725955430378";
 
   const createOverlayView = (marker: Coordinate) => {
@@ -233,6 +234,16 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, 
     map.setZoom(handleMarkerZoom || 15);
   };
 
+  useEffect(() => {
+    if (customSelectedMarker && map) {
+      const markerToSelect = markers.find((marker) => marker.lat === customSelectedMarker.lat && marker.lng === customSelectedMarker.lng);
+
+      if (markerToSelect) {
+        handleMarkerClick(markerToSelect);
+      }
+    }
+  }, [customSelectedMarker]);
+
   return (
     <Map id={uniqueMapId} className={className}>
       {markers.map((marker, index) => (
@@ -241,7 +252,7 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, 
           position={{ lat: marker.lat, lng: marker.lng }}
           title="Location"
           icon={{
-            url: marker.icon?.url || defaultMarker,
+            url: marker.icon.url || defaultMarker,
             scaledSize: new google.maps.Size(marker.icon?.scaledSize.width || 32, marker.icon?.scaledSize.height || 32),
           }}
           onClick={() => handleMarkerClick(marker)}
