@@ -463,8 +463,13 @@ class Feature4 extends BaseFeature {
               const titleExist = !!this.castToString(card.title);
               const subtitleExist = !!this.castToString(card.subtitle);
               const descExist = !!this.castToString(card.description);
+              const iconExist = !!card.icon;
+              const imageExist = !!card.image;
+              const buttonsExist = card.buttons?.length > 0;
 
-              if (titleExist || subtitleExist || descExist) {
+              const shouldRender = (titleExist || subtitleExist || descExist || iconExist || imageExist || buttonsExist);
+
+              if (shouldRender) {
                 return (
                   <div
                     key={index}
