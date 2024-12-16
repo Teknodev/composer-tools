@@ -510,7 +510,7 @@ class Feature4 extends BaseFeature {
                         className={this.decorateCSS("overlay")}
                         style={{ backgroundImage: `url(${card.image})` }}
                       >
-                        <Base.VerticalContent
+                        <div
                           className={`
                             ${this.decorateCSS("overlay-content")}
                             ${imageOverlay ? this.decorateCSS("apply-overlay") : ""}
@@ -550,7 +550,7 @@ class Feature4 extends BaseFeature {
                               )}
                             </div>
                           )}
-                        </Base.VerticalContent>
+                        </div>
                       </div>
                     )}
                   </div>

@@ -42,6 +42,13 @@
         }
       }
 
+      .card-item-count,
+      .vertical,
+      .overlay,
+      .overlay-content {
+        border-radius: var(--composer-border-radius-sm);
+      }
+
       .card-item-count {
         position: relative;
         background-color: color-mix(in srgb,
@@ -75,6 +82,8 @@
         .overlay-content {
           width: 100%;
           height: 100%;
+          display: flex;
+          flex-direction: column;
           justify-content: center;
           align-items: center;
           padding: var(--composer-gap-md);
