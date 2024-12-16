@@ -4,6 +4,7 @@ import { BaseHeader } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import Slider from "react-slick";
+import ComposerSlider from "../../../composer-base-components/slider/slider";
 
 type SliderObject = {
   title: JSX.Element;
@@ -254,7 +255,7 @@ class HeaderComponent22 extends BaseHeader {
       arrows: false,
       infinite: slider.length > 1,
       speed: 1500,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -271,14 +272,15 @@ class HeaderComponent22 extends BaseHeader {
         {isSliderExist && (
           <div className={this.decorateCSS("container")}>
             <div className={this.decorateCSS("max-content")}>
-              <Slider
+              <ComposerSlider
                 {...settings}
                 className={this.decorateCSS("carousel")}
                 ref={this.getComponentState("slider-ref")}>
                 {slider.map((item: SliderObject, index: number) => {
                   const isActive = this.getComponentState("activeSlide") === index;
-                  const leftImageExist = item.left_image;
-                  const rightImageExist = item.right_image;
+                  const leftImageExist = slider[this.getComponentState("activeSlide")].left_image;
+                  const rightImageExist = slider[this.getComponentState("activeSlide")].right_image;
+                  console.log("rightImageExist"), rightImageExist
                   const middleClass = leftImageExist ? "middle-content" : "middle-content2";
                   const middleClassWithPadding = !leftImageExist && !dots ? "middle-content3" : middleClass;
                   return (
@@ -286,7 +288,6 @@ class HeaderComponent22 extends BaseHeader {
                       className={this.decorateCSS("sliders")}
                       key={index}>
                       <div className={this.decorateCSS("slider")}>
-                        {/* //! LEFT IMAGE */}
                         {leftImageExist && (
                           <div className={this.decorateCSS("left-content")}>
                             <img
@@ -297,37 +298,35 @@ class HeaderComponent22 extends BaseHeader {
                           </div>
                         )}
 
-                        {/* //! MIDDLE CONTENT */}
-
                         <div
                           className={`${this.decorateCSS(middleClassWithPadding)}
                           } ${animation && isActive ? this.decorateCSS("mid-right-animation") : ""}  `}>
-                          {hasDivider && <div className={this.decorateCSS("divider")} />}
-                          {this.castToString(item.title) && <h1 className={this.decorateCSS("title")}>{item.title}</h1>}
+                          <div className={this.decorateCSS("text-wrapper")}>
+                            {hasDivider && <div className={this.decorateCSS("divider")} />}
+                            {this.castToString(item.title) && <div className={this.decorateCSS("title")}>{item.title}</div>}
 
-                          {item.button.map((buttonItem: any, indexButton: number) => {
-                            const buttonText = this.castToString(buttonItem.buttonText);
-                            if (buttonText) {
-                              return (
-                                <div className={this.decorateCSS("link-button-container")}>
-                                  <ComposerLink
-                                    className={this.decorateCSS("link-button")}
-                                    key={`hdr-22-${indexButton}`}
-                                    path={buttonItem.link}>
-                                    <button className={this.decorateCSS("button")}>{buttonText}</button>
-                                  </ComposerLink>
-                                </div>
-                              );
-                            }
-                          })}
+                            {item.button.map((buttonItem: any, indexButton: number) => {
+                              const buttonText = this.castToString(buttonItem.buttonText);
+                              if (buttonText) {
+                                return (
+                                  <div className={this.decorateCSS("link-button-container")}>
+                                    <ComposerLink
+                                      className={this.decorateCSS("link-button")}
+                                      key={`hdr-22-${indexButton}`}
+                                      path={buttonItem.link}>
+                                      <button className={this.decorateCSS("button")}>{buttonText}</button>
+                                    </ComposerLink>
+                                  </div>
+                                );
+                              }
+                            })}
+                          </div>
+
                         </div>
-
-                        {/* //! RIGHT IMAGE */}
                         {rightImageExist && (
                           <div
-                            className={`${this.decorateCSS("right-content")} ${
-                              animation && isActive ? this.decorateCSS("mid-right-animation") : ""
-                            }  `}>
+                            className={`${this.decorateCSS("right-content")} ${animation && isActive ? this.decorateCSS("mid-right-animation") : ""
+                              }  `}>
                             <img
                               className={this.decorateCSS("right-image")}
                               src={item.right_image}
@@ -339,9 +338,8 @@ class HeaderComponent22 extends BaseHeader {
                     </div>
                   );
                 })}
-              </Slider>
+              </ComposerSlider>
 
-              {/* //! NAV CONTROLS */}
               {slider.length > 1 && (
                 <div className={this.decorateCSS("nav-controls")}>
                   <button

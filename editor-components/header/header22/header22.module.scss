@@ -27,10 +27,6 @@
   align-items: center;
   padding: 20px 50px 20px 0;
 
-  container-type: inline-size;
-  container-name: header22;
-  contain: layout inline-size;
-
   .max-content {
     width: 100%;
     height: auto;
@@ -40,10 +36,8 @@
     > div {
       > div {
         > div {
-          //! .slick-track
           display: flex !important;
           > div {
-            //! .slick-slide
             height: inherit !important;
             display: inherit;
             > div {
@@ -114,63 +108,48 @@
     .middle-content2,
     .middle-content3 {
       flex: 1;
-      width: 100%;
-      height: auto;
-      padding-left: 1.2rem;
-      gap: 1.8rem;
-      right: 0;
-      display: flex;
+      width: 100%;    
       position: relative;
-      flex-wrap: wrap;
-      flex-direction: column;
-      justify-content: center;
-      align-items: start;
-      overflow: hidden;
-      text-overflow: ellipsis;
-
-      h1 {
-        margin: 0;
-      }
-
-      .divider {
-        background-color: var(--composer-font-color-primary);
-        width: 85px;
-        height: 2px;
-      }
-
-      .title {
-        font-weight: lighter;
-        font-size: 3.5rem;
-        color: var(--composer-font-color-primary);
-        margin-top: 10px;
-        line-height: 50px;
-        > blinkpage {
-          p {
-            line-clamp: 5;
-            display: -webkit-box;
-            -webkit-line-clamp: 5;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-          }
+      left: calc(var(--composer-gap-xl) * (-1));
+      .text-wrapper{
+        height: 100%;
+        position: absolute;
+        left: 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: start;
+        gap: var(--composer-gap-md);
+        .divider {
+          background-color: var(--composer-font-color-primary);
+          width: 25%;
+          height: 2px;
         }
-      }
-
-      .link-button-container {
-        .button {
-          border: 0;
-          font-weight: bold;
+  
+        .title {
+          font-size: 3.5rem;
           color: var(--composer-font-color-primary);
-          border-bottom: 1px solid var(--composer-font-color-primary);
-          background-color: transparent;
-          padding-bottom: 2px;
-          padding: 0;
-          font-size: 1.2rem;
+          height: fit-content;
+        }
+  
+        .link-button-container {
+          .button {
+            border: 0;
+            color: var(--composer-font-color-primary);
+            border-bottom: 1px solid var(--composer-font-color-primary);
+            background-color: transparent;
+            font-size: 1.2rem;
+            padding: 0px;
+          }
         }
       }
     }
 
     .middle-content2 {
-      padding-left: 100px;
+      left: 0px;
+      .text-wrapper{
+        left: 100px;
+      }
     }
 
     .middle-content3 {
@@ -179,13 +158,11 @@
     .nav-controls {
       position: absolute;
       right: 50px;
-      bottom: 20px;
+      bottom: 0px;
       display: flex;
-      gap: 2rem;
+      gap: var(--composer-gap-xl);
       z-index: 1;
-      padding: 0;
       .nav-buttons {
-        padding: 0;
         background-color: transparent;
         border: none;
         color: var(--composer-font-color-primary);
@@ -197,10 +174,9 @@
       top: 50%;
       display: block;
       padding: 0;
-      margin-left: 50px;
+      left: 50px;
       list-style: none;
       text-align: center;
-      left: 0;
       transform: translateY(-50%);
       bottom: auto;
       width: auto;
@@ -211,20 +187,18 @@
           position: relative;
           background: none;
           border: none;
-          padding: 7px;
-          width: 10px;
-          height: 10px;
+          padding: var(--composer-gap-xs);
+          width: 15px;
+          height: 15px;
           margin-right: 0;
 
           &::before {
             content: "•";
             color: transparent;
             position: absolute;
-            top: 50%;
-            left: 50%;
             transform: translate(-50%, -50%);
             transition: 0.3s;
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             width: 100%;
             height: 100%;
             display: flex;
@@ -257,12 +231,7 @@
 
 @container (max-width: 1024px) {
   .container {
-    padding: 20px 30px 20px 0;
-  }
-}
-
-@container header22 (max-width: 1024px) {
-  .container {
+    padding: 20px 40px 20px 0;
     .max-content {
       .left-content {
         min-width: 50%;
