@@ -4,10 +4,6 @@
   color: var(--composer-font-color-primary);
 
   .max-content {
-    .section-title {
-      margin: 0;
-    }
-
     .section-description {
       margin-bottom: var(--composer-gap-xl);
     }
@@ -43,13 +39,12 @@
             height: var(--composer-gap-md);
           }
         }
+
+        .rows {
+          text-align: center;
+          align-items: center;
+        }
       }
     }
   }
-}
-
-@container (max-width: #{$composer-tablet-width}) {
-}
-
-@container (max-width: #{$composer-phone-width}) {
 }

@@ -4,14 +4,6 @@ import styles from "./form1.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
-type Card = {
-  icon: string;
-  isIconFilled: boolean;
-  title: JSX.Element;
-  row1: JSX.Element;
-  row2: JSX.Element;
-};
-
 class Form1Page extends BaseContacts {
   constructor(props?: any) {
     super(props, styles);
@@ -59,16 +51,37 @@ class Form1Page extends BaseContacts {
               value: "Send Email",
             },
             {
-              type: "string",
-              key: "row1",
-              displayer: "Row 1",
-              value: "info@mail.com",
-            },
-            {
-              type: "string",
-              key: "row2",
-              displayer: "Row 2",
-              value: "support@mail.com",
+              type: "array",
+              key: "rows",
+              displayer: "Rows",
+              value: [
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Input",
+                  value: [
+                    {
+                      type: "string",
+                      key: "item",
+                      displayer: "Item",
+                      value: "info@mail.com",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Input",
+                  value: [
+                    {
+                      type: "string",
+                      key: "item",
+                      displayer: "Item",
+                      value: "support@mail.com",
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
@@ -96,16 +109,37 @@ class Form1Page extends BaseContacts {
               value: "Call Us",
             },
             {
-              type: "string",
-              key: "row1",
-              displayer: "Row 1",
-              value: "+1 2222 333 44 55",
-            },
-            {
-              type: "string",
-              key: "row2",
-              displayer: "Row 2",
-              value: "+2 3333 444 55 66",
+              type: "array",
+              key: "rows",
+              displayer: "Rows",
+              value: [
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Input",
+                  value: [
+                    {
+                      type: "string",
+                      key: "item",
+                      displayer: "Item",
+                      value: "+1 2222 333 44 55",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Input",
+                  value: [
+                    {
+                      type: "string",
+                      key: "item",
+                      displayer: "Item",
+                      value: "+2 3333 444 55 66",
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
@@ -133,16 +167,37 @@ class Form1Page extends BaseContacts {
               value: "Address",
             },
             {
-              type: "string",
-              key: "row1",
-              displayer: "Row 1",
-              value: "380 st. Kilda Road, Acme Corp, 11111",
-            },
-            {
-              type: "string",
-              key: "row2",
-              displayer: "Row 2",
-              value: "Australia",
+              type: "array",
+              key: "rows",
+              displayer: "Rows",
+              value: [
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Input",
+                  value: [
+                    {
+                      type: "string",
+                      key: "item",
+                      displayer: "Item",
+                      value: "380 st. Kilda Road, Acme Corp, 11111",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Input",
+                  value: [
+                    {
+                      type: "string",
+                      key: "item",
+                      displayer: "Item",
+                      value: "Australia",
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
@@ -161,32 +216,32 @@ class Form1Page extends BaseContacts {
     const description = this.getPropValue("description");
     const descriptionExist = !!this.getPropValue("description", { as_string: true });
 
-    const cards = this.castToObject<Card[]>("cards");
+    const cards = this.castToObject<any>("cards");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {titleExist && <Base.SectionTitle className={this.decorateCSS("section-title")}>{title}</Base.SectionTitle>}
-          {descriptionExist && <Base.SectionDescription className={this.decorateCSS("section-description")}>{description}</Base.SectionDescription>}
+          <Base.VerticalContent>
+            {titleExist && <Base.SectionTitle className={this.decorateCSS("section-title")}>{title}</Base.SectionTitle>}
+            {descriptionExist && <Base.SectionDescription className={this.decorateCSS("section-description")}>{description}</Base.SectionDescription>}
+          </Base.VerticalContent>
 
           {cards?.length > 0 && (
             <Base.ListGrid gridCount={{ pc: 3 }} className={this.decorateCSS("cards-container")}>
-              {cards.map((item: Card, index: number) => {
+              {cards.map((item: any, index: number) => {
                 const iconExist = !!item.icon;
                 const titleExist = !!this.castToString(item.title);
-                const row1Exist = !!this.castToString(item.row1);
-                const row2Exist = !!this.castToString(item.row2);
 
-                if (!iconExist && !titleExist && !row1Exist && !row2Exist) return null;
+                if (!iconExist && !titleExist) return null;
 
                 return (
                   <Base.VerticalContent key={index} className={this.decorateCSS("card")}>
                     {iconExist && (
                       <div
                         className={`
-                          ${this.decorateCSS("icon-container")}
-                          ${item.isIconFilled ? this.decorateCSS("filled") : ""}
-                        `}
+                    ${this.decorateCSS("icon-container")}
+                    ${item.isIconFilled ? this.decorateCSS("filled") : ""}
+                  `}
                       >
                         <ComposerIcon
                           name={item.icon}
@@ -197,8 +252,12 @@ class Form1Page extends BaseContacts {
                       </div>
                     )}
                     {titleExist && <Base.H3 className={this.decorateCSS("title")}>{item.title}</Base.H3>}
-                    {row1Exist && <Base.P className={this.decorateCSS("row1")}>{item.row1}</Base.P>}
-                    {row2Exist && <Base.P className={this.decorateCSS("row2")}>{item.row2}</Base.P>}
+                    <Base.VerticalContent className={this.decorateCSS("rows")}>
+                      {item.rows.map((row: any, rowIndex: number) => {
+                        const itemExist = this.castToString(row.item);
+                        return itemExist && <Base.P className={this.decorateCSS("row")}>{itemExist}</Base.P>;
+                      })}
+                    </Base.VerticalContent>
                   </Base.VerticalContent>
                 );
               })}
