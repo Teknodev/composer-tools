@@ -142,15 +142,24 @@ class Feature2 extends BaseFeature {
       displayer: "Show Line",
       value: true,
     });
+
+    window.addEventListener('resize', () => {this.setComponentState("windowWidth", window.innerWidth)});
   }
 
   getName(): string {
     return "Feature 2";
   }
 
+  getItemCount(): number {
+    if (this.getComponentState("windowWidth") <= 1024) return 2;
+    else if (this.getComponentState("windowWidth") <= 896) return 1;
+
+    return this.getPropValue("itemCount");
+  }
+
   render() {
     const items = this.castToObject<Box[]>("items");
-    const itemCount: number = this.getPropValue("itemCount");
+    const itemCount: number = this.getItemCount();
     const showBadge = !!this.getPropValue("showBadge");
     const showLine = !!this.getPropValue("showLine");
 
@@ -162,46 +171,46 @@ class Feature2 extends BaseFeature {
               const titleExist = !!this.castToString(item.title);
               const descExist = !!this.castToString(item.description);
               const iconExist = !!item.icon;
+              const shouldRender = titleExist || descExist || iconExist;
 
-              if (iconExist || titleExist || descExist) {
-                return (
-                  <div
-                    key={index}
-                    className={`
+              if (!shouldRender) return null;
+
+              return (
+                <div
+                  key={index}
+                  className={`
                       ${this.decorateCSS("item")}
                       ${!showLine ?
-                        this.decorateCSS("remove-line")
-                        : (((index + 1) % itemCount === 0) ||
-                          (items[index + 1] && !items[index + 1]?.icon))
-                          ? this.decorateCSS("remove-line")
-                          : ""}
+                      this.decorateCSS("remove-line")
+                      : (((index + 1) % itemCount === 0) ||
+                        (items[index + 1] && !items[index + 1]?.icon))
+                        ? this.decorateCSS("remove-line")
+                        : ""}
                     `}
-                  >
-                    {iconExist && (
-                      <>
-                        {showBadge && (
-                          <span className={this.decorateCSS("item-index")}>{index + 1}</span>
-                        )}
-                        <ComposerIcon
-                          name={item.icon}
-                          propsIcon={{ className: this.decorateCSS("icon") }}
-                        />
-                      </>
-                    )}
-                    {titleExist && (
-                      <Base.H2 className={this.decorateCSS("title")}>
-                        {item.title}
-                      </Base.H2>
-                    )}
-                    {descExist && (
-                      <Base.P className={this.decorateCSS("description")}>
-                        {item.description}
-                      </Base.P>
-                    )}
-                  </div>
-                );
-              }
-              return null;
+                >
+                  {iconExist && (
+                    <>
+                      {showBadge && (
+                        <span className={this.decorateCSS("item-index")}>{index + 1}</span>
+                      )}
+                      <ComposerIcon
+                        name={item.icon}
+                        propsIcon={{ className: this.decorateCSS("icon") }}
+                      />
+                    </>
+                  )}
+                  {titleExist && (
+                    <Base.H2 className={this.decorateCSS("title")}>
+                      {item.title}
+                    </Base.H2>
+                  )}
+                  {descExist && (
+                    <Base.P className={this.decorateCSS("description")}>
+                      {item.description}
+                    </Base.P>
+                  )}
+                </div>
+              );
             })}
           </Base.ListGrid>
         </Base.MaxContent>
