@@ -148,6 +148,28 @@ class HeaderComponent34 extends BaseHeader {
   getName(): string {
     return "Header 34";
   }
+  renderDots() {
+    const activeSlideIndex = this.getComponentState("active-index");
+    const items = this.castToObject<Slider[]>("slider");
+
+    return (
+      <ul className={this.decorateCSS("dots")}>
+        {items.map((item, index) => (
+          <li
+            key={index}
+            className={
+              index === activeSlideIndex ? this.getPropValue("slider")[activeSlideIndex].getPropValue("image") ? this.decorateCSS("slick-active") : this.decorateCSS("slick-active-no-image") : ""
+            }
+          >
+            <button>
+              <span></span>
+            </button>
+          </li>
+        ))
+        }
+      </ul>
+    );
+  }
 
   render() {
     const settings = {
@@ -178,7 +200,7 @@ class HeaderComponent34 extends BaseHeader {
     };
     const settingsText = {
       arrows: false,
-      dots: true,
+      dots: false,
       infinite: true,
       speed: 1000,
       autoplay: false,
@@ -199,33 +221,43 @@ class HeaderComponent34 extends BaseHeader {
         }, 100);
       },
     };
+
+    const allImagesAbsent = this.getPropValue("slider").every(
+      (item: any) => !item.getPropValue("image")
+    );
+
+
     return (
       <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <ComposerSlider
-            {...settings}
-            ref={this.getComponentState("slider-ref")}
-            className={this.decorateCSS("carousel")}
-          >
+        <div className={!allImagesAbsent ? this.decorateCSS("max-content") : this.decorateCSS("max-content-no-image")}>
+          {!allImagesAbsent && (
+            <ComposerSlider
+              {...settings}
+              ref={this.getComponentState("slider-ref")}
+              className={this.decorateCSS("carousel")}
+            >
 
-            {this.getPropValue("slider").map((item: any, indexSlider: number) => {
-              return (
-                <div className={this.decorateCSS("content")} key={indexSlider}>
-                  {item.getPropValue("image") && (
-                    <img src={item.getPropValue("image")} className={this.decorateCSS("image")} />
-                  )}
-                  {this.getPropValue("overlayActive") && (
-                    <div className={this.decorateCSS("overlay")}></div>
-                  )}
-                </div>
-              )
+              {this.getPropValue("slider").map((item: any, indexSlider: number) => {
+                return (
+                  <div className={this.decorateCSS("content")} key={indexSlider}>
+                    {item.getPropValue("image") && (
+                      <img src={item.getPropValue("image")} className={this.decorateCSS("image")} />
+                    )}
+                    {this.getPropValue("overlayActive") && (
+                      <div className={this.decorateCSS("overlay")}></div>
+                    )}
+                  </div>
+                )
 
-            })}
-          </ComposerSlider>
+              })}
+            </ComposerSlider>
+          )
+          }
+
           <ComposerSlider
             {...settingsText}
             ref={this.getComponentState("slider-ref-text")}
-            className={`${this.decorateCSS("slider-text")} ${this.getComponentState("animation-text") &&
+            className={`${!allImagesAbsent ? this.decorateCSS("slider-text") : this.decorateCSS("slider-text-no-image")} ${this.getComponentState("animation-text") &&
               this.decorateCSS("unvisible")
               } ${this.getComponentState("display") &&
               this.decorateCSS("display-none")
@@ -236,7 +268,7 @@ class HeaderComponent34 extends BaseHeader {
                 {(this.castToString(item.getPropValue("title")) || this.castToString(item.getPropValue("button_text"))) && (
                   <div className={this.decorateCSS("text-and-button")}>
                     {this.castToString(item.getPropValue("title")) && (
-                      <div className={this.decorateCSS("text")}>{item.getPropValue("title")}</div>
+                      <div className={this.getPropValue("slider")[this.getComponentState("active-index")].getPropValue("image") ? this.decorateCSS("text") : this.decorateCSS("text-no-image")}>{item.getPropValue("title")}</div>
                     )}
                     {this.castToString(item.getPropValue("button_text")) && (
                       <ComposerLink path={item.getPropValue("button_link")}>
@@ -248,15 +280,17 @@ class HeaderComponent34 extends BaseHeader {
               </div>
             ))}
           </ComposerSlider>
+
+
           {(this.getPropValue("next_icon") || this.getPropValue("prev_icon")) && (
-            <div className={this.decorateCSS("arrow-content")}>
+            <div className={!allImagesAbsent ? this.decorateCSS("arrow-content") : this.decorateCSS("arrow-content-no-image")}>
               {this.getPropValue("next_icon") && (
                 <ComposerIcon
                   name={this.getPropValue("next_icon")}
                   propsIcon={{
                     className: `${this.decorateCSS(
                       "next-icon"
-                    )} ${this.decorateCSS("arrow")} `,
+                    )} ${this.getPropValue("slider")[this.getComponentState("active-index")].getPropValue("image") ? this.decorateCSS("arrow") : this.decorateCSS("arrow-no-image")} `,
                     onClick: () => {
                       if (this.getComponentState("isTransitioning")) return;
 
@@ -279,7 +313,7 @@ class HeaderComponent34 extends BaseHeader {
                   propsIcon={{
                     className: `${this.decorateCSS(
                       "prev-icon"
-                    )} ${this.decorateCSS("arrow")}`,
+                    )} ${this.getPropValue("slider")[this.getComponentState("active-index")].getPropValue("image") ? this.decorateCSS("arrow") : this.decorateCSS("arrow-no-image")}`,
                     onClick: () => {
                       if (this.getComponentState("isTransitioning")) return;
 
@@ -296,6 +330,7 @@ class HeaderComponent34 extends BaseHeader {
                   }}
                 />
               )}
+              {this.renderDots()}
             </div>
           )}
           {(this.getPropValue("slider")[this.getComponentState("active-index")].getPropValue("image") || this.getPropValue("overlayActive")) && (
@@ -321,7 +356,6 @@ class HeaderComponent34 extends BaseHeader {
             </div>
           )}
         </div>
-
       </div>
     );
   }
