@@ -3,8 +3,7 @@
 $icon-size: 56px;
 
 .container {
-    // need
-    padding-top: 35px;
+    padding-top: var(--composer-gap-lg);
 
     .max-content {
         .wrapper {
