@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseSlider, TypeUsableComponentProps } from "../../EditorComponent";
+import { BaseSlider } from "../../EditorComponent";
 import styles from "./slider9.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
@@ -228,7 +228,7 @@ class Slider9 extends BaseSlider {
     const x = ((e.clientX - container.left) / container.width) * 100;
     const y = ((e.clientY - container.top) / container.height) * 100;
 
-    const imgElement = e.currentTarget.querySelector("img");
+    const imgElement = e.currentTarget.querySelector(`.${this.decorateCSS("slider9-image")}`);
     if (imgElement) {
       (imgElement as HTMLElement).style.transformOrigin = `${x}% ${y}%`;
       (imgElement as HTMLElement).style.transform = "scale(1.5)";
@@ -236,7 +236,7 @@ class Slider9 extends BaseSlider {
   };
 
   handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
-    const imgElement = e.currentTarget.querySelector("img");
+    const imgElement = e.currentTarget.querySelector(`.${this.decorateCSS("slider9-image")}`);
     if (imgElement) {
       (imgElement as HTMLElement).style.transform = "scale(1)";
       (imgElement as HTMLElement).style.transformOrigin = "center";
@@ -345,7 +345,7 @@ class Slider9 extends BaseSlider {
                               this.setComponentState("hoveredIndex", null);
                             }}
                           >
-                            <img src={item.image} alt="" className={this.decorateCSS("img")} />
+                            {item.image && <img src={item.image} alt="" className={this.decorateCSS("img")} />}
                             {(isActive || isHovered) && (
                               <div className={this.decorateCSS("overlay")}></div>
                             )}
@@ -393,11 +393,12 @@ class Slider9 extends BaseSlider {
                         <div className={this.decorateCSS("img-container")} key={indexSlider}
                           onMouseMove={this.handleMouseMove}
                           onMouseLeave={this.handleMouseLeave}>
-                          <img
-                            src={item.image}
-                            alt=""
-                            className={this.decorateCSS("img")}
-                          />
+                          {item.image &&
+                            <img
+                              src={item.image}
+                              alt=""
+                              className={this.decorateCSS("slider9-image")}
+                            />}
                         </div>
                       )
                     )}
@@ -533,8 +534,8 @@ class Slider9 extends BaseSlider {
                 </Base.VerticalContent>
               </div>}
           </Base.ContainerGrid>
-        </Base.MaxContent >
-      </Base.Container >
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
