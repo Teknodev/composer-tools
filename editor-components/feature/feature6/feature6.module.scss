@@ -7,10 +7,16 @@
       align-items: center;
       gap: var(--composer-gap-md);
 
-      .header-title {
-      }
+      .header {
+        width: 100%;
 
-      .header-description {
+        .header-title {
+          content: "";
+        }
+
+        .header-description {
+          content: "";
+        }
       }
 
       .button-container {
@@ -46,6 +52,7 @@
     display: flex;
     justify-content: center;
     cursor: pointer;
+    min-height: 100px;
 
     .listed {
       position: relative;
@@ -79,34 +86,41 @@
         width: 100%;
         display: flex;
         align-items: flex-end;
-        justify-content: center;
         padding: var(--composer-gap-md);
         padding-top: 0;
       }
 
-      .image-shadow.overlay {
-        color: white;
-        background: linear-gradient(to bottom, rgba(var(--composer-html-background-rgb), 0) 0%, rgba(var(--composer-font-color-primary-rgb), 0.8) 100%);
+      &:not(:has(.image)) {
+        .image-shadow.overlay {
+          background: transparent;
+
+          .title {
+            color: black;
+          }
+        }
       }
 
-      >div .title, >a .title {
+      .image-shadow.overlay {
+        background: linear-gradient(to bottom, transparent, black 100%);
+
+        .title {
+          color: white;
+        }
+      }
+
+      >div .title,
+      >a .title {
         margin: var(--composer-gap-sm);
         margin-top: 0;
         font-weight: 400;
         font-size: 2.5rem;
-        color: var(--composer-font-color-secondary);
+        color: var(--composer-font-color-primary);
       }
     }
   }
 }
 
-.listed-height-modify {
-  height: 300px;
-}
 
-.image-shadow-full-height {
-  height: 100%;
-}
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
@@ -121,8 +135,6 @@
 
   .cards-container {
     .card-item-count {
-      // width: 100% !important;
-
       .listed {
         .image {
           height: 300px;
@@ -133,14 +145,8 @@
           padding-top: 0;
         }
 
-        .image-shadow.overlay {
-          color: white;
-          background: linear-gradient(to bottom,
-              rgba(var(--composer-html-background-rgb), 0) 0%,
-              rgba(var(--composer-font-color-primary-rgb), 0.8) 100%);
-        }
-
-        >div .title, >a .title {
+        >div .title,
+        >a .title {
           font-size: 2rem;
           line-height: 2rem;
         }

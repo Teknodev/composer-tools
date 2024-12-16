@@ -24,7 +24,7 @@ class Feature6 extends BaseFeature {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "CASE STUDIES",
+      value: "Case Studies",
     });
 
     this.addProp({
@@ -182,56 +182,55 @@ class Feature6 extends BaseFeature {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("content")}>
-            {titleExist && (
-              <Base.SectionTitle className={this.decorateCSS("header-title")}>
-                {this.getPropValue("title")}
-              </Base.SectionTitle>
-            )}
-            {descExist && (
-              <Base.SectionDescription className={this.decorateCSS("header-description")}>
-                {this.getPropValue("description")}
-              </Base.SectionDescription>
-            )}
+            <Base.VerticalContent className={this.decorateCSS("header")}>
+              {titleExist && (
+                <Base.SectionTitle className={this.decorateCSS("header-title")}>
+                  {this.getPropValue("title")}
+                </Base.SectionTitle>
+              )}
+              {descExist && (
+                <Base.SectionDescription className={this.decorateCSS("header-description")}>
+                  {this.getPropValue("description")}
+                </Base.SectionDescription>
+              )}
+            </Base.VerticalContent>
 
             {cards?.length > 0 && (
               <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("cards-container")}>
                 {cards.map((card: Card, index: number) => {
                   const titleExist = !!this.castToString(card.title);
+                  const imageExist = !!card.image;
+
+                  const shouldRender = (titleExist || imageExist);
+
+                  if (!shouldRender) return null;
 
                   return (
                     <div
                       key={index}
                       className={this.decorateCSS("card-item-count")}
                     >
-                      {(!!card.image || titleExist) && (
+                      <div className={this.decorateCSS("listed")}>
+                        {!!card.image && (
+                          <img
+                            className={this.decorateCSS("image")}
+                            src={card.image}
+                            alt={"item" + index}
+                          />
+                        )}
                         <div
                           className={`
-                              ${this.decorateCSS("listed")}
-                              ${!card.image ? this.decorateCSS("listed-height-modify") : ""}
-                            `}
+                            ${this.decorateCSS("image-shadow")}
+                            ${overlay ? this.decorateCSS("overlay") : ""}
+                          `}
                         >
-                          {!!card.image && (
-                            <img
-                              className={this.decorateCSS("image")}
-                              src={card.image}
-                              alt={"item" + index}
-                            />
+                          {titleExist && (
+                            <Base.H3 className={this.decorateCSS("title")}>
+                              {card.title}
+                            </Base.H3>
                           )}
-                          <div
-                            className={`
-                                ${this.decorateCSS("image-shadow")}
-                                ${overlay ? this.decorateCSS("overlay") : ""}
-                                ${!card.image ? this.decorateCSS("image-shadow-full-height") : ""}
-                              `}
-                          >
-                            {titleExist && (
-                              <Base.H3 className={this.decorateCSS("title")}>
-                                {card.title}
-                              </Base.H3>
-                            )}
-                          </div>
                         </div>
-                      )}
+                      </div>
                     </div>
                   );
                 })}
