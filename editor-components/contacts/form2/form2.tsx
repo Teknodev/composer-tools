@@ -300,7 +300,7 @@ class Form2Page extends BaseContacts {
           {(inputs.length > 0 || (titleExist && buttonTextExist)) && (
             <div className={this.decorateCSS("input-items")}>
               <div className={imageExist ? this.decorateCSS("input-item") : this.decorateCSS("input-item-no-image")}>
-                {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
+                {titleExist && <Base.SectionTitle className={imageExist ? this.decorateCSS("title") : ""}>{title}</Base.SectionTitle>}
                 {(inputs.length > 0 || buttonTextExist) && (
                   <Formik
                     initialValues={initialValue}
