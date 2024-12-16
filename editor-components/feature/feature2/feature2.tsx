@@ -135,6 +135,13 @@ class Feature2 extends BaseFeature {
       displayer: "Show Badge",
       value: true
     });
+
+    this.addProp({
+      type: "boolean",
+      key: "showLine",
+      displayer: "Show Line",
+      value: true,
+    });
   }
 
   getName(): string {
@@ -145,6 +152,7 @@ class Feature2 extends BaseFeature {
     const items = this.castToObject<Box[]>("items");
     const itemCount: number = this.getPropValue("itemCount");
     const showBadge = !!this.getPropValue("showBadge");
+    const showLine = !!this.getPropValue("showLine");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -157,16 +165,16 @@ class Feature2 extends BaseFeature {
 
               if (iconExist || titleExist || descExist) {
                 return (
-                  <Base.VerticalContent
+                  <div
                     key={index}
                     className={`
                       ${this.decorateCSS("item")}
-                      ${(
-                        (index % itemCount === 3) ||
-                        (items[index + 1] && !items[index + 1]?.icon))
-                        ? this.decorateCSS("remove-line")
-                        : ""
-                      }
+                      ${!showLine ?
+                        this.decorateCSS("remove-line")
+                        : (((index + 1) % itemCount === 0) ||
+                          (items[index + 1] && !items[index + 1]?.icon))
+                          ? this.decorateCSS("remove-line")
+                          : ""}
                     `}
                   >
                     {iconExist && (
@@ -190,7 +198,7 @@ class Feature2 extends BaseFeature {
                         {item.description}
                       </Base.P>
                     )}
-                  </Base.VerticalContent>
+                  </div>
                 );
               }
               return null;

@@ -11,6 +11,9 @@ $icon-size: 56px;
             row-gap: var(--composer-gap-xl);
 
             .item {
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
                 align-items: center;
                 gap: var(--composer-gap-md);
                 position: relative;
@@ -50,7 +53,6 @@ $icon-size: 56px;
                     width: 100%;
                     font-size: 1rem;
                     margin: 0;
-                    opacity: .5;
                     color: var(--composer-tertiary-color);
                 }
 
@@ -63,7 +65,7 @@ $icon-size: 56px;
                     left: 100%;
                     top: $icon-size / 2;
                     transform: translateX(calc(-50% + var(--composer-gap-sm)));
-                    opacity: .5;
+                    opacity: .2;
                 }
 
                 &.remove-line::after {
