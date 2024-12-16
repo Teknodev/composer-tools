@@ -1,120 +1,107 @@
 @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
-
 .container {
   .max-content {
     .wrapper {
       display: flex;
       justify-content: center;
       align-items: center;
-
       .image-container {
         width: 100%;
-        padding-right: var(--composer-gap-lg);
-
-        .image {
+        .image, .image-no-border-radius {
           width: 100%;
           height: auto;
-
-          &.no-text-container {
-            aspect-ratio: 1.52;
-            object-fit: cover;
-          }
+          border-top-right-radius: var(--composer-border-radius-xl);
+          border-bottom-right-radius: var(--composer-border-radius-xl);
+          object-fit: cover;
+          max-height: 100vh;
+        }
+        .image-no-border-radius{
+          border-top-right-radius: 0px;
+          border-bottom-right-radius: 0px;
         }
       }
-
       .text-container {
         width: 100%;
-        color: var(--composer-font-color-primary);
-        padding: 0 var(--composer-gap-xl);
-
-        &.no-image {
-          padding-left: var(--composer-gap-xl);
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-md);
+        padding-right: 50px;
+        .title-wrapper{
+          .title{
+            content: ""
+          }
+          .mainTitle{
+            content: ""
+          }
+          .description{
+            content: ""
+          }
         }
-
         .featuresList {
-          list-style-type: none;
-          margin: var(--composer-gap-sm) 0;
-          padding-left: 0;
-
+          display: flex;
+          flex-direction: column;
+          gap: var(--composer-gap-sm);
           .feature {
             display: flex;
             justify-content: start;
             align-items: center;
             height: 100%;
             gap: var(--composer-gap-sm);
-            margin-bottom: var(--composer-gap-md);
-
             .icon-wrapper {
               display: flex;
-              align-items: start;
-              height: 100%;
-
               .iconFeature {
-                flex-shrink: 0;
                 width: 20px;
                 height: 20px;
-                margin-top: var(--composer-gap-xs);
+                color: var(--composer-font-color-primary);
               }
             }
-
             .featureTitle {
-              font-weight: 400;
-              margin: 0;
+              font-size: 1.5rem;
+              color: var(--composer-font-color-primary);
             }
           }
         }
-
         .linkList {
-          list-style-type: none;
-          padding-left: 0;
-          margin: var(--composer-gap-md) 0 0 0;
           display: flex;
           flex-direction: column;
           gap: var(--composer-gap-sm);
-
           .linkContainer {
             display: flex;
-            flex-direction: row;
-            justify-content: start;
             align-items: center;
             color: var(--composer-font-color-primary);
-            cursor: pointer;
-
-            &:hover {
-              color: var(--composer-secondary-color);
-
-              .linkText::after {
-                background-color: var(--composer-secondary-color);
-              }
-            }
-
+            cursor: pointer; 
             .link {
               display: flex;
-              justify-content: flex-start;
-              align-items: center;
               gap: var(--composer-gap-sm);
-
               .linkText {
                 font-size: 1.5rem;
-                text-align: left;
                 position: relative;
-
                 &::after {
                   content: "";
                   position: absolute;
                   left: 0;
                   width: 100%;
-                  bottom: -2px;
                   height: 2px;
                   background-color: var(--composer-font-color-primary);
                 }
               }
-
-              .iconLink {
-                flex-shrink: 0;
-                width: 20px;
-                height: 20px;
-                margin-left: var(--composer-gap-xs);
+              .iconWrapper{
+                display: flex;
+                align-items: center;
+                .iconLink {
+                  width: 20px;
+                  height: 20px;
+                }
+              }
+            }
+            &:hover {
+              color: var(--composer-primary-color);
+              .link{
+                .linkText{
+                  &::after {
+                    background-color: var(--composer-primary-color);
+                  }
+                }
               }
             }
           }
@@ -126,81 +113,12 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    .max-content {
-      .wrapper {
-        flex-direction: column;
-
-        .image-container {
-          padding-right: 0;
-          margin-bottom: var(--composer-gap-lg);
-        }
-
-        .text-container {
-          padding: 0 var(--composer-gap-md);
-          text-align: left;
-
-          .featuresList {
-            .feature {
-              .featureTitle {
-                font-size: 1.5rem;
-              }
-            }
-          }
-
-          .linkList {
-            gap: var(--composer-gap-xs);
-            margin: 0;
-
-            .linkContainer {
-              .link {
-                gap: var(--composer-gap-xs);
-                margin: 0;
-              }
-            }
-          }
-        }
-      }
-    }
+    padding: 20px 40px !important;
   }
 }
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    .max-content {
-      .wrapper {
-        .text-container {
-          &.no-image {
-            padding-left: var(--composer-gap-md);
-            padding-right: var(--composer-gap-md);
-          }
-
-          .featuresList {
-            .feature {
-              .icon-wrapper {
-                .iconFeature {
-                  width: 16px;
-                  height: 16px;
-                }
-              }
-            }
-          }
-
-          .linkList {
-            .linkContainer {
-              .link {
-                .linkText {
-                  margin: 0;
-                }
-
-                .iconLink {
-                  width: 16px;
-                  height: 16px;
-                }
-              }
-            }
-          }
-        }
-      }
-    }
+    padding: 20px !important;
   }
 }
