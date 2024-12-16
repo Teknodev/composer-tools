@@ -270,9 +270,9 @@ class Feature3 extends BaseFeature {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={this.decorateCSS("wrapper")}>
+          <div className={this.decorateCSS("wrapper")}>
             {(titleExist || descExist || !!cards?.length) && (
-              <Base.VerticalContent
+              <div
                 className={`
                   ${this.decorateCSS("upper")}
                   ${circleExist ? this.decorateCSS("circle-exist") : ""}
@@ -316,8 +316,8 @@ class Feature3 extends BaseFeature {
                       if (!titleExist && !iconExist) return null;
 
                       return (
-                        <Base.VerticalContent key={index} className={this.decorateCSS("card")}>
-                          <Base.VerticalContent className={this.decorateCSS("card-content")}>
+                        <div key={index} className={this.decorateCSS("card")}>
+                          <div className={this.decorateCSS("card-content")}>
                             {iconExist && (
                               <ComposerIcon
                                 name={card.icon}
@@ -329,13 +329,13 @@ class Feature3 extends BaseFeature {
                                 {card.title}
                               </Base.H2>
                             )}
-                          </Base.VerticalContent>
-                        </Base.VerticalContent>
+                          </div>
+                        </div>
                       );
                     })}
                   </Base.ListGrid>
                 )}
-              </Base.VerticalContent>
+              </div>
             )}
 
             {logos?.length > 0 && (
@@ -351,16 +351,16 @@ class Feature3 extends BaseFeature {
                   if (!logo.image) return null;
 
                   return (
-                    <Base.VerticalContent key={index} className={this.decorateCSS("logo-container")}>
+                    <div key={index} className={this.decorateCSS("logo-container")}>
                       <ComposerLink path={logo.url}>
                         <img className={this.decorateCSS("logo-image")} src={logo.image} alt={`logo ${index + 1}`} />
                       </ComposerLink>
-                    </Base.VerticalContent>
+                    </div>
                   );
                 })}
               </Base.ListGrid>
             )}
-          </Base.VerticalContent>
+          </div>
         </Base.MaxContent>
       </Base.Container>
     );

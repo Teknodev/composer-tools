@@ -1,8 +1,9 @@
 @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
 $space: calc(var(--composer-gap-xl) * 2 + var(--composer-gap-md));
-$cardsmargintop: -350px;
+$cardsmargintop: -300px;
 $logosmargintop: -$cardsmargintop / 2;
+$circlepaddingbottom: calc(-1 * $cardsmargintop + var(--composer-gap-xl));
 
 .container {
     .max-content {
@@ -39,7 +40,7 @@ $logosmargintop: -$cardsmargintop / 2;
                         margin: 0;
 
                         position: absolute;
-                        top: $space;
+                        top: calc(var(--composer-gap-xl) + var(--composer-gap-md));
                         right: 0;
                         width: 30%;
                     }
@@ -49,9 +50,10 @@ $logosmargintop: -$cardsmargintop / 2;
                     background-color: var(--composer-primary-color);
                     border-radius: 999px;
                     width: 65%;
-                    aspect-ratio: 2 / 1.5;
+                    aspect-ratio: 2 / 1;
                     padding: $space;
-                    padding-bottom: -$cardsmargintop;
+                    padding-top: calc(var(--composer-gap-xl) + var(--composer-gap-md));
+                    padding-bottom: $circlepaddingbottom;
                     max-height: 100%;
 
                     &.absolute {
@@ -68,7 +70,9 @@ $logosmargintop: -$cardsmargintop / 2;
                     }
 
                     .card {
-                        min-height: 250px;
+                        min-height: 210px;
+                        display: flex;
+                        flex-direction: column;
 
                         .card-content {
                             width: 100%;
@@ -76,9 +80,9 @@ $logosmargintop: -$cardsmargintop / 2;
                             display: flex;
                             flex-direction: column;
                             justify-content: center;
-                            padding: var(--composer-gap-lg);
+                            padding: var(--composer-gap-md) var(--composer-gap-lg);
                             gap: var(--composer-gap-md);
-                            background-color: var(--composer-font-color-primary);
+                            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
                             border-radius: var(--composer-border-radius-xl);
                             z-index: 1;
                             transition: opacity 0.5s ease, transform 0.5s ease;
@@ -98,7 +102,7 @@ $logosmargintop: -$cardsmargintop / 2;
 
                             .card-title {
                                 font-size: 1.5rem;
-                                color: var(--composer-font-color-secondary);
+                                color: var(--composer-font-color-primary);
                             }
                         }
                     }
@@ -151,7 +155,8 @@ $logosmargintop: -$cardsmargintop / 2;
 
 @container (max-width: #{$composer-tablet-width}) {
     $space : var(--composer-gap-xl);
-    $cardsmargintop : -150px;
+    $cardsmargintop : -220px;
+    $logosmargintop : -$cardsmargintop / 3;
 
     .container {
         .max-content {
@@ -160,22 +165,29 @@ $logosmargintop: -$cardsmargintop / 2;
                     &.no-logos {
                         padding-bottom: 0;
                     }
+
                     .circle {
-                        padding: calc($space + var(--composer-gap-md)) $space;
+                        padding: calc($space + var(--composer-gap-md));
                         aspect-ratio: 1 / 1;
                         padding-bottom: -$cardsmargintop;
+
+                        .title {
+                            font-size: 2.5rem;
+                        }
                     }
 
                     .description {
                         &.circle-exist {
-                            top: $space;
+                            top: calc($space + var(--composer-gap-md));
+                            font-size: 1rem;
                         }
                     }
 
                     .cards-container {
+                        gap: var(--composer-gap-md);
+
                         &.circle-exist {
-                            // padding-left: $space;
-                            padding-left: 0;
+                            padding-left: calc($space + var(--composer-gap-md));
                             margin-top: $cardsmargintop;
                         }
 
@@ -184,6 +196,16 @@ $logosmargintop: -$cardsmargintop / 2;
 
                             .card-content {
                                 padding: var(--composer-gap-md);
+                                gap: var(--composer-gap-sm);
+
+                                .card-icon {
+                                    width: 50px;
+                                    height: 50px;
+                                }
+
+                                .card-title {
+                                    font-size: 1rem;
+                                }
                             }
                         }
                     }
@@ -191,7 +213,7 @@ $logosmargintop: -$cardsmargintop / 2;
 
                 .logos-container {
                     &.circle-exist {
-                        margin-top: var(--composer-gap-lg);
+                        margin-top: $logosmargintop;
                     }
                 }
             }
@@ -209,6 +231,28 @@ $logosmargintop: -$cardsmargintop / 2;
                     .circle {
                         padding: calc(2 * var(--composer-gap-xl)) var(--composer-gap-md);
                         width: 100%;
+
+                        .title {
+                            font-size: 2rem;
+                            text-align: center;
+                        }
+
+                        .description {
+                            font-size: 1rem;
+                            text-align: center;
+                        }
+
+                        &:has(.title + .description) {
+                            padding: var(--composer-gap-md);
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            flex-direction: column;
+
+                            .title {
+                                margin-bottom: var(--composer-gap-md);
+                            }
+                        }
                     }
 
                     .description {
@@ -220,7 +264,7 @@ $logosmargintop: -$cardsmargintop / 2;
                     }
 
                     .cards-container {
-                        gap: var(--composer-gap-md);
+                        gap: var(--composer-gap-sm);
 
                         &.circle-exist {
                             margin-top: 0;
@@ -229,7 +273,23 @@ $logosmargintop: -$cardsmargintop / 2;
                     }
                 }
 
+                &:has(.upper .circle + .cards-container) {
+                    .cards-container {
+                        margin-top: var(--composer-gap-md);
+                    }
+                }
+
+                &:has(.upper .cards-container) {
+                    &:has(.logos-container) {
+                        .logos-container.circle-exist {
+                            margin-top: var(--composer-gap-md);
+                        }
+                    }
+                }
+
                 .logos-container {
+                    gap: var(--composer-gap-sm);
+
                     &.circle-exist {
                         margin-top: 0;
                     }
