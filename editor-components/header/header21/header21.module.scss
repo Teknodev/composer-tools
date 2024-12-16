@@ -97,18 +97,18 @@
 
           position: relative;
           border-radius: 50%;
-          animation: pulse 2s infinite;
+          animation: pulse 1.5s infinite;
         }
 
         @keyframes pulse {
           0% {
-            box-shadow: 0 0 0 var(--composer-gap-xs) rgba(var(--composer-font-color-primary-rgb), 0.1);
+            box-shadow: 0 0 0 var(--composer-gap-xs) rgba(var(--composer-font-color-primary-rgb), 0.2);
           }
           50% {
-            box-shadow: 0 0 0 15px rgba(var(--composer-font-color-primary-rgb), 0.2);
+            box-shadow: 0 0 0 15px rgba(var(--composer-font-color-primary-rgb), 0.5);
           }
           100% {
-            box-shadow: 0 0 0 var(--composer-gap-xs) rgba(var(--composer-font-color-primary-rgb), 0.1);
+            box-shadow: 0 0 0 var(--composer-gap-xs) rgba(var(--composer-font-color-primary-rgb), 0.2);
           }
         }
 
