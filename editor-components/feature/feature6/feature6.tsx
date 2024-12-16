@@ -182,18 +182,20 @@ class Feature6 extends BaseFeature {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("content")}>
-            <Base.VerticalContent className={this.decorateCSS("header")}>
-              {titleExist && (
-                <Base.SectionTitle className={this.decorateCSS("header-title")}>
-                  {this.getPropValue("title")}
-                </Base.SectionTitle>
-              )}
-              {descExist && (
-                <Base.SectionDescription className={this.decorateCSS("header-description")}>
-                  {this.getPropValue("description")}
-                </Base.SectionDescription>
-              )}
-            </Base.VerticalContent>
+            {(titleExist || descExist) && (
+              <Base.VerticalContent className={this.decorateCSS("header")}>
+                {titleExist && (
+                  <Base.SectionTitle className={this.decorateCSS("header-title")}>
+                    {this.getPropValue("title")}
+                  </Base.SectionTitle>
+                )}
+                {descExist && (
+                  <Base.SectionDescription className={this.decorateCSS("header-description")}>
+                    {this.getPropValue("description")}
+                  </Base.SectionDescription>
+                )}
+              </Base.VerticalContent>
+            )}
 
             {cards?.length > 0 && (
               <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("cards-container")}>

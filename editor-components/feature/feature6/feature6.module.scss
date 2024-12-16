@@ -30,16 +30,9 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: var(--composer-gap-sm) var(--composer-gap-md);
-        background: var(--composer-secondary-color);
-        color: var(--composer-font-color-secondary);
         transition: 0.4s;
-        font-size: 1rem;
-        cursor: pointer;
 
         &:hover {
-          outline: 1px solid var(--composer-secondary-color);
-          color: var(--composer-font-color-secondary);
           transform: scale(1.05);
         }
       }
@@ -48,6 +41,12 @@
 }
 
 .cards-container {
+  .card-item-count,
+  .listed,
+  .image {
+    border-radius: var(--composer-border-radius-sm);
+  }
+
   .card-item-count {
     display: flex;
     justify-content: center;
