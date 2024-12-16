@@ -179,44 +179,49 @@ class Feature14 extends BaseFeature {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={alignment == "left" ? this.decorateCSS("title-wrapper") : this.decorateCSS("title-wrapper-center")}>
-            <Base.VerticalContent className={this.decorateCSS("title-left")}>
-              {this.castToString(this.getPropValue("title")) && (
-                <Base.SectionTitle className={this.decorateCSS("header")}>
-                  {this.getPropValue("title")}
-                </Base.SectionTitle>
-              )}
-              {(alignment == "left" && this.castToString(this.getPropValue("linkTitle"))) && (
-                <div className={this.decorateCSS("link")}>
-                  <ComposerLink path={this.getPropValue("linkPage")}>
-                    {this.getPropValue("linkTitle")}
-                  </ComposerLink>
-                  <ComposerIcon name={this.getPropValue("linkIcon")} />
-                </div>
-              )}
-            </Base.VerticalContent>
-            <Base.VerticalContent className={this.decorateCSS("title-right")}>
-              {this.castToString(this.getPropValue("firstdescription")) && (
-                <Base.SectionDescription className={this.decorateCSS("description-1")}>
-                  {this.getPropValue("firstdescription")}
-                </Base.SectionDescription>
-              )}
+          {(this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("linkTitle"))
+            || this.castToString(this.getPropValue("firstdescription")) || this.castToString(this.getPropValue("seconddescription"))) && (
+              <div className={alignment == "left" ? this.decorateCSS("title-wrapper") : this.decorateCSS("title-wrapper-center")}>
+                <Base.VerticalContent className={this.decorateCSS("title-left")}>
+                  {this.castToString(this.getPropValue("title")) && (
+                    <Base.SectionTitle className={this.decorateCSS("header")}>
+                      {this.getPropValue("title")}
+                    </Base.SectionTitle>
+                  )}
+                  {(alignment == "left" && this.castToString(this.getPropValue("linkTitle"))) && (
+                    <div className={this.decorateCSS("link")}>
+                      <ComposerLink path={this.getPropValue("linkPage")}>
+                        {this.getPropValue("linkTitle")}
+                      </ComposerLink>
+                      <ComposerIcon name={this.getPropValue("linkIcon")} />
+                    </div>
+                  )}
+                </Base.VerticalContent>
+                <Base.VerticalContent className={this.decorateCSS("title-right")}>
+                  {this.castToString(this.getPropValue("firstdescription")) && (
+                    <Base.SectionDescription className={this.decorateCSS("description-1")}>
+                      {this.getPropValue("firstdescription")}
+                    </Base.SectionDescription>
+                  )}
 
-              {this.castToString(this.getPropValue("seconddescription")) && (
-                <Base.SectionDescription className={this.decorateCSS("description-2")}>
-                  {this.getPropValue("seconddescription")}
-                </Base.SectionDescription>
-              )}
-              {(alignment == "center" && this.castToString(this.getPropValue("linkTitle"))) && (
-                <div className={this.decorateCSS("link")}>
-                  <ComposerLink path={this.getPropValue("linkPage")}>
-                    {this.getPropValue("linkTitle")}
-                  </ComposerLink>
-                  <ComposerIcon name={this.getPropValue("linkIcon")} />
-                </div>
-              )}
-            </Base.VerticalContent>
-          </div>
+                  {this.castToString(this.getPropValue("seconddescription")) && (
+                    <Base.SectionDescription className={this.decorateCSS("description-2")}>
+                      {this.getPropValue("seconddescription")}
+                    </Base.SectionDescription>
+                  )}
+                  {(alignment == "center" && this.castToString(this.getPropValue("linkTitle"))) && (
+                    <div className={this.decorateCSS("link")}>
+                      <ComposerLink path={this.getPropValue("linkPage")}>
+                        {this.getPropValue("linkTitle")}
+                      </ComposerLink>
+                      <ComposerIcon name={this.getPropValue("linkIcon")} />
+                    </div>
+                  )}
+                </Base.VerticalContent>
+              </div>
+            )
+          }
+
           <div className={this.decorateCSS("section")}>
             <Base.ListGrid className={this.decorateCSS("cards")} gridCount={{ pc: this.getPropValue("itemCount") }}>
               {cardItems.map((item: any, index: number) => {
