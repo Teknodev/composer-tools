@@ -7,14 +7,29 @@
   position: relative;
   height: 100vh;
 
+  .overlay {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 100;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--composer-overlay-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    width: 100%;
+  }
+
   .max-content {
     height: 100%;
+    z-index: 5;
     .input-items {
       .background-image {
         width: 100%;
         height: max-content;
         position: relative;
-        opacity: 0.9;
 
         .img {
           width: 100%;
@@ -35,8 +50,7 @@
         left: 50%;
         transform: translate(-50%, -50%);
         background-color: rgba(var(--composer-html-background-rgb), 0);
-        border-radius: var(--composer-border-radius-md);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        box-shadow: var(--box-shadow-active);
         backdrop-filter: blur(var(--composer-gap-sm));
         -webkit-backdrop-filter: blur(var(--composer-gap-sm));
         border: 1px solid rgba(var(--composer-html-background-rgb), 0);
@@ -59,22 +73,19 @@
 
             .error-message {
               text-align: end;
-
-              blinkpage p {
-                margin-top: var(--composer-gap-xs);
-                color: var(--composer-font-color-primary);
-              }
+              margin-top: var(--composer-gap-xs);
+              color: var(--composer-font-color-primary);
             }
 
             .placeholder,
             .placeholder-no-image {
-              font-size: 10px; // need
+              font-size: 12px;
               position: absolute;
               top: var(--composer-gap-xs);
               left: var(--composer-gap-sm);
               transition: all 0.3s ease;
               pointer-events: none;
-              color: var(--composer-font-color-secondary);
+              color: white;
             }
             .placeholder-no-image {
               color: var(--composer-font-color-primary);
@@ -90,7 +101,8 @@
               background-color: rgba(255, 255, 255, 0);
               padding-left: var(--composer-gap-sm);
               outline: none;
-              color: var(--composer-font-color-secondary);
+              color: var(--composer-font-color-primary);
+              border: 1px solid var(--composer-font-color-primary);
 
               &.textarea {
                 padding-top: var(--composer-gap-md);
@@ -101,10 +113,7 @@
 
             .input {
               border: 1px solid white;
-            }
-
-            .input-no-image {
-              border: 1px solid var(--composer-font-color-primary);
+              color: white;
             }
           }
         }
@@ -121,10 +130,6 @@
           flex-basis: 100%;
           justify-content: center;
         }
-      }
-
-      .input-item-no-image {
-        border: 1px solid var(--composer-font-color-primary);
       }
     }
   }

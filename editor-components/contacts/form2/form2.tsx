@@ -21,6 +21,12 @@ class Form2Page extends BaseContacts {
       value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67602f840655f8002ca77765?alt=media",
     });
     this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
+    });
+    this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
@@ -215,7 +221,7 @@ class Form2Page extends BaseContacts {
     const buttonTextExist = !!this.getPropValue("buttonText", { as_string: true });
 
     const imageExist = this.getPropValue("background-img");
-
+    const overlay = this.getPropValue("overlay");
     function getInputType(type: string): string {
       switch (type) {
         case "Text Area":
@@ -289,6 +295,7 @@ class Form2Page extends BaseContacts {
 
     return (
       <Base.Container style={{ backgroundImage: `url(${this.getPropValue("background-img")})` }} className={this.decorateCSS("container")}>
+        {overlay && imageExist && <div className={this.decorateCSS("overlay")}></div>}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(inputs.length > 0 || (titleExist && buttonTextExist)) && (
             <div className={this.decorateCSS("input-items")}>
