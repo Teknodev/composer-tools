@@ -437,7 +437,7 @@ class Feature4 extends BaseFeature {
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ListGrid gridCount={{ pc: itemCount }} className={this.decorateCSS("content")}>
-            {(subtitleExist || titleExist) && (
+            {(subtitleExist || titleExist || linkTextExist) && (
               <div className={this.decorateCSS("featured-card")}>
                 {subtitleExist && (
                   <Base.SectionSubTitle className={`
