@@ -387,8 +387,7 @@ class Slider10 extends BaseSlider {
           </div>
           {(featuredItems?.length > 0 || nextIcon || prevIcon) && (
             <div className={this.decorateCSS("footer-max-content")}>
-              <div className={`${this.decorateCSS("slider-footer")}
-              ${!slides[activeIndex].image && this.decorateCSS("no-bg-image")}`}>
+              <div className={this.decorateCSS("slider-footer")}>
                 {featuredItems.length > 0 &&
                   <div className={this.decorateCSS("slider-footer-items")}>
                     {featuredItems.map((item: FeaturedItem, index: number) => {

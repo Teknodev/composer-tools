@@ -87,7 +87,7 @@
 
       .slider-footer {
         border-top-left-radius: var(--composer-border-radius-md);
-        background-color: var(--composer-html-background);
+        background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
         display: flex;
         justify-content: center;
         align-items: stretch;
@@ -191,10 +191,6 @@
             }
           }
         }
-      }
-
-      .no-bg-image {
-        background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
       }
     }
   }
