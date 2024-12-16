@@ -222,9 +222,11 @@ import NoticeModal from "./modal/notice-modal/notice";
 import NotificationModal2 from "./modal/notificationmodal2/notificationmodal2";
 import SubscriptionModal from "./modal/subscription-modal/subscription-modal";
 import FormModal1 from "./modal/formmodal1/formmodal1";
+import LocationComponent6 from "./location/location6/location6";
 import LocationComponent5 from "./location/location5/location5";
 import LocationComponent2 from "./location/location2/location2";
 import ConfirmationModal2 from "./modal/confirmation-modal-2/confirmation-modal-2";
+import LocationComponent4 from "./location/location4/location4";
 
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
@@ -377,7 +379,7 @@ function Registerables(composer: ComponentsRegistery) {
     new FeatureComponent10(),
     new FeatureComponent11(),
     new FeatureComponent12(),
-    // new FeatureComponent13(),
+    new FeatureComponent13(),
     new FeatureComponent14(),
     new CallToAction1(),
     new CallToAction2(),
@@ -446,9 +448,11 @@ function Registerables(composer: ComponentsRegistery) {
     new SubscriptionModal(),
     new FormModal1(),
     new LocationComponent1(),
+    new LocationComponent6(),
     new LocationComponent5(),
     new LocationComponent2(),
     new LocationComponent3(),
+    new LocationComponent4(),
     new HttpCodes3(),
     new HttpCodes2(),
     new HttpCodes4(),
