@@ -12,8 +12,10 @@ $circlepaddingbottom: calc(-1 * $cardsmargintop + var(--composer-gap-xl));
                 position: relative;
                 width: 100%;
 
-                &.no-logos {
-                    padding-bottom: calc($logosmargintop / 2);
+                &.circle-exist:has(.cards-container) {
+                    &.no-logos {
+                        padding-bottom: calc($logosmargintop / 2);
+                    }
                 }
 
                 .title {
@@ -178,8 +180,10 @@ $circlepaddingbottom: calc(-1 * $cardsmargintop + var(--composer-gap-xl));
         .max-content {
             .wrapper {
                 .upper {
-                    &.no-logos {
-                        padding-bottom: 0;
+                    &.circle-exist:has(.cards-container) {
+                        &.no-logos {
+                            padding-bottom: 0;
+                        }
                     }
 
                     .circle {
