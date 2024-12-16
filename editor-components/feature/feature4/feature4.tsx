@@ -440,17 +440,26 @@ class Feature4 extends BaseFeature {
             {(subtitleExist || titleExist) && (
               <div className={this.decorateCSS("featured-card")}>
                 {subtitleExist && (
-                  <Base.SectionSubTitle className={this.decorateCSS("section-subtitle")}>
+                  <Base.SectionSubTitle className={`
+                    ${this.decorateCSS("section-subtitle")}
+                    ${!!this.getPropValue("backgroundImage") ? this.decorateCSS("black") : ""}
+                  `}>
                     {this.getPropValue("subtitle")}
                   </Base.SectionSubTitle>
                 )}
                 {titleExist && (
-                  <Base.SectionTitle className={this.decorateCSS("section-title")}>
+                  <Base.SectionTitle className={`
+                    ${this.decorateCSS("section-title")}
+                    ${!!this.getPropValue("backgroundImage") ? this.decorateCSS("black") : ""}
+                  `}>
                     {this.getPropValue("title")}
                   </Base.SectionTitle>
                 )}
                 {linkTextExist && (
-                  <span className={this.decorateCSS("featured-card-link")}>
+                  <span className={`
+                    ${this.decorateCSS("featured-card-link")}
+                    ${!!this.getPropValue("backgroundImage") ? this.decorateCSS("black") : ""}
+                  `}>
                     <ComposerLink path={this.getPropValue("link")}>
                       {this.getPropValue("linkText")}
                     </ComposerLink>
