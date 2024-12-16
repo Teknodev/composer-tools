@@ -43,6 +43,13 @@ $circlepaddingbottom: calc(-1 * $cardsmargintop + var(--composer-gap-xl));
                         top: calc(var(--composer-gap-xl) + var(--composer-gap-md));
                         right: 0;
                         width: 30%;
+
+                        line-clamp: 7;
+                        -webkit-line-clamp: 7;
+                        display: -webkit-box;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        -webkit-box-orient: vertical;
                     }
                 }
 
@@ -180,6 +187,9 @@ $circlepaddingbottom: calc(-1 * $cardsmargintop + var(--composer-gap-xl));
                         &.circle-exist {
                             top: calc($space + var(--composer-gap-md));
                             font-size: 1rem;
+
+                            line-clamp: 8;
+                            -webkit-line-clamp: 8;
                         }
                     }
 
@@ -243,7 +253,7 @@ $circlepaddingbottom: calc(-1 * $cardsmargintop + var(--composer-gap-xl));
                         }
 
                         &:has(.title + .description) {
-                            padding: var(--composer-gap-md);
+                            padding: calc(1.5 * var(--composer-gap-xl)) var(--composer-gap-md);
                             display: flex;
                             justify-content: center;
                             align-items: center;
@@ -260,6 +270,8 @@ $circlepaddingbottom: calc(-1 * $cardsmargintop + var(--composer-gap-xl));
                             width: 100%;
                             position: static;
                             color: var(--composer-font-color-secondary);
+                            line-clamp: unset;
+                            -webkit-line-clamp: unset;
                         }
                     }
 
