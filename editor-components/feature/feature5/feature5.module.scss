@@ -96,7 +96,7 @@
             font-size: 1rem;
             margin: 0;
             max-width: 80%;
-            line-height: 2rem;
+            font-size: 1.5rem;
           }
 
           .button-text-container {
@@ -120,29 +120,27 @@
       }
 
       .second {
-        background: var(--composer-font-color-primary);
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+
+        &:hover {
+          .text {
+            color: var(--composer-primary-color);
+          }
+        }
       }
 
       .second .text {
         height: fit-content;
-        color: var(--composer-font-color-secondary);
+        color: var(--composer-font-color-primary);
         width: 100%;
         font-size: 2rem;
         box-sizing: border-box;
         font-weight: 800;
         padding: 0 var(--composer-gap-lg);
-      }
-
-      .second {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        justify-content: center;
-        background: var(--composer-font-color-primary);
-      }
-
-      .second .text:hover {
-        color: var(--composer-primary-color);
       }
 
       .third .image {
@@ -272,9 +270,6 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
-      .section-title {
-      }
-
       .row1 {
         flex-direction: row;
 
@@ -315,10 +310,6 @@
         .first {
           .first-items-wrapper {
             padding: 0;
-
-            .description {
-              line-height: 1.5rem;
-            }
           }
         }
       }
@@ -438,9 +429,6 @@
           .first-items-wrapper {
             gap: var(--composer-gap-sm);
 
-            .description {
-            }
-
             .button-text {
               font-size: 1rem;
               border-bottom: 2px solid var(--composer-font-color-primary);
@@ -493,7 +481,7 @@
 
           .image {
             width: 50%;
-            aspect-ratio: 16/9.6;
+            height: 150px;
 
             &.row3-images-less {
               height: 120px;
@@ -524,7 +512,7 @@
 
           .image {
             width: 50%;
-            aspect-ratio: 7 / 4.2;
+            height: 150px;
           }
 
           .subtitle {
@@ -545,7 +533,7 @@
 
           .image {
             width: 50%;
-            aspect-ratio: 7 / 4.2;
+            height: 150px;
           }
 
           .subtitle {
