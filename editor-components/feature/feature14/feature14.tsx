@@ -18,25 +18,25 @@ class Feature14 extends BaseFeature {
     this.addProp({
       type: "string",
       key: "title",
-      displayer: "Section Title",
+      displayer: "Title",
       value: "Here are couple reasons why We are the best",
     });
     this.addProp({
       type: "string",
       key: "firstdescription",
-      displayer: "First Section Description",
+      displayer: "First Description",
       value: "New Concept Staining (NCS) is a woman-owned company that provides color concreate staining services to commercial and residential customers.",
     });
     this.addProp({
       type: "string",
       key: "seconddescription",
-      displayer: "Second Section Description",
+      displayer: "Second Description",
       value: "The company was formed in response to an overwhelming market demand for concreate staining services, predominantly in the commercial construction industry. NCS'work commonly includes the artisanal staining of bridges, sound walls, abutments, and buildings.",
     });
     this.addProp({
       type: "string",
       key: "linkTitle",
-      displayer: "Link Title",
+      displayer: "Link Text",
       value: "About Us",
     });
     this.addProp({
@@ -163,7 +163,6 @@ class Feature14 extends BaseFeature {
       key: "itemCount",
       displayer: "Item count in a row",
       value: 4,
-      max: 4,
     });
   }
 
@@ -180,55 +179,66 @@ class Feature14 extends BaseFeature {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.ListGrid className={this.decorateCSS("row")} gridCount={{pc: alignment == "center" ? 1 : 2, tablet: 1, phone: 1}}>
-            {this.castToString(this.getPropValue("title")) && (
-              <Base.SectionTitle className={this.decorateCSS("header")}>
-                {this.getPropValue("title")}
-              </Base.SectionTitle>
-            )}
-            {this.castToString(this.getPropValue("firstdescription")) && (
-              <Base.SectionDescription className={this.decorateCSS("description-1")}>
-                {this.getPropValue("firstdescription")}
-              </Base.SectionDescription>
-            )}
-            {this.castToString(this.getPropValue("linkTitle")) && (
-              <div className={alignment == "center" ? this.decorateCSS("link-center") : this.decorateCSS("link")}>
-                <ComposerLink path={this.getPropValue("linkPage")}>
-                  {this.getPropValue("linkTitle")}
-                </ComposerLink>
-                <ComposerIcon name={this.getPropValue("linkIcon")} />
-              </div>
-            )}
-            {this.castToString(this.getPropValue("seconddescription")) && (
-              <Base.SectionDescription className={this.decorateCSS("description-2")}>
-                {this.getPropValue("seconddescription")}
-              </Base.SectionDescription>
-            )}
-          </Base.ListGrid>
+          <div className={alignment == "left" ? this.decorateCSS("title-wrapper") : this.decorateCSS("title-wrapper-center")}>
+            <Base.VerticalContent className={this.decorateCSS("title-left")}>
+              {this.castToString(this.getPropValue("title")) && (
+                <Base.SectionTitle className={this.decorateCSS("header")}>
+                  {this.getPropValue("title")}
+                </Base.SectionTitle>
+              )}
+              {(alignment == "left" && this.castToString(this.getPropValue("linkTitle"))) && (
+                <div className={this.decorateCSS("link")}>
+                  <ComposerLink path={this.getPropValue("linkPage")}>
+                    {this.getPropValue("linkTitle")}
+                  </ComposerLink>
+                  <ComposerIcon name={this.getPropValue("linkIcon")} />
+                </div>
+              )}
+            </Base.VerticalContent>
+            <Base.VerticalContent className={this.decorateCSS("title-right")}>
+              {this.castToString(this.getPropValue("firstdescription")) && (
+                <Base.SectionDescription className={this.decorateCSS("description-1")}>
+                  {this.getPropValue("firstdescription")}
+                </Base.SectionDescription>
+              )}
+
+              {this.castToString(this.getPropValue("seconddescription")) && (
+                <Base.SectionDescription className={this.decorateCSS("description-2")}>
+                  {this.getPropValue("seconddescription")}
+                </Base.SectionDescription>
+              )}
+              {(alignment == "center" && this.castToString(this.getPropValue("linkTitle"))) && (
+                <div className={this.decorateCSS("link")}>
+                  <ComposerLink path={this.getPropValue("linkPage")}>
+                    {this.getPropValue("linkTitle")}
+                  </ComposerLink>
+                  <ComposerIcon name={this.getPropValue("linkIcon")} />
+                </div>
+              )}
+            </Base.VerticalContent>
+          </div>
           <div className={this.decorateCSS("section")}>
-            <Base.ListGrid className={this.decorateCSS("cards")} gridCount={{pc: this.getPropValue("itemCount")}}>
-            {cardItems.map((item: any, index: number) => {
-              return (
-                <div className={this.decorateCSS("card")}>
-                  {item.icon && (
-                    <div className={this.decorateCSS("icon-box")}>
-                      <div className={this.decorateCSS("icon")}>
-                        <ComposerIcon name={item.icon} />
+            <Base.ListGrid className={this.decorateCSS("cards")} gridCount={{ pc: this.getPropValue("itemCount") }}>
+              {cardItems.map((item: any, index: number) => {
+                return (
+                  <div className={this.decorateCSS("card")}>
+                    {item.icon && (
+                      <div className={this.decorateCSS("icon-box")}>
+                        <ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
                       </div>
+                    )}
+
+                    <div className={this.decorateCSS("card-content")}>
+                      {this.castToString(item.title) && (
+                        <div className={this.decorateCSS("card-title")}>{item.title}</div>
+                      )}
+                      {this.castToString(item.description) && (
+                        <div className={this.decorateCSS("card-description")}>{item.description}</div>
+                      )}
                     </div>
-                  )}
-                  
-                  <Base.VerticalContent className={this.decorateCSS("card-content")}>
-                    {this.castToString(item.title) && (
-                      <span className={this.decorateCSS("card-title")}>{item.title}</span>
-                    )}
-                    {this.castToString(item.description) && (
-                      <span className={this.decorateCSS("card-description")}>{item.description}</span>
-                    )}
-                  </Base.VerticalContent>
-                </div> 
-              );
-            })}
+                  </div>
+                );
+              })}
             </Base.ListGrid>
           </div>
         </Base.MaxContent>

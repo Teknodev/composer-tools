@@ -2,74 +2,73 @@
 
 .container {
     .max-content {
-        .row{
-            .header {
-                margin-bottom: var(--composer-gap-sm);
-                margin-top: 0px;
-                width: 80%;
-            }
-
-            .link-center {
-                order: 4;
-                justify-content: center !important;
-            }
-
-            .link, .link-center {
-                display: flex;
-                flex: 1;
-                flex-direction: row;
-                align-items: center;
-                justify-content: flex-start;
-                gap: var(--composer-gap-sm);
-                margin-top: var(--composer-gap-sm);
-                color: var(--composer-primary-color);
-                font-size: 1.5rem;
-                transition: 0.7s;
-
-                &:hover {
-                    
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-md);
+        .title-wrapper, .title-wrapper-center{
+            display: flex;
+            gap: var(--composer-gap-xl);
+            .title-left{
+                flex:1;                
+                .header {
+                    content:"";
+                }
+                .link {
+                    display: flex;
+                    flex: 1;
+                    align-items: center;
+                    justify-content: flex-start;
+                    gap: var(--composer-gap-sm);
+                    color: var(--composer-primary-color);
+                    font-size: 1.5rem;
                 }
             }
 
-            .description-1 {
-                font-size: 2rem;
-                margin-top: 0;  
+            .title-right{
+                flex: 1;
+                .description-1 {
+                    content: "";
+                }
+    
+                .description-2 {
+                    color: var(--composer-tertiary-color);
+                    content: "";
+                }
+                .link {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: var(--composer-gap-sm);
+                    color: var(--composer-primary-color);
+                    font-size: 1.5rem;
+                }
             }
-
-            .description-2 {
-                color: var(--composer-tertiary-color);
-                font-size: 1.5rem;
-                margin-top: 0;
-            }
+        }
+        .title-wrapper-center{
+            flex-direction: column;
+            gap: var(--composer-gap-sm);
         }
 
         .section {
-            margin-top: var(--composer-gap-lg);
-
             .cards {
-                gap: var(--composer-gap-xl);
-
                 .card {
                     display: flex;
                     flex-direction: column;
-                    justify-content: flex-start;
-                    align-items: flex-start;
                     border: solid 1px rgba(var(--composer-font-color-primary-rgb), 0.2);
                     border-radius: var(--composer-border-radius-md);
                     padding: var(--composer-gap-xl);
-                    overflow: hidden;
-
+                    gap: var(--composer-gap-md);
                     .icon-box {
                         width: fit-content;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        padding: var(--composer-gap-sm);
+                        background-color: var(--composer-primary-color);                    
+                        border-radius: var(--composer-border-radius-md);
                         .icon {
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            padding: var(--composer-gap-md);
-                            background-color: var(--composer-primary-color);
+                            font-size: 2rem;
                             color: var(--composer-font-color-secondary);
-                            font-size: 4rem;
-                            border-radius: var(--composer-border-radius-md);
                         }
                     }
 
@@ -80,22 +79,17 @@
                     }
 
                     .card-content {
-                        margin-top: var(--composer-gap-lg);
-
+                        display: flex;
+                        flex-direction: column;
+                        gap: var(--composer-gap-md);
                         .card-title {
-                            font-size: 2.5rem;
-                            font-weight: bold;
+                            font-size: 2rem;
                             color: var(--composer-font-color-primary);
-                            overflow: hidden;
-                            word-break: break-word;
                         }
 
                         .card-description {
-                            margin-top: var(--composer-gap-md);
                             font-size: 1.5rem;
                             color: var(--composer-tertiary-color);
-                            overflow: hidden;
-                            word-break: break-word;
                         }
                     }
                 }
@@ -105,23 +99,32 @@
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-
-    .header {
-        width: 100% !important;
-    }
-
-    .link, .link-center {
-        order: 4;
-        justify-content: center !important;
-        margin-bottom: var(--composer-gap-lg);
-    }
-
-    .section {
-        margin-top: 0 !important;
-
-        .cards {
-            .card {
-                padding: var(--composer-gap-lg) !important;
+    .container{
+        .max-content{
+            .title-wrapper, .title-wrapper-center{
+                flex-direction: column;
+                gap: var(--composer-gap-sm);
+            }
+            .section {
+                .cards {
+                    .card {
+                        padding: var(--composer-gap-md);
+                        .icon-box {
+                            .icon {
+                                font-size: 1.5rem;
+                            }
+                        }
+                        .card-content {
+                            .card-title {
+                                font-size: 1.5rem;
+                            }
+    
+                            .card-description {
+                                font-size: 1rem;
+                            }
+                        }
+                    }
+                }
             }
         }
     }
