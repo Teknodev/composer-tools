@@ -18,7 +18,7 @@ class Form2Page extends BaseContacts {
       type: "image",
       key: "background-img",
       displayer: "Background Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67602f840655f8002ca77765?alt=media",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67614bdb0655f8002ca7aef6?alt=media",
     });
     this.addProp({
       type: "boolean",
@@ -300,7 +300,7 @@ class Form2Page extends BaseContacts {
           {(inputs.length > 0 || (titleExist && buttonTextExist)) && (
             <div className={this.decorateCSS("input-items")}>
               <div className={imageExist ? this.decorateCSS("input-item") : this.decorateCSS("input-item-no-image")}>
-                {titleExist && <Base.SectionTitle className={imageExist ? this.decorateCSS("title") : ""}>{title}</Base.SectionTitle>}
+                {titleExist && <Base.SectionTitle className={imageExist ? this.decorateCSS("title") : this.decorateCSS("title-no-image")}>{title}</Base.SectionTitle>}
                 {(inputs.length > 0 || buttonTextExist) && (
                   <Formik
                     initialValues={initialValue}
