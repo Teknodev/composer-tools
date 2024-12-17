@@ -3,10 +3,11 @@ import { BaseContacts, TypeUsableComponentProps } from "../../EditorComponent";
 import * as Yup from "yup";
 import styles from "./form11.module.scss";
 import { ErrorMessage, Formik, Form } from "formik";
-import { Base } from "composer-tools/composer-base-components/base/base";
+import { Base } from "../../../composer-base-components/base/base";
 
 type ContactItem = {
   text: JSX.Element;
+  title: JSX.Element;
 };
 
 class Form11Page extends BaseContacts {
@@ -16,22 +17,19 @@ class Form11Page extends BaseContacts {
       type: "string",
       key: "title",
       displayer: "Title",
-      value:
-        "Let's work together! <br> Feel free to <i><u>contact us</u></i> any time.",
+      value: "Let's work together! Feel free to contact us any time.",
     });
     this.addProp({
       type: "string",
       key: "first-text",
       displayer: "First Text",
-      value:
-        "Phasellus sit amet scelerisque sapien. Aliquam erat volutpat. Nam ut lectus at velit dapibus sollicitudin eu.",
+      value: "Phasellus sit amet scelerisque sapien. Aliquam erat volutpat. Nam ut lectus at velit dapibus sollicitudin eu.",
     });
     this.addProp({
       type: "string",
       key: "second-text",
       displayer: "Second Text",
-      value:
-        "Because they are hard, because that goal will serve to organize and measure the best of our energies and skills, because that challenge is one that we are willing to accept, one we are unwilling to postpone and one.",
+      value: "Because they are hard, because that goal will serve to organize and measure the best of our energies and skills, because that challenge is one that we are willing to accept, one we are unwilling to postpone and one.",
     });
 
     this.addProp({
@@ -46,10 +44,16 @@ class Form11Page extends BaseContacts {
           value: [
             {
               type: "string",
-              key: "text",
-              value: "<b>Email:</b> hello@yoursite.com",
+              key: "title",
+              value: "Email:",
               displayer: "Text",
-            }
+            },
+            {
+              type: "string",
+              key: "text",
+              value: "hello@yoursite.com",
+              displayer: "Text",
+            },
           ],
         },
         {
@@ -59,10 +63,16 @@ class Form11Page extends BaseContacts {
           value: [
             {
               type: "string",
-              key: "text",
-              value: "<b>Phone:</b> +123.456.789",
+              key: "title",
+              value: "Phone:",
               displayer: "Text",
-            }
+            },
+            {
+              type: "string",
+              key: "text",
+              value: "+123.456.789",
+              displayer: "Text",
+            },
           ],
         },
         {
@@ -72,12 +82,18 @@ class Form11Page extends BaseContacts {
           value: [
             {
               type: "string",
-              key: "text",
-              value: "<b>Skype:</b> donec.sit.amet",
+              key: "title",
+              value: "Skype:",
               displayer: "Text",
-            }
+            },
+            {
+              type: "string",
+              key: "text",
+              value: "donec.sit.amet",
+              displayer: "Text",
+            },
           ],
-        }
+        },
       ],
     });
 
@@ -267,7 +283,7 @@ class Form11Page extends BaseContacts {
       type: "string",
       key: "button_text",
       displayer: "Button Text",
-      value: "SEND",
+      value: "Send",
     });
   }
 
@@ -306,11 +322,7 @@ class Form11Page extends BaseContacts {
       }
     }
 
-    function getInputName(
-      indexOfLabel: number,
-      inputLabel: string,
-      indexOfInput: number
-    ): string {
+    function getInputName(indexOfLabel: number, inputLabel: string, indexOfInput: number): string {
       const name = toObjectKey(`${indexOfLabel} ${inputLabel} ${indexOfInput}`);
       return toObjectKey(name);
     }
@@ -318,16 +330,10 @@ class Form11Page extends BaseContacts {
     function getInitialValue() {
       let value: any = {};
       inputItems.map((inputItem: any, indexOfItem: number) => {
-        inputItem
-          .getPropValue("inputs")
-          ?.map((_: TypeUsableComponentProps, indexOfInput: number) => {
-            const key = getInputName(
-              indexOfItem,
-              inputItem.getPropValue("label"),
-              indexOfInput
-            );
-            value[key] = "";
-          });
+        inputItem.getPropValue("inputs")?.map((_: TypeUsableComponentProps, indexOfInput: number) => {
+          const key = getInputName(indexOfItem, inputItem.getPropValue("label"), indexOfInput);
+          value[key] = "";
+        });
       });
       return value;
     }
@@ -336,37 +342,27 @@ class Form11Page extends BaseContacts {
       let schema = Yup.object().shape({});
 
       inputItems.map((inputItem: any, indexOfItem: number) => {
-        inputItem
-          .getPropValue("inputs")
-          .map((input: any, indexOfInput: number) => {
-            const key = getInputName(
-              indexOfItem,
-              inputItem.getPropValue("label"),
-              indexOfInput
-            );
+        inputItem.getPropValue("inputs").map((input: any, indexOfInput: number) => {
+          const key = getInputName(indexOfItem, inputItem.getPropValue("label"), indexOfInput);
 
-            const isRequired = input.getPropValue("is_required");
-            const isEmail = getInputType(input.getPropValue("type")) == "email";
+          const isRequired = input.getPropValue("is_required");
+          const isEmail = getInputType(input.getPropValue("type")) == "email";
 
-            let fieldSchema = Yup.string() as any;
+          let fieldSchema = Yup.string() as any;
 
-            if (isRequired) {
-              fieldSchema = fieldSchema.required(
-                input.getPropValue("required_error_message")
-              );
-            } else {
-              fieldSchema = fieldSchema.nullable();
-            }
-            if (isEmail) {
-              fieldSchema = fieldSchema.email(
-                input.getPropValue("type_error_message")
-              );
-            }
+          if (isRequired) {
+            fieldSchema = fieldSchema.required(input.getPropValue("required_error_message"));
+          } else {
+            fieldSchema = fieldSchema.nullable();
+          }
+          if (isEmail) {
+            fieldSchema = fieldSchema.email(input.getPropValue("type_error_message"));
+          }
 
-            schema = schema.shape({
-              [key]: fieldSchema,
-            });
+          schema = schema.shape({
+            [key]: fieldSchema,
           });
+        });
       });
 
       return schema;
@@ -391,38 +387,37 @@ class Form11Page extends BaseContacts {
     }
 
     function isRequiredInput(inputItem: any): boolean {
-      return inputItem
-        .getPropValue("inputs")
-        .some((input: any) => input.getPropValue("is_required"));
+      return inputItem.getPropValue("inputs").some((input: any) => input.getPropValue("is_required"));
     }
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {titleExist && (
-            <Base.SectionTitle className={this.decorateCSS("section-title")}>{this.getPropValue("title")}</Base.SectionTitle>
-          )}
-          <Base.ListGrid gridCount={{ pc: 2, tablet: 1, phone: 1 }} className={this.decorateCSS("page-content")}>
+          {titleExist && <Base.SectionTitle className={this.decorateCSS("section-title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+          <div className={this.decorateCSS("page-content")}>
             {(firstTextExist || secondTextExist || contactTexts?.length > 0) && (
               <Base.VerticalContent className={this.decorateCSS("text-content")}>
-                {firstTextExist && (
-                  <Base.P className={this.decorateCSS("paragraph")}> {this.getPropValue("first-text")} </Base.P>
-                )}
-                {secondTextExist && (
-                  <Base.P className={this.decorateCSS("paragraph")}> {this.getPropValue("second-text")} </Base.P>
-                )}
+                {firstTextExist && <Base.P className={this.decorateCSS("paragraph")}> {this.getPropValue("first-text")} </Base.P>}
+                {secondTextExist && <Base.P className={this.decorateCSS("paragraph")}> {this.getPropValue("second-text")} </Base.P>}
                 <Base.VerticalContent className={this.decorateCSS("contact-texts")}>
                   {contactTexts.map((item, i) => {
+                    const titleExist = !!this.castToString(item.title);
                     const textExist = !!this.castToString(item.text);
-                    if (!textExist) return null;
+                    const contactItemExist = titleExist || textExist;
 
                     return (
-                      <Base.P key={i} className={this.decorateCSS("contact-text")}>{item.text}</Base.P>
+                      contactItemExist && (
+                        <div key={i} className={this.decorateCSS("contact-element")}>
+                          <Base.P className={this.decorateCSS("contact-title")}>{item.title}</Base.P>
+                          <Base.P className={this.decorateCSS("contact-text")}>{item.text}</Base.P>
+                        </div>
+                      )
                     );
                   })}
                 </Base.VerticalContent>
               </Base.VerticalContent>
             )}
+
             <Base.VerticalContent className={this.decorateCSS("form-content")}>
               <Formik
                 initialValues={getInitialValue()}
@@ -436,13 +431,19 @@ class Form11Page extends BaseContacts {
                 {({ handleChange, values }) => (
                   <Form className={this.decorateCSS("form")}>
                     {inputItems.map((inputItem: any, inputItemIndex: number) =>
-                      inputItem.getPropValue("inputs").map((inputObj: any, inputIndex: number) =>
+                      inputItem.getPropValue("inputs").map((inputObj: any, inputIndex: number) => (
                         <div className={this.decorateCSS("input-box")}>
-                          {inputObj.getPropValue("type") == "Text Area" ?
+                          {inputObj.getPropValue("type") == "Text Area" ? (
                             <textarea
                               value={values[getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)]}
-                              className={this.decorateCSS("form-input")} placeholder={inputObj.getPropValue("placeholder", { as_string: true })} rows={12} onChange={handleChange}
-                              name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)} cols={30}></textarea> :
+                              className={this.decorateCSS("form-input")}
+                              placeholder={inputObj.getPropValue("placeholder", { as_string: true })}
+                              rows={12}
+                              onChange={handleChange}
+                              name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)}
+                              cols={30}
+                            ></textarea>
+                          ) : (
                             <input
                               placeholder={inputObj.getPropValue("placeholder", { as_string: true })}
                               type={getInputType(inputObj.getPropValue("type"))}
@@ -450,23 +451,18 @@ class Form11Page extends BaseContacts {
                               value={values[getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)]}
                               name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)}
                               className={this.decorateCSS("form-input")}
-                            />}
-                          <ErrorMessage
-                            className={this.decorateCSS("error-message")}
-                            name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)}
-                            component={"span"}
-                          />
+                            />
+                          )}
+                          <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)} component={"span"} />
                         </div>
-                      )
+                      ))
                     )}
-                    <Base.Button className={this.decorateCSS("form-button")}>
-                      {this.getPropValue("button_text")}
-                    </Base.Button>
+                    <Base.Button className={this.decorateCSS("form-button")}>{this.getPropValue("button_text")}</Base.Button>
                   </Form>
                 )}
               </Formik>
             </Base.VerticalContent>
-          </Base.ListGrid>
+          </div>
         </Base.MaxContent>
       </Base.Container>
     );

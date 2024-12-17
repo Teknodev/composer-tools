@@ -1,102 +1,100 @@
 @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
-$content-background-color: color-mix(in srgb,
-        var(--composer-html-background),
-        var(--composer-font-color-primary) 5%);
+$content-background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
 
 .container {
-    .max-content {
-        .section-title {
-            margin-top: 0;
+  .max-content {
+    .page-content {
+      display: flex;
+      gap: var(--composer-gap-md);
+      background-color: $content-background-color;
+      padding: var(--composer-gap-xl);
+      border-radius: var(--composer-border-radius-md);
 
-            u {
-                text-decoration-color: var(--composer-tertiary-color);
-            }
+      .text-content {
+        gap: var(--composer-gap-lg);
+        flex: 1;
+
+        .paragraph {
+          color: var(--composer-font-color-primary);
+          margin-top: 0;
+          margin-bottom: 0;
         }
 
-        .page-content {
+        .contact-texts {
+          .contact-element {
+            display: flex;
+            color: var(--composer-font-color-primary);
+            gap: var(--composer-gap-sm);
+            .contact-title {
+              font-weight: bold;
+            }
+          }
+        }
+      }
+
+      .form-content {
+        flex: 1;
+
+        .form {
+          display: flex;
+          flex-direction: column;
+          gap: var(--composer-gap-lg);
+
+          .form-input {
+            font-family: inherit;
+            width: 100%;
+            border: none;
+            color: var(--composer-font-color-primary);
             background-color: $content-background-color;
-            padding: var(--composer-gap-xl);
+            border-bottom: 1px solid var(--composer-font-color-primary);
+            outline: none;
+            padding-bottom: var(--composer-gap-sm);
+            font-size: 1.5rem;
 
-            .text-content {
-                gap: var(--composer-gap-lg);
-
-                .paragraph {
-                    color: var(--composer-font-color-primary);
-                    margin-top: 0;
-                    margin-bottom: 0;
-                }
-
-                .contact-texts {
-                    gap: var(--composer-gap-xs);
-
-                    .contact-text {
-                        color: var(--composer-font-color-primary);
-                        margin-top: 0;
-                        margin-bottom: 0;
-                    }
-                }
+            &::placeholder {
+              font-size: 1.5rem;
+              color: var(--composer-font-color-primary);
             }
 
-            .form-content {
-                .form {
-                    display: flex;
-                    flex-direction: column;
-                    gap: var(--composer-gap-lg);
-
-                    .form-input {
-                        font-family: inherit;
-                        width: 100%;
-                        border: none;
-                        color: var(--composer-font-color-primary);
-                        background-color: $content-background-color;
-                        border-bottom: 1px solid var(--composer-font-color-primary);
-                        outline: none;
-                        padding-bottom: var(--composer-gap-xs);
-                        font-size: 1rem;
-
-                        &::placeholder {
-                            color: var(--composer-font-color-primary);
-                        }
-
-                        &:focus {
-                            &::placeholder {
-                                color: $content-background-color;
-                            }
-                        }
-                    }
-
-                    textarea.form-input {
-                        resize: vertical;
-                        min-height: 5rem;
-                    }
-
-                    .form-button {
-                        width: fit-content;
-                        letter-spacing: var(--composer-gap-xs);
-                    }
-                }
+            &:focus {
+              &::placeholder {
+                color: $content-background-color;
+              }
             }
+          }
+
+          textarea.form-input {
+            resize: vertical;
+            min-height: 5rem;
+          }
+
+          .form-button {
+            // width: fit-content;
+            // letter-spacing: var(--composer-gap-xs);
+          }
         }
+      }
     }
+  }
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-    .container {
-        .max-content {
-            .page-content {
-                gap: var(--composer-gap-xl);
-            }
-        }
+  .container {
+    .max-content {
+      .page-content {
+        gap: var(--composer-gap-xl);
+      }
     }
+  }
 }
 
 @container (max-width: #{$composer-phone-width}) {
-    .container {
-        .max-content {
-            .page-content {
-                padding: var(--composer-gap-md);
-            }
-        }
+  .container {
+    .max-content {
+      .page-content {
+        padding: var(--composer-gap-md);
+      }
     }
+  }
 }
