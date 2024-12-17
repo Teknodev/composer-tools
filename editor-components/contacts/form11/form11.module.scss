@@ -68,14 +68,16 @@ $content-background-color: color-mix(in srgb, var(--composer-html-background), v
             resize: vertical;
             min-height: 5rem;
           }
-
-          .form-button {
-            // width: fit-content;
-            // letter-spacing: var(--composer-gap-xs);
-          }
         }
       }
     }
+  }
+}
+
+.error-container {
+  transform: translateY(var(--composer-gap-xs));
+  .error-message {
+    color: var(--danger-color);
   }
 }
 

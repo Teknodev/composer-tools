@@ -345,7 +345,7 @@ class Form11Page extends BaseContacts {
         inputItem.getPropValue("inputs").map((input: any, indexOfInput: number) => {
           const key = getInputName(indexOfItem, inputItem.getPropValue("label"), indexOfInput);
 
-          const isRequired = input.getPropValue("is_required");
+          const isRequired = input.getPropValue("isRequired");
           const isEmail = getInputType(input.getPropValue("type")) == "email";
 
           let fieldSchema = Yup.string() as any;
@@ -386,14 +386,10 @@ class Form11Page extends BaseContacts {
       return newObj;
     }
 
-    function isRequiredInput(inputItem: any): boolean {
-      return inputItem.getPropValue("inputs").some((input: any) => input.getPropValue("is_required"));
-    }
-
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {titleExist && <Base.SectionTitle className={this.decorateCSS("section-title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+          <Base.VerticalContent>{titleExist && <Base.SectionTitle className={this.decorateCSS("section-title")}>{this.getPropValue("title")}</Base.SectionTitle>}</Base.VerticalContent>
           <div className={this.decorateCSS("page-content")}>
             {(firstTextExist || secondTextExist || contactTexts?.length > 0) && (
               <Base.VerticalContent className={this.decorateCSS("text-content")}>
@@ -453,11 +449,15 @@ class Form11Page extends BaseContacts {
                               className={this.decorateCSS("form-input")}
                             />
                           )}
-                          <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)} component={"span"} />
+                          <div className={this.decorateCSS("error-container")}>
+                            <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)} component={"span"} />
+                          </div>
                         </div>
                       ))
                     )}
-                    <Base.Button className={this.decorateCSS("form-button")}>{this.getPropValue("button_text")}</Base.Button>
+                    <Base.Button type="submit" className={this.decorateCSS("form-button")}>
+                      {this.getPropValue("button_text")}
+                    </Base.Button>
                   </Form>
                 )}
               </Formik>
