@@ -49,6 +49,7 @@
 
                     .carousel-vertical {
                         width: 100%;
+                        max-height: 93%;
 
                         >div {
                             >div {
@@ -90,7 +91,6 @@
                                 transition: opacity 0.3s ease;
                             }
                         }
-
                     }
 
                     .verticalArrows {
@@ -106,6 +106,7 @@
                             flex: 1;
                             color: var(--composer-font-color-primary);
                             background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+                            border-radius: var(--composer-border-radius-xs);
                         }
                     }
                 }
@@ -117,7 +118,6 @@
                     position: relative;
                     overflow: hidden;
                     border-radius: var(--composer-border-radius-xs);
-
 
                     &:hover .horizontalArrows .horizontalPreviousArrow {
                         animation: moveRight 0.3s forwards;
@@ -362,8 +362,7 @@
                         position: relative;
                         z-index: 2;
                         background: #000;
-                        padding: 20px;
-                        border-radius: 10px;
+                        border-radius: var(--composer-border-radius-sm);
                         max-width: 90%;
                         max-height: 70vh;
                         display: flex;
@@ -384,7 +383,7 @@
                         position: absolute;
                         top: 10px;
                         right: 10px;
-                        color: black;
+                        color: #fff;
                         cursor: pointer;
                         z-index: 10;
                         background-color: transparent;
@@ -501,6 +500,22 @@
                                 }
                             }
                         }
+
+                        .fullscreen-modal {
+                            .close-button-wrapper {
+                                .close-button {
+                                    width: 30px;
+                                    height: 30px;
+                                }
+                            }
+                        }
+
+                        .close-button-wrapper {
+                            .close-button {
+                                width: 30px;
+                                height: 30px;
+                            }
+                        }
                     }
                 }
             }
@@ -561,6 +576,22 @@
                                         height: 20px;
                                     }
                                 }
+                            }
+                        }
+
+                        .fullscreen-modal {
+                            .close-button-wrapper {
+                                .close-button {
+                                    width: 20px;
+                                    height: 20px;
+                                }
+                            }
+                        }
+
+                        .close-button-wrapper {
+                            .close-button {
+                                width: 20px;
+                                height: 20px;
                             }
                         }
                     }
