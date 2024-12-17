@@ -3,36 +3,8 @@
 .container {
   .max-content {
     .wrapper {
-      position: relative;
-      padding: var(--composer-gap-xl) 0;
-      padding-bottom: 0;
-
       .texts {
-        margin-bottom: var(--composer-gap-md);
-
-        .badge {
-          color: var(--composer-font-color-primary);
-          position: absolute;
-          right: var(--composer-gap-md);
-          top: var(--composer-gap-md);
-          font-size: 1.5rem;
-          font-weight: 700;
-        }
-
-        .text {
-          display: flex;
-          gap: var(--composer-gap-md);
-
-          .subtitle {
-            margin: 0;
-            margin-top: calc(-1 * var(--composer-gap-md));
-            color: var(--composer-font-color-primary);
-          }
-
-          .title {
-            margin: 0;
-          }
-        }
+        content: "";
       }
 
       .input-items {
@@ -46,21 +18,21 @@
           display: flex;
           flex-direction: column;
           align-items: center;
+          gap: var(--composer-gap-md);
 
           .inputs {
             display: flex;
             position: relative;
             width: 100%;
             justify-content: center;
-            gap: var(--composer-gap-xl);
-            padding: 0 calc(2 * var(--composer-gap-lg));
+            gap: calc(2 * var(--composer-gap-xl));
           }
 
           .first-inputs,
           .second-inputs {
             display: flex;
             flex-direction: column;
-            gap: var(--composer-gap-md);
+            gap: var(--composer-gap-lg);
             width: 100%;
 
             .input-container {
@@ -68,19 +40,19 @@
 
               .placeholder {
                 position: absolute;
-                left: 5px;
-                font-size: 1rem;
+                left: var(--composer-gap-xs);
+                font-size: 1.5rem;
                 bottom: var(--composer-gap-md);
                 transition: all 0.2s ease;
                 color: var(--composer-font-color-primary);
               }
 
               .error-message {
-                color: red;
-                font-size: 0.6rem;
+                color: var(--danger-color);
+                font-size: 1rem;
                 position: absolute;
-                top: var(--composer-gap-md);
                 left: 0;
+                bottom: calc(-1 * var(--composer-gap-md));
               }
             }
           }
@@ -88,29 +60,31 @@
           .input {
             border: none;
             border-bottom: 1px solid var(--composer-font-color-primary);
-            height: 30px;
+            height: var(--composer-gap-lg);
             margin-bottom: var(--composer-gap-sm);
             outline: none;
             width: 100%;
             background-color: transparent;
             color: var(--composer-font-color-primary);
+            transform: translateY(var(--composer-gap-xs));
           }
 
-          .input:focus+.placeholder,
-          .input:not(:placeholder-shown)+.placeholder {
+          .input:focus + .placeholder,
+          .input:not(:placeholder-shown) + .placeholder {
             bottom: var(--composer-gap-lg);
           }
 
           .select {
             border: none;
             border-bottom: 1px solid var(--composer-font-color-primary);
-            height: 30px;
+            height: var(--composer-gap-lg);
             outline: none;
             width: 100%;
             background-color: transparent;
-            font-size: 1rem;
+            font-size: 1.5rem;
             color: var(--composer-font-color-primary);
             margin-bottom: var(--composer-gap-sm);
+            transform: translateY(var(--composer-gap-xs));
 
             option {
               background-color: var(--composer-font-color-secondary);
@@ -119,59 +93,19 @@
             }
           }
 
-          .select:focus+.placeholder,
-          .select:valid+.placeholder {
+          .select:focus + .placeholder,
+          .select:valid + .placeholder {
             bottom: 45px;
           }
 
-          .select:invalid+.placeholder {
+          .select:invalid + .placeholder {
             bottom: 25px;
           }
         }
       }
 
       .submit-button {
-        text-align: center;
-        font-weight: 700;
-        cursor: pointer;
-        background-color: var(--composer-font-color-primary);
-        color: var(--composer-font-color-secondary);
-        border: none;
         align-self: flex-end;
-        margin-right: calc(2 * var(--composer-gap-lg));
-        margin-top: var(--composer-gap-md);
-        padding: var(--composer-gap-md) var(--composer-gap-lg);
-
-        .button-inner {
-          width: 100%;
-          height: 100%;
-          position: relative;
-
-          .button-circle {
-            background: var(--composer-secondary-color);
-            width: 35px;
-            height: 35px;
-            position: absolute;
-            transition: 0.3s;
-            border-radius: 50px;
-            transform: translateY(-50%);
-            top: 50%;
-            left: calc(-1 * var(--composer-gap-sm));
-          }
-
-          &:hover {
-            .button-circle {
-              width: calc(100% + var(--composer-gap-md));
-            }
-          }
-
-          .button-text {
-            color: var(--composer-font-color-secondary);
-            font-size: 1.5rem;
-            position: relative;
-            z-index: 1;
-          }
-        }
       }
     }
   }
@@ -181,24 +115,6 @@
   .container {
     .max-content {
       .wrapper {
-        .texts {
-          .text {
-            .title {}
-
-            .subtitle {
-              margin-top: 0;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-            }
-          }
-
-          .badge {
-            top: 0;
-            right: 0;
-          }
-        }
-
         .input-items {
           .form {
             .inputs {
@@ -219,26 +135,11 @@
   .container {
     .max-content {
       .wrapper {
-        .texts {
-          .text {
-            flex-direction: column;
-            gap: 0;
-
-            .title {}
-
-            .subtitle {
-              justify-content: flex-start;
-            }
-          }
-
-          .badge {}
-        }
-
         .input-items {
           .form {
             .inputs {
               flex-direction: column;
-              gap: var(--composer-gap-md);
+              gap: var(--composer-gap-lg);
             }
           }
 

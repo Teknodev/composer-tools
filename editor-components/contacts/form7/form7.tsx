@@ -8,12 +8,7 @@ import { Base } from "../../../composer-base-components/base/base";
 class Form7 extends BaseContacts {
   constructor(props?: any) {
     super(props, styles);
-    this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "I want to",
-    });
+
     this.addProp({
       type: "string",
       key: "title",
@@ -385,7 +380,6 @@ class Form7 extends BaseContacts {
   render() {
     const badge = this.getPropValue("badge", { as_string: true });
     const title = this.getPropValue("title", { as_string: true });
-    const subtitle = this.getPropValue("subtitle", { as_string: true });
     const buttonText = this.getPropValue("button_text", { as_string: true });
 
     const firstInputs = this.getPropValue("first_inputs");
@@ -462,24 +456,11 @@ class Form7 extends BaseContacts {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("wrapper")}>
-            {(badge || title || subtitle) && (
-              <div className={this.decorateCSS("texts")}>
-                {badge && (
-                  <span className={this.decorateCSS("badge")}>{badge}</span>
-                )}
-                {(title || subtitle) && (
-                  <div className={this.decorateCSS("text")}>
-                    {subtitle && (
-                      <Base.H3 className={this.decorateCSS("subtitle")}>
-                        {subtitle}
-                      </Base.H3>
-                    )}
-                    {title && (
-                      <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>
-                    )}
-                  </div>
-                )}
-              </div>
+            {(badge || title) && (
+              <Base.VerticalContent className={this.decorateCSS("texts")}>
+                {badge && <Base.SectionSubTitle className={this.decorateCSS("badge")}>{badge}</Base.SectionSubTitle>}
+                {title && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
+              </Base.VerticalContent>
             )}
             <div className={this.decorateCSS("input-items")}>
               <Formik
@@ -497,76 +478,32 @@ class Form7 extends BaseContacts {
                       {firstInputs.length > 0 && (
                         <div className={this.decorateCSS("first-inputs")}>
                           {firstInputs.map((input: any, index: number) => (
-                            <div
-                              key={index}
-                              className={this.decorateCSS("input-container")}
-                            >
-                              {getInputType(input.getPropValue("type")) ===
-                                "textarea" ? (
+                            <div key={index} className={this.decorateCSS("input-container")}>
+                              {getInputType(input.getPropValue("type")) === "textarea" ? (
                                 <textarea
-                                  value={
-                                    values[getInputName(index, input.prefix)]
-                                  }
+                                  value={values[getInputName(index, input.prefix)]}
                                   placeholder=" "
-                                  className={`${this.decorateCSS(
-                                    "input"
-                                  )} ${this.decorateCSS("textarea")}`}
+                                  className={`${this.decorateCSS("input")} ${this.decorateCSS("textarea")}`}
                                   rows={12}
                                   onChange={handleChange}
                                   name={getInputName(index, input.prefix)}
                                 ></textarea>
-                              ) : getInputType(input.getPropValue("type")) ===
-                                "select" ? (
-                                <select
-                                  value={
-                                    values[getInputName(index, input.prefix)]
-                                  }
-                                  onChange={handleChange}
-                                  name={getInputName(index, input.prefix)}
-                                  className={`${this.decorateCSS(
-                                    "select"
-                                  )} ${this.decorateCSS("custom-select")}`}
-                                >
+                              ) : getInputType(input.getPropValue("type")) === "select" ? (
+                                <select value={values[getInputName(index, input.prefix)]} onChange={handleChange} name={getInputName(index, input.prefix)} className={`${this.decorateCSS("select")} ${this.decorateCSS("custom-select")}`}>
                                   <option value="" disabled hidden>
                                     {input.getPropValue("placeholder")}
                                   </option>
-                                  {input
-                                    .getPropValue("options")
-                                    .map((option: any, idx: number) => (
-                                      <option key={idx} value={option.value}>
-                                        {option.value}
-                                      </option>
-                                    ))}
+                                  {input.getPropValue("options").map((option: any, idx: number) => (
+                                    <option key={idx} value={option.value}>
+                                      {option.value}
+                                    </option>
+                                  ))}
                                 </select>
                               ) : (
-                                <input
-                                  placeholder=" "
-                                  type={getInputType(
-                                    input.getPropValue("type")
-                                  )}
-                                  onChange={handleChange}
-                                  value={
-                                    values[getInputName(index, input.prefix)]
-                                  }
-                                  name={getInputName(index, input.prefix)}
-                                  className={this.decorateCSS("input")}
-                                />
+                                <input placeholder=" " type={getInputType(input.getPropValue("type"))} onChange={handleChange} value={values[getInputName(index, input.prefix)]} name={getInputName(index, input.prefix)} className={this.decorateCSS("input")} />
                               )}
-                              {getInputType(input.getPropValue("type")) ===
-                                "select" ? (
-                                ""
-                              ) : (
-                                <span
-                                  className={this.decorateCSS("placeholder")}
-                                >
-                                  {input.getPropValue("placeholder")}
-                                </span>
-                              )}
-                              <ErrorMessage
-                                className={this.decorateCSS("error-message")}
-                                name={getInputName(index, input.prefix)}
-                                component={"span"}
-                              />
+                              {getInputType(input.getPropValue("type")) === "select" ? "" : <span className={this.decorateCSS("placeholder")}>{input.getPropValue("placeholder")}</span>}
+                              <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(index, input.prefix)} component={"span"} />
                             </div>
                           ))}
                         </div>
@@ -574,120 +511,50 @@ class Form7 extends BaseContacts {
                       {secondInputs.length > 0 && (
                         <div className={this.decorateCSS("second-inputs")}>
                           {secondInputs.map((input: any, index: number) => (
-                            <div
-                              key={index}
-                              className={this.decorateCSS("input-container")}
-                            >
-                              {getInputType(input.getPropValue("type")) ===
-                                "textarea" ? (
+                            <div key={index} className={this.decorateCSS("input-container")}>
+                              {getInputType(input.getPropValue("type")) === "textarea" ? (
                                 <textarea
                                   placeholder=" "
-                                  className={`${this.decorateCSS(
-                                    "input"
-                                  )} ${this.decorateCSS("textarea")}`}
+                                  className={`${this.decorateCSS("input")} ${this.decorateCSS("textarea")}`}
                                   rows={12}
                                   onChange={handleChange}
-                                  name={getInputName(
-                                    index + firstInputs.length,
-                                    input.prefix
-                                  )}
-                                  value={
-                                    values[
-                                    getInputName(
-                                      index + firstInputs.length,
-                                      input.prefix
-                                    )
-                                    ]
-                                  }
+                                  name={getInputName(index + firstInputs.length, input.prefix)}
+                                  value={values[getInputName(index + firstInputs.length, input.prefix)]}
                                 ></textarea>
-                              ) : getInputType(input.getPropValue("type")) ===
-                                "select" ? (
+                              ) : getInputType(input.getPropValue("type")) === "select" ? (
                                 <select
-                                  value={
-                                    values[
-                                    getInputName(
-                                      index + firstInputs.length,
-                                      input.prefix
-                                    )
-                                    ]
-                                  }
+                                  value={values[getInputName(index + firstInputs.length, input.prefix)]}
                                   onChange={handleChange}
-                                  name={getInputName(
-                                    index + firstInputs.length,
-                                    input.prefix
-                                  )}
-                                  className={`${this.decorateCSS(
-                                    "select"
-                                  )} ${this.decorateCSS("custom-select")}`}
+                                  name={getInputName(index + firstInputs.length, input.prefix)}
+                                  className={`${this.decorateCSS("select")} ${this.decorateCSS("custom-select")}`}
                                 >
                                   <option value="" disabled hidden>
                                     {input.getPropValue("placeholder")}
                                   </option>
-                                  {input
-                                    .getPropValue("options")
-                                    .map((option: any, idx: number) => (
-                                      <option key={idx} value={option.value}>
-                                        {option.value}
-                                      </option>
-                                    ))}
+                                  {input.getPropValue("options").map((option: any, idx: number) => (
+                                    <option key={idx} value={option.value}>
+                                      {option.value}
+                                    </option>
+                                  ))}
                                 </select>
                               ) : (
                                 <input
                                   placeholder=" "
-                                  type={getInputType(
-                                    input.getPropValue("type")
-                                  )}
+                                  type={getInputType(input.getPropValue("type"))}
                                   onChange={handleChange}
-                                  value={
-                                    values[
-                                    getInputName(
-                                      index + firstInputs.length,
-                                      input.prefix
-                                    )
-                                    ]
-                                  }
-                                  name={getInputName(
-                                    index + firstInputs.length,
-                                    input.prefix
-                                  )}
+                                  value={values[getInputName(index + firstInputs.length, input.prefix)]}
+                                  name={getInputName(index + firstInputs.length, input.prefix)}
                                   className={this.decorateCSS("input")}
                                 />
                               )}
-                              {getInputType(input.getPropValue("type")) ===
-                                "select" ? (
-                                ""
-                              ) : (
-                                <span
-                                  className={this.decorateCSS("placeholder")}
-                                >
-                                  {input.getPropValue("placeholder")}
-                                </span>
-                              )}
-                              <ErrorMessage
-                                className={this.decorateCSS("error-message")}
-                                name={getInputName(
-                                  index + firstInputs.length,
-                                  input.prefix
-                                )}
-                                component={"span"}
-                              />
+                              {getInputType(input.getPropValue("type")) === "select" ? "" : <span className={this.decorateCSS("placeholder")}>{input.getPropValue("placeholder")}</span>}
+                              <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(index + firstInputs.length, input.prefix)} component={"span"} />
                             </div>
                           ))}
                         </div>
                       )}
                     </div>
-                    {buttonText && (
-                      <button className={this.decorateCSS("submit-button")}>
-                        <div className={this.decorateCSS("button-inner")}>
-                          <div
-                            className={this.decorateCSS("button-circle")}
-                          ></div>
-                          <span className={this.decorateCSS("button-text")}>
-                            {this.getPropValue("button_text")}
-                          </span>
-                        </div>
-                      </button>
-                    )}
+                    {buttonText && <Base.Button className={this.decorateCSS("submit-button")}>{this.getPropValue("button_text")}</Base.Button>}
                   </Form>
                 )}
               </Formik>
