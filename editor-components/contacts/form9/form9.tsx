@@ -235,13 +235,6 @@ class Form9Page extends BaseContacts {
       displayer: "Button Text",
       value: "Submit Form",
     });
-
-    this.addProp({
-      type: "icon",
-      key: "button-icon",
-      displayer: "Button Icon",
-      value: "FaArrowRight",
-    });
   }
 
   validationSchema = Yup.object().shape({
@@ -298,6 +291,16 @@ class Form9Page extends BaseContacts {
       return value;
     };
 
+    const title = this.getPropValue("title");
+    const description = this.getPropValue("description");
+    const button = this.getPropValue("button-text");
+
+    const titleExist = this.castToString(title);
+    const descriptionExist = this.castToString(description);
+    const buttonExist = this.castToString(button);
+
+    const rightItemsExist = titleExist || descriptionExist || buttonExist || formItems.length > 0;
+
     return (
       <Base.Container
         className={`
@@ -309,78 +312,80 @@ class Form9Page extends BaseContacts {
           <div className={this.decorateCSS("wrapper")}>
             {imageExist && (
               <div className={this.decorateCSS("image-container")}>
-                <img className={this.decorateCSS("image")} src={this.getPropValue("image")} alt="contact" />
+                <img className={rightItemsExist ? this.decorateCSS("image") : this.decorateCSS("image-full-width")} src={this.getPropValue("image")} alt="contact" />
               </div>
             )}
-            <Base.MaxContent
-              className={`
+            {rightItemsExist && (
+              <Base.MaxContent
+                className={`
                 ${this.decorateCSS("form-container")}
                 ${imageExist ? this.decorateCSS("with-image") : ""}
               `}
-            >
-              {(this.getPropValue("title", { as_string: true }) || this.getPropValue("description", { as_string: true })) && (
-                <Base.VerticalContent className={this.decorateCSS("header")}>
-                  {this.getPropValue("title", { as_string: true }) && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-                  {this.getPropValue("description", { as_string: true }) && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
-                </Base.VerticalContent>
-              )}
-              <Formik
-                initialValues={getInitialValues()}
-                validationSchema={this.validationSchema}
-                onSubmit={(data, { resetForm }) => {
-                  this.insertForm("Contact Us", data);
-                  resetForm();
-                }}
               >
-                {({ handleChange, values }) => (
-                  <Form className={this.decorateCSS("form")}>
-                    {formItems.map((item, index) => {
-                      return (
-                        <div
-                          key={index}
-                          className={`
+                {(titleExist || descriptionExist) && (
+                  <Base.VerticalContent className={this.decorateCSS("header")}>
+                    {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                    {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+                  </Base.VerticalContent>
+                )}
+                <Formik
+                  initialValues={getInitialValues()}
+                  validationSchema={this.validationSchema}
+                  onSubmit={(data, { resetForm }) => {
+                    this.insertForm("Contact Us", data);
+                    resetForm();
+                  }}
+                >
+                  {({ handleChange, values }) => (
+                    <Form className={this.decorateCSS("form")}>
+                      {formItems.map((item, index) => {
+                        return (
+                          <div
+                            key={index}
+                            className={`
                             ${this.decorateCSS("form-item")}
                             ${item.isFull ? this.decorateCSS("full") : ""}
                           `}
-                        >
-                          {this.castToString(item.label) && <label className={this.decorateCSS("form-item-label")}>{item.label}</label>}
-                          <div className={this.decorateCSS("input-container")}>
-                            {this.getInputType(item.type) === "textarea" ? (
-                              <textarea
-                                value={values[getInputName(index, this.castToString(item.label), index)]}
-                                className={this.decorateCSS("input-textarea")}
-                                placeholder={this.castToString(item.placeholder)}
-                                onChange={handleChange}
-                                name={getInputName(index, this.castToString(item.label), index)}
-                                cols={30}
-                              ></textarea>
-                            ) : (
-                              <>
-                                <ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("input-icon") }} />
-                                <input
-                                  placeholder={this.castToString(item.placeholder)}
-                                  type={this.getInputType(item.type)}
-                                  onChange={handleChange}
+                          >
+                            {this.castToString(item.label) && <label className={this.decorateCSS("form-item-label")}>{item.label}</label>}
+                            <div className={this.decorateCSS("input-container")}>
+                              {this.getInputType(item.type) === "textarea" ? (
+                                <textarea
                                   value={values[getInputName(index, this.castToString(item.label), index)]}
+                                  className={this.decorateCSS("input-textarea")}
+                                  placeholder={this.castToString(item.placeholder)}
+                                  onChange={handleChange}
                                   name={getInputName(index, this.castToString(item.label), index)}
-                                  className={this.decorateCSS("input")}
-                                />
-                              </>
-                            )}
-                            <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(index, this.castToString(item.label), index)} component={"span"} />
+                                  cols={30}
+                                ></textarea>
+                              ) : (
+                                <>
+                                  <ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("input-icon") }} />
+                                  <input
+                                    placeholder={this.castToString(item.placeholder)}
+                                    type={this.getInputType(item.type)}
+                                    onChange={handleChange}
+                                    value={values[getInputName(index, this.castToString(item.label), index)]}
+                                    name={getInputName(index, this.castToString(item.label), index)}
+                                    className={this.decorateCSS("input")}
+                                  />
+                                </>
+                              )}
+                              <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(index, this.castToString(item.label), index)} component={"span"} />
+                            </div>
                           </div>
-                        </div>
-                      );
-                    })}
-                    {(this.getPropValue("button-text", { as_string: true }) || this.getPropValue("button-icon")) && (
-                      <Base.Button className={this.decorateCSS("submit-button")} type="submit">
-                        {this.getPropValue("button-text")}
-                      </Base.Button>
-                    )}
-                  </Form>
-                )}
-              </Formik>
-            </Base.MaxContent>
+                        );
+                      })}
+                      {buttonExist && (
+                        <Base.Button className={this.decorateCSS("submit-button")} type="submit">
+                          {this.getPropValue("button-text")}
+                        </Base.Button>
+                      )}
+                    </Form>
+                  )}
+                </Formik>
+              </Base.MaxContent>
+            )}
           </div>
         </div>
       </Base.Container>
