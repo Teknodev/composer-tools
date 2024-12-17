@@ -95,6 +95,7 @@ $content-background-color: color-mix(in srgb, var(--composer-html-background), v
   .container {
     .max-content {
       .page-content {
+        flex-direction: column;
         padding: var(--composer-gap-md);
       }
     }
