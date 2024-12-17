@@ -11,6 +11,7 @@
       height: fit-content;
       align-items: stretch;
       min-height: 500px;
+      border-radius: var(--composer-gap-md);
 
       .left-container {
         width: 100%;
@@ -22,6 +23,9 @@
         height: auto;
         flex-grow: 1;
         padding: var(--composer-gap-md) 0;
+        border-top-left-radius: var(--composer-gap-sm);
+        border-bottom-left-radius: var(--composer-gap-sm);
+        background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
 
         .background,
         .background-full {
@@ -53,7 +57,7 @@
             gap: var(--composer-gap-md);
             display: flex;
             flex-direction: column;
-            padding: 0 var(--composer-gap-md);
+            padding: 0 var(--composer-gap-xl);
 
             .left-top {
               position: relative;
