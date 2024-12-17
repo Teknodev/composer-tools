@@ -193,21 +193,81 @@ class Header23 extends BaseHeader {
     this.setComponentState("active", 0);
   }
 
+  // handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  //   const container = e.currentTarget.getBoundingClientRect();
+
+  //   const xRatio = ((e.clientX - container.left) / container.width - 0.5) * 2;
+  //   const yRatio = ((e.clientY - container.top) / container.height - 0.5) * 2;
+
+  //   const animatedElements = e.currentTarget.querySelectorAll(`.${this.decorateCSS("animate")}`);
+  //   console.log(animatedElements);
+
+  //   const background1 = e.currentTarget.querySelector(`.${this.decorateCSS("background1")}`) as HTMLElement;
+  //   const background2 = e.currentTarget.querySelector(`.${this.decorateCSS("background2")}`) as HTMLElement;
+  //   const background3 = e.currentTarget.querySelector(`.${this.decorateCSS("background3")}`) as HTMLElement;
+  //   const imgBackground = e.currentTarget.querySelector(`.${this.decorateCSS("header23-img-background")}`) as HTMLElement;
+
+  //   const upperText = e.currentTarget.querySelector(`.${this.decorateCSS("upper-text")}`) as HTMLElement;
+  //   const lowerText = e.currentTarget.querySelector(`.${this.decorateCSS("lower-text")}`) as HTMLElement;
+  //   const topImg = e.currentTarget.querySelector(`.${this.decorateCSS("top-img")}`) as HTMLElement;
+
+  //   const factorBg1 = 10;
+  //   const factorBg2 = 15;
+  //   const factorBg3 = 20;
+  //   const factorImgBg = 10;
+  //   const factorText = 20;
+  //   const factorTopImg = 20;
+
+  //   if (background1) {
+  //     background1.style.transform = `translate(${xRatio * factorBg1}px, ${yRatio * factorBg1}px)`;
+  //   }
+  //   if (background2) {
+  //     background2.style.transform = `translate(-50%, -50%) translate(${xRatio * factorBg2}px, ${yRatio * factorBg2}px)`;
+  //   }
+  //   if (background3) {
+  //     background3.style.transform = `translate(${xRatio * factorBg3}px, ${yRatio * factorBg3}px)`;
+  //   }
+  //   if (imgBackground) {
+  //     imgBackground.style.transform = `translate(-50%, -50%) translate(${xRatio * factorImgBg}px, ${yRatio * factorImgBg}px)`;
+  //   }
+
+  //   if (upperText) {
+  //     upperText.style.transform = `translate(${xRatio * factorText}px, ${yRatio * factorText}px)`;
+  //   }
+
+  //   if (lowerText) {
+  //     lowerText.style.transform = `translate(${xRatio * factorText}px, ${yRatio * factorText}px)`;
+  //   }
+
+  //   if (topImg) {
+  //     topImg.style.transform = `translate(-50%, -50%) translate(${-xRatio * factorTopImg}px, ${-yRatio * factorTopImg}px)`;
+  //   }
+  // };
+
   handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const container = e.currentTarget.getBoundingClientRect();
 
     const xRatio = ((e.clientX - container.left) / container.width - 0.5) * 2;
     const yRatio = ((e.clientY - container.top) / container.height - 0.5) * 2;
 
-    const background1 = e.currentTarget.querySelector(`.${this.decorateCSS("header23-background1")}`) as HTMLElement;
-    const background2 = e.currentTarget.querySelector(`.${this.decorateCSS("header23-background2")}`) as HTMLElement;
-    const background3 = e.currentTarget.querySelector(`.${this.decorateCSS("header23-background3")}`) as HTMLElement;
-    const imgBackground = e.currentTarget.querySelector(`.${this.decorateCSS("header23-img-background")}`) as HTMLElement;
+    // Yardımcı fonksiyon: Transform uygulama
+    const applyTransform = (elements: HTMLElement[], transform: string) => {
+      elements.forEach(element => {
+        element.style.transform = transform;
+      });
+    };
 
-    const upperText = e.currentTarget.querySelector(`.${this.decorateCSS("header23-upper-text")}`) as HTMLElement;
-    const lowerText = e.currentTarget.querySelector(`.${this.decorateCSS("header23-lower-text")}`) as HTMLElement;
-    const topImg = e.currentTarget.querySelector(`.${this.decorateCSS("header23-top-img")}`) as HTMLElement;
+    // Sarmalayıcı öğeleri seçin ve HTMLElement olarak tür dönüştürün
+    const transformWrapperBg1Elements = Array.from(e.currentTarget.querySelectorAll(`.${this.decorateCSS("header23-background1-wrapper")}`)) as HTMLElement[];
+    const transformWrapperBg2Elements = Array.from(e.currentTarget.querySelectorAll(`.${this.decorateCSS("header23-background2-wrapper")}`)) as HTMLElement[];
+    const transformWrapperBg3Elements = Array.from(e.currentTarget.querySelectorAll(`.${this.decorateCSS("header23-background3-wrapper")}`)) as HTMLElement[];
+    const transformWrapperImgBgElements = Array.from(e.currentTarget.querySelectorAll(`.${this.decorateCSS("img-bg")}`)) as HTMLElement[];
 
+    const transformWrapperUpperTextElements = Array.from(e.currentTarget.querySelectorAll(`.${this.decorateCSS("header23-wrapper-upperText")}`)) as HTMLElement[];
+    const transformWrapperLowerTextElements = Array.from(e.currentTarget.querySelectorAll(`.${this.decorateCSS("header23-wrapper-lowerText")}`)) as HTMLElement[];
+    const transformWrapperTopImgElements = Array.from(e.currentTarget.querySelectorAll(`.${this.decorateCSS("header23-wrapper-topImg")}`)) as HTMLElement[];
+
+    // Transform faktörleri
     const factorBg1 = 10;
     const factorBg2 = 15;
     const factorBg3 = 20;
@@ -215,32 +275,16 @@ class Header23 extends BaseHeader {
     const factorText = 20;
     const factorTopImg = 20;
 
-    if (background1) {
-      background1.style.transform = `translate(${xRatio * factorBg1}px, ${yRatio * factorBg1}px)`;
-    }
-    if (background2) {
-      background2.style.transform = `translate(-50%, -50%) translate(${xRatio * factorBg2}px, ${yRatio * factorBg2}px)`;
-    }
-    if (background3) {
-      background3.style.transform = `translate(${xRatio * factorBg3}px, ${yRatio * factorBg3}px)`;
-    }
-    if (imgBackground) {
-      imgBackground.style.transform = `translate(-50%, -50%) translate(${xRatio * factorImgBg}px, ${yRatio * factorImgBg}px)`;
-    }
+    // Transformları uygulayın
+    applyTransform(transformWrapperBg1Elements, `translate(${xRatio * factorBg1}px, ${yRatio * factorBg1}px)`);
+    applyTransform(transformWrapperBg2Elements, `translate(-50%, -50%) translate(${xRatio * factorBg2}px, ${yRatio * factorBg2}px)`);
+    applyTransform(transformWrapperBg3Elements, `translate(${xRatio * factorBg3}px, ${yRatio * factorBg3}px)`);
+    applyTransform(transformWrapperImgBgElements, `translate(-50%, -50%) translate(${xRatio * factorImgBg}px, ${yRatio * factorImgBg}px)`);
 
-    if (upperText) {
-      upperText.style.transform = `translate(${xRatio * factorText}px, ${yRatio * factorText}px)`;
-    }
-
-    if (lowerText) {
-      lowerText.style.transform = `translate(${xRatio * factorText}px, ${yRatio * factorText}px)`;
-    }
-
-    if (topImg) {
-      topImg.style.transform = `translate(-50%, -50%) translate(${-xRatio * factorTopImg}px, ${-yRatio * factorTopImg}px)`;
-    }
+    applyTransform(transformWrapperUpperTextElements, `translate(${xRatio * factorText}px, ${yRatio * factorText}px)`);
+    applyTransform(transformWrapperLowerTextElements, `translate(${xRatio * factorText}px, ${yRatio * factorText}px)`);
+    applyTransform(transformWrapperTopImgElements, `translate(-50%, -50%) translate(${-xRatio * factorTopImg}px, ${-yRatio * factorTopImg}px)`);
   };
-
 
   getName(): string {
     return "Header-23";
@@ -258,7 +302,6 @@ class Header23 extends BaseHeader {
       slidesToScroll: 1,
       beforeChange: (current: number, next: number) => {
         if (this.getComponentState("active") !== next) {
-          console.log(next)
           console.log(this.getComponentState("active"));
           this.setComponentState("active", next);
         }
@@ -269,63 +312,80 @@ class Header23 extends BaseHeader {
     const activeSlide = this.getComponentState("active");
 
     return (
-      <div className={this.decorateCSS("container")}>
+      <div className={this.decorateCSS("container")} onMouseMove={this.handleMouseMove}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("wrapper")}>
+          <div className={this.decorateCSS("wrapper")}
+          >
 
             <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
               {slider.map((item: SliderItem, index: number) => {
                 const isActive = activeSlide === index;
 
                 return (
-                  <div className={this.decorateCSS("items")} key={`key${index}`}>
-                    <div className={this.decorateCSS("wrapper-slick")}
-                      onMouseMove={this.handleMouseMove}
-                    >
-                      {item.background1 &&
-                        <img
-                          className={this.decorateCSS("header23-background1")}
-                          src={item.background1}
-                          alt=""
-                        />}
-                      {item.background3 &&
-                        <img
-                          className={this.decorateCSS("header23-background3")}
-                          src={item.background3}
-                          alt=""
-                        />}
-                      {item.topImage &&
-                        <img
-                          className={this.decorateCSS("header23-top-img")}
-                          src={item.topImage}
-                          alt=""
-                        />}
-                      {item.background2 &&
-                        <img
-                          className={`${this.decorateCSS("header23-background2")} ${isActive && this.decorateCSS("animate")}`}
-                          src={item.background2}
-                          alt=""
-                        />}
-                      {item.background4 &&
-                        <img
-                          className={this.decorateCSS("header23-img-background")}
-                          src={item.background4}
-                          alt=""
-                        />}
+                  <div className={`${this.decorateCSS("items")} ${isActive && this.decorateCSS("active-slide")}`}
 
-                      {(this.castToString(item.upperText) || this.castToString(item.bottomText)) &&
-                        <div className={this.decorateCSS("text-container")}>
-                          {this.castToString(item.upperText) &&
-                            <div className={`${this.decorateCSS("header23-upper-text")} ${isActive && this.decorateCSS("animate")}`}>
-                              {item.upperText}
-                            </div>}
-                          {this.castToString(item.bottomText) &&
-                            <div className={`${this.decorateCSS("header23-lower-text")} ${isActive && this.decorateCSS("animate")}`}>
-                              {item.bottomText}
-                            </div>}
+                    key={`key${index}`} >
+                    <div className={this.decorateCSS("wrapper-slick")}
+                    >
+                      {item.background1 && (
+                        <div className={this.decorateCSS("header23-background1-wrapper")}>
+                          <img
+                            className={`${this.decorateCSS("background1")} ${isActive ? this.decorateCSS("animate") : ""}`}
+                            src={item.background1}
+                            alt=""
+                          />
+                        </div>)}
+
+                      {item.background3 &&
+                        <div className={this.decorateCSS("header23-background3-wrapper")}>
+                          <img
+                            className={`${this.decorateCSS("background3")} ${isActive && this.decorateCSS("animate")}`}
+                            src={item.background3}
+                            alt=""
+                          />
+                        </div>}
+                      {item.topImage &&
+                        <div className={this.decorateCSS("header23-wrapper-topImg")}>
+                          <img
+                            className={`${this.decorateCSS("top-img")} ${isActive && this.decorateCSS("animate")}`}
+                            src={item.topImage}
+                            alt=""
+                          />
+                        </div>}
+                      {item.background2 &&
+                        <div className={this.decorateCSS("header23-background2-wrapper")}>
+                          <img
+                            className={`${this.decorateCSS("background2")} ${isActive && this.decorateCSS("animate")}`}
+                            src={item.background2}
+                            alt=""
+                          />
+                        </div>}
+                      {item.background4 &&
+                        <div className={this.decorateCSS("img-bg")}>
+                          <img
+                            className={`${this.decorateCSS("header23-img-background")} ${isActive && this.decorateCSS("animate")}`}
+                            src={item.background4}
+                            alt=""
+                          />
+                        </div>}
+
+                      {this.castToString(item.upperText) && (
+                        <div className={this.decorateCSS("header23-wrapper-upperText")}>
+                          <div className={`${this.decorateCSS("upper-text")} ${isActive ? this.decorateCSS("animate") : ""}`}>
+                            {item.upperText}
+                          </div>
                         </div>
-                      }
-                      <div className={this.decorateCSS("circle")}>
+                      )}
+
+                      {this.castToString(item.bottomText) && (
+                        <div className={this.decorateCSS("header23-wrapper-lowerText")}>
+                          <div className={`${this.decorateCSS("lower-text")} ${isActive ? this.decorateCSS("animate") : ""}`}>
+                            {item.bottomText}
+                          </div>
+                        </div>
+                      )}
+
+                      <div className={`${this.decorateCSS("circle")} ${isActive && this.decorateCSS("animate")}`}>
                         <div className={this.decorateCSS("innerCircle")}></div>
                       </div>
                     </div>
