@@ -3,8 +3,9 @@ import styles from "./header22.module.scss";
 import { BaseHeader } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
-import Slider from "react-slick";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 type SliderObject = {
   title: JSX.Element;
@@ -249,7 +250,7 @@ class HeaderComponent22 extends BaseHeader {
     const isSliderExist = this.castToObject<SliderObject[]>("slider").length > 0;
     const settings = {
       dots: dots,
-      fade: true,
+      fade: slider.length > 1,
       duration: 1000,
       dotsClass: this.decorateCSS("dots"),
       arrows: false,
@@ -259,87 +260,107 @@ class HeaderComponent22 extends BaseHeader {
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
-      swipeToSlide: true,
       beforeChange: (_: number, newIndex: number) => {
         if (this.getComponentState("activeSlide") !== newIndex) {
           this.setComponentState("activeSlide", newIndex);
         }
       },
     };
+    const elements = document.getElementsByClassName(
+      this.decorateCSS("sliders")
+    );
+    console.log("elements", elements)
+    const items = [];
 
+    for (let index = 0; index < elements.length; index++) {
+      items.push(elements.item(index));
+      console.log(`Element ${index} clientHeight:`, elements.item(index).clientHeight);
+
+    }
+
+    const minHeight = items.sort((a, b) => {
+      console.log('b.clientHeight:', b.clientHeight);
+      console.log('a.clientHeight:', a.clientHeight);
+      return b.clientHeight - a.clientHeight;
+    })[0]?.clientHeight;
+
+
+    console.log("minHeight", minHeight);
+
+    if (!isSliderExist) return <></>
     return (
       <>
         {isSliderExist && (
           <div className={this.decorateCSS("container")}>
             <div className={this.decorateCSS("max-content")}>
-              <ComposerSlider
-                {...settings}
-                className={this.decorateCSS("carousel")}
-                ref={this.getComponentState("slider-ref")}>
-                {slider.map((item: SliderObject, index: number) => {
-                  const isActive = this.getComponentState("activeSlide") === index;
-                  const leftImageExist = slider[this.getComponentState("activeSlide")].left_image;
-                  const rightImageExist = slider[this.getComponentState("activeSlide")].right_image;
-                  console.log("rightImageExist"), rightImageExist
-                  const middleClass = leftImageExist ? "middle-content" : "middle-content2";
-                  const middleClassWithPadding = !leftImageExist && !dots ? "middle-content3" : middleClass;
-                  return (
-                    <div
-                      className={this.decorateCSS("sliders")}
-                      key={index}>
-                      <div className={this.decorateCSS("slider")}>
-                        {leftImageExist && (
-                          <div className={this.decorateCSS("left-content")}>
-                            <img
-                              className={`${this.decorateCSS("left-image")} ${animation && isActive ? this.decorateCSS("left-animation") : ""}  `}
-                              src={item.left_image}
-                              alt=""
-                            />
-                          </div>
-                        )}
+              <div className={this.decorateCSS("slider-parent")} style={{ minHeight: minHeight + "px" }} >
+                <ComposerSlider
+                  {...settings}
+                  className={this.decorateCSS("carousel")}
+                  ref={this.getComponentState("slider-ref")}>
+                  {slider.map((item: SliderObject, index: number) => {
+                    const isActive = this.getComponentState("activeSlide") === index;
+                    const leftImageExist = item.left_image;
+                    const rightImageExist = item.right_image;
+                    const middleClass = leftImageExist ? "middle-content" : "middle-content2";
+                    const middleClassWithPadding = !leftImageExist && !rightImageExist ? "middle-content3" : middleClass;
+                    return (
+                      <div
+                        className={this.decorateCSS("sliders")}
+                        key={index}>
+                        <div className={this.decorateCSS("slider")}>
+                          {leftImageExist && (
+                            <div className={this.decorateCSS("left-content")}>
+                              <img
+                                className={`${this.decorateCSS("left-image")} ${animation && isActive ? this.decorateCSS("left-animation") : ""}  `}
+                                src={item.left_image}
+                                alt=""
+                              />
+                            </div>
+                          )}
 
-                        <div
-                          className={`${this.decorateCSS(middleClassWithPadding)}
-                          } ${animation && isActive ? this.decorateCSS("mid-right-animation") : ""}  `}>
-                          <div className={this.decorateCSS("text-wrapper")}>
-                            {hasDivider && <div className={this.decorateCSS("divider")} />}
-                            {this.castToString(item.title) && <div className={this.decorateCSS("title")}>{item.title}</div>}
-
-                            {item.button.map((buttonItem: any, indexButton: number) => {
-                              const buttonText = this.castToString(buttonItem.buttonText);
-                              if (buttonText) {
-                                return (
-                                  <div className={this.decorateCSS("link-button-container")}>
-                                    <ComposerLink
-                                      className={this.decorateCSS("link-button")}
-                                      key={`hdr-22-${indexButton}`}
-                                      path={buttonItem.link}>
-                                      <button className={this.decorateCSS("button")}>{buttonText}</button>
-                                    </ComposerLink>
-                                  </div>
-                                );
-                              }
-                            })}
-                          </div>
-
-                        </div>
-                        {rightImageExist && (
                           <div
-                            className={`${this.decorateCSS("right-content")} ${animation && isActive ? this.decorateCSS("mid-right-animation") : ""
-                              }  `}>
-                            <img
-                              className={this.decorateCSS("right-image")}
-                              src={item.right_image}
-                              alt=""
-                            />
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  );
-                })}
-              </ComposerSlider>
+                            className={`${this.decorateCSS(middleClassWithPadding)}
+                          } ${animation && isActive ? this.decorateCSS("mid-right-animation") : ""}  `}>
+                            <div className={this.decorateCSS("text-wrapper")}>
+                              {hasDivider && <div className={this.decorateCSS("divider")} />}
+                              {this.castToString(item.title) && <div className={this.decorateCSS("title")}>{item.title}</div>}
 
+                              {item.button.map((buttonItem: any, indexButton: number) => {
+                                const buttonText = this.castToString(buttonItem.buttonText);
+                                if (buttonText) {
+                                  return (
+                                    <div className={this.decorateCSS("link-button-container")}>
+                                      <ComposerLink
+                                        className={this.decorateCSS("link-button")}
+                                        key={`hdr-22-${indexButton}`}
+                                        path={buttonItem.link}>
+                                        <button className={this.decorateCSS("button")}>{buttonText}</button>
+                                      </ComposerLink>
+                                    </div>
+                                  );
+                                }
+                              })}
+                            </div>
+
+                          </div>
+                          {rightImageExist && (
+                            <div
+                              className={`${this.decorateCSS("right-content")} ${animation && isActive ? this.decorateCSS("mid-right-animation") : ""
+                                }  `}>
+                              <img
+                                className={this.decorateCSS("right-image")}
+                                src={item.right_image}
+                                alt=""
+                              />
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </ComposerSlider>
+              </div>
               {slider.length > 1 && (
                 <div className={this.decorateCSS("nav-controls")}>
                   <button
