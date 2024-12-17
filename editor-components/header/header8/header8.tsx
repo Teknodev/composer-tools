@@ -9,41 +9,9 @@ type ISliderData = {
   description: string;
   topWriting: string;
 };
-
-let words;
-function AnimatedText({ children, mode, animationStarted, randomizedFontSize }: any) {
-  const [wordArray, setWordArray] = React.useState([]);
-  const [fontSizeArray, setFontSizeArray] = React.useState([]);
-  const [_animationStarted, set_animationStarted] = React.useState(false);
-
-  React.useEffect(() => {
-    words = children.split("");
-    setWordArray(words);
-    if (randomizedFontSize && randomizedFontSize.hasOwnProperty("max")) {
-      let fontSizes = words.map(() => randomizedFontSize.min + Math.random() * (randomizedFontSize.max - randomizedFontSize.min));
-      setFontSizeArray(fontSizes);
-    }
-  }, []);
-
-  React.useEffect(() => {
-    if (animationStarted) {
-      setTimeout(() => {
-        set_animationStarted(true);
-      }, 300);
-    } else {
-      set_animationStarted(false);
-    }
-  }, [animationStarted]);
-
-  return (
-    <div className={styles["wrapper"] + " " + styles["wrapper--" + mode]}>
-      {wordArray.map((letter, index) => (
-        <div key={"letter" + index} style={{ fontSize: `${fontSizeArray[index]}rem` }} className={styles["letter"] + " " + (_animationStarted && styles["wrapper--activated"])}>
-          {letter}
-        </div>
-      ))}
-    </div>
-  );
+interface IAnimationProps {
+  animationState: string;
+  startingAnimation: string;
 }
 
 function SampleNextArrow(props: any) {
@@ -77,8 +45,6 @@ function SamplePrevArrow(props: any) {
     ></div>
   );
 }
-
-//CLASS
 class Header8 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
@@ -239,12 +205,19 @@ class Header8 extends BaseHeader {
     this.setComponentState("prevIndex", 1);
     this.setComponentState("currentIndex", 1);
     this.setComponentState("arrowDisabled", false);
+    this.setComponentState("titleAnimationClass", "animate__fadeInRight");
   }
 
   getName(): string {
     return "Header 8";
   }
+  handleAnimationEnd = ({
+    animationState,
+    startingAnimation,
+  }: IAnimationProps) => {
+    this.setComponentState(animationState, startingAnimation);
 
+  };
   changeCurrentSlide(slideIndex: number) {
     this.setComponentState("prevIndex", this.getComponentState("currentIndex"));
     this.setComponentState("currentIndex", slideIndex);
@@ -262,8 +235,8 @@ class Header8 extends BaseHeader {
 
   render() {
     let currentSlide = this.getComponentState("currentIndex");
+    console.log("currentSlide", currentSlide)
     let slideCount = this.castToObject<ISliderData[]>("slider").length;
-
     let sliderEffect = this.getPropValue("slider_animation") ? true : false;
     console.log(sliderEffect, "sliderEffectsliderEffect");
 
@@ -277,6 +250,13 @@ class Header8 extends BaseHeader {
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
+      beforeChange: (oldIndex: number, newIndex: number) => {
+        // if (oldIndex == newIndex) return;
+        // this.setComponentState("titleAnimationClass", "animate__fadeInTopLeft");
+        setTimeout(() => {
+          this.setComponentState("currentIndex", newIndex);
+        }, 1200);
+      },
 
       prevArrow: (
         <SamplePrevArrow
@@ -317,26 +297,30 @@ class Header8 extends BaseHeader {
             <div className={this.decorateCSS("slash")}> / </div>
             <div className={this.decorateCSS("total-page")}>{slideCount}</div>
           </div>
-          {this.castToObject<ISliderData[]>("slider").map((item: ISliderData, index: number) => (
-            <div className={this.decorateCSS("info-box") + " " + (currentSlide == index + 1 && this.decorateCSS("active"))}>
-              {item.topWriting && <div className={this.getPropValue("text_animation") ? this.decorateCSS("tag") : this.decorateCSS("tag-disabled-animate")}>{item.topWriting}</div>}
-              {this.castToString(item.title as any) && (
-                <div className={this.getPropValue("text_animation") ? this.decorateCSS("title") : this.decorateCSS("title-disabled-animate")}>
-                  {this.getPropValue("text_animation") ? (
-                    <AnimatedText mode={this.getComponentState("prevIndex") <= this.getComponentState("currentIndex") ? "to_right" : "to_left"} animationStarted={currentSlide === index + 1}>
-                      {this.castToString(item.title as any)}
-                    </AnimatedText>
-                  ) : (
-                    <div>{this.castToString(item.title as any)}</div>
-                  )}
-                </div>
-              )}
-
-              {this.getPropValue("line") ? <div className={this.decorateCSS("line")}></div> : <div></div>}
-
-              {item.description && <div className={this.getPropValue("text_animation") ? this.decorateCSS("description") : this.decorateCSS("description-disabled-animate")}>{item.description}</div>}
+          <div className={this.decorateCSS("info-box")}>
+            {this.castToString(this.getPropValue("slider")[(currentSlide - 1)].getPropValue("topWriting")) &&
+              <div className={this.decorateCSS("tag")}>{this.getPropValue("slider")[(currentSlide - 1)].getPropValue("topWriting")}</div>}
+            <div
+              className={`${this.decorateCSS(
+                "title"
+              )}  animate__animated ${this.getComponentState(
+                "titleAnimationClass"
+              )}`}
+              onAnimationEnd={() => {
+                this.handleAnimationEnd({
+                  animationState: "titleAnimationClass",
+                  startingAnimation: "animate__fadeInRight",
+                });
+              }}
+            >
+              {this.getPropValue("slider")[(currentSlide - 1)].getPropValue("title")}
             </div>
-          ))}
+
+            {this.getPropValue("line") ? <div className={this.decorateCSS("line")}></div> : <div></div>}
+
+            {this.castToString(this.getPropValue("slider")[(currentSlide - 1)].getPropValue("description")) &&
+              <div className={this.decorateCSS("description")}>{this.getPropValue("slider")[(currentSlide - 1)].getPropValue("description")}</div>}
+          </div>
         </div>
       </div>
     );
