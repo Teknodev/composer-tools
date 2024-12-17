@@ -97,6 +97,39 @@ $content-background-color: color-mix(in srgb, var(--composer-html-background), v
       .page-content {
         flex-direction: column;
         padding: var(--composer-gap-md);
+        gap: var(--composer-gap-lg);
+
+        .text-content {
+          .contact-texts {
+            .contact-element {
+              gap: var(--composer-gap-sm);
+              margin: 0;
+              .contact-title {
+                font-weight: bold;
+              }
+            }
+          }
+        }
+
+        .form-content {
+          .form {
+            gap: var(--composer-gap-lg);
+
+            .form-input {
+              padding-bottom: var(--composer-gap-sm);
+              font-size: 1rem;
+
+              &::placeholder {
+                font-size: 1rem;
+              }
+            }
+
+            textarea.form-input {
+              resize: vertical;
+              height: 6rem;
+            }
+          }
+        }
       }
     }
   }
