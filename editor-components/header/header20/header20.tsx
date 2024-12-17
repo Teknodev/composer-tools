@@ -985,6 +985,7 @@ class HeaderComponent20 extends BaseHeader {
             </div>
           ))}
         </ComposerSlider>
+        
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("item")}>
             <div className={this.decorateCSS("content-container")}>
@@ -1051,11 +1052,7 @@ class HeaderComponent20 extends BaseHeader {
                     {slider[currentSlide].buttomRow.comment}
                   </div>
                 </div>
-                <div
-                  className={this.decorateCSS(
-                    "comment-and-icon-text-container"
-                  )}
-                >
+                <div className={this.decorateCSS("comment-and-icon-text-container")}>
                   <div className={this.decorateCSS("icon-text-container")}>
                     <div className={this.decorateCSS("icon_text")}>
                       {slider[currentSlide].buttomRow.icon_text}

@@ -1,7 +1,9 @@
-@mixin smooth-transition($property: all, $duration: 0.3s, 
-$timing-function: cubic-bezier(0.215, 0.61, 0.355, 1), $delay: 0s) {
+@mixin smooth-transition($property: all, $duration: 0.3s,
+  $timing-function: cubic-bezier(0.215, 0.61, 0.355, 1), $delay: 0s) {
   transition: $property $duration $timing-function $delay;
 }
+
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
 .container {
   position: relative;
@@ -23,12 +25,13 @@ $timing-function: cubic-bezier(0.215, 0.61, 0.355, 1), $delay: 0s) {
       object-fit: cover;
       z-index: -2;
     }
-    .overlay{
+
+    .overlay {
       position: absolute;
       z-index: -1;
       height: 100%;
       width: 100%;
-      background-color: rgba(0,0,0,0.5);
+      background-color: var(--composer-overlay-color);
     }
   }
 
@@ -57,19 +60,20 @@ $timing-function: cubic-bezier(0.215, 0.61, 0.355, 1), $delay: 0s) {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        padding: 50px;
+        padding: var(--composer-gap-xl);
         z-index: 1;
         max-width: var(--composer-content-width);
+
         .title-container {
           height: 50%;
           z-index: 3;
-          padding: 8.33rem 8.33rem;
+          padding: calc(var(--composer-gap-lg) * 3) calc(var(--composer-gap-lg) * 3);
           color: white;
           text-align: center;
 
           .title {
-            padding-bottom: 4rem;
-            color:white;
+            padding-bottom: calc(var(--composer-gap-md) * 3);
+            color: white;
             margin: 0;
             display: flex;
             flex-direction: row;
@@ -85,23 +89,28 @@ $timing-function: cubic-bezier(0.215, 0.61, 0.355, 1), $delay: 0s) {
               font-weight: normal;
               opacity: 0.3;
               max-width: 90%;
-              >blinkpage{
+
+              >blinkpage {
                 width: 100%;
-                >p{
+
+                >p {
                   text-overflow: ellipsis;
                   overflow: hidden;
                   white-space: nowrap;
                 }
               }
             }
+
             &.current {
               font-weight: bolder;
               opacity: 1;
               -webkit-text-stroke: none;
-              max-width: 90%; 
-              >blinkpage{
+              max-width: 90%;
+
+              >blinkpage {
                 width: 100%;
-                >p{
+
+                >p {
                   text-overflow: ellipsis;
                   overflow: hidden;
                   white-space: nowrap;
@@ -109,6 +118,7 @@ $timing-function: cubic-bezier(0.215, 0.61, 0.355, 1), $delay: 0s) {
               }
             }
           }
+
           .number {
             flex: 3;
             font-size: 0.8vw;
@@ -130,42 +140,48 @@ $timing-function: cubic-bezier(0.215, 0.61, 0.355, 1), $delay: 0s) {
           flex-direction: row;
           align-items: center;
           font-weight: 700;
-          font-size: 1.2rem;
+          font-size: 1rem;
           gap: 20%;
           color: white;
           z-index: 10;
-          padding: 2rem 8.33rem;
-          .left{
+          padding: var(--composer-gap-lg) calc(var(--composer-gap-lg) * 3);
+
+          .left {
             display: flex;
             flex-direction: row;
             align-items: center;
             gap: 10%;
             width: 100%;
+
             .navigation {
               display: flex;
               flex-direction: row;
               align-items: center;
               justify-content: center;
               gap: 30%;
+
               .up,
               .down {
                 margin: 1%;
               }
-  
+
               .icon {
                 font-size: 4rem;
                 z-index: 10;
               }
             }
+
             .comment {
-              font-size: 1.2rem;
+              font-size: 1rem;
               display: flex;
               word-break: break-word;
               width: 100%;
-              >blinkpage{
+
+              >blinkpage {
                 height: 100%;
                 width: 100%;
-                >p{
+
+                >p {
                   width: 100%;
                   max-height: 100%;
                   overflow: hidden;
@@ -182,77 +198,83 @@ $timing-function: cubic-bezier(0.215, 0.61, 0.355, 1), $delay: 0s) {
             display: flex;
             flex-direction: row;
             width: 100%;
-           justify-content: flex-end;
+            justify-content: flex-end;
 
+            .icon-text-container {
+              justify-content: center;
+              display: flex;
+              width: auto;
+              cursor: pointer;
+              position: relative;
+              width: auto;
+              max-width: 100%;
 
-          }
-          .icon-text-container {
-            justify-content: center;
-            display: flex;
-            width: auto;
-            cursor: pointer;
-            position: relative;
-            width: auto;
-            max-width: 100%;
-            &:hover .icon_text {
-              transform: translate(4rem, -4.5rem);
-              @include smooth-transition();
-            }
-            &:hover .social-icons {
-              opacity: 1;
-              @include smooth-transition();
-            }
-            &:hover .icon-next-to-text {
-              transform: translate(0, -4rem);
-              opacity: 0;
-              @include smooth-transition();
-            }
+              &:hover .icon_text {
+                transform: translate(4rem, -4.5rem);
+                @include smooth-transition();
+              }
 
-            .icon_text {
-              @include smooth-transition();
-              font-weight: bolder;
-              padding-right: 2rem;
-              >blinkpage{
-                height: 100%;
-                >p{
-                  max-height: 100%;
-                  overflow: hidden;
-                  text-overflow: ellipsis;
-                  display: -webkit-box;
-                  -webkit-line-clamp: 1;
-                  -webkit-box-orient: vertical;
+              &:hover .social-icons {
+                opacity: 1;
+                @include smooth-transition();
+              }
+
+              &:hover .icon-next-to-text {
+                transform: translate(0, -4rem);
+                opacity: 0;
+                @include smooth-transition();
+              }
+
+              .icon_text {
+                @include smooth-transition();
+                font-weight: bolder;
+                padding-right: 2rem;
+
+                >blinkpage {
+                  height: 100%;
+
+                  >p {
+                    max-height: 100%;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 1;
+                    -webkit-box-orient: vertical;
+                  }
                 }
               }
-            }
 
-            .social-icons {
-              position: absolute;
-              display: flex;
-              gap: 20px;
-              justify-content: flex-end;
-              opacity: 0;
-              width: 600px;
-              right: 0px;
-              flex-wrap: wrap;
-              height: 100%;
-              align-items: center;
-              @include smooth-transition($delay: 0.3s);
-              .icon {
-                font-size: 1.3rem;
-                z-index: 10;
+              .social-icons {
+                position: absolute;
+                display: flex;
+                gap: var(--composer-gap-md);
+                justify-content: flex-end;
+                opacity: 0;
+                width: 600px;
+                right: 0px;
+                flex-wrap: wrap;
+                height: 100%;
                 align-items: center;
-                @include smooth-transition();
-                &:hover{
-                  background-color: black;
-                  transform: scale(1.2);
-                }
-              }              
-            }
+                @include smooth-transition($delay: 0.3s);
 
-            .icon-next-to-text {
-              font-size: 1.3rem;
-              min-width:4%;
-              @include smooth-transition($delay: 0.3s);
+                .icon {
+                  font-size: 1.5rem;
+                  z-index: 10;
+                  align-items: center;
+                  @include smooth-transition();
+
+                  &:hover {
+                    background-color: black;
+                    transform: scale(1.2);
+                  }
+                }
+              }
+
+              .icon-next-to-text {
+                font-size: 1.3rem;
+                min-width: 4%;
+                @include smooth-transition($delay: 0.3s);
+              }
             }
           }
         }
@@ -261,37 +283,55 @@ $timing-function: cubic-bezier(0.215, 0.61, 0.355, 1), $delay: 0s) {
   }
 }
 
-@media only screen and (max-width: 1024px) {
-  .title-container {
-    padding-left: 0 !important;
-  }
-  .title {
-    font-size: 6vw !important;
-  }
-  .number {
-    font-size: 2vw !important;
-  }
-  .buttomRow{
-    padding: 24px 0px !important;
-    gap:0px !important;
-  }
-  .comment-and-icon-text-container {
-    width: 100% !important;
-    .icon_text{
-      display: none !important;
-    }
-    .social-icons{
-      opacity: 1 !important;
-      width: 350px !important;
-      top:-7px !important;
-    }
-    .icon-next-to-text{
-      display: none !important; 
+@container (max-width: #{$composer-tablet-width-lg}) {
+  .container {
+    .max-content {
+      .item {
+        .content-container {
+          .title-container {
+            padding-left: 0;
+
+            .title {
+              font-size: 6vw;
+            }
+
+            .number {
+              font-size: 2vw;
+            }
+          }
+
+          .buttomRow {
+            padding: var(--composer-gap-md) 0px;
+            gap: 0px;
+
+            .comment-and-icon-text-container {
+              width: 100%;
+
+              .icon-text-container {
+
+                .icon_text {
+                  display: none;
+                }
+
+                .social-icons {
+                  opacity: 1;
+                  width: 350px;
+                  top: -7px;
+                }
+
+                .icon-next-to-text {
+                  display: none;
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
 
-@media only screen and (max-width: 480px) {
+@container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
       .item {
@@ -307,51 +347,56 @@ $timing-function: cubic-bezier(0.215, 0.61, 0.355, 1), $delay: 0s) {
 
             .title {
               font-size: 9vw;
-            
-              .number {
-                font-size: 4vw;
-              }
+            }
+
+            .number {
+              font-size: 4vw;
             }
           }
+
           .buttomRow {
-            padding:0px !important;
-            
-            gap:0px !important;
+            padding: 0px;
+            gap: 0px;
             margin-right: 0;
-            margin:0px;
+            margin: 0px;
             width: 100%;
-            .left{
+
+            .left {
               width: 100%;
-              gap:0px !important;
+              gap: 0px;
               display: flex;
               flex-direction: row-reverse;
               width: 100%;
-              .comment{
-                width: 100%;
-                display: flex;
-                justify-content:center;
-                align-items: center;
-                text-align: start;
-                flex:2;
-              }
+
               .navigation {
-                flex:1;
+                flex: 1;
                 gap: 10%;
                 display: flex;
                 justify-content: flex-end;
+
                 .up,
                 .down {
                   margin: 0;
                 }
+
                 .icon {
                   font-size: 3rem;
                 }
+              }
+
+              .comment {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: start;
+                flex: 2;
               }
             }
 
             .comment-and-icon-text-container {
               direction: ltr;
-              width: 0px !important;
+              width: 0px;
 
               .icon-text-container {
                 display: none;
