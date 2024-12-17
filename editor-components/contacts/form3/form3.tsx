@@ -652,7 +652,7 @@ class Form3Page extends BaseContacts {
                           if (!social.icon) return null;
 
                           return (
-                            <div className={this.decorateCSS("icon-container")}>
+                            <div className={background ? this.decorateCSS("icon-container") : this.decorateCSS("icon-container-no-image")}>
                               <ComposerLink key={index} path={social.url} className={this.decorateCSS("icon-element")}>
                                 <ComposerIcon
                                   name={social.icon}

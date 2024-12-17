@@ -109,6 +109,7 @@
                     color: var(--composer-font-color-primary);
                     font-size: 2rem;
                     position: relative;
+                    flex-shrink: 0;
                   }
 
                   .contactName {
@@ -130,7 +131,8 @@
               align-self: center;
               flex-wrap: wrap;
 
-              .icon-container {
+              .icon-container,
+              .icon-container-no-image {
                 align-content: center;
                 background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
                 color: var(--composer-font-color-primary);
@@ -143,6 +145,10 @@
                   margin: var(--composer-gap-sm);
                   display: flex;
                 }
+              }
+
+              .icon-container-no-image {
+                background-color: var(--composer-html-background);
               }
             }
 
@@ -354,6 +360,7 @@
                     .icon {
                       width: var(--composer-gap-md);
                       height: var(--composer-gap-md);
+                      flex-shrink: 0;
                     }
 
                     .contactName {
