@@ -43,7 +43,7 @@
       .input-item-no-image {
         width: 100%;
         z-index: 1;
-        max-width: 1000px;
+        max-width: 960px;
         display: flex;
         flex-direction: column;
         position: absolute;
@@ -59,7 +59,6 @@
           margin: 0;
           color: white;
           padding: 0 var(--composer-gap-xl);
-          text-align: center;
         }
 
         .title-no-image {
@@ -78,7 +77,7 @@
             .error-message {
               text-align: end;
               margin-top: var(--composer-gap-xs);
-              color: var(--composer-font-color-primary);
+              color: var(--danger-color);
             }
 
             .placeholder,
