@@ -3,8 +3,8 @@ import { BaseContacts, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./form9.module.scss";
 import { ErrorMessage, Formik, Form } from "formik";
 import * as Yup from "yup";
-import { Base } from "composer-tools/composer-base-components/base/base";
-import { ComposerIcon } from "composer-tools/composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type FormItem = {
   label: JSX.Element;
@@ -22,8 +22,7 @@ class Form9Page extends BaseContacts {
       type: "image",
       key: "image",
       displayer: "Image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c6a2bd2970002c62912f?alt=media&timestamp=1719564433797",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c6a2bd2970002c62912f?alt=media&timestamp=1719564433797",
     });
     this.addProp({
       type: "string",
@@ -66,7 +65,7 @@ class Form9Page extends BaseContacts {
               displayer: "Input Type",
               value: "Text",
               additionalParams: {
-                selectItems: ["Text", "Text Area", "Phone", "Email"]
+                selectItems: ["Text", "Text Area", "Phone", "Email"],
               },
             },
             {
@@ -85,8 +84,8 @@ class Form9Page extends BaseContacts {
               type: "string",
               key: "errorMessage",
               displayer: "Error Message",
-              value: "Error"
-            }
+              value: "Error",
+            },
           ],
         },
         {
@@ -112,7 +111,7 @@ class Form9Page extends BaseContacts {
               displayer: "Input Type",
               value: "Text",
               additionalParams: {
-                selectItems: ["Text", "Text Area", "Phone", "Email"]
+                selectItems: ["Text", "Text Area", "Phone", "Email"],
               },
             },
             {
@@ -131,8 +130,8 @@ class Form9Page extends BaseContacts {
               type: "string",
               key: "errorMessage",
               displayer: "Error Message",
-              value: "Error"
-            }
+              value: "Error",
+            },
           ],
         },
         {
@@ -158,7 +157,7 @@ class Form9Page extends BaseContacts {
               displayer: "Input Type",
               value: "Email",
               additionalParams: {
-                selectItems: ["Text", "Text Area", "Phone", "Email"]
+                selectItems: ["Text", "Text Area", "Phone", "Email"],
               },
             },
             {
@@ -177,8 +176,8 @@ class Form9Page extends BaseContacts {
               type: "string",
               key: "errorMessage",
               displayer: "Error Message",
-              value: "Error"
-            }
+              value: "Error",
+            },
           ],
         },
         {
@@ -204,7 +203,7 @@ class Form9Page extends BaseContacts {
               displayer: "Input Type",
               value: "Text Area",
               additionalParams: {
-                selectItems: ["Text", "Text Area", "Phone", "Email"]
+                selectItems: ["Text", "Text Area", "Phone", "Email"],
               },
             },
             {
@@ -223,8 +222,8 @@ class Form9Page extends BaseContacts {
               type: "string",
               key: "errorMessage",
               displayer: "Error Message",
-              value: "Error"
-            }
+              value: "Error",
+            },
           ],
         },
       ],
@@ -270,7 +269,6 @@ class Form9Page extends BaseContacts {
     }
   }
 
-
   render() {
     const imageExist = !!this.getPropValue("image");
 
@@ -284,11 +282,7 @@ class Form9Page extends BaseContacts {
       return str;
     }
 
-    function getInputName(
-      indexOfLabel: number,
-      inputLabel: string,
-      indexOfInput: number
-    ): string {
+    function getInputName(indexOfLabel: number, inputLabel: string, indexOfInput: number): string {
       const name = toObjectKey(`${indexOfLabel} ${inputLabel} ${indexOfInput}`);
       return toObjectKey(name);
     }
@@ -296,37 +290,29 @@ class Form9Page extends BaseContacts {
     const getInitialValues = () => {
       let value: any = {};
       formItems.map((inputItem: any, indexOfItem: number) => {
-        inputItem
-          .getPropValue("inputs")
-          ?.map((_: TypeUsableComponentProps, indexOfInput: number) => {
-            const key = getInputName(
-              indexOfItem,
-              inputItem.getPropValue("label"),
-              indexOfInput
-            );
-            value[key] = "";
-          });
+        inputItem.getPropValue("inputs")?.map((_: TypeUsableComponentProps, indexOfInput: number) => {
+          const key = getInputName(indexOfItem, inputItem.getPropValue("label"), indexOfInput);
+          value[key] = "";
+        });
       });
       return value;
     };
 
     return (
-      <Base.Container className={`
+      <Base.Container
+        className={`
         ${this.decorateCSS("container")}
         ${imageExist ? this.decorateCSS("with-image") : ""}
-      `}>
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
+      `}
+      >
+        <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             {imageExist && (
               <div className={this.decorateCSS("image-container")}>
-                <img
-                  className={this.decorateCSS("image")}
-                  src={this.getPropValue("image")}
-                  alt="contact"
-                />
+                <img className={this.decorateCSS("image")} src={this.getPropValue("image")} alt="contact" />
               </div>
             )}
-            <div
+            <Base.MaxContent
               className={`
                 ${this.decorateCSS("form-container")}
                 ${imageExist ? this.decorateCSS("with-image") : ""}
@@ -334,16 +320,8 @@ class Form9Page extends BaseContacts {
             >
               {(this.getPropValue("title", { as_string: true }) || this.getPropValue("description", { as_string: true })) && (
                 <Base.VerticalContent className={this.decorateCSS("header")}>
-                  {this.getPropValue("title", { as_string: true }) && (
-                    <Base.SectionTitle className={this.decorateCSS("title")}>
-                      {this.getPropValue("title")}
-                    </Base.SectionTitle>
-                  )}
-                  {this.getPropValue("description", { as_string: true }) && (
-                    <Base.SectionDescription className={this.decorateCSS("description")}>
-                      {this.getPropValue("description")}
-                    </Base.SectionDescription>
-                  )}
+                  {this.getPropValue("title", { as_string: true }) && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                  {this.getPropValue("description", { as_string: true }) && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
                 </Base.VerticalContent>
               )}
               <Formik
@@ -365,20 +343,19 @@ class Form9Page extends BaseContacts {
                             ${item.isFull ? this.decorateCSS("full") : ""}
                           `}
                         >
-                          {this.castToString(item.label) && (
-                            <label className={this.decorateCSS("form-item-label")}>
-                              {item.label}
-                            </label>
-                          )}
+                          {this.castToString(item.label) && <label className={this.decorateCSS("form-item-label")}>{item.label}</label>}
                           <div className={this.decorateCSS("input-container")}>
-                            {this.getInputType(item.type) === "textarea"
-                              ? (
-                                <textarea
-                                  value={values[getInputName(index, this.castToString(item.label), index)]}
-                                  className={this.decorateCSS("input-textarea")} placeholder={this.castToString(item.placeholder)} onChange={handleChange}
-                                  name={getInputName(index, this.castToString(item.label), index)} cols={30}></textarea>
-                              )
-                              : <>
+                            {this.getInputType(item.type) === "textarea" ? (
+                              <textarea
+                                value={values[getInputName(index, this.castToString(item.label), index)]}
+                                className={this.decorateCSS("input-textarea")}
+                                placeholder={this.castToString(item.placeholder)}
+                                onChange={handleChange}
+                                name={getInputName(index, this.castToString(item.label), index)}
+                                cols={30}
+                              ></textarea>
+                            ) : (
+                              <>
                                 <ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("input-icon") }} />
                                 <input
                                   placeholder={this.castToString(item.placeholder)}
@@ -388,35 +365,24 @@ class Form9Page extends BaseContacts {
                                   name={getInputName(index, this.castToString(item.label), index)}
                                   className={this.decorateCSS("input")}
                                 />
-                              </>}
-                            <ErrorMessage
-                              className={this.decorateCSS("error-message")}
-                              name={getInputName(index, this.castToString(item.label), index)}
-                              component={"span"}
-                            />
+                              </>
+                            )}
+                            <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(index, this.castToString(item.label), index)} component={"span"} />
                           </div>
                         </div>
                       );
                     })}
                     {(this.getPropValue("button-text", { as_string: true }) || this.getPropValue("button-icon")) && (
-                      <Base.Button
-                        className={this.decorateCSS("submit-button")}
-                        type="submit"
-                      >
-                        <div className={this.decorateCSS("button-inner")}>
-                          {this.getPropValue("button-text")}
-                          {this.getPropValue("button-icon") && (
-                            <ComposerIcon name={this.getPropValue("button-icon")} propsIcon={{ className: this.decorateCSS("button-icon") }} />
-                          )}
-                        </div>
+                      <Base.Button className={this.decorateCSS("submit-button")} type="submit">
+                        {this.getPropValue("button-text")}
                       </Base.Button>
                     )}
                   </Form>
                 )}
               </Formik>
-            </div>
+            </Base.MaxContent>
           </div>
-        </Base.MaxContent>
+        </div>
       </Base.Container>
     );
   }
