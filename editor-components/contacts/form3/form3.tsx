@@ -625,7 +625,7 @@ class Form3Page extends BaseContacts {
           <div className={this.decorateCSS("box")}>
             {leftItemsExist && (
               <div className={this.decorateCSS("left-container")}>
-                {background && <img className={this.decorateCSS("background")} src={this.getPropValue("background")} alt="" />}
+                {background && <img className={rightItemsExist ? this.decorateCSS("background") : this.decorateCSS("background-full")} src={this.getPropValue("background")} alt="" />}
                 <div className={this.decorateCSS("left")}>
                   <div className={rightItemsExist ? this.decorateCSS("textSide") : this.decorateCSS("textSide-full")}>
                     <div className={this.decorateCSS("left-top")}>
@@ -671,7 +671,7 @@ class Form3Page extends BaseContacts {
               </div>
             )}
             {rightItemsExist && (
-              <div className={this.decorateCSS("right-container")}>
+              <div className={leftItemsExist ? this.decorateCSS("right-container") : this.decorateCSS("right-container-no-image")}>
                 {rightTitle && <div className={this.decorateCSS("title2")}>{rightTitle && <Base.P className={this.decorateCSS("rightTitle")}> {this.getPropValue("rightTitle")} </Base.P>}</div>}
                 {(buttons || inputItems).length > 0 && (
                   <div className={this.decorateCSS("form-container")}>
