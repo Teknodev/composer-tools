@@ -144,6 +144,8 @@
               align-items: center;
               justify-content: center;
               .text-wrapper{
+                padding-left:calc(var(--composer-gap-xl) * 2);
+                width: 100%;
                 position: static;
               }             
             }
@@ -301,8 +303,26 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
+    padding: 20px 20px 20px 0;
     .max-content {
       .slider-parent{
+        .carousel{
+          .sliders{
+            .slider{
+              .middle-content3 {
+                .text-wrapper{
+                  padding-left: 20px;
+                  width: 100%;
+                }
+              }     
+              .middle-content2 {
+                .text-wrapper{
+                  left: 20px;
+                }
+              }       
+            }
+          }
+        }
         .dots {
           display: none !important;
         }

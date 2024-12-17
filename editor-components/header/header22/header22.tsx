@@ -6,6 +6,7 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Base } from "../../../composer-base-components/base/base";
 
 type SliderObject = {
   title: JSX.Element;
@@ -214,7 +215,7 @@ class HeaderComponent22 extends BaseHeader {
     this.addProp({
       type: "boolean",
       key: "divider",
-      displayer: "Divider",
+      displayer: "Line",
       value: true,
     });
 
@@ -269,29 +270,22 @@ class HeaderComponent22 extends BaseHeader {
     const elements = document.getElementsByClassName(
       this.decorateCSS("sliders")
     );
-    console.log("elements", elements)
     const items = [];
 
     for (let index = 0; index < elements.length; index++) {
       items.push(elements.item(index));
-      console.log(`Element ${index} clientHeight:`, elements.item(index).clientHeight);
 
     }
 
     const minHeight = items.sort((a, b) => {
-      console.log('b.clientHeight:', b.clientHeight);
-      console.log('a.clientHeight:', a.clientHeight);
       return b.clientHeight - a.clientHeight;
     })[0]?.clientHeight;
-
-
-    console.log("minHeight", minHeight);
 
     if (!isSliderExist) return <></>
     return (
       <>
         {isSliderExist && (
-          <div className={this.decorateCSS("container")}>
+          <Base.Container className={this.decorateCSS("container")}>
             <div className={this.decorateCSS("max-content")}>
               <div className={this.decorateCSS("slider-parent")} style={{ minHeight: minHeight + "px" }} >
                 <ComposerSlider
@@ -322,9 +316,9 @@ class HeaderComponent22 extends BaseHeader {
                           <div
                             className={`${this.decorateCSS(middleClassWithPadding)}
                           } ${animation && isActive ? this.decorateCSS("mid-right-animation") : ""}  `}>
-                            <div className={this.decorateCSS("text-wrapper")}>
+                            <Base.VerticalContent className={this.decorateCSS("text-wrapper")}>
                               {hasDivider && <div className={this.decorateCSS("divider")} />}
-                              {this.castToString(item.title) && <div className={this.decorateCSS("title")}>{item.title}</div>}
+                              {this.castToString(item.title) && <Base.SectionTitle className={this.decorateCSS("title")}>{item.title}</Base.SectionTitle>}
 
                               {item.button.map((buttonItem: any, indexButton: number) => {
                                 const buttonText = this.castToString(buttonItem.buttonText);
@@ -341,7 +335,7 @@ class HeaderComponent22 extends BaseHeader {
                                   );
                                 }
                               })}
-                            </div>
+                            </Base.VerticalContent>
 
                           </div>
                           {rightImageExist && (
@@ -387,7 +381,7 @@ class HeaderComponent22 extends BaseHeader {
                 </div>
               )}
             </div>
-          </div>
+          </Base.Container>
         )}
       </>
     );
