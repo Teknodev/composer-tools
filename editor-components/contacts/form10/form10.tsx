@@ -41,7 +41,7 @@ class Form10 extends BaseContacts {
                       type: "string",
                       displayer: "Placeholder",
                       key: "placeholder",
-                      value: "What's your good name?*",
+                      value: "What's your name?*",
                     },
                     {
                       type: "boolean",

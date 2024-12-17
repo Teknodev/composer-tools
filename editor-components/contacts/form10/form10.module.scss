@@ -57,7 +57,6 @@
 
             .input-container {
               display: flex;
-              align-items: center;
               gap: var(--composer-gap-sm);
               border-bottom: 1px solid var(--composer-font-color-primary);
 
@@ -70,13 +69,13 @@
                 width: 100%;
                 font-family: inherit;
                 overflow-y: auto;
-                font-size: 1.5rem;
+                font-size: 1rem;
                 resize: none;
               }
 
               .input::placeholder {
                 color: var(--composer-font-color-primary);
-                font-size: 1.5rem;
+                font-size: 1rem;
               }
 
               .input:focus,
@@ -91,14 +90,14 @@
 
               .icon {
                 width: var(--composer-gap-md);
-                transform: translateY(0%);
+                transform: translateY(80%);
                 height: var(--composer-gap-md);
                 color: var(--composer-font-color-primary);
               }
 
               &:has(textarea) {
                 .icon {
-                  transform: none;
+                  transform: translateY(80%);
                   top: var(--composer-gap-md);
                 }
               }
