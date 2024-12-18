@@ -922,7 +922,7 @@ class HeaderComponent20 extends BaseHeader {
 
   render() {
     const currentSlide = this.getComponentState("slider");
-    const overlay = this.getPropValue("overlay");
+
     const settings = {
       dots: false,
       infinite: false,
