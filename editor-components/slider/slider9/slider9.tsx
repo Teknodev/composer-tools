@@ -9,7 +9,6 @@ type SliderItem = {
   image: string;
   video: string;
 }
-
 class Slider9 extends BaseSlider {
 
   constructor(props?: any) {
@@ -183,6 +182,9 @@ class Slider9 extends BaseSlider {
 
     this.setComponentState("isVideoModalOpen", false);
     this.setComponentState("videoUrl", null);
+    this.setComponentState("hoveredIndex", null);
+
+    this.setComponentState("originalSlideIndex", null);
   }
 
   handleFullscreen = () => {
@@ -192,6 +194,7 @@ class Slider9 extends BaseSlider {
 
     if (selectedImage) {
       this.setComponentState("isFullscreen", true);
+      this.setComponentState("originalSlideIndex", currentIndex);
     } else {
       this.setComponentState("isFullscreen", false);
     }
@@ -200,6 +203,8 @@ class Slider9 extends BaseSlider {
   handleCloseFullscreen = () => {
     this.setComponentState("isFullscreen", false)
     this.setComponentState("fullscreenImageUrl", null);
+    this.setComponentState("hoveredIndex", null);
+    this.setComponentState("originalSlideIndex", null);
   };
 
   handlePlayVideo = () => {
@@ -242,6 +247,30 @@ class Slider9 extends BaseSlider {
     }
   };
 
+  fullscreenPrevImage = () => {
+    const originalSlideIndex = this.getComponentState("originalSlideIndex");
+    const sliderItems = this.castToObject<SliderItem[]>("sliderItems");
+    const galleryLength = sliderItems.length;
+    const newIndex = (originalSlideIndex - 1 + galleryLength) % galleryLength;
+    this.setComponentState("originalSlideIndex", newIndex);
+    this.setComponentState("hoveredIndex", null);
+  };
+
+  fullscreenNextImage = () => {
+    const originalSlideIndex = this.getComponentState("originalSlideIndex");
+    const sliderItems = this.castToObject<SliderItem[]>("sliderItems");
+    const galleryLength = sliderItems.length;
+    const newIndex = (originalSlideIndex + 1) % galleryLength;
+    this.setComponentState("originalSlideIndex", newIndex);
+    this.setComponentState("hoveredIndex", null);
+  };
+
+  getCurrentFullscreenItem(): SliderItem | undefined {
+    const galleryCollection = this.castToObject<SliderItem[]>("sliderItems");
+    const originalIndex: number = this.getComponentState("originalSlideIndex");
+
+    return galleryCollection[originalIndex];
+  }
 
   render() {
     const verticalSettings = {
@@ -260,7 +289,6 @@ class Slider9 extends BaseSlider {
           horizontalSliderRef.current.slickGoTo(current);
         }
       },
-
     };
 
     const horizontalSettings = {
@@ -327,11 +355,13 @@ class Slider9 extends BaseSlider {
                             key={indexSlider}
                             className={this.decorateCSS("img-container")}
                             onClick={() => {
-                              this.setComponentState("currentSlideIndex", indexSlider);
-                              this.setComponentState("hoveredIndex", indexSlider);
-                              const horizontalSliderRef = this.getComponentState("horizontal-slider-ref");
-                              if (horizontalSliderRef.current) {
-                                horizontalSliderRef.current.slickGoTo(indexSlider);
+                              if (!isFullscreen) {
+                                this.setComponentState("currentSlideIndex", indexSlider);
+                                this.setComponentState("hoveredIndex", indexSlider);
+                                const horizontalSliderRef = this.getComponentState("horizontal-slider-ref");
+                                if (horizontalSliderRef.current) {
+                                  horizontalSliderRef.current.slickGoTo(indexSlider);
+                                }
                               }
                             }}
 
@@ -343,7 +373,7 @@ class Slider9 extends BaseSlider {
                             }}
                           >
                             {item.image && <img src={item.image} alt="" className={this.decorateCSS("img")} />}
-                            {(isActive || isHovered) && (
+                            {(!isFullscreen && (isActive || isHovered)) && (
                               <div className={this.decorateCSS("overlay")}></div>
                             )}
                           </div>
@@ -462,12 +492,27 @@ class Slider9 extends BaseSlider {
                       <div
                         className={this.decorateCSS("fullscreen-overlay")}
                         onClick={this.handleCloseFullscreen}
-                      ></div>
-                      <div className={this.decorateCSS("fullscreen-content")}>
-                        <img
-                          src={sliderItems[this.getComponentState("currentSlideIndex")]?.image}
-                          alt="Fullscreen"
-                          className={this.decorateCSS("fullscreen-image")}
+                      >
+                        <ComposerIcon
+                          name={"BiLeftArrowAlt"}
+                          propsIcon={{
+                            className: this.decorateCSS("overlay-left-button"),
+                            onClick: (e: React.MouseEvent) => {
+                              e.stopPropagation();
+                              this.fullscreenPrevImage();
+                              this.setComponentState("hoveredIndex", null);
+                            }
+                          }}
+                        />
+                        <ComposerIcon
+                          name={"BiRightArrowAlt"}
+                          propsIcon={{
+                            className: this.decorateCSS("overlay-right-button"),
+                            onClick: (e: React.MouseEvent) => {
+                              e.stopPropagation();
+                              this.fullscreenNextImage();
+                            }
+                          }}
                         />
                         <button className={this.decorateCSS("close-button-wrapper")}
                           onClick={this.handleCloseFullscreen}>
@@ -479,9 +524,15 @@ class Slider9 extends BaseSlider {
                           />
                         </button>
                       </div>
+                      <div className={this.decorateCSS("fullscreen-content")}>
+                        {<img
+                          src={this.getCurrentFullscreenItem()?.image}
+                          alt="Fullscreen"
+                          className={this.decorateCSS("fullscreen-image")}
+                        />}
+                      </div>
                     </div>
                   )}
-
 
                   {this.getComponentState("isVideoModalOpen") && (
                     <div className={this.decorateCSS("video-modal")}>

@@ -300,39 +300,61 @@
                             height: 100%;
                             background: transparent;
                             cursor: pointer;
+
+                            .overlay-left-button,
+                            .overlay-right-button {
+                                position: absolute;
+                                color: white;
+                                width: 30px;
+                                height: 30px;
+                                transition: transform 0.3s ease;
+                                z-index: 50;
+                                cursor: pointer;
+                            }
+
+                            .overlay-left-button {
+                                left: 50px;
+                                top: 50%;
+                                transform: translateY(-50%);
+                            }
+
+                            .overlay-right-button {
+                                right: 50px;
+                                top: 50%;
+                                transform: translateY(-50%);
+                            }
+
+                            .close-button-wrapper {
+                                position: absolute;
+                                top: 20px;
+                                right: 20px;
+                                color: #fff;
+                                cursor: pointer;
+                                z-index: 10;
+                                background-color: transparent;
+                                border: none;
+
+                                .close-button {
+                                    width: 40px;
+                                    height: 40px;
+                                }
+                            }
                         }
 
                         .fullscreen-content {
                             position: relative;
                             display: inline-block;
                             max-width: 90%;
-                            max-height: 65vh;
+                            max-height: 80vh;
                         }
 
                         .fullscreen-image {
                             max-width: 100%;
-                            max-height: 65vh;
+                            max-height: 80vh;
                             border-radius: var(--composer-border-radius-sm);
                             display: block;
                         }
-
-                        .close-button-wrapper {
-                            position: absolute;
-                            top: 10px;
-                            right: 10px;
-                            color: black;
-                            cursor: pointer;
-                            z-index: 10;
-                            background-color: transparent;
-                            border: none;
-
-                            .close-button {
-                                width: 40px;
-                                height: 40px;
-                            }
-                        }
                     }
-
 
 
                     .video-modal {
@@ -364,7 +386,7 @@
                         background: #000;
                         border-radius: var(--composer-border-radius-sm);
                         max-width: 90%;
-                        max-height: 70vh;
+                        max-height: 80vh;
                         display: flex;
                         flex-direction: column;
                         align-items: center;
@@ -375,7 +397,7 @@
                     .video-player {
                         width: 100%;
                         height: auto;
-                        max-height: 70vh;
+                        max-height: 80vh;
                         border-radius: var(--composer-border-radius-xs);
                     }
 
@@ -446,6 +468,7 @@
         .max-content {
             .content {
                 height: auto;
+
                 .sliders-parent {
                     .vertical-parent {
                         display: none;
@@ -503,10 +526,22 @@
                         }
 
                         .fullscreen-modal {
-                            .close-button-wrapper {
-                                .close-button {
-                                    width: 30px;
-                                    height: 30px;
+
+                            .fullscreen-overlay {
+
+                                .overlay-left-button {
+                                    left: 40px;
+                                }
+
+                                .overlay-right-button {
+                                    right: 40px;
+                                }
+
+                                .close-button-wrapper {
+                                    .close-button {
+                                        width: 30px;
+                                        height: 30px;
+                                    }
                                 }
                             }
                         }
@@ -524,7 +559,7 @@
     }
 }
 
-@container (max-width: #{$composer-phone-width-lg}) {
+@container (max-width: #{$composer-phone-width}) {
     .container {
         .max-content {
             .content {
@@ -581,11 +616,27 @@
                         }
 
                         .fullscreen-modal {
-                            .close-button-wrapper {
-                                .close-button {
-                                    width: 20px;
-                                    height: 20px;
+
+                            .fullscreen-overlay {
+
+                                .close-button-wrapper {
+                                    .close-button {
+                                        width: 20px;
+                                        height: 20px;
+                                    }
                                 }
+
+                                .overlay-left-button {
+                                    left: 5px;
+                                }
+
+                                .overlay-right-button {
+                                    right: 5px;
+                                }
+                            }
+
+                            .fullscreen-content {
+                                max-width: 85%;
                             }
                         }
 
