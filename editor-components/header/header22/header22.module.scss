@@ -191,15 +191,18 @@
     .nav-controls {
       position: absolute;
       right: 50px;
-      bottom: 0px;
+      bottom: 20px;
       display: flex;
       gap: var(--composer-gap-md);
       z-index: 1;
       .nav-buttons {
         background-color: transparent;
         border: none;
-        color: var(--composer-font-color-primary);
-        font-size: 3rem;
+        .icon{
+          color: var(--composer-font-color-primary);
+          font-size: 3rem;
+        }
+        
       }
     }
     .dots {
@@ -307,18 +310,19 @@
             button {
               padding: 5px;
               &::before {
-                font-size: 1.2rem;
+                font-size: 1rem;
               }
             }
           }
         }
         .nav-controls {
-          right: 30px;
+          right: 40px;
           .nav-buttons {
-            font-size: 1.8rem;
+            .icon{
+              font-size: 1.5rem;
+            }
           }
         }
-
     }
   }
 }
@@ -340,6 +344,7 @@
               .middle-content2 {
                 .text-wrapper{
                   padding-left: 20px;
+                  left :0px;
                 }
               }       
             }
@@ -348,6 +353,9 @@
         .dots {
           display: none !important;
         }
+      }
+      .nav-controls {
+        right: 20px;
       }
     }
   }

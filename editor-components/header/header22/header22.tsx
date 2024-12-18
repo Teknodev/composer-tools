@@ -364,7 +364,7 @@ class HeaderComponent22 extends BaseHeader {
                     }}>
                     <ComposerIcon
                       name={this.getPropValue("prev-button-icon")}
-                      propsIcon={{ className: `${this.decorateCSS("Icon")}` }}
+                      propsIcon={{ className: `${this.decorateCSS("icon")}` }}
                     />
                   </button>
 
@@ -375,7 +375,7 @@ class HeaderComponent22 extends BaseHeader {
                     }}>
                     <ComposerIcon
                       name={this.getPropValue("next-button-icon")}
-                      propsIcon={{ className: `${this.decorateCSS("Icon")}` }}
+                      propsIcon={{ className: `${this.decorateCSS("icon")}` }}
                     />
                   </button>
                 </div>
