@@ -130,6 +130,12 @@ class Header23 extends BaseHeader {
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266cb?alt=media&timestamp=1719483639150",
             },
+            {
+              type: "boolean",
+              displayer: "Circle Activation",
+              key: "circleActivation",
+              value: true,
+            },
           ],
         },
         {
@@ -187,6 +193,30 @@ class Header23 extends BaseHeader {
           ],
         },
       ],
+    });
+    this.addProp({
+      type: "boolean",
+      displayer: "Circle Activation",
+      key: "circleActivation",
+      value: true,
+    });
+    this.addProp({
+      type: "boolean",
+      displayer: "Mouse Move Activation",
+      key: "mouseMoveActivation",
+      value: true,
+    });
+    this.addProp({
+      type: "boolean",
+      displayer: "Animate Activation",
+      key: "animateActivation",
+      value: true,
+    });
+    this.addProp({
+      type: "boolean",
+      displayer: "Background Color",
+      key: "bgColorActivation",
+      value: false,
     });
     this.addProp({
       type: "icon",
@@ -273,8 +303,12 @@ class Header23 extends BaseHeader {
     const nextArrow = this.getPropValue("nextArrow");
     const previousArrow = this.getPropValue("previousArrow");
 
+    const mouseMoveActive = this.getPropValue("mouseMoveActivation");
+    const animateActive = this.getPropValue("animateActivation");
+    const bgColorActivation = this.getPropValue("bgColorActivation");
+
     return (
-      <div className={this.decorateCSS("container")} onMouseMove={this.handleMouseMove}>
+      <div className={this.decorateCSS("container")} onMouseMove={mouseMoveActive ? this.handleMouseMove : undefined}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
 
@@ -320,11 +354,11 @@ class Header23 extends BaseHeader {
                 return (
                   <div className={this.decorateCSS("items")}
                     key={`key${index}`} >
-                    <div className={this.decorateCSS("wrapper-slick")}>
+                    <div className={`${this.decorateCSS("wrapper-slick")} ${bgColorActivation && this.decorateCSS("bg-color-activation")}`}>
                       {item.background1 && (
                         <div className={this.decorateCSS("header23-background1-wrapper")}>
                           <img
-                            className={`${this.decorateCSS("background1")} ${isActive ? this.decorateCSS("animate") : ""}`}
+                            className={`${this.decorateCSS("background1")} ${(isActive && animateActive) && this.decorateCSS("animate")}`}
                             src={item.background1}
                             alt=""
                           />
@@ -333,7 +367,7 @@ class Header23 extends BaseHeader {
                       {item.background3 &&
                         <div className={this.decorateCSS("header23-background3-wrapper")}>
                           <img
-                            className={`${this.decorateCSS("background3")} ${isActive && this.decorateCSS("animate")}`}
+                            className={`${this.decorateCSS("background3")} ${(isActive && animateActive) && this.decorateCSS("animate")}`}
                             src={item.background3}
                             alt=""
                           />
@@ -341,7 +375,7 @@ class Header23 extends BaseHeader {
                       {item.topImage &&
                         <div className={this.decorateCSS("header23-wrapper-topImg")}>
                           <img
-                            className={`${this.decorateCSS("top-img")} ${isActive && this.decorateCSS("animate")}`}
+                            className={`${this.decorateCSS("top-img")} ${(isActive && animateActive) && this.decorateCSS("animate")}`}
                             src={item.topImage}
                             alt=""
                           />
@@ -349,7 +383,7 @@ class Header23 extends BaseHeader {
                       {item.background2 &&
                         <div className={this.decorateCSS("header23-background2-wrapper")}>
                           <img
-                            className={`${this.decorateCSS("background2")} ${isActive && this.decorateCSS("animate")}`}
+                            className={`${this.decorateCSS("background2")} ${(isActive && animateActive) && this.decorateCSS("animate")}`}
                             src={item.background2}
                             alt=""
                           />
@@ -357,7 +391,7 @@ class Header23 extends BaseHeader {
                       {item.background4 &&
                         <div className={this.decorateCSS("header23-img-bg")}>
                           <img
-                            className={`${this.decorateCSS("img-background")} ${isActive && this.decorateCSS("animate")}`}
+                            className={`${this.decorateCSS("img-background")} ${(isActive && animateActive) && this.decorateCSS("animate")}`}
                             src={item.background4}
                             alt=""
                           />
@@ -365,7 +399,9 @@ class Header23 extends BaseHeader {
 
                       {this.castToString(item.upperText) && (
                         <div className={this.decorateCSS("header23-wrapper-upperText")}>
-                          <div className={`${this.decorateCSS("upper-text")} ${isActive ? this.decorateCSS("animate") : ""}`}>
+                          <div className={`${this.decorateCSS("upper-text")} 
+                          ${(isActive && animateActive) && this.decorateCSS("animate")}
+                          ${bgColorActivation && this.decorateCSS("bg-active-text")}`}>
                             {item.upperText}
                           </div>
                         </div>
@@ -373,15 +409,18 @@ class Header23 extends BaseHeader {
 
                       {this.castToString(item.bottomText) && (
                         <div className={this.decorateCSS("header23-wrapper-lowerText")}>
-                          <div className={`${this.decorateCSS("lower-text")} ${isActive ? this.decorateCSS("animate") : ""}`}>
+                          <div className={`${this.decorateCSS("lower-text")} 
+                          ${(isActive && animateActive) && this.decorateCSS("animate")}
+                          ${bgColorActivation && this.decorateCSS("bg-active-text")}`}>
                             {item.bottomText}
                           </div>
                         </div>
                       )}
-
-                      <div className={`${this.decorateCSS("circle")} ${isActive && this.decorateCSS("animate")}`}>
-                        <div className={this.decorateCSS("innerCircle")}></div>
-                      </div>
+                      {this.getPropValue("circleActivation") &&
+                        <div className={`${this.decorateCSS("circle")} ${(isActive && animateActive) && this.decorateCSS("animate")}
+                        ${bgColorActivation && this.decorateCSS("bg-active-c")}`}>
+                          <div className={`${this.decorateCSS("innerCircle")} ${bgColorActivation && this.decorateCSS("bg-active-ic")}`}></div>
+                        </div>}
                     </div>
                   </div>
                 )
@@ -389,8 +428,8 @@ class Header23 extends BaseHeader {
               )}
             </ComposerSlider>
           </div>
-        </div>
-      </div>
+        </div >
+      </div >
     );
   }
 }

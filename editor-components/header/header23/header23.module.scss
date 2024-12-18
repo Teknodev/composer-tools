@@ -98,7 +98,6 @@
 
 .container {
   width: 100%;
-  background-color: var(--composer-html-background);
   display: flex;
   align-items: center;
   pointer-events: auto;
@@ -190,6 +189,10 @@
             display: flex;
             justify-content: center;
             align-items: center;
+
+            &.bg-color-activation {
+              background-color: var(--composer-html-background);
+            }
 
             .header23-background1-wrapper {
               position: absolute;
@@ -289,18 +292,22 @@
 
               .upper-text {
                 font-size: 8rem;
-                color: white;
+                color: #fff;
                 font-weight: bold;
                 display: -webkit-box;
                 -webkit-line-clamp: 3;
                 -webkit-box-orient: vertical;
                 overflow: hidden;
                 text-overflow: ellipsis;
-                opacity: 0;
+                opacity: 1;
                 text-align: end;
 
                 &.animate {
                   animation: slideInFromLeft 1s forwards;
+                }
+
+                &.bg-active-text {
+                  color: var(--composer-font-color-primary);
                 }
               }
             }
@@ -312,18 +319,22 @@
 
               .lower-text {
                 font-size: 8rem;
-                color: white;
+                color: #fff;
                 font-weight: bold;
                 display: -webkit-box;
                 -webkit-line-clamp: 3;
                 -webkit-box-orient: vertical;
                 overflow: hidden;
                 text-overflow: ellipsis;
-                opacity: 0;
+                opacity: 1;
                 text-align: start;
 
                 &.animate {
                   animation: slideInFromRight 1s forwards;
+                }
+
+                &.bg-active-text {
+                  color: var(--composer-font-color-primary);
                 }
               }
             }
@@ -333,13 +344,17 @@
               border-radius: 50%;
               width: 650px;
               height: 650px;
-              background-color: rgba(71, 168, 233, 0.247);
               display: flex;
               justify-content: center;
               align-items: center;
+              background-color: rgba(71, 168, 233, 0.247);
 
               &.animate {
                 animation: slideOut4 1s ease;
+              }
+
+              &.bg-active-c {
+                background-color: rgba(var(--composer-primary-color-rgb), 0.5);
               }
 
               .innerCircle {
@@ -349,6 +364,9 @@
                 height: 400px;
                 background-color: rgba(71, 168, 233, 0.199);
 
+                &.bg-active-ic {
+                  background-color: var(--composer-primary-color);
+                }
               }
             }
           }
