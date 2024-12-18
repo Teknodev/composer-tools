@@ -41,7 +41,7 @@ class Footer1Page extends BaseFooter {
     this.addProp({
       type: "string",
       key: "submitText",
-      displayer: "Submit Placeholder",
+      displayer: "Submit Text",
       value: "Form successfully submitted!",
     });
 
@@ -311,7 +311,7 @@ class Footer1Page extends BaseFooter {
                           this.setComponentState("placeholderText", submitText);
 
                           setTimeout(() => {
-                            const defaultPlaceholder = this.castToString(this.getPropValue("subscriptionPlaceholder")) || "Mesajınızı yazın...";
+                            const defaultPlaceholder = this.castToString(this.getPropValue("subscriptionPlaceholder"));
                             this.setComponentState("placeholderText", defaultPlaceholder);
                           }, 2000);
 
@@ -320,10 +320,19 @@ class Footer1Page extends BaseFooter {
                       >
                         {({ handleSubmit, handleChange, values, errors, touched }) => (
                           <Form className={this.decorateCSS("form")} onSubmit={handleSubmit}>
-                            <div className={this.decorateCSS("input-element")}>
-                              <input className={this.decorateCSS("input")} type="text" placeholder={this.getComponentState("placeholderText") || this.getPropValue("subscriptionPlaceholder")} name="message" value={values.message} onChange={handleChange} />
-                              {errors.message && touched.message && <div className={this.decorateCSS("error")}>{errors.message}</div>}
-                            </div>
+                            {this.castToString(this.getPropValue("subscriptionPlaceholder")) && (
+                              <div className={this.decorateCSS("input-element")}>
+                                <input
+                                  className={this.decorateCSS("input")}
+                                  type="text"
+                                  placeholder={this.getComponentState("placeholderText") || this.castToString(this.getPropValue("subscriptionPlaceholder"))}
+                                  name="message"
+                                  value={values.message}
+                                  onChange={handleChange}
+                                />
+                                {errors.message && touched.message && <div className={this.decorateCSS("error")}>{errors.message}</div>}
+                              </div>
+                            )}
                             {buttonTextExist && (
                               <Base.Button className={this.decorateCSS("button")} type="submit">
                                 {this.getPropValue("subscriptionButtonText")}
@@ -350,20 +359,28 @@ class Footer1Page extends BaseFooter {
                   )}
                   {social.length > 0 && (
                     <div className={this.decorateCSS("social")}>
-                      {social.map((item: IconsValues, indexSocial: number) => (
-                        <ComposerLink key={indexSocial} path={item.socialLink}>
-                          <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={item.socialIcon} />
-                        </ComposerLink>
-                      ))}
+                      {social.map(
+                        (item: IconsValues, indexSocial: number) =>
+                          item.socialIcon && (
+                            <ComposerLink key={indexSocial} path={item.socialLink}>
+                              <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={item.socialIcon} />
+                            </ComposerLink>
+                          )
+                      )}
                     </div>
                   )}
                   {pages.length > 0 && (
                     <div className={this.decorateCSS("pages")}>
-                      {pages.map((item: any, indexSocial: number) => (
-                        <ComposerLink key={indexSocial} path={item.pageLink}>
-                          <Base.P className={this.decorateCSS("text")}>{item.pageTitle}</Base.P>
-                        </ComposerLink>
-                      ))}
+                      {pages.map((item: any, indexSocial: number) => {
+                        const pageTitleExist = this.castToString(item.pageTitle);
+                        return (
+                          pageTitleExist && (
+                            <ComposerLink key={indexSocial} path={item.pageLink}>
+                              <Base.P className={this.decorateCSS("text")}>{item.pageTitle}</Base.P>
+                            </ComposerLink>
+                          )
+                        );
+                      })}
                     </div>
                   )}
                 </div>

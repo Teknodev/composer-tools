@@ -178,6 +178,10 @@
 
       .footer-bottom {
         flex-direction: column;
+
+        .pages {
+          justify-content: center;
+        }
       }
     }
   }
