@@ -1,7 +1,7 @@
 import axios from "axios";
 import * as React from "react";
 import { getProjectHook } from "../custom-hooks/project";
-import { EventEmitter } from "../EventEmitter";
+import { EventEmitter, EVENTS } from "../EventEmitter";
 import sanitizeHtml from "sanitize-html";
 import { renderToString } from "react-dom/server";
 import { THEMES, TTheme } from "./location/themes";
@@ -135,10 +135,13 @@ export abstract class Component
       },
     };
 
-    if (props?.props?.length)
+    if (props?.props?.length) {
       props?.props.forEach((prop: TypeUsableComponentProps) => {
         this.setProp(prop.key, prop.value);
       });
+    } else {
+      EventEmitter.emit(EVENTS.COMPONENT_ADDED, { id: this.id });
+    }
   }
 
   static getName(): string {
@@ -260,7 +263,7 @@ export abstract class Component
     let componentProps = this.getProps();
     this.setValueAtPath(componentProps, propRoute, htmlString);
 
-    EventEmitter.emit("propUpdated", {
+    EventEmitter.emit(EVENTS.PROP_UPDATED, {
       component: this,
       type: componentProps[parseInt(propRoute[0])].type,
       key: componentProps[parseInt(propRoute[0])].key,
@@ -401,7 +404,7 @@ export abstract class Component
 
   setComponentState(key: string, value: any): void {
     this.customStates[key] = value;
-    EventEmitter.emit("stateChanged", { id: this.id, key, value });
+    EventEmitter.emit(EVENTS.STATE_CHANGED, { id: this.id, key, value });
   }
 
   getComponentState(key: string): any {
