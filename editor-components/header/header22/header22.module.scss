@@ -157,7 +157,7 @@
             }
         
             .middle-content3 {
-              left: 0px;
+              left: var(--composer-gap-xl);
               display: flex;
               align-items: center;
               justify-content: center;
@@ -198,6 +198,7 @@
       .nav-buttons {
         background-color: transparent;
         border: none;
+        padding: 0px;
         .icon{
           color: var(--composer-font-color-primary);
           font-size: 3rem;
@@ -290,6 +291,7 @@
 
               }
               .middle-content3 {
+                left: var(--composer-gap-lg);
                 .text-wrapper{
                   gap: var(--composer-gap-xs);
                   padding-left: 40px;
@@ -336,6 +338,7 @@
           .sliders{
             .slider{
               .middle-content3 {
+                left: 0px;
                 .text-wrapper{
                   padding-left: 20px;
                   width: 100%;
