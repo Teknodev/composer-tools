@@ -3,7 +3,7 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 import { BaseFooter } from "../../EditorComponent";
 import styles from "./footer1.module.scss";
-import { Formik, Form } from "formik";
+import { Formik, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { Base } from "../../../composer-base-components/base/base";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
@@ -16,26 +16,6 @@ type IconsValues = {
 class Footer1Page extends BaseFooter {
   constructor(props?: any) {
     super(props, styles);
-
-    this.addProp({
-      type: "string",
-      key: "subscriptionPlaceholder",
-      displayer: "Subscription Placeholder",
-      value: "Type your e-mail",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "subscriptionButtonText",
-      displayer: "Subscription Button Text",
-      value: "Subscribe",
-    });
-    this.addProp({
-      type: "page",
-      key: "link",
-      displayer: "Subscription Button Link",
-      value: "",
-    });
 
     this.addProp({
       type: "string",
@@ -52,6 +32,27 @@ class Footer1Page extends BaseFooter {
     });
 
     this.addProp({
+      type: "string",
+      key: "subscriptionPlaceholder",
+      displayer: "Subscription Placeholder",
+      value: "Type your e-mail",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "submitText",
+      displayer: "Submit Placeholder",
+      value: "Form successfully submitted!",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "subscriptionButtonText",
+      displayer: "Subscription Button Text",
+      value: "Subscribe",
+    });
+
+    this.addProp({
       type: "boolean",
       key: "line",
       displayer: "Line",
@@ -62,7 +63,7 @@ class Footer1Page extends BaseFooter {
       type: "string",
       key: "copyright",
       displayer: "Copyright",
-      value: "Copyright © KOSI. All rights reserved.",
+      value: "Copyright © Blinkpage. All rights reserved.",
     });
 
     this.addProp({
@@ -251,6 +252,8 @@ class Footer1Page extends BaseFooter {
         },
       ],
     });
+
+    this.setComponentState("placeholderText", this.castToString(this.getPropValue("subscriptionPlaceholder")));
   }
 
   validationSchema = Yup.object().shape({
@@ -283,72 +286,92 @@ class Footer1Page extends BaseFooter {
     const copyrightExist = this.castToString(copyright);
 
     const footerBottomExist = pages.length > 0 || social.length > 0 || copyrightExist;
+
+    const submitText = this.castToString(this.getPropValue("submitText"));
+
     return (
-      <Base.Container className={this.decorateCSS("container")}>
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {upperExist && (
-            <div className={this.decorateCSS("footer-upper")}>
-              {(titleExist || descriptionExist) && (
-                <Base.VerticalContent className={this.decorateCSS("header")}>
-                  {titleExist && <Base.H3 className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.H3>}
-                  {descriptionExist && <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>}
-                </Base.VerticalContent>
-              )}
-              {(placeholderExist || buttonTextExist) && (
-                <div className={this.decorateCSS("subscribe")}>
-                  <Formik
-                    initialValues={{ message: "" }}
-                    validationSchema={this.validationSchema}
-                    onSubmit={(data, { resetForm }) => {
-                      this.insertForm("Contact Us", data);
-                      resetForm();
-                    }}
-                  >
-                    {({ handleChange, values }) => (
-                      <Form className={this.decorateCSS("form")}>
-                        {placeholderExist && <input className={this.decorateCSS("input")} type="text" placeholder={placeholderExist} name="message" value={values.message} onChange={handleChange}></input>}
-                        {buttonTextExist && (
-                          <ComposerLink path={this.getPropValue("link")}>
-                            <Base.Button type="submit">{this.getPropValue("subscriptionButtonText")}</Base.Button>
-                          </ComposerLink>
+      <div className={this.decorateCSS("container")}>
+        <div className={this.decorateCSS("max-content")}>
+          <Base.Container>
+            <Base.MaxContent>
+              {upperExist && (
+                <div className={this.decorateCSS("footer-upper")}>
+                  {(titleExist || descriptionExist) && (
+                    <Base.VerticalContent className={this.decorateCSS("header")}>
+                      {titleExist && <Base.H3 className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.H3>}
+                      {descriptionExist && <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>}
+                    </Base.VerticalContent>
+                  )}
+                  {(placeholderExist || buttonTextExist) && (
+                    <div className={this.decorateCSS("subscribe")}>
+                      <Formik
+                        initialValues={{ message: "" }}
+                        validationSchema={this.validationSchema}
+                        onSubmit={(data, { resetForm }) => {
+                          this.setComponentState("placeholderText", submitText);
+
+                          setTimeout(() => {
+                            const defaultPlaceholder = this.castToString(this.getPropValue("subscriptionPlaceholder")) || "Mesajınızı yazın...";
+                            this.setComponentState("placeholderText", defaultPlaceholder);
+                          }, 2000);
+
+                          resetForm();
+                        }}
+                      >
+                        {({ handleSubmit, handleChange, values, errors, touched }) => (
+                          <Form className={this.decorateCSS("form")} onSubmit={handleSubmit}>
+                            <div className={this.decorateCSS("input-element")}>
+                              <input className={this.decorateCSS("input")} type="text" placeholder={this.getComponentState("placeholderText") || this.getPropValue("subscriptionPlaceholder")} name="message" value={values.message} onChange={handleChange} />
+                              {errors.message && touched.message && <div className={this.decorateCSS("error")}>{errors.message}</div>}
+                            </div>
+                            {buttonTextExist && (
+                              <Base.Button className={this.decorateCSS("button")} type="submit">
+                                {this.getPropValue("subscriptionButtonText")}
+                              </Base.Button>
+                            )}
+                          </Form>
                         )}
-                      </Form>
-                    )}
-                  </Formik>
+                      </Formik>
+                    </div>
+                  )}
                 </div>
               )}
-            </div>
-          )}
-          {line && <hr className={this.decorateCSS("line")} />}
-          {footerBottomExist && (
-            <div className={this.decorateCSS("footer-bottom")}>
-              {copyrightExist && (
-                <div className={this.decorateCSS("copyright-container")}>
-                  <Base.P className={this.decorateCSS("text")}>{this.getPropValue("copyright")}</Base.P>
+            </Base.MaxContent>
+          </Base.Container>
+          {line && <div className={this.decorateCSS("line")} />}
+          <Base.Container>
+            <Base.MaxContent>
+              {footerBottomExist && (
+                <div className={this.decorateCSS("footer-bottom")}>
+                  {copyrightExist && (
+                    <div className={this.decorateCSS("copyright-container")}>
+                      <Base.P className={this.decorateCSS("text")}>{this.getPropValue("copyright")}</Base.P>
+                    </div>
+                  )}
+                  {social.length > 0 && (
+                    <div className={this.decorateCSS("social")}>
+                      {social.map((item: IconsValues, indexSocial: number) => (
+                        <ComposerLink key={indexSocial} path={item.socialLink}>
+                          <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={item.socialIcon} />
+                        </ComposerLink>
+                      ))}
+                    </div>
+                  )}
+                  {pages.length > 0 && (
+                    <div className={this.decorateCSS("pages")}>
+                      {pages.map((item: any, indexSocial: number) => (
+                        <ComposerLink key={indexSocial} path={item.pageLink}>
+                          <Base.P className={this.decorateCSS("text")}>{item.pageTitle}</Base.P>
+                        </ComposerLink>
+                      ))}
+                    </div>
+                  )}
                 </div>
               )}
-              {social.length > 0 && (
-                <div className={this.decorateCSS("social")}>
-                  {social.map((item: IconsValues, indexSocial: number) => (
-                    <ComposerLink key={indexSocial} path={item.socialLink}>
-                      <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={item.socialIcon} />
-                    </ComposerLink>
-                  ))}
-                </div>
-              )}
-              {pages.length > 0 && (
-                <div className={this.decorateCSS("pages")}>
-                  {pages.map((item: any, indexSocial: number) => (
-                    <ComposerLink key={indexSocial} path={item.pageLink}>
-                      <Base.P className={this.decorateCSS("text")}>{item.pageTitle}</Base.P>
-                    </ComposerLink>
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
-        </Base.MaxContent>
-      </Base.Container>
+            </Base.MaxContent>
+          </Base.Container>
+        </div>
+      </div>
     );
   }
 }
