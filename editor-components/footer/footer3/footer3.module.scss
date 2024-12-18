@@ -1,3 +1,5 @@
+@import "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss";
+
 .container {
   width: 100%;
   .max-content {
@@ -138,6 +140,44 @@
             .link-text:hover {
               color: var(--composer-primary-color);
             }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width-lg}) {
+  .container {
+    width: 100%;
+    .max-content {
+      .footer-page {
+        flex-direction: column;
+        gap: var(--composer-gap-md);
+
+        .items {
+          .list-group {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+
+            .text-container {
+              .element {
+                display: flex;
+                align-items: center;
+                gap: var(--composer-gap-sm);
+              }
+            }
+          }
+        }
+
+        .footer-bottom {
+          justify-content: space-between;
+          flex-direction: column;
+
+          .links {
+            justify-content: flex-start;
           }
         }
       }
