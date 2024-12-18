@@ -338,8 +338,8 @@ class Header8 extends BaseHeader {
             </div>
           ))}
         </ComposerSlider>
-        <Base.MaxContent className={allSlidesWithoutImages ? this.decorateCSS("max-content-no-image") : this.decorateCSS("max-content")}>
-          <div className={this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("image") ? this.decorateCSS("info-box") : this.decorateCSS("info-box-no-image")}>
+        <Base.Container className={allSlidesWithoutImages ? this.decorateCSS("max-content-no-image") : this.decorateCSS("max-content")}>
+          <Base.MaxContent className={this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("image") ? this.decorateCSS("info-box") : this.decorateCSS("info-box-no-image")}>
             {this.castToString(this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("topWriting")) &&
               <div
                 className={`${this.decorateCSS("tag")} ${this.getPropValue("text_animation")
@@ -422,9 +422,9 @@ class Header8 extends BaseHeader {
                 </div>
               </div>
             </div>
-          </div>
+          </Base.MaxContent>
 
-        </Base.MaxContent>
+        </Base.Container>
       </Base.Container>
     );
   }
