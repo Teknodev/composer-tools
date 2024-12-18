@@ -218,59 +218,6 @@ class Slider9 extends BaseSlider {
     this.setComponentState("videoUrl", null);
   };
 
-
-  // handleVerticalNext = () => {
-  //   const currentSlide = this.getComponentState("currentSlideIndex");
-  //   const sliderItems = this.castToObject<SliderItem[]>("sliderItems");
-  //   const slidesToShow = 2;
-
-  //   console.log("handleVerticalNext: currentSlideIndex =", currentSlide);
-
-  //   if (currentSlide < sliderItems.length - slidesToShow) {
-  //     const nextIndex = currentSlide + 1;
-  //     console.log("Setting nextIndex to:", nextIndex);
-  //     this.setComponentState("currentSlideIndex", nextIndex);
-  //     this.setComponentState("hoveredIndex", nextIndex);
-  //     const verticalSliderRef = this.getComponentState("vertical-slider-ref");
-  //     if (verticalSliderRef.current) {
-  //       verticalSliderRef.current.slickGoTo(nextIndex);
-  //     }
-  //   } else {
-  //     console.log("Reached end, performing slickNext");
-  //     const verticalSliderRef = this.getComponentState("vertical-slider-ref");
-  //     if (verticalSliderRef.current) {
-  //       verticalSliderRef.current.slickNext();
-  //     }
-  //   }
-  // };
-
-
-  // handleVerticalPrev = () => {
-  //   const currentSlide = this.getComponentState("currentSlideIndex");
-  //   const slidesToShow = 2;
-
-  //   console.log("handleVerticalPrev: currentSlideIndex =", currentSlide);
-
-  //   if (currentSlide > 0) {
-  //     const prevIndex = currentSlide - 1;
-  //     console.log("Setting prevIndex to:", prevIndex);
-  //     this.setComponentState("currentSlideIndex", prevIndex);
-  //     this.setComponentState("hoveredIndex", prevIndex);
-  //     const verticalSliderRef = this.getComponentState("vertical-slider-ref");
-  //     if (verticalSliderRef.current) {
-  //       verticalSliderRef.current.slickGoTo(prevIndex);
-  //     }
-  //   } else {
-  //     console.log("At start, performing slickPrev");
-  //     const verticalSliderRef = this.getComponentState("vertical-slider-ref");
-  //     if (verticalSliderRef.current) {
-  //       verticalSliderRef.current.slickPrev();
-  //     }
-  //   }
-  // };
-
-
-
   getName(): string {
     return "Slider 9";
   }
@@ -307,14 +254,13 @@ class Slider9 extends BaseSlider {
       slidesToScroll: 1,
       vertical: true,
       afterChange: (current: number) => {
+        this.setComponentState("currentSlideIndex", current);
         const horizontalSliderRef = this.getComponentState("horizontal-slider-ref");
         if (horizontalSliderRef.current) {
           horizontalSliderRef.current.slickGoTo(current);
         }
       },
-      beforeChange: (oldIndex: number, newIndex: number) => {
-        this.setComponentState("active-index", newIndex);
-      },
+
     };
 
     const horizontalSettings = {
@@ -380,13 +326,6 @@ class Slider9 extends BaseSlider {
                           <div
                             key={indexSlider}
                             className={this.decorateCSS("img-container")}
-                            // onClick={() => {
-                            //   this.setComponentState("currentSlideIndex", indexSlider);
-                            //   const horizontalSliderRef = this.getComponentState("horizontal-slider-ref");
-                            //   if (horizontalSliderRef.current) {
-                            //     horizontalSliderRef.current.slickGoTo(indexSlider);
-                            //   }
-                            // }}
                             onClick={() => {
                               this.setComponentState("currentSlideIndex", indexSlider);
                               this.setComponentState("hoveredIndex", indexSlider);
@@ -420,8 +359,6 @@ class Slider9 extends BaseSlider {
                           name={verticalPreviousArrow}
                           propsIcon={{
                             className: this.decorateCSS("verticalPreviousArrow"),
-
-                            // onClick: this.handleVerticalPrev,
                             onClick: () => {
                               const verticalSliderRef = this.getComponentState("vertical-slider-ref");
                               verticalSliderRef.current.slickPrev();
@@ -433,7 +370,6 @@ class Slider9 extends BaseSlider {
                           name={verticalNextArrow}
                           propsIcon={{
                             className: this.decorateCSS("verticalNextArrow"),
-                            // onClick: this.handleVerticalNext,
                             onClick: () => {
                               const verticalSliderRef = this.getComponentState("vertical-slider-ref");
                               verticalSliderRef.current.slickNext();
