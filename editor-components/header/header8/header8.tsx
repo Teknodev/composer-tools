@@ -18,8 +18,7 @@ function SampleNextArrow(props: any) {
   const { className, style, onClick, customOnClick, disabled } = props;
   return (
     <div
-      className={className + " " + styles["arrow-next"]}
-      style={{ ...style, pointerEvents: disabled ? "none" : "auto", opacity: disabled ? 0.5 : 1 }}
+      className={`${className} ${styles["arrow-next"]}`}
       onClick={() => {
         if (!disabled) {
           onClick();
@@ -29,13 +28,39 @@ function SampleNextArrow(props: any) {
     ></div>
   );
 }
-
+function SampleNextArrowNoImage(props: any) {
+  const { className, style, onClick, customOnClick, disabled } = props;
+  return (
+    <div
+      className={`${className} ${styles["arrow-next-no-image"]}`}
+      onClick={() => {
+        if (!disabled) {
+          onClick();
+          customOnClick();
+        }
+      }}
+    ></div>
+  );
+}
 function SamplePrevArrow(props: any) {
   const { className, style, onClick, customOnClick, disabled } = props;
   return (
     <div
-      className={className + " " + styles["arrow-prev"]}
-      style={{ ...style, pointerEvents: disabled ? "none" : "auto", opacity: disabled ? 0.5 : 1 }}
+      className={`${className} ${styles["arrow-prev"]}`}
+      onClick={() => {
+        if (!disabled) {
+          onClick();
+          customOnClick();
+        }
+      }}
+    ></div>
+  );
+}
+function SamplePrevArrowNoImage(props: any) {
+  const { className, style, onClick, customOnClick, disabled } = props;
+  return (
+    <div
+      className={`${className} ${styles["arrow-prev-no-image"]}`}
       onClick={() => {
         if (!disabled) {
           onClick();
@@ -67,6 +92,12 @@ class Header8 extends BaseHeader {
       type: "boolean",
       key: "line",
       displayer: "Line Enabled",
+      value: true,
+    });
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay Enabled",
       value: true,
     });
 
@@ -205,7 +236,9 @@ class Header8 extends BaseHeader {
     this.setComponentState("prevIndex", 1);
     this.setComponentState("currentIndex", 1);
     this.setComponentState("arrowDisabled", false);
-    this.setComponentState("titleAnimationClass", "animate__fadeInRight");
+    this.setComponentState("titleAnimationClass", "");
+    this.setComponentState("descriptionAnimationClass", "");
+
   }
 
   getName(): string {
@@ -219,7 +252,6 @@ class Header8 extends BaseHeader {
 
   };
   changeCurrentSlide(slideIndex: number) {
-    this.setComponentState("prevIndex", this.getComponentState("currentIndex"));
     this.setComponentState("currentIndex", slideIndex);
   }
 
@@ -235,11 +267,11 @@ class Header8 extends BaseHeader {
 
   render() {
     let currentSlide = this.getComponentState("currentIndex");
-    console.log("currentSlide", currentSlide)
     let slideCount = this.castToObject<ISliderData[]>("slider").length;
     let sliderEffect = this.getPropValue("slider_animation") ? true : false;
-    console.log(sliderEffect, "sliderEffectsliderEffect");
-
+    const allSlidesWithoutImages = this.castToObject<ISliderData[]>("slider").every(
+      (slide) => !slide.image
+    );
     const settings = {
       dots: false,
       infinite: true,
@@ -251,14 +283,12 @@ class Header8 extends BaseHeader {
       slidesToShow: 1,
       slidesToScroll: 1,
       beforeChange: (oldIndex: number, newIndex: number) => {
-        // if (oldIndex == newIndex) return;
-        // this.setComponentState("titleAnimationClass", "animate__fadeInTopLeft");
-        setTimeout(() => {
-          this.setComponentState("currentIndex", newIndex);
-        }, 1200);
+        if (oldIndex == newIndex) return;
+        this.setComponentState("titleAnimationClass", "animate__fadeIn");
+        this.setComponentState("descriptionAnimationClass", "animate__fadeInLeft");
       },
 
-      prevArrow: (
+      prevArrow: this.getPropValue("slider")[currentSlide - 1].getPropValue("image") ? (
         <SamplePrevArrow
           disabled={this.getComponentState("arrowDisabled")}
           customOnClick={() => {
@@ -266,61 +296,128 @@ class Header8 extends BaseHeader {
             this.handleArrowClick(newIndex, "prev");
           }}
         />
+      ) : (
+        <SamplePrevArrowNoImage
+          disabled={this.getComponentState("arrowDisabled")}
+          customOnClick={() => {
+            const newIndex = currentSlide === 1 ? slideCount : currentSlide - 1;
+            this.handleArrowClick(newIndex, "prev");
+          }}
+        />
       ),
-      nextArrow: (
+      nextArrow: this.getPropValue("slider")[currentSlide - 1].getPropValue("image") ? (
         <SampleNextArrow
           disabled={this.getComponentState("arrowDisabled")}
           customOnClick={() => {
             const newIndex = currentSlide === slideCount ? 1 : currentSlide + 1;
             this.handleArrowClick(newIndex, "next");
+            console.log("newIndex", newIndex);
+          }}
+        />
+      ) : (
+        <SampleNextArrowNoImage
+          disabled={this.getComponentState("arrowDisabled")}
+          customOnClick={() => {
+            const newIndex = currentSlide === slideCount ? 1 : currentSlide + 1;
+            this.handleArrowClick(newIndex, "next");
+            console.log("newIndex", newIndex);
           }}
         />
       ),
     };
-
     return (
       <div className={this.decorateCSS("container")}>
-        <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
+        <ComposerSlider {...settings} className={allSlidesWithoutImages ? this.decorateCSS("carousel-no-image") : this.decorateCSS("carousel")}>
           {this.castToObject<ISliderData[]>("slider").map((item: ISliderData, index: number) => (
             <div
-              className={
-                this.getPropValue("disabled") ? this.decorateCSS("slide-disabled-animate") : this.decorateCSS("slide") + " " + (currentSlide == index + 1 && this.decorateCSS("disabled") ? this.decorateCSS("active-disabled") : this.decorateCSS("active"))
-              }
+              className={item.image ? (
+                this.getPropValue("disabled")
+                  ? this.decorateCSS("slide-disabled-animate") : this.decorateCSS("slide") +
+                  " " +
+                  (currentSlide == index + 1 && this.decorateCSS("disabled")
+                    ? this.decorateCSS("active-disabled")
+                    : this.decorateCSS("active"))
+              ) : (
+                this.getPropValue("disabled")
+                  ? this.decorateCSS("slide-disabled-animate") : this.decorateCSS("slide-no-image") +
+                  " " +
+                  (currentSlide == index + 1 && this.decorateCSS("disabled")
+                    ? this.decorateCSS("active-disabled")
+                    : this.decorateCSS("active"))
+              )}
             >
-              <img src={item.image} alt={item.title} className={this.getPropValue("disabled") ? this.decorateCSS("image-disabled-animate") : this.decorateCSS("image")} />
+              <div className={this.getPropValue("overlay") ? this.decorateCSS("image-wrapper-overlay") : this.decorateCSS("image-wrapper")}>
+                {item.image && (
+                  <img src={item.image} alt={item.title} className={this.decorateCSS("image")} />
+                )}
+              </div>
             </div>
           ))}
         </ComposerSlider>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("pagination")}>
-            <div className={this.decorateCSS("current-page")}>{currentSlide}</div>
-            <div className={this.decorateCSS("slash")}> / </div>
-            <div className={this.decorateCSS("total-page")}>{slideCount}</div>
-          </div>
-          <div className={this.decorateCSS("info-box")}>
+        <div className={allSlidesWithoutImages ? this.decorateCSS("max-content-no-image") : this.decorateCSS("max-content")}>
+          <div className={this.getPropValue("slider")[currentSlide - 1].getPropValue("image") ? this.decorateCSS("info-box") : this.decorateCSS("info-box-no-image")}>
             {this.castToString(this.getPropValue("slider")[(currentSlide - 1)].getPropValue("topWriting")) &&
-              <div className={this.decorateCSS("tag")}>{this.getPropValue("slider")[(currentSlide - 1)].getPropValue("topWriting")}</div>}
+              <div
+                className={`${this.decorateCSS("tag")} ${this.getPropValue("text_animation")
+                  ? `animate__animated ${this.getComponentState("descriptionAnimationClass")}`
+                  : ""
+                  }`}
+                onAnimationEnd={() => {
+                  if (this.getPropValue("text_animation")) {
+                    this.handleAnimationEnd({
+                      animationState: "descriptionAnimationClass",
+                      startingAnimation: "",
+                    });
+                  }
+                }}
+              >
+                {this.getPropValue("slider")[(currentSlide - 1)].getPropValue("topWriting")}
+              </div>
+            }
             <div
-              className={`${this.decorateCSS(
-                "title"
-              )}  animate__animated ${this.getComponentState(
-                "titleAnimationClass"
-              )}`}
+              className={`${this.decorateCSS("title")} ${this.getPropValue("text_animation")
+                ? `animate__animated ${this.getComponentState("titleAnimationClass")}`
+                : ""
+                }`}
               onAnimationEnd={() => {
-                this.handleAnimationEnd({
-                  animationState: "titleAnimationClass",
-                  startingAnimation: "animate__fadeInRight",
-                });
+                if (this.getPropValue("text_animation")) {
+                  this.handleAnimationEnd({
+                    animationState: "titleAnimationClass",
+                    startingAnimation: "",
+                  });
+                }
               }}
             >
               {this.getPropValue("slider")[(currentSlide - 1)].getPropValue("title")}
             </div>
 
-            {this.getPropValue("line") ? <div className={this.decorateCSS("line")}></div> : <div></div>}
 
+            {this.getPropValue("line") ? <div className={this.decorateCSS("line")}></div> : <div></div>}
             {this.castToString(this.getPropValue("slider")[(currentSlide - 1)].getPropValue("description")) &&
-              <div className={this.decorateCSS("description")}>{this.getPropValue("slider")[(currentSlide - 1)].getPropValue("description")}</div>}
+              <div
+                className={`${this.decorateCSS("description")} ${this.getPropValue("text_animation")
+                  ? `animate__animated ${this.getComponentState("descriptionAnimationClass")}`
+                  : ""
+                  }`}
+                onAnimationEnd={() => {
+                  if (this.getPropValue("text_animation")) {
+                    this.handleAnimationEnd({
+                      animationState: "descriptionAnimationClass",
+                      startingAnimation: "",
+                    });
+                  }
+                }}
+              >
+                {this.getPropValue("slider")[(currentSlide - 1)].getPropValue("description")}
+              </div>
+            }
+            <div className={this.decorateCSS("pagination")}>
+              <div className={this.decorateCSS("current-page")}>{currentSlide}</div>
+              <div className={this.decorateCSS("slash")}> / </div>
+              <div className={this.decorateCSS("total-page")}>{slideCount}</div>
+            </div>
           </div>
+
         </div>
       </div>
     );
