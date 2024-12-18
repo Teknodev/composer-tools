@@ -19,13 +19,6 @@ class Footer2Page extends BaseFooter {
     super(props, styles);
 
     this.addProp({
-      type: "string",
-      key: "footerDescription",
-      displayer: "Footer Text",
-      value: "©2023 Archy Inc. - SF",
-    });
-
-    this.addProp({
       type: "image",
       key: "image",
       displayer: "Background Image",
@@ -38,6 +31,7 @@ class Footer2Page extends BaseFooter {
       displayer: "Overlay",
       value: true,
     });
+
     this.addProp({
       type: "array",
       key: "footer",
@@ -276,6 +270,13 @@ class Footer2Page extends BaseFooter {
         },
       ],
     });
+
+    this.addProp({
+      type: "string",
+      key: "footerDescription",
+      displayer: "Footer Text",
+      value: "©2023 Blinkpage Inc. - SF",
+    });
   }
 
   getName(): string {
@@ -288,6 +289,7 @@ class Footer2Page extends BaseFooter {
 
     const footer = this.castToObject<any[]>("footer");
     const footerDescExist = this.castToString(this.getPropValue("footerDescription"));
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
@@ -298,13 +300,13 @@ class Footer2Page extends BaseFooter {
                   const titleExist = this.castToString(item.footerTitle);
                   return (
                     <div key={indexFooter} className={this.decorateCSS("list")}>
-                      {titleExist && <Base.H2 className={this.decorateCSS("title")}>{item.footerTitle}</Base.H2>}
+                      {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{item.footerTitle}</Base.SectionTitle>}
                       {item.footerText.map((v: FooterTextValues, indexFooterText: number) => {
                         const textExist = this.castToString(v.footerText);
                         return (
                           textExist && (
                             <ComposerLink key={indexFooterText} path={v.path}>
-                              <Base.P className={this.decorateCSS("text")}>{v.footerText}</Base.P>
+                              <Base.SectionDescription className={this.decorateCSS("text")}>{v.footerText}</Base.SectionDescription>
                             </ComposerLink>
                           )
                         );
@@ -316,11 +318,13 @@ class Footer2Page extends BaseFooter {
             )}
             {overlay && image && <div className={this.decorateCSS("overlay")}></div>}
           </div>
-          {footerDescExist && (
-            <div className={this.decorateCSS("footer-bottom")}>
-              <Base.P className={this.decorateCSS("footerDescription")}>{this.getPropValue("footerDescription")}</Base.P>
-            </div>
-          )}
+          <Base.MaxContent>
+            {footerDescExist && (
+              <div className={this.decorateCSS("footer-bottom")}>
+                <Base.P className={this.decorateCSS("footerDescription")}>{this.getPropValue("footerDescription")}</Base.P>
+              </div>
+            )}
+          </Base.MaxContent>
         </div>
       </Base.Container>
     );
