@@ -566,9 +566,11 @@ export abstract class BaseSlider extends Component {
 export abstract class BaseFAQ extends Component {
   protected category = CATEGORIES.FAQ;
 }
+
 export abstract class BaseHTTPCodes extends Component {
   protected category = CATEGORIES.HTTP_CODES;
 }
+
 export abstract class BaseImageGallery extends Component {
   protected category = CATEGORIES.IMAGEGALLERY;
 }
@@ -624,7 +626,7 @@ export abstract class Location extends Component {
       type: "select",
       key: "theme",
       displayer: "Map Theme",
-      value: "Theme-0",
+      value: "",
       additionalParams: {
         selectItems: [
           "Theme-0",

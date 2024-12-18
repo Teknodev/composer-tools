@@ -33,8 +33,22 @@
     .slider-parent{
       height: 100%;
       width: 100%;
-    :global(.slick-active) {
-      z-index: 1;
+    :global(.slick-list) {
+      >div{
+        :global(.slick-slide) {
+          opacity: 0 !important;
+          visibility: hidden !important;
+          transition: visibility 0.01s linear, opacity 2s ease-in-out!important ;  
+        }
+        :global(.slick-active) {
+          opacity: 1 !important;
+          visibility: visible !important;
+          z-index: 2 !important;
+        }
+        :global(.slick-slide:not(.slick-active)) {
+          z-index: 1 !important;
+        }
+      }
     }
       .carousel{
         width: 100%;
@@ -49,6 +63,10 @@
               }
             }
           }
+        }
+        :global(slick-slide){
+          opacity: 0;
+          transition: opacity 0.5s ease-in-out;
         }
         .sliders {
           display: flex;
@@ -86,7 +104,7 @@
               position: relative;
               left: calc(var(--composer-gap-md) * (-1));
               .mid-right-animation {
-                animation: rightToLeft 2s ease;
+                animation: rightToLeft 1s ease;
               }
           
               .text-wrapper{
@@ -144,7 +162,7 @@
               align-items: center;
               justify-content: center;
               .text-wrapper{
-                padding-left:calc(var(--composer-gap-xl) * 2);
+                padding-left: 50px;
                 width: 100%;
                 position: static;
               }             
@@ -260,9 +278,6 @@
                   .title {
                     font-size: 2rem;
                   }
-                  .divider {
-                    width: 55px;
-                  }
                   .link-button-container {
                     .button {
                       font-size: 1rem;
@@ -270,6 +285,13 @@
                   }
                 }
 
+              }
+              .middle-content3 {
+                .text-wrapper{
+                  gap: var(--composer-gap-xs);
+                  padding-left: 40px;
+
+                }
               }
               .right-content { 
                 display: none;
@@ -317,7 +339,7 @@
               }     
               .middle-content2 {
                 .text-wrapper{
-                  left: 20px;
+                  padding-left: 20px;
                 }
               }       
             }

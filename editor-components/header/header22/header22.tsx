@@ -297,7 +297,7 @@ class HeaderComponent22 extends BaseHeader {
                     const leftImageExist = item.left_image;
                     const rightImageExist = item.right_image;
                     const middleClass = leftImageExist ? "middle-content" : "middle-content2";
-                    const middleClassWithPadding = !leftImageExist && !rightImageExist ? "middle-content3" : middleClass;
+                    const middleClassWithPadding = (!leftImageExist && !rightImageExist) || (!leftImageExist && !this.getPropValue("dots")) ? "middle-content3" : middleClass;
                     return (
                       <div
                         className={this.decorateCSS("sliders")}
@@ -306,7 +306,7 @@ class HeaderComponent22 extends BaseHeader {
                           {leftImageExist && (
                             <div className={this.decorateCSS("left-content")}>
                               <img
-                                className={`${this.decorateCSS("left-image")} ${animation && isActive ? this.decorateCSS("left-animation") : ""}  `}
+                                className={`${this.decorateCSS("left-image")} ${(animation && isActive) ? this.decorateCSS("left-animation") : ""}  `}
                                 src={item.left_image}
                                 alt=""
                               />
