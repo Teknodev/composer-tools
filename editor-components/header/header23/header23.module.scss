@@ -96,6 +96,18 @@
   }
 }
 
+@mixin text_style {
+  font-size: 8rem;
+  color: #fff;
+  font-weight: bold;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 1;
+}
+
 .container {
   width: 100%;
   display: flex;
@@ -295,15 +307,7 @@
               padding: var(--composer-gap-md) calc(var(--composer-gap-xl) * 2) var(--composer-gap-md) var(--composer-gap-xl);
 
               .upper-text {
-                font-size: 8rem;
-                color: #fff;
-                font-weight: bold;
-                display: -webkit-box;
-                -webkit-line-clamp: 3;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                opacity: 1;
+                @include text_style();
                 text-align: end;
 
                 &.animate {
@@ -322,15 +326,7 @@
               padding: var(--composer-gap-md) var(--composer-gap-xl) var(--composer-gap-md) calc(var(--composer-gap-xl) * 2);
 
               .lower-text {
-                font-size: 8rem;
-                color: #fff;
-                font-weight: bold;
-                display: -webkit-box;
-                -webkit-line-clamp: 3;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                opacity: 1;
+                @include text_style();
                 text-align: start;
 
                 &.animate {
