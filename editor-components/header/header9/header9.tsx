@@ -2,6 +2,8 @@ import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header9.module.scss";
+import { Base } from "../../../composer-base-components/base/base";
+import { Container } from "@mui/material";
 
 type ITab = {
   tabText: JSX.Element;
@@ -334,22 +336,22 @@ class Header9 extends BaseHeader {
   render() {
     const textExist: string = this.getPropValue("text", { as_string: true });
     const socials = this.castToObject<ISocial[]>("socials");
-    const featuredText: string = this.getPropValue("featuredText", {
-      as_string: true,
-    });
+    const featuredText: string = this.getPropValue("featuredText", { as_string: true });
     const tabs = this.castToObject<ITab[]>("tabs");
     const activeTabIndex: number = this.getComponentState("activeTab");
 
-    // this prevents crash when tabs.length === 0
     const currentImage = tabs[activeTabIndex]?.image ?? null;
+
+    const socialHeight = window.document.getElementById("header9-social")?.clientHeight
+    console.log(socialHeight);
 
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("tabs")}>
-            <div className={this.decorateCSS("left-content")}>
+          <Base.ContainerGrid className={this.decorateCSS("tabs")}>
+            <Base.GridCell className={this.decorateCSS("left-content")}>
               {tabs.length > 0 && (
-                <div className={this.decorateCSS("buttons")}>
+                <div className={this.decorateCSS("buttons")} style={{ paddingLeft: `calc((${socialHeight}px) + var(--composer-gap-xl))` }}>
                   {textExist && (
                     <span className={this.decorateCSS("text")}>
                       {this.getPropValue("text")}
@@ -365,7 +367,7 @@ class Header9 extends BaseHeader {
                   </span>
                 </div>
               )}
-              <div className={this.decorateCSS("tab-buttons")}>
+              <Base.VerticalContent className={this.decorateCSS("tab-buttons")}>
                 {tabs.length > 0 &&
                   tabs.map((tab: ITab, index: number) => {
                     const url = tab.tabUrl;
@@ -405,19 +407,19 @@ class Header9 extends BaseHeader {
                     </h2>
                   </ComposerLink>
                 )}
-              </div>
-            </div>
+              </Base.VerticalContent>
+            </Base.GridCell>
             {currentImage && (
-              <div className={this.decorateCSS("right-content")}>
+              <Base.GridCell className={this.decorateCSS("right-content")}>
                 <img
                   src={currentImage}
                   alt="slider-image"
                   className={this.decorateCSS("image")}
                 />
-              </div>
+              </Base.GridCell>
             )}
             {socials.length > 0 && (
-              <div className={this.decorateCSS("social")}>
+              <div className={this.decorateCSS("social")} id={"header9-social"}>
                 {socials.map((tab: ISocial, idx: number) => (
                   <div
                     style={{ width: `${100 / socials.length} %` }}
@@ -432,7 +434,7 @@ class Header9 extends BaseHeader {
                 ))}
               </div>
             )}
-          </div>
+          </Base.ContainerGrid>
         </div>
       </div>
     );
