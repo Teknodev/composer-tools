@@ -103,9 +103,9 @@
               width: 100%;    
               position: relative;
               left: calc(var(--composer-gap-md) * (-1));
-              .mid-right-animation {
-                animation: rightToLeft 1s ease;
-              }
+              // .mid-right-animation {
+              //   animation: rightToLeft 1s ease;
+              // }
           
               .text-wrapper{
                 height: 100%;
@@ -290,12 +290,17 @@
                 }
 
               }
-              .middle-content3 {
+              .middle-content3, .middle-content2 {
                 left: var(--composer-gap-lg);
                 .text-wrapper{
                   gap: var(--composer-gap-xs);
                   padding-left: 40px;
 
+                }
+              }
+              .middle-content2{
+                .text-wrapper{
+                  left: 0px;
                 }
               }
               .right-content { 
@@ -345,9 +350,9 @@
                 }
               }     
               .middle-content2 {
+                left: 0px;
                 .text-wrapper{
                   padding-left: 20px;
-                  left :0px;
                 }
               }       
             }
