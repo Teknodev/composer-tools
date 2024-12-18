@@ -2,6 +2,8 @@ import * as React from "react";
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header8.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
+import { Base } from "../../../composer-base-components/base/base";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type ISliderData = {
   title: string;
@@ -114,7 +116,7 @@ class Header8 extends BaseHeader {
             {
               type: "string",
               key: "topWriting",
-              displayer: "Top Writing",
+              displayer: "Subtitle",
               value: "PRODUCT, VOICE",
             },
             {
@@ -127,7 +129,7 @@ class Header8 extends BaseHeader {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Vin TRIES TO REFLECT DİESEL'S VISION AND COMBINES",
+              value: "Vin TRIES TO REFLECT D  DIESEL'S VISION AND COMBINES",
             },
             {
               type: "image",
@@ -145,7 +147,7 @@ class Header8 extends BaseHeader {
             {
               type: "string",
               key: "topWriting",
-              displayer: "Top Writing",
+              displayer: "Subtitle",
               value: "PEN",
             },
             {
@@ -176,26 +178,26 @@ class Header8 extends BaseHeader {
             {
               type: "string",
               key: "topWriting",
-              displayer: "Top Writing",
-              value: "PRODUCT, VOICE",
+              displayer: "Subtitle",
+              value: "INDUCTION",
             },
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Maybe Speaker",
+              value: "Huggl Power Pack",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Vin TRIES TO REFLECT DİESEL'S VISION AND COMBINES",
+              value: "HUGGL IS AN INDUCTION CHARGING",
             },
             {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618083bd2970002c6245e9?alt=media&timestamp=1719483639150",
+              value: "https://eremia-react.vercel.app/img/project/project3/1.jpg",
             },
           ],
         },
@@ -207,30 +209,42 @@ class Header8 extends BaseHeader {
             {
               type: "string",
               key: "topWriting",
-              displayer: "Top Writing",
-              value: "PRODUCT, VOICE",
+              displayer: "Subtitle",
+              value: "ARCHITECTURE",
             },
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Maybe Speaker",
+              value: "Principal Garden",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Vin TRIES TO REFLECT DİESEL'S VISION AND COMBINES",
+              value: "WE ARE THRILLED TO SHARE OUR NEW REEL WITH YOU ALL",
             },
             {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618083bd2970002c6245e8?alt=media&timestamp=1719483639150",
+              value: "https://eremia-react.vercel.app/img/project/project4/1.jpg",
             },
           ],
         },
       ],
+    });
+    this.addProp({
+      type: "icon",
+      key: "previousArrow",
+      displayer: "Previous Arrow Icon",
+      value: "GoArrowLeft"
+    });
+    this.addProp({
+      type: "icon",
+      key: "nextArrow",
+      displayer: "Next Arrow Icon",
+      value: "GoArrowRight"
     });
 
     this.setComponentState("prevIndex", 1);
@@ -238,7 +252,8 @@ class Header8 extends BaseHeader {
     this.setComponentState("arrowDisabled", false);
     this.setComponentState("titleAnimationClass", "");
     this.setComponentState("descriptionAnimationClass", "");
-
+    this.setComponentState("slider-ref", React.createRef());
+    this.setComponentState("centerSlide", 0);
   }
 
   getName(): string {
@@ -286,62 +301,31 @@ class Header8 extends BaseHeader {
         if (oldIndex == newIndex) return;
         this.setComponentState("titleAnimationClass", "animate__fadeIn");
         this.setComponentState("descriptionAnimationClass", "animate__fadeInLeft");
+        this.setComponentState("centerSlide", newIndex);
       },
-
-      prevArrow: this.getPropValue("slider")[currentSlide - 1].getPropValue("image") ? (
-        <SamplePrevArrow
-          disabled={this.getComponentState("arrowDisabled")}
-          customOnClick={() => {
-            const newIndex = currentSlide === 1 ? slideCount : currentSlide - 1;
-            this.handleArrowClick(newIndex, "prev");
-          }}
-        />
-      ) : (
-        <SamplePrevArrowNoImage
-          disabled={this.getComponentState("arrowDisabled")}
-          customOnClick={() => {
-            const newIndex = currentSlide === 1 ? slideCount : currentSlide - 1;
-            this.handleArrowClick(newIndex, "prev");
-          }}
-        />
-      ),
-      nextArrow: this.getPropValue("slider")[currentSlide - 1].getPropValue("image") ? (
-        <SampleNextArrow
-          disabled={this.getComponentState("arrowDisabled")}
-          customOnClick={() => {
-            const newIndex = currentSlide === slideCount ? 1 : currentSlide + 1;
-            this.handleArrowClick(newIndex, "next");
-            console.log("newIndex", newIndex);
-          }}
-        />
-      ) : (
-        <SampleNextArrowNoImage
-          disabled={this.getComponentState("arrowDisabled")}
-          customOnClick={() => {
-            const newIndex = currentSlide === slideCount ? 1 : currentSlide + 1;
-            this.handleArrowClick(newIndex, "next");
-            console.log("newIndex", newIndex);
-          }}
-        />
-      ),
     };
+    const sliderRef = this.getComponentState("slider-ref");
+    const nextArrow = this.getPropValue("nextArrow");
+    const previousArrow = this.getPropValue("previousArrow");
+    const arrowsExist = (this.getPropValue("slider").length > 1 && (previousArrow || nextArrow))
+
     return (
-      <div className={this.decorateCSS("container")}>
-        <ComposerSlider {...settings} className={allSlidesWithoutImages ? this.decorateCSS("carousel-no-image") : this.decorateCSS("carousel")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <ComposerSlider {...settings} ref={sliderRef} className={allSlidesWithoutImages ? this.decorateCSS("carousel-no-image") : this.decorateCSS("carousel")}>
           {this.castToObject<ISliderData[]>("slider").map((item: ISliderData, index: number) => (
             <div
               className={item.image ? (
                 this.getPropValue("disabled")
                   ? this.decorateCSS("slide-disabled-animate") : this.decorateCSS("slide") +
                   " " +
-                  (currentSlide == index + 1 && this.decorateCSS("disabled")
+                  ((this.getComponentState("centerSlide")) == index + 1 && this.decorateCSS("disabled")
                     ? this.decorateCSS("active-disabled")
                     : this.decorateCSS("active"))
               ) : (
                 this.getPropValue("disabled")
                   ? this.decorateCSS("slide-disabled-animate") : this.decorateCSS("slide-no-image") +
                   " " +
-                  (currentSlide == index + 1 && this.decorateCSS("disabled")
+                  ((this.getComponentState("centerSlide")) == index + 1 && this.decorateCSS("disabled")
                     ? this.decorateCSS("active-disabled")
                     : this.decorateCSS("active"))
               )}
@@ -354,46 +338,46 @@ class Header8 extends BaseHeader {
             </div>
           ))}
         </ComposerSlider>
-        <div className={allSlidesWithoutImages ? this.decorateCSS("max-content-no-image") : this.decorateCSS("max-content")}>
-          <div className={this.getPropValue("slider")[currentSlide - 1].getPropValue("image") ? this.decorateCSS("info-box") : this.decorateCSS("info-box-no-image")}>
-            {this.castToString(this.getPropValue("slider")[(currentSlide - 1)].getPropValue("topWriting")) &&
+        <Base.MaxContent className={allSlidesWithoutImages ? this.decorateCSS("max-content-no-image") : this.decorateCSS("max-content")}>
+          <div className={this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("image") ? this.decorateCSS("info-box") : this.decorateCSS("info-box-no-image")}>
+            {this.castToString(this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("topWriting")) &&
               <div
                 className={`${this.decorateCSS("tag")} ${this.getPropValue("text_animation")
-                  ? `animate__animated ${this.getComponentState("descriptionAnimationClass")}`
+                  ? `animate__animated ${this.getComponentState("titleAnimationClass")}`
                   : ""
                   }`}
                 onAnimationEnd={() => {
                   if (this.getPropValue("text_animation")) {
                     this.handleAnimationEnd({
-                      animationState: "descriptionAnimationClass",
+                      animationState: "titleAnimationClass",
                       startingAnimation: "",
                     });
                   }
                 }}
               >
-                {this.getPropValue("slider")[(currentSlide - 1)].getPropValue("topWriting")}
+                {this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("topWriting")}
               </div>
             }
             <div
               className={`${this.decorateCSS("title")} ${this.getPropValue("text_animation")
-                ? `animate__animated ${this.getComponentState("titleAnimationClass")}`
+                ? `animate__animated ${this.getComponentState("descriptionAnimationClass")}`
                 : ""
                 }`}
               onAnimationEnd={() => {
                 if (this.getPropValue("text_animation")) {
                   this.handleAnimationEnd({
-                    animationState: "titleAnimationClass",
+                    animationState: "descriptionAnimationClass",
                     startingAnimation: "",
                   });
                 }
               }}
             >
-              {this.getPropValue("slider")[(currentSlide - 1)].getPropValue("title")}
+              {this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("title")}
             </div>
 
 
             {this.getPropValue("line") ? <div className={this.decorateCSS("line")}></div> : <div></div>}
-            {this.castToString(this.getPropValue("slider")[(currentSlide - 1)].getPropValue("description")) &&
+            {this.castToString(this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("description")) &&
               <div
                 className={`${this.decorateCSS("description")} ${this.getPropValue("text_animation")
                   ? `animate__animated ${this.getComponentState("descriptionAnimationClass")}`
@@ -408,18 +392,40 @@ class Header8 extends BaseHeader {
                   }
                 }}
               >
-                {this.getPropValue("slider")[(currentSlide - 1)].getPropValue("description")}
+                {this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("description")}
               </div>
             }
             <div className={this.decorateCSS("pagination")}>
-              <div className={this.decorateCSS("current-page")}>{currentSlide}</div>
+              <div className={this.decorateCSS("current-page")}>{(this.getComponentState("centerSlide") + 1)}</div>
               <div className={this.decorateCSS("slash")}> / </div>
               <div className={this.decorateCSS("total-page")}>{slideCount}</div>
             </div>
+            <div className={this.decorateCSS("arrow-wrapper")}>
+              <div className={this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("image") ? this.decorateCSS("arrow-prev-wrapper") : this.decorateCSS("arrow-prev-wrapper-no-image")} onClick={() => {
+                sliderRef.current.slickPrev();
+              }}>
+                <div className={this.decorateCSS("arrow-prev")}>
+                  <ComposerIcon
+                    name={this.getPropValue("previousArrow")}
+                    propsIcon={{ className: this.decorateCSS("icon") }}
+                  />
+                </div>
+              </div>
+              <div className={this.getPropValue("slider")[this.getComponentState("centerSlide")].getPropValue("image") ? this.decorateCSS("arrow-next-wrapper") : this.decorateCSS("arrow-next-wrapper-no-image")} onClick={() => {
+                sliderRef.current.slickNext();
+              }}>
+                <div className={this.decorateCSS("arrow-next")}>
+                  <ComposerIcon
+                    name={this.getPropValue("nextArrow")}
+                    propsIcon={{ className: this.decorateCSS("icon") }}
+                  />
+                </div>
+              </div>
+            </div>
           </div>
 
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
