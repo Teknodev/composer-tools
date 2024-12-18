@@ -316,7 +316,7 @@ class Header23 extends BaseHeader {
               <ComposerIcon
                 name={this.getPropValue("previousArrow")}
                 propsIcon={{
-                  className: this.decorateCSS("prevArrow"),
+                  className: `${this.decorateCSS("prevArrow")} ${bgColorActivation && this.decorateCSS("bg-color-icon")}`,
                   onClick: () => {
                     sliderRef.current.slickPrev();
                   },
@@ -326,7 +326,7 @@ class Header23 extends BaseHeader {
               <ComposerIcon
                 name={this.getPropValue("nextArrow")}
                 propsIcon={{
-                  className: this.decorateCSS("nextArrow"),
+                  className: `${this.decorateCSS("nextArrow")} ${bgColorActivation && this.decorateCSS("bg-color-icon")}`,
                   onClick: () => {
                     sliderRef.current.slickNext();
                   },

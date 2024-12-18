@@ -131,6 +131,10 @@
         &.prevArrow {
           left: 50px;
         }
+
+        &.bg-color-icon {
+          color: var(--composer-font-color-primary);
+        }
       }
 
       .dots {
