@@ -131,7 +131,7 @@ export abstract class Component
       states: {},
       componentProps: {
         props: props?.props || [],
-        cssClasses: props?.cssClasses || sectionsKeyValue,
+        cssClasses: props?.cssClassess || sectionsKeyValue,
       },
     };
 
@@ -418,6 +418,7 @@ export abstract class Component
     let cssManuplations = Object.entries(this.getCSSClasses()).filter(
       ([p, v]) => v.length > 0
     );
+
     cssManuplations.forEach(([key, value]: any) => {
       if (key === cssValue) {
         value.forEach((el: any) => {
