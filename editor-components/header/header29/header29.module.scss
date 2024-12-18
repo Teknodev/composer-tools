@@ -1,182 +1,183 @@
- .container {
-  width: 100%;
-  min-height: calc(100vh - 80px);
+.container {
   background-color: var(--composer-html-background);
-  padding: 50px 0px;
-  display: flex;
-  align-items: center;
-  
+
   .max-content {
     max-width: var(--composer-content-width);
     margin: auto;
-  
-    .wrapper{
+
+    .wrapper {
       width: 100%;
-      height: 800px;
+      // height: 800px;
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
-      background-color: #fff;
+
       overflow-wrap: break-word;
       &.wrapper-reverse {
         flex-flow: row-reverse;
-      }   
-      .first {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-        width: 40%;
-        padding: 10px;
-        justify-content: center;
-        gap: 40px;
-        margin-left: 50px;
-        .up {
-          display: flex;
-          flex-direction: column;
-          gap: 40px;
-          
-          .title {
-            font-weight: bold;
-            font-size: 7em;
-          }
-          @media screen and (max-width: 1100px){
-            .title{
-              font-size: 5em;
-            }
-          }
-          .description {
-            font-size: 1.5em;
-            color: #535252;
-          }
-          .button-and-input {
-            display: flex;
-            gap: 20px;
-            .input {
-              border-radius: 5%;
-              height: 45px;
-              width: 45%;
-              border: #acacac solid 2px;
-            }
-            .button {
-              padding: auto;
-              background-color:blue ;
-              width: 100%;
-              height: 45px;
-              border-radius: 7%;
-              margin-left: 1%;
-              color: white;
-              border: transparent;
-              font-weight: bold;
-              font-size: 0.8em;
-            }
-          }
-        }
-        .down {
-          display: flex;
-          flex-direction: row;
-          .card1 {
-            gap: 20px;
-            display: flex;
-            flex-direction: column;
-            .title1 {
-              font-weight: bold;
-              font-size: 1.5em;
-            }
-            .description1 {
-              font-size: 1.4em;
-              color: #535252;
-            }
-          }
-          .card2 {
-            gap: 20px;
-            display: flex;
-            flex-direction: column;
-            .title2 {
-              font-weight: bold;
-              font-size: 1.5em;
-            }
-            .description2 {
-              font-size: 1.4em;
-              color: #535252;
-            }
-          }
-          .card1,.card2 {
-            width: 40%;
-          }
-        }
       }
       .image {
         height: 700px;
-        width: 100%;
+        width: 45%;
+        object-fit: contain;
       }
+
+      .content {
+        width: 45%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        .title {
+          width: 100%;
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          font-weight: bold;
+          font-size: 7em;
+          color: var(--composer-font-color-primary);
+
+          .colored-title {
+            padding: 0 var(--composer-gap-sm);
+            color: var(--composer-primary-color);
+          }
+        }
+
+        .description {
+          font-size: 1.5em;
+          color: var(--composer-tertiary-color);
+          padding-top: calc(var(--composer-gap-md) * 1.5);
+          padding-bottom: calc(var(--composer-gap-md) * 2.5);
+        }
+        .form {
+          display: flex;
+          gap: var(--composer-gap-sm);
+          width: 100%;
+          .input {
+            border-radius: var(--composer-border-radius-sm);
+            height: 45px;
+            width: 45%;
+            border: var(--border-color) solid 2px;
+            background-color: var(--composer-html-background);
+            outline: none;
+            padding-left: var(--composer-gap-sm);
+            color: var(--composer-font-color-primary);
+          }
+        }
+        .button {
+          background-color: var(--composer-primary-color);
+
+          height: 45px;
+          border-radius: var(--composer-border-radius-sm);
+          color: var(--text-color-white);
+          font-weight: bold;
+          font-size: 0.8em;
+          border: none;
+          outline: none;
+        }
+
+        .services {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          padding-top: calc(var(--composer-gap-md) * 2.5);
+          gap: var(--composer-gap-md);
+
+          .service-card {
+            gap: var(--composer-gap-sm);
+            display: flex;
+            flex-direction: column;
+            max-width: 45%;
+            .service-svg {
+              font-size: 2em;
+              color: var(--composer-primary-color);
+            }
+            .service-title {
+              font-weight: bold;
+              font-size: 1.5em;
+              color: var(--composer-font-color-primary);
+            }
+            .service-description {
+              font-size: 1.2em;
+              color: var(--composer-tertiary-color);
+            }
+          }
+        }
+      }
+      .content-center {
+        align-items: center;
+      }
+    }
+    .center {
+      justify-content: center;
     }
   }
 }
 
 @media only screen and (max-width: 768px) {
   .container {
-  
     .max-content {
       max-width: var(--composer-content-width);
       margin: auto;
-      
-    
-      .wrapper{
-        .first {
-          width: 55%;
-          
-          .up {
-            gap: 40px;
-            .title {
-              font-size: 4em;
+
+      .wrapper {
+        flex-direction: column;
+
+        &.wrapper-reverse {
+          flex-direction: column-reverse;
+
+          .content {
+            padding-top: var(--composer-gap-xl);
+          }
+        }
+        .content {
+         padding-top: 0;
+          width: 100%;
+          .title {
+            font-size: 4em;
+            display: flex;
+            justify-content: center;
+          }
+          .description {
+            font-size: 1.3em;
+            text-align: center;
+          }
+          .form {
+            display: flex;
+            justify-content: center;
+          }
+          .form {
+            gap: var(--composer-gap-md);
+            .input {
+              width: 72%;
             }
-            .description {
-              font-size: 1.3em;
-            }
-            .button-and-input {
-              gap: 15px;
-              .input {
-                height: 35px;
-                width: 72%;
-              }
-              .button {
-                width: 100%;
-                height: 35px;
-                font-size: 0.7em;
-                font-weight: bold;
-              }
+            .button {
+
+              font-size: 0.7em;
+              font-weight: bold;
             }
           }
-          .down {
-            flex-direction: column;
-            gap: 10px;
-            .card1 {
-              gap: 10px;
-              .title1 {
+          .services {
+            flex-direction: row;
+            gap: var(--composer-gap-sm);
+            padding-bottom: var(--composer-gap-xl);
+            .service-card {
+              align-items: center;
+              gap: var(--composer-gap-sm);
+              flex: 1;
+              .service-title {
                 font-size: 1.2em;
               }
-              .description1 {
+              .service-description {
                 font-size: 1em;
+                text-align: center;
               }
-            }
-            .card2 {
-              gap: 10px;
-              .title2 {
-                font-size: 1.2em;
-              }
-              .description2 {
-                font-size: 1em;
-              }
-            }
-            .card1,.card2 {
-              width: 100%;
             }
           }
         }
         .image {
           height: 470px;
           width: 90%;
-          margin-left: 7% ;
         }
       }
     }
@@ -184,77 +185,52 @@
 }
 @media only screen and (max-width: 400px) {
   .container {
-  
     .max-content {
       max-width: var(--composer-content-width);
       margin: auto;
-      
-    
-      .wrapper{
+
+      .wrapper {
         flex-direction: column;
-        height: max-content;
-        justify-content: start;
-        align-items: flex-start;
-        padding: 0;
 
         &.wrapper-reverse {
-          flex-flow: column-reverse;
+          flex-direction: column-reverse;
         }
-        .first {
+        .content {
           width: 100%;
-          padding: 18px;
-          margin-left: 0;
-          .up {
-            gap: 15px;
+
             .title {
               font-size: 4em;
-              justify-content: flex-start;
+              justify-content: center;
             }
             .description {
               width: 100%;
               font-size: 1.2em;
             }
-            .button-and-input {
-              gap: 15px;
-              flex-direction: column;
+            .form {
+              gap: var(--composer-gap-md);
+
               .input {
-                height: 37px;
-                width: 100%;
                 font-size: 1em;
-                border: #acacacb2 solid 2.7px;
-                border-radius: 6%;
+                border: var(--border-color) solid 1px;
               }
               .button {
-                width: 35%;
-                height: 37px;
-                font-size: 0.8em;
-                margin: 0;
+                width: 45%;
+                font-size: 0.75em;
               }
             }
-          }
-          .down {
+
+          .services {
             flex-direction: column;
-            gap: 15px;
-            .card1 {
-              gap: 6px;
-              .title1 {
+            gap: var(--composer-gap-lg);
+            .service-card {
+              max-width: 100%;
+              gap: var(--composer-gap-sm);
+              .service-title {
                 font-size: 1.4em;
               }
-              .description1 {
+              .service-description {
                 font-size: 1.2em;
               }
-            }
-            .card2 {
-              gap: 6px;
-              .title2 {
-                font-size: 1.4em;
-              }
-              .description2 {
-                font-size: 1.2em;
-              }
-            }
-            .card1,.card2 {
-              width: 100%;
             }
           }
         }
@@ -265,5 +241,3 @@
     }
   }
 }
-
-

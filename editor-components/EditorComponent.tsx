@@ -510,6 +510,16 @@ export abstract class BaseList extends Component {
 
 export abstract class BaseHeader extends Component {
   protected category = CATEGORIES.HEADER;
+
+  insertForm(name: string, data: Object) {
+    const project = getProjectHook()._id;
+    let config = {
+      ...{ data: { name, data, project } },
+      method: "post",
+      url: process.env.REACT_APP_API_URL + "/fn-execute/project/insert-form",
+    };
+    return axios.request(config).then((r: any) => r.data);
+  }
 }
 
 export abstract class BasePricingTable extends Component {
