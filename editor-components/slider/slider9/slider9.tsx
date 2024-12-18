@@ -173,6 +173,15 @@ class Slider9 extends BaseSlider {
       displayer: "Fullscreen Button Text",
       value: "Click to enlarge"
     });
+    this.addProp({
+      type: "icon",
+      key: "exitButton",
+      displayer: "Exit Button",
+      value: "IoMdClose"
+    });
+
+
+
 
     this.setComponentState("vertical-slider-ref", React.createRef());
     this.setComponentState("horizontal-slider-ref", React.createRef());
@@ -517,7 +526,7 @@ class Slider9 extends BaseSlider {
                         <button className={this.decorateCSS("close-button-wrapper")}
                           onClick={this.handleCloseFullscreen}>
                           <ComposerIcon
-                            name={"IoMdClose"}
+                            name={this.getPropValue("exitButton")}
                             propsIcon={{
                               className: this.decorateCSS("close-button"),
                             }}
@@ -545,7 +554,7 @@ class Slider9 extends BaseSlider {
                           className={this.decorateCSS("close-button-wrapper")}
                           onClick={this.handleCloseVideoModal}
                         >
-                          <ComposerIcon name={"IoMdClose"}
+                          <ComposerIcon name={this.getPropValue("exitButton")}
                             propsIcon={{
                               className: this.decorateCSS("close-button"),
                             }}
