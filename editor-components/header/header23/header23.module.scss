@@ -98,7 +98,6 @@
 
 .container {
   width: 100%;
-  min-height: calc(100vh - (var(--composer-gap-lg) * 2));
   background-color: var(--composer-html-background);
   display: flex;
   align-items: center;
@@ -113,38 +112,73 @@
     .wrapper {
       border-radius: var(--composer-border-radius-md);
       width: 100%;
+      position: relative;
 
-      .carousel>button:first-child {
-        &:before {
-          transform: rotateZ(-45deg);
-          left: 70px;
+      .nextArrow,
+      .prevArrow {
+        position: absolute;
+        color: #fff;
+        width: 45px;
+        height: 45px;
+        cursor: pointer;
+        z-index: 10;
+        top: 50%;
+        transform: translateY(-50%);
+
+        &.nextArrow {
+          right: 50px;
+        }
+
+        &.prevArrow {
+          left: 50px;
         }
       }
 
-      .carousel> :last-child {
-        &:before {
-          transform: rotateZ(135deg);
-          right: 70px;
+      .dots {
+        position: absolute;
+        bottom: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        text-align: center;
+        right: 0;
+        width: auto;
+        z-index: 10;
+        display: none;
+
+        li {
+          margin: 0 var(--composer-gap-sm);
+
+          button {
+            color: transparent;
+            position: relative;
+            width: 12px;
+            height: 12px;
+            border: none;
+            border-radius: 50%;
+            background: #fff;
+            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            transform: scale(0.65);
+
+            &::before {
+              content: "";
+            }
+          }
+        }
+
+        .slick-active {
+          transform: scale(1.35);
         }
       }
 
       .carousel {
         width: 100%;
-
-        button {
-          z-index: 10;
-
-          &:before {
-            content: "";
-            position: absolute;
-            transform: rotateZ(135deg);
-            font-size: 6rem;
-            width: 30px;
-            height: 30px;
-            border-top: 3px solid white;
-            border-left: 3px solid white;
-          }
-        }
+        position: relative;
 
         .items {
           background-color: rgba(71, 168, 233, 0.185);
@@ -208,14 +242,14 @@
               }
             }
 
-            .img-bg {
+            .header23-img-bg {
               z-index: 2;
               position: absolute;
               top: 50%;
               left: 50%;
               transform: translate(-50%, -50%);
 
-              .header23-img-background {
+              .img-background {
                 z-index: 2;
                 position: absolute;
                 top: 50%;
@@ -251,7 +285,7 @@
             .header23-wrapper-upperText {
               z-index: 4;
               flex: 1;
-              padding-right: calc(var(--composer-gap-xl) * 2);
+              padding: var(--composer-gap-md) calc(var(--composer-gap-xl) * 2) var(--composer-gap-md) var(--composer-gap-xl);
 
               .upper-text {
                 font-size: 8rem;
@@ -274,7 +308,7 @@
             .header23-wrapper-lowerText {
               z-index: 1;
               flex: 1;
-              padding-left: calc(var(--composer-gap-xl) * 2);
+              padding: var(--composer-gap-md) var(--composer-gap-xl) var(--composer-gap-md) calc(var(--composer-gap-xl) * 2);
 
               .lower-text {
                 font-size: 8rem;
@@ -291,38 +325,6 @@
                 &.animate {
                   animation: slideInFromRight 1s forwards;
                 }
-              }
-            }
-
-            .upper-text,
-            .lower-text {
-              flex: 1;
-              font-size: 8rem;
-              color: white;
-              font-weight: bold;
-              display: -webkit-box;
-              -webkit-line-clamp: 3;
-              -webkit-box-orient: vertical;
-              overflow: hidden;
-              text-overflow: ellipsis;
-              opacity: 0;
-            }
-
-            .upper-text {
-              text-align: end;
-              z-index: 4;
-
-              &.animate {
-                animation: slideInFromLeft 1s forwards;
-              }
-            }
-
-            .lower-text {
-              text-align: start;
-              z-index: 1;
-
-              &.animate {
-                animation: slideInFromRight 1s forwards;
               }
             }
 
@@ -357,20 +359,29 @@
 }
 
 
-@container (max-width: #{$composer-tablet-width-sm}) {
+@container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
       .wrapper {
-        .carousel>button:first-child {
-          &:before {
-            left: 50px;
+
+        .nextArrow,
+        .prevArrow {
+          width: 40px;
+          height: 40px;
+          display: none;
+
+          &.nextArrow {
+            right: 40px;
+          }
+
+          &.prevArrow {
+            left: 40px;
           }
         }
 
-        .carousel> :last-child {
-          &:before {
-            right: 50px;
-          }
+        .dots {
+          bottom: 40px;
+          display: flex;
         }
 
         .carousel {
@@ -396,7 +407,7 @@
               }
 
               .header23-wrapper-upperText {
-                padding-right: var(--composer-gap-lg);
+                padding: var(--composer-gap-md) var(--composer-gap-lg);
 
                 .upper-text {
                   font-size: 5rem;
@@ -404,7 +415,7 @@
               }
 
               .header23-wrapper-lowerText {
-                padding-left: var(--composer-gap-lg);
+                padding: var(--composer-gap-md) var(--composer-gap-lg);
 
                 .lower-text {
                   font-size: 5rem;
@@ -432,26 +443,26 @@
   .container {
     .max-content {
       .wrapper {
-        .carousel>button:first-child {
-          &:before {
-            left: 40px;
+
+        .nextArrow,
+        .prevArrow {
+          width: 35px;
+          height: 35px;
+
+          &.nextArrow {
+            right: 20px;
+          }
+
+          &.prevArrow {
+            left: 20px;
           }
         }
 
-        .carousel> :last-child {
-          &:before {
-            right: 40px;
-          }
+        .dots {
+          bottom: 20px;
         }
 
         .carousel {
-          button {
-            &:before {
-              height: 10px;
-              width: 10px;
-            }
-          }
-
           .items {
             .wrapper-slick {
               .header23-background1-wrapper {
@@ -467,8 +478,8 @@
                 }
               }
 
-              .img-bg {
-                .header23-img-background {
+              .header23-img-bg {
+                .img-background {
                   width: 100px;
                 }
               }
@@ -480,7 +491,7 @@
               }
 
               .header23-wrapper-upperText {
-                padding-right: var(--composer-gap-md);
+                padding: var(--composer-gap-md);
 
                 .upper-text {
                   font-size: 2.5rem;
@@ -488,7 +499,7 @@
               }
 
               .header23-wrapper-lowerText {
-                padding-left: var(--composer-gap-md);
+                padding: var(--composer-gap-md);
 
                 .lower-text {
                   font-size: 2.5rem;
