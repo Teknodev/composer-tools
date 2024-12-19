@@ -113,7 +113,7 @@ class Footer3Page extends BaseFooter {
               type: "string",
               key: "footerTitle",
               displayer: "Footer Title",
-              value: "Contact Info",
+              value: "CONTACT INFO",
             },
             {
               type: "array",
@@ -129,7 +129,7 @@ class Footer3Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: "49 Featherstone Street",
+                      value: "49 Featherstone Street London, United Kingdom",
                     },
                     {
                       type: "icon",
@@ -145,56 +145,7 @@ class Footer3Page extends BaseFooter {
                     },
                   ],
                 },
-                {
-                  type: "object",
-                  key: "footer-text",
-                  displayer: "Text Values",
-                  value: [
-                    {
-                      type: "string",
-                      key: "footerText",
-                      displayer: "Text",
-                      value: "London",
-                    },
-                    {
-                      type: "icon",
-                      key: "footerIcon",
-                      displayer: "Icon",
-                      value: "FaLocationDot",
-                    },
-                    {
-                      type: "page",
-                      key: "path",
-                      displayer: "Path",
-                      value: "",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "footer-text",
-                  displayer: "Text Values",
-                  value: [
-                    {
-                      type: "string",
-                      key: "footerText",
-                      displayer: "Text",
-                      value: "United Kingdom",
-                    },
-                    {
-                      type: "icon",
-                      key: "footerIcon",
-                      displayer: "Icon",
-                      value: "FaLocationDot",
-                    },
-                    {
-                      type: "page",
-                      key: "path",
-                      displayer: "Path",
-                      value: "",
-                    },
-                  ],
-                },
+
                 {
                   type: "object",
                   key: "footer-text",
@@ -283,7 +234,7 @@ class Footer3Page extends BaseFooter {
               type: "string",
               key: "footerTitle",
               displayer: "Footer Title",
-              value: "ADDITIONAL LINKS",
+              value: "ADDITIONAL LINK",
             },
             {
               type: "array",
@@ -578,7 +529,7 @@ class Footer3Page extends BaseFooter {
       type: "string",
       key: "bottomText",
       displayer: "Bottom Text",
-      value: "Intact by Blinkpage. All rights reserved.",
+      value: "Composer by Blinkpage. All rights reserved.",
     });
 
     this.addProp({
@@ -696,7 +647,7 @@ class Footer3Page extends BaseFooter {
                                     return (
                                       elementExist && (
                                         <ComposerLink key={indexFooterText} path={v.path}>
-                                          <div className={this.decorateCSS("element")}>
+                                          <div className={this.decorateCSS(v.path ? "element-has-path" : "element")}>
                                             {v.footerIcon && <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={v.footerIcon} />}
                                             {footerTextExist && <Base.P className={this.decorateCSS("text")}>{v.footerText}</Base.P>}
                                           </div>
@@ -728,7 +679,7 @@ class Footer3Page extends BaseFooter {
                           const textExist = this.castToString(item.text);
                           return (
                             textExist && (
-                              <div className={this.decorateCSS("link-element")}>
+                              <div className={this.decorateCSS(item.url ? "link-element-has-path" : "link-element")}>
                                 <ComposerLink key={index} path={item.url}>
                                   <Base.P className={this.decorateCSS("link-text")}>{item.text}</Base.P>
                                 </ComposerLink>

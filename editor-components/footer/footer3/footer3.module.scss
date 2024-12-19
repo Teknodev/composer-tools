@@ -19,7 +19,7 @@
         .header,
         .list-group {
           flex: 1;
-          min-width: 250px;
+          min-width: 200px;
           max-width: 310px;
           width: 100%;
         }
@@ -70,7 +70,7 @@
           gap: var(--composer-gap-md);
 
           .title {
-            font-size: 1.5rem;
+            font-size: 1rem;
             color: var(--composer-font-color-primary);
             margin: 0;
           }
@@ -78,7 +78,8 @@
           .text-container {
             gap: var(--composer-gap-xs);
 
-            .element {
+            .element,
+            .element-has-path {
               display: flex;
               align-items: center;
               gap: var(--composer-gap-sm);
@@ -92,15 +93,13 @@
 
               .icon {
                 color: var(--composer-font-color-primary);
-                width: var(--composer-gap-md);
-                height: var(--composer-gap-md);
+                font-size: 1rem;
                 transition: color 0.3s ease;
               }
+            }
 
-              .text:hover,
-              .icon:hover {
-                color: var(--composer-tertiary-color);
-              }
+            .element-has-path .text:hover {
+              color: var(--composer-primary-color);
             }
           }
         }
@@ -131,15 +130,17 @@
           justify-content: end;
           gap: var(--composer-gap-md);
 
-          .link-element {
+          .link-element,
+          .link-element-has-path {
             .link-text {
               font-size: 1rem;
               color: var(--composer-font-color-primary);
               transition: color 0.3s ease;
             }
-            .link-text:hover {
-              color: var(--composer-primary-color);
-            }
+          }
+
+          .link-element-has-path .link-text:hover {
+            color: var(--composer-primary-color);
           }
         }
       }
