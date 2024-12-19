@@ -84,7 +84,8 @@
                 border-top: 1px solid var(--composer-tertiary-color);
                 border-left: 1px solid var(--composer-tertiary-color);
                 border-bottom: 1px solid var(--composer-tertiary-color);
-                border-radius: var(--composer-border-radius-sm);
+                border-top-left-radius: var(--composer-border-radius-sm);
+                border-bottom-left-radius: var(--composer-border-radius-sm);
                 padding-bottom: var(--composer-gap-sm);
                 background: transparent;
                 color: var(--composer-font-color-primary);
@@ -105,6 +106,9 @@
 
             .button {
               word-break: normal;
+              border-radius: 0;
+              border-top-right-radius: var(--composer-border-radius-sm);
+              border-bottom-right-radius: var(--composer-border-radius-sm);
             }
           }
 
@@ -215,12 +219,14 @@
 
               .input-element {
                 .input {
+                  border-radius: var(--composer-border-radius-sm);
                   border: 1px solid var(--composer-tertiary-color);
                 }
               }
 
               .button {
                 width: 100%;
+                border-radius: var(--composer-border-radius-sm);
               }
             }
           }
