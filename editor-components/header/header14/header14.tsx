@@ -264,7 +264,7 @@ class HeaderComponent14 extends BaseHeader {
       dots: true,
       arrows: false,
       infinite: true,
-      autoplay: false,
+      autoplay: true,
       speed: 2000,
       slidesToShow: 1,
       slidesToScroll: 1,
