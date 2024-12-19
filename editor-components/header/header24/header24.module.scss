@@ -50,7 +50,7 @@
       width: 100%;
       height: 100%;
 
-      .carousel {
+      .carousel, .carousel-no-image {
         width: 100%;
 
         >button {
@@ -71,8 +71,8 @@
         >button:first-of-type {
           &:before {
             transform: rotateZ(-45deg);
-            border-top: 3px solid color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 40%);
-            border-left: 3px solid color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 40%);
+            border-top: 3px solid #93646a;
+            border-left: 3px solid #93646a;
             left: 25px;
           }
         }
@@ -80,8 +80,8 @@
         >button:last-of-type {
           &:before {
             transform: rotateZ(135deg);
-            border-top: 3px solid color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 40%);
-            border-left: 3px solid color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 40%);
+            border-top: 3px solid #93646a;
+            border-left: 3px solid #93646a;
             right: 25px;
           }
         }
@@ -104,7 +104,7 @@
             counter-increment: list-counter;
             white-space: nowrap;
             position: relative;
-            color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 40%);
+            color: #93646a;
 
             ::before {
               margin-inline-end: 5px;
@@ -117,7 +117,7 @@
               content: "";
               width: 15px;
               height: 2px;
-              background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 40%);
+              background-color:#93646a;
               transition: width .3s ease;
               display: inline-block;
               vertical-align: middle;
@@ -130,8 +130,7 @@
             button {
               &:before {
                 font-size: 20px;
-                color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 40%);
-                opacity: 0.75;
+                color: #93646a;
               }
             }
           }
@@ -157,6 +156,10 @@
             object-fit: cover;
             width: 100%;
             overflow: hidden;
+            height: 100%;
+            .image{
+              height: 100%;
+            }
           }
 
           .main-content {
@@ -183,23 +186,29 @@
                   z-index: 8;
                 }
 
-                .title {
+                .title, .title-no-image {
                   z-index: 2;
                   font-size: 3vw;
-                  color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 40%);
+                  color:#93646a;
                   font-style: italic;
                   overflow: hidden;
                   text-overflow: ellipsis;
                   padding: 0 20%;
                 }
+                .title-no-image{
+                  color: var(--composer-font-color-primary);  
+                }
 
-                .description {
+                .description, .description-no-image {
                   z-index: 2;
                   font-size: 1.2vw;
-                  color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 40%);
+                  color: #93646a;
                   overflow: hidden;
                   text-overflow: ellipsis;
                   padding: 0 20%;
+                }
+                .description-no-image{
+                  color: var(--composer-font-color-primary);
                 }
 
                 .no-image {
@@ -210,29 +219,10 @@
                 .buttons {
                   z-index: 2;
                   display: flex;
-
-                  .button {
-                    padding: 12px 18px;
-                    border-radius: 24px;
-                    background: var(--composer-primary-color);
-                    border: 0px;
-                    color: var(--composer-font-color-secondary);
-                    margin: 12px;
-                    font-weight: bold;
-                    max-width: 200px;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-
-                    &:last-child {
-                      border: 2px solid color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 40%);
-                      border-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 40%);
-                      background: transparent;
-                      color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 40%);
-                    }
-
-                    &:hover:last-child {
-                      background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 40%);
-                      color: var(--composer-font-color-secondary);
+                  gap: var(--composer-gap-md);
+                  .button-wrapper{
+                    .button{
+                      content: "";
                     }
                   }
                 }
@@ -246,6 +236,7 @@
               z-index: 2;
               width: 100%;
               height: 100%;
+              justify-content: center;
 
 
               .image-wrapper {
@@ -263,6 +254,36 @@
                   object-fit: cover;
                   max-width: 100%;
                 }
+              }
+            }
+          }
+        }
+      }
+      .carousel-no-image{
+
+        >button:first-of-type {
+          &:before {
+            border-top: 3px solid var(--composer-font-color-primary);
+            border-left: 3px solid var(--composer-font-color-primary);
+          }
+        }
+
+        >button:last-of-type {
+          &:before {
+            border-top: 3px solid var(--composer-font-color-primary);
+            border-left: 3px solid var(--composer-font-color-primary);
+          }
+        }
+
+        >ul {
+          li {
+            color: var(--composer-font-color-primary);
+            ::after {
+              background-color:var(--composer-font-color-primary);
+            }
+            button {
+              &:before {
+                color:var(--composer-font-color-primary);
               }
             }
           }

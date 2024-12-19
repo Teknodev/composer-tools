@@ -3,6 +3,7 @@ import styles from "./header24.module.scss";
 import { BaseHeader } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { Base } from "../../../composer-base-components/base/base";
 
 type ISliderData = {
   title: JSX.Element;
@@ -10,8 +11,7 @@ type ISliderData = {
   image: string;
   flower_image: string;
   background_image: string;
-  button: IButton;
-  button2: IButton;
+  buttons: IButton[];
 };
 type IButton = {
   buttonText: JSX.Element;
@@ -66,42 +66,49 @@ class HeaderComponent24 extends BaseHeader {
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619f13bd2970002c6267c3?alt=media&timestamp=1719483639150",
             },
             {
-              type: "object",
-              displayer: "Button",
-              key: "button",
+              type: "array",
+              displayer: "Buttons",
+              key: "buttons",
               value: [
                 {
-                  type: "string",
-                  displayer: "Button Text",
-                  key: "buttonText",
-                  value: "TO SHOP",
+                  type: "object",
+                  displayer: "Button",
+                  key: "button",
+                  value: [
+                    {
+                      type: "string",
+                      displayer: "Button Text",
+                      key: "buttonText",
+                      value: "TO SHOP",
+                    },
+                    {
+                      type: "page",
+                      displayer: "Button URL",
+                      key: "buttonUrl",
+                      value: "",
+                    },
+                  ],
                 },
                 {
-                  type: "page",
-                  displayer: "Button URL",
-                  key: "buttonUrl",
-                  value: "",
+                  type: "object",
+                  displayer: "Button",
+                  key: "button",
+                  value: [
+                    {
+                      type: "string",
+                      displayer: "Button Text",
+                      key: "buttonText",
+                      value: "VIEW MORE",
+                    },
+                    {
+                      type: "page",
+                      displayer: "Button URL",
+                      key: "buttonUrl",
+                      value: "",
+                    },
+                  ],
                 },
-              ],
-            },
-            {
-              type: "object",
-              displayer: "Button",
-              key: "button2",
-              value: [
-                {
-                  type: "string",
-                  displayer: "Button Text",
-                  key: "buttonText",
-                  value: "VIEW MORE",
-                },
-                {
-                  type: "page",
-                  displayer: "Button URL",
-                  key: "buttonUrl",
-                  value: "",
-                },
-              ],
+              ]
             },
           ],
         },
@@ -145,42 +152,49 @@ class HeaderComponent24 extends BaseHeader {
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619f13bd2970002c6267bf?alt=media&timestamp=1719483639150",
             },
             {
-              type: "object",
-              displayer: "Button",
-              key: "button",
+              type: "array",
+              displayer: "Buttons",
+              key: "buttons",
               value: [
                 {
-                  type: "string",
-                  displayer: "Button Text",
-                  key: "buttonText",
-                  value: "TO SHOP",
+                  type: "object",
+                  displayer: "Button",
+                  key: "button",
+                  value: [
+                    {
+                      type: "string",
+                      displayer: "Button Text",
+                      key: "buttonText",
+                      value: "TO SHOP",
+                    },
+                    {
+                      type: "page",
+                      displayer: "Button URL",
+                      key: "buttonUrl",
+                      value: "",
+                    },
+                  ],
                 },
                 {
-                  type: "page",
-                  displayer: "Button URL",
-                  key: "buttonUrl",
-                  value: "",
+                  type: "object",
+                  displayer: "Button",
+                  key: "button",
+                  value: [
+                    {
+                      type: "string",
+                      displayer: "Button Text",
+                      key: "buttonText",
+                      value: "VIEW MORE",
+                    },
+                    {
+                      type: "page",
+                      displayer: "Button URL",
+                      key: "buttonUrl",
+                      value: "",
+                    },
+                  ],
                 },
-              ],
-            },
-            {
-              type: "object",
-              displayer: "Button",
-              key: "button2",
-              value: [
-                {
-                  type: "string",
-                  displayer: "Button Text",
-                  key: "buttonText",
-                  value: "VIEW MORE",
-                },
-                {
-                  type: "page",
-                  displayer: "Button URL",
-                  key: "buttonUrl",
-                  value: "",
-                },
-              ],
+              ]
             },
           ],
         },
@@ -223,42 +237,49 @@ class HeaderComponent24 extends BaseHeader {
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619f13bd2970002c6267c1?alt=media&timestamp=1719483639150",
             },
             {
-              type: "object",
-              displayer: "Button",
-              key: "button",
+              type: "array",
+              displayer: "Buttons",
+              key: "buttons",
               value: [
                 {
-                  type: "string",
-                  displayer: "Button Text",
-                  key: "buttonText",
-                  value: "TO SHOP",
+                  type: "object",
+                  displayer: "Button",
+                  key: "button",
+                  value: [
+                    {
+                      type: "string",
+                      displayer: "Button Text",
+                      key: "buttonText",
+                      value: "TO SHOP",
+                    },
+                    {
+                      type: "page",
+                      displayer: "Button URL",
+                      key: "buttonUrl",
+                      value: "",
+                    },
+                  ],
                 },
                 {
-                  type: "page",
-                  displayer: "Button URL",
-                  key: "buttonUrl",
-                  value: "",
+                  type: "object",
+                  displayer: "Button",
+                  key: "button2",
+                  value: [
+                    {
+                      type: "string",
+                      displayer: "Button Text",
+                      key: "buttonText",
+                      value: "VIEW MORE",
+                    },
+                    {
+                      type: "page",
+                      displayer: "Button URL",
+                      key: "buttonUrl",
+                      value: "",
+                    },
+                  ],
                 },
-              ],
-            },
-            {
-              type: "object",
-              displayer: "Button",
-              key: "button2",
-              value: [
-                {
-                  type: "string",
-                  displayer: "Button Text",
-                  key: "buttonText",
-                  value: "VIEW MORE",
-                },
-                {
-                  type: "page",
-                  displayer: "Button URL",
-                  key: "buttonUrl",
-                  value: "",
-                },
-              ],
+              ]
             },
           ],
         },
@@ -286,6 +307,7 @@ class HeaderComponent24 extends BaseHeader {
       beforeChange: (previous: number, current: number) => {
         this.setComponentState("previousChange", previous);
         this.setComponentState("currentChange", current);
+        this.setComponentState("currentIndex", current);
       },
       afterChange: (previous: number, current: number) => {
         setTimeout(() => {
@@ -294,7 +316,6 @@ class HeaderComponent24 extends BaseHeader {
         }, 1000);
       },
     };
-
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
@@ -302,20 +323,19 @@ class HeaderComponent24 extends BaseHeader {
           <div className={this.decorateCSS("wrapper")}>
             <ComposerSlider
               {...settings}
-              className={this.decorateCSS("carousel")}>
+              className={this.getPropValue("slider")[this.getComponentState("currentIndex")].getPropValue("background_image") ? this.decorateCSS("carousel") : this.decorateCSS("carousel-no-image")}>
               {this.castToObject<ISliderData[]>("slider").map(
                 (item: ISliderData, index: number) => (
 
                   <div className={this.decorateCSS("item")} key={`key${index}`}>
                     {item.background_image && <div className={`${this.decorateCSS("background-image")} ${!item.image && this.decorateCSS("no-image")}`}>
-                      <img src={item.background_image} alt={this.castToString(item.title)} />
+                      <img src={item.background_image} alt={this.castToString(item.title)} className={this.decorateCSS("image")} />
                     </div>}
                     <div className={`${this.decorateCSS("main-content")} ${!item.image && this.decorateCSS("no-image-content")}`}>
                       {(item.flower_image ||
                         this.castToString(item.title) ||
                         this.castToString(item.description) ||
-                        this.castToString(item.button.buttonText) ||
-                        this.castToString(item.button2.buttonText)) &&
+                        (item.buttons.length > 0)) &&
                         <div className={this.decorateCSS("left")}>
                           <div className={this.decorateCSS("content")}>
                             {item.flower_image && <div className={`${this.decorateCSS("flower")}
@@ -323,39 +343,35 @@ class HeaderComponent24 extends BaseHeader {
                               }`}>
                               <img src={item.flower_image} alt={this.castToString(item.title)} />
                             </div>}
-                            {this.castToString(item.title) && <div className={`${this.decorateCSS("title")}
+                            {this.castToString(item.title) && <div className={`${item.background_image ? this.decorateCSS("title") : this.decorateCSS("title-no-image")}
                             ${this.getComponentState("previousChange") !== this.getComponentState("currentChange") && this.decorateCSS("slide-up-2")}
                              ${!item.image && this.decorateCSS("no-image")}
                             `}>
                               {item.title}
                             </div>}
-                            {this.castToString(item.description) && <div className={`${this.decorateCSS("description")} 
+                            {this.castToString(item.description) && <div className={`${item.background_image ? this.decorateCSS("description") : this.decorateCSS("description-no-image")} 
                             ${this.getComponentState("previousChange") !== this.getComponentState("currentChange") && this.decorateCSS("slide-up-3")}
                             ${!item.image && this.decorateCSS("no-image")}
                             `}>
                               {item.description}
                             </div>}
-                            {(this.castToString(item.button2.buttonText) || this.castToString(item.button.buttonText)) &&
-                              <div className={`${this.decorateCSS("buttons")}
-                              ${this.getComponentState("previousChange") !== this.getComponentState("currentChange") && this.decorateCSS("slide-up-4")}
-                              `}>
-                                {this.castToString(item.button.buttonText) &&
-                                  <ComposerLink
-                                    path={item.button.buttonUrl} className={this.decorateCSS("composer-link")}
-                                  >
-                                    <button className={this.decorateCSS("button")}>
-                                      {item.button.buttonText}
-                                    </button>
-                                  </ComposerLink>}
-                                {this.castToString(item.button2.buttonText) &&
-                                  <ComposerLink
-                                    path={item.button2.buttonUrl} className={this.decorateCSS("composer-link")}
-                                  >
-                                    <button className={this.decorateCSS("button")}>
-                                      {item.button2.buttonText}
-                                    </button>
-                                  </ComposerLink>}
-                              </div>}
+                            <div className={`${this.decorateCSS("buttons")}
+                            ${this.getComponentState("previousChange") !== this.getComponentState("currentChange") && this.decorateCSS("slide-up-4")}
+                            `}>
+                              {item.buttons.map((item: IButton, index: number) => (
+                                <div className={this.decorateCSS("button-wrapper")}>
+                                  {this.castToString(item.buttonText) &&
+                                    <ComposerLink
+                                      path={item.buttonUrl} className={this.decorateCSS("composer-link")}
+                                    >
+                                      <Base.Button className={this.decorateCSS("button")}>
+                                        {item.buttonText}
+                                      </Base.Button>
+                                    </ComposerLink>
+                                  }
+                                </div>
+                              ))}
+                            </div >
                           </div>
                         </div>}
                       {item.image && <div className={this.decorateCSS("right")}>
@@ -369,8 +385,8 @@ class HeaderComponent24 extends BaseHeader {
               )}
             </ComposerSlider>
           </div>
-        </div>
-      </div>
+        </div >
+      </div >
     );
   }
 }
