@@ -2,41 +2,129 @@ import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseFooter } from "../../EditorComponent";
 import styles from "./footer10.module.scss";
+import { Base } from "../../../composer-base-components/base/base";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
+type link = {
+  title: string,
+  page: string,
+}
+
+type icon = {
+  icon: string,
+  page: string,
+}
 
 class Footer10Page extends BaseFooter {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
+      type: "boolean",
+      key: "showLine",
+      displayer: "Show Line",
+      value: true,
+    });
+    this.addProp({
+      type: "image",
+      key: "logo",
+      displayer: "Logo",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6763d3600655f8002ca92e43?alt=media",
+    });
+    this.addProp({
       type: "string",
-      key: "top-text",
-      displayer: "Top Text",
-      value: "© 2022 Dental Excellence Turkey | ",
-    });
-    this.addProp({
-        type: "page",
-        key: "ref-page",
-        displayer: "Referral Url",
-        value: "https://www.google.com/"
-    });
-    this.addProp({
-      type: "color",
-      key: "backgroundColor",
-      displayer: "Background Color of Footer",
-      value: "#212832",
+      key: "title",
+      displayer: "Title",
+      value: "Copyright © 2012 - 2024 All rights reserved.",
     });
     this.addProp({
         type: "string",
-        key: "ref-text",
-        displayer: "Referral Text",
-        value: "Privacy Policy"
+        key: "title2",
+        displayer: "Ref Text",
+        value: "TeknoDev"
     });
     this.addProp({
-      type: "string",
-      key: "description",
-      displayer: "Description",
-      value: "The information contained in the site is for providing support. It is not a substitute for the doctors to examine the patient for medical purposes, to make a diagnosis. This information should not be used in the diagnosis and treatment of disease.",
+      type: "array",
+      key: "links",
+      displayer: "Links",
+      value: [
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "About"
+            },
+            {
+              type: "page",
+              key: "page",
+              displayer: "Page",
+              value: ""
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Company"
+            },
+            {
+              type: "page",
+              key: "page",
+              displayer: "Page",
+              value: ""
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Services"
+            },
+            {
+              type: "page",
+              key: "page",
+              displayer: "Page",
+              value: ""
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Testimonials"
+            },
+            {
+              type: "page",
+              key: "page",
+              displayer: "Page",
+              value: ""
+            },
+          ],
+        },
+      ],
     });
-
     this.addProp({
       type: "array",
       key: "icons",
@@ -48,17 +136,17 @@ class Footer10Page extends BaseFooter {
           displayer: "Item",
           value: [
             {
-              type: "image",
+              type: "icon",
               key: "icon",
               value:
-                "https://totalpng.com//public/uploads/preview/facebook-grey-logo-png-hd-copy-11656657462jfylzawrgd.png",
+                "BiLogoFacebookCircle",
               displayer: "Icon",
             },
             {
               type: "page",
-              key: "link",
-              value: "https://www.google.com/",
-              displayer: "Navigate To",
+              key: "page",
+              displayer: "Page",
+              value: ""
             },
           ],
         },
@@ -71,14 +159,14 @@ class Footer10Page extends BaseFooter {
               type: "image",
               key: "icon",
               value:
-                "https://totalpng.com//public/uploads/preview/youtube-grey-logo-png-hd-copy-11656657528pafryryqkv.png",
+                "FaTwitter",
               displayer: "Icon",
             },
             {
               type: "page",
-              key: "link",
-              value: "https://www.google.com/",
-              displayer: "Navigate To",
+              key: "page",
+              displayer: "Page",
+              value: ""
             },
           ],
         },
@@ -91,14 +179,14 @@ class Footer10Page extends BaseFooter {
               type: "image",
               key: "icon",
               value:
-                "https://totalpng.com//public/uploads/preview/vimeo-grey-logo-png-hd-copy-11656657514xbjrlcikez.png",
+                "FaInstagram",
               displayer: "Icon",
             },
             {
               type: "page",
-              key: "link",
-              value: "https://www.google.com/",
-              displayer: "Navigate To",
+              key: "page",
+              displayer: "Page",
+              value: ""
             },
           ],
         },
@@ -111,14 +199,14 @@ class Footer10Page extends BaseFooter {
               type: "image",
               key: "icon",
               value:
-                "https://totalpng.com//public/uploads/preview/instagram-grey-logo-png-hd-copy-11656657483bsurpsft3i.png",
+                "FaLinkedin",
               displayer: "Icon",
             },
             {
               type: "page",
-              key: "link",
-              value: "https://www.google.com/",
-              displayer: "Navigate To",
+              key: "page",
+              displayer: "Page",
+              value: ""
             },
           ],
         },
@@ -129,41 +217,54 @@ class Footer10Page extends BaseFooter {
     return "Footer 10";
   }
   render() {
-    const styling = {
-      backgroundColor: this.getPropValue("backgroundColor")
-    }
+    const links = this.castToObject<link[]>("links");
+    const icons = this.castToObject<icon[]>("icons");
+    const showLine = this.getPropValue("showLine");
+    const logo = this.getPropValue("logo");
+    const title1 = this.castToString(this.getPropValue("title"));
+    const title2 = this.castToString(this.getPropValue("title2"));
+
     return (
-      <div className={this.decorateCSS("container")} style={styling}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("content")}>
-            <div className={this.decorateCSS("top-content")}>
-              <span className={this.decorateCSS("top-text")}>
-                {this.getPropValue("top-text")}
-                <a href={this.getPropValue("ref-page")}>{this.getPropValue("ref-text")}</a>
-              </span>
-              <div className={this.decorateCSS("icons-div")}>
-                {this.getPropValue("icons").map((icon: any, index: number) => {
-                  return (
-                    <ComposerLink path={icon.value[1].value}>
-                      <img
-                        src={icon.value[0].value}
-                        width={50}
-                        height={50}
-                        alt="icon-svg"
-                      />
-                    </ComposerLink>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <div className={this.decorateCSS("section")}>
+            <div className={this.decorateCSS("upper")}>
+              {logo && (
+                <div className={this.decorateCSS("logo-box")}>
+                  <img src={logo} alt="logo" className={this.decorateCSS("logo")} />
+                </div>
+              )}
+              <div className={this.decorateCSS("links")}>
+                {links.length > 0 && links.map((item: link, index: number) => {
+                  return(
+                    <ComposerLink path={item.page}>
+                      {item.title}
+                    </ComposerLink>    
                   );
                 })}
               </div>
             </div>
-            <div className={this.decorateCSS("mid-content")}>
-              <p className={this.decorateCSS("description")}>
-                {this.getPropValue("description")}
-              </p>
+            {showLine && (
+              <div className={this.decorateCSS("line")}></div>
+            )}
+            <div className={this.decorateCSS("lower")}>
+              <div className={this.decorateCSS("text-area")}>
+                <Base.P>{(title1 + " " + title2)}</Base.P>
+              </div>
+              <div className={this.decorateCSS("icons")}>
+                {icons.length > 0 && icons.map((item: icon, index: number) => {
+                  if (!item.icon) return null;
+                  return(
+                    <ComposerLink path={item.page}>
+                      <ComposerIcon name={item.icon} />
+                    </ComposerLink>    
+                  );
+                })}
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

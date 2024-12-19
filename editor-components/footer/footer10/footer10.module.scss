@@ -1,64 +1,67 @@
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss"; 
+
 .container {
-    width: 100%;
-    padding: 50px 50px;
     .max-content {
-        max-width: var(--composer-content-width);
-        margin: auto;
-        .content {
-            width: 100%;
-            margin-left: auto;
-            margin-right: auto;
-            padding-left: 40px;
-            padding-right: 40px;
-            .top-content {
-                padding: 25px 0;
+        .section {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            .upper {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                span {
-                    font-size: 14px;
-                    color: #fff;
-                }
-                .icons-div {
-                    display: flex;
-                    gap: 25px;
-                    padding-right: 40px;
-                    img {
-                        width: 20px;
-                        height: 20px;
+                margin-bottom: var(--composer-gap-md);
+                .logo-box {
+                    .logo {
+                        max-width: 200px;
+                        object-fit: cover;
                     }
                 }
+                .links {
+                    display: flex;
+                    flex-wrap: wrap;
+                    row-gap: var(--composer-gap-sm);
+                    column-gap: var(--composer-gap-md);
+                    font-size: 1rem;
+                    color: var(--composer-font-color-primary);
+                }
             }
-            &::before {
-                content: "";
-                height: 1px;
-                background: #fff;
-                position: absolute;
-                top: 40px;
-                left: 5%;
-                right: 5%;
-                opacity: 0.2;
+            .line {
+                border-top: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.5);
+                width: 100%;
             }
-            .mid-content {
-                p {
-                    color: #fff;
-                    width: 100%;
-                    display: block;
-                    font-size: 14px;
-                    margin-bottom: 10px;
-                    margin-top: 0;
+            .lower {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                .text-area {
+                    color: var(--composer-font-color-primary);
+                }
+                .icons {
+                    display: flex;
+                    flex-wrap: wrap;
+                    column-gap: var(--composer-gap-md);
+                    font-size: 1.5rem;
+                    color: var(--composer-font-color-primary);
                 }
             }
         }
-        @media screen and (max-width: 740px) {
-            .content {
-                .top-content {
-                    display: block;
-                    .icons-div {
-                        margin-top: 10px;
-                    }
-                }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .section {
+        .upper {
+            flex-direction: column;
+
+            .links {
+                flex-direction: column;
+                text-align: center;
             }
+        }
+        .lower {
+            flex-direction: column;
+            text-align: center;
         }
     }
 }
