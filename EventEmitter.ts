@@ -4,7 +4,6 @@ interface Events {
 
 export enum EVENTS {
   PROP_UPDATED = "propUpdated",
-  STATE_CHANGED = "stateChanged",
   CHANGE_PAGE = "changePage",
   REQUEST_TO_VERIFY_EMAIL = "requestToVerifyEmail",
   MODAL_COMPONENT = "modalComponent",

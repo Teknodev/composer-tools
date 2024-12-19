@@ -48,8 +48,6 @@ export interface iComponent {
   decorateCSS(cssValue: string): string;
   getCategory(): CATEGORIES;
   id: string;
-
-  customStates: any;
 }
 type AvailablePropTypes =
   | { type: "string"; value: string }
@@ -112,7 +110,6 @@ export abstract class Component
   implements iComponent
 {
   private styles: any;
-  public customStates: any = {};
   public id: string;
   static category: CATEGORIES;
 
@@ -140,7 +137,7 @@ export abstract class Component
         this.setProp(prop.key, prop.value);
       });
     }
-        
+
     EventEmitter.emit(EVENTS.COMPONENT_ADDED, { id: this.id, props });
   }
 
@@ -403,12 +400,12 @@ export abstract class Component
   }
 
   setComponentState(key: string, value: any): void {
-    this.customStates[key] = value;
-    EventEmitter.emit(EVENTS.STATE_CHANGED, { id: this.id, key, value });
+    this.state.states[key] = value;
+    this.setState({ ...this.state });
   }
 
   getComponentState(key: string): any {
-    return this.customStates[key];
+    return this.state.states[key];
   }
 
   setCSSClasses(key: string, value: { id: string; class: string }[]) {
