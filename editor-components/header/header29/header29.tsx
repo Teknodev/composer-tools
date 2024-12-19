@@ -6,12 +6,6 @@ import { Base } from "../../../composer-base-components/base/base";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Form, Formik } from "formik";
 
-interface TitleItem {
-  title1: JSX.Element;
-  coloredTitle: JSX.Element;
-  title2: JSX.Element;
-}
-
 interface ServiceItem {
   title: string;
   description: string;
@@ -26,31 +20,11 @@ interface ButtonItem {
 class Header29 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
-
     this.addProp({
-      type: "object",
+      type: "string",
       key: "title",
-      displayer: "Title Item",
-      value: [
-        {
-          type: "string",
-          key: "title1",
-          displayer: "Title 1",
-          value: "Real",
-        },
-        {
-          type: "string",
-          key: "coloredTitle",
-          displayer: "Colored Title",
-          value: "Estate",
-        },
-        {
-          type: "string",
-          key: "title2",
-          displayer: "Title 2",
-          value: "Investments",
-        },
-      ],
+      displayer: "Title",
+      value: "Real Estate Investments",
     });
     this.addProp({
       type: "string",
@@ -168,43 +142,33 @@ class Header29 extends BaseHeader {
   render() {
 
     const button = this.castToObject<ButtonItem>("button");
-    const title = this.castToObject<TitleItem>("title");
+
+    const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
     const serviceItems = this.castToObject<ServiceItem[]>("serviceItems");
     const image = this.getPropValue("image");
     const placeholder = this.castToString(this.getPropValue("placeholder"));
     const buttonText = this.castToString(button.buttonText);
-    const showTitle = Boolean(this.castToString(title.title1) || this.castToString(title.coloredTitle) || this.castToString(title.title2));
-    const showContent = showTitle || description || serviceItems.length > 0;
+    const showContent = title || description || serviceItems.length > 0;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div
+          <Base.ContainerGrid
             className={`${this.decorateCSS("wrapper")} ${
               this.getPropValue("reverser") &&
               this.decorateCSS("wrapper-reverse")
             } ${!showContent || !image ? this.decorateCSS("center") : ""}`}
           >
             {showContent && (
-              <div className={this.decorateCSS("content")}>
-                {showTitle && (
-                  <div className={this.decorateCSS("title")}>
-                    <span>
-                    {this.castToString(title.title1)}
-                    </span>
-                    <span className={this.decorateCSS("colored-title")}>
-                      {this.castToString(title.coloredTitle)}
-                    </span>
-                    <span>
-                    {this.castToString(title.title2)}
-                    </span>
-                  </div>
+              <Base.GridCell className={this.decorateCSS("content")}>
+                {title && (
+                  <Base.SectionTitle className={this.decorateCSS("title")}> {this.getPropValue("title")}</Base.SectionTitle>
                 )}
                 {description && (
-                  <div className={this.decorateCSS("description")}>
-                    {description}
-                  </div>
+                  <Base.SectionDescription className={this.decorateCSS("description")}>
+                    {this.getPropValue("description")}
+                  </Base.SectionDescription>
                 )}
 
                 {placeholder && buttonText && (
@@ -227,7 +191,7 @@ class Header29 extends BaseHeader {
                             value={values.phone}
                           />
                           {this.castToString(button.buttonText) && (
-                            <Base.Button className={this.decorateCSS("button")}>
+                            <Base.Button>
                               {this.castToString(button.buttonText)}
                             </Base.Button>
                           )}
@@ -239,15 +203,15 @@ class Header29 extends BaseHeader {
 
                 {!placeholder && buttonText && (
                   <ComposerLink path={button.url}>
-                    <Base.Button className={this.decorateCSS("button")}>
+                    <Base.Button>
                       {buttonText}
                     </Base.Button>
                   </ComposerLink>
                 )}
 
                 {serviceItems && (
-                  <div className={this.decorateCSS("services")}>
-                    {serviceItems.map((item: any, index: number) => (
+                  <Base.ListGrid gridCount={{ pc: 3, tablet: 2, phone: 1 }}>
+                      {serviceItems.map((item: any, index: number) => (
                       <div className={this.decorateCSS("service-card")}>
                         <div className={this.decorateCSS("service-svg")}>
                           <ComposerIcon name={item.icon} />
@@ -262,18 +226,20 @@ class Header29 extends BaseHeader {
                         </div>
                       </div>
                     ))}
-                  </div>
+                  </Base.ListGrid>
                 )}
-              </div>
+              </Base.GridCell>
             )}
             {image && (
-              <img
+              <Base.GridCell className={this.decorateCSS("image-container")}>
+                <img
                 className={this.decorateCSS("image")}
                 src={this.getPropValue("image")}
                 alt=""
               />
+              </Base.GridCell>
             )}
-          </div>
+          </Base.ContainerGrid>
         </Base.MaxContent>
       </Base.Container>
     );

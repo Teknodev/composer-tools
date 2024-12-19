@@ -7,10 +7,8 @@
 
     .wrapper {
       width: 100%;
-      // height: 800px;
       display: flex;
       justify-content: space-between;
-      align-items: center;
 
       overflow-wrap: break-word;
       &.wrapper-reverse {
@@ -18,15 +16,15 @@
       }
       .image {
         height: 700px;
-        width: 45%;
+        width: 100%;
         object-fit: contain;
       }
 
       .content {
-        width: 45%;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+        gap: calc(var(--composer-gap-md) * 1.5);
         .title {
           width: 100%;
           display: flex;
@@ -35,7 +33,7 @@
           font-weight: bold;
           font-size: 7em;
           color: var(--composer-font-color-primary);
-
+          margin: 0;
           .colored-title {
             padding: 0 var(--composer-gap-sm);
             color: var(--composer-primary-color);
@@ -45,8 +43,9 @@
         .description {
           font-size: 1.5em;
           color: var(--composer-tertiary-color);
-          padding-top: calc(var(--composer-gap-md) * 1.5);
-          padding-bottom: calc(var(--composer-gap-md) * 2.5);
+          margin: 0;
+          // padding-top: calc(var(--composer-gap-md) * 1.5);
+          // padding-bottom: calc(var(--composer-gap-md) * 2.5);
         }
         .form {
           display: flex;
@@ -56,7 +55,7 @@
             border-radius: var(--composer-border-radius-sm);
             height: 45px;
             width: 45%;
-            border: var(--border-color) solid 2px;
+            border: var(--composer-font-color-primary) solid 2px;
             background-color: var(--composer-html-background);
             outline: none;
             padding-left: var(--composer-gap-sm);
@@ -75,19 +74,10 @@
           outline: none;
         }
 
-        .services {
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          flex-wrap: wrap;
-          padding-top: calc(var(--composer-gap-md) * 2.5);
-          gap: var(--composer-gap-md);
-
           .service-card {
             gap: var(--composer-gap-sm);
             display: flex;
             flex-direction: column;
-            max-width: 45%;
             .service-svg {
               font-size: 2em;
               color: var(--composer-primary-color);
@@ -102,7 +92,7 @@
               color: var(--composer-tertiary-color);
             }
           }
-        }
+
       }
       .content-center {
         align-items: center;
@@ -125,10 +115,6 @@
 
         &.wrapper-reverse {
           flex-direction: column-reverse;
-
-          .content {
-            padding-top: var(--composer-gap-xl);
-          }
         }
         .content {
          padding-top: 0;
@@ -142,25 +128,22 @@
             font-size: 1.3em;
             text-align: center;
           }
+
           .form {
-            display: flex;
-            justify-content: center;
-          }
-          .form {
+            justify-content: space-between;
             gap: var(--composer-gap-md);
             .input {
               width: 72%;
             }
             .button {
-
               font-size: 0.7em;
               font-weight: bold;
             }
           }
-          .services {
-            flex-direction: row;
-            gap: var(--composer-gap-sm);
-            padding-bottom: var(--composer-gap-xl);
+          // .services {
+          //   flex-direction: row;
+          //   gap: var(--composer-gap-sm);
+          //   padding-bottom: var(--composer-gap-xl);
             .service-card {
               align-items: center;
               gap: var(--composer-gap-sm);
@@ -173,7 +156,7 @@
                 text-align: center;
               }
             }
-          }
+          // }
         }
         .image {
           height: 470px;
@@ -211,7 +194,7 @@
 
               .input {
                 font-size: 1em;
-                border: var(--border-color) solid 1px;
+                border: var(--composer-font-color-primary) solid 1px;
               }
               .button {
                 width: 45%;
@@ -219,9 +202,9 @@
               }
             }
 
-          .services {
-            flex-direction: column;
-            gap: var(--composer-gap-lg);
+          // .services {
+          //   flex-direction: column;
+          //   gap: var(--composer-gap-lg);
             .service-card {
               max-width: 100%;
               gap: var(--composer-gap-sm);
@@ -232,7 +215,7 @@
                 font-size: 1.2em;
               }
             }
-          }
+          // }
         }
         .image {
           height: 350px;
