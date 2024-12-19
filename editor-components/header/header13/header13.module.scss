@@ -1,18 +1,27 @@
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+
 .container {
     width: 100%;
     background: var(--composer-html-background);
+    height: 100vh;
 
     .max-content {
-        max-width: var(--composer-content-width);
         margin: auto;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        display: flex;
+        align-items: end;
+        overflow: hidden;
 
         .slider-parent {
             width: 100%;
-            overflow: hidden;
-            position: relative;
+            height: 100%;
+            position: absolute;
 
             .carousel {
                 width: 100%;
+                height: 100%;
 
                 .img {
                     width: auto;
@@ -20,52 +29,53 @@
                     object-fit: cover;
                 }
             }
+        }
+
+        .content-container {
+            position: relative;
+            z-index: 2;
+            background-color: transparent;
 
             .Box {
-                display: flex;
-                flex-direction: row-reverse;
-                justify-content: space-between;
-                align-items: center;
-                position: absolute;
-                z-index: 1;
-                bottom: 40px;
-                left: 0;
-                width: 100%;
-                padding: 22px;
+                .content-left {
+                    display: flex;
+                    flex-wrap: wrap-reverse;
+                    align-items: center;
+                    align-items: end;
+                    row-gap: var(--composer-gap-sm);
+                    column-gap: var(--composer-gap-lg);
+
+                    .text {
+                        font-size: 1rem;
+                        color: white;
+                    }
+                }
 
                 .content-right {
-                    font-size: 35px;
                     display: flex;
-                    gap: 25px;
+                    flex-wrap: wrap-reverse;
+                    justify-content: end;
+                    align-items: end;
+                    gap: var(--composer-gap-xs);
                     color: white;
-                }
 
+                    .icon {
+                        width: 45px;
+                        height: 45px;
+                    }
+                }
+            }
+
+            .imageless {
                 .content-left {
-                    color: white;
-                    font-size: 15px;
-                    display: flex;
-                    letter-spacing: 2px;
-                    flex-wrap: wrap;
-                    row-gap: 15px;
-                    column-gap: 30px;
+                    .text {
+                        color: var(--composer-font-color-primary);
+                    }
                 }
-            }
-        }
-    }
-}
 
-@media only screen and (max-width: 900px) {
-    .container {
-        .max-content {
-            .slider-parent {
-                .Box {
-                    width: 100%;
-                    flex-direction: column-reverse;
-                    align-items: center;
-                    gap: 40px;
-                    .content-left{
-                        font-size: 15px;
-                        justify-content: center;
+                .content-right {
+                    .icon {
+                        color: var(--composer-font-color-primary);
                     }
                 }
             }
@@ -73,24 +83,66 @@
     }
 }
 
-@media only screen and (max-width: 400px) {
+@container (max-width: #{$composer-tablet-width}) {
     .container {
         .max-content {
-            .slider-parent {
+            .content-container {
                 .Box {
-                    display: flex;
-                    flex-direction: row-reverse;
                     .content-left {
-                        position: relative;
-                        flex-direction: column;
-                        gap: 26px;
-
+                        row-gap: var(--composer-gap-sm);
+                        column-gap: var(--composer-gap-md);
                     }
-                    .content-right{
-                        font-size: 25px;
-                        flex-direction: column; 
-                        
-                
+
+                    .content-right {
+                        .icon {
+                            width: 38px;
+                            height: 38px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        .max-content {
+            .content-container {
+                .Box {
+                    flex-direction: row;
+                    align-items: end;
+
+                    .content-left {
+                        height: 100%;
+                        align-items: end;
+
+                        >div {
+                            width: 100% !important;
+                        }
+
+                        .text {
+                            width: 100%;
+                            text-align: start;
+                        }
+                    }
+
+                    .content-right {
+                        height: 100%;
+                        align-items: end;
+
+                        >div {
+                            display: flex;
+                            justify-content: end;
+                            width: 100% !important;
+                            height: fit-content;
+                        }
+
+                        .icon {
+                            width: 35px;
+                            height: 35px;
+                        }
                     }
                 }
             }
