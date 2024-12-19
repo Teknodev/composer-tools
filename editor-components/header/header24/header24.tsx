@@ -4,6 +4,7 @@ import { BaseHeader } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type ISliderData = {
   title: JSX.Element;
@@ -17,10 +18,21 @@ type IButton = {
   buttonText: JSX.Element;
   buttonUrl: string;
 };
-
 class HeaderComponent24 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
+    this.addProp({
+      type: "icon",
+      key: "prevIcon",
+      displayer: "Icon",
+      value: "IoIosArrowBack"
+    })
+    this.addProp({
+      type: "icon",
+      key: "nextIcon",
+      displayer: "Icon",
+      value: "IoIosArrowForward"
+    })
     this.addProp({
       type: "array",
       displayer: "Slider Carousel",
@@ -287,13 +299,26 @@ class HeaderComponent24 extends BaseHeader {
     });
     this.setComponentState("previousIndex", -1);
     this.setComponentState("currentIndex", 0);
+    this.setComponentState("arrowDisabled", false);
+    this.setComponentState("slider-ref", React.createRef());
   }
   getName(): string {
     return "Header-24";
   }
+  changeCurrentSlide(slideIndex: number) {
+    this.setComponentState("currentIndex", slideIndex);
+  }
+  handleArrowClick(slideIndex: number, direction: "next" | "prev") {
+    if (!this.getComponentState("arrowDisabled")) {
+      this.changeCurrentSlide(slideIndex);
+      this.setComponentState("arrowDisabled", true);
+      setTimeout(() => {
+        this.setComponentState("arrowDisabled", false);
+      }, 1500);
+    }
+  }
 
   render() {
-
     const settings = {
       dots: true,
       infinite: true,
@@ -303,7 +328,7 @@ class HeaderComponent24 extends BaseHeader {
       slidesToShow: 1,
       slidesToScroll: 1,
       adaptiveHeight: 1,
-
+      arrow: false,
       beforeChange: (previous: number, current: number) => {
         this.setComponentState("previousChange", previous);
         this.setComponentState("currentChange", current);
@@ -316,12 +341,16 @@ class HeaderComponent24 extends BaseHeader {
         }, 1000);
       },
     };
+    const sliderRef = this.getComponentState("slider-ref");
+    const nextArrow = this.getPropValue("nextArrow");
+    const previousArrow = this.getPropValue("previousArrow");
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-
           <div className={this.decorateCSS("wrapper")}>
             <ComposerSlider
+              ref={sliderRef}
               {...settings}
               className={this.getPropValue("slider")[this.getComponentState("currentIndex")].getPropValue("background_image") ? this.decorateCSS("carousel") : this.decorateCSS("carousel-no-image")}>
               {this.castToObject<ISliderData[]>("slider").map(
@@ -379,6 +408,33 @@ class HeaderComponent24 extends BaseHeader {
                           <img src={item.image} alt={this.castToString(item.title)} className={this.decorateCSS("image")} />
                         </div>
                       </div>}
+
+                    </div>
+                    <div className={this.decorateCSS("arrow-wrapper")}>
+                      <div className={this.getPropValue("slider")[this.getComponentState("currentIndex")].getPropValue("background_image") ? this.decorateCSS("arrow-prev-wrapper") : this.decorateCSS("arrow-prev-wrapper-no-image")}
+                        onClick={() => {
+                          sliderRef.current.slickPrev();
+                        }}
+                      >
+                        <div className={this.decorateCSS("arrow-prev")}>
+                          <ComposerIcon
+                            name={this.getPropValue("prevIcon")}
+                            propsIcon={{ className: this.decorateCSS("icon") }}
+                          />
+                        </div>
+                      </div>
+                      <div className={this.getPropValue("slider")[this.getComponentState("currentIndex")].getPropValue("background_image") ? this.decorateCSS("arrow-next-wrapper") : this.decorateCSS("arrow-next-wrapper-no-image")}
+                        onClick={() => {
+                          sliderRef.current.slickNext();
+                        }}
+                      >
+                        <div className={this.decorateCSS("arrow-next")}>
+                          <ComposerIcon
+                            name={this.getPropValue("nextIcon")}
+                            propsIcon={{ className: this.decorateCSS("icon") }}
+                          />
+                        </div>
+                      </div>
                     </div>
                   </div>
                 )
