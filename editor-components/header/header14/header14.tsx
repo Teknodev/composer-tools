@@ -4,6 +4,7 @@ import { BaseHeader } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { Base } from "../../../composer-base-components/base/base";
 
 type Slides = {
   title: JSX.Element;
@@ -16,7 +17,6 @@ type Slides = {
 type Buttons = {
   buttonText: string;
   buttonUrl: string;
-  primary: boolean;
 };
 
 class HeaderComponent14 extends BaseHeader {
@@ -95,12 +95,6 @@ class HeaderComponent14 extends BaseHeader {
                       key: "buttonUrl",
                       value: "",
                     },
-                    {
-                      type: "boolean",
-                      displayer: "Is Primary",
-                      key: "primary",
-                      value: true,
-                    },
                   ],
                 },
               ],
@@ -154,12 +148,7 @@ class HeaderComponent14 extends BaseHeader {
                       key: "buttonUrl",
                       value: "",
                     },
-                    {
-                      type: "boolean",
-                      displayer: "Is Primary",
-                      key: "primary",
-                      value: true,
-                    },
+
                   ],
                 },
                 {
@@ -178,12 +167,6 @@ class HeaderComponent14 extends BaseHeader {
                       displayer: "Button Link",
                       key: "buttonUrl",
                       value: "",
-                    },
-                    {
-                      type: "boolean",
-                      displayer: "Is Primary",
-                      key: "primary",
-                      value: false,
                     },
                   ],
                 },
@@ -238,12 +221,6 @@ class HeaderComponent14 extends BaseHeader {
                       key: "buttonUrl",
                       value: "",
                     },
-                    {
-                      type: "boolean",
-                      displayer: "Is Primary",
-                      key: "primary",
-                      value: true,
-                    },
                   ],
                 },
                 {
@@ -262,12 +239,6 @@ class HeaderComponent14 extends BaseHeader {
                       displayer: "Button Link",
                       key: "buttonUrl",
                       value: "",
-                    },
-                    {
-                      type: "boolean",
-                      displayer: "Is Primary",
-                      key: "primary",
-                      value: false,
                     },
                   ],
                 },
@@ -293,7 +264,7 @@ class HeaderComponent14 extends BaseHeader {
       dots: true,
       arrows: false,
       infinite: true,
-      autoplay: true,
+      autoplay: false,
       speed: 2000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -309,7 +280,7 @@ class HeaderComponent14 extends BaseHeader {
     const isAnimation = this.getPropValue("animation");
 
     return (
-      <div className={this.decorateCSS("container")}>
+      <Base.Container className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <ComposerSlider
             {...settings}
@@ -321,6 +292,17 @@ class HeaderComponent14 extends BaseHeader {
               const title = this.castToString(item.title);
               const description = this.castToString(item.description);
               const isActive = this.getComponentState("activeSlide") === index;
+              const containerClass =
+                !this.getPropValue("prevIcon") && !this.getPropValue("nextIcon")
+                  ? this.decorateCSS("content-full")
+                  : !this.getPropValue("prevIcon")
+                    ? this.decorateCSS("content-left")
+                    : !this.getPropValue("nextIcon")
+                      ? this.decorateCSS("content-right")
+                      : this.decorateCSS("content");
+
+              const noBgClass = !image ? this.decorateCSS("no-bg") : "";
+
 
               return (
                 <div
@@ -330,69 +312,60 @@ class HeaderComponent14 extends BaseHeader {
                   {image && (
                     <img
                       src={item.image}
-                      alt={""}
+                      alt={item.image}
                       className={this.decorateCSS("bg-img")}
                     />
                   )}
-                  <div
-                    className={`${this.decorateCSS("content")} ${
-                      !image ? this.decorateCSS("no-bg") : ""
-                    } ${
-                      isActive && isAnimation ? this.decorateCSS("fade-in") : ""
-                    }`}
-                  >
-                    {title && (
-                      <h1 className={this.decorateCSS("title")}>
-                        {item.title}
-                      </h1>
-                    )}
-                    {description && (
-                      <h3 className={this.decorateCSS("description")}>
-                        {item.description}
-                      </h3>
-                    )}
-                    
-                    {item.buttons.length > 0 && (
-                      <div className={this.decorateCSS("buttons-container")}>
-                        {item.buttons.map(
-                          (buttonItem: any, indexButton: number) => {
-                            const buttonText = this.castToString(
-                              buttonItem.buttonText
-                            );
-                            return (
-                              buttonText && (
-                                <div
-                                  key={indexButton}
-                                  className={`${this.decorateCSS("button")} ${
-                                    buttonItem.primary
-                                      ? this.decorateCSS("primary-button")
-                                      : ""
-                                  }`}
-                                >
-                                  <ComposerLink path={buttonItem.buttonUrl}>
-                                    <span className={this.decorateCSS("text")}>
-                                      {buttonItem.buttonText}
-                                    </span>
-                                  </ComposerLink>
-                                </div>
-                              )
-                            );
-                          }
-                        )}
-                      </div>
-                    )}
+                  <div className={`${this.decorateCSS("content-wrapper")} ${(isActive && isAnimation) ? this.decorateCSS("fade-in") : ""
+                    }`}>
+                    <div className={`${containerClass} ${noBgClass}`}>
+                      {title && (
+                        <div className={this.decorateCSS("title")}>
+                          {item.title}
+                        </div>
+                      )}
+                      {description && (
+                        <div className={this.decorateCSS("description")}>
+                          {item.description}
+                        </div>
+                      )}
+
+                      {item.buttons.length > 0 && (
+                        <div className={this.decorateCSS("buttons-container")}>
+                          {item.buttons.map(
+                            (buttonItem: any, indexButton: number) => {
+                              const buttonText = this.castToString(
+                                buttonItem.buttonText
+                              );
+                              return (
+                                buttonText && (
+                                  <Base.Button
+                                    key={indexButton}
+                                    className={this.decorateCSS("button")}
+                                  >
+                                    <ComposerLink path={buttonItem.buttonUrl}>
+                                      <span className={this.decorateCSS("text")}>
+                                        {buttonItem.buttonText}
+                                      </span>
+                                    </ComposerLink>
+                                  </Base.Button>
+                                )
+                              );
+                            }
+                          )}
+                        </div>
+                      )}
+                    </div>
                   </div>
                   {slides.length > 1 && (
                     <>
-                      {" "}
                       <ComposerIcon
                         name={this.getPropValue("prevIcon")}
                         propsIcon={{
                           className: `${this.decorateCSS(
                             "arrow"
-                          )} ${
-                            !image ? this.decorateCSS("no-bg") : ""
-                          } ${this.decorateCSS("prev-icon")}`,
+                          )} ${!image ? this.decorateCSS("no-bg") : ""
+                            } ${this.decorateCSS("prev-icon")}`,
                           onClick: () => {
                             this.getComponentState(
                               "slider-ref"
@@ -407,7 +380,7 @@ class HeaderComponent14 extends BaseHeader {
                             "arrow"
                           )} ${!image ? this.decorateCSS(
                             "no-bg"
-                          ):""} ${this.decorateCSS("next-icon")}`,
+                          ) : ""} ${this.decorateCSS("next-icon")}`,
                           onClick: () => {
                             this.getComponentState(
                               "slider-ref"
@@ -422,7 +395,7 @@ class HeaderComponent14 extends BaseHeader {
             })}
           </ComposerSlider>
         </div>
-      </div>
+      </Base.Container>
     );
   }
 }

@@ -1,115 +1,4 @@
-.container {
-  width: 100%;
-  background-color: var(--composer-html-background);
-
-  .max-content {
-    width: 100%;
-
-    .carousel {
-      height: 100%;
-
-      .slide {
-        position: relative;
-        height: 100vh;
-        width: 100%;
-        overflow: hidden;
-
-        .bg-img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          filter: contrast(0.9);
-        }
-        .arrow {
-          position: absolute;
-          top: 50%;
-          margin: 0 auto;
-          color: black;
-          cursor: pointer;
-          font-size: 3rem;
-
-          &.prev-icon {
-            left: 10px;
-          }
-          &.next-icon {
-            right: 10px;
-          }
-          &.no-bg {
-            color: var(--composer-font-color-primary);
-          }
-        }
-        .content {
-          position: absolute;
-          top: 0;
-          height: 100%;
-          width: 100%;
-          padding: 20px 50px;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-
-          &.fade-in {
-            animation: fade-in 3s ease-in-out forwards;
-          }
-          &.no-bg {
-            .title,
-            .description {
-              color: var(--composer-font-color-primary);
-              width: 100%;
-            }
-          }
-
-          .title {
-            margin-bottom: 10px;
-            font-size: 70px;
-            font-weight: bold;
-            width: 50%;
-            color: black;
-
-            > blinkpage {
-              p {
-                display: -webkit-box;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                -webkit-line-clamp: 4 !important;
-                -webkit-box-orient: vertical;
-              }
-            }
-          }
-          .description {
-            width: 50%;
-            font-size: 1.5rem;
-            color: black;
-            margin: 20px 0px 30px 0px;
-          }
-          .buttons-container {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            width: 20%;
-
-            .button {
-              cursor: pointer;
-              border-radius: 5px;
-              padding: 10px 20px;
-              border: 1px solid var(--composer-secondary-color);
-              box-shadow: 5px 5px 30px
-                rgba(var(--composer-font-color-primary-rgb), 0.3);
-              transition: all 0.2s linear;
-              &:hover {
-                transform: scale(1.05);
-              }
-            }
-            .primary-button {
-              background-color: var(--composer-secondary-color);
-              color: var(--composer-font-color-secondary);
-            }
-          }
-        }
-      }
-    }
-  }
-}
+@import '../../../composer-base-components/base/utitilities/viewports.module.scss'; 
 @keyframes fade-in {
   0% {
     opacity: 0;
@@ -124,33 +13,130 @@
     transform: translateY(0);
   }
 }
-.customDots {
-  bottom: 60px;
-  &.noDots-img li button::before {
-    color: var(--composer-font-color-primary);
+.container {
+  width: 100%;
+  background-color: var(--composer-html-background);
+  padding: 0px;
+  .max-content {
+    width: 100%;
+    .carousel {
+      height: 100%;
+      .slide {
+        position: relative;
+        height: 100vh;
+        width: 100%;
+        overflow: hidden;
+        .bg-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          filter: contrast(0.9);
+        }
+        .arrow {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          margin: 0 auto;
+          color: black;
+          cursor: pointer;
+          font-size: 3rem;
+          &.prev-icon {
+            left: 50px;
+          }
+          &.next-icon {
+            right: 50px;
+          }
+          &.no-bg {
+            color: var(--composer-font-color-primary);
+          }
+        }
+        .content-wrapper{
+          position: absolute;
+          top: 0;
+          height: 100%;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          &.fade-in {
+            animation: fade-in 3s ease-in-out forwards;
+          }
+          .content, .content-full, .content-left, .content-right {
+            width : 80%;
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-md);
+            &.no-bg {
+              .title,
+              .description {
+                color: var(--composer-font-color-primary);
+                width: 100%;
+              }
+            }
+  
+            .title {
+              font-size: 5rem;
+              width: 50%;
+              color: black;
+            }
+            .description {
+              width:50%;
+              font-size: 1.5rem;
+              color: black;
+            }
+            .buttons-container {
+              display: flex;
+              gap: var(--composer-gap-sm);
+              flex-wrap: wrap;
+              width: 50%;
+              .button {
+                content: "";
+              }
+            }
+          }
+          .content-left{
+            width: 100%;
+            padding: 20px 50px;
+            padding-right: calc(100px + var(--composer-gap-md));
+          }
+          .content-right{
+            width: 100%;
+            padding: 20px 50px;
+            padding-left: calc(100px + var(--composer-gap-md));
+          }
+          .content-full{
+            width: 100%;
+            padding: 20px 50px;
+          }
+        }
+      }
+      .customDots {
+        bottom: 60px;
+        &.noDots-img li button::before {
+          color: var(--composer-font-color-primary);
+        }
+      }
+    }
   }
 }
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
+
+
+@container (max-width: #{$composer-tablet-width-lg}) {
   .container {
     .max-content {
       .carousel {
         .slide {
           .arrow {
-            font-size: 2rem;
-            &.prev-icon {
-              left: 0px;
-            }
-            &.next-icon {
-              right: 0px;
-            }
+            display: none;
           }
-          .content {
-            padding: 20px 30px;
-            .title {
-              font-size: 40px;
-            }
-            .buttons-container {
-              width: 30%;
+          .content-wrapper{
+            .content, .content-full, .content-left, .content-right {
+              width: 100%;
+              padding: 20px 40px;
+              .title {
+                font-size: 4rem;
+              }
             }
           }
         }
@@ -158,39 +144,34 @@
     }
   }
 }
-@media only screen and (max-width: 450px) {
+@container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
       .carousel {
         .slide {
-          .arrow {
-            font-size: 2rem;
-
-            &.prev-icon {
-              left: 0px;
-            }
-            &.next-icon {
-              right: 0px;
-            }
-          }
-          .content {
-            padding: 20px 30px;
-            .title {
-              width: 100%;
-              font-size: 25px;
-              text-align: center;
-            }
-            .description {
-              width: 100%;
-              font-size: 1rem;
-              text-align: center;
-            }
-
-            .buttons-container {
-              width: 100%;
-              justify-content: center;
+          .content-wrapper{
+            .content, .content-full, .content-left, .content-right {
+              padding: 20px;
+              .title {
+                width: 100%;
+                font-size: 3rem;
+                text-align: center;
+              }
+              .description {
+                width: 100%;
+                font-size: 1rem;
+                text-align: center;
+              }
+  
+              .buttons-container {
+                width: 100%;
+                justify-content: center;
+              }
             }
           }
+        }
+        .customDots {
+          bottom: 40px;
         }
       }
     }
