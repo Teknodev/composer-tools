@@ -1,41 +1,4 @@
 @import '../../../composer-base-components/base/utitilities/viewports.module.scss';
-@keyframes slideUp {
-  0% {
-    opacity: 0;
-    transform: translateY(100px);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0px);
-  }
-}
-
-.slide-up {
-  animation: slideUp 1s ease, cubic-bezier(0, 0.87, 0.58, 1);
-  animation-delay: 0.10s, 1s;
-  animation-fill-mode: forwards;
-}
-
-.slide-up-2 {
-  animation: slideUp 1s ease, cubic-bezier(0, 0.87, 0.58, 1);
-  animation-delay: 0.15s, 1s;
-  animation-fill-mode: forwards;
-}
-
-.slide-up-3 {
-  animation: slideUp 1s ease, cubic-bezier(0, 0.87, 0.58, 1);
-  animation-delay: 0.20s, 1s;
-  animation-fill-mode: forwards;
-}
-
-.slide-up-4 {
-  animation: slideUp 1s ease, cubic-bezier(0, 0.87, 0.58, 1);
-  animation-delay: 0.25s, 1s;
-  animation-fill-mode: forwards;
-}
-
-
 .container {
   width: 100%;
   background-color: var(--composer-html-background);
@@ -92,6 +55,16 @@
 
                 .flower {
                   z-index: 8;
+                  opacity: 0;
+                  transform: translateY(100px);
+                  transition-property: opacity, transform;
+                  transition-duration: 0.5s;
+                  transition-timing-function: cubic-bezier(0, 0.87, 0.58, 1);;
+                  transition-delay: 0.1s;
+                }
+                .flower.active{
+                  opacity: 1;
+                  transform: translateY(0px);
                 }
 
                 .title, .title-no-image {
@@ -99,6 +72,16 @@
                   font-size: 4rem;
                   color:#93646a;
                   width: 60%;
+                  opacity: 0;
+                  transform: translateY(100px);
+                  transition-property: opacity, transform;
+                  transition-duration: 0.5s;
+                  transition-timing-function: cubic-bezier(0, 0.87, 0.58, 1);;
+                  transition-delay: 0.2s;
+                }
+                .title.active,  .title-no-image.active{
+                  opacity: 1;
+                  transform: translateY(0px);
                 }
                 .title-no-image{
                   color: var(--composer-font-color-primary);  
@@ -109,6 +92,16 @@
                   font-size: 2rem;
                   color: #93646a;
                   width: 60%;
+                  opacity: 0;
+                  transform: translateY(100px);
+                  transition-property: opacity, transform;
+                  transition-duration: 0.5s;
+                  transition-timing-function: cubic-bezier(0, 0.87, 0.58, 1);;
+                  transition-delay: 0.3s;
+                }
+                .description.active, .description-no-image.active {
+                  opacity: 1;
+                  transform: translateY(0px);
                 }
                 .description-no-image{
                   color: var(--composer-font-color-primary);
@@ -123,11 +116,21 @@
                   z-index: 2;
                   display: flex;
                   gap: var(--composer-gap-md);
+                  opacity: 0;
+                  transform: translateY(20px);
+                  transition-property: opacity, transform;
+                  transition-duration: 0.5s;
+                  transition-timing-function: ease;
+                  transition-delay: 0.4s;
                   .button-wrapper{
                     .button{
                       content: "";
                     }
                   }
+                }
+                .buttons.active{
+                  opacity: 1;
+                  transform: translateY(0px);
                 }
               }
             }
@@ -156,6 +159,16 @@
                   left: 0;
                   object-fit: cover;
                   max-width: 100%;
+                  opacity: 0;
+                  transform: translateX(100px);
+                  transition-property: opacity, transform;
+                  transition-duration: 1s;
+                  transition-delay: 0.3s;
+                  transition-timing-function: ease;
+                }
+                .image.active{
+                  opacity: 1;
+                  transform: translateX(0px);
                 }
               }
             }

@@ -322,8 +322,8 @@ class HeaderComponent24 extends BaseHeader {
     const settings = {
       dots: true,
       infinite: true,
-      speed: 1000,
-      autoplay: true,
+      speed: 500,
+      autoplay: false,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -338,7 +338,7 @@ class HeaderComponent24 extends BaseHeader {
         setTimeout(() => {
           this.setComponentState("previousChange", -1);
           this.setComponentState("currentChange", -1);
-        }, 1000);
+        }, 500);
       },
     };
     const sliderRef = this.getComponentState("slider-ref");
@@ -366,24 +366,24 @@ class HeaderComponent24 extends BaseHeader {
                         <div className={this.decorateCSS("left")}>
                           <div className={this.decorateCSS("content")}>
                             {item.flower_image && <div className={`${this.decorateCSS("flower")}
-                            ${this.getComponentState("previousChange") !== this.getComponentState("currentChange") && this.decorateCSS("slide-up")
+                            ${this.getComponentState("currentIndex") == index && this.decorateCSS("active")
                               }`}>
                               <img src={item.flower_image} alt={this.castToString(item.title)} />
                             </div>}
                             {this.castToString(item.title) && <div className={`${item.background_image ? this.decorateCSS("title") : this.decorateCSS("title-no-image")}
-                            ${this.getComponentState("previousChange") !== this.getComponentState("currentChange") && this.decorateCSS("slide-up-2")}
+                            ${this.getComponentState("currentIndex") == index && this.decorateCSS("active")}
                              ${!item.image && this.decorateCSS("no-image")}
                             `}>
                               {item.title}
                             </div>}
                             {this.castToString(item.description) && <div className={`${item.background_image ? this.decorateCSS("description") : this.decorateCSS("description-no-image")} 
-                            ${this.getComponentState("previousChange") !== this.getComponentState("currentChange") && this.decorateCSS("slide-up-3")}
+                            ${this.getComponentState("currentIndex") == index && this.decorateCSS("active")}
                             ${!item.image && this.decorateCSS("no-image")}
                             `}>
                               {item.description}
                             </div>}
                             <div className={`${this.decorateCSS("buttons")}
-                            ${this.getComponentState("previousChange") !== this.getComponentState("currentChange") && this.decorateCSS("slide-up-4")}
+                            ${this.getComponentState("currentIndex") == index && this.decorateCSS("active")}
                             `}>
                               {item.buttons.map((item: IButton, index: number) => (
                                 <div className={this.decorateCSS("button-wrapper")}>
@@ -403,7 +403,7 @@ class HeaderComponent24 extends BaseHeader {
                         </div>}
                       {item.image && <div className={this.decorateCSS("right")}>
                         <div className={this.decorateCSS("image-wrapper")}>
-                          <img src={item.image} alt={this.castToString(item.title)} className={this.decorateCSS("image")} />
+                          <img src={item.image} alt={this.castToString(item.title)} className={`${this.decorateCSS("image")} ${this.getComponentState("currentIndex") == index && this.decorateCSS("active")}`} />
                         </div>
                       </div>}
 
