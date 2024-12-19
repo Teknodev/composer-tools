@@ -32,57 +32,32 @@ class Footer4Page extends BaseFooter {
 
     this.addProp({
       type: "array",
-      key: "socials",
-      displayer: "Social Media Items",
+      key: "images",
+      displayer: "Images",
       value: [
         {
           type: "object",
-          key: "content",
-          displayer: "Content Elements",
+          key: "item",
+          displayer: "Item Elements",
           value: [
             {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "FaFacebookF",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Url",
-              value: "",
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66fa9094cf1798002cc71d01?alt=media",
             },
           ],
         },
         {
           type: "object",
-          key: "content",
-          displayer: "Content Elements",
+          key: "item",
+          displayer: "Item Elements",
           value: [
             {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "FaInstagram",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Url",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "content",
-          displayer: "Content Elements",
-          value: [
-            {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "FaXTwitter",
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66fa90c5cf1798002cc71d0e?alt=media",
             },
             {
               type: "page",
@@ -436,7 +411,7 @@ class Footer4Page extends BaseFooter {
   }
 
   render() {
-    const socials = this.castToObject<any[]>("socials");
+    const images = this.castToObject<any[]>("images");
 
     const textExist = this.castToString(this.getPropValue("text"));
 
@@ -449,14 +424,14 @@ class Footer4Page extends BaseFooter {
             <div className={this.decorateCSS("left")}>
               {textExist && <Base.P className={this.decorateCSS("text")}>{this.getPropValue("text")}</Base.P>}
               <div className={this.decorateCSS("images")}>
-                {socials.length > 0 && (
-                  <div className={this.decorateCSS("socials-container")}>
-                    {socials.map((item: any, index: number) => {
+                {images.length > 0 && (
+                  <div className={this.decorateCSS("image-container")}>
+                    {images.map((item: any, index: number) => {
                       return (
-                        item.icon && (
-                          <div className={this.decorateCSS("socials-element")}>
+                        item.image && (
+                          <div className={this.decorateCSS("image-element")}>
                             <ComposerLink key={index} path={item.url}>
-                              <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={item.icon} />
+                              <img className={this.decorateCSS("image")} src={item.image} />
                             </ComposerLink>
                           </div>
                         )
