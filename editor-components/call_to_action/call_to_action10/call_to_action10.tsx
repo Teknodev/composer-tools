@@ -3,6 +3,12 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action10.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
+interface CardItem {
+  cardIcon: string,
+  cardTitle: JSX.Element,
+  cardDescription: JSX.Element
+}
 
 class CallToAction10Page extends BaseCallToAction {
   constructor(props?: any) {
@@ -38,6 +44,94 @@ class CallToAction10Page extends BaseCallToAction {
       displayer: "Button Link",
       value: "",
     });
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item Count in a Row",
+      value: 3,
+    });
+    this.addProp({
+      type: "array",
+      key: "cardItems",
+      displayer: "Card Items",
+      value: [
+        {
+          type: "object",
+          key: "cardItem",
+          displayer: "Card Item",
+          value: [
+            {
+              type: "icon",
+              key: "cardIcon",
+              displayer: "Card Icon",
+              value: "HiOutlineDocumentText"
+            },
+            {
+              type: "string",
+              key: "cardTitle",
+              displayer: "Card Title",
+              value: "Spectacular team plan"
+            },
+            {
+              type: "string",
+              key: "cardDescription",
+              displayer: "Card Description",
+              value: "Fairly assigning daily tasks to your employess"
+            },
+          ]
+        },
+        {
+          type: "object",
+          key: "cardItem",
+          displayer: "Card Item",
+          value: [
+            {
+              type: "icon",
+              key: "cardIcon",
+              displayer: "Card Icon",
+              value: "BsUpload"
+            },
+            {
+              type: "string",
+              key: "cardTitle",
+              displayer: "Card Title",
+              value: "Sharable showcase"
+            },
+            {
+              type: "string",
+              key: "cardDescription",
+              displayer: "Card Description",
+              value: "Team members will be up to date on the project"
+            },
+          ]
+        },
+        {
+          type: "object",
+          key: "cardItem",
+          displayer: "Card Item",
+          value: [
+            {
+              type: "icon",
+              key: "cardIcon",
+              displayer: "Card Icon",
+              value: "CiMail"
+            },
+            {
+              type: "string",
+              key: "cardTitle",
+              displayer: "Card Title",
+              value: "Generate messages"
+            },
+            {
+              type: "string",
+              key: "cardDescription",
+              displayer: "Card Description",
+              value: "More interesting writings for your customers"
+            },
+          ]
+        }
+      ]
+    });
 
   }
 
@@ -46,20 +140,58 @@ class CallToAction10Page extends BaseCallToAction {
   }
 
   render() {
+    const cardItem = this.castToObject<CardItem[]>("cardItems");
+
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("call-to-action10-page")}>
-            <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")} <ComposerIcon name={this.getPropValue("icon")} propsIcon={{ className: this.decorateCSS("icon") }} /></h1>
-            <ComposerLink path={this.getPropValue("link")}>
-              <span className={this.decorateCSS("button")}>
-                {this.getPropValue("buttonText")}
-              </span>
-            </ComposerLink>
-            <h3 className={this.decorateCSS("description")}>{this.getPropValue("description")}</h3>
-          </div>
-        </div>
-      </div>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <Base.VerticalContent className={this.decorateCSS("call-to-action10-page")}>
+            {this.castToString(this.getPropValue("title") || this.getPropValue("icon")) && (
+              <Base.SectionTitle className={this.decorateCSS("title")}>
+                {this.getPropValue("title")}
+                {this.getPropValue("icon") && (
+                  <ComposerIcon name={this.getPropValue("icon")} propsIcon={{ className: this.decorateCSS("icon") }} />
+                )}
+              </Base.SectionTitle>
+            )}
+            {this.castToString(this.getPropValue("description")) && (
+              <Base.SectionDescription className={this.decorateCSS("description")}>
+                {this.getPropValue("description")}
+              </Base.SectionDescription>
+            )}
+            {this.castToString(this.getPropValue("buttonText")) && (
+              <ComposerLink path={this.getPropValue("link")}>
+                <Base.Button className={this.decorateCSS("button")}>
+                  {this.getPropValue("buttonText")}
+                </Base.Button>
+              </ComposerLink>
+            )}
+            {(cardItem.length > 0) && (
+              <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("card-container")}>
+                {cardItem.map((item: CardItem, index: number) => (
+                  <div className={this.decorateCSS("card")}>
+                    {item.cardIcon && (
+                      <div className={this.decorateCSS("icon-wrapper")}>
+                        <ComposerIcon name={item.cardIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                      </div>
+                    )}
+                    {this.castToString(item.cardTitle) && (
+                      <Base.H3 className={this.decorateCSS("card-title")}>
+                        {item.cardTitle}
+                      </Base.H3>
+                    )}
+                    {this.castToString(item.cardDescription) && (
+                      <Base.P className={this.decorateCSS("card-description")}>
+                        {item.cardDescription}
+                      </Base.P>
+                    )}
+                  </div>
+                ))}
+              </Base.ListGrid>
+            )}
+          </Base.VerticalContent>
+        </Base.MaxContent>
+      </Base.Container >
 
     )
   }

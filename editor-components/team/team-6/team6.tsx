@@ -2,11 +2,12 @@ import * as React from "react";
 import styles from "./team6.module.scss";
 import { Team } from "../../EditorComponent";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
 
 type Feature = {
   feature: JSX.Element;
   icon: string;
-}
+};
 
 type Card = {
   image: string;
@@ -16,13 +17,6 @@ type Card = {
   features: Feature[];
 };
 
-type Button = {
-  link: string;
-  text: string;
-  isPrimary: boolean;
-};
-
-
 class Team6 extends Team {
   constructor(props?: any) {
     super(props, styles);
@@ -30,27 +24,27 @@ class Team6 extends Team {
     this.addProp({
       type: "string",
       key: "title1",
-      displayer: "Title",
+      displayer: "Subtitle",
       value: "TEAM",
     });
 
     this.addProp({
       type: "string",
       key: "description",
-      displayer: "Description",
+      displayer: "Title",
       value: "Building the future together.",
     });
     this.addProp({
       type: "icon",
       key: "openingIcon",
       displayer: "Opening Icon",
-      value: "IoAddCircleOutline"
+      value: "IoAddCircleOutline",
     });
     this.addProp({
       type: "icon",
       key: "closingIcon",
       displayer: "Closing Icon",
-      value: "IoRemoveCircleOutline"
+      value: "IoRemoveCircleOutline",
     });
     this.addProp({
       type: "array",
@@ -66,8 +60,7 @@ class Team6 extends Team {
               type: "image",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b18bbd2970002c627ce0?alt=media&timestamp=1719502692150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b18bbd2970002c627ce0?alt=media&timestamp=1719502692150",
             },
             {
               type: "string",
@@ -95,7 +88,7 @@ class Team6 extends Team {
                       type: "icon",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck"
+                      value: "CiCircleCheck",
                     },
                     {
                       type: "string",
@@ -114,7 +107,7 @@ class Team6 extends Team {
                       type: "icon",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck"
+                      value: "CiCircleCheck",
                     },
                     {
                       type: "string",
@@ -133,7 +126,7 @@ class Team6 extends Team {
                       type: "icon",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck"
+                      value: "CiCircleCheck",
                     },
                     {
                       type: "string",
@@ -152,7 +145,7 @@ class Team6 extends Team {
                       type: "icon",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck"
+                      value: "CiCircleCheck",
                     },
                     {
                       type: "string",
@@ -175,8 +168,7 @@ class Team6 extends Team {
               type: "image",
               key: "image",
               displayer: "Image",
-              value:
-                "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1600",
+              value: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1600",
             },
             {
               type: "string",
@@ -204,7 +196,7 @@ class Team6 extends Team {
                       type: "icon",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck"
+                      value: "CiCircleCheck",
                     },
                     {
                       type: "string",
@@ -223,7 +215,7 @@ class Team6 extends Team {
                       type: "icon",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck"
+                      value: "CiCircleCheck",
                     },
                     {
                       type: "string",
@@ -242,7 +234,7 @@ class Team6 extends Team {
                       type: "icon",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck"
+                      value: "CiCircleCheck",
                     },
                     {
                       type: "string",
@@ -261,7 +253,7 @@ class Team6 extends Team {
                       type: "icon",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck"
+                      value: "CiCircleCheck",
                     },
                     {
                       type: "string",
@@ -284,8 +276,7 @@ class Team6 extends Team {
               type: "image",
               key: "image",
               displayer: "Image",
-              value:
-                "https://images.pexels.com/photos/8434878/pexels-photo-8434878.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+              value: "https://images.pexels.com/photos/8434878/pexels-photo-8434878.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
             },
             {
               type: "string",
@@ -313,7 +304,7 @@ class Team6 extends Team {
                       type: "icon",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck"
+                      value: "CiCircleCheck",
                     },
                     {
                       type: "string",
@@ -332,7 +323,7 @@ class Team6 extends Team {
                       type: "icon",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck"
+                      value: "CiCircleCheck",
                     },
                     {
                       type: "string",
@@ -351,7 +342,7 @@ class Team6 extends Team {
                       type: "icon",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck"
+                      value: "CiCircleCheck",
                     },
                     {
                       type: "string",
@@ -370,7 +361,7 @@ class Team6 extends Team {
                       type: "icon",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck"
+                      value: "CiCircleCheck",
                     },
                     {
                       type: "string",
@@ -380,7 +371,6 @@ class Team6 extends Team {
                     },
                   ],
                 },
-
               ],
             },
           ],
@@ -394,8 +384,7 @@ class Team6 extends Team {
               type: "image",
               key: "image",
               displayer: "Image",
-              value:
-                "https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=1600",
+              value: "https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=1600",
             },
             {
               type: "string",
@@ -423,7 +412,7 @@ class Team6 extends Team {
                       type: "icon",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck"
+                      value: "CiCircleCheck",
                     },
                     {
                       type: "string",
@@ -442,7 +431,7 @@ class Team6 extends Team {
                       type: "icon",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck"
+                      value: "CiCircleCheck",
                     },
                     {
                       type: "string",
@@ -461,7 +450,7 @@ class Team6 extends Team {
                       type: "icon",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck"
+                      value: "CiCircleCheck",
                     },
                     {
                       type: "string",
@@ -480,7 +469,7 @@ class Team6 extends Team {
                       type: "icon",
                       key: "icon",
                       displayer: "Icon",
-                      value: "CiCircleCheck"
+                      value: "CiCircleCheck",
                     },
                     {
                       type: "string",
@@ -504,7 +493,7 @@ class Team6 extends Team {
       value: 4,
       max: 5,
     });
-    this.setComponentState("activeIndex", null)
+    this.setComponentState("activeIndex", null);
   }
 
   getName(): string {
@@ -514,9 +503,9 @@ class Team6 extends Team {
   render() {
     const handleButton = (index: number) => {
       if (this.getComponentState("activeIndex") === index) {
-        this.setComponentState("activeIndex", null)
+        this.setComponentState("activeIndex", null);
       } else {
-        this.setComponentState("activeIndex", index)
+        this.setComponentState("activeIndex", index);
       }
     };
 
@@ -524,90 +513,93 @@ class Team6 extends Team {
     const descriptionExist = this.getPropValue("description", { as_string: true });
 
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("page")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <Base.VerticalContent className={this.decorateCSS("page")}>
             {(title1Exist || descriptionExist) && (
               <div className={this.decorateCSS("up-page")}>
-                <div className={this.decorateCSS("text-group")}>
-                  {title1Exist && (
-                    <h1
-                      className={this.decorateCSS("title1")}
-                    >
-                      {this.getPropValue("title1")}
-                    </h1>
-                  )}
-                  {descriptionExist && (
-                    <p
-                      className={this.decorateCSS("description")}
-                    >
-                      {this.getPropValue("description")}
-                    </p>
-                  )}
-                </div>
+                <Base.VerticalContent className={this.decorateCSS("text-group")}>
+                  {title1Exist && <Base.SectionSubTitle className={this.decorateCSS("title1")}>{this.getPropValue("title1")}</Base.SectionSubTitle>}
+                  {descriptionExist && <Base.SectionTitle className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionTitle>}
+                </Base.VerticalContent>
               </div>
             )}
 
-            <div className={this.decorateCSS("down-page")}>
-              {this.castToObject<Card[]>("items").length > 0 && this.castToObject<Card[]>("items").map(
-                (card: Card, indexItems: number) => (
-                  <div
-                    key={indexItems}
-                    className={this.decorateCSS("all-card")}
-                    style={{
-                      width: `calc((100% / ${this.getPropValue("itemCount")}) - 20px)`,
-                    }}
-                  >
-                    <div className={this.decorateCSS("top")}>
-                      <div className={this.decorateCSS("image-wrapper")}>
+            <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("down-page")}>
+              {this.castToObject<Card[]>("items").map((card: Card, indexItems: number) => {
+                const cardNameExist = this.castToString(card.name);
+                const cardPositionExist = this.castToString(card.position);
+                const hasCard = cardNameExist || cardPositionExist || card.image || card.features.length > 0;
 
-                        <button
-                          onClick={() => handleButton(indexItems)}
-                          className="image-button"
-                        >
-                          {card.features.length > 0 && (this.getComponentState("activeIndex") === indexItems
-                            ?
-                            (<ComposerIcon name={this.getPropValue("closingIcon")} propsIcon={{ className: this.decorateCSS("image-icon") }} />)
-                            :
-                            (<ComposerIcon name={this.getPropValue("openingIcon")} propsIcon={{ className: this.decorateCSS("image-icon") }} />))
-                          }
-                          {card.image && (
-                            <img
-                              className={`${this.decorateCSS("image")} ${(this.getComponentState("activeIndex") === indexItems && card.features.length > 0) ? this.decorateCSS("shrink") : ""}`}
-                              src={card.image}
-                              alt={this.castToString(card.name)}
-                            />
-                          )}
-
-                          <div
-                            className={this.decorateCSS("overlay-bar")}
-                          >
-                            {this.castToString(card.name) && <h5 className={this.decorateCSS("card-name")}>{card.name}</h5>}
-                            {this.castToString(card.name) && this.castToString(card.position) && <div className={this.decorateCSS("separator")}></div>}
-                            {this.castToString(card.position) && <h2 className={this.decorateCSS("position")}>{card.position}</h2>}
-
-                            {this.getComponentState("activeIndex") === indexItems && card.features.length > 0 && (
-                              <ul className={this.decorateCSS("features")}>
-                                {card.features.map((feature: Feature, idx: number) => (
-                                  <li key={idx} className={this.decorateCSS("feature")}>
-                                    <ComposerIcon name={feature.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
-                                    {feature.feature}</li>
+                return (
+                  hasCard && (
+                    <div key={indexItems} className={this.decorateCSS("all-card")}>
+                      <div className={this.decorateCSS("top")}>
+                        <div className={this.decorateCSS("image-wrapper")}>
+                          {card.image ? (
+                            <button onClick={() => handleButton(indexItems)} className="image-button">
+                              {card.features.length > 0 &&
+                                (this.getComponentState("activeIndex") === indexItems ? (
+                                  <ComposerIcon name={this.getPropValue("closingIcon")} propsIcon={{ className: this.decorateCSS("image-icon") }} />
+                                ) : (
+                                  <ComposerIcon name={this.getPropValue("openingIcon")} propsIcon={{ className: this.decorateCSS("image-icon") }} />
                                 ))}
-                              </ul>
-                            )}
-                          </div>
-                        </button>
+                              <img className={`${this.decorateCSS("image")} ${this.getComponentState("activeIndex") === indexItems && card.features.length > 0 ? this.decorateCSS("shrink") : ""}`} src={card.image} alt={this.castToString(card.name)} />
+                              <Base.VerticalContent className={this.decorateCSS("overlay-bar")}>
+                                {cardNameExist && <Base.H2 className={this.decorateCSS("card-name")}>{card.name}</Base.H2>}
+                                {cardPositionExist && <Base.H4 className={this.decorateCSS("position")}>{card.position}</Base.H4>}
+
+                                {this.getComponentState("activeIndex") === indexItems && card.features.length > 0 && (
+                                  <Base.VerticalContent className={this.decorateCSS("features")}>
+                                    {card.features.map((feature: Feature, idx: number) => (
+                                      <div key={idx} className={this.decorateCSS("feature")}>
+                                        <ComposerIcon
+                                          name={feature.icon}
+                                          propsIcon={{
+                                            className: this.decorateCSS("icon"),
+                                          }}
+                                        />
+                                        <Base.P className={this.decorateCSS("feature-element")}>{feature.feature}</Base.P>
+                                      </div>
+                                    ))}
+                                  </Base.VerticalContent>
+                                )}
+                              </Base.VerticalContent>
+                            </button>
+                          ) : (
+                            <Base.VerticalContent className={`${this.decorateCSS("overlay-bar")} ${this.decorateCSS("overlay-visible")}`}>
+                              {cardNameExist && <Base.H2 className={this.decorateCSS("card-name")}>{card.name}</Base.H2>}
+                              {cardPositionExist && <Base.H4 className={this.decorateCSS("position")}>{card.position}</Base.H4>}
+
+                              {card.features.length > 0 && (
+                                <Base.VerticalContent className={this.decorateCSS("features")}>
+                                  {card.features.map((feature: Feature, idx: number) => (
+                                    <div key={idx} className={this.decorateCSS("feature")}>
+                                      <ComposerIcon
+                                        name={feature.icon}
+                                        propsIcon={{
+                                          className: this.decorateCSS("icon"),
+                                        }}
+                                      />
+                                      <Base.P className={this.decorateCSS("feature-element")}>{feature.feature}</Base.P>
+                                    </div>
+                                  ))}
+                                </Base.VerticalContent>
+                              )}
+                            </Base.VerticalContent>
+                          )}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                )
-              )}
-            </div>
-          </div>
-        </div >
-      </div >
+                  )
+                );
+              })}
+            </Base.ListGrid>
+          </Base.VerticalContent>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
 
-export default Team6;   
+export default Team6;

@@ -1,88 +1,65 @@
-.container {
-  width: 100%;
-  padding: 150px 50px;
-  background-color: var(--composer-html-background);
-
-  .max-content {
-    max-width: var(--composer-content-width);
+@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
+.container{
+  .maxContent{
     display: flex;
-    margin: auto;
-
-    .testimonials6 {
-      display: block;
-      width: 100%;
-      .title {
-        text-align: center;
-        font-size: 3rem;
-        margin: 0 0 80px 0;
-        color: var(--composer-primary-color);
-      }
-
-      section {
+    flex-direction: column;
+    gap:calc(var(--composer-gap-lg) * 2);
+    .title{
+      margin:0px;
+    }
+    .cardContainer{
+      .card{
+        border: solid 1px rgba(var(--composer-font-color-primary-rgb), 0.5);
+        border-radius: var(--composer-border-radius-lg);
+        padding: var(--composer-gap-xl) var(--composer-gap-lg);
         display: flex;
-        gap: 20px;
         flex-direction: column;
-
-        .card-child {
+        gap: var(--composer-gap-md);
+        background-color:color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);;
+        .description{
+          margin:0px;
+          color: var(--composer-font-color-primary);
+        }
+        .line {
+          width: 100%;
+          height: 1px;
+          background-color: var(--composer-font-color-primary);
+          opacity: 0.5;
+        }
+        .bottomContainer{
           display: flex;
-          justify-content: center;
-          flex-wrap: wrap;
-          gap: 20px;
-
-          .card {
-            flex: 1 1;
-            min-width: 250px;
-            border-radius: 6px;
-            background-color: white;
-            border: 1px;
-            padding: 20px;
+          gap: var(--composer-gap-md);
+          .image{
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+          }
+          .person{
             display: flex;
             flex-direction: column;
-            border: var(--composer-testiary-color);
-            .stars {
-              display: flex;
-              gap: 5px;
-              color: var(--composer-secondary-color);
-              img {
-                width: 15px;
-                height: 15px;
-              }
-              .star{
-                color: var(--composer-secondary-color);
-              }
+            flex:1;
+            .name{
+              color: var(--composer-font-color-primary);
+              font-size: 1rem;
             }
-
-            .profile {
-              display: flex;
-              img {
-                border-radius: 100%;
-                object-fit: cover;
-              }
-              .profile-text {
-                margin-left: 20px;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
+            .personTitle{
+              color: var(--composer-font-color-primary);
+              font-size: 1rem;
+              opacity: 0.5;
+            }
+          }
+          .star{
+            color: var(--composer-primary-color);
+          }
+        }
+        &:hover{
+          border: solid 1px var(--composer-primary-color);
+          .bottomContainer{
+            .person{
+              .personTitle{
                 color: var(--composer-primary-color);
-
-                .item-value3 {
-                  margin: 0;
-                  font-weight: 600;
-                  font-size: 1.5rem;
-                  color: var(--composer-primary-color);
-                }
-                .item-value4 {
-                  margin: 0;
-                  font-size: 1.2rem;
-                  text-transform: uppercase;
-                  color: var(--composer-primary-color);
-                }
               }
-            }
-            .item-value1 {
-              font-size: 1.2rem;
-              margin: 20px 0;
-              color: var(--composer-primary-color);
             }
           }
         }
@@ -91,16 +68,12 @@
   }
 }
 
-@media only screen and (max-width: 768px) {
-  .container {
-    padding: 50px 20px;
-    background-color: var(--composer-html-background);
-    .max-content {
-      .testimonials6 {
-        .card {
-          align-items: center;
-          text-align: center;
-          border: var(--composer-testiary-color);
+@container (max-width: #{$composer-phone-width-lg}){
+  .container{
+    .maxContent{
+      .cardContainer{
+        .card{
+          padding: var(--composer-gap-lg) var(--composer-gap-md);
         }
       }
     }
