@@ -308,7 +308,7 @@ class HeaderComponent22 extends BaseHeader {
                               <img
                                 className={`${this.decorateCSS("left-image")} ${(animation && isActive) ? this.decorateCSS("left-animation") : ""}  `}
                                 src={item.left_image}
-                                alt=""
+                                alt={item.left_image}
                               />
                             </div>
                           )}
@@ -329,7 +329,7 @@ class HeaderComponent22 extends BaseHeader {
                                         className={this.decorateCSS("link-button")}
                                         key={`hdr-22-${indexButton}`}
                                         path={buttonItem.link}>
-                                        <button className={this.decorateCSS("button")}>{buttonText}</button>
+                                        <button className={this.decorateCSS("button")}>{buttonItem.buttonText}</button>
                                       </ComposerLink>
                                     </div>
                                   );
@@ -345,7 +345,7 @@ class HeaderComponent22 extends BaseHeader {
                               <img
                                 className={this.decorateCSS("right-image")}
                                 src={item.right_image}
-                                alt=""
+                                alt={item.right_image}
                               />
                             </div>
                           )}
