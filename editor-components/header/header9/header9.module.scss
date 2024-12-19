@@ -212,6 +212,7 @@
 
           .tab-buttons {
             padding-right: var(--composer-gap-lg);
+            padding-left: calc(var(--composer-gap-xl) * 2);
 
             .tabText {
               font-size: 2rem;
