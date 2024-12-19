@@ -421,27 +421,27 @@ class Footer4Page extends BaseFooter {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("footer-page")}>
-            <div className={this.decorateCSS("left")}>
-              {textExist && <Base.P className={this.decorateCSS("text")}>{this.getPropValue("text")}</Base.P>}
-              <div className={this.decorateCSS("images")}>
-                {images.length > 0 && (
-                  <div className={this.decorateCSS("image-container")}>
-                    {images.map((item: any, index: number) => {
-                      return (
-                        item.image && (
-                          <div className={this.decorateCSS("image-element")}>
-                            <ComposerLink key={index} path={item.url}>
-                              <img className={this.decorateCSS("image")} src={item.image} />
-                            </ComposerLink>
-                          </div>
-                        )
-                      );
-                    })}
-                  </div>
-                )}
-              </div>
-            </div>
             <div className={this.decorateCSS("items")}>
+              <div className={this.decorateCSS("left")}>
+                {textExist && <Base.P className={this.decorateCSS("text")}>{this.getPropValue("text")}</Base.P>}
+                <div className={this.decorateCSS("images")}>
+                  {images.length > 0 && (
+                    <div className={this.decorateCSS("image-container")}>
+                      {images.map((item: any, index: number) => {
+                        return (
+                          item.image && (
+                            <div className={this.decorateCSS("image-element")}>
+                              <ComposerLink key={index} path={item.url}>
+                                <img className={this.decorateCSS("image")} src={item.image} />
+                              </ComposerLink>
+                            </div>
+                          )
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              </div>
               {this.castToObject<any[]>("footer").map((item: FooterValues, indexFooter: number) => (
                 <div key={indexFooter} className={this.decorateCSS("list-group")}>
                   <Base.H2 className={this.decorateCSS("title")}>{item.footerTitle}</Base.H2>
@@ -452,46 +452,46 @@ class Footer4Page extends BaseFooter {
                   ))}
                 </div>
               ))}
-            </div>
-            <div className={this.decorateCSS("right")}>
-              <Base.H3 className={this.decorateCSS("title")}>{this.getPropValue("rightTitle")}</Base.H3>
-              <Formik
-                initialValues={{ message: "" }}
-                validationSchema={this.validationSchema}
-                onSubmit={(data, { resetForm }) => {
-                  this.setComponentState("placeholderText", submitText);
+              <div className={this.decorateCSS("right")}>
+                <Base.H3 className={this.decorateCSS("title")}>{this.getPropValue("rightTitle")}</Base.H3>
+                <Formik
+                  initialValues={{ message: "" }}
+                  validationSchema={this.validationSchema}
+                  onSubmit={(data, { resetForm }) => {
+                    this.setComponentState("placeholderText", submitText);
 
-                  setTimeout(() => {
-                    const defaultPlaceholder = this.castToString(this.getPropValue("subscriptionPlaceholder"));
-                    this.setComponentState("placeholderText", defaultPlaceholder);
-                  }, 2000);
+                    setTimeout(() => {
+                      const defaultPlaceholder = this.castToString(this.getPropValue("subscriptionPlaceholder"));
+                      this.setComponentState("placeholderText", defaultPlaceholder);
+                    }, 2000);
 
-                  resetForm();
-                }}
-              >
-                {({ handleSubmit, handleChange, values, errors, touched }) => (
-                  <Form className={this.decorateCSS("form")} onSubmit={handleSubmit}>
-                    {this.castToString(this.getPropValue("subscriptionPlaceholder")) && (
-                      <div className={this.decorateCSS("input-element")}>
-                        <input
-                          className={this.decorateCSS("input")}
-                          type="text"
-                          placeholder={this.getComponentState("placeholderText") || this.castToString(this.getPropValue("subscriptionPlaceholder"))}
-                          name="message"
-                          value={values.message}
-                          onChange={handleChange}
-                        />
-                        {errors.message && touched.message && <div className={this.decorateCSS("error")}>{errors.message}</div>}
-                      </div>
-                    )}
+                    resetForm();
+                  }}
+                >
+                  {({ handleSubmit, handleChange, values, errors, touched }) => (
+                    <Form className={this.decorateCSS("form")} onSubmit={handleSubmit}>
+                      {this.castToString(this.getPropValue("subscriptionPlaceholder")) && (
+                        <div className={this.decorateCSS("input-element")}>
+                          <input
+                            className={this.decorateCSS("input")}
+                            type="text"
+                            placeholder={this.getComponentState("placeholderText") || this.castToString(this.getPropValue("subscriptionPlaceholder"))}
+                            name="message"
+                            value={values.message}
+                            onChange={handleChange}
+                          />
+                          {errors.message && touched.message && <div className={this.decorateCSS("error")}>{errors.message}</div>}
+                        </div>
+                      )}
 
-                    <Base.Button className={this.decorateCSS("button")} type="submit">
-                      {this.getPropValue("subscriptionButtonText")}
-                    </Base.Button>
-                  </Form>
-                )}
-              </Formik>
-              <Base.P className={this.decorateCSS("description")}>{this.getPropValue("rightDescription")}</Base.P>
+                      <Base.Button className={this.decorateCSS("button")} type="submit">
+                        {this.getPropValue("subscriptionButtonText")}
+                      </Base.Button>
+                    </Form>
+                  )}
+                </Formik>
+                <Base.P className={this.decorateCSS("description")}>{this.getPropValue("rightDescription")}</Base.P>
+              </div>
             </div>
           </div>
         </Base.MaxContent>
