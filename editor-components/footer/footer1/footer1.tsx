@@ -348,6 +348,7 @@ class Footer1Page extends BaseFooter {
             </Base.MaxContent>
           </Base.Container>
           {line && <div className={this.decorateCSS("line")} />}
+
           <Base.Container>
             <Base.MaxContent>
               {footerBottomExist && (

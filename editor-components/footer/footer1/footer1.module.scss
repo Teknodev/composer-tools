@@ -75,19 +75,18 @@
 
     .footer-bottom {
       display: flex;
-      align-items: center;
       justify-content: space-between;
       padding: var(--composer-gap-sm) 0;
+      gap: var(--composer-gap-md);
 
       .copyright-container,
       .social,
       .pages {
         flex: 1;
+        display: flex;
       }
 
       .copyright-container {
-        display: flex;
-        align-items: center;
         justify-content: flex-start;
 
         .text {
@@ -97,8 +96,6 @@
       }
 
       .social {
-        display: flex;
-        align-items: center;
         justify-content: center;
         gap: var(--composer-gap-md);
 
@@ -110,15 +107,37 @@
       }
 
       .pages {
-        display: flex;
         flex-wrap: wrap;
-        align-items: center;
         justify-content: flex-end;
         column-gap: var(--composer-gap-lg);
 
         .text {
           font-size: 1rem;
           color: var(--composer-tertiary-color);
+        }
+      }
+
+      &:has(.copyright-container:not(:first-child)) {
+        .copyright-container {
+          justify-content: center;
+        }
+      }
+
+      &:has(.social:first-child) {
+        .social {
+          justify-content: flex-start;
+        }
+      }
+
+      &:not(:has(.copyright-container)):not(:has(.pages)) {
+        .social {
+          justify-content: flex-start;
+        }
+      }
+
+      &:has(.social:last-child):has(.copyright-container, .pages) {
+        .social {
+          justify-content: flex-end;
         }
       }
     }
