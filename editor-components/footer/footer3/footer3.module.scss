@@ -1,65 +1,194 @@
+@import "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss";
+
 .container {
-    width: 100%;
-    padding: 50px 0;
-    .max-content {
-        max-width: var(--composer-content-width);
-        margin: auto;
-        .logo {
-            flex: 1;
+  width: 100%;
+  .max-content {
+    .footer-page {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: var(--composer-gap-md);
+
+      .items {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: 100%;
+        gap: var(--composer-gap-lg);
+
+        .header,
+        .list-group {
+          flex: 1;
+          min-width: 200px;
+          max-width: 310px;
+          width: 100%;
         }
-        .footer-page {
-            flex: 3;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            flex-wrap: wrap;
-            padding: 20px;
-            .items {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 20px;
-                .list-group {
-                    list-style: none;
-                    padding: 0;
-                    margin: 0;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: flex-start;
-                    align-items: flex-start;
-                    flex: 1 1;
-                    min-width: 250px;
-                    .title {
-                        color: var(--composer-primary-color);
-                        .item-footerTitle {
-                            font-weight: 200;
-                            font-size: 1.8rem;
-                        }
-                    }
-                    .text {
-                        text-decoration: none;
-                        color: var(--composer-font-color-primary);
-                        font-size: 1.2rem;
-                        font-weight: 100;
-                        font-family: system-ui;
-                    }
-                }
+
+        .header {
+          display: flex;
+          flex-direction: column;
+          gap: var(--composer-gap-md);
+
+          .logo {
+            .image {
+              width: 200px;
+              height: var(--composer-gap-lg);
+              object-fit: cover;
             }
+          }
+
+          .description {
+            font-size: 1rem;
+            color: var(--composer-font-color-primary);
+          }
+
+          .socials-container {
+            display: flex;
+            align-items: center;
+            gap: var(--composer-gap-sm);
+
+            .socials-element {
+              .icon {
+                width: var(--composer-gap-md);
+                height: var(--composer-gap-md);
+                color: var(--composer-font-color-primary);
+                transition: color 0.3s ease;
+              }
+
+              .icon:hover {
+                color: var(--composer-primary-color);
+              }
+            }
+          }
         }
+
+        .list-group {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: flex-start;
+          gap: var(--composer-gap-md);
+
+          .title {
+            font-size: 1rem;
+            color: var(--composer-font-color-primary);
+            margin: 0;
+          }
+
+          .text-container {
+            gap: var(--composer-gap-xs);
+
+            .element,
+            .element-has-path {
+              display: flex;
+              align-items: center;
+              gap: var(--composer-gap-sm);
+
+              .text {
+                color: var(--composer-font-color-primary);
+                font-size: 1rem;
+                margin: 0;
+                transition: color 0.3s ease;
+              }
+
+              .icon {
+                color: var(--composer-font-color-primary);
+                font-size: 1rem;
+                transition: color 0.3s ease;
+              }
+            }
+
+            .element-has-path .text:hover {
+              color: var(--composer-primary-color);
+            }
+          }
+        }
+      }
+
+      .line {
+        border-top: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.5);
+        width: 100%;
+      }
+
+      .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+
+        .text,
+        .links {
+          flex: 1;
+        }
+
+        .text {
+          font-size: 1rem;
+          color: var(--composer-font-color-primary);
+        }
+
+        .links {
+          display: flex;
+          align-items: center;
+          justify-content: end;
+          gap: var(--composer-gap-md);
+
+          .link-element,
+          .link-element-has-path {
+            .link-text {
+              font-size: 1rem;
+              color: var(--composer-font-color-primary);
+              transition: color 0.3s ease;
+            }
+          }
+
+          .link-element-has-path .link-text:hover {
+            color: var(--composer-primary-color);
+          }
+        }
+      }
     }
+  }
 }
 
-@media only screen and (max-width: 768px) {
-    .container {
-        padding: 50px 20px;
-        .logo {
-            display: flex;
-            justify-content: center;
-        }
+@container (max-width: #{$composer-tablet-width-lg}) {
+  .container {
+    width: 100%;
+    .max-content {
+      .footer-page {
+        flex-direction: column;
+        gap: var(--composer-gap-md);
+
         .items {
-            .list-group {
-                align-items: center !important;
+          .header,
+          .list-group {
+            flex: 1;
+            min-width: 300px;
+            max-width: 310px;
+            width: 100%;
+          }
+          .list-group {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+
+            .text-container {
+              .element {
+                display: flex;
+                align-items: center;
+                gap: var(--composer-gap-sm);
+              }
             }
+          }
         }
+
+        .footer-bottom {
+          justify-content: space-between;
+          flex-direction: column;
+
+          .links {
+            justify-content: flex-start;
+          }
+        }
+      }
     }
+  }
 }
