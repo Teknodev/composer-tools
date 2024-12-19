@@ -210,27 +210,24 @@
 
         >ul {
           transform: translateY(-40px) translateX(-50%);
-          border-radius: 100px;
           width: auto;
           position: absolute;
           left: 50%;
-          padding: 0px 5px;
+          padding: 0px var(--composer-gap-xs);
           display: flex !important;
           justify-content: center;
           counter-reset: list-counter;
           gap: var(--composer-gap-md);
 
           li {
-            padding: 2px 20px;
+            padding: var(--composer-gap-xs) var(--composer-gap-md);
             list-style: none;
             counter-increment: list-counter;
             white-space: nowrap;
             position: relative;
             color: white;
             ::before {
-              margin-inline-end: 5px;
-              font-weight: 600;
-              font-size: 20px;
+              font-size: 1.5rem;
               content: counter(list-counter);
             }
 
@@ -250,7 +247,7 @@
 
             button {
               &:before {
-                font-size: 20px;
+                font-size: 1.5rem;
                 color: white;
                 opacity: 1;
               }
@@ -265,8 +262,6 @@
           :global(li.slick-active) ::before {
             opacity: 1;
           }
-          
-
         }      
       }
       .carousel-no-image {
