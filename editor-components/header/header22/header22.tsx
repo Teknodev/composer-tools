@@ -329,7 +329,7 @@ class HeaderComponent22 extends BaseHeader {
                                         className={this.decorateCSS("link-button")}
                                         key={`hdr-22-${indexButton}`}
                                         path={buttonItem.link}>
-                                        <button className={this.decorateCSS("button")}>{buttonText}</button>
+                                        <button className={this.decorateCSS("button")}>{buttonItem.buttonText}</button>
                                       </ComposerLink>
                                     </div>
                                   );
