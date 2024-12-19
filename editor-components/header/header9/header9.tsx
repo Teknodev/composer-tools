@@ -3,7 +3,6 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header9.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { Container } from "@mui/material";
 
 type ITab = {
   tabText: JSX.Element;
@@ -343,7 +342,6 @@ class Header9 extends BaseHeader {
     const currentImage = tabs[activeTabIndex]?.image ?? null;
 
     const socialHeight = window.document.getElementById("header9-social")?.clientHeight
-    console.log(socialHeight);
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -367,7 +365,10 @@ class Header9 extends BaseHeader {
                   </span>
                 </div>
               )}
-              <Base.VerticalContent className={this.decorateCSS("tab-buttons")}>
+              <Base.VerticalContent className={this.decorateCSS("tab-buttons")}
+                style={{
+                  maxHeight: `calc(100% - (${socialHeight}px + var(--composer-gap-md) * 3))`
+                }}>
                 {tabs.length > 0 &&
                   tabs.map((tab: ITab, index: number) => {
                     const url = tab.tabUrl;

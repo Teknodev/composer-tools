@@ -79,9 +79,11 @@
 
       .tab-buttons {
         width: fit-content;
-        justify-content: center;
         margin: 0 auto;
-        padding: var(--composer-gap-md) 0 calc(var(--composer-gap-lg) * 2) calc(var(--composer-gap-xl) * 2);
+        padding: var(--composer-gap-md) 0 var(--composer-gap-md) calc(var(--composer-gap-xl) * 2);
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
 
         .tabText {
           color: var(--composer-font-color-primary);
@@ -184,8 +186,21 @@
   }
 }
 
-
-
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .tabs {
+        .left-content {
+          .tab-buttons {
+            .tabText {
+              font-size: 2rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
@@ -194,12 +209,12 @@
 
       .tabs {
         flex-direction: column;
-        gap: var(--composer-gap-md);
-        padding-bottom: var(--composer-gap-md);
+        gap: 0;
 
         .left-content {
           order: 1;
           height: auto;
+          padding: var(--composer-gap-md);
 
           .buttons {
             display: none;
@@ -208,9 +223,11 @@
           .tab-buttons {
             position: static;
             align-items: center;
+            padding: 0;
+            max-height: unset !important;
 
             .tabText {
-              font-size: 2.5rem;
+              font-size: 1.5rem;
               text-align: center;
 
               &::before {
@@ -232,6 +249,8 @@
         }
 
         .social {
+          padding: var(--composer-gap-md);
+          height: auto;
           width: 100%;
           position: static;
           order: 2;
