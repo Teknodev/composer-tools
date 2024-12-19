@@ -23,7 +23,7 @@
       .middle-container {
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
+        justify-content: space-between;
         gap: var(--composer-gap-lg);
         width: 100%;
 
