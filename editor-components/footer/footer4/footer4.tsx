@@ -3,19 +3,17 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { BaseFooter } from "../../EditorComponent";
 import styles from "./footer4.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 import { Formik, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
 type FooterValues = {
-  footerTitle: string;
+  footerTitle: JSX.Element;
   footerText: FooterTextValues[];
 };
 
 type FooterTextValues = {
-  footerText: string;
+  footerText: JSX.Element;
   path: string;
 };
 
@@ -417,81 +415,110 @@ class Footer4Page extends BaseFooter {
 
     const submitText = this.castToString(this.getPropValue("submitText"));
 
+    const leftExist = textExist || images.length > 0;
+
+    const rightTitleExist = this.castToString(this.getPropValue("rightTitle"));
+    const rightDescExist = this.castToString(this.getPropValue("rightDescription"));
+    const buttonTextExist = this.castToString(this.getPropValue("subscriptionButtonText"));
+    const placeHolderExist = this.castToString(this.getPropValue("subscriptionPlaceholder"));
+
+    const rightExist = rightTitleExist || rightDescExist || buttonTextExist || placeHolderExist;
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("footer-page")}>
             <div className={this.decorateCSS("items")}>
-              <div className={this.decorateCSS("left")}>
-                {textExist && <Base.P className={this.decorateCSS("text")}>{this.getPropValue("text")}</Base.P>}
-                <div className={this.decorateCSS("images")}>
-                  {images.length > 0 && (
-                    <div className={this.decorateCSS("image-container")}>
-                      {images.map((item: any, index: number) => {
-                        return (
-                          item.image && (
-                            <div className={this.decorateCSS("image-element")}>
-                              <ComposerLink key={index} path={item.url}>
-                                <img className={this.decorateCSS("image")} src={item.image} />
+              {leftExist && (
+                <div className={this.decorateCSS("left")}>
+                  {textExist && <Base.P className={this.decorateCSS("text")}>{this.getPropValue("text")}</Base.P>}
+                  <div className={this.decorateCSS("images")}>
+                    {images.length > 0 && (
+                      <div className={this.decorateCSS("image-container")}>
+                        {images.map((item: any, index: number) => {
+                          return (
+                            item.image && (
+                              <div className={this.decorateCSS("image-element")}>
+                                <ComposerLink key={index} path={item.url}>
+                                  <img className={this.decorateCSS("image")} src={item.image} />
+                                </ComposerLink>
+                              </div>
+                            )
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {this.castToObject<any[]>("footer").length > 0 &&
+                this.castToObject<any[]>("footer").map((item: FooterValues, indexFooter: number) => {
+                  const footerTitleExist = this.castToString(item.footerTitle);
+                  const footerExist = footerTitleExist || item.footerText.length > 0;
+                  return (
+                    footerExist && (
+                      <div key={indexFooter} className={this.decorateCSS("list-group")}>
+                        {footerTitleExist && <Base.H2 className={this.decorateCSS("title")}>{item.footerTitle}</Base.H2>}
+                        {item.footerText.map((item: FooterTextValues, indexFooterText: number) => {
+                          const footerTextExist = this.castToString(item.footerText);
+                          return (
+                            footerTextExist && (
+                              <ComposerLink key={indexFooterText} path={item.path}>
+                                <Base.P className={this.decorateCSS("text")}>{item.footerText}</Base.P>
                               </ComposerLink>
-                            </div>
-                          )
-                        );
-                      })}
-                    </div>
-                  )}
+                            )
+                          );
+                        })}
+                      </div>
+                    )
+                  );
+                })}
+
+              {rightExist && (
+                <div className={this.decorateCSS("right")}>
+                  {rightTitleExist && <Base.H3 className={this.decorateCSS("title")}>{this.getPropValue("rightTitle")}</Base.H3>}
+                  <Formik
+                    initialValues={{ message: "" }}
+                    validationSchema={this.validationSchema}
+                    onSubmit={(data, { resetForm }) => {
+                      this.setComponentState("placeholderText", submitText);
+
+                      setTimeout(() => {
+                        const defaultPlaceholder = this.castToString(this.getPropValue("subscriptionPlaceholder"));
+                        this.setComponentState("placeholderText", defaultPlaceholder);
+                      }, 2000);
+
+                      resetForm();
+                    }}
+                  >
+                    {({ handleSubmit, handleChange, values, errors, touched }) => (
+                      <Form className={this.decorateCSS("form")} onSubmit={handleSubmit}>
+                        {this.castToString(this.getPropValue("subscriptionPlaceholder")) && (
+                          <div className={this.decorateCSS("input-element")}>
+                            <input
+                              className={this.decorateCSS("input")}
+                              type="text"
+                              placeholder={this.getComponentState("placeholderText") || this.castToString(this.getPropValue("subscriptionPlaceholder"))}
+                              name="message"
+                              value={values.message}
+                              onChange={handleChange}
+                            />
+                            {errors.message && touched.message && <div className={this.decorateCSS("error")}>{errors.message}</div>}
+                          </div>
+                        )}
+
+                        {buttonTextExist && (
+                          <Base.Button className={this.decorateCSS("button")} type="submit">
+                            {this.getPropValue("subscriptionButtonText")}
+                          </Base.Button>
+                        )}
+                      </Form>
+                    )}
+                  </Formik>
+                  {rightDescExist && <Base.P className={this.decorateCSS("description")}>{this.getPropValue("rightDescription")}</Base.P>}
                 </div>
-              </div>
-              {this.castToObject<any[]>("footer").map((item: FooterValues, indexFooter: number) => (
-                <div key={indexFooter} className={this.decorateCSS("list-group")}>
-                  <Base.H2 className={this.decorateCSS("title")}>{item.footerTitle}</Base.H2>
-                  {item.footerText.map((item: FooterTextValues, indexFooterText: number) => (
-                    <ComposerLink key={indexFooterText} path={item.path}>
-                      <Base.P className={this.decorateCSS("text")}>{item.footerText}</Base.P>
-                    </ComposerLink>
-                  ))}
-                </div>
-              ))}
-              <div className={this.decorateCSS("right")}>
-                <Base.H3 className={this.decorateCSS("title")}>{this.getPropValue("rightTitle")}</Base.H3>
-                <Formik
-                  initialValues={{ message: "" }}
-                  validationSchema={this.validationSchema}
-                  onSubmit={(data, { resetForm }) => {
-                    this.setComponentState("placeholderText", submitText);
-
-                    setTimeout(() => {
-                      const defaultPlaceholder = this.castToString(this.getPropValue("subscriptionPlaceholder"));
-                      this.setComponentState("placeholderText", defaultPlaceholder);
-                    }, 2000);
-
-                    resetForm();
-                  }}
-                >
-                  {({ handleSubmit, handleChange, values, errors, touched }) => (
-                    <Form className={this.decorateCSS("form")} onSubmit={handleSubmit}>
-                      {this.castToString(this.getPropValue("subscriptionPlaceholder")) && (
-                        <div className={this.decorateCSS("input-element")}>
-                          <input
-                            className={this.decorateCSS("input")}
-                            type="text"
-                            placeholder={this.getComponentState("placeholderText") || this.castToString(this.getPropValue("subscriptionPlaceholder"))}
-                            name="message"
-                            value={values.message}
-                            onChange={handleChange}
-                          />
-                          {errors.message && touched.message && <div className={this.decorateCSS("error")}>{errors.message}</div>}
-                        </div>
-                      )}
-
-                      <Base.Button className={this.decorateCSS("button")} type="submit">
-                        {this.getPropValue("subscriptionButtonText")}
-                      </Base.Button>
-                    </Form>
-                  )}
-                </Formik>
-                <Base.P className={this.decorateCSS("description")}>{this.getPropValue("rightDescription")}</Base.P>
-              </div>
+              )}
             </div>
           </div>
         </Base.MaxContent>

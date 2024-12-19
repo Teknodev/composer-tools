@@ -1,3 +1,5 @@
+@import "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss";
+
 .container {
   .max-content {
     .footer-page {
@@ -18,7 +20,7 @@
         .right {
           flex: 1 1 20%;
           max-width: 20%;
-          min-width: 300px;
+          min-width: 200px;
         }
 
         .left {
@@ -33,10 +35,12 @@
           .images {
             .image-container {
               display: flex;
+              flex-wrap: wrap;
               align-items: center;
               gap: var(--composer-gap-md);
               .image {
-                width: var(--composer-gap-lg);
+                width: var(--composer-gap-xl);
+                height: var(--composer-gap-xl);
               }
             }
           }
@@ -109,6 +113,73 @@
             margin: 0;
             font-size: 1rem;
             color: var(--composer-font-color-primary);
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width-lg}) {
+  .container {
+    .max-content {
+      .footer-page {
+        .items {
+          gap: var(--composer-gap-xl);
+
+          .left,
+          .list-group,
+          .right {
+            min-width: 300px;
+          }
+
+          .left {
+            .images {
+              .image-container {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                gap: var(--composer-gap-md);
+                .image {
+                  width: var(--composer-gap-lg);
+                  height: var(--composer-gap-lg);
+                }
+              }
+            }
+          }
+
+          .right {
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-sm);
+
+            .form {
+              display: flex;
+              flex-direction: column;
+              gap: var(--composer-gap-sm);
+
+              .button {
+                width: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .footer-page {
+        .items {
+          gap: var(--composer-gap-lg);
+
+          .left,
+          .list-group,
+          .right {
+            max-width: 100%;
           }
         }
       }
