@@ -131,7 +131,7 @@ export abstract class Component
       states: {},
       componentProps: {
         props: props?.props || [],
-        cssClasses: props?.cssClassess || sectionsKeyValue,
+        cssClasses: props?.cssClasses || sectionsKeyValue,
       },
     };
 
