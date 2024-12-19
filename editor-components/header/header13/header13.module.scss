@@ -28,7 +28,7 @@
                     height: 100vh;
                     object-fit: cover;
 
-                    &.no-img{
+                    &.no-img {
                         display: none !important;
                     }
                 }
@@ -41,10 +41,22 @@
             background-color: transparent;
 
             .Box {
-                .content-left {
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                gap: var(--composer-gap-lg);
+
+                .content-left,
+                .content-right {
                     display: flex;
                     flex-wrap: wrap-reverse;
-                    align-items: center;
+                    align-items: end;
+                    flex-basis: 0;
+                    flex-grow: 1;
+                    min-width: 0;
+                }
+
+                .content-left {
                     align-items: end;
                     row-gap: var(--composer-gap-sm);
                     column-gap: var(--composer-gap-lg);
@@ -56,10 +68,7 @@
                 }
 
                 .content-right {
-                    display: flex;
-                    flex-wrap: wrap-reverse;
                     justify-content: end;
-                    align-items: end;
                     gap: var(--composer-gap-sm);
                     color: white;
 
@@ -93,6 +102,7 @@
             .content-container {
                 .Box {
                     flex-direction: row;
+
                     .content-left {
                         row-gap: var(--composer-gap-sm);
                         column-gap: var(--composer-gap-md);

@@ -293,11 +293,11 @@ class Header13 extends BaseHeader {
             </div>}
           {(leftItems.length > 0 || rightItems.length > 0) &&
             <Base.Container className={this.decorateCSS("content-container")}>
-              <Base.ContainerGrid className={`${this.decorateCSS("Box")} ${imageless ? this.decorateCSS("imageless") : ""
+              <Base.MaxContent className={`${this.decorateCSS("Box")} ${imageless ? this.decorateCSS("imageless") : ""
                 }`}
               >
                 {leftItems.length > 0 &&
-                  <Base.GridCell className={this.decorateCSS("content-left")}>
+                  <div className={this.decorateCSS("content-left")}>
                     {leftItems.map((item: LeftItem) => {
                       return (
                         <ComposerLink path={item.link}>
@@ -307,9 +307,9 @@ class Header13 extends BaseHeader {
                         </ComposerLink>
                       );
                     })}
-                  </Base.GridCell>}
+                  </div>}
                 {rightItems.length > 0 &&
-                  <Base.GridCell className={this.decorateCSS("content-right")}>
+                  <div className={this.decorateCSS("content-right")}>
                     {rightItems.map((item: RightItem) => {
                       return (
                         <ComposerLink path={item.link}>
@@ -320,8 +320,8 @@ class Header13 extends BaseHeader {
                         </ComposerLink>
                       );
                     })}
-                  </Base.GridCell>}
-              </Base.ContainerGrid>
+                  </div>}
+              </Base.MaxContent>
             </Base.Container>}
         </div>
       </div>
