@@ -71,7 +71,7 @@
       .footer-page {
         .items,
         .items-no-image {
-          padding: var(--composer-gap-md) 30px;
+          padding: var(--composer-gap-md) var(--composer-gap-lg);
           min-height: 300px;
           gap: var(--composer-gap-md);
           .list {
@@ -81,7 +81,7 @@
         }
       }
       .footer-bottom {
-        padding: var(--composer-gap-md) 30px;
+        padding: var(--composer-gap-md) var(--composer-gap-lg);
       }
     }
   }
