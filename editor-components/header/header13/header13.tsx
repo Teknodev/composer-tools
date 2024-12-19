@@ -242,6 +242,12 @@ class Header13 extends BaseHeader {
         },
       ],
     });
+    this.addProp({
+      type: "boolean",
+      key: "overlayActivation",
+      displayer: "Overlay",
+      value: false,
+    });
   }
 
   getName(): string {
@@ -269,6 +275,7 @@ class Header13 extends BaseHeader {
     const reverseSlider = slider;
     const currentSliderIndex = this.getComponentState("currentSliderIndex") ?? 2;
     const imageless = !reverseSlider[currentSliderIndex]?.value;
+    const overlay = this.getPropValue("overlayActivation");
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -278,7 +285,6 @@ class Header13 extends BaseHeader {
               <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
                 {slider.map(
                   (item: any, indexSlider: number) => {
-
                     return (
                       <img
                         alt=""
@@ -290,6 +296,7 @@ class Header13 extends BaseHeader {
                   }
                 )}
               </ComposerSlider>
+              {overlay && <div className={this.decorateCSS("overlay")}></div>}
             </div>}
           {(leftItems.length > 0 || rightItems.length > 0) &&
             <Base.Container className={this.decorateCSS("content-container")}>
