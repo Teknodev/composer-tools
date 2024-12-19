@@ -154,22 +154,24 @@ class Header29 extends BaseHeader {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.ContainerGrid
+          <div
             className={`${this.decorateCSS("wrapper")} ${
               this.getPropValue("reverser") &&
               this.decorateCSS("wrapper-reverse")
             } ${!showContent || !image ? this.decorateCSS("center") : ""}`}
           >
             {showContent && (
-              <Base.GridCell className={this.decorateCSS("content")}>
+              <div className={this.decorateCSS("content")}>
+                <Base.VerticalContent>
                 {title && (
-                  <Base.SectionTitle className={this.decorateCSS("title")}> {this.getPropValue("title")}</Base.SectionTitle>
+                  <Base.H1 className={this.decorateCSS("title")}> {this.getPropValue("title")}</Base.H1>
                 )}
                 {description && (
-                  <Base.SectionDescription className={this.decorateCSS("description")}>
+                  <p className={this.decorateCSS("description")}>
                     {this.getPropValue("description")}
-                  </Base.SectionDescription>
+                  </p>
                 )}
+                </Base.VerticalContent>
 
                 {placeholder && buttonText && (
                     <Formik
@@ -228,18 +230,16 @@ class Header29 extends BaseHeader {
                     ))}
                   </Base.ListGrid>
                 )}
-              </Base.GridCell>
+              </div>
             )}
             {image && (
-              <Base.GridCell className={this.decorateCSS("image-container")}>
                 <img
                 className={this.decorateCSS("image")}
                 src={this.getPropValue("image")}
                 alt=""
               />
-              </Base.GridCell>
             )}
-          </Base.ContainerGrid>
+          </div>
         </Base.MaxContent>
       </Base.Container>
     );

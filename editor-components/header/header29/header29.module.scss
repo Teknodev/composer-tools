@@ -1,3 +1,5 @@
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+
 .container {
   background-color: var(--composer-html-background);
 
@@ -9,18 +11,18 @@
       width: 100%;
       display: flex;
       justify-content: space-between;
-
+      align-items: center;
       overflow-wrap: break-word;
+      gap: var(--composer-gap-lg);
+
       &.wrapper-reverse {
         flex-flow: row-reverse;
       }
       .image {
-        height: 700px;
-        width: 100%;
-        object-fit: contain;
+        flex: 1;
       }
-
       .content {
+        flex: 2;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -33,7 +35,6 @@
           font-weight: bold;
           font-size: 7em;
           color: var(--composer-font-color-primary);
-          margin: 0;
           .colored-title {
             padding: 0 var(--composer-gap-sm);
             color: var(--composer-primary-color);
@@ -44,8 +45,6 @@
           font-size: 1.5em;
           color: var(--composer-tertiary-color);
           margin: 0;
-          // padding-top: calc(var(--composer-gap-md) * 1.5);
-          // padding-bottom: calc(var(--composer-gap-md) * 2.5);
         }
         .form {
           display: flex;
@@ -53,7 +52,6 @@
           width: 100%;
           .input {
             border-radius: var(--composer-border-radius-sm);
-            height: 45px;
             width: 45%;
             border: var(--composer-font-color-primary) solid 2px;
             background-color: var(--composer-html-background);
@@ -61,17 +59,6 @@
             padding-left: var(--composer-gap-sm);
             color: var(--composer-font-color-primary);
           }
-        }
-        .button {
-          background-color: var(--composer-primary-color);
-
-          height: 45px;
-          border-radius: var(--composer-border-radius-sm);
-          color: var(--text-color-white);
-          font-weight: bold;
-          font-size: 0.8em;
-          border: none;
-          outline: none;
         }
 
           .service-card {
@@ -103,8 +90,7 @@
     }
   }
 }
-
-@media only screen and (max-width: 768px) {
+@container (max-width: #{$composer-tablet-width-lg}) {
   .container {
     .max-content {
       max-width: var(--composer-content-width);
@@ -121,8 +107,7 @@
           width: 100%;
           .title {
             font-size: 4em;
-            display: flex;
-            justify-content: center;
+ text-align: center;
           }
           .description {
             font-size: 1.3em;
@@ -140,10 +125,6 @@
               font-weight: bold;
             }
           }
-          // .services {
-          //   flex-direction: row;
-          //   gap: var(--composer-gap-sm);
-          //   padding-bottom: var(--composer-gap-xl);
             .service-card {
               align-items: center;
               gap: var(--composer-gap-sm);
@@ -156,7 +137,6 @@
                 text-align: center;
               }
             }
-          // }
         }
         .image {
           height: 470px;
@@ -166,7 +146,8 @@
     }
   }
 }
-@media only screen and (max-width: 400px) {
+
+@container (max-width: #{$composer-phone-width})  {
   .container {
     .max-content {
       max-width: var(--composer-content-width);
@@ -202,9 +183,6 @@
               }
             }
 
-          // .services {
-          //   flex-direction: column;
-          //   gap: var(--composer-gap-lg);
             .service-card {
               max-width: 100%;
               gap: var(--composer-gap-sm);
@@ -215,7 +193,6 @@
                 font-size: 1.2em;
               }
             }
-          // }
         }
         .image {
           height: 350px;
