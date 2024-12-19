@@ -257,36 +257,45 @@ class Header13 extends BaseHeader {
       slidesToShow: 1,
       slidesToScroll: 1,
       arrows: false,
-      rtl: true,
+      rtl: false,
+      beforeChange: (current: number, next: number) => {
+        this.setComponentState("currentSliderIndex", next);
+      },
     };
 
     const rightItems = this.castToObject<RightItem[]>("right-items");
     const leftItems = this.castToObject<LeftItem[]>("left-items");
     const slider = this.getPropValue("slider");
-    const imageless = slider.length < 1;
+    const reverseSlider = slider;
+    const currentSliderIndex = this.getComponentState("currentSliderIndex") ?? 2;
+    const imageless = !reverseSlider[currentSliderIndex]?.value;
 
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          {!imageless &&
+          {slider.length > 0 &&
             <div className={this.decorateCSS("slider-parent")}>
               <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
                 {slider.map(
-                  (item: any, indexSlider: number) => (
-                    item.value && <img
-                      alt=""
-                      src={item.value}
-                      className={this.decorateCSS("img")}
-                      key={indexSlider}
-                    />
-                  )
+                  (item: any, indexSlider: number) => {
+
+                    return (
+                      <img
+                        alt=""
+                        src={item.value}
+                        className={`${this.decorateCSS("img")} ${!item.value && this.decorateCSS("no-img")}`}
+                        key={indexSlider}
+                      />
+                    )
+                  }
                 )}
               </ComposerSlider>
             </div>}
           {(leftItems.length > 0 || rightItems.length > 0) &&
             <Base.Container className={this.decorateCSS("content-container")}>
-              <Base.ContainerGrid className={`${this.decorateCSS("Box")} 
-            ${imageless && this.decorateCSS("imageless")}`}>
+              <Base.ContainerGrid className={`${this.decorateCSS("Box")} ${imageless ? this.decorateCSS("imageless") : ""
+                }`}
+              >
                 {leftItems.length > 0 &&
                   <Base.GridCell className={this.decorateCSS("content-left")}>
                     {leftItems.map((item: LeftItem) => {
