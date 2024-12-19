@@ -347,13 +347,15 @@ class Header9 extends BaseHeader {
     const currentImage = tabs[activeTabIndex]?.image ?? null;
 
     const socialHeight = window.document.getElementById("header9-social")?.clientHeight
+    const isCounterActive = this.getPropValue("isCounterActive")
+    const noTabs = ((tabs.length < 1 || !isCounterActive) && !textExist);
 
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <Base.ContainerGrid className={this.decorateCSS("tabs")}>
             <Base.GridCell className={this.decorateCSS("left-content")}>
-              {tabs.length > 0 && (
+              {(tabs.length > 0 || textExist) && (
                 <div className={this.decorateCSS("buttons")} style={{ paddingLeft: `calc((${socialHeight}px) + var(--composer-gap-xl))` }}>
                   {textExist && (
                     <span className={this.decorateCSS("text")}>
@@ -361,7 +363,7 @@ class Header9 extends BaseHeader {
                     </span>
                   )}
 
-                  {this.getPropValue("isCounterActive") &&
+                  {isCounterActive &&
                     <div className={this.decorateCSS("counter-wrapper")}>
                       <span className={this.decorateCSS("active-number")}>
                         {activeTabIndex + 1}
@@ -373,7 +375,7 @@ class Header9 extends BaseHeader {
                     </div>}
                 </div>
               )}
-              <Base.VerticalContent className={this.decorateCSS("tab-buttons")}
+              <Base.VerticalContent className={`${this.decorateCSS("tab-buttons")} ${noTabs && this.decorateCSS("no-tabs")}`}
                 style={{
                   maxHeight: `calc(100% - (${socialHeight}px + var(--composer-gap-md) * 3))`
                 }}>
