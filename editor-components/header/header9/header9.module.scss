@@ -51,7 +51,7 @@
         rotate: -90deg;
         transform-origin: top left;
         top: 50%;
-        left: 40px;
+        left: 50px;
         transform: translateX(-50%);
         display: flex;
         align-items: center;
@@ -62,18 +62,20 @@
           font-size: 1rem;
         }
 
-        .active-number {
-          color: var(--composer-primary-color);
-          font-size: 2.5rem;
-        }
+        .counter-wrapper {
+          .active-number {
+            color: var(--composer-primary-color);
+            font-size: 2.5rem;
+          }
 
-        .slash {
-          margin: 0px var(--composer-gap-xs);
-        }
+          .slash {
+            margin: 0px var(--composer-gap-xs);
+          }
 
-        .count {
-          color: var(--composer-primary-color);
-          font-size: 1rem;
+          .count {
+            color: var(--composer-primary-color);
+            font-size: 1rem;
+          }
         }
       }
 
@@ -115,7 +117,15 @@
 
             transform: translateX(10px);
             color: var(--composer-primary-color);
+          }
 
+          &.active {
+            &::before {
+              width: 100%;
+            }
+
+            transform: translateX(10px);
+            color: var(--composer-primary-color);
           }
         }
       }
@@ -126,6 +136,7 @@
         font-weight: unset;
         color: var(--composer-font-color-primary);
         width: fit-content;
+        margin-top: 0;
 
         &:hover {
           color: var(--composer-primary-color);
@@ -191,6 +202,11 @@
     .max-content {
       .tabs {
         .left-content {
+
+          .buttons {
+            left: 40px;
+          }
+
           .tab-buttons {
             .tabText {
               font-size: 2rem;
@@ -231,21 +247,22 @@
               text-align: center;
 
               &::before {
+                height: 50%;
                 top: 18px;
               }
             }
           }
 
           .linkText {
-            text-align: center;
-            margin: 0;
             margin-top: var(--composer-gap-md);
           }
         }
 
         .right-content {
-          height: 48vh;
-          width: 100%;
+          .image {
+            height: 40vh;
+            width: 100%;
+          }
         }
 
         .social {

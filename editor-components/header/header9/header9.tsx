@@ -313,12 +313,17 @@ class Header9 extends BaseHeader {
         },
       ],
     });
-
     this.addProp({
       type: "string",
       key: "text",
       displayer: "Text",
       value: "Project",
+    });
+    this.addProp({
+      type: "boolean",
+      key: "isCounterActive",
+      displayer: "Counter",
+      value: true,
     });
 
     this.setComponentState("activeTab", 0);
@@ -356,13 +361,16 @@ class Header9 extends BaseHeader {
                     </span>
                   )}
 
-                  <span className={this.decorateCSS("active-number")}>
-                    {activeTabIndex + 1}
-                  </span>
-                  <span className={this.decorateCSS("slash")}>/</span>
-                  <span className={this.decorateCSS("count")}>
-                    {tabs.length}
-                  </span>
+                  {this.getPropValue("isCounterActive") &&
+                    <div className={this.decorateCSS("counter-wrapper")}>
+                      <span className={this.decorateCSS("active-number")}>
+                        {activeTabIndex + 1}
+                      </span>
+                      <span className={this.decorateCSS("slash")}>/</span>
+                      <span className={this.decorateCSS("count")}>
+                        {tabs.length}
+                      </span>
+                    </div>}
                 </div>
               )}
               <Base.VerticalContent className={this.decorateCSS("tab-buttons")}
@@ -375,12 +383,9 @@ class Header9 extends BaseHeader {
                     return url ? (
                       <ComposerLink key={index} path={url}>
                         <div
-                          className={
-                            this.decorateCSS("tabText") +
-                            " " +
-                            (this.getComponentState("activeTab") === index &&
-                              this.decorateCSS("active"))
-                          }
+                          className={`${this.decorateCSS("tabText")}
+                            ${this.getComponentState("activeTab") === index &&
+                            this.decorateCSS("active")}`}
                           onMouseEnter={() => this.handleMouseEnter(index)}
                         >
                           {this.castToString(tab.tabText)}
@@ -437,7 +442,7 @@ class Header9 extends BaseHeader {
             )}
           </Base.ContainerGrid>
         </div>
-      </div>
+      </div >
     );
   }
 }
