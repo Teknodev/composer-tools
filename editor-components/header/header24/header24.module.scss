@@ -320,19 +320,7 @@
               }
             }
             .arrow-wrapper{
-              .arrow-prev-wrapper, .arrow-next-wrapper, .arrow-next-wrapper-no-image, .arrow-prev-wrapper-no-image{
-                .arrow-prev, .arrow-next{
-                  .icon{
-                    font-size: 2.5rem;
-                  }
-                }
-              }
-              .arrow-prev-wrapper, .arrow-prev-wrapper-no-image{
-                left: 40px;
-              }
-              .arrow-next-wrapper, .arrow-next-wrapper-no-image{
-                right: 40px;
-              }
+              display: none;
             }
 
             .no-image-content {

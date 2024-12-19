@@ -314,7 +314,7 @@ class HeaderComponent24 extends BaseHeader {
       this.setComponentState("arrowDisabled", true);
       setTimeout(() => {
         this.setComponentState("arrowDisabled", false);
-      }, 1500);
+      }, 1000);
     }
   }
 
@@ -322,8 +322,8 @@ class HeaderComponent24 extends BaseHeader {
     const settings = {
       dots: true,
       infinite: true,
-      speed: 250,
-      autoplay: false,
+      speed: 1000,
+      autoplay: true,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -342,8 +342,6 @@ class HeaderComponent24 extends BaseHeader {
       },
     };
     const sliderRef = this.getComponentState("slider-ref");
-    const nextArrow = this.getPropValue("nextArrow");
-    const previousArrow = this.getPropValue("previousArrow");
 
     return (
       <div className={this.decorateCSS("container")}>
