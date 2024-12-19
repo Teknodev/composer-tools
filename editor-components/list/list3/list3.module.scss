@@ -1,108 +1,92 @@
 .container {
-  padding: 25px 0;
-
-  .max-content {
-    max-width: var(--composer-content-width);
-    margin: 0 auto;
-  }
-
-  .row {
-    display: grid;
-  }
-
-  .first {
-    padding: 40px;
-    color: var(--composer-font-color-primary);
-    border: 1px solid var(--composer-primary-color);
-
-    .title {
-      font-size: 2.5rem;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
-
-    .description {
-      font-size: 1.5rem;
-      margin-bottom: 30px;
-      opacity: 0.8;
-    }
-
-    .button {
-      background-color: transparent;
-      color: var(--composer-font-color-primary);
-      border: 1px solid var(--composer-primary-color);
-      padding: 12px 24px;
-      font-size: 1.5rem;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-
-      &:hover {
-        transform: scale(1.05);
-      }
-    }
-  }
-
-  .card {
-    padding: 60px;
-    position: relative;
-    overflow: hidden;
-    transition: background-color 0.3s ease;
-    color: var(--composer-font-color-primary);
-    border: 1px solid var(--composer-primary-color);
-
-    &:not(.first):hover {
-      background-color: var(--composer-primary-color);
-      color: var(--composer-font-color-secondary);
-      .spanItem {
-        background-color: var(--composer-font-color-secondary);
-      }
-    }
-    .card-content{
-      position: relative;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      
-      .itemTitle {
-        font-size: 1.8rem;
-        font-weight: bold;
-        margin-bottom: 0px;
-      }
-  
-      .itemText {
-        font-size: 1.5rem;
-        margin-bottom: 10px;
-        opacity: 0.8;
-      }
-  
-      .spanItem {
-        display: block;
-        height: 1px;
-        background-color: var(--composer-primary-color);
-        margin: 10px 0;
-      }
-    }
-      .index {
-        position: absolute;
-        font-size: 11rem;
-        -webkit-text-stroke-width: 1px;
-        letter-spacing: -5px;
-        -webkit-text-fill-color: transparent;
-        margin: 0;
-        bottom: -70px;
-           
-    }
-
-
-  }
-}
-
-@media (max-width: 768px) {
-  .container {
+  .max-content {  
     .row {
-      grid-template-columns: 1fr !important;
+      gap: 0;
+      .first {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: var(--composer-gap-xl);
+        border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
+  
+        .first-inner {
+          .title {
+            content: "";
+          }
+    
+          .description {
+            content: "";
+          }
+        }
+        .button{
+          content: "";
+        }
+      }
+      .card {
+        padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-xl);
+        position: relative;
+        overflow: hidden;
+        transition: background-color 0.3s ease;
+        border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
+
+        &:not(.first):hover {
+          background-color: var(--composer-primary-color);
+          color: var(--composer-font-color-secondary);
+  
+          .itemTitle {
+            color: var(--composer-font-color-secondary);
+          }
+          .cardItem{
+            .itemText {
+              color: var(--composer-font-color-secondary);
+            }
+    
+            .spanItem {
+              background-color: var(--composer-font-color-secondary);
+            }
+          } 
+          .index {
+            color: var(--composer-font-color-secondary);
+          }
+        }
+        .card-content{
+          display: flex;
+          flex-direction: column;
+          gap: var(--composer-gap-md);
+          
+          .itemTitle {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--composer-font-color-primary);
+          }
+          .cardItem{
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-md);
+            .itemText {
+              font-size: 1rem;
+              color: var(--composer-tertiary-color);
+            }
+        
+            .spanItem {
+              display: block;
+              height: 1px;
+              background-color: var(--composer-font-color-primary);
+              opacity: 0.2;
+            }
+          }
+        }
+          .index {
+            font-weight: bold;
+            position: absolute;
+            font-size: 7.5rem;
+            -webkit-text-stroke-width: 1px;
+            letter-spacing: -5px;
+            color: var(--composer-primary-color);
+            -webkit-text-fill-color: transparent;
+            bottom: calc(var(--composer-gap-xl) * (-1));
+        }
+      }
     }
   }
 }

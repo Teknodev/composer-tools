@@ -3,9 +3,9 @@ import styles from "./header33.module.scss";
 import { BaseHeader } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type Slide = {
+  centered: boolean;
   backgroundImage: string;
   image: string;
   title: JSX.Element;
@@ -22,19 +22,6 @@ type Button = {
 class Header33 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
-
-    this.addProp({
-      type: "icon",
-      key: "prev_icon",
-      displayer: "Prev icon",
-      value: "FaLongArrowAltLeft",
-    });
-    this.addProp({
-      type: "icon",
-      key: "next_icon",
-      displayer: "Next icon",
-      value: "FaLongArrowAltRight",
-    });
 
     this.addProp({
       type: "boolean",
@@ -54,6 +41,12 @@ class Header33 extends BaseHeader {
           displayer: "Slide",
           value: [
             {
+              type: "boolean",
+              key: "centered",
+              displayer: "Center",
+              value: false,
+            },
+            {
               type: "image",
               key: "backgroundImage",
               displayer: "Background Image",
@@ -64,13 +57,14 @@ class Header33 extends BaseHeader {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c89648e0b009002c3725f0?alt=media"
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c89648e0b009002c3725f0?alt=media",
             },
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Cloria by Wood",
+              value: `<p><span style="white-space: pre-wrap;">Cloria</span></p><p><span style="white-space: pre-wrap;">by Wood</span></p>`,
             },
             {
               type: "array",
@@ -106,6 +100,12 @@ class Header33 extends BaseHeader {
           displayer: "Slide",
           value: [
             {
+              type: "boolean",
+              key: "centered",
+              displayer: "Center",
+              value: true,
+            },
+            {
               type: "image",
               key: "backgroundImage",
               displayer: "Background Image",
@@ -116,7 +116,8 @@ class Header33 extends BaseHeader {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c89648e0b009002c3725f0?alt=media"
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c89648e0b009002c3725f0?alt=media",
             },
             {
               type: "string",
@@ -158,6 +159,12 @@ class Header33 extends BaseHeader {
           displayer: "Slide",
           value: [
             {
+              type: "boolean",
+              key: "centered",
+              displayer: "Center",
+              value: false,
+            },
+            {
               type: "image",
               key: "backgroundImage",
               displayer: "Background Image",
@@ -168,13 +175,14 @@ class Header33 extends BaseHeader {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c89648e0b009002c3725f0?alt=media"
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c89648e0b009002c3725f0?alt=media",
             },
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Wooden Floor Lamp",
+              value: `<p><span style="white-space: pre-wrap;">Wooden </span></p><p dir="ltr"><span style="white-space: pre-wrap;">Floor Lamp</span></p>`,
             },
             {
               type: "array",
@@ -216,143 +224,133 @@ class Header33 extends BaseHeader {
   }
 
   render() {
+    const slides = this.castToObject<Slide[]>("slider");
+    const activeSlide = this.getComponentState("activeSlide");
+    const currentSlide = slides[activeSlide];
+
     const settings = {
+      dots: true,
       arrows: false,
-      dots: false,
       infinite: true,
+      accessibility: false,
       speed: 500,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
       beforeChange: (current: number, next: number) => {
         this.setComponentState("activeSlide", next);
       },
+      dotsClass: this.decorateCSS("dotContainer"),
+      appendDots: (dots: any[]) => (
+        <div className={this.decorateCSS("dotContainer")}>
+          {dots.map((dot, index) => (
+            <div
+              key={index}
+              className={`
+                ${this.decorateCSS("dotBullet")} 
+              ${activeSlide == index && this.decorateCSS("withCenterDot")}
+              ${!currentSlide.backgroundImage && this.decorateCSS("primaryBackground")}
+              `}
+            >
+              <div>{dot}</div>
+            </div>
+          ))}
+        </div>
+      ),
     };
-
-    const slides = this.castToObject<Slide[]>("slider");
-
-    const nextArrowIcon: string = this.getPropValue("next_icon");
-    const prevArrowIcon: string = this.getPropValue("prev_icon");
 
     const animation: boolean = this.getPropValue("animation");
 
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          {slides?.length && slides?.length > 0 && (
-            <>
-              <ComposerSlider
-                {...settings}
-                ref={this.getComponentState("slider-ref")}
-                className={this.decorateCSS("carousel")}
-              >
-                {slides.map((item: Slide, index: number) => {
-                  const buttons = item.buttons;
-                  const titleExist = this.castToString(item.title);
-                  const render = buttons?.length > 0 || titleExist || item.image;
+          {slides && slides.length && (
+            <ComposerSlider
+              {...settings}
+              ref={this.getComponentState("slider-ref")}
+              className={this.decorateCSS("carousel")}
+            >
+              {slides.map((item: Slide, index: number) => {
+                const buttons = item.buttons;
+                const titleExist = this.castToString(item.title);
+                const render = buttons?.length > 0 || titleExist || item.image;
 
-                  if (!render) return null;
-                  return (
-                    <div
-                      className={`${this.decorateCSS(
-                        "content",
-                      )} ${this.decorateCSS(
-                        index % 2 === 1 ? "secondary-slide" : "",
-                      )}`}
-                      key={index}
-                    >
-                      {item.backgroundImage && (
-                        <img
-                          src={item.backgroundImage}
-                          alt={this.castToString(item.title)}
-                          className={this.decorateCSS("background-image")}
-                        />
-                      )}
-                      <div className={this.decorateCSS("carousel-content-div")}>
-                        <div
-                          className={`
+                if (!render) return null;
+                return (
+                  <div className={this.decorateCSS("content")} key={index}>
+                    {item.backgroundImage && (
+                      <img
+                        src={item.backgroundImage}
+                        alt={this.castToString(item.title)}
+                        className={this.decorateCSS("background-image")}
+                      />
+                    )}
+                    <div className={this.decorateCSS("carousel-content-div")}>
+                      <div
+                        className={`
                             ${this.decorateCSS("carousel-content")}
-                            ${animation ? this.decorateCSS("with-transition") : ""}
-                            ${this.getComponentState("activeSlide") ===
-                              index
-                              ? this.decorateCSS("fix-location")
-                              : ""
+                            ${
+                              animation
+                                ? this.decorateCSS("with-transition")
+                                : ""
                             }
+                            ${
+                              activeSlide === index
+                                ? this.decorateCSS("fix-location")
+                                : ""
+                            }
+                            ${item.centered && this.decorateCSS("centered")}
                           `}
-                        >
-                          {item.image && (
-                            <div
-                              className={this.decorateCSS("circle")}
-                            >
-                              <img src={item.image} className={this.decorateCSS("circle-image")} alt="circular" />
-                            </div>
-                          )}
-                          {titleExist && (
-                            <h1
-                              className={this.getComponentState(
-                                "content-title",
-                              )}
-                            >
-                              {item.title}
-                            </h1>
-                          )}
-                          {buttons?.length > 0 && (
-                            <div className={this.decorateCSS("buttons-div")}>
-                              {buttons.map((item: Button, index: number) => {
-                                if (!this.castToString(item.button_text)) return null;
-                                return (
-                                  <ComposerLink
-                                    key={index}
-                                    path={item.button_link}
+                      >
+                        {item.image && (
+                          <div className={this.decorateCSS("circle")}>
+                            <img
+                              src={item.image}
+                              className={this.decorateCSS("circle-image")}
+                              alt="circular"
+                            />
+                          </div>
+                        )}
+                        {titleExist && (
+                          <h1
+                            className={`${this.decorateCSS("content-title")} ${
+                              item.backgroundImage &&
+                              this.decorateCSS("blackColor")
+                            }`}
+                          >
+                            {item.title}
+                          </h1>
+                        )}
+                        {buttons?.length > 0 && (
+                          <div className={this.decorateCSS("buttons-div")}>
+                            {buttons.map((button: Button, index: number) => {
+                              if (!this.castToString(button.button_text))
+                                return null;
+                              return (
+                                <ComposerLink
+                                  key={index}
+                                  path={button.button_link}
+                                >
+                                  <button
+                                    className={`${this.decorateCSS("button")} ${
+                                      item.backgroundImage &&
+                                      this.decorateCSS("blackColor")
+                                    }`}
                                   >
-                                    <button
-                                      className={this.decorateCSS("button")}
-                                    >
-                                      {item.button_text}
-                                    </button>
-                                  </ComposerLink>
-                                );
-                              })}
-                            </div>
-                          )}
-                        </div>
+                                    {button.button_text}
+                                  </button>
+                                </ComposerLink>
+                              );
+                            })}
+                          </div>
+                        )}
                       </div>
                     </div>
-                  );
-                })}
-              </ComposerSlider>
-              <div className={this.decorateCSS("arrows")}>
-                {prevArrowIcon && (
-                  <ComposerIcon
-                    name={prevArrowIcon}
-                    propsIcon={{
-                      className: `${this.decorateCSS("prev-icon")} ${this.decorateCSS("arrow-prev")
-                        }`,
-                      onClick: () => {
-                        this.getComponentState(
-                          "slider-ref",
-                        ).current.slickPrev();
-                      },
-                    }}
-                  />
-                )}
-                {nextArrowIcon && (
-                  <ComposerIcon
-                    name={nextArrowIcon}
-                    propsIcon={{
-                      className: `${this.decorateCSS("next-icon")} ${this.decorateCSS("arrow-next")
-                        }`,
-                      onClick: () => {
-                        this.getComponentState(
-                          "slider-ref",
-                        ).current.slickNext();
-                      },
-                    }}
-                  />
-                )}
-              </div>
-            </>
+                  </div>
+                );
+              })}
+            </ComposerSlider>
           )}
         </div>
       </div>
