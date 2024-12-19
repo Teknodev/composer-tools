@@ -54,9 +54,11 @@
       width: 100%;
       display: flex;
       justify-content: center;
+      text-align: center;
       padding: var(--composer-gap-md) var(--composer-gap-xl);
       .footerDescription {
         color: var(--composer-font-color-primary);
+        margin: 0;
       }
     }
   }
