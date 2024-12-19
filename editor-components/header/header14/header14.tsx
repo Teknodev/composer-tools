@@ -339,16 +339,16 @@ class HeaderComponent14 extends BaseHeader {
                               );
                               return (
                                 buttonText && (
-                                  <Base.Button
-                                    key={indexButton}
-                                    className={this.decorateCSS("button")}
-                                  >
-                                    <ComposerLink path={buttonItem.buttonUrl}>
+                                  <ComposerLink path={buttonItem.buttonUrl}>
+                                    <Base.Button
+                                      key={indexButton}
+                                      className={this.decorateCSS("button")}
+                                    >
                                       <span className={this.decorateCSS("text")}>
                                         {buttonItem.buttonText}
                                       </span>
-                                    </ComposerLink>
-                                  </Base.Button>
+                                    </Base.Button>
+                                  </ComposerLink>
                                 )
                               );
                             }
