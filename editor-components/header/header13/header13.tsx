@@ -246,7 +246,7 @@ class Header13 extends BaseHeader {
       type: "boolean",
       key: "overlayActivation",
       displayer: "Overlay",
-      value: false,
+      value: true,
     });
   }
 
