@@ -597,9 +597,9 @@ class Slider9 extends BaseSlider {
                       {price}
                     </span>}
                   {this.castToString(description) &&
-                    <Base.P className={this.decorateCSS("description")}>
+                    <Base.SectionDescription className={this.decorateCSS("description")}>
                       {description}
-                    </Base.P>}
+                    </Base.SectionDescription>}
                 </Base.VerticalContent>
               </div>}
           </Base.ContainerGrid>
