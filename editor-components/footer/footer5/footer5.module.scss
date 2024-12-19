@@ -2,22 +2,86 @@
 
 .container {
   width: 100%;
-  .max-content {
-    display: flex;
-    flex-direction: column;
-    gap: var(--composer-gap-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--composer-gap-md);
 
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-      gap: var(--composer-gap-md);
-      .left {
-        width: 70%;
-      }
-      .left-full {
+  .first-container {
+    .first-max-content {
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         width: 100%;
+        gap: var(--composer-gap-md);
+        .left {
+          width: 70%;
+        }
+        .left-full {
+          width: 100%;
+        }
+      }
+
+      .header-center {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-md);
+      }
+    }
+  }
+
+  .line {
+    border-top: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.5);
+  }
+
+  .second-container {
+    .second-max-content {
+      .bottom {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+
+        .links,
+        .footer-text {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          color: var(--composer-font-color-primary);
+        }
+
+        .links {
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--composer-gap-md);
+        }
+
+        .footer-text {
+          justify-content: flex-end;
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width-lg}) {
+  .container {
+    .first-container {
+      .first-max-content {
+        .header-center {
+          display: flex;
+          flex-direction: column;
+          gap: var(--composer-gap-md);
+        }
+        .header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100;
+          gap: var(--composer-gap-md);
+          .left {
+            width: 70%;
+          }
+        }
       }
     }
 
@@ -31,94 +95,42 @@
       border-top: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.5);
     }
 
-    .bottom {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-
-      .links,
-      .footer-text {
-        flex: 1;
-        display: flex;
-        align-items: center;
-        color: var(--composer-font-color-primary);
-      }
-
-      .links {
-        display: flex;
-        flex-wrap: wrap;
-        gap: var(--composer-gap-md);
-      }
-
-      .footer-text {
-        justify-content: flex-end;
-      }
-    }
-  }
-}
-
-@container (max-width: #{$composer-tablet-width-lg}) {
-  .container {
-    .max-content {
-      .header-center {
-        display: flex;
-        flex-direction: column;
-        gap: var(--composer-gap-md);
-      }
-      .header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100;
-        gap: var(--composer-gap-md);
-        .left {
-          width: 70%;
-        }
-      }
-
-      .header-center {
-        display: flex;
-        flex-direction: column;
-        gap: var(--composer-gap-md);
-      }
-
-      .line {
-        border-top: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.5);
-      }
-
-      .bottom {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        width: 100%;
-
-        .links,
-        .footer-text {
-          flex: 1;
+    .second-container {
+      .second-max-content {
+        .bottom {
           display: flex;
-          align-items: center;
-        }
+          flex-direction: column;
+          justify-content: space-between;
+          width: 100%;
 
-        .links {
-          gap: var(--composer-gap-md);
+          .links,
+          .footer-text {
+            flex: 1;
+            display: flex;
+            align-items: center;
+          }
 
-          .link-element,
-          .link-element-has-path {
-            .link-text {
-              color: var(--composer-font-color-primary);
-              font-size: 1rem;
-              transition: color 0.3s ease;
+          .links {
+            gap: var(--composer-gap-md);
+
+            .link-element,
+            .link-element-has-path {
+              .link-text {
+                color: var(--composer-font-color-primary);
+                font-size: 1rem;
+                transition: color 0.3s ease;
+              }
+            }
+
+            .link-element-has-path .link-text {
+              color: var(--composer-primary-color);
             }
           }
 
-          .link-element-has-path .link-text {
-            color: var(--composer-primary-color);
+          .footer-text {
+            justify-content: flex-start;
+            color: var(--composer-font-color-primary);
           }
-        }
-
-        .footer-text {
-          justify-content: flex-start;
-          color: var(--composer-font-color-primary);
         }
       }
     }
@@ -127,27 +139,29 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    .max-content {
-      .header {
-        display: flex;
-        flex-direction: column;
-        align-items: baseline;
-        width: 100;
-        gap: var(--composer-gap-sm);
-        .left {
-          width: 100%;
+    .first-container {
+      .first-max-content {
+        .header {
+          display: flex;
+          flex-direction: column;
+          align-items: baseline;
+          width: 100;
+          gap: var(--composer-gap-sm);
+          .left {
+            width: 100%;
+          }
+        }
+
+        .header-center {
+          display: flex;
+          flex-direction: column;
+          gap: var(--composer-gap-md);
         }
       }
+    }
 
-      .header-center {
-        display: flex;
-        flex-direction: column;
-        gap: var(--composer-gap-md);
-      }
-
-      .line {
-        border-top: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.5);
-      }
+    .line {
+      border-top: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.5);
     }
   }
 }

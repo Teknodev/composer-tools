@@ -128,60 +128,58 @@ class Footer5Page extends BaseFooter {
 
     return (
       <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          {headerExist && (
-            <Base.Container>
-              <Base.MaxContent>
-                <div className={headerBottomClass}>
-                  {textsExist && (
-                    <Base.VerticalContent className={buttonTextExist ? this.decorateCSS("left") : this.decorateCSS("left-full")}>
-                      {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
-                      {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-                    </Base.VerticalContent>
-                  )}
-                  {buttonTextExist && (
-                    <div className={this.decorateCSS("right")}>
-                      {buttonTextExist && (
-                        <ComposerLink path={this.getPropValue("buttonLink")}>
-                          <Base.Button className={this.decorateCSS("button")}>{this.getPropValue("buttonText")}</Base.Button>
-                        </ComposerLink>
-                      )}
-                    </div>
-                  )}
-                </div>
-              </Base.MaxContent>
-            </Base.Container>
-          )}
+        {headerExist && (
+          <Base.Container className={this.decorateCSS("first-container")}>
+            <Base.MaxContent className={this.decorateCSS("first-max-content")}>
+              <div className={headerBottomClass}>
+                {textsExist && (
+                  <Base.VerticalContent className={buttonTextExist ? this.decorateCSS("left") : this.decorateCSS("left-full")}>
+                    {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+                    {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                  </Base.VerticalContent>
+                )}
+                {buttonTextExist && (
+                  <div className={this.decorateCSS("right")}>
+                    {buttonTextExist && (
+                      <ComposerLink path={this.getPropValue("buttonLink")}>
+                        <Base.Button className={this.decorateCSS("button")}>{this.getPropValue("buttonText")}</Base.Button>
+                      </ComposerLink>
+                    )}
+                  </div>
+                )}
+              </div>
+            </Base.MaxContent>
+          </Base.Container>
+        )}
 
-          {line && <div className={this.decorateCSS("line")}></div>}
+        {line && <div className={this.decorateCSS("line")}></div>}
 
-          {bottomExist && (
-            <Base.Container>
-              <Base.MaxContent>
-                <div className={this.decorateCSS("bottom")}>
-                  {links.length > 0 && (
-                    <div className={this.decorateCSS("links")}>
-                      {links.map((item: any, index: number) => {
-                        const textExist = this.castToString(item.text);
-                        return (
-                          textExist && (
-                            <div className={this.decorateCSS(item.url ? "link-element-has-path" : "link-element")}>
-                              <ComposerLink key={index} path={item.url}>
-                                <Base.P className={this.decorateCSS("link-text")}>{item.text}</Base.P>
-                              </ComposerLink>
-                            </div>
-                          )
-                        );
-                      })}
-                    </div>
-                  )}
+        {bottomExist && (
+          <Base.Container className={this.decorateCSS("second-container")}>
+            <Base.MaxContent className={this.decorateCSS("second-max-content")}>
+              <div className={this.decorateCSS("bottom")}>
+                {links.length > 0 && (
+                  <div className={this.decorateCSS("links")}>
+                    {links.map((item: any, index: number) => {
+                      const textExist = this.castToString(item.text);
+                      return (
+                        textExist && (
+                          <div className={this.decorateCSS(item.url ? "link-element-has-path" : "link-element")}>
+                            <ComposerLink key={index} path={item.url}>
+                              <Base.P className={this.decorateCSS("link-text")}>{item.text}</Base.P>
+                            </ComposerLink>
+                          </div>
+                        )
+                      );
+                    })}
+                  </div>
+                )}
 
-                  {footerDescriptionExist && <Base.P className={this.decorateCSS("footer-text")}>{this.getPropValue("footerDescription")}</Base.P>}
-                </div>
-              </Base.MaxContent>
-            </Base.Container>
-          )}
-        </div>
+                {footerDescriptionExist && <Base.P className={this.decorateCSS("footer-text")}>{this.getPropValue("footerDescription")}</Base.P>}
+              </div>
+            </Base.MaxContent>
+          </Base.Container>
+        )}
       </div>
     );
   }
