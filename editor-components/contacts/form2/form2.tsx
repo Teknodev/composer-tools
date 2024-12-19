@@ -4,10 +4,11 @@ import styles from "./form2.module.scss";
 import { ErrorMessage, Form, Formik } from "formik";
 import * as Yup from "yup";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { Base } from "../../../composer-base-components/base/base";
 
 export type Button = {
   buttonText?: string;
-}
+};
 
 class Form2Page extends BaseContacts {
   constructor(props?: any) {
@@ -17,15 +18,21 @@ class Form2Page extends BaseContacts {
       type: "image",
       key: "background-img",
       displayer: "Background Image",
-      value:
-        "https://telaviv.intercontinental.com/wp-content/uploads/sites/3/2023/07/InterContinental-David-Tel-Aviv-Reception.webp",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67614bdb0655f8002ca7aef6?alt=media",
+    });
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
     });
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "CONTACT US",
+      value: "Contact Us",
     });
+
     this.addProp({
       type: "array",
       key: "inputs",
@@ -194,17 +201,10 @@ class Form2Page extends BaseContacts {
       ],
     });
     this.addProp({
-      type: "array",
-      key: "button_array",
+      type: "string",
+      key: "buttonText",
       displayer: "Button Text",
-      value: [
-        {
-          type: "string",
-          key: "button_object",
-          displayer: "Button",
-          value: "Contact Us"
-        }
-      ],
+      value: "Contact Us",
     });
   }
 
@@ -215,9 +215,13 @@ class Form2Page extends BaseContacts {
   render() {
     const inputs = this.getPropValue("inputs");
     const initialValue = getInitialValue();
-    const title: JSX.Element = this.getPropValue("title");
-    const buttons = this.getPropValue("button_array");
+    const title = this.getPropValue("title");
+    const titleExist = !!this.getPropValue("title", { as_string: true });
+    const buttonText = this.getPropValue("buttonText");
+    const buttonTextExist = !!this.getPropValue("buttonText", { as_string: true });
 
+    const imageExist = this.getPropValue("background-img");
+    const overlay = this.getPropValue("overlay");
     function getInputType(type: string): string {
       switch (type) {
         case "Text Area":
@@ -290,85 +294,69 @@ class Form2Page extends BaseContacts {
     }
 
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("input-items")}>
-            {(inputs.length > 0 || title && buttons.length > 0) && <div className={this.decorateCSS("input-item")}>
-              {this.castToString(title) && <span className={this.decorateCSS("title")}>{title}</span>}
-              <Formik
-                initialValues={initialValue}
-                validationSchema={getSchema()}
-                onSubmit={(data, { resetForm }) => {
-                  const formData = getFormDataWithConvertedKeys(data);
-                  this.insertForm("Contact Me", formData);
-                  resetForm();
-                }}
-              >
-                {({ handleChange, values }) => (
-                  <Form className={this.decorateCSS("form")}>
-                    {this.getPropValue("inputs").map((input: any, index: number) => (
-                      <>
-                        <div className={this.decorateCSS("input-container")}>
-                          {input.getPropValue("type") == "Text Area" ? (
-                            <textarea
-                              id={getInputName(index)}
-                              value={values[getInputName(index)]}
-                              placeholder=" "
-                              className={`${this.decorateCSS("input")} ${this.decorateCSS(
-                                "textarea"
-                              )}`}
-                              rows={12}
-                              onChange={handleChange}
-                            />
-                          ) : (
-                            <input
-                              id={getInputName(index)}
-                              placeholder=" "
-                              type={getInputType(input.getPropValue("type"))}
-                              onChange={handleChange}
-                              value={values[getInputName(index)]}
-                              name={getInputName(index)}
-                              className={this.decorateCSS("input")}
-                            />
-                          )}
-                          <span className={this.decorateCSS("placeholder")}>
-                            {input.getPropValue("placeholder")}{" "}
-                          </span>
-                          <ErrorMessage
-                            className={this.decorateCSS("error-message")}
-                            name={getInputName(index)}
-                            component={"span"}
-                          />
-                        </div>
-                      </>
-                    ))}
-                    {buttons.length > 0 && <div className={this.decorateCSS("button-div")}>
-                      {buttons.map((button: any, index: number) => (
-                        button.value && <button key={index} className={this.decorateCSS("submit-button")} type="submit">
-                          {button.value}
-                        </button>
-                      ))}
-                    </div>}
-
-                  </Form>
+      <Base.Container style={{ backgroundImage: `url(${this.getPropValue("background-img")})` }} className={this.decorateCSS("container")}>
+        {overlay && imageExist && <div className={this.decorateCSS("overlay")}></div>}
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          {(inputs.length > 0 || (titleExist && buttonTextExist)) && (
+            <div className={this.decorateCSS("input-items")}>
+              <div className={imageExist ? this.decorateCSS("input-item") : this.decorateCSS("input-item-no-image")}>
+                {titleExist && <Base.SectionTitle className={imageExist ? this.decorateCSS("title") : this.decorateCSS("title-no-image")}>{title}</Base.SectionTitle>}
+                {(inputs.length > 0 || buttonTextExist) && (
+                  <Formik
+                    initialValues={initialValue}
+                    validationSchema={getSchema()}
+                    onSubmit={(data, { resetForm }) => {
+                      const formData = getFormDataWithConvertedKeys(data);
+                      this.insertForm("Contact Me", formData);
+                      resetForm();
+                    }}
+                  >
+                    {({ handleChange, values }) => (
+                      <Form className={this.decorateCSS("form")}>
+                        {this.getPropValue("inputs").map((input: any, index: number) => (
+                          <>
+                            <div className={this.decorateCSS("input-container")}>
+                              {input.getPropValue("type") == "Text Area" ? (
+                                <textarea
+                                  id={getInputName(index)}
+                                  value={values[getInputName(index)]}
+                                  placeholder=" "
+                                  className={`${imageExist ? this.decorateCSS("input") : this.decorateCSS("input-no-image")} ${this.decorateCSS("textarea")}`}
+                                  rows={12}
+                                  onChange={handleChange}
+                                />
+                              ) : (
+                                <input
+                                  id={getInputName(index)}
+                                  placeholder=" "
+                                  type={getInputType(input.getPropValue("type"))}
+                                  onChange={handleChange}
+                                  value={values[getInputName(index)]}
+                                  name={getInputName(index)}
+                                  className={imageExist ? this.decorateCSS("input") : this.decorateCSS("input-no-image")}
+                                />
+                              )}
+                              {input.getPropValue("placeholder", { as_string: true }) && <span className={imageExist ? this.decorateCSS("placeholder") : this.decorateCSS("placeholder-no-image")}>{input.getPropValue("placeholder")}</span>}
+                              <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(index)} component={"span"} />
+                            </div>
+                          </>
+                        ))}
+                        {buttonTextExist && (
+                          <div className={this.decorateCSS("button-div")}>
+                            <Base.Button className={this.decorateCSS("submit-button")} type="submit">
+                              {buttonText}
+                            </Base.Button>
+                          </div>
+                        )}
+                      </Form>
+                    )}
+                  </Formik>
                 )}
-              </Formik>
-            </div>
-
-            }
-
-            {this.getPropValue("background-img") && (
-              <div className={this.decorateCSS("background-image")}>
-                <img
-                  src={this.getPropValue("background-img")}
-                  alt="backgroundPhoto"
-                  className={this.decorateCSS("img")}
-                />
               </div>
-            )}
-          </div>
-        </div>
-      </div>
+            </div>
+          )}
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

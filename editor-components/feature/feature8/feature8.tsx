@@ -1,169 +1,289 @@
 import * as React from "react";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature8.module.scss";
+import { Base } from "../../../composer-base-components/base/base";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
-type Features = {
-  title: string;
-  description: string;
-  image: string;
-  buttonText: string;
-  link: string;
+type Card = {
+  icon: string;
+  title: JSX.Element;
+  description: JSX.Element;
 };
+
 class Feature8 extends BaseFeature {
+  observer: IntersectionObserver;
+  threshold = 0.6;
+
   constructor(props?: any) {
     super(props, styles);
+
+    this.setupObserver = this.setupObserver.bind(this);
+
     this.addProp({
       type: "string",
-      key: "card-title",
-      value: "Card",
-      displayer: "Card Title",
+      key: "title",
+      displayer: "Title",
+      value: "Collections are your most important pages, but are frustrating to manage",
     });
-    this.addProp({
-      type: "string",
-      key: "card-button",
-      value: "Learn More",
-      displayer: "Button Text",
-    });
-    this.addProp({
-      type: "page",
-      key: "link",
-      displayer: "Button Link",
-      value: "",
-    });
+
     this.addProp({
       type: "array",
-      key: "features-card",
-      displayer: "Features Card",
+      key: "cards",
+      displayer: "Cards",
+      additionalParams: {
+        maxElementCount: 5
+      },
       value: [
         {
           type: "object",
-          key: "features",
-          displayer: "Features",
+          key: "card",
+          displayer: "Card",
           value: [
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaHandPointer",
+            },
             {
               type: "string",
               key: "title",
-              value: "Explore the Latest Tech Gadgets",
               displayer: "Title",
+              value: "Non-visual Curation",
             },
             {
               type: "string",
               key: "description",
-              value:
-                "From the newest smartphones to the latest smart home devices, our website features a wide range of tech gadgets to suit every need and budget. Browse our cards to discover the latest tech innovations and stay up-to-date with the ever-evolving world of technology.",
               displayer: "Description",
+              value: "Manually curating your collections feels like doing your taxes.",
             },
-            {
-              type: "image",
-              key: "image",
-              value:
-                "https://www.re-thinkingthefuture.com/wp-content/uploads/2021/01/A2797-10-must-have-gadgets-for-every-architect.jpg",
-              displayer: "Image",
-            },
-          ],
+          ]
         },
         {
           type: "object",
-          key: "features",
-          displayer: "Features",
+          key: "card",
+          displayer: "Card",
           value: [
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaArrowsAltV",
+            },
             {
               type: "string",
               key: "title",
-              value: "Top 5 Hiking Trails in the Pacific Northwest",
               displayer: "Title",
+              value: "Limited Sorting",
             },
             {
               type: "string",
               key: "description",
-              value:
-                "If you love hiking and exploring the great outdoors, you won't want to miss these top 5 hiking trails in the Pacific Northwest. From scenic coastal hikes to challenging mountain treks, these trails offer stunning views and unforgettable experiences.",
               displayer: "Description",
+              value: "It's too basic to sort your collections by 'New In' or 'Best Sellers'.",
             },
-            {
-              type: "image",
-              key: "image",
-              value:
-                "https://koa.com/blog/images/diablo-lake-north-cascades-national-park.jpg?preset=blogPhoto",
-              displayer: "Image",
-            },
-          ],
+          ]
         },
         {
           type: "object",
-          key: "features",
-          displayer: "Features",
+          key: "card",
+          displayer: "Card",
           value: [
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "RiFoldersFill",
+            },
             {
               type: "string",
               key: "title",
-              value: "5 Easy DIY Home Decor Projects",
               displayer: "Title",
+              value: "Messy Data",
             },
             {
               type: "string",
               key: "description",
-              value:
-                "Want to give your home a fresh new look without breaking the bank? these 5 easy DIY home decor projects that you can do yourself! From creating a gallery wall to adding a pop of color with a painted accent piece, these projects are simple and affordable update home decor.",
               displayer: "Description",
+              value: "You need 5 tabs open to take data-driven decisions from excel sheets.",
+            },
+          ]
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaHandPointer",
             },
             {
-              type: "image",
-              key: "image",
-              value:
-                "https://imageio.forbes.com/specials-images/imageserve/6123b033133106144df23946/0x0.jpg?format=jpg&width=1200",
-              displayer: "Image",
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Non-visual Curation",
             },
-          ],
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Manually curating your collections feels like doing your taxes.",
+            },
+          ]
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaHandPointer",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Non-visual Curation",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Manually curating your collections feels like doing your taxes.",
+            },
+          ]
         },
       ],
     });
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item count in a row",
-      value: 3,
+      displayer: "Item Count in a Row",
+      value: 5,
+    });
+    this.addProp({
+      type: "boolean",
+      key: "animationEnable",
+      displayer: "Animation Enable",
+      value: true,
     });
   }
+
+  callback: IntersectionObserverCallback = (entries) => {
+    if (this.getPropValue("animationEnable")) {
+      const middle = Math.floor(entries.length / 2);
+      entries.forEach((entry, index) => {
+        const element = entry.target as HTMLElement;
+        element.style.zIndex = `${index + 1}`;
+        const visibleClass = this.decorateCSS("visible");
+        const shiftedClass = this.decorateCSS("shifted");
+        if (entry.intersectionRatio > this.threshold) {
+          element.classList.add(visibleClass);
+          element.classList.remove(shiftedClass);
+          element.dataset.position = "";
+          element.style.marginTop = "0px";
+          element.style.marginLeft = "0px";
+        } else {
+          element.classList.remove(visibleClass);
+          element.classList.add(shiftedClass);
+          const distanceFromMiddle = Math.abs(index - middle);
+          const decrementTop = 50;
+          const decrementLeft = 100;
+          const calculatedMarginTop = Math.max(0, distanceFromMiddle * decrementTop);
+          const calculatedMarginLeft = Math.max(0, distanceFromMiddle * decrementLeft);
+
+          if (index > middle) {
+            element.dataset.position = "right";
+            element.style.marginTop = `${calculatedMarginTop}px`;
+            element.style.marginLeft = `${-1 * calculatedMarginLeft}px`;
+          } else if (index < middle) {
+            element.dataset.position = "left";
+            element.style.marginTop = `${calculatedMarginTop}px`;
+            element.style.marginLeft = `${calculatedMarginLeft}px`;
+          }
+        }
+      });
+    }
+  };
+
+  options: IntersectionObserverInit = {
+    rootMargin: "0px",
+    threshold: this.threshold,
+  };
+
+  setupObserver = () => {
+    const cardElements = document.querySelectorAll("." + this.decorateCSS("card"));
+
+    this.observer = new IntersectionObserver(this.callback, this.options);
+
+    cardElements.forEach((card) => {
+      this.observer.observe(card);
+    });
+
+    this.setComponentState("cardsCount", cardElements.length);
+  };
 
   getName(): string {
     return "Feature 8";
   }
 
   render() {
+    const titleExist = !!this.getPropValue("title", { as_string: true });
+    const title = this.getPropValue("title");
+
+    const cards = this.castToObject<Card[]>("cards");
+
+    const cardsCountChanged = this.getComponentState("cardsCount") as number !== cards.length;
+
+    if (cardsCountChanged) {
+      this.setupObserver();
+    }
+
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("content")}>
-            <h1 className={this.decorateCSS("card-title")}>{this.getPropValue("card-title")}</h1>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          {titleExist && (
+            <Base.SectionTitle className={this.decorateCSS("section-title")}>
+              {title}
+            </Base.SectionTitle>
+          )}
+          {cards?.length > 0 && (
+            <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("cards-container")}>
+              {cards.map((card: Card, index: number) => {
+                const titleExist = this.castToString(card.title);
+                const descExist = this.castToString(card.description);
 
-            <div className={this.decorateCSS("card")}>
-              {this.castToObject<Features[]>("features-card").map(
-                (features: any, index: number) => (
-                  <div className={this.decorateCSS("card-item-count")} style={{
-                    width: 90 / this.getPropValue("itemCount") + "%",
-                  }}>
-                  <div className={this.decorateCSS("features")} key={index}>
-                    <img className={this.decorateCSS("image")} src={features.image} alt=""></img>
-                    <h3 className={this.decorateCSS("title")}>{features.title}</h3>
-                    <p className={this.decorateCSS("long-text")}>
-                      {features.description}
-                    </p>
+                return (
+                  <div className={this.decorateCSS("card")}>
+                    {card.icon && (
+                      <ComposerIcon
+                        name={card.icon}
+                        propsIcon={{ className: this.decorateCSS("icon") }}
+                      />
+                    )}
+                    {titleExist && (
+                      <div className={this.decorateCSS("title")}>
+                        {card.title}
+                      </div>
+                    )}
+                    {descExist && (
+                      <div className={this.decorateCSS("description")}>
+                        {card.description}
+                      </div>
+                    )}
                   </div>
-                  </div>
-                )
-              )}
-            </div>
-
-            <div className={this.decorateCSS("button")}>
-              <ComposerLink path={this.getPropValue("link")}>
-                {this.getPropValue("card-button")}
-              </ComposerLink>
-            </div>
-          </div>
-        </div>
-      </div>
+                );
+              })}
+            </Base.ListGrid>
+          )}
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

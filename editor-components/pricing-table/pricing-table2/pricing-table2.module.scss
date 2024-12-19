@@ -1,177 +1,127 @@
+@import "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss";
+
 .container {
-  width: 100%;
-  padding: 50px 0;
-
   .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
-
     .table {
-      display: flex;
-      flex-direction: column;
-      border-radius: 6px;
-      padding: 20px;
-      
-      .subtitle{
-        text-align: center;
-        font-size: 1.5rem;
-        margin: 10px 0 20px 0;
-        color: var(--composer-secondary-color);
+      .up-content {
+        .title {
+          content: "";
+        }
+        .subtitle {
+          content: "";
+        }
+        .description {
+          color: var(--composer-font-color-primary);
+        }
       }
-      .title {
-        color: var(--composer-primary-color);
-        text-align: center;
-        font-size: 4rem;
-        margin: 0 0 20px 0;
-      }
-      .description{
-        text-align: center;
-        font-size: 1.5rem;
-        margin: 0 0 40px 0;
-        color: var(--composer-font-color-primary);
-      }
+
       .item-div {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 20px;
-        .item-card{
-          display: flex;
-          flex-direction: column;
-          .card-upper{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            height: 250px;
-            padding: 10px 0px 50px 40px;
-            border-radius: 25px;
-            background-color: var(--composer-primary-color);
-            color: var(--composer-white-color);
-            color: white;
-            z-index: 1;
-            .card-title{
-              font-size: 2rem;
-              margin: 0 0 10px 0;
-              letter-spacing: 0.8px;
-            }
-            .card-price{
-              font-size: 3rem;
-              margin: 0 0 10px 0;
-              .price{
-                font-size: 3.5rem;
-                font-weight: 600;
+        .card-item-count {
+          .item-card {
+            width: 100%;
+
+            .card-upper {
+              margin-bottom: var(--composer-gap-md);
+              padding: var(--composer-gap-lg) var(--composer-gap-lg) var(--composer-gap-xl) var(--composer-gap-lg);
+              border-radius: var(--composer-border-radius-lg);
+              background-color: var(--composer-primary-color);
+              color: var(--composer-font-color-secondary);
+              z-index: 1;
+
+              .card-title {
                 letter-spacing: 1px;
+                color: var(--composer-font-color-secondary);
               }
-              .duration{
-                font-size: 1.5rem;
-                margin-left: 8px;
-              }
-            }
-            
-          }
-          .card-bottom{
-            display: flex;
-            flex-direction: column;
-            align-self: center;
-            width: 85%;
-            z-index: 40;
-            box-shadow: var(--composer-box-shadow);
-            padding: 30px 30px;
-            margin-top: -50px;
-            background-color: white;
-            border-radius: 25px;
-            .card-img{
-              padding: 30px;
-              background: white;
-              border-radius: 25px;
-              box-shadow: var(--composer-box-shadow);
-              width: max-content;
-              margin-top: -60px;
-              img{
-                width: 40px;
-              }
-            }
-            .card-list{
-              padding-inline-start: 0;
-              .card-list-item{
-                list-style: none;
-                padding: 18px 0;
-                font-size: 1.5rem;
-                opacity: 0.75;
-                .list-item{
-                  
+
+              .card-price {
+                display: flex;
+                align-items: center;
+                gap: var(--composer-gap-sm);
+                margin-bottom: var(--composer-gap-sm);
+
+                .price {
+                  color: var(--composer-font-color-secondary);
+                  letter-spacing: 1px;
+                  margin: 0;
+                }
+
+                .duration {
+                  color: var(--composer-font-color-secondary);
                 }
               }
             }
-            .card-button{
-                width: 70%;
-                padding: 15px 0;
-                border-radius: 25px;
-                background-color: transparent;
-                color: var(--composer-secondary-color);
-                font-size: 1.5rem;
-                font-weight: 600;
-                border: 2px solid var(--composer-secondary-color);
-                cursor: pointer;
-                transition: all 0.3s ease-in-out;
-                &:hover{
-                  background-color: var(--composer-secondary-color);
-                  color: white;
+            .hidden {
+              visibility: hidden;
+            }
+
+            .card-bottom {
+              align-self: center;
+              width: 85%;
+              margin-left: 5%;
+              z-index: 40;
+              box-shadow: var(--box-shadow-active);
+              padding: var(--composer-gap-md) var(--composer-gap-md);
+              margin-top: calc(-1 * var(--composer-gap-xl));
+              background-color: var(--composer-html-background);
+              border-radius: var(--composer-border-radius-lg);
+
+              .card-img {
+                padding: var(--composer-gap-md);
+                background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+                border-radius: var(--composer-border-radius-lg);
+                box-shadow: var(--box-shadow-active);
+                width: max-content;
+                margin-top: calc(-1 * var(--composer-gap-xl));
+                color: var(--composer-primary-color);
+
+                .icon {
+                  font-size: 2rem;
                 }
+              }
+
+              .card-list {
+                .card-list-item {
+                  display: flex;
+                  padding: var(--composer-gap-sm);
+                  gap: var(--composer-gap-md);
+                  align-items: center;
+
+                  .list-item {
+                    width: 100%;
+                    color: var(--composer-font-color-primary);
+                  }
+
+                  .list-icon {
+                    width: var(--composer-gap-md);
+                    height: var(--composer-gap-md);
+                    color: var(--composer-font-color-primary);
+                  }
+                }
+              }
             }
           }
         }
-        
       }
     }
   }
 }
 
-@media only screen and (max-width: 1150px) {
+@container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: 50px 20px;
-    .max-content{
-      flex-direction: column;
-      align-items: center;
-      .table{
-        .item-div{
-          .card-item-count{
-            width: 30% !important;
-          }
-        }
-      }
-    }
-  }
-}
+    .max-content {
+      .table {
+        .item-div {
+          .card-item-count {
+            .item-card {
+              .card-upper {
+                padding: var(--composer-gap-md) var(--composer-gap-md) var(--composer-gap-lg) var(--composer-gap-md);
+              }
 
-@media only screen and (max-width: 935px) {
-  .container {
-    padding: 50px 20px;
-    .max-content{
-      flex-direction: column;
-      align-items: center;
-      .table{
-        .item-div{
-          .card-item-count{
-            width: 45% !important;
-          }
-        }
-      }
-    }
-  }
-}
-
-
-@media only screen and (max-width: 668px) {
-  .container {
-    padding: 50px 20px;
-    .max-content{
-      flex-direction: column;
-      align-items: center;
-      .table{
-        .item-div{
-          .card-item-count{
-            width: 100% !important;
+              .card-bottom {
+                padding: var(--composer-gap-md) var(--composer-gap-md);
+                margin-top: calc(-1 * var(--composer-gap-lg));
+              }
+            }
           }
         }
       }
