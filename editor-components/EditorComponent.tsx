@@ -139,9 +139,9 @@ export abstract class Component
       props?.props.forEach((prop: TypeUsableComponentProps) => {
         this.setProp(prop.key, prop.value);
       });
-    } else {
-      EventEmitter.emit(EVENTS.COMPONENT_ADDED, { id: this.id });
     }
+        
+    EventEmitter.emit(EVENTS.COMPONENT_ADDED, { id: this.id, props });
   }
 
   static getName(): string {
