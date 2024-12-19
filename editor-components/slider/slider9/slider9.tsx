@@ -179,6 +179,18 @@ class Slider9 extends BaseSlider {
       displayer: "Exit Button",
       value: "IoMdClose"
     });
+    this.addProp({
+      type: "icon",
+      key: "overlayLeftArrow",
+      displayer: "Fullscreen Left Arrow",
+      value: "BiLeftArrowAlt"
+    });
+    this.addProp({
+      type: "icon",
+      key: "overlayRightArrow",
+      displayer: "Fullscreen Right Arrow",
+      value: "BiRightArrowAlt" //dd
+    });
 
 
 
@@ -503,7 +515,7 @@ class Slider9 extends BaseSlider {
                         onClick={this.handleCloseFullscreen}
                       >
                         <ComposerIcon
-                          name={"BiLeftArrowAlt"}
+                          name={this.getPropValue("overlayLeftArrow")}
                           propsIcon={{
                             className: this.decorateCSS("overlay-left-button"),
                             onClick: (e: React.MouseEvent) => {
@@ -514,7 +526,7 @@ class Slider9 extends BaseSlider {
                           }}
                         />
                         <ComposerIcon
-                          name={"BiRightArrowAlt"}
+                          name={this.getPropValue("overlayRightArrow")}
                           propsIcon={{
                             className: this.decorateCSS("overlay-right-button"),
                             onClick: (e: React.MouseEvent) => {
