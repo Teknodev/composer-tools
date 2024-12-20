@@ -23,12 +23,14 @@ interface ComposerMapProps {
   handleMarkerZoom?: number;
   allContentShow?: boolean;
   styles?: google.maps.MapTypeStyle[];
+  customSelectedMarker?: any;
 }
 
-const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, allContentShow, handleMarkerZoom, styles }: ComposerMapProps) => {
+const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, allContentShow, handleMarkerZoom, styles, customSelectedMarker }: ComposerMapProps) => {
   const uniqueMapIdRef = useRef<string>(Math.random().toString());
   const uniqueMapId = uniqueMapIdRef.current;
   const map = useMap(uniqueMapId);
+
   const [selectedMarkers, setSelectedMarkers] = useState<Coordinate[]>([]);
   const overlayRefs = useRef<(any | null)[]>([]);
   const prevMarkersRef = useRef<Coordinate[]>([]);
@@ -40,6 +42,8 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, 
   };
 
   const getBounds = () => {
+    if (markers.length === 0) return null;
+
     const lngs = markers.map((marker) => marker.lng);
     const lats = markers.map((marker) => marker.lat);
 
@@ -70,7 +74,11 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, 
 
       google.maps.event.addListenerOnce(map, "idle", () => {
         const currentZoom = map.getZoom();
-        map.setZoom(defaultZoom ?? currentZoom);
+        if (markers.length > 1) {
+          map.setZoom(defaultZoom !== undefined ? defaultZoom : currentZoom);
+        } else {
+          map.setZoom(defaultZoom !== undefined ? defaultZoom : 5);
+        }
       });
     };
 
@@ -79,7 +87,16 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, 
     return () => {
       google.maps.event.clearListeners(map, "idle");
     };
-  }, [map]);
+  }, [map, defaultZoom, JSON.stringify(markers.map((marker) => ({ lat: marker.lat, lng: marker.lng })))]);
+
+  useEffect(() => {
+    if (map) {
+      if (markers.length === 0) {
+        map.setCenter({ lat: 0, lng: 0 });
+        map.setZoom(1);
+      }
+    }
+  }, [map, markers]);
 
   useEffect(() => {
     if (map && defaultZoom !== undefined) {
@@ -93,11 +110,23 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, 
   useEffect(() => {
     if (!map) return;
 
-    const isNewMarkerAdded = markers.length > prevMarkersRef.current.length;
+    const bounds = getBounds();
+    if (!bounds) return;
 
-    if (isNewMarkerAdded) {
-      const bounds = getBounds();
-      const calculatedCenter = getCenter(bounds);
+    const calculatedCenter = getCenter(bounds);
+
+    const hasMarkersChanged = (markers: Coordinate[], prevMarkers: Coordinate[]) => {
+      if (markers.length !== prevMarkers.length) {
+        return true;
+      }
+
+      return markers.some((marker, index) => {
+        const prevMarker = prevMarkers[index];
+        return prevMarker && (marker.lat !== prevMarker.lat || marker.lng !== prevMarker.lng);
+      });
+    };
+
+    if (hasMarkersChanged(markers, prevMarkersRef.current)) {
       map.fitBounds(bounds);
       map.setCenter(calculatedCenter);
       map.panTo(calculatedCenter);
@@ -113,7 +142,7 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, 
       position: "absolute",
       zIndex: 1000,
       pointerEvents: "auto",
-      transform: "translate(-50%, -140%)",
+      transform: "translate(-50%, -100%)",
     };
 
     class CustomOverlay extends google.maps.OverlayView {
@@ -145,7 +174,7 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, 
             const point = projection.fromLatLngToDivPixel(this.position);
             if (point) {
               this.div.style.left = `${point.x}px`;
-              this.div.style.top = `${point.y}px`;
+              this.div.style.top = `${point.y - 35}px`;
             }
           }
         }
@@ -163,20 +192,25 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, 
     return CustomOverlay;
   };
 
+  const prevSelectedMarkersCountRef = useRef<number>(0);
+
   useEffect(() => {
     if (map) {
       map.setOptions({ styles });
 
-      overlayRefs.current.forEach((overlay) => overlay && overlay.setMap(null));
-      overlayRefs.current = [];
+      if (selectedMarkers.length !== prevSelectedMarkersCountRef.current) {
+        overlayRefs.current.forEach((overlay) => overlay && overlay.setMap(null));
+        overlayRefs.current = [];
 
-      selectedMarkers.forEach((marker) => {
-        const overlayClass = createOverlayView(marker);
-        const overlay = new overlayClass(new google.maps.LatLng(marker.lat, marker.lng));
-        overlay.setMap(map);
+        selectedMarkers.forEach((marker) => {
+          const overlayClass = createOverlayView(marker);
+          const overlay = new overlayClass(new google.maps.LatLng(marker.lat, marker.lng));
+          overlay.setMap(map);
+          overlayRefs.current.push(overlay);
+        });
 
-        overlayRefs.current.push(overlay);
-      });
+        prevSelectedMarkersCountRef.current = selectedMarkers.length;
+      }
     }
   }, [selectedMarkers, map, styles]);
 
@@ -200,6 +234,16 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, 
     map.setZoom(handleMarkerZoom || 15);
   };
 
+  useEffect(() => {
+    if (customSelectedMarker && map) {
+      const markerToSelect = markers.find((marker) => marker.lat === customSelectedMarker.lat && marker.lng === customSelectedMarker.lng);
+
+      if (markerToSelect) {
+        handleMarkerClick(markerToSelect);
+      }
+    }
+  }, [customSelectedMarker]);
+
   return (
     <Map id={uniqueMapId} className={className}>
       {markers.map((marker, index) => (
@@ -208,7 +252,7 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, 
           position={{ lat: marker.lat, lng: marker.lng }}
           title="Location"
           icon={{
-            url: marker.icon?.url || defaultMarker,
+            url: marker.icon.url || defaultMarker,
             scaledSize: new google.maps.Size(marker.icon?.scaledSize.width || 32, marker.icon?.scaledSize.height || 32),
           }}
           onClick={() => handleMarkerClick(marker)}
