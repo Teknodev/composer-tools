@@ -1,21 +1,98 @@
+@import "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss";
+
 .container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding: 50px 0;
-    .max-content {
-        max-width: var(--composer-content-width);
-        .footer-page {
-            width: 100%;
-            display: block;
-            text-align: center;
-            color: var(--composer-primary-color);
+  .max-content {
+    .footer-page {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--composer-gap-md);
+
+      .left {
+        flex: 1;
+        .image {
+          width: 200px;
+          height: 100px;
         }
+      }
+
+      .right {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        gap: var(--composer-gap-xs);
+
+        .upper {
+          display: flex;
+          justify-content: flex-end;
+          flex-wrap: wrap;
+          gap: var(--composer-gap-md);
+
+          .link-element,
+          .link-element-has-path {
+            .link-text {
+              font-size: 1rem;
+              color: var(--composer-font-color-primary);
+              transition: color 0.3s ease;
+            }
+          }
+
+          .link-element-has-path .link-text:hover {
+            color: var(--composer-primary-color);
+          }
+        }
+
+        .bottom {
+          display: flex;
+          justify-content: flex-end;
+          .text {
+            font-size: 1rem;
+            color: var(--composer-tertiary-color);
+          }
+        }
+      }
+
+      &:not(:has(.left)) .right .upper {
+        justify-content: flex-start;
+      }
+
+      &:not(:has(.left)) .right .bottom {
+        justify-content: flex-start;
+      }
     }
+  }
 }
 
-@media only screen and (max-width: 768px) {
-    .container {
-        padding: 50px 20px;
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .footer-page {
+        flex-direction: column;
+        align-items: baseline;
+        gap: var(--composer-gap-xs);
+
+        .left {
+          flex: 1;
+          .image {
+            width: 150px;
+            height: var(--composer-gap-xl);
+          }
+        }
+
+        .right {
+          display: flex;
+          flex-direction: column;
+          flex: 1;
+          gap: var(--composer-gap-xs);
+          .upper {
+            justify-content: flex-start;
+          }
+
+          .bottom {
+            justify-content: flex-start;
+          }
+        }
+      }
     }
+  }
 }
