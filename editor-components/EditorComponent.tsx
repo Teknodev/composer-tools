@@ -525,7 +525,7 @@ export abstract class Component
     let config = {
       ...{ data: { name, data, project } },
       method: "post",
-      url: apiUrl + "/fn-execute/project/insert-form",
+      url: apiUrl + "/fn-execute/project/form",
     };
     return axios.request(config).then((r: any) => r.data);
   }
