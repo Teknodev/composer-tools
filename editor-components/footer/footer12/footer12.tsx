@@ -21,20 +21,20 @@ class Footer12Page extends BaseFooter {
       type: "image",
       key: "logo",
       displayer: "Logo",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6763d3600655f8002ca92e43?alt=media",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6762cc190655f8002ca8c66b?alt=media",
     });
 
     this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "Lorem ipsum odor amet, consectetuer adipiscing elit. Metus turpis gravida libero, euismod magnis porta senectus maecenas. Laoreet eros class habitasse litora pharetra tincidunt praesent. Aliquet dapibus rutrum non urna pellentesque gravida.",
+      value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dictum aliquet accumsan porta lectus ridiculus in mattis.",
     });
 
     this.addProp({
       type: "array",
       key: "footer",
-      displayer: "Footer",
+      displayer: "Footer Card",
       value: [
         {
           type: "object",
@@ -335,37 +335,70 @@ class Footer12Page extends BaseFooter {
     });
 
     this.addProp({
-      type: "array",
-      key: "payment-methods",
-      displayer: "Payment Methods",
-      value: [
-        {
-          type: "image",
-          key: "image",
-          displayer: "Image",
-          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6763c8960655f8002ca91f73?alt=media"
-        },
-        {
-          type: "image",
-          key: "image",
-          displayer: "Image",
-          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6763ce520655f8002ca92804?alt=media"
-        },
-        {
-          type: "image",
-          key: "image",
-          displayer: "Image",
-          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6763cf0a0655f8002ca928a5?alt=media"
-        },
-      ],
+      type: "string",
+      key: "footerText",
+      displayer: "Footer Text",
+      value: "Copyright © 2023 Teknodev LTD.All rights reserved.",
     });
 
     this.addProp({
-      type: "string",
-      key: "text",
-      displayer: "Text",
-      value: "Copyright © 2023 Teknodev LTD.All rights reserved.",
-    })
+      type: "array",
+      key: "images",
+      displayer: "Images",
+      value: [
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item Elements",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66fa9094cf1798002cc71d01?alt=media",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item Elements",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66fa90c5cf1798002cc71d0e?alt=media",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item Elements",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6765645a0655f8002caa07db?alt=media",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: "",
+            },
+          ],
+        },
+      ],
+    });
   }
 
   getName(): string {
@@ -374,79 +407,93 @@ class Footer12Page extends BaseFooter {
 
   render() {
     const footer = this.castToObject<any[]>("footer");
-    const paymentMethods = this.getPropValue("payment-methods");
+    const images = this.castToObject<any[]>("images");
 
     const logo = this.getPropValue("logo");
     const line = this.getPropValue("line");
     const descriptionExist = this.castToString(this.getPropValue("description"));
 
+    const footerText = this.getPropValue("footerText");
+    const footerTextExist = this.castToString(footerText);
+
+    const image = this.decorateCSS("image");
+    const imagesExist = images.length > 0;
+
+    const bottomExist = footerTextExist || imagesExist;
+
+    const headerExist = image || descriptionExist;
+
+    const upperExist = headerExist || footer.length > 0;
+
     return (
-      <Base.Container className={this.decorateCSS("container")}>
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("footer-page")}>
-            <div className={this.decorateCSS("items")}>
-              <Base.VerticalContent className={this.decorateCSS("header")}>
-                {logo && (
-                  <div className={this.decorateCSS("logo")}>
-                    <img src={logo} className={this.decorateCSS("image")} alt="" />
+      <div className={this.decorateCSS("container")}>
+        {upperExist && (
+          <Base.Container className={this.decorateCSS("first-container")}>
+            <Base.MaxContent className={this.decorateCSS("first-max-content")}>
+              {headerExist && (
+                <div className={this.decorateCSS("left")}>
+                  {image && (
+                    <div className={this.decorateCSS("logo")}>
+                      <img src={logo} className={this.decorateCSS("image")} alt="" />
+                    </div>
+                  )}
+                  {descriptionExist && <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>}
+                </div>
+              )}
+
+              {footer.length > 0 &&
+                footer.map((item: FooterValues, indexFooter: number) => {
+                  const footerTitleExist = this.castToString(item.footerTitle);
+                  const footerExist = footerTitleExist || item.footerText.length > 0;
+                  return (
+                    footerExist && (
+                      <div key={indexFooter} className={this.decorateCSS("list-group")}>
+                        {footerTitleExist && <Base.H2 className={this.decorateCSS("title")}>{item.footerTitle}</Base.H2>}
+                        {item.footerText.map((item: FooterTextValues, indexFooterText: number) => {
+                          const footerTextExist = this.castToString(item.footerText);
+                          return (
+                            footerTextExist && (
+                              <ComposerLink key={indexFooterText} path={item.path}>
+                                <Base.P className={this.decorateCSS("text")}>{item.footerText}</Base.P>
+                              </ComposerLink>
+                            )
+                          );
+                        })}
+                      </div>
+                    )
+                  );
+                })}
+            </Base.MaxContent>
+          </Base.Container>
+        )}
+
+        {line && <div className={this.decorateCSS("line")}></div>}
+
+        {bottomExist && (
+          <Base.Container className={this.decorateCSS("second-container")}>
+            <Base.MaxContent className={this.decorateCSS("second-max-content")}>
+              <div className={this.decorateCSS("footer-bottom")}>
+                {footerTextExist && <Base.P className={imagesExist ? this.decorateCSS("footer-text") : this.decorateCSS("footer-text-no-image")}>{this.getPropValue("footerText")}</Base.P>}
+                {imagesExist && (
+                  <div className={footerTextExist ? this.decorateCSS("image-container") : this.decorateCSS("image-container-full")}>
+                    {images.map((item: any, index: number) => {
+                      return (
+                        item.image && (
+                          <div className={this.decorateCSS("image-element")}>
+                            <ComposerLink key={index} path={item.url}>
+                              <img className={this.decorateCSS("image")} src={item.image} />
+                            </ComposerLink>
+                          </div>
+                        )
+                      );
+                    })}
                   </div>
                 )}
-                {descriptionExist && <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>}
-              </Base.VerticalContent>
-              <div className={this.decorateCSS("right")}>
-                <div className={this.decorateCSS("box")}>
-                  {footer.length > 0 && footer.map((item: FooterValues, indexFooter: number) => {
-                    const footerTitleExist = this.castToString(item.footerTitle);
-                    const footerTextExist = item.footerText.length > 0;
-                    const listExist = footerTitleExist || footerTextExist;
-                    return (
-                      listExist && (
-                        <div key={indexFooter} className={this.decorateCSS("list-group")}>
-                          {footerTitleExist && <Base.H2 className={this.decorateCSS("title")}>{item.footerTitle}</Base.H2>}
-                          {item.footerText.length > 0 && (
-                            <Base.VerticalContent className={this.decorateCSS("text-container")}>
-                              {item.footerText.map((v: FooterTextValues, indexFooterText: number) => {
-                                const footerTextExist = this.castToString(v.footerText);
-                                return (
-                                  <ComposerLink key={indexFooterText} path={v.path}>
-                                    <div className={this.decorateCSS("element")}>
-                                      {footerTextExist && <Base.P className={this.decorateCSS("text")}>{v.footerText}</Base.P>}
-                                    </div>
-                                  </ComposerLink>
-                                );
-                              })}
-                            </Base.VerticalContent>
-                          )}
-                        </div>
-                      )
-                    );
-                  })}
-                </div>
               </div>
-            </div>
-            {line && <div className={this.decorateCSS("line")}></div>}
-            <div className={this.decorateCSS("footer-bottom")}>
-              {this.getPropValue("text") && (
-                <span>{this.getPropValue("text")}</span>
-              )}
-              {paymentMethods.length > 0 && (
-                <div className={this.decorateCSS("payment-methods")}>
-                  {paymentMethods.map((item: { value: string; }, index: React.Key) => {
-                    return (
-                      <img 
-                        src={item.value} 
-                        alt={`Payment method ${index}`} 
-                        className={this.decorateCSS("image")} 
-                        key={index} 
-                      />
-                    );
-                  })}
-                </div>
-              )}
-            </div>
-          </div>
-        </Base.MaxContent>
-      </Base.Container>
+            </Base.MaxContent>
+          </Base.Container>
+        )}
+      </div>
     );
   }
 }

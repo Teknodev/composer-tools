@@ -1,183 +1,133 @@
 @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
 .container {
+  width: 100%;
+
+  .first-container {
+    .first-max-content {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--composer-gap-lg);
+
+      .left,
+      .list-group {
+        flex: 1 1 210px;
+        max-width: 300px;
+      }
+
+      .left {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-xs);
+        .logo {
+          .image {
+            width: 150px;
+            height: var(--composer-gap-xl);
+          }
+        }
+
+        .description {
+          font-size: 1rem;
+          color: var(--composer-font-color-primary);
+        }
+      }
+
+      .list-group {
+        .title {
+          font-size: 1rem;
+          color: var(--composer-tertiary-color);
+        }
+        .text {
+          font-size: 1rem;
+          color: var(--composer-font-color-primary);
+        }
+      }
+    }
+  }
+
+  .line {
+    border-top: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.5);
     width: 100%;
+  }
 
-    .max-content {
-        .footer-page {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-
-            .items {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: space-between;
-                width: 100%;
-                gap: var(--composer-gap-lg);
-                margin-bottom: var(--composer-gap-xl);
-
-                .header {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-between;
-                    gap: var(--composer-gap-md);
-                    width: 45%;
-
-                    .logo {
-                        .image {
-                            width: 200px;
-                            height: var(--composer-gap-lg);
-                            object-fit: cover;
-                        }
-                    }
-
-                    .description {
-                        width: 75%;
-                        font-size: 1rem;
-                        color: var(--composer-font-color-primary);
-                    }
-                }
-
-                .right {
-                    width: 50%;
-                    
-                    .box {
-                        display: flex;
-                        flex-direction: row;
-                        justify-content: space-between;
-
-                        .list-group {
-                            display: flex;
-                            flex-direction: column;
-                            justify-content: flex-start;
-                            align-items: flex-start;
-                            gap: var(--composer-gap-md);
-        
-                            .title {
-                                font-size: 1.5rem;
-                                color: var(--composer-font-color-primary);
-                                margin: 0;
-                            }
-        
-                            .text-container {
-                                gap: var(--composer-gap-xs);
-        
-                                .element {
-                                    display: flex;
-                                    align-items: center;
-                                    gap: var(--composer-gap-sm);
-        
-                                    .text {
-                                        color: var(--composer-font-color-primary);
-                                        font-size: 1rem;
-                                        margin: 0;
-                                        transition: color 0.3s ease;
-                                    }
-        
-                                    .text:hover {
-                                        color: var(--composer-tertiary-color);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            .line {
-                border-top: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.5);
-                width: 100%;
-            }
-
-            .footer-bottom {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-
-                .payment-methods {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-
-                    .image {
-                        max-width: 50px;
-                        object-fit: cover;
-                    }
-                }
-            }
+  .second-container {
+    .second-max-content {
+      .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        .footer-text,
+        .footer-text-no-image {
+          max-width: 50%;
+          font-size: 1rem;
+          color: var(--composer-font-color-primary);
         }
-    }
-}
-
-@container (max-width: #{$composer-tablet-width}) { 
-    .items {
-        .header {
-            flex-direction: row !important;
-            align-items: center !important;
-            width: 100% !important;
-            .description {
-                width: 100% !important;
-            }
-        }   
-        
-        .right {
-            width: 100% !important;
+        .footer-text-no-image {
+          max-width: 100%;
         }
+
+        .image-container,
+        .image-container-full {
+          display: flex;
+          align-items: center;
+          max-width: 50%;
+          gap: var(--composer-gap-md);
+
+          .image-element {
+            .image {
+              width: var(--composer-gap-xl);
+              height: var(--composer-gap-lg);
+            }
+          }
+        }
+
+        .image-container-full {
+          max-width: 100%;
+        }
+      }
     }
+  }
 }
 
 @container (max-width: #{$composer-phone-width}) {
-    .items {
-        margin-bottom: var(--composer-gap-lg) !important;
-        gap: 0 !important;
-        .header {
-            flex-direction: column !important;
-            align-items: center !important;
-            width: 100% !important;
-            .logo {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-            .description {
-                width: 100% !important;
-                text-align: center;
-            }
-        }   
-        
-        .right {
-            width: 100% !important;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+  .container {
+    width: 100%;
 
-            .box {
-                width: fit-content;
-                display: flex;
-                flex-direction: column !important;
-                align-items: center !important;
-
-                .list-group {
-                    margin-top: var(--composer-gap-lg);
-                    justify-content: center !important;
-                    align-items: center !important;
-
-                    .text-container {
-                        align-items: center !important;
-                    }
-                }
-            }
-        }
-    }
-
-    .footer-bottom {
-        margin-top: var(--composer-gap-sm);
+    .first-container {
+      .first-max-content {
+        gap: var(--composer-gap-sm);
         flex-direction: column;
-        text-align: center;
+        align-items: baseline;
 
-        .payment-methods {
-            margin-top: var(--composer-gap-sm);
+        .left,
+        .list-group {
+          flex: 1 1 100%;
+          max-width: 100%;
         }
+      }
     }
+
+    .second-container {
+      .second-max-content {
+        .footer-bottom {
+          flex-direction: column;
+          .footer-text {
+            max-width: 100%;
+          }
+
+          .image-container {
+            max-width: 100%;
+
+            .image-element {
+              .image {
+                width: var(--composer-gap-lg);
+                height: var(--composer-gap-lg);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
