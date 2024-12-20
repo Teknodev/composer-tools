@@ -143,7 +143,6 @@
           gap: 20%;
           color: white;
           z-index: 10;
-          padding: var(--composer-gap-lg) calc(var(--composer-gap-lg) * 3);
 
           .left {
             display: flex;
@@ -300,7 +299,7 @@
               .social-icons {
                 .icon {
                   &:hover {
-                    background-color: var(--composer-primary-color);
+                    background-color: var(--composer-secondary-color);
                   }
                 }
               }
@@ -332,7 +331,6 @@
           }
 
           .buttomRow {
-            padding: var(--composer-gap-md) 0px;
             gap: 0px;
 
             .comment-and-icon-text-container {
@@ -385,7 +383,6 @@
           }
 
           .buttomRow {
-            padding: 0px;
             gap: 0px;
             margin-right: 0;
             margin: 0px;
@@ -410,15 +407,15 @@
                 }
 
                 .icon {
-                  width: 40px;
-                  height: 40px;
+                  width: 30px;
+                  height: 30px;
                 }
               }
 
               .comment {
                 width: 100%;
                 display: flex;
-                justify-content: center;
+                justify-content: start;
                 align-items: center;
                 text-align: start;
                 flex: 2;
