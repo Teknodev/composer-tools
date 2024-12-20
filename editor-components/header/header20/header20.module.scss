@@ -222,7 +222,7 @@
               }
 
               &:hover .icon-next-to-text {
-                transform: translate(0, -4rem);
+                transform: translate(0, -3rem);
                 opacity: 0;
                 @include smooth-transition();
               }
@@ -260,7 +260,7 @@
                 flex-wrap: wrap;
                 height: 100%;
                 align-items: center;
-                @include smooth-transition($delay: 0.3s);
+                @include smooth-transition($delay: 0.05s);
 
                 .icon {
                   font-size: 1.5rem;
@@ -269,7 +269,7 @@
                   @include smooth-transition();
 
                   &:hover {
-                    background-color: black;
+                    background-color: var(--composer-primary-color);
                     transform: scale(1.2);
                   }
                 }
@@ -278,7 +278,7 @@
               .icon-next-to-text {
                 font-size: 1.5rem;
                 min-width: 4%;
-                @include smooth-transition($delay: 0.3s);
+                @include smooth-transition($delay: 0.05s);
               }
             }
           }
@@ -305,7 +305,7 @@
               .social-icons {
                 .icon {
                   &:hover {
-                    background-color: var(--composer-secondary-color);
+                    background-color: var(--composer-font-color-secondary);
                   }
                 }
               }
