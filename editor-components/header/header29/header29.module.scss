@@ -123,6 +123,8 @@
           .title {
             font-size: 4rem;
             text-align: center;
+            display: flex;
+            justify-content: center;
           }
           .description {
             font-size: 1.3rem;
@@ -137,18 +139,13 @@
               .input {
               }
             }
-         
-            .button {
-              font-size: 0.7rem;
-              font-weight: bold;
-            }
           }
           .service-card {
             align-items: center;
             gap: var(--composer-gap-sm);
             flex: 1;
             .service-title {
-              font-size: 1.2rem;
+              font-size: 1.5rem;
             }
             .service-description {
               font-size: 1rem;
@@ -186,7 +183,7 @@
           }
           .description {
             width: 100%;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
           }
           .form {
             gap: var(--composer-gap-sm);
@@ -195,11 +192,6 @@
               .input {
                 font-size: 1rem;
               }
-            }
-
-            .button {
-              width: 45%;
-              font-size: 0.75rem;
             }
           }
 
@@ -210,7 +202,7 @@
               font-size: 1.4rem;
             }
             .service-description {
-              font-size: 1.2rem;
+              font-size: 1.5rem;
             }
           }
         }
