@@ -85,9 +85,8 @@
             &.previous,
             &.next {
               color: transparent;
-              -webkit-text-stroke: 1px white;
+              -webkit-text-stroke: 1px #777;
               font-weight: normal;
-              opacity: 0.3;
               max-width: 90%;
 
               >blinkpage {
@@ -275,6 +274,35 @@
                 font-size: 1.5rem;
                 min-width: 4%;
                 @include smooth-transition($delay: 0.3s);
+              }
+            }
+          }
+        }
+      }
+
+      .imageless {
+        .title-container {
+          .title {
+            color: var(--composer-font-color-primary);
+          
+            &.previous,
+            &.next {
+              -webkit-text-stroke: 1px var(--composer-tertiary-color);
+            }
+          }
+        }
+
+        .buttomRow {
+          color: var(--composer-font-color-primary);
+
+          .comment-and-icon-text-container {
+            .icon-text-container {
+              .social-icons {
+                .icon {
+                  &:hover {
+                    background-color: var(--composer-primary-color);
+                  }
+                }
               }
             }
           }

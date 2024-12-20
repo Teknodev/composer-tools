@@ -10,7 +10,6 @@ type SliderItem = {
   number: string;
   image: string;
   link: string;
-  overlay: boolean;
   buttomRow: {
     comment: string;
     icon: string;
@@ -18,7 +17,7 @@ type SliderItem = {
   };
 };
 
-class HeaderComponent20 extends BaseHeader {
+class Header20 extends BaseHeader {
   sliderRef: React.RefObject<any>;
   titleSliderRef: React.RefObject<any>;
   commentSliderRef: React.RefObject<any>;
@@ -30,12 +29,17 @@ class HeaderComponent20 extends BaseHeader {
     this.commentSliderRef = React.createRef();
 
     this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
+    });
+    this.addProp({
       type: "icon",
       key: "up_icon",
       displayer: "Up icon",
       value: "IoIosArrowUp",
     });
-
     this.addProp({
       type: "icon",
       key: "down_icon",
@@ -103,12 +107,7 @@ class HeaderComponent20 extends BaseHeader {
                 },
               ],
             },
-            {
-              type: "boolean",
-              key: "overlay",
-              displayer: "Overlay",
-              value: true,
-            }
+
           ],
         },
         {
@@ -165,13 +164,7 @@ class HeaderComponent20 extends BaseHeader {
                   value: "Follow Us",
                 },
               ],
-            }, {
-              type: "boolean",
-              key: "overlay",
-              displayer: "Overlay",
-              value: true,
             }
-
           ],
         },
         {
@@ -229,12 +222,6 @@ class HeaderComponent20 extends BaseHeader {
                 },
               ],
             },
-            {
-              type: "boolean",
-              key: "overlay",
-              displayer: "Overlay",
-              value: true,
-            }
           ],
         },
         {
@@ -292,12 +279,6 @@ class HeaderComponent20 extends BaseHeader {
                 },
               ],
             },
-            {
-              type: "boolean",
-              key: "overlay",
-              displayer: "Overlay",
-              value: true,
-            }
           ],
         },
         {
@@ -355,12 +336,6 @@ class HeaderComponent20 extends BaseHeader {
                 },
               ],
             },
-            {
-              type: "boolean",
-              key: "overlay",
-              displayer: "Overlay",
-              value: true,
-            }
           ],
         },
         {
@@ -418,12 +393,6 @@ class HeaderComponent20 extends BaseHeader {
                 },
               ],
             },
-            {
-              type: "boolean",
-              key: "overlay",
-              displayer: "Overlay",
-              value: true,
-            }
           ],
         },
         {
@@ -481,12 +450,6 @@ class HeaderComponent20 extends BaseHeader {
                 },
               ],
             },
-            {
-              type: "boolean",
-              key: "overlay",
-              displayer: "Overlay",
-              value: true,
-            }
           ],
         },
         {
@@ -544,12 +507,6 @@ class HeaderComponent20 extends BaseHeader {
                 },
               ],
             },
-            {
-              type: "boolean",
-              key: "overlay",
-              displayer: "Overlay",
-              value: true,
-            }
           ],
         },
         {
@@ -607,12 +564,6 @@ class HeaderComponent20 extends BaseHeader {
                 },
               ],
             },
-            {
-              type: "boolean",
-              key: "overlay",
-              displayer: "Overlay",
-              value: true,
-            }
           ],
         },
         {
@@ -670,12 +621,6 @@ class HeaderComponent20 extends BaseHeader {
                 },
               ],
             },
-            {
-              type: "boolean",
-              key: "overlay",
-              displayer: "Overlay",
-              value: true,
-            }
           ],
         },
         {
@@ -733,12 +678,6 @@ class HeaderComponent20 extends BaseHeader {
                 },
               ],
             },
-            {
-              type: "boolean",
-              key: "overlay",
-              displayer: "Overlay",
-              value: true,
-            }
           ],
         },
       ],
@@ -962,6 +901,10 @@ class HeaderComponent20 extends BaseHeader {
 
     const isUpandDownButtonVisible = up_icon || down_icon;
 
+    const activeIndex = this.getComponentState("slider");
+    const imageless = !slider[activeIndex]?.image;
+    const overlay = this.getPropValue("overlay");
+
     return (
       <div className={this.decorateCSS("container")} onWheel={this.handleWheel}>
         <ComposerSlider ref={this.sliderRef} {...settings} >
@@ -977,7 +920,7 @@ class HeaderComponent20 extends BaseHeader {
                   className={this.decorateCSS("image")}
                 />
               )}
-              {slide.overlay && (
+              {(overlay && !imageless) && (
                 <div className={this.decorateCSS("overlay")}
                   key={`title-key-${index}`}
                 ></div>
@@ -985,10 +928,10 @@ class HeaderComponent20 extends BaseHeader {
             </div>
           ))}
         </ComposerSlider>
-        
+
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("item")}>
-            <div className={this.decorateCSS("content-container")}>
+            <div className={`${this.decorateCSS("content-container")} ${imageless && this.decorateCSS("imageless")}`}>
               <div className={this.decorateCSS("title-container")}>
                 <ComposerSlider ref={this.titleSliderRef} {...titleSettings}>
                   {this.getTitlesToShow(currentSlide).map((slide, index) => (
@@ -1086,4 +1029,4 @@ class HeaderComponent20 extends BaseHeader {
   }
 }
 
-export default HeaderComponent20;
+export default Header20;
