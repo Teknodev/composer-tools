@@ -108,7 +108,7 @@ class Footer7Page extends BaseFooter {
               </div>
             )}
 
-            <div className={this.decorateCSS("right")}>
+            <div className={logo ? this.decorateCSS("right") : this.decorateCSS("right-full")}>
               {links.length > 0 && (
                 <div className={this.decorateCSS("upper")}>
                   {links.map((item: any, index: number) => {
@@ -127,7 +127,7 @@ class Footer7Page extends BaseFooter {
               )}
               {footerTextExist && (
                 <div className={this.decorateCSS("bottom")}>
-                  <Base.P className={this.decorateCSS("text")}>{this.getPropValue("footerText")}</Base.P>
+                  <Base.P className={logo ? this.decorateCSS("text") : this.decorateCSS("text-left")}>{this.getPropValue("footerText")}</Base.P>
                 </div>
               )}
             </div>

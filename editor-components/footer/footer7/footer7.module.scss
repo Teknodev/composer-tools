@@ -9,17 +9,19 @@
       gap: var(--composer-gap-md);
 
       .left {
-        flex: 1;
+        max-width: 20%;
+
         .image {
           width: 200px;
           height: 100px;
         }
       }
 
-      .right {
+      .right,
+      .right-full {
         display: flex;
         flex-direction: column;
-        flex: 1;
+        max-width: 80%;
         gap: var(--composer-gap-xs);
 
         .upper {
@@ -47,8 +49,22 @@
           justify-content: flex-end;
           .text {
             font-size: 1rem;
+            text-align: end;
             color: var(--composer-tertiary-color);
           }
+
+          .text-left {
+            font-size: 1rem;
+            text-align: left;
+            color: var(--composer-tertiary-color);
+          }
+        }
+      }
+
+      .right-full {
+        max-width: 100%;
+        .upper {
+          justify-content: flex-start;
         }
       }
 
@@ -63,6 +79,21 @@
   }
 }
 
+@container (max-width: #{$composer-tablet-width-lg}) {
+  .container {
+    .max-content {
+      .footer-page {
+        .left {
+          max-width: 30%;
+        }
+        .right {
+          max-width: 70%;
+        }
+      }
+    }
+  }
+}
+
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
@@ -72,7 +103,8 @@
         gap: var(--composer-gap-xs);
 
         .left {
-          flex: 1;
+          max-width: 100%;
+
           .image {
             width: 150px;
             height: var(--composer-gap-xl);
@@ -82,7 +114,7 @@
         .right {
           display: flex;
           flex-direction: column;
-          flex: 1;
+          max-width: 100%;
           gap: var(--composer-gap-xs);
           .upper {
             justify-content: flex-start;
@@ -90,6 +122,9 @@
 
           .bottom {
             justify-content: flex-start;
+            .text {
+              text-align: left;
+            }
           }
         }
       }
