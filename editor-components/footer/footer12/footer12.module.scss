@@ -70,14 +70,18 @@
         .image-container,
         .image-container-full {
           display: flex;
+          flex-wrap: wrap;
           align-items: center;
           max-width: 50%;
-          gap: var(--composer-gap-md);
+          row-gap: var(--composer-gap-sm);
+          column-gap: var(--composer-gap-md);
 
           .image-element {
             .image {
               width: var(--composer-gap-xl);
-              height: var(--composer-gap-lg);
+              height: 30px;
+              object-fit: cover;
+              border-radius: var(--composer-border-radius-sm);
             }
           }
         }
@@ -118,13 +122,6 @@
 
           .image-container {
             max-width: 100%;
-
-            .image-element {
-              .image {
-                width: var(--composer-gap-lg);
-                height: var(--composer-gap-lg);
-              }
-            }
           }
         }
       }
