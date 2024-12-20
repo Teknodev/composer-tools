@@ -2,6 +2,7 @@ import * as React from "react";
 import styles from "./header19.module.scss";
 import { BaseHeader } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { Base } from "composer-tools/composer-base-components/base/base";
 
 class Header19 extends BaseHeader {
   constructor(props?: any) {
@@ -17,7 +18,6 @@ class Header19 extends BaseHeader {
           key: "visibility",
           value: true,
         },
-
         {
           type: "string",
           displayer: "Title",
@@ -81,7 +81,6 @@ class Header19 extends BaseHeader {
           key: "description",
           value: "Feugiat\nScelerisque\nImperdiet",
         },
-
         {
           type: "image",
           displayer: "Image",
@@ -229,120 +228,137 @@ class Header19 extends BaseHeader {
     const itemBottomLeft = this.castToObject<any>("item-right-bottom-left")
     const itemBottomRight = this.castToObject<any>("item-right-bottom-right")
 
+    const isContentVisible = (this.castToString(itemLeft.title) ||
+      this.castToString(itemLeft.description) ||
+      this.castToString(itemLeft.button.buttontext))
+
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          {itemLeft.visibility ? (
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          {itemLeft.visibility &&
             <div className={this.decorateCSS("left")}>
               <div className={this.decorateCSS("item")}>
-                <div className={this.decorateCSS("background-image")}>
-                  <img src={itemLeft.image} alt={itemLeft.title} />
-                </div>
-                <div className={this.decorateCSS("content")}>
-                  <div className={this.decorateCSS("title")}>{itemLeft.title}</div>
-                  <div className={this.decorateCSS("description")}>
-                    {itemLeft.description}
+                {itemLeft.image &&
+                  <div className={this.decorateCSS("background-image")}>
+                    <img src={itemLeft.image} alt={itemLeft.title} />
+                  </div>}
+                {isContentVisible &&
+                  <div className={`${this.decorateCSS("content")} ${!itemLeft.image && this.decorateCSS("no-bg-img")}`}>
+                    {this.castToString(itemLeft.title) && <div className={this.decorateCSS("title")}>{itemLeft.title}</div>}
+                    {this.castToString(itemLeft.description) &&
+                      <div className={this.decorateCSS("description")}>
+                        {itemLeft.description}
+                      </div>}
+                    {this.castToString(itemLeft.button.buttontext) &&
+                      <div>
+                        <ComposerLink path={itemLeft.button.buttonurl}>
+                          <button className={this.decorateCSS("button")}>
+                            {itemLeft.button.buttontext}
+                          </button>
+                        </ComposerLink>
+                      </div>
+                    }
                   </div>
-                  {itemLeft.button.buttontext ? (
-                    <div>
-                      <ComposerLink path={itemLeft.button.buttonurl}>
-                        <button className={this.decorateCSS("button")}>
-                          {itemLeft.button.buttontext}
-                        </button>
-                      </ComposerLink>
-                    </div>
-                  ) : null}
-                </div>
+                }
               </div>
             </div>
-          ) : null}
+          }
 
           <div className={this.decorateCSS("right")}>
-            {itemRight.visibility ? (
+            {itemRight.visibility &&
               <div className={this.decorateCSS("top")}>
                 <div className={this.decorateCSS("item")}>
-                  <div className={this.decorateCSS("background-image")}>
-                    <img src={itemRight.image} alt={itemRight.title} />
-                  </div>
-                  <div className={this.decorateCSS("content")}>
-                    <div className={this.decorateCSS("title")}>{itemRight.title}</div>
-                    <div className={this.decorateCSS("description")}>
-                      {itemRight.description}
+                  {itemRight.image &&
+                    <div className={this.decorateCSS("background-image")}>
+                      <img src={itemRight.image} alt={itemRight.title} />
+                    </div>}
+                  {isContentVisible &&
+                    <div className={`${this.decorateCSS("content")} ${!itemRight.image && this.decorateCSS("no-bg-img")}`}>
+                      {this.castToString(itemRight.title) &&
+                        <div className={this.decorateCSS("title")}>{itemRight.title}</div>}
+                      {this.castToString(itemRight.description) &&
+                        <div className={this.decorateCSS("description")}>
+                          {itemRight.description}
+                        </div>}
+                      {this.castToString(itemRight.button.buttontext) &&
+                        <div>
+                          <ComposerLink path={itemRight.button.buttonurl}>
+                            <button className={this.decorateCSS("button")}>
+                              {itemRight.button.buttontext}
+                            </button>
+                          </ComposerLink>
+                        </div>
+                      }
                     </div>
-                    {itemRight.button.buttontext ? (
-                      <div>
-                        <ComposerLink path={itemRight.button.buttonurl}>
-                          <button className={this.decorateCSS("button")}>
-                            {itemRight.button.buttontext}
-                          </button>
-                        </ComposerLink>
-                      </div>
-                    ) : null}
-                  </div>
+                  }
                 </div>
               </div>
-            ) : null}
+            }
 
             <div className={this.decorateCSS("bottom")}>
-              {itemBottomLeft.visibility ? (
+              {itemBottomLeft.visibility &&
                 <div className={this.decorateCSS("item")}>
-                  <div className={this.decorateCSS("background-image")}>
-                    <img src={itemBottomLeft.image} alt={itemBottomLeft.title} />
-                  </div>
-                  <div className={this.decorateCSS("content")}>
-                    <div className={this.decorateCSS("title")}>{itemBottomLeft.title}</div>
-                    <div className={this.decorateCSS("description")}>
-                      {itemBottomLeft.description}
+                  {itemBottomLeft.image &&
+                    <div className={this.decorateCSS("background-image")}>
+                      <img src={itemBottomLeft.image} alt={itemBottomLeft.title} />
+                    </div>}
+                  {isContentVisible &&
+                    <div className={`${this.decorateCSS("content")} ${!itemBottomLeft.image && this.decorateCSS("no-bg-img")}`}>
+                      {this.castToString(itemBottomLeft.title) &&
+                        <div className={this.decorateCSS("title")}>{itemBottomLeft.title}</div>}
+                      {this.castToString(itemBottomLeft.description) &&
+                        <div className={this.decorateCSS("description")}>
+                          {itemBottomLeft.description}
+                        </div>}
+                      {itemBottomLeft.button.buttontext &&
+                        <div>
+                          <ComposerLink path={itemBottomLeft.button.buttonurl}>
+                            <button className={this.decorateCSS("button")}>
+                              {itemBottomLeft.button.buttontext}
+                            </button>
+                          </ComposerLink>
+                        </div>
+                      }
                     </div>
-                    {itemBottomLeft.button.buttontext ? (
-                      <div>
-                        <ComposerLink path={itemBottomLeft.button.buttonurl}>
-                          <button className={this.decorateCSS("button")}>
-                            {itemBottomLeft.button.buttontext}
-                          </button>
-                        </ComposerLink>
-                      </div>
-                    ) : null}
-                  </div>
+                  }
                 </div>
-              ) : null}
-              {itemBottomRight.visibility ? (
+              }
+              {itemBottomRight.visibility &&
                 <div className={this.decorateCSS("item")}>
-                  <div className={this.decorateCSS("background-image")}>
-                    <img
-                      src={itemBottomRight.image}
-                      alt={itemBottomRight.title}
-                    />
-                  </div>
-                  <div className={this.decorateCSS("content")}>
-                    <div className={this.decorateCSS("title")}>
-                      {itemBottomRight.title}
+                  {itemBottomRight.image &&
+                    <div className={this.decorateCSS("background-image")}>
+                      <img
+                        src={itemBottomRight.image}
+                        alt={itemBottomRight.title}
+                      />
+                    </div>}
+                  {isContentVisible &&
+                    <div className={`${this.decorateCSS("content")} ${!itemBottomRight.image && this.decorateCSS("no-bg-img")}`}>
+                      {this.castToString(itemBottomRight.title) &&
+                        <div className={this.decorateCSS("title")}>
+                          {itemBottomRight.title}
+                        </div>}
+                      {this.castToString(itemBottomRight.description) &&
+                        <div className={this.decorateCSS("description")}>
+                          {itemBottomRight.description}
+                        </div>}
+                      {this.castToString(itemBottomRight.button.buttontext) &&
+                        <div>
+                          <ComposerLink path={itemBottomRight.button.buttonurl}>
+                            <button className={this.decorateCSS("button")}>
+                              {itemBottomRight.button.buttontext}
+                            </button>
+                          </ComposerLink>
+                        </div>
+                      }
                     </div>
-                    <div className={this.decorateCSS("description")}>
-                      {itemBottomRight.description}
-                    </div>
-                    {itemBottomRight.button.buttontext ? (
-                      <div>
-                        <ComposerLink
-                          path={
-                            itemBottomRight.button.buttonurl
-                          }
-                        >
-                          <button className={this.decorateCSS("button")}>
-                            {
-                              itemBottomRight.button.buttontext
-                            }
-                          </button>
-                        </ComposerLink>
-                      </div>
-                    ) : null}
-                  </div>
+                  }
                 </div>
-              ) : null}
+              }
             </div>
           </div>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container >
     );
   }
 }
