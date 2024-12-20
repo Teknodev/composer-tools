@@ -311,8 +311,6 @@ class Header10 extends BaseHeader {
               const title = this.castToString(item.title);
               const description = this.castToString(item.description);
               const imageTitle = this.castToString(item.imageTitle);
-              const nextIcon = this.castToString("nextIcon")
-              const prevIcon = this.castToString("prevIcon")
               const image = item.image;
               const subtitle = this.castToString(item.subtitle);
               const description1 = this.castToString(item.description1);
