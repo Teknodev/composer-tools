@@ -51,12 +51,14 @@
               background-color: white;
               border-radius: var(--composer-border-radius-md);
               padding: var(--composer-gap-md);
-              width: 75%;
+              max-width: 75%;
+              width: fit-content;
               .form-wrapper{
-                width: 100%;
+                width: fit-content;
                 display: flex;            
                 gap: var(--composer-gap-md);
                 .form {
+                  width: fit-content;
                   display: flex;            
                   gap: var(--composer-gap-md);
                   .input{
@@ -121,13 +123,6 @@
       .wrapper{
         .left, .left-no-image{
           max-width: 100%;
-          .content-wrapper{
-            .content {
-              .form-display, .form-display-no-image {
-                width: 100%;
-              }
-            }
-          }
         }
       }
     }
@@ -144,14 +139,18 @@
               .form-display, .form-display-no-image {
                 gap: var(--composer-gap-sm);
                 width: 100%;
-                .form {
+                max-width: 100%;
+                .form-wrapper{
                   width: 100%;
-                  flex-direction: column;
-                  align-items: center;
-                  .input{
+                  .form {
                     width: 100%;
-                    .placeholder{
-                      min-height: 50px;
+                    flex-direction: column;
+                    align-items: center;
+                    .input{
+                      width: 100%;
+                      .placeholder{
+                        min-height: 50px;
+                      }
                     }
                   }
                 }
