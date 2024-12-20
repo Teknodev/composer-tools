@@ -1,3 +1,23 @@
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+
+@keyframes wishes {
+  0% {
+    transform: scaleX(1);
+  }
+
+  50% {
+    transform: scaleX(0);
+  }
+
+  51% {
+    transform: scaleX(0);
+  }
+
+  100% {
+    transform: scaleX(1);
+  }
+}
+
 .container {
   width: 100%;
   background-color: var(--composer-html-background);
@@ -5,7 +25,6 @@
   align-items: center;
 
   .max-content {
-    max-width: var(--composer-content-width);
     margin: auto;
     height: 100vh;
     overflow: hidden;
@@ -13,86 +32,114 @@
   }
 
   .tabs {
-    width: 100%;
     height: 100%;
-    display: flex;
     flex-direction: row;
     position: relative;
+    flex-wrap: nowrap;
+    gap: 0;
 
     .left-content {
       width: 100%;
       display: flex;
       position: relative;
+
+
       .buttons {
         position: absolute;
         font-size: 1.5rem;
         rotate: -90deg;
         transform-origin: top left;
         top: 50%;
-        left: 40px;
+        left: 50px;
         transform: translateX(-50%);
         display: flex;
         align-items: center;
         color: var(--composer-font-color-primary);
 
         .text {
-          margin-right: 15px;
-          font-size: 1.5rem;
+          margin-right: var(--composer-gap-md);
+          font-size: 1rem;
         }
-        .active-number {
-          color: var(--composer-primary-color);
-          font-size: 3.5rem;
-        }
-        .slash {
-          margin: 0px 5px;
-        }
-        .count {
-          color: var(--composer-primary-color);
-          font-size: 1.5rem;
+
+        .counter-wrapper {
+          .active-number {
+            color: var(--composer-primary-color);
+            font-size: 2.5rem;
+          }
+
+          .slash {
+            margin: 0px var(--composer-gap-xs);
+          }
+
+          .count {
+            color: var(--composer-primary-color);
+            font-size: 1rem;
+          }
         }
       }
 
       .tab-buttons {
-        width: 100%;
+        width: fit-content;
+        margin: 0 auto;
+        padding: var(--composer-gap-md) var(--composer-gap-xl) var(--composer-gap-md) calc(var(--composer-gap-xl) * 2.5);
+        overflow: hidden;
         display: flex;
-        flex-direction: column;
-        align-items: center;
         justify-content: center;
 
         .tabText {
           color: var(--composer-font-color-primary);
           font-weight: inherit;
-          font-size: 4rem;
+          font-size: 2.5rem;
           position: relative;
-          text-align: center;
-          max-width: 70%;
+          text-align: start;
+          width: fit-content;
           word-break: break-all;
+          transition: transform 0.5s ease, color 0.5s ease;
 
           &::before {
             content: "";
             width: 0px;
             height: 40%;
             position: absolute;
-            top: 25px;
+            top: 55%;
+            transform: translateY(-55%);
             left: -10px;
-            background-color: var(--composer-primary-color);
-            transition: all 0.5s ease-out;
+            background-color: rgba(var(--composer-primary-color-rgb), 0.5);
+            transition: all 0.75s ease-out;
             opacity: 0.5;
           }
+
           &:hover {
             &::before {
               width: 100%;
             }
+
+            transform: translateX(10px);
+            color: var(--composer-primary-color);
           }
+
+          &.active {
+            &::before {
+              width: 100%;
+            }
+
+            transform: translateX(10px);
+            color: var(--composer-primary-color);
+          }
+        }
+
+        &.no-tabs {
+          padding-left: var(--composer-gap-xl);
         }
       }
 
       .linkText {
         position: relative;
-        font-size: 20px;
+        font-size: 1rem;
         font-weight: unset;
-        text-decoration: underline;
         color: var(--composer-font-color-primary);
+        width: fit-content;
+        margin-top: 0;
 
         &:hover {
           color: var(--composer-primary-color);
@@ -108,62 +155,92 @@
           left: 0;
           background-color: var(--composer-font-color-primary);
           transform: scaleX(1);
-          transform-origin: top left;
-          transition: transform 0.3s ease;
+          transform-origin: top right;
         }
 
         &:hover::before {
-          transform: scaleX(0);
+          animation: wishes 0.75s ease-in-out;
         }
       }
     }
+
     .right-content {
-      width: 70%;
+
       .image {
         width: 100%;
         height: 100%;
         object-fit: cover;
       }
     }
-  }
-}
 
-.social {
-  position: absolute;
-  left: 50px;
-  bottom: 50px;
-  font-size: 1.5rem;
-  color: var(--composer-font-color-primary);
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 15px;
-  width: 40%;
-  flex-wrap: wrap;
-
-  .social-item {
-    .social-link {
+    .social {
+      position: absolute;
+      left: 50px;
+      bottom: 50px;
+      font-size: 1rem;
       color: var(--composer-font-color-primary);
-      transition: color 0.1s ease-out;
-      &:hover {
-        color: var(--composer-primary-color);
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: var(--composer-gap-lg);
+      width: 40%;
+      flex-wrap: wrap;
+
+      .social-item {
+        .social-link {
+          color: var(--composer-font-color-primary);
+          transition: color 0.1s ease-out;
+
+          &:hover {
+            color: var(--composer-primary-color);
+          }
+        }
       }
     }
   }
 }
-@media only screen and (max-width: 1024px) {
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .tabs {
+        .left-content {
+
+          .buttons {
+            left: 40px;
+          }
+
+          .tab-buttons {
+            padding-right: var(--composer-gap-lg);
+            padding-left: calc(var(--composer-gap-xl) * 2);
+
+            .tabText {
+              font-size: 2rem;
+            }
+
+            &.no-tabs {
+              padding-left: var(--composer-gap-lg);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
       height: auto;
 
       .tabs {
         flex-direction: column;
-        gap: 24px;
-        padding-bottom: 20px;
 
         .left-content {
           order: 1;
           height: auto;
+          padding: var(--composer-gap-md);
+
           .buttons {
             display: none;
           }
@@ -171,69 +248,46 @@
           .tab-buttons {
             position: static;
             align-items: center;
+            padding: 0;
+            max-height: unset !important;
 
             .tabText {
-              font-size: 2.5rem;
+              font-size: 1.5rem;
               text-align: center;
+
               &::before {
+                height: 50%;
                 top: 18px;
               }
             }
+
+            &.no-tabs {
+              padding-left: 0;
+            }
           }
 
           .linkText {
-            text-align: center;
-            margin: 0;
-            margin-top: 20px;
+            margin-top: var(--composer-gap-md);
           }
         }
 
         .right-content {
-          height: 48vh;
+          .image {
+            height: 40vh;
+            width: 100%;
+          }
+        }
+
+        .social {
+          padding: var(--composer-gap-md);
+          height: auto;
           width: 100%;
+          position: static;
+          order: 2;
+          justify-content: center !important;
+          row-gap: var(--composer-gap-sm);
         }
       }
     }
-  }
-
-  .social {
-    width: 100%;
-    position: static;
-    order: 2;
-    justify-content: center !important;
-    row-gap: 8px;
-  }
-}
-
-@media only screen and (max-width: 767px) {
-  .container {
-    .max-content {
-      .tabs {
-        .left-content {
-          .tab-buttons {
-            .tabText {
-              font-size: 1.5rem;
-              &::before {
-                top: 10px;
-                left: 2px;
-              }
-            }
-          }
-          .linkText {
-            font-size: 1rem;
-            &::before {
-              top: 17px;
-            }
-          }
-        }
-
-        .right-content {
-          height: 50vh;
-        }
-      }
-    }
-  }
-  .social {
-    font-size: 1rem;
   }
 }
