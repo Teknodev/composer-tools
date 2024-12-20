@@ -95,19 +95,7 @@ class Header15 extends BaseHeader {
 
   render() {
     const inputs = this.castToObject<InputItem[]>("inputs")
-    const image = this.getPropValue("image");
-    const background = this.getPropValue("background-image");
-    function toObjectKey(str: string) {
-      if (/^\d/.test(str)) {
-        str = "_" + str;
-      }
-      str = str.replace(/[^a-zA-Z0-9_]/g, "_").toLowerCase();
-      return str;
-    }
-    function getInputName(indexOfLabel: number, inputLabel: string): string {
-      const name = toObjectKey(`${indexOfLabel} ${inputLabel}`);
-      return toObjectKey(name);
-    }
+
     function getInitialValue() {
       let value: any = {};
       inputs.map((_: any, indexOfItem: number) => (value["input_" + indexOfItem] = ""));
@@ -118,59 +106,63 @@ class Header15 extends BaseHeader {
         style={{
           backgroundImage: `url(${this.getPropValue("background-image")})`,
         }}>
+        {this.getPropValue("overlay") ? (<div className={this.decorateCSS("overlay")}></div>) : null}
         <div className={this.decorateCSS("max-content")}>
-          {this.getPropValue("overlay") ? (<div className={this.decorateCSS("overlay")}></div>) : null}
           <Base.MaxContent
             className={`${this.decorateCSS("wrapper")} ${this.getPropValue("true") && this.decorateCSS("wrapper-reverse")}`}>
-            <div className={this.decorateCSS("left")}>
+            <div className={this.getPropValue("background-image") ? this.decorateCSS("left") : this.decorateCSS("left-no-image")}>
               <div className={this.decorateCSS("content-wrapper")}>
                 <div className={this.decorateCSS("content")}>
-                  <div className={this.getPropValue("background-image") ? this.decorateCSS("title") : this.decorateCSS("title-no-image")}>
-                    {this.getPropValue("title")}
-                  </div>
-                  <div className={this.getPropValue("background-image") ? this.decorateCSS("description") : this.decorateCSS("description-no-image")}>
-                    {this.getPropValue("description")}
-                  </div>
-                  <div className={this.getPropValue("background-image") ? this.decorateCSS("form-display") : this.decorateCSS("form-display-no-image")}>
-                    <div className={this.decorateCSS("form-wrapper")}>
-
-                      <Formik
-                        initialValues={{ ...getInitialValue() }}
-                        onSubmit={(data, { resetForm }) => {
-                          console.log("data", data)
-                          this.insertForm("Contact Us", data);
-                          resetForm();
-                        }}
-                      >
-                        {({ handleChange, values }) => (
-                          <Form className={this.decorateCSS("form")}>
-                            {inputs.map((input: InputItem, index: number) => {
-                              console.log("values", values["input_" + index])
-                              return (
-                                <div className={this.decorateCSS("input")}>
-                                  <input
-                                    placeholder={this.castToString(input.placeholder)}
-                                    type="text"
-                                    onChange={handleChange}
-                                    value={values["input_" + index]}
-                                    name={"input_" + index}
-                                    className={this.decorateCSS("placeholder")}
-                                  />
-                                </div>
-                              )
-
-                            })}
-                            <div className={this.decorateCSS("button-box")}>
-                              <Base.Button className={this.decorateCSS("button")} type="submit" onClick={() => console.log("tıklandı")}>
-                                {this.getPropValue("buttonText")}
-                              </Base.Button>
-                            </div>
-                          </Form>
-                        )}
-                      </Formik>
-
+                  {this.castToString(this.getPropValue("title")) && (
+                    <div className={this.getPropValue("background-image") ? this.decorateCSS("title") : this.decorateCSS("title-no-image")}>
+                      {this.getPropValue("title")}
                     </div>
-                  </div>
+                  )}
+                  {this.castToString(this.getPropValue("description")) && (
+                    <div className={this.getPropValue("background-image") ? this.decorateCSS("description") : this.decorateCSS("description-no-image")}>
+                      {this.getPropValue("description")}
+                    </div>
+                  )}
+                  {((inputs.length > 0) || this.castToString(this.getPropValue("buttonText"))) && (
+                    <div className={this.getPropValue("background-image") ? this.decorateCSS("form-display") : this.decorateCSS("form-display-no-image")}>
+                      <div className={this.decorateCSS("form-wrapper")}>
+                        <Formik
+                          initialValues={{ ...getInitialValue() }}
+                          onSubmit={(data, { resetForm }) => {
+                            console.log("data", data)
+                            this.insertForm("Contact Us", data);
+                            resetForm();
+                          }}
+                        >
+                          {({ handleChange, values }) => (
+                            <Form className={this.decorateCSS("form")}>
+                              {inputs.map((input: InputItem, index: number) => {
+                                console.log("values", values["input_" + index])
+                                return (
+                                  <div className={this.decorateCSS("input")}>
+                                    <input
+                                      placeholder={this.castToString(input.placeholder)}
+                                      type="text"
+                                      onChange={handleChange}
+                                      value={values["input_" + index]}
+                                      name={"input_" + index}
+                                      className={this.decorateCSS("placeholder")}
+                                    />
+                                  </div>)
+                              })}
+                              {this.castToString(this.getPropValue("buttonText")) && (
+                                <div className={this.decorateCSS("button-box")}>
+                                  <Base.Button className={this.decorateCSS("button")} type="submit" onClick={() => console.log("tıklandı")}>
+                                    {this.getPropValue("buttonText")}
+                                  </Base.Button>
+                                </div>
+                              )}
+                            </Form>
+                          )}
+                        </Formik>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

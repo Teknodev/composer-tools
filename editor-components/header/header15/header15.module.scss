@@ -1,22 +1,25 @@
 @import '../../../composer-base-components/base/utitilities/viewports.module.scss';
 .container {
   min-height: 100vh;
+  position: relative;
+  .overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--composer-overlay-color);
+    z-index: 0;
+  }
   .max-content {
     background-repeat: no-repeat;
     background-size: cover;
     height: 100vh;
     display: flex;
-    .overlay {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background: #00000078;
-    }
+    position: relative;
     .wrapper {
       display: flex;
-      .left {
+      .left, .left-no-image {
         display: flex;
         align-items: center;
         flex: 1;
@@ -50,11 +53,14 @@
               padding: var(--composer-gap-md);
               width: 75%;
               .form-wrapper{
-                flex:1;
-                display: flex;
+                width: 100%;
+                display: flex;            
                 gap: var(--composer-gap-md);
                 .form {
+                  display: flex;            
+                  gap: var(--composer-gap-md);
                   .input{
+                    flex: 1;
                     height: 100%;
                     .placeholder {
                       width: 100%;
@@ -62,12 +68,13 @@
                       margin: 0px;
                       border: 2px solid #e5e5e5;  
                       border-radius: var(--composer-border-radius-md);  
-                      &::placeholder {
-                        color:rgb(118, 118, 118)
-                    }      
+                      .placeholder{
+                        &::placeholder {
+                          color:rgb(118, 118, 118)
+                        }   
+                      }
                     }
                   }
-      
                 }
               }
  
@@ -79,13 +86,68 @@
             }
             .form-display-no-image{
               background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%); 
+              width: 50%;
               .form-wrapper{
                 .form {
-                  .email {
-                    border: 2px solid var(--composer-font-color-primary);      
-                    &::placeholder {
-                      color:var(--composer-font-color-primary)
-                     }  
+                  .input {
+                    .placeholder{
+                      border: 2px solid var(--composer-font-color-primary);      
+                      &::placeholder {
+                        color:var(--composer-font-color-primary)
+                       }  
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      .left-no-image{
+        max-width: 100%;
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width-lg}){
+  .container{
+    .max-content{
+      .wrapper{
+        .left, .left-no-image{
+          max-width: 100%;
+          .content-wrapper{
+            .content {
+              .form-display, .form-display-no-image {
+                width: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@container (max-width: #{$composer-phone-width}){
+  .container{
+    .max-content{
+      .wrapper{
+        .left, .left-no-image{
+          max-width: 100%;
+          .content-wrapper{
+            .content {
+              .form-display, .form-display-no-image {
+                gap: var(--composer-gap-sm);
+                width: 100%;
+                .form {
+                  width: 100%;
+                  flex-direction: column;
+                  align-items: center;
+                  .input{
+                    width: 100%;
+                    .placeholder{
+                      min-height: 50px;
+                    }
                   }
                 }
               }
@@ -96,144 +158,3 @@
     }
   }
 }
-
-@container (max-width: #{$composer-tablet-width-lg}){
-  .container{
-    .max-content{
-      .wrapper{
-        .left{
-          max-width: 100%;
-        }
-      }
-    }
-  }
-}
-@container (max-width: #{$composer-tablet-width-lg}){
-  .container{
-    .max-content{
-      .wrapper{
-        .left{
-          max-width: 100%;
-          .content-wrapper{
-            .content {
-              .form-display, .form-display-no-image {
-                gap: var(--composer-gap-sm);
-                width: 100%;
-                flex-direction: column;
-                .form {
-                  width: 100%;
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-// @media only screen and (max-width: 768px) {
-//   .container {
-//     .max-content {
-//       .wrapper {
-//         flex-direction: column;
-//         .left {
-//           .content {
-//             position: absolute;
-//             text-align: center;
-//             padding: 16px;
-//             z-index: 1;
-//             width: 100% !important;
-//             .header {
-//               font-size: 1.3rem;
-//               margin-bottom: -20px !important;
-//             }
-//             .title {
-//               font-size: 3rem;
-//               text-align: center;
-//             }
-//             .description {
-//               text-align: center;
-//               font-size: 1.4rem !important;
-//             }
-//             .form-display {
-//               display: flex;
-//               justify-content: center;
-//             }
-//             .form {
-//               display: flex;
-//               flex-direction: column;
-//               padding: 0px;
-//               margin: 0px;
-
-//               .email {
-//                 padding: 10px;
-//                 margin: 6px;
-//                 width: 100%;
-//                 border: 3px solid #e5e5e5;
-//               }
-//               .button {
-//                 width: 165px !important;
-//                 margin-top: 0px;
-//                 margin-left: 10px;
-//                 padding: 12px !important;
-//               }
-//             }
-//           }
-//         }
-//         .right {
-//           flex: 1;
-//         }
-//         .image {
-//           display: none;
-//         }
-//       }
-//     }
-//   }
-// }
-
-// @media only screen and (max-width: 400px) {
-//   .container {
-//     .max-content {
-//       .wrapper {
-//         .left {
-//           text-align: center;
-//           .content {
-//             width: 100%;
-//             .header {
-//               font-size: 1.2rem !important;
-//               margin-bottom: -10px !important;
-//             }
-//             .title {
-//               font-size: 2rem !important ;
-//             }
-//             .description {
-//               font-size: 1.2rem !important;
-//             }
-//             .form-display {
-//               display: flex;
-//               justify-content: center;
-//               flex-direction: column;
-//               align-items: center;
-//             }
-//             .form {
-//               width: 75%;
-//             }
-//             .button {
-//               margin-left: 0 !important;
-//             }
-//           }
-//         }
-//       }
-//       .right {
-//         flex: 1;
-//       }
-//       .image {
-//         object-fit: cover !important;
-//         height: 100%;
-//         &.without-background {
-//           top: 0px;
-//         }
-//       }
-//     }
-//   }
-// }
