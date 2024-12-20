@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import styles from "./header12.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "composer-tools/composer-base-components/base/base";
 
 type SliderItem = {
   text: JSX.Element;
