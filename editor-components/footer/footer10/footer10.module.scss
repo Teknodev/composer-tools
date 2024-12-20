@@ -48,6 +48,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: var(--composer-gap-md);
 
     .left,
     .left-full {
@@ -60,6 +61,7 @@
     .left-full {
       max-width: 100%;
     }
+
     .icons {
       display: flex;
       align-items: center;
@@ -141,6 +143,11 @@
 
       .left {
         max-width: 100%;
+      }
+
+      .icons {
+        justify-content: flex-start;
+        width: 100%;
       }
     }
   }
