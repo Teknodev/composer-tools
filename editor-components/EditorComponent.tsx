@@ -465,7 +465,7 @@ export abstract class Component
   }
 
   castToString(elem: JSX.Element): string {
-    return elem.props?.html;
+    return elem.props?.html?.replace(/<\/?[^>]+(>|$)/g, "");
   }
 
   private castingProcess(object: any) {
@@ -519,6 +519,17 @@ export abstract class Component
 
     return casted;
   }
+
+  insertForm(name: string, data: Object) {
+    const project = getProjectHook()._id;
+    const apiUrl = process.env.REACT_APP_API_URL || process.env.NEXT_PUBLIC_PUBLIC_URL;
+    let config = {
+      ...{ data: { name, data, project } },
+      method: "post",
+      url: apiUrl + "/fn-execute/project/insert-form",
+    };
+    return axios.request(config).then((r: any) => r.data);
+  }
 }
 
 export abstract class BaseNavigator extends Component {
@@ -553,16 +564,6 @@ export abstract class BasePricingTable extends Component {
 
 export abstract class BaseFooter extends Component {
   static category = CATEGORIES.FOOTER;
-
-  insertForm(name: string, data: Object) {
-    const project = getProjectHook()._id;
-    let config = {
-      ...{ data: { name, data, project } },
-      method: "post",
-      url: process.env.REACT_APP_API_URL + "/fn-execute/project/insert-form",
-    };
-    return axios.request(config).then((r: any) => r.data);
-  }
 }
 
 export abstract class Team extends Component {
@@ -579,19 +580,6 @@ export abstract class BaseDownload extends Component {
 
 export abstract class BaseCallToAction extends Component {
   static category = CATEGORIES.CALLTOACTION;
-  insertForm(name: string, data: Object) {
-    const projectSettings = JSON.parse(getProjectHook().data);
-    const project = projectSettings._id;
-    let config = {
-      ...{ data: { name, data, project } },
-      method: "post",
-      url: process.env.REACT_APP_API_URL
-        ? process.env.REACT_APP_API_URL
-        : process.env.NEXT_PUBLIC_PUBLIC_URL +
-          "/fn-execute/project/insert-form",
-    };
-    return axios.request(config).then((r: any) => r.data);
-  }
 }
 
 export abstract class BaseSlider extends Component {
@@ -612,16 +600,6 @@ export abstract class BaseImageGallery extends Component {
 
 export abstract class BaseModal extends Component {
   static category = CATEGORIES.MODAL;
-
-  insertForm(name: string, data: Object) {
-    const project = getProjectHook()._id;
-    let config = {
-      ...{ data: { name, data, project } },
-      method: "post",
-      url: process.env.REACT_APP_API_URL + "/fn-execute/project/insert-form",
-    };
-    return axios.request(config).then((r: any) => r.data);
-  }
 }
 
 export abstract class LogoClouds extends Component {
@@ -688,20 +666,6 @@ export abstract class BaseStats extends Component {
 
 export abstract class BaseContacts extends Component {
   static category = CATEGORIES.FORM;
-
-  insertForm(name: string, data: Object) {
-    const projectSettings = JSON.parse(getProjectHook().data);
-    const project = projectSettings._id;
-    let config = {
-      ...{ data: { name, data, project } },
-      method: "post",
-      url: process.env.REACT_APP_API_URL
-        ? process.env.REACT_APP_API_URL
-        : process.env.NEXT_PUBLIC_PUBLIC_URL +
-          "/fn-execute/project/insert-form",
-    };
-    return axios.request(config).then((r: any) => r.data);
-  }
 }
 
 export abstract class BaseFeature extends Component {
