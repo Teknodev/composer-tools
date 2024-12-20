@@ -67,35 +67,46 @@ class Header11 extends BaseHeader {
     const aligment = Base.getContentAlignment();
 
     return (
-      <Base.Container className={Image ? this.decorateCSS("container") : this.decorateCSS("container-noimage")} style={styling} isFull="true">
-        <div className={this.decorateCSS("box")}>
-          <Base.MaxContent className={this.decorateCSS("max-content")}>
-            <div className={this.decorateCSS("content")}>
-              {this.castToString(this.getPropValue("title")) && (
-                <Base.SectionTitle className={this.decorateCSS("title")}>
-                  {this.getPropValue("title")}
-                </Base.SectionTitle>
-              )}
-              {this.castToString(this.getPropValue("description")) && (
-                <Base.SectionDescription className={this.decorateCSS("description")}>
-                  {this.getPropValue("description")}
-                </Base.SectionDescription>
-              )}
-              {this.castToString(this.getPropValue("linktext")) && (
-                <ComposerLink path={this.getPropValue("linkpage")}>
-                  <Base.P className={aligment == "center" ? this.decorateCSS("link-text-center") : this.decorateCSS("link-text")}>
-                    {this.getPropValue("linktext")}
-                  </Base.P>
-                </ComposerLink>
-              )}
+      <Base.Container className={Image ? this.decorateCSS("container") : this.decorateCSS("container-noimage")} isFull="true">
+        {(this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("description")) || this.castToString(this.getPropValue("linktext"))) && (
+          <div className={this.decorateCSS("box")}>
+            <Base.MaxContent className={this.decorateCSS("max-content")}>
+              <Base.VerticalContent className={this.decorateCSS("content")}>
+                {this.castToString(this.getPropValue("title")) && (
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
+                    {this.getPropValue("title")}
+                  </Base.SectionTitle>
+                )}
+                {this.castToString(this.getPropValue("description")) && (
+                  <Base.SectionDescription className={this.decorateCSS("description")}>
+                    {this.getPropValue("description")}
+                  </Base.SectionDescription>
+                )}
+                {this.castToString(this.getPropValue("linktext")) && (
+                  <ComposerLink path={this.getPropValue("linkpage")}>
+                    <Base.P className={aligment == "center" ? this.decorateCSS("link-text-center") : this.decorateCSS("link-text")}>
+                      {this.getPropValue("linktext")}
+                    </Base.P>
+                  </ComposerLink>
+                )}
+              </Base.VerticalContent>
+            </Base.MaxContent>
+          </div>
+        )}
+        {this.getPropValue("backgroundImage") && (
+          <div className={this.decorateCSS("right")}>
+            <div className={this.decorateCSS("image-wrapper")}>
+              <img src={this.getPropValue("backgroundImage")} alt={this.getPropValue("backgroundImage")} className={this.decorateCSS("image")} />
             </div>
-          </Base.MaxContent>
-        </div>
-        {this.getPropValue("icon") && (
-          <div className={this.decorateCSS("icon-box")}>
-            <div className={this.decorateCSS("icon")}>
-              <ComposerIcon name={this.getPropValue("icon")} />
-            </div>
+            {this.getPropValue("icon") && (
+              <div className={this.decorateCSS("icon-box")}>
+                <div className={this.decorateCSS("icon-wrapper")}>
+                  <div className={this.decorateCSS("icon")}>
+                    <ComposerIcon name={this.getPropValue("icon")} />
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         )}
       </Base.Container>
