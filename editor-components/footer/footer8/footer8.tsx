@@ -397,13 +397,6 @@ class Footer8Page extends BaseFooter {
     });
 
     this.addProp({
-      type: "boolean",
-      key: "line",
-      displayer: "Line",
-      value: true,
-    });
-
-    this.addProp({
       type: "string",
       key: "bottomText",
       displayer: "Bottom Text",
@@ -550,104 +543,94 @@ class Footer8Page extends BaseFooter {
     const socials = this.castToObject<any[]>("socials");
 
     const logo = this.getPropValue("logo");
-    const line = this.getPropValue("line");
 
     const buttonTextExist = this.castToString(this.getPropValue("bottomText"));
 
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("footer-page")}>
-            <Base.Container>
-              <Base.MaxContent>
-                {
-                  <div className={this.decorateCSS("items")}>
-                    {logo && (
-                      <div className={this.decorateCSS("header")}>
-                        <img src={logo} className={this.decorateCSS("image")} alt="" />
-                      </div>
-                    )}
-
-                    {footer.length > 0 &&
-                      footer.map((item: FooterValues, indexFooter: number) => {
-                        const footerTitleExist = this.castToString(item.footerTitle);
-                        const footerTextExist = item.footerText.length > 0;
-                        const listExist = footerTitleExist || footerTextExist;
-                        return (
-                          listExist && (
-                            <div key={indexFooter} className={this.decorateCSS("list-group")}>
-                              {footerTitleExist && <Base.H2 className={this.decorateCSS("title")}>{item.footerTitle}</Base.H2>}
-                              {item.footerText.length > 0 && (
-                                <Base.VerticalContent className={this.decorateCSS("text-container")}>
-                                  {item.footerText.map((v: FooterTextValues, indexFooterText: number) => {
-                                    const footerTextExist = this.castToString(v.footerText);
-                                    const elementExist = footerTextExist;
-                                    return (
-                                      elementExist && (
-                                        <ComposerLink key={indexFooterText} path={v.path}>
-                                          <div className={this.decorateCSS(v.path ? "element-has-path" : "element")}>{footerTextExist && <Base.P className={this.decorateCSS("text")}>{v.footerText}</Base.P>}</div>
-                                        </ComposerLink>
-                                      )
-                                    );
-                                  })}
-                                </Base.VerticalContent>
-                              )}
-                            </div>
-                          )
-                        );
-                      })}
-                  </div>
-                }
-              </Base.MaxContent>
-            </Base.Container>
-
-            {line && <div className={this.decorateCSS("line")}></div>}
-
-            <Base.Container>
-              <Base.MaxContent>
-                {(buttonTextExist || links.length > 0) && (
-                  <div className={this.decorateCSS("footer-bottom")}>
-                    {links.length > 0 && (
-                      <div className={this.decorateCSS("links")}>
-                        {links.map((item: any, index: number) => {
-                          const textExist = this.castToString(item.text);
-                          return (
-                            textExist && (
-                              <div className={this.decorateCSS(item.url ? "link-element-has-path" : "link-element")}>
-                                <ComposerLink key={index} path={item.url}>
-                                  <Base.P className={this.decorateCSS("link-text")}>{item.text}</Base.P>
-                                </ComposerLink>
-                              </div>
-                            )
-                          );
-                        })}
-                      </div>
-                    )}
-                    {buttonTextExist && <Base.P className={this.decorateCSS("text")}>{this.getPropValue("bottomText")}</Base.P>}
-
-                    {socials.length > 0 && (
-                      <div className={this.decorateCSS("socials-container")}>
-                        {socials.map((item: any, index: number) => {
-                          return (
-                            item.icon && (
-                              <ComposerLink key={index} path={item.url}>
-                                <div className={this.decorateCSS("socials-element")}>
-                                  <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={item.icon} />
-                                  <Base.P className={this.decorateCSS("text")}>{item.text}</Base.P>
-                                </div>
-                              </ComposerLink>
-                            )
-                          );
-                        })}
-                      </div>
-                    )}
+            {
+              <div className={this.decorateCSS("items")}>
+                {logo && (
+                  <div className={this.decorateCSS("header")}>
+                    <img src={logo} className={this.decorateCSS("image")} alt="" />
                   </div>
                 )}
-              </Base.MaxContent>
-            </Base.Container>
+
+                {footer.length > 0 &&
+                  footer.map((item: FooterValues, indexFooter: number) => {
+                    const footerTitleExist = this.castToString(item.footerTitle);
+                    const footerTextExist = item.footerText.length > 0;
+                    const listExist = footerTitleExist || footerTextExist;
+                    return (
+                      listExist && (
+                        <div key={indexFooter} className={this.decorateCSS("list-group")}>
+                          {footerTitleExist && <Base.H2 className={this.decorateCSS("title")}>{item.footerTitle}</Base.H2>}
+                          {item.footerText.length > 0 && (
+                            <Base.VerticalContent className={this.decorateCSS("text-container")}>
+                              {item.footerText.map((v: FooterTextValues, indexFooterText: number) => {
+                                const footerTextExist = this.castToString(v.footerText);
+                                const elementExist = footerTextExist;
+                                return (
+                                  elementExist && (
+                                    <ComposerLink key={indexFooterText} path={v.path}>
+                                      <div className={this.decorateCSS(v.path ? "element-has-path" : "element")}>{footerTextExist && <Base.P className={this.decorateCSS("text")}>{v.footerText}</Base.P>}</div>
+                                    </ComposerLink>
+                                  )
+                                );
+                              })}
+                            </Base.VerticalContent>
+                          )}
+                        </div>
+                      )
+                    );
+                  })}
+              </div>
+            }
+
+            {(buttonTextExist || links.length > 0) && (
+              <div className={this.decorateCSS("footer-bottom")}>
+                {links.length > 0 && (
+                  <div className={this.decorateCSS("links")}>
+                    {links.map((item: any, index: number) => {
+                      const textExist = this.castToString(item.text);
+                      return (
+                        textExist && (
+                          <div className={this.decorateCSS(item.url ? "link-element-has-path" : "link-element")}>
+                            <ComposerLink key={index} path={item.url}>
+                              <Base.P className={this.decorateCSS("link-text")}>{item.text}</Base.P>
+                            </ComposerLink>
+                          </div>
+                        )
+                      );
+                    })}
+                  </div>
+                )}
+                {buttonTextExist && <Base.P className={this.decorateCSS("text")}>{this.getPropValue("bottomText")}</Base.P>}
+
+                {socials.length > 0 && (
+                  <div className={this.decorateCSS("socials-container")}>
+                    {socials.map((item: any, index: number) => {
+                      const textExist = this.castToString(item.text);
+                      return (
+                        (item.icon || textExist) && (
+                          <ComposerLink key={index} path={item.url}>
+                            <div className={this.decorateCSS("socials-element")}>
+                              <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={item.icon} />
+                              <Base.P className={this.decorateCSS("text")}>{item.text}</Base.P>
+                            </div>
+                          </ComposerLink>
+                        )
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            )}
           </div>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
