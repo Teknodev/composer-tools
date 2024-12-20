@@ -15,7 +15,7 @@ interface ServiceItem {
 
 interface ButtonItem {
   buttonText: JSX.Element;
-  url: JSX.Element;
+  url: string;
 }
 
 class Header29 extends BaseHeader {
@@ -160,6 +160,7 @@ class Header29 extends BaseHeader {
     const button = this.castToObject<ButtonItem>("button");
 
     const title = this.castToString(this.getPropValue("title"));
+    
     const description = this.castToString(this.getPropValue("description"));
     const serviceItems = this.castToObject<ServiceItem[]>("serviceItems");
     const image = this.getPropValue("image");
@@ -167,7 +168,7 @@ class Header29 extends BaseHeader {
     const buttonText = this.castToString(button.buttonText);
     const showContent = title || description || serviceItems.length > 0;
 
-    const submitText = this.castToString(this.getPropValue("submitText"));
+    const submitText = this.getPropValue("submitText");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -201,9 +202,7 @@ class Header29 extends BaseHeader {
                       this.setComponentState("placeholderText", submitText);
                       this.insertForm("Call Me Back", data);
                       setTimeout(() => {
-                        const defaultPlaceholder = this.castToString(
-                          this.getPropValue("placeholder")
-                        );
+                        const defaultPlaceholder = this.getPropValue("placeholder");
                         this.setComponentState(
                           "placeholderText",
                           defaultPlaceholder
@@ -244,7 +243,7 @@ class Header29 extends BaseHeader {
 
                         {this.castToString(button.buttonText) && (
                           <Base.Button type="submit">
-                            {this.castToString(button.buttonText)}
+                            {button.buttonText}
                           </Base.Button>
                         )}
                       </Form>

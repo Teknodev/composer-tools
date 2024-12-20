@@ -534,7 +534,7 @@ export abstract class BaseList extends Component {
 }
 
 export abstract class BaseHeader extends Component {
-  protected category = CATEGORIES.HEADER;
+  static category = CATEGORIES.HEADER;
 
   insertForm(name: string, data: Object) {
     const project = getProjectHook()._id;
