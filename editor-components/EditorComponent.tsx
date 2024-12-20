@@ -464,7 +464,7 @@ export abstract class Component
   }
 
   castToString(elem: JSX.Element): string {
-    return elem.props?.html;
+    return elem.props?.html?.replace(/<\/?[^>]+(>|$)/g, "");
   }
 
   private castingProcess(object: any) {
