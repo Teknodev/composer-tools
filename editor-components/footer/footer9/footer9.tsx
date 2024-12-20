@@ -310,7 +310,7 @@ class Footer9Page extends BaseFooter {
     this.addProp({
       type: "array",
       key: "pages",
-      displayer: "Pages",
+      displayer: "Policies",
       value: [
         {
           type: "object",
@@ -372,28 +372,17 @@ class Footer9Page extends BaseFooter {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {/* <div>
-              {logo && <img src={logo} alt="logo" className={this.decorateCSS("logo")} />}
-              <Base.VerticalContent className={this.decorateCSS("vertical")}>
-                {title && <Base.H1 className={this.decorateCSS("header")}>{title}</Base.H1>}
-                {description && <Base.P className={this.decorateCSS("description")}>{description}</Base.P>}
-              </Base.VerticalContent>
-              {buttonText && (
-                <ComposerLink path={buttonPage}>
-                  <Base.Button>{buttonText}</Base.Button>
-                </ComposerLink>
-              )}
-            </div> */}
-
           <div className={this.decorateCSS("header")}>
             {logo && <img src={logo} alt="" className={this.decorateCSS("logo")} />}
-            {titleExist && <Base.H1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.H1>}
-            {descriptionExist && <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>}
-            {buttonTextExist && (
-              <ComposerLink path={buttonPage}>
-                <Base.Button>{this.getPropValue("buttonText")}</Base.Button>
-              </ComposerLink>
-            )}
+            <div className={this.decorateCSS("content")}>
+              {titleExist && <Base.H1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.H1>}
+              {descriptionExist && <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>}
+              {buttonTextExist && (
+                <ComposerLink path={buttonPage}>
+                  <Base.Button>{this.getPropValue("buttonText")}</Base.Button>
+                </ComposerLink>
+              )}
+            </div>
           </div>
 
           {links.length > 0 && (
