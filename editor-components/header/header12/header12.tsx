@@ -258,14 +258,6 @@ class Header12 extends BaseHeader {
     this.leftSliderRef = React.createRef();
     this.rightSliderRef = React.createRef();
 
-    /**
-     * If screen size under 1000px, convert slider to horizontal.
-     */
-    this.screenWidth = window.innerWidth;
-
-    window.addEventListener("resize", () => {
-      this.screenWidth = window.innerWidth;
-    });
   }
 
   getName(): string {
@@ -282,23 +274,49 @@ class Header12 extends BaseHeader {
       autoplaySpeed: 2500,
       slidesToShow: 1,
       slidesToScroll: 1,
-      vertical: this.screenWidth > 1220 ? true : false,
-      verticalSwiping: this.screenWidth > 1220 ? true : false,
+      vertical: true,
+      verticalSwiping: true,
+      responsive: [
+        {
+          breakpoint: 1220,
+          settings: {
+            vertical: false,
+            verticalSwiping: false,
+          },
+        },
+        {
+          breakpoint: 500,
+          settings: {
+            vertical: false,
+            verticalSwiping: false,
+          },
+        },
+      ],
       swipe: true,
       switeToSlide: true,
     };
 
     const decorateIcon = { className: this.decorateCSS("Icon") };
+    const leftSliderItems = this.castToObject<SliderItem[]>("leftSliderItems");
+    const rightSliderItems =
+      this.castToObject<SliderItem[]>("rightSliderItems");
+
+    const showOverlay = this.getPropValue("overlay");
+
     const leftSliderSettings = {
       ...settings,
       beforeChange: (oldIndex: number, newIndex: number) => {
-        this.rightSliderRef.slickPrev();
+        if (rightSliderItems.length > 0) {
+          this.rightSliderRef.slickPrev();
+        }
       },
       prevArrow: (
         <LeftSliderArrow
           givenClass={this.decorateCSS("left-slider-button")}
           customFunction={() => {
-            this.rightSliderRef.slickNext();
+            if (rightSliderItems.length > 0) {
+              this.rightSliderRef.slickNext();
+            }
           }}
           decorateIcon={decorateIcon}
           icon={this.getPropValue("leftSliderIcon")}
@@ -309,13 +327,17 @@ class Header12 extends BaseHeader {
     const rightSliderSettings = {
       ...settings,
       beforeChange: (oldIndex: number, newIndex: number) => {
-        this.leftSliderRef.slickPrev();
+        if (leftSliderItems.length > 0) {
+          this.leftSliderRef.slickPrev();
+        }
       },
       nextArrow: (
         <RightSliderArrow
           givenClass={this.decorateCSS("right-slider-button")}
           customFunction={() => {
-            this.leftSliderRef.slickPrev();
+            if (leftSliderItems.length > 0) {
+              this.leftSliderRef.slickPrev();
+            }
           }}
           decorateIcon={decorateIcon}
           icon={this.getPropValue("rightSliderIcon")}
@@ -323,16 +345,11 @@ class Header12 extends BaseHeader {
       ),
     };
 
-    const leftSliderItems = this.castToObject<SliderItem[]>("leftSliderItems");
-    const rightSliderItems =
-      this.castToObject<SliderItem[]>("rightSliderItems");
-
-    const showOverlay = this.getPropValue("overlay");
-
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("slider-container")}>
+
             {leftSliderItems.length > 0 && (
               <ComposerSlider
                 className={`${this.decorateCSS("left-slider")}
@@ -352,7 +369,7 @@ class Header12 extends BaseHeader {
                         <img
                           className={this.decorateCSS("slider-item-image")}
                           src={item.image}
-                          alt={this.castToString(item.text)}
+                          alt={this.getPropValue("leftSliderIcon")}
                         />
                         {showOverlay && (
                           <div className={this.decorateCSS("image-overlay")} />
@@ -390,7 +407,7 @@ class Header12 extends BaseHeader {
                         <img
                           className={this.decorateCSS("slider-item-image")}
                           src={item.image}
-                          alt={this.castToString(item.text)}
+                          alt={this.getPropValue("rightSliderIcon")}
                         />
                         {showOverlay && (
                           <div className={this.decorateCSS("image-overlay")} />
