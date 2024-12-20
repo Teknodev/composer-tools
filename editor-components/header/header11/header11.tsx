@@ -57,18 +57,12 @@ class Header11 extends BaseHeader {
   }
 
   render() {
-
-    const styling = {
-      backgroundImage: `url(${this.getPropValue("backgroundImage")})`,
-    }
-
-    const Image = this.getPropValue("backgroundImage") ? true : false;
-
     const aligment = Base.getContentAlignment();
+    const hasLeft = this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("description")) || this.castToString(this.getPropValue("linktext"));
 
     return (
       <Base.Container className={Image ? this.decorateCSS("container") : this.decorateCSS("container-noimage")} isFull="true">
-        {(this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("description")) || this.castToString(this.getPropValue("linktext"))) && (
+        {(hasLeft) && (
           <div className={this.decorateCSS("box")}>
             <Base.MaxContent className={this.decorateCSS("max-content")}>
               <Base.VerticalContent className={this.decorateCSS("content")}>
@@ -94,7 +88,7 @@ class Header11 extends BaseHeader {
           </div>
         )}
         {this.getPropValue("backgroundImage") && (
-          <div className={this.decorateCSS("right")}>
+          <div className={(hasLeft) ? this.decorateCSS("right") : this.decorateCSS("right-no-left")}>
             <div className={this.decorateCSS("image-wrapper")}>
               <img src={this.getPropValue("backgroundImage")} alt={this.getPropValue("backgroundImage")} className={this.decorateCSS("image")} />
             </div>

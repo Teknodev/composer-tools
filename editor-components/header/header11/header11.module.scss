@@ -36,7 +36,7 @@
       }
     }
   }
-  .right{
+  .right, .right-no-left{
     flex: 2;
     height: 100%;
     position: relative;
@@ -73,16 +73,16 @@
       }
     }
   }
+  .right-no-left{
+    .icon-box {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-  .container-noimage {
-    height: fit-content !important;
-    flex-direction: row !important;
-    .content {
-      width: 100% !important;
-    }
-  }
   .container, .container-noimage {
     flex-direction: column-reverse;
     .box {
@@ -97,7 +97,7 @@
         }
       }
     }
-    .right{
+    .right, .right-no-left{
       overflow: hidden;
       .icon-box {
         left: 50%;
@@ -113,6 +113,7 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container, .container-noimage {
+    gap: 0px;
     .box {
       width: 100%;
       .max-content {
@@ -124,7 +125,7 @@
         }
       }
     }
-    .right{
+    .right, .right-no-left{
       .icon-box {
         .icon-wrapper{
           width: 70px;
