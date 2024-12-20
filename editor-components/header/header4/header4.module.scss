@@ -16,7 +16,7 @@
 
 .container {
   padding: 0 !important;
-  background-color: var(--composer-html-background);
+  background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
   display: flex;
   align-items: center;
   overflow-y: scroll;
@@ -59,79 +59,65 @@
       position: absolute;
       bottom: var(--composer-gap-md);
       background: var(--composer-font-color-secondary);
-      right: 80px;
-      width: 40%;
+      right: var(--composer-gap-xl);
+      width: 30%;
 
       .box {
-        padding: var(--composer-gap-lg);
+        padding:calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
         display: flex;
         gap: var(--composer-gap-sm);
         flex-direction: column;
-
+        gap: var(--composer-gap-md);
         .heading {
           display: flex;
           flex-direction: column;
-          align-items: flex-start;
-          padding: var(--composer-gap-sm) 0 !important;
-
+          gap: var(--composer-gap-md);
           .sub-heading-container {
-            letter-spacing: 3px;
             font-size: 1rem;
-            margin: 0;
             color: var(--composer-font-color-primary);
             display: flex;
-            padding: var(--composer-gap-sm) 0;
-            flex-wrap: nowrap;
-
+            gap: var(--composer-gap-sm);
+            align-items: center;
             .sub-heading-line {
               height: 1px;
-              background-color: rgba(var(--composer-font-color-primary-rgb), 0.5);
-              vertical-align: middle;
+              background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
               width: 4rem;
-              margin-right: var(--composer-gap-sm);
+              margin: 0px;
             }
-
             .sub-heading-title {
               flex: 1;
-              font-size: 1rem;
-              word-break: break-word;
+              font-size: 1.5rem;
               color: var(--composer-font-color-primary);
               @include textEllipsis(2);
             }
           }
-
           .title {
-            font-size: 3rem;
-            letter-spacing: 2px;
-            margin: 0;
-            word-break: break-word;
+            font-size: 3.5rem;
+            margin: 0;         
             color: var(--composer-font-color-primary);
             @include textEllipsis(2);
           }
         }
 
         .desc {
-          line-height: 1.6;
-          display: block;
           margin: 0;
-          font-size: 1rem;
-          word-break: break-word;
+          font-size: 1.5rem;
           color: var(--composer-font-color-primary);
           max-height: 20rem;
           overflow: auto;
         }
 
         .note {
-          font-size: 1rem;
-          letter-spacing: 1px;
+          font-size: 1.5rem;
           color: var(--composer-primary-color);
-          word-break: break-word;
           margin: 0;
           @include textEllipsis(2);
         }
 
         .button-container {
-          margin-top: var(--composer-gap-sm);
+          .button{
+            content: "";
+          }
         }
       }
     }
@@ -139,30 +125,31 @@
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-  .card {
-    width: 45% !important;
-
-    .box {
-      .heading {
-        .sub-heading-container {
-          .sub-heading-line {
-            width: 3rem !important;
+  .container{
+    .max-content{
+      .card {
+        width: 50%;
+        .box {
+          .heading {
+            .sub-heading-container {
+              .sub-heading-line {
+                width: 3rem;
+              }
+              .sub-heading-title {
+                font-size: 1rem;
+              }
+            }
+            .title {
+              font-size: 2rem;
+              letter-spacing: 2px;
+            }
           }
-
-          .sub-heading-title {
-            font-size: 1rem !important;
+    
+          .desc,
+          .note {
+            font-size: 1rem;
           }
         }
-
-        .title {
-          font-size: 2rem !important;
-          letter-spacing: 2px;
-        }
-      }
-
-      .desc,
-      .note {
-        font-size: 1rem !important;
       }
     }
   }
@@ -171,48 +158,39 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     height: fit-content;
-
+    padding: 20px !important;
     .max-content {
       display: flex;
       flex-direction: column;
-    }
-  }
+        .image-container {
 
-  .card {
-    border-radius: 0 !important;
-    bottom: 0 !important;
-    position: relative !important;
-    transform: none !important;
-    right: 0px !important;
-    padding-top: 0;
-    padding-bottom: 0;
-    width: auto !important;
-
-    .box {
-      padding: var(--composer-gap-md) !important;
-
-      .heading {
-        .sub-heading-container {
-          .sub-heading-line {
-            display: none;
+          .image {
+            scale: 0;
+            height: auto;
+            transform: none !important;
+          }
+        }
+      .card {
+        bottom: 0 ;
+        position: relative ;
+        transform: none ;
+        right: 0px ;
+        width: auto ;
+    
+        .box {
+          padding: var(--composer-gap-md) ;
+          .heading {
+            .sub-heading-container {
+              .sub-heading-line {
+                display: none;
+              }
+            }
+          }
+          .desc{
+            max-height: unset !important;
           }
         }
       }
-
-      .desc{
-        max-height: unset !important;
-      }
-    }
-  }
-
-  .image-container {
-    flex: 1;
-    height: 50vh !important;
-
-    .image {
-      scale: 0;
-      height: auto;
-      transform: none !important;
     }
   }
 }

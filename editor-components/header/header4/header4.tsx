@@ -71,7 +71,6 @@ class Header4 extends BaseHeader {
       displayer: "Image Animation",
       value: true,
     });
-
     this.setComponentState("scrollY", 1);
   }
 
@@ -103,7 +102,6 @@ class Header4 extends BaseHeader {
         up: scrollY / 25,
         down: -(scrollY / 50),
       };
-
       return {
         transform: `translate(0%, ${transform[direction]}%) translate3d(0px, 0px, 0px)`,
       };
@@ -111,9 +109,8 @@ class Header4 extends BaseHeader {
 
     return (
       <Base.Container
-        className={`${this.decorateCSS(`container`)} ${
-          !imageAnm && this.decorateCSS("no-image-anm")
-        }`}
+        className={`${this.decorateCSS(`container`)} ${!imageAnm && this.decorateCSS("no-image-anm")
+          }`}
         onScroll={this.handleScroll}
         isFull={true}
       >
@@ -121,10 +118,9 @@ class Header4 extends BaseHeader {
           {image && (
             <div className={this.decorateCSS("image-container")}>
               <img
-                alt=""
-                className={`${this.decorateCSS("image")} ${
-                  !imageAnm && this.decorateCSS("no-img-anm")
-                }`}
+                alt={image}
+                className={`${this.decorateCSS("image")} ${!imageAnm && this.decorateCSS("no-img-anm")
+                  }`}
                 src={image}
                 style={getStyle("up")}
               />
@@ -153,7 +149,7 @@ class Header4 extends BaseHeader {
                 {buttonText && (
                   <div className={this.decorateCSS("button-container")}>
                     <ComposerLink path={card.buttonLink}>
-                      <Base.Button className={this.decorateCSS("button")}>{buttonText}</Base.Button>
+                      <Base.Button className={this.decorateCSS("button")}>{card.buttonText}</Base.Button>
                     </ComposerLink>
                   </div>
                 )}
