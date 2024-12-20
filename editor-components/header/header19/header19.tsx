@@ -252,9 +252,9 @@ class Header19 extends BaseHeader {
                     {this.castToString(itemLeft.button.buttontext) &&
                       <div>
                         <ComposerLink path={itemLeft.button.buttonurl}>
-                          <button className={this.decorateCSS("button")}>
+                          <Base.Button className={this.decorateCSS("button")}>
                             {itemLeft.button.buttontext}
-                          </button>
+                          </Base.Button>
                         </ComposerLink>
                       </div>
                     }
@@ -283,9 +283,9 @@ class Header19 extends BaseHeader {
                       {this.castToString(itemRight.button.buttontext) &&
                         <div>
                           <ComposerLink path={itemRight.button.buttonurl}>
-                            <button className={this.decorateCSS("button")}>
+                            <Base.Button className={this.decorateCSS("button")}>
                               {itemRight.button.buttontext}
-                            </button>
+                            </Base.Button>
                           </ComposerLink>
                         </div>
                       }
@@ -297,7 +297,7 @@ class Header19 extends BaseHeader {
 
             <div className={this.decorateCSS("bottom")}>
               {itemBottomLeft.visibility &&
-                <div className={this.decorateCSS("item")}>
+                <div className={`${this.decorateCSS("item")} ${this.decorateCSS("bottom-left")}`}>
                   {itemBottomLeft.image &&
                     <div className={this.decorateCSS("background-image")}>
                       <img src={itemBottomLeft.image} alt={itemBottomLeft.title} />
@@ -313,9 +313,9 @@ class Header19 extends BaseHeader {
                       {itemBottomLeft.button.buttontext &&
                         <div>
                           <ComposerLink path={itemBottomLeft.button.buttonurl}>
-                            <button className={this.decorateCSS("button")}>
+                            <Base.Button className={this.decorateCSS("button")}>
                               {itemBottomLeft.button.buttontext}
-                            </button>
+                            </Base.Button>
                           </ComposerLink>
                         </div>
                       }
@@ -324,7 +324,7 @@ class Header19 extends BaseHeader {
                 </div>
               }
               {itemBottomRight.visibility &&
-                <div className={this.decorateCSS("item")}>
+                <div className={`${this.decorateCSS("item")} ${this.decorateCSS("bottom-right")}`}>
                   {itemBottomRight.image &&
                     <div className={this.decorateCSS("background-image")}>
                       <img
@@ -345,9 +345,9 @@ class Header19 extends BaseHeader {
                       {this.castToString(itemBottomRight.button.buttontext) &&
                         <div>
                           <ComposerLink path={itemBottomRight.button.buttonurl}>
-                            <button className={this.decorateCSS("button")}>
+                            <Base.Button className={this.decorateCSS("button")}>
                               {itemBottomRight.button.buttontext}
-                            </button>
+                            </Base.Button>
                           </ComposerLink>
                         </div>
                       }
