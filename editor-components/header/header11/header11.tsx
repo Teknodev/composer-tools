@@ -34,7 +34,7 @@ class Header11 extends BaseHeader {
       type: "page",
       key: "linkpage",
       displayer: "Link Page",
-      value: ""
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e77bd0181a1002c334f66?alt=media&timestamp=1719564238038"
     })
 
     this.addProp({
@@ -42,7 +42,13 @@ class Header11 extends BaseHeader {
       key: "icon",
       displayer: "Icon",
       value: "IoMdPlay"
-    })
+    });
+    this.addProp({
+      type: "icon",
+      key: "exitButton",
+      displayer: "Exit Button",
+      value: "IoMdClose"
+    });
 
     this.addProp({
       type: "image",
@@ -50,22 +56,40 @@ class Header11 extends BaseHeader {
       displayer: "Background Image",
       value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675aa2fe0655f8002ca633bf?alt=media"
     })
+    this.setComponentState("isVideoModalOpen", false);
+    this.setComponentState("videoUrl", null);
   }
 
   getName(): string {
     return "Header 11";
   }
 
+  handlePlayVideo = () => {
+    const selectedVideo = this.getPropValue("linkpage");
+
+    if (selectedVideo) {
+      this.setComponentState("isVideoModalOpen", true);
+      this.setComponentState("videoUrl", selectedVideo);
+    }
+  };
+
+  handleCloseVideoModal = () => {
+    this.setComponentState("isVideoModalOpen", false);
+    this.setComponentState("videoUrl", null);
+  };
+
+
+
+
   render() {
-    const aligment = Base.getContentAlignment();
     const hasLeft = this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("description")) || this.castToString(this.getPropValue("linktext"));
 
     return (
-      <Base.Container className={Image ? this.decorateCSS("container") : this.decorateCSS("container-noimage")} isFull="true">
+      <Base.Container className={this.decorateCSS("container")} isFull="true">
         {(hasLeft) && (
           <div className={this.decorateCSS("box")}>
             <Base.MaxContent className={this.decorateCSS("max-content")}>
-              <Base.VerticalContent className={this.decorateCSS("content")}>
+              <Base.VerticalContent className={this.getPropValue("backgroundImage") ? this.decorateCSS("content") : this.decorateCSS("content-no-image")}>
                 {this.castToString(this.getPropValue("title")) && (
                   <Base.SectionTitle className={this.decorateCSS("title")}>
                     {this.getPropValue("title")}
@@ -78,9 +102,9 @@ class Header11 extends BaseHeader {
                 )}
                 {this.castToString(this.getPropValue("linktext")) && (
                   <ComposerLink path={this.getPropValue("linkpage")}>
-                    <Base.P className={aligment == "center" ? this.decorateCSS("link-text-center") : this.decorateCSS("link-text")}>
+                    <Base.Button className={this.decorateCSS("button")}>
                       {this.getPropValue("linktext")}
-                    </Base.P>
+                    </Base.Button>
                   </ComposerLink>
                 )}
               </Base.VerticalContent>
@@ -96,11 +120,42 @@ class Header11 extends BaseHeader {
               <div className={this.decorateCSS("icon-box")}>
                 <div className={this.decorateCSS("icon-wrapper")}>
                   <div className={this.decorateCSS("icon")}>
-                    <ComposerIcon name={this.getPropValue("icon")} />
+                    <ComposerIcon name={this.getPropValue("icon")} propsIcon={{
+                      className: this.decorateCSS("button"),
+                      onClick: () => this.handlePlayVideo(),
+                    }} />
                   </div>
                 </div>
               </div>
             )}
+          </div>
+        )}
+
+        {this.getComponentState("isVideoModalOpen") && (
+          <div className={this.decorateCSS("video-modal")}>
+            <div
+              className={this.decorateCSS("video-overlay")}
+              onClick={this.handleCloseVideoModal}
+            ></div>
+            <div className={this.decorateCSS("video-content")}>
+              <button
+                className={this.decorateCSS("close-button-wrapper")}
+                onClick={this.handleCloseVideoModal}
+              >
+                <ComposerIcon name={this.getPropValue("exitButton")}
+                  propsIcon={{
+                    className: this.decorateCSS("close-button"),
+                  }}
+                />
+              </button>
+
+              <video
+                src={this.getComponentState("videoUrl")}
+                controls
+                className={this.decorateCSS("video-player")}
+                autoPlay
+              />
+            </div>
           </div>
         )}
       </Base.Container>
