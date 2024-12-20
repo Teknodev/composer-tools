@@ -210,13 +210,6 @@
         gap: var(--composer-gap-md);
 
         .items {
-          .header,
-          .list-group {
-            flex: 1;
-            min-width: 300px;
-            max-width: 310px;
-            width: 100%;
-          }
           .header {
             align-items: center;
           }
