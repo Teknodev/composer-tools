@@ -2,40 +2,280 @@ import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseFooter } from "../../EditorComponent";
 import styles from "./footer9.module.scss";
+import { Base } from "../../../composer-base-components/base/base";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
+type link = {
+  title: string,
+  page: string,
+  tag: boolean,
+}
+
+type icon = {
+  title: string,
+  page: string,
+  icon: string,
+}
+
+type page = {
+  title: string,
+  page: string,
+}
 
 class Footer9Page extends BaseFooter {
   constructor(props?: any) {
     super(props, styles);
 
     this.addProp({
+      type: "image",
+      key: "logo",
+      displayer: "Logo",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6762cc190655f8002ca8c66b?alt=media",
+    });
+    this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Company Name",
+      value:
+        "Join our newsletter to stay up to date on features and realases",
     });
     this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
       value:
-        "We enjoy talking to our clients and sharing useful content. Follow us on social media and be happy!",
+        "During this phase to design is developed to meet the reuired technical standards",
     });
     this.addProp({
-      type: "image",
-      key: "background-img",
-      displayer: "Background Image",
+      type: "string",
+      key: "buttonText",
+      displayer: "Button Text",
       value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661ab05bd2970002c6274d2?alt=media&timestamp=1719483639151",
+        "Subscribe",
     });
     this.addProp({
-        type: "string",
-        key: "under-text",
-        displayer: "Text",
-        value:
-          "Email us: hello@mysite.com",
-      });
+      type: "page",
+      key: "buttonPage",
+      displayer: "Button Page",
+      value:
+        "",
+    });
+    this.addProp({
+      type: "string",
+      key: "tagTitle",
+      displayer: "Tag Title",
+      value:
+        "HIRING",
+    });
 
     this.addProp({
+        type: "array",
+        key: "links",
+        displayer: "Links",
+        value: [
+          {
+            type: "object",
+            key: "item",
+            displayer: "Item",
+            value: [
+              {
+                type: "string",
+                key: "title",
+                displayer: "Title",
+                value: "Contact"
+              },
+              {
+                type: "page",
+                key: "page",
+                displayer: "Link",
+                value: ""
+              },
+              {
+                type: "boolean",
+                key: "tag",
+                displayer: "Tag",
+                value: false,
+              },
+            ],
+          },
+          {
+            type: "object",
+            key: "item",
+            displayer: "Item",
+            value: [
+              {
+                type: "string",
+                key: "title",
+                displayer: "Title",
+                value: "Blog"
+              },
+              {
+                type: "page",
+                key: "page",
+                displayer: "Link",
+                value: ""
+              },
+              {
+                type: "boolean",
+                key: "tag",
+                displayer: "Tag",
+                value: false,
+              },
+            ],
+          },
+          {
+            type: "object",
+            key: "item",
+            displayer: "Item",
+            value: [
+              {
+                type: "string",
+                key: "title",
+                displayer: "Title",
+                value: "Out Story"
+              },
+              {
+                type: "page",
+                key: "page",
+                displayer: "Link",
+                value: ""
+              },
+              {
+                type: "boolean",
+                key: "tag",
+                displayer: "Tag",
+                value: false,
+              },
+            ],
+          },
+          {
+            type: "object",
+            key: "item",
+            displayer: "Item",
+            value: [
+              {
+                type: "string",
+                key: "title",
+                displayer: "Title",
+                value: "Help centre"
+              },
+              {
+                type: "page",
+                key: "page",
+                displayer: "Link",
+                value: ""
+              },
+              {
+                type: "boolean",
+                key: "tag",
+                displayer: "Tag",
+                value: false,
+              },
+            ],
+          },
+          {
+            type: "object",
+            key: "item",
+            displayer: "Item",
+            value: [
+              {
+                type: "string",
+                key: "title",
+                displayer: "Title",
+                value: "Careers"
+              },
+              {
+                type: "page",
+                key: "page",
+                displayer: "Link",
+                value: ""
+              },
+              {
+                type: "boolean",
+                key: "tag",
+                displayer: "Tag",
+                value: true,
+              },
+            ],
+          },
+          {
+            type: "object",
+            key: "item",
+            displayer: "Item",
+            value: [
+              {
+                type: "string",
+                key: "title",
+                displayer: "Title",
+                value: "Changelong"
+              },
+              {
+                type: "page",
+                key: "page",
+                displayer: "Link",
+                value: ""
+              },
+              {
+                type: "boolean",
+                key: "tag",
+                displayer: "Tag",
+                value: false,
+              },
+            ],
+          },
+          {
+            type: "object",
+            key: "item",
+            displayer: "Item",
+            value: [
+              {
+                type: "string",
+                key: "title",
+                displayer: "Title",
+                value: "Community"
+              },
+              {
+                type: "page",
+                key: "page",
+                displayer: "Link",
+                value: ""
+              },
+              {
+                type: "boolean",
+                key: "tag",
+                displayer: "Tag",
+                value: false,
+              },
+            ],
+          },
+          {
+            type: "object",
+            key: "item",
+            displayer: "Item",
+            value: [
+              {
+                type: "string",
+                key: "title",
+                displayer: "Title",
+                value: "Guidelines"
+              },
+              {
+                type: "page",
+                key: "page",
+                displayer: "Link",
+                value: ""
+              },
+              {
+                type: "boolean",
+                key: "tag",
+                displayer: "Tag",
+                value: false,
+              },
+            ],
+          },
+        ],
+      });
+      this.addProp({
         type: "array",
         key: "icons",
         displayer: "Icons",
@@ -46,17 +286,22 @@ class Footer9Page extends BaseFooter {
             displayer: "Item",
             value: [
               {
-                type: "image",
-                key: "icon",
-                value:
-                  "https://totalpng.com//public/uploads/preview/facebook-grey-logo-png-hd-copy-11656657462jfylzawrgd.png",
-                displayer: "Icon",
+                type: "string",
+                key: "title",
+                displayer: "Title",
+                value: "Twitter"
               },
               {
                 type: "page",
-                key: "link",
-                value: "google.com",
-                displayer: "Navigate To",
+                key: "page",
+                displayer: "Link",
+                value: ""
+              },
+              {
+                type: "icon",
+                key: "icon",
+                displayer: "Icon",
+                value: "FaTwitter",
               },
             ],
           },
@@ -66,17 +311,22 @@ class Footer9Page extends BaseFooter {
             displayer: "Item",
             value: [
               {
-                type: "image",
-                key: "icon",
-                value:
-                  "https://totalpng.com//public/uploads/preview/youtube-grey-logo-png-hd-copy-11656657528pafryryqkv.png",
-                displayer: "Icon",
+                type: "string",
+                key: "title",
+                displayer: "Title",
+                value: "Instagram"
               },
               {
                 type: "page",
-                key: "link",
-                value: "google.com",
-                displayer: "Navigate To",
+                key: "page",
+                displayer: "Link",
+                value: ""
+              },
+              {
+                type: "icon",
+                key: "icon",
+                displayer: "Icon",
+                value: "FaInstagram",
               },
             ],
           },
@@ -86,17 +336,55 @@ class Footer9Page extends BaseFooter {
             displayer: "Item",
             value: [
               {
-                type: "image",
-                key: "icon",
-                value:
-                  "https://totalpng.com//public/uploads/preview/vimeo-grey-logo-png-hd-copy-11656657514xbjrlcikez.png",
-                displayer: "Icon",
+                type: "string",
+                key: "title",
+                displayer: "Title",
+                value: "Linkedin"
               },
               {
                 type: "page",
-                key: "link",
-                value: "google.com",
-                displayer: "Navigate To",
+                key: "page",
+                displayer: "Link",
+                value: ""
+              },
+              {
+                type: "icon",
+                key: "icon",
+                displayer: "Icon",
+                value: "FaLinkedin",
+              },
+            ],
+          },
+        ],
+      });
+      this.addProp({
+        type: "string",
+        key: "text",
+        displayer: "Text",
+        value:
+          "© 2024 TeknoDev",
+      });
+      this.addProp({
+        type: "array",
+        key: "pages",
+        displayer: "Pages",
+        value: [
+          {
+            type: "object",
+            key: "item",
+            displayer: "Item",
+            value: [
+              {
+                type: "string",
+                key: "title",
+                displayer: "Title",
+                value: "Terms of Use"
+              },
+              {
+                type: "page",
+                key: "page",
+                displayer: "Link",
+                value: ""
               },
             ],
           },
@@ -106,37 +394,16 @@ class Footer9Page extends BaseFooter {
             displayer: "Item",
             value: [
               {
-                type: "image",
-                key: "icon",
-                value:
-                  "https://totalpng.com//public/uploads/preview/instagram-grey-logo-png-hd-copy-11656657483bsurpsft3i.png",
-                displayer: "Icon",
+                type: "string",
+                key: "title",
+                displayer: "Title",
+                value: "Privacy Policy"
               },
               {
                 type: "page",
-                key: "link",
-                value: "google.com",
-                displayer: "Navigate To",
-              },
-            ],
-          },
-          {
-            type: "object",
-            key: "item",
-            displayer: "Item",
-            value: [
-              {
-                type: "image",
-                key: "icon",
-                value:
-                  "https://totalpng.com//public/uploads/preview/linkedin-grey-logo-png-hd-copy-11656657480wkwk802dka.png",
-                displayer: "Icon",
-              },
-              {
-                type: "page",
-                key: "link",
-                value: "google.com",
-                displayer: "Navigate To",
+                key: "page",
+                displayer: "Link",
+                value: ""
               },
             ],
           },
@@ -148,34 +415,89 @@ class Footer9Page extends BaseFooter {
   }
 
   render() {
+    const logo = this.getPropValue("logo");
+    const title = this.castToString(this.getPropValue("title"));
+    const description = this.castToString(this.getPropValue("description"));
+    const buttonText = this.castToString(this.getPropValue("buttonText"));
+    const buttonPage = this.getPropValue("buttonPage");
+    const tagTitle = this.castToString(this.getPropValue("tagTitle"));
+    const text = this.castToString(this.getPropValue("text"));
+
+    const links = this.castToObject<link[]>("links");
+    const icons = this.castToObject<icon[]>("icons");
+    const pages = this.castToObject<page[]>("pages");
+
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("background-image")}>
-            <img
-              src={this.getPropValue("background-img")}
-              alt="backgroundPhoto"
-              className={this.decorateCSS("img")}
-            />
-          </div>
-          <div className={this.decorateCSS("content")}>
-            <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
-            <h4 className={this.decorateCSS("description")}>{this.getPropValue("description")}</h4>
-            <div className={this.decorateCSS("social-links")}>
-            {this.getPropValue("icons").map((icon: any) => {
-                return (
-                  <ComposerLink path={icon.value[1].value}>
-                    <img src={icon.value[0].value} width={50} height={50} alt="icon-svg" />
-                  </ComposerLink>
-                );
-              })}
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <div className={this.decorateCSS("section")}>
+            {logo && (
+              <img src={logo} alt="logo" className={this.decorateCSS("logo")}/>
+            )}
+            <Base.VerticalContent className={this.decorateCSS("vertical")}>
+              {title && (
+                <Base.H1 className={this.decorateCSS("header")}>
+                  {title}
+                </Base.H1>
+              )}
+              {description && (
+                <Base.P className={this.decorateCSS("description")}>
+                  {description}
+                </Base.P>
+              )}
+            </Base.VerticalContent>
+            {buttonText && (
+              <ComposerLink path={buttonPage}>
+                <Base.Button>{buttonText}</Base.Button>
+              </ComposerLink>
+            )}
+            {links.length > 0 && (
+              <div className={this.decorateCSS("list-group")}>
+                {links.map((item: link, index: number) => {
+                  return(
+                    <ComposerLink className={this.decorateCSS("list-item")} path={item.page}>
+                      <span>{item.title}</span>
+                      {item.tag && tagTitle && (
+                        <span className={this.decorateCSS("tag")}>
+                          {tagTitle}
+                        </span>
+                      )}
+                    </ComposerLink>
+                  );
+                })}
               </div>
-              <div className={this.decorateCSS("subtext")}>
-                <p className={this.decorateCSS("under-text")}>{this.getPropValue("under-text")}</p>
+            )}
+            {icons.length > 0 && (
+              <div className={this.decorateCSS("list-group")}>
+                {icons.map((item: icon, index: number) => {
+                  return(
+                    <ComposerLink className={this.decorateCSS("list-item")} path={item.page}>
+                      <div className={this.decorateCSS("icon")}>
+                        <ComposerIcon name={item.icon} />
+                      </div>
+                      <span>{item.title}</span>
+                    </ComposerLink>
+                  );
+                })}
               </div>
+            )}
+            <div className={this.decorateCSS("lower")}>
+              {text && <span>{text}</span>}
+              {pages.length > 0 && (
+                <div className={this.decorateCSS("list")}>
+                  {pages.map((item: page, index: number) => {
+                    return(
+                      <ComposerLink path={item.page}>
+                        <span className={this.decorateCSS("item")}>{item.title}</span>
+                      </ComposerLink>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
           </div>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
