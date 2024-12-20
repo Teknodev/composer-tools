@@ -4,14 +4,19 @@ import { BaseHeader } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
-type Item = {
-  image: string;
+import { Base } from "../../../composer-base-components/base/base";
+
+type Slide = {
   title: string;
   subtitle: string;
   description: string;
   description_title: string;
+  image: string;
+};
+
+type Social = {
+  url: string;
   text: string;
-  cover_image: string;
 };
 
 class Header18 extends BaseHeader {
@@ -19,20 +24,35 @@ class Header18 extends BaseHeader {
     super(props, styles);
 
     this.addProp({
+      type: "image",
+      key: "cover",
+      displayer: "Background Image",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194c2bd2970002c625e7e?alt=media&timestamp=1719483639150"
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "showPagination",
+      displayer: "Show Pagination",
+      value: true
+    });
+
+    this.addProp({
       type: "icon",
       key: "prev_icon",
       displayer: "Prev icon",
-      value: "PiArrowLeftThin",
+      value: "FaArrowLeftLong",
     });
     this.addProp({
       type: "icon",
       key: "next_icon",
       displayer: "Next icon",
-      value: "PiArrowRightThin",
+      value: "FaArrowRightLong",
     });
+
     this.addProp({
       type: "array",
-      displayer: "Slider Carousel",
+      displayer: "Slider Items",
       key: "slider",
       value: [
         {
@@ -48,7 +68,7 @@ class Header18 extends BaseHeader {
             },
             {
               type: "string",
-              displayer: "Subitle",
+              displayer: "Subtitle",
               key: "subtitle",
               value: "visual art forms",
             },
@@ -63,20 +83,14 @@ class Header18 extends BaseHeader {
               displayer: "Description",
               key: "description",
               value:
-                "Painting is the application of pigments to a support surface that establishes an image,design or decoration.",
+                "Painting is the application of pigments to a support surface that establishes an image, design or decoration.",
             },
             {
               type: "image",
-              displayer: "İmage",
+              displayer: "Image",
               key: "image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194ffbd2970002c625ef2?alt=media&timestamp=1719483639150",
-            },
-            {
-              type: "image",
-              key: "cover_image",
-              displayer: "Background Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194c2bd2970002c625e7e?alt=media&timestamp=1719483639150",
             },
           ],
         },
@@ -113,16 +127,10 @@ class Header18 extends BaseHeader {
             },
             {
               type: "image",
-              displayer: "İmage",
+              displayer: "Image",
               key: "image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194c2bd2970002c625e7f?alt=media&timestamp=1719483639150",
-            },
-            {
-              type: "image",
-              key: "cover_image",
-              displayer: "Background Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194c2bd2970002c625e7e?alt=media&timestamp=1719483639150",
             },
           ],
         },
@@ -158,16 +166,10 @@ class Header18 extends BaseHeader {
             },
             {
               type: "image",
-              displayer: "İmage",
+              displayer: "Image",
               key: "image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194ffbd2970002c625ef1?alt=media&timestamp=1719483639150",
-            },
-            {
-              type: "image",
-              key: "cover_image",
-              displayer: "Background Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194c2bd2970002c625e7e?alt=media&timestamp=1719483639150",
             },
           ],
         },
@@ -203,16 +205,10 @@ class Header18 extends BaseHeader {
             },
             {
               type: "image",
-              displayer: "İmage",
+              displayer: "Image",
               key: "image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194ffbd2970002c625ef3?alt=media&timestamp=1719483639150",
-            },
-            {
-              type: "image",
-              key: "cover_image",
-              displayer: "Background Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194c2bd2970002c625e7e?alt=media&timestamp=1719483639150",
             },
           ],
         },
@@ -248,24 +244,19 @@ class Header18 extends BaseHeader {
             },
             {
               type: "image",
-              displayer: "İmage",
+              displayer: "Image",
               key: "image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194ffbd2970002c625ef4?alt=media&timestamp=1719483639150",
-            },
-            {
-              type: "image",
-              key: "cover_image",
-              displayer: "Background Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194c2bd2970002c625e7e?alt=media&timestamp=1719483639150",
             },
           ],
         },
       ],
     });
+
     this.addProp({
       type: "array",
-      key: "icons",
+      key: "socials",
       displayer: "Social Medias",
       value: [
         {
@@ -275,14 +266,14 @@ class Header18 extends BaseHeader {
           value: [
             {
               type: "page",
-              key: "navigate",
-              displayer: "Link",
+              key: "url",
+              displayer: "Url",
               value: "",
             },
             {
               type: "string",
-              key: "name",
-              displayer: "Name",
+              key: "text",
+              displayer: "Text",
               value: "facebook",
             },
           ],
@@ -294,11 +285,16 @@ class Header18 extends BaseHeader {
           value: [
             {
               type: "page",
-              key: "navigate",
-              displayer: "Link",
+              key: "url",
+              displayer: "Url",
               value: "",
             },
-            { type: "string", key: "name", displayer: "Name", value: "instagram" },
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "instagram"
+            },
           ],
         },
         {
@@ -308,11 +304,16 @@ class Header18 extends BaseHeader {
           value: [
             {
               type: "page",
-              key: "navigate",
-              displayer: "Link",
+              key: "url",
+              displayer: "Url",
               value: "",
             },
-            { type: "string", key: "name", displayer: "Name", value: "dribbble" },
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "dribbble"
+            },
           ],
         },
       ],
@@ -335,95 +336,138 @@ class Header18 extends BaseHeader {
       autoplaySpeed: 5000,
       slidesToShow: 1,
       slidesToScroll: 1,
-      beforeChange: (oldIndex: number, newIndex: number) => {
-        if (oldIndex === newIndex) return;
+      beforeChange: (oldIndex: number, index: number) => {
+        if (oldIndex === index) return;
         setTimeout(() => {
-          this.setComponentState("active-index", newIndex);
+          this.setComponentState("active-index", index);
         }, 1200);
       },
     };
 
-    const sliderCount = this.castToObject<Item[]>("slider").length;
+    const slides = this.castToObject<Slide[]>("slider");
+    const sliderCount = slides?.length;
     const progressPercentage = ((this.getComponentState("active-index") + 1) / sliderCount) * 100;
-    
+
+    const socials = this.castToObject<Social[]>("socials");
+
+    const prevIcon = this.getPropValue("prev_icon");
+    const nextIcon = this.getPropValue("next_icon");
+
+    const prevIconExist = !!prevIcon;
+    const nextIconExist = !!nextIcon;
+
+    const renderBottomPage = socials?.length > 0 || prevIconExist || nextIconExist;
+
+    const cover = this.getPropValue("cover");
+
+    const showPagination = !!this.getPropValue("showPagination");
+    const sliderRef = this.getComponentState("slider-ref");
+
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <ComposerSlider
-            {...settings}
-            ref={this.getComponentState("slider-ref")}
-            className={this.decorateCSS("slider-style")}
-          >
-            {this.castToObject<Item[]>("slider").map((item: Item, index: number) => (
-              <div className={this.decorateCSS("slider")} key={index}>
-                {item.cover_image && (
-                  <img className={this.decorateCSS("cover_image")} src={item.cover_image} alt="" />
-                )}
-                <div className={this.decorateCSS("card")}>
-                  <img src={item.image} alt={""} className={this.decorateCSS("image")} />
-                  <div className={this.decorateCSS("content")}>
-                    <div className={this.decorateCSS("text-content")}>
-                      <span className={this.decorateCSS("subtitle")}>{item.subtitle}</span>
-                      <span className={this.decorateCSS("title")}>{item.title}</span>
-                    </div>
-                    <div className={this.decorateCSS("pagination")}>
-                      <span className={this.decorateCSS("active-slide")}>
-                        {(this.getComponentState("active-index") + 1).toString().padStart(2, "0")}
-                      </span>
-                      <div className={this.decorateCSS("progress-bar")}>
-                        <div
-                          className={this.decorateCSS("active")}
-                          style={{ width: `${progressPercentage}%` }}
-                        />
+      <Base.Container
+        isFull={true}
+        className={this.decorateCSS("container")}
+        style={{ background: `url(${cover})` }}
+      >
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          {slides?.length > 0 && (
+            <ComposerSlider
+              {...settings}
+              ref={sliderRef}
+              className={this.decorateCSS("slider")}
+            >
+              {slides.map((item: Slide, index: number) => {
+                const titleExist = this.castToString(item.title);
+                const subtitleExist = this.castToString(item.subtitle);
+
+                const descTitleExist = this.castToString(item.description_title);
+                const descExist = this.castToString(item.description);
+
+                return (
+                  <div className={this.decorateCSS("slide")} key={index}>
+                    <div className={this.decorateCSS("card")}>
+                      {!!item.image && (
+                        <img src={item.image} className={this.decorateCSS("image")} />
+                      )}
+                      <div className={this.decorateCSS("content")}>
+                        {(titleExist || subtitleExist) && (
+                          <div className={this.decorateCSS("text-content")}>
+                            {subtitleExist && (
+                              <Base.H2 className={this.decorateCSS("subtitle")}>{item.subtitle}</Base.H2>
+                            )}
+                            {titleExist && (
+                              <Base.SectionTitle className={this.decorateCSS("title")}>{item.title}</Base.SectionTitle>
+                            )}
+                          </div>
+                        )}
+                        {showPagination && (
+                          <div className={this.decorateCSS("pagination")}>
+                            <span className={this.decorateCSS("active-slide")}>
+                              {(this.getComponentState("active-index") + 1).toString().padStart(2, "0")}
+                            </span>
+                            <div className={this.decorateCSS("progress-bar")}>
+                              <div
+                                className={this.decorateCSS("active")}
+                                style={{ width: `${progressPercentage}%` }}
+                              />
+                            </div>
+                            <span className={this.decorateCSS("slide-count")}>
+                              {sliderCount.toString().padStart(2, "0")}
+                            </span>
+                          </div>
+                        )}
                       </div>
-                      <span className={this.decorateCSS("slide-count")}>
-                        {sliderCount.toString().padStart(2, "0")}
-                      </span>
+                      {(descTitleExist || descExist) && (
+                        <div className={this.decorateCSS("description-div")}>
+                          {descTitleExist && (
+                            <Base.H3 className={this.decorateCSS("description-title")}>
+                              {item.description_title}
+                            </Base.H3>
+                          )}
+                          {descExist && (
+                            <Base.P className={this.decorateCSS("item-description")}>{item.description}</Base.P>
+                          )}
+                        </div>
+                      )}
                     </div>
                   </div>
-                  <div className={this.decorateCSS("description-div")}>
-                    <span className={this.decorateCSS("description_title")}>
-                      {item.description_title}
-                    </span>
-                    <span className={this.decorateCSS("item-description")}>{item.description}</span>
-                  </div>
+                );
+              })}
+            </ComposerSlider>
+          )}
+          {renderBottomPage && (
+            <div className={this.decorateCSS("page-bottom")}>
+              {socials?.length > 0 && (
+                <div className={this.decorateCSS("socials")}>
+                  {socials.map((item: Social, index: number) => (
+                    <ComposerLink path={item.url} key={index}>
+                      <span className={this.decorateCSS("name")}>{item.text}</span>
+                    </ComposerLink>
+                  ))}
                 </div>
-              </div>
-            ))}
-          </ComposerSlider>
-          <div className={this.decorateCSS("page-bottom")}>
-            <div className={this.decorateCSS("icons")}>
-              {this.getPropValue("icons").map((item: any) => (
-                <ComposerLink path={item.getPropValue("navigate")}>
-                  <span className={this.decorateCSS("name")}>{item.getPropValue("name")}</span>
-                </ComposerLink>
-              ))}
+              )}
+              {prevIconExist && (
+                <ComposerIcon
+                  name={this.getPropValue("prev_icon")}
+                  propsIcon={{
+                    className: this.decorateCSS("prev-icon"),
+                    onClick: () => sliderRef.current.slickPrev()
+                  }}
+                />
+              )}
+              {nextIconExist && (
+                <ComposerIcon
+                  name={this.getPropValue("next_icon")}
+                  propsIcon={{
+                    className: this.decorateCSS("next-icon"),
+                    onClick: () => sliderRef.current.slickNext()
+                  }}
+                />
+              )}
             </div>
-            <ComposerIcon
-              name={this.getPropValue("prev_icon")}
-              propsIcon={{
-                className: `${this.decorateCSS("prev-icon")} ${this.decorateCSS("arrow")} ${
-                  !this.getComponentState("display-none") && this.decorateCSS("un-visible")
-                }`,
-                onClick: () => {
-                  this.getComponentState("slider-ref").current.slickPrev();
-                },
-              }}
-            />
-            <ComposerIcon
-              name={this.getPropValue("next_icon")}
-              propsIcon={{
-                className: `${this.decorateCSS("next-icon")} ${this.decorateCSS("arrow")} ${
-                  !this.getComponentState("display-none") && this.decorateCSS("un-visible")
-                }`,
-                onClick: () => {
-                  this.getComponentState("slider-ref").current.slickNext();
-                },
-              }}
-            />
-          </div>
-        </div>
-      </div>
+          )}
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
