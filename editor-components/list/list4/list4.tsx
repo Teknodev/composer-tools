@@ -1,19 +1,13 @@
 import * as React from "react";
 import { BaseList } from "../../EditorComponent";
 import styles from "./list4.module.scss";
+import { Base } from "../../../composer-base-components/base/base";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type Card = {
-  title: string;
   description: string;
-  image: string;
-  subtitle: string;
-};
-
-type Card2 = {
-  title2: string;
-  description2: string;
-  subtitle2: string;
-  image: string;
+  icon: JSX.Element;
+  title: string;
 };
 
 class list4 extends BaseList {
@@ -22,16 +16,16 @@ class list4 extends BaseList {
 
     this.addProp({
       type: "string",
-      key: "title",
-      displayer: "Title",
-      value: "We are delivering beautiful digital products for you.",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Our Services",
     });
 
     this.addProp({
       type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "Our Services",
+      key: "title",
+      displayer: "Title",
+      value: "We are delivering beautiful digital products for you.",
     });
 
     this.addProp({
@@ -48,12 +42,6 @@ class list4 extends BaseList {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "1",
-            },
-            {
-              type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
               value: "Creative Idea",
             },
             {
@@ -64,11 +52,10 @@ class list4 extends BaseList {
                 "Web design encompasses many different skills and disciplines in the production of all web.",
             },
             {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617c20bd2970002c6241eb?alt=media&timestamp=1719483639150",
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaTooth",
             },
           ],
         },
@@ -76,17 +63,11 @@ class list4 extends BaseList {
           type: "object",
           key: "card",
           displayer: "Card",
-          value: [
+          value: [,
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "2",
-            },
-            {
-              type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
               value: "High Creative Minds",
             },
             {
@@ -97,11 +78,10 @@ class list4 extends BaseList {
                 "Web design encompasses many different skills and disciplines in the production of all web.",
             },
             {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617c20bd2970002c6241ec?alt=media&timestamp=1719483639150",
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaPencilAlt",
             },
           ],
         },
@@ -114,12 +94,6 @@ class list4 extends BaseList {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "3",
-            },
-            {
-              type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
               value: "Business Planning",
             },
             {
@@ -130,11 +104,10 @@ class list4 extends BaseList {
                 "Web design encompasses many different skills and disciplines in the production of all web.",
             },
             {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617c20bd2970002c6241ed?alt=media&timestamp=1719483639150",
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaSuitcaseRolling",
             },
           ],
         },
@@ -146,8 +119,14 @@ class list4 extends BaseList {
       key: "itemCount",
       displayer: "Item count in a row",
       value: 3,
-      max: 3,
     });
+    this.addProp({
+      type: "boolean",
+      key: "showIndex",
+      displayer: "Show Index",
+      value: true,
+    });
+
   }
 
   getName(): string {
@@ -156,25 +135,22 @@ class list4 extends BaseList {
 
   render() {
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("header")}>
-            <span className={this.decorateCSS("subtitle")}>
+      <Base.Container className={this.decorateCSS("container")} >
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <Base.VerticalContent>
+            <Base.SectionSubTitle>
               {this.getPropValue("subtitle")}
-            </span>
-            <h2 className={this.decorateCSS("title")}>
+            </Base.SectionSubTitle>
+            <Base.SectionTitle>
               {this.getPropValue("title")}
-            </h2>
-          </div>
-          <div className={this.decorateCSS("card-child")}>
+            </Base.SectionTitle>
+          </Base.VerticalContent>
+          <Base.ListGrid className={this.decorateCSS("card-child")} gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2 }}>
             {this.castToObject<Card[]>("content-card").map(
               (card: any, index: number) => (
                 <div
                   key={index}
                   className={this.decorateCSS("card-item-count")}
-                  style={{
-                    width: 90 / this.getPropValue("itemCount") + "%",
-                  }}
                 >
                   <div className={this.decorateCSS("line-box")}>
                     <div className={this.decorateCSS("line-1")}></div>
@@ -182,29 +158,46 @@ class list4 extends BaseList {
                     <div className={this.decorateCSS("line-3")}></div>
                     <div className={this.decorateCSS("line-4")}></div>
                   </div>
-                  <h5 className={this.decorateCSS("card-title")}>
-                    {card.title}
-                  </h5>
+                  <div className={this.getPropValue("showIndex") ? this.decorateCSS("card-title") : this.decorateCSS("card-title-no-index")}>
+                    {(index + 1).toLocaleString("en-US", {
+                      minimumIntegerDigits: 2,
+                      useGrouping: false,
+                    })}
+                  </div>
                   <div
                     key={`cnt-4-card-${index}`}
                     className={this.decorateCSS("card")}
                   >
                     <div className={this.decorateCSS("color-box")}>
-                      <img alt="server" src={card.image} />
-                      <h4 className={this.decorateCSS("card-subtitle")}>
-                        {card.subtitle}
-                      </h4>
-                      <p className={this.decorateCSS("card-description")}>
-                        {card.description}
-                      </p>
+                      {card.icon && (
+                        <ComposerIcon
+                          name={card.icon}
+                          propsIcon={{
+                            className: this.decorateCSS("icon")
+                          }}
+                        />
+                      )}
+
+                      <div className={this.decorateCSS("card-title-wrapper")}>
+                        {card.title && (
+                          <div className={this.decorateCSS("card-subtitle")}>
+                            {card.title}
+                          </div>
+                        )}
+                        {card.description && (
+                          <div className={this.decorateCSS("card-description")}>
+                            {card.description}
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
               )
             )}
-          </div>
-        </div>
-      </div>
+          </Base.ListGrid>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
