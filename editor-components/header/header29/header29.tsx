@@ -5,6 +5,7 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { Base } from "../../../composer-base-components/base/base";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Form, Formik } from "formik";
+import * as Yup from "yup";
 
 interface ServiceItem {
   title: string;
@@ -133,14 +134,29 @@ class Header29 extends BaseHeader {
         },
       ],
     });
+
+    this.addProp({
+      type: "string",
+      key: "submitText",
+      displayer: "Submit Text",
+      value: "Form successfully submitted!",
+    });
+
+    this.setComponentState(
+      "placeholderText",
+      this.castToString(this.getPropValue("placeholder"))
+    );
   }
+
+  validationSchema = Yup.object().shape({
+    phone: Yup.string().required("Required"),
+  });
 
   getName(): string {
     return "Header 29";
   }
 
   render() {
-
     const button = this.castToObject<ButtonItem>("button");
 
     const title = this.castToString(this.getPropValue("title"));
@@ -150,6 +166,8 @@ class Header29 extends BaseHeader {
     const placeholder = this.castToString(this.getPropValue("placeholder"));
     const buttonText = this.castToString(button.buttonText);
     const showContent = title || description || serviceItems.length > 0;
+
+    const submitText = this.castToString(this.getPropValue("submitText"));
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -163,69 +181,98 @@ class Header29 extends BaseHeader {
             {showContent && (
               <div className={this.decorateCSS("content")}>
                 <Base.VerticalContent>
-                {title && (
-                  <Base.H1 className={this.decorateCSS("title")}> {this.getPropValue("title")}</Base.H1>
-                )}
-                {description && (
-                  <p className={this.decorateCSS("description")}>
-                    {this.getPropValue("description")}
-                  </p>
-                )}
+                  {title && (
+                    <Base.H1 className={this.decorateCSS("title")}>
+                      {this.getPropValue("title")}
+                    </Base.H1>
+                  )}
+                  {description && (
+                    <Base.P className={this.decorateCSS("description")}>
+                      {this.getPropValue("description")}
+                    </Base.P>
+                  )}
                 </Base.VerticalContent>
 
                 {placeholder && buttonText && (
-                    <Formik
-                      initialValues={{ phone: "" }}
-                      onSubmit={(data, { resetForm }) => {
-                        console.log("data", data);
-                        this.insertForm("Call Me Back", data);
-                        resetForm();
-                      }}
-                    >
-                      {({ handleChange, values }) => (
-                        <Form className={this.decorateCSS("form")}>
+                  <Formik
+                    initialValues={{ phone: "" }}
+                    validationSchema={this.validationSchema}
+                    onSubmit={(data, { resetForm }) => {
+                      this.setComponentState("placeholderText", submitText);
+                      this.insertForm("Call Me Back", data);
+                      setTimeout(() => {
+                        const defaultPlaceholder = this.castToString(
+                          this.getPropValue("placeholder")
+                        );
+                        this.setComponentState(
+                          "placeholderText",
+                          defaultPlaceholder
+                        );
+                      }, 2000);
+                      resetForm();
+                    }}
+                  >
+                    {({
+                      handleSubmit,
+                      handleChange,
+                      values,
+                      errors,
+                      touched,
+                    }) => (
+                      <Form
+                        className={this.decorateCSS("form")}
+                        onSubmit={handleSubmit}
+                      >
+                        <div className={this.decorateCSS("input-container")}>
                           <input
-                            placeholder={placeholder}
+                            placeholder={
+                              this.getComponentState("placeholderText") ||
+                              placeholder
+                            }
                             onChange={handleChange}
                             className={this.decorateCSS("input")}
                             type="text"
                             name="phone"
                             value={values.phone}
                           />
-                          {this.castToString(button.buttonText) && (
-                            <Base.Button>
-                              {this.castToString(button.buttonText)}
-                            </Base.Button>
+                          {errors.phone && touched.phone && (
+                            <div className={this.decorateCSS("error")}>
+                              {errors.phone}
+                            </div>
                           )}
-                        </Form>
-                      )}
-                    </Formik>
+                        </div>
 
+                        {this.castToString(button.buttonText) && (
+                          <Base.Button type="submit">
+                            {this.castToString(button.buttonText)}
+                          </Base.Button>
+                        )}
+                      </Form>
+                    )}
+                  </Formik>
                 )}
 
                 {!placeholder && buttonText && (
                   <ComposerLink path={button.url}>
-                    <Base.Button>
-                      {buttonText}
-                    </Base.Button>
+                    <Base.Button>{buttonText}</Base.Button>
                   </ComposerLink>
                 )}
 
                 {serviceItems && (
                   <Base.ListGrid gridCount={{ pc: 3, tablet: 2, phone: 1 }}>
-                      {serviceItems.map((item: any, index: number) => (
+                    {serviceItems.map((item: any, index: number) => (
                       <div className={this.decorateCSS("service-card")}>
                         <div className={this.decorateCSS("service-svg")}>
                           <ComposerIcon name={item.icon} />
                         </div>
-                        <div className={this.decorateCSS("service-title")}>
+                        <Base.H4 className={this.decorateCSS("service-title")}>
                           {item.title}
-                        </div>
-                        <div
+                        </Base.H4>
+                        <Base.P
                           className={this.decorateCSS("service-description")}
                         >
                           {item.description}
-                        </div>
+                        </Base.P>
                       </div>
                     ))}
                   </Base.ListGrid>
@@ -233,11 +280,9 @@ class Header29 extends BaseHeader {
               </div>
             )}
             {image && (
-                <img
-                className={this.decorateCSS("image")}
-                src={this.getPropValue("image")}
-                alt=""
-              />
+              <div className={this.decorateCSS("image-container")}>
+                <img src={this.getPropValue("image")} alt="" />
+              </div>
             )}
           </div>
         </Base.MaxContent>

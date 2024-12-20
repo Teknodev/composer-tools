@@ -1,12 +1,8 @@
 @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
 .container {
-  background-color: var(--composer-html-background);
 
   .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
-
     .wrapper {
       width: 100%;
       display: flex;
@@ -18,11 +14,17 @@
       &.wrapper-reverse {
         flex-flow: row-reverse;
       }
-      .image {
+      .image-container {
         flex: 1;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
       }
       .content {
-        flex: 2;
+        flex: 1.5;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -33,7 +35,7 @@
           flex-direction: row;
           flex-wrap: wrap;
           font-weight: bold;
-          font-size: 7em;
+
           color: var(--composer-font-color-primary);
           .colored-title {
             padding: 0 var(--composer-gap-sm);
@@ -42,7 +44,6 @@
         }
 
         .description {
-          font-size: 1.5em;
           color: var(--composer-tertiary-color);
           margin: 0;
         }
@@ -50,36 +51,52 @@
           display: flex;
           gap: var(--composer-gap-sm);
           width: 100%;
-          .input {
-            border-radius: var(--composer-border-radius-sm);
-            width: 45%;
-            border: var(--composer-font-color-primary) solid 2px;
-            background-color: var(--composer-html-background);
-            outline: none;
-            padding-left: var(--composer-gap-sm);
-            color: var(--composer-font-color-primary);
+          .input-container {
+              position: relative;
+              width: 45%;
+              border-radius: var(--composer-border-radius-sm);
+              border: var(--composer-font-color-primary) solid 2px;
+
+              .input {
+                width: 100%;
+                height: 100%;
+                border: none;
+                background-color: var(--composer-html-background);
+                outline: none;
+                padding-left: var(--composer-gap-sm);
+                color: var(--composer-font-color-primary);
+    
+                &::placeholder {
+                  color: var(--composer-tertiary-color);
+                }
+              }
+              .error {
+                position: absolute;
+                bottom: -20px;
+                left: 0;
+                color: var(--warning);
+              }
           }
+    
         }
 
-          .service-card {
-            gap: var(--composer-gap-sm);
-            display: flex;
-            flex-direction: column;
-            .service-svg {
-              font-size: 2em;
-              color: var(--composer-primary-color);
-            }
-            .service-title {
-              font-weight: bold;
-              font-size: 1.5em;
-              color: var(--composer-font-color-primary);
-            }
-            .service-description {
-              font-size: 1.2em;
-              color: var(--composer-tertiary-color);
-            }
+        .service-card {
+          gap: var(--composer-gap-sm);
+          display: flex;
+          flex-direction: column;
+          .service-svg {
+            font-size: 2rem;
+            color: var(--composer-primary-color);
           }
-
+          .service-title {
+            font-weight: bold;
+            margin: 0;
+            color: var(--composer-font-color-primary);
+          }
+          .service-description {
+            color: var(--composer-tertiary-color);
+          }
+        }
       }
       .content-center {
         align-items: center;
@@ -103,14 +120,14 @@
           flex-direction: column-reverse;
         }
         .content {
-         padding-top: 0;
+          padding-top: 0;
           width: 100%;
           .title {
-            font-size: 4em;
- text-align: center;
+            font-size: 4rem;
+            text-align: center;
           }
           .description {
-            font-size: 1.3em;
+            font-size: 1.3rem;
             text-align: center;
           }
 
@@ -121,22 +138,22 @@
               width: 72%;
             }
             .button {
-              font-size: 0.7em;
+              font-size: 0.7rem;
               font-weight: bold;
             }
           }
-            .service-card {
-              align-items: center;
-              gap: var(--composer-gap-sm);
-              flex: 1;
-              .service-title {
-                font-size: 1.2em;
-              }
-              .service-description {
-                font-size: 1em;
-                text-align: center;
-              }
+          .service-card {
+            align-items: center;
+            gap: var(--composer-gap-sm);
+            flex: 1;
+            .service-title {
+              font-size: 1.2rem;
             }
+            .service-description {
+              font-size: 1rem;
+              text-align: center;
+            }
+          }
         }
         .image {
           height: 470px;
@@ -147,7 +164,7 @@
   }
 }
 
-@container (max-width: #{$composer-phone-width})  {
+@container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
       max-width: var(--composer-content-width);
@@ -162,37 +179,37 @@
         .content {
           width: 100%;
 
-            .title {
-              font-size: 4em;
-              justify-content: center;
-            }
-            .description {
-              width: 100%;
-              font-size: 1.2em;
-            }
-            .form {
-              gap: var(--composer-gap-md);
+          .title {
+            font-size: 4rem;
+            justify-content: center;
+          }
+          .description {
+            width: 100%;
+            font-size: 1.2rem;
+          }
+          .form {
+            gap: var(--composer-gap-md);
 
-              .input {
-                font-size: 1em;
-                border: var(--composer-font-color-primary) solid 1px;
-              }
-              .button {
-                width: 45%;
-                font-size: 0.75em;
-              }
+            .input {
+              font-size: 1rem;
+              border: var(--composer-font-color-primary) solid 1px;
             }
+            .button {
+              width: 45%;
+              font-size: 0.75rem;
+            }
+          }
 
-            .service-card {
-              max-width: 100%;
-              gap: var(--composer-gap-sm);
-              .service-title {
-                font-size: 1.4em;
-              }
-              .service-description {
-                font-size: 1.2em;
-              }
+          .service-card {
+            max-width: 100%;
+            gap: var(--composer-gap-sm);
+            .service-title {
+              font-size: 1.4rem;
             }
+            .service-description {
+              font-size: 1.2rem;
+            }
+          }
         }
         .image {
           height: 350px;
