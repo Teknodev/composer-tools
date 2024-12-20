@@ -5,126 +5,120 @@ import styles from "./footer10.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
-type link = {
-  title: string,
-  page: string,
-}
-
 type icon = {
-  icon: string,
-  page: string,
-}
+  icon: string;
+  page: string;
+};
 
 class Footer10Page extends BaseFooter {
   constructor(props?: any) {
     super(props, styles);
-    this.addProp({
-      type: "boolean",
-      key: "showLine",
-      displayer: "Show Line",
-      value: true,
-    });
+
     this.addProp({
       type: "image",
       key: "logo",
       displayer: "Logo",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6763d3600655f8002ca92e43?alt=media",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6762cc190655f8002ca8c66b?alt=media",
     });
-    this.addProp({
-      type: "string",
-      key: "title",
-      displayer: "Title",
-      value: "Copyright © 2012 - 2024 All rights reserved.",
-    });
-    this.addProp({
-        type: "string",
-        key: "title2",
-        displayer: "Ref Text",
-        value: "TeknoDev"
-    });
+
     this.addProp({
       type: "array",
       key: "links",
-      displayer: "Links",
+      displayer: "Footer Links",
       value: [
         {
           type: "object",
-          key: "item",
-          displayer: "Item",
+          key: "content",
+          displayer: "Content Elements",
           value: [
             {
               type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "About"
+              key: "text",
+              displayer: "Text",
+              value: "About",
             },
             {
               type: "page",
-              key: "page",
-              displayer: "Page",
-              value: ""
+              key: "url",
+              displayer: "Url",
+              value: "",
             },
           ],
         },
         {
           type: "object",
-          key: "item",
-          displayer: "Item",
+          key: "content",
+          displayer: "Content Elements",
           value: [
             {
               type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Company"
+              key: "text",
+              displayer: "Text",
+              value: "Company",
             },
             {
               type: "page",
-              key: "page",
-              displayer: "Page",
-              value: ""
+              key: "url",
+              displayer: "Url",
+              value: "",
             },
           ],
         },
         {
           type: "object",
-          key: "item",
-          displayer: "Item",
+          key: "content",
+          displayer: "Content Elements",
           value: [
             {
               type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Services"
+              key: "text",
+              displayer: "Text",
+              value: "Services",
             },
             {
               type: "page",
-              key: "page",
-              displayer: "Page",
-              value: ""
+              key: "url",
+              displayer: "Url",
+              value: "",
             },
           ],
         },
         {
           type: "object",
-          key: "item",
-          displayer: "Item",
+          key: "content",
+          displayer: "Content Elements",
           value: [
             {
               type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Testimonials"
+              key: "text",
+              displayer: "Text",
+              value: "Testimonials",
             },
             {
               type: "page",
-              key: "page",
-              displayer: "Page",
-              value: ""
+              key: "url",
+              displayer: "Url",
+              value: "",
             },
           ],
         },
       ],
     });
+
+    this.addProp({
+      type: "boolean",
+      key: "line",
+      displayer: "Line",
+      value: true,
+    });
+
+    this.addProp({
+      type: "string",
+      key: "footerText",
+      displayer: "Footer Text",
+      value: "All rights reserved by Blinkpage",
+    });
+
     this.addProp({
       type: "array",
       key: "icons",
@@ -138,15 +132,14 @@ class Footer10Page extends BaseFooter {
             {
               type: "icon",
               key: "icon",
-              value:
-                "BiLogoFacebookCircle",
+              value: "BiLogoFacebookCircle",
               displayer: "Icon",
             },
             {
               type: "page",
               key: "page",
               displayer: "Page",
-              value: ""
+              value: "",
             },
           ],
         },
@@ -158,15 +151,14 @@ class Footer10Page extends BaseFooter {
             {
               type: "image",
               key: "icon",
-              value:
-                "FaTwitter",
+              value: "FaTwitter",
               displayer: "Icon",
             },
             {
               type: "page",
               key: "page",
               displayer: "Page",
-              value: ""
+              value: "",
             },
           ],
         },
@@ -178,15 +170,14 @@ class Footer10Page extends BaseFooter {
             {
               type: "image",
               key: "icon",
-              value:
-                "FaInstagram",
+              value: "FaInstagram",
               displayer: "Icon",
             },
             {
               type: "page",
               key: "page",
               displayer: "Page",
-              value: ""
+              value: "",
             },
           ],
         },
@@ -198,15 +189,14 @@ class Footer10Page extends BaseFooter {
             {
               type: "image",
               key: "icon",
-              value:
-                "FaLinkedin",
+              value: "FaLinkedin",
               displayer: "Icon",
             },
             {
               type: "page",
               key: "page",
               displayer: "Page",
-              value: ""
+              value: "",
             },
           ],
         },
@@ -217,54 +207,85 @@ class Footer10Page extends BaseFooter {
     return "Footer 10";
   }
   render() {
-    const links = this.castToObject<link[]>("links");
-    const icons = this.castToObject<icon[]>("icons");
-    const showLine = this.getPropValue("showLine");
     const logo = this.getPropValue("logo");
-    const title1 = this.castToString(this.getPropValue("title"));
-    const title2 = this.castToString(this.getPropValue("title2"));
+    const links = this.castToObject<any[]>("links");
+    const line = this.getPropValue("line");
+
+    const icons = this.castToObject<icon[]>("icons");
+
+    const upperExist = logo || links.length > 0;
+
+    const footerTextExist = this.castToString(this.getPropValue("footerText"));
+
+    const iconsExist = icons.length > 0;
+    const bottomExist = footerTextExist || iconsExist;
 
     return (
-      <Base.Container className={this.decorateCSS("container")}>
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("section")}>
-            <div className={this.decorateCSS("upper")}>
-              {logo && (
-                <div className={this.decorateCSS("logo-box")}>
-                  <img src={logo} alt="logo" className={this.decorateCSS("logo")} />
+      <div className={this.decorateCSS("container")}>
+        {upperExist && (
+          <Base.Container className={this.decorateCSS("first-container")}>
+            <Base.MaxContent className={this.decorateCSS("first-max-content")}>
+              {upperExist && (
+                <div className={this.decorateCSS("upper")}>
+                  {logo && (
+                    <div className={this.decorateCSS("logo")}>
+                      <img src={logo} className={this.decorateCSS("image")} alt="" />
+                    </div>
+                  )}
+                  {links.length > 0 && (
+                    <div className={logo ? this.decorateCSS("links") : this.decorateCSS("links-full")}>
+                      {links.map((item: any, index: number) => {
+                        const textExist = this.castToString(item.text);
+                        return (
+                          textExist && (
+                            <div className={this.decorateCSS(item.url ? "link-element-has-path" : "link-element")}>
+                              <ComposerLink key={index} path={item.url}>
+                                <Base.H3 className={this.decorateCSS("link-text")}>{item.text}</Base.H3>
+                              </ComposerLink>
+                            </div>
+                          )
+                        );
+                      })}
+                    </div>
+                  )}
                 </div>
               )}
-              <div className={this.decorateCSS("links")}>
-                {links.length > 0 && links.map((item: link, index: number) => {
-                  return(
-                    <ComposerLink path={item.page}>
-                      {item.title}
-                    </ComposerLink>    
-                  );
-                })}
+            </Base.MaxContent>
+          </Base.Container>
+        )}
+
+        {line && <div className={this.decorateCSS("line")}></div>}
+
+        {bottomExist && (
+          <Base.Container>
+            <Base.MaxContent>
+              <div className={this.decorateCSS("bottom")}>
+                {footerTextExist && (
+                  <div className={iconsExist ? this.decorateCSS("left") : this.decorateCSS("left-full")}>
+                    <Base.P className={this.decorateCSS("text")}>{this.getPropValue("footerText")}</Base.P>
+                  </div>
+                )}
+                {icons.length > 0 && (
+                  <div className={this.decorateCSS("icons")}>
+                    {icons.length > 0 &&
+                      icons.map((item: icon, index: number) => {
+                        return (
+                          item.icon && (
+                            <ComposerLink path={item.page}>
+                              <div className={this.decorateCSS("icon-element")}>
+                                <ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                              </div>
+                            </ComposerLink>
+                          )
+                        );
+                      })}
+                  </div>
+                )}
               </div>
-            </div>
-            {showLine && (
-              <div className={this.decorateCSS("line")}></div>
-            )}
-            <div className={this.decorateCSS("lower")}>
-              <div className={this.decorateCSS("text-area")}>
-                <Base.P>{(title1 + " " + title2)}</Base.P>
-              </div>
-              <div className={this.decorateCSS("icons")}>
-                {icons.length > 0 && icons.map((item: icon, index: number) => {
-                  if (!item.icon) return null;
-                  return(
-                    <ComposerLink path={item.page}>
-                      <ComposerIcon name={item.icon} />
-                    </ComposerLink>    
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        </Base.MaxContent>
-      </Base.Container>
+            </Base.MaxContent>
+          </Base.Container>
+        )}
+      </div>
     );
   }
 }
