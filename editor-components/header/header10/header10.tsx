@@ -101,9 +101,17 @@ class Header10 extends BaseHeader {
     this.addProp({
       type: "icon",
       key: "ampersandIcon",
-      displayer: "Ampersand icon",
-      value: "TbAmpersand",
+      displayer: "Ampersand Icon",
+      value: "LuAmpersand",
     });
+
+    this.addProp({
+      type : "boolean",
+      key : 'index',
+      displayer : "Index",
+      value : true
+    })
+
 
     this.addProp({
       type: "array",
@@ -164,6 +172,12 @@ class Header10 extends BaseHeader {
                   key: "buttonObject",
                   displayer: "Button",
                   value: [
+                    {
+                      type: "boolean",
+                      key: "line",
+                      displayer: "Line",
+                      value: true,
+                    },
                     {
                       type: "string",
                       key: "buttonText",
@@ -247,6 +261,12 @@ class Header10 extends BaseHeader {
                   displayer: "Button",
                   value: [
                     {
+                      type: "boolean",
+                      key: "line",
+                      displayer: "Line",
+                      value: true,
+                    },
+                    {
                       type: "string",
                       key: "buttonText",
                       displayer: "Button Text",
@@ -298,6 +318,7 @@ class Header10 extends BaseHeader {
     const nextIcon = this.getPropValue("nextIcon");
     const prevIcon = this.getPropValue("prevIcon");
     const ampersandIcon = this.getPropValue("ampersandIcon");
+    const index = this.getPropValue("index");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -314,8 +335,18 @@ class Header10 extends BaseHeader {
               const image = item.image;
               const subtitle = this.castToString(item.subtitle);
               const description1 = this.castToString(item.description1);
-              const leftPage = title || description || item.button.length || (nextIcon || prevIcon);
-              const rightPage = subtitle || description1 || (item.icons.length === 0);
+              const leftPage =
+                title ||
+                description ||
+                item.button.length ||
+                nextIcon ||
+                prevIcon;
+              const rightPage = !!(
+                subtitle ||
+                description1 ||
+                item.icons.length > 0 ||
+                ampersandIcon
+              );
               const fullTitle = title + " " + imageTitle;
 
               return (
@@ -350,7 +381,7 @@ class Header10 extends BaseHeader {
                         )}
                         {slider.length > 1 && (
                           <div className={this.decorateCSS("nav-buttons")}>
-                            {(prevIcon || nextIcon) && (
+                            {(prevIcon || nextIcon) && (index &&
                               <div className={this.decorateCSS("slide_number")}>
                                 {String(indexSlider + 1).padStart(2, "0")}
                               </div>
@@ -394,11 +425,22 @@ class Header10 extends BaseHeader {
                                   key={`hdr-10-${indexButton}`}
                                   path={buttonItem.buttonLink}
                                 >
-                                  <button
-                                    className={this.decorateCSS("button")}
+                                  <div
+                                    className={this.decorateCSS(
+                                      "button-section"
+                                    )}
                                   >
-                                    {buttonText}
-                                  </button>
+                                    {buttonItem.line && (
+                                      <div
+                                        className={this.decorateCSS("line")}
+                                      />
+                                    )}
+                                    <button
+                                      className={this.decorateCSS("button")}
+                                    >
+                                      {buttonText}
+                                    </button>
+                                  </div>
                                 </ComposerLink>
                               );
                           }
@@ -428,36 +470,48 @@ class Header10 extends BaseHeader {
                         <div className={this.decorateCSS("icon")}>
                           <ComposerIcon
                             name={this.getPropValue("ampersandIcon")}
+                            propsIcon={{
+                              className: `${this.decorateCSS(
+                                "ampersand-icon"
+                              )}`,
+                            }}
                           />
                         </div>
                       }
-                      <div
-                        className={
-                          this.decorateCSS("right-page-content") +
-                          " " +
-                          (!image
-                            ? this.decorateCSS("column-right-page-content")
-                            : "")
-                        }
-                      >
-                        {subtitle && (
-                          <h2 className={this.decorateCSS("subtitle")}>
-                            {item.subtitle}
-                          </h2>
-                        )}
-                        {description1 && (
-                          <p className={this.decorateCSS("description1")}>
-                            {item.description1}
-                          </p>
-                        )}
-                        <div className={this.decorateCSS("icon-group")}>
-                          {item.icons.map((item: any, indexSlider: number) => (
-                            <ComposerLink path={item.getPropValue("url")}>
-                              <ComposerIcon name={item.getPropValue("icon")} />
-                            </ComposerLink>
-                          ))}
+
+                      {(subtitle || description1 || item.icons.length > 0) && (
+                        <div
+                          className={
+                            this.decorateCSS("right-page-content") +
+                            " " +
+                            (!image
+                              ? this.decorateCSS("column-right-page-content")
+                              : "")
+                          }
+                        >
+                          {subtitle && (
+                            <h2 className={this.decorateCSS("subtitle")}>
+                              {item.subtitle}
+                            </h2>
+                          )}
+                          {description1 && (
+                            <p className={this.decorateCSS("description1")}>
+                              {item.description1}
+                            </p>
+                          )}
+                          <div className={this.decorateCSS("icon-group")}>
+                            {item.icons.map(
+                              (item: any, indexSlider: number) => (
+                                <ComposerLink path={item.getPropValue("url")}>
+                                  <ComposerIcon
+                                    name={item.getPropValue("icon")}
+                                  />
+                                </ComposerLink>
+                              )
+                            )}
+                          </div>
                         </div>
-                      </div>
+                      )}
                     </div>
                   )}
                 </div>
