@@ -3,6 +3,7 @@ import { LogoClouds } from "../../EditorComponent";
 import styles from "./logo-comp2.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type TImage = {
   image: string;
@@ -40,15 +41,15 @@ class LogoComp2Page extends LogoClouds {
       key: "image-items",
       displayer: "Images",
       value: [
-        this.LOGOINPUT(),
-        this.LOGOINPUT(),
-        this.LOGOINPUT(),
-        this.LOGOINPUT(),
-        this.LOGOINPUT(),
-        this.LOGOINPUT(),
-        this.LOGOINPUT(),
-        this.LOGOINPUT(),
-        this.LOGOINPUT(),
+        INPUTS.LOGO("section", "Section"),
+        INPUTS.LOGO("section", "Section"),
+        INPUTS.LOGO("section", "Section"),
+        INPUTS.LOGO("section", "Section"),
+        INPUTS.LOGO("section", "Section"),
+        INPUTS.LOGO("section", "Section"),
+        INPUTS.LOGO("section", "Section"),
+        INPUTS.LOGO("section", "Section"),
+        INPUTS.LOGO("section", "Section"),
       ],
     });
   }
