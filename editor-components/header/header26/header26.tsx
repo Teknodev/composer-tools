@@ -13,7 +13,7 @@ type Slide = {
   image: string;
 };
 
-class HeaderComponent26 extends BaseHeader {
+class Header26 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
 
@@ -195,7 +195,7 @@ class HeaderComponent26 extends BaseHeader {
       const slider = sliderRef.current;
       if (slider) slider.slickPrev();
     };
-  
+
     const handleNextClick = () => {
       const slider = sliderRef.current;
       if (slider) slider.slickNext();
@@ -228,7 +228,7 @@ class HeaderComponent26 extends BaseHeader {
     const slides = this.castToObject<Slide[]>("sliders");
     const enableLine = this.getPropValue("enable_line");
     const enableSliderAnimation = this.getPropValue("enable_slider_animation");
-    
+
     const slidesLength = slides.length;
 
     return (
@@ -239,11 +239,9 @@ class HeaderComponent26 extends BaseHeader {
               {slides.map((item: Slide, index: number) => {
                 const titleExist = this.castToString(item.title);
                 const subtitleExist = this.castToString(item.subtitle);
-
-                // stick arrows to the bottom of the screen on mobile and tablet
                 const stickToBottomCondition =
                   (item.image && !(titleExist || subtitleExist)) ||
-                  (!item.image && (titleExist || subtitleExist))
+                    (!item.image && (titleExist || subtitleExist))
                     ? this.decorateCSS("stick-to-bottom")
                     : "";
 
@@ -251,11 +249,11 @@ class HeaderComponent26 extends BaseHeader {
                   <div
                     className={`${this.decorateCSS("sliders")}
                       ${this.decorateCSS(
-                        this.getComponentState("next") === index ||
-                          this.getComponentState("old") === index
-                          ?  (enableSliderAnimation && "shrink")
-                          : "",
-                      )}`}
+                      this.getComponentState("next") === index ||
+                        this.getComponentState("old") === index
+                        ? (enableSliderAnimation && "shrink")
+                        : "",
+                    )}`}
                     key={index}
                   >
                     <div className={this.decorateCSS("slider")}>
@@ -293,23 +291,23 @@ class HeaderComponent26 extends BaseHeader {
                       )}
                       {
                         slidesLength > 1 && <div
-                        className={`${this.decorateCSS("arrows")}
+                          className={`${this.decorateCSS("arrows")}
                         ${stickToBottomCondition}`}
-                      >
-                        <div
-                          className={this.decorateCSS("up-arrow")}
-                          onClick={handlePrevClick}
                         >
-                          <ComposerIcon name={this.getPropValue("up_icon")} />
+                          <div
+                            className={this.decorateCSS("up-arrow")}
+                            onClick={handlePrevClick}
+                          >
+                            <ComposerIcon name={this.getPropValue("up_icon")} />
+                          </div>
+                          <div
+                            className={this.decorateCSS("down-arrow")}
+                            onClick={handleNextClick}
+                          >
+                            <ComposerIcon name={this.getPropValue("down_icon")} />
+                          </div>
                         </div>
-                        <div
-                          className={this.decorateCSS("down-arrow")}
-                          onClick={handleNextClick}
-                        >
-                          <ComposerIcon name={this.getPropValue("down_icon")} />
-                        </div>
-                      </div>
-                      }       
+                      }
                     </div>
                   </div>
                 );
@@ -322,4 +320,4 @@ class HeaderComponent26 extends BaseHeader {
   }
 }
 
-export default HeaderComponent26;
+export default Header26;

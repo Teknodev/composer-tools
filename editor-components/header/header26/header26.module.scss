@@ -33,18 +33,18 @@
   align-items: stretch;
   height: 100%;
   position: relative;
+  gap: var(--composer-gap-md);
 }
 
 .left-side {
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: end;
   align-items: center;
-  padding: var(--composer-gap-md) var(--composer-gap-xl);
 }
 
 .left-side-content {
-  width: 100%;
+  width: 75%;
 }
 
 .title {
@@ -93,16 +93,15 @@
   display: flex;
   flex-direction: column;
   position: absolute;
-  left: var(--composer-gap-xl);
-  bottom: var(--composer-gap-md);
-  gap: 5px;
+  left: 50px;
+  bottom: 20px;
+  gap: var(--composer-gap-xs);
   color: var(--composer-font-color-primary);
 }
 
 .up-arrow,
 .down-arrow {
   cursor: pointer;
-
   svg {
     width: 40px;
     height: 40px;
@@ -124,100 +123,113 @@
 }
 
 @container (max-width: #{$composer-tablet-width-lg}){
-  .title {
-    font-size: 4rem;
-    margin-bottom: 0 !important;
-
-    blinkpage p {
-      -webkit-line-clamp: 3 !important;
+  .container{
+    .max-content{
+      .sliders{
+        .slider{
+          flex-direction: column;
+          align-items: stretch;
+          .left-side {
+            padding: var(--composer-gap-xl);
+            justify-content: center;
+            .left-side-contnet {
+              width: 100%;
+              .title {
+                font-size: 4rem;
+                margin-bottom: 0 !important;
+            
+                blinkpage p {
+                  -webkit-line-clamp: 3 !important;
+                }
+              }
+            
+              .subtitle {
+                font-size: 1rem;
+              }
+            }
+          }
+          .right-side {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            margin: 0 auto;
+            .image {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          
+          }
+          .up-arrow svg,
+          .down-arrow svg {
+            width: 35px;
+            height: 35px;
+          }
+        
+          .arrows {
+            bottom: var(--composer-gap-xl);
+          }
+        }
+      }
     }
   }
 
-  .subtitle {
-    font-size: 1rem;
-  }
 
-  .up-arrow svg,
-  .down-arrow svg {
-    width: 35px;
-    height: 35px;
-  }
 
-  .slider {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .left-side {
-    padding: var(--composer-gap-xl);
-  }
-
-  .right-side {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    margin: 0 auto;
-  }
-
-  .image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .arrows {
-    bottom: var(--composer-gap-xl);
-  }
 }
 
 @container (max-width: #{$composer-phone-width-sm}){
-  .title {
-    font-size: 2.5rem;
-  }
+  .container{
+    .max-content{
+      .sliders{
+        .slider{
+          .left-side {
+            margin: 0 auto;
+            width: 100%;
+            padding: var(--composer-gap-md);
+            flex: 1;
+            .left-side-content {
+              width: 100%;
+              .title {
+                font-size: 3.5rem;
+              }
+            
+              .subtitle {
+                font-size: 2rem;
+              }
+            
+            }
+          }
+          .right-side {
+            align-items: start;
+            margin: 0;
+            flex: 4;
+            .image {
+              margin: 0 !important;
+              height: 70%;
+            }
+          }
+          .arrows {
+            left: var(--composer-gap-md);
+            bottom: var(--composer-gap-md);
+          }
+          .arrows.stick-to-bottom {
+            margin-top: 0 !important;
+            top: unset !important;
+            bottom: 0 !important;
+          }
 
-  .subtitle {
-    font-size: 1rem;
-  }
-
-  .up-arrow svg,
-  .down-arrow svg {
-    width: 30px;
-    height: 30px;
-  }
-
-  .slider {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .left-side {
-    margin: 0 auto;
-    width: 100%;
-    padding: var(--composer-gap-md);
-  }
-
-  .right-side {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    margin: 0;
-  }
-
-  .image {
-    margin: 0 !important;
-  }
-
-  .arrows {
-    left: var(--composer-gap-md);
-    bottom: var(--composer-gap-md);
+          .up-arrow svg,
+          .down-arrow svg {
+            width: 30px;
+            height: 30px;
+          }
+        }
+      }
+    }
   }
 }
 
-.arrows.stick-to-bottom {
-  margin-top: 0 !important;
-  top: unset !important;
-  bottom: 0 !important;
-}
+
