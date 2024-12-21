@@ -3,15 +3,12 @@ import { Language } from "@mui/icons-material";
 import DropDown, {
   DropDownItem,
 } from "../../../prefabs/playground/ui/Dropdown";
-import { IProjectContext, ProjectContext } from "../../../contexts/project";
+import { ProjectContext } from "../../../contexts/project";
 import { LANGUAGES } from "../../../classes/Localization/languages";
-// import useLocalization from "../../../custom-hooks/localization";
 import styles from "./language.module.scss";
-import { useData } from "../../context/DataContext";
-import { LoadingContext } from "contexts/loading";
-import { editor } from "classes/Editor";
+import { useComposerToolsData } from "../../context/DataContext";
 import { useContextSelector } from "@fluentui/react-context-selector";
-import notificationService from "classes/NotificationService";
+import { editor } from "../../../classes/Editor";
 
 interface ComposerLanguageProps{
   className?: string,
@@ -21,13 +18,8 @@ interface ComposerLanguageProps{
 }
 
 const ComposerLanguage = ({className, labelClassName, itemClassName, icon = <Language/>}: ComposerLanguageProps) => {
-
-  const { setLoading } = useContext(LoadingContext);
-
-  const {composerToolsLanguages, composerToolsCurrentLanguage, setComposerToolsCurrentLanguage} = useData();
-  console.log("composerToolsCurrentLanguage", composerToolsCurrentLanguage);
-
-  const [language, setLanguage] = useState<string>(composerToolsCurrentLanguage);
+  const {composerToolsLanguages, composerToolsCurrentLanguage, setComposerToolsCurrentLanguage} = useComposerToolsData();
+  const [language, setLanguage] = useState<string>(composerToolsCurrentLanguage || "en");
 
   const languageType = composerToolsLanguages.reduce((acc, langCode) => {
     const language = LANGUAGES.find(lang => lang.code === langCode);
@@ -39,12 +31,11 @@ const ComposerLanguage = ({className, labelClassName, itemClassName, icon = <Lan
 
   const setProject = useContextSelector(
     ProjectContext,
-    (context) => context.setProject
-  );
+    (context) => context?.setProject
+  ) || (() => {});
 
   const handleLanguageChange = async (langCode: string) => {
   try {
-    setLoading(true);
     setLanguage(langCode);
     setComposerToolsCurrentLanguage(langCode);
     editor.locale.currentLanguage = langCode;
@@ -56,13 +47,10 @@ const ComposerLanguage = ({className, labelClassName, itemClassName, icon = <Lan
       default_language: langCode,
     };
     editor.project = { ...editor.project, ...updatedFields };
-    setProject(editor.project);
+    setProject(editor?.project!);
     await editor.patchProject(updatedFields);
-    notificationService.succesNotification("Successfully saved");
   } catch (error) {
     console.log(error);
-  } finally {
-    setLoading(false);
   }
   };
 
