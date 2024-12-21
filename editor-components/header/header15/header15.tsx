@@ -87,6 +87,12 @@ class Header15 extends BaseHeader {
       displayer: "Button Text",
       value: "Make Order",
     });
+    this.addProp({
+      type: "page",
+      key: "buttonLink",
+      displayer: "Button Link",
+      value: "",
+    });
   }
 
   getName(): string {
@@ -123,7 +129,7 @@ class Header15 extends BaseHeader {
                       {this.getPropValue("description")}
                     </div>
                   )}
-                  {((inputs.length > 0) || this.castToString(this.getPropValue("buttonText"))) && (
+                  {((inputs.length > 0)) && (
                     <div className={this.getPropValue("background-image") ? this.decorateCSS("form-display") : this.decorateCSS("form-display-no-image")}>
                       <div className={this.decorateCSS("form-wrapper")}>
                         <Formik
@@ -152,7 +158,7 @@ class Header15 extends BaseHeader {
                               })}
                               {this.castToString(this.getPropValue("buttonText")) && (
                                 <div className={this.decorateCSS("button-box")}>
-                                  <Base.Button className={this.decorateCSS("button")} type="submit" onClick={() => console.log("tıklandı")}>
+                                  <Base.Button className={this.decorateCSS("button")} type="submit">
                                     {this.getPropValue("buttonText")}
                                   </Base.Button>
                                 </div>
@@ -163,6 +169,17 @@ class Header15 extends BaseHeader {
                       </div>
                     </div>
                   )}
+                  {((inputs.length == 0) && this.castToString(this.getPropValue("buttonText"))) && (
+                    <div className={this.decorateCSS("button-box")}>
+                      <ComposerLink path={this.getPropValue("buttonLink")}>
+                        <Base.Button className={this.decorateCSS("button")}>
+                          {this.getPropValue("buttonText")}
+                        </Base.Button>
+                      </ComposerLink>
+
+                    </div>
+                  )}
+
                 </div>
               </div>
             </div>
