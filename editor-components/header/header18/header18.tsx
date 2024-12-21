@@ -327,7 +327,7 @@ class Header18 extends BaseHeader {
       infinite: true,
       arrows: false,
       speed: 2000,
-      autoplay: false,
+      autoplay: true,
       autoplaySpeed: 5000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -377,24 +377,24 @@ class Header18 extends BaseHeader {
                         <div className={this.decorateCSS("text-content")}>
                           {(titleExist || subtitleExist) && (
                             <div className={this.decorateCSS("text-content")}>
-                              {subtitleExist && <Base.H2 className={cover ? this.decorateCSS("subtitle") : this.decorateCSS("subtitle-no-image")}>{item.subtitle}</Base.H2>}
-                              {titleExist && <Base.SectionTitle className={cover ? this.decorateCSS("title") : this.decorateCSS("title-no-image")}>{item.title}</Base.SectionTitle>}
+                              {subtitleExist && <Base.H5 className={cover ? this.decorateCSS("subtitle") : this.decorateCSS("subtitle-no-image")}>{item.subtitle}</Base.H5>}
+                              {titleExist && <Base.H2 className={cover ? this.decorateCSS("title") : this.decorateCSS("title-no-image")}>{item.title}</Base.H2>}
                             </div>
                           )}
-                          {showPagination && (
+                          {showPagination && slides.length > 1 && (
                             <div className={cover ? this.decorateCSS("pagination") : this.decorateCSS("pagination-no-image")}>
-                              <span className={this.decorateCSS("active-slide")}>{(this.getComponentState("active-index") + 1).toString().padStart(2, "0")}</span>
+                              <Base.H5 className={this.decorateCSS("active-slide")}>{(this.getComponentState("active-index") + 1).toString().padStart(2, "0")}</Base.H5>
                               <div className={cover ? this.decorateCSS("progress-bar") : this.decorateCSS("progress-bar-no-image")}>
                                 <div className={cover ? this.decorateCSS("active") : this.decorateCSS("active-no-image")} style={{ width: `${progressPercentage}%` }} />
                               </div>
-                              <Base.P className={this.decorateCSS("slide-count")}>{sliderCount.toString().padStart(2, "0")}</Base.P>
+                              <Base.H5 className={this.decorateCSS("slide-count")}>{sliderCount.toString().padStart(2, "0")}</Base.H5>
                             </div>
                           )}
                         </div>
                       </div>
                       {!!item.image && <img src={item.image} className={this.decorateCSS("image")} />}
                       {(descTitleExist || descExist) && (
-                        <div className={this.decorateCSS("description-div")}>
+                        <div className={cover ? this.decorateCSS("description-div") : this.decorateCSS("description-div-no-image")}>
                           {descTitleExist && <Base.H3 className={this.decorateCSS("description-title")}>{item.description_title}</Base.H3>}
                           {descExist && <Base.P className={this.decorateCSS("item-description")}>{item.description}</Base.P>}
                         </div>
@@ -411,12 +411,12 @@ class Header18 extends BaseHeader {
                 <div className={this.decorateCSS("socials")}>
                   {socials.map((item: Social, index: number) => (
                     <ComposerLink path={item.url} key={index}>
-                      <Base.P className={cover ? this.decorateCSS("name") : this.decorateCSS("name-no-image")}>{item.text}</Base.P>
+                      <Base.H5 className={cover ? this.decorateCSS("name") : this.decorateCSS("name-no-image")}>{item.text}</Base.H5>
                     </ComposerLink>
                   ))}
                 </div>
               )}
-              {prevIconExist && (
+              {prevIconExist && slides.length > 1 && (
                 <ComposerIcon
                   name={this.getPropValue("prev_icon")}
                   propsIcon={{
@@ -425,7 +425,7 @@ class Header18 extends BaseHeader {
                   }}
                 />
               )}
-              {nextIconExist && (
+              {nextIconExist && slides.length > 1 && (
                 <ComposerIcon
                   name={this.getPropValue("next_icon")}
                   propsIcon={{

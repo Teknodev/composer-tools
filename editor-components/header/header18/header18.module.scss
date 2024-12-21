@@ -40,8 +40,8 @@
             display: flex;
             flex-direction: column;
             position: absolute;
-            top: 180px;
-            left: 360px;
+            left: 25%;
+            top: 20%;
             gap: var(--composer-gap-md);
 
             .text-content {
@@ -53,7 +53,6 @@
               .subtitle-no-image {
                 margin: 0;
                 font-size: 1rem;
-                font-weight: bold;
                 color: black;
               }
 
@@ -65,7 +64,6 @@
               .title-no-image {
                 margin: 0;
                 font-size: 5rem;
-                font-weight: bold;
                 color: black;
 
                 display: -webkit-box;
@@ -86,10 +84,6 @@
               place-items: center;
               gap: var(--composer-gap-sm);
               color: black;
-
-              .active-slide {
-                font-weight: bold;
-              }
 
               .progress-bar,
               .progress-bar-no-image {
@@ -115,10 +109,6 @@
               .progress-bar-no-image {
                 background-color: var(--composer-tertiary-color);
               }
-
-              .slide-count {
-                font-weight: bold;
-              }
             }
 
             .pagination-no-image {
@@ -126,7 +116,8 @@
             }
           }
 
-          .description-div {
+          .description-div,
+          .description-div-no-image {
             display: flex;
             flex-direction: column;
             gap: var(--composer-gap-md);
@@ -135,8 +126,8 @@
             width: 300px;
             padding: var(--composer-gap-md);
             position: absolute;
-            right: 360px;
-            bottom: 90px;
+            right: 25%;
+            bottom: 15%;
 
             .description-title {
               margin: 0;
@@ -160,6 +151,11 @@
               overflow: hidden;
             }
           }
+
+          .description-div-no-image {
+            color: var(--composer-font-color-primary);
+            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+          }
         }
       }
     }
@@ -178,7 +174,6 @@
         column-gap: var(--composer-gap-md);
         row-gap: var(--composer-gap-sm);
         font-size: 1rem;
-        font-weight: bold;
         color: var(--composer-font-color-primary);
         width: calc(100% - var(--composer-gap-lg) * 3);
         width: 85%;
