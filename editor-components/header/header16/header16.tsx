@@ -37,15 +37,15 @@ class Header16 extends BaseHeader {
             },
             {
               type: "string",
-              key: "title",
-              value: "We're getting married!",
-              displayer: "Title",
-            },
-            {
-              type: "string",
               key: "subtitle",
               value: "THE BEST WEDDING DAY",
               displayer: "Subtitle",
+            },
+            {
+              type: "string",
+              key: "title",
+              value: "We're getting married!",
+              displayer: "Title",
             },
             {
               type: "object",
@@ -81,16 +81,17 @@ class Header16 extends BaseHeader {
             },
             {
               type: "string",
-              key: "title",
-              value: "Your special day",
-              displayer: "Title",
-            },
-            {
-              type: "string",
               key: "subtitle",
               value: "TRUST US TO ORGANİZE",
               displayer: "Subtitle",
             },
+            {
+              type: "string",
+              key: "title",
+              value: "Your special day",
+              displayer: "Title",
+            },
+
             {
               type: "object",
               key: "button",
@@ -125,16 +126,17 @@ class Header16 extends BaseHeader {
             },
             {
               type: "string",
-              key: "title",
-              value: "See you at the wedding",
-              displayer: "Title",
-            },
-            {
-              type: "string",
               key: "subtitle",
               value: "FLOWER ARRANGEMENTS",
               displayer: "Subtitle",
             },
+            {
+              type: "string",
+              key: "title",
+              value: "See you at the wedding",
+              displayer: "Title",
+            },
+
             {
               type: "object",
               key: "button",

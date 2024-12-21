@@ -526,7 +526,7 @@ export abstract class Component
     let config = {
       ...{ data: { name, data, project } },
       method: "post",
-      url: apiUrl + "/fn-execute/project/insert-form",
+      url: apiUrl + "/fn-execute/project/form",
     };
     return axios.request(config).then((r: any) => r.data);
   }
@@ -594,29 +594,6 @@ export abstract class BaseModal extends Component {
 
 export abstract class LogoClouds extends Component {
   static category = CATEGORIES.LOGOCLOUDS;
-
-  LOGOINPUT() {
-    return {
-      type: "object",
-      key: "section",
-      displayer: "Section",
-      value: [
-        {
-          type: "image",
-          key: "image",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1719584962573",
-          displayer: "Image",
-        },
-        {
-          type: "page",
-          key: "imageLink",
-          value: "",
-          displayer: "Image Link",
-        },
-      ],
-    } as TypeUsableComponentProps;
-  }
 }
 
 export abstract class Location extends Component {
