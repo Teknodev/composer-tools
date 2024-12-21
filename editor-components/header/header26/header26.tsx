@@ -298,13 +298,13 @@ class Header26 extends BaseHeader {
                             className={this.decorateCSS("up-arrow")}
                             onClick={handlePrevClick}
                           >
-                            <ComposerIcon name={this.getPropValue("up_icon")} />
+                            <ComposerIcon name={this.getPropValue("up_icon")} propsIcon={{ className: this.decorateCSS("icon") }} />
                           </div>
                           <div
                             className={this.decorateCSS("down-arrow")}
                             onClick={handleNextClick}
                           >
-                            <ComposerIcon name={this.getPropValue("down_icon")} />
+                            <ComposerIcon name={this.getPropValue("down_icon")} propsIcon={{ className: this.decorateCSS("icon") }} />
                           </div>
                         </div>
                       }

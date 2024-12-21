@@ -1,5 +1,4 @@
 @import '../../../composer-base-components/base/utitilities/viewports.module.scss';
-
 .container {
   width: 100%;
   height: 100vh;
@@ -104,7 +103,7 @@
 .up-arrow,
 .down-arrow {
   cursor: pointer;
-  svg {
+  .icon {
     width: 40px;
     height: 40px;
   }
@@ -117,7 +116,6 @@
   align-items: center;
   overflow: hidden;
 }
-
 .image {
   width: 100%;
   height: 100%;
@@ -130,12 +128,10 @@
       .sliders{
         .slider{
           flex-direction: column;
-          align-items: stretch;
           .left-side, .left-side-no-image {
             padding: var(--composer-gap-xl);
             justify-content: center;
             .left-side-contnet {
-              width: 100%;
               .title {
                 font-size: 4rem;            
               }
@@ -153,24 +149,15 @@
           }
           .right-side {
             flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
             margin: 0 auto;
-            .image {
-              width: 100%;
-              height: 100%;
-              object-fit: cover;
+          }
+          .up-arrow,
+          .down-arrow {
+            .icon{
+              width: 35px;
+              height: 35px;
             }
-          
           }
-          .up-arrow svg,
-          .down-arrow svg {
-            width: 35px;
-            height: 35px;
-          }
-        
           .arrows {
             left: 40px;
             bottom: var(--composer-gap-xl);          
@@ -179,9 +166,6 @@
       }
     }
   }
-
-
-
 }
 
 @container (max-width: #{$composer-phone-width-sm}){
@@ -221,11 +205,12 @@
             left: 20px;
             bottom: var(--composer-gap-md);
           }
-
-          .up-arrow svg,
-          .down-arrow svg {
-            width: 30px;
-            height: 30px;
+          .up-arrow,
+          .down-arrow {
+            .icon{
+              width: 30px;
+              height: 30px;
+            }
           }
         }
       }
