@@ -7,10 +7,10 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
 
 type Slide = {
-  title: string;
-  subtitle: string;
-  description: string;
-  description_title: string;
+  title: JSX.Element;
+  subtitle: JSX.Element;
+  description: JSX.Element;
+  description_title: JSX.Element;
   image: string;
 };
 
@@ -27,27 +27,27 @@ class Header18 extends BaseHeader {
       type: "image",
       key: "cover",
       displayer: "Background Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194c2bd2970002c625e7e?alt=media&timestamp=1719483639150"
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194c2bd2970002c625e7e?alt=media&timestamp=1719483639150",
     });
 
     this.addProp({
       type: "boolean",
       key: "showPagination",
       displayer: "Show Pagination",
-      value: true
+      value: true,
     });
 
     this.addProp({
       type: "icon",
       key: "prev_icon",
       displayer: "Prev icon",
-      value: "FaArrowLeftLong",
+      value: "BsArrowLeft",
     });
     this.addProp({
       type: "icon",
       key: "next_icon",
       displayer: "Next icon",
-      value: "FaArrowRightLong",
+      value: "BsArrowRight",
     });
 
     this.addProp({
@@ -82,15 +82,13 @@ class Header18 extends BaseHeader {
               type: "string",
               displayer: "Description",
               key: "description",
-              value:
-                "Painting is the application of pigments to a support surface that establishes an image, design or decoration.",
+              value: "Painting is the application of pigments to a support surface that establishes an image, design or decoration.",
             },
             {
               type: "image",
               displayer: "Image",
               key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194ffbd2970002c625ef2?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194ffbd2970002c625ef2?alt=media&timestamp=1719483639150",
             },
           ],
         },
@@ -122,15 +120,13 @@ class Header18 extends BaseHeader {
               type: "string",
               displayer: "Description",
               key: "description",
-              value:
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sed ligula eu ligula congue vestibulum.",
+              value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sed ligula eu ligula congue vestibulum.",
             },
             {
               type: "image",
               displayer: "Image",
               key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194c2bd2970002c625e7f?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194c2bd2970002c625e7f?alt=media&timestamp=1719483639150",
             },
           ],
         },
@@ -161,15 +157,13 @@ class Header18 extends BaseHeader {
               type: "string",
               displayer: "Description",
               key: "description",
-              value:
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eu justo sed libero consectetur consequat.",
+              value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eu justo sed libero consectetur consequat.",
             },
             {
               type: "image",
               displayer: "Image",
               key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194ffbd2970002c625ef1?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194ffbd2970002c625ef1?alt=media&timestamp=1719483639150",
             },
           ],
         },
@@ -200,15 +194,13 @@ class Header18 extends BaseHeader {
               type: "string",
               displayer: "Description",
               key: "description",
-              value:
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce gravida felis sed nisl consequat, nec ultricies velit commodo.",
+              value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce gravida felis sed nisl consequat, nec ultricies velit commodo.",
             },
             {
               type: "image",
               displayer: "Image",
               key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194ffbd2970002c625ef3?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194ffbd2970002c625ef3?alt=media&timestamp=1719483639150",
             },
           ],
         },
@@ -239,15 +231,13 @@ class Header18 extends BaseHeader {
               type: "string",
               displayer: "Description",
               key: "description",
-              value:
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin auctor justo ac lorem tincidunt, at convallis tortor efficitur.",
+              value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin auctor justo ac lorem tincidunt, at convallis tortor efficitur.",
             },
             {
               type: "image",
               displayer: "Image",
               key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194ffbd2970002c625ef4?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194ffbd2970002c625ef4?alt=media&timestamp=1719483639150",
             },
           ],
         },
@@ -293,7 +283,7 @@ class Header18 extends BaseHeader {
               type: "string",
               key: "text",
               displayer: "Text",
-              value: "instagram"
+              value: "instagram",
             },
           ],
         },
@@ -312,7 +302,7 @@ class Header18 extends BaseHeader {
               type: "string",
               key: "text",
               displayer: "Text",
-              value: "dribbble"
+              value: "dribbble",
             },
           ],
         },
@@ -364,18 +354,10 @@ class Header18 extends BaseHeader {
     const sliderRef = this.getComponentState("slider-ref");
 
     return (
-      <Base.Container
-        isFull={true}
-        className={this.decorateCSS("container")}
-        style={{ background: `url(${cover})` }}
-      >
+      <Base.Container isFull={true} className={this.decorateCSS("container")} style={{ background: `url(${cover})` }}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {slides?.length > 0 && (
-            <ComposerSlider
-              {...settings}
-              ref={sliderRef}
-              className={this.decorateCSS("slider")}
-            >
+            <ComposerSlider {...settings} ref={sliderRef} className={this.decorateCSS("slider")}>
               {slides.map((item: Slide, index: number) => {
                 const titleExist = this.castToString(item.title);
                 const subtitleExist = this.castToString(item.subtitle);
@@ -383,50 +365,36 @@ class Header18 extends BaseHeader {
                 const descTitleExist = this.castToString(item.description_title);
                 const descExist = this.castToString(item.description);
 
+                const hasImage = item.image;
+                const isActiveSlide = this.getComponentState("active-index") === index;
+
                 return (
                   <div className={this.decorateCSS("slide")} key={index}>
                     <div className={this.decorateCSS("card")}>
-                      {!!item.image && (
-                        <img src={item.image} className={this.decorateCSS("image")} />
-                      )}
                       <div className={this.decorateCSS("content")}>
-                        {(titleExist || subtitleExist) && (
-                          <div className={this.decorateCSS("text-content")}>
-                            {subtitleExist && (
-                              <Base.H2 className={this.decorateCSS("subtitle")}>{item.subtitle}</Base.H2>
-                            )}
-                            {titleExist && (
-                              <Base.SectionTitle className={this.decorateCSS("title")}>{item.title}</Base.SectionTitle>
-                            )}
-                          </div>
-                        )}
-                        {showPagination && (
-                          <div className={this.decorateCSS("pagination")}>
-                            <span className={this.decorateCSS("active-slide")}>
-                              {(this.getComponentState("active-index") + 1).toString().padStart(2, "0")}
-                            </span>
-                            <div className={this.decorateCSS("progress-bar")}>
-                              <div
-                                className={this.decorateCSS("active")}
-                                style={{ width: `${progressPercentage}%` }}
-                              />
+                        <div className={this.decorateCSS("text-content")}>
+                          {(titleExist || subtitleExist) && (
+                            <div className={this.decorateCSS("text-content")}>
+                              {subtitleExist && <Base.H2 className={cover ? this.decorateCSS("subtitle") : this.decorateCSS("subtitle-no-image")}>{item.subtitle}</Base.H2>}
+                              {titleExist && <Base.SectionTitle className={cover ? this.decorateCSS("title") : this.decorateCSS("title-no-image")}>{item.title}</Base.SectionTitle>}
                             </div>
-                            <span className={this.decorateCSS("slide-count")}>
-                              {sliderCount.toString().padStart(2, "0")}
-                            </span>
-                          </div>
-                        )}
+                          )}
+                          {showPagination && (
+                            <div className={cover ? this.decorateCSS("pagination") : this.decorateCSS("pagination-no-image")}>
+                              <span className={this.decorateCSS("active-slide")}>{(this.getComponentState("active-index") + 1).toString().padStart(2, "0")}</span>
+                              <div className={this.decorateCSS("progress-bar")}>
+                                <div className={this.decorateCSS("active")} style={{ width: `${progressPercentage}%` }} />
+                              </div>
+                              <Base.P className={this.decorateCSS("slide-count")}>{sliderCount.toString().padStart(2, "0")}</Base.P>
+                            </div>
+                          )}
+                        </div>
                       </div>
+                      {!!item.image && <img src={item.image} className={this.decorateCSS("image")} />}
                       {(descTitleExist || descExist) && (
                         <div className={this.decorateCSS("description-div")}>
-                          {descTitleExist && (
-                            <Base.H3 className={this.decorateCSS("description-title")}>
-                              {item.description_title}
-                            </Base.H3>
-                          )}
-                          {descExist && (
-                            <Base.P className={this.decorateCSS("item-description")}>{item.description}</Base.P>
-                          )}
+                          {descTitleExist && <Base.H3 className={this.decorateCSS("description-title")}>{item.description_title}</Base.H3>}
+                          {descExist && <Base.P className={this.decorateCSS("item-description")}>{item.description}</Base.P>}
                         </div>
                       )}
                     </div>
@@ -441,7 +409,7 @@ class Header18 extends BaseHeader {
                 <div className={this.decorateCSS("socials")}>
                   {socials.map((item: Social, index: number) => (
                     <ComposerLink path={item.url} key={index}>
-                      <span className={this.decorateCSS("name")}>{item.text}</span>
+                      <Base.P className={this.decorateCSS("name")}>{item.text}</Base.P>
                     </ComposerLink>
                   ))}
                 </div>
@@ -451,7 +419,7 @@ class Header18 extends BaseHeader {
                   name={this.getPropValue("prev_icon")}
                   propsIcon={{
                     className: this.decorateCSS("prev-icon"),
-                    onClick: () => sliderRef.current.slickPrev()
+                    onClick: () => sliderRef.current.slickPrev(),
                   }}
                 />
               )}
@@ -460,7 +428,7 @@ class Header18 extends BaseHeader {
                   name={this.getPropValue("next_icon")}
                   propsIcon={{
                     className: this.decorateCSS("next-icon"),
-                    onClick: () => sliderRef.current.slickNext()
+                    onClick: () => sliderRef.current.slickNext(),
                   }}
                 />
               )}
