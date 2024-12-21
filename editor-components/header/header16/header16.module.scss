@@ -94,7 +94,7 @@
     .numbers-container {
       display: flex;
       flex-wrap: wrap;
-      gap: var(--composer-gap-sm);
+      gap: var(--composer-gap-md);
       position: absolute;
       bottom: var(--composer-gap-sm);
       left: 50%;
@@ -124,7 +124,7 @@
           content: "";
           display: block;
           width: var(--composer-gap-md);
-          height: 3px;
+          height: 1px;
           background-color: var(--composer-font-color-primary);
           transition: width 0.3s ease;
         }
@@ -216,12 +216,12 @@
       .slider-button-left,
       .slider-button-right {
         &.slider-button-left {
-          left: var(--composer-gap-md);
+          left: var(--composer-gap-sm);
           margin-left: var(--composer-gap-xs);
         }
 
         &.slider-button-right {
-          right: var(--composer-gap-md);
+          right: var(--composer-gap-sm);
           margin-right: var(--composer-gap-xs);
         }
       }
@@ -294,12 +294,12 @@
       .slider-button-left,
       .slider-button-right {
         &.slider-button-left {
-          left: var(--composer-gap-sm);
+          left: 0;
           margin-left: 0;
         }
 
         &.slider-button-right {
-          right: var(--composer-gap-sm);
+          right: 0;
           margin-right: 0;
         }
       }
