@@ -225,7 +225,7 @@
             }
 
             .content {
-              $offset: 80px;
+              $offset: calc(var(--composer-gap-lg) * 2);
               width: calc(100% - $offset * 2);
               left: $offset;
               gap: var(--composer-gap-md);
