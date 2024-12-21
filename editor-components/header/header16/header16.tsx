@@ -9,7 +9,7 @@ import { ComposerIcon } from "composer-tools/composer-base-components/icon/icon"
 type ISliderData = {
   title: JSX.Element;
   image: string;
-  description: JSX.Element;
+  subtitle: JSX.Element;
   button: {
     buttonText: JSX.Element;
     buttonClick: string;
@@ -43,9 +43,9 @@ class Header16 extends BaseHeader {
             },
             {
               type: "string",
-              key: "description",
+              key: "subtitle",
               value: "THE BEST WEDDING DAY",
-              displayer: "Description",
+              displayer: "Subtitle",
             },
             {
               type: "object",
@@ -87,9 +87,9 @@ class Header16 extends BaseHeader {
             },
             {
               type: "string",
-              key: "description",
+              key: "subtitle",
               value: "TRUST US TO ORGANİZE",
-              displayer: "Description",
+              displayer: "Subtitle",
             },
             {
               type: "object",
@@ -131,9 +131,9 @@ class Header16 extends BaseHeader {
             },
             {
               type: "string",
-              key: "description",
+              key: "subtitle",
               value: "FLOWER ARRANGEMENTS",
-              displayer: "Description",
+              displayer: "Subtitle",
             },
             {
               type: "object",
@@ -225,12 +225,12 @@ class Header16 extends BaseHeader {
 
           <ComposerSlider {...settings} ref={sliderRef} className={this.decorateCSS("carousel")}>
             {slider.map((item, index) => {
-              const descriptionExist = this.castToString(item.description);
+              const subtitleExist = this.castToString(item.subtitle);
               const titleExist = this.castToString(item.title);
               const buttonTextExist = this.castToString(item.button.buttonText);
               const imageExist = item.image;
 
-              const contentExist = descriptionExist || titleExist || buttonTextExist;
+              const contentExist = subtitleExist || titleExist || buttonTextExist;
 
               return (
                 <div className={this.decorateCSS("item")} key={`key${index}`}>
@@ -244,7 +244,7 @@ class Header16 extends BaseHeader {
                       className={`${imageExist ? this.decorateCSS("content") : this.decorateCSS("image-no-content")} 
   ${activeSlideIndex === index ? (imageExist ? this.decorateCSS("active") : this.decorateCSS("active-no-image")) : ""}`}
                     >
-                      {descriptionExist && <Base.P className={imageExist ? this.decorateCSS("description") : this.decorateCSS("description-no-image")}>{item.description}</Base.P>}
+                      {subtitleExist && <Base.P className={imageExist ? this.decorateCSS("subtitle") : this.decorateCSS("subtitle-no-image")}>{item.subtitle}</Base.P>}
                       {titleExist && <Base.P className={imageExist ? this.decorateCSS("title") : this.decorateCSS("title-no-image")}>{item.title}</Base.P>}
                       {buttonTextExist && (
                         <div>

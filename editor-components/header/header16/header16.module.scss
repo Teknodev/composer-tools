@@ -63,14 +63,14 @@
           transform: translate(-50%, 40vh) translateY(0);
         }
 
-        .description,
-        .description-no-image {
+        .subtitle,
+        .subtitle-no-image {
           font-size: 1.5rem;
           margin: 0;
           color: white;
         }
 
-        .description-no-image {
+        .subtitle-no-image {
           color: var(--composer-font-color-primary);
         }
 
@@ -201,14 +201,14 @@
             transform: translate(-50%, 45vh) translateY(0);
           }
 
-          .description,
-          .description-no-image {
-            font-size: 1rem;
+          .subtitle,
+          .subtitle-no-image {
+            font-size: 1.5rem;
           }
 
           .title,
           .title-no-image {
-            font-size: 1.5rem;
+            font-size: 2.5rem;
           }
         }
       }
@@ -261,8 +261,8 @@
             transform: translate(-50%, 40vh) translateY(0);
           }
 
-          .description,
-          .description-no-image {
+          .subtitle,
+          .subtitle-no-image {
             font-size: 1rem;
           }
 
