@@ -143,18 +143,23 @@ class Header15 extends BaseHeader {
                           {({ handleChange, values }) => (
                             <Form className={this.decorateCSS("form")}>
                               {inputs.map((input: InputItem, index: number) => {
-                                console.log("values", values["input_" + index])
-                                return (
-                                  <div className={this.decorateCSS("input")}>
-                                    <input
-                                      placeholder={this.castToString(input.placeholder)}
-                                      type="text"
-                                      onChange={handleChange}
-                                      value={values["input_" + index]}
-                                      name={"input_" + index}
-                                      className={this.decorateCSS("placeholder")}
-                                    />
-                                  </div>)
+                                if (this.castToString(input.placeholder)) {
+                                  return (
+                                    <div className={this.decorateCSS("input")}>
+                                      <input
+                                        placeholder={this.castToString(input.placeholder)}
+                                        type="text"
+                                        onChange={handleChange}
+                                        value={values["input_" + index]}
+                                        name={"input_" + index}
+                                        className={this.decorateCSS("placeholder")}
+                                      />
+                                    </div>
+                                  )
+                                }
+                                else {
+                                  return "";
+                                }
                               })}
                               {this.castToString(this.getPropValue("buttonText")) && (
                                 <div className={this.decorateCSS("button-box")}>
