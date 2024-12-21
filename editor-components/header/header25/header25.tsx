@@ -373,7 +373,11 @@ class Header25 extends BaseHeader {
     const sliderItemObject = this.castToObject<SliderItem[]>("slider");
     const topContent = this.castToObject<TopContentItem>("top_content");
     return (
+<<<<<<< HEAD
       <Base.Container isFull={true} className={this.decorateCSS("container")}>
+=======
+      <div className={this.decorateCSS("container")}>
+>>>>>>> 953f615c (standardization first step)
         {sliderItemObject && (
           <ComposerSlider
             {...settings}
@@ -458,10 +462,14 @@ class Header25 extends BaseHeader {
             if (isActive && sliderItem) {
               return (
                 <div
+<<<<<<< HEAD
                   className={`
                     ${this.decorateCSS("content-container")}
                     ${!!sliderItem.image ? this.decorateCSS("with-image") : ""}
                   `}
+=======
+                  className={`${this.decorateCSS("content-container")} ${!sliderItem.image && this.decorateCSS("black-theme")}`}
+>>>>>>> 953f615c (standardization first step)
                   key={index}
                 >
                   {(sliderItemObject.length > 1) && (
@@ -585,7 +593,50 @@ class Header25 extends BaseHeader {
                           )}
                         </div>
                       </div>
+<<<<<<< HEAD
                     )}
+=======
+
+                      <p
+                        className={`${this.decorateCSS("description")} animate__animated ${this.getComponentState("descriptionAnimationClass")
+                          }`}
+                        onAnimationEnd={() => {
+                          this.handleAnimationEnd({
+                            animationState: "descriptionAnimationClass",
+                            startingAnimation: "animate__fadeInUp",
+                            endingAnimation: "animate__fadeOut",
+                          });
+                        }}
+                      >
+                        {this.castToString(sliderItem.description)}
+                      </p>
+                      <ComposerLink path={sliderItem.button.link}>
+                        <button // standart buton olacak
+                          className={`${this.decorateCSS("button")} animate__animated ${this.getComponentState(
+                            "buttonAnimationClass"
+                          )}`}
+                          onAnimationEnd={() => {
+                            this.handleAnimationEnd({
+                              animationState: "buttonAnimationClass",
+                              startingAnimation: "animate__fadeInUp",
+                              endingAnimation: "animate__fadeOutDown",
+                            });
+                          }}
+                        >
+                          <span className={this.decorateCSS("button-text")}>
+                            {this.castToString(sliderItem.button.buttonText)}
+                          </span>
+                          <ComposerIcon
+                            name={sliderItem.button.next_icon}
+                            propsIcon={{
+                              className: this.decorateCSS("button-icon"),
+                            }}
+                          />
+                        </button>
+                      </ComposerLink>
+                    </div>
+                  </div>
+>>>>>>> 953f615c (standardization first step)
                 </div>
               );
             }
