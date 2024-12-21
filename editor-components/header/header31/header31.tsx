@@ -841,7 +841,7 @@ class Header31 extends BaseHeader {
       infinite: false,
       accessibility: false,
       speed: 1500,
-      autoplay: false,
+      autoplay: true,
       autoplaySpeed: 4000,
       slidesToShow: 1,
       draggable: false,
@@ -850,13 +850,10 @@ class Header31 extends BaseHeader {
       beforeChange: (oldIndex: number, newIndex: number) => {
         if (oldIndex == newIndex) return;
         this.setComponentState("buttonAnimationClass", "animate__fadeOutDown");
-        this.setComponentState("titleAnimationClass", "animate__fadeOutDown");
-        this.setComponentState(
-          "subtitleAnimationClass",
-          "animate__fadeOutDown"
-        );
+        this.setComponentState("titleAnimationClass", "animate__fadeOut");
+        this.setComponentState("subtitleAnimationClass", "animate__fadeOutDown");
         this.setComponentState("stickAnimationClass", "animate__fadeOutDown");
-        this.setComponentState("descriptionAnimationClass", "animate__fadeOut");
+        this.setComponentState("descriptionAnimationClass", "animate__fadeOutDown");
 
         setTimeout(() => {
           this.setComponentState("active-index", newIndex);
@@ -868,15 +865,9 @@ class Header31 extends BaseHeader {
 
           this.setComponentState("buttonAnimationClass", "animate__fadeInUp");
           this.setComponentState("titleAnimationClass", "animate__fadeInRight");
-          this.setComponentState(
-            "subtitleAnimationClass",
-            "animate__fadeInRight"
-          );
+          this.setComponentState("subtitleAnimationClass", "animate__fadeInRight");
           this.setComponentState("stickAnimationClass", "animate__fadeInRight");
-          this.setComponentState(
-            "descriptionAnimationClass",
-            "animate__fadeInUp"
-          );
+          this.setComponentState("descriptionAnimationClass", "animate__fadeInUp");
         }, 1000);
       },
     };
@@ -925,57 +916,60 @@ class Header31 extends BaseHeader {
               </div>
               <div className={this.decorateCSS("slider-content")}>
                 <div className={this.decorateCSS("slider-container")}>
-                  <ComposerSlider
-                    ref={this.getComponentState("second-slider-ref")}
-                    {...settings}
-                    draggable={true}
-                    slidesToShow={3}
-                    vertical={true}
-                    verticalSwiping={true}
-                    centerMode={true}
-                    centerPadding={"0px"}
-                    className={this.decorateCSS("carousel")}
-                  >
-                    {slider.map((item: ISliderData, index: number) => {
-                      if (item.leftImage)
-                        return (
-                          <div
-                            key={index}
-                            className={this.decorateCSS("swiper-wrapper")}
-                          >
-                            {activeIndex === index && (
-                              <div className={this.decorateCSS("content")}>
-                                <span
-                                  className={this.decorateCSS(
-                                    "sliderNumber-left"
-                                  )}
-                                >
-                                  {activeSlideObj.sliderNumber}
-                                </span>
-                              </div>
-                            )}
-                            <img
-                              className={`${this.decorateCSS(
-                                "background-left"
-                              )} ${activeIndex === index
-                                ? this.decorateCSS("active")
-                                : ""
-                                }`}
-                              src={item.leftImage}
-                              alt={item.leftImage}
-                              onClick={() => {
-                                this.getComponentState(
-                                  "slider-ref"
-                                ).current.slickGoTo(index);
-                                this.getComponentState(
-                                  "second-slider-ref"
-                                ).current.slickGoTo(index);
-                              }}
-                            />
-                          </div>
-                        );
-                    })}
-                  </ComposerSlider>
+                  {(slider.length > 1) && (
+                    <ComposerSlider
+                      ref={this.getComponentState("second-slider-ref")}
+                      {...settings}
+                      draggable={true}
+                      slidesToShow={3}
+                      vertical={true}
+                      verticalSwiping={true}
+                      centerMode={true}
+                      centerPadding={"0px"}
+                      className={this.decorateCSS("carousel")}
+                    >
+                      {slider.map((item: ISliderData, index: number) => {
+                        if (item.leftImage)
+                          return (
+                            <div
+                              key={index}
+                              className={this.decorateCSS("swiper-wrapper")}
+                            >
+                              {activeIndex === index && (
+                                <div className={this.decorateCSS("content")}>
+                                  <span
+                                    className={this.decorateCSS(
+                                      "sliderNumber-left"
+                                    )}
+                                  >
+                                    {activeSlideObj.sliderNumber}
+                                  </span>
+                                </div>
+                              )}
+                              <img
+                                className={`${this.decorateCSS(
+                                  "background-left"
+                                )} ${activeIndex === index
+                                  ? this.decorateCSS("active")
+                                  : ""
+                                  }`}
+                                src={item.leftImage}
+                                alt={item.leftImage}
+                                onClick={() => {
+                                  this.getComponentState(
+                                    "slider-ref"
+                                  ).current.slickGoTo(index);
+                                  this.getComponentState(
+                                    "second-slider-ref"
+                                  ).current.slickGoTo(index);
+                                }}
+                              />
+                            </div>
+                          );
+                      })}
+                    </ComposerSlider>
+                  )}
+
                   <div className={this.decorateCSS("slider-inner")}>
                     {this.castToString(activeSlideObj.subtitle) && (
                       <div className={this.decorateCSS("up-text")}>
