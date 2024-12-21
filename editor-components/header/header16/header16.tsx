@@ -3,13 +3,15 @@ import styles from "./header16.module.scss";
 import { BaseHeader } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { Base } from "composer-tools/composer-base-components/base/base";
+import { ComposerIcon } from "composer-tools/composer-base-components/icon/icon";
 
 type ISliderData = {
-  title: string;
+  title: JSX.Element;
   image: string;
-  description: string;
+  description: JSX.Element;
   button: {
-    buttonText: string;
+    buttonText: JSX.Element;
     buttonClick: string;
   };
 };
@@ -24,15 +26,14 @@ class Header16 extends BaseHeader {
       value: [
         {
           type: "object",
-          displayer: "Item 1",
-          key: "item1",
+          displayer: "Item",
+          key: "item",
           value: [
             {
               type: "image",
               key: "image",
               displayer: "Background Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666192c4bd2970002c625c49?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666192c4bd2970002c625c49?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -69,15 +70,14 @@ class Header16 extends BaseHeader {
         },
         {
           type: "object",
-          displayer: "Item 2",
-          key: "item2",
+          displayer: "Item",
+          key: "item",
           value: [
             {
               type: "image",
               key: "image",
               displayer: "Background Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666192c4bd2970002c625c4a?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666192c4bd2970002c625c4a?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -114,15 +114,14 @@ class Header16 extends BaseHeader {
         },
         {
           type: "object",
-          displayer: "Item 3",
-          key: "item3",
+          displayer: "Item",
+          key: "item",
           value: [
             {
               type: "image",
               key: "image",
               displayer: "Background Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666192c4bd2970002c625c4b?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666192c4bd2970002c625c4b?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -159,6 +158,23 @@ class Header16 extends BaseHeader {
         },
       ],
     });
+
+    this.addProp({
+      type: "icon",
+      key: "prev-button-icon",
+      displayer: "Previous Slide Button",
+      value: "IoIosArrowBack",
+    });
+    this.addProp({
+      type: "icon",
+      key: "next-button-icon",
+      displayer: "Next Slide Button",
+      value: "IoIosArrowForward",
+    });
+
+    this.setComponentState("slider-ref", React.createRef());
+    this.setComponentState("active", 0);
+    this.setComponentState("activeSlideIndex", 0);
   }
 
   getName(): string {
@@ -167,43 +183,110 @@ class Header16 extends BaseHeader {
 
   render() {
     const settings = {
-      dots: true,
+      dots: false,
       arrows: false,
       infinite: true,
+      fade: true,
       speed: 500,
       autoplay: false,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
+      beforeChange: (current: number, next: number) => {
+        this.setComponentState("active", next);
+        this.setComponentState("activeSlideIndex", next);
+      },
     };
+    const activeSlideIndex = this.getComponentState("activeSlideIndex");
+
+    const slider = this.castToObject<ISliderData[]>("slider");
+    const sliderRef = this.getComponentState("slider-ref");
+    const prevIcon: string = this.getPropValue("prev-button-icon");
+    const nextIcon: string = this.getPropValue("next-button-icon");
 
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
-            {this.castToObject<ISliderData[]>("slider").map(
-              (item: ISliderData, index: number) => (
+          {prevIcon && slider.length > 1 && (
+            <button
+              onClick={() => {
+                sliderRef.current.slickPrev();
+              }}
+              className={`${this.decorateCSS("slider-button-left")} ${!slider[activeSlideIndex].image ? this.decorateCSS("slider-button-no-image") : ""}`}
+            >
+              <ComposerIcon
+                propsIcon={{
+                  className: this.decorateCSS("icon"),
+                }}
+                name={prevIcon}
+              />
+            </button>
+          )}
+
+          <ComposerSlider {...settings} ref={sliderRef} className={this.decorateCSS("carousel")}>
+            {slider.map((item, index) => {
+              const descriptionExist = this.castToString(item.description);
+              const titleExist = this.castToString(item.title);
+              const buttonTextExist = this.castToString(item.button.buttonText);
+              const imageExist = item.image;
+
+              const contentExist = descriptionExist || titleExist || buttonTextExist;
+
+              return (
                 <div className={this.decorateCSS("item")} key={`key${index}`}>
-                  <div className={this.decorateCSS("image")}>
-                    {item.image && <img src={item.image} alt={item.title} />}
-                  </div>
-                  <div className={this.decorateCSS("content")}>
-                    <div className={this.decorateCSS("description")}>
-                      {item.description}
+                  {imageExist && (
+                    <div className={this.decorateCSS("image-container")}>
+                      <img className={this.decorateCSS("image")} src={item.image} alt="" />
                     </div>
-                    <div className={this.decorateCSS("title")}>{item.title}</div>
-                    <div>
-                      <ComposerLink href={item.button.buttonClick}>
-                        <button className={this.decorateCSS("button")}>
-                          {item.button.buttonText}
-                        </button>
-                      </ComposerLink>
-                    </div>
-                  </div>
+                  )}
+                  {contentExist && (
+                    <Base.MaxContent
+                      className={`${imageExist ? this.decorateCSS("content") : this.decorateCSS("image-no-content")} 
+  ${activeSlideIndex === index ? (imageExist ? this.decorateCSS("active") : this.decorateCSS("active-no-image")) : ""}`}
+                    >
+                      {descriptionExist && <Base.P className={imageExist ? this.decorateCSS("description") : this.decorateCSS("description-no-image")}>{item.description}</Base.P>}
+                      {titleExist && <Base.P className={imageExist ? this.decorateCSS("title") : this.decorateCSS("title-no-image")}>{item.title}</Base.P>}
+                      {buttonTextExist && (
+                        <div>
+                          <ComposerLink href={item.button.buttonClick}>
+                            <Base.Button className={this.decorateCSS("button")}>{item.button.buttonText}</Base.Button>
+                          </ComposerLink>
+                        </div>
+                      )}
+                    </Base.MaxContent>
+                  )}
                 </div>
-              )
-            )}
+              );
+            })}
           </ComposerSlider>
+
+          <div className={this.decorateCSS("numbers-container")}>
+            {slider.map((_, index) => {
+              const imageExist = !slider[activeSlideIndex].image;
+
+              return (
+                <div key={index} className={`${imageExist ? this.decorateCSS("number-item") : this.decorateCSS("number-item-no-image")} ${activeSlideIndex === index ? this.decorateCSS("active") : ""}`}>
+                  <Base.H5 className={imageExist ? this.decorateCSS("number-no-image") : this.decorateCSS("number")}>{index + 1}</Base.H5>
+                </div>
+              );
+            })}
+          </div>
+
+          {nextIcon && slider.length > 1 && (
+            <button
+              onClick={() => {
+                sliderRef.current.slickNext();
+              }}
+              className={`${this.decorateCSS("slider-button-right")} ${!slider[activeSlideIndex].image ? this.decorateCSS("slider-button-no-image") : ""}`}
+            >
+              <ComposerIcon
+                propsIcon={{
+                  className: this.decorateCSS("icon"),
+                }}
+                name={nextIcon}
+              />
+            </button>
+          )}
         </div>
       </div>
     );
