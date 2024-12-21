@@ -38,19 +38,6 @@ class Header18 extends BaseHeader {
     });
 
     this.addProp({
-      type: "icon",
-      key: "prev_icon",
-      displayer: "Prev icon",
-      value: "BsArrowLeft",
-    });
-    this.addProp({
-      type: "icon",
-      key: "next_icon",
-      displayer: "Next icon",
-      value: "BsArrowRight",
-    });
-
-    this.addProp({
       type: "array",
       displayer: "Slider Items",
       key: "slider",
@@ -62,15 +49,15 @@ class Header18 extends BaseHeader {
           value: [
             {
               type: "string",
-              displayer: "Title",
-              key: "title",
-              value: "Painting",
-            },
-            {
-              type: "string",
               displayer: "Subtitle",
               key: "subtitle",
               value: "visual art forms",
+            },
+            {
+              type: "string",
+              displayer: "Title",
+              key: "title",
+              value: "Painting",
             },
             {
               type: "string",
@@ -100,16 +87,17 @@ class Header18 extends BaseHeader {
           value: [
             {
               type: "string",
-              displayer: "Title",
-              key: "title",
-              value: "Scultpure",
-            },
-            {
-              type: "string",
               displayer: "Subitle",
               key: "subtitle",
               value: "visual art forms",
             },
+            {
+              type: "string",
+              displayer: "Title",
+              key: "title",
+              value: "Scultpure",
+            },
+
             {
               type: "string",
               displayer: "Description Title",
@@ -137,16 +125,17 @@ class Header18 extends BaseHeader {
           value: [
             {
               type: "string",
-              displayer: "Title",
-              key: "title",
-              value: "Architecture",
-            },
-            {
-              type: "string",
               displayer: "Subitle",
               key: "subtitle",
               value: "visual art forms",
             },
+            {
+              type: "string",
+              displayer: "Title",
+              key: "title",
+              value: "Architecture",
+            },
+
             {
               type: "string",
               displayer: "Description Title",
@@ -174,16 +163,17 @@ class Header18 extends BaseHeader {
           value: [
             {
               type: "string",
-              displayer: "Title",
-              key: "title",
-              value: "Ceramics",
-            },
-            {
-              type: "string",
               displayer: "Subitle",
               key: "subtitle",
               value: "visual art forms",
             },
+            {
+              type: "string",
+              displayer: "Title",
+              key: "title",
+              value: "Ceramics",
+            },
+
             {
               type: "string",
               displayer: "Description Title",
@@ -211,16 +201,17 @@ class Header18 extends BaseHeader {
           value: [
             {
               type: "string",
-              displayer: "Title",
-              key: "title",
-              value: "Photography",
-            },
-            {
-              type: "string",
               displayer: "Subitle",
               key: "subtitle",
               value: "visual art forms",
             },
+            {
+              type: "string",
+              displayer: "Title",
+              key: "title",
+              value: "Photography",
+            },
+
             {
               type: "string",
               displayer: "Description Title",
@@ -308,6 +299,20 @@ class Header18 extends BaseHeader {
         },
       ],
     });
+
+    this.addProp({
+      type: "icon",
+      key: "prev_icon",
+      displayer: "Prev icon",
+      value: "BsArrowLeft",
+    });
+    this.addProp({
+      type: "icon",
+      key: "next_icon",
+      displayer: "Next icon",
+      value: "BsArrowRight",
+    });
+
     this.setComponentState("slider-ref", React.createRef());
     this.setComponentState("active-index", 0);
   }
@@ -365,9 +370,6 @@ class Header18 extends BaseHeader {
                 const descTitleExist = this.castToString(item.description_title);
                 const descExist = this.castToString(item.description);
 
-                const hasImage = item.image;
-                const isActiveSlide = this.getComponentState("active-index") === index;
-
                 return (
                   <div className={this.decorateCSS("slide")} key={index}>
                     <div className={this.decorateCSS("card")}>
@@ -382,8 +384,8 @@ class Header18 extends BaseHeader {
                           {showPagination && (
                             <div className={cover ? this.decorateCSS("pagination") : this.decorateCSS("pagination-no-image")}>
                               <span className={this.decorateCSS("active-slide")}>{(this.getComponentState("active-index") + 1).toString().padStart(2, "0")}</span>
-                              <div className={this.decorateCSS("progress-bar")}>
-                                <div className={this.decorateCSS("active")} style={{ width: `${progressPercentage}%` }} />
+                              <div className={cover ? this.decorateCSS("progress-bar") : this.decorateCSS("progress-bar-no-image")}>
+                                <div className={cover ? this.decorateCSS("active") : this.decorateCSS("active-no-image")} style={{ width: `${progressPercentage}%` }} />
                               </div>
                               <Base.P className={this.decorateCSS("slide-count")}>{sliderCount.toString().padStart(2, "0")}</Base.P>
                             </div>
@@ -409,7 +411,7 @@ class Header18 extends BaseHeader {
                 <div className={this.decorateCSS("socials")}>
                   {socials.map((item: Social, index: number) => (
                     <ComposerLink path={item.url} key={index}>
-                      <Base.P className={this.decorateCSS("name")}>{item.text}</Base.P>
+                      <Base.P className={cover ? this.decorateCSS("name") : this.decorateCSS("name-no-image")}>{item.text}</Base.P>
                     </ComposerLink>
                   ))}
                 </div>
@@ -418,7 +420,7 @@ class Header18 extends BaseHeader {
                 <ComposerIcon
                   name={this.getPropValue("prev_icon")}
                   propsIcon={{
-                    className: this.decorateCSS("prev-icon"),
+                    className: cover ? this.decorateCSS("prev-icon") : this.decorateCSS("prev-icon-no-image"),
                     onClick: () => sliderRef.current.slickPrev(),
                   }}
                 />
@@ -427,7 +429,7 @@ class Header18 extends BaseHeader {
                 <ComposerIcon
                   name={this.getPropValue("next_icon")}
                   propsIcon={{
-                    className: this.decorateCSS("next-icon"),
+                    className: cover ? this.decorateCSS("next-icon") : this.decorateCSS("next-icon-no-image"),
                     onClick: () => sliderRef.current.slickNext(),
                   }}
                 />
