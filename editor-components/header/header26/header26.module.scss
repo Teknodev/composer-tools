@@ -6,16 +6,13 @@
   overflow: hidden;
   position: relative;
 }
-
 .max-content {
   margin: 0 auto;
   height: 100%;
-
   > div > div > div > div {
     border: none !important;
   }
 }
-
 .sliders {
   height: 100vh;
   transition: transform 500ms ease;
@@ -36,17 +33,22 @@
   gap: var(--composer-gap-md);
 }
 
-.left-side {
+.left-side, .left-side-no-image {
   width: 100%;
   display: flex;
   justify-content: end;
   align-items: center;
 }
-
-.left-side-content {
-  width: 75%;
+.left-side-no-image{
+  .left-side-content{
+    width: 100%;
+    padding: 20px 50px;
+  }
 }
 
+.left-side-content{
+  width: 75%;
+}
 .title {
   font-size: 5rem;
   font-weight: bold;
@@ -129,23 +131,24 @@
         .slider{
           flex-direction: column;
           align-items: stretch;
-          .left-side {
+          .left-side, .left-side-no-image {
             padding: var(--composer-gap-xl);
             justify-content: center;
             .left-side-contnet {
               width: 100%;
               .title {
-                font-size: 4rem;
-                margin-bottom: 0 !important;
-            
-                blinkpage p {
-                  -webkit-line-clamp: 3 !important;
-                }
+                font-size: 4rem;            
               }
-            
               .subtitle {
                 font-size: 1rem;
               }
+            }
+          }
+          .left-side-no-image{
+            padding:0px;
+            height: 100%;
+            .left-side-content{
+              padding: 20px 40px;
             }
           }
           .right-side {
@@ -169,7 +172,8 @@
           }
         
           .arrows {
-            bottom: var(--composer-gap-xl);
+            left: 40px;
+            bottom: var(--composer-gap-xl);          
           }
         }
       }
@@ -185,7 +189,7 @@
     .max-content{
       .sliders{
         .slider{
-          .left-side {
+          .left-side,  .left-side-no-image{
             margin: 0 auto;
             width: 100%;
             padding: var(--composer-gap-md);
@@ -195,11 +199,14 @@
               .title {
                 font-size: 3.5rem;
               }
-            
               .subtitle {
                 font-size: 2rem;
               }
-            
+            }
+          }
+          .left-side-no-image{
+            .left-side-content{
+              padding: 20px;
             }
           }
           .right-side {
@@ -207,18 +214,12 @@
             margin: 0;
             flex: 4;
             .image {
-              margin: 0 !important;
               height: 70%;
             }
           }
           .arrows {
-            left: var(--composer-gap-md);
+            left: 20px;
             bottom: var(--composer-gap-md);
-          }
-          .arrows.stick-to-bottom {
-            margin-top: 0 !important;
-            top: unset !important;
-            bottom: 0 !important;
           }
 
           .up-arrow svg,

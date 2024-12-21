@@ -206,7 +206,7 @@ class Header26 extends BaseHeader {
       arrows: false,
       infinite: true,
       speed: 500,
-      autoplay: false,
+      autoplay: true,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -258,7 +258,7 @@ class Header26 extends BaseHeader {
                   >
                     <div className={this.decorateCSS("slider")}>
                       {(titleExist || subtitleExist) && (
-                        <div className={this.decorateCSS("left-side")}>
+                        <div className={item.image ? this.decorateCSS("left-side") : this.decorateCSS("left-side-no-image")}>
                           <div
                             className={this.decorateCSS("left-side-content")}
                           >
@@ -285,7 +285,7 @@ class Header26 extends BaseHeader {
                           <img
                             className={this.decorateCSS("image")}
                             src={item.image}
-                            alt="Slide"
+                            alt={item.image}
                           />
                         </div>
                       )}
