@@ -287,7 +287,7 @@
 
         .right-slider-button {
           transform: rotate(-90deg);
-          top: -var(--composer-gap-xs);
+          top: calc(var(--composer-gap-xs) * -1);
           left: var(--composer-gap-md);
         }
 
@@ -406,14 +406,16 @@
         .left-slider-button,
         .right-slider-button {
           font-size: 2rem;
-          top: calc(100% - 10px);
           width: 25px;
           height: 25px;
           transform: rotate(-90deg);
         }
 
         .right-slider-button {
-          top: -var(--composer-gap-md);
+          top: calc(var(--composer-gap-sm) * -1);
+        }
+        .left-slider-button {
+          top: calc(100% - 10px);
         }
 
         .no-slider-items {
