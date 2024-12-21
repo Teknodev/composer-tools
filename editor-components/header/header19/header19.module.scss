@@ -1,20 +1,5 @@
 @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
-@mixin no-image {
-  .title {
-    color: var(--composer-font-color-primary);
-  }
-
-  .description {
-    color: var(--composer-font-color-primary);
-  }
-
-  .button {
-    color: var(--composer-font-color-primary);
-    border-color: var(--composer-primary-color);
-  }
-}
-
 .container {
   .max-content {
     height: 100vh;
@@ -49,13 +34,10 @@
             white-space: pre-wrap;
           }
 
-          .button {
-            overflow: hidden;
-            cursor: pointer;
-          }
-
           &.no-bg-img {
-            @include no-image;
+            .description {
+              color: var(--composer-font-color-primary);
+            }
           }
         }
       }
@@ -80,7 +62,9 @@
           }
 
           .no-bg-img {
-            @include no-image;
+            .description {
+              color: var(--composer-font-color-primary);
+            }
           }
         }
       }
@@ -92,12 +76,6 @@
         height: 50%;
         border-radius: var(--composer-border-radius-xs);
 
-        .button {
-          background: transparent !important;
-          overflow: hidden;
-          cursor: pointer;
-        }
-
         .item {
           flex: 1;
           background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
@@ -108,7 +86,9 @@
           }
 
           .no-bg-img {
-            @include no-image;
+            .description {
+              color: var(--composer-font-color-primary);
+            }
           }
         }
       }
@@ -175,17 +155,6 @@
           font-size: 2rem;
           overflow: hidden;
           white-space: pre-wrap;
-        }
-
-        .button {
-          padding: var(--composer-gap-sm);
-          background: var(--composer-primary-color);
-          border: 0px;
-          color: black;
-          font-size: 1rem;
-          background: transparent !important;
-          border-bottom: #459647 solid 2px;
-          overflow: hidden;
         }
       }
     }
