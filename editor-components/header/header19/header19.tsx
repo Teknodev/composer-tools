@@ -28,7 +28,7 @@ class Header19 extends BaseHeader {
           type: "string",
           displayer: "Description",
           key: "description",
-          value: "Porta\nConsectetur\nImperdiet\nFrigilla",
+          value: "Porta Consectetur Imperdiet Frigilla",
         },
         {
           type: "image",
@@ -79,7 +79,7 @@ class Header19 extends BaseHeader {
           type: "string",
           displayer: "Description",
           key: "description",
-          value: "Feugiat\nScelerisque\nImperdiet",
+          value: "Feugiat Scelerisque Imperdiet",
         },
         {
           type: "image",
@@ -131,7 +131,7 @@ class Header19 extends BaseHeader {
           type: "string",
           displayer: "Description",
           key: "description",
-          value: "Adipiscing\nSodales",
+          value: "Adipiscing Sodales",
         },
 
         {

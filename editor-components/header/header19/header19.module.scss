@@ -14,6 +14,7 @@
       .item {
         align-items: flex-start;
         padding: var(--composer-gap-md);
+        
 
         .background-image {
           border-radius: var(--composer-border-radius-xs);
@@ -21,7 +22,6 @@
 
         .content {
           text-overflow: ellipsis;
-          white-space: nowrap;
 
           .title {
             font-size: 1rem;
@@ -31,7 +31,6 @@
           .description {
             font-size: 3rem;
             overflow: hidden;
-            white-space: pre-wrap;
           }
 
           &.no-bg-img {
@@ -57,7 +56,7 @@
         border-radius: var(--composer-border-radius-xs);
 
         .item {
-          .background-image{
+          .background-image {
             border-radius: var(--composer-border-radius-xs);
           }
 
@@ -81,7 +80,7 @@
           background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
           border-radius: var(--composer-border-radius-xs);
 
-          .background-image{
+          .background-image {
             border-radius: var(--composer-border-radius-xs);
           }
 
@@ -135,8 +134,7 @@
         gap: var(--composer-gap-sm);
         color: black;
         text-overflow: ellipsis;
-        white-space: nowrap;
-        max-width: 50%;
+        max-width: 100%;
         height: 100%;
         overflow: hidden;
 
@@ -154,7 +152,6 @@
         .description {
           font-size: 2rem;
           overflow: hidden;
-          white-space: pre-wrap;
         }
       }
     }
@@ -176,7 +173,6 @@
           align-items: flex-start;
 
           .content {
-            max-width: 100%;
             width: 100%;
 
             .description {
@@ -206,7 +202,6 @@
         justify-content: flex-start;
 
         .content {
-          max-width: 100%;
           width: 100%;
 
           .description {
