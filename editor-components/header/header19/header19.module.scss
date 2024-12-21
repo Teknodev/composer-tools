@@ -24,11 +24,15 @@
     .left {
       flex: 1;
       background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-      border-radius: var(--composer-border-radius-sm);
+      border-radius: var(--composer-border-radius-xs);
 
       .item {
         align-items: flex-start;
         padding: var(--composer-gap-md);
+
+        .background-image {
+          border-radius: var(--composer-border-radius-xs);
+        }
 
         .content {
           text-overflow: ellipsis;
@@ -40,8 +44,7 @@
           }
 
           .description {
-            font-size: 3.5rem;
-
+            font-size: 3rem;
             overflow: hidden;
             white-space: pre-wrap;
           }
@@ -68,9 +71,14 @@
       .top {
         flex: 2;
         background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-        border-radius: var(--composer-border-radius-sm);
+        height: 50%;
+        border-radius: var(--composer-border-radius-xs);
 
         .item {
+          .background-image{
+            border-radius: var(--composer-border-radius-xs);
+          }
+
           .no-bg-img {
             @include no-image;
           }
@@ -81,10 +89,11 @@
         display: flex;
         gap: var(--composer-gap-md);
         flex: 2;
+        height: 50%;
+        border-radius: var(--composer-border-radius-xs);
 
         .button {
           background: transparent !important;
-          max-width: 100px;
           overflow: hidden;
           cursor: pointer;
         }
@@ -92,7 +101,11 @@
         .item {
           flex: 1;
           background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-          border-radius: var(--composer-border-radius-sm);
+          border-radius: var(--composer-border-radius-xs);
+
+          .background-image{
+            border-radius: var(--composer-border-radius-xs);
+          }
 
           .no-bg-img {
             @include no-image;
@@ -111,8 +124,9 @@
 
       &:hover {
         .background-image {
-          img {
+          .image {
             transform: scale(1.1);
+            border-radius: var(--composer-border-radius-xs);
           }
         }
       }
@@ -125,7 +139,7 @@
         height: 100%;
         overflow: hidden;
 
-        img {
+        .image {
           transition: all 0.6s cubic-bezier(0.33, 1, 0.68, 1);
           transform: scale(1);
           height: 100%;
@@ -143,6 +157,12 @@
         text-overflow: ellipsis;
         white-space: nowrap;
         max-width: 50%;
+        height: 100%;
+        overflow: hidden;
+
+        :last-child {
+          overflow: hidden;
+        }
 
         .title {
           font-size: 1rem;
@@ -152,7 +172,7 @@
         }
 
         .description {
-          font-size: 2.5rem;
+          font-size: 2rem;
           overflow: hidden;
           white-space: pre-wrap;
         }
@@ -165,22 +185,35 @@
           font-size: 1rem;
           background: transparent !important;
           border-bottom: #459647 solid 2px;
-          max-width: 100px;
           overflow: hidden;
         }
       }
+    }
+
+    .bottom-left,
+    .bottom-right {
+      width: 50%;
     }
   }
 }
 
 
 
-@container (max-width: #{$composer-tablet-width}) {
+@container (max-width: #{$composer-tablet-width-lg}) {
   .container {
     .max-content {
       .left {
         .item {
           align-items: flex-start;
+
+          .content {
+            max-width: 100%;
+            width: 100%;
+
+            .description {
+              font-size: 2rem;
+            }
+          }
         }
       }
 
@@ -189,25 +222,10 @@
 
         .top {
           width: auto;
-
-          .item {
-            .content {
-              .title {
-                font-size: 1rem;
-              }
-
-              .description {
-                font-size: 2.5rem;
-              }
-            }
-          }
         }
 
         .bottom {
           flex-direction: row;
-
-          .button {
-          }
 
           .item {
             flex: 1;
@@ -219,17 +237,11 @@
         justify-content: flex-start;
 
         .content {
-          .title {
-            font-size: 1rem;
-          }
+          max-width: 100%;
+          width: 100%;
 
           .description {
-            font-size: 2.5rem;
-            max-width: 170px;
-          }
-
-          .button {
-            font-size: 1rem;
+            font-size: 1.5rem;
           }
         }
       }
@@ -245,18 +257,17 @@
 
       .left {
         width: 100%;
+        height: auto;
 
         .item {
           width: 100%;
           padding: var(--composer-gap-md);
+          height: auto;
 
           .content {
-            .title {
-              font-size: 1rem;
-            }
 
             .description {
-              font-size: 2rem;
+              font-size: 1.5rem;
             }
           }
         }
@@ -270,6 +281,7 @@
         .top {
           flex: 1;
           width: auto;
+          height: auto;
 
           .item {
             .content {
@@ -282,12 +294,18 @@
 
         .bottom {
           flex-direction: column;
-          height: 100%;
+          align-items: stretch !important;
+          height: auto;
+
+          .item {
+            flex: 1 !important;
+          }
         }
       }
 
       .item {
         padding: var(--composer-gap-md);
+        min-height: 150px;
 
         .content {
           flex-direction: column;
@@ -300,6 +318,12 @@
             font-size: 1.5rem;
           }
         }
+      }
+
+      .bottom-left,
+      .bottom-right {
+        width: 100%;
+        height: auto;
       }
     }
   }
