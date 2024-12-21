@@ -235,19 +235,21 @@ class Header19 extends BaseHeader {
       { name: "BottomRight", data: itemBottomRight },
     ];
 
+    let visibleContents: any = {}
+
     items.forEach(({ name, data }) => {
       const isVisible = Boolean(
         this.castToString(data.title) ||
         this.castToString(data.description) ||
         this.castToString(data.button?.buttontext)
       );
-      (this as any)[`isContentVisible${name}`] = isVisible;
+      visibleContents[`isContentVisible${name}`] = isVisible;
     });
 
-    const isContentVisibleLeft = (this as any)["isContentVisibleLeft"];
-    const isContentVisibleRightTop = (this as any)["isContentVisibleRightTop"];
-    const isContentVisibleBottomLeft = (this as any)["isContentVisibleBottomLeft"];
-    const isContentVisibleBottomRight = (this as any)["isContentVisibleBottomRight"];
+    const isContentVisibleLeft = visibleContents["isContentVisibleLeft"];
+    const isContentVisibleRightTop = visibleContents["isContentVisibleRightTop"];
+    const isContentVisibleBottomLeft = visibleContents["isContentVisibleBottomLeft"];
+    const isContentVisibleBottomRight = visibleContents["isContentVisibleBottomRight"];
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
