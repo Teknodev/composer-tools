@@ -376,7 +376,7 @@ export abstract class Component
       : this.state.componentProps.cssClasses;
   }
   addProp(prop: TypeUsableComponentProps) {
-    this.shadowProps.push(prop);
+    this.shadowProps.push(JSON.parse(JSON.stringify(prop)));
     if (this.getProp(prop.key)) return;
     const attachPropId = (_prop: TypeUsableComponentProps) => {
       if (_prop.type == "array" || _prop.type == "object") {
