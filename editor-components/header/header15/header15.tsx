@@ -4,7 +4,6 @@ import { BaseHeader } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "composer-tools/composer-base-components/base/base";
 import { Form, Formik } from "formik";
-import zIndex from "@mui/material/styles/zIndex";
 
 interface InputItem {
   placeholder: JSX.Element,
@@ -135,7 +134,6 @@ class Header15 extends BaseHeader {
                         <Formik
                           initialValues={{ ...getInitialValue() }}
                           onSubmit={(data, { resetForm }) => {
-                            console.log("data", data)
                             this.insertForm("Contact Us", data);
                             resetForm();
                           }}
