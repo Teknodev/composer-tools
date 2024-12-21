@@ -1,7 +1,7 @@
 import axios from "axios";
 import * as React from "react";
 import { getProjectHook } from "../custom-hooks/project";
-import { EventEmitter } from "../EventEmitter";
+import { EventEmitter, EVENTS } from "../EventEmitter";
 import sanitizeHtml from "sanitize-html";
 import { renderToString } from "react-dom/server";
 import { THEMES, TTheme } from "./location/themes";
@@ -31,8 +31,9 @@ type GetPropValueProperties = {
   prefix?: PreSufFix;
 };
 type TypeCSSProp = { [key: string]: { id: string; class: string }[] };
-export type iComponent = {
+export interface iComponent {
   render(): any;
+  getInstanceName(): string;
   getName(): string;
   getProps(): TypeUsableComponentProps[];
   getPropValue(
@@ -47,9 +48,7 @@ export type iComponent = {
   decorateCSS(cssValue: string): string;
   getCategory(): CATEGORIES;
   id: string;
-
-  customStates: any;
-};
+}
 type AvailablePropTypes =
   | { type: "string"; value: string }
   | { type: "number"; value: number }
@@ -66,10 +65,9 @@ type AvailablePropTypes =
 
 export type TypeReactComponent = {
   type: string;
-  props: TypeUsableComponentProps[];
-  cssClasses: TypeCSSProp;
-  children: string;
-  id: string;
+  props?: TypeUsableComponentProps[];
+  cssClasses?: TypeCSSProp;
+  id?: string;
 };
 export type TypeUsableComponentProps = {
   id?: string;
@@ -104,6 +102,7 @@ export enum CATEGORIES {
   FEATURE = "feature",
   IMAGEGALLERY = "imageGallery",
   LOCATION = "Location",
+  HTTP_CODES = "HTTPCodes",
 }
 
 //@ts-ignore
@@ -112,34 +111,59 @@ export abstract class Component
   implements iComponent
 {
   private styles: any;
-  private _props: any;
-  public customStates: any = {};
   public id: string;
-  protected category: CATEGORIES;
-  abstract getName(): string;
+  static category: CATEGORIES;
 
   constructor(props: any, styles: any) {
     super(props);
-    this._props = props;
     this.styles = styles;
-    this.id = Math.random().toString();
+    this.id = props?.id || Math.random().toString();
+
     this.onChange = this.onChange.bind(this);
     let sectionsKeyValue: any = {};
     Object.keys(this.styles).forEach((key, index) => {
-      sectionsKeyValue[key] = (props && props[key]) || [];
+      sectionsKeyValue[key] = [];
     });
+
     this.state = {
       states: {},
       componentProps: {
-        props: [],
-        cssClasses: sectionsKeyValue,
+        props: props?.props || [],
+        cssClasses: props?.cssClasses || sectionsKeyValue,
       },
     };
+
+    if (props?.props?.length) {
+      props?.props.forEach((prop: TypeUsableComponentProps) => {
+        this.setProp(prop.key, prop.value);
+      });
+    }
+
+    EventEmitter.emit(EVENTS.COMPONENT_ADDED, { id: this.id, props });
+  }
+
+  static getName(): string {
+    // console.error("Static Method Not Implemented", this.name);
+    return this.name;
+  }
+
+  getName(): string {
+    // console.error("Static Method Not Implemented", this.name);
+    return (this.constructor as typeof Component).getName();
+  }
+
+  getInstanceName(): string {
+    return (this.constructor as typeof Component).name;
+  }
+
+  static getCategory(): CATEGORIES {
+    return this.category;
   }
 
   getCategory(): CATEGORIES {
-    return this.category;
+    return (this.constructor as typeof Component).category;
   }
+
   getProps(): TypeUsableComponentProps[] {
     return this.state.componentProps.props;
   }
@@ -237,7 +261,7 @@ export abstract class Component
     let componentProps = this.getProps();
     this.setValueAtPath(componentProps, propRoute, htmlString);
 
-    EventEmitter.emit("propUpdated", {
+    EventEmitter.emit(EVENTS.PROP_UPDATED, {
       component: this,
       type: componentProps[parseInt(propRoute[0])].type,
       key: componentProps[parseInt(propRoute[0])].key,
@@ -326,7 +350,7 @@ export abstract class Component
           onChange={this.onChange}
           HTML={
             //@ts-ignore
-            () => <blinkpage dangerouslySetInnerHTML={sanitizedHtml}></blinkpage>
+            () => (<blinkpage dangerouslySetInnerHTML={sanitizedHtml}></blinkpage>)
           }
         />
       );
@@ -344,6 +368,7 @@ export abstract class Component
       : this.state.componentProps.cssClasses;
   }
   addProp(prop: TypeUsableComponentProps) {
+    if (this.getProp(prop.key)) return;
     const attachPropId = (_prop: TypeUsableComponentProps) => {
       if (_prop.type == "array" || _prop.type == "object") {
         _prop.value = (_prop.value as TypeUsableComponentProps[]).map(
@@ -376,13 +401,12 @@ export abstract class Component
   }
 
   setComponentState(key: string, value: any): void {
-    this.customStates[key] = value;
-    EventEmitter.emit("forceReload");
-    EventEmitter.emit("stateChanged", { id: this.id, key, value });
+    this.state.states[key] = value;
+    this.setState({ ...this.state });
   }
 
   getComponentState(key: string): any {
-    return this.customStates[key];
+    return this.state.states[key];
   }
 
   setCSSClasses(key: string, value: { id: string; class: string }[]) {
@@ -395,6 +419,7 @@ export abstract class Component
     let cssManuplations = Object.entries(this.getCSSClasses()).filter(
       ([p, v]) => v.length > 0
     );
+
     cssManuplations.forEach(([key, value]: any) => {
       if (key === cssValue) {
         value.forEach((el: any) => {
@@ -440,7 +465,7 @@ export abstract class Component
   }
 
   castToString(elem: JSX.Element): string {
-    return elem.props?.html;
+    return elem.props?.html?.replace(/<\/?[^>]+(>|$)/g, "");
   }
 
   private castingProcess(object: any) {
@@ -494,99 +519,81 @@ export abstract class Component
 
     return casted;
   }
+
+  insertForm(name: string, data: Object) {
+    const project = getProjectHook()._id;
+    const apiUrl = process.env.REACT_APP_API_URL || process.env.NEXT_PUBLIC_PUBLIC_URL;
+    let config = {
+      ...{ data: { name, data, project } },
+      method: "post",
+      url: apiUrl + "/fn-execute/project/insert-form",
+    };
+    return axios.request(config).then((r: any) => r.data);
+  }
 }
 
 export abstract class BaseNavigator extends Component {
-  protected category = CATEGORIES.NAVIGATOR;
+  static category = CATEGORIES.NAVIGATOR;
 }
 
 export abstract class Testimonials extends Component {
-  protected category = CATEGORIES.TESTIMONIALS;
+  static category = CATEGORIES.TESTIMONIALS;
 }
 
 export abstract class BaseList extends Component {
-  protected category = CATEGORIES.LIST;
+  static category = CATEGORIES.LIST;
 }
 
 export abstract class BaseHeader extends Component {
-  protected category = CATEGORIES.HEADER;
+  static category = CATEGORIES.HEADER;
 }
 
 export abstract class BasePricingTable extends Component {
-  protected category = CATEGORIES.PRICING;
+  static category = CATEGORIES.PRICING;
 }
 
 export abstract class BaseFooter extends Component {
-  protected category = CATEGORIES.FOOTER;
-
-  insertForm(name: string, data: Object) {
-    const project = getProjectHook()._id;
-    let config = {
-      ...{ data: { name, data, project } },
-      method: "post",
-      url: process.env.REACT_APP_API_URL + "/fn-execute/project/insert-form",
-    };
-    return axios.request(config).then((r: any) => r.data);
-  }
+  static category = CATEGORIES.FOOTER;
 }
 
 export abstract class Team extends Component {
-  protected category = CATEGORIES.TEAM;
+  static category = CATEGORIES.TEAM;
 }
 
 export abstract class BaseContent extends Component {
-  protected category = CATEGORIES.CONTENT;
+  static category = CATEGORIES.CONTENT;
 }
 
 export abstract class BaseDownload extends Component {
-  protected category = CATEGORIES.DOWNLOAD;
+  static category = CATEGORIES.DOWNLOAD;
 }
 
 export abstract class BaseCallToAction extends Component {
-  protected category = CATEGORIES.CALLTOACTION;
-  insertForm(name: string, data: Object) {
-    const projectSettings = JSON.parse(getProjectHook().data);
-    const project = projectSettings._id;
-    let config = {
-      ...{ data: { name, data, project } },
-      method: "post",
-      url: process.env.REACT_APP_API_URL
-        ? process.env.REACT_APP_API_URL
-        : process.env.NEXT_PUBLIC_PUBLIC_URL +
-          "/fn-execute/project/insert-form",
-    };
-    return axios.request(config).then((r: any) => r.data);
-  }
+  static category = CATEGORIES.CALLTOACTION;
 }
 
 export abstract class BaseSlider extends Component {
-  protected category = CATEGORIES.SLIDER;
+  static category = CATEGORIES.SLIDER;
 }
 
 export abstract class BaseFAQ extends Component {
-  protected category = CATEGORIES.FAQ;
+  static category = CATEGORIES.FAQ;
+}
+
+export abstract class BaseHTTPCodes extends Component {
+  static category = CATEGORIES.HTTP_CODES;
 }
 
 export abstract class BaseImageGallery extends Component {
-  protected category = CATEGORIES.IMAGEGALLERY;
+  static category = CATEGORIES.IMAGEGALLERY;
 }
 
 export abstract class BaseModal extends Component {
-  protected category = CATEGORIES.MODAL;
-
-  insertForm(name: string, data: Object) {
-    const project = getProjectHook()._id;
-    let config = {
-      ...{ data: { name, data, project } },
-      method: "post",
-      url: process.env.REACT_APP_API_URL + "/fn-execute/project/insert-form",
-    };
-    return axios.request(config).then((r: any) => r.data);
-  }
+  static category = CATEGORIES.MODAL;
 }
 
 export abstract class LogoClouds extends Component {
-  protected category = CATEGORIES.LOGOCLOUDS;
+  static category = CATEGORIES.LOGOCLOUDS;
 
   LOGOINPUT() {
     return {
@@ -613,7 +620,7 @@ export abstract class LogoClouds extends Component {
 }
 
 export abstract class Location extends Component {
-  protected category = CATEGORIES.LOCATION;
+  static category = CATEGORIES.LOCATION;
   protected themes: TTheme[] = THEMES;
 
   constructor(props: any, styles: any) {
@@ -622,7 +629,7 @@ export abstract class Location extends Component {
       type: "select",
       key: "theme",
       displayer: "Map Theme",
-      value: "Theme-0",
+      value: "",
       additionalParams: {
         selectItems: [
           "Theme-0",
@@ -644,27 +651,13 @@ export abstract class Location extends Component {
 }
 
 export abstract class BaseStats extends Component {
-  protected category = CATEGORIES.STATS;
+  static category = CATEGORIES.STATS;
 }
 
 export abstract class BaseContacts extends Component {
-  protected category = CATEGORIES.FORM;
-
-  insertForm(name: string, data: Object) {
-    const projectSettings = JSON.parse(getProjectHook().data);
-    const project = projectSettings._id;
-    let config = {
-      ...{ data: { name, data, project } },
-      method: "post",
-      url: process.env.REACT_APP_API_URL
-        ? process.env.REACT_APP_API_URL
-        : process.env.NEXT_PUBLIC_PUBLIC_URL +
-          "/fn-execute/project/insert-form",
-    };
-    return axios.request(config).then((r: any) => r.data);
-  }
+  static category = CATEGORIES.FORM;
 }
 
 export abstract class BaseFeature extends Component {
-  protected category = CATEGORIES.FEATURE;
+  static category = CATEGORIES.FEATURE;
 }
