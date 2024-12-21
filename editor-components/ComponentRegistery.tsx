@@ -1,23 +1,23 @@
-import { CATEGORIES, iComponent } from "./EditorComponent";
+import { CATEGORIES, Component, iComponent } from "./EditorComponent";
 
+export type TRegistryState = { [key in CATEGORIES]: typeof Component[] };
 class ComponentsRegistery {
+  private availableComponents: TRegistryState = {} as TRegistryState;
 
-    private availableComponents: any = {};
+  constructor() {
+    Object.values(CATEGORIES).forEach((item) => {
+      this.availableComponents[item] = [];
+    });
+  }
 
-    constructor() {
-        Object.values(CATEGORIES).forEach((item) => {
-            this.availableComponents[item] = [];
-        })
-    }
-
-    getComponents(): { [key in CATEGORIES]: iComponent[] } {
-        return this.availableComponents;
-    }
-    register(components: iComponent[]) {
-        components.forEach((component: iComponent) => {
-            this.availableComponents[component.getCategory()].push(component)
-        })
-    }
+  getComponents(): TRegistryState  {
+    return this.availableComponents;
+  }
+  register(components: typeof Component[]) {
+    components.forEach((component: typeof Component) => {
+      this.availableComponents[component.getCategory()].push(component);
+    });
+  }
 }
 
 export default ComponentsRegistery;

@@ -1,67 +1,116 @@
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+
+$icon-size: 56px;
+
 .container {
-    width: 100%;
-    padding: 50px 0;
+    padding-top: var(--composer-gap-lg);
+
     .max-content {
-        max-width: var(--composer-content-width);
-        margin: auto;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        justify-content: space-around;
-        .icon-boxes {
-            display: flex;
-            flex-direction: column;
-            text-align: center;
-            border-radius: 6px;
-            height: max-content;
-            min-width: 250px;
-            flex: 1 1;
-            &:hover {
-                .image-background {
-                    transform: rotate(135deg);
-                    padding: 1px;
-                    box-shadow: var(--composer-primary-color) 0px 0px 10px;
-                    .image {
-                        transform: rotate(-135deg);
-                    }
-                }
-            }
-            .image-background {
-                transition: all 0.4s;
+        .wrapper {
+            row-gap: var(--composer-gap-xl);
+
+            .item {
                 display: flex;
-                margin: auto;
-                background-color: var(--composer-primary-color);
-                padding: 1px;
-                border-radius: 6px;
-                .image {
-                    transition: all 0.4s;
-                    width: 60px;
-                    padding: 10px;
+                flex-direction: column;
+                align-items: center;
+                gap: var(--composer-gap-md);
+                position: relative;
+
+                .item-index {
                     margin: 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    position: absolute;
+                    background-color: var(--composer-font-color-primary);
+                    color: var(--composer-html-background);
+                    border-radius: 50%;
+                    width: 25px;
+                    height: 25px;
+                    top: -15px;
+                    left: calc(50% + 30px);
+                    transform: translateX(-50%);
                 }
-            }
-            .title {
-                display: block;
-                margin: 12px auto;
-                font-weight: bold;
-                color: var(--composer-primary-color);
-            }
-            .long-text {
-                display: block;
-                color: var(--composer-font-color-primary);
-                margin-bottom: 0;
+
+                .icon {
+                    width: $icon-size;
+                    height: $icon-size;
+                    margin: 0;
+                    color: var(--composer-font-color-primary);
+                }
+
+                .title {
+                    width: 100%;
+                    font-size: 1.5rem;
+                    margin: 0;
+                    font-weight: 400;
+                    color: var(--composer-font-color-primary);
+                }
+
+                .description {
+                    width: 100%;
+                    font-size: 1rem;
+                    margin: 0;
+                    color: var(--composer-tertiary-color);
+                }
+
+                &:not(:last-child)::after {
+                    content: "";
+                    width: 80%;
+                    height: 1px;
+                    background-color: var(--composer-font-color-primary);
+                    position: absolute;
+                    left: 100%;
+                    top: $icon-size / 2;
+                    transform: translateX(calc(-50% + var(--composer-gap-sm)));
+                    opacity: .2;
+                }
+
+                &.remove-line::after {
+                    display: none;
+                }
             }
         }
     }
 }
 
-@media only screen and (max-width: 768px) {
+@container (max-width: #{$composer-tablet-width}) {
     .container {
-        padding: 50px 20px;
         .max-content {
-            gap: 60px !important;
-            .card-item-count {
-                min-width: 100%;
+            .wrapper {
+                div:nth-child(2n)::after {
+                    display: none;
+                }
+
+                .item {
+                    .item-index {
+                        width: 30px;
+                        height: 30px;
+                        top: -20px;
+                        left: calc(50% + 35px);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        .max-content {
+            .wrapper {
+                .item {
+                    &::after {
+                        display: none;
+                    }
+
+                    .item-index {
+                        width: 25px;
+                        height: 25px;
+                        top: -15px;
+                        left: calc(50% + 30px);
+                    }
+                }
             }
         }
     }

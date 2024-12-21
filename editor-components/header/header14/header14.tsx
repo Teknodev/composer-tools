@@ -4,6 +4,7 @@ import { BaseHeader } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { Base } from "../../../composer-base-components/base/base";
 
 type Slides = {
   title: JSX.Element;
@@ -11,15 +12,15 @@ type Slides = {
   description: JSX.Element;
   image: string;
   buttons: Array<Buttons>;
-}
+};
 
 type Buttons = {
   buttonText: string;
   buttonUrl: string;
-  primary: boolean;
-}
+};
 
 class HeaderComponent14 extends BaseHeader {
+  slideRefs: React.RefObject<HTMLDivElement>[] = [];
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
@@ -35,8 +36,15 @@ class HeaderComponent14 extends BaseHeader {
       value: "GrFormNext",
     });
     this.addProp({
+      type: "boolean",
+      key: "animation",
+      displayer: "Animation Enabled",
+      value: true,
+    });
+
+    this.addProp({
       type: "array",
-      displayer: "Slides",
+      displayer: "Slider",
       key: "slides",
       value: [
         {
@@ -49,12 +57,6 @@ class HeaderComponent14 extends BaseHeader {
               displayer: "Title",
               key: "title",
               value: "Charge Your Phone Safely!",
-            },
-            {
-              type: "string",
-              displayer: "Subtitle",
-              key: "subtitle",
-              value: "Technology",
             },
             {
               type: "string",
@@ -93,37 +95,6 @@ class HeaderComponent14 extends BaseHeader {
                       key: "buttonUrl",
                       value: "",
                     },
-                    {
-                      type: "boolean",
-                      displayer: "Is Primary",
-                      key: "primary",
-                      value: true,
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  displayer: "Button",
-                  key: "button",
-                  value: [
-                    {
-                      type: "string",
-                      displayer: "Button Text",
-                      key: "buttonText",
-                      value: "READ MORE",
-                    },
-                    {
-                      type: "page",
-                      displayer: "Button Link",
-                      key: "buttonUrl",
-                      value: "",
-                    },
-                    {
-                      type: "boolean",
-                      displayer: "Is Primary",
-                      key: "primary",
-                      value: false,
-                    },
                   ],
                 },
               ],
@@ -140,12 +111,6 @@ class HeaderComponent14 extends BaseHeader {
               displayer: "Title",
               key: "title",
               value: "For Everything and Everyone",
-            },
-            {
-              type: "string",
-              displayer: "Subtitle",
-              key: "subtitle",
-              value: "Technology",
             },
             {
               type: "string",
@@ -183,12 +148,7 @@ class HeaderComponent14 extends BaseHeader {
                       key: "buttonUrl",
                       value: "",
                     },
-                    {
-                      type: "boolean",
-                      displayer: "Is Primary",
-                      key: "primary",
-                      value: true,
-                    },
+
                   ],
                 },
                 {
@@ -207,12 +167,6 @@ class HeaderComponent14 extends BaseHeader {
                       displayer: "Button Link",
                       key: "buttonUrl",
                       value: "",
-                    },
-                    {
-                      type: "boolean",
-                      displayer: "Is Primary",
-                      key: "primary",
-                      value: false,
                     },
                   ],
                 },
@@ -233,12 +187,6 @@ class HeaderComponent14 extends BaseHeader {
             },
             {
               type: "string",
-              displayer: "Subtitle",
-              key: "subtitle",
-              value: "Technology",
-            },
-            {
-              type: "string",
               displayer: "Description",
               key: "description",
               value:
@@ -249,7 +197,7 @@ class HeaderComponent14 extends BaseHeader {
               displayer: "Image",
               key: "image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ab4df803b007002cc71dac?alt=media",
+                "https://mobiles77.com/wp-content/uploads/2022/09/accessories-slide-3.jpg",
             },
             {
               type: "array",
@@ -273,12 +221,6 @@ class HeaderComponent14 extends BaseHeader {
                       key: "buttonUrl",
                       value: "",
                     },
-                    {
-                      type: "boolean",
-                      displayer: "Is Primary",
-                      key: "primary",
-                      value: true,
-                    },
                   ],
                 },
                 {
@@ -298,12 +240,6 @@ class HeaderComponent14 extends BaseHeader {
                       key: "buttonUrl",
                       value: "",
                     },
-                    {
-                      type: "boolean",
-                      displayer: "Is Primary",
-                      key: "primary",
-                      value: false,
-                    },
                   ],
                 },
               ],
@@ -313,6 +249,7 @@ class HeaderComponent14 extends BaseHeader {
       ],
     });
     this.setComponentState("slider-ref", React.createRef());
+    this.setComponentState("activeSlide", 0);
   }
 
   getName(): string {
@@ -320,6 +257,9 @@ class HeaderComponent14 extends BaseHeader {
   }
 
   render() {
+    const slides = this.castToObject<Slides[]>("slides");
+    const activeSlideIndex = this.getComponentState("activeSlide");
+    const isImagePresent = slides[activeSlideIndex]?.image ? true : false;
     const settings = {
       dots: true,
       arrows: false,
@@ -328,93 +268,136 @@ class HeaderComponent14 extends BaseHeader {
       speed: 2000,
       slidesToShow: 1,
       slidesToScroll: 1,
-      dotsClass: `slick-dots ${this.decorateCSS("customDots")}`,
+      dotsClass: `slick-dots ${this.decorateCSS("customDots")} ${!isImagePresent ? this.decorateCSS("noDots-img") : ""}`,
+      beforeChange: (_: number, newIndex: number) => {
+        if (this.getComponentState("activeSlide") !== newIndex) {
+          this.setComponentState("activeSlide", newIndex);
+          this.setComponentState("animation", false);
+        }
+      },
     };
 
-    const slides = this.castToObject<Slides[]>("slides");
+    const isAnimation = this.getPropValue("animation");
 
     return (
-      <div className={this.decorateCSS("container")}>
-        <ComposerSlider
-          {...settings}
-          className={this.decorateCSS("carousel")}
-          ref={this.getComponentState("slider-ref")}
-        >
-          {slides.map((item: Slides, index: number) => {
-            const image = item.image;
-            const title = this.castToString(item.title);
-            const subtitle = this.castToString(item.subtitle);
-            const description = this.castToString(item.description);
+      <Base.Container className={this.decorateCSS("container")}>
+        <div className={this.decorateCSS("max-content")}>
+          <ComposerSlider
+            {...settings}
+            className={this.decorateCSS("carousel")}
+            ref={this.getComponentState("slider-ref")}
+          >
+            {slides.map((item: Slides, index: number) => {
+              const image = item.image;
+              const title = this.castToString(item.title);
+              const description = this.castToString(item.description);
+              const isActive = this.getComponentState("activeSlide") === index;
+              const containerClass =
+                !this.getPropValue("prevIcon") && !this.getPropValue("nextIcon")
+                  ? this.decorateCSS("content-full")
+                  : !this.getPropValue("prevIcon")
+                    ? this.decorateCSS("content-left")
+                    : !this.getPropValue("nextIcon")
+                      ? this.decorateCSS("content-right")
+                      : this.decorateCSS("content");
 
-            return(
-              <div className={this.decorateCSS("slide")} key={`sld-8-${index}`}>
-                {image && (
-                <img
-                  src={item.image}
-                  alt={""}
-                  className={this.decorateCSS("bg-img")}
-                />
-                )}
-                <div className={this.decorateCSS("content")}>
-                  {title && (
-                    <h1 className={this.decorateCSS("title")}>{item.title}</h1>
+              const noBgClass = !image ? this.decorateCSS("no-bg") : "";
+
+
+              return (
+                <div
+                  className={this.decorateCSS("slide")}
+                  key={`sld-8-${index}`}
+                >
+                  {image && (
+                    <img
+                      src={item.image}
+                      alt={item.image}
+                      className={this.decorateCSS("bg-img")}
+                    />
                   )}
-                  {subtitle && (
-                    <span className={this.decorateCSS("sub-title")}>
-                      {item.subtitle}
-                    </span>                  
-                  )}
-                  {description && (
-                    <h3 className={this.decorateCSS("description")}>
-                      {item.description}
-                    </h3>
-                  )}
-                  <div className={this.decorateCSS("buttons-container")}>
-                    {item.buttons.map((buttonItem: any, indexButton: number) => {
-                      const buttonText = this.castToString(buttonItem.buttonText);
-                      if(buttonText)
-                        return (
-                          <div
-                            className={`${this.decorateCSS("button")} ${
-                              buttonItem.primary ? this.decorateCSS("primary-button") : ""
-                            }`}
-                            >
-                            <ComposerLink path={buttonItem.buttonUrl}>
-                              <span className={this.decorateCSS("text")}>
-                                {buttonItem.buttonText}
-                              </span>
-                            </ComposerLink>
-                          </div>
-                        );
-                    })}
+                  <div className={`${this.decorateCSS("content-wrapper")} ${(isActive && isAnimation) ? this.decorateCSS("fade-in") : ""
+                    }`}>
+                    <div className={`${containerClass} ${noBgClass}`}>
+                      {title && (
+                        <div className={this.decorateCSS("title")}>
+                          {item.title}
+                        </div>
+                      )}
+                      {description && (
+                        <div className={this.decorateCSS("description")}>
+                          {item.description}
+                        </div>
+                      )}
+
+                      {item.buttons.length > 0 && (
+                        <div className={this.decorateCSS("buttons-container")}>
+                          {item.buttons.map(
+                            (buttonItem: any, indexButton: number) => {
+                              const buttonText = this.castToString(
+                                buttonItem.buttonText
+                              );
+                              return (
+                                buttonText && (
+                                  <ComposerLink path={buttonItem.buttonUrl}>
+                                    <Base.Button
+                                      key={indexButton}
+                                      className={this.decorateCSS("button")}
+                                    >
+                                      <span className={this.decorateCSS("text")}>
+                                        {buttonItem.buttonText}
+                                      </span>
+                                    </Base.Button>
+                                  </ComposerLink>
+                                )
+                              );
+                            }
+                          )}
+                        </div>
+                      )}
+                    </div>
                   </div>
+                  {slides.length > 1 && (
+                    <>
+                      <ComposerIcon
+                        name={this.getPropValue("prevIcon")}
+                        propsIcon={{
+                          className: `${this.decorateCSS(
+                            "arrow"
+                          )} ${!image ? this.decorateCSS("no-bg") : ""
+                            } ${this.decorateCSS("prev-icon")}`,
+                          onClick: () => {
+                            this.getComponentState(
+                              "slider-ref"
+                            ).current.slickPrev();
+                          },
+                        }}
+                      />
+                      <ComposerIcon
+                        name={this.getPropValue("nextIcon")}
+                        propsIcon={{
+                          className: `${this.decorateCSS(
+                            "arrow"
+                          )} ${!image ? this.decorateCSS(
+                            "no-bg"
+                          ) : ""} ${this.decorateCSS("next-icon")}`,
+                          onClick: () => {
+                            this.getComponentState(
+                              "slider-ref"
+                            ).current.slickNext();
+                          },
+                        }}
+                      />
+                    </>
+                  )}
                 </div>
-                <ComposerIcon
-                  name={this.getPropValue("prevIcon")}
-                  propsIcon={{
-                    className: `${this.decorateCSS("arrow")} ${this.decorateCSS("prev-icon")}`,
-                    onClick: () => {
-                      this.getComponentState("slider-ref").current.slickPrev();
-                    },
-                  }}
-                />
-                <ComposerIcon
-                  name={this.getPropValue("nextIcon")}
-                  propsIcon={{
-                    className: `${this.decorateCSS("arrow")} ${this.decorateCSS("next-icon")}`,
-                    onClick: () => {
-                      this.getComponentState("slider-ref").current.slickNext();
-                    },
-                  }}
-                />
-              </div>
-            )
-          })}
-        </ComposerSlider>
-      </div>
+              );
+            })}
+          </ComposerSlider>
+        </div>
+      </Base.Container>
     );
   }
 }
 
 export default HeaderComponent14;
-

@@ -2,6 +2,7 @@ import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header5.module.scss";
+import { Base } from "../../../composer-base-components/base/base";
 
 type Heading = {
   titleColored: JSX.Element;
@@ -98,41 +99,49 @@ class Header5 extends BaseHeader {
     const isTitleExist = this.castToString(heading.title);
     const description = this.castToString(heading.description);
     const isTitleColoredExist = this.castToString(heading.titleColored);
+    const alignmentValue = Base.getContentAlignment();
+    const subTitleType = Base.getSectionSubTitleType();
 
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+      <Base.Container
+        className={`${this.decorateCSS("container")} ${this.decorateCSS(
+          `alignment-${alignmentValue}`
+        )} ${this.decorateCSS(`subtitle-type-${subTitleType}`)}`}
+      >
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div
-            className={this.decorateCSS("background-layer")}
+            className={`${this.decorateCSS("background-layer")} ${
+              heading.backgroundImage && this.decorateCSS("with-image")
+            }`}
             style={{
               backgroundImage: `url(${heading.backgroundImage})`,
             }}
           >
-            <div className={heading.overlay ? this.decorateCSS("overlay"):""}>
+            <div className={heading.overlay ? this.decorateCSS("overlay") : ""}>
               <div className={this.decorateCSS("heading-page")}>
                 {isTitleColoredExist && (
-                  <h1 className={this.decorateCSS("heading-section-name")}>
+                  <Base.SectionSubTitle className={this.decorateCSS("sub-title")}>
                     {heading.titleColored}
-                  </h1>
+                  </Base.SectionSubTitle>
                 )}
                 {isTitleExist && (
-                  <h2 className={this.decorateCSS("heading-title")}>
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
                     {heading.title}
-                  </h2>
+                  </Base.SectionTitle>
                 )}
                 {description && (
-                  <h3 className={this.decorateCSS("heading-subtitle")}>
+                  <Base.SectionDescription className={this.decorateCSS("description")}>
                     {heading.description}
-                  </h3>
+                  </Base.SectionDescription>
                 )}
-                <div className={this.decorateCSS("buttondiv")}>
+                <div className={this.decorateCSS("button-container")}>
                   {buttons.map((item: Button, index: number) => {
                     if (this.castToString(item.buttonText))
                       return (
                         <ComposerLink key={index} path={item.url}>
-                          <button className={`${this.decorateCSS("button")}`}>
+                          <Base.Button className={this.decorateCSS("button")}>
                             {item.buttonText}
-                          </button>
+                          </Base.Button>
                         </ComposerLink>
                       );
                   })}
@@ -140,8 +149,8 @@ class Header5 extends BaseHeader {
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

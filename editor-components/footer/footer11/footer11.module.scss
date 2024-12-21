@@ -1,67 +1,45 @@
 .container {
-    width: 100%;
-    padding: 10px;
-    background-color: var(--composer-html-background);
+  .max-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--composer-gap-sm);
 
-    .max-content {
-        max-width: var(--composer-content-width);
-        margin: auto;
-
-        .content {
-            padding: 10px 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-
-            .text {
-                font-size: 12px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                gap: 5px;
-                font-weight: bold;
-                color: var(--composer-font-color-primary)
-            }
-
-            .ref-page {
-                font-size: 10px;
-                min-width: 100px;
-            }
-
-            .icons-div {
-                font-size: 30px;
-                display: flex;
-                gap: 15px;
-                color: var(--composer-font-color-primary)
-            }
-        }
+    .text {
+      text-align: center;
+      font-size: 1rem;
+      color: var(--composer-font-color-primary);
     }
-}
 
-@media screen and (max-width: 768px) {
-    .container {
-        .max-content {
-            .content {
-                .icons-div {
-                    font-size: 20px;
-                }
+    .socials-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--composer-gap-md);
 
-            }
+      .socials-element {
+        display: flex;
+        align-items: center;
+        gap: var(--composer-gap-sm);
+        .icon,
+        .text {
+          font-size: 1.5rem;
+          color: var(--composer-font-color-primary);
         }
+      }
     }
-}
 
-@media screen and (max-width: 500px) {
-    .container {
-        .max-content {
-            .content {
-                padding: unset;
-                .icons-div {
-                    font-size: 15px;
-                }
-
-            }
-        }
+    &:not(:has(.links)):not(:has(.socials-container)) .text {
+      justify-content: center;
     }
+
+    &:not(:has(.links)):has(.socials-container) .text {
+      justify-content: flex-start;
+    }
+
+    &:not(:has(.socials-container)):has(.links) .text {
+      justify-content: flex-end;
+    }
+  }
 }

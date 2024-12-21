@@ -1,221 +1,159 @@
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  width: 100%;
-
   .max-content {
-    max-width: var(--composer-content-width);
-    padding: 0 20px;
-    display: flex;
-    gap: 20px;
-    height: 100%;
-    width: 100%;
-    margin: 0 auto;
-
-    .left-container {
-      padding: 20px;
-      flex: 1;
-      line-height: 4.688rem;
-
-      .contact {
-        .subtitle {
-          color: var(--composer-primary-color);
-          margin-top: 20px;
-
-          font-size: 2rem;
-          font-weight: bold;
-        }
-
-        .title {
-          color: var(--composer-primary-color);
-
-          font-weight: 700 !important;
-          font-size: 5rem;
-          margin: 15px 0;
-          letter-spacing: -3px !important;
-        }
-      }
-    }
-
-    .right-container {
-      margin-top: 65px;
-      padding: 20px;
-      flex: 1;
+    .wrapper,
+    .wrapper-center {
       display: flex;
-      flex-direction: column;
-      gap: 20px;
-      margin-bottom: 20px;
-
-      .description {
+      gap: var(--composer-gap-lg);
+      .left-container {
         flex: 1;
 
-        &-text {
-          color: var(--composer-font-color-primary);
-
-          font-size: 1rem;
-          font-weight: normal;
+        .title {
+          margin-top: 0;
+          margin-bottom: 0;
         }
       }
 
-      .bottom-section {
+      .right-container {
+        flex: 1;
         display: flex;
-        justify-content: space-between;
-        height: 125px;
-        gap: 20px;
-        padding-top: 10px;
+        flex-direction: column;
+        gap: var(--composer-gap-md);
 
-        .description {
-          font-size: 2rem;
-          line-height: 1.75rem;
-          width: 100%;
+        .bottom-section {
+          display: flex;
+          justify-content: space-between;
+          gap: var(--composer-gap-md);
+
+          .description {
+            width: 100%;
+            flex: 1;
+
+            .description-text {
+              margin-top: 0;
+              margin-bottom: 0;
+              color: var(--composer-font-color-primary);
+              font-size: 1.5rem;
+            }
+          }
+
+          .button-box {
+            .submit-button {
+              content: "";
+            }
+          }
         }
 
-        .button-box {
-          .submit-button {
-            position: relative;
-            padding: 10px 20px;
-            font-size: 16px;
-            color: var(--composer-font-color-primary);
-            background: transparent;
-            border-radius: 50px;
-            cursor: pointer;
-            overflow: hidden;
-            border: none;
-            transition: color 0.4s;
-            left: 0;
+        .inputs {
+          display: flex;
+          gap: var(--composer-gap-md);
 
-            span {
-              position: relative;
-              z-index: 1;
-            }
+          .input-box {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            grid-row: auto;
 
-            &::before {
-              content: "";
-              position: absolute;
-              top: 50%;
-              left: 0;
-              transform: translateY(-50%);
-              width: 30px;
-              height: 30px;
-              background: var(--composer-secondary-color);
-              border-radius: 50%;
-              transition: 0.4s;
-              z-index: 0;
-            }
+            .input-container {
+              display: flex;
+              gap: var(--composer-gap-sm);
+              border-bottom: 1px solid var(--composer-font-color-primary);
 
-            &:hover {
-              color: var(--composer-font-color-secondary);
-
-              &::before {
+              .input {
+                color: var(--composer-font-color-primary);
+                resize: vertical;
+                padding: var(--composer-gap-md) var(--composer-gap-sm);
+                border: none;
+                background-color: var(--composer-html-background);
                 width: 100%;
-                border-radius: 50px;
+                font-family: inherit;
+                overflow-y: auto;
+                font-size: 1rem;
+                resize: none;
+              }
+
+              .input::placeholder {
+                color: var(--composer-font-color-primary);
+                font-size: 1rem;
+              }
+
+              .input:focus,
+              textarea:focus {
+                outline: none;
+                box-shadow: none;
+              }
+
+              .input.error {
+                border-bottom-color: var(--danger-color);
+              }
+
+              .icon {
+                width: var(--composer-gap-md);
+                transform: translateY(80%);
+                height: var(--composer-gap-md);
+                color: var(--composer-font-color-primary);
+              }
+
+              &:has(textarea) {
+                .icon {
+                  transform: translateY(80%);
+                  top: var(--composer-gap-md);
+                }
               }
             }
           }
         }
-      }
 
-      .inputs {
-        display: flex;
-        gap: 20px;
-
-        .input-box {
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          grid-row: auto;
+        .error-message {
+          color: var(--danger-color);
+          font-size: 1rem;
+          margin-top: var(--composer-gap-xs);
         }
       }
+    }
 
-      .input {
-        color: var(--composer-font-color-primary);
-        resize: vertical;
-        padding: 16px 10px;
-        border: none;
-        background-color: var(--composer-html-background);
-        border-bottom: 1px solid var(--composer-font-color-primary);
-        width: 100%;
-        font-family: inherit;
-        overflow-y: auto !important;
-      }
-
-      .input:focus,
-      textarea:focus {
-        outline: none;
-        box-shadow: none;
-      }
-
-      .input.error {
-        border-bottom-color: red;
-      }
-
-      .error-message {
-        color: red;
-        font-size: 1rem;
-        margin-top: 3px;
-      }
+    .wrapper-center {
+      flex-direction: column;
     }
   }
 }
 
-@media only screen and (max-width: 900px) {
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--composer-gap-md);
+}
+
+@container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
-      flex-direction: column;
-      gap: unset;
-
-      .right-container {
-        margin-top: unset;
-        order: 1;
-      }
-
-      .left-container {
-        order: -1;
-
-        .title {
-          letter-spacing: -1px !important;
+      .wrapper,
+      .wrapper-center {
+        flex-direction: column;
+        gap: var(--composer-gap-md);
+        .right-container {
+          .bottom-section {
+            margin-top: var(--composer-gap-md);
+          }
         }
       }
     }
   }
 }
 
-@media only screen and (max-width: 400px) {
+@container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
-      flex-direction: column;
-      gap: unset;
-
-      .left-container {
-        line-height: unset;
-
-        .title {
-          order: -1;
-          font-size: 4rem !important;
-        }
-      }
-
-      .right-container {
-        margin-top: unset;
-        order: 1;
-
-        .inputs {
-          display: unset;
-        }
-
-        .bottom-section {
-          flex-direction: column;
-          align-items: flex-start;
-          height: unset;
-
-          .button-box {
-            position: relative;
+      .wrapper,
+      .wrapper-center {
+        .right-container {
+          .bottom-section {
+            flex-direction: column;
           }
 
-          .description {
-            font-size: 0.8rem;
-            max-width: 100%;
+          .inputs {
+            flex-direction: column;
           }
         }
       }
