@@ -53,17 +53,19 @@
               padding: var(--composer-gap-md);
               max-width: 75%;
               width: fit-content;
+              min-width: 30%;
               .form-wrapper{
-                width: fit-content;
+                width: 100%;
                 display: flex;            
                 gap: var(--composer-gap-md);
                 .form {
-                  width: fit-content;
+                  width: 100%;
                   display: flex;            
                   gap: var(--composer-gap-md);
                   .input{
                     flex: 1;
                     height: 100%;
+                    width: 100%;
                     .placeholder {
                       width: 100%;
                       height: 100%;
@@ -73,35 +75,43 @@
                       padding: var(--composer-gap-sm);
                       background-color: transparent;
                       color: white;
-                      color:rgb(118, 118, 118);
+                      color:black;
                       .placeholder{
                         &::placeholder {
                           color:rgb(118, 118, 118);
                         }   
                       }
+                      &:focus{
+                        &::placeholder {
+                          color: black;
+                        }
+                      }  
+                    }
+                  }
+                  .button-box {
+                    min-width: fit-content;
+                    .button {
                     }
                   }
                 }
               }
- 
-              .button-box {
-                min-width: fit-content;
-                .button {
-                }
-              }
             }
             .form-display-no-image{
-              background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%); 
-              width: 50%;
+              background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
               .form-wrapper{
                 .form {
                   .input {
                     .placeholder{
-                      border: 1px solid var(--composer-font-color-primary); 
+                      border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
                       color: var(--composer-font-color-primary);     
                       &::placeholder {
-                        color:var(--composer-font-color-primary)
-                       }  
+                        color:rgba(var(--composer-font-color-primary-rgb), 0.2)
+                      }
+                      &:focus{
+                        &::placeholder {
+                          color: var(--composer-font-color-primary); 
+                        }
+                      }  
                     }
                   }
                 }
@@ -123,6 +133,13 @@
       .wrapper{
         .left, .left-no-image{
           max-width: 100%;
+          .content-wrapper{
+            .content{
+              .form-display, .form-display-no-image{
+                min-width: 75%;
+              }
+            }
+          }
         }
       }
     }
