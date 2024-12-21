@@ -885,7 +885,6 @@ class Header31 extends BaseHeader {
     const overlay = this.getPropValue("overlay");
 
     const icons = this.castToObject<Icon[]>("icons");
-    console.log("activeSlideObj", activeSlideObj)
 
     return (
       <div className={slider[this.getComponentState("active-index")].rightImage ? this.decorateCSS("container") : this.decorateCSS("container-no-image")}>
@@ -1055,9 +1054,7 @@ class Header31 extends BaseHeader {
                               });
                             }}
                           >
-                            <span className={this.decorateCSS("button-text")}>
-                              {item.buttonText}
-                            </span>
+                            {item.buttonText}
                           </Base.Button>
                         </div>
                       </ComposerLink>
