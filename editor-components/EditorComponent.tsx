@@ -43,7 +43,7 @@ export interface iComponent {
   getExportedCSSClasses(): { [key: string]: string };
   getCSSClasses(sectionName?: string | null): any;
   addProp(prop: TypeUsableComponentProps): void;
-  setProp(key: string, value: any): void;
+  setProp(key: string, value: any, checkEquality?: boolean): void;
   setCSSClasses(key: string, value: { id: string; class: string }[]): void;
   decorateCSS(cssValue: string): string;
   getCategory(): CATEGORIES;
@@ -135,7 +135,7 @@ export abstract class Component
 
     if (props?.props?.length) {
       props?.props.forEach((prop: TypeUsableComponentProps) => {
-        this.setProp(prop.key, prop.value);
+        this.setProp(prop.key, prop.value, false);
       });
     }
 
@@ -395,12 +395,13 @@ export abstract class Component
     this.state.componentProps.props.push(prop);
   }
 
-  setProp(key: string, value: any): void {
+  setProp(key: string, value: any, checkEquality: boolean = true): void {    
     let i = this.state.componentProps.props
       .map((prop: any) => prop.key)
       .indexOf(key);
 
     if (i == -1) return;
+    if(checkEquality && this.state.componentProps.props[i].value == value) return;
 
     this.state.componentProps.props[i].value = value;
     this.state.componentProps.props[i] = this.attachValueGetter(
