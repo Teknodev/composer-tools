@@ -343,7 +343,7 @@ export abstract class Component
         ],
       };
 
-      if (process.env.REACT_APP_INLINE_EDITOR_VISIBLE == "true") {
+      if (process.env.REACT_APP_APP_ENV == "editor") {
         return (
           <InlineEditor
             initialConfig={editorConfig}
