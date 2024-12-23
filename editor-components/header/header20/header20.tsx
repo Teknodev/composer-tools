@@ -10,15 +10,17 @@ type SliderItem = {
   number: string;
   image: string;
   link: string;
-  overlay: boolean;
   buttomRow: {
-    comment: string;
-    icon: string;
-    icon_text: string;
+    comment: JSX.Element;
   };
 };
 
-class HeaderComponent20 extends BaseHeader {
+type SocialIcon = {
+  icon_text: JSX.Element;
+  link: string;
+}
+
+class Header20 extends BaseHeader {
   sliderRef: React.RefObject<any>;
   titleSliderRef: React.RefObject<any>;
   commentSliderRef: React.RefObject<any>;
@@ -30,12 +32,17 @@ class HeaderComponent20 extends BaseHeader {
     this.commentSliderRef = React.createRef();
 
     this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
+    });
+    this.addProp({
       type: "icon",
       key: "up_icon",
       displayer: "Up icon",
       value: "IoIosArrowUp",
     });
-
     this.addProp({
       type: "icon",
       key: "down_icon",
@@ -89,26 +96,8 @@ class HeaderComponent20 extends BaseHeader {
                   displayer: "Comment",
                   value: "Branding",
                 },
-                {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Icon",
-                  value: "IoMdShare",
-                },
-                {
-                  type: "string",
-                  key: "icon_text",
-                  displayer: "Icon Text",
-                  value: "Follow Us",
-                },
               ],
             },
-            {
-              type: "boolean",
-              key: "overlay",
-              displayer: "Overlay",
-              value: true,
-            }
           ],
         },
         {
@@ -152,26 +141,8 @@ class HeaderComponent20 extends BaseHeader {
                   displayer: "Comment",
                   value: "Design",
                 },
-                {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Icon",
-                  value: "IoMdShare",
-                },
-                {
-                  type: "string",
-                  key: "icon_text",
-                  displayer: "Icon Text",
-                  value: "Follow Us",
-                },
               ],
-            }, {
-              type: "boolean",
-              key: "overlay",
-              displayer: "Overlay",
-              value: true,
             }
-
           ],
         },
         {
@@ -215,26 +186,8 @@ class HeaderComponent20 extends BaseHeader {
                   displayer: "Comment",
                   value: "Photography",
                 },
-                {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Icon",
-                  value: "IoMdShare",
-                },
-                {
-                  type: "string",
-                  key: "icon_text",
-                  displayer: "Icon Text",
-                  value: "Follow Us",
-                },
               ],
             },
-            {
-              type: "boolean",
-              key: "overlay",
-              displayer: "Overlay",
-              value: true,
-            }
           ],
         },
         {
@@ -278,26 +231,8 @@ class HeaderComponent20 extends BaseHeader {
                   displayer: "Comment",
                   value: "Video",
                 },
-                {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Icon",
-                  value: "IoMdShare",
-                },
-                {
-                  type: "string",
-                  key: "icon_text",
-                  displayer: "Icon Text",
-                  value: "Follow Us",
-                },
               ],
             },
-            {
-              type: "boolean",
-              key: "overlay",
-              displayer: "Overlay",
-              value: true,
-            }
           ],
         },
         {
@@ -341,26 +276,8 @@ class HeaderComponent20 extends BaseHeader {
                   displayer: "Comment",
                   value: "Photography",
                 },
-                {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Icon",
-                  value: "IoMdShare",
-                },
-                {
-                  type: "string",
-                  key: "icon_text",
-                  displayer: "Icon Text",
-                  value: "Follow Us",
-                },
               ],
             },
-            {
-              type: "boolean",
-              key: "overlay",
-              displayer: "Overlay",
-              value: true,
-            }
           ],
         },
         {
@@ -404,26 +321,8 @@ class HeaderComponent20 extends BaseHeader {
                   displayer: "Comment",
                   value: "Branding",
                 },
-                {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Icon",
-                  value: "IoMdShare",
-                },
-                {
-                  type: "string",
-                  key: "icon_text",
-                  displayer: "Icon Text",
-                  value: "Follow Us",
-                },
               ],
             },
-            {
-              type: "boolean",
-              key: "overlay",
-              displayer: "Overlay",
-              value: true,
-            }
           ],
         },
         {
@@ -467,26 +366,8 @@ class HeaderComponent20 extends BaseHeader {
                   displayer: "Comment",
                   value: "Photography",
                 },
-                {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Icon",
-                  value: "IoMdShare",
-                },
-                {
-                  type: "string",
-                  key: "icon_text",
-                  displayer: "Icon Text",
-                  value: "Follow Us",
-                },
               ],
             },
-            {
-              type: "boolean",
-              key: "overlay",
-              displayer: "Overlay",
-              value: true,
-            }
           ],
         },
         {
@@ -530,26 +411,8 @@ class HeaderComponent20 extends BaseHeader {
                   displayer: "Comment",
                   value: "Photography",
                 },
-                {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Icon",
-                  value: "IoMdShare",
-                },
-                {
-                  type: "string",
-                  key: "icon_text",
-                  displayer: "Icon Text",
-                  value: "Follow Us",
-                },
               ],
             },
-            {
-              type: "boolean",
-              key: "overlay",
-              displayer: "Overlay",
-              value: true,
-            }
           ],
         },
         {
@@ -593,26 +456,8 @@ class HeaderComponent20 extends BaseHeader {
                   displayer: "Comment",
                   value: "Design",
                 },
-                {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Icon",
-                  value: "IoMdShare",
-                },
-                {
-                  type: "string",
-                  key: "icon_text",
-                  displayer: "Icon Text",
-                  value: "Follow Us",
-                },
               ],
             },
-            {
-              type: "boolean",
-              key: "overlay",
-              displayer: "Overlay",
-              value: true,
-            }
           ],
         },
         {
@@ -656,26 +501,8 @@ class HeaderComponent20 extends BaseHeader {
                   displayer: "Comment",
                   value: "Design",
                 },
-                {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Icon",
-                  value: "IoMdShare",
-                },
-                {
-                  type: "string",
-                  key: "icon_text",
-                  displayer: "Icon Text",
-                  value: "Follow Us",
-                },
               ],
             },
-            {
-              type: "boolean",
-              key: "overlay",
-              displayer: "Overlay",
-              value: true,
-            }
           ],
         },
         {
@@ -719,29 +546,31 @@ class HeaderComponent20 extends BaseHeader {
                   displayer: "Comment",
                   value: "Photography",
                 },
-                {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Icon",
-                  value: "IoMdShare",
-                },
-                {
-                  type: "string",
-                  key: "icon_text",
-                  displayer: "Icon Text",
-                  value: "Follow Us",
-                },
               ],
             },
-            {
-              type: "boolean",
-              key: "overlay",
-              displayer: "Overlay",
-              value: true,
-            }
           ],
         },
       ],
+    });
+
+    this.addProp({
+      type: "object",
+      key: "iconsHeader",
+      displayer: "Icons Header",
+      value: [
+        {
+          type: "icon",
+          key: "icon",
+          displayer: "Icon",
+          value: "IoMdShare",
+        },
+        {
+          type: "string",
+          key: "iconText",
+          displayer: "Icon Text",
+          value: "Follow Us",
+        },
+      ]
     });
 
     this.addProp({
@@ -851,24 +680,6 @@ class HeaderComponent20 extends BaseHeader {
     this.setComponentState("titleSlider", 0);
     this.setComponentState("commentSlider", 0);
   }
-  throttle = <T extends (...args: any[]) => void>(func: T, limit: number): ((...args: Parameters<T>) => void) => {
-    let inThrottle: boolean;
-    return (...args: Parameters<T>) => {
-      if (!inThrottle) {
-        func(...args);
-        inThrottle = true;
-        setTimeout(() => (inThrottle = false), limit);
-      }
-    };
-  };
-
-  handleWheel = this.throttle((event: React.WheelEvent) => {
-    if (event.deltaY < 0) {
-      this.handleUpClick();
-    } else if (event.deltaY > 0) {
-      this.handleDownClick();
-    }
-  }, 1200);
 
   getName(): string {
     return "Header-20";
@@ -922,7 +733,7 @@ class HeaderComponent20 extends BaseHeader {
 
   render() {
     const currentSlide = this.getComponentState("slider");
-    const overlay = this.getPropValue("overlay");
+
     const settings = {
       dots: false,
       infinite: false,
@@ -931,6 +742,8 @@ class HeaderComponent20 extends BaseHeader {
       slidesToScroll: 1,
       arrows: false,
       verticalSwiping: true,
+      swipeToSlide: true,
+      draggable: true,
       beforeChange: (current: number, next: number) => {
         this.setComponentState("slider", next);
         this.setComponentState("titleSlider", next);
@@ -953,17 +766,18 @@ class HeaderComponent20 extends BaseHeader {
     const slider = this.castToObject<SliderItem[]>("slider");
     const up_icon = this.getPropValue("up_icon");
     const down_icon = this.getPropValue("down_icon");
-    const icons = this.castToObject<
-      Array<{
-        icon_text: JSX.Element;
-        link: string;
-      }>
-    >("social_icons");
+    const icons = this.castToObject<SocialIcon[]>("social_icons");
 
-    const isUpandDownButtonVisible = up_icon || down_icon;
+    const activeIndex = this.getComponentState("slider");
+    const imageless = !slider[activeIndex]?.image;
+    const overlay = this.getPropValue("overlay");
+
+    const iconText = this.castToObject<any>("iconsHeader");
+    console.log(iconText.icon);
+    console.log(iconText.iconText)
 
     return (
-      <div className={this.decorateCSS("container")} onWheel={this.handleWheel}>
+      <div className={this.decorateCSS("container")}>
         <ComposerSlider ref={this.sliderRef} {...settings} >
           {slider.map((slide, index) => (
             <div
@@ -977,7 +791,7 @@ class HeaderComponent20 extends BaseHeader {
                   className={this.decorateCSS("image")}
                 />
               )}
-              {slide.overlay && (
+              {(overlay && !imageless) && (
                 <div className={this.decorateCSS("overlay")}
                   key={`title-key-${index}`}
                 ></div>
@@ -985,9 +799,10 @@ class HeaderComponent20 extends BaseHeader {
             </div>
           ))}
         </ComposerSlider>
+
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("item")}>
-            <div className={this.decorateCSS("content-container")}>
+            <div className={`${this.decorateCSS("content-container")} ${imageless && this.decorateCSS("imageless")}`}>
               <div className={this.decorateCSS("title-container")}>
                 <ComposerSlider ref={this.titleSliderRef} {...titleSettings}>
                   {this.getTitlesToShow(currentSlide).map((slide, index) => (
@@ -1023,63 +838,66 @@ class HeaderComponent20 extends BaseHeader {
                 </ComposerSlider>
               </div>
               <div className={this.decorateCSS("buttomRow")}>
-                <div className={this.decorateCSS("left")}>
-                  {isUpandDownButtonVisible && isUpandDownButtonVisible && (
-                    <div className={this.decorateCSS("navigation")}>
-                      {isUpandDownButtonVisible && (
+                {(this.castToString(slider[currentSlide].buttomRow.comment) ||
+                  up_icon ||
+                  down_icon) && <div className={this.decorateCSS("left")}>
+                    {(up_icon || down_icon) && (
+                      <div className={this.decorateCSS("navigation")}>
+                        {up_icon &&
+                          <ComposerIcon
+                            name={up_icon}
+                            propsIcon={{
+                              className: this.decorateCSS("icon"),
+                              onClick: this.handleUpClick,
+                            }}
+                          />
+                        }
+                        {down_icon &&
+                          <ComposerIcon
+                            name={down_icon}
+                            propsIcon={{
+                              className: this.decorateCSS("icon"),
+                              onClick: this.handleDownClick,
+                            }}
+                          />
+                        }
+                      </div>
+                    )
+                    }
+                    {this.castToString(slider[currentSlide].buttomRow.comment) &&
+                      <div className={this.decorateCSS("comment")}>
+                        {slider[currentSlide].buttomRow.comment}
+                      </div>}
+                  </div>}
+                {(this.castToString(iconText.iconText) ||
+                  iconText.icon ||
+                  icons.length > 0) &&
+                  <div className={this.decorateCSS("comment-and-icon-text-container")}>
+                    <div className={this.decorateCSS("icon-text-container")}>
+                      {this.castToString(iconText.iconText) &&
+                        <div className={this.decorateCSS("icon_text")}>
+                          {iconText.iconText}
+                        </div>}
+                      {iconText.icon && (
                         <ComposerIcon
-                          name={up_icon}
+                          name={iconText.icon}
                           propsIcon={{
-                            className: this.decorateCSS("icon"),
-                            onClick: this.handleUpClick,
+                            className: this.decorateCSS("icon-next-to-text"),
                           }}
                         />
                       )}
-                      {isUpandDownButtonVisible && (
-                        <ComposerIcon
-                          name={down_icon}
-                          propsIcon={{
-                            className: this.decorateCSS("icon"),
-                            onClick: this.handleDownClick,
-                          }}
-                        />
-                      )}
+                      {(!(this.castToString(iconText.iconText) && !iconText.icon) || icons.length > 0) &&
+                        <div className={this.decorateCSS("social-icons")}>
+                          {icons.map((icon, i) => (
+                            <div className={this.decorateCSS("icon")}>
+                              <ComposerLink path={icon.link}>
+                                {icon.icon_text}
+                              </ComposerLink>
+                            </div>
+                          ))}
+                        </div>}
                     </div>
-                  )
-                  }
-                  <div className={this.decorateCSS("comment")}>
-                    {slider[currentSlide].buttomRow.comment}
-                  </div>
-                </div>
-                <div
-                  className={this.decorateCSS(
-                    "comment-and-icon-text-container"
-                  )}
-                >
-                  <div className={this.decorateCSS("icon-text-container")}>
-                    <div className={this.decorateCSS("icon_text")}>
-                      {slider[currentSlide].buttomRow.icon_text}
-                    </div>
-                    {slider[currentSlide]?.buttomRow.icon && (
-                      <ComposerIcon
-                        name={slider[currentSlide].buttomRow.icon}
-                        propsIcon={{
-                          className: this.decorateCSS("icon-next-to-text"),
-                        }}
-                      />
-                    )}
-                    <div className={this.decorateCSS("social-icons")}>
-                      {icons.map((icon, i) => (
-                        <div className={this.decorateCSS("icon")}>
-                          <ComposerLink path={icon.link}>
-                            {icon.icon_text}
-                          </ComposerLink>
-                        </div>
-
-                      ))}
-                    </div>
-                  </div>
-                </div>
+                  </div>}
               </div>
             </div>
           </div>
@@ -1089,4 +907,4 @@ class HeaderComponent20 extends BaseHeader {
   }
 }
 
-export default HeaderComponent20;
+export default Header20;

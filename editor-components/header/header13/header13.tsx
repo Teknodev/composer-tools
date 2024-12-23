@@ -273,7 +273,7 @@ class Header13 extends BaseHeader {
     const leftItems = this.castToObject<LeftItem[]>("left-items");
     const slider = this.getPropValue("slider");
     const reverseSlider = slider;
-    const currentSliderIndex = this.getComponentState("currentSliderIndex") ?? 2;
+    const currentSliderIndex = this.getComponentState("currentSliderIndex") ?? 0;
     const imageless = !reverseSlider[currentSliderIndex]?.value;
     const overlay = this.getPropValue("overlayActivation");
 
