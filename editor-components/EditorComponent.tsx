@@ -352,16 +352,23 @@ export abstract class Component
         ],
       };
 
-      return (
-        <InlineEditor
-          initialConfig={editorConfig}
-          onChange={this.onChange}
-          HTML={
-            //@ts-ignore
-            () => (<blinkpage dangerouslySetInnerHTML={sanitizedHtml}></blinkpage>)
-          }
-        />
-      );
+      if (process.env.REACT_APP_APP_ENV == "editor") {
+        return (
+          <InlineEditor
+            initialConfig={editorConfig}
+            onChange={this.onChange}
+            HTML={
+              () => (
+                //@ts-ignore
+                <blinkpage dangerouslySetInnerHTML={sanitizedHtml}></blinkpage>
+              )
+            }
+          />
+        );
+      } else {
+        //@ts-ignore
+        return <blinkpage dangerouslySetInnerHTML={sanitizedHtml}></blinkpage>;
+      }
     };
 
     return <SanitizeHTML html={prop?.value}></SanitizeHTML>;
