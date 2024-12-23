@@ -295,7 +295,7 @@ class Navbar8 extends BaseNavigator {
                             key={indexItemList}
                             path={data.value[1].value}
                           >
-                            <h3 className={this.decorateCSS("item-title")} key={indexItemList} onClick={() => this.setComponentState("navActive",false)}>{data.value[0].value}</h3>
+                            <h3 className={this.decorateCSS("item-title")} key={indexItemList} onClick={() => this.setComponentState("navActive", false)}>{data.value[0].value}</h3>
                           </ComposerLink>
                         );
                       }
