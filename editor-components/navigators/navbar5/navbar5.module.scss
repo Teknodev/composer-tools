@@ -58,6 +58,12 @@
           .icon {
             font-size: 2rem;
             color: var(--composer-font-color-primary);
+            transition: color 0.3s;
+            cursor: pointer;
+
+            &:hover {
+              color: var(--composer-tertiary-color);
+            }
           }
         }
       }
@@ -87,6 +93,7 @@
 
         .hamburger-icon {
           font-size: 2.5rem;
+          cursor: pointer;
         }
 
         .active-hamburger-icon {
@@ -152,6 +159,12 @@
               opacity: 0;
               transform: translateY(-100px);
               animation: fadeIn 1.5s ease forwards;
+              transition: color 0.3s;
+              cursor: pointer;
+
+              &:hover {
+                color: var(--composer-tertiary-color);
+              }
             }
           }
         }

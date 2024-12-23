@@ -101,25 +101,6 @@ class Navbar5 extends BaseNavigator {
             },
           ],
         },
-        {
-          type: "object",
-          key: "footer-social",
-          displayer: "Item",
-          value: [
-            {
-              type: "icon",
-              key: "socialIcon",
-              displayer: "Social Icon",
-              value: "FaVine",
-            },
-            {
-              type: "page",
-              key: "socialLink",
-              displayer: "Social Link",
-              value: "",
-            },
-          ],
-        },
       ],
     });
 
@@ -368,7 +349,7 @@ class Navbar5 extends BaseNavigator {
                 {logo && (
                   <ComposerLink className={this.decorateCSS("image-container")} path={this.getPropValue("logo_navigate")}>
                     <div className={this.decorateCSS("image-box")}>
-                      <img className={this.decorateCSS("image")} src={logo} width={200} alt="" />
+                      <img className={this.decorateCSS("image")} src={logo} alt="" />
                     </div>
                   </ComposerLink>
                 )}
