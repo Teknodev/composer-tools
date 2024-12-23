@@ -1,127 +1,275 @@
+@import "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss";
+
 .container {
-    width: 100%;
+  position: relative;
+  padding: 0;
+
+  &.Sticky {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--box-shadow-active);
+  }
+
+  &.Absolute {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background: transparent;
+  }
+
+  &.active {
+    background-color: var(--composer-html-background);
     .max-content {
-        max-width: var(--composer-content-width);
-        margin: auto;
-        .content {
-            height: 66px;
-            padding: 50px 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            .content-left {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                gap: 30px;
-            }
-            a {
-                text-decoration: none;
-            }
-            .button {
-                width: 80%;
-                height: 40px;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                background-color: var(--composer-secondary-color);
-                border: 1px solid var(--composer-secondary-color);
-                color: white;
-                border-radius: 6px;
-                font-size: 1.4rem;
-                cursor: pointer;
-                padding: 20px 30px;
-                &:hover {
-                    color: var(--composer-primary-color);
-                    background: transparent;
-                    border: 1px solid var(--composer-primary-color);
-                }
-                &.primary {
-                    border: 1px solid var(--composer-primary-color);
-                    background-color: var(--composer-primary-color);
-                    color: white;
-                    &:hover {
-                        color: var(--composer-secondary-color);
-                        background: transparent;
-                        border: 1px solid var(--composer-secondary-color);
-                    }
-                }
-            }
-            @media screen and (max-width: 380px) {
-                .content-left {
-                    text-align: center;
-                    font-size: 12px;
-                    gap: 10px;
-                    width: 20%;
-                    margin-left: 0;
-                    margin-top: 5%;
-                }
-                .logo-image {
-                    margin-left: 7%;
-                    margin-right: 3%;
-                    img {
-                        width: 140px;
-                        height: 170px;
-                    }
-                }
-                .button {
-                    width: 25%;
-                    height: 25px;
-                    justify-content: center;
-                    align-items: center;
-                    background-color: var(--composer-secondary-color);
-                    border: 1px solid var(--composer-secondary-color);
-                    color: white;
-                    border-radius: 6px;
-                    font-size: 1.2rem;
-                    cursor: pointer;
-                    padding: 20px 30px;
-                    &:hover {
-                        color: var(--composer-primary-color);
-                        background: transparent;
-                        border: 1px solid var(--composer-primary-color);
-                    }
-                    &.primary {
-                        border: 1px solid var(--composer-primary-color);
-                        background-color: var(--composer-primary-color);
-                        color: white;
-                        &:hover {
-                            color: var(--composer-secondary-color);
-                            background: transparent;
-                            border: 1px solid var(--composer-secondary-color);
-                        }
-                    }
-                }
-            }
+      .bar {
+        .social-media-box {
+          .title,
+          .subtitle {
+            color: var(--composer-font-color-primary);
+          }
         }
-        .bottom-line {
-            border-bottom: 1px solid #a5a7aad7;
-            width: 95%;
-            align-items: center;
-            justify-content: center;
-            margin: auto;
+      }
+      .navbar {
+        .hamburger-icon {
+          z-index: 20;
+          color: var(--composer-font-color-primary);
         }
-        .secondline-content {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 40px;
-            font-size: 16px;
-            font-weight: bold;
-            height: 66px;
-            padding: 30px 30px;
-            a {
-                text-decoration: none;
-                color: black;
-            }
-        }
-        @media screen and (max-width: 380px) {
-            .secondline-content {
-                gap: 20px;
-                font-size: 12px;
-            }
-        }
+      }
     }
+  }
+
+  .max-content {
+    width: 100%;
+    position: relative;
+
+    .bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--composer-gap-md) var(--composer-gap-xl);
+
+      .social-media-box {
+        display: flex;
+        .social {
+          display: flex;
+          align-items: center;
+          gap: var(--composer-gap-sm);
+          .icon {
+            font-size: 2rem;
+            color: var(--composer-font-color-primary);
+          }
+        }
+      }
+
+      .image-box {
+        display: flex;
+        justify-content: center;
+        .image {
+          width: 200px;
+          height: 80px;
+          object-fit: cover;
+        }
+      }
+
+      .navbar {
+        color: var(--composer-font-color-primary);
+        display: flex;
+        gap: var(--composer-gap-sm);
+        justify-content: end;
+        align-items: flex-end;
+        align-items: center;
+        height: fit-content;
+
+        .language {
+          color: var(--composer-font-color-primary);
+        }
+
+        .hamburger-icon {
+          font-size: 2.5rem;
+        }
+
+        .active-hamburger-icon {
+          content: "";
+        }
+      }
+
+      .image-box,
+      .social-media-box,
+      .navbar {
+        flex: 1 1;
+      }
+    }
+
+    .down-page {
+      position: absolute;
+      width: 100%;
+      top: 0;
+      background-color: var(--composer-html-background);
+      display: flex;
+      flex-direction: column;
+      gap: var(--composer-gap-md);
+      justify-content: baseline;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards;
+      z-index: 15;
+      height: fit-content;
+      min-height: 100vh;
+
+      .up {
+        display: flex;
+        align-items: center;
+        gap: var(--composer-gap-md);
+        margin: 0 var(--composer-gap-xl);
+
+        .left-page {
+          width: 50%;
+
+          .title {
+            font-size: 7rem;
+            letter-spacing: var(--composer-gap-xs);
+            color: var(--composer-font-color-primary);
+          }
+        }
+
+        .right-page {
+          width: 50%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+
+          .item {
+            .item-title {
+              font-size: 2.5rem;
+              color: var(--composer-font-color-primary);
+              opacity: 0;
+              transform: translateY(-100px);
+              animation: fadeIn 1.5s ease forwards;
+            }
+          }
+        }
+      }
+
+      .line {
+        border-bottom: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.5);
+      }
+
+      .down {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: var(--composer-gap-md);
+        margin: var(--composer-gap-md) var(--composer-gap-xl);
+        .text1,
+        .text2 {
+          font-size: 1.5rem;
+          color: var(--composer-font-color-primary);
+        }
+
+        .divider {
+          flex-shrink: 0;
+          width: var(--composer-gap-xl);
+          height: 1px;
+          border-bottom: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.5);
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-100px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    }
+  }
+
+  .container-sticky {
+    @extend .container;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+  }
+}
+
+@container (max-width: #{$composer-tablet-width-lg}) {
+  .container {
+    .max-content {
+      .bar {
+        padding: var(--composer-gap-md) var(--composer-gap-lg);
+        .social-media-box {
+          .social {
+            gap: var(--composer-gap-sm);
+            .icon {
+              font-size: 1.5rem;
+            }
+          }
+        }
+
+        .image-box {
+          .image {
+            width: 150px;
+            height: var(--composer-gap-lg);
+          }
+        }
+      }
+
+      .down-page {
+        justify-content: center;
+        .up {
+          gap: var(--composer-gap-md);
+          margin: 0 var(--composer-gap-xl);
+
+          .left-page {
+            display: none;
+          }
+
+          .right-page {
+            width: 100%;
+            text-align: center;
+
+            .item {
+              .item-title {
+                font-size: 2.5rem;
+                text-align: center;
+              }
+            }
+          }
+        }
+
+        .line {
+          display: none;
+        }
+
+        .down {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .bar {
+        padding: var(--composer-gap-md);
+
+        .social-media-box {
+          display: none;
+        }
+
+        .image-box {
+          .image {
+            width: 150px;
+            height: var(--composer-gap-lg);
+          }
+        }
+      }
+    }
+  }
 }
