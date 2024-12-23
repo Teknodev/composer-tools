@@ -110,6 +110,7 @@ export abstract class Component
   extends React.Component<{}, { states: any; componentProps: any }>
   implements iComponent
 {
+  private shadowProps: TypeUsableComponentProps[] = [];
   private styles: any;
   public id: string;
   static category: CATEGORIES;
@@ -167,13 +168,21 @@ export abstract class Component
   getProps(): TypeUsableComponentProps[] {
     return this.state.componentProps.props;
   }
-  getProp(key: string) {
-    let props: TypeUsableComponentProps[] =
-      this.state.componentProps.props.filter(
-        (prop: TypeUsableComponentProps) => prop.key === key
-      );
-    let prop = props[0] || null;
-    return prop;
+
+  getShadowProps(): TypeUsableComponentProps[] {
+    return this.shadowProps;
+  }
+
+  private getFilteredProp(key: string, props: TypeUsableComponentProps[]): TypeUsableComponentProps | null {
+    return props.find((prop: TypeUsableComponentProps) => prop.key === key) || null;
+  }
+  
+  getShadowProp(key: string): TypeUsableComponentProps | null {
+    return this.getFilteredProp(key, this.shadowProps);
+  }
+  
+  getProp(key: string): TypeUsableComponentProps | null {
+    return this.getFilteredProp(key, this.state.componentProps.props);
   }
 
   getPropValue(propName: string, properties?: GetPropValueProperties): any {
@@ -368,6 +377,7 @@ export abstract class Component
       : this.state.componentProps.cssClasses;
   }
   addProp(prop: TypeUsableComponentProps) {
+    this.shadowProps.push(JSON.parse(JSON.stringify(prop)));
     if (this.getProp(prop.key)) return;
     const attachPropId = (_prop: TypeUsableComponentProps) => {
       if (_prop.type == "array" || _prop.type == "object") {
