@@ -4,6 +4,7 @@ import styles from "./navbar8.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "composer-tools/composer-base-components/base/base";
+import ComposerLanguage from "composer-tools/composer-base-components/language/language";
 
 type Icon = {
   icon: string;
@@ -72,23 +73,28 @@ class Navbar8 extends BaseNavigator {
       value: "RxCross2",
     });
     this.addProp({
-      type: "boolean",
-      key: "sticky",
-      displayer: "Is sticky",
-      value: false,
-    });
-
-    this.addProp({
       type: "string",
-      key: "title1",
-      displayer: "Title 1",
+      key: "dropdownTitle",
+      displayer: "Dropdown Title",
       value: "Lorem Ipsum",
+    });
+    this.addProp({
+      type: "boolean",
+      key: "drowdownStick",
+      displayer: "Drowdown Stick",
+      value: true,
     });
     this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
       value: "Amidst the ever-shifting landscapes of creativity, I emerge as a dynamic professional, blending boundless energy with an adaptable nature and a profoundly artistic perspective."
+    });
+    this.addProp({
+      type: "boolean",
+      key: "divider",
+      displayer: "Dropdown Divider",
+      value: true,
     });
     this.addProp({
       type: "array",
@@ -254,93 +260,129 @@ class Navbar8 extends BaseNavigator {
   }
 
   navClick() {
-    let value: boolean = this.getComponentState("navActive");
-    this.setComponentState("navActive", !value);
+    const isActive = this.getComponentState("navActive");
+
+    if (isActive) {
+      this.setComponentState("isClosing", true);
+      setTimeout(() => {
+        this.setComponentState("isClosing", false);
+        this.setComponentState("navActive", false);
+      }, 800);
+    } else {
+      this.setComponentState("navActive", true);
+    }
   }
 
   render() {
     const navActive = this.getComponentState("navActive");
+    const isClosing = this.getComponentState("isClosing");
+
     const logoSrc = this.getPropValue(navActive ? "image_light" : "image_dark");
 
     const itemList = this.castToObject<Navigator[]>("itemList");
     const icons = this.castToObject<Icon[]>("social-media-items");
 
+    const title = this.getPropValue("title");
+    const subtitle = this.getPropValue("subtitle");
+    const dropdownTitle = this.getPropValue("dropdownTitle");
+    const description = this.getPropValue("description");
+    const divider = this.getPropValue("divider");
+    const iconText = this.getPropValue("icon-text");
+
     return (
-      <Base.Container
-        className={`${this.decorateCSS("container")} ${this.decorateCSS(this.getPropValue("position"))} ${navActive && this.decorateCSS("active")}`}
-      >
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <nav className={this.decorateCSS("bar")}>
-            <div className={this.decorateCSS("image-box")}>
-              <ComposerLink path={this.getPropValue("logo_navigate")}>
-                <img className={this.decorateCSS("image")} src={logoSrc} width={200} alt="" />
-              </ComposerLink>
-            </div>
-            <div className={this.decorateCSS("middle")}>
-              <div className={`${this.decorateCSS("title")} ${navActive && this.decorateCSS("active-title")}`}>{this.getPropValue("title")}</div>
-
-              <div className={`${this.decorateCSS("subtitle")} ${navActive && this.decorateCSS("active-subtitle")}`}>{this.getPropValue("subtitle")}</div>
-            </div>
-            <div className={this.decorateCSS("navbar")}>
-              <ComposerIcon
-                name={navActive ? this.getPropValue("cross-icon") : this.getPropValue("hamburger-icon")}
-                propsIcon={{
-                  className: `${this.decorateCSS("hamburger-icon")} ${navActive && this.decorateCSS("active-hamburger-icon")} `,
-                  onClick: () => {
-                    this.navClick();
-                  },
-                }}
-              />
-            </div>
-          </nav>
-          {navActive && (
-            <Base.Container className={this.decorateCSS("down-page")}>
-              <div className={this.decorateCSS("left-page")}>
-                <div className={this.decorateCSS("title1")}>{this.getPropValue("title1")}</div>
-                <div className={this.decorateCSS("stick")}></div>
-                <div className={this.decorateCSS("description")}>{this.getPropValue("description")}</div>
-              </div>
-              <div className={this.decorateCSS("right-page")}>
-                <div className={this.decorateCSS("itemList")}>
-                  <div className={this.decorateCSS("items")}>
-                    {itemList.map(
-                      (data: Navigator, indexItemList: number) => {
-                        return (
-                          <ComposerLink
-                            key={indexItemList}
-                            path={data.url}
-                          >
-                            <Base.H3 className={this.decorateCSS("item-title")} key={indexItemList}
-                              onClick={() => this.setComponentState("navActive", false)}>
-                              {data.item}
-                            </Base.H3>
-                          </ComposerLink>
-                        );
-                      }
-                    )}
-                  </div>
-                </div>
-                <div className={this.decorateCSS("social-media-box")}>
-                  <Base.H4 className={this.decorateCSS("icon-text")}>{this.getPropValue("icon-text")}</Base.H4>
-                  <div className={this.decorateCSS("icon-group")}>
-                    {icons.map((icons: Icon) => {
-                      return (
-                        <ComposerLink path={icons.url}>
-                          <ComposerIcon
-                            propsIcon={{ className: this.decorateCSS("icons") }}
-                            name={icons.icon}
-                          />
-                        </ComposerLink>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-            </Base.Container>
-          )}
-        </Base.MaxContent>
-      </Base.Container>
-
+      <div className={`${this.decorateCSS("parent")}  ${this.decorateCSS(this.getPropValue("position"))}`}>
+        <Base.Container
+          className={`${this.decorateCSS("container")} ${navActive && this.decorateCSS("active")}`}
+        >
+          <Base.MaxContent className={this.decorateCSS("max-content")}>
+            <nav className={this.decorateCSS("bar")}>
+              {logoSrc &&
+                <div className={this.decorateCSS("image-box")}>
+                  <ComposerLink path={this.getPropValue("logo_navigate")}>
+                    <img className={this.decorateCSS("image")} src={logoSrc} alt="" />
+                  </ComposerLink>
+                </div>}
+              {(this.castToString(title) || this.castToString(subtitle)) &&
+                <div className={this.decorateCSS("middle")}>
+                  {this.castToString(title) &&
+                    <div className={`${this.decorateCSS("title")} ${navActive && this.decorateCSS("active-title")}`}>
+                      {title}
+                    </div>}
+                  {this.castToString(subtitle) &&
+                    <div className={`${this.decorateCSS("subtitle")} ${navActive && this.decorateCSS("active-subtitle")}`}>
+                      {subtitle}
+                    </div>}
+                </div>}
+              {itemList.length > 0 &&
+                <div className={this.decorateCSS("navbar")}>
+                  <ComposerLanguage className={this.decorateCSS("language")}></ComposerLanguage>
+                  <ComposerIcon
+                    name={navActive ? this.getPropValue("cross-icon") : this.getPropValue("hamburger-icon")}
+                    propsIcon={{
+                      className: `${this.decorateCSS("hamburger-icon")} ${navActive && this.decorateCSS("active-hamburger-icon")} `,
+                      onClick: () => {
+                        this.navClick();
+                      },
+                    }}
+                  />
+                </div>}
+            </nav>
+          </Base.MaxContent>
+        </Base.Container>
+        {navActive && (
+          <Base.Container className={`${this.decorateCSS("down-page-container")} ${isClosing && this.decorateCSS("closing")}`}>
+            <Base.MaxContent className={this.decorateCSS("down-page")}>
+              {(this.castToString(dropdownTitle) || this.castToString(description)) &&
+                <div className={this.decorateCSS("left-page")}>
+                  {this.castToString(dropdownTitle) && <div className={this.decorateCSS("dropdownTitle")}>{dropdownTitle}</div>}
+                  {this.getPropValue("drowdownStick") && <div className={this.decorateCSS("stick")}></div>}
+                  {this.castToString(description) && <div className={this.decorateCSS("description")}>{description}</div>}
+                </div>}
+              {divider && <div className={this.decorateCSS("divider")}></div>}
+              {(itemList.length > 0 ||
+                icons.length > 0 ||
+                this.castToString(iconText)) &&
+                <div className={this.decorateCSS("right-page")}>
+                  {itemList.length > 0 &&
+                    <div className={this.decorateCSS("items")}>
+                      {itemList.map(
+                        (data: Navigator, indexItemList: number) => {
+                          return (
+                            <ComposerLink
+                              key={indexItemList}
+                              path={data.url}
+                            >
+                              <Base.H3 className={this.decorateCSS("item-title")} key={indexItemList}
+                                onClick={() => this.setComponentState("navActive", false)}>
+                                {data.item}
+                              </Base.H3>
+                            </ComposerLink>
+                          );
+                        }
+                      )}
+                    </div>}
+                  {(icons.length > 0 || this.castToString(iconText)) &&
+                    <div className={this.decorateCSS("social-media-box")}>
+                      {this.castToString(iconText) && <Base.H4 className={this.decorateCSS("icon-text")}>{iconText}</Base.H4>}
+                      {icons.length > 0 &&
+                        <div className={this.decorateCSS("icon-group")}>
+                          {icons.map((icons: Icon) => {
+                            return (
+                              <ComposerLink path={icons.url}>
+                                <ComposerIcon
+                                  propsIcon={{ className: this.decorateCSS("icon") }}
+                                  name={icons.icon}
+                                />
+                              </ComposerLink>
+                            );
+                          })}
+                        </div>}
+                    </div>}
+                </div>}
+            </Base.MaxContent>
+          </Base.Container>
+        )}
+      </div>
     );
   }
 }
