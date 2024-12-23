@@ -27,8 +27,14 @@ class Navbar1 extends BaseNavigator {
     super(props, styles);
     this.addProp({
       type: "image",
-      key: "image",
-      displayer: "Image",
+      key: "image_light",
+      displayer: "Image Light",
+      value: "https://dstal.com.au/wp-content/uploads/2021/09/logoipsum.png",
+    });
+    this.addProp({
+      type: "image",
+      key: "image_dark",
+      displayer: "Image Dark",
       value: "https://dstal.com.au/wp-content/uploads/2021/09/logoipsum.png",
     });
     this.addProp({
@@ -104,7 +110,7 @@ class Navbar1 extends BaseNavigator {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Hakkımızda",
+              value: "About Us",
             },
             {
               type: "page",
@@ -676,19 +682,30 @@ class Navbar1 extends BaseNavigator {
   }
 
   render() {
-    const logoImage = this.getPropValue("image");
     const logoText = this.getPropValue("logo_text");
     const imageUrl = this.getPropValue("image-url");
     const textUrl = this.getPropValue("logo_text_url");
+    const navActive = this.getComponentState("hamburgerNavActive");
+    const logoSrc = this.getPropValue(navActive ? "image_light" : "image_dark");
+    const elements = document.getElementsByClassName(this.decorateCSS("navigator"));
+    console.log("elements", elements)
+
+    if (elements.length > 0) {
+      const element = elements[0] as HTMLElement;
+      const height = element.offsetHeight;
+      console.log("Height:", height);
+    } else {
+      console.log("küçük")
+    }
 
     return (
       <div
         className={`${this.decorateCSS("container")} ${this.decorateCSS(this.getPropValue("position"))}`}
       >
         <div className={this.decorateCSS("max-content")}>
-          {logoImage ?
+          {logoSrc ?
             <ComposerLink path={imageUrl}>
-              <img className={this.decorateCSS("logo")} src={logoImage} alt="" />
+              <img className={this.decorateCSS("logo")} src={logoSrc} alt="" />
             </ComposerLink> :
             <ComposerLink path={textUrl}>
               <div className={this.decorateCSS("logo-text")}>{logoText}</div>
@@ -799,9 +816,13 @@ class Navbar1 extends BaseNavigator {
               </div>
             )}
           </div>
-          <div className={`${this.decorateCSS("navigator-mobile")} ${this.getComponentState("hamburgerNavActive") ? this.decorateCSS("active") : ""} `} >
+          <div
+            className={`${this.decorateCSS("navigator-mobile")} ${this.getComponentState("hamburgerNavActive") ? this.decorateCSS("active") : ""
+              }`}
+            style={{ maxHeight: "500px" }}
+          >
             {this.getComponentState("hamburgerNavActive") && (
-              <div className={`${this.decorateCSS("navigator")} ${this.getComponentState("hamburgerNavActive") ? this.decorateCSS("active") : ""} `}>
+              <div className={this.decorateCSS("navigator")}>
                 <div className={this.decorateCSS("navbar-child")}>
                   {this.castToObject<[]>("items").map(
                     (item: Item, indexItemList: number) => {
@@ -887,7 +908,7 @@ class Navbar1 extends BaseNavigator {
                 </div>
                 {this.getPropValue("languageActive") && (
                   <div className={this.decorateCSS("language")}>
-                    <ComposerLanguage></ComposerLanguage>
+                    <ComposerLanguage className={this.decorateCSS("language-inner")}></ComposerLanguage>
                   </div>
                 )}
               </div>

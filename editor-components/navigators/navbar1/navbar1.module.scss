@@ -270,7 +270,7 @@
         max-height: fit-content;
         transform: translateY(-100%);
         transition:transform 1s ease;
-        z-index: -1;
+        z-index: 10;
 
         &.active{
           transform: translateY(0);
@@ -382,7 +382,10 @@
           .language{
             width: 100%;
             padding: 0px var(--composer-gap-md);
-            justify-content: start;
+            
+            .language-inner{
+              color: var(--composer-font-color-primary);
+            }
           }
         }
         }
