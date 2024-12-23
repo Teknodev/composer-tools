@@ -407,7 +407,19 @@ export abstract class Component
       .map((prop: any) => prop.key)
       .indexOf(key);
 
-    if (i == -1) return;
+    const prop: TypeUsableComponentProps = this.state.componentProps.props[i];
+
+    const isInvalidIndex = i === -1;
+    const isMatchingSimpleValue =
+      prop.type !== "array" && prop.type !== "object" && prop.value === value;
+    const isMatchingComplexValue =
+      (prop.type === "array" || prop.type === "object") &&
+      prop.value.some((item) => item.getPropValue) &&
+      prop.value === value;
+
+    if (isInvalidIndex || isMatchingSimpleValue || isMatchingComplexValue) {
+      return;
+    }
 
     this.state.componentProps.props[i].value = value;
     this.state.componentProps.props[i] = this.attachValueGetter(
