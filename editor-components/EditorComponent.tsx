@@ -135,7 +135,7 @@ export abstract class Component
 
     if (props?.props?.length) {
       props?.props.forEach((prop: TypeUsableComponentProps) => {
-        this.setProp(prop.key, prop.value, false);
+        this.setProp(prop.key, prop.value);
       });
     }
 
@@ -395,13 +395,24 @@ export abstract class Component
     this.state.componentProps.props.push(prop);
   }
 
-  setProp(key: string, value: any, checkEquality: boolean = true): void {    
+  setProp(key: string, value: any): void {
     let i = this.state.componentProps.props
       .map((prop: any) => prop.key)
       .indexOf(key);
 
-    if (i == -1) return;
-    if(checkEquality && this.state.componentProps.props[i].value == value) return;
+    const prop: TypeUsableComponentProps = this.state.componentProps.props[i];
+
+    const isInvalidIndex = i === -1;
+    const isMatchingSimpleValue =
+      prop.type !== "array" && prop.type !== "object" && prop.value === value;
+    const isMatchingComplexValue =
+      (prop.type === "array" || prop.type === "object") &&
+      prop.value.some((item) => item.getPropValue) &&
+      prop.value === value;
+
+    if (isInvalidIndex || isMatchingSimpleValue || isMatchingComplexValue) {
+      return;
+    }
 
     this.state.componentProps.props[i].value = value;
     this.state.componentProps.props[i] = this.attachValueGetter(
