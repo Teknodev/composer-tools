@@ -3,6 +3,17 @@ import { BaseNavigator } from "../../EditorComponent";
 import styles from "./navbar8.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "composer-tools/composer-base-components/base/base";
+
+type Icon = {
+  icon: string;
+  url: string;
+}
+
+type Navigator = {
+  item: JSX.Element;
+  url: string;
+}
 
 class Navbar8 extends BaseNavigator {
   constructor(props?: any) {
@@ -187,7 +198,7 @@ class Navbar8 extends BaseNavigator {
             },
             {
               type: "page",
-              key: "link",
+              key: "url",
               value: "",
               displayer: "Navigate To",
             },
@@ -207,7 +218,7 @@ class Navbar8 extends BaseNavigator {
             },
             {
               type: "page",
-              key: "link",
+              key: "url",
               value: "",
               displayer: "Navigate To",
             },
@@ -227,7 +238,7 @@ class Navbar8 extends BaseNavigator {
             },
             {
               type: "page",
-              key: "link",
+              key: "url",
               value: "",
               displayer: "Navigate To",
             },
@@ -250,11 +261,15 @@ class Navbar8 extends BaseNavigator {
   render() {
     const navActive = this.getComponentState("navActive");
     const logoSrc = this.getPropValue(navActive ? "image_light" : "image_dark");
+
+    const itemList = this.castToObject<Navigator[]>("itemList");
+    const icons = this.castToObject<Icon[]>("social-media-items");
+
     return (
-      <div
+      <Base.Container
         className={`${this.decorateCSS("container")} ${this.decorateCSS(this.getPropValue("position"))} ${navActive && this.decorateCSS("active")}`}
       >
-        <div className={this.decorateCSS("max-content")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           <nav className={this.decorateCSS("bar")}>
             <div className={this.decorateCSS("image-box")}>
               <ComposerLink path={this.getPropValue("logo_navigate")}>
@@ -279,7 +294,7 @@ class Navbar8 extends BaseNavigator {
             </div>
           </nav>
           {navActive && (
-            <div className={this.decorateCSS("down-page")}>
+            <Base.Container className={this.decorateCSS("down-page")}>
               <div className={this.decorateCSS("left-page")}>
                 <div className={this.decorateCSS("title1")}>{this.getPropValue("title1")}</div>
                 <div className={this.decorateCSS("stick")}></div>
@@ -288,14 +303,17 @@ class Navbar8 extends BaseNavigator {
               <div className={this.decorateCSS("right-page")}>
                 <div className={this.decorateCSS("itemList")}>
                   <div className={this.decorateCSS("items")}>
-                    {this.castToObject<[]>("itemList").map(
-                      (data: any, indexItemList: number) => {
+                    {itemList.map(
+                      (data: Navigator, indexItemList: number) => {
                         return (
                           <ComposerLink
                             key={indexItemList}
-                            path={data.value[1].value}
+                            path={data.url}
                           >
-                            <h3 className={this.decorateCSS("item-title")} key={indexItemList} onClick={() => this.setComponentState("navActive",false)}>{data.value[0].value}</h3>
+                            <Base.H3 className={this.decorateCSS("item-title")} key={indexItemList}
+                              onClick={() => this.setComponentState("navActive", false)}>
+                              {data.item}
+                            </Base.H3>
                           </ComposerLink>
                         );
                       }
@@ -303,14 +321,14 @@ class Navbar8 extends BaseNavigator {
                   </div>
                 </div>
                 <div className={this.decorateCSS("social-media-box")}>
-                  <h4 className={this.decorateCSS("icon-text")}>{this.getPropValue("icon-text")}</h4>
+                  <Base.H4 className={this.decorateCSS("icon-text")}>{this.getPropValue("icon-text")}</Base.H4>
                   <div className={this.decorateCSS("icon-group")}>
-                    {this.getPropValue("social-media-items").map((icons: any) => {
+                    {icons.map((icons: Icon) => {
                       return (
-                        <ComposerLink path={icons.value[1].value}>
+                        <ComposerLink path={icons.url}>
                           <ComposerIcon
                             propsIcon={{ className: this.decorateCSS("icons") }}
-                            name={icons.value[0].value}
+                            name={icons.icon}
                           />
                         </ComposerLink>
                       );
@@ -318,10 +336,10 @@ class Navbar8 extends BaseNavigator {
                   </div>
                 </div>
               </div>
-            </div>
+            </Base.Container>
           )}
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
 
     );
   }
