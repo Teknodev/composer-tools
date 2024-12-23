@@ -185,9 +185,9 @@ class Header17 extends BaseHeader {
                   <Base.Container className={this.decorateCSS("sub-container")}>
                     <Base.MaxContent className={this.decorateCSS("sub-content")}>
                       {cardExist && (
-                        <div className={`${this.decorateCSS("card")} ${!image && this.decorateCSS("card-without-image")}`}>
-                          <Base.H5 className={`${this.decorateCSS("title")} ${!image && this.decorateCSS("title-without-image")}`}>{item.title}</Base.H5>
-                          <Base.H5 className={`${this.decorateCSS("description")} ${!image && this.decorateCSS("description-without-image")}`}>{item.description}</Base.H5>
+                        <div className={this.decorateCSS("card")}>
+                          <Base.H5 className={this.decorateCSS("title")}>{item.title}</Base.H5>
+                          <Base.H5 className={this.decorateCSS("description")}>{item.description}</Base.H5>
                         </div>
                       )}
                       {buttonExist && (
