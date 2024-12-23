@@ -43,7 +43,7 @@ export interface iComponent {
   getExportedCSSClasses(): { [key: string]: string };
   getCSSClasses(sectionName?: string | null): any;
   addProp(prop: TypeUsableComponentProps): void;
-  setProp(key: string, value: any, checkEquality?: boolean): void;
+  setProp(key: string, value: any): void;
   setCSSClasses(key: string, value: { id: string; class: string }[]): void;
   decorateCSS(cssValue: string): string;
   getCategory(): CATEGORIES;
