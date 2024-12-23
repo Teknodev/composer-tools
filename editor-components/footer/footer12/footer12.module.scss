@@ -1,76 +1,130 @@
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+
 .container {
+  width: 100%;
+
+  .first-container {
+    .first-max-content {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--composer-gap-lg);
+
+      .left,
+      .list-group {
+        flex: 1 1 210px;
+        max-width: 300px;
+      }
+
+      .left {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-xs);
+        .logo {
+          .image {
+            width: 150px;
+            height: var(--composer-gap-xl);
+          }
+        }
+
+        .description {
+          font-size: 1rem;
+          color: var(--composer-font-color-primary);
+        }
+      }
+
+      .list-group {
+        .title {
+          font-size: 1rem;
+          color: var(--composer-tertiary-color);
+        }
+        .text {
+          font-size: 1rem;
+          color: var(--composer-font-color-primary);
+        }
+      }
+    }
+  }
+
+  .line {
+    border-top: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.5);
     width: 100%;
-    background-color: var(--composer-html-background);
+  }
 
-    .max-content {
-        max-width: var(--composer-content-width);
-        margin: auto;
-
-        .section {
-            padding: 25px 170px;
-            display: flex;
-            align-items: center;
-            gap: 30px;
-
-            .img {
-                width: 100px;
-                height: auto;
-            }
-
-            .logo-text {
-                color: var(--composer-primary-color);
-                height: fit-content;
-                font-size: 2rem;
-                font-weight: 600;
-            }
-
-            .right-content {
-                display: flex;
-                flex-direction: column;
-                gap: 10px;
-    
-                .up-text {
-                    display: flex;
-                    gap: 20px;
-                    color: var(--composer-font-color-primary);
-                }
-    
-                .ref-text{
-                    font-size: 1rem;
-                }
-    
-                .down-text {
-                    color: var(--composer-font-color-primary);
-                }
-            }
+  .second-container {
+    .second-max-content {
+      .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        .footer-text,
+        .footer-text-no-image {
+          max-width: 50%;
+          font-size: 1rem;
+          color: var(--composer-font-color-primary);
         }
+        .footer-text-no-image {
+          max-width: 100%;
+        }
+
+        .image-container,
+        .image-container-full {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          max-width: 50%;
+          row-gap: var(--composer-gap-sm);
+          column-gap: var(--composer-gap-md);
+
+          .image-element {
+            .image {
+              width: var(--composer-gap-xl);
+              height: 30px;
+              object-fit: cover;
+              border-radius: var(--composer-border-radius-sm);
+            }
+          }
+        }
+
+        .image-container-full {
+          max-width: 100%;
+        }
+      }
     }
+  }
 }
 
-@media screen and (max-width: 768px) {
-    .container {
-        .max-content {
-            .section {
-                padding: 20px 20px;
-            }
-        }
-    }
-}
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    width: 100%;
 
-@media screen and (max-width: 500px) {
-    .container {
-        .max-content {
-            .section {
-                padding: 19px 0px;
-                gap: 10px;
-            }
+    .first-container {
+      .first-max-content {
+        gap: var(--composer-gap-sm);
+        flex-direction: column;
+        align-items: baseline;
 
-            .right-content {
-                .up-text {
-                    gap: 10px !important;
-                    flex-wrap: wrap;
-                }
-            }
+        .left,
+        .list-group {
+          flex: 1 1 100%;
+          max-width: 100%;
         }
+      }
     }
+
+    .second-container {
+      .second-max-content {
+        .footer-bottom {
+          flex-direction: column;
+          .footer-text {
+            max-width: 100%;
+          }
+
+          .image-container {
+            max-width: 100%;
+          }
+        }
+      }
+    }
+  }
 }
