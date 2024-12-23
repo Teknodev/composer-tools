@@ -125,15 +125,8 @@ class Navbar5 extends BaseNavigator {
 
     this.addProp({
       type: "image",
-      key: "image_light",
-      displayer: "Image Light",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6762cc190655f8002ca8c66b?alt=media",
-    });
-
-    this.addProp({
-      type: "image",
-      key: "image_dark",
-      displayer: "Image Dark",
+      key: "logo",
+      displayer: "Logo",
       value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6762cc190655f8002ca8c66b?alt=media",
     });
 
@@ -309,13 +302,22 @@ class Navbar5 extends BaseNavigator {
   }
 
   navClick() {
-    let value: boolean = this.getComponentState("navActive");
-    this.setComponentState("navActive", !value);
+    const isActive = this.getComponentState("navActive");
+
+    if (isActive) {
+      this.setComponentState("isClosing", true);
+      setTimeout(() => {
+        this.setComponentState("isClosing", false);
+        this.setComponentState("navActive", false);
+      }, 800);
+    } else {
+      this.setComponentState("navActive", true);
+    }
   }
 
   render() {
     const navActive = this.getComponentState("navActive");
-    const logoSrc = this.getPropValue(navActive ? "image_light" : "image_dark");
+    const logo = this.getPropValue("logo");
 
     const social = this.castToObject<any[]>("social");
     const listItems = this.castToObject<any[]>("listItems");
@@ -336,98 +338,104 @@ class Navbar5 extends BaseNavigator {
 
     const iconsExist = hamburgerIcon || crossIcon;
 
-    const navbarExist = social.length > 0 || logoSrc || iconsExist || language;
+    const navbarExist = social.length > 0 || logo || iconsExist || language;
+
+    const isClosing = this.getComponentState("isClosing");
 
     return (
       <Base.Container className={`${this.decorateCSS("container")} ${this.decorateCSS(this.getPropValue("position"))} ${navActive && this.decorateCSS("active")}`}>
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {navbarExist && (
-            <nav className={this.decorateCSS("bar")}>
-              {social.length > 0 && (
-                <div className={this.decorateCSS("social-media-box")}>
-                  {social.length > 0 && (
-                    <div className={this.decorateCSS("social")}>
-                      {social.map(
-                        (item: any, indexSocial: number) =>
-                          item.socialIcon && (
-                            <ComposerLink key={indexSocial} path={item.socialLink}>
-                              <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={item.socialIcon} />
-                            </ComposerLink>
-                          )
-                      )}
-                    </div>
-                  )}
-                </div>
-              )}
-
-              {logoSrc && (
-                <ComposerLink className={this.decorateCSS("image-container")} path={this.getPropValue("logo_navigate")}>
-                  <div className={this.decorateCSS("image-box")}>
-                    <img className={this.decorateCSS("image")} src={logoSrc} width={200} alt="" />
+        <div className={this.decorateCSS("max-content")}>
+          <Base.MaxContent>
+            {navbarExist && (
+              <nav className={this.decorateCSS("bar")}>
+                {social.length > 0 && (
+                  <div className={this.decorateCSS("social-media-box")}>
+                    {social.length > 0 && (
+                      <div className={this.decorateCSS("social")}>
+                        {social.map(
+                          (item: any, indexSocial: number) =>
+                            item.socialIcon && (
+                              <ComposerLink key={indexSocial} path={item.socialLink}>
+                                <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={item.socialIcon} />
+                              </ComposerLink>
+                            )
+                        )}
+                      </div>
+                    )}
                   </div>
-                </ComposerLink>
-              )}
+                )}
 
-              {(language || iconsExist) && (
-                <div className={this.decorateCSS("navbar")}>
-                  {language && <ComposerLanguage className={this.decorateCSS("language")} />}
+                {logo && (
+                  <ComposerLink className={this.decorateCSS("image-container")} path={this.getPropValue("logo_navigate")}>
+                    <div className={this.decorateCSS("image-box")}>
+                      <img className={this.decorateCSS("image")} src={logo} width={200} alt="" />
+                    </div>
+                  </ComposerLink>
+                )}
 
-                  <ComposerIcon
-                    name={navActive ? this.getPropValue("cross-icon") : this.getPropValue("hamburger-icon")}
-                    propsIcon={{
-                      className: `${this.decorateCSS("hamburger-icon")} ${navActive && this.decorateCSS("active-hamburger-icon")} `,
-                      onClick: () => {
-                        this.navClick();
-                      },
-                    }}
-                  />
-                </div>
-              )}
-            </nav>
-          )}
+                {(language || iconsExist) && (
+                  <div className={this.decorateCSS("navbar")}>
+                    {language && <ComposerLanguage className={this.decorateCSS("language")} />}
+
+                    <ComposerIcon
+                      name={navActive ? this.getPropValue("cross-icon") : this.getPropValue("hamburger-icon")}
+                      propsIcon={{
+                        className: `${this.decorateCSS("hamburger-icon")} ${navActive && this.decorateCSS("active-hamburger-icon")} `,
+                        onClick: () => {
+                          this.navClick();
+                        },
+                      }}
+                    />
+                  </div>
+                )}
+              </nav>
+            )}
+          </Base.MaxContent>
 
           {navActive && (
-            <div className={this.decorateCSS("down-page")}>
-              {upExist && (
-                <div className={this.decorateCSS("up")}>
-                  {titleExist && (
-                    <div className={this.decorateCSS("left-page")}>
-                      <Base.H1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.H1>
-                    </div>
-                  )}
-                  {listItems.length > 0 && (
-                    <div className={this.decorateCSS("right-page")}>
-                      {listItems.length > 0 && (
-                        <div className={this.decorateCSS("item")}>
-                          {listItems.map((item: any, indexSocial: number) => {
-                            const itemTitleExist = this.castToString(item.itemTitle);
-                            return (
-                              itemTitleExist && (
-                                <ComposerLink key={indexSocial} path={item.pageLink}>
-                                  <Base.H5 className={this.decorateCSS("item-title")}>{item.itemTitle}</Base.H5>
-                                </ComposerLink>
-                              )
-                            );
-                          })}
-                        </div>
-                      )}
-                    </div>
-                  )}
-                </div>
-              )}
+            <div className={`${this.decorateCSS("down-page")} ${navActive ? this.decorateCSS("active") : ""} ${isClosing ? this.decorateCSS("closing") : ""}`}>
+              <Base.MaxContent>
+                {upExist && (
+                  <div className={this.decorateCSS("up")}>
+                    {titleExist && (
+                      <div className={this.decorateCSS("left-page")}>
+                        <Base.H1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.H1>
+                      </div>
+                    )}
+                    {listItems.length > 0 && (
+                      <div className={this.decorateCSS("right-page")}>
+                        {listItems.length > 0 && (
+                          <div className={this.decorateCSS("item")}>
+                            {listItems.map((item: any, indexSocial: number) => {
+                              const itemTitleExist = this.castToString(item.itemTitle);
+                              return (
+                                itemTitleExist && (
+                                  <ComposerLink key={indexSocial} path={item.pageLink}>
+                                    <Base.H5 className={this.decorateCSS("item-title")}>{item.itemTitle}</Base.H5>
+                                  </ComposerLink>
+                                )
+                              );
+                            })}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                )}
 
-              {line && <div className={this.decorateCSS("line")}></div>}
+                {line && <div className={this.decorateCSS("line")}></div>}
 
-              {(bottomTextExist || bottomText2Exist) && (
-                <div className={this.decorateCSS("down")}>
-                  {bottomTextExist && <Base.P className={this.decorateCSS("text1")}>{this.getPropValue("bottomText")}</Base.P>}
-                  {divider && <div className={this.decorateCSS("divider")}></div>}
-                  {bottomText2Exist && <Base.P className={this.decorateCSS("text2")}> {this.getPropValue("bottomText2")}</Base.P>}
-                </div>
-              )}
+                {(bottomTextExist || bottomText2Exist) && (
+                  <div className={this.decorateCSS("down")}>
+                    {bottomTextExist && <Base.P className={this.decorateCSS("text1")}>{this.getPropValue("bottomText")}</Base.P>}
+                    {divider && <div className={this.decorateCSS("divider")}></div>}
+                    {bottomText2Exist && <Base.P className={this.decorateCSS("text2")}> {this.getPropValue("bottomText2")}</Base.P>}
+                  </div>
+                )}
+              </Base.MaxContent>
             </div>
           )}
-        </Base.MaxContent>
+        </div>
       </Base.Container>
     );
   }
