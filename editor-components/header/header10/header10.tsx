@@ -90,13 +90,13 @@ class Header10 extends BaseHeader {
       type: "icon",
       key: "nextIcon",
       displayer: "Next icon",
-      value: "IoCaretForwardCircleSharp",
+      value: "MdArrowRight",
     });
     this.addProp({
       type: "icon",
       key: "prevIcon",
       displayer: "Prev icon",
-      value: "IoCaretBackCircleSharp",
+      value: "MdArrowLeft",
     });
     this.addProp({
       type: "icon",
@@ -106,10 +106,16 @@ class Header10 extends BaseHeader {
     });
 
     this.addProp({
-      type : "boolean",
-      key : 'index',
-      displayer : "Index",
-      value : true
+      type: "boolean",
+      key: 'index',
+      displayer: "Index Active",
+      value: true
+    })
+    this.addProp({
+      type: "boolean",
+      key: 'lineActive',
+      displayer: "Line Active",
+      value: true
     })
 
 
@@ -172,12 +178,6 @@ class Header10 extends BaseHeader {
                   key: "buttonObject",
                   displayer: "Button",
                   value: [
-                    {
-                      type: "boolean",
-                      key: "line",
-                      displayer: "Line",
-                      value: true,
-                    },
                     {
                       type: "string",
                       key: "buttonText",
@@ -261,12 +261,6 @@ class Header10 extends BaseHeader {
                   displayer: "Button",
                   value: [
                     {
-                      type: "boolean",
-                      key: "line",
-                      displayer: "Line",
-                      value: true,
-                    },
-                    {
                       type: "string",
                       key: "buttonText",
                       displayer: "Button Text",
@@ -308,7 +302,7 @@ class Header10 extends BaseHeader {
       dots: false,
       infinite: true,
       speed: 2500,
-      autoplay: false,
+      autoplay: true,
       autoplaySpeed: 2500,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -381,37 +375,45 @@ class Header10 extends BaseHeader {
                         )}
                         {slider.length > 1 && (
                           <div className={this.decorateCSS("nav-buttons")}>
-                            {(prevIcon || nextIcon) && (index &&
-                              <div className={this.decorateCSS("slide_number")}>
+                            {index &&
+                              (<div className={this.decorateCSS("slide_number")}>
                                 {String(indexSlider + 1).padStart(2, "0")}
+                              </div>)
+                            }
+                            {(this.getPropValue("prevIcon") || this.getPropValue("nextIcon")) && (
+                              <div className={this.decorateCSS("iconsSection")}>
+                                {this.getPropValue("prevIcon") && (
+                                  <div className={this.decorateCSS("prev_icon_wrapper")}>
+                                    <ComposerIcon
+                                      name={this.getPropValue("prevIcon")}
+                                      propsIcon={{
+                                        className: `${this.decorateCSS("prev_icon")}`,
+                                        onClick: () => {
+                                          this.getComponentState(
+                                            "slider-ref"
+                                          ).current.slickPrev();
+                                        },
+                                      }}
+                                    />
+                                  </div>
+                                )}
+                                {this.getPropValue("nextIcon") && (
+                                  <div className={this.decorateCSS("next_icon_wrapper")}>
+                                    <ComposerIcon
+                                      name={this.getPropValue("nextIcon")}
+                                      propsIcon={{
+                                        className: `${this.decorateCSS("next_icon")}`,
+                                        onClick: () => {
+                                          this.getComponentState(
+                                            "slider-ref"
+                                          ).current.slickNext();
+                                        },
+                                      }}
+                                    />
+                                  </div>
+                                )}
                               </div>
                             )}
-                            <div className={this.decorateCSS("iconsSection")}>
-                              <ComposerIcon
-                                name={this.getPropValue("prevIcon")}
-                                propsIcon={{
-                                  className: `${this.decorateCSS("prev_icon")}`,
-                                  size: 45,
-                                  onClick: () => {
-                                    this.getComponentState(
-                                      "slider-ref"
-                                    ).current.slickPrev();
-                                  },
-                                }}
-                              />
-                              <ComposerIcon
-                                name={this.getPropValue("nextIcon")}
-                                propsIcon={{
-                                  className: `${this.decorateCSS("next_icon")}`,
-                                  size: 45,
-                                  onClick: () => {
-                                    this.getComponentState(
-                                      "slider-ref"
-                                    ).current.slickNext();
-                                  },
-                                }}
-                              />
-                            </div>
                           </div>
                         )}
                         {item.button.map(
@@ -430,7 +432,7 @@ class Header10 extends BaseHeader {
                                       "button-section"
                                     )}
                                   >
-                                    {buttonItem.line && (
+                                    {this.getPropValue("lineActive") && (
                                       <div
                                         className={this.decorateCSS("line")}
                                       />

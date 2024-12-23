@@ -1,11 +1,16 @@
 @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
-
 .container {
   .max-content {
     .carousel {
       max-width: 100%;
       &>button{
         display: none !important;
+      }
+      >div{
+        >div{
+          display: flex;
+          gap: var(--composer-gap-sm);
+        }
       }
       .content {
         width: 100%;
@@ -43,15 +48,26 @@
                 font-weight: 900;
                 opacity: 0.3;
               }
-                .prev_icon {
-                  color: var(--composer-secondary-color);
-                  cursor: pointer;
+              .iconsSection{
+                display: flex;
+                gap: var(--composer-gap-md);
+                .prev_icon_wrapper, .next_icon_wrapper{
+                  background-color: var(--composer-primary-color);
+                  padding: var(--composer-gap-xs);
+                  border-radius: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  .prev_icon, .next_icon {
+                    color: var(--composer-font-color-secondary);
+                    cursor: pointer;
+                    font-size: 2.5rem;
+                  }
                 }
-                .next_icon {
-                  color: var(--composer-secondary-color);
-                  cursor: pointer;
-                }
+              }
+ 
             }
+
             .button-section{
               display: flex;
               align-items: center;
@@ -190,7 +206,7 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width-sm}) {
+@container (max-width: #{$composer-tablet-width-lg}) {
   .container {
     .max-content {
       .carousel {
@@ -212,8 +228,14 @@
                 font-size: 1rem;
                 margin: 0;
               }
-
               .nav-buttons {
+                .iconsSection{
+                  .prev_icon_wrapper, .next_icon_wrapper{
+                    .prev_icon, .next_icon {
+                      font-size: 2rem;
+                    }
+                  }
+                }
                 .slide_number {
                   font-size: 4rem;
                 }
