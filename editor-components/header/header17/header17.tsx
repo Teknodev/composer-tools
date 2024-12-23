@@ -7,10 +7,10 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "composer-tools/composer-base-components/base/base";
 
 type ISliderData = {
-  title: string;
+  title: JSX.Element;
   image: string;
-  description: string;
-  buttonText: string;
+  description: JSX.Element;
+  buttonText: JSX.Element;
   buttonUrl: string;
 };
 
@@ -57,8 +57,7 @@ class Header17 extends BaseHeader {
               type: "image",
               displayer: "Image",
               key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666193cabd2970002c625d54?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666193cabd2970002c625d54?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -95,8 +94,7 @@ class Header17 extends BaseHeader {
               type: "image",
               displayer: "Image",
               key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666193cabd2970002c625d53?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666193cabd2970002c625d53?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -133,8 +131,7 @@ class Header17 extends BaseHeader {
               type: "image",
               displayer: "Image",
               key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666193cabd2970002c625d52?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666193cabd2970002c625d52?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -162,7 +159,8 @@ class Header17 extends BaseHeader {
 
   render() {
     const settings = {
-      dots: false,
+      dots: true,
+      dotsClass: this.decorateCSS("dots"),
       infinite: true,
       speed: 1000,
       autoplay: true,
@@ -174,100 +172,51 @@ class Header17 extends BaseHeader {
     const slider = this.castToObject<ISliderData[]>("slider");
     return (
       <div className={this.decorateCSS("container")}>
-        <ComposerSlider
-          {...settings}
-          ref={this.getComponentState("slider-ref")}
-          className={this.decorateCSS("carousel")}
-        >
+        <ComposerSlider {...settings} ref={this.getComponentState("slider-ref")} className={this.decorateCSS("carousel")}>
           {slider.map((item: ISliderData, index: number) => {
             const image = item.image;
             const buttonExist = this.castToString(item.buttonText);
-            const cardExist = !!(
-              this.castToString(item.title) ||
-              this.castToString(item.description)
-            );
-            const sliderExist = !!(this.castToString(item.buttonText) ||
-              this.castToString(item.title) ||
-              this.castToString(item.description) || image);
+            const cardExist = !!(this.castToString(item.title) || this.castToString(item.description));
+            const sliderExist = !!(this.castToString(item.buttonText) || this.castToString(item.title) || this.castToString(item.description) || image);
             return (
               sliderExist && (
-                <div
-                  className={this.decorateCSS("slider-content")}
-                  key={`key${index}`}
-                >
-                  {image && (
-                    <img
-                      src={item.image}
-                      alt=""
-                      className={this.decorateCSS("bg-img")}
-                    />
-                  )}
+                <div className={this.decorateCSS("slider-content")} key={`key${index}`}>
+                  {image && <img src={item.image} alt="" className={this.decorateCSS("bg-img")} />}
                   <Base.Container className={this.decorateCSS("sub-container")}>
-                    <Base.MaxContent
-                      className={this.decorateCSS("sub-content")}
-                    >
+                    <Base.MaxContent className={this.decorateCSS("sub-content")}>
                       {cardExist && (
-                        <div
-                          className={`${this.decorateCSS("card")} ${
-                            !image && this.decorateCSS("card-without-image")
-                          }`}
-                        >
-                          <h1
-                            className={`${this.decorateCSS("title")} ${
-                              !image && this.decorateCSS("title-without-image")
-                            }`}
-                          >
-                            {item.title}
-                          </h1>
-                          <h1
-                            className={`${this.decorateCSS("description")} ${
-                              !image &&
-                              this.decorateCSS("description-without-image")
-                            }`}
-                          >
-                            {item.description}
-                          </h1>
+                        <div className={`${this.decorateCSS("card")} ${!image && this.decorateCSS("card-without-image")}`}>
+                          <Base.H5 className={`${this.decorateCSS("title")} ${!image && this.decorateCSS("title-without-image")}`}>{item.title}</Base.H5>
+                          <Base.H5 className={`${this.decorateCSS("description")} ${!image && this.decorateCSS("description-without-image")}`}>{item.description}</Base.H5>
                         </div>
                       )}
                       {buttonExist && (
                         <ComposerLink path={item.buttonUrl}>
-                          <Base.Button className={this.decorateCSS("button")}>
-                            {item.buttonText}
-                          </Base.Button>
+                          <Base.Button className={this.decorateCSS("button")}>{item.buttonText}</Base.Button>
                         </ComposerLink>
                       )}
                     </Base.MaxContent>
                   </Base.Container>
                   <ComposerIcon
-                        name={this.getPropValue("next_icon")}
-                        propsIcon={{
-                          className: `${this.decorateCSS("next-icon")} ${
-                            !image &&
-                            this.decorateCSS("slider-icon-without-image")
-                          }`,
-                          size: 40,
-                          onClick: () => {
-                            this.getComponentState(
-                              "slider-ref"
-                            ).current.slickNext();
-                          },
-                        }}
-                      />
-                      <ComposerIcon
-                        name={this.getPropValue("prev_icon")}
-                        propsIcon={{
-                          className: `${this.decorateCSS("prev-icon")} ${
-                            !image &&
-                            this.decorateCSS("slider-icon-without-image")
-                          }`,
-                          size: 40,
-                          onClick: () => {
-                            this.getComponentState(
-                              "slider-ref"
-                            ).current.slickPrev();
-                          },
-                        }}
-                      />
+                    name={this.getPropValue("next_icon")}
+                    propsIcon={{
+                      className: `${this.decorateCSS("next-icon")} ${!image && this.decorateCSS("slider-icon-without-image")}`,
+                      size: 40,
+                      onClick: () => {
+                        this.getComponentState("slider-ref").current.slickNext();
+                      },
+                    }}
+                  />
+                  <ComposerIcon
+                    name={this.getPropValue("prev_icon")}
+                    propsIcon={{
+                      className: `${this.decorateCSS("prev-icon")} ${!image && this.decorateCSS("slider-icon-without-image")}`,
+                      size: 40,
+                      onClick: () => {
+                        this.getComponentState("slider-ref").current.slickPrev();
+                      },
+                    }}
+                  />
                 </div>
               )
             );

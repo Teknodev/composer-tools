@@ -5,92 +5,32 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { TypeUsableComponentProps } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "composer-tools/composer-base-components/base/base";
 
 type ISliderData = {
-  title: string;
-  subtitle: string;
+  title: JSX.Element;
+  subtitle: JSX.Element;
   sliderNumber: number;
   image: string;
   rightImage: string;
   leftImage: string;
-  description: string;
+  description: JSX.Element;
   circleIcon: string;
-  text: string;
+  text: JSX.Element;
 };
 interface IAnimationProps {
   animationState: string;
   startingAnimation: string;
   endingAnimation: string;
 }
+interface Icon {
+  iconItem: string;
+  iconUrl: string;
+}
 
 class Header31 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
-    let twitter: TypeUsableComponentProps = {
-      type: "object",
-      key: "twitter",
-      displayer: "Twitter",
-      value: [
-        {
-          type: "icon",
-          key: "icon",
-          displayer: "Platform Icon",
-          value: "FaTwitter",
-        },
-        {
-          type: "page",
-          key: "url",
-          displayer: "Url",
-          value: "",
-        },
-      ],
-    };
-
-    let facebook: TypeUsableComponentProps = {
-      type: "object",
-      key: "facebook",
-      displayer: "Platform",
-      value: [
-        {
-          type: "icon",
-          key: "icon",
-          displayer: "Platform Icon",
-          value: "FaFacebook",
-        },
-        {
-          type: "page",
-          key: "url",
-          displayer: "Url",
-          value: "",
-        },
-      ],
-    };
-
-    let instagram: TypeUsableComponentProps = {
-      type: "object",
-      key: "instagram",
-      displayer: "Platform",
-      value: [
-        {
-          type: "icon",
-          key: "icon",
-          displayer: "Platform Icon",
-          value: "FaInstagram",
-        },
-        {
-          type: "page",
-          key: "url",
-          displayer: "Url",
-          value: "",
-        },
-      ],
-    };
-    this.addProp({
-      type: "icon",
-      key: "circleIcon",
-      displayer: "Circle Icon",
-      value: "FaCircleChevronRight",
-    });
     this.addProp({
       type: "boolean",
       displayer: "Text Animation",
@@ -101,6 +41,12 @@ class Header31 extends BaseHeader {
       type: "boolean",
       displayer: "Overlay",
       key: "overlay",
+      value: true,
+    });
+    this.addProp({
+      type: "boolean",
+      displayer: "Line Enable",
+      key: "lineEnable",
       value: true,
     });
     this.addProp({
@@ -734,6 +680,12 @@ class Header31 extends BaseHeader {
               value: true,
             },
             {
+              type: "string",
+              key: "sliderNumber",
+              displayer: "Slider Number",
+              value: "09",
+            },
+            {
               type: "array",
               key: "actions",
               displayer: "Action",
@@ -786,9 +738,82 @@ class Header31 extends BaseHeader {
       key: "icons",
       displayer: "Social Media Platforms",
       value: [
-        JSON.parse(JSON.stringify(twitter)),
-        JSON.parse(JSON.stringify(facebook)),
-        JSON.parse(JSON.stringify(instagram)),
+        {
+          type: "object",
+          key: "icon",
+          displayer: "Icon",
+          value: [
+            {
+              type: "icon",
+              key: "iconItem",
+              displayer: "Icon Item",
+              value: "FaFacebookF"
+            },
+            {
+              type: "page",
+              key: "iconUrl",
+              displayer: "Icon Url",
+              value: ""
+            },
+          ]
+        },
+        {
+          type: "object",
+          key: "icon",
+          displayer: "Icon",
+          value: [
+            {
+              type: "icon",
+              key: "iconItem",
+              displayer: "Icon Item",
+              value: "FaXTwitter"
+            },
+            {
+              type: "page",
+              key: "iconUrl",
+              displayer: "Icon Url",
+              value: ""
+            },
+          ]
+        },
+        {
+          type: "object",
+          key: "icon",
+          displayer: "Icon",
+          value: [
+            {
+              type: "icon",
+              key: "iconItem",
+              displayer: "Icon Item",
+              value: "FaInstagram"
+            },
+            {
+              type: "page",
+              key: "iconUrl",
+              displayer: "Icon Url",
+              value: ""
+            },
+          ]
+        },
+        {
+          type: "object",
+          key: "icon",
+          displayer: "Icon",
+          value: [
+            {
+              type: "icon",
+              key: "iconItem",
+              displayer: "Icon Item",
+              value: "FaLinkedinIn"
+            },
+            {
+              type: "page",
+              key: "iconUrl",
+              displayer: "Icon Url",
+              value: ""
+            },
+          ]
+        }
       ],
     });
 
@@ -819,10 +844,10 @@ class Header31 extends BaseHeader {
     const settings = {
       arrows: false,
       dots: false,
-      infinite: false,
+      infinite: true,
       accessibility: false,
       speed: 1500,
-      autoplay: false,
+      autoplay: true,
       autoplaySpeed: 4000,
       slidesToShow: 1,
       draggable: false,
@@ -831,13 +856,10 @@ class Header31 extends BaseHeader {
       beforeChange: (oldIndex: number, newIndex: number) => {
         if (oldIndex == newIndex) return;
         this.setComponentState("buttonAnimationClass", "animate__fadeOutDown");
-        this.setComponentState("titleAnimationClass", "animate__fadeOutDown");
-        this.setComponentState(
-          "subtitleAnimationClass",
-          "animate__fadeOutDown"
-        );
+        this.setComponentState("titleAnimationClass", "animate__fadeOut");
+        this.setComponentState("subtitleAnimationClass", "animate__fadeOutDown");
         this.setComponentState("stickAnimationClass", "animate__fadeOutDown");
-        this.setComponentState("descriptionAnimationClass", "animate__fadeOut");
+        this.setComponentState("descriptionAnimationClass", "animate__fadeOutDown");
 
         setTimeout(() => {
           this.setComponentState("active-index", newIndex);
@@ -849,15 +871,9 @@ class Header31 extends BaseHeader {
 
           this.setComponentState("buttonAnimationClass", "animate__fadeInUp");
           this.setComponentState("titleAnimationClass", "animate__fadeInRight");
-          this.setComponentState(
-            "subtitleAnimationClass",
-            "animate__fadeInRight"
-          );
+          this.setComponentState("subtitleAnimationClass", "animate__fadeInRight");
           this.setComponentState("stickAnimationClass", "animate__fadeInRight");
-          this.setComponentState(
-            "descriptionAnimationClass",
-            "animate__fadeInUp"
-          );
+          this.setComponentState("descriptionAnimationClass", "animate__fadeInUp");
         }, 1000);
       },
     };
@@ -865,16 +881,13 @@ class Header31 extends BaseHeader {
     const activeIndex = this.getComponentState("active-index");
     const slider = this.castToObject<any>("slider");
     const activeSlideObj = slider[activeIndex];
-    const subtitle = slider.length > 0 ? activeSlideObj?.subtitle : <></>;
-    const title = slider.length > 0 ? activeSlideObj?.title : <></>;
-    const description = slider.length > 0 ? activeSlideObj?.description : <></>;
     const textAnimationEnabled = this.getPropValue("textAnimation");
     const overlay = this.getPropValue("overlay");
 
-    const icons = this.castToObject<any>("icons");
+    const icons = this.castToObject<Icon[]>("icons");
 
     return (
-      <div className={this.decorateCSS("container")}>
+      <div className={slider[this.getComponentState("active-index")].rightImage ? this.decorateCSS("container") : this.decorateCSS("container-no-image")}>
         <div className={this.decorateCSS("max-content")}>
           {slider?.length > 0 && (
             <>
@@ -891,13 +904,12 @@ class Header31 extends BaseHeader {
                           <img
                             className={this.decorateCSS("background-right")}
                             src={item.rightImage}
-                            alt={item.title}
+                            alt={item.rightImage}
                           />
                         )}
                         <div
-                          className={`${
-                            overlay ? this.decorateCSS("overlay") : ""
-                          }`}
+                          className={`${overlay ? this.decorateCSS("overlay") : ""
+                            }`}
                         ></div>
                       </div>
                     </div>
@@ -906,6 +918,7 @@ class Header31 extends BaseHeader {
               </div>
               <div className={this.decorateCSS("slider-content")}>
                 <div className={this.decorateCSS("slider-container")}>
+
                   <ComposerSlider
                     ref={this.getComponentState("second-slider-ref")}
                     {...settings}
@@ -938,13 +951,12 @@ class Header31 extends BaseHeader {
                             <img
                               className={`${this.decorateCSS(
                                 "background-left"
-                              )} ${
-                                activeIndex === index
-                                  ? this.decorateCSS("active")
-                                  : ""
-                              }`}
+                              )} ${activeIndex === index
+                                ? this.decorateCSS("active")
+                                : ""
+                                }`}
                               src={item.leftImage}
-                              alt={item.title}
+                              alt={item.leftImage}
                               onClick={() => {
                                 this.getComponentState(
                                   "slider-ref"
@@ -958,27 +970,29 @@ class Header31 extends BaseHeader {
                         );
                     })}
                   </ComposerSlider>
+
+
                   <div className={this.decorateCSS("slider-inner")}>
-                    {subtitle && (
+                    {this.castToString(activeSlideObj.subtitle) && (
                       <div className={this.decorateCSS("up-text")}>
-                        <div
-                          className={`${this.decorateCSS("stick")} ${
-                            textAnimationEnabled ? "animate__animated" : ""
-                          }  ${this.getComponentState("stickAnimationClass")}`}
-                          onAnimationEnd={() => {
-                            this.handleAnimationEnd({
-                              animationState: "stickAnimationClass",
-                              startingAnimation: "animate__fadeInRight",
-                              endingAnimation: "animate__fadeOutDown",
-                            });
-                          }}
-                        ></div>
+                        {this.getPropValue("lineEnable") && (
+                          <div
+                            className={`${this.decorateCSS("stick")} ${textAnimationEnabled ? "animate__animated" : ""
+                              }  ${this.getComponentState("stickAnimationClass")}`}
+                            onAnimationEnd={() => {
+                              this.handleAnimationEnd({
+                                animationState: "stickAnimationClass",
+                                startingAnimation: "animate__fadeInRight",
+                                endingAnimation: "animate__fadeOutDown",
+                              });
+                            }}
+                          ></div>
+                        )}
                         <span
-                          className={`${this.decorateCSS("subtitle")} ${
-                            textAnimationEnabled ? "animate__animated" : ""
-                          } ${this.getComponentState(
-                            "subtitleAnimationClass"
-                          )}`}
+                          className={`${this.decorateCSS("subtitle")} ${textAnimationEnabled ? "animate__animated" : ""
+                            } ${this.getComponentState(
+                              "subtitleAnimationClass"
+                            )}`}
                           onAnimationEnd={() => {
                             this.handleAnimationEnd({
                               animationState: "subtitleAnimationClass",
@@ -987,16 +1001,15 @@ class Header31 extends BaseHeader {
                             });
                           }}
                         >
-                          {subtitle}
+                          {activeSlideObj.subtitle}
                         </span>
                       </div>
                     )}
 
-                    {title && (
+                    {this.castToString(activeSlideObj.title) && (
                       <span
-                        className={`${this.decorateCSS("title")} ${
-                          textAnimationEnabled ? "animate__animated" : ""
-                        } ${this.getComponentState("titleAnimationClass")}`}
+                        className={`${this.decorateCSS("title")} ${textAnimationEnabled ? "animate__animated" : ""
+                          } ${this.getComponentState("titleAnimationClass")}`}
                         onAnimationEnd={() => {
                           this.handleAnimationEnd({
                             animationState: "titleAnimationClass",
@@ -1005,16 +1018,15 @@ class Header31 extends BaseHeader {
                           });
                         }}
                       >
-                        {title}
+                        {activeSlideObj.title}
                       </span>
                     )}
-                    {description && (
+                    {this.castToString(activeSlideObj.description) && (
                       <p
-                        className={`${this.decorateCSS("description")} ${
-                          textAnimationEnabled ? "animate__animated" : ""
-                        } ${this.getComponentState(
-                          "descriptionAnimationClass"
-                        )} `}
+                        className={`${this.decorateCSS("description")} ${textAnimationEnabled ? "animate__animated" : ""
+                          } ${this.getComponentState(
+                            "descriptionAnimationClass"
+                          )} `}
                         onAnimationEnd={() => {
                           this.handleAnimationEnd({
                             animationState: "descriptionAnimationClass",
@@ -1023,18 +1035,17 @@ class Header31 extends BaseHeader {
                           });
                         }}
                       >
-                        {description}
+                        {activeSlideObj.description}
                       </p>
                     )}
-                    {activeSlideObj.actions.map((el: any) => (
-                      <ComposerLink path={el.link}>
+                    {activeSlideObj.actions.map((item: any) => (
+                      <ComposerLink path={item.link}>
                         <div className={this.decorateCSS("button-box")}>
-                          <div
-                            className={`${this.decorateCSS("button")} ${
-                              textAnimationEnabled ? "animate__animated" : ""
-                            } ${this.getComponentState(
-                              "buttonAnimationClass"
-                            )}`}
+                          <Base.Button
+                            className={`${this.decorateCSS("button")} ${textAnimationEnabled ? "animate__animated" : ""
+                              } ${this.getComponentState(
+                                "buttonAnimationClass"
+                              )}`}
                             onAnimationEnd={() => {
                               this.handleAnimationEnd({
                                 animationState: "buttonAnimationClass",
@@ -1043,19 +1054,8 @@ class Header31 extends BaseHeader {
                               });
                             }}
                           >
-                            {this.getPropValue("circleIcon") && (
-                              <ComposerIcon
-                                name={this.getPropValue("circleIcon")}
-                                propsIcon={{
-                                  className: ``,
-                                  size: 25,
-                                }}
-                              />
-                            )}
-                            <span className={this.decorateCSS("button-text")}>
-                              {el.buttonText}
-                            </span>
-                          </div>
+                            {item.buttonText}
+                          </Base.Button>
                         </div>
                       </ComposerLink>
                     ))}
@@ -1071,18 +1071,18 @@ class Header31 extends BaseHeader {
                     />
                   )}
                   <div className={this.decorateCSS("icon-stick")}></div>
-                  {icons?.length > 0 && (
+                  {(icons?.length > 0) && (
                     <div className={this.decorateCSS("icon-list-container")}>
-                      {icons.map((icon: any, indexIcons: number) => {
-                        if (icon.icon)
+                      {icons.map((icon: Icon, indexIcons: number) => {
+                        if (icon.iconItem)
                           return (
                             <div
                               key={indexIcons}
                               className={this.decorateCSS("icon-item")}
                             >
-                              <ComposerLink path={icon.url}>
+                              <ComposerLink path={icon.iconUrl}>
                                 <ComposerIcon
-                                  name={icon.icon}
+                                  name={icon.iconItem}
                                   propsIcon={{
                                     className: this.decorateCSS("icon"),
                                   }}
@@ -1096,53 +1096,49 @@ class Header31 extends BaseHeader {
                 </div>
                 {(this.getPropValue("prev_icon") ||
                   this.getPropValue("next_icon")) && (
-                  <div className={this.decorateCSS("control-nav")}>
-                    {this.getPropValue("prev_icon") && (
-                      <ComposerIcon
-                        name={this.getPropValue("prev_icon")}
-                        propsIcon={{
-                          className: `${this.decorateCSS(
-                            "prev-icon"
-                          )} ${this.decorateCSS("arrow")} ${
-                            !this.getComponentState("display-none") &&
+                    <div className={this.decorateCSS("control-nav")}>
+                      {this.getPropValue("prev_icon") && (
+                        <ComposerIcon
+                          name={this.getPropValue("prev_icon")}
+                          propsIcon={{
+                            className: `${this.decorateCSS(
+                              "prev-icon"
+                            )} ${this.decorateCSS("arrow")} ${!this.getComponentState("display-none") &&
                             this.decorateCSS("un-visible")
-                          }`,
-                          size: 20,
-                          onClick: () => {
-                            this.getComponentState(
-                              "slider-ref"
-                            ).current.slickPrev();
-                            this.getComponentState(
-                              "second-slider-ref"
-                            ).current.slickPrev();
-                          },
-                        }}
-                      />
-                    )}
-                    {this.getPropValue("next_icon") && (
-                      <ComposerIcon
-                        name={this.getPropValue("next_icon")}
-                        propsIcon={{
-                          className: `${this.decorateCSS(
-                            "next-icon"
-                          )} ${this.decorateCSS("arrow")} ${
-                            !this.getComponentState("display-none") &&
+                              }`,
+                            onClick: () => {
+                              this.getComponentState(
+                                "slider-ref"
+                              ).current.slickPrev();
+                              this.getComponentState(
+                                "second-slider-ref"
+                              ).current.slickPrev();
+                            },
+                          }}
+                        />
+                      )}
+                      {this.getPropValue("next_icon") && (
+                        <ComposerIcon
+                          name={this.getPropValue("next_icon")}
+                          propsIcon={{
+                            className: `${this.decorateCSS(
+                              "next-icon"
+                            )} ${this.decorateCSS("arrow")} ${!this.getComponentState("display-none") &&
                             this.decorateCSS("un-visible")
-                          }`,
-                          size: 20,
-                          onClick: () => {
-                            this.getComponentState(
-                              "slider-ref"
-                            ).current.slickNext();
-                            this.getComponentState(
-                              "second-slider-ref"
-                            ).current.slickNext();
-                          },
-                        }}
-                      />
-                    )}
-                  </div>
-                )}
+                              }`,
+                            onClick: () => {
+                              this.getComponentState(
+                                "slider-ref"
+                              ).current.slickNext();
+                              this.getComponentState(
+                                "second-slider-ref"
+                              ).current.slickNext();
+                            },
+                          }}
+                        />
+                      )}
+                    </div>
+                  )}
                 <div className={this.decorateCSS("control-num")}>
                   <span className={this.decorateCSS("sliderNumber")}>
                     {activeSlideObj.sliderNumber}
