@@ -30,6 +30,11 @@ interface TopContentItem {
   page_show: boolean;
 }
 
+interface IconItem {
+  navigate_icon: string;
+  icon_name: string;
+}
+
 class Header25 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
@@ -47,10 +52,93 @@ class Header25 extends BaseHeader {
         {
           type: "boolean",
           key: "page_show",
-          displayer: "Page Show",
+          displayer: "Index Display",
           value: true,
         },
       ]
+    });
+    this.addProp({
+      type: "string",
+      key: "side-text",
+      displayer: "Side Text",
+      value: "ARCHITECTURE BURO",
+    });
+    this.addProp({
+      type: "boolean",
+      key: "lineIsActive",
+      displayer: "Line Active",
+      value: true,
+    });
+    this.addProp({
+      type: "array",
+      key: "icons",
+      displayer: "Social Medias",
+      additionalParams: {
+        maxElementCount: 5,
+      },
+      value: [
+        {
+          type: "object",
+          key: "icon",
+          displayer: "Icon Item",
+          value: [
+            {
+              type: "page",
+              key: "navigate_icon",
+              displayer: "Icon Link",
+              value: "https://www.instagram.com/",
+            },
+            {
+              type: "icon",
+              key: "icon_name",
+              displayer: "Icon",
+              value: "FaInstagram",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "icon",
+          displayer: "Icon Item",
+          value: [
+            {
+              type: "page",
+              key: "navigate_icon",
+              displayer: "Icon Link",
+              value: "https://twitter.com/",
+            },
+            { type: "icon", key: "icon_name", displayer: "Icon", value: "FaTwitter" },
+          ],
+        },
+        {
+          type: "object",
+          key: "icon",
+          displayer: "Icon Item",
+          value: [
+            {
+              type: "page",
+              key: "navigate_icon",
+              displayer: "Icon Link",
+              value: "https://www.behance.net/",
+            },
+            { type: "icon", key: "icon_name", displayer: "Icon", value: "FaBehance" },
+          ],
+        },
+        {
+          type: "object",
+          key: "icon",
+          displayer: "Icon Item",
+          value: [
+            {
+              type: "page",
+              key: "navigate_icon",
+              displayer: "Icon Link",
+              value: "https://www.facebook.com/",
+            },
+            { type: "icon", key: "icon_name", displayer: "Icon", value: "FaFacebookF" },
+          ],
+        },
+      ],
     });
     this.addProp({
       type: "icon",
@@ -239,92 +327,6 @@ class Header25 extends BaseHeader {
           ],
         },
       ]
-
-    });
-
-    this.addProp({
-      type: "array",
-      key: "icons",
-      displayer: "Social Medias",
-      additionalParams: {
-        maxElementCount: 5,
-      },
-      value: [
-        {
-          type: "object",
-          key: "icon",
-          displayer: "Icon Item",
-          value: [
-            {
-              type: "page",
-              key: "navigate_icon",
-              displayer: "Icon Link",
-              value: "https://www.instagram.com/",
-            },
-            {
-              type: "icon",
-              key: "icon_name",
-              displayer: "Icon",
-              value: "FaInstagram",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "icon",
-          displayer: "Icon Item",
-          value: [
-            {
-              type: "page",
-              key: "navigate_icon",
-              displayer: "Icon Link",
-              value: "https://twitter.com/",
-            },
-            { type: "icon", key: "icon_name", displayer: "Icon", value: "FaTwitter" },
-          ],
-        },
-        {
-          type: "object",
-          key: "icon",
-          displayer: "Icon Item",
-          value: [
-            {
-              type: "page",
-              key: "navigate_icon",
-              displayer: "Icon Link",
-              value: "https://www.behance.net/",
-            },
-            { type: "icon", key: "icon_name", displayer: "Icon", value: "FaBehance" },
-          ],
-        },
-        {
-          type: "object",
-          key: "icon",
-          displayer: "Icon Item",
-          value: [
-            {
-              type: "page",
-              key: "navigate_icon",
-              displayer: "Icon Link",
-              value: "https://www.facebook.com/",
-            },
-            { type: "icon", key: "icon_name", displayer: "Icon", value: "FaFacebookF" },
-          ],
-        },
-      ],
-    });
-
-    this.addProp({
-      type: "string",
-      key: "side-text",
-      displayer: "Side Text",
-      value: "ARCHITECTURE BURO",
-    });
-    this.addProp({
-      type: "boolean",
-      key: "lineIsActive",
-      displayer: "Line Active",
-      value: true,
     });
 
 
@@ -378,6 +380,19 @@ class Header25 extends BaseHeader {
     const activeIndex = this.getComponentState("active-index");
     const imageless = !sliderItemObject[activeIndex]?.image;
 
+    const prevIcon = this.getPropValue("prev_icon")
+    const prevArrowText = this.getPropValue("prev-arrow-text")
+    const nextIcon = this.getPropValue("next_icon")
+    const nextArrowText = this.getPropValue("next-arrow-text")
+
+    const socialMediaIcons = this.castToObject<IconItem[]>("icons");
+
+    const isIndexDisplayExist = topContent.page_show || this.castToString(topContent.background_text);
+
+    const isMediaPanelExist = (this.castToString(this.getPropValue("side-text")) ||
+      this.getPropValue("lineIsActive") ||
+      socialMediaIcons.length > 0)
+
     return (
       <div className={this.decorateCSS("container")}>
         {sliderItemObject && (
@@ -388,11 +403,12 @@ class Header25 extends BaseHeader {
           >
             {sliderItemObject.map((sliderItem: SliderItem, indexSlider: number) => (
               <div className={this.decorateCSS("slider-images")} key={indexSlider}>
-                <img
-                  className={this.decorateCSS("slider-image")}
-                  src={sliderItem.image}
-                  alt=""
-                />
+                {sliderItem.image &&
+                  <img
+                    className={this.decorateCSS("slider-image")}
+                    src={sliderItem.image}
+                    alt=""
+                  />}
               </div>
             ))}
           </ComposerSlider>
@@ -400,50 +416,54 @@ class Header25 extends BaseHeader {
 
         <div className={this.decorateCSS("item")}>
           <div className={`${this.decorateCSS("left-figure-container")} ${imageless && this.decorateCSS("imageless")}`}>
-
-            <div className={this.decorateCSS("top-figure")}>
-              {topContent.page_show && (
-                <div className={this.decorateCSS("pagination")}>
-                  <span className={this.decorateCSS("active-slide")}>
-                    {(this.getComponentState("active-index") + 1).toString().padStart(2, "0")}
-                  </span>
-                  <sup className={this.decorateCSS("slide-count-power")}>
-                    <span className={this.decorateCSS("divider")}>/ </span>
-                    <span className={this.decorateCSS("slide-count")}>
-                      {sliderItemObject.length.toString().padStart(2, "0")}
+            {isIndexDisplayExist &&
+              <div className={this.decorateCSS("top-figure")}>
+                {topContent.page_show && (
+                  <div className={this.decorateCSS("pagination")}>
+                    <span className={this.decorateCSS("active-slide")}>
+                      {(this.getComponentState("active-index") + 1).toString().padStart(2, "0")}
                     </span>
-                  </sup>
-                </div>
-              )}
-              <div className={this.decorateCSS("low-op-text")}>
-                <h1 className={this.decorateCSS("background-op-text")}>
-                  {topContent.background_text}
-                </h1>
-              </div>
-            </div>
-            <div className={this.decorateCSS("bottom-figure")}>
-              <div className={this.decorateCSS("side-text")}>
-                <span className={this.decorateCSS("side-text-content")}>
-                  {this.getPropValue("side-text")}
-                </span>
-              </div>
-              {this.getPropValue("lineIsActive") && (
-                <div className={this.decorateCSS("line")}></div>
-              )}
-              <div className={this.decorateCSS("icons")}>
-                {this.getPropValue("icons").map((item: any, iconIndex: number) => (
-                  <ComposerLink path={item.getPropValue("navigate_icon")} key={iconIndex}>
-                    <ComposerIcon
-                      name={item.getPropValue("icon_name")}
-                      propsIcon={{
-                        className: `${this.decorateCSS("icon")}`,
-                        size: 20,
-                      }}
-                    />
-                  </ComposerLink>
-                ))}
-              </div>
-            </div>
+                    <sup className={this.decorateCSS("slide-count-power")}>
+                      <span className={this.decorateCSS("divider")}>/ </span>
+                      <span className={this.decorateCSS("slide-count")}>
+                        {sliderItemObject.length.toString().padStart(2, "0")}
+                      </span>
+                    </sup>
+                  </div>
+                )}
+                {this.castToString(topContent.background_text) &&
+                  <div className={this.decorateCSS("low-op-text")}>
+                    <span className={this.decorateCSS("background-op-text")}>
+                      {topContent.background_text}
+                    </span>
+                  </div>}
+              </div>}
+            {(isIndexDisplayExist || isMediaPanelExist) &&
+              <div className={`${this.decorateCSS("bottom-figure")} ${!isIndexDisplayExist && this.decorateCSS("no-index-display")}`}>
+                {this.castToString(this.getPropValue("side-text")) &&
+                  <div className={this.decorateCSS("side-text")}>
+                    <span className={this.decorateCSS("side-text-content")}>
+                      {this.getPropValue("side-text")}
+                    </span>
+                  </div>}
+                {this.getPropValue("lineIsActive") && (
+                  <div className={this.decorateCSS("line")}></div>
+                )}
+                {socialMediaIcons.length > 0 &&
+                  <div className={this.decorateCSS("icons")}>
+                    {socialMediaIcons.map((item: IconItem, iconIndex: number) => (
+                      <ComposerLink path={item.navigate_icon} key={iconIndex}>
+                        <ComposerIcon
+                          name={item.icon_name}
+                          propsIcon={{
+                            className: `${this.decorateCSS("icon")}`,
+                            size: 20,
+                          }}
+                        />
+                      </ComposerLink>
+                    ))}
+                  </div>}
+              </div>}
           </div>
 
           {sliderItemObject.map((sliderItem: SliderItem, index: number) => {
@@ -454,50 +474,63 @@ class Header25 extends BaseHeader {
                   className={`${this.decorateCSS("content-container")} ${!sliderItem.image && this.decorateCSS("black-theme")}`}
                   key={index}
                 >
-                  {(sliderItemObject.length > 1) && (
-                    <div className={this.decorateCSS("arrows")}>
-                      <div
-                        className={this.decorateCSS("prev-arrow")}
-                        onClick={() => {
-                          this.getComponentState("slider-ref").current.slickPrev();
-                        }}
-                      >
-                        <ComposerIcon
-                          name={this.getPropValue("prev_icon")}
-                          propsIcon={{
-                            className: `${this.decorateCSS("arrow")}`,
-                            size: 20,
-                          }}
-                        />
-                        <span className={this.decorateCSS("arrow-text")}>
-                          {this.getPropValue("prev-arrow-text")}
-                        </span>
-                      </div>
+                  {(sliderItemObject.length > 1 &&
+                    (this.castToString(prevArrowText) ||
+                      prevIcon ||
+                      this.castToString(nextArrowText) ||
+                      nextIcon)) && (
+                      <div className={`${this.decorateCSS("arrows")} 
+                      ${(!isIndexDisplayExist && !isMediaPanelExist) && this.decorateCSS("no-left-side")}
+                      ${!isIndexDisplayExist && this.decorateCSS("icon-bottom")}`}>
+                        {(this.castToString(prevArrowText) || prevIcon) &&
+                          <div
+                            className={this.decorateCSS("prev-arrow")}
+                            onClick={() => {
+                              this.getComponentState("slider-ref").current.slickPrev();
+                            }}
+                          >
+                            {prevIcon &&
+                              <ComposerIcon
+                                name={prevIcon}
+                                propsIcon={{
+                                  className: `${this.decorateCSS("arrow")}`,
+                                  size: 20,
+                                }}
+                              />}
+                            {this.castToString(prevArrowText) &&
+                              <span className={this.decorateCSS("arrow-text")}>
+                                {prevArrowText}
+                              </span>}
+                          </div>}
 
-                      <div
-                        className={this.decorateCSS("next-arrow")}
-                        onClick={() => {
-                          this.getComponentState("slider-ref").current.slickNext();
-                        }}
-                      >
-                        <span className={this.decorateCSS("arrow-text")}>
-                          {this.getPropValue("next-arrow-text")}
-                        </span>
-                        <ComposerIcon
-                          name={this.getPropValue("next_icon")}
-                          propsIcon={{
-                            className: `${this.decorateCSS("arrow")}`,
-                            size: 20,
-                          }}
-                        />
+                        {(this.castToString(nextArrowText) || nextIcon) &&
+                          <div
+                            className={this.decorateCSS("next-arrow")}
+                            onClick={() => {
+                              this.getComponentState("slider-ref").current.slickNext();
+                            }}
+                          >
+                            {this.castToString(nextArrowText) &&
+                              <span className={this.decorateCSS("arrow-text")}>
+                                {nextArrowText}
+                              </span>}
+                            {nextIcon &&
+                              <ComposerIcon
+                                name={nextIcon}
+                                propsIcon={{
+                                  className: `${this.decorateCSS("arrow")}`,
+                                  size: 20,
+                                }}
+                              />}
+                          </div>}
                       </div>
-                    </div>
-                  )}
+                    )}
                   {(this.castToString(sliderItem.button.buttonText) ||
                     sliderItem.button.next_icon ||
                     this.castToString(sliderItem.title) ||
                     this.castToString(sliderItem.description)) &&
-                    <Base.Container className={this.decorateCSS("layout")}>
+                    <Base.Container className={`${this.decorateCSS("layout")} 
+                    ${(!isIndexDisplayExist && !isMediaPanelExist) && this.decorateCSS("full-width-right-item")}`}>
                       <Base.VerticalContent className={this.decorateCSS("content")}>
                         {this.castToString(sliderItem.title) &&
                           <Base.SectionTitle
