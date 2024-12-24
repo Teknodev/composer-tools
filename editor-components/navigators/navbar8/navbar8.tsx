@@ -270,13 +270,9 @@ class Navbar8 extends BaseNavigator {
       setTimeout(() => {
         this.setComponentState("isClosing", false);
         this.setComponentState("navActive", false);
-      }, 800);
+      }, 500);
     } else {
-      this.setComponentState("isOpening", true);
       this.setComponentState("navActive", true);
-      setTimeout(() => {
-        this.setComponentState("isOpening", false);
-      }, 800);
     }
   }
 
@@ -371,13 +367,13 @@ class Navbar8 extends BaseNavigator {
             </nav>
           </Base.MaxContent>
         </Base.Container>
-        <Base.Container id="navbar8-down-page" 
-        // style={{ maxHeight: (isOpening || navActive) ? `${navbarDownPageHeight}px` : '0px' }}
+        <Base.Container
+          style={{ maxHeight: (isOpening || navActive) ? `calc(${navbarDownPageHeight}px + 60px)` : '0px' }}
           className={`${this.decorateCSS("down-page-container")} 
               ${(isOpening || navActive) && !isClosing ? this.decorateCSS("active") : ''} 
               ${isClosing ? this.decorateCSS("closing") : ''} 
               ${this.decorateCSS(color)}`}>
-          <Base.MaxContent className={this.decorateCSS("down-page")}>
+          <Base.MaxContent id="navbar8-down-page" className={this.decorateCSS("down-page")}>
             {(this.castToString(dropdownTitle) || this.castToString(description)) &&
               <div className={this.decorateCSS("left-page")}>
                 {this.castToString(dropdownTitle) && <div className={this.decorateCSS("dropdownTitle")}>{dropdownTitle}</div>}

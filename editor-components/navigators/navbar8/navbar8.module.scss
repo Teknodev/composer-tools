@@ -130,20 +130,15 @@
         height: fit-content;
         z-index: 6;
         max-height: 0;
-        opacity: 0;
         overflow: hidden;
-        transition: max-height 0.8s ease, opacity 0.8s ease;
-        box-sizing: border-box;
+        transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
+        padding: 0;
 
-        &.active,
-        &.opening {
-            max-height: 1000px;
+        &.active {
             opacity: 1;
         }
 
         &.closing {
-            max-height: 0;
-            opacity: 0;
         }
 
         &.Transparent {
@@ -158,6 +153,7 @@
             display: flex;
             padding-top: var(--composer-gap-md);
             width: 100%;
+            padding: 20px 50px;
 
             .left-page {
                 width: 50%;
