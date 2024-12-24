@@ -4,11 +4,19 @@
   position: relative;
   padding: 0;
 
-  &.Sticky {
+  &.StickyTransparent {
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    background: transparent;
+  }
+
+  &.StickyColorful {
     position: sticky;
     top: 0;
     z-index: 100;
     box-shadow: var(--box-shadow-active);
+    background-color: var(--composer-html-background);
   }
 
   &.Absolute {
@@ -17,6 +25,10 @@
     left: 0;
     z-index: 2;
     background: transparent;
+  }
+
+  &.bg-color {
+    background-color: var(--composer-html-background);
   }
 
   &.active {
@@ -47,6 +59,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: var(--composer-gap-sm);
       padding: var(--composer-gap-md) var(--composer-gap-xl);
 
       .social-media-box {
@@ -56,7 +69,7 @@
           align-items: center;
           gap: var(--composer-gap-sm);
           .icon {
-            font-size: 2rem;
+            font-size: 1.5rem;
             color: var(--composer-font-color-primary);
             transition: color 0.3s;
             cursor: pointer;
@@ -72,8 +85,8 @@
         display: flex;
         justify-content: center;
         .image {
-          width: 200px;
-          height: 80px;
+          width: 150px;
+          height: var(--composer-gap-xl);
           object-fit: cover;
         }
       }

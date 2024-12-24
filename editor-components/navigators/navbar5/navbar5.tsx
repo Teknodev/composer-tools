@@ -14,9 +14,9 @@ class Navbar5 extends BaseNavigator {
       type: "select",
       key: "position",
       displayer: "Position",
-      value: "Default",
+      value: "Normal",
       additionalParams: {
-        selectItems: ["Default", "Sticky", "Absolute"],
+        selectItems: ["Normal", "Absolute", "StickyColorful", "StickyTransparent"],
       },
     });
 
@@ -106,8 +106,15 @@ class Navbar5 extends BaseNavigator {
 
     this.addProp({
       type: "image",
-      key: "logo",
-      displayer: "Logo",
+      key: "logo_default",
+      displayer: "Logo 1",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676a9ac20655f8002caba0b7?alt=media",
+    });
+
+    this.addProp({
+      type: "image",
+      key: "logo_transparent",
+      displayer: "Logo 2",
       value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6762cc190655f8002ca8c66b?alt=media",
     });
 
@@ -276,6 +283,8 @@ class Navbar5 extends BaseNavigator {
       displayer: "Divider",
       value: true,
     });
+
+    this.setComponentState("isScrolled", false);
   }
 
   getName(): string {
@@ -296,9 +305,23 @@ class Navbar5 extends BaseNavigator {
     }
   }
 
+  componentDidMount() {
+    window.addEventListener("scroll", () => {
+      const scrollPosition = window.scrollY;
+      this.setComponentState("isScrolled", scrollPosition);
+    });
+  }
+
   render() {
+    const navbarElement = document.getElementById(`navbar5-height`);
+    const navbarHeight = navbarElement?.clientHeight || "auto";
+
     const navActive = this.getComponentState("navActive");
-    const logo = this.getPropValue("logo");
+    const logoDefault = this.getPropValue("logo_default");
+    const logoTransparent = this.getPropValue("logo_transparent");
+
+    const position = this.getPropValue("position");
+    const logo = position === "Absolute" || (position === "StickyTransparent" && this.getComponentState("isScrolled") < navbarHeight) ? logoTransparent : logoDefault;
 
     const social = this.castToObject<any[]>("social");
     const listItems = this.castToObject<any[]>("listItems");
@@ -324,7 +347,13 @@ class Navbar5 extends BaseNavigator {
     const isClosing = this.getComponentState("isClosing");
 
     return (
-      <Base.Container className={`${this.decorateCSS("container")} ${this.decorateCSS(this.getPropValue("position"))} ${navActive && this.decorateCSS("active")}`}>
+      <Base.Container
+        id={"navbar5-height"}
+        className={`${this.decorateCSS("container")} 
+                  ${this.decorateCSS(this.getPropValue("position"))} 
+                  ${navActive && this.decorateCSS("active")} 
+                  ${this.getComponentState("isScrolled") > navbarHeight && this.decorateCSS("bg-color")}`}
+      >
         <div className={this.decorateCSS("max-content")}>
           <Base.MaxContent>
             {navbarExist && (
