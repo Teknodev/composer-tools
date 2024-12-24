@@ -19,15 +19,23 @@
 }
 .container {
   width: 100%;
-  background-color: var(--composer-html-background);
   max-width: var(--composer-content-width);
   margin:0 auto;
   position: relative;
-  &.Sticky {
+  background-color: transparent;
+  &.StickyTransparent {
     position: sticky;
     top: 0px;
     z-index: 100;
     box-shadow: 0px 2px 5px rgba(var(--composer-primary-color-rgb), 0.2);
+    background-color: transparent;
+  }
+  &.StickyColorful {
+    position: sticky;
+    top: 0px;
+    z-index: 100;
+    box-shadow: 0px 2px 5px rgba(var(--composer-primary-color-rgb), 0.2);
+    background-color: transparent;
   }
 
   &.Absolute {
@@ -83,7 +91,7 @@
               .sub-items {
                 display: flex;
                 .sub-item {
-                  background: var(--composer-html-background);
+                  // background: var(--composer-html-background);
                 }
               }
             }
@@ -150,11 +158,11 @@
                   flex-direction: column;
                   position: absolute;
                   left: 100%;
-                  background: var(--composer-html-background);
+                  // background: var(--composer-html-background);
                   top:0px;
                   display: none;
                   .list-item {
-                    background: var(--composer-html-background);
+                    // background: var(--composer-html-background);
                     color: var(--composer-font-color-primary);
                     display: flex;
                     min-width: 130px;
@@ -267,13 +275,13 @@
         background-color: var(--composer-html-background);
         gap: var(--composer-gap-md);
         flex-direction: column;
-        max-height: fit-content;
-        transform: translateY(-100%);
-        transition:transform 1s ease;
+        max-height: 0px;
+        transition:max-height 1s ease;
         z-index: 10;
+        overflow: hidden;
 
         &.active{
-          transform: translateY(0);
+          content: "";         
         }
         .navigator{
           width: 100%;
