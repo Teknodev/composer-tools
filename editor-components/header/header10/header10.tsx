@@ -302,7 +302,7 @@ class Header10 extends BaseHeader {
       dots: false,
       infinite: true,
       speed: 2500,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 2500,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -423,27 +423,24 @@ class Header10 extends BaseHeader {
                             );
                             if (buttonText)
                               return (
-                                <ComposerLink
-                                  key={`hdr-10-${indexButton}`}
-                                  path={buttonItem.buttonLink}
+                                <div
+                                  className={this.decorateCSS(
+                                    "button-section"
+                                  )}
                                 >
-                                  <div
-                                    className={this.decorateCSS(
-                                      "button-section"
-                                    )}
-                                  >
-                                    {this.getPropValue("lineActive") && (
-                                      <div
-                                        className={this.decorateCSS("line")}
-                                      />
-                                    )}
-                                    <button
+                                  {this.getPropValue("lineActive") && (
+                                    <div
+                                      className={this.decorateCSS("line")}
+                                    />
+                                  )}
+                                  <ComposerLink path={buttonItem.buttonLink}>
+                                    <Base.Button
                                       className={this.decorateCSS("button")}
                                     >
                                       {buttonText}
-                                    </button>
-                                  </div>
-                                </ComposerLink>
+                                    </Base.Button>
+                                  </ComposerLink>
+                                </div>
                               );
                           }
                         )}

@@ -3,40 +3,48 @@
   .max-content {
     .carousel {
       max-width: 100%;
+      max-height: 100vh;
       &>button{
         display: none !important;
       }
       >div{
         >div{
-          display: flex;
-          gap: var(--composer-gap-sm);
+          display: flex !important;
+          align-items: stretch;
+          gap: var(--composer-gap-md);
+          >div{
+            height: auto;
+            >div{
+              height: 100%;
+            }
+          }
         }
       }
       .content {
         width: 100%;
         display: flex !important;
-        height: 700px;
-        justify-content: space-between;
+        height: 100%;
         .left {
           display: flex;
           flex-direction: column;
           align-items: start;
           justify-content: center;
           width: 100%;
+          padding-right: var(--composer-gap-md);
           .left-page-content {
             display: flex;
             flex-direction: column;
             gap: var(--composer-gap-sm);
-            height: 400px;
             .title {
               font-size: 5rem;
               color: var(--composer-font-color-primary);
-              margin: 0px var(--composer-gap-sm) 0px 0px
+              margin: 0px;
             }
             .description {
-              width: 90%;
+              width: 100%;
               font-size: 1.5rem;
               color: var(--composer-font-color-primary);
+              margin: 0px;
             }
             .nav-buttons {
               display: flex;
@@ -45,8 +53,6 @@
               .slide_number {
                 color: var(--composer-tertiary-color);
                 font-size: 4.5rem;
-                font-weight: 900;
-                opacity: 0.3;
               }
               .iconsSection{
                 display: flex;
@@ -65,31 +71,22 @@
                   }
                 }
               }
- 
             }
 
             .button-section{
               display: flex;
               align-items: center;
+              gap: var(--composer-gap-sm);
               .line::before {
                 content: "";
                 display: inline-block;
                 width: 70px;
                 height: 1px;
                 background-color: var(--composer-tertiary-color);
-                opacity: 0.5;
-                margin-right: var(--composer-gap-sm);
                 position: relative;
-                bottom: -8px;
               }
               .button {
-                display: flex;
-                margin-top: var(--composer-gap-md);
-                background-color: transparent;
-                border: none;
-                opacity: 0.5;
-                color: var(--composer-tertiary-color);
-                cursor: pointer;
+                content: "";
               }
             }
           }
@@ -115,8 +112,7 @@
           }
           .image {
             position: relative;
-            height: 700px;
-            max-height: 100%;
+            max-height: 100vh;
             width: 100%;
             object-fit: cover;
             z-index: 1;
@@ -130,7 +126,6 @@
           z-index: 1;
           display: flex;
           flex-direction: column;
-          justify-content: space-between;
           align-items: end;
           gap: var(--composer-gap-sm);
           .icon {
@@ -186,17 +181,16 @@
             flex-direction: row;
             gap: var(--composer-gap-md);
             font-size: 1.5rem;
-            opacity: 0.5;
             cursor: pointer;
           }
         }
       }
       .column-content{
-        height: 700px;
         justify-content: center;
-        flex-direction: column !important;
-        gap: var(--composer-gap-sm);
+        flex-direction: column ;
+        gap: var(--composer-gap-xl);
         .left {
+          padding: 0px;
           .left-page-content{
             width: 100%;
           }
@@ -216,6 +210,7 @@
           height: auto;
           .left {
             order: 1;
+            padding: 0px;
             .left-page-content {
               gap: var(--composer-gap-sm);
               height: auto;
@@ -240,23 +235,18 @@
                   font-size: 4rem;
                 }
               }
-              .button {
-                margin: 0;
-              }
             }
           }
 
           .middle {
             order: -1;
-            z-index: 1;
             flex: 1;
             .imagetitle {
               display: none;
             }
 
             .image {
-              max-height: 100%;
-              height: 450px;
+              height: 350px;
             }
           }
 
