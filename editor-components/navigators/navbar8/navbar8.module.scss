@@ -129,15 +129,29 @@
         width: 100%;
         height: fit-content;
         z-index: 6;
+        max-height: 0;
         opacity: 0;
-        animation: fadeIn 2s ease forwards;
+        overflow: hidden;
+        transition: max-height 0.8s ease, opacity 0.8s ease;
+        box-sizing: border-box;
+
+        &.active,
+        &.opening {
+            max-height: 1000px;
+            opacity: 1;
+        }
+
+        &.closing {
+            max-height: 0;
+            opacity: 0;
+        }
 
         &.Transparent {
             background: transparent;
         }
 
-        &.closing {
-            animation: fadeOut 1s ease forwards;
+        &.Colorful {
+            background-color: var(--composer-html-background);
         }
 
         .down-page {
