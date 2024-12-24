@@ -41,7 +41,7 @@
             height: 35%;
             width: 40%;
             bottom: 0;
-            left: 0;
+            left: 5%;
             z-index: 10;
             padding: var(--composer-gap-lg) var(--composer-gap-xl);
             display: flex;
@@ -156,6 +156,10 @@
         .sub-container {
           .sub-content {
             bottom: var(--composer-gap-sm);
+
+            .card {
+              left: 0;
+            }
           }
         }
         .next-icon,
