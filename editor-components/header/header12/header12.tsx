@@ -1,339 +1,468 @@
 import * as React from "react";
 import { BaseHeader } from "../../EditorComponent";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import styles from "./header12.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
-//Left Slider
-type LeftSlider = {
-    imageLeft: string;
-    iconLeft: string;
-    textLeft: string;
-}
 
-//Right Slider
-type RightSlider = {
-    imageRight: string;
-    iconRight: string;
-    textRight: string;
-}
+type SliderItem = {
+  text: JSX.Element;
+  image: string;
+};
 
-//CLASS
 class Header12 extends BaseHeader {
+  leftSliderRef: any;
+  rightSliderRef: any;
+  screenWidth: number;
 
-    firstSlider: any;
-    secondSlider: any;
-    
-    //constructor
-    constructor(props?: any) {
-        super(props, styles);
+  constructor(props?: any) {
+    super(props, styles);
 
-        this.addProp({
-            type : "image",
-            key : "image",
-            displayer :"Image",
-            value : "https://cdn-icons-png.flaticon.com/512/656/656979.png"
-        })
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
+    });
+    this.addProp({
+      type: "array",
+      key: "leftSliderItems",
+      displayer: "Left Slider",
+      value: [
+        {
+          type: "object",
+          key: "sliderItem",
+          displayer: "Slider Item",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625904?alt=media&timestamp=1719483639150",
+            },
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "Autumn Stuff",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "sliderItem",
+          displayer: "Slider Item",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625905?alt=media&timestamp=1719483639150",
+            },
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "Breakfast",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "sliderItem",
+          displayer: "Slider Item",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c6258fe?alt=media&timestamp=1719483639150",
+            },
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "The Notebook",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "sliderItem",
+          displayer: "Slider Item",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625901?alt=media&timestamp=1719483639150",
+            },
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "Little Pumpkin",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "sliderItem",
+          displayer: "Slider Item",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625903?alt=media&timestamp=1719483639150",
+            },
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "Autumn Evening",
+            },
+          ],
+        },
+      ],
+    });
 
-        // SLIDER LEFT
-        this.addProp({
-            type: "array",
-            key: "carouselCollection1",
-            displayer: "Carousel Left",
-            value: [
-                {
-                    type: "object",
-                    key: "carouselObject",
-                    displayer: "Carousel Object",
-                    value: [
-                        {
-                            type: "image",
-                            key: "imageLeft",
-                            displayer: "image Left",
-                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625904?alt=media&timestamp=1719483639150",
-                        },
-                        {
-                            type: "string",
-                            key: "textLeft",
-                            displayer: "Text Left",
-                            value: "Autumn Stuff",
-                        },
-                    ]
-                },
-                {
-                    type: "object",
-                    key: "carouselObject",
-                    displayer: "Carousel Object",
-                    value: [
-                        {
-                            type: "image",
-                            key: "imageLeft",
-                            displayer: "image Left",
-                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625905?alt=media&timestamp=1719483639150",
-                        },
-                        {
-                            type: "string",
-                            key: "textLeft",
-                            displayer: "Text Left",
-                            value: "Breakfast",
-                        },
-                    ]
-                },
-                {
-                    type: "object",
-                    key: "carouselObject",
-                    displayer: "Carousel Object",
-                    value: [
-                        {
-                            type: "image",
-                            key: "imageLeft",
-                            displayer: "image Left",
-                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c6258fe?alt=media&timestamp=1719483639150",
-                        },
-                        {
-                            type: "string",
-                            key: "textLeft",
-                            displayer: "Text Left",
-                            value: "The Notebook",
-                        },
-                    ]
-                },
-                {
-                    type: "object",
-                    key: "carouselObject",
-                    displayer: "Carousel Object",
-                    value: [
-                        {
-                            type: "image",
-                            key: "imageLeft",
-                            displayer: "image Left",
-                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625901?alt=media&timestamp=1719483639150",
-                        },
-                        {
-                            type: "string",
-                            key: "textLeft",
-                            displayer: "Text Left",
-                            value: "Little Pumpkin",
-                        },
-                    ]
-                },
-                {
-                    type: "object",
-                    key: "carouselObject",
-                    displayer: "Carousel Object",
-                    value: [
-                        {
-                            type: "image",
-                            key: "imageLeft",
-                            displayer: "image Left",
-                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625903?alt=media&timestamp=1719483639150",
-                        },
-                        {
-                            type: "string",
-                            key: "textLeft",
-                            displayer: "Text Left",
-                            value: "Autumn Evening",
-                        },
-                    ]
-                },
-            ]
-        })
+    this.addProp({
+      type: "array",
+      key: "rightSliderItems",
+      displayer: "Right Slider",
+      value: [
+        {
+          type: "object",
+          key: "sliderItem",
+          displayer: "Slider Item",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625900?alt=media&timestamp=1719483639150",
+            },
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "Pumpkin Pie",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "sliderItem",
+          displayer: "Slider Item",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c6258ff?alt=media&timestamp=1719483639150",
+            },
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "Coffee Time",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "sliderItem",
+          displayer: "Slider Item",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c6258fd?alt=media&timestamp=1719483639150",
+            },
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "Autumn Stories",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "sliderItem",
+          displayer: "Slider Item",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625902?alt=media&timestamp=1719483639150",
+            },
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "Still Life",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "sliderItem",
+          displayer: "Slider Item",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625906?alt=media&timestamp=1719483639150",
+            },
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "Boooo!",
+            },
+          ],
+        },
+      ],
+    });
 
-        // SLIDER RIGHT
-        this.addProp({
-            type: "array",
-            key: "carouselCollection2",
-            displayer: "Carousel Right",
-            value: [
-                {
-                    type: "object",
-                    key: "carouselObject",
-                    displayer: "Carousel Object",
-                    value: [
-                        {
-                            type: "image",
-                            key: "imageRight",
-                            displayer: "image Right",
-                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625900?alt=media&timestamp=1719483639150",
-                        },
-                        {
-                            type: "string",
-                            key: "textRight",
-                            displayer: "Text Right",
-                            value: "Pumpkin Pie",
-                        },
-                    ]
-                },
-                {
-                    type: "object",
-                    key: "carouselObject",
-                    displayer: "Carousel Object",
-                    value: [
-                        {
-                            type: "image",
-                            key: "imageRight",
-                            displayer: "image Right",
-                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c6258ff?alt=media&timestamp=1719483639150",
-                        },
-                        {
-                            type: "string",
-                            key: "textRight",
-                            displayer: "Text Right",
-                            value: "Coffee Time",
-                        },
-                    ]
-                },
-                {
-                    type: "object",
-                    key: "carouselObject",
-                    displayer: "Carousel Object",
-                    value: [
-                        {
-                            type: "image",
-                            key: "imageRight",
-                            displayer: "image Right",
-                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c6258fd?alt=media&timestamp=1719483639150",
-                        },
-                        {
-                            type: "string",
-                            key: "textRight",
-                            displayer: "Text Right",
-                            value: "Autumn Stories",
-                        },
-                    ]
-                },
-                {
-                    type: "object",
-                    key: "carouselObject",
-                    displayer: "Carousel Object",
-                    value: [
-                        {
-                            type: "image",
-                            key: "imageRight",
-                            displayer: "image Right",
-                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625902?alt=media&timestamp=1719483639150",
-                        },
-                        {
-                            type: "string",
-                            key: "textRight",
-                            displayer: "Text Right",
-                            value: "Still Life",
-                        },
-                    ]
-                },
-                {
-                    type: "object",
-                    key: "carouselObject",
-                    displayer: "Carousel Object",
-                    value: [
-                        {
-                            type: "image",
-                            key: "imageRight",
-                            displayer: "image Right",
-                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618f99bd2970002c625906?alt=media&timestamp=1719483639150",
-                        },
-                        {
-                            type: "string",
-                            key: "textRight",
-                            displayer: "Text Right",
-                            value: "Boooo!",
-                        },
-                    ]
-                },
-            ]
-        })
+    this.addProp({
+      type: "icon",
+      key: "leftSliderIcon",
+      displayer: "Left Slider Arrow Icon",
+      value: "HiOutlineChevronDown",
+    });
 
-    } //constructor end
+    this.addProp({
+      type: "icon",
+      key: "rightSliderIcon",
+      displayer: "Right Slider Arrow Icon",
+      value: "HiOutlineChevronUp",
+    });
 
-    getName(): string {
-        return "Header 12";
-    }
+    this.leftSliderRef = React.createRef();
+    this.rightSliderRef = React.createRef();
 
-    //RENDER
-    render() {
-        const settings = {
-            dots: false,
-            infinite: true,
-            speed: 500,
-            autoplay: false,
-            autoplaySpeed: 2500,
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            vertical: true,
-            verticalSwiping: true,
-        };
+  }
 
-        const settingFirst = {
-            ...settings,
-            beforeChange: (current: number, next: number) => {
-                const currentIndex = parseInt(this.getComponentState("secondSliderIndex"));
-                if(
-                    (current < next && !(current == 0 && next + 1 == this.castToObject<LeftSlider[]>("carouselCollection1").length))
-                || (current + 1 == this.castToObject<LeftSlider[]>("carouselCollection1").length && next == 0)){
-                    this.secondSlider.slickPrev()
-                }
-                else{
-                    this.secondSlider.slickNext()
-                }
-            }
+  getName(): string {
+    return "Header 12";
+  }
+
+  render() {
+    const settings = {
+      arrows: true,
+      dots: false,
+      infinite: true,
+      speed: 500,
+      autoplay: false,
+      autoplaySpeed: 2500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      vertical: true,
+      verticalSwiping: true,
+      responsive: [
+        {
+          breakpoint: 1220,
+          settings: {
+            vertical: false,
+            verticalSwiping: false,
+          },
+        },
+        {
+          breakpoint: 500,
+          settings: {
+            vertical: false,
+            verticalSwiping: false,
+          },
+        },
+      ],
+      swipe: true,
+      switeToSlide: true,
+    };
+
+    const decorateIcon = { className: this.decorateCSS("Icon") };
+    const leftSliderItems = this.castToObject<SliderItem[]>("leftSliderItems");
+    const rightSliderItems =
+      this.castToObject<SliderItem[]>("rightSliderItems");
+
+    const showOverlay = this.getPropValue("overlay");
+
+    const leftSliderSettings = {
+      ...settings,
+      beforeChange: (oldIndex: number, newIndex: number) => {
+        if (rightSliderItems.length > 0) {
+          this.rightSliderRef.slickPrev();
         }
-
-        const settingSecond = {
-            ...settings,
-            beforeChange: (current: number, next: number) => {
-                const currentIndex = parseInt(this.getComponentState("firstSliderIndex"));
-                if(
-                    (current < next && !(current == 0 && next + 1 == this.castToObject<LeftSlider[]>("carouselCollection2").length))
-                || (current + 1 == this.castToObject<LeftSlider[]>("carouselCollection2").length && next == 0)){
-                    this.firstSlider.slickPrev()
-                }
-                else{
-                    this.firstSlider.slickNext()
-                }
+      },
+      prevArrow: (
+        <LeftSliderArrow
+          givenClass={this.decorateCSS("left-slider-button")}
+          customFunction={() => {
+            if (rightSliderItems.length > 0) {
+              this.rightSliderRef.slickNext();
             }
+          }}
+          decorateIcon={decorateIcon}
+          icon={this.getPropValue("leftSliderIcon")}
+        />
+      ),
+    };
+
+    const rightSliderSettings = {
+      ...settings,
+      beforeChange: (oldIndex: number, newIndex: number) => {
+        if (leftSliderItems.length > 0) {
+          this.leftSliderRef.slickPrev();
         }
-        //RETURN
-        return (
-            <div className={this.decorateCSS("container")}>
-                <div className={this.decorateCSS("max-content")}>
-                    <div className={this.decorateCSS("sliderContainer")}>
-                        <ComposerSlider className={this.decorateCSS("slider")} refObject={(slider: any) => (this.firstSlider = slider)} {...settingFirst}>
-                            {this.castToObject<LeftSlider[]>("carouselCollection1").map((item: LeftSlider, index: number) => (
-                                <div
-                                    key={index}
-                                >
-                                    <img
-                                        src={item.imageLeft}
-                                        alt=""
-                                        key={index}
-                                    />
-                                    <h1 className={this.decorateCSS("title")}>{item.textLeft}</h1>
-                                </div>
+      },
+      nextArrow: (
+        <RightSliderArrow
+          givenClass={this.decorateCSS("right-slider-button")}
+          customFunction={() => {
+            if (leftSliderItems.length > 0) {
+              this.leftSliderRef.slickPrev();
+            }
+          }}
+          decorateIcon={decorateIcon}
+          icon={this.getPropValue("rightSliderIcon")}
+        />
+      ),
+    };
 
-                            ))}
-                        </ComposerSlider>
+    return (
+      <div className={this.decorateCSS("container")}>
+        <div className={this.decorateCSS("max-content")}>
+          <div className={this.decorateCSS("slider-container")}>
 
-                        <ComposerSlider className={this.decorateCSS("slider")} refObject={(slider: any) => (this.secondSlider = slider)} {...settingSecond}>
-                            {this.castToObject<RightSlider[]>("carouselCollection2").map((item: RightSlider, index: number) => (
-
-                                <div
-                                    
-                                    key={index}
-                                >
-                                    <img
-                                        src={item.imageRight}
-                                        alt=""
-                                        key={index}
-                                    />
-                                    <h1 className={this.decorateCSS("title")}>{item.textRight}</h1>
-                                </div>
-                            ))}
-                        </ComposerSlider>
+            {leftSliderItems.length > 0 && (
+              <ComposerSlider
+                className={`${this.decorateCSS("left-slider")}
+              ${
+                rightSliderItems.length < 1 &&
+                this.decorateCSS("no-slider-items")
+              }`}
+                ref={(slider: any) => (this.leftSliderRef = slider)}
+                {...leftSliderSettings}
+              >
+                {leftSliderItems.map((item: SliderItem, index: number) => (
+                  <div key={index} className={this.decorateCSS("slider-item")}>
+                    {item.image && (
+                      <div
+                        className={this.decorateCSS("image-overlay-container")}
+                      >
+                        <img
+                          className={this.decorateCSS("slider-item-image")}
+                          src={item.image}
+                          alt={this.getPropValue("leftSliderIcon")}
+                        />
+                        {showOverlay && (
+                          <div className={this.decorateCSS("image-overlay")} />
+                        )}
+                      </div>
+                    )}
+                    <div
+                      className={`${this.decorateCSS("slider-item-text")} ${
+                        !item.image && this.decorateCSS("no-image-text")
+                      }`}
+                    >
+                      {item.text}
                     </div>
-                </div>
-            </div>
-        ); // RETURN end
-    } // RENDER end
+                  </div>
+                ))}
+              </ComposerSlider>
+            )}
 
-} // CLASS end
+            {rightSliderItems.length > 0 && (
+              <ComposerSlider
+                className={`${this.decorateCSS("right-slider")}
+              ${
+                leftSliderItems.length < 1 &&
+                this.decorateCSS("no-slider-items")
+              }`}
+                ref={(slider: any) => (this.rightSliderRef = slider)}
+                {...rightSliderSettings}
+              >
+                {rightSliderItems.map((item: SliderItem, index: number) => (
+                  <div key={index} className={this.decorateCSS("slider-item")}>
+                    {item.image && (
+                      <div
+                        className={this.decorateCSS("image-overlay-container")}
+                      >
+                        <img
+                          className={this.decorateCSS("slider-item-image")}
+                          src={item.image}
+                          alt={this.getPropValue("rightSliderIcon")}
+                        />
+                        {showOverlay && (
+                          <div className={this.decorateCSS("image-overlay")} />
+                        )}
+                      </div>
+                    )}
+                    <div
+                      className={`${this.decorateCSS("slider-item-text")} ${
+                        !item.image && this.decorateCSS("no-image-text")
+                      }`}
+                    >
+                      {item.text}
+                    </div>
+                  </div>
+                ))}
+              </ComposerSlider>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+function LeftSliderArrow(props?: any) {
+  const { onClick, customFunction, icon } = props;
+
+  return (
+    <div
+      className={props.givenClass}
+      onClick={() => {
+        onClick();
+        customFunction();
+      }}
+    >
+      <ComposerIcon propsIcon={props.decorateIcon} name={icon} />
+    </div>
+  );
+}
+
+function RightSliderArrow(props?: any) {
+  const { onClick, customFunction, icon } = props;
+
+  return (
+    <div
+      className={props.givenClass}
+      onClick={() => {
+        onClick();
+        customFunction();
+      }}
+    >
+      <ComposerIcon propsIcon={props.decorateIcon} name={icon} />
+    </div>
+  );
+}
 
 export default Header12;

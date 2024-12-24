@@ -2,6 +2,17 @@ import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseFooter } from "../../EditorComponent";
 import styles from "./footer12.module.scss";
+import { Base } from "../../../composer-base-components/base/base";
+
+type FooterValues = {
+  footerTitle: JSX.Element;
+  footerText: FooterTextValues[];
+};
+
+type FooterTextValues = {
+  footerText: JSX.Element;
+  path: string;
+};
 
 class Footer12Page extends BaseFooter {
   constructor(props?: any) {
@@ -10,116 +21,478 @@ class Footer12Page extends BaseFooter {
       type: "image",
       key: "logo",
       displayer: "Logo",
-      value: "https://dstal.com.au/wp-content/uploads/2021/09/logoipsum.png",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6762cc190655f8002ca8c66b?alt=media",
     });
-    this.addProp({
-      type: "page",
-      key: "logo-url",
-      displayer: "Logo Url",
-      value: "",
-    });
+
     this.addProp({
       type: "string",
-      key: "logo-text",
-      displayer: "Logo Text",
-      value: "Lorem",
+      key: "description",
+      displayer: "Description",
+      value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dictum aliquet accumsan porta lectus ridiculus in mattis.",
     });
-    this.addProp({
-      type: "page",
-      key: "logo-text-url",
-      displayer: "Logo Text Url",
-      value: "",
-    });
+
     this.addProp({
       type: "array",
-      key: "link-list",
-      displayer: "Link List",
+      key: "footer",
+      displayer: "Footer Card",
       value: [
         {
           type: "object",
-          key: "footer-text",
-          displayer: "Text Values",
+          key: "footer-title",
+          displayer: "Footer Column",
           value: [
             {
               type: "string",
-              key: "refText",
-              displayer: "Referral Text",
-              value: "Privacy Policy",
+              key: "footerTitle",
+              displayer: "Footer Title",
+              value: "Company",
+            },
+            {
+              type: "array",
+              key: "footerText",
+              displayer: "Footer Text",
+              value: [
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "About",
+                    },
+                    {
+                      type: "page",
+                      displayer: "Path",
+                      key: "path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "Support",
+                    },
+                    {
+                      type: "page",
+                      key: "path",
+                      displayer: "Path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "Products",
+                    },
+                    {
+                      type: "page",
+                      key: "path",
+                      displayer: "Path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "Career",
+                    },
+                    {
+                      type: "page",
+                      key: "path",
+                      displayer: "Path",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "footer-title",
+          displayer: "Footer Column",
+          value: [
+            {
+              type: "string",
+              key: "footerTitle",
+              displayer: "Footer Title",
+              value: "Help",
+            },
+            {
+              type: "array",
+              key: "footerText",
+              displayer: "Footer Text",
+              value: [
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "Customer Support",
+                    },
+                    {
+                      type: "page",
+                      displayer: "Path",
+                      key: "path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "Track Delivery",
+                    },
+                    {
+                      type: "page",
+                      key: "path",
+                      displayer: "Path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "Terms & Conditions",
+                    },
+                    {
+                      type: "page",
+                      key: "path",
+                      displayer: "Path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "Privacy Policy",
+                    },
+                    {
+                      type: "page",
+                      key: "path",
+                      displayer: "Path",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "footer-title",
+          displayer: "Footer Column",
+          value: [
+            {
+              type: "string",
+              key: "footerTitle",
+              displayer: "Footer Title",
+              value: "Resources",
+            },
+            {
+              type: "array",
+              key: "footerText",
+              displayer: "Footer Text",
+              value: [
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "Free Brochures",
+                    },
+                    {
+                      type: "page",
+                      displayer: "Path",
+                      key: "path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "Development Tutorial",
+                    },
+                    {
+                      type: "page",
+                      key: "path",
+                      displayer: "Path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "How to - Blog",
+                    },
+                    {
+                      type: "page",
+                      key: "path",
+                      displayer: "Path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "Youtube Playlist",
+                    },
+                    {
+                      type: "page",
+                      key: "path",
+                      displayer: "Path",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "line",
+      displayer: "Line",
+      value: true,
+    });
+
+    this.addProp({
+      type: "string",
+      key: "footerText",
+      displayer: "Footer Text",
+      value: "Copyright © 2023 Teknodev LTD.All rights reserved.",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "images",
+      displayer: "Images",
+      value: [
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item Elements",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66fa9094cf1798002cc71d01?alt=media",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item Elements",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66fa90c5cf1798002cc71d0e?alt=media",
             },
             {
               type: "page",
-              key: "path",
-              displayer: "Path",
+              key: "url",
+              displayer: "Url",
               value: "",
             },
           ],
         },
         {
           type: "object",
-          key: "footer-text",
-          displayer: "Text Values",
+          key: "item",
+          displayer: "Item Elements",
           value: [
             {
-              type: "string",
-              key: "refText",
-              displayer: "Referral Text",
-              value: "Terms of Service",
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6765645a0655f8002caa07db?alt=media",
             },
             {
               type: "page",
-              key: "path",
-              displayer: "Path",
+              key: "url",
+              displayer: "Url",
               value: "",
             },
           ],
         },
       ],
     });
-    this.addProp({
-      type: "string",
-      key: "text",
-      displayer: "Text",
-      value: "Copyright © 2023 Teknodev LTD.All rights reserved.",
-    });
   }
+
   getName(): string {
     return "Footer 12";
   }
+
   render() {
-    const logoImage = this.getPropValue("logo");
-    const logoText = this.getPropValue("logo-text");
-    const imageUrl = this.getPropValue("logo-url");
-    const textUrl = this.getPropValue("logo-text-url");
+    const footer = this.castToObject<any[]>("footer");
+    const images = this.castToObject<any[]>("images");
+
+    const logo = this.getPropValue("logo");
+    const line = this.getPropValue("line");
+    const descriptionExist = this.castToString(this.getPropValue("description"));
+
+    const footerText = this.getPropValue("footerText");
+    const footerTextExist = this.castToString(footerText);
+
+    const image = this.decorateCSS("image");
+    const imagesExist = images.length > 0;
+
+    const bottomExist = footerTextExist || imagesExist;
+
+    const headerExist = image || descriptionExist;
+
+    const upperExist = headerExist || footer.length > 0;
 
     return (
       <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("section")}>
-            {logoImage ? (
-              <ComposerLink path={imageUrl}>
-                <img src={logoImage} className={this.decorateCSS("img")} alt="" />
-              </ComposerLink>
-            ) : (
-              <ComposerLink path={textUrl}>
-                <span className={this.decorateCSS("logo-text")}>{logoText}</span>
-              </ComposerLink>
-            )}
-            <div className={this.decorateCSS("right-content")}>
-              <div className={this.decorateCSS("up-text")}>
-                {this.castToObject<any[]>("link-list").map((item: any, index) => {
+        {upperExist && (
+          <Base.Container className={this.decorateCSS("first-container")}>
+            <Base.MaxContent className={this.decorateCSS("first-max-content")}>
+              {headerExist && (
+                <div className={this.decorateCSS("left")}>
+                  {image && (
+                    <div className={this.decorateCSS("logo")}>
+                      <img src={logo} className={this.decorateCSS("image")} alt="" />
+                    </div>
+                  )}
+                  {descriptionExist && <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>}
+                </div>
+              )}
+
+              {footer.length > 0 &&
+                footer.map((item: FooterValues, indexFooter: number) => {
+                  const footerTitleExist = this.castToString(item.footerTitle);
+                  const footerExist = footerTitleExist || item.footerText.length > 0;
                   return (
-                    <ComposerLink key={index} path={item.path}>
-                      <span className={this.decorateCSS("ref-text")}>{item.refText}</span>
-                    </ComposerLink>
-                  )
+                    footerExist && (
+                      <div key={indexFooter} className={this.decorateCSS("list-group")}>
+                        {footerTitleExist && <Base.H2 className={this.decorateCSS("title")}>{item.footerTitle}</Base.H2>}
+                        {item.footerText.map((item: FooterTextValues, indexFooterText: number) => {
+                          const footerTextExist = this.castToString(item.footerText);
+                          return (
+                            footerTextExist && (
+                              <ComposerLink key={indexFooterText} path={item.path}>
+                                <Base.P className={this.decorateCSS("text")}>{item.footerText}</Base.P>
+                              </ComposerLink>
+                            )
+                          );
+                        })}
+                      </div>
+                    )
+                  );
                 })}
+            </Base.MaxContent>
+          </Base.Container>
+        )}
+
+        {line && <div className={this.decorateCSS("line")}></div>}
+
+        {bottomExist && (
+          <Base.Container className={this.decorateCSS("second-container")}>
+            <Base.MaxContent className={this.decorateCSS("second-max-content")}>
+              <div className={this.decorateCSS("footer-bottom")}>
+                {footerTextExist && <Base.P className={imagesExist ? this.decorateCSS("footer-text") : this.decorateCSS("footer-text-no-image")}>{this.getPropValue("footerText")}</Base.P>}
+                {imagesExist && (
+                  <div className={footerTextExist ? this.decorateCSS("image-container") : this.decorateCSS("image-container-full")}>
+                    {images.map((item: any, index: number) => {
+                      return (
+                        item.image && (
+                          <div className={this.decorateCSS("image-element")}>
+                            <ComposerLink key={index} path={item.url}>
+                              <img className={this.decorateCSS("image")} src={item.image} />
+                            </ComposerLink>
+                          </div>
+                        )
+                      );
+                    })}
+                  </div>
+                )}
               </div>
-              <div className={this.decorateCSS("down-text")}>
-                <span className={this.decorateCSS("text")}>{this.getPropValue("text")}</span>
-              </div>
-            </div>
-          </div>
-        </div>
+            </Base.MaxContent>
+          </Base.Container>
+        )}
       </div>
     );
   }
