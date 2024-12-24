@@ -285,7 +285,7 @@ class Navbar1 extends BaseNavigator {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Ürünler",
+              value: "Products",
             },
             {
               type: "page",
@@ -460,7 +460,7 @@ class Navbar1 extends BaseNavigator {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Materyaller",
+              value: "Materials",
             },
             {
               type: "page",
@@ -661,6 +661,7 @@ class Navbar1 extends BaseNavigator {
     this.state["componentProps"]["hamburgerNavActive"] = true;
     this.state["componentProps"]["navActive"] = null;
     this.state["componentProps"]["subNavActive"] = null;
+    this.setComponentState("maxheight", 1);
   }
 
   getName(): string {
@@ -689,13 +690,11 @@ class Navbar1 extends BaseNavigator {
     const logoSrc = this.getPropValue(navActive ? "image_light" : "image_dark");
     const elements = document.getElementsByClassName(this.decorateCSS("navigator"));
     console.log("elements", elements)
-
+    let height = 0;
     if (elements.length > 0) {
       const element = elements[0] as HTMLElement;
-      const height = element.offsetHeight;
+      height = element.offsetHeight
       console.log("Height:", height);
-    } else {
-      console.log("küçük")
     }
 
     return (
@@ -819,7 +818,7 @@ class Navbar1 extends BaseNavigator {
           <div
             className={`${this.decorateCSS("navigator-mobile")} ${this.getComponentState("hamburgerNavActive") ? this.decorateCSS("active") : ""
               }`}
-            style={{ maxHeight: "500px" }}
+            style={{ maxHeight: `${height}px` }}
           >
             {this.getComponentState("hamburgerNavActive") && (
               <div className={this.decorateCSS("navigator")}>
