@@ -16,7 +16,7 @@ class Navbar5 extends BaseNavigator {
       displayer: "Position",
       value: "Normal",
       additionalParams: {
-        selectItems: ["Normal", "Absolute", "StickyColorful", "StickyTransparent"],
+        selectItems: ["Normal", "Absolute", "Sticky Colorful", "Sticky Transparent"],
       },
     });
 
@@ -321,7 +321,7 @@ class Navbar5 extends BaseNavigator {
     const logoTransparent = this.getPropValue("logo_transparent");
 
     const position = this.getPropValue("position");
-    const logo = position === "Absolute" || (position === "StickyTransparent" && this.getComponentState("isScrolled") < navbarHeight) ? logoTransparent : logoDefault;
+    const logo = position === "Absolute" || (position === "Sticky Transparent" && this.getComponentState("isScrolled") < navbarHeight) ? logoTransparent : logoDefault;
 
     const social = this.castToObject<any[]>("social");
     const listItems = this.castToObject<any[]>("listItems");
@@ -346,13 +346,15 @@ class Navbar5 extends BaseNavigator {
 
     const isClosing = this.getComponentState("isClosing");
 
+    const formatClassName = (className: any) => className.replace(/\s+/g, "");
+
     return (
       <Base.Container
         id={"navbar5-height"}
         className={`${this.decorateCSS("container")} 
-                  ${this.decorateCSS(this.getPropValue("position"))} 
-                  ${navActive && this.decorateCSS("active")} 
-                  ${this.getComponentState("isScrolled") > navbarHeight && this.decorateCSS("bg-color")}`}
+              ${this.decorateCSS(formatClassName(this.getPropValue("position")))} 
+              ${navActive && this.decorateCSS("active")} 
+              ${this.getComponentState("isScrolled") > navbarHeight && this.decorateCSS("bg-color")}`}
       >
         <div className={this.decorateCSS("max-content")}>
           <Base.MaxContent>
