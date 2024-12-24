@@ -139,7 +139,7 @@ export abstract class Component
       });
     }
 
-    EventEmitter.emit(EVENTS.COMPONENT_ADDED, { id: this.id, props });
+    EventEmitter.emit(EVENTS.COMPONENT_ADDED, { id: this.id, props, category: this.getCategory() });
   }
 
   static getName(): string {
