@@ -302,7 +302,7 @@ class Header10 extends BaseHeader {
       dots: false,
       infinite: true,
       speed: 2500,
-      autoplay: false,
+      autoplay: true,
       autoplaySpeed: 2500,
       slidesToShow: 1,
       slidesToScroll: 1,
