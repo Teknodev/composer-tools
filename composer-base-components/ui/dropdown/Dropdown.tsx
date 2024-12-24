@@ -17,6 +17,7 @@ import {
 } from 'react';
 import {createPortal} from 'react-dom';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import styles from "./Dropdown.module.scss";
 
 type DropDownContextType = {
   registerItem: (ref: React.RefObject<HTMLButtonElement>) => void;
@@ -251,7 +252,7 @@ export default function DropDown({
         type="button"
         disabled={disabled}
         aria-label={buttonAriaLabel || buttonLabel}
-        className={`toolbar-item ${buttonClassName}`}
+        className={`${styles["dropdownButton"]} ${buttonClassName}`}
         onClick={() => {
           setShowDropDown(!showDropDown);
           buttonOnClick && buttonOnClick();
