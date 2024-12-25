@@ -414,7 +414,7 @@ export abstract class Component
       prop.type !== "array" && prop.type !== "object" && prop.value === value;
     const isMatchingComplexValue =
       (prop.type === "array" || prop.type === "object") &&
-      prop.value.some((item) => item.getPropValue) &&
+      prop.value.every((item) => item.getPropValue) &&
       prop.value === value;
 
     if (isInvalidIndex || isMatchingSimpleValue || isMatchingComplexValue) {
