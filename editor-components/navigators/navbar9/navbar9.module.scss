@@ -78,7 +78,6 @@
             }
 
             .option {
-              white-space: nowrap;
               padding: var(--composer-gap-xs) var(--composer-gap-sm);
 
               &:hover {
@@ -96,13 +95,22 @@
         gap: var(--composer-gap-md);
         font-size: 1rem;
 
+        .subitems div:not(:last-child) {
+          border-bottom: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.3);
+        }
+
         >div,
         >a {
           .link {
             color: var(--composer-font-color-primary);
             padding: var(--composer-gap-xs) var(--composer-gap-sm);
             position: relative;
-            white-space: nowrap;
+            width: 100%;
+            border-bottom: 1px solid transparent;
+
+            >div:first-child {
+              border-bottom: none;
+            }
 
             &:hover {
               >.subitems {
@@ -113,9 +121,14 @@
           }
 
           .subitems {
+            z-index: 1;
             background-color: var(--composer-html-background);
             display: none;
             position: absolute;
+            width: 100%;
+            min-width: 150px;
+            max-width: 250px;
+            border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.3);
           }
 
           >.link {
@@ -130,7 +143,7 @@
                   >.subitems {
                     // subsubitems
                     left: 100%;
-                    top: 0;
+                    top: -0.5px;
 
                     >div,
                     >a {
