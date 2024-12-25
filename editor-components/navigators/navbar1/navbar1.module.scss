@@ -204,7 +204,7 @@
           content: "";
         }
       }
-      .language{
+      .languagemobile{
         color: var(--composer-font-color-primary);
       }
     }
@@ -260,6 +260,12 @@
         }
         .language{
           display: none;
+        }
+        .temporary-visible {
+          visibility: hidden;
+          position: absolute;
+          height: auto;
+          overflow: visible;
         }
         
       }

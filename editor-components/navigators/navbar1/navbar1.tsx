@@ -703,16 +703,40 @@ class Navbar1 extends BaseNavigator {
     let value = this.getComponentState("subNavActive");
     this.setComponentState("subNavActive", value === index ? null : index);
   }
+
   componentDidMount(): void {
-    const elements = document.getElementsByClassName(this.decorateCSS("navigator"));
+    const navigator = document.getElementsByClassName(this.decorateCSS("navigator"));
     let height = 0;
-    if (elements.length > 0) {
-      const element = elements[0] as HTMLElement;
-      height = element.offsetHeight
+    if (navigator.length > 0) {
+      const element = navigator[0] as HTMLElement;
+      height = element.offsetHeight;
       this.setComponentState("maxheight", height)
       console.log("Height:", height);
     }
   }
+  updateMaxHeight(): void {
+    const languageElement = document.querySelector(`.${this.decorateCSS("languagemobile")}`) as HTMLElement;
+    const navigatorElement = document.querySelector(`.${this.decorateCSS("navigator")}`) as HTMLElement;
+    console.log(languageElement)
+
+    console.log("languageElement", languageElement.offsetHeight)
+
+    if (languageElement && navigatorElement) {
+      // Mevcut yükseklik
+      const currentMaxHeight = this.getComponentState("maxheight") || 0;
+
+      // Language element yüksekliği
+      const languageHeight = languageElement.offsetHeight;
+
+      // Yeni yükseklik hesapla ve state güncelle
+      const newMaxHeight = currentMaxHeight + languageHeight;
+      this.setComponentState("maxheight", newMaxHeight);
+
+      console.log("Updated MaxHeight:", newMaxHeight);
+    }
+  }
+
+
 
   render() {
     const logoText = this.getPropValue("logo_text");
@@ -836,7 +860,7 @@ class Navbar1 extends BaseNavigator {
             )}
             {this.getPropValue("languageActive") && (
               <div className={this.decorateCSS("language")}>
-                <ComposerLanguage></ComposerLanguage>
+                <ComposerLanguage type="dropdown" title="code"></ComposerLanguage>
               </div>
             )}
           </div>
@@ -933,8 +957,8 @@ class Navbar1 extends BaseNavigator {
                 )}
               </div>
               {this.getPropValue("languageActive") && (
-                <div className={this.decorateCSS("language")}>
-                  <ComposerLanguage className={this.decorateCSS("language-inner")}></ComposerLanguage>
+                <div className={this.decorateCSS("languagemobile")} onClick={this.updateMaxHeight.bind(this)}>
+                  <ComposerLanguage type="accordion" title="code"></ComposerLanguage>
                 </div>
               )}
             </div>
