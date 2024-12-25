@@ -8,7 +8,7 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
 interface Slider {
   image: string;
-  title: JSX.Element
+  title: JSX.Element;
 }
 
 class HeaderComponent34 extends BaseHeader {
@@ -133,7 +133,7 @@ class HeaderComponent34 extends BaseHeader {
       type: "boolean",
       key: "overlayActive",
       displayer: "Overlay Active",
-      value: true
+      value: true,
     });
 
     this.setComponentState("animation-active", false);
@@ -144,217 +144,177 @@ class HeaderComponent34 extends BaseHeader {
     this.setComponentState("slider-ref", React.createRef());
     this.setComponentState("slider-ref-text", React.createRef());
     this.setComponentState("isTransitioning", false);
+    this.setComponentState("slideStatus", "");
+    this.setComponentState("slide-direction", "left");
+    this.setComponentState("overlay-active-index", 0);
+
+    this.setComponentState("contentAnimationClass", "animate__fadeInUp");
   }
   getName(): string {
     return "Header 34";
   }
-  renderDots() {
-    const activeSlideIndex = this.getComponentState("active-index");
-    const items = this.castToObject<Slider[]>("slider");
-
-    return (
-      <ul className={this.decorateCSS("dots")}>
-        {items.map((item, index) => (
-          <li
-            key={index}
-            className={
-              index === activeSlideIndex ? this.getPropValue("slider")[activeSlideIndex].getPropValue("image") ? this.decorateCSS("slick-active") : this.decorateCSS("slick-active-no-image") : ""
-            }
-          >
-            <button>
-              <span></span>
-            </button>
-          </li>
-        ))
-        }
-      </ul>
-    );
-  }
 
   render() {
-    const settings = {
-      arrows: false,
-      dots: false,
-      infinite: true,
-      speed: 3000,
-      autoplay: false,
-      autoplaySpeed: 3000,
-      slidesToShow: 1,
-      afterChange: (index: number) => {
-        this.setComponentState("animation-active", false);
-        this.setComponentState("display-none", true);
-        this.setComponentState("isTransitioning", false);
-      },
-      beforeChange: (oldIndex: number, newIndex: number) => {
-        if (oldIndex == newIndex) return;
-
-        this.setComponentState("from", oldIndex > newIndex ? "left" : "right");
-
-        this.setComponentState("display-none", false);
-        this.setComponentState("isTransitioning", true);
-        setTimeout(() => {
-          this.setComponentState("animation-active", true);
-          this.setComponentState("active-index", newIndex);
-        }, 100);
-      },
-    };
-    const settingsText = {
-      arrows: false,
-      dots: false,
-      infinite: true,
-      speed: 1000,
-      autoplay: false,
-      autoplaySpeed: 3000,
-      slidesToShow: 1,
-      dotsClass: this.decorateCSS("dots"),
-      afterChange: (index: number) => {
-        this.setComponentState("animation-text", false);
-        this.setComponentState("display", true);
-      },
-      beforeChange: (oldIndex: number, newIndex: number) => {
-        if (oldIndex == newIndex) return;
-
-        this.setComponentState("display", false);
-        setTimeout(() => {
-          this.setComponentState("animation-text", true);
-          this.setComponentState("active-index", newIndex);
-        }, 100);
-      },
-    };
-
     const allImagesAbsent = this.getPropValue("slider").every(
       (item: any) => !item.getPropValue("image")
     );
 
+    const slides = this.getPropValue("slider").map((item: any) => ({
+      image: item.getPropValue("image"),
+      title: item.getPropValue("title"),
+      buttonText: item.getPropValue("button_text"),
+      link: item.getPropValue("button_link"),
+    }));
+
+    const activeIndex = this.getComponentState("active-index");
+    const slideStatus = this.getComponentState("slideStatus");
+    const slideDirection = this.getComponentState("slide-direction");
+    const overlayActiveIndex = this.getComponentState("overlay-active-index");
+
+    const handleNext = async (): Promise<void> => {
+      if (slideStatus === "sliding") return;
+      this.setComponentState("contentAnimationClass", "animate__fadeOut");
+      await delay(500);
+      this.setComponentState(
+        "overlay-active-index",
+        (overlayActiveIndex + 1) % slides.length
+      );
+      this.setComponentState("slide-direction", "right");
+      await delay(10);
+      this.setComponentState("slideStatus", "sliding");
+      this.setComponentState("contentAnimationClass", "animate__fadeInUp");
+      await delay(800);
+      this.setComponentState("active-index", (activeIndex + 1) % slides.length);
+      this.setComponentState("slideStatus", "ended");
+      await delay(1000);
+      this.setComponentState("slideStatus", "idle");
+    };
+
+    const handlePrev = async (): Promise<void> => {
+      if (slideStatus === "sliding") return;
+      this.setComponentState("contentAnimationClass", "animate__fadeOut");
+      await delay(500);
+      this.setComponentState(
+        "overlay-active-index",
+        (overlayActiveIndex - 1 + slides.length) % slides.length
+      );
+      this.setComponentState("slide-direction", "left");
+      await delay(10);
+      this.setComponentState("slideStatus", "sliding");
+      await delay(10);
+      this.setComponentState("contentAnimationClass", "animate__fadeInUp");
+      await delay(800);
+      this.setComponentState(
+        "active-index",
+        (activeIndex - 1 + slides.length) % slides.length
+      );
+      this.setComponentState("slideStatus", "ended");
+      await delay(1000);
+      this.setComponentState("slideStatus", "idle");
+    };
+
+    const delay = (ms: number): Promise<void> => {
+      return new Promise((resolve) => setTimeout(resolve, ms));
+    };
 
     return (
       <div className={this.decorateCSS("container")}>
-        <div className={!allImagesAbsent ? this.decorateCSS("max-content") : this.decorateCSS("max-content-no-image")}>
-          {!allImagesAbsent && (
-            <ComposerSlider
-              {...settings}
-              ref={this.getComponentState("slider-ref")}
-              className={this.decorateCSS("carousel")}
-            >
-
-              {this.getPropValue("slider").map((item: any, indexSlider: number) => {
-                return (
-                  <div className={this.decorateCSS("content")} key={indexSlider}>
-                    {item.getPropValue("image") && (
-                      <img src={item.getPropValue("image")} className={this.decorateCSS("image")} />
-                    )}
-                    {this.getPropValue("overlayActive") && (
-                      <div className={this.decorateCSS("overlay")}></div>
-                    )}
-                  </div>
-                )
-
-              })}
-            </ComposerSlider>
-          )
+        <div
+          className={
+            !allImagesAbsent
+              ? this.decorateCSS("max-content")
+              : this.decorateCSS("max-content-no-image")
           }
-
-          <ComposerSlider
-            {...settingsText}
-            ref={this.getComponentState("slider-ref-text")}
-            className={`${!allImagesAbsent ? this.decorateCSS("slider-text") : this.decorateCSS("slider-text-no-image")} ${this.getComponentState("animation-text") &&
-              this.decorateCSS("unvisible")
-              } ${this.getComponentState("display") &&
-              this.decorateCSS("display-none")
-              }`}
-          >
-            {this.getPropValue("slider").map((item: any, indexSlider: number) => (
-              <div className={this.decorateCSS("slider-content")}>
-                {(this.castToString(item.getPropValue("title")) || this.castToString(item.getPropValue("button_text"))) && (
-                  <div className={this.decorateCSS("text-and-button")}>
-                    {this.castToString(item.getPropValue("title")) && (
-                      <div className={this.getPropValue("slider")[this.getComponentState("active-index")].getPropValue("image") ? this.decorateCSS("text") : this.decorateCSS("text-no-image")}>{item.getPropValue("title")}</div>
-                    )}
-                    {this.castToString(item.getPropValue("button_text")) && (
-                      <ComposerLink path={item.getPropValue("button_link")}>
-                        <Base.Button className={this.decorateCSS("button")}>{item.getPropValue("button_text")}</Base.Button>
-                      </ComposerLink>
-                    )}
-                  </div>
-                )}
-              </div>
-            ))}
-          </ComposerSlider>
-
-
-          {(this.getPropValue("next_icon") || this.getPropValue("prev_icon")) && (
-            <div className={!allImagesAbsent ? this.decorateCSS("arrow-content") : this.decorateCSS("arrow-content-no-image")}>
-              {this.getPropValue("next_icon") && (
-                <ComposerIcon
-                  name={this.getPropValue("next_icon")}
-                  propsIcon={{
-                    className: `${this.decorateCSS(
-                      "next-icon"
-                    )} ${this.getPropValue("slider")[this.getComponentState("active-index")].getPropValue("image") ? this.decorateCSS("arrow") : this.decorateCSS("arrow-no-image")} `,
-                    onClick: () => {
-                      if (this.getComponentState("isTransitioning")) return;
-
-                      const sliderRef = this.getComponentState("slider-ref");
-                      const sliderRefText = this.getComponentState("slider-ref-text");
-
-                      if (sliderRef?.current) {
-                        sliderRef.current.slickNext();
-                      }
-                      if (sliderRefText?.current) {
-                        sliderRefText.current.slickNext();
-                      }
-                    },
-                  }}
-                />
-              )}
-              {this.getPropValue("prev_icon") && (
-                <ComposerIcon
-                  name={this.getPropValue("prev_icon")}
-                  propsIcon={{
-                    className: `${this.decorateCSS(
-                      "prev-icon"
-                    )} ${this.getPropValue("slider")[this.getComponentState("active-index")].getPropValue("image") ? this.decorateCSS("arrow") : this.decorateCSS("arrow-no-image")}`,
-                    onClick: () => {
-                      if (this.getComponentState("isTransitioning")) return;
-
-                      const sliderRef = this.getComponentState("slider-ref");
-                      const sliderRefText = this.getComponentState("slider-ref-text");
-
-                      if (sliderRef?.current) {
-                        sliderRef.current.slickPrev();
-                      }
-                      if (sliderRefText?.current) {
-                        sliderRefText.current.slickPrev();
-                      }
-                    },
-                  }}
-                />
-              )}
-              {this.renderDots()}
-            </div>
-          )}
-          {(this.getPropValue("slider")[this.getComponentState("active-index")].getPropValue("image") || this.getPropValue("overlayActive")) && (
+        >
+          <div className={this.decorateCSS("slider-container")}>
             <div
-              className={`${this.decorateCSS("overlay-animation-box")} ${this.getComponentState("animation-active") &&
-                this.decorateCSS("visible")
-                } ${this.getComponentState("display-none") &&
-                this.decorateCSS("display-none")
-                } ${this.decorateCSS(this.getComponentState("from"))}`}
+              className={`${this.decorateCSS(`overlay-${slideDirection}`)} ${
+                slideStatus === "sliding"
+                  ? this.decorateCSS("active")
+                  : slideStatus === "ended"
+                  ? this.decorateCSS("close")
+                  : slideStatus === "idle"
+                  ? this.decorateCSS("idle")
+                  : ""
+              }`}
             >
-              {this.getPropValue("overlayActive") && (
-                <div className={this.decorateCSS("overlay")}></div>
-              )}
-              {this.getPropValue("slider")[this.getComponentState("active-index")].getPropValue("image") && (
-                <img
-                  className={this.decorateCSS("animation-image")}
-                  src={
-                    this.getPropValue("slider")[
-                      this.getComponentState("active-index")].getPropValue("image")
-                  }
-                />
-              )}
+              <div className={this.decorateCSS("overlay-image")}>
+                <img src={slides[overlayActiveIndex].image} alt="" />
+              </div>
             </div>
-          )}
+
+            <div className={this.decorateCSS("slider")}>
+              <img
+                src={slides[activeIndex].image}
+                alt=""
+                className={this.decorateCSS("image")}
+              />
+            </div>
+          </div>
+          <div
+            className={`${this.decorateCSS(
+              "content"
+            )} animate__animated ${this.getComponentState(
+              "contentAnimationClass"
+            )}`}
+          >
+            {slides[overlayActiveIndex].title && (
+              <Base.H1 className={this.decorateCSS("content-title")}>
+                {slides[overlayActiveIndex].title}
+              </Base.H1>
+            )}
+            {slides[overlayActiveIndex].buttonText && (
+              <ComposerLink path={slides[overlayActiveIndex].link}>
+                <Base.Button>{slides[overlayActiveIndex].buttonText}</Base.Button>
+              </ComposerLink>
+            )}
+          </div>
+
+          <div
+            className={`${this.decorateCSS("arrow")} ${this.decorateCSS(
+              "prev"
+            )}`}
+            onClick={handlePrev}
+          >
+            <ComposerIcon name={this.getPropValue("prev_icon")} />
+          </div>
+
+          <div
+            className={`${this.decorateCSS("arrow")} ${this.decorateCSS(
+              "next"
+            )}`}
+            onClick={handleNext}
+          >
+            <ComposerIcon name={this.getPropValue("next_icon")} />
+          </div>
+
+          <div className={this.decorateCSS("dots")}>
+            {slides.map((_: any, index: number) => (
+              <div
+                key={index}
+                className={`${this.decorateCSS("dot")} ${
+                  index === activeIndex ? this.decorateCSS("active") : ""
+                }`}
+                onClick={async () => {
+                  if (slideStatus === "sliding") return;
+                  
+                  const direction = index > activeIndex ? "right" : "left";
+                  this.setComponentState("contentAnimationClass", "animate__fadeOut");
+                  await delay(10);
+                  this.setComponentState("overlay-active-index", index);
+                  this.setComponentState("slide-direction", direction);
+                  await delay(10);
+                  this.setComponentState("contentAnimationClass", "animate__fadeInUp");
+                  this.setComponentState("slideStatus", "sliding");
+                  await delay(800);
+                  this.setComponentState("active-index", index);
+                  this.setComponentState("slideStatus", "ended");
+                  await delay(1000);
+                  this.setComponentState("slideStatus", "idle");
+                }}
+              />
+            ))}
+          </div>
         </div>
       </div>
     );

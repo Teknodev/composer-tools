@@ -1,319 +1,228 @@
 @import '../../../composer-base-components/base/utitilities/viewports.module.scss';
 .container {
-  position: relative;
-  .max-content, .max-content-no-image{
-    content:"";
-  }
-  .max-content-no-image{
-    padding: 20px 0px;
-  }
-  .carousel {
-    width: 100vw;
-    height: 100vh;
-    position: relative;
-    z-index: 1;
-    .content {
-      position: relative;
-      .image {
-        width: 100vw;
-        height: 100vh;
-        object-fit: cover;
-      }
-
-      .overlay {
-        &::after {
-          content: "";
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background-color: var(--composer-overlay-color);
-        }
-      }
-    }
-  }
-  .slider-text, .slider-text-no-image{
-    position: absolute;
-    height: 100%;
+  width: 100%;
+  height: 100vh;
+  .max-content {
     width: 100%;
-    z-index: 4;
-    top: 0px;
-    left: 0px;
-    transition: all 1s ease;
-    .slider-content{
-      height: 100vh;
+    height: 100%;
+    position: relative;
+    .slider-container {
+      width: 100%;
+      height: 100%;
       position: relative;
-      .text-and-button {
+      display: flex;
+      z-index: 6;
+      .slider {
         width: 100%;
         height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        gap: var(--composer-gap-xl);
+        z-index: 7;
+        .image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
       
-        .text, .text-no-image {
-          color: white;
-          font-size: 6rem;
-          max-width: 700px;
-          text-align: center;
+
+      .overlay-right {
+        position: absolute;
+        top: 0;
+        left: 100%;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        overflow: hidden;
+        transition: left 0.8s ease-in-out, width 0.8s ease-in-out;
+        z-index: 8;
+        &.active {
+          left: 0;
         }
-        .text-no-image{
-          color: var(--composer-font-color-primary);
+        &.close {
+          left: 0;
+          width: 0;
         }
+        &.idle {
+          z-index: 0;
+          left: 100%;
+          width: 100%;
+          transition: all 0.01s ease-in-out;
+        }
+
+        .overlay-image{
+          position: relative;
+          width: 100%;
+          height: 100%;
+          opacity: 0.5;
+
+          img{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+          }
+        }
+
   
-        .button {
-          content: "";
+      }
+
+      .overlay-left {
+        position: absolute;
+        top: 0;
+        right: 100%;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        overflow: hidden;
+        transition: right 0.8s ease-in, width 0.8s ease-in;
+        z-index: 8;
+        &.active {
+          right: 0;
+        }
+        &.close {
+          right: 0;
+          width: 0;
+        }
+        &.idle {
+          z-index: 0;
+          right: 100%;
+          width: 100%;
+          transition: all 0.01s ease-in-out;
+        }
+
+        .overlay-image{
+          position: relative;
+          width: 100%;
+          height: 100%;
+          opacity: 0.5;
+      
+
+          img{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+          }
         }
       }
     }
-    &.unvisible {
-      opacity: 0;
-      margin-top: 30px;
-    }
-    &.display-none{
-      opacity: 1;
-      margin-top: 0px
-    }
-  }
-  .slider-text-no-image{
-    height: 100%;
-    width: 100vw;
-    position: relative;
-    z-index: 1;
-    padding-bottom: 50px ;
-    .slider-content{
-      height: fit-content;
-    }
-  }
 
-  .arrow-content, .arrow-content-no-image{
-    height: 100vh;
-    width: 100%;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    z-index: 4;
-    .arrow, .arrow-no-image{
+    .arrow {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      color: white;
       cursor: pointer;
-      margin: auto 0;
-      font-size: 3rem;
-      &.prev-icon {
-        left: 50px;
-      }
-      &.next-icon {
-        right: 50px;
-      }
-    }
-    .arrow-no-image{
-      color: var(--composer-font-color-primary);
-    }
-  }
-  .arrow-content-no-image{
-    height: 100%;
-  }
-  .overlay-animation-box {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-    transition-duration: 3s;
-    transition-timing-function: ease;
-    display: unset;
+      z-index: 11;
 
-    &.left {
-      margin-left: 100vw;
-    }
+      color: white;
+      font-size: 6rem;
 
-    &.right {
-      margin-left: 100vw;
-    }
-
-    &.visible {
-      &.left {
-        margin-left: -100vw;
+      &.prev {
+        left: 1rem;
       }
-      &.right {
-        margin-left: -100vw;
+      &.next {
+        right: 1rem;
       }
     }
 
-    &.display-none {
-      display: none !important;
-    }
-
-    .overlay {
-      z-index: 2;
-      content: "";
+    .content {
       position: absolute;
       top: 0;
-      right: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: var(--composer-overlay-color);
-      opacity: 1;
-    }
-
-    .animation-image {
-      z-index: 1;
+      left: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      position: absolute;
-      top: 0;
-      right: 0;
-    }
-  }
-
-  .dots{
-    margin: 0px;
-      position: absolute;
-      padding: 0;
-      list-style: none;
-      text-align: center;
-      bottom: 20px;
-      width: 100%;
-      display: flex !important;
+      display: flex;
       justify-content: center;
-      li{
-      button {
-        z-index: 3;
-          color: transparent;
-          position: relative;
-          background: none;
-          width: 30px;
-          height: 30px;
-          border: 1px solid transparent;
-          border-radius: 50%;
-          transition: 0.3s;
+      align-items: center;
+      flex-direction: column;
+      gap: var(--composer-gap-lg);
+      z-index: 9;
+      animation-duration: 1s;
 
-          &::before {
-            font-size: 5rem;
-              content: "•";
-              color: rgba(142, 142, 142, 0.6);
-              position: absolute;
-              top: 50%;
-              left: 50%;
-              transform: translate(-50%, -50%);
-              transition: 0.3s;
-              width: 100%;
-              height: 100%;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-          }
-      } 
-      }
-      .slick-active , .slick-active-no-image{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 3;
-        button{
-          &::before {
-            font-size: 3rem;
-            border: 1px solid white;
-            border-radius: 50%;
-            content: "•";
-            color: white;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            transition: 0.3s;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        }
-
-      }
-      .slick-active-no-image{
-        button{
-          &::before {
-            border: 1px solid var(--composer-font-color-primary);
-            color: var(--composer-font-color-primary);
-        }
+      .content-title {
+        color: white;
+        font-size: 6rem;
+        font-weight: 700;
+        margin:0;
       }
     }
-    }
-}
-@container (max-width: #{$composer-tablet-width}){
-  .container{
-    .max-content, .max-content-no-image{
-      .slider-text, .slider-text-no-image{
-        .slider-content{
-          padding: 0px 50px;
-          .text-and-button {
-            .text, .text-no-image {
-              font-size: 5rem;
-            }
-          }
+
+    .dots {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 1rem;
+      z-index: 11;
+
+      .dot {
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &.active {
+          background-color: white;
+          transform: scale(1.2);
         }
-      }
-      .arrow-content, .arrow-content-no-image{
-        .arrow, .arrow-no-image{
-          &.prev-icon {
-            left: 40px;
-          }
-          &.next-icon {
-            right: 40px;
-          }
+
+        &:hover {
+          background-color: white;
         }
       }
     }
   }
-
 }
-@container (max-width: #{$composer-phone-width}){
-  .container{
-    .max-content, .max-content-no-image{
-      .slider-text, .slider-text-no-image{
-        .slider-content{
-          .text-and-button {
-            .text, .text-no-image {
-              font-size: 4rem;
-            }
-          }
+
+@container (max-width: #{$composer-tablet-width-lg}) {
+  .container {
+    background-color: red;
+    .max-content {
+      .slider-container {
+       
+      }
+      .content {
+        .content-title {
+          font-size: 5rem;
         }
       }
-      .arrow-content, .arrow-content-no-image{
-        .arrow, .arrow-no-image{
-          &.prev-icon {
-            left: 20px;
-          }
-          &.next-icon {
-            right: 20px;
-          }
+      .arrow{
+        font-size: 5rem;
+      }
+    }
+  }
+}
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    background-color: red;
+    .max-content {
+      .slider-container {
+       
+      }
+      .content {
+        padding: 0 1rem;
+        .content-title {
+          font-size: 3rem;
+          text-align: center;
         }
       }
-      .dots{
-        li {
-            button {
-                width: 20px;
-                height: 20px;
-                &::before {
-                  font-size: 3rem;
-                }
-            }
-          } 
-          .slick-active , .slick-active-no-image{      
-             button{
-            &::before {
-              font-size: 2rem;
-            }
-           }
-          }        
-       }
+      .arrow{
+        font-size: 3rem;
+
+
+      &.prev {
+        left: 0.5rem;
+      }
+      &.next {
+        right: 0.5rem;
+      }
+      }
     }
   }
 }
