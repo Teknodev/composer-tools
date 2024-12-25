@@ -146,19 +146,10 @@ class Download11 extends BaseDownload {
     return "Download-11";
   }
 
-<<<<<<< HEAD
-        this.addProp({
-            type: "image",
-            key: "logoimage",
-            displayer: "LogoImage",
-            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c36f40655f8002ca6e303?alt=media&timestamp=1734096646977",
-        });
-=======
   render() {
     const leftItems = this.castToObject<any>("left");
     const rightItems = this.castToObject<any>("right");
     const rightBottomItems = this.castToObject<any>("rightBottom");
->>>>>>> 66e7db3ef05de9a24517add17dcaf42093a5840b
 
     const subtitleExist = this.castToString(leftItems.subtitle);
     const titleExist = this.castToString(leftItems.title);
