@@ -6,16 +6,7 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
-type Row = {
-  value: any[];
-  items: Item[];
-};
-
-type Item = {
-  text: JSX.Element;
-  type: string;
-};
+import { Base } from "../../../composer-base-components/base/base";
 
 class PricingTable9 extends BasePricingTable {
   constructor(props?: any) {
@@ -30,1075 +21,703 @@ class PricingTable9 extends BasePricingTable {
 
     this.addProp({
       type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
+      key: "description",
+      displayer: "Description",
       value: "Decide according to your needs.",
     });
 
     this.addProp({
       type: "array",
-      key: "rows",
-      displayer: "Rows",
+      key: "columns",
+      displayer: "Columns",
       value: [
         {
-          type: "array",
-          key: "items",
-          displayer: "Columns",
+          type: "object",
+          key: "columnContent",
+          displayer: "Column Content",
           value: [
             {
-              type: "object",
-              key: "item",
-              displayer: "Cell",
-              value: [
-                {
-                  type: "string",
-                  key: "text",
-                  displayer: "Content",
-                  value: "",
-                },
-                {
-                  type: "select",
-                  key: "type",
-                  displayer: "Type",
-                  value: "Content",
-                  additionalParams: {
-                    selectItems: ["Title", "Content", "Benefit", "Button"],
-                  },
-                },
-                {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Icon",
-                  value: "",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
-                },
-              ],
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Basic",
             },
             {
-              type: "object",
-              key: "item",
-              displayer: "Cell",
-              value: [
-                {
-                  type: "string",
-                  key: "text",
-                  displayer: "Content",
-                  value: "Basic",
-                },
-                {
-                  type: "select",
-                  key: "type",
-                  displayer: "Type",
-                  value: "Title",
-                  additionalParams: {
-                    selectItems: ["Title", "Content", "Benefit", "Button"],
-                  },
-                },
-                {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Icon",
-                  value: "",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
-                },
-              ],
+              type: "string",
+              key: "button",
+              displayer: "Button",
+              value: "50$/ month",
             },
             {
-              type: "object",
-              key: "item",
-              displayer: "Cell",
+              type: "array",
+              key: "contents",
+              displayer: "Contents",
               value: [
                 {
-                  type: "string",
-                  key: "text",
+                  type: "object",
+                  key: "content",
                   displayer: "Content",
-                  value: "Starter",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Content",
+                      value: "",
+                    },
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "FcCheckmark",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
                 },
                 {
-                  type: "select",
-                  key: "type",
-                  displayer: "Type",
-                  value: "Title",
-                  additionalParams: {
-                    selectItems: ["Title", "Content", "Benefit", "Button"],
-                  },
-                },
-                {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Icon",
-                  value: "",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
-                },
-              ],
-            },
-            {
-              type: "object",
-              key: "item",
-              displayer: "Cell",
-              value: [
-                {
-                  type: "string",
-                  key: "text",
+                  type: "object",
+                  key: "content",
                   displayer: "Content",
-                  value: "Standard",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Content",
+                      value: "",
+                    },
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "FcCheckmark",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
                 },
                 {
-                  type: "select",
-                  key: "type",
-                  displayer: "Type",
-                  value: "Title",
-                  additionalParams: {
-                    selectItems: ["Title", "Content", "Benefit", "Button"],
-                  },
-                },
-                {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Icon",
-                  value: "",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
-                },
-              ],
-            },
-            {
-              type: "object",
-              key: "item",
-              displayer: "Cell",
-              value: [
-                {
-                  type: "string",
-                  key: "text",
+                  type: "object",
+                  key: "content",
                   displayer: "Content",
-                  value: "Enterprise",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Content",
+                      value: "",
+                    },
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "FcCheckmark",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
                 },
                 {
-                  type: "select",
-                  key: "type",
-                  displayer: "Type",
-                  value: "Title",
-                  additionalParams: {
-                    selectItems: ["Title", "Content", "Benefit", "Button"],
-                  },
+                  type: "object",
+                  key: "content",
+                  displayer: "Content",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Content",
+                      value: "",
+                    },
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "FcCheckmark",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
                 },
                 {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Icon",
-                  value: "",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
+                  type: "object",
+                  key: "content",
+                  displayer: "Content",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Content",
+                      value: "",
+                    },
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "FcCheckmark",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
                 },
               ],
             },
           ],
         },
         {
-          type: "array",
-          key: "items",
-          displayer: "Columns",
+          type: "object",
+          key: "columnContent",
+          displayer: "Column Content",
           value: [
             {
-              type: "object",
-              key: "item",
-              displayer: "Cell",
-              value: [
-                {
-                  type: "string",
-                  key: "text",
-                  displayer: "Content",
-                  value: "Hundreds of Games",
-                },
-                {
-                  type: "select",
-                  key: "type",
-                  displayer: "Type",
-                  value: "Benefit",
-                  additionalParams: {
-                    selectItems: ["Title", "Content", "Benefit", "Button"],
-                  },
-                },
-                {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Icon",
-                  value: "",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
-                },
-              ],
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Starter",
             },
             {
-              type: "object",
-              key: "item",
-              displayer: "Cell",
-              value: [
-                {
-                  type: "string",
-                  key: "text",
-                  displayer: "Content",
-                  value: "",
-                },
-                {
-                  type: "select",
-                  key: "type",
-                  displayer: "Type",
-                  value: "Content",
-                  additionalParams: {
-                    selectItems: ["Title", "Content", "Benefit", "Button"],
-                  },
-                },
-                {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Icon",
-                  value: "FaCircleCheck",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
-                },
-              ],
+              type: "string",
+              key: "button",
+              displayer: "Button",
+              value: "75$/ month",
             },
             {
-              type: "object",
-              key: "item",
-              displayer: "Cell",
+              type: "array",
+              key: "contents",
+              displayer: "Contents",
               value: [
                 {
-                  type: "string",
-                  key: "text",
+                  type: "object",
+                  key: "content",
                   displayer: "Content",
-                  value: "",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Content",
+                      value: "",
+                    },
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "FcCheckmark",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
                 },
                 {
-                  type: "select",
-                  key: "type",
-                  displayer: "Type",
-                  value: "Content",
-                  additionalParams: {
-                    selectItems: ["Title", "Content", "Benefit", "Button"],
-                  },
-                },
-                {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Icon",
-                  value: "FaCircleCheck",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
-                },
-              ],
-            },
-            {
-              type: "object",
-              key: "item",
-              displayer: "Cell",
-              value: [
-                {
-                  type: "string",
-                  key: "text",
+                  type: "object",
+                  key: "content",
                   displayer: "Content",
-                  value: "",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Content",
+                      value: "",
+                    },
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "FcCheckmark",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
                 },
                 {
-                  type: "select",
-                  key: "type",
-                  displayer: "Type",
-                  value: "Content",
-                  additionalParams: {
-                    selectItems: ["Title", "Content", "Benefit", "Button"],
-                  },
-                },
-                {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Icon",
-                  value: "FaCircleCheck",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
-                },
-              ],
-            },
-            {
-              type: "object",
-              key: "item",
-              displayer: "Cell",
-              value: [
-                {
-                  type: "string",
-                  key: "text",
+                  type: "object",
+                  key: "content",
                   displayer: "Content",
-                  value: "",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Content",
+                      value: "",
+                    },
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "FcCheckmark",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
                 },
                 {
-                  type: "select",
-                  key: "type",
-                  displayer: "Type",
-                  value: "Content",
-                  additionalParams: {
-                    selectItems: ["Title", "Content", "Benefit", "Button"],
-                  },
+                  type: "object",
+                  key: "content",
+                  displayer: "Content",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Content",
+                      value: "",
+                    },
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "FcCheckmark",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
                 },
                 {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Icon",
-                  value: "FaCircleCheck",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
+                  type: "object",
+                  key: "content",
+                  displayer: "Content",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Content",
+                      value: "",
+                    },
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "FcCheckmark",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
                 },
               ],
             },
           ],
         },
         {
-          type: "array",
-          key: "items",
-          displayer: "Columns",
+          type: "object",
+          key: "columnContent",
+          displayer: "Column Content",
           value: [
             {
-              type: "object",
-              key: "item",
-              displayer: "Cell",
-              value: [
-                {
-                  type: "string",
-                  key: "text",
-                  displayer: "Content",
-                  value: "Day one",
-                },
-                {
-                  type: "select",
-                  key: "type",
-                  displayer: "Type",
-                  value: "Benefit",
-                  additionalParams: {
-                    selectItems: ["Title", "Content", "Benefit", "Button"],
-                  },
-                },
-                {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Icon",
-                  value: "",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
-                },
-              ],
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Standart",
             },
             {
-              type: "object",
-              key: "item",
-              displayer: "Cell",
-              value: [
-                {
-                  type: "string",
-                  key: "text",
-                  displayer: "Content",
-                  value: "",
-                },
-                {
-                  type: "select",
-                  key: "type",
-                  displayer: "Type",
-                  value: "Content",
-                  additionalParams: {
-                    selectItems: ["Title", "Content", "Benefit", "Button"],
-                  },
-                },
-                {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Icon",
-                  value: "FaCircleXmark",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
-                },
-              ],
+              type: "string",
+              key: "button",
+              displayer: "Button",
+              value: "100$/ month",
             },
             {
-              type: "object",
-              key: "item",
-              displayer: "Cell",
+              type: "array",
+              key: "contents",
+              displayer: "Contents",
               value: [
                 {
-                  type: "string",
-                  key: "text",
+                  type: "object",
+                  key: "content",
                   displayer: "Content",
-                  value: "",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Content",
+                      value: "",
+                    },
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "FcCheckmark",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
                 },
                 {
-                  type: "select",
-                  key: "type",
-                  displayer: "Type",
-                  value: "Content",
-                  additionalParams: {
-                    selectItems: ["Title", "Content", "Benefit", "Button"],
-                  },
-                },
-                {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Icon",
-                  value: "FaCircleCheck",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
-                },
-              ],
-            },
-            {
-              type: "object",
-              key: "item",
-              displayer: "Cell",
-              value: [
-                {
-                  type: "string",
-                  key: "text",
+                  type: "object",
+                  key: "content",
                   displayer: "Content",
-                  value: "",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Content",
+                      value: "",
+                    },
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "FcCheckmark",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
                 },
                 {
-                  type: "select",
-                  key: "type",
-                  displayer: "Type",
-                  value: "Content",
-                  additionalParams: {
-                    selectItems: ["Title", "Content", "Benefit", "Button"],
-                  },
-                },
-                {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Icon",
-                  value: "FaCircleCheck",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
-                },
-              ],
-            },
-            {
-              type: "object",
-              key: "item",
-              displayer: "Cell",
-              value: [
-                {
-                  type: "string",
-                  key: "text",
+                  type: "object",
+                  key: "content",
                   displayer: "Content",
-                  value: "",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Content",
+                      value: "",
+                    },
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "FcCheckmark",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
                 },
                 {
-                  type: "select",
-                  key: "type",
-                  displayer: "Type",
-                  value: "Content",
-                  additionalParams: {
-                    selectItems: ["Title", "Content", "Benefit", "Button"],
-                  },
+                  type: "object",
+                  key: "content",
+                  displayer: "Content",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Content",
+                      value: "",
+                    },
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "FcCheckmark",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
                 },
                 {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Icon",
-                  value: "FaCircleCheck",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
+                  type: "object",
+                  key: "content",
+                  displayer: "Content",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Content",
+                      value: "",
+                    },
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "FcCheckmark",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
                 },
               ],
             },
           ],
         },
         {
-          type: "array",
-          key: "items",
-          displayer: "Columns",
+          type: "object",
+          key: "columnContent",
+          displayer: "Column Content",
           value: [
             {
-              type: "object",
-              key: "item",
-              displayer: "Cell",
-              value: [
-                {
-                  type: "string",
-                  key: "text",
-                  displayer: "Content",
-                  value: "Member deals & discount",
-                },
-                {
-                  type: "select",
-                  key: "type",
-                  displayer: "Type",
-                  value: "Benefit",
-                  additionalParams: {
-                    selectItems: ["Title", "Content", "Benefit", "Button"],
-                  },
-                },
-                {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Icon",
-                  value: "",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
-                },
-              ],
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Enterprise",
             },
             {
-              type: "object",
-              key: "item",
-              displayer: "Cell",
-              value: [
-                {
-                  type: "string",
-                  key: "text",
-                  displayer: "Content",
-                  value: "",
-                },
-                {
-                  type: "select",
-                  key: "type",
-                  displayer: "Type",
-                  value: "Content",
-                  additionalParams: {
-                    selectItems: ["Title", "Content", "Benefit", "Button"],
-                  },
-                },
-                {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Icon",
-                  value: "FaCircleXmark",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
-                },
-              ],
+              type: "string",
+              key: "button",
+              displayer: "Button",
+              value: "1000$/ month",
             },
             {
-              type: "object",
-              key: "item",
-              displayer: "Cell",
+              type: "array",
+              key: "contents",
+              displayer: "Contents",
               value: [
                 {
-                  type: "string",
-                  key: "text",
+                  type: "object",
+                  key: "content",
                   displayer: "Content",
-                  value: "",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Content",
+                      value: "",
+                    },
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "FcCheckmark",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
                 },
                 {
-                  type: "select",
-                  key: "type",
-                  displayer: "Type",
-                  value: "Content",
-                  additionalParams: {
-                    selectItems: ["Title", "Content", "Benefit", "Button"],
-                  },
-                },
-                {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Icon",
-                  value: "FaCircleXmark",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
-                },
-              ],
-            },
-            {
-              type: "object",
-              key: "item",
-              displayer: "Cell",
-              value: [
-                {
-                  type: "string",
-                  key: "text",
+                  type: "object",
+                  key: "content",
                   displayer: "Content",
-                  value: "",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Content",
+                      value: "",
+                    },
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "FcCheckmark",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
                 },
                 {
-                  type: "select",
-                  key: "type",
-                  displayer: "Type",
-                  value: "Content",
-                  additionalParams: {
-                    selectItems: ["Title", "Content", "Benefit", "Button"],
-                  },
-                },
-                {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Icon",
-                  value: "FaCircleCheck",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
-                },
-              ],
-            },
-            {
-              type: "object",
-              key: "item",
-              displayer: "Cell",
-              value: [
-                {
-                  type: "string",
-                  key: "text",
+                  type: "object",
+                  key: "content",
                   displayer: "Content",
-                  value: "",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Content",
+                      value: "",
+                    },
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "FcCheckmark",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
                 },
                 {
-                  type: "select",
-                  key: "type",
-                  displayer: "Type",
-                  value: "Content",
-                  additionalParams: {
-                    selectItems: ["Title", "Content", "Benefit", "Button"],
-                  },
+                  type: "object",
+                  key: "content",
+                  displayer: "Content",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Content",
+                      value: "",
+                    },
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "FcCheckmark",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
                 },
                 {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Icon",
-                  value: "FaCircleCheck",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
+                  type: "object",
+                  key: "content",
+                  displayer: "Content",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Content",
+                      value: "",
+                    },
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "FcCheckmark",
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
                 },
               ],
             },
           ],
         },
+      ],
+    });
+
+    this.addProp({
+      type: "array",
+      key: "benefits",
+      displayer: "Benefits",
+      value: [
         {
-          type: "array",
-          key: "items",
-          displayer: "Columns",
+          type: "object",
+          key: "benefit",
+          displayer: "Benefit",
           value: [
             {
-              type: "object",
-              key: "item",
-              displayer: "Cell",
-              value: [
-                {
-                  type: "string",
-                  key: "text",
-                  displayer: "Content",
-                  value: "Multiplayer Gaming",
-                },
-                {
-                  type: "select",
-                  key: "type",
-                  displayer: "Type",
-                  value: "Benefit",
-                  additionalParams: {
-                    selectItems: ["Title", "Content", "Benefit", "Button"],
-                  },
-                },
-                {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Icon",
-                  value: "",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
-                },
-              ],
-            },
-            {
-              type: "object",
-              key: "item",
-              displayer: "Cell",
-              value: [
-                {
-                  type: "string",
-                  key: "text",
-                  displayer: "Content",
-                  value: "",
-                },
-                {
-                  type: "select",
-                  key: "type",
-                  displayer: "Type",
-                  value: "Content",
-                  additionalParams: {
-                    selectItems: ["Title", "Content", "Benefit", "Button"],
-                  },
-                },
-                {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Icon",
-                  value: "FaCircleXmark",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
-                },
-              ],
-            },
-            {
-              type: "object",
-              key: "item",
-              displayer: "Cell",
-              value: [
-                {
-                  type: "string",
-                  key: "text",
-                  displayer: "Content",
-                  value: "",
-                },
-                {
-                  type: "select",
-                  key: "type",
-                  displayer: "Type",
-                  value: "Content",
-                  additionalParams: {
-                    selectItems: ["Title", "Content", "Benefit", "Button"],
-                  },
-                },
-                {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Icon",
-                  value: "FaCircleXmark",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
-                },
-              ],
-            },
-            {
-              type: "object",
-              key: "item",
-              displayer: "Cell",
-              value: [
-                {
-                  type: "string",
-                  key: "text",
-                  displayer: "Content",
-                  value: "",
-                },
-                {
-                  type: "select",
-                  key: "type",
-                  displayer: "Type",
-                  value: "Content",
-                  additionalParams: {
-                    selectItems: ["Title", "Content", "Benefit", "Button"],
-                  },
-                },
-                {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Icon",
-                  value: "FaCircleXmark",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
-                },
-              ],
-            },
-            {
-              type: "object",
-              key: "item",
-              displayer: "Cell",
-              value: [
-                {
-                  type: "string",
-                  key: "text",
-                  displayer: "Content",
-                  value: "",
-                },
-                {
-                  type: "select",
-                  key: "type",
-                  displayer: "Type",
-                  value: "Content",
-                  additionalParams: {
-                    selectItems: ["Title", "Content", "Benefit", "Button"],
-                  },
-                },
-                {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Icon",
-                  value: "FaCircleCheck",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
-                },
-              ],
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "",
             },
           ],
         },
         {
-          type: "array",
-          key: "items",
-          displayer: "Columns",
+          type: "object",
+          key: "benefit",
+          displayer: "Benefit",
           value: [
             {
-              type: "object",
-              key: "item",
-              displayer: "Cell",
-              value: [
-                {
-                  type: "string",
-                  key: "text",
-                  displayer: "Content",
-                  value: "",
-                },
-                {
-                  type: "select",
-                  key: "type",
-                  displayer: "Type",
-                  value: "Content",
-                  additionalParams: {
-                    selectItems: ["Title", "Content", "Benefit", "Button"],
-                  },
-                },
-                {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Icon",
-                  value: "",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
-                },
-              ],
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Remote device",
             },
+          ],
+        },
+        {
+          type: "object",
+          key: "benefit",
+          displayer: "Benefit",
+          value: [
             {
-              type: "object",
-              key: "item",
-              displayer: "Cell",
-              value: [
-                {
-                  type: "string",
-                  key: "text",
-                  displayer: "Content",
-                  value: "50$ / month",
-                },
-                {
-                  type: "select",
-                  key: "type",
-                  displayer: "Type",
-                  value: "Button",
-                  additionalParams: {
-                    selectItems: ["Title", "Content", "Benefit", "Button"],
-                  },
-                },
-                {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Icon",
-                  value: "",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
-                },
-              ],
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Access from anywhere",
             },
+          ],
+        },
+        {
+          type: "object",
+          key: "benefit",
+          displayer: "Benefit",
+          value: [
             {
-              type: "object",
-              key: "item",
-              displayer: "Cell",
-              value: [
-                {
-                  type: "string",
-                  key: "text",
-                  displayer: "Content",
-                  value: "75$ / month",
-                },
-                {
-                  type: "select",
-                  key: "type",
-                  displayer: "Type",
-                  value: "Button",
-                  additionalParams: {
-                    selectItems: ["Title", "Content", "Benefit", "Button"],
-                  },
-                },
-                {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Icon",
-                  value: "",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
-                },
-              ],
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "7/24 Helpdesk",
             },
+          ],
+        },
+        {
+          type: "object",
+          key: "benefit",
+          displayer: "Benefit",
+          value: [
             {
-              type: "object",
-              key: "item",
-              displayer: "Cell",
-              value: [
-                {
-                  type: "string",
-                  key: "text",
-                  displayer: "Content",
-                  value: "100$ / month",
-                },
-                {
-                  type: "select",
-                  key: "type",
-                  displayer: "Type",
-                  value: "Button",
-                  additionalParams: {
-                    selectItems: ["Title", "Content", "Benefit", "Button"],
-                  },
-                },
-                {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Icon",
-                  value: "",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
-                },
-              ],
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Advanced statistics",
             },
+          ],
+        },
+        {
+          type: "object",
+          key: "benefit",
+          displayer: "Benefit",
+          value: [
             {
-              type: "object",
-              key: "item",
-              displayer: "Cell",
-              value: [
-                {
-                  type: "string",
-                  key: "text",
-                  displayer: "Content",
-                  value: "1000$ / month",
-                },
-                {
-                  type: "select",
-                  key: "type",
-                  displayer: "Type",
-                  value: "Button",
-                  additionalParams: {
-                    selectItems: ["Title", "Content", "Benefit", "Button"],
-                  },
-                },
-                {
-                  type: "icon",
-                  key: "icon",
-                  displayer: "Icon",
-                  value: "",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
-                },
-              ],
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "User management",
             },
           ],
         },
@@ -1110,184 +729,129 @@ class PricingTable9 extends BasePricingTable {
     return "Pricing 9";
   }
 
-  elements: any = {
-    Title: (e: any) => (
-      <h2 className={this.decorateCSS("title")}>
-        {this.getIcon(e) && (
-          <ComposerIcon
-            name={this.getIcon(e)}
-            propsIcon={{ className: this.decorateCSS("icon") }}
-          />
-        )}
-        {this.getText(e)}
-      </h2>
-    ),
-    Content: (e: any) => (
-      <p className={this.decorateCSS("content")}>
-        {this.getIcon(e) && (
-          <ComposerIcon
-            name={this.getIcon(e)}
-            propsIcon={{ className: this.decorateCSS("content-icon") }}
-          />
-        )}
-        {this.getText(e)}
-      </p>
-    ),
-    Benefit: (e: any) => (
-      <h4 className={this.decorateCSS("benefit")}>
-        {this.getIcon(e) && (
-          <ComposerIcon
-            name={this.getIcon(e)}
-            propsIcon={{ className: this.decorateCSS("icon") }}
-          />
-        )}
-        {this.getText(e)}
-      </h4>
-    ),
-    Button: (e: any) => (
-      <div className={this.decorateCSS("button")}>
-        <ComposerLink path={this.getLink(e) || "#"} isFullWidth={true}>
-          {this.getIcon(e) && (
-            <ComposerIcon
-              name={this.getIcon(e)}
-              propsIcon={{ className: this.decorateCSS("icon") }}
-            />
-          )}
-          {this.getText(e)}
-        </ComposerLink>
-      </div>
-    ),
-  };
-
-  getText = (e: any): string => e.value[0].value;
-  getType = (e: any): string => e.value[1].value;
-  getIcon = (e: any): string => e.value[2].value;
-  getLink = (e: any): string => e.value[3].value;
-
-  getElement = (e: any) => {
-    if (!e) return <div></div>;
-
-    if (this.getText(e) === "" && this.getIcon(e) === "")
-      return this.elements["Content"](e);
-    else return this.elements[this.getType(e)](e);
-  };
-
   render() {
-    const rows = this.castToObject<Row[]>("rows");
-
-    const maxColNumber: number = Math.max(...rows.map((e) => e.value.length));
-
-    const benefits = rows.flatMap((row: any) =>
-      row.value
-        .map((item: any) => {
-          if (this.getType(item) === "Benefit") {
-            return this.getElement(item);
-          }
-          return null;
-        })
-        .filter((e: any) => e !== null),
-    );
-
     const settings = {
       arrows: false,
       dots: true,
+      dotsClass: this.decorateCSS("dots"),
       infinite: true,
       speed: 2000,
       autoplay: true,
       slidesToShow: 1,
       slidesToScroll: 1,
-    };
-
-    const getPlans = (rows: any[]) => {
-      let arr = [];
-
-      /**
-       * get columns from every arrow.
-       * if maxColNumber > row's length
-       *  return empty div.
-       */
-      for (let i = 1; i < maxColNumber; i++) {
-        const col = rows.map((e: any) => {
-          if (!e.value[i]) return this.getElement(null);
-
-          if (this.getType(e.value[i]) === "Title")
-            return (
-              <p
-                className={`${this.decorateCSS("content")} ${this.decorateCSS(
-                  "m-plan-title",
-                )}`}
-              >
-                {this.getText(e.value[i])}
-              </p>
-            );
-          if (this.getType(e.value[i]) === "Button")
-            return (
-              <div
-                className={`${this.decorateCSS("button")} ${this.decorateCSS("m-plan-price")}`}
-              >
-                {this.getElement(e.value[i])}
-              </div>
-            );
-          return this.getElement(e.value[i]);
-        });
-        arr.push(col);
-      }
-
-      return arr;
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 2,
+          },
+        },
+        {
+          breakpoint: 500,
+          settings: {
+            slidesToShow: 1,
+          },
+        },
+      ],
     };
 
     const titleExist = this.getPropValue("title", { as_string: true });
-    const subtitleExist = this.getPropValue("subtitle", { as_string: true });
+    const descriptionExist = this.getPropValue("description", { as_string: true });
 
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          {(titleExist || subtitleExist) && (
-            <header>
-              {titleExist && (
-                <h2 className={this.decorateCSS("main-title")}>
-                  {this.getPropValue("title")}
-                </h2>
-              )}
-              {subtitleExist && (
-                <h3 className={this.decorateCSS("main-subtitle")}>
-                  {this.getPropValue("subtitle")}
-                </h3>
-              )}
-            </header>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          {(titleExist || descriptionExist) && (
+            <Base.VerticalContent className={this.decorateCSS("header")}>
+              {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+              {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+            </Base.VerticalContent>
           )}
-          <div className={this.decorateCSS("wrapper")}>
-            <div
-              className={this.decorateCSS("grid-container")}
-              style={{
-                gridTemplateColumns: `repeat(${maxColNumber}, 1fr)`,
-                gridTemplateRows: `repeat(${rows.length}, 1fr)`,
-              }}
-            >
-              {rows.map((row: any, i: number) => {
-                const cols = row.value;
-                const fillCount = maxColNumber - cols.length;
+          <div className={this.decorateCSS("container")}>
+            <div className={this.decorateCSS("benefits-column")}>
+              {this.castToObject<string[]>("benefits").map((benefit: any, index: any) => (
+                <div key={`benefit-${index}`} className={this.decorateCSS("benefit-item")}>
+                  <Base.H5 className={this.decorateCSS("benefit-title")}>{benefit?.title}</Base.H5>
+                </div>
+              ))}
+            </div>
 
-                return [...cols, ...Array(fillCount).fill(null)].map(
-                  (item: any, j: number) => {
-                    return <div key={`${i}-${j}`}>{this.getElement(item)}</div>;
-                  },
+            <div className={this.decorateCSS("columns-container")}>
+              {this.castToObject<string[]>("columns").map((column: any, index: any) => {
+                const buttonTextExist = this.castToString(column?.button);
+                const titleExist = this.castToString(column?.title);
+                return (
+                  <div key={`column-${index}`} className={this.decorateCSS("column-item")}>
+                    <div className={this.decorateCSS("title-container")}>{titleExist && <Base.H3 className={this.decorateCSS("column-title")}>{column?.title}</Base.H3>}</div>
+                    <div className={this.decorateCSS("column-contents")}>
+                      {column?.contents.map((content: any, contentIndex: any) => (
+                        <div key={`content-${contentIndex}`} className={this.decorateCSS("content-item")}>
+                          {content?.icon && (
+                            <span className={this.decorateCSS("content-icon")}>
+                              <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={content.icon} />
+                            </span>
+                          )}
+                          <Base.P className={this.decorateCSS("content-text")}>{content?.text}</Base.P>
+                        </div>
+                      ))}
+                    </div>
+                    {buttonTextExist && (
+                      <div className={this.decorateCSS("column-button-container")}>
+                        <ComposerLink>
+                          <Base.Button className={this.decorateCSS("column-button")}>{column?.button}</Base.Button>
+                        </ComposerLink>
+                      </div>
+                    )}
+                  </div>
                 );
               })}
             </div>
-            <div className={this.decorateCSS("mobile")}>
+          </div>
+
+          <div className={this.decorateCSS("slider")}>
+            <div className={this.decorateCSS("benefits-column")}>
+              {this.castToObject<string[]>("benefits").map((benefit: any, index: any) => (
+                <div key={`benefit-${index}`} className={this.decorateCSS("benefit-item")}>
+                  <Base.H5 className={this.decorateCSS("benefit-title")}>{benefit?.title}</Base.H5>
+                </div>
+              ))}
+            </div>
+
+            <div className={this.decorateCSS("slider-container")}>
               <ComposerSlider {...settings}>
-                {getPlans(rows).map((e: any, index: number) => (
-                  <div key={index}>{e}</div>
-                ))}
+                {this.castToObject<string[]>("columns").map((column: any, index: any) => {
+                  const buttonTextExist = this.castToString(column?.button);
+                  const titleExist = this.castToString(column?.title);
+                  return (
+                    <div key={`column-${index}`} className={this.decorateCSS("column-item")}>
+                      <div className={this.decorateCSS("title-container")}>{titleExist && <Base.H3 className={this.decorateCSS("column-title")}>{column?.title}</Base.H3>}</div>
+                      <div className={this.decorateCSS("column-contents")}>
+                        {column?.contents.map((content: any, contentIndex: any) => (
+                          <div key={`content-${contentIndex}`} className={this.decorateCSS("content-item")}>
+                            {content?.icon && (
+                              <span className={this.decorateCSS("content-icon")}>
+                                <ComposerIcon name={content.icon} />
+                              </span>
+                            )}
+                            <Base.P className={this.decorateCSS("content-text")}>{content?.text}</Base.P>
+                          </div>
+                        ))}
+                      </div>
+                      {buttonTextExist && (
+                        <div className={this.decorateCSS("column-button-container")}>
+                          <ComposerLink>
+                            <Base.Button className={this.decorateCSS("column-button")}>{column?.button}</Base.Button>
+                          </ComposerLink>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
               </ComposerSlider>
-              <div className={this.decorateCSS("m-benefits")}>
-                {benefits.map((e: any) => e)}
-              </div>
             </div>
           </div>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
