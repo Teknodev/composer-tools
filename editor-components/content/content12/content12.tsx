@@ -57,7 +57,7 @@ class Content12 extends BaseContent {
             </span>
           </div>
           {this.getComponentState("is_video_visible") && (
-            <div
+            <Base.Overlay
               className={this.decorateCSS("video")}
               onClick={() => this.setComponentState("is_video_visible", false)}
             >
@@ -67,7 +67,7 @@ class Content12 extends BaseContent {
                 className={this.decorateCSS("player")}
                 src={this.getPropValue("video")}
               ></video>
-            </div>
+            </Base.Overlay>
           )}
         </Base.MaxContent>
       </Base.Container>

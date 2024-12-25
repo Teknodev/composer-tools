@@ -17,17 +17,6 @@
         }
 
         .video {
-            position: fixed;
-            width: 100vw;
-            height: 100vh;
-            background: var(--composer-overlay-color);
-            top: 0;
-            left: 0;
-            display: grid;
-            place-items: center;
-            padding: 20px;
-            z-index: 9;
-
             .player {
                 width: 100%;
                 max-width: 800px;
