@@ -427,13 +427,19 @@ class Team10 extends Team {
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={this.decorateCSS("left")}>
-            {subtitleExist && <Base.SectionSubTitle className={backgroundImageExist ? this.decorateCSS("subtitle") : this.decorateCSS("subtitle-no-image")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
-            {titleExist && <Base.SectionTitle className={backgroundImageExist ? this.decorateCSS("title") : this.decorateCSS("title-no-image")}>{this.getPropValue("title")}</Base.SectionTitle>}
-            {overlayExist && <div className={this.decorateCSS("overlay")}></div>}
-            {backgroundImageExist && <img className={this.decorateCSS("background-image")} src={this.getPropValue("background-image")} />}
-          </Base.VerticalContent>
+        <div className={this.decorateCSS("max-content")}>
+          <Base.Container className={this.decorateCSS("left")}>
+            <Base.MaxContent>
+              <Base.VerticalContent>
+                {subtitleExist && <Base.SectionSubTitle className={backgroundImageExist ? this.decorateCSS("subtitle") : this.decorateCSS("subtitle-no-image")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+                {titleExist && <Base.SectionTitle className={backgroundImageExist ? this.decorateCSS("title") : this.decorateCSS("title-no-image")}>{this.getPropValue("title")}</Base.SectionTitle>}
+              </Base.VerticalContent>
+
+              {overlayExist && <div className={this.decorateCSS("overlay")}></div>}
+              {backgroundImageExist && <img className={this.decorateCSS("background-image")} src={this.getPropValue("background-image")} />}
+            </Base.MaxContent>
+
+          </Base.Container>
           <div className={this.decorateCSS("right")}>
             {this.castToObject<TTeam[]>("team").map((teamMember: any, index: number) => {
               const imageExist = teamMember.getPropValue("image");
@@ -487,7 +493,7 @@ class Team10 extends Team {
               );
             })}
           </div>
-        </Base.MaxContent>
+        </div>
       </Base.Container>
     );
   }

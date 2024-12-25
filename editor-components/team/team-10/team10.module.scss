@@ -2,18 +2,23 @@
 
 .container {
   padding: 0;
+  height: 100vh;
 
   .max-content {
     display: flex;
     overflow-x: auto;
     overflow-y: hidden;
+    height: 100%;
 
     .left {
       width: 540px;
       position: relative;
       justify-content: center;
+      display: flex;
+      align-items: center;
 
       .background-image {
+        top: 0px;
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -23,11 +28,12 @@
       }
 
       .overlay {
+        top: 0px;
         position: absolute;
         z-index: 1;
         height: 100%;
         width: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
+        background-color: var(--composer-overlay-color)
       }
 
       .title {
