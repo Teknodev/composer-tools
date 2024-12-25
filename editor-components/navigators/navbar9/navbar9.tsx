@@ -11,6 +11,10 @@ type Link = {
   links: Link[];
 };
 
+type Language = {
+  language: JSX.Element;
+};
+
 class Navbar9 extends BaseNavigator {
   constructor(props?: any) {
     super(props, styles);
@@ -394,10 +398,50 @@ class Navbar9 extends BaseNavigator {
     });
 
     this.addProp({
-      type: "string",
-      key: "leftContent",
-      displayer: "Left Content",
-      value: "Europe | EN"
+      type: "array",
+      key: "localization",
+      displayer: "Localization",
+      value: [
+        {
+          type: "object",
+          key: "option",
+          displayer: "Option",
+          value: [
+            {
+              type: "string",
+              key: "language",
+              displayer: "Language",
+              value: "En"
+            },
+          ]
+        },
+        {
+          type: "object",
+          key: "option",
+          displayer: "Option",
+          value: [
+            {
+              type: "string",
+              key: "language",
+              displayer: "Language",
+              value: "Tr"
+            },
+          ]
+        },
+        {
+          type: "object",
+          key: "option",
+          displayer: "Option",
+          value: [
+            {
+              type: "string",
+              key: "language",
+              displayer: "Language",
+              value: "Ru"
+            },
+          ]
+        },
+      ]
     });
 
     this.addProp({
@@ -406,10 +450,16 @@ class Navbar9 extends BaseNavigator {
       displayer: "Right Content",
       value: "Lorem ipsum"
     });
+
+    this.setComponentState("defaultLanguage", this.getPropValue("localization")[0].getPropValue("language", { as_string: true }));
   }
 
   getName(): string {
     return "Navbar 9";
+  }
+
+  switchLanguage(lang: string): void {
+    this.setComponentState("defaultLanguage", lang);
   }
 
   render() {
@@ -419,6 +469,8 @@ class Navbar9 extends BaseNavigator {
     const subtitleExist = !!this.getPropValue("subtitle", { as_string: true });
 
     const links = this.castToObject<Link[]>("links");
+    const languages = this.castToObject<Language[]>("localization");
+    const languagesOmitDefault = languages.filter(elem => this.castToString(elem.language) !== this.getComponentState("defaultLanguage"));
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -435,12 +487,21 @@ class Navbar9 extends BaseNavigator {
           )}
           <div className={this.decorateCSS("wrapper")}>
             <div className={this.decorateCSS("left-content")}>
-              left content
+              <div className={this.decorateCSS("localization")}>
+                {this.getComponentState("defaultLanguage")}
+
+                <div className={this.decorateCSS("options")}>
+                  {languagesOmitDefault.map((option, index: number) => (
+                    <div onClick={() => this.switchLanguage(this.castToString(option.language))} className={this.decorateCSS("option")} key={index}>
+                      {option.language}
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
             <div className={this.decorateCSS("links")}>
               {links.map((item, index) => {
                 if (!this.castToString(item.text)) return null;
-                console.log(item.type);
 
                 return (
                   <ComposerLink path={item.url} key={index}>
