@@ -3,105 +3,106 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { BaseFooter } from "../../EditorComponent";
 import styles from "./footer11.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
+
+type Icons = {
+  icon: string;
+  page: string;
+};
 
 class Footer11Page extends BaseFooter {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
       type: "string",
-      key: "text",
-      displayer: "Text",
-      value: " All rights reserved  ©  ",
-    });
-    this.addProp({
-      type: "string",
-      key: "ref-text",
-      displayer: "Referral Text",
-      value: "Adam Smith"
+      key: "footerText",
+      displayer: "Footer Text",
+      value: "© 2024 Blinkpage. All rights reserved. Designed and developed by Blinkpage.",
     });
 
     this.addProp({
       type: "array",
-      key: "icons",
-      displayer: "Icons",
+      key: "socials",
+      displayer: "Social Items",
       value: [
         {
           type: "object",
-          key: "item",
-          displayer: "Item",
+          key: "content",
+          displayer: "Content Elements",
           value: [
             {
               type: "icon",
               key: "icon",
-              value:
-                "FaFacebookF",
               displayer: "Icon",
+              value: "FaPinterest",
             },
+
             {
               type: "page",
-              key: "link",
+              key: "url",
+              displayer: "Url",
               value: "",
-              displayer: "Navigate To",
             },
           ],
         },
         {
           type: "object",
-          key: "item",
-          displayer: "Item",
+          key: "content",
+          displayer: "Content Elements",
           value: [
             {
               type: "icon",
               key: "icon",
-              value:
-                "FaInstagram",
               displayer: "Icon",
+              value: "FaFacebookF",
             },
+
             {
               type: "page",
-              key: "link",
+              key: "url",
+              displayer: "Url",
               value: "",
-              displayer: "Navigate To",
+            },
+          ],
+        },
+
+        {
+          type: "object",
+          key: "content",
+          displayer: "Content Elements",
+          value: [
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaXTwitter",
+            },
+
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: "",
             },
           ],
         },
         {
           type: "object",
-          key: "item",
-          displayer: "Item",
+          key: "content",
+          displayer: "Content Elements",
           value: [
             {
               type: "icon",
               key: "icon",
-              value:
-                "FaYoutube",
               displayer: "Icon",
+              value: "FaInstagram",
             },
+
             {
               type: "page",
-              key: "link",
+              key: "url",
+              displayer: "Url",
               value: "",
-              displayer: "Navigate To",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "icon",
-              key: "icon",
-              value:
-                "IoLogoPinterest",
-              displayer: "Icon",
-            },
-            {
-              type: "page",
-              key: "link",
-              value: "",
-              displayer: "Navigate To",
             },
           ],
         },
@@ -112,30 +113,33 @@ class Footer11Page extends BaseFooter {
     return "Footer 11";
   }
   render() {
+    const socials = this.castToObject<Icons[]>("socials");
 
+    const footerText = this.getPropValue("footerText");
+
+    const footerTextExist = this.castToString(footerText);
     return (
-      <div className={this.decorateCSS("container")} >
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("content")}>
-            <div className={this.decorateCSS("text")}>
-              {this.getPropValue("text")}
-              <div className={this.decorateCSS("ref-page")}>{this.getPropValue("ref-text")}</div>
-            </div>
-            <div className={this.decorateCSS("icons-div")}>
-              {this.getPropValue("icons").map((icon: any, index: number) => {
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          {socials.length > 0 && (
+            <div className={this.decorateCSS("socials-container")}>
+              {socials.map((item: any, index: number) => {
                 return (
-                  <ComposerLink path={icon.value[1].value}>
-                    <ComposerIcon
-                      name={icon.value[0].value}
-                      propsIcon={{ className: this.decorateCSS("icon") }}
-                    />
-                  </ComposerLink>
+                  item.icon && (
+                    <ComposerLink key={index} path={item.url}>
+                      <div className={this.decorateCSS("socials-element")}>
+                        <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={item.icon} />
+                      </div>
+                    </ComposerLink>
+                  )
                 );
               })}
             </div>
-          </div>
-        </div>
-      </div>
+          )}
+
+          {footerTextExist && <Base.P className={this.decorateCSS("text")}>{this.getPropValue("footerText")}</Base.P>}
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

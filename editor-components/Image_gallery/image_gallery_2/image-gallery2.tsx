@@ -805,7 +805,7 @@ class ImageGallery2 extends BaseImageGallery {
 
                     </div>
                     {modalOpen && (
-                        <div className={this.decorateCSS("modal")}>
+                        <Base.Overlay className={this.decorateCSS("modal")}>
                             <div className={this.decorateCSS("modal-wrapper")}
                                 onClick={this.closeModal}>
                                 <div
@@ -859,7 +859,7 @@ class ImageGallery2 extends BaseImageGallery {
                                     name={nextImageIcon}
                                 />
                             </div>
-                        </div>
+                        </Base.Overlay>
                     )}
                 </Base.MaxContent>
             </Base.Container >

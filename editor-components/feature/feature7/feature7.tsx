@@ -6,15 +6,15 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { Base } from "../../../composer-base-components/base/base";
 
 type Feature = {
-  title: string;
+  title: JSX.Element;
   iconFeature: string;
 };
 
 type Link = {
-  linkText: string;
+  linkText: JSX.Element;
   iconLink: string;
   url: string;
-}
+};
 
 class Feature7 extends BaseFeature {
   constructor(props?: any) {
@@ -154,101 +154,119 @@ class Feature7 extends BaseFeature {
   }
 
   render() {
-    const title = this.castToString(this.getPropValue("title"));
-    const mainTitle = this.castToString(this.getPropValue("mainTitle"));
-    const description = this.castToString(this.getPropValue("description"));
-    const features = this.getPropValue("features");
-    const links = this.getPropValue("links");
+    const subtitleExist = this.castToString(this.getPropValue("title"));
+    const titleExist = this.castToString(this.getPropValue("mainTitle"))
+    const descriptionExist = this.castToString(this.getPropValue("description"))
+    const image = this.getPropValue("image");
+
+    const features = this.castToObject<Feature[]>("features");
+    const links = this.castToObject<Link[]>("links");
+
     const hasTextContent =
-      title ||
-      mainTitle ||
-      description ||
-      links ||
-      features;
+      subtitleExist ||
+      titleExist ||
+      descriptionExist ||
+      (this.getPropValue("links").length > 0) ||
+      (this.getPropValue("features").length > 0);
 
     return (
       <Base.Container className={this.decorateCSS("container")} isFull={true}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {this.getPropValue("image") && (
-            <div className={this.decorateCSS("image-container")}>
-              <img
-                src={this.getPropValue("image")}
-                className={`${this.decorateCSS("image")} ${hasTextContent && this.decorateCSS("no-text-container")}`}
-              />
-            </div>
-          )}
-          {hasTextContent.length > 0 && (
-            <Base.VerticalContent className={`${this.decorateCSS("textContainer")} ${!this.getPropValue("image") && this.decorateCSS("no-image")}`}>
-              {title && (
-                <Base.SectionSubTitle className={this.decorateCSS("title")}>
-                  {this.getPropValue("title")}
-                </Base.SectionSubTitle>
-              )}
-              {mainTitle && (
-                <Base.SectionTitle className={this.decorateCSS("mainTitle")}>
-                  {this.getPropValue("mainTitle")}
-                </Base.SectionTitle>
-              )}
-              {description && (
-                <Base.SectionDescription className={this.decorateCSS("description")}>
-                  {this.getPropValue("description")}
-                </Base.SectionDescription>
-              )}
-              {features.length > 0 && (
-                <ul className={this.decorateCSS("featuresList")}>
-                  {this.castToObject<Feature[]>("features").map(
-                    (feature: Feature, index: number) => (
-                      <li key={index} className={this.decorateCSS("feature")}>
-                        {feature.iconFeature && (
-                          <div className={this.decorateCSS("icon-wrapper")}>
-                            <ComposerIcon
-                              name={feature.iconFeature}
-                              propsIcon={{
-                                className: this.decorateCSS("iconFeature"),
-                              }}
-                            />
-                          </div>
-                        )}
-                        {feature.title && (
-                          <Base.H2 className={this.decorateCSS("featureTitle")}>
-                            {feature.title}
-                          </Base.H2>
-                        )}
-                      </li>
-                    )
-                  )}
-                </ul>
-              )}
+          <Base.ContainerGrid className={this.decorateCSS("wrapper")}>
+            {!!image && (
+              <Base.GridCell className={this.decorateCSS("image-container")}>
+                <img
+                  src={image}
+                  className={hasTextContent ? this.decorateCSS("image") : this.decorateCSS("image-no-border-radius")}
+                />
+              </Base.GridCell>
+            )}
+            {hasTextContent && (
+              <Base.GridCell
+                className={this.decorateCSS("text-container")}
+              >
+                {(subtitleExist || titleExist || descriptionExist) && (
+                  <Base.VerticalContent className={this.decorateCSS("title-wrapper")}>
+                    {subtitleExist && (
+                      <Base.SectionSubTitle className={this.decorateCSS("title")}>
+                        {this.getPropValue("title")}
+                      </Base.SectionSubTitle>
+                    )}
+                    {titleExist && (
+                      <Base.SectionTitle className={this.decorateCSS("mainTitle")}>
+                        {this.getPropValue("mainTitle")}
+                      </Base.SectionTitle>
+                    )}
+                    {descriptionExist && (
+                      <Base.SectionDescription className={this.decorateCSS("description")}>
+                        {this.getPropValue("description")}
+                      </Base.SectionDescription>
+                    )}
+                  </Base.VerticalContent>
+                )}
 
-              {links.length > 0 && (
-                <ul className={this.decorateCSS("linkList")}>
-                  {this.castToObject<Link[]>("links").map(
-                    (link: Link, index: number) => (
-                      <div className={this.decorateCSS("linkContainer")}>
-                        <li key={index} className={this.decorateCSS("link")}>
-                          {link.linkText && (
-                            <ComposerLink path={link.url}>
-                              <span className={this.decorateCSS("linkText")}>
-                                {link.linkText}
-                              </span>
-                            </ComposerLink>
+                {(this.getPropValue("features").length > 0) && (
+                  <div className={this.decorateCSS("featuresList")}>
+                    {features.map((item: Feature, index: number) => {
+                      const titleExist = !!this.castToString(item.title);
+
+                      if (!titleExist && !item.iconFeature) return null;
+
+                      return (
+                        <div key={index} className={this.decorateCSS("feature")}>
+                          {item.iconFeature && (
+                            <div className={this.decorateCSS("icon-wrapper")}>
+                              <ComposerIcon
+                                name={item.iconFeature}
+                                propsIcon={{
+                                  className: this.decorateCSS("iconFeature"),
+                                }}
+                              />
+                            </div>
                           )}
-                          {link.iconLink && (
-                            <ComposerIcon
-                              name={link.iconLink}
-                              propsIcon={{
-                                className: this.decorateCSS("iconLink"),
-                              }}
-                            />
+                          {titleExist && (
+                            <div className={this.decorateCSS("featureTitle")}>
+                              {item.title}
+                            </div>
                           )}
-                        </li>
-                      </div>
-                    )
-                  )}
-                </ul>
-              )}
-            </Base.VerticalContent>
-          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+
+                {(this.getPropValue("links").length > 0) && (
+                  <div className={this.decorateCSS("linkList")}>
+                    {links.map((item: Link, index: number) => {
+                      const textExist = !!this.castToString(item.linkText);
+
+                      return (
+                        <div key={index} className={this.decorateCSS("linkContainer")}>
+                          <div className={this.decorateCSS("link")}>
+                            {textExist && (
+                              <ComposerLink path={item.url}>
+                                <span className={this.decorateCSS("linkText")}>
+                                  {item.linkText}
+                                </span>
+                              </ComposerLink>
+                            )}
+                            {!!item.iconLink && (
+                              <div className={this.decorateCSS("iconWrapper")}>
+                                <ComposerIcon
+                                  name={item.iconLink}
+                                  propsIcon={{ className: this.decorateCSS("iconLink") }}
+                                />
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </Base.GridCell>
+            )}
+          </Base.ContainerGrid>
         </Base.MaxContent>
       </Base.Container>
     );
