@@ -129,12 +129,6 @@ class HeaderComponent34 extends BaseHeader {
         },
       ],
     });
-    this.addProp({
-      type: "boolean",
-      key: "overlayActive",
-      displayer: "Overlay Active",
-      value: true,
-    });
 
     this.setComponentState("animation-active", false);
     this.setComponentState("display-none", true);
@@ -253,21 +247,25 @@ class HeaderComponent34 extends BaseHeader {
           </div>
           <div
             className={`${this.decorateCSS(
-              "content"
+              "contentContainer"
             )} animate__animated ${this.getComponentState(
               "contentAnimationClass"
             )}`}
           >
-            {slides[overlayActiveIndex].title && (
-              <Base.H1 className={this.decorateCSS("content-title")}>
-                {slides[overlayActiveIndex].title}
-              </Base.H1>
-            )}
-            {slides[overlayActiveIndex].buttonText && (
-              <ComposerLink path={slides[overlayActiveIndex].link}>
-                <Base.Button>{slides[overlayActiveIndex].buttonText}</Base.Button>
-              </ComposerLink>
-            )}
+            <Base.MaxContent className={this.decorateCSS("content")}>
+              {slides[overlayActiveIndex].title && (
+                <Base.H1 className={this.decorateCSS("content-title")}>
+                  {slides[overlayActiveIndex].title}
+                </Base.H1>
+              )}
+              {slides[overlayActiveIndex].buttonText && (
+                <ComposerLink path={slides[overlayActiveIndex].link}>
+                  <Base.Button>
+                    {slides[overlayActiveIndex].buttonText}
+                  </Base.Button>
+                </ComposerLink>
+              )}
+            </Base.MaxContent>
           </div>
 
           <div
@@ -297,14 +295,20 @@ class HeaderComponent34 extends BaseHeader {
                 }`}
                 onClick={async () => {
                   if (slideStatus === "sliding") return;
-                  
+
                   const direction = index > activeIndex ? "right" : "left";
-                  this.setComponentState("contentAnimationClass", "animate__fadeOut");
+                  this.setComponentState(
+                    "contentAnimationClass",
+                    "animate__fadeOut"
+                  );
                   await delay(10);
                   this.setComponentState("overlay-active-index", index);
                   this.setComponentState("slide-direction", direction);
                   await delay(10);
-                  this.setComponentState("contentAnimationClass", "animate__fadeInUp");
+                  this.setComponentState(
+                    "contentAnimationClass",
+                    "animate__fadeInUp"
+                  );
                   this.setComponentState("slideStatus", "sliding");
                   await delay(800);
                   this.setComponentState("active-index", index);
