@@ -110,19 +110,15 @@ class CallToAction2Page extends BaseCallToAction {
     const playIcon: string = this.getPropValue("playIcon");
     const closeIcon: string = this.getPropValue("closeIcon");
 
-    const titleExist = this.getPropValue("title", { as_string: true });
-    const subtitleExist = this.getPropValue("subtitle", { as_string: true });
-
-    const renderHeader: boolean =
-      titleExist || subtitleExist || buttons.length > 0;
+    const titleExist = this.castToString(this.getPropValue("title"));
+    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <div className={this.getPropValue("image") ? this.decorateCSS("background") : this.decorateCSS("background-no-image")}> </div>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-
           <div className={this.decorateCSS("wrapper")}>
-            {renderHeader && (
+            {(titleExist || subtitleExist || (buttons.length > 0)) && (
               <div className={alignment === "left" ? this.decorateCSS("header") : this.decorateCSS("header-center")}>
                 {(titleExist || subtitleExist) && (
                   <Base.VerticalContent className={this.decorateCSS("titles")}>
@@ -151,7 +147,6 @@ class CallToAction2Page extends BaseCallToAction {
                 )}
               </div>
             )}
-
             {image && (
               <div
                 style={{
