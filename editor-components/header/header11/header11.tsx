@@ -54,7 +54,7 @@ class Header11 extends BaseHeader {
       type: "image",
       key: "backgroundImage",
       displayer: "Background Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675aa2fe0655f8002ca633bf?alt=media"
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676bd9e10655f8002cac26be?alt=media&timestamp=1735121393561"
     })
     this.setComponentState("isVideoModalOpen", false);
     this.setComponentState("videoUrl", null);

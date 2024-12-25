@@ -84,7 +84,7 @@ class Header21 extends BaseHeader {
       type: "image",
       key: "image",
       displayer: "Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b08ed003b007002cc77884?alt=media",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676be1ce0655f8002cac3b47?alt=media&timestamp=1735123426015",
     });
 
     this.addProp({

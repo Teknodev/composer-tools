@@ -53,7 +53,7 @@ class Header27 extends BaseHeader {
               key: "background",
               displayer: "Background",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b5c2693292c6002b237b7c?alt=media",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676be3640655f8002cac3e87?alt=media&timestamp=1735123831519",
             },
             {
               type: "string",
@@ -66,7 +66,7 @@ class Header27 extends BaseHeader {
               displayer: "Up Image",
               key: "upImage",
               value:
-                "https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676be3a40655f8002cac3ed5?alt=media&timestamp=1735123894988",
             },
             {
               type: "string",
@@ -92,7 +92,7 @@ class Header27 extends BaseHeader {
                       displayer: "Down Image 1",
                       key: "downImage",
                       value:
-                        "https://media.istockphoto.com/id/1503772186/tr/foto%C4%9Fraf/cups-of-assorted-coffee-on-light-background.jpg?s=612x612&w=0&k=20&c=V9JNNlMkgAMZlAtNO6u4hGiydn8Y1oJUEiUWBXaNC_k=",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676be3e30655f8002cac3f37?alt=media&timestamp=1735123958222",
                     },
                   ],
                 },
@@ -106,7 +106,7 @@ class Header27 extends BaseHeader {
                       displayer: "Down Image 2",
                       key: "downImage",
                       value:
-                        "https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=1937&auto=format&fit=crop&ixlib=rb-4.0.3",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676be40d0655f8002cac3f66?alt=media&timestamp=1735124000613",
                     },
                   ],
                 },
@@ -120,7 +120,7 @@ class Header27 extends BaseHeader {
                       displayer: "Down Image 3",
                       key: "downImage",
                       value:
-                        "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676be4350655f8002cac3f76?alt=media&timestamp=1735124042082",
                     },
                   ],
                 },
@@ -213,7 +213,7 @@ class Header27 extends BaseHeader {
               key: "background",
               displayer: "Background",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b5c2693292c6002b237b7c?alt=media",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676be4620655f8002cac3fc0?alt=media&timestamp=1735124084014",
             },
             {
               type: "string",
@@ -226,7 +226,7 @@ class Header27 extends BaseHeader {
               displayer: "Up Image",
               key: "upImage",
               value:
-                "https://images.unsplash.com/photo-1522992319-0365e5f11656?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676be48d0655f8002cac3fd5?alt=media&timestamp=1735124127773",
             },
             {
               type: "string",
@@ -249,7 +249,7 @@ class Header27 extends BaseHeader {
                       displayer: "Down Image 1",
                       key: "downImage",
                       value:
-                        "https://images.unsplash.com/photo-1522992319-0365e5f11656?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676be4ae0655f8002cac3fdc?alt=media&timestamp=1735124161195",
                     },
                   ],
                 },
@@ -263,7 +263,7 @@ class Header27 extends BaseHeader {
                       displayer: "Down Image 2",
                       key: "downImage",
                       value:
-                        "https://images.unsplash.com/photo-1606791405792-1004f1718d0c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676be4d10655f8002cac3ff4?alt=media&timestamp=1735124195424",
                     },
                   ],
                 },
@@ -277,7 +277,7 @@ class Header27 extends BaseHeader {
                       displayer: "Down Image 3",
                       key: "downImage",
                       value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/670792d497fe08002c74f4a3?alt=media",
+                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676be4fb0655f8002cac4013?alt=media&timestamp=1735124238903",
                     },
                   ],
                 },

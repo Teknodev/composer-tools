@@ -144,7 +144,7 @@ class Header10 extends BaseHeader {
               type: "image",
               key: "image",
               displayer: " Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a754582f8a5b002ce6cce6?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676bd8ca0655f8002cac25c2?alt=media&timestamp=1735121118101",
             },
             {
               type: "string",
@@ -224,7 +224,7 @@ class Header10 extends BaseHeader {
               type: "image",
               key: "image",
               displayer: " Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a754bb2f8a5b002ce6cd14?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676bd9040655f8002cac2607?alt=media&timestamp=1735121176498",
             },
             {
               type: "string",

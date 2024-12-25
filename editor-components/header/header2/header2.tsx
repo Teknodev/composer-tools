@@ -38,7 +38,7 @@ class Header2 extends BaseHeader {
               key: "image",
               displayer: "Background Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6710cfaa97fe08002c76ce44?alt=media",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676bd6020655f8002cac1d8c?alt=media&timestamp=1735120404993",
             },
             {
               type: "string",
@@ -107,7 +107,7 @@ class Header2 extends BaseHeader {
               key: "image",
               displayer: "Background Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6710d06f97fe08002c76cf1c?alt=media",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676bd6320655f8002cac1d91?alt=media&timestamp=1735120453082",
             },
             {
               type: "string",
@@ -176,7 +176,7 @@ class Header2 extends BaseHeader {
               key: "image",
               displayer: "Background Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6710d0b497fe08002c76cf66?alt=media",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676bd6540655f8002cac1dbf?alt=media&timestamp=1735120485035",
             },
             {
               type: "string",

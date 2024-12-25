@@ -56,7 +56,7 @@ class Header5 extends BaseHeader {
           key: "backgroundImage",
           displayer: "Background Image",
           value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a765ee2f8a5b002ce6d6a7?alt=media",
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676bd7410655f8002cac217c?alt=media&timestamp=1735120723366",
         },
       ],
     });

@@ -77,7 +77,7 @@ class Header20 extends BaseHeader {
               displayer: "Image",
               key: "image",
               value:
-                "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/01hero.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676bdb020655f8002cac28ee?alt=media&timestamp=1735121684770",
             },
             {
               type: "page",
@@ -122,7 +122,7 @@ class Header20 extends BaseHeader {
               displayer: "Image",
               key: "image",
               value:
-                "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/02hero.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676bdb280655f8002cac2911?alt=media&timestamp=1735121722008",
             },
             {
               type: "page",
@@ -167,7 +167,7 @@ class Header20 extends BaseHeader {
               displayer: "Image",
               key: "image",
               value:
-                "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/03hero.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676bdb4a0655f8002cac2922?alt=media&timestamp=1735121756578",
             },
             {
               type: "page",
@@ -212,7 +212,7 @@ class Header20 extends BaseHeader {
               displayer: "Image",
               key: "image",
               value:
-                "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/04hero.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676bdb770655f8002cac2943?alt=media&timestamp=1735121805812",
             },
             {
               type: "page",
@@ -257,7 +257,7 @@ class Header20 extends BaseHeader {
               displayer: "Image",
               key: "image",
               value:
-                "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/05hero.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676bdba80655f8002cac2a22?alt=media&timestamp=1735121850070",
             },
             {
               type: "page",
@@ -302,7 +302,7 @@ class Header20 extends BaseHeader {
               displayer: "Image",
               key: "image",
               value:
-                "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/06hero.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676bdbca0655f8002cac2a2d?alt=media&timestamp=1735121884806",
             },
             {
               type: "page",
@@ -347,7 +347,7 @@ class Header20 extends BaseHeader {
               displayer: "Image",
               key: "image",
               value:
-                "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/07hero.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676bdbec0655f8002cac2a3f?alt=media&timestamp=1735121919413",
             },
             {
               type: "page",
@@ -392,7 +392,7 @@ class Header20 extends BaseHeader {
               displayer: "Image",
               key: "image",
               value:
-                "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/08hero.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676bdc130655f8002cac2b43?alt=media&timestamp=1735121969630",
             },
             {
               type: "page",
@@ -437,7 +437,7 @@ class Header20 extends BaseHeader {
               displayer: "Image",
               key: "image",
               value:
-                "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/09hero.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676bdc400655f8002cac2e66?alt=media&timestamp=1735122014675",
             },
             {
               type: "page",
@@ -482,7 +482,7 @@ class Header20 extends BaseHeader {
               displayer: "Image",
               key: "image",
               value:
-                "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/10hero.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676bdc720655f8002cac3093?alt=media&timestamp=1735122055884",
             },
             {
               type: "page",
@@ -527,7 +527,7 @@ class Header20 extends BaseHeader {
               displayer: "Image",
               key: "image",
               value:
-                "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/11hero.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676bdc9f0655f8002cac3193?alt=media&timestamp=1735122101509",
             },
             {
               type: "page",
