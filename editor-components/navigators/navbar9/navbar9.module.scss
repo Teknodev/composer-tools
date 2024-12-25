@@ -35,9 +35,27 @@
           padding: var(--composer-gap-xs) var(--composer-gap-sm);
           padding-left: 0;
 
+          .idle-icon {
+            display: block;
+          }
+
+          .clicked-icon {
+            display: none;
+          }
+
           &:hover {
             cursor: pointer;
+
+            .idle-icon {
+              display: none;
+            }
+
+            .clicked-icon {
+              display: block;
+            }
+
             .options {
+              min-width: 40px;
               display: flex;
               flex-direction: column;
             }

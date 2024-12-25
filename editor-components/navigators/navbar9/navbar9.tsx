@@ -3,6 +3,7 @@ import { BaseNavigator } from "../../EditorComponent";
 import styles from "./navbar9.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type Link = {
   text: JSX.Element;
@@ -445,6 +446,20 @@ class Navbar9 extends BaseNavigator {
     });
 
     this.addProp({
+      type: "icon",
+      key: "localizationIdleIcon",
+      displayer: "Localization Idle Icon",
+      value: "MdOutlineKeyboardArrowDown"
+    });
+
+    this.addProp({
+      type: "icon",
+      key: "localizationClickedIcon",
+      displayer: "Localization Clicked Icon",
+      value: "MdOutlineKeyboardArrowUp"
+    });
+
+    this.addProp({
       type: "string",
       key: "rightContent",
       displayer: "Right Content",
@@ -472,6 +487,9 @@ class Navbar9 extends BaseNavigator {
     const languages = this.castToObject<Language[]>("localization");
     const languagesOmitDefault = languages.filter(elem => this.castToString(elem.language) !== this.getComponentState("defaultLanguage"));
 
+    const localizationIdleIcon = this.getPropValue("localizationIdleIcon");
+    const localizationClickedIcon = this.getPropValue("localizationClickedIcon");
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -489,6 +507,8 @@ class Navbar9 extends BaseNavigator {
             <div className={this.decorateCSS("left-content")}>
               <div className={this.decorateCSS("localization")}>
                 {this.getComponentState("defaultLanguage")}
+                <ComposerIcon name={localizationIdleIcon} propsIcon={{ className: this.decorateCSS("idle-icon") }} />
+                <ComposerIcon name={localizationClickedIcon} propsIcon={{ className: this.decorateCSS("clicked-icon") }} />
 
                 <div className={this.decorateCSS("options")}>
                   {languagesOmitDefault.map((option, index: number) => (
