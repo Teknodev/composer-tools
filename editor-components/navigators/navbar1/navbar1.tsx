@@ -311,44 +311,29 @@ class Navbar1 extends BaseNavigator {
   hamburgerNavClick() {
     let value: boolean = this.getComponentState("hamburgerNavActive");
     this.setComponentState("hamburgerNavActive", !value);
+    this.updateMaxHeight();
   }
 
-  navCLick() {
-    let value: boolean = this.getComponentState("navActive");
-    this.setComponentState("navActive", !value);
+  navCLick(index: number) {
+    let value = this.getComponentState("navActive");
+    this.setComponentState("navActive", value === index ? null : index);
+    this.updateMaxHeight();
   }
-  subNavCLick(index: any) {
+  subNavCLick(index: number) {
     let value = this.getComponentState("subNavActive");
     this.setComponentState("subNavActive", value === index ? null : index);
-  }
-
-  componentDidMount(): void {
-    const navigator = document.getElementsByClassName(this.decorateCSS("navigator"));
-    let height = 0;
-    if (navigator.length > 0) {
-      const element = navigator[0] as HTMLElement;
-      height = element.offsetHeight;
-      this.setComponentState("maxheight", height)
-    }
+    this.updateMaxHeight();
   }
   updateMaxHeight(): void {
     const languageElement = document.querySelector(`.${this.decorateCSS("languagemobile")}`) as HTMLElement;
     const navigatorElement = document.querySelector(`.${this.decorateCSS("navigator")}`) as HTMLElement;
-
-
-    console.log("languageElement", languageElement.offsetHeight)
-
-    if (languageElement && navigatorElement) {
-      const currentMaxHeight = this.getComponentState("maxheight") || 0;
+    if (languageElement || navigatorElement) {
+      const navigatorHeight = navigatorElement.offsetHeight;
       const languageHeight = languageElement.offsetHeight;
-
-      const newMaxHeight = currentMaxHeight + languageHeight;
+      const newMaxHeight = languageHeight + navigatorHeight;
       this.setComponentState("maxheight", newMaxHeight);
-
     }
   }
-
-
 
   render() {
     const logoText = this.getPropValue("logo_text");
@@ -356,8 +341,6 @@ class Navbar1 extends BaseNavigator {
     const textUrl = this.getPropValue("logo_text_url");
     const navActive = this.getComponentState("hamburgerNavActive");
     const logoSrc = this.getPropValue(navActive ? "image_light" : "image_dark");
-
-
     return (
       <div
         className={`${this.decorateCSS("container")} ${this.decorateCSS(this.getPropValue("position"))}`}
@@ -404,7 +387,8 @@ class Navbar1 extends BaseNavigator {
                                     <div className={this.decorateCSS("sub-item-text-wrapper")}>
                                       {subItem.sub_items?.length > 0 &&
                                         subItem.sub_items.map((subItem) => {
-                                          return (
+                                          const subitemExist = this.castToString(subItem.title)
+                                          return subitemExist && (
                                             <span className={this.decorateCSS("sub-item-text")}>
                                               <ComposerLink path={subItem.navigate_to}>
                                                 {subItem.title}
@@ -412,7 +396,8 @@ class Navbar1 extends BaseNavigator {
                                               <div className={this.decorateCSS("list")}>
                                                 {(subItem.sub_items.length > 0) && (
                                                   subItem.sub_items.map((subitem: Item) => {
-                                                    return (
+                                                    const subitemExist = this.castToString(subitem.title)
+                                                    return subitemExist && (
                                                       <div className={this.decorateCSS("list-item")}>
                                                         <ComposerLink path={subitem.navigate_to}>
                                                           {subitem.title}
@@ -480,7 +465,7 @@ class Navbar1 extends BaseNavigator {
             <div className={this.decorateCSS("navigator")}>
               <div className={this.decorateCSS("navbar-child")}>
                 {this.castToObject<[]>("items").map(
-                  (item: Item, indexItemList: number) => {
+                  (item: Item, indexItemList: number,) => {
                     return (
                       <div className={this.decorateCSS("menu-item")}>
                         <div
@@ -488,12 +473,12 @@ class Navbar1 extends BaseNavigator {
                         >
                           <ComposerLink path={item.navigate_to}>
                             <div className={this.decorateCSS("title")} onClick={() => {
-                              this.navCLick();
+                              this.navCLick(indexItemList);
                             }}>
                               <div className={this.decorateCSS("title-wrapper")}>
                                 {item.title && (
                                   <ComposerLink path={item.navigate_to}>
-                                    <span className={this.decorateCSS("title")} >
+                                    <span className={this.decorateCSS("title-text")} >
                                       {item.title}
                                     </span>
                                   </ComposerLink>
@@ -507,34 +492,40 @@ class Navbar1 extends BaseNavigator {
                               </div>
                             </div>
                           </ComposerLink>
-                          {(item.sub_items?.length > 0) && (
+                          {((item.sub_items?.length > 0) && this.getComponentState("navActive") == indexItemList) && (
                             <div className={this.decorateCSS("sub-items")}>
                               {(item.sub_items?.length > 0) &&
                                 item.sub_items.map((subItem: Item) => {
                                   return (
                                     <div className={this.decorateCSS("sub-item")}>
                                       {(subItem.sub_items.length > 0) && (
-                                        <div className={this.decorateCSS("sub-item-text-wrapper")}>
-                                          {subItem.sub_items?.length > 0 &&
-                                            subItem.sub_items.map((subItem2) => {
-                                              return (
+                                        <div className={this.decorateCSS("sub-item-text-wrapper")} >
+                                          {(subItem.sub_items?.length > 0) &&
+                                            subItem.sub_items.map((subItem2, index: number) => {
+                                              const titleExist = this.castToString(subItem2.title);
+                                              return titleExist && (
                                                 <span className={this.decorateCSS("sub-item-text")}>
-                                                  <ComposerLink path={subItem2.navigate_to}>
-                                                    {subItem2.title}
-                                                  </ComposerLink>
-                                                  <div className={this.decorateCSS("list")}>
-                                                    {(subItem2.sub_items.length > 0) && (
-                                                      subItem2.sub_items.map((subitem: Item) => {
-                                                        return (
-                                                          <div className={this.decorateCSS("list-item")}>
-                                                            <ComposerLink path={subitem.navigate_to}>
-                                                              {subitem.title}
-                                                            </ComposerLink>
-                                                          </div>
-                                                        )
-                                                      })
-                                                    )}
+                                                  <div className={this.decorateCSS("item-text")} onClick={() => { this.subNavCLick(index) }}>
+                                                    <ComposerLink path={subItem2.navigate_to}>
+                                                      {subItem2.title}
+                                                    </ComposerLink>
                                                   </div>
+                                                  {this.getComponentState("subNavActive") == index && (
+                                                    <div className={this.decorateCSS("list")}>
+                                                      {(subItem2.sub_items.length > 0) && (
+                                                        subItem2.sub_items.map((subitem: Item) => {
+                                                          const titleExist = this.castToString(subitem.title);
+                                                          return titleExist && (
+                                                            <div className={this.decorateCSS("list-item")}>
+                                                              <ComposerLink path={subitem.navigate_to}>
+                                                                {subitem.title}
+                                                              </ComposerLink>
+                                                            </div>
+                                                          )
+                                                        })
+                                                      )}
+                                                    </div>
+                                                  )}
 
                                                 </span>
                                               )
