@@ -76,11 +76,11 @@ export type TypeUsableComponentProps = {
   additionalParams?: { selectItems?: string[]; maxElementCount?: number };
   max?: number;
 } & AvailablePropTypes & {
-    getPropValue?: (
-      propName: string,
-      properties?: GetPropValueProperties
-    ) => any;
-  };
+  getPropValue?: (
+    propName: string,
+    properties?: GetPropValueProperties
+  ) => any;
+};
 
 export enum CATEGORIES {
   NAVIGATOR = "navigator",
@@ -108,8 +108,7 @@ export enum CATEGORIES {
 //@ts-ignore
 export abstract class Component
   extends React.Component<{}, { states: any; componentProps: any }>
-  implements iComponent
-{
+  implements iComponent {
   private shadowProps: TypeUsableComponentProps[] = [];
   private styles: any;
   public id: string;
@@ -176,11 +175,11 @@ export abstract class Component
   private getFilteredProp(key: string, props: TypeUsableComponentProps[]): TypeUsableComponentProps | null {
     return props.find((prop: TypeUsableComponentProps) => prop.key === key) || null;
   }
-  
+
   getShadowProp(key: string): TypeUsableComponentProps | null {
     return this.getFilteredProp(key, this.shadowProps);
   }
-  
+
   getProp(key: string): TypeUsableComponentProps | null {
     return this.getFilteredProp(key, this.state.componentProps.props);
   }
@@ -494,6 +493,7 @@ export abstract class Component
   }
 
   castToString(elem: JSX.Element): string {
+
     return elem.props?.html?.replace(/<\/?[^>]+(>|$)/g, "");
   }
 
