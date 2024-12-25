@@ -329,7 +329,6 @@ class Header25 extends BaseHeader {
       ]
     });
 
-
     this.setComponentState("active-index", 0);
     this.setComponentState("titleAnimationClass", "animate__fadeInRight");
     this.setComponentState("descriptionAnimationClass", "animate__fadeInUp");
@@ -351,12 +350,14 @@ class Header25 extends BaseHeader {
       this.setComponentState(animationState, startingAnimation);
     }
   };
+
   render() {
     const settings = {
       dots: false,
       infinite: true,
       arrows: false,
-      speed: 2000,
+      speed: 1000,
+      fade: true,
       autoplay: false,
       autoplaySpeed: 3000,
       slidesToShow: 1,
@@ -374,6 +375,7 @@ class Header25 extends BaseHeader {
         }, 1000);
       },
     };
+
     const sliderItemObject = this.castToObject<SliderItem[]>("slider");
     const topContent = this.castToObject<TopContentItem>("top_content");
 
@@ -401,16 +403,20 @@ class Header25 extends BaseHeader {
             className={this.decorateCSS("carousel")}
             ref={this.getComponentState("slider-ref")}
           >
-            {sliderItemObject.map((sliderItem: SliderItem, indexSlider: number) => (
-              <div className={this.decorateCSS("slider-images")} key={indexSlider}>
-                {sliderItem.image &&
-                  <img
-                    className={this.decorateCSS("slider-image")}
-                    src={sliderItem.image}
-                    alt=""
-                  />}
-              </div>
-            ))}
+            {sliderItemObject.map((sliderItem: SliderItem, indexSlider: number) => {
+
+              return (
+                <div className={this.decorateCSS("slider-images")} key={indexSlider}>
+                  {sliderItem.image &&
+                    <img
+                      className={this.decorateCSS("slider-image")}
+                      src={sliderItem.image}
+                      alt=""
+                    />
+                  }
+                </div>
+              )
+            })}
           </ComposerSlider>
         )}
 
