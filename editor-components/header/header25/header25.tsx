@@ -358,14 +358,14 @@ class Header25 extends BaseHeader {
       arrows: false,
       speed: 2000,
       autoplay: false,
-      autoplaySpeed: 5000,
+      autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
       beforeChange: (oldIndex: number, newIndex: number) => {
         if (oldIndex == newIndex) return;
         this.setComponentState("buttonAnimationClass", "animate__fadeOutDown");
         this.setComponentState("titleAnimationClass", "animate__fadeOutDown");
-        this.setComponentState("descriptionAnimationClass", "animate__fadeOut");
+        this.setComponentState("descriptionAnimationClass", "animate__fadeOutDown");
         setTimeout(() => {
           this.setComponentState("active-index", newIndex);
           this.setComponentState("buttonAnimationClass", "animate__fadeInUp");
@@ -457,136 +457,145 @@ class Header25 extends BaseHeader {
                           name={item.icon_name}
                           propsIcon={{
                             className: `${this.decorateCSS("icon")}`,
-                            size: 20,
                           }}
                         />
                       </ComposerLink>
                     ))}
                   </div>}
               </div>}
+
+            {(sliderItemObject.length > 1 &&
+              (this.castToString(prevArrowText) ||
+                prevIcon ||
+                this.castToString(nextArrowText) ||
+                nextIcon)) && (
+                <div className={`${this.decorateCSS("arrows")} 
+                      ${(!isIndexDisplayExist && !isMediaPanelExist) && this.decorateCSS("no-left-side")}
+                      ${!isIndexDisplayExist && this.decorateCSS("icon-bottom")}
+                      ${imageless && this.decorateCSS("black-theme")}`}>
+                  {(this.castToString(prevArrowText) || prevIcon) &&
+                    <div
+                      className={this.decorateCSS("prev-arrow")}
+                      onClick={() => {
+                        this.getComponentState("slider-ref").current.slickPrev();
+                      }}
+                    >
+                      {prevIcon &&
+                        <ComposerIcon
+                          name={prevIcon}
+                          propsIcon={{
+                            className: `${this.decorateCSS("arrow")}`,
+                            size: 20,
+                          }}
+                        />}
+                      {this.castToString(prevArrowText) &&
+                        <span className={this.decorateCSS("arrow-text")}>
+                          {prevArrowText}
+                        </span>}
+                    </div>}
+
+                  {(this.castToString(nextArrowText) || nextIcon) &&
+                    <div
+                      className={this.decorateCSS("next-arrow")}
+                      onClick={() => {
+                        this.getComponentState("slider-ref").current.slickNext();
+                      }}
+                    >
+                      {this.castToString(nextArrowText) &&
+                        <span className={this.decorateCSS("arrow-text")}>
+                          {nextArrowText}
+                        </span>}
+                      {nextIcon &&
+                        <ComposerIcon
+                          name={nextIcon}
+                          propsIcon={{
+                            className: `${this.decorateCSS("arrow")}`,
+                            size: 20,
+                          }}
+                        />}
+                    </div>}
+                </div>
+              )}
           </div>
 
           {sliderItemObject.map((sliderItem: SliderItem, index: number) => {
             const isActive = this.getComponentState("active-index") === index;
             if (isActive && sliderItem) {
               return (
-                <div
-                  className={`${this.decorateCSS("content-container")} ${!sliderItem.image && this.decorateCSS("black-theme")}`}
-                  key={index}
-                >
-                  {(sliderItemObject.length > 1 &&
-                    (this.castToString(prevArrowText) ||
-                      prevIcon ||
-                      this.castToString(nextArrowText) ||
-                      nextIcon)) && (
-                      <div className={`${this.decorateCSS("arrows")} 
-                      ${(!isIndexDisplayExist && !isMediaPanelExist) && this.decorateCSS("no-left-side")}
-                      ${!isIndexDisplayExist && this.decorateCSS("icon-bottom")}`}>
-                        {(this.castToString(prevArrowText) || prevIcon) &&
-                          <div
-                            className={this.decorateCSS("prev-arrow")}
-                            onClick={() => {
-                              this.getComponentState("slider-ref").current.slickPrev();
-                            }}
-                          >
-                            {prevIcon &&
-                              <ComposerIcon
-                                name={prevIcon}
-                                propsIcon={{
-                                  className: `${this.decorateCSS("arrow")}`,
-                                  size: 20,
-                                }}
-                              />}
-                            {this.castToString(prevArrowText) &&
-                              <span className={this.decorateCSS("arrow-text")}>
-                                {prevArrowText}
-                              </span>}
-                          </div>}
-
-                        {(this.castToString(nextArrowText) || nextIcon) &&
-                          <div
-                            className={this.decorateCSS("next-arrow")}
-                            onClick={() => {
-                              this.getComponentState("slider-ref").current.slickNext();
-                            }}
-                          >
-                            {this.castToString(nextArrowText) &&
-                              <span className={this.decorateCSS("arrow-text")}>
-                                {nextArrowText}
-                              </span>}
-                            {nextIcon &&
-                              <ComposerIcon
-                                name={nextIcon}
-                                propsIcon={{
-                                  className: `${this.decorateCSS("arrow")}`,
-                                  size: 20,
-                                }}
-                              />}
-                          </div>}
-                      </div>
-                    )}
-                  {(this.castToString(sliderItem.button.buttonText) ||
-                    sliderItem.button.next_icon ||
-                    this.castToString(sliderItem.title) ||
-                    this.castToString(sliderItem.description)) &&
-                    <Base.Container className={`${this.decorateCSS("layout")} 
+                <Base.Container className={this.decorateCSS("content-container")}>
+                  <Base.MaxContent
+                    className={`${this.decorateCSS("content-max-content")} ${!sliderItem.image && this.decorateCSS("black-theme")}`}
+                    key={index}
+                  >
+                    {(this.castToString(sliderItem.button.buttonText) ||
+                      sliderItem.button.next_icon ||
+                      this.castToString(sliderItem.title) ||
+                      this.castToString(sliderItem.description)) &&
+                      <div className={`${this.decorateCSS("layout")} 
                     ${(!isIndexDisplayExist && !isMediaPanelExist) && this.decorateCSS("full-width-right-item")}`}>
-                      <Base.VerticalContent className={this.decorateCSS("content")}>
-                        {this.castToString(sliderItem.title) &&
-                          <Base.SectionTitle
-                            className={`${this.decorateCSS("title")} animate__animated ${this.getComponentState("titleAnimationClass")
-                              }`}
-                            onAnimationEnd={() => {
-                              this.handleAnimationEnd({
-                                animationState: "titleAnimationClass",
-                                startingAnimation: "animate__fadeInRight",
-                                endingAnimation: "animate__fadeOutDown",
-                              });
-                            }}
-                          >
-                            {sliderItem.title}
-                          </Base.SectionTitle>}
-                        {this.castToString(sliderItem.description) &&
-                          <Base.SectionDescription className={`${this.decorateCSS("description")} animate__animated ${this.getComponentState("descriptionAnimationClass")}`}
-                            onAnimationEnd={() => {
-                              this.handleAnimationEnd({
-                                animationState: "descriptionAnimationClass",
-                                startingAnimation: "animate__fadeInUp",
-                                endingAnimation: "animate__fadeOut",
-                              });
-                            }}
-                          >
-                            {sliderItem.description}
-                          </Base.SectionDescription>}
-                        {(this.castToString(sliderItem.button.buttonText) ||
-                          sliderItem.button.next_icon) &&
-                          <ComposerLink path={sliderItem.button.link}>
-                            <Base.Button
-                              className={`${this.decorateCSS("button")} animate__animated ${this.getComponentState(
-                                "buttonAnimationClass"
-                              )}`}
+                        <Base.VerticalContent className={this.decorateCSS("content")}>
+                          {this.castToString(sliderItem.title) &&
+                            <Base.SectionTitle
+                              className={`
+                              ${this.decorateCSS("title")} 
+                              animate__animated 
+                              ${this.getComponentState("titleAnimationClass")
+                                }`}
                               onAnimationEnd={() => {
                                 this.handleAnimationEnd({
-                                  animationState: "buttonAnimationClass",
+                                  animationState: "titleAnimationClass",
+                                  startingAnimation: "animate__fadeInRight",
+                                  endingAnimation: "animate__fadeOutDown",
+                                });
+                              }}
+                            >
+                              {sliderItem.title}
+                            </Base.SectionTitle>}
+                          {this.castToString(sliderItem.description) &&
+                            <Base.SectionDescription
+                              className={`${this.decorateCSS("description")} 
+                            animate__animated 
+                            ${this.getComponentState("descriptionAnimationClass")}`}
+                              onAnimationEnd={() => {
+                                this.handleAnimationEnd({
+                                  animationState: "descriptionAnimationClass",
                                   startingAnimation: "animate__fadeInUp",
                                   endingAnimation: "animate__fadeOutDown",
                                 });
                               }}
                             >
-                              <span className={this.decorateCSS("button-text")}>
-                                {sliderItem.button.buttonText}
-                              </span>
-                              <ComposerIcon
-                                name={sliderItem.button.next_icon}
-                                propsIcon={{
-                                  className: this.decorateCSS("button-icon"),
+                              {sliderItem.description}
+                            </Base.SectionDescription>}
+                          {(this.castToString(sliderItem.button.buttonText) ||
+                            sliderItem.button.next_icon) &&
+                            <ComposerLink path={sliderItem.button.link}>
+                              <Base.Button
+                                className={`${this.decorateCSS("button")} animate__animated ${this.getComponentState(
+                                  "buttonAnimationClass"
+                                )}`}
+                                onAnimationEnd={() => {
+                                  this.handleAnimationEnd({
+                                    animationState: "buttonAnimationClass",
+                                    startingAnimation: "animate__fadeInUp",
+                                    endingAnimation: "animate__fadeOutDown",
+                                  });
                                 }}
-                              />
-                            </Base.Button>
-                          </ComposerLink>}
-                      </Base.VerticalContent>
-                    </Base.Container>}
-                </div>
+                              >
+                                <span className={this.decorateCSS("button-text")}>
+                                  {sliderItem.button.buttonText}
+                                </span>
+                                <ComposerIcon
+                                  name={sliderItem.button.next_icon}
+                                  propsIcon={{
+                                    className: this.decorateCSS("button-icon"),
+                                  }}
+                                />
+                              </Base.Button>
+                            </ComposerLink>}
+                        </Base.VerticalContent>
+                      </div>}
+                  </Base.MaxContent>
+                </Base.Container>
               );
             }
             return null;
