@@ -2,8 +2,15 @@ import * as React from "react";
 import styles from "./header15.module.scss";
 import { BaseHeader } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { Base } from "composer-tools/composer-base-components/base/base";
+import { Form, Formik } from "formik";
 
-class HeaderComponent15 extends BaseHeader {
+interface InputItem {
+  placeholder: JSX.Element,
+}
+
+
+class Header15 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
 
@@ -19,21 +26,7 @@ class HeaderComponent15 extends BaseHeader {
       key: "background-image",
       displayer: "Background Image",
       value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619218bd2970002c625be1?alt=media&timestamp=1719483639150",
-    });
-    this.addProp({
-      type: "image",
-      key: "image",
-      displayer: "Image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619218bd2970002c625be0?alt=media&timestamp=1719483639150",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "header",
-      displayer: "Header",
-      value: "Shop Online",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6765394d0655f8002ca9e088?alt=media",
     });
 
     this.addProp({
@@ -50,32 +43,54 @@ class HeaderComponent15 extends BaseHeader {
       value:
         "From local fare to restaurant favorites, our wide selection of food will definitely satisfy all your cravings.",
     });
+    this.addProp({
+      type: "array",
+      key: "inputs",
+      displayer: "Inputs",
+      additionalParams: {
+        maxElementCount: 2,
+      },
+      value: [
+        {
+          type: "object",
+          key: "input",
+          displayer: "Input",
+          value: [
+            {
+              type: "string",
+              key: "placeholder",
+              displayer: "Placeholder",
+              value: "Your Order",
+            },
+          ]
+        },
+        {
+          type: "object",
+          key: "input",
+          displayer: "Input",
+          value: [
+            {
+              type: "string",
+              key: "placeholder",
+              displayer: "Placeholder",
+              value: "Your Address",
+            },
+          ]
+        }
+      ]
+    })
 
     this.addProp({
       type: "string",
-      key: "email",
-      displayer: "Placeholder",
-      value: "E-mail",
+      key: "buttonText",
+      displayer: "Button Text",
+      value: "Make Order",
     });
-
     this.addProp({
-      type: "object",
-      key: "button",
-      displayer: "Button",
-      value: [
-        {
-          type: "string",
-          key: "buttonText",
-          displayer: "Button Text",
-          value: "Make Order",
-        },
-        {
-          type: "page",
-          key: "buttonPath",
-          displayer: "Button Link",
-          value: "",
-        },
-      ],
+      type: "page",
+      key: "buttonLink",
+      displayer: "Button Link",
+      value: "",
     });
   }
 
@@ -84,83 +99,98 @@ class HeaderComponent15 extends BaseHeader {
   }
 
   render() {
-    const button = this.getPropValue("button");
-    const image = this.getPropValue("image");
-    const background = this.getPropValue("background-image");
-    const emailPlaceholder = this.getPropValue("email", { as_string: true });
+    const inputs = this.castToObject<InputItem[]>("inputs")
 
+    function getInitialValue() {
+      let value: any = {};
+      inputs.map((_: any, indexOfItem: number) => (value["input_" + indexOfItem] = ""));
+      return value;
+    }
     return (
-      <div className={this.decorateCSS("container")}>
-        <div
-          className={this.decorateCSS("max-content")}
-          style={{
-            backgroundImage: `url(${this.getPropValue("background-image")})`,
-          }}
-        >
-          {this.getPropValue("overlay") ? (
-            <div className={this.decorateCSS("overlay")}></div>
-          ) : null}
-          <div
-            className={`${this.decorateCSS("wrapper")} ${
-              this.getPropValue("true") && this.decorateCSS("wrapper-reverse")
-            }`}
-            style={{ position: "relative" }}
-          >
-            <div className={this.decorateCSS("left")}>
-              <div className={this.decorateCSS("content")}>
-                <div className={this.decorateCSS("centered-content")}></div>
-                <h2 className={this.decorateCSS("header")}>
-                  {this.getPropValue("header")}
-                </h2>
-                <h1 className={this.decorateCSS("title")}>
-                  {this.getPropValue("title")}
-                </h1>
-                <p className={this.decorateCSS("description")}>
-                  {this.getPropValue("description")}
-                </p>
-
-                {emailPlaceholder && (
-                  <div className={this.decorateCSS("form-display")}>
-                    <div className={this.decorateCSS("form")}>
-                      <input
-                        placeholder={emailPlaceholder}
-                        type="email"
-                        className={this.decorateCSS("email")}
-                      />
+      <Base.Container className={this.decorateCSS("container")}
+        style={{
+          backgroundImage: `url(${this.getPropValue("background-image")})`,
+        }}>
+        {this.getPropValue("overlay") ? (<div className={this.decorateCSS("overlay")}></div>) : null}
+        <div className={this.decorateCSS("max-content")}>
+          <Base.MaxContent
+            className={`${this.decorateCSS("wrapper")} ${this.getPropValue("true") && this.decorateCSS("wrapper-reverse")}`}>
+            <div className={this.getPropValue("background-image") ? this.decorateCSS("left") : this.decorateCSS("left-no-image")}>
+              <div className={this.decorateCSS("content-wrapper")}>
+                <div className={this.decorateCSS("content")}>
+                  {this.castToString(this.getPropValue("title")) && (
+                    <div className={this.getPropValue("background-image") ? this.decorateCSS("title") : this.decorateCSS("title-no-image")}>
+                      {this.getPropValue("title")}
                     </div>
-
+                  )}
+                  {this.castToString(this.getPropValue("description")) && (
+                    <div className={this.getPropValue("background-image") ? this.decorateCSS("description") : this.decorateCSS("description-no-image")}>
+                      {this.getPropValue("description")}
+                    </div>
+                  )}
+                  {((inputs.length > 0)) && (
+                    <div className={this.getPropValue("background-image") ? this.decorateCSS("form-display") : this.decorateCSS("form-display-no-image")}>
+                      <div className={this.decorateCSS("form-wrapper")}>
+                        <Formik
+                          initialValues={{ ...getInitialValue() }}
+                          onSubmit={(data, { resetForm }) => {
+                            this.insertForm("Contact Us", data);
+                            resetForm();
+                          }}
+                        >
+                          {({ handleChange, values }) => (
+                            <Form className={this.decorateCSS("form")}>
+                              {inputs.map((input: InputItem, index: number) => {
+                                if (this.castToString(input.placeholder)) {
+                                  return (
+                                    <div className={this.decorateCSS("input")}>
+                                      <input
+                                        placeholder={this.castToString(input.placeholder)}
+                                        type="text"
+                                        onChange={handleChange}
+                                        value={values["input_" + index]}
+                                        name={"input_" + index}
+                                        className={this.decorateCSS("placeholder")}
+                                      />
+                                    </div>
+                                  )
+                                }
+                                else {
+                                  return "";
+                                }
+                              })}
+                              {this.castToString(this.getPropValue("buttonText")) && (
+                                <div className={this.decorateCSS("button-box")}>
+                                  <Base.Button className={this.decorateCSS("button")} type="submit">
+                                    {this.getPropValue("buttonText")}
+                                  </Base.Button>
+                                </div>
+                              )}
+                            </Form>
+                          )}
+                        </Formik>
+                      </div>
+                    </div>
+                  )}
+                  {((inputs.length == 0) && this.castToString(this.getPropValue("buttonText"))) && (
                     <div className={this.decorateCSS("button-box")}>
-                      {button[0].value && (
-                        <ComposerLink path={button[1].value}>
-                          <button className={this.decorateCSS("button")}>
-                            {button[0].value}
-                          </button>
-                        </ComposerLink>
-                      )}
+                      <ComposerLink path={this.getPropValue("buttonLink")}>
+                        <Base.Button className={this.decorateCSS("button")}>
+                          {this.getPropValue("buttonText")}
+                        </Base.Button>
+                      </ComposerLink>
+
                     </div>
-                  </div>
-                )}
+                  )}
+
+                </div>
               </div>
             </div>
-
-            <div className={this.decorateCSS("right")}>
-              {image && (
-                <div className={this.decorateCSS("right-image")}>
-                  <img
-                    className={`${this.decorateCSS("image")} ${
-                      !background && this.decorateCSS("without-background")
-                    }`}
-                    src={this.getPropValue("image")}
-                    alt=""
-                  />
-                </div>
-              )}
-            </div>
-          </div>
+          </Base.MaxContent>
         </div>
-      </div>
+      </Base.Container >
     );
   }
 }
 
-export default HeaderComponent15;
+export default Header15;

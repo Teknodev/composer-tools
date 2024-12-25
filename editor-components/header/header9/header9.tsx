@@ -2,6 +2,7 @@ import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header9.module.scss";
+import { Base } from "../../../composer-base-components/base/base";
 
 type ITab = {
   tabText: JSX.Element;
@@ -312,12 +313,17 @@ class Header9 extends BaseHeader {
         },
       ],
     });
-
     this.addProp({
       type: "string",
       key: "text",
       displayer: "Text",
       value: "Project",
+    });
+    this.addProp({
+      type: "boolean",
+      key: "isCounterActive",
+      displayer: "Counter",
+      value: true,
     });
 
     this.setComponentState("activeTab", 0);
@@ -334,50 +340,54 @@ class Header9 extends BaseHeader {
   render() {
     const textExist: string = this.getPropValue("text", { as_string: true });
     const socials = this.castToObject<ISocial[]>("socials");
-    const featuredText: string = this.getPropValue("featuredText", {
-      as_string: true,
-    });
+    const featuredText: string = this.getPropValue("featuredText", { as_string: true });
     const tabs = this.castToObject<ITab[]>("tabs");
     const activeTabIndex: number = this.getComponentState("activeTab");
 
-    // this prevents crash when tabs.length === 0
     const currentImage = tabs[activeTabIndex]?.image ?? null;
+
+    const socialHeight = window.document.getElementById("header9-social")?.clientHeight
+    const isCounterActive = this.getPropValue("isCounterActive")
+    const noTabs = ((tabs.length < 1 || !isCounterActive) && !textExist);
 
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("tabs")}>
-            <div className={this.decorateCSS("left-content")}>
-              {tabs.length > 0 && (
-                <div className={this.decorateCSS("buttons")}>
+          <Base.ContainerGrid className={this.decorateCSS("tabs")}>
+            <Base.GridCell className={this.decorateCSS("left-content")}>
+              {(tabs.length > 0 || textExist) && (
+                <div className={this.decorateCSS("buttons")} style={{ paddingLeft: `calc((${socialHeight}px) + var(--composer-gap-xl))` }}>
                   {textExist && (
                     <span className={this.decorateCSS("text")}>
                       {this.getPropValue("text")}
                     </span>
                   )}
 
-                  <span className={this.decorateCSS("active-number")}>
-                    {activeTabIndex + 1}
-                  </span>
-                  <span className={this.decorateCSS("slash")}>/</span>
-                  <span className={this.decorateCSS("count")}>
-                    {tabs.length}
-                  </span>
+                  {isCounterActive &&
+                    <div className={this.decorateCSS("counter-wrapper")}>
+                      <span className={this.decorateCSS("active-number")}>
+                        {activeTabIndex + 1}
+                      </span>
+                      <span className={this.decorateCSS("slash")}>/</span>
+                      <span className={this.decorateCSS("count")}>
+                        {tabs.length}
+                      </span>
+                    </div>}
                 </div>
               )}
-              <div className={this.decorateCSS("tab-buttons")}>
+              <Base.VerticalContent className={`${this.decorateCSS("tab-buttons")} ${noTabs && this.decorateCSS("no-tabs")}`}
+                style={{
+                  maxHeight: `calc(100% - (${socialHeight}px + var(--composer-gap-md) * 3))`
+                }}>
                 {tabs.length > 0 &&
                   tabs.map((tab: ITab, index: number) => {
                     const url = tab.tabUrl;
                     return url ? (
                       <ComposerLink key={index} path={url}>
                         <div
-                          className={
-                            this.decorateCSS("tabText") +
-                            " " +
-                            (this.getComponentState("activeTab") === index &&
-                              this.decorateCSS("active"))
-                          }
+                          className={`${this.decorateCSS("tabText")}
+                            ${this.getComponentState("activeTab") === index &&
+                            this.decorateCSS("active")}`}
                           onMouseEnter={() => this.handleMouseEnter(index)}
                         >
                           {this.castToString(tab.tabText)}
@@ -405,19 +415,19 @@ class Header9 extends BaseHeader {
                     </h2>
                   </ComposerLink>
                 )}
-              </div>
-            </div>
+              </Base.VerticalContent>
+            </Base.GridCell>
             {currentImage && (
-              <div className={this.decorateCSS("right-content")}>
+              <Base.GridCell className={this.decorateCSS("right-content")}>
                 <img
                   src={currentImage}
                   alt="slider-image"
                   className={this.decorateCSS("image")}
                 />
-              </div>
+              </Base.GridCell>
             )}
             {socials.length > 0 && (
-              <div className={this.decorateCSS("social")}>
+              <div className={this.decorateCSS("social")} id={"header9-social"}>
                 {socials.map((tab: ISocial, idx: number) => (
                   <div
                     style={{ width: `${100 / socials.length} %` }}
@@ -432,9 +442,9 @@ class Header9 extends BaseHeader {
                 ))}
               </div>
             )}
-          </div>
+          </Base.ContainerGrid>
         </div>
-      </div>
+      </div >
     );
   }
 }
