@@ -201,7 +201,6 @@ class Header17 extends BaseHeader {
                     name={this.getPropValue("next_icon")}
                     propsIcon={{
                       className: `${this.decorateCSS("next-icon")} ${!image && this.decorateCSS("slider-icon-without-image")}`,
-                      size: 40,
                       onClick: () => {
                         this.getComponentState("slider-ref").current.slickNext();
                       },
@@ -211,7 +210,6 @@ class Header17 extends BaseHeader {
                     name={this.getPropValue("prev_icon")}
                     propsIcon={{
                       className: `${this.decorateCSS("prev-icon")} ${!image && this.decorateCSS("slider-icon-without-image")}`,
-                      size: 40,
                       onClick: () => {
                         this.getComponentState("slider-ref").current.slickPrev();
                       },

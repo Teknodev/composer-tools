@@ -1,0 +1,11 @@
+.dropdownButton{
+    text-transform: capitalize;
+    border: none;
+    background: none;
+    cursor: pointer;
+    outline: none;
+    display: flex;
+    align-items: center;
+    gap: var(--composer-gap-sm);
+    padding: 0;
+}
