@@ -9,7 +9,6 @@ type Item = {
   title: JSX.Element;
   navigate_to: string;
   sub_items: Item[];
-  image: string;
 };
 
 class Navbar4 extends BaseNavigator {
@@ -534,65 +533,65 @@ class Navbar4 extends BaseNavigator {
               key: "sub_items",
               displayer: "Sub Items",
               value: [
-                {
-                  type: "object",
-                  key: "sub_item_group",
-                  displayer: "Sub Item Group",
-                  value: [
-                    {
-                      type: "array",
-                      key: "sub_items",
-                      displayer: "Sub Items Array",
-                      value: [
-                        {
-                          type: "object",
-                          key: "item",
-                          displayer: "Item",
-                          value: [
-                            {
-                              type: "string",
-                              key: "title",
-                              displayer: "Title",
-                              value: "",
-                            },
-                            {
-                              type: "page",
-                              key: "navigate_to",
-                              displayer: "Navigate to",
-                              value: "",
-                            },
-                            {
-                              type: "array",
-                              key: "sub_items",
-                              displayer: "Sub Items",
-                              value: [
-                                {
-                                  type: "object",
-                                  key: "item",
-                                  displayer: "Item",
-                                  value: [
-                                    {
-                                      type: "string",
-                                      key: "title",
-                                      displayer: "Title",
-                                      value: "",
-                                    },
-                                    {
-                                      type: "page",
-                                      key: "navigate_to",
-                                      displayer: "Navigate to",
-                                      value: "",
-                                    },
-                                  ],
-                                },
-                              ],
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
+                // {
+                //   type: "object",
+                //   key: "sub_item_group",
+                //   displayer: "Sub Item Group",
+                //   value: [
+                //     // {
+                //     //   type: "array",
+                //     //   key: "sub_items",
+                //     //   displayer: "Sub Items Array",
+                //     //   value: [
+                //     //     {
+                //     //       type: "object",
+                //     //       key: "item",
+                //     //       displayer: "Item",
+                //     //       value: [
+                //     //         {
+                //     //           type: "string",
+                //     //           key: "title",
+                //     //           displayer: "Title",
+                //     //           value: "",
+                //     //         },
+                //     //         {
+                //     //           type: "page",
+                //     //           key: "navigate_to",
+                //     //           displayer: "Navigate to",
+                //     //           value: "",
+                //     //         },
+                //     //         {
+                //     //           type: "array",
+                //     //           key: "sub_items",
+                //     //           displayer: "Sub Items",
+                //     //           value: [
+                //     //             {
+                //     //               type: "object",
+                //     //               key: "item",
+                //     //               displayer: "Item",
+                //     //               value: [
+                //     //                 {
+                //     //                   type: "string",
+                //     //                   key: "title",
+                //     //                   displayer: "Title",
+                //     //                   value: "",
+                //     //                 },
+                //     //                 {
+                //     //                   type: "page",
+                //     //                   key: "navigate_to",
+                //     //                   displayer: "Navigate to",
+                //     //                   value: "",
+                //     //                 },
+                //     //               ],
+                //     //             },
+                //     //           ],
+                //     //         },
+                //     //       ],
+                //     //     },
+                //     //   ],
+                //     // },
+                //   ],
+                // },
               ],
             },
           ],
@@ -2636,7 +2635,7 @@ class Navbar4 extends BaseNavigator {
                       <div className={this.decorateCSS("menu-item")} key={indexItemList}>
                         <ComposerLink path={item.navigate_to}>
                           <div className={this.decorateCSS("item")}>
-                            <span className={this.decorateCSS("title")}>
+                            <Base.H5 className={this.decorateCSS("title")}>
                               {item.sub_items?.length > 0 && (
                                 <ComposerIcon
                                   name={this.getPropValue("dropdown_icon")}
@@ -2646,48 +2645,49 @@ class Navbar4 extends BaseNavigator {
                                 />
                               )}
                               {item.title}
-                            </span>
+                            </Base.H5>
 
                             {item.sub_items.length > 0 && (
                               <div className={this.decorateCSS("sub-items")}>
                                 {item.sub_items.map((subItemGroup, subItemGroupIndex) => (
                                   <div className={this.decorateCSS("sub-item-group")} key={subItemGroupIndex}>
-                                    {subItemGroup.sub_items?.map((subItem, subItemIndex) => {
-                                      const subItemExist = this.castToString(subItem.title);
-                                      return (
-                                        subItemGroup.sub_items.length > 0 &&
-                                        subItemExist && (
-                                          <div className={this.decorateCSS("sub-item")} key={subItemIndex}>
-                                            <span className={this.decorateCSS("sub-item-text")}>
-                                              {subItem.title}
-                                              {subItem.sub_items?.length > 0 && subItemExist && (
-                                                <ComposerIcon
-                                                  name={this.getPropValue("right_icon")}
-                                                  propsIcon={{
-                                                    className: this.decorateCSS("icon"),
-                                                  }}
-                                                />
-                                              )}
-                                            </span>
-                                            {subItem.sub_items?.length > 0 && (
-                                              <div className={this.decorateCSS("list")}>
-                                                {subItem.sub_items.map((subItem2, subItem2Index) => {
-                                                  const subItem2Exist = this.castToString(subItem2.title);
+                                    {subItemGroup.sub_items.length > 0 &&
+                                      subItemGroup.sub_items?.map((subItem, subItemIndex) => {
+                                        const subItemExist = this.castToString(subItem.title);
+                                        return (
+                                          subItemGroup.sub_items.length > 0 &&
+                                          subItemExist && (
+                                            <div className={this.decorateCSS("sub-item")} key={subItemIndex}>
+                                              <Base.P className={this.decorateCSS("sub-item-text")}>
+                                                {subItem.title}
+                                                {subItem.sub_items?.length > 0 && subItemExist && (
+                                                  <ComposerIcon
+                                                    name={this.getPropValue("right_icon")}
+                                                    propsIcon={{
+                                                      className: this.decorateCSS("icon"),
+                                                    }}
+                                                  />
+                                                )}
+                                              </Base.P>
+                                              {subItem.sub_items?.length > 0 && (
+                                                <div className={this.decorateCSS("list")}>
+                                                  {subItem.sub_items.map((subItem2, subItem2Index) => {
+                                                    const subItem2Exist = this.castToString(subItem2.title);
 
-                                                  return (
-                                                    subItem2Exist && (
-                                                      <span className={this.decorateCSS("list-item")} key={subItem2Index}>
-                                                        {subItem2.title}
-                                                      </span>
-                                                    )
-                                                  );
-                                                })}
-                                              </div>
-                                            )}
-                                          </div>
-                                        )
-                                      );
-                                    })}
+                                                    return (
+                                                      subItem2Exist && (
+                                                        <span className={this.decorateCSS("list-item")} key={subItem2Index}>
+                                                          {subItem2.title}
+                                                        </span>
+                                                      )
+                                                    );
+                                                  })}
+                                                </div>
+                                              )}
+                                            </div>
+                                          )
+                                        );
+                                      })}
                                   </div>
                                 ))}
                               </div>
@@ -2734,42 +2734,30 @@ class Navbar4 extends BaseNavigator {
                             className={this.decorateCSS("item")}
                             onClick={() => {
                               this.navCLick(indexItemList);
-                              // Alt öğeleri göstermek için state'i güncelle
-                              this.setComponentState("subNavActiveIndex", indexItemList);
-                              this.setComponentState("navActive", true);
                             }}
                           >
-                            {item.navigate_to ? (
-                              <ComposerLink path={item.navigate_to}>
-                                <div className={this.decorateCSS("title")}>
-                                  <span className={this.decorateCSS("title-text")}>{item.title}</span>
-                                  {item.sub_items?.length > 0 && <ComposerIcon name={this.getPropValue("dropdown_icon")} />}
-                                </div>
-                              </ComposerLink>
-                            ) : (
-                              <div className={this.decorateCSS("title")}>
-                                <span className={this.decorateCSS("title-text")}>{item.title}</span>
-                                {item.sub_items?.length > 0 && <ComposerIcon name={this.getPropValue("dropdown_icon")} />}
-                              </div>
-                            )}
+                            <ComposerLink path={item.navigate_to}></ComposerLink>
+                            <div className={this.decorateCSS("title")}>
+                              <span className={this.decorateCSS("title-text")}>{item.title}</span>
+                              {item.sub_items?.length > 0 && <ComposerIcon name={this.getPropValue("dropdown_icon")} />}
+                            </div>
                           </div>
 
                           {this.getComponentState("subNavActiveIndex") === indexItemList && (
                             <div className={this.decorateCSS("sub-items")}>
-                              {item.sub_items?.length > 0 &&
+                              {this.getComponentState("navActive") &&
+                                item.sub_items?.length > 0 &&
                                 item.sub_items.map((subItem, subIndex) => (
-                                  <div key={subIndex}>
+                                  <>
                                     <div
                                       className={this.decorateCSS("sub-item")}
-                                      onClick={(e) => {
-                                        e.stopPropagation(); // Parent'a event'in geçmesini engelle
-                                        if (subItem.sub_items?.length > 0) {
-                                          this.subNavCLick(subIndex);
-                                        }
+                                      onClick={() => {
+                                        this.subNavCLick(subIndex);
                                       }}
                                     >
                                       <div className={this.decorateCSS("sub-item-title")}>
-                                        <span className={this.decorateCSS("sub-item-title-text")}>{subItem.title}</span>
+                                        <span className={this.decorateCSS("sub-item-title-text")}>{`Section ${subIndex + 1}`}</span>
+
                                         {subItem.sub_items?.length > 0 && (
                                           <ComposerIcon
                                             name={this.getPropValue("dropdown_icon")}
@@ -2780,16 +2768,15 @@ class Navbar4 extends BaseNavigator {
                                         )}
                                       </div>
                                     </div>
-                                    {this.getComponentState("subNavActive") === subIndex && subItem.sub_items?.length > 0 && (
+                                    {this.getComponentState("subNavActive") === subIndex && (
                                       <div className={this.decorateCSS("list")}>
-                                        {subItem.sub_items.map((subItem2, index2) => (
-                                          <span key={index2} className={this.decorateCSS("list-item")}>
-                                            {subItem2.title}
-                                          </span>
-                                        ))}
+                                        {subItem.sub_items?.map((subItem2) => {
+                                          const subItem2Exist = this.castToString(subItem2.title);
+                                          return subItem2Exist && <span className={this.decorateCSS("list-item")}>{subItem2.title}</span>;
+                                        })}
                                       </div>
                                     )}
-                                  </div>
+                                  </>
                                 ))}
                             </div>
                           )}

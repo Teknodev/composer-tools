@@ -167,12 +167,10 @@
               position: relative;
 
               .title {
-                font-weight: bold;
-                letter-spacing: 1px;
                 display: flex;
                 align-items: center;
-                gap: 4px;
-                font-size: 14px;
+                gap: var(--composer-gap-xs);
+                font-size: 1rem;
                 &:hover {
                   cursor: pointer;
                 }
@@ -185,16 +183,16 @@
               .sub-items {
                 display: none;
                 position: absolute;
-                top: 55px;
+                top: var(--composer-gap-xl);
                 // flex-direction: column;
-                font-size: 1.2rem;
+                font-size: 1em;
                 display: none;
                 width: 700px;
                 height: auto;
                 min-height: 200px;
 
                 .sub-item {
-                  padding: 12px 30px;
+                  padding: var(--composer-gap-sm) var(--composer-gap-md);
                   white-space: nowrap;
                   display: flex;
                   position: relative;
@@ -205,7 +203,6 @@
                   }
 
                   .sub-item-text {
-                    font-weight: bold;
                     display: flex;
                     align-items: center;
                   }
@@ -215,12 +212,12 @@
                     position: absolute;
                     left: 100%;
                     top: 0;
-                    z-index: 99;
+                    z-index: 20;
                     background: var(--composer-html-background);
 
                     .list-item {
                       color: var(--composer-font-color-primary);
-                      padding: 12px 30px;
+                      padding: var(--composer-gap-sm) var(--composer-gap-md);
                       background: var(--composer-html-background);
                       &:hover {
                         color: var(--composer-font-color-secondary);
@@ -284,7 +281,7 @@
     }
   }
 }
-@container (max-width: #{$composer-phone-width}) {
+@container (max-width: #{$composer-tablet-width-lg}) {
   .container {
     .max-content {
       .top-nav {
@@ -293,7 +290,7 @@
       .contentDown {
         width: 100% !important;
         align-items: center;
-        height: 50px !important;
+        height: var(--composer-gap-xl) !important;
         padding: 0;
         .pc-navigator {
           display: none !important;
@@ -304,10 +301,10 @@
           justify-content: space-between;
           align-items: center;
           height: 100%;
+          cursor: pointer;
 
           .img-hamburger {
             pointer-events: all;
-            cursor: pointer;
             transition: 0.4s;
             font-size: 1rem;
             width: var(--composer-gap-lg);
