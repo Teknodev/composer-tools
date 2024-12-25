@@ -4,6 +4,7 @@ import { BaseHeader } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { Base } from "../../../composer-base-components/base/base";
 
 type Slide = {
   title: JSX.Element;
@@ -12,13 +13,9 @@ type Slide = {
   image: string;
 };
 
-class HeaderComponent26 extends BaseHeader {
-  private sliderRef: React.RefObject<any>;
-
+class Header26 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
-
-    this.sliderRef = React.createRef();
 
     this.addProp({
       type: "array",
@@ -169,6 +166,21 @@ class HeaderComponent26 extends BaseHeader {
       value: "IoIosArrowDown",
     });
 
+    this.addProp({
+      type: "boolean",
+      key: "enable_line",
+      displayer: "Enable Line",
+      value: true
+    })
+
+    this.addProp({
+      type: "boolean",
+      key: "enable_slider_animation",
+      displayer: "Enable Slider Animation",
+      value: true
+    })
+
+    this.setComponentState("sliderRef", React.createRef());
     this.setComponentState("next", null);
   }
 
@@ -176,23 +188,25 @@ class HeaderComponent26 extends BaseHeader {
     return "Header-26";
   }
 
-  handlePrevClick = () => {
-    const slider = this.sliderRef.current;
-    if (slider) slider.slickPrev();
-  };
-
-  handleNextClick = () => {
-    const slider = this.sliderRef.current;
-    if (slider) slider.slickNext();
-  };
-
   render() {
+    const sliderRef = this.getComponentState("sliderRef");
+
+    const handlePrevClick = () => {
+      const slider = sliderRef.current;
+      if (slider) slider.slickPrev();
+    };
+
+    const handleNextClick = () => {
+      const slider = sliderRef.current;
+      if (slider) slider.slickNext();
+    };
+
     const settings = {
       dots: false,
       arrows: false,
       infinite: true,
       speed: 500,
-      autoplay: false,
+      autoplay: true,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -200,6 +214,7 @@ class HeaderComponent26 extends BaseHeader {
       draggable: true,
       vertical: true,
       verticalSwiping: true,
+      centerPadding: '0px',
       beforeChange: (current: number, next: number) => {
         this.setComponentState("old", current);
         this.setComponentState("next", next);
@@ -211,20 +226,22 @@ class HeaderComponent26 extends BaseHeader {
     };
 
     const slides = this.castToObject<Slide[]>("sliders");
+    const enableLine = this.getPropValue("enable_line");
+    const enableSliderAnimation = this.getPropValue("enable_slider_animation");
+
+    const slidesLength = slides.length;
 
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           {slides?.length > 0 && (
-            <ComposerSlider {...settings} ref={this.sliderRef}>
+            <ComposerSlider {...settings} ref={sliderRef}>
               {slides.map((item: Slide, index: number) => {
                 const titleExist = this.castToString(item.title);
                 const subtitleExist = this.castToString(item.subtitle);
-
-                // stick arrows to the bottom of the screen on mobile and tablet
                 const stickToBottomCondition =
                   (item.image && !(titleExist || subtitleExist)) ||
-                  (!item.image && (titleExist || subtitleExist))
+                    (!item.image && (titleExist || subtitleExist))
                     ? this.decorateCSS("stick-to-bottom")
                     : "";
 
@@ -232,16 +249,16 @@ class HeaderComponent26 extends BaseHeader {
                   <div
                     className={`${this.decorateCSS("sliders")}
                       ${this.decorateCSS(
-                        this.getComponentState("next") === index ||
-                          this.getComponentState("old") === index
-                          ? "shrink"
-                          : "",
-                      )}`}
+                      this.getComponentState("next") === index ||
+                        this.getComponentState("old") === index
+                        ? (enableSliderAnimation && "shrink")
+                        : "",
+                    )}`}
                     key={index}
                   >
                     <div className={this.decorateCSS("slider")}>
                       {(titleExist || subtitleExist) && (
-                        <div className={this.decorateCSS("left-side")}>
+                        <div className={item.image ? this.decorateCSS("left-side") : this.decorateCSS("left-side-no-image")}>
                           <div
                             className={this.decorateCSS("left-side-content")}
                           >
@@ -252,7 +269,7 @@ class HeaderComponent26 extends BaseHeader {
                                 </h1>
                               </ComposerLink>
                             )}
-                            {titleExist && subtitleExist && (
+                            {enableLine && (
                               <span className={this.decorateCSS("line")} />
                             )}
                             {subtitleExist && (
@@ -268,27 +285,29 @@ class HeaderComponent26 extends BaseHeader {
                           <img
                             className={this.decorateCSS("image")}
                             src={item.image}
-                            alt="Slide"
+                            alt={item.image}
                           />
                         </div>
                       )}
-                      <div
-                        className={`${this.decorateCSS("arrows")}
+                      {
+                        slidesLength > 1 && <div
+                          className={`${this.decorateCSS("arrows")}
                         ${stickToBottomCondition}`}
-                      >
-                        <div
-                          className={this.decorateCSS("up-arrow")}
-                          onClick={this.handlePrevClick}
                         >
-                          <ComposerIcon name={this.getPropValue("up_icon")} />
+                          <div
+                            className={this.decorateCSS("up-arrow")}
+                            onClick={handlePrevClick}
+                          >
+                            <ComposerIcon name={this.getPropValue("up_icon")} propsIcon={{ className: this.decorateCSS("icon") }} />
+                          </div>
+                          <div
+                            className={this.decorateCSS("down-arrow")}
+                            onClick={handleNextClick}
+                          >
+                            <ComposerIcon name={this.getPropValue("down_icon")} propsIcon={{ className: this.decorateCSS("icon") }} />
+                          </div>
                         </div>
-                        <div
-                          className={this.decorateCSS("down-arrow")}
-                          onClick={this.handleNextClick}
-                        >
-                          <ComposerIcon name={this.getPropValue("down_icon")} />
-                        </div>
-                      </div>
+                      }
                     </div>
                   </div>
                 );
@@ -301,4 +320,4 @@ class HeaderComponent26 extends BaseHeader {
   }
 }
 
-export default HeaderComponent26;
+export default Header26;
