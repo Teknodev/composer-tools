@@ -3,6 +3,7 @@ import * as React from "react";
 import * as Yup from "yup";
 import { BaseContacts, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./form6.module.scss";
+import { Base } from "../../../composer-base-components/base/base";
 
 class Form6 extends BaseContacts {
   constructor(props?: any) {
@@ -19,35 +20,35 @@ class Form6 extends BaseContacts {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "CONTACT ME"
+      value: "CONTACT ME",
     });
 
     this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "Feel free to get in touch with me via the form below or by emailing me directly at"
+      value: "Feel free to get in touch with me via the form below or by emailing me directly at",
     });
 
     this.addProp({
       type: "string",
       key: "mail",
       displayer: "Mail",
-      value: "hello@yelizsarioglu.com"
+      value: "hello@yelizsarioglu.com",
     });
 
     this.addProp({
       type: "string",
       key: "location",
       displayer: "Location Title",
-      value: "CURRENTLY"
+      value: "CURRENTLY",
     });
 
     this.addProp({
       type: "string",
       key: "locationDetails",
       displayer: "Location Details",
-      value: "Dubai, UNITED ARAB EMIRATES. Able to travel for commissions and projects"
+      value: "Dubai, UNITED ARAB EMIRATES. Able to travel for commissions and projects",
     });
 
     this.addProp({
@@ -80,19 +81,19 @@ class Form6 extends BaseContacts {
                       type: "string",
                       displayer: "Placeholder",
                       key: "placeholder",
-                      value: "First name"
+                      value: "First name",
                     },
                     {
                       type: "boolean",
                       key: "is_required",
                       displayer: "Is Required",
-                      value: true
+                      value: true,
                     },
                     {
                       type: "string",
                       key: "required_error_message",
                       displayer: "Required error message",
-                      value: "Required"
+                      value: "Required",
                     },
                     {
                       type: "select",
@@ -100,16 +101,16 @@ class Form6 extends BaseContacts {
                       displayer: "Type",
                       value: "Text",
                       additionalParams: {
-                        selectItems: ["Text", "E-mail", "Number", "Text Area"]
-                      }
+                        selectItems: ["Text", "E-mail", "Number", "Text Area"],
+                      },
                     },
                     {
                       type: "string",
                       key: "type_error_message",
                       displayer: "Type error message",
-                      value: "Invalid type"
+                      value: "Invalid type",
                     },
-                  ]
+                  ],
                 },
                 {
                   type: "object",
@@ -120,19 +121,19 @@ class Form6 extends BaseContacts {
                       type: "string",
                       displayer: "Placeholder",
                       key: "placeholder",
-                      value: "Last name"
+                      value: "Last name",
                     },
                     {
                       type: "boolean",
                       key: "is_required",
                       displayer: "Is Required",
-                      value: true
+                      value: true,
                     },
                     {
                       type: "string",
                       key: "required_error_message",
                       displayer: "Required error message",
-                      value: "Required"
+                      value: "Required",
                     },
                     {
                       type: "select",
@@ -140,20 +141,20 @@ class Form6 extends BaseContacts {
                       displayer: "Type",
                       value: "Text",
                       additionalParams: {
-                        selectItems: ["Text", "E-mail", "Number", "Text Area"]
-                      }
+                        selectItems: ["Text", "E-mail", "Number", "Text Area"],
+                      },
                     },
                     {
                       type: "string",
                       key: "type_error_message",
                       displayer: "Type error message",
-                      value: "Invalid type"
+                      value: "Invalid type",
                     },
-                  ]
-                }
-              ]
-            }
-          ]
+                  ],
+                },
+              ],
+            },
+          ],
         },
         {
           type: "object",
@@ -180,19 +181,19 @@ class Form6 extends BaseContacts {
                       type: "string",
                       displayer: "Placeholder",
                       key: "placeholder",
-                      value: "example@gmail.com"
+                      value: "example@gmail.com",
                     },
                     {
                       type: "boolean",
                       key: "is_required",
                       displayer: "Is Required",
-                      value: true
+                      value: true,
                     },
                     {
                       type: "string",
                       key: "required_error_message",
                       displayer: "Required error message",
-                      value: "Required"
+                      value: "Required",
                     },
                     {
                       type: "select",
@@ -200,20 +201,20 @@ class Form6 extends BaseContacts {
                       displayer: "Type",
                       value: "Text",
                       additionalParams: {
-                        selectItems: ["Text", "E-mail", "Number", "Text Area"]
-                      }
+                        selectItems: ["Text", "E-mail", "Number", "Text Area"],
+                      },
                     },
                     {
                       type: "string",
                       key: "type_error_message",
                       displayer: "Type error message",
-                      value: "Invalid type"
+                      value: "Invalid type",
                     },
-                  ]
+                  ],
                 },
-              ]
-            }
-          ]
+              ],
+            },
+          ],
         },
         {
           type: "object",
@@ -240,19 +241,19 @@ class Form6 extends BaseContacts {
                       type: "string",
                       displayer: "Placeholder",
                       key: "placeholder",
-                      value: "ex: Suggestion"
+                      value: "ex: Suggestion",
                     },
                     {
                       type: "boolean",
                       key: "is_required",
                       displayer: "Is Required",
-                      value: false
+                      value: false,
                     },
                     {
                       type: "string",
                       key: "required_error_message",
                       displayer: "Required error message",
-                      value: ""
+                      value: "",
                     },
                     {
                       type: "select",
@@ -260,20 +261,20 @@ class Form6 extends BaseContacts {
                       displayer: "Type",
                       value: "Text",
                       additionalParams: {
-                        selectItems: ["Text", "E-mail", "Number", "Text Area"]
-                      }
+                        selectItems: ["Text", "E-mail", "Number", "Text Area"],
+                      },
                     },
                     {
                       type: "string",
                       key: "type_error_message",
                       displayer: "Type error message",
-                      value: ""
+                      value: "",
                     },
-                  ]
+                  ],
                 },
-              ]
-            }
-          ]
+              ],
+            },
+          ],
         },
         {
           type: "object",
@@ -300,19 +301,19 @@ class Form6 extends BaseContacts {
                       type: "string",
                       displayer: "Placeholder",
                       key: "placeholder",
-                      value: "Write your message..."
+                      value: "Write your message...",
                     },
                     {
                       type: "boolean",
                       key: "is_required",
                       displayer: "Is Required",
-                      value: true
+                      value: true,
                     },
                     {
                       type: "string",
                       key: "required_error_message",
                       displayer: "Required error message",
-                      value: "Required"
+                      value: "Required",
                     },
                     {
                       type: "select",
@@ -320,23 +321,23 @@ class Form6 extends BaseContacts {
                       displayer: "Type",
                       value: "Text Area",
                       additionalParams: {
-                        selectItems: ["Text", "E-mail", "Number", "Text Area"]
-                      }
+                        selectItems: ["Text", "E-mail", "Number", "Text Area"],
+                      },
                     },
                     {
                       type: "string",
                       key: "type_error_message",
                       displayer: "Type error message",
-                      value: ""
+                      value: "",
                     },
-                  ]
+                  ],
                 },
-              ]
-            }
-          ]
-        }
-      ]
-    })
+              ],
+            },
+          ],
+        },
+      ],
+    });
 
     this.addProp({
       type: "string",
@@ -346,22 +347,20 @@ class Form6 extends BaseContacts {
     });
   }
 
-
-
   getName(): string {
     return "Form6";
   }
 
   render() {
-    const title = this.getPropValue("title", { as_string: true });
-    const description = this.getPropValue("description", { as_string: true });
-    const isContactVisible = title || description;
+    const titleExist = !!this.getPropValue("title", { as_string: true });
+    const descriptionExist = !!this.getPropValue("description", { as_string: true });
+    const isContactVisible = titleExist || descriptionExist;
 
-    const location = this.getPropValue("location", { as_string: true });
-    const locationDetails = this.getPropValue("locationDetails", { as_string: true });
-    const isAddressVisible = location || locationDetails;
+    const locationExist = !!this.getPropValue("location", { as_string: true });
+    const locationDetailsExist = !!this.getPropValue("locationDetails", { as_string: true });
+    const isAddressVisible = locationExist || locationDetailsExist;
 
-    const inputItems = this.getPropValue("input_items")!
+    const inputItems = this.getPropValue("input_items")!;
     const image = this.getPropValue("image");
 
     function toObjectKey(str: string) {
@@ -381,14 +380,14 @@ class Form6 extends BaseContacts {
         case "Tel":
           return "tel";
         case "Number":
-          return "number"
+          return "number";
         default:
-          return "text"
+          return "text";
       }
     }
 
     function getInputName(indexOfLabel: number, inputLabel: string, indexOfInput: number): string {
-      const name = toObjectKey(`${indexOfLabel} ${inputLabel} ${indexOfInput}`)
+      const name = toObjectKey(`${indexOfLabel} ${inputLabel} ${indexOfInput}`);
       return toObjectKey(name);
     }
 
@@ -398,8 +397,8 @@ class Form6 extends BaseContacts {
         inputItem.getPropValue("inputs")?.map((_: TypeUsableComponentProps, indexOfInput: number) => {
           const key = getInputName(indexOfItem, inputItem.getPropValue("label"), indexOfInput);
           value[key] = "";
-        })
-      })
+        });
+      });
       return value;
     }
 
@@ -416,33 +415,33 @@ class Form6 extends BaseContacts {
           let fieldSchema = Yup.string() as any;
 
           if (isRequired) {
-            fieldSchema = fieldSchema.required(input.getPropValue("required_error_message"))
+            fieldSchema = fieldSchema.required(input.getPropValue("required_error_message"));
           } else {
             fieldSchema = fieldSchema.nullable();
           }
 
           if (isEmail) {
-            fieldSchema = fieldSchema.email(input.getPropValue("type_error_message"))
+            fieldSchema = fieldSchema.email(input.getPropValue("type_error_message"));
           }
 
           schema = schema.shape({
             [key]: fieldSchema,
           });
-        })
-      })
+        });
+      });
 
       return schema;
-    };
+    }
 
     function getFormDataWithConvertedKeys(obj: any) {
       const newObj: any = {};
       for (const key in obj) {
         if (Object.prototype.hasOwnProperty.call(obj, key)) {
-          let adjustedKey = key.startsWith('_') ? key.slice(1) : key;
-          const parts = adjustedKey.split('_');
-          let newKey = '';
+          let adjustedKey = key.startsWith("_") ? key.slice(1) : key;
+          const parts = adjustedKey.split("_");
+          let newKey = "";
           for (let i = 1; i < parts.length - 1; i++) {
-            newKey += (i > 1 ? '_' : '') + parts[i];
+            newKey += (i > 1 ? "_" : "") + parts[i];
           }
           newObj[newKey] = obj[key];
         }
@@ -451,94 +450,104 @@ class Form6 extends BaseContacts {
     }
 
     function isRequiredInput(inputItem: any): boolean {
-      return inputItem.getPropValue("inputs").some((input: any) => input.getPropValue("is_required"))
+      return inputItem.getPropValue("inputs").some((input: any) => input.getPropValue("is_required"));
     }
 
-    return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("top-container")} >
-            {isContactVisible &&
-              <div className={this.decorateCSS("contact")} >
-                {title && <h1 className={this.decorateCSS("title")}> {this.getPropValue("title")} </h1>}
-                {description && <h3 className={this.decorateCSS("description")}> {this.getPropValue("description")} <span className={this.decorateCSS("mail")}>{this.getPropValue("mail")}</span> </h3>}
-              </div>
-            }
-            {isAddressVisible &&
-              <div className={this.decorateCSS("address")}>
-                {location && <h1 className={this.decorateCSS("title-2")}> {this.getPropValue("location")} </h1>}
-                {locationDetails && <h3 className={this.decorateCSS("description")}> {this.getPropValue("locationDetails")} </h3>}
-              </div>
-            }
-          </div>
-          <div className={this.decorateCSS("lower-container")} >
-            <div className={this.decorateCSS("form-container")} >
-              <Formik
-                initialValues={getInitialValue()}
-                validationSchema={getSchema()}
-                onSubmit={(data, { resetForm }) => {
-                  const formData = getFormDataWithConvertedKeys(data)
-                  this.insertForm("Contact Me", formData);
-                  resetForm();
-                }}
-              >
-                {({ handleChange, values }) => (
-                  <Form className={this.decorateCSS("form")}>
-                    {inputItems.map((inputItem: any, inputItemIndex: number) =>
-                      <div className={this.decorateCSS("input-container")}>
-                        <span className={this.decorateCSS("label")}>{inputItem.getPropValue("label", {
-                          suffix: {
-                            label: isRequiredInput(inputItem) && "*",
-                            className: this.decorateCSS("require-star")
-                          }
-                        })}</span>
-                        <div className={this.decorateCSS("inputs")}>
-                          {inputItem.getPropValue("inputs").map((inputObj: any, inputIndex: number) =>
-                            <div className={this.decorateCSS("input-box")}>
-                              {inputObj.getPropValue("type") == "Text Area" ?
-                                <textarea
-                                  value={values[getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)]}
-                                  className={this.decorateCSS("input")} placeholder={inputObj.getPropValue("placeholder", { as_string: true })} rows={12} onChange={handleChange}
-                                  name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)}></textarea> :
-                                <input
-                                  placeholder={inputObj.getPropValue("placeholder", { as_string: true })}
-                                  type={getInputType(inputObj.getPropValue("type"))}
-                                  onChange={handleChange}
-                                  value={values[getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)]}
-                                  name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)}
-                                  className={this.decorateCSS("input")}
-                                />}
-                              <ErrorMessage
-                                className={this.decorateCSS("error-message")}
-                                name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)}
-                                component={"span"}
-                              />
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    )}
-                    <button
-                      className={this.decorateCSS("submit-button")}
-                      type="submit"
-                    >
-                      {this.getPropValue("button_text")}
-                    </button>
-                  </Form>
-                )}
-              </Formik>
+    const buttonText = this.getPropValue("button_text");
+    const buttonTextExist = this.castToString(buttonText);
 
-            </div>
-            {image && <div className={this.decorateCSS("image-container")}>
-              <img
-                className={this.decorateCSS("image")}
-                src={image}
-                alt="contact image"
-              />
-            </div>}
+    const formContainerExist = inputItems.length > 0 || buttonTextExist;
+
+    return (
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <div className={this.decorateCSS("top-container")}>
+            {isContactVisible && (
+              <div className={this.decorateCSS("contact")}>
+                {titleExist && <Base.P className={this.decorateCSS("title")}> {this.getPropValue("title")} </Base.P>}
+                {descriptionExist && (
+                  <Base.P className={this.decorateCSS("description")}>
+                    {this.getPropValue("description")}
+                    {this.getPropValue("mail")}
+                  </Base.P>
+                )}
+              </div>
+            )}
+            {isAddressVisible && (
+              <div className={this.decorateCSS("address")}>
+                {locationExist && <Base.P className={this.decorateCSS("title-2")}>{this.getPropValue("location")}</Base.P>}
+                {locationDetailsExist && <Base.P className={this.decorateCSS("description-2")}>{this.getPropValue("locationDetails")}</Base.P>}
+              </div>
+            )}
           </div>
-        </div>
-      </div >
+          <div className={this.decorateCSS("lower-container")}>
+            {formContainerExist && (
+              <div className={this.decorateCSS("form-container")}>
+                <Formik
+                  initialValues={getInitialValue()}
+                  validationSchema={getSchema()}
+                  onSubmit={(data, { resetForm }) => {
+                    const formData = getFormDataWithConvertedKeys(data);
+                    this.insertForm("Contact Me", formData);
+                    resetForm();
+                  }}
+                >
+                  {({ handleChange, values }) => (
+                    <Form className={this.decorateCSS("form")}>
+                      {inputItems.map((inputItem: any, inputItemIndex: number) => (
+                        <div className={this.decorateCSS("input-container")}>
+                          <span className={this.decorateCSS("label")}>
+                            {inputItem.getPropValue("label", {
+                              suffix: {
+                                label: isRequiredInput(inputItem) && "*",
+                                className: this.decorateCSS("require-star"),
+                              },
+                            })}
+                          </span>
+                          <div className={this.decorateCSS("inputs")}>
+                            {inputItem.getPropValue("inputs").map((inputObj: any, inputIndex: number) => (
+                              <div className={this.decorateCSS("input-box")}>
+                                {inputObj.getPropValue("type") === "Text Area" ? (
+                                  <textarea
+                                    value={values[getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)]}
+                                    className={this.decorateCSS("input")}
+                                    placeholder={inputObj.getPropValue("placeholder", { as_string: true })}
+                                    rows={12}
+                                    onChange={handleChange}
+                                    name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)}
+                                  ></textarea>
+                                ) : (
+                                  <input
+                                    placeholder={inputObj.getPropValue("placeholder", { as_string: true })}
+                                    type={getInputType(inputObj.getPropValue("type"))}
+                                    onChange={handleChange}
+                                    value={values[getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)]}
+                                    name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)}
+                                    className={this.decorateCSS("input")}
+                                  />
+                                )}
+                                <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)} component={"span"} />
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                      <Base.Button className={this.decorateCSS("submit-button")} type="submit">
+                        {this.getPropValue("button_text")}
+                      </Base.Button>
+                    </Form>
+                  )}
+                </Formik>
+              </div>
+            )}
+            {image && (
+              <div className={formContainerExist ? this.decorateCSS("image-container") : this.decorateCSS("image-container-no-form")}>
+                <img className={this.decorateCSS("image")} src={image} alt="" />
+              </div>
+            )}
+          </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
