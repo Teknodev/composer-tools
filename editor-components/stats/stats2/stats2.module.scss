@@ -149,10 +149,6 @@
           &:nth-child(-n + 2) {
             border-top: none;
           }
-
-          &:nth-last-child() {
-            border-right: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
-          }
         }
       }
     }
@@ -258,6 +254,11 @@
 
             &:first-child {
               border-top: none;
+              border-bottom: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
+            }
+
+            &:nth-child(2n) {
+              border-right: none;
             }
 
             .card-amount-container {
