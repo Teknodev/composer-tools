@@ -1,3 +1,4 @@
+@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
 .container {
     background-size: cover;
     background-position: center center;
@@ -51,13 +52,13 @@
     }
 }
 
-@media only screen and (max-width: 768px) {
+@container (max-width: #{$composer-tablet-width-lg}) {
     .container {
         aspect-ratio: 9 / 3;
     }
 }
 
-@media only screen and (max-width: 400px) {
+@container (max-width: #{$composer-phone-width}) {
     .container {
         aspect-ratio: 3 / 1;
 
