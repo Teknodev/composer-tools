@@ -140,7 +140,7 @@ export abstract class Component
       });
     }
 
-    EventEmitter.emit(EVENTS.COMPONENT_ADDED, { id: this.id, props });
+    EventEmitter.emit(EVENTS.COMPONENT_ADDED, { data: this });
   }
 
   static getName(): string {
