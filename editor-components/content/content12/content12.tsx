@@ -2,6 +2,7 @@ import * as React from "react";
 import styles from "./content12.module.scss";
 import { BaseContent } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
+import { ComposerIcon } from "composer-tools/composer-base-components/icon/icon";
 
 class Content12 extends BaseContent {
   constructor(props?: any) {
@@ -28,6 +29,12 @@ class Content12 extends BaseContent {
       value:
         "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661ba4ebd2970002c628732?alt=media&timestamp=1719563672206",
     });
+    this.addProp({
+      type: "icon",
+      key: "closeIcon",
+      displayer: "Close Button Icon",
+      value: "RxCross2",
+    });
 
     this.setComponentState("is_video_visible", false);
   }
@@ -37,6 +44,8 @@ class Content12 extends BaseContent {
   }
 
   render() {
+    const closeIcon: string = this.getPropValue("closeIcon");
+
     return (
       <Base.Container
         isFull={true}
@@ -56,18 +65,37 @@ class Content12 extends BaseContent {
               {this.getPropValue("title")}
             </span>
           </div>
-          {this.getComponentState("is_video_visible") && (
+          {(this.getComponentState("is_video_visible") && this.getPropValue("video")) && (
+
             <Base.Overlay
-              className={this.decorateCSS("video")}
               onClick={() => this.setComponentState("is_video_visible", false)}
+              className={this.decorateCSS("overlay")}
             >
-              <video
-                onClick={(event) => event.stopPropagation()}
-                controls
-                className={this.decorateCSS("player")}
-                src={this.getPropValue("video")}
-              ></video>
+              <div className={this.decorateCSS("video-container")}>
+                <div
+                  className={this.decorateCSS("video")}
+                >
+                  <video
+                    onClick={(event) => event.stopPropagation()}
+                    controls
+                    className={this.decorateCSS("player")}
+                    src={this.getPropValue("video")}
+                  ></video>
+
+                </div>
+              </div>
+              {closeIcon && (
+                <div className={this.decorateCSS("close-icon-box")}>
+                  <ComposerIcon
+                    propsIcon={{
+                      className: this.decorateCSS("close-icon"),
+                    }}
+                    name={closeIcon}
+                  />
+                </div>
+              )}
             </Base.Overlay>
+
           )}
         </Base.MaxContent>
       </Base.Container>

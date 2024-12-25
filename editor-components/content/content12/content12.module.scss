@@ -16,14 +16,38 @@
             text-decoration: underline;
         }
 
-        .video {
-            .player {
-                width: 100%;
-                max-width: 800px;
-                height: 500px;
-                z-index: 10;
+        .overlay {
+            .video-container {
+              height: fit-content;
+              width: 70%;
+              .video {
+                height: 100%;
+                display: flex;
+                align-items: center;
+                position: relative;
+                .player {
+                  max-height: 100%;
+                  height: fit-content;
+                  border-radius: var(--composer-border-radius-xs);
+                  width: auto;
+                  max-width: 100%;
+                }
+              }
             }
-        }
+            .close-icon-box {
+              position: absolute;
+              top: var(--composer-gap-md);
+              right: var(--composer-gap-md);
+              color: var(--composer-font-color-secondary);
+              background-color: transparent;
+              display: flex;
+              .close-icon {
+                width: 1.5em;
+                height: 1.5em;
+              }
+            }
+          }
+        
     }
 }
 
