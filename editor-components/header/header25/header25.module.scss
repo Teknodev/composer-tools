@@ -391,7 +391,9 @@
         .bottom-figure {}
 
         .top-figure {
+          gap: 0;
           .pagination {
+            margin-top: var(--composer-gap-md);
             .active-slide {
               font-size: 5rem;
             }
@@ -402,7 +404,7 @@
           }
 
           .low-op-text {
-            font-size: 4rem;
+            font-size: 5rem;
             margin-left: 25%;
 
             .background-op-text {}
@@ -509,7 +511,6 @@
         .top-figure {
           width: 40%;
           height: 20%;
-          gap: var(--composer-gap-md);
 
           .pagination {
             .active-slide {
@@ -526,8 +527,8 @@
           }
 
           .low-op-text {
-            font-size: 2rem;
-            margin-left: 25%;
+            font-size: 3rem;
+            margin-left: 15%;
 
             .background-op-text {}
           }
