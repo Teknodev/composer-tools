@@ -4,7 +4,7 @@ import styles from "./base.module.scss";
 export type TypeContentView = "monochrome" | "colorful";
 export type TypeContentAlignment = "left" | "center";
 export type TypeSubtitle = "line" | "badge" | "none";
-export type TypeButton = "Normal" | "Outline";
+export type TypeButton = "Primary" | "Secondary" | "Tertiary" | "Link" | "White" | "Black";
 export namespace Base {
   const rootStyles = getComputedStyle(document.documentElement);
 
@@ -207,7 +207,7 @@ export namespace Base {
     return (
       <button
         className={`${styles.button} ${
-          styles[(buttonType || "normal").toLocaleLowerCase()]
+          styles[(buttonType || "Primary").toLocaleLowerCase()]
         } ${className}`}
         {...props}
       ></button>

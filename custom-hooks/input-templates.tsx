@@ -9,7 +9,7 @@ export namespace INPUTS {
     displayer: string,
     text: string,
     url: string = "",
-    type: TypeButton = "Normal"
+    type: TypeButton = "Primary"
   ) => {
     return {
       type: "object",
@@ -34,7 +34,7 @@ export namespace INPUTS {
           displayer: "Type",
           value: type,
           additionalParams: {
-            selectItems: ["Normal", "Outline"],
+            selectItems: ["Primary", "Secondary", "Tertiary", "Link", "White", "Black"],
           },
         },
       ],
