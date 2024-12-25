@@ -4,6 +4,7 @@ import styles from "./navbar4.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "composer-tools/composer-base-components/base/base";
+import ComposerLanguage from "composer-tools/composer-base-components/language/language";
 
 type Item = {
   title: JSX.Element;
@@ -152,6 +153,13 @@ class Navbar4 extends BaseNavigator {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "language",
+      displayer: "Language",
+      value: true,
+    });
+
+    this.addProp({
       type: "icon",
       key: "hamburger_icon",
       displayer: "Hamburger Icon",
@@ -224,27 +232,7 @@ class Navbar4 extends BaseNavigator {
                               type: "array",
                               key: "sub_items",
                               displayer: "Sub Items",
-                              value: [
-                                {
-                                  type: "object",
-                                  key: "item",
-                                  displayer: "Item",
-                                  value: [
-                                    {
-                                      type: "string",
-                                      key: "title",
-                                      displayer: "Title",
-                                      value: "asjdf ajsdfj asd",
-                                    },
-                                    {
-                                      type: "page",
-                                      key: "navigate_to",
-                                      displayer: "Navigate to",
-                                      value: "",
-                                    },
-                                  ],
-                                },
-                              ],
+                              value: [],
                             },
                           ],
                         },
@@ -2510,16 +2498,9 @@ class Navbar4 extends BaseNavigator {
 
     this.addProp({
       type: "icon",
-      key: "price_icon",
-      displayer: "Shop Icon",
+      key: "icon",
+      displayer: "Language Icon",
       value: "FaBagShopping",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "price",
-      displayer: "Price",
-      value: "$0.00",
     });
 
     this.state["componentProps"]["hamburgerNavActive"] = true;
@@ -2564,6 +2545,15 @@ class Navbar4 extends BaseNavigator {
       this.setComponentState("subNavActive", index);
     }
   }
+
+  componentDidMount() {
+    window.addEventListener("scroll", () => {
+      const scrollPosition = window.scrollY;
+      console.log(scrollPosition);
+      this.setComponentState("isScrolled", scrollPosition);
+    });
+  }
+
   render() {
     const navbarElement = document.getElementById(`navbar4-height`);
     const navbarHeight = navbarElement?.clientHeight || "auto";
@@ -2579,135 +2569,147 @@ class Navbar4 extends BaseNavigator {
     const logo = position === "Absolute" || (position === "Sticky Transparent" && this.getComponentState("isScrolled") < navbarHeight) ? logoTransparent : logoDefault;
     const social = this.castToObject<any[]>("social");
 
-    const backgroundCondition = position === "Absolute" || (position === "Sticky Transparent" && this.getComponentState("isScrolled") < navbarHeight) ? logoTransparent : logoDefault;
+    const language = this.getPropValue("language");
+
+    const profile = this.getPropValue("profile");
+    const textsExist = this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("description"));
+
+    const topNavExist = textsExist || profile || logo || social.length > 0;
     return (
       <Base.Container
         id={"navbar4-height"}
         className={`${this.decorateCSS("container")} 
               ${this.decorateCSS(formatClassName(this.getPropValue("position")))} `}
       >
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("top-container")}>
-            <Base.MaxContent className={this.decorateCSS("top-max-content")}>
-              <div className={`${this.decorateCSS("top-nav")} ${this.getComponentState("isScrolled") > navbarHeight && this.decorateCSS("bg-color")}`}>
-                <div className={this.decorateCSS("left")}>
-                  <img className={this.decorateCSS("image")} src={this.getPropValue("profile")} alt="" />
-                  <div className={this.decorateCSS("texts")}>
-                    <Base.H5 className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.H5>
-                    <Base.P className={this.decorateCSS("description")}> {this.getPropValue("description")}</Base.P>
-                  </div>
-                </div>
+        <div className={`${this.decorateCSS("max-content")} ${this.getComponentState("isScrolled") > navbarHeight && this.decorateCSS("bg-color")}`}>
+          {topNavExist && (
+            <div className={this.decorateCSS("top-container")}>
+              <Base.MaxContent className={this.decorateCSS("top-max-content")}>
+                {topNavExist && (
+                  <div className={this.decorateCSS("top-nav")}>
+                    {(textsExist || profile) && (
+                      <div className={this.decorateCSS("left")}>
+                        {profile && <img className={this.decorateCSS("image")} src={this.getPropValue("profile")} alt="" />}
+                        {textsExist && (
+                          <div className={this.decorateCSS("texts")}>
+                            {this.castToString(this.getPropValue("title")) && <Base.H5 className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.H5>}
+                            {this.castToString(this.getPropValue("description")) && <Base.P className={this.decorateCSS("description")}> {this.getPropValue("description")}</Base.P>}
+                          </div>
+                        )}
+                      </div>
+                    )}
 
-                {logo && (
-                  <div className={this.decorateCSS("image-container")}>
-                    <ComposerLink path={this.getPropValue("logo_navigate")}>
-                      <img className={this.decorateCSS("image")} src={logo} alt="" />
-                    </ComposerLink>
-                  </div>
-                )}
+                    {logo && (
+                      <div className={this.decorateCSS("image-container")}>
+                        <ComposerLink path={this.getPropValue("logo_navigate")}>
+                          <img className={this.decorateCSS("image")} src={logo} alt="" />
+                        </ComposerLink>
+                      </div>
+                    )}
 
-                {social.length > 0 && (
-                  <div className={this.decorateCSS("right")}>
                     {social.length > 0 && (
-                      <div className={this.decorateCSS("social")}>
-                        {social.map(
-                          (item: any, indexSocial: number) =>
-                            item.socialIcon && (
-                              <ComposerLink key={indexSocial} path={item.socialLink}>
-                                <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={item.socialIcon} />
-                              </ComposerLink>
-                            )
+                      <div className={this.decorateCSS("right")}>
+                        {social.length > 0 && (
+                          <div className={this.decorateCSS("social")}>
+                            {social.map(
+                              (item: any, indexSocial: number) =>
+                                item.socialIcon && (
+                                  <ComposerLink key={indexSocial} path={item.socialLink}>
+                                    <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={item.socialIcon} />
+                                  </ComposerLink>
+                                )
+                            )}
+                          </div>
                         )}
                       </div>
                     )}
                   </div>
                 )}
-              </div>
-            </Base.MaxContent>
-          </div>
+              </Base.MaxContent>
+            </div>
+          )}
 
           <Base.MaxContent>
             <div className={this.decorateCSS("contentDown")}>
               <nav className={this.decorateCSS("pc-navigator")}>
                 <div className={this.decorateCSS("items")}>
                   {items.map((item: Item, indexItemList: number) => {
+                    const titleExist = this.castToString(item.title);
                     return (
-                      <div className={this.decorateCSS("menu-item")} key={indexItemList}>
-                        <ComposerLink path={item.navigate_to}>
-                          <div className={this.decorateCSS("item")}>
-                            <Base.H5 className={this.decorateCSS("title")}>
-                              {item.sub_items?.length > 0 && (
-                                <ComposerIcon
-                                  name={this.getPropValue("dropdown_icon")}
-                                  propsIcon={{
-                                    className: this.decorateCSS("icon"),
-                                  }}
-                                />
-                              )}
-                              {item.title}
-                            </Base.H5>
+                      titleExist && (
+                        <div className={this.decorateCSS("menu-item")} key={indexItemList}>
+                          <ComposerLink path={item.navigate_to}>
+                            <div className={this.decorateCSS("item")}>
+                              <Base.H5 className={this.decorateCSS("title")}>
+                                {item.sub_items?.length > 0 && (
+                                  <ComposerIcon
+                                    name={this.getPropValue("dropdown_icon")}
+                                    propsIcon={{
+                                      className: this.decorateCSS("icon"),
+                                    }}
+                                  />
+                                )}
+                                {item.title}
+                              </Base.H5>
 
-                            {item.sub_items.length > 0 && (
-                              <div className={this.decorateCSS("sub-items")}>
-                                {item.sub_items.map((subItemGroup, subItemGroupIndex) => (
-                                  <div className={this.decorateCSS("sub-item-group")} key={subItemGroupIndex}>
-                                    {subItemGroup.sub_items.length > 0 &&
-                                      subItemGroup.sub_items?.map((subItem, subItemIndex) => {
-                                        const subItemExist = this.castToString(subItem.title);
-                                        return (
-                                          subItemGroup.sub_items.length > 0 &&
-                                          subItemExist && (
-                                            <div className={this.decorateCSS("sub-item")} key={subItemIndex}>
-                                              <Base.P className={this.decorateCSS("sub-item-text")}>
-                                                {subItem.title}
-                                                {subItem.sub_items?.length > 0 && subItemExist && (
-                                                  <ComposerIcon
-                                                    name={this.getPropValue("right_icon")}
-                                                    propsIcon={{
-                                                      className: this.decorateCSS("icon"),
-                                                    }}
-                                                  />
+                              {item.sub_items.length > 0 && (
+                                <div className={this.decorateCSS("sub-items")}>
+                                  {item.sub_items.map((subItemGroup, subItemGroupIndex) => (
+                                    <div className={this.decorateCSS("sub-item-group")} key={subItemGroupIndex}>
+                                      {subItemGroup.sub_items.length > 0 &&
+                                        subItemGroup.sub_items?.map((subItem, subItemIndex) => {
+                                          const subItemExist = this.castToString(subItem.title);
+                                          return (
+                                            subItemGroup.sub_items.length > 0 &&
+                                            subItemExist && (
+                                              <div className={this.decorateCSS("sub-item")} key={subItemIndex}>
+                                                <Base.P className={this.decorateCSS("sub-item-text")}>
+                                                  {subItem.title}
+                                                  {subItem.sub_items?.length > 0 && subItemExist && (
+                                                    <ComposerIcon
+                                                      name={this.getPropValue("right_icon")}
+                                                      propsIcon={{
+                                                        className: this.decorateCSS("icon"),
+                                                      }}
+                                                    />
+                                                  )}
+                                                </Base.P>
+                                                {subItem.sub_items?.length > 0 && (
+                                                  <div className={this.decorateCSS("list")}>
+                                                    {subItem.sub_items.map((subItem2, subItem2Index) => {
+                                                      const subItem2Exist = this.castToString(subItem2.title);
+
+                                                      return (
+                                                        subItem2Exist && (
+                                                          <span className={this.decorateCSS("list-item")} key={subItem2Index}>
+                                                            {subItem2.title}
+                                                          </span>
+                                                        )
+                                                      );
+                                                    })}
+                                                  </div>
                                                 )}
-                                              </Base.P>
-                                              {subItem.sub_items?.length > 0 && (
-                                                <div className={this.decorateCSS("list")}>
-                                                  {subItem.sub_items.map((subItem2, subItem2Index) => {
-                                                    const subItem2Exist = this.castToString(subItem2.title);
-
-                                                    return (
-                                                      subItem2Exist && (
-                                                        <span className={this.decorateCSS("list-item")} key={subItem2Index}>
-                                                          {subItem2.title}
-                                                        </span>
-                                                      )
-                                                    );
-                                                  })}
-                                                </div>
-                                              )}
-                                            </div>
-                                          )
-                                        );
-                                      })}
-                                  </div>
-                                ))}
-                              </div>
-                            )}
-                          </div>
-                        </ComposerLink>
-                      </div>
+                                              </div>
+                                            )
+                                          );
+                                        })}
+                                    </div>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
+                          </ComposerLink>
+                        </div>
+                      )
                     );
                   })}
                 </div>
 
-                <div className={backgroundCondition ? this.decorateCSS("price-container-no-bg") : this.decorateCSS("price-container")}>
-                  <ComposerIcon
-                    name={this.getPropValue("price_icon")}
-                    propsIcon={{
-                      className: this.decorateCSS("icon"),
-                    }}
-                  />
-                  <Base.P className={this.decorateCSS("price")}>{this.getPropValue("price")}</Base.P>
-                </div>
+                {language && (
+                  <div className={this.decorateCSS("language")}>
+                    <ComposerLanguage type="dropdown" title="code" />
+                  </div>
+                )}
               </nav>
 
               {this.getPropValue("hamburger_icon") && (
@@ -2783,6 +2785,14 @@ class Navbar4 extends BaseNavigator {
                         </div>
                       );
                     })}
+
+                    {language && <div className={this.decorateCSS("line")} />}
+
+                    {language && (
+                      <div className={this.decorateCSS("language")}>
+                        <ComposerLanguage type="accordion" title="name" />
+                      </div>
+                    )}
                   </div>
                 )}
               </nav>
