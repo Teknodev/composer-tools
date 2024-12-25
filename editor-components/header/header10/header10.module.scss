@@ -212,6 +212,7 @@
     padding: 20px 40px;
     .max-content {
       .carousel {
+        max-height: 100%;
         .content {
           flex-direction: column;
           gap: var(--composer-gap-md);
@@ -263,6 +264,7 @@
             order: 2;
             z-index: 1;
             align-items: start;
+            padding: 0px;
             .icon {
               display: none;
             }
@@ -279,5 +281,10 @@
 @container (max-width: #{$composer-phone-width}) {
   .container{
     padding: 20px;
+    .max-content{
+      .carousel{
+        max-height: 100%;
+      }
+    }
   }
 }
