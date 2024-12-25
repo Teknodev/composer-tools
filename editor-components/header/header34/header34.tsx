@@ -222,7 +222,7 @@ class HeaderComponent34 extends BaseHeader {
         >
           <div className={this.decorateCSS("slider-container")}>
             <div
-              className={`${this.decorateCSS(`overlay-${slideDirection}`)} ${
+              className={`${this.decorateCSS("overlay")} ${this.decorateCSS(`overlay-${slideDirection}`)} ${
                 slideStatus === "sliding"
                   ? this.decorateCSS("active")
                   : slideStatus === "ended"
