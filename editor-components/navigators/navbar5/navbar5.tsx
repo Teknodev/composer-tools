@@ -387,7 +387,7 @@ class Navbar5 extends BaseNavigator {
 
                 {(language || iconsExist) && (
                   <div className={this.decorateCSS("navbar")}>
-                    {language && <ComposerLanguage className={this.decorateCSS("language")} />}
+                    {language && <ComposerLanguage type="dropdown" dropdownClassName={this.decorateCSS("language")} />}
 
                     <ComposerIcon
                       name={navActive ? this.getPropValue("cross-icon") : this.getPropValue("hamburger-icon")}
