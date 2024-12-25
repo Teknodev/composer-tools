@@ -174,7 +174,7 @@ class CallToAction2Page extends BaseCallToAction {
               </div>
             )}
             {this.getComponentState("isVideoVisible") && (
-              <div
+              <Base.Overlay
                 onClick={this.hideVideo}
                 className={this.decorateCSS("overlay")}
               >
@@ -204,7 +204,7 @@ class CallToAction2Page extends BaseCallToAction {
                     />
                   </div>
                 )}
-              </div>
+              </Base.Overlay>
             )
 
             }

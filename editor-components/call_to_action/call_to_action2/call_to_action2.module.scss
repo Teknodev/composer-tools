@@ -57,6 +57,7 @@
           align-items: stretch;   
           max-width: 50%;     
           .button {
+            content: "";
           }
         }
       }
@@ -131,21 +132,11 @@
             .play-icon {
               color: var(--composer-font-color-secondary);
             }
-
           }
         }
    
       }
       .overlay {
-        position: fixed;
-        width: 100vw;
-        height: 100%;
-        background-color: var(--composer-overlay-color);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        top: 0px;
-
         .video-container {
           height: fit-content;
           width: 70%;
