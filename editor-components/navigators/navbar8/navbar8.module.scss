@@ -30,6 +30,7 @@
     z-index: 5;
     overflow-y: scroll;
     box-shadow: var(--box-shadow-active);
+    background-color: var(--composer-html-background);
 
     &.Absolute {
         position: absolute;
@@ -40,15 +41,15 @@
     &.StickyColorful {
         position: sticky;
         top: 0;
-        background-color: var(--composer-html-background);
     }
 
     &.StickyTransparent {
         position: fixed;
         top: 0;
+        background: transparent;
     }
 
-    &.Colorful {
+    &.navActive {
         background-color: var(--composer-html-background);
     }
 
@@ -138,8 +139,7 @@
             opacity: 1;
         }
 
-        &.closing {
-        }
+        &.closing {}
 
         &.Transparent {
             background: transparent;

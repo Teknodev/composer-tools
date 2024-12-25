@@ -321,13 +321,12 @@ class Navbar8 extends BaseNavigator {
     const iconText = this.getPropValue("icon-text");
 
     const color = this.getPropValue("color");
-    const downPageRef = React.createRef<HTMLDivElement>();
 
     return (
       <div className={`${this.decorateCSS("parent")} 
       ${this.decorateCSS(position)} 
-      ${this.decorateCSS(color)}
-      ${stickyAndTransparent && this.decorateCSS("Colorful")}`}>
+      ${stickyAndTransparent && this.decorateCSS("Colorful")}
+      ${navActive && this.decorateCSS("navActive")}`}>
         <Base.Container
           className={`${this.decorateCSS("container")} ${navActive && this.decorateCSS("active")}`}
           id="navbar8-height"
