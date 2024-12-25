@@ -17,7 +17,7 @@ class Content19 extends BaseContent {
       type: "video",
       displayer: "Video Link",
       key: "video",
-      value: "https://www.youtube.com/embed/fPO76Jlnz6c",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b9f4473292c6002b23c4b0?alt=media",
     });
     this.addProp({
       type: "image",
@@ -25,6 +25,12 @@ class Content19 extends BaseContent {
       displayer: "Video Image",
       value:
         "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a3a08f2f8a5b002ce6b795?alt=media",
+    });
+    this.addProp({
+      type: "icon",
+      key: "closeIcon",
+      displayer: "Close Button Icon",
+      value: "RxCross2",
     });
 
     this.addProp({
@@ -137,6 +143,7 @@ class Content19 extends BaseContent {
     const authorName = this.getPropValue("author-name");
     const authorDescription = this.getPropValue("author-description");
     const titleText = this.getPropValue("title-text");
+    const closeIcon: string = this.getPropValue("closeIcon");
 
     const displayContent =
       this.castToString(titleText) ||
@@ -248,17 +255,37 @@ class Content19 extends BaseContent {
           </Base.ContainerGrid>
         </Base.MaxContent>
         {this.getComponentState("is_video_visible") && (
-          <div
-            className={this.decorateCSS("video")}
-            onClick={() => this.setComponentState("is_video_visible", false)}
+          <Base.Overlay
+            onClick={() => this.setComponentState("is_video_visible", false)} className={this.decorateCSS("overlay")}
           >
-            <video
-              onClick={(event) => event.stopPropagation()}
-              controls
-              className={this.decorateCSS("player")}
-              src={this.getPropValue("video")}
-            ></video>
-          </div>
+            <div className={this.decorateCSS("video-container")}>
+              <div
+                className={this.decorateCSS("video")}
+
+              >
+                <video
+                  controls
+                  className={this.decorateCSS("player")}
+                  src={this.getPropValue("video")}
+                  onClick={(event) => event.stopPropagation()}
+                ></video>
+
+              </div>
+            </div>
+            {closeIcon && (
+              <div
+                className={this.decorateCSS("close-icon-box")}
+                onClick={() => this.setComponentState("is_video_visible", false)}
+              >
+                <ComposerIcon
+                  propsIcon={{
+                    className: this.decorateCSS("close-icon"),
+                  }}
+                  name={closeIcon}
+                />
+              </div>
+            )}
+          </Base.Overlay>
         )}
       </Base.Container>
     );

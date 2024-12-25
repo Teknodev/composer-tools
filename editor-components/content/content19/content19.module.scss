@@ -1,23 +1,7 @@
 @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
 .container {
-  .video {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    background: var(--composer-overlay-color);
-    top: 0;
-    left: 0;
-    display: grid;
-    place-items: center;
-    padding: var(--composer-gap-md);
-    z-index: 9;
-
-    .player {
-      width: 60%;
-      z-index: 10;
-    }
-  }
+  position: relative;
   .max-content {
     .content {
       .text-side {
@@ -162,10 +146,39 @@
       }
     }
   }
+  .overlay {
+    .video-container {
+      height: fit-content;
+      width: 70%;
+      .video {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        position: relative;
+        .player {
+          max-height: 100%;
+          height: fit-content;
+          border-radius: var(--composer-border-radius-xs);
+          width: 100%;
+        }
+      }
+    }
+    .close-icon-box {
+      position: absolute;
+      top: var(--composer-gap-md);
+      right: var(--composer-gap-md);
+      color: var(--composer-font-color-secondary);
+      background-color: transparent;   
+      .close-icon {
+        width: 1.5em;
+        height: 1.5em;
+      }
+    }
+  }
 }
 
 
-@media screen and (max-width: $composer-tablet-width-lg) {
+@container (max-width: #{$composer-tablet-width-lg}) {
   .container{
     .max-content{
       .content {
