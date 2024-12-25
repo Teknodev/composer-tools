@@ -41,7 +41,7 @@
             height: 35%;
             width: 40%;
             bottom: 0;
-            left: 0;
+            left: 5%;
             z-index: 10;
             padding: var(--composer-gap-lg) var(--composer-gap-xl);
             display: flex;
@@ -155,6 +155,9 @@
       .slider-content {
         .sub-container {
           .sub-content {
+            .card{
+              left: 0%;
+            }
             bottom: var(--composer-gap-sm);
           }
         }
