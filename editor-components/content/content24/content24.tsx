@@ -163,28 +163,28 @@ class Content24 extends BaseContent {
           {(this.castToString(subTitle) ||
             this.castToString(title) ||
             this.castToString(description)) && (
-            <Base.VerticalContent className={this.decorateCSS("heading")}>
-              {this.castToString(subTitle) && (
-                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                  {subTitle}
-                </Base.SectionSubTitle>
-              )}
+              <Base.VerticalContent className={this.decorateCSS("heading")}>
+                {this.castToString(subTitle) && (
+                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                    {subTitle}
+                  </Base.SectionSubTitle>
+                )}
 
-              {this.castToString(title) && (
-                <Base.SectionTitle className={this.decorateCSS("title")}>
-                  {title}
-                </Base.SectionTitle>
-              )}
+                {this.castToString(title) && (
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
+                    {title}
+                  </Base.SectionTitle>
+                )}
 
-              {this.castToString(description) && (
-                <Base.SectionDescription
-                  className={this.decorateCSS("description")}
-                >
-                  {description}
-                </Base.SectionDescription>
-              )}
-            </Base.VerticalContent>
-          )}
+                {this.castToString(description) && (
+                  <Base.SectionDescription
+                    className={this.decorateCSS("description")}
+                  >
+                    {description}
+                  </Base.SectionDescription>
+                )}
+              </Base.VerticalContent>
+            )}
 
           <div className={this.decorateCSS("tabs")}>
             <div className={this.decorateCSS("tab-buttons")}>
@@ -211,37 +211,33 @@ class Content24 extends BaseContent {
                     this.decorateCSS("tab") +
                     " " +
                     (this.getComponentState("activeTab") == index &&
-                      this.decorateCSS("active")) +
-                    " " +
-                    (this.getComponentState("startedIndex") == index &&
-                      styles["start"])
-                  }
+                      this.decorateCSS("active"))}
                 >
                   {(this.castToString(tab.title) ||
                     this.castToString(tab.description) ||
                     this.castToString(tab.buttonText)) && (
-                    <div
-                      className={this.decorateCSS("content")}
-                    >
-                      {this.castToString(tab.title) && (
-                        <Base.H2 className={this.decorateCSS("title")}>
-                          {tab.title}
-                        </Base.H2>
-                      )}
-                      {this.castToString(tab.description) && (
-                        <Base.P className={this.decorateCSS("description")}>
-                          {tab.description}
-                        </Base.P>
-                      )}
-                      {this.castToString(tab.buttonText) && (
-                        <button className={this.decorateCSS("button")}>
-                          <ComposerLink path={tab.buttonUrl}>
-                            {tab.buttonText}
-                          </ComposerLink>
-                        </button>
-                      )}
-                    </div>
-                  )}
+                      <div
+                        className={this.decorateCSS("content")}
+                      >
+                        {this.castToString(tab.title) && (
+                          <Base.H2 className={this.decorateCSS("title")}>
+                            {tab.title}
+                          </Base.H2>
+                        )}
+                        {this.castToString(tab.description) && (
+                          <Base.P className={this.decorateCSS("description")}>
+                            {tab.description}
+                          </Base.P>
+                        )}
+                        {this.castToString(tab.buttonText) && (
+                          <button className={this.decorateCSS("button")}>
+                            <ComposerLink path={tab.buttonUrl}>
+                              {tab.buttonText}
+                            </ComposerLink>
+                          </button>
+                        )}
+                      </div>
+                    )}
 
                   {tab.image && (
                     <div className={this.decorateCSS("image-container")}>
