@@ -3,6 +3,7 @@ import { BaseFooter } from "../../EditorComponent";
 import styles from "./footer5.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 class Footer5Page extends BaseFooter {
   constructor(props?: any) {
@@ -35,6 +36,8 @@ class Footer5Page extends BaseFooter {
       displayer: "Button Link",
       value: "",
     });
+
+    this.addProp(INPUTS.BUTTON("button", "Button", "", "", "Primary"));
 
     this.addProp({
       type: "boolean",
@@ -126,6 +129,8 @@ class Footer5Page extends BaseFooter {
 
     const bottomExist = links.length > 0 || footerDescriptionExist;
 
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+
     return (
       <div className={this.decorateCSS("container")}>
         {headerExist && (
@@ -142,7 +147,8 @@ class Footer5Page extends BaseFooter {
                   <div className={this.decorateCSS("right")}>
                     {buttonTextExist && (
                       <ComposerLink path={this.getPropValue("buttonLink")}>
-                        <Base.Button className={this.decorateCSS("button")}>{this.getPropValue("buttonText")}</Base.Button>
+                        <Base.Button buttonType={button.type}
+                          className={this.decorateCSS("button")}>{this.getPropValue("buttonText")}</Base.Button>
                       </ComposerLink>
                     )}
                   </div>

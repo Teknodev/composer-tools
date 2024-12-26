@@ -6,6 +6,7 @@ import { Formik, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { Base } from "../../../composer-base-components/base/base";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type IconsValues = {
   socialIcon: string;
@@ -50,6 +51,8 @@ class Footer1Page extends BaseFooter {
       displayer: "Subscription Button Text",
       value: "Subscribe",
     });
+
+    this.addProp(INPUTS.BUTTON("button", "Button", "", "", "Primary"));
 
     this.addProp({
       type: "boolean",
@@ -288,6 +291,8 @@ class Footer1Page extends BaseFooter {
 
     const submitText = this.castToString(this.getPropValue("submitText"));
 
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
@@ -333,7 +338,8 @@ class Footer1Page extends BaseFooter {
                               </div>
                             )}
                             {buttonTextExist && (
-                              <Base.Button className={this.decorateCSS("button")} type="submit">
+                              <Base.Button buttonType={button.type}
+                                className={this.decorateCSS("button")} type="submit">
                                 {this.getPropValue("subscriptionButtonText")}
                               </Base.Button>
                             )}

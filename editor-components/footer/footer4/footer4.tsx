@@ -6,6 +6,7 @@ import { Base } from "../../../composer-base-components/base/base";
 
 import { Formik, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type FooterValues = {
   footerTitle: JSX.Element;
@@ -384,6 +385,8 @@ class Footer4Page extends BaseFooter {
       value: "Subscribe",
     });
 
+    this.addProp(INPUTS.BUTTON("button", "Button", "", "", "Primary"));
+
     this.addProp({
       type: "string",
       key: "rightTitle",
@@ -510,6 +513,8 @@ class Footer4Page extends BaseFooter {
     const footerDescription = this.getPropValue("footerDescription");
     const footerDescriptionExist = this.castToString(footerDescription);
 
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
@@ -597,7 +602,8 @@ class Footer4Page extends BaseFooter {
                             )}
 
                             {buttonTextExist && (
-                              <Base.Button className={this.decorateCSS("button")} type="submit">
+                              <Base.Button buttonType={button.type}
+                                className={this.decorateCSS("button")} type="submit">
                                 {this.getPropValue("subscriptionButtonText")}
                               </Base.Button>
                             )}
