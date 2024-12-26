@@ -230,23 +230,14 @@ export namespace Base {
 
   export namespace Navigator {
     export function Container({ className, children, ...props }: any) {
+      const position = props.position.split(" ").map((item: string) => item.toLowerCase()).join("");
       return (
         <div
-          className={`${styles.navbarContainer} ${className} ${
-            props.position.includes("Sticky") ? styles.Sticky : ""
-          } ${
-            props.position.includes("Colorful")
-              ? styles.Colorful
-              : props.position.includes("Transparent")
-              ? styles.Transparent
-              : ""
-          }`}
+          className={`${styles.navbarContainer} ${className} ${styles[position]}`}
           {...props}
         >
           <div
-            className={`${styles.navbarPosition} ${
-              props.position === "Absolute" ? styles.Absolute : ""
-            }`}
+            className={`${styles.navbarPosition} ${styles.position}`}
           >
             {children}
           </div>
