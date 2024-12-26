@@ -44,39 +44,15 @@
         }
 
         .button-content {
-          display: flex;
 
-          .contact-button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem 2rem;
-            text-transform: uppercase;
-            background-color: var(--composer-secondary-color);
-            color: var(--composer-font-color-secondary);
-            transition: none;
-            word-break: break-word;
-            cursor: pointer;
-            max-width: 90%;
-            border-radius: var(--composer-border-radius-xs);
+          >div {
+            width: 100% !important;
 
-            &.animated {
-              transition: transform 0.4s ease;
-            }
+            .contact-button {
 
-            &.animated:hover {
-              transform: translateY(-2px);
-            }
-
-            .contact-button-icon {
-              flex-shrink: 0;
-              margin-left: .5rem;
-              font-size: 1rem;
-              color: var(--composer-font-color-secondary);
-            }
-
-            &.button-full-width {
-              max-width: 30%;
+              &.button-full-width {
+                max-width: 30%;
+              }
             }
           }
         }

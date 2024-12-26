@@ -4,6 +4,7 @@ import styles from "./stats2.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
   amount: number;
@@ -53,19 +54,7 @@ class Stats2Page extends BaseStats {
       value: "",
     });
 
-    this.addProp({
-      type: "boolean",
-      key: "buttonAnimation",
-      displayer: "Enable Button Animation",
-      value: true,
-    });
-
-    this.addProp({
-      type: "icon",
-      key: "contactButtonIcon",
-      displayer: "Button Icon",
-      value: "MdMailOutline",
-    });
+    this.addProp(INPUTS.BUTTON("button", "Button", "", "", "Primary"));
 
     this.addProp({
       type: "array",
@@ -216,16 +205,12 @@ class Stats2Page extends BaseStats {
     const cards = this.castToObject<Card[]>("cards");
     const cardLength = cards.length;
     const animationDuration = this.getPropValue("animation-duration") as number;
-    const header = this.getPropValue("header");
-    const isHeaderExist = this.castToString(header);
-    const subHeader = this.getPropValue("subHeader");
-    const isSubHeader = this.castToString(subHeader);
-    const contactButton = this.getPropValue("contactButton");
-    const isContactButtonExist = this.castToString(contactButton);
+
     const contactButtonIcon = this.getPropValue("contactButtonIcon");
-    const buttonAnimationEnabled = this.getPropValue("buttonAnimation");
     const contactButtonLink = this.getPropValue("contactButtonLink");
     const itemCount = this.getPropValue("itemCount");
+
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
     const totalRows = Math.ceil(cards.length / itemCount);
 
@@ -353,30 +338,30 @@ class Stats2Page extends BaseStats {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {isHeaderExist && (
+          {this.castToString(this.getPropValue("header")) && (
             <Base.VerticalContent className={`${this.decorateCSS("header-wrapper")} ${cardLength <= 0 ? this.decorateCSS("full-width") : ""}`}>
-              <Base.SectionTitle className={this.decorateCSS("header")}>{header}</Base.SectionTitle>
+              <Base.SectionTitle className={this.decorateCSS("header")}>{this.getPropValue("header")}</Base.SectionTitle>
             </Base.VerticalContent>
           )}
 
           <Base.ContainerGrid className={this.decorateCSS("bottom-content")}>
-            {(isSubHeader || isContactButtonExist || contactButtonIcon) && (
-              <div className={`${this.decorateCSS("subHeader")} ${cardLength <= 0 ? this.decorateCSS("full-width") : ""}  ${!isHeaderExist && this.decorateCSS("no-title")}`}>
-                {isSubHeader && (
+            {(this.castToString(this.getPropValue("subHeader")) || this.castToString(this.getPropValue("contactButton")) || contactButtonIcon) && (
+              <div className={`${this.decorateCSS("subHeader")} ${cardLength <= 0 ? this.decorateCSS("full-width") : ""}  ${!this.castToString(this.getPropValue("header")) && this.decorateCSS("no-title")}`}>
+                {this.castToString(this.getPropValue("subHeader")) && (
                   <Base.SectionDescription className={`${this.decorateCSS("description")} ${cardLength <= 0 ? this.decorateCSS("full-width") : ""}`}>
-                    {subHeader}
+                    {this.getPropValue("subHeader")}
                   </Base.SectionDescription>
                 )}
 
-                {(isContactButtonExist || contactButtonIcon) && (
-                  <ComposerLink path={contactButtonLink}>
-                    <div className={this.decorateCSS("button-content")}>
-                      <Base.P className={`${this.decorateCSS("contact-button")} ${buttonAnimationEnabled ? this.decorateCSS("animated") : ""} ${cardLength <= 0 ? this.decorateCSS("button-full-width") : ""}`}>
-                        {isContactButtonExist}
-                        <ComposerIcon name={contactButtonIcon} propsIcon={{ className: this.decorateCSS("contact-button-icon") }} />
-                      </Base.P>
-                    </div>
-                  </ComposerLink>
+                {(this.castToString(this.getPropValue("contactButton")) || contactButtonIcon) && (
+                  <div className={this.decorateCSS("button-content")}>
+                    <ComposerLink path={contactButtonLink}>
+                      <Base.Button buttonType={button.type}
+                        className={`${this.decorateCSS("contact-button")} ${cardLength <= 0 ? this.decorateCSS("button-full-width") : ""}`}>
+                        {this.getPropValue("contactButton")}
+                      </Base.Button>
+                    </ComposerLink>
+                  </div>
                 )}
               </div>
             )}
