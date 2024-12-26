@@ -177,114 +177,121 @@
 }
 
 @container (max-width: #{$composer-tablet-width-lg}) {
-  .max-content {
-    flex-direction: column;
-    overflow-x: hidden !important;
-
-    .left {
-      width: unset !important;
-      min-height: 200px;
-      height: auto;
-
-      .title {
-        font-size: 2rem !important;
-      }
-
-      .title-no-image {
-        font-size: 2rem !important;
-      }
-    }
-
-    .right {
+  .container{
+    height: 100%;
+    .max-content {
       flex-direction: column;
-
-      .team-member {
-        flex-direction: row !important;
-        .info {
-          width: 50% !important;
-
-          .subtitle {
-            font-size: 1rem;
-          }
-
-          .title {
-            font-size: 2rem !important;
-          }
-
-          .meta-info {
-            gap: var(--composer-gap-md) !important;
-            .meta {
-              .label {
-                font-size: 1rem !important;
-
-                color: var(--composer-font-color-primary);
-              }
-
-              .value-title {
-                color: var(--composer-font-color-primary);
-                opacity: 0.5;
-              }
-              .value-description {
-                color: var(--composer-font-color-primary);
+      overflow-x: hidden !important;
+  
+      .left {
+        width: unset !important;
+        min-height: 200px;
+        height: auto;
+  
+        .title {
+          font-size: 2rem !important;
+        }
+  
+        .title-no-image {
+          font-size: 2rem !important;
+        }
+      }
+  
+      .right {
+        flex-direction: column;
+  
+        .team-member {
+          flex-direction: row !important;
+          .info {
+            width: 50% !important;
+  
+            .subtitle {
+              font-size: 1rem;
+            }
+  
+            .title {
+              font-size: 2rem !important;
+            }
+  
+            .meta-info {
+              gap: var(--composer-gap-md) !important;
+              .meta {
+                .label {
+                  font-size: 1rem !important;
+  
+                  color: var(--composer-font-color-primary);
+                }
+  
+                .value-title {
+                  color: var(--composer-font-color-primary);
+                  opacity: 0.5;
+                }
+                .value-description {
+                  color: var(--composer-font-color-primary);
+                }
               }
             }
           }
-        }
-
-        .image-container {
-          width: 50% !important;
-          height: 580px !important;
-        }
-
-        &:nth-child(2n) {
-          flex-direction: row-reverse !important;
+  
+          .image-container {
+            width: 50% !important;
+            height: 580px !important;
+          }
+  
+          &:nth-child(2n) {
+            flex-direction: row-reverse !important;
+          }
         }
       }
     }
   }
+
 }
 
 @container (max-width: #{$composer-phone-width}) {
-  .max-content {
-    .left {
-      width: unset !important;
-      min-height: 100px;
-      height: auto;
-
-      .subtitle {
-        font-size: 1rem !important;
-      }
-
-      .subtitle-no-image {
-        font-size: 1rem !important;
-      }
-
-      .title {
-        font-size: 1.5rem !important;
-      }
-
-      .title-no-image {
-        font-size: 1.5rem !important;
-      }
-    }
-
-    .right {
-      .team-member {
-        flex-direction: column !important;
-        width: 100% !important;
-        min-width: unset !important;
-
-        .info {
-          width: 100% !important;
+  .container{
+    height: 100%;
+    .max-content {
+      .left {
+        width: unset !important;
+        min-height: 100px;
+        height: auto;
+  
+        .subtitle {
+          font-size: 1rem !important;
         }
-
-        .image-container {
-          width: 100% !important;
-          height: 100% !important;
+  
+        .subtitle-no-image {
+          font-size: 1rem !important;
         }
-
-        &:nth-child(2n) {
+  
+        .title {
+          font-size: 1.5rem !important;
+        }
+  
+        .title-no-image {
+          font-size: 1.5rem !important;
+        }
+      }
+  
+      .right {
+        .team-member {
           flex-direction: column !important;
+          width: 100% !important;
+          min-width: unset !important;
+  
+          .info {
+            width: 100% !important;
+          }
+  
+          .image-container {
+            width: 100% !important;
+            height: 100% !important;
+          }
+  
+          &:nth-child(2n) {
+            flex-direction: column !important;
+          }
         }
       }
     }
