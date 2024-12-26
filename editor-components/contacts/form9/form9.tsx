@@ -6,15 +6,6 @@ import * as Yup from "yup";
 import { Base } from "../../../composer-base-components/base/base";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
-type FormItem = {
-  label: JSX.Element;
-  placeholder: JSX.Element;
-  icon: string;
-  isFull: boolean;
-  type: "Text" | "Text Area" | "Phone" | "Email";
-  errorMessage: JSX.Element;
-};
-
 class Form9Page extends BaseContacts {
   constructor(props?: any) {
     super(props, styles);
@@ -39,7 +30,7 @@ class Form9Page extends BaseContacts {
 
     this.addProp({
       type: "array",
-      key: "form-items",
+      key: "inputs",
       displayer: "Form Items",
       value: [
         {
@@ -81,10 +72,22 @@ class Form9Page extends BaseContacts {
               value: false,
             },
             {
+              type: "boolean",
+              key: "is_required",
+              displayer: "Is Required",
+              value: true,
+            },
+            {
               type: "string",
-              key: "errorMessage",
-              displayer: "Error Message",
-              value: "Error",
+              key: "type_error_message",
+              displayer: "Type Error Message",
+              value: "Required",
+            },
+            {
+              type: "string",
+              key: "required_error_message",
+              displayer: "Required error message",
+              value: "*Required",
             },
           ],
         },
@@ -127,10 +130,22 @@ class Form9Page extends BaseContacts {
               value: false,
             },
             {
+              type: "boolean",
+              key: "is_required",
+              displayer: "Is Required",
+              value: true,
+            },
+            {
               type: "string",
-              key: "errorMessage",
-              displayer: "Error Message",
-              value: "Error",
+              key: "type_error_message",
+              displayer: "Type Error Message",
+              value: "Required",
+            },
+            {
+              type: "string",
+              key: "required_error_message",
+              displayer: "Required error message",
+              value: "*Required",
             },
           ],
         },
@@ -173,10 +188,80 @@ class Form9Page extends BaseContacts {
               value: true,
             },
             {
+              type: "boolean",
+              key: "is_required",
+              displayer: "Is Required",
+              value: true,
+            },
+            {
               type: "string",
-              key: "errorMessage",
-              displayer: "Error Message",
-              value: "Error",
+              key: "type_error_message",
+              displayer: "Type Error Message",
+              value: "Required",
+            },
+            {
+              type: "string",
+              key: "required_error_message",
+              displayer: "Required error message",
+              value: "*Required",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "form-item",
+          displayer: "Form Item",
+          value: [
+            {
+              type: "string",
+              key: "label",
+              displayer: "Label",
+              value: "Phone Number",
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaPhoneAlt",
+            },
+            {
+              type: "select",
+              key: "type",
+              displayer: "Input Type",
+              value: "Email",
+              additionalParams: {
+                selectItems: ["Text", "Text Area", "Phone", "Email"],
+              },
+            },
+            {
+              type: "string",
+              key: "placeholder",
+              displayer: "Placeholder",
+              value: "+44 (000)000-0000",
+            },
+            {
+              type: "boolean",
+              key: "isFull",
+              displayer: "Is Full Width?",
+              value: true,
+            },
+            {
+              type: "boolean",
+              key: "is_required",
+              displayer: "Is Required",
+              value: true,
+            },
+            {
+              type: "string",
+              key: "type_error_message",
+              displayer: "Type Error Message",
+              value: "Required",
+            },
+            {
+              type: "string",
+              key: "required_error_message",
+              displayer: "Required error message",
+              value: "*Required",
             },
           ],
         },
@@ -219,10 +304,22 @@ class Form9Page extends BaseContacts {
               value: true,
             },
             {
+              type: "boolean",
+              key: "is_required",
+              displayer: "Is Required",
+              value: true,
+            },
+            {
               type: "string",
-              key: "errorMessage",
-              displayer: "Error Message",
-              value: "Error",
+              key: "type_error_message",
+              displayer: "Type Error Message",
+              value: "Required",
+            },
+            {
+              type: "string",
+              key: "required_error_message",
+              displayer: "Required error message",
+              value: "*Required",
             },
           ],
         },
@@ -237,89 +334,134 @@ class Form9Page extends BaseContacts {
     });
   }
 
-  validationSchema = Yup.object().shape({
-    name: Yup.string().required("Required"),
-    email: Yup.string().email("Invalid email").required("Required"),
-    message: Yup.string().min(5, "Min 5 character!").required("Required"),
-  });
-
   getName(): string {
     return "Form 9";
   }
 
-  getInputType(type: string): string {
-    switch (type) {
-      case "Text":
-        return "text";
-      case "Text Area":
-        return "textarea";
-      case "Phone":
-        return "phone";
-      case "Email":
-        return "email";
-      default:
-        return "text";
-    }
+  getFormDataWithConvertedKeys(obj: any) {
+    const newObj: any = {};
+    const inputs = this.getPropValue("inputs");
+
+    inputs.forEach((input: any, index: number) => {
+      const label = input.value.find((prop: any) => prop.key === "label")?.value;
+      const key = label.replace(/\s+/g, '_').toLowerCase();
+      const formKey = `input_${index}`;
+      newObj[key] = obj[formKey];
+    });
+
+    return newObj;
   }
 
   render() {
+    const inputs = this.getPropValue("inputs");
+    const initialValue = getInitialValue();
+
     const imageExist = !!this.getPropValue("image");
-
-    const formItems = this.castToObject<FormItem[]>("form-items");
-
-    function toObjectKey(str: string) {
-      if (/^\d/.test(str)) {
-        str = "_" + str;
-      }
-      str = str.replace(/[^a-zA-Z0-9_]/g, "_").toLowerCase();
-      return str;
-    }
-
-    function getInputName(indexOfLabel: number, inputLabel: string, indexOfInput: number): string {
-      const name = toObjectKey(`${indexOfLabel} ${inputLabel} ${indexOfInput}`);
-      return toObjectKey(name);
-    }
-
-    const getInitialValues = () => {
-      let value: any = {};
-      formItems.map((inputItem: any, indexOfItem: number) => {
-        inputItem.getPropValue("inputs")?.map((_: TypeUsableComponentProps, indexOfInput: number) => {
-          const key = getInputName(indexOfItem, inputItem.getPropValue("label"), indexOfInput);
-          value[key] = "";
-        });
-      });
-      return value;
-    };
 
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
-    const button = this.getPropValue("button-text");
+    const buttonText = this.getPropValue("button-text");
 
     const titleExist = this.castToString(title);
     const descriptionExist = this.castToString(description);
-    const buttonExist = this.castToString(button);
+    const buttonTextExist = this.castToString(buttonText);
 
-    const rightItemsExist = titleExist || descriptionExist || buttonExist || formItems.length > 0;
+    const rightItemsExist = titleExist || descriptionExist || buttonTextExist || inputs.length > 0;
+
+
+    function getInputType(type: string): string {
+      switch (type) {
+        case "Text Area":
+          return "textarea";
+        case "E-mail":
+          return "email";
+        case "Tel":
+          return "tel";
+        case "Number":
+          return "number";
+        default:
+          return "text";
+      }
+    }
+
+    function getInputName(indexOfInput: number): string {
+      const name = `input_${indexOfInput}`;
+      return name;
+    }
+
+    function getInitialValue() {
+      let value: any = {};
+      inputs.map((input: TypeUsableComponentProps, indexOfInput: number) => {
+        value[getInputName(indexOfInput)] = "";
+      });
+
+      return value;
+    }
+
+    const getSchema = () => {
+      let schema = Yup.object().shape({});
+
+      const inputs = this.getPropValue("inputs");
+
+      inputs.map((input: TypeUsableComponentProps, indexOfInput: number) => {
+        if (!input["getPropValue"]) return;
+        const isRequired = input.getPropValue("is_required");
+        const isEmail = getInputType(input.getPropValue("type")) == "email";
+
+        let fieldSchema: Yup.StringSchema<string | null | undefined> = Yup.string();
+
+        if (isRequired) {
+          fieldSchema = fieldSchema.required(input.getPropValue("required_error_message"));
+        } else {
+          fieldSchema = fieldSchema.nullable();
+        }
+
+        if (isEmail) {
+          fieldSchema = fieldSchema.email(input.getPropValue("type_error_message"));
+        }
+
+        schema = schema.shape({
+          [getInputName(indexOfInput)]: fieldSchema,
+        });
+      });
+
+      return schema;
+    };
+
+    // function getFormDataWithConvertedKeys(obj: any) {
+    //   const newObj: any = {};
+    //   for (const key in obj) {
+    //     if (Object.prototype.hasOwnProperty.call(obj, key)) {
+    //       let adjustedKey = key.startsWith("_") ? key.slice(1) : key;
+    //       const parts = adjustedKey.split("_");
+    //       let newKey = "";
+    //       for (let i = 1; i < parts.length - 1; i++) {
+    //         newKey += (i > 1 ? "_" : "") + parts[i];
+    //       }
+    //       newObj[newKey] = obj[key];
+    //     }
+    //   }
+    //   return newObj;
+    // }
+
 
     return (
       <Base.Container
-        className={`
-        ${this.decorateCSS("container")}
-        ${imageExist ? this.decorateCSS("with-image") : ""}
-      `}
+        className={this.decorateCSS("container")}
       >
-        <div className={this.decorateCSS("max-content")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
-            {imageExist && (
-              <div className={this.decorateCSS("image-container")}>
-                <img className={rightItemsExist ? this.decorateCSS("image") : this.decorateCSS("image-full-width")} src={this.getPropValue("image")} alt="contact" />
+            {imageExist &&
+              <div className={`${this.decorateCSS("image-container")} 
+              ${!rightItemsExist && this.decorateCSS("image-full-width")}`}>
+                <img className={this.decorateCSS("image")} src={this.getPropValue("image")} alt="contact" />
               </div>
-            )}
+            }
             {rightItemsExist && (
-              <Base.MaxContent
+              <div
                 className={`
                 ${this.decorateCSS("form-container")}
-                ${imageExist ? this.decorateCSS("with-image") : ""}
+                ${!imageExist ? this.decorateCSS("without-image") : ""}
               `}
               >
                 {(titleExist || descriptionExist) && (
@@ -328,66 +470,81 @@ class Form9Page extends BaseContacts {
                     {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
                   </Base.VerticalContent>
                 )}
-                <Formik
-                  initialValues={getInitialValues()}
-                  validationSchema={this.validationSchema}
-                  onSubmit={(data, { resetForm }) => {
-                    this.insertForm("Contact Us", data);
-                    resetForm();
-                  }}
-                >
-                  {({ handleChange, values }) => (
-                    <Form className={this.decorateCSS("form")}>
-                      {formItems.map((item, index) => {
-                        return (
-                          <div
-                            key={index}
-                            className={`
-                            ${this.decorateCSS("form-item")}
-                            ${item.isFull ? this.decorateCSS("full") : ""}
-                          `}
-                          >
-                            {this.castToString(item.label) && <label className={this.decorateCSS("form-item-label")}>{item.label}</label>}
-                            <div className={this.decorateCSS("input-container")}>
-                              {this.getInputType(item.type) === "textarea" ? (
-                                <textarea
-                                  value={values[getInputName(index, this.castToString(item.label), index)]}
-                                  className={this.decorateCSS("input-textarea")}
-                                  placeholder={this.castToString(item.placeholder)}
-                                  onChange={handleChange}
-                                  name={getInputName(index, this.castToString(item.label), index)}
-                                  cols={30}
-                                ></textarea>
-                              ) : (
-                                <>
-                                  <ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("input-icon") }} />
-                                  <input
-                                    placeholder={this.castToString(item.placeholder)}
-                                    type={this.getInputType(item.type)}
+                {(inputs.length > 0 || buttonTextExist) && (
+                  <Formik
+                    initialValues={initialValue}
+                    validationSchema={getSchema()}
+                    onSubmit={(data, { resetForm }) => {
+                      const formData = this.getFormDataWithConvertedKeys(data);
+                      this.insertForm("Contact Me", formData);
+                      resetForm();
+                    }}
+                  >
+                    {({ handleChange, values }) => (
+                      <Form className={this.decorateCSS("form")}>
+                        {this.getPropValue("inputs").map((input: any, index: number) => {
+
+                          return (
+                            <div
+                              key={index}
+                              className={`
+                              ${this.decorateCSS("form-item")}
+                              ${input.getPropValue("isFull") ? this.decorateCSS("full") : ""}`}
+                            >
+                              {this.castToString(input.getPropValue("label")) &&
+                                <label className={this.decorateCSS("form-item-label")}>
+                                  {input.getPropValue("label")}
+                                </label>}
+
+                              <div className={this.decorateCSS("input-container")}>
+
+                                {input.getPropValue("type") == "Text Area" ? (
+                                  <textarea
+                                    id={getInputName(index)}
+                                    name={getInputName(index)}
+                                    value={values[getInputName(index)]}
+                                    placeholder={this.castToString(input.getPropValue("placeholder"))}
+                                    className={this.decorateCSS("input-textarea")}
+                                    rows={6}
                                     onChange={handleChange}
-                                    value={values[getInputName(index, this.castToString(item.label), index)]}
-                                    name={getInputName(index, this.castToString(item.label), index)}
-                                    className={this.decorateCSS("input")}
                                   />
-                                </>
-                              )}
-                              <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(index, this.castToString(item.label), index)} component={"span"} />
+                                ) : (
+                                  <>
+                                    <ComposerIcon name={(input.getPropValue("icon"))}
+                                      propsIcon={{ className: this.decorateCSS("input-icon") }} />
+
+                                    <input
+                                      id={getInputName(index)}
+                                      name={getInputName(index)}
+                                      placeholder={this.castToString(input.getPropValue("placeholder"))}
+                                      type={getInputType(input.getPropValue("type"))}
+                                      onChange={handleChange}
+                                      value={values[getInputName(index)]}
+                                      className={this.decorateCSS("input")}
+                                    />
+                                  </>
+                                )}
+                                <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(index)} component={"span"} />
+                              </div>
                             </div>
+
+                          )
+                        })}
+                        {buttonTextExist && (
+                          <div className={this.decorateCSS("button-div")}>
+                            <Base.Button className={this.decorateCSS("submit-button")} type="submit">
+                              {buttonText}
+                            </Base.Button>
                           </div>
-                        );
-                      })}
-                      {buttonExist && (
-                        <Base.Button className={this.decorateCSS("submit-button")} type="submit">
-                          {this.getPropValue("button-text")}
-                        </Base.Button>
-                      )}
-                    </Form>
-                  )}
-                </Formik>
-              </Base.MaxContent>
+                        )}
+                      </Form>
+                    )}
+                  </Formik>
+                )}
+              </div>
             )}
           </div>
-        </div>
+        </Base.MaxContent>
       </Base.Container>
     );
   }
