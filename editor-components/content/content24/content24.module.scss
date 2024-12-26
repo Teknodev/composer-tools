@@ -1,5 +1,4 @@
 @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
-
 .container {  
     .max-content {
         display: flex;
@@ -22,26 +21,40 @@
                 display: flex;
                 gap: var(--composer-gap-lg);
                 margin: var(--composer-gap-md) 0px var(--composer-gap-xl); 
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                overflow-y: hidden; 
+
         
                 .tab-button {
                     flex: 1;
                     text-align: center;
-                    color: rgba(var(--compsoer-font-color-primary-rgb), 0.7);
+                    color: rgba(var(--composer-font-color-primary-rgb), 0.7);
                     font-weight: bold;
                     padding: var(--composer-gap-sm) 0;
-                    font-size: 1.3rem;
+                    font-size: 1.5rem;
                     white-space: nowrap;
                     position: relative;
                     display: flex;
         
                     &.active {
                         border-bottom: 2px solid var(--composer-primary-color);
-                        color: var(--compsoer-font-color-primary);
+                        color: var(--composer-font-color-primary);
                         font-weight: bold;
                     }
                 }
             }
-  
+            &:hover{
+                .tab-buttons::-webkit-scrollbar {
+                    height: 2px;
+                    background:rgba(var(--composer-font-color-primary-rgb), 0.2);
+                }
+                
+                .tab-buttons::-webkit-scrollbar-thumb {
+                    background: var(--composer-font-color-primary);
+                    border-radius: var(--composer-border-radius-xs);
+                } 
+            }
             .tab {
                 width: 100%;
                 display: none;
@@ -62,7 +75,7 @@
                     gap: var(--composer-gap-lg);
         
                     .title {color: var(--composer-font-color-primary)}
-                    .description {color: var(--composer-font-color-tertiary)}
+                    .description {color: var(--composer-tertiary-color)}
         
                     .button {
                         border-radius: var(--composer-border-radius-sm);
@@ -86,12 +99,11 @@
                     }
                 }
             }
-      }
+        }
     }
 }
 
-@media only screen and (max-width: $composer-tablet-width-lg) {
-
+@container (max-width: #{$composer-tablet-width-lg}) {
     .container{
         .max-content{
             .tabs{
@@ -101,10 +113,9 @@
             }
         }
     }
-
 }
   
-@media only screen and (max-width: $composer-phone-width) {
+@container (max-width: #{$composer-phone-width}) {
     .container{
         .max-content{
             .tabs{
