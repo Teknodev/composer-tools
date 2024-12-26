@@ -428,23 +428,6 @@ class Form9Page extends BaseContacts {
       return schema;
     };
 
-    // function getFormDataWithConvertedKeys(obj: any) {
-    //   const newObj: any = {};
-    //   for (const key in obj) {
-    //     if (Object.prototype.hasOwnProperty.call(obj, key)) {
-    //       let adjustedKey = key.startsWith("_") ? key.slice(1) : key;
-    //       const parts = adjustedKey.split("_");
-    //       let newKey = "";
-    //       for (let i = 1; i < parts.length - 1; i++) {
-    //         newKey += (i > 1 ? "_" : "") + parts[i];
-    //       }
-    //       newObj[newKey] = obj[key];
-    //     }
-    //   }
-    //   return newObj;
-    // }
-
-
     return (
       <Base.Container
         className={this.decorateCSS("container")}
