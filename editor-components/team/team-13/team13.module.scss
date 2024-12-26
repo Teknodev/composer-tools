@@ -19,9 +19,8 @@
         .label {
           margin-bottom: var(--composer-gap-lg);
           .description {
-            color: var(--composer-font-color-primary);
+            color: var(--composer-tertiary-color);
             width: 100%;
-            opacity: 0.5;
           }
 
           .button-container {
@@ -68,8 +67,7 @@
           color: var(--composer-font-color-primary);
         }
         .job {
-          color: var(--composer-font-color-primary);
-          opacity: 0.5;
+          color: var(--composer-tertiary-color);
         }
       }
     }

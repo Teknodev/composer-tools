@@ -204,16 +204,14 @@ class Team13 extends Team {
             {hasFeaturedCard && (
               <Base.VerticalContent className={this.decorateCSS("featured-card")}>
                 <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
-                <Base.VerticalContent>
-                  <Base.VerticalContent className={this.decorateCSS("label")}>
-                    <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>
-                    <div className={this.decorateCSS("button-container")}>
-                      <ComposerLink path={this.getPropValue("buttonUrl")}>
-                        <Base.H4 className={this.decorateCSS("button")}>{this.getPropValue("buttonText")}</Base.H4>
-                      </ComposerLink>
-                      {line && <div className={this.decorateCSS("line")}></div>}
-                    </div>
-                  </Base.VerticalContent>
+                <Base.VerticalContent className={this.decorateCSS("label")}>
+                  <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>
+                  <div className={this.decorateCSS("button-container")}>
+                    <ComposerLink path={this.getPropValue("buttonUrl")}>
+                      <Base.H4 className={this.decorateCSS("button")}>{this.getPropValue("buttonText")}</Base.H4>
+                    </ComposerLink>
+                    {line && <div className={this.decorateCSS("line")}></div>}
+                  </div>
                   <div className={this.decorateCSS("icon-container")}>
                     {icons.map((icon: any, indexIcons: number) => {
                       return (

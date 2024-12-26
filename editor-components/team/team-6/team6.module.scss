@@ -72,22 +72,16 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             }
 
             .position {
-              color: var(--composer-font-color-primary);
               margin: 0;
+              border: 1px solid;
+              border-radius: var(--composer-border-radius-lg);
+              width: fit-content;
+              color: var(--composer-tertiary-color);
+              padding: var(--composer-gap-sm);
             }
           }
         }
       }
-
-      .position {
-        border: 1px solid;
-        border-radius: var(--composer-border-radius-lg);
-        width: fit-content;
-        color: var(--font-color-primary);
-        opacity: 0.5;
-        padding: var(--composer-gap-sm);
-      }
-
       button {
         background-color: transparent;
         border: none;

@@ -319,7 +319,7 @@ class Team11 extends Team {
       arrows: false,
       infinite: true,
       speed: 500,
-      autoplay: true,
+      autoplay: false,
       dotsClass: this.decorateCSS("dots"),
       autoplaySpeed: 3000,
       slidesToShow: slider.length < this.getPropValue("itemCount") ? slider.length : this.getPropValue("itemCount"),

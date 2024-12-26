@@ -63,14 +63,14 @@
                 top: 0;
                 width: calc(100% - var(--composer-gap-md));
                 height: calc(100% - var(--composer-gap-md));
-                background-color: var(--composer-primary-color);
-                opacity: 0.5;
+                background-color: var(--composer-overlay-color);
                 border-radius: 100%;
                 margin: var(--composer-gap-sm);
               }
               .icon {
                 position: relative;
-                font-size: 2.2rem;
+                width: 30px;
+                height: 30px;
                 color: var(--composer-font-color-secondary);
                 transform: translateY(var(--composer-gap-xl));
                 opacity: 1;
@@ -83,7 +83,6 @@
 
                 &:hover {
                   color: var(--composer-secondary-color);
-                  opacity: 0.5;
                 }
               }
             }
@@ -98,12 +97,10 @@
               align-items: center;
               gap: var(--composer-gap-sm);
               .item-position {
-                color: var(--composer-font-color-primary);
-                opacity: 0.5;
+                color: var(--composer-tertiary-color);
               }
               .item-name {
-                color: var(--composer-font-color-primary);
-                transition: 0.5s;
+                color: var(--composer-tertiary-color);
                 &:hover {
                   color: var(--composer-primary-color);
                 }
@@ -120,8 +117,7 @@
         margin: 0 auto;
         .prev_icon {
           cursor: pointer;
-          color: var(--composer-font-color-primary);
-          opacity: 0.5;
+          color: var(--composer-tertiary-color);
           transition: 0.5s;
 
           &:hover {
@@ -132,8 +128,7 @@
 
         .next_icon {
           cursor: pointer;
-          color: var(--composer-font-color-primary);
-          opacity: 0.5;
+          color: var(--composer-tertiary-color);
           transition: 0.5s;
           &:hover {
             color: var(--composer-primary-color);
@@ -179,8 +174,7 @@
           margin: 0 auto;
           .prev_icon {
             cursor: pointer;
-            color: var(--composer-font-color-primary);
-            opacity: 0.5;
+            color: var(--composer-tertiary-color);
             transition: 0.5s;
 
             &:hover {
@@ -191,8 +185,7 @@
 
           .next_icon {
             cursor: pointer;
-            color: var(--composer-font-color-primary);
-            opacity: 0.5;
+            color: var(--composer-tertiary-color);
             transition: 0.5s;
             &:hover {
               color: var(--composer-primary-color);

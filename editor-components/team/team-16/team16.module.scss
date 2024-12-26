@@ -4,9 +4,11 @@
   .max-content {
     .page {
       .up-content {
+        .title{
+          content: "";
+        }
         .description {
-          color: var(--composer-font-color-primary);
-          opacity: 0.5;
+          content: "";
         }
       }
 
@@ -34,17 +36,14 @@
               }
 
               .job {
-                color: var(--composer-font-color-primary);
+                color: var(--composer-tertiary-color);
                 transition: color 0.5s;
-
-                opacity: 0.5;
               }
             }
 
             .description {
-              color: var(--composer-font-color-primary);
+              color: var(--composer-tertiary-color);
               transition: color 0.5s;
-              opacity: 0.5;
             }
           }
 
@@ -66,7 +65,6 @@
             .text-box .text-up .job,
             .text-box .description {
               color: var(--composer-font-color-secondary);
-              opacity: 0.5;
             }
           }
         }

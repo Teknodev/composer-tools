@@ -157,7 +157,7 @@
           }
 
           .dots :global(li.slick-active) button {
-            opacity: 0.5;
+            background-color: var(--composer-tertiary-color);
           }
 
           .card {
