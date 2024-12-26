@@ -7,16 +7,20 @@
     align-items: center;
 
     .max-content {
-        max-width: var(--composer-content-width) !important;
-        text-align: center;
-        .title {
-            color: white;
-            font-size: 3rem;
-            position: relative;
-            display: inline-block;
-            text-decoration: underline;
+        display: flex;
+        justify-content: center;
+        .title-wrapper{
+            .title, .title-no-image {
+                color: white;
+                font-size: 3rem;
+                position: relative;
+                display: inline-block;
+                text-decoration: underline;
+            }
+            .title-no-image{
+                color: var(--composer-font-color-primary);
+            }
         }
-
         .overlay {
             .video-container {
               height: fit-content;
@@ -61,10 +65,11 @@
 @container (max-width: #{$composer-phone-width}) {
     .container {
         aspect-ratio: 3 / 1;
-
         .max-content {
-            .title {
-                font-size: 2rem;
+            .title-wrapper{
+                .title, .title-no-image {
+                    font-size: 2rem;
+                }
             }
         }
     }

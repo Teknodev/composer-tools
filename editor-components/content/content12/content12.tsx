@@ -48,7 +48,6 @@ class Content12 extends BaseContent {
 
     return (
       <Base.Container
-        isFull={true}
         className={this.decorateCSS("container")}
         style={{
           backgroundImage: `url(${this.getPropValue("cover-image")})`,
@@ -56,12 +55,12 @@ class Content12 extends BaseContent {
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div
-            className={this.decorateCSS("title")}
+            className={this.decorateCSS("title-wrapper")}
             onClick={() => {
               this.setComponentState("is_video_visible", true);
             }}
           >
-            <span className={this.decorateCSS("title")}>
+            <span className={this.getPropValue("cover-image") ? this.decorateCSS("title") : this.decorateCSS("title-no-image")}>
               {this.getPropValue("title")}
             </span>
           </div>
