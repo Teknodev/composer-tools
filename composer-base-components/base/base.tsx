@@ -227,4 +227,31 @@ export namespace Base {
     }, []);
     return <div className={`${styles.overlay} ${className}`} {...props}></div>;
   }
+
+  export namespace Navigator {
+    export function Container({ className, children, ...props }: any) {
+      return (
+        <div
+          className={`${styles.navbarContainer} ${className} ${
+            props.position.includes("Sticky") ? styles.Sticky : ""
+          } ${
+            props.position.includes("Colorful")
+              ? styles.Colorful
+              : props.position.includes("Transparent")
+              ? styles.Transparent
+              : ""
+          }`}
+          {...props}
+        >
+          <div
+            className={`${styles.navbarPosition} ${
+              props.position === "Absolute" ? styles.Absolute : ""
+            }`}
+          >
+            {children}
+          </div>
+        </div>
+      );
+    }
+  }
 }

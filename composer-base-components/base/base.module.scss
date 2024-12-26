@@ -384,3 +384,58 @@
   justify-content: center;
   align-items: center;
 }
+
+
+.navContainer{
+   width: 100%;
+}
+
+.navbarContainer{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .navbar{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &.Sticky {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0px 2px 5px rgba(var(--composer-primary-color-rgb), 0.2);
+    }
+    &.Colorful{
+        background: var(--composer-html-background);
+    }
+    &.Transparent{
+        background: transparent;
+    }
+
+
+}
+
+
+.navbarPosition{
+    width: 100%;
+    padding: 20px 50px;
+   
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+
+    &.Absolute {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        background: transparent;
+        color: white;
+    }
+}
+
