@@ -326,7 +326,7 @@ class List1 extends BaseList {
     const settings = {
       dots: true,
       infinite: sliderItems.length > 1,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 3000,
       slidesToShow: Math.min(3, sliderItems.length),
       slidesToScroll: 1,
@@ -377,7 +377,7 @@ class List1 extends BaseList {
             >
               {sliderItems.map((item: Card, indexSlider: number) => {
                 return (
-                  <div
+                  <Base.VerticalContent
                     key={indexSlider}
                     className={`${this.decorateCSS("card")}
                     ${backgroundColor &&
@@ -387,50 +387,49 @@ class List1 extends BaseList {
                       }
                    `}
                   >
-                    <Base.VerticalContent className={this.decorateCSS("card-inner")}>
-                      {item.image && (
-                        <Base.Row className={this.decorateCSS("img-div")}>
-                          <img
-                            className={this.decorateCSS("img")}
-                            src={item.image}
-                            alt={item.image}
-                          />
-                        </Base.Row>
-                      )}
-                      {(this.castToString(item.title) || this.castToString(item.subtitle)) && (
-                        <Base.VerticalContent className={this.decorateCSS("card-titles")}>
-                          {this.castToString(item.title) && (
-                            <Base.H1 className={this.decorateCSS("title")}>
-                              {item.title}
-                            </Base.H1 >
-                          )}
-                          {this.castToString(item.subtitle) && (
-                            <Base.H2 className={this.decorateCSS("subtitle")}>
-                              {item.subtitle}
-                            </Base.H2>
-                          )}
-                        </Base.VerticalContent>
-                      )}
 
-                      {(this.castToString(item.text) || item.icon) && (
-                        <ComposerLink path={item.url}>
-                          <Base.Button buttonType={button.type} className={this.decorateCSS("link")}>
-                            <div className={this.decorateCSS("text")}>
-                              {item.text}
-                            </div >
-                            {item.icon && (
-                              <ComposerIcon
-                                name={item.icon}
-                                propsIcon={{
-                                  className: this.decorateCSS("icon"),
-                                }}
-                              />
-                            )}
-                          </Base.Button>
-                        </ComposerLink>
-                      )}
-                    </Base.VerticalContent>
-                  </div>
+                    {item.image && (
+                      <Base.Row className={this.decorateCSS("img-div")}>
+                        <img
+                          className={this.decorateCSS("img")}
+                          src={item.image}
+                          alt={item.image}
+                        />
+                      </Base.Row>
+                    )}
+                    {(this.castToString(item.title) || this.castToString(item.subtitle)) && (
+                      <Base.VerticalContent className={this.decorateCSS("card-titles")}>
+                        {this.castToString(item.title) && (
+                          <Base.H1 className={this.decorateCSS("title")}>
+                            {item.title}
+                          </Base.H1 >
+                        )}
+                        {this.castToString(item.subtitle) && (
+                          <Base.H2 className={this.decorateCSS("subtitle")}>
+                            {item.subtitle}
+                          </Base.H2>
+                        )}
+                      </Base.VerticalContent>
+                    )}
+
+                    {(this.castToString(item.text) || item.icon) && (
+                      <ComposerLink path={item.url}>
+                        <Base.Button buttonType={button.type} className={this.decorateCSS("link")}>
+                          <div className={this.decorateCSS("text")}>
+                            {item.text}
+                          </div >
+                          {item.icon && (
+                            <ComposerIcon
+                              name={item.icon}
+                              propsIcon={{
+                                className: this.decorateCSS("icon"),
+                              }}
+                            />
+                          )}
+                        </Base.Button>
+                      </ComposerLink>
+                    )}
+                  </Base.VerticalContent>
                 );
               })}
             </ComposerSlider>
