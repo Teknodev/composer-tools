@@ -43,7 +43,7 @@ class PricingTable3 extends BasePricingTable {
       value: "Lorem ipsum dolor sit amet consectetur adipiscing elit do eiusmod tempor incididunt labore et dolore magna ut enim.",
     });
 
-    this.addProp(INPUTS.BUTTON("buttontype", "Button", "", "", "Primary"));
+    this.addProp(INPUTS.BUTTON("buttontype", "", "", "", "Primary"));
 
     this.addProp({
       type: "object",
@@ -479,7 +479,9 @@ class PricingTable3 extends BasePricingTable {
                         {this.castToString(card.button.text) && (
                           <div className={this.decorateCSS("footer")}>
                             <ComposerLink path={card.button.link}>
-                              <Base.Button className={this.decorateCSS("button-text")}>{card.button.text}</Base.Button>
+                              <Base.Button buttonType={button.type} className={this.decorateCSS("button-text")}>
+                                {card.button.text}
+                              </Base.Button>
                             </ComposerLink>
                           </div>
                         )}

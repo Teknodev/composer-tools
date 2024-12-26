@@ -791,7 +791,7 @@ class PricingTable9 extends BasePricingTable {
                               <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={content.icon} />
                             </span>
                           )}
-                          <Base.P className={this.decorateCSS("content-text")}>{content?.text}</Base.P>
+                          {this.castToString(content.text) && <Base.P className={this.decorateCSS("content-text")}>{content?.text}</Base.P>}
                         </div>
                       ))}
                     </div>
@@ -833,7 +833,7 @@ class PricingTable9 extends BasePricingTable {
                                 <ComposerIcon name={content.icon} />
                               </span>
                             )}
-                            <Base.P className={this.decorateCSS("content-text")}>{content?.text}</Base.P>
+                            {this.castToString(content.text) && <Base.P className={this.decorateCSS("content-text")}>{content?.text}</Base.P>}
                           </div>
                         ))}
                       </div>

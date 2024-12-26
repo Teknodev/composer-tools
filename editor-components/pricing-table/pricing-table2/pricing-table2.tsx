@@ -50,7 +50,7 @@ class PricingTable2 extends BasePricingTable {
       max: 5,
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "", "", "Primary"));
+    // this.addProp(INPUTS.BUTTON("button", "Button", "", "", "Primary"));
 
     this.addProp({
       type: "array",
@@ -188,18 +188,19 @@ class PricingTable2 extends BasePricingTable {
                 },
               ],
             },
-            {
-              type: "string",
-              key: "cardButtonText",
-              displayer: "Button Text",
-              value: "Select Now",
-            },
-            {
-              type: "page",
-              key: "cardButtonLink",
-              displayer: "Button Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "", "", "Primary"),
+            // {
+            //   type: "string",
+            //   key: "cardButtonText",
+            //   displayer: "Button Text",
+            //   value: "Select Now",
+            // },
+            // {
+            //   type: "page",
+            //   key: "cardButtonLink",
+            //   displayer: "Button Link",
+            //   value: "",
+            // },
           ],
         },
         {
@@ -721,13 +722,13 @@ class PricingTable2 extends BasePricingTable {
                             })}
                           </Base.VerticalContent>
                         )}
-                        {this.castToString(table.cardButtonText) && (
+                        {/* {this.castToString(table.cardButtonText) && (
                           <ComposerLink path={table.cardButtonLink}>
                             <Base.Button buttonType={button.type} className={this.decorateCSS("card-button")}>
                               {table.cardButtonText}
                             </Base.Button>
                           </ComposerLink>
-                        )}
+                        )} */}
                       </Base.VerticalContent>
                     </div>
                   </Base.VerticalContent>

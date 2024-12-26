@@ -190,6 +190,9 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             .title {
               color: var(--composer-font-color-primary);
               padding: 0 var(--composer-gap-md);
+              margin: 0;
+              width: 100%;
+              text-align: left;
             }
             .list-body {
               flex-grow: 1;
@@ -212,6 +215,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 }
                 .property {
                   color: var(--composer-font-color-primary);
+                  margin: 0;
                 }
               }
 
@@ -316,12 +320,6 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 background-color: var(--composer-secondary-color);
                 color: var(--composer-font-color-secondary);
                 gap: 0;
-
-                .tag {
-                  background-color: var(--composer-font-color-primary);
-                  color: var(--composer-font-color-secondary);
-                  border: var(--composer-font-color-primary);
-                }
               }
             }
           }

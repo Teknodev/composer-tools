@@ -1193,7 +1193,7 @@ class PricingMultipleTwo extends BasePricingTable {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("page")}>
+          <Base.VerticalContent className={this.decorateCSS("page")}>
             <Base.VerticalContent className={this.decorateCSS("up-page")}>
               {this.castToString(this.getPropValue("badge")) && <Base.SectionSubTitle className={this.decorateCSS("badge")}>{this.getPropValue("badge")}</Base.SectionSubTitle>}
               {this.castToString(this.getPropValue("title")) && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
@@ -1289,7 +1289,7 @@ class PricingMultipleTwo extends BasePricingTable {
                 )}
               </div>
             )}
-          </div>
+          </Base.VerticalContent>
         </Base.MaxContent>
       </Base.Container>
     );
