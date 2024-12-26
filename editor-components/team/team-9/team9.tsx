@@ -279,9 +279,9 @@ class Team9 extends Team {
                     hasCard && (
                       <Base.VerticalContent key={index} className={this.decorateCSS("card")}>
                         {item.image && <img className={this.decorateCSS("person-image")} src={item.image} alt={nameExist} />}
-                        <div className={this.decorateCSS("person-info")}>
+                        <Base.VerticalContent className={this.decorateCSS("person-info")}>
                           {item.icons.length > 0 && (
-                            <div className={this.decorateCSS("icons-bar")}>
+                            <Base.Row className={this.decorateCSS("icons-bar")}>
                               {item.icons.map((card: Icon, iconIndex: number) => {
                                 if (card.icon) {
                                   return (
@@ -297,12 +297,12 @@ class Team9 extends Team {
                                 }
                                 return null;
                               })}
-                            </div>
+                            </Base.Row>
                           )}
                           <div className={this.decorateCSS("text-group")}>
                             <Base.H3 className={this.decorateCSS("item-name")}>{item.name}</Base.H3>
                           </div>
-                        </div>
+                        </Base.VerticalContent>
                       </Base.VerticalContent>
                     )
                   );
@@ -319,9 +319,9 @@ class Team9 extends Team {
                       <div key={indexCard} className={this.decorateCSS("card")}>
                         {item.image && <img className={this.decorateCSS("person-image")} src={item.image} alt={nameExist} />}
                         {(nameExist || item.icons.length > 0) && (
-                          <div className={this.decorateCSS("person-info")}>
+                          <Base.VerticalContent className={this.decorateCSS("person-info")}>
                             {item.icons.length > 0 && (
-                              <div style={!item.image ? { width: "auto" } : {}} className={this.decorateCSS("icons-bar")}>
+                              <Base.Row style={!item.image ? { width: "auto" } : {}} className={this.decorateCSS("icons-bar")}>
                                 {item.icons.map((card: Icon, indexIcons: number) => {
                                   if (card.icon)
                                     return (
@@ -336,14 +336,14 @@ class Team9 extends Team {
                                     );
                                   return null;
                                 })}
-                              </div>
+                              </Base.Row>
                             )}
                             {nameExist && (
                               <div style={!item.image ? { width: "auto" } : {}} className={this.decorateCSS("text-group")}>
                                 <Base.H1 className={this.decorateCSS("item-name")}>{item.name}</Base.H1>
                               </div>
                             )}
-                          </div>
+                          </Base.VerticalContent>
                         )}
                       </div>
                     );

@@ -264,7 +264,7 @@ class Team12 extends Team {
                       {professionExist && <Base.H5 className={this.decorateCSS("profession")}>{teamMember.getPropValue("profession")}</Base.H5>}
                       {descriptionExist && <Base.P className={this.decorateCSS("description")}>{teamMember.getPropValue("description")}</Base.P>}
                       {teamMember.platforms.length > 0 && (
-                        <div className={this.decorateCSS("platforms")}>
+                        <Base.Row className={this.decorateCSS("platforms")}>
                           {teamMember.platforms.map((platform: any, index: number) => (
                             <div className={this.decorateCSS("platform")}>
                               <ComposerLink path={platform.getPropValue("url")}>
@@ -277,7 +277,7 @@ class Team12 extends Team {
                               </ComposerLink>
                             </div>
                           ))}
-                        </div>
+                        </Base.Row>
                       )}
                     </Base.VerticalContent>
                   </div>

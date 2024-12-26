@@ -444,22 +444,18 @@ class Team10 extends Team {
                 <Base.VerticalContent className={this.decorateCSS("team-member")}>
                   <div className={this.decorateCSS("info")}>
                     <div className={this.decorateCSS("icon-group")}>
-                      {
-                        <div className={this.decorateCSS("icon-list-container")}>
-                          {teamMember.icons.map((icon: any, indexIcons: number) => {
-                            const iconExist = icon.icon;
-                            return (
-                              iconExist && (
-                                <div key={indexIcons} className={this.decorateCSS("icon-item")}>
-                                  <ComposerLink path={icon.url}>
-                                    <ComposerIcon name={icon.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
-                                  </ComposerLink>
-                                </div>
-                              )
-                            );
-                          })}
-                        </div>
-                      }
+                      {teamMember.icons.map((icon: any, indexIcons: number) => {
+                        const iconExist = icon.icon;
+                        return (
+                          iconExist && (
+                            <div key={indexIcons} className={this.decorateCSS("icon-item")}>
+                              <ComposerLink path={icon.url}>
+                                <ComposerIcon name={icon.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                              </ComposerLink>
+                            </div>
+                          )
+                        );
+                      })}
                     </div>
                     <Base.H3 className={this.decorateCSS("subtitle")}>{teamMember.getPropValue("subtitle")}</Base.H3>
                     <Base.H1 className={this.decorateCSS("title")}>{teamMember.getPropValue("title")}</Base.H1>
@@ -485,7 +481,13 @@ class Team10 extends Team {
                     </div>
                     <Base.SectionDescription className={this.decorateCSS("description")}>{teamMember.getPropValue("description")}</Base.SectionDescription>
                   </div>
-                  {imageExist && <div className={this.decorateCSS("image-container")}>{<img className={this.decorateCSS("image")} src={teamMember.getPropValue("image")} />}</div>}
+                  {imageExist &&
+                    <div className={this.decorateCSS("image-container")}>{
+                      <img className={this.decorateCSS("image")}
+                        src={teamMember.getPropValue("image")} />}
+                      <div className={this.decorateCSS("image-overlay")}></div>
+                    </div>
+                  }
                 </Base.VerticalContent>
               );
             })}
