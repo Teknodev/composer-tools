@@ -227,14 +227,20 @@ class Stats2Page extends BaseStats {
     const contactButtonLink = this.getPropValue("contactButtonLink");
     const itemCount = this.getPropValue("itemCount");
 
+    const totalRows = Math.ceil(cards.length / itemCount);
+
     const AnimatedCard = ({
       card,
       animationDuration,
       isTextExist,
+      isFirstRow,
+      isLastRow,
     }: {
       card: Card;
       animationDuration: number;
       isTextExist: string;
+      isFirstRow: boolean;
+      isLastRow: boolean;
     }) => {
       const [amount, setAmount] = React.useState<string | null>(null);
       const [showDecimals, setShowDecimals] = React.useState(false);
@@ -302,9 +308,18 @@ class Stats2Page extends BaseStats {
       const integerPart = amount ? Math.floor(parseFloat(amount)) : null;
       const decimalPart = amount ? amount.split(".")[1] || "" : "";
 
+      const conditionalClasses = [
+        isFirstRow ? this.decorateCSS("border-top-none") : "",
+        isLastRow ? this.decorateCSS("border-bottom-none") : "",
+      ]
+        .filter(Boolean)
+        .join(" ");
+
+      const classes = `${this.decorateCSS("listed")} ${conditionalClasses}`.trim();
+
       return (
         (isTextExist || amount !== null || card.icon || card.secondIcon) && (
-          <div ref={ref} className={this.decorateCSS("listed")}>
+          <div ref={ref} className={classes}>
             {isTextExist && (
               <Base.P className={this.decorateCSS("card-text")}>{card.text}</Base.P>
             )}
@@ -369,6 +384,10 @@ class Stats2Page extends BaseStats {
             {cards.length > 0 && (
               <Base.ListGrid gridCount={{ pc: itemCount, tablet: 2, phone: 1 }} className={this.decorateCSS("cards-container")}>
                 {cards.map((card, index) => {
+                  const currentRow = Math.floor(index / itemCount) + 1;
+                  const isFirstRow = currentRow === 1;
+                  const isLastRow = currentRow === totalRows;
+
                   const isTextExist = this.castToString(card.text);
                   return (
                     <AnimatedCard
@@ -376,6 +395,8 @@ class Stats2Page extends BaseStats {
                       card={card}
                       animationDuration={animationDuration}
                       isTextExist={isTextExist}
+                      isFirstRow={isFirstRow}
+                      isLastRow={isLastRow}
                     />
                   );
                 })}
