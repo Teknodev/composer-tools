@@ -227,4 +227,43 @@ export namespace Base {
     }, []);
     return <div className={`${styles.overlay} ${className}`} {...props}></div>;
   }
+
+  export namespace Navigator{
+
+    export function NavbarContainer({ className, children, ...props }: any) {
+      return (
+        <div className={`${styles.navbarContainer} ${className}`} {...props}>
+        {children}
+        </div>
+      );
+    }
+
+    export function NavbarMaxContent({ className, children, ...props }: any) {
+      return (
+        <div className={`${styles.navbarMaxContent} ${className}`} {...props}>
+          {children}
+        </div>
+      );
+    }
+
+    export function NavbarPosition({ className, children, ...props }: any) {
+      return (
+        <div className={`${styles.navbarPosition} ${className} ${styles[props.position]}`} {...props}>
+          {children}
+        </div>
+      );
+    }
+
+    export function NavbarLane({ className, children, ...props }: any) {
+      return (
+        <div className={`${styles.navbarLaneContainer} ${className}`} {...props}>
+          <MaxContent className={styles.lane}>
+            {children}
+          </MaxContent>
+        </div>
+      );
+    }
+  }
+
+ 
 }
