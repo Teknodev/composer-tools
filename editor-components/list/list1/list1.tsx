@@ -5,6 +5,7 @@ import styles from "./list1.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
   image: string;
@@ -309,6 +310,7 @@ class List1 extends BaseList {
     });
 
     this.setComponentState("active-index", 1);
+    this.addProp(INPUTS.BUTTON("button", "Button", "", "", "Link"));
   }
 
   getName(): string {
@@ -316,6 +318,7 @@ class List1 extends BaseList {
   }
 
   render() {
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
     const sliderItems = this.castToObject<Card[]>("slider");
     const backgroundColor = this.getPropValue("backgroundColor");
     const title = this.getPropValue("title");
@@ -323,7 +326,7 @@ class List1 extends BaseList {
     const settings = {
       dots: true,
       infinite: sliderItems.length > 1,
-      autoplay: false,
+      autoplay: true,
       autoplaySpeed: 3000,
       slidesToShow: Math.min(3, sliderItems.length),
       slidesToScroll: 1,
@@ -384,34 +387,34 @@ class List1 extends BaseList {
                       }
                    `}
                   >
-                    <div className={this.decorateCSS("card-inner")}>
+                    <Base.VerticalContent className={this.decorateCSS("card-inner")}>
                       {item.image && (
-                        <div className={this.decorateCSS("img-div")}>
+                        <Base.Row className={this.decorateCSS("img-div")}>
                           <img
                             className={this.decorateCSS("img")}
                             src={item.image}
                             alt={item.image}
                           />
-                        </div>
+                        </Base.Row>
                       )}
                       {(this.castToString(item.title) || this.castToString(item.subtitle)) && (
                         <Base.VerticalContent className={this.decorateCSS("card-titles")}>
                           {this.castToString(item.title) && (
-                            <div className={this.decorateCSS("title")}>
+                            <Base.H1 className={this.decorateCSS("title")}>
                               {item.title}
-                            </div >
+                            </Base.H1 >
                           )}
                           {this.castToString(item.subtitle) && (
-                            <span className={this.decorateCSS("subtitle")}>
+                            <Base.H2 className={this.decorateCSS("subtitle")}>
                               {item.subtitle}
-                            </span>
+                            </Base.H2>
                           )}
                         </Base.VerticalContent>
                       )}
 
                       {(this.castToString(item.text) || item.icon) && (
                         <ComposerLink path={item.url}>
-                          <div className={this.decorateCSS("link")}>
+                          <Base.Button buttonType={button.type} className={this.decorateCSS("link")}>
                             <div className={this.decorateCSS("text")}>
                               {item.text}
                             </div >
@@ -423,10 +426,10 @@ class List1 extends BaseList {
                                 }}
                               />
                             )}
-                          </div>
+                          </Base.Button>
                         </ComposerLink>
                       )}
-                    </div>
+                    </Base.VerticalContent>
                   </div>
                 );
               })}

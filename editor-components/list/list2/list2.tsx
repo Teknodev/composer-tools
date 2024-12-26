@@ -3,6 +3,7 @@ import { BaseList } from "../../EditorComponent";
 import styles from "./list2.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type CardItem = {
   page: JSX.Element;
@@ -290,7 +291,7 @@ class List2 extends BaseList {
     });
     this.addProp({
       type: "object",
-      key: "button",
+      key: "buttonItem",
       displayer: "Action Button",
       value: [
         {
@@ -308,6 +309,7 @@ class List2 extends BaseList {
       ],
     });
     this.setComponentState("moreImages", 0);
+    this.addProp(INPUTS.BUTTON("button", "Button", "", "", "Primary"));
   }
 
   getName(): string {
@@ -322,7 +324,8 @@ class List2 extends BaseList {
       this.setComponentState("imageCount", this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"));
 
     const cards = this.castToObject<CardItem[]>("cards");
-    const button = this.castToObject<ButtonItem>("button");
+    const button = this.castToObject<ButtonItem>("buttonItem");
+    const buttonType: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -393,7 +396,7 @@ class List2 extends BaseList {
             {((this.getComponentState("imageCount") < cards.length) && this.castToString(button.text)) && (
               <ComposerLink path={button.navigate}>
                 <div className={this.decorateCSS("button-wrapper")}>
-                  <Base.Button className={this.decorateCSS("button")} onClick={this.handleButtonClick} >
+                  <Base.Button buttonType={buttonType.type} className={this.decorateCSS("button")} onClick={this.handleButtonClick} >
                     {button.text}
                   </Base.Button>
                 </div>

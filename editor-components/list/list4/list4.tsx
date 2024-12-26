@@ -168,7 +168,7 @@ class list4 extends BaseList {
                     key={`cnt-4-card-${index}`}
                     className={this.decorateCSS("card")}
                   >
-                    <div className={this.decorateCSS("color-box")}>
+                    <Base.VerticalContent className={this.decorateCSS("color-box")}>
                       {card.icon && (
                         <ComposerIcon
                           name={card.icon}
@@ -178,19 +178,19 @@ class list4 extends BaseList {
                         />
                       )}
 
-                      <div className={this.decorateCSS("card-title-wrapper")}>
+                      <Base.VerticalContent className={this.decorateCSS("card-title-wrapper")}>
                         {card.title && (
-                          <div className={this.decorateCSS("card-subtitle")}>
+                          <Base.H3 className={this.decorateCSS("card-subtitle")}>
                             {card.title}
-                          </div>
+                          </Base.H3>
                         )}
                         {card.description && (
-                          <div className={this.decorateCSS("card-description")}>
+                          <Base.P className={this.decorateCSS("card-description")}>
                             {card.description}
-                          </div>
+                          </Base.P>
                         )}
-                      </div>
-                    </div>
+                      </Base.VerticalContent>
+                    </Base.VerticalContent>
                   </div>
                 </div>
               )

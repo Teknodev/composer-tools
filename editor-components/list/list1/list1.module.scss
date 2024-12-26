@@ -1,5 +1,4 @@
 @import "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss";
-
 .container {
   background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
   .max-content {
@@ -35,7 +34,7 @@
               border: none;
               transition: 0.3s;
               content-visibility: hidden;
-              background-color: var(--composer-html-background) ;
+              background-color: var(--composer-html-background);
               width: 10px;
               height: 10px;
               border-radius: var(--composer-border-radius-xl);
@@ -74,8 +73,10 @@
             border-radius: var(--composer-border-radius-xs);
             gap: var(--composer-gap-md);
             height: 100%;
+            margin:0px;
 
             .img-div {
+              margin: 0px;
               .img {
                 border-radius: 50%;
                 width: 100%;
@@ -86,15 +87,20 @@
             }
 
             .card-titles {
+              display: flex;
+              flex-direction: column;
+              gap: var(--composer-gap-md);
+              margin: 0px;
               .title {
-                content: "";
+                font-size: 1rem;
+                color: var(--composer-font-color-primary);
               }
               .subtitle {
-                content: "";
+                font-size: 1rem;
+                color: var(--composer-font-color-primary);
               }
             }
             .link {
-              color: var(--composer-font-color-primary);
               display: flex;
               align-items: center;
               gap: var(--composer-gap-xs);
