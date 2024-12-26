@@ -13,6 +13,7 @@
             align-items: stretch;
             >div{
               height: auto;
+              margin-bottom: calc(2 * var(--composer-gap-md));
               >div{
                 height: 100%;
               }
@@ -26,7 +27,7 @@
           gap: var(--composer-gap-sm);
           list-style-type: none;
           padding: 0;
-          bottom: 10px;
+          bottom: 0px;
           position: absolute;
           justify-content: center;
           li {
@@ -47,16 +48,15 @@
         }
         .card {
           height: 100%;
-          margin: 0px var(--composer-gap-md) var(--composer-gap-xl) var(--composer-gap-md); 
+          margin: 0px var(--composer-gap-md); 
           position: relative;
-          display: flex;
+          display: flex !important;
           flex-direction: column;
           padding: var(--composer-gap-lg);
           background-color: var(--composer-html-background);
           border-radius: var(--composer-border-radius-xs);
           gap: var(--composer-gap-md);
           height: 100%;
-          // margin:0px;
           .img-div {
             margin: 0px;
             .img {
@@ -105,29 +105,16 @@
             &::after {
               content: "";
               position: absolute;
-              width: calc(100% + var(--composer-gap-md) * 2);
+              width: calc(100% + var(--composer-gap-md) * 4);
               height: 85%;
-              bottom: 0px;
-              left: calc(0px - var(--composer-gap-md));
+              bottom: calc(-2 * var(--composer-gap-md));
+              left: calc(0px - 2 * var(--composer-gap-md));
               background-color: var(--composer-primary-color);
               z-index: -1;
               opacity: 1;
               border-radius: var(--composer-border-radius-xs);
             }
           }
-
-          // .card-inner {
-          //   display: flex;
-          //   flex-direction: column;
-          //   padding: var(--composer-gap-lg);
-          //   background-color: var(--composer-html-background);
-          //   border-radius: var(--composer-border-radius-xs);
-          //   gap: var(--composer-gap-md);
-          //   height: 100%;
-          //   margin:0px;
-
-
-          // }
         }
       }
   }
