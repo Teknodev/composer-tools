@@ -168,6 +168,12 @@
           border-radius: var(--composer-border-radius-sm);
           z-index: 14;
           margin-left: 50%;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 1;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
 
           .background-op-text {
             margin: 0;
@@ -441,6 +447,7 @@
             }
 
             .slide-count-power {
+
               .divider,
               .slide-count {
                 font-size: 2vh;
