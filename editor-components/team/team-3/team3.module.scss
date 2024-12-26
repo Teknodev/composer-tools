@@ -5,7 +5,14 @@
     display: flex;
     .page {
       width: 100%;
-
+      .text-group{
+        .title{
+          content: "";
+        }
+        .subtilte{
+          content: "";
+        }
+      }
       .down-page {
         .all-card {
           width: 100%;
@@ -93,11 +100,6 @@
 
 @container (max-width: #{$composer-tablet-width-lg}) {
   .container {
-    .text-group {
-      .subtitle {
-        width: 90% !important;
-      }
-    }
     .down-page {
       gap: var(--composer-gap-lg) var(--composer-gap-sm);
       .all-card {
@@ -118,11 +120,6 @@
 
   @container (max-width: #{$composer-phone-width}) {
     .container {
-      .text-group {
-        .subtitle {
-          width: 88% !important;
-        }
-      }
       .card {
         margin-left: var(--composer-gap-md) !important;
       }

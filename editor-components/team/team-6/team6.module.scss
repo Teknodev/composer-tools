@@ -26,8 +26,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 right: var(--composer-gap-xs);
                 z-index: 1;
                 font-size: 1.5rem;
-                color: var(--composer-font-color-primary);
-                opacity: 0.5;
+                color: var(--composer-tertiary-color);
               }
 
               .image {
@@ -51,8 +50,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                   .feature {
                     display: flex;
                     align-items: center;
-                    color: var(--composer-font-color-primary);
-                    opacity: 0.5;
+                    color: var(--composer-tertiary-color);
                     margin: 0;
                     gap: var(--composer-gap-md);
 

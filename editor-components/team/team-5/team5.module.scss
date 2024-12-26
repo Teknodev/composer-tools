@@ -21,8 +21,6 @@
         width: 40%;
 
         .description-inner {
-          color: var(--composer-font-color-primary);
-          line-height: 1.7em;
           text-align: right;
         }
       }
@@ -80,9 +78,8 @@
           }
 
           .occupation {
-            opacity: 0.5;
             text-align: center;
-            color: var(--composer-font-color-primary);
+            color: var(--composer-tertiary-color);
           }
         }
       }
