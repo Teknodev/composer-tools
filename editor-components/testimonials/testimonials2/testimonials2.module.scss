@@ -1,12 +1,15 @@
 @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 .container {
+  padding: 0;
   background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-  .max-content {
-    .top-content {
-      width: 100%;
-      .badge {
-      }
-      .title {
+  .header {
+    .max-content {
+      .top-content {
+        width: 100%;
+        .badge {
+        }
+        .title {
+        }
       }
     }
   }
@@ -25,7 +28,7 @@
       background: var(--composer-html-background);
       padding: var(--composer-gap-xl) var(--composer-gap-lg);
       gap: var(--composer-gap-md);
-      display: flex;
+      display: flex !important;
       flex-direction: column;
       margin: var(--composer-gap-md);
       .top-container {

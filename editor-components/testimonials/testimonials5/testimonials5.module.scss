@@ -15,6 +15,10 @@
           }
           .title {
           }
+          .title-with-image,
+          .subtitle-with-image {
+            color: black;
+          }
         }
         .arrow {
           display: flex;
@@ -42,7 +46,7 @@
           .prevArrowPrimary,
           .nextArrowPrimary {
             background-color: var(--composer-font-color-primary);
-            color: var(--composer-font-color-secondary);
+            color: var(--composer-html-background);
           }
         }
       }

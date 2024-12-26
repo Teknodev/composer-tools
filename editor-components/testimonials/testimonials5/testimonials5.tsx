@@ -222,6 +222,8 @@ class Testimonials5Page extends Testimonials {
     const sliderItem = this.castToObject<SliderItem[]>("sliders");
     const sliderRef = this.getComponentState("slider-ref");
     const hasLeftContent = Boolean(this.castToString(leftItem.subtitle) || this.castToString(leftItem.title) || leftItem.nextIcon || leftItem.prevIcon);
+
+    const backgroundImageExist = this.getPropValue("background-image");
     var settings = {
       dots: false,
       autoplay: true,
@@ -247,8 +249,8 @@ class Testimonials5Page extends Testimonials {
             {hasLeftContent && (
               <div className={this.decorateCSS("leftContainer")}>
                 <Base.VerticalContent className={this.decorateCSS("leftContainerText")}>
-                  {this.castToString(leftItem.subtitle) && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{leftItem.subtitle}</Base.SectionSubTitle>}
-                  {this.castToString(leftItem.title) && <Base.SectionTitle className={this.decorateCSS("title")}>{leftItem.title}</Base.SectionTitle>}
+                  {this.castToString(leftItem.subtitle) && <Base.SectionSubTitle className={backgroundImageExist ? this.decorateCSS("subtitle-with-image") : this.decorateCSS("subtitle")}>{leftItem.subtitle}</Base.SectionSubTitle>}
+                  {this.castToString(leftItem.title) && <Base.SectionTitle className={backgroundImageExist ? this.decorateCSS("title-with-image") : this.decorateCSS("title")}>{leftItem.title}</Base.SectionTitle>}
                 </Base.VerticalContent>
 
                 <Base.Row>

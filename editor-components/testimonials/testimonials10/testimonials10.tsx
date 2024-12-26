@@ -15,10 +15,9 @@ type Item = {
 };
 
 type Button = {
-  buttonText: JSX.Element;
-  url: string;
-  buttonIcon: string;
+  buttonType: INPUTS.CastedButton;
 };
+
 class Testimonials10Page extends Testimonials {
   constructor(props?: any) {
     super(props, styles);
@@ -44,33 +43,11 @@ class Testimonials10Page extends Testimonials {
       type: "array",
       key: "buttons",
       displayer: "Buttons",
-      value: [
-        {
-          type: "object",
-          key: "button",
-          displayer: "Button",
-          value: [
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Contact Us",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Button Link",
-              value: "",
-            },
-          ],
-        },
-      ],
+      value: [INPUTS.BUTTON("button", "Button", "Contact Us", "", "Primary")],
       additionalParams: {
         maxElementCount: 2,
       },
     });
-
-    this.addProp(INPUTS.BUTTON("button", "Button", "", "", "Primary"));
 
     this.addProp({
       type: "array",
@@ -283,7 +260,6 @@ class Testimonials10Page extends Testimonials {
     const description = this.castToString(this.getPropValue("description"));
     const hiliteTitle = this.castToString(this.getPropValue("hiliteTitle"));
     const hasButtons = this.castToObject<Button[]>("buttons").length > 0;
-    const buttontype: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -301,11 +277,11 @@ class Testimonials10Page extends Testimonials {
 
                       <div className={this.decorateCSS("button-group")}>
                         {this.castToObject<Button[]>("buttons").map((button: any, index: number) => {
-                          if (this.castToString(button.buttonText))
+                          if (this.castToString(button.text))
                             return (
                               <ComposerLink key={`ts10-btn-${index}`} path={button.url}>
-                                <Base.Button buttonType={buttontype.type} className={this.decorateCSS("button")}>
-                                  {button.buttonText}
+                                <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                                  {button.text}
                                 </Base.Button>
                               </ComposerLink>
                             );

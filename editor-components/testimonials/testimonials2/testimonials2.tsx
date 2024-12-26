@@ -233,7 +233,7 @@ class Testimonials2Page extends Testimonials {
       dots: true,
       infinite: cardCount > 3,
       speed: 725,
-      autoplay: false,
+      autoplay: true,
       autoplaySpeed: 3000,
       slidesToShow: 3.65,
       centerMode: true,
@@ -258,14 +258,16 @@ class Testimonials2Page extends Testimonials {
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(this.castToString(this.getPropValue("badge")) || this.castToString(this.getPropValue("title"))) && (
-            <Base.VerticalContent className={this.decorateCSS("top-content")}>
-              {this.castToString(this.getPropValue("badge")) && <Base.SectionSubTitle className={this.decorateCSS("badge")}>{this.getPropValue("badge")}</Base.SectionSubTitle>}
-              {this.castToString(this.getPropValue("title")) && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-            </Base.VerticalContent>
-          )}
-        </Base.MaxContent>
+        <Base.Container className={this.decorateCSS("header")}>
+          <Base.MaxContent className={this.decorateCSS("max-content")}>
+            {(this.castToString(this.getPropValue("badge")) || this.castToString(this.getPropValue("title"))) && (
+              <Base.VerticalContent className={this.decorateCSS("top-content")}>
+                {this.castToString(this.getPropValue("badge")) && <Base.SectionSubTitle className={this.decorateCSS("badge")}>{this.getPropValue("badge")}</Base.SectionSubTitle>}
+                {this.castToString(this.getPropValue("title")) && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+              </Base.VerticalContent>
+            )}
+          </Base.MaxContent>
+        </Base.Container>
 
         <ComposerSlider {...settings} className={this.decorateCSS("slider-style")}>
           {this.castToObject<Item[]>("card-items").map((item: Item, index: number) => (
