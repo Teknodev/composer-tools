@@ -4,6 +4,7 @@ import { BasePricingTable } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
   icon: string;
@@ -41,6 +42,8 @@ class PricingTable3 extends BasePricingTable {
       displayer: "Description",
       value: "Lorem ipsum dolor sit amet consectetur adipiscing elit do eiusmod tempor incididunt labore et dolore magna ut enim.",
     });
+
+    this.addProp(INPUTS.BUTTON("buttontype", "Button", "", "", "Primary"));
 
     this.addProp({
       type: "object",
@@ -414,6 +417,8 @@ class PricingTable3 extends BasePricingTable {
     const hasCards = cards?.length > 0;
     const hasVisibleTag = cards?.some((card) => card.tagSettings.showTag);
 
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("buttontype");
+
     return (
       <Base.Container className={this.decorateCSS(hasVisibleTag ? "container-alternate" : "container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -425,7 +430,7 @@ class PricingTable3 extends BasePricingTable {
                 {buttonExist && (
                   <ComposerLink path={featuredButton.link}>
                     <div className={this.decorateCSS("featured-button-container")}>
-                      <Base.Button>{featuredButton.text}</Base.Button>
+                      <Base.Button buttonType={button.type}>{featuredButton.text}</Base.Button>
                     </div>
                   </ComposerLink>
                 )}
@@ -452,7 +457,7 @@ class PricingTable3 extends BasePricingTable {
                             />
                           )}
                           {titleExist && <Base.H3 className={this.decorateCSS("title")}>{card.title}</Base.H3>}
-                          <Base.H1 className={this.decorateCSS("price")}>{card.price}</Base.H1>
+                          {this.castToString(card.price) && <Base.H1 className={this.decorateCSS("price")}>{card.price}</Base.H1>}
                         </Base.VerticalContent>
                         {card.items.length > 0 && (
                           <div className={this.decorateCSS("body")}>

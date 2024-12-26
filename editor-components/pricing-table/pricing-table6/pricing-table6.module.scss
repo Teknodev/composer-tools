@@ -4,6 +4,9 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 .container {
   .max-content {
     .page {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
       .plan-items {
         display: flex;
         box-shadow: var(--box-shadow-active);
@@ -72,12 +75,12 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 color: var(--composer-font-color-secondary);
               }
               .per {
-                color: var(--composer-tertiary-color);
+                color: var(--composer-font-color-primary);
               }
 
               .tag {
                 background-color: var(--composer-font-color-primary);
-                color: var(--composer-font-color-secondary);
+                color: var(--composer-html-background);
                 border: var(--composer-font-color-primary);
               }
 
@@ -85,8 +88,8 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               .item-price .price {
                 color: var(--composer-font-color-secondary);
               }
-              .plan-icons .icons {
-                color: var(--composer-tertiary-color);
+              .plan-icons .icon {
+                color: var(--composer-font-color-primary);
               }
             }
             &:not(.active):hover {
@@ -97,9 +100,17 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 color: var(--composer-font-color-secondary);
               }
 
+              .per {
+                color: var(--composer-font-color-primary);
+              }
+
               .plan-icons .plan,
               .item-price .price {
                 color: var(--composer-font-color-secondary);
+              }
+
+              .plan-icons .icon {
+                color: var(--composer-font-color-primary);
               }
             }
 
@@ -230,6 +241,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               width: 100%;
               gap: var(--composer-gap-md);
               align-items: center;
+              justify-content: space-between;
               border-radius: var(--composer-border-radius-md);
 
               .buttons {
@@ -237,6 +249,11 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 max-width: 50%;
                 gap: var(--composer-gap-sm);
                 flex-wrap: wrap;
+              }
+
+              .bottom-text {
+                color: var(--composer-font-color-primary);
+                font-size: 1rem;
               }
             }
           }

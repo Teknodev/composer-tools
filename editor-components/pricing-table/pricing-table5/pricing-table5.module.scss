@@ -69,7 +69,8 @@
 
             .plan-description,
             .price-description {
-              color: var(--composer-tertiary-color);
+              color: var(--composer-font-color-primary);
+              text-align: left;
             }
 
             .plan-title,
@@ -101,10 +102,10 @@
 
             .icon-box,
             .icon-box-active {
-              color: var(--composer-font-color-secondary);
-              background-color: var(--composer-font-color-primary);
-              width: var(--composer-gap-md);
-              height: var(--composer-gap-md);
+              color: var(--composer-primary-color);
+              background-color: var(--composer-html-background);
+              width: 20px;
+              height: 20px;
               display: flex;
               justify-content: center;
               align-items: center;
@@ -116,9 +117,6 @@
             }
 
             .icon-box-active {
-              background-color: var(--composer-font-color-primary);
-              opacity: 0.5;
-
               .icon {
                 margin-top: 1px;
               }
@@ -160,18 +158,6 @@
               .price {
                 font-size: 2rem;
                 transition: color 0.5s ease;
-              }
-            }
-
-            .plan-button {
-              background-color: transparent;
-              border: 1px solid var(--composer-font-color-secondary);
-              color: var(--composer-font-color-secondary);
-
-              &:hover {
-                background-color: white;
-                border: 1px solid white;
-                color: black;
               }
             }
           }

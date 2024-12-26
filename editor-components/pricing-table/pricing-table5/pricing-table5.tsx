@@ -4,6 +4,7 @@ import styles from "./pricing-table5.module.scss";
 import { BasePricingTable } from "../../EditorComponent";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 class PricingTable5 extends BasePricingTable {
   constructor(props?: any) {
@@ -69,6 +70,9 @@ class PricingTable5 extends BasePricingTable {
       displayer: "Less Icon",
       value: "FaAngleUp",
     });
+
+    this.addProp(INPUTS.BUTTON("button", "Button", "", "", "Primary"));
+    this.addProp(INPUTS.BUTTON("planbutton", "Plan Button", "", "", "Tertiary"));
 
     this.addProp({
       type: "array",
@@ -219,6 +223,10 @@ class PricingTable5 extends BasePricingTable {
   render(): React.ReactNode {
     const buttons = this.getPropValue("buttons");
 
+    const buttontype: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+
+    const planButton: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("planbutton");
+
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
@@ -247,7 +255,9 @@ class PricingTable5 extends BasePricingTable {
                       buttonText && (
                         <ComposerLink path={button.getPropValue("url")}>
                           <div className={this.decorateCSS("button-box")}>
-                            <Base.Button className={this.decorateCSS("button-text")}>{buttonText}</Base.Button>
+                            <Base.Button buttonType={buttontype.type} className={this.decorateCSS("button-text")}>
+                              {button.getPropValue("buttonText")}
+                            </Base.Button>
                           </div>
                         </ComposerLink>
                       )
@@ -283,7 +293,13 @@ class PricingTable5 extends BasePricingTable {
                           </div>
                         )}
 
-                        <ComposerLink path={plan.getPropValue("link")}>{planButtonText && <Base.Button className={this.decorateCSS("plan-button")}>{plan.getPropValue("buttonText")}</Base.Button>}</ComposerLink>
+                        <ComposerLink path={plan.getPropValue("link")}>
+                          {planButtonText && (
+                            <Base.Button buttonType={planButton.type} className={this.decorateCSS("plan-button")}>
+                              {plan.getPropValue("buttonText")}
+                            </Base.Button>
+                          )}
+                        </ComposerLink>
                       </div>
                     </div>
                   );

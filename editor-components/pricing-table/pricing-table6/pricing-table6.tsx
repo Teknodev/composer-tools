@@ -4,6 +4,7 @@ import { BasePricingTable } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Pricing = {
   title: JSX.Element;
@@ -58,6 +59,8 @@ class PricingMultipleTwo extends BasePricingTable {
       displayer: "Title",
       value: "Choose the plan that's right for you",
     });
+
+    this.addProp(INPUTS.BUTTON("button", "Button", "", "", "Primary"));
 
     this.addProp({
       type: "array",
@@ -1185,10 +1188,12 @@ class PricingMultipleTwo extends BasePricingTable {
 
     const rightItemExist = plan[planIndex]?.right_items?.list.length > 0;
 
+    const buttontype: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={this.decorateCSS("page")}>
+          <div className={this.decorateCSS("page")}>
             <Base.VerticalContent className={this.decorateCSS("up-page")}>
               {this.castToString(this.getPropValue("badge")) && <Base.SectionSubTitle className={this.decorateCSS("badge")}>{this.getPropValue("badge")}</Base.SectionSubTitle>}
               {this.castToString(this.getPropValue("title")) && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
@@ -1266,13 +1271,15 @@ class PricingMultipleTwo extends BasePricingTable {
                                   return (
                                     buttonText && (
                                       <ComposerLink key={buttonIndex} path={buttonUrl}>
-                                        <Base.Button className={this.decorateCSS("button")}>{buttonText}</Base.Button>
+                                        <Base.Button buttonType={buttontype.type} className={this.decorateCSS("button")}>
+                                          {button.getPropValue("buttonText")}
+                                        </Base.Button>
                                       </ComposerLink>
                                     )
                                   );
                                 })}
                               </div>
-                              {plan[planIndex].right_items.text && <Base.P className={this.decorateCSS("bottom-text")}>{plan[planIndex].right_items.text}</Base.P>}
+                              {plan[planIndex].right_items.text && <span className={this.decorateCSS("bottom-text")}>{plan[planIndex].right_items.text}</span>}
                             </div>
                           )}
                         </Base.VerticalContent>
@@ -1282,7 +1289,7 @@ class PricingMultipleTwo extends BasePricingTable {
                 )}
               </div>
             )}
-          </Base.VerticalContent>
+          </div>
         </Base.MaxContent>
       </Base.Container>
     );

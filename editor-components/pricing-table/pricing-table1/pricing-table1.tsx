@@ -642,7 +642,7 @@ class PricingTable1 extends BasePricingTable {
                   <div key={index} className={`${this.decorateCSS("item-card")} ${table.isActive && this.decorateCSS("active")}`}>
                     {popularText && (
                       <div className={`${this.decorateCSS("popular-box")} ${table.popular_settings.is_popular && this.decorateCSS("active")}`}>
-                        <span className={this.decorateCSS("popular-text")}>{table.popular_settings.text}</span>
+                        <Base.P className={this.decorateCSS("popular-text")}>{table.popular_settings.text}</Base.P>
                       </div>
                     )}
                     {cardSubtitleExist && <Base.H3 className={this.decorateCSS("cardsubtitle")}>{table.cardsubtitle}</Base.H3>}
@@ -681,9 +681,9 @@ class PricingTable1 extends BasePricingTable {
                       </div>
 
                       {cardButtonTextExist && (
-                        <button className={this.decorateCSS("card-button")}>
+                        <Base.Button className={this.decorateCSS("card-button")}>
                           <ComposerLink path={table.cardButtonLink}>{table.cardButtonText}</ComposerLink>
-                        </button>
+                        </Base.Button>
                       )}
 
                       {cardpricingTableTitleExist && <span className={this.decorateCSS("pricingTitle")}>{table.pricingTableTitle}</span>}
