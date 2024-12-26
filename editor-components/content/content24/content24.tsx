@@ -230,11 +230,11 @@ class Content24 extends BaseContent {
                           </Base.P>
                         )}
                         {this.castToString(tab.buttonText) && (
-                          <button className={this.decorateCSS("button")}>
+                          <Base.Button className={this.decorateCSS("button")}>
                             <ComposerLink path={tab.buttonUrl}>
                               {tab.buttonText}
                             </ComposerLink>
-                          </button>
+                          </Base.Button>
                         )}
                       </div>
                     )}

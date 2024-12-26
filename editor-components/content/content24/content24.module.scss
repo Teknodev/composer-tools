@@ -105,16 +105,6 @@
                         color: var(--composer-tertiary-color);
                         margin: 0;
                     }
-
-                    .button {
-                        border-radius: var(--composer-border-radius-sm);
-                        background-color: var(--composer-primary-color);
-                        color: var(--composer-font-color-secondary);
-                        border: none;
-                        padding: var(--composer-gap-sm) var(--composer-gap-md);
-                        display: inline-block;
-                        cursor: pointer;
-                    }
                 }
 
                 .image-container {
