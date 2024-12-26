@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./base.module.scss";
 
 export type TypeContentView = "monochrome" | "colorful";
 export type TypeContentAlignment = "left" | "center";
 export type TypeSubtitle = "line" | "badge" | "none";
-
+export type TypeButton = "Primary" | "Secondary" | "Tertiary" | "Link" | "White" | "Black";
 export namespace Base {
   const rootStyles = getComputedStyle(document.documentElement);
 
@@ -196,7 +196,35 @@ export namespace Base {
     );
   }
 
-  export function Button({className, ...props}: any){
-    return <button className={`${styles.button} ${className}`} {...props}></button>
+  export function Button({
+    className,
+    buttonType,
+    ...props
+  }: {
+    buttonType?: TypeButton;
+    [key: string]: any;
+  }) {
+    return (
+      <button
+        className={`${styles.button} ${
+          styles[(buttonType || "Primary").toLocaleLowerCase()]
+        } ${className}`}
+        {...props}
+      ></button>
+    );
+  }
+
+  export function Row({ className, ...props }: any) {
+    return <div className={`${styles.row} ${className}`} {...props}></div>;
+  }
+
+  export function Overlay({ className, ...props }: any) {
+    useEffect(() => {
+      document.documentElement.style.overflow = "hidden";
+      return () => {
+        document.documentElement.style.overflow = "";
+      };
+    }, []);
+    return <div className={`${styles.overlay} ${className}`} {...props}></div>;
   }
 }

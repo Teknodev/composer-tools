@@ -1,0 +1,14 @@
+
+
+.accordionList{
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-sm);
+    list-style-type: none;
+    padding-left: var(--composer-gap-sm);
+    margin: 0;
+
+    .accordionLanguageOption{
+        display: flex;   
+    }
+}
