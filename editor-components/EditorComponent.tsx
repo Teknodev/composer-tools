@@ -371,7 +371,7 @@ export abstract class Component
         return <blinkpage dangerouslySetInnerHTML={sanitizedHtml}></blinkpage>;
       }
     };
-
+    
     return <SanitizeHTML html={prop?.value}></SanitizeHTML>;
   }
 
