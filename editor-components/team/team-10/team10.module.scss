@@ -4,7 +4,7 @@
   padding: 0;
   height: 100vh;
 
-  .max-content {
+  .wrapper {
     display: flex;
     overflow-x: auto;
     overflow-y: hidden;
@@ -33,6 +33,7 @@
         width: 100%;
         background-color: var(--composer-overlay-color)
       }
+      .title-wrapper{
 
       .title {
         color: white;
@@ -56,12 +57,13 @@
           background-color: white;
         }
       }
-
       .subtitle-no-image {
         font-size: 1.5rem;
         padding: 0 var(--composer-gap-md);
         margin: 0 var(--composer-gap-md);
         z-index: 2;
+      }
+
       }
     }
 
@@ -179,46 +181,43 @@
 @container (max-width: #{$composer-tablet-width-lg}) {
   .container{
     height: 100%;
-    .max-content {
+    .wrapper {
       flex-direction: column;
-      overflow-x: hidden !important;
+      overflow-x: hidden;
   
       .left {
-        width: unset !important;
+        width: unset;
         min-height: 200px;
         height: auto;
-  
-        .title {
-          font-size: 2rem !important;
+        .title-wrapper{
+          .title, .title-no-image {
+            font-size: 2rem;
+          }
         }
-  
-        .title-no-image {
-          font-size: 2rem !important;
-        }
+
       }
   
       .right {
         flex-direction: column;
   
         .team-member {
-          flex-direction: row !important;
+          flex-direction: row;
           .info {
-            width: 50% !important;
+            width: 50% ;
   
             .subtitle {
               font-size: 1rem;
             }
   
             .title {
-              font-size: 2rem !important;
+              font-size: 2rem;
             }
   
             .meta-info {
-              gap: var(--composer-gap-md) !important;
+              gap: var(--composer-gap-md);
               .meta {
                 .label {
-                  font-size: 1rem !important;
-  
+                  font-size: 1rem;
                   color: var(--composer-font-color-primary);
                 }
   
@@ -234,12 +233,12 @@
           }
   
           .image-container {
-            width: 50% !important;
-            height: 580px !important;
+            width: 50%;
+            height: 580px;
           }
   
           &:nth-child(2n) {
-            flex-direction: row-reverse !important;
+            flex-direction: row-reverse;
           }
         }
       }
@@ -251,46 +250,46 @@
 @container (max-width: #{$composer-phone-width}) {
   .container{
     height: 100%;
-    .max-content {
+    .wrapper {
       .left {
-        width: unset !important;
         min-height: 100px;
-        height: auto;
-  
-        .subtitle {
-          font-size: 1rem !important;
-        }
-  
-        .subtitle-no-image {
-          font-size: 1rem !important;
-        }
-  
-        .title {
-          font-size: 1.5rem !important;
-        }
-  
-        .title-no-image {
-          font-size: 1.5rem !important;
+        .title-wrapper{
+          padding-top: 20px;
+          .subtitle {
+            font-size: 1rem;
+          }
+    
+          .subtitle-no-image {
+            font-size: 1rem;
+          }
+    
+          .title {
+            font-size: 1.5rem;
+          }
+    
+          .title-no-image {
+            font-size: 1.5rem;
+          }
         }
       }
   
       .right {
         .team-member {
-          flex-direction: column !important;
-          width: 100% !important;
-          min-width: unset !important;
+          flex-direction: column;
+          width: 100%;
+          min-width: unset;
   
           .info {
-            width: 100% !important;
+            width: 100%;
           }
   
           .image-container {
-            width: 100% !important;
-            height: 100% !important;
+            width: 100%;
+            height: 100%;
           }
   
           &:nth-child(2n) {
-            flex-direction: column !important;
+            flex-direction: column;
           }
         }
       }

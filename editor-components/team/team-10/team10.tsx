@@ -427,9 +427,9 @@ class Team10 extends Team {
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+        <div className={this.decorateCSS("wrapper")}>
           <div className={this.decorateCSS("left")}>
-            <Base.VerticalContent>
+            <Base.VerticalContent className={this.decorateCSS("title-wrapper")}>
               {subtitleExist && <Base.SectionSubTitle className={backgroundImageExist ? this.decorateCSS("subtitle") : this.decorateCSS("subtitle-no-image")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
               {titleExist && <Base.SectionTitle className={backgroundImageExist ? this.decorateCSS("title") : this.decorateCSS("title-no-image")}>{this.getPropValue("title")}</Base.SectionTitle>}
             </Base.VerticalContent>
