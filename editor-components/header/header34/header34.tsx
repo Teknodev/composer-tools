@@ -253,7 +253,7 @@ class HeaderComponent34 extends BaseHeader {
             )}`}
           >
             <Base.MaxContent className={this.decorateCSS("content")}>
-              {slides[overlayActiveIndex].title && (
+              {this.castToString(slides[overlayActiveIndex].title) && (
                 <Base.H1 className={this.decorateCSS("content-title")}>
                   {slides[overlayActiveIndex].title}
                 </Base.H1>
