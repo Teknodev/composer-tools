@@ -1,6 +1,7 @@
 @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 .container {
-  padding: 0px 50px;
+  padding-top: 0;
+  padding-bottom: 0;
   .max-content {
     .carousel {
       max-width: 100%;
@@ -43,6 +44,17 @@
               font-size: 4.5rem;
               color: var(--composer-font-color-primary);
               margin: 0px;
+            }
+            .title-wrapper{
+              display: flex;
+              gap: var(--composer-gap-sm);
+              flex-wrap: wrap;
+              .title{
+                font-size: 4.5rem;
+              }
+              .image-title{
+                font-size: 4.5rem;
+              }
             }
             .description {
               width: 100%;

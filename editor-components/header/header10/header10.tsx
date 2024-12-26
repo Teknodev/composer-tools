@@ -341,7 +341,6 @@ class Header10 extends BaseHeader {
                 item.icons.length > 0 ||
                 ampersandIcon
               );
-              const fullTitle = title + " " + imageTitle;
 
               return (
                 <div
@@ -363,10 +362,16 @@ class Header10 extends BaseHeader {
                             : "")
                         }
                       >
-                        {title && (
+                        {(title && image) && (
                           <h1 className={this.decorateCSS("title")}>
-                            {image ? item.title : fullTitle}
+                            {item.title}
                           </h1>
+                        )}
+                        {(!image && (title || imageTitle)) && (
+                          <div className={this.decorateCSS("title-wrapper")}>
+                            {title && (<div className={this.decorateCSS("title")}>{item.title}</div>)}
+                            {imageTitle && (<div className={this.decorateCSS("image-title")}>{item.imageTitle}</div>)}
+                          </div>
                         )}
                         {description && (
                           <p className={this.decorateCSS("description")}>
@@ -437,7 +442,7 @@ class Header10 extends BaseHeader {
                                     <Base.Button
                                       className={this.decorateCSS("button")}
                                     >
-                                      {buttonText}
+                                      {buttonItem.buttonText}
                                     </Base.Button>
                                   </ComposerLink>
                                 </div>
@@ -451,7 +456,7 @@ class Header10 extends BaseHeader {
                     <div className={this.decorateCSS("middle")}>
                       {imageTitle && (
                         <h1 className={this.decorateCSS("imagetitle")}>
-                          {leftPage ? item.imageTitle : fullTitle}
+                          {item.imageTitle}
                         </h1>
                       )}
                       {image && (
