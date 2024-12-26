@@ -62,8 +62,7 @@ class Testimonials1Page extends Testimonials {
               type: "string",
               key: "longtext",
               displayer: "Review Text",
-              value:
-                "This product has changed my life! It's incredibly useful and packed with creative features. I would highly recommend it to everyone!",
+              value: "This product has changed my life! It's incredibly useful and packed with creative features. I would highly recommend it to everyone!",
             },
             {
               type: "string",
@@ -94,8 +93,7 @@ class Testimonials1Page extends Testimonials {
               type: "string",
               key: "longtext",
               displayer: "Review Text",
-              value:
-                "This product has changed my life! It's incredibly useful and packed with creative features. I would highly recommend it to everyone!",
+              value: "This product has changed my life! It's incredibly useful and packed with creative features. I would highly recommend it to everyone!",
             },
             {
               type: "string",
@@ -139,7 +137,7 @@ class Testimonials1Page extends Testimonials {
       infinite: true,
       arrows: false,
       speed: 500,
-      autoplay: false,
+      autoplay: true,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       beforeChange: (oldIndex: number, nextIndex: number) => {
@@ -148,7 +146,9 @@ class Testimonials1Page extends Testimonials {
     };
 
     return (
-      <Base.Container className={this.decorateCSS("container")} isFull={this.getPropValue("background-image") ? true : false}
+      <Base.Container
+        className={this.decorateCSS("container")}
+        isFull={this.getPropValue("background-image") ? true : false}
         style={{
           backgroundImage: `url(${this.getPropValue("background-image")})`,
         }}
@@ -160,19 +160,9 @@ class Testimonials1Page extends Testimonials {
                 <ComposerSlider {...settings} ref={this.getComponentState("slider-ref")}>
                   {this.castToObject<any>("items").map((item: any, index: number) => (
                     <div className={this.decorateCSS("items")}>
-                      {item.icons && (
-                        <ComposerIcon
-                          name={item.icons}
-                          propsIcon={{ className: this.getPropValue("background-image") ? this.decorateCSS("icons") : this.decorateCSS("icons-no-image") }}
-                        />
-                      )}
-                      {this.castToString(item.longtext) && (
-                        <div className={this.getPropValue("background-image") ? this.decorateCSS("longtext") : this.decorateCSS("longtext-no-image")}>
-                          {item.longtext}</div>
-                      )}
-                      {this.castToString(item.name) && (
-                        <div className={this.getPropValue("background-image") ? this.decorateCSS("name") : this.decorateCSS("name-no-image")}>{item.name}</div>
-                      )}
+                      {item.icons && <ComposerIcon name={item.icons} propsIcon={{ className: this.getPropValue("background-image") ? this.decorateCSS("icons") : this.decorateCSS("icons-no-image") }} />}
+                      {this.castToString(item.longtext) && <div className={this.getPropValue("background-image") ? this.decorateCSS("longtext") : this.decorateCSS("longtext-no-image")}>{item.longtext}</div>}
+                      {this.castToString(item.name) && <div className={this.getPropValue("background-image") ? this.decorateCSS("name") : this.decorateCSS("name-no-image")}>{item.name}</div>}
                     </div>
                   ))}
                 </ComposerSlider>
@@ -181,15 +171,7 @@ class Testimonials1Page extends Testimonials {
                     const isActive = this.getComponentState("active_index") === itemIndex;
                     return (
                       <div className={this.decorateCSS("image-container")}>
-                        {item.imageButton && (
-                          <img
-                            src={item.imageButton}
-                            className={`${this.decorateCSS("image")} ${isActive && this.decorateCSS("active")
-                              }`}
-                            alt={item.imageButton}
-                            onClick={() => this.onImageClick(itemIndex)}
-                          />
-                        )}
+                        {item.imageButton && <img src={item.imageButton} className={`${this.decorateCSS("image")} ${isActive && this.decorateCSS("active")}`} alt={item.imageButton} onClick={() => this.onImageClick(itemIndex)} />}
                       </div>
                     );
                   })}

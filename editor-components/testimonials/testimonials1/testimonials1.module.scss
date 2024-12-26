@@ -1,30 +1,31 @@
-@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 .container {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  padding: 50px;
+  padding: var(--composer-gap-xl);
   .max-content {
     display: flex;
     gap: var(--composer-gap-xl);
-    .wrapper{
+    .wrapper {
       width: 100%;
-      .content-wrapper{
+      .content-wrapper {
         width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
-        .content, .content-no-image{
+        .content,
+        .content-no-image {
           display: flex;
           flex-direction: column;
           gap: var(--composer-gap-xl);
-          >div{
-            >div{
-              >div{
+          > div {
+            > div {
+              > div {
                 display: flex;
                 align-items: stretch;
                 height: 100%;
-                >div{
+                > div {
                   height: auto;
                   display: flex;
                   align-items: center;
@@ -38,49 +39,52 @@
             flex-direction: column;
             gap: var(--composer-gap-md);
             align-items: center;
-              .icons, .icons-no-image {
-                font-size: 50px;
-                border-radius: 50%;                 
-                display: inline-block; 
-                padding: var(--composer-gap-sm); 
-              } 
-              .icons{
-                background-color: #d39121;
-                color: white; 
-              }
-              .icons-no-image{
-                color: var(--composer-font-color-secondary);
-                background-color: var(--composer-primary-color);
-              }    
-              .longtext, .longtext-no-image {
-                font-size:1.5rem;
-                text-align: center;
-              }
-              .longtext{
-                color: black;
-              }
-              .longtext-no-image{
-                color: var(--composer-font-color-primary);
-              }
-    
-            .name, .name-no-image {
+            .icons,
+            .icons-no-image {
+              font-size: 3rem;
+              border-radius: 50%;
+              display: inline-block;
+              padding: var(--composer-gap-sm);
+            }
+            .icons {
+              background-color: #d39121;
+              color: white;
+            }
+            .icons-no-image {
+              color: var(--composer-font-color-secondary);
+              background-color: var(--composer-primary-color);
+            }
+            .longtext,
+            .longtext-no-image {
+              font-size: 1.5rem;
+              text-align: center;
+            }
+            .longtext {
+              color: black;
+            }
+            .longtext-no-image {
+              color: var(--composer-font-color-primary);
+            }
+
+            .name,
+            .name-no-image {
               width: 100%;
               font-size: 1.5rem;
               text-align: center;
             }
-            .name{
+            .name {
               color: #d39121;
             }
-            .name-no-image{
+            .name-no-image {
               color: var(--composer-primary-color);
             }
           }
-          .images {   
+          .images {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;  
+            justify-content: center;
             gap: var(--composer-gap-md);
-            .image-container{
+            .image-container {
               .image {
                 width: 50px;
                 height: 50px;
@@ -96,11 +100,10 @@
             }
           }
         }
-        .content{
+        .content {
           width: 30%;
- 
         }
-        .content-no-image{
+        .content-no-image {
           width: 100%;
         }
       }
@@ -108,20 +111,20 @@
   }
 }
 
-
-@container (max-width: #{$composer-tablet-width}) {
+@container (max-width: #{$composer-tablet-width-lg}) {
   .container {
-    background-size:cover;
-    padding: 20px 40px !important;
+    background-size: cover;
+    padding: var(--composer-gap-md) var(--composer-gap-lg) !important;
     .max-content {
-      .wrapper{
-        .content-wrapper{
-          .content, .content-no-image{
+      .wrapper {
+        .content-wrapper {
+          .content,
+          .content-no-image {
             width: 100%;
-            .images{
+            .images {
               flex-direction: row;
-              .image-container{
-                .image{
+              .image-container {
+                .image {
                   width: 80px;
                   height: 80px;
                 }
@@ -132,21 +135,20 @@
       }
     }
   }
-
 }
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    background-size:cover;
-    padding: 20px !important;
+    background-size: cover;
+    padding: var(--composer-gap-md) !important;
     .max-content {
-      .wrapper{
-        .content-wrapper{
-          .content{
+      .wrapper {
+        .content-wrapper {
+          .content {
             width: 100%;
-            .images{
-              .image-container{
-                .image{
+            .images {
+              .image-container {
+                .image {
                   width: 70px;
                   height: 70px;
                 }

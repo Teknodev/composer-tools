@@ -1,4 +1,4 @@
-@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 .container {
   .maxContent {
     display: flex;
@@ -7,134 +7,129 @@
       display: flex;
       flex-direction: column;
       gap: var(--composer-gap-xl);
-      .title{
+      .title {
         width: 100%;
-        margin:0px;
+        margin: 0px;
       }
-      .content{
+      .content {
         width: 100%;
         display: flex;
         position: relative;
-        >div{
-          >div{
-            >div{
+        > div {
+          > div {
+            > div {
               display: flex;
               height: 100%;
               align-items: stretch;
-              >div{
-                padding : 0px var(--composer-gap-xs);
+              > div {
+                padding: 0px var(--composer-gap-xs);
                 height: auto;
-                >div{
+                > div {
                   height: 100%;
                 }
               }
             }
           }
         }
-        
-        .prevArrow, .nextArrow{
+
+        .prevArrow,
+        .nextArrow {
           position: absolute;
-          top:calc(50% - 20px);
+          top: calc(50% - var(--composer-gap-md));
           transform: translateY(-50%);
           display: flex;
           align-items: center;
           z-index: 1;
           background-color: transparent;
-          border:none;
-          width: 40px;
-          height: 40px;
+          border: none;
+          width: var(--composer-gap-lg);
+          height: var(--composer-gap-lg);
           border: 1px solid var(--composer-font-color-primary);
-          border-radius: 50%; 
+          border-radius: 50%;
           justify-content: center;
           color: var(--composer-font-color-primary);
         }
-        .prevArrow{
+        .prevArrow {
           left: 0;
-          
         }
-        .nextArrow{
+        .nextArrow {
           right: 0;
         }
-        >div{
+        > div {
           width: 100%;
-          >div{
+          > div {
             padding-bottom: var(--composer-gap-lg);
           }
-          >ul{
+          > ul {
             left: 0px;
             bottom: 0px;
-            >li{
-              >button{
-                &::before{
+            > li {
+              > button {
+                &::before {
                   color: var(--composer-font-color-primary);
                 }
               }
             }
           }
         }
-        .card{
+        .card {
           background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
           border-radius: var(--composer-border-radius-md);
           padding: var(--composer-gap-xl);
           display: flex;
           flex-direction: column;
           gap: var(--composer-gap-md);
-          margin-bottom: 20px;
+          margin-bottom: var(--composer-gap-md);
           height: 100%;
-          .topContainer{
+          .topContainer {
             display: flex;
             gap: var(--composer-gap-sm);
             align-items: center;
-            .image{
-              width: 50px;
-              height: 50px;
+            .image {
+              width: var(--composer-gap-xl);
+              height: var(--composer-gap-xl);
               border-radius: 50%;
               object-fit: cover;
             }
-            .personal{
+            .personal {
               display: flex;
               flex-direction: column;
               gap: var(--composer-gap-sm);
-              .name{
+              .name {
                 color: var(--composer-font-color-primary);
               }
-              .personTitle{
-                opacity: 0.5;
-                color: var(--composer-font-color-primary);
-  
+              .personTitle {
+                color: var(--composer-tertiary-color);
               }
             }
-
           }
-          .description{  
-            color: var(--composer-font-color-primary);          
-
+          .description {
+            color: var(--composer-font-color-primary);
           }
-          .bottomContainer{
+          .bottomContainer {
             display: flex;
             gap: var(--composer-gap-sm);
-            .star{
+            .star {
               color: var(--composer-primary-color);
               display: flex;
               gap: var(--composer-gap-xs);
             }
-            .line{
+            .line {
               width: 1px;
-              background-color: rgba(var(--composer-font-color-primary-rgb), 0.5);
+              background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
             }
-            .starNumber{
+            .starNumber {
               color: var(--composer-secondary-color);
               display: flex;
               align-items: center;
-            }              
+            }
           }
-
         }
       }
       .contentPaddingLeft {
         padding-left: calc(var(--composer-gap-xl) * 3);
       }
-      
+
       .contentPaddingRight {
         padding-right: calc(var(--composer-gap-xl) * 3);
       }
@@ -143,27 +138,28 @@
 }
 
 @container (max-width: #{$composer-tablet-width-lg}) {
-  .container{
-    .maxContent{
-      .testimonials8{
+  .container {
+    .maxContent {
+      .testimonials8 {
         gap: var(--composer-gap-md);
-        .content{
-          padding :0px;
-          .prevArrow, .nextArrow{
+        .content {
+          padding: 0px;
+          .prevArrow,
+          .nextArrow {
             display: none;
           }
-          >div{
-            padding:0px;
-            >div{
+          > div {
+            padding: 0px;
+            > div {
               padding-bottom: var(--composer-gap-sm);
-              >div{
-                >div{
+              > div {
+                > div {
                   padding: var(--composer-gap-sm);
                 }
               }
             }
           }
-          .card{
+          .card {
             padding: var(--composer-gap-lg);
           }
         }
@@ -172,20 +168,21 @@
   }
 }
 @container (max-width: #{$composer-phone-width-sm}) {
-  .container{
-    .maxContent{
-      .testimonials8{
-        .content{
-          .prevArrow, .nextArrow{
+  .container {
+    .maxContent {
+      .testimonials8 {
+        .content {
+          .prevArrow,
+          .nextArrow {
             width: 30px;
             height: 30px;
           }
-          .card{
+          .card {
             padding: var(--composer-gap-sm);
-            .topContainer{
-              .image{
-                width: 40px;
-                height: 40px;
+            .topContainer {
+              .image {
+                width: var(--composer-gap-lg);
+                height: var(--composer-gap-lg);
               }
             }
           }

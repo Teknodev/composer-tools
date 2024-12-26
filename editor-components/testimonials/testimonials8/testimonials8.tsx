@@ -14,8 +14,8 @@ type Item = {
   starIcon: string;
 };
 interface ArrowItem {
-  nextArrow: string,
-  prevArrow: string
+  nextArrow: string;
+  prevArrow: string;
 }
 
 class Testimonials8Page extends Testimonials {
@@ -52,8 +52,7 @@ class Testimonials8Page extends Testimonials {
             {
               type: "image",
               key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666173eabd2970002c62388a?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666173eabd2970002c62388a?alt=media&timestamp=1719483639150",
               displayer: "Author Image",
             },
             {
@@ -86,9 +85,7 @@ class Testimonials8Page extends Testimonials {
               key: "starIcon",
               displayer: "Icon",
               value: "FaStar",
-
             },
-
           ],
         },
         {
@@ -99,8 +96,7 @@ class Testimonials8Page extends Testimonials {
             {
               type: "image",
               key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666173eabd2970002c62388b?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666173eabd2970002c62388b?alt=media&timestamp=1719483639150",
               displayer: "Author Image",
             },
             {
@@ -118,8 +114,7 @@ class Testimonials8Page extends Testimonials {
             {
               type: "string",
               key: "description",
-              value:
-                "Grunge design is all about creating a rough, raw, and edgy look. It can be a great way to add personality and attitude to a design.",
+              value: "Grunge design is all about creating a rough, raw, and edgy look. It can be a great way to add personality and attitude to a design.",
               displayer: "Review Text",
             },
             {
@@ -133,7 +128,6 @@ class Testimonials8Page extends Testimonials {
               key: "starIcon",
               displayer: "Icon",
               value: "FaStar",
-
             },
           ],
         },
@@ -145,8 +139,7 @@ class Testimonials8Page extends Testimonials {
             {
               type: "image",
               key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661740cbd2970002c623895?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661740cbd2970002c623895?alt=media&timestamp=1719483639150",
               displayer: "Author Image",
             },
             {
@@ -164,8 +157,7 @@ class Testimonials8Page extends Testimonials {
             {
               type: "string",
               key: "description",
-              value:
-                "Responsive design is a must for modern websites and interfaces. It ensures that content is displayed optimally on different screen sizes and devices.",
+              value: "Responsive design is a must for modern websites and interfaces. It ensures that content is displayed optimally on different screen sizes and devices.",
               displayer: "Review Text",
             },
             {
@@ -193,16 +185,15 @@ class Testimonials8Page extends Testimonials {
           type: "icon",
           key: "prevArrow",
           displayer: "Prev Icon",
-          value: "GrLinkPrevious"
+          value: "GrLinkPrevious",
         },
         {
           type: "icon",
           key: "nextArrow",
           displayer: "Next Icon",
-          value: "GrLinkNext"
-        }
-
-      ]
+          value: "GrLinkNext",
+        },
+      ],
     });
     this.setComponentState("active_index", 0);
     this.setComponentState("slider-ref", React.createRef());
@@ -218,7 +209,7 @@ class Testimonials8Page extends Testimonials {
       arrows: false,
       infinite: true,
       speed: 700,
-      autoplay: false,
+      autoplay: true,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -229,79 +220,59 @@ class Testimonials8Page extends Testimonials {
     const arrows = this.castToObject<ArrowItem>("arrows");
     const sliderRef = this.getComponentState("slider-ref");
     const cards = this.castToObject<Item[]>("card-items");
-    console.log("card", cards.length)
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("maxContent")}>
           <div className={this.decorateCSS("testimonials8")}>
-            {this.castToString(this.getPropValue("title")) && (
-              <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
-            )}
+            {this.castToString(this.getPropValue("title")) && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
             <div
               className={`${this.decorateCSS("content")} 
               ${arrows.prevArrow && cards.length > 1 ? this.decorateCSS("contentPaddingLeft") : ""} 
               ${arrows.nextArrow && cards.length > 1 ? this.decorateCSS("contentPaddingRight") : ""}`}
             >
-              {(arrows.prevArrow && (cards.length > 1)) && (
-                <button className={this.decorateCSS("prevArrow")} onClick={() => {
-                  sliderRef.current.slickPrev();
-                }}>
+              {arrows.prevArrow && cards.length > 1 && (
+                <button
+                  className={this.decorateCSS("prevArrow")}
+                  onClick={() => {
+                    sliderRef.current.slickPrev();
+                  }}
+                >
                   <ComposerIcon name={arrows.prevArrow} propsIcon={{ className: this.decorateCSS("arrow") }}></ComposerIcon>
                 </button>
               )}
-              <ComposerSlider {...settings} ref={sliderRef} >
+              <ComposerSlider {...settings} ref={sliderRef}>
                 {cards.map((item: Item, index: number) => (
                   <div className={this.decorateCSS("card")}>
-                    <div className={this.decorateCSS("topContainer")}>
-                      {item.image && (
-                        <img src={item.image} alt={item.image} className={this.decorateCSS("image")} />
-                      )}
+                    <Base.Row className={this.decorateCSS("topContainer")}>
+                      {item.image && <img src={item.image} alt={item.image} className={this.decorateCSS("image")} />}
                       <div className={this.decorateCSS("personal")}>
-                        {this.castToString(item.name) && (
-                          <div className={this.decorateCSS("name")}>
-                            {item.name}
-                          </div>
-                        )}
-                        {this.castToString(item.nameId) && (
-                          <div className={this.decorateCSS("personTitle")}>
-                            {item.nameId}
-                          </div>
-                        )}
+                        {this.castToString(item.name) && <div className={this.decorateCSS("name")}>{item.name}</div>}
+                        {this.castToString(item.nameId) && <div className={this.decorateCSS("personTitle")}>{item.nameId}</div>}
                       </div>
-                    </div>
-                    {this.castToString(item.description) && (
-                      <Base.P className={this.decorateCSS("description")}>
-                        {item.description}
-                      </Base.P>
-                    )}
+                    </Base.Row>
+                    {this.castToString(item.description) && <Base.P className={this.decorateCSS("description")}>{item.description}</Base.P>}
 
-                    <div className={this.decorateCSS("bottomContainer")}>
-                      {((item.starNumber > 0) && (item.starIcon)) && (
+                    <Base.Row className={this.decorateCSS("bottomContainer")}>
+                      {item.starNumber > 0 && item.starIcon && (
                         <div className={this.decorateCSS("star")}>
-                          {[...Array(Number(item.starNumber))].map(
-                            (_: any, index: number) => (
-                              <ComposerIcon name={item.starIcon} />
-                            )
-                          )}
+                          {[...Array(Number(item.starNumber))].map((_: any, index: number) => (
+                            <ComposerIcon name={item.starIcon} />
+                          ))}
                         </div>
                       )}
-                      {this.getPropValue("lineActive") && (
-                        <div className={this.decorateCSS("line")}></div>
-                      )}
-                      {((item.starNumber > 0) && (this.getPropValue("numberIsActive"))) && (
-                        <div className={this.decorateCSS("starNumber")}>
-                          {item.starNumber}
-                        </div>
-                      )}
-
-                    </div>
+                      {this.getPropValue("lineActive") && <div className={this.decorateCSS("line")}></div>}
+                      {item.starNumber > 0 && this.getPropValue("numberIsActive") && <div className={this.decorateCSS("starNumber")}>{item.starNumber}</div>}
+                    </Base.Row>
                   </div>
                 ))}
               </ComposerSlider>
-              {(arrows.nextArrow && (cards.length > 1)) && (
-                <button className={this.decorateCSS("nextArrow")} onClick={() => {
-                  sliderRef.current.slickNext();
-                }}>
+              {arrows.nextArrow && cards.length > 1 && (
+                <button
+                  className={this.decorateCSS("nextArrow")}
+                  onClick={() => {
+                    sliderRef.current.slickNext();
+                  }}
+                >
                   <ComposerIcon name={arrows.nextArrow} propsIcon={{ className: this.decorateCSS("arrow") }}></ComposerIcon>
                 </button>
               )}
@@ -309,7 +280,6 @@ class Testimonials8Page extends Testimonials {
           </div>
         </Base.MaxContent>
       </Base.Container>
-
     );
   }
 }

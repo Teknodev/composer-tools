@@ -18,22 +18,19 @@ class Testimonials7Page extends Testimonials {
       type: "image",
       key: "cover-image",
       displayer: "Background Image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617330bd2970002c623799?alt=media&timestamp=1719483639150",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617330bd2970002c623799?alt=media&timestamp=1719483639150",
     });
     this.addProp({
       type: "icon",
       key: "prevIcon",
       displayer: "Prev Icon",
-      value:
-        "HiArrowLeft",
+      value: "HiArrowLeft",
     });
     this.addProp({
       type: "icon",
       key: "nextIcon",
       displayer: "Next Icon",
-      value:
-        "HiArrowRight",
+      value: "HiArrowRight",
     });
     this.addProp({
       type: "array",
@@ -48,15 +45,13 @@ class Testimonials7Page extends Testimonials {
             {
               type: "string",
               key: "description",
-              value:
-                "'Our office is something we are pleased with. We consider it the little magnet; it is wanting to come here and afterward difficult to leave it. Our office is additionally a big name.'",
+              value: "'Our office is something we are pleased with. We consider it the little magnet; it is wanting to come here and afterward difficult to leave it. Our office is additionally a big name.'",
               displayer: "Description",
             },
             {
               type: "image",
               key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617301bd2970002c623790?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617301bd2970002c623790?alt=media&timestamp=1719483639150",
               displayer: "Image",
             },
             {
@@ -81,15 +76,13 @@ class Testimonials7Page extends Testimonials {
             {
               type: "string",
               key: "description",
-              value:
-                "'Our office is something we are pleased with. We consider it the little magnet; it is wanting to come here and afterward difficult to leave it. Our office is additionally a big name.'",
+              value: "'Our office is something we are pleased with. We consider it the little magnet; it is wanting to come here and afterward difficult to leave it. Our office is additionally a big name.'",
               displayer: "Description",
             },
             {
               type: "image",
               key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617301bd2970002c623791?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617301bd2970002c623791?alt=media&timestamp=1719483639150",
               displayer: "Image",
             },
             {
@@ -114,15 +107,13 @@ class Testimonials7Page extends Testimonials {
             {
               type: "string",
               key: "description",
-              value:
-                "'“Our office is something we are pleased with. We consider it the little magnet; it is wanting to come here and afterward difficult to leave it. Our office is additionally a big name.”'",
+              value: "'“Our office is something we are pleased with. We consider it the little magnet; it is wanting to come here and afterward difficult to leave it. Our office is additionally a big name.”'",
               displayer: "Description",
             },
             {
               type: "image",
               key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617301bd2970002c623792?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617301bd2970002c623792?alt=media&timestamp=1719483639150",
               displayer: "Image",
             },
             {
@@ -155,7 +146,7 @@ class Testimonials7Page extends Testimonials {
       dots: false,
       infinite: true,
       speed: 700,
-      autoplay: false,
+      autoplay: true,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -176,100 +167,80 @@ class Testimonials7Page extends Testimonials {
     const sliderRef = this.getComponentState("slider-ref");
     return (
       <Base.Container
-        className={this.getPropValue("cover-image") ? this.decorateCSS("container") : this.decorateCSS("container-no-image")}
         style={{
           backgroundImage: `url(${this.getPropValue("cover-image")})`,
         }}
+        className={this.getPropValue("cover-image") ? this.decorateCSS("container") : this.decorateCSS("container-no-image")}
         isFull={this.getPropValue("cover-image") ? true : false}
       >
         <Base.MaxContent className={this.getPropValue("cover-image") ? this.decorateCSS("max-content") : this.decorateCSS("max-content-no-image")}>
-          {this.getPropValue("cover-image") && (
-            <img src={this.getPropValue("cover-image")} className={this.decorateCSS("background-image")} />
-          )}
+          {this.getPropValue("cover-image") && <img src={this.getPropValue("cover-image")} className={this.decorateCSS("background-image")} />}
           <div className={this.getPropValue("cover-image") ? this.decorateCSS("testimonials7") : this.decorateCSS("testimonials7-no-image")}>
             <div className={this.getPropValue("cover-image") ? this.decorateCSS("slider-wrapper") : this.decorateCSS("slider-wrapper-no-image")}>
-              <ComposerSlider
-                ref={sliderRef}
-                {...settings}
-                className={this.decorateCSS("slider-style")}
-              >
-                {this.castToObject<Item[]>("card-items").map(
-                  (item: Item, index: number) => (
-                    <div
-                      className={(() => {
-                        const hasCoverImage = this.getPropValue("cover-image");
-                        const hasPrevIcon = this.getPropValue("prevIcon");
-                        const hasNextIcon = this.getPropValue("nextIcon");
+              <ComposerSlider ref={sliderRef} {...settings} className={this.decorateCSS("slider-style")}>
+                {this.castToObject<Item[]>("card-items").map((item: Item, index: number) => (
+                  <div
+                    className={(() => {
+                      const hasCoverImage = this.getPropValue("cover-image");
+                      const hasPrevIcon = this.getPropValue("prevIcon");
+                      const hasNextIcon = this.getPropValue("nextIcon");
 
-                        if (!hasCoverImage) {
-                          if (!hasPrevIcon && !hasNextIcon) {
-                            return this.decorateCSS("card-no-image-padding");
-                          } else if (!hasPrevIcon) {
-                            return this.decorateCSS("card-no-image-left");
-                          } else if (!hasNextIcon) {
-                            return this.decorateCSS("card-no-image-right");
-                          } else {
-                            return this.decorateCSS("card-no-image");
-                          }
+                      if (!hasCoverImage) {
+                        if (!hasPrevIcon && !hasNextIcon) {
+                          return this.decorateCSS("card-no-image-padding");
+                        } else if (!hasPrevIcon) {
+                          return this.decorateCSS("card-no-image-left");
+                        } else if (!hasNextIcon) {
+                          return this.decorateCSS("card-no-image-right");
                         } else {
-                          return this.decorateCSS("card");
+                          return this.decorateCSS("card-no-image");
                         }
-                      })()}
-                    >
-                      {this.getPropValue("prevIcon") && (
-                        <button onClick={() => {
+                      } else {
+                        return this.decorateCSS("card");
+                      }
+                    })()}
+                  >
+                    {this.getPropValue("prevIcon") && (
+                      <button
+                        onClick={() => {
                           sliderRef.current.slickPrev();
-                        }} className={this.getPropValue("cover-image") ? this.decorateCSS("button-left") : this.decorateCSS("button-left-no-image")}>
-                          <ComposerIcon name={this.getPropValue("prevIcon")} propsIcon={{ className: this.decorateCSS("arrow") }}></ComposerIcon>
-                        </button>
-                      )}
-                      {(this.castToString(item.description) || item.image || this.castToString(item.name) || this.castToString(item.nameId)) && (
-                        <Base.VerticalContent className={this.decorateCSS("item-content")}>
-                          {this.castToString(item.description) && (
-                            <div className={this.getPropValue("cover-image") ? this.decorateCSS("item-description") : this.decorateCSS("item-description-no-image")}>
-                              {item.description}
-                            </div>
-                          )}
-                          {(item.image || this.castToString(item.name) || this.castToString(item.nameId)) && (
-                            <div className={this.decorateCSS("profile")}>
-                              {item.image && (
-                                <img
-                                  src={item.image}
-                                  alt={item.image}
-                                  className={this.decorateCSS("image")}
-                                />
-                              )}
-                              <Base.VerticalContent className={this.decorateCSS("profile-text")}>
-                                {this.castToString(item.name) && (
-                                  <div className={this.getPropValue("cover-image") ? this.decorateCSS("item-name") : this.decorateCSS("item-name-no-image")}>
-                                    {item.name}
-                                  </div>
-                                )}
-                                {this.castToString(item.nameId) && (
-                                  <div className={this.getPropValue("cover-image") ? this.decorateCSS("item-name-id") : this.decorateCSS("item-name-id-no-image")}>
-                                    {item.nameId}
-                                  </div>
-                                )}
-                              </Base.VerticalContent>
-                            </div>
-                          )}
-                        </Base.VerticalContent>
-                      )}
-                      {this.getPropValue("nextIcon") && (
-                        <button onClick={() => {
+                        }}
+                        className={this.getPropValue("cover-image") ? this.decorateCSS("button-left") : this.decorateCSS("button-left-no-image")}
+                      >
+                        <ComposerIcon name={this.getPropValue("prevIcon")} propsIcon={{ className: this.decorateCSS("arrow") }}></ComposerIcon>
+                      </button>
+                    )}
+                    {(this.castToString(item.description) || item.image || this.castToString(item.name) || this.castToString(item.nameId)) && (
+                      <Base.VerticalContent className={this.decorateCSS("item-content")}>
+                        {this.castToString(item.description) && <Base.P className={this.getPropValue("cover-image") ? this.decorateCSS("item-description") : this.decorateCSS("item-description-no-image")}>{item.description}</Base.P>}
+                        {(item.image || this.castToString(item.name) || this.castToString(item.nameId)) && (
+                          <div className={this.decorateCSS("profile")}>
+                            {item.image && <img src={item.image} alt={item.image} className={this.decorateCSS("image")} />}
+                            <Base.VerticalContent className={this.decorateCSS("profile-text")}>
+                              {this.castToString(item.name) && <div className={this.getPropValue("cover-image") ? this.decorateCSS("item-name") : this.decorateCSS("item-name-no-image")}>{item.name}</div>}
+                              {this.castToString(item.nameId) && <div className={this.getPropValue("cover-image") ? this.decorateCSS("item-name-id") : this.decorateCSS("item-name-id-no-image")}>{item.nameId}</div>}
+                            </Base.VerticalContent>
+                          </div>
+                        )}
+                      </Base.VerticalContent>
+                    )}
+                    {this.getPropValue("nextIcon") && (
+                      <button
+                        onClick={() => {
                           sliderRef.current.slickNext();
-                        }} className={this.getPropValue("cover-image") ? this.decorateCSS("button-right") : this.decorateCSS("button-right-no-image")}>
-                          <ComposerIcon name={this.getPropValue("nextIcon")} propsIcon={{ className: this.decorateCSS("arrow") }}></ComposerIcon>
-                        </button>
-                      )}
-                    </div>
-                  )
-                )}
+                        }}
+                        className={this.getPropValue("cover-image") ? this.decorateCSS("button-right") : this.decorateCSS("button-right-no-image")}
+                      >
+                        <ComposerIcon name={this.getPropValue("nextIcon")} propsIcon={{ className: this.decorateCSS("arrow") }}></ComposerIcon>
+                      </button>
+                    )}
+                  </div>
+                ))}
               </ComposerSlider>
             </div>
           </div>
-        </Base.MaxContent >
-      </Base.Container >
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

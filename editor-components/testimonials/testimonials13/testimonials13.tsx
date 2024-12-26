@@ -36,27 +36,26 @@ class Testimonials13Page extends Testimonials {
       type: "string",
       key: "description",
       displayer: "Description",
-      value:
-        "incidunt ut labore et dolore magna aliqua.tempor incidunt ut labore et dolore magna aliqua. tempor incidunt ut labore et dolore magna ",
+      value: "incidunt ut labore et dolore magna aliqua.tempor incidunt ut labore et dolore magna aliqua. tempor incidunt ut labore et dolore magna ",
     });
     this.addProp({
       type: "icon",
       key: "prevIcon",
       displayer: "Prev Icon",
-      value: "FaArrowLeftLong"
-    })
+      value: "FaArrowLeftLong",
+    });
     this.addProp({
       type: "icon",
       key: "nextIcon",
       displayer: "Next Icon",
-      value: "FaArrowRightLong"
-    })
+      value: "FaArrowRightLong",
+    });
     this.addProp({
       type: "icon",
       key: "sliderIcon",
       displayer: "Slider Icon",
-      value: "ImQuotesLeft"
-    })
+      value: "ImQuotesLeft",
+    });
     this.addProp({
       type: "array",
       key: "profiles",
@@ -71,8 +70,7 @@ class Testimonials13Page extends Testimonials {
               type: "image",
               key: "image",
               displayer: "Author Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661792ebd2970002c623f41?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661792ebd2970002c623f41?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -104,8 +102,7 @@ class Testimonials13Page extends Testimonials {
               type: "image",
               key: "image",
               displayer: "Author Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661792ebd2970002c623f3f?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661792ebd2970002c623f3f?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -137,8 +134,7 @@ class Testimonials13Page extends Testimonials {
               type: "image",
               key: "image",
               displayer: "Author Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661792ebd2970002c623f40?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661792ebd2970002c623f40?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -167,8 +163,7 @@ class Testimonials13Page extends Testimonials {
       type: "image",
       key: "image",
       displayer: "Image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661792ebd2970002c623f3e?alt=media&timestamp=1719483639150",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661792ebd2970002c623f3e?alt=media&timestamp=1719483639150",
     });
     this.addProp({
       type: "string",
@@ -245,13 +240,13 @@ class Testimonials13Page extends Testimonials {
 
   render() {
     const box = this.castToObject<Box[]>("rightBoxs");
-    const card = this.castToObject<Card[]>("profiles")
+    const card = this.castToObject<Card[]>("profiles");
     const settings = {
       arrows: false,
       dots: false,
       infinite: true,
       speed: 700,
-      autoplay: false,
+      autoplay: true,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -265,99 +260,70 @@ class Testimonials13Page extends Testimonials {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ContainerGrid className={this.decorateCSS("container-grid")}>
-            {(this.castToString(this.getPropValue("subtitle")) || this.castToString(this.getPropValue("title"))
-              || this.castToString(this.getPropValue("description")) || (card.length > 0) || this.getPropValue("prevIcon") ||
-              this.getPropValue("nextIcon") || this.getPropValue("sliderIcon")) && (
-                <Base.GridCell className={this.decorateCSS("grid-cell")} >
-                  <Base.VerticalContent className={this.decorateCSS("flexItem1")}>
-                    {this.castToString(this.getPropValue("subtitle")) && (
-                      <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                        {this.getPropValue("subtitle")}
-                      </Base.SectionSubTitle>
-                    )}
-                    {this.castToString(this.getPropValue("title")) && (
-                      <Base.SectionTitle className={this.decorateCSS("title")}>
-                        {this.getPropValue("title")}
-                      </Base.SectionTitle>
-                    )}
-                    {this.castToString(this.getPropValue("description")) && (
-                      <Base.SectionDescription
-                        className={this.decorateCSS("description")}
-                      >
-                        {this.getPropValue("description")}
-                      </Base.SectionDescription>
-                    )}
-                    <ComposerSlider ref={sliderRef} {...settings} className={this.decorateCSS("carousel")}>
-                      {card.map(
-                        (item: Card, index: number) => (
-                          <div className={this.decorateCSS("slider-inner-div")}>
-                            <div className={this.decorateCSS("content-div")}>
-                              {(this.getPropValue("prevIcon") || this.getPropValue("nextIcon") || item.image) && (
-                                <div className={this.decorateCSS("image-arrow")}>
-                                  {this.getPropValue("prevIcon") && (
-                                    <button onClick={() => {
-                                      sliderRef.current.slickPrev();
-                                    }} className={this.decorateCSS("button")}>
-                                      <ComposerIcon name={this.getPropValue("prevIcon")} propsIcon={{ className: this.decorateCSS("prev-arrow") }}></ComposerIcon>
-                                    </button>
-                                  )}
-                                  {item.image && (
-                                    <div className={this.decorateCSS("img-div")}>
-                                      {item.image && (
-                                        <img
-                                          alt={item.image}
-                                          src={item.image}
-                                          className={this.decorateCSS("img")}
-                                        />
-                                      )}
-                                    </div>
-                                  )}
-                                  {this.getPropValue("nextIcon") && (
-                                    <button onClick={() => {
-                                      sliderRef.current.slickNext();
-                                    }} className={this.decorateCSS("button")}>
-                                      <ComposerIcon name={this.getPropValue("nextIcon")} propsIcon={{ className: this.decorateCSS("next-arrow") }}></ComposerIcon>
-                                    </button>
-                                  )}
-                                </div>
+            {(this.castToString(this.getPropValue("subtitle")) ||
+              this.castToString(this.getPropValue("title")) ||
+              this.castToString(this.getPropValue("description")) ||
+              card.length > 0 ||
+              this.getPropValue("prevIcon") ||
+              this.getPropValue("nextIcon") ||
+              this.getPropValue("sliderIcon")) && (
+              <Base.GridCell className={this.decorateCSS("grid-cell")}>
+                <Base.VerticalContent className={this.decorateCSS("flexItem1")}>
+                  {this.castToString(this.getPropValue("subtitle")) && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+                  {this.castToString(this.getPropValue("title")) && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                  {this.castToString(this.getPropValue("description")) && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+                  <ComposerSlider ref={sliderRef} {...settings} className={this.decorateCSS("carousel")}>
+                    {card.map((item: Card, index: number) => (
+                      <div className={this.decorateCSS("slider-inner-div")}>
+                        <div className={this.decorateCSS("content-div")}>
+                          {(this.getPropValue("prevIcon") || this.getPropValue("nextIcon") || item.image) && (
+                            <div className={this.decorateCSS("image-arrow")}>
+                              {this.getPropValue("prevIcon") && (
+                                <button
+                                  onClick={() => {
+                                    sliderRef.current.slickPrev();
+                                  }}
+                                  className={this.decorateCSS("button")}
+                                >
+                                  <ComposerIcon name={this.getPropValue("prevIcon")} propsIcon={{ className: this.decorateCSS("prev-arrow") }}></ComposerIcon>
+                                </button>
                               )}
-                              {(this.castToString(item.text) || this.getPropValue("sliderIcon") || this.castToString(item.author) || this.castToString(item.subtitle)) && (
-                                <div className={this.decorateCSS("header-page")}>
-                                  {this.castToString(item.text) && (
-                                    <Base.P className={(this.getPropValue("prevIcon") || this.getPropValue("nextIcon") || item.image) ? this.decorateCSS("item-description") : this.decorateCSS("item-description-no-margin")}>
-                                      {item.text}
-                                    </Base.P>
-                                  )}
-                                  {(this.getPropValue("sliderIcon") || this.castToString(item.author) || this.castToString(item.subtitle)) && (
-                                    <Base.VerticalContent className={this.decorateCSS("bottom-container")}>
-                                      {this.getPropValue("sliderIcon") && (
-                                        <ComposerIcon name={this.getPropValue("sliderIcon")} propsIcon={{ className: this.decorateCSS("item-icon") }}></ComposerIcon>
-                                      )}
-                                      {this.castToString(item.author) && (
-                                        <Base.H2 className={this.decorateCSS("first-header")}>
-                                          {item.author}
-                                        </Base.H2>
-                                      )}
-                                      {this.castToString(item.subtitle) && (
-                                        <Base.P className={this.decorateCSS("item-title")}>
-                                          {item.subtitle}
-                                        </Base.P>
-                                      )}
-                                    </Base.VerticalContent>
-                                  )}
-                                </div>
+                              {item.image && <div className={this.decorateCSS("img-div")}>{item.image && <img alt={item.image} src={item.image} className={this.decorateCSS("img")} />}</div>}
+                              {this.getPropValue("nextIcon") && (
+                                <button
+                                  onClick={() => {
+                                    sliderRef.current.slickNext();
+                                  }}
+                                  className={this.decorateCSS("button")}
+                                >
+                                  <ComposerIcon name={this.getPropValue("nextIcon")} propsIcon={{ className: this.decorateCSS("next-arrow") }}></ComposerIcon>
+                                </button>
                               )}
                             </div>
-                          </div>
-                        )
-                      )}
-                    </ComposerSlider>
-                  </Base.VerticalContent>
-                </Base.GridCell>
-              )
-            }
+                          )}
+                          {(this.castToString(item.text) || this.getPropValue("sliderIcon") || this.castToString(item.author) || this.castToString(item.subtitle)) && (
+                            <div className={this.decorateCSS("header-page")}>
+                              {this.castToString(item.text) && (
+                                <Base.P className={this.getPropValue("prevIcon") || this.getPropValue("nextIcon") || item.image ? this.decorateCSS("item-description") : this.decorateCSS("item-description-no-margin")}>{item.text}</Base.P>
+                              )}
+                              {(this.getPropValue("sliderIcon") || this.castToString(item.author) || this.castToString(item.subtitle)) && (
+                                <Base.VerticalContent className={this.decorateCSS("bottom-container")}>
+                                  {this.getPropValue("sliderIcon") && <ComposerIcon name={this.getPropValue("sliderIcon")} propsIcon={{ className: this.decorateCSS("item-icon") }}></ComposerIcon>}
+                                  {this.castToString(item.author) && <Base.H2 className={this.decorateCSS("first-header")}>{item.author}</Base.H2>}
+                                  {this.castToString(item.subtitle) && <Base.P className={this.decorateCSS("item-title")}>{item.subtitle}</Base.P>}
+                                </Base.VerticalContent>
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </ComposerSlider>
+                </Base.VerticalContent>
+              </Base.GridCell>
+            )}
 
-            {(this.getPropValue("image") || this.castToString(this.getPropValue("boxHeader")) || (box.length > 0)) && (
+            {(this.getPropValue("image") || this.castToString(this.getPropValue("boxHeader")) || box.length > 0) && (
               <Base.GridCell className={this.decorateCSS("container3")}>
                 <Base.ContainerGrid className={this.decorateCSS("containerGrid")}>
                   {this.getPropValue("image") && (
@@ -365,37 +331,17 @@ class Testimonials13Page extends Testimonials {
                       <img src={this.getPropValue("image")} alt={this.getPropValue("image")} />
                     </Base.GridCell>
                   )}
-                  {(this.castToString(this.getPropValue("boxHeader")) || (box.length > 0)) && (
+                  {(this.castToString(this.getPropValue("boxHeader")) || box.length > 0) && (
                     <Base.GridCell className={this.decorateCSS("flexItem3")}>
-                      {this.castToString(this.getPropValue("boxHeader")) && (
-                        <Base.H1 className={this.decorateCSS("item_title_text")}>
-                          {this.getPropValue("boxHeader")}
-                        </Base.H1>
-                      )}
+                      {this.castToString(this.getPropValue("boxHeader")) && <Base.H1 className={this.decorateCSS("item_title_text")}>{this.getPropValue("boxHeader")}</Base.H1>}
                       <div className={this.decorateCSS("container4")}>
-                        {box.map(
-                          (item: any, index: number) => (
-                            <Base.VerticalContent
-                              className={this.decorateCSS("containerBottom")}
-                            >
-                              {this.castToString(item.topText) && (
-                                <div className={this.decorateCSS("topWriting")}>
-                                  {item.topText}
-                                </div>
-                              )}
-                              {item.number && (
-                                <div className={this.decorateCSS("middleWriting")}>
-                                  {item.number}
-                                </div>
-                              )}
-                              {this.castToString(item.bottomText) && (
-                                <div className={this.decorateCSS("bottomWriting")}>
-                                  {item.bottomText}
-                                </div>
-                              )}
-                            </Base.VerticalContent>
-                          )
-                        )}
+                        {box.map((item: any, index: number) => (
+                          <Base.VerticalContent className={this.decorateCSS("containerBottom")}>
+                            {this.castToString(item.topText) && <div className={this.decorateCSS("topWriting")}>{item.topText}</div>}
+                            {item.number && <div className={this.decorateCSS("middleWriting")}>{item.number}</div>}
+                            {this.castToString(item.bottomText) && <div className={this.decorateCSS("bottomWriting")}>{item.bottomText}</div>}
+                          </Base.VerticalContent>
+                        ))}
                       </div>
                     </Base.GridCell>
                   )}
@@ -403,8 +349,8 @@ class Testimonials13Page extends Testimonials {
               </Base.GridCell>
             )}
           </Base.ContainerGrid>
-        </Base.MaxContent >
-      </Base.Container >
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
