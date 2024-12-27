@@ -170,13 +170,13 @@ class Testimonials7Page extends Testimonials {
         style={{
           backgroundImage: `url(${this.getPropValue("cover-image")})`,
         }}
-        className={this.getPropValue("cover-image") ? this.decorateCSS("container") : this.decorateCSS("container-no-image")}
+        className={`${this.decorateCSS("container")}  ${!this.getPropValue("cover-image") && this.decorateCSS("container-no-image")}`}
         isFull={this.getPropValue("cover-image") ? true : false}
       >
         <Base.MaxContent className={this.getPropValue("cover-image") ? this.decorateCSS("max-content") : this.decorateCSS("max-content-no-image")}>
           {this.getPropValue("cover-image") && <img src={this.getPropValue("cover-image")} className={this.decorateCSS("background-image")} />}
-          <div className={this.getPropValue("cover-image") ? this.decorateCSS("testimonials7") : this.decorateCSS("testimonials7-no-image")}>
-            <div className={this.getPropValue("cover-image") ? this.decorateCSS("slider-wrapper") : this.decorateCSS("slider-wrapper-no-image")}>
+          <div className={`${this.decorateCSS("testimonials7")} ${!this.getPropValue("cover-image") && this.decorateCSS("testimonials7-no-image")}`}>
+            <div className={`${this.decorateCSS("slider-wrapper")} ${!this.getPropValue("cover-image") && this.decorateCSS("slider-wrapper-no-image")}`}>
               <ComposerSlider ref={sliderRef} {...settings} className={this.decorateCSS("slider-style")}>
                 {this.castToObject<Item[]>("card-items").map((item: Item, index: number) => (
                   <div
@@ -205,20 +205,21 @@ class Testimonials7Page extends Testimonials {
                         onClick={() => {
                           sliderRef.current.slickPrev();
                         }}
-                        className={this.getPropValue("cover-image") ? this.decorateCSS("button-left") : this.decorateCSS("button-left-no-image")}
+                        className={`${this.decorateCSS("button-left")} ${!this.getPropValue("cover-image") && this.decorateCSS("button-left-no-image")}`}
                       >
                         <ComposerIcon name={this.getPropValue("prevIcon")} propsIcon={{ className: this.decorateCSS("arrow") }}></ComposerIcon>
                       </button>
                     )}
                     {(this.castToString(item.description) || item.image || this.castToString(item.name) || this.castToString(item.nameId)) && (
                       <Base.VerticalContent className={this.decorateCSS("item-content")}>
-                        {this.castToString(item.description) && <Base.P className={this.getPropValue("cover-image") ? this.decorateCSS("item-description") : this.decorateCSS("item-description-no-image")}>{item.description}</Base.P>}
+                        {/* {this.castToString(item.description) && <Base.P className={this.getPropValue("cover-image") ? this.decorateCSS("item-description") : this.decorateCSS("item-description-no-image")}>{item.description}</Base.P>} */}
+                        {this.castToString(item.description) && <Base.P className={`${this.decorateCSS("item-description")} ${!this.getPropValue("cover-image") && this.decorateCSS("item-description-no-image")}`}>{item.description}</Base.P>}
                         {(item.image || this.castToString(item.name) || this.castToString(item.nameId)) && (
                           <div className={this.decorateCSS("profile")}>
                             {item.image && <img src={item.image} alt={item.image} className={this.decorateCSS("image")} />}
                             <Base.VerticalContent className={this.decorateCSS("profile-text")}>
-                              {this.castToString(item.name) && <div className={this.getPropValue("cover-image") ? this.decorateCSS("item-name") : this.decorateCSS("item-name-no-image")}>{item.name}</div>}
-                              {this.castToString(item.nameId) && <div className={this.getPropValue("cover-image") ? this.decorateCSS("item-name-id") : this.decorateCSS("item-name-id-no-image")}>{item.nameId}</div>}
+                              {this.castToString(item.name) && <div className={`${this.decorateCSS("item-name")} ${!this.getPropValue("cover-image") && this.decorateCSS("item-name-no-image")}`}>{item.name}</div>}
+                              {this.castToString(item.nameId) && <div className={`${this.decorateCSS("item-name-id")} ${!this.getPropValue("cover-image") && this.decorateCSS("item-name-id-no-image")}`}>{item.nameId}</div>}
                             </Base.VerticalContent>
                           </div>
                         )}
@@ -229,7 +230,7 @@ class Testimonials7Page extends Testimonials {
                         onClick={() => {
                           sliderRef.current.slickNext();
                         }}
-                        className={this.getPropValue("cover-image") ? this.decorateCSS("button-right") : this.decorateCSS("button-right-no-image")}
+                        className={`${this.decorateCSS("button-right")} ${!this.getPropValue("cover-image") && this.decorateCSS("button-right-no-image")}`}
                       >
                         <ComposerIcon name={this.getPropValue("nextIcon")} propsIcon={{ className: this.decorateCSS("arrow") }}></ComposerIcon>
                       </button>

@@ -292,11 +292,11 @@ class Testimonials10Page extends Testimonials {
                 </div>
               )}
               {(this.getPropValue("profile-itemList").length > 0 || this.castToString(this.getPropValue("hiliteTitle"))) && (
-                <div className={this.castToString(this.getPropValue("hiliteTitle")) ? this.decorateCSS("right-content-padding") : this.decorateCSS("right-content")}>
+                <div className={`${this.decorateCSS("right-content")} ${this.castToString(this.getPropValue("hiliteTitle")) && this.decorateCSS("right-content-padding")}`}>
                   <div className={this.decorateCSS("slider-style")}>
                     <ComposerSlider {...settings} ref={this.getComponentState("slider-ref")}>
                       {this.castToObject<Item[]>("profile-itemList").map((item: Item, index: number) => (
-                        <div className={item.image ? this.decorateCSS("slider-inner-div-with-image") : this.decorateCSS("slider-inner-div")}>
+                        <div className={`${this.decorateCSS("slider-inner-div")} ${!item.image && this.decorateCSS("slider-inner-div-with-image")}`}>
                           <div className={this.decorateCSS("slider-card")}>
                             {(this.castToString(item.text) || this.castToString(item.position) || this.castToString(item.author)) && (
                               <div className={item.image ? this.decorateCSS("header-page-container") : this.decorateCSS("header-page-container-no-image")}>

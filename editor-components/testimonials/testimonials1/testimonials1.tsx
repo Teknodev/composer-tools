@@ -145,6 +145,8 @@ class Testimonials1Page extends Testimonials {
       },
     };
 
+    const imageExist = this.getPropValue("background-image");
+
     return (
       <Base.Container
         className={this.decorateCSS("container")}
@@ -156,13 +158,13 @@ class Testimonials1Page extends Testimonials {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             <div className={this.decorateCSS("content-wrapper")}>
-              <div className={this.getPropValue("background-image") ? this.decorateCSS("content") : this.decorateCSS("content-no-image")}>
+              <div className={`${this.decorateCSS("content")} ${!imageExist && this.decorateCSS("content-no-image")}`}>
                 <ComposerSlider {...settings} ref={this.getComponentState("slider-ref")}>
                   {this.castToObject<any>("items").map((item: any, index: number) => (
                     <div className={this.decorateCSS("items")}>
-                      {item.icons && <ComposerIcon name={item.icons} propsIcon={{ className: this.getPropValue("background-image") ? this.decorateCSS("icons") : this.decorateCSS("icons-no-image") }} />}
-                      {this.castToString(item.longtext) && <div className={this.getPropValue("background-image") ? this.decorateCSS("longtext") : this.decorateCSS("longtext-no-image")}>{item.longtext}</div>}
-                      {this.castToString(item.name) && <div className={this.getPropValue("background-image") ? this.decorateCSS("name") : this.decorateCSS("name-no-image")}>{item.name}</div>}
+                      {item.icons && <ComposerIcon name={item.icons} propsIcon={{ className: `${this.decorateCSS("icons")} ${!imageExist && this.decorateCSS("icons-no-image")}` }} />}
+                      {this.castToString(item.longtext) && <div className={`${this.decorateCSS("longtext")} ${!imageExist && this.decorateCSS("longtext-no-image")}`}>{item.longtext}</div>}
+                      {this.castToString(item.name) && <div className={`${this.decorateCSS("name")} ${!imageExist && this.decorateCSS("no-name-image")}`}>{item.name}</div>}
                     </div>
                   ))}
                 </ComposerSlider>

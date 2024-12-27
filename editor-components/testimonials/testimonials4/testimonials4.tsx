@@ -204,12 +204,12 @@ class Testimonials4Page extends Testimonials {
 
     return (
       <Base.Container
-        className={`${this.getPropValue("cover-image") ? this.decorateCSS("container") : this.decorateCSS("container-no-image")} ${this.getPropValue("overlay") ? this.decorateCSS("overlay") : ""}`}
+        className={`${this.decorateCSS("container")} ${!this.getPropValue("cover-image") && this.decorateCSS("container-no-image")} ${this.getPropValue("overlay") ? this.decorateCSS("overlay") : ""}`}
         style={{
           backgroundImage: `url(${this.getPropValue("cover-image")})`,
         }}
       >
-        <Base.MaxContent className={this.getPropValue("cover-image") ? this.decorateCSS("max-content") : this.decorateCSS("max-content-no-image")}>
+        <Base.MaxContent className={`${this.decorateCSS("max-content")} ${!this.getPropValue("cover-image") && this.decorateCSS("max-content-no-image")}`}>
           {arrows.prevArrow && sliderItem.length > 1 && (
             <button
               className={this.decorateCSS("prevArrow")}
@@ -217,21 +217,21 @@ class Testimonials4Page extends Testimonials {
                 sliderRef.current.slickPrev();
               }}
             >
-              <ComposerIcon name={arrows.prevArrow} propsIcon={{ className: this.getPropValue("cover-image") ? this.decorateCSS("arrow") : this.decorateCSS("arrow-dark") }}></ComposerIcon>
+              <ComposerIcon name={arrows.prevArrow} propsIcon={{ className: `${this.decorateCSS("arrow")} ${!this.getPropValue("cover-image") && this.decorateCSS("arrow-dark")} ` }}></ComposerIcon>
             </button>
           )}
 
-          <div className={arrows.nextArrow || arrows.prevArrow ? this.decorateCSS("testimonials4") : this.decorateCSS("testimonials4-no-icon")}>
+          <div className={`${this.decorateCSS("testimonials4")} ${!(arrows.nextArrow || arrows.prevArrow) && this.decorateCSS("testimonials4-no-icon")}`}>
             <ComposerSlider {...settings} ref={this.getComponentState("slider-ref")}>
               {sliderItem.map((item: any, index: number) => {
                 const hasContent = item.icon || this.castToString(item.description) || this.castToString(item.title) || this.castToString(item.subtitle);
                 return (
-                  <div className={hasContent ? this.decorateCSS("items") : ""}>
-                    {item.icon && <ComposerIcon name={item.icon} propsIcon={{ className: this.getPropValue("cover-image") ? this.decorateCSS("icon") : this.decorateCSS("icon-dark") }} />}
-                    {this.castToString(item.description) && <Base.P className={this.getPropValue("cover-image") ? this.decorateCSS("longtext") : this.decorateCSS("longtext-dark")}>{item.description}</Base.P>}
+                  <div className={hasContent && this.decorateCSS("items")}>
+                    {item.icon && <ComposerIcon name={item.icon} propsIcon={{ className: `${this.decorateCSS("icon")} ${!this.getPropValue("cover-image") && this.decorateCSS("icon-dark")}` }} />}
+                    {this.castToString(item.description) && <Base.P className={`${this.decorateCSS("longtext")} ${!this.getPropValue("cover-image") && this.decorateCSS("longtext-dark")} `}>{item.description}</Base.P>}
                     {(this.castToString(item.title) || this.castToString(item.subtitle)) && (
                       <div className={this.decorateCSS("person-text")}>
-                        {this.castToString(item.title) && <div className={this.getPropValue("cover-image") ? this.decorateCSS("title") : this.decorateCSS("title-dark")}>{item.title}</div>}
+                        {this.castToString(item.title) && <div className={`${this.decorateCSS("title")} ${!this.getPropValue("cover-image") && this.decorateCSS("title-dark")} `}>{item.title}</div>}
                         {this.castToString(item.subtitle) && <div className={this.getPropValue("cover-image") ? this.decorateCSS("subtitle") : this.decorateCSS("subtitle-dark")}>{item.subtitle}</div>}
                       </div>
                     )}
@@ -254,7 +254,7 @@ class Testimonials4Page extends Testimonials {
                 sliderRef.current.slickNext();
               }}
             >
-              <ComposerIcon name={arrows.nextArrow} propsIcon={{ className: this.getPropValue("cover-image") ? this.decorateCSS("arrow") : this.decorateCSS("arrow-dark") }}></ComposerIcon>
+              <ComposerIcon name={arrows.nextArrow} propsIcon={{ className: `${this.decorateCSS("arrow")} ${!this.getPropValue("cover-image") && this.decorateCSS("arrow-dark")} ` }}></ComposerIcon>
             </button>
           )}
         </Base.MaxContent>

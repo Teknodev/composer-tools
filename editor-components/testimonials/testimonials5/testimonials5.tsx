@@ -225,7 +225,7 @@ class Testimonials5Page extends Testimonials {
 
     const backgroundImageExist = this.getPropValue("background-image");
     const subtitleType = Base.getSectionSubTitleType();
-    console.log(subtitleType, "subtitleType");
+
     var settings = {
       dots: false,
       autoplay: true,
