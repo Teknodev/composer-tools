@@ -184,18 +184,14 @@ class List6 extends BaseList {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {description && (
             <Base.SectionTitle
-              className={this.decorateCSS(
-                this.getPropValue("descriptionAnimation")
-                  ? "sectionTitle"
-                  : "sectionTitle-no-animation",
-              )}
+              className={`${this.decorateCSS("sectionTitle")} ${this.getPropValue("descriptionAnimation") && this.decorateCSS("animation")}`}
             >
               {this.getPropValue("description")}
             </Base.SectionTitle>
           )}
           <div className={this.decorateCSS("list-item")}>
             {listItems.map((listItem: listItem, index: number) => (
-              <div className={this.getPropValue("lineActive") ? this.decorateCSS("item-container") : this.decorateCSS("item-container-no-line")}>
+              <div className={`${this.decorateCSS("item-container")} ${this.getPropValue("lineActive") && this.decorateCSS("line")}`}>
                 {this.castToString(listItem.itemIndex) && (
                   <div className={this.decorateCSS("index")}>
                     {listItem.itemIndex}
