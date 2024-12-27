@@ -281,30 +281,91 @@
 }
 
 .button{
-
     transition: 0.3s;
     cursor: pointer;
     font-size: 1rem;
     border-radius: var(--composer-border-radius-sm);
 
-    &.normal{
-        color: var(--composer-font-color-secondary);
-        background-color: var(--composer-primary-color);
-        padding: var(--composer-gap-sm) var(--composer-gap-md);
-        border: 1px solid transparent;
-    
-        &:hover{
-            border: 1px solid var(--composer-primary-color);
-            background-color: transparent;
-            color: var(--composer-primary-color);
-        }
-    }
 
-    &.outline{
-        background: transparent;
-        border: 1px solid var(--composer-primary-color);
+  &.primary {
+    background-color: var(--composer-primary-color);
+    border: 1px solid var(--composer-primary-color);
+    color: var(--composer-font-color-secondary);
+    padding: var(--composer-gap-sm) var(--composer-gap-md);
 
+    &:hover {
+      border: 1px solid color-mix(in srgb, var(--composer-primary-color), var(--composer-font-color-secondary) 15%);
+      background-color: color-mix(in srgb, var(--composer-primary-color), var(--composer-font-color-secondary) 15%);
+      color: var(--composer-font-color-secondary);
     }
+  }
+
+  &.secondary {
+    background-color: var(--composer-tertiary-color);
+    border: 1px solid var(--composer-tertiary-color);
+    color: var(--composer-font-color-secondary);
+    padding: var(--composer-gap-sm) var(--composer-gap-md);
+
+    &:hover {
+      border: 1px solid color-mix(in srgb, var(--composer-tertiary-color), var(--composer-font-color-secondary) 15%);
+      background-color: color-mix(in srgb, var(--composer-tertiary-color), var(--composer-font-color-secondary) 15%);
+      color: var(--composer-font-color-secondary);
+    }
+  }
+
+  &.tertiary {
+    background-color: transparent;
+    border: 1px solid var(--composer-font-color-primary);
+    color: var(--composer-font-color-primary);
+    padding: var(--composer-gap-sm) var(--composer-gap-md);
+
+    &:hover {
+      border: 1px solid color-mix(in srgb, var(--composer-font-color-primary), var(--composer-html-background) 15%);
+      background-color: transparent;
+      color: var(--composer-font-color-primary);
+    }
+  }
+
+  &.link {
+    color: var(--composer-font-color-primary);
+    text-decoration: underline;
+    text-underline-offset: var(--composer-gap-xs);
+    text-decoration-color: var(--composer-font-color-primary);
+    background: transparent;
+    border: none;
+    padding: var(--composer-gap-sm) 0;
+
+    &:hover {
+      text-decoration-color: var(--composer-primary-color);
+      color: var(--composer-primary-color);
+    }
+  }
+
+  &.white {
+    border: 1px solid white;
+    background-color: white;
+    color: black;
+    padding: var(--composer-gap-sm) var(--composer-gap-md);
+
+    &:hover {
+      border: 1px solid color-mix(in srgb, white, black 15%);
+      background-color: color-mix(in srgb, white, black 15%);
+      color: black;
+    }
+  }
+
+  &.black {
+    border: 1px solid black;
+    background-color: black;
+    color: white;
+    padding: var(--composer-gap-sm) var(--composer-gap-md);
+
+    &:hover {
+      border: 1px solid color-mix(in srgb, black, white 15%);
+      background-color: color-mix(in srgb, black, white 15%);
+      color: white;
+    }
+  }
 }
 
 .row{
@@ -323,3 +384,63 @@
   justify-content: center;
   align-items: center;
 }
+
+
+.navContainer{
+   width: 100%;
+}
+
+.navbarContainer{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &.sticky,
+    &.stickycolorful,
+    &.stickytransparent {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0px 2px 5px rgba(var(--composer-primary-color-rgb), 0.2);
+    }
+
+    &.stickycolorful {
+        background: var(--composer-html-background);
+    }
+    
+    &.stickytransparent {
+        background: transparent;
+    }
+    
+    &.absolute, &.stickytransparent {
+        .position{
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            background: transparent;
+            color: white;
+        }
+    }
+}
+
+
+.navbarPosition{
+    width: 100%;
+    padding: var(--composer-gap-md) var(--composer-gap-xl);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @media only screen and (max-width: $composer-tablet-width) {
+        padding: var(--composer-gap-md) var(--composer-gap-lg);
+    }
+
+    @media only screen and (max-width: $composer-phone-width) {
+        padding: var(--composer-gap-md);
+    }
+
+}
+
