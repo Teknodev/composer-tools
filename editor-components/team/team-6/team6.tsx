@@ -537,7 +537,7 @@ class Team6 extends Team {
                       <div className={this.decorateCSS("top")}>
                         <div className={this.decorateCSS("image-wrapper")}>
                           {card.image ? (
-                            <button onClick={() => handleButton(indexItems)} className={this.decorateCSS("image-button")}>
+                            <div onClick={() => handleButton(indexItems)} className={this.decorateCSS("image-button")}>
                               {card.features.length > 0 &&
                                 (this.getComponentState("activeIndex") === indexItems ? (
                                   <ComposerIcon name={this.getPropValue("closingIcon")} propsIcon={{ className: this.decorateCSS("image-icon") }} />
@@ -565,7 +565,7 @@ class Team6 extends Team {
                                   </Base.VerticalContent>
                                 )}
                               </Base.VerticalContent>
-                            </button>
+                            </div>
                           ) : (
                             <Base.VerticalContent className={`${this.decorateCSS("overlay-bar")} ${this.decorateCSS("overlay-visible")}`}>
                               {cardNameExist && <Base.H2 className={this.decorateCSS("card-name")}>{card.name}</Base.H2>}
