@@ -227,4 +227,22 @@ export namespace Base {
     }, []);
     return <div className={`${styles.overlay} ${className}`} {...props}></div>;
   }
+
+  export namespace Navigator {
+    export function Container({ className, children, ...props }: any) {
+      const position = props.position?.split(" ").map((item: string) => item.toLowerCase()).join("");
+      return (
+        <div
+          className={`${styles.navbarContainer} ${className} ${styles[position]}`}
+          {...props}
+        >
+          <div
+            className={`${styles.navbarPosition} ${styles.position} ${props.positionContainer}`}
+          >
+            {children}
+          </div>
+        </div>
+      );
+    }
+  }
 }
