@@ -12,7 +12,6 @@
         height: 100%;
         justify-content: space-between;
         .title {
-          color: var(--composer-font-color-primary);
           font-size: 5rem;
         }
 
@@ -28,7 +27,7 @@
             align-items: center;
             gap: var(--composer-gap-xl);
             .button {
-              color: var(--composer-font-color-primary);
+              content: "";
             }
 
             .line {

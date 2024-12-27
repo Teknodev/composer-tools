@@ -272,9 +272,9 @@ class Team9 extends Team {
                     hasCard && (
                       <Base.VerticalContent key={index} className={this.decorateCSS("card")}>
                         {item.image && <img className={this.decorateCSS("person-image")} src={item.image} alt={nameExist} />}
-                        <Base.VerticalContent className={this.decorateCSS("person-info")}>
+                        <div className={this.decorateCSS("person-info")}>
                           {item.icons.length > 0 && (
-                            <Base.Row className={this.decorateCSS("icons-bar")}>
+                            <div className={this.decorateCSS("icons-bar")}>
                               {item.icons.map((card: Icon, iconIndex: number) => {
                                 if (card.icon) {
                                   return (
@@ -288,12 +288,12 @@ class Team9 extends Team {
                                 }
                                 return null;
                               })}
-                            </Base.Row>
+                            </div>
                           )}
                           <div className={this.decorateCSS("text-group")}>
-                            <Base.H3 className={this.decorateCSS("item-name")}>{item.name}</Base.H3>
+                            <div className={this.decorateCSS("item-name")}>{item.name}</div>
                           </div>
-                        </Base.VerticalContent>
+                        </div>
                       </Base.VerticalContent>
                     )
                   );

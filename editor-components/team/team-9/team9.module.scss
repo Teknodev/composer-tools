@@ -40,6 +40,9 @@
 
               .item-name {
                 color: var(--composer-font-color-primary);
+                font-size: 1.5rem;
+                font-weight: bold;
+                margin: var(--composer-gap-sm);
               }
             }
 
@@ -144,6 +147,7 @@
           }
 
           .card {
+            width: 100%;
             padding: var(--composer-gap-md);
             display: flex !important;
             flex-direction: column;
@@ -151,7 +155,6 @@
             .person-info {
               .text-group {
                 .item-name {
-                  margin: 0;
                   font-size: 1rem;
                 }
               }

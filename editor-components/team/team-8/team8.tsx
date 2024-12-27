@@ -294,8 +294,8 @@ class Team8 extends Team {
         >
           <Base.MaxContent className={this.decorateCSS("max-content")}>
             <Base.VerticalContent className={this.decorateCSS("text-box")}>
-              {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${imageExist ? this.decorateCSS("image") : this.decorateCSS("no-image")}`}>{this.getPropValue("title")}</Base.SectionTitle>}
-              {descriptionExist && <Base.SectionDescription className={`${this.decorateCSS("description")} ${imageExist ? this.decorateCSS("image") : this.decorateCSS("no-image")}`}>{this.getPropValue("description")}</Base.SectionDescription>}
+              {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${imageExist && this.decorateCSS("image")}`}>{this.getPropValue("title")}</Base.SectionTitle>}
+              {descriptionExist && <Base.SectionDescription className={`${this.decorateCSS("description")} ${imageExist && this.decorateCSS("image")}`}>{this.getPropValue("description")}</Base.SectionDescription>}
             </Base.VerticalContent>
 
             <div className={this.decorateCSS("wrapper")}>
