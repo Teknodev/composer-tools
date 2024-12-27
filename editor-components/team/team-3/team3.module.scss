@@ -20,19 +20,14 @@
             height: 100%;
             max-width: 100%;
             min-width: 300px;
-            margin-left: var(--composer-gap-lg);
             position: relative;
             padding: var(--composer-gap-md);
             border: 1px solid color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+            &.card-image {
+              margin-left: var(--composer-gap-lg);
+            }
           }
-          .no-image-card {
-            height: 100%;
-            max-width: 100%;
-            min-width: 300px;
-            position: relative;
-            padding: var(--composer-gap-md);
-            border: 1px solid color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-          }
+
           .card-items {
             height: 100%;
             padding: var(--composer-gap-md) 0;
@@ -100,45 +95,58 @@
 
 @container (max-width: #{$composer-tablet-width-lg}) {
   .container {
-    .down-page {
-      gap: var(--composer-gap-lg) var(--composer-gap-sm);
-      .all-card {
-        flex: 1 1 !important;
-        .card {
-          .box-image {
-            .profile-image {
-              min-height: 140px !important;
+    .max-content{
+      .page{
+        .down-page {
+          .all-card {
+            .card {
+              .box-image {
+                .profile-image {
+                  min-height: 140px;
+                }
+              }
             }
           }
+          .card-item-count {
+            width: 100%;
+          }
         }
-      }
-      .card-item-count {
-        width: 100%;
       }
     }
   }
 
   @container (max-width: #{$composer-phone-width}) {
     .container {
-      .card {
-        margin-left: var(--composer-gap-md) !important;
-      }
-      .profile-image {
-        margin-left: var(--composer-gap-md) !important;
-      }
-
-      .all-card {
-        .box-text {
-          padding: 0 var(--composer-gap-lg) !important;
-        }
-        .icon-group {
-          gap: var(--composer-gap-xs) !important;
-          margin-top: var(--composer-gap-md) !important;
-          .icons {
-            width: var(--composer-gap-md) !important;
-            height: var(--composer-gap-md) !important;
+      .max-content{
+        .page{
+          .down-page{
+            .all-card {
+              .card{
+                margin-left: var(--composer-gap-md);
+                .card-items{
+                  .item-content{
+                    .box-image{
+                      .profile-image {
+                        margin-left: var(--composer-gap-md);
+                      }
+                    }
+                    .box-text{
+                      padding: 0 var(--composer-gap-lg) 
+                    }
+                    .icon-group {
+                      gap: var(--composer-gap-xs) !important;
+                      margin-top: var(--composer-gap-md) !important;
+                      .icons {
+                        width: var(--composer-gap-md) !important;
+                        height: var(--composer-gap-md) !important;
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
-        }
+        }      
       }
     }
   }

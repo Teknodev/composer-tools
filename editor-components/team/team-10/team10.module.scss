@@ -34,35 +34,27 @@
       }
       .title-wrapper{
 
-      .title {
-        color: white;
+      .title {      
         padding: var(--composer-gap-md);
         z-index: 2;
-      }
-
-      .title-no-image {
-        padding: var(--composer-gap-md);
-        z-index: 2;
-      }
-
-      .subtitle {
-        color: white;
-        font-size: 1.5rem;
-        padding: 0 var(--composer-gap-md);
-        margin: 0 var(--composer-gap-md);
-        z-index: 2;
-
-        &::before {
-          background-color: white;
+        &.image{
+          color: white;
         }
       }
-      .subtitle-no-image {
+
+
+      .subtitle {
         font-size: 1.5rem;
         padding: 0 var(--composer-gap-md);
         margin: 0 var(--composer-gap-md);
         z-index: 2;
+        &.image{
+          color: white;
+          &::before {
+            background-color: white;
+          }
+        }
       }
-
       }
     }
 

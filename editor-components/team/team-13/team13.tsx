@@ -4,6 +4,7 @@ import { Team } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 interface Card {
   image: string;
@@ -26,20 +27,7 @@ class Team13 extends Team {
       displayer: "Title",
       value: "Meet the Creative Team",
     });
-
-    this.addProp({
-      type: "string",
-      displayer: "Button Text",
-      key: "buttonText",
-      value: "Contact Us",
-    });
-
-    this.addProp({
-      type: "page",
-      displayer: "Button Link",
-      key: "buttonUrl",
-      value: "",
-    });
+    this.addProp(INPUTS.BUTTON("button", "Button", "Contact Us", "", "Link"));
 
     this.addProp({
       type: "string",
@@ -190,13 +178,13 @@ class Team13 extends Team {
 
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
-    const buttonText = this.getPropValue("buttonText");
 
     const titleExist = this.castToString(title);
     const descriptionExist = this.castToString(description);
-    const buttonTextExist = this.castToString(buttonText);
 
-    const hasFeaturedCard = titleExist || descriptionExist || buttonTextExist || icons.length > 0;
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+
+    const hasFeaturedCard = titleExist || descriptionExist || this.castToString(button.text) || icons.length > 0;
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -207,8 +195,8 @@ class Team13 extends Team {
                 <Base.VerticalContent className={this.decorateCSS("label")}>
                   <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>
                   <Base.Row className={this.decorateCSS("button-container")}>
-                    <ComposerLink path={this.getPropValue("buttonUrl")}>
-                      <Base.H4 className={this.decorateCSS("button")}>{this.getPropValue("buttonText")}</Base.H4>
+                    <ComposerLink path={button.url}>
+                      <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>{button.text}</Base.Button>
                     </ComposerLink>
                     {line && <div className={this.decorateCSS("line")}></div>}
                   </Base.Row>

@@ -17,7 +17,6 @@
         }
 
         .label {
-          margin-bottom: var(--composer-gap-lg);
           .description {
             color: var(--composer-tertiary-color);
             width: 100%;
@@ -55,9 +54,9 @@
         gap: var(--composer-gap-sm);
 
         .image {
+          flex: 1;
           width: 100%;
           min-height: 600px;
-          max-height: 600px;
           height: 100%;
           object-fit: cover;
           border-radius: var(--composer-border-radius-sm);
@@ -79,17 +78,17 @@
     .max-content {
       .content {
         .featured-card {
-          width: 100% !important;
-          height: auto !important;
-          min-height: auto !important;
+          width: 100% ;
+          height: auto ;
+          min-height: auto ;
           .title {
-            font-size: 4rem !important;
+            font-size: 4rem ;
           }
 
           .label {
-            margin-bottom: var(--composer-gap-md) !important;
+            margin-bottom: var(--composer-gap-md) ;
             .description {
-              width: 100% !important;
+              width: 100% ;
             }
           }
 
@@ -102,14 +101,10 @@
           }
         }
         .team-card {
-          width: 300px !important;
-          min-height: 300px !important;
-
+          min-height: 300px;
           .image {
-            width: 300px !important;
-            min-height: 500px !important;
-
-            height: auto !important;
+            min-height: 500px ;
+            height: auto ;
           }
         }
       }
@@ -122,7 +117,7 @@
     .max-content {
       .content {
         .featured-card {
-          gap: var(--composer-gap-xs) !important;
+          gap: var(--composer-gap-xs);
 
           .icon-container {
             .icon-item {
@@ -134,8 +129,8 @@
         }
 
         .team-card {
-          width: 100% !important;
-          min-height: 450px !important;
+          width: 100% ;
+          min-height: 450px;
 
           .image {
             width: 100% !important;

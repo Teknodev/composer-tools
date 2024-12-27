@@ -537,7 +537,7 @@ class Team6 extends Team {
                       <div className={this.decorateCSS("top")}>
                         <div className={this.decorateCSS("image-wrapper")}>
                           {card.image ? (
-                            <button onClick={() => handleButton(indexItems)} className="image-button">
+                            <button onClick={() => handleButton(indexItems)} className={this.decorateCSS("image-button")}>
                               {card.features.length > 0 &&
                                 (this.getComponentState("activeIndex") === indexItems ? (
                                   <ComposerIcon name={this.getPropValue("closingIcon")} propsIcon={{ className: this.decorateCSS("image-icon") }} />

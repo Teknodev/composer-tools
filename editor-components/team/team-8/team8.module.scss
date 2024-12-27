@@ -17,16 +17,21 @@
 
     .text-box {
       z-index: 2;
-
       .title {
-        color: white;
+        &.image{
+          color: white;
+        }
+        &.no-image{
+          color: var(--composer-font-color-primary);
+        }
       }
-
       .description {
-        color: white;
-      }
-      .no-image {
-        color: var(--composer-font-color-primary);
+        &.image{
+          color: white;
+        }
+        &.no-image{
+          color: var(--composer-font-color-primary);
+        }
       }
     }
 
@@ -66,14 +71,21 @@
               .header-page {
                 align-items: center;
                 .item-title {
-                  color: white;
+                  &.image{
+                    color: white;
+                  }
+                  &.no-image{
+                    color: var(--composer-font-color-primary);
+                  }
                 }
 
                 .first-header {
-                  color: white;
-                }
-                .no-image {
-                  color: var(--composer-font-color-primary);
+                  &.image{
+                    color: white;
+                  }
+                  &.no-image{
+                    color: var(--composer-font-color-primary);
+                  }
                 }
               }
             }

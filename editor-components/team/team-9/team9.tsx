@@ -221,13 +221,6 @@ class Team9 extends Team {
       value: 4,
       max: 5,
     });
-
-    this.addProp({
-      type: "boolean",
-      key: "animate",
-      displayer: "Enable Animate",
-      value: true,
-    });
   }
 
   getName(): string {
@@ -241,7 +234,7 @@ class Team9 extends Team {
       infinite: true,
       arrows: false,
       speed: 500,
-      autoplay: false,
+      autoplay: true,
       autoplaySpeed: 3000,
       responsive: [
         {
@@ -288,9 +281,7 @@ class Team9 extends Team {
                                     <ComposerLink key={iconIndex} path={card.url}>
                                       <ComposerIcon
                                         name={card.icon}
-                                        propsIcon={{
-                                          className: animate ? this.decorateCSS("icon") : this.decorateCSS("no-animate"),
-                                        }}
+                                        propsIcon={{ className: this.decorateCSS("icon") }}
                                       />
                                     </ComposerLink>
                                   );

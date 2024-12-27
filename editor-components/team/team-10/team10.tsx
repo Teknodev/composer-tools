@@ -430,8 +430,8 @@ class Team10 extends Team {
         <div className={this.decorateCSS("wrapper")}>
           <div className={this.decorateCSS("left")}>
             <Base.VerticalContent className={this.decorateCSS("title-wrapper")}>
-              {subtitleExist && <Base.SectionSubTitle className={backgroundImageExist ? this.decorateCSS("subtitle") : this.decorateCSS("subtitle-no-image")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
-              {titleExist && <Base.SectionTitle className={backgroundImageExist ? this.decorateCSS("title") : this.decorateCSS("title-no-image")}>{this.getPropValue("title")}</Base.SectionTitle>}
+              {subtitleExist && <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${backgroundImageExist && this.decorateCSS("image")}`}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+              {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${backgroundImageExist && this.decorateCSS("image")}`}>{this.getPropValue("title")}</Base.SectionTitle>}
             </Base.VerticalContent>
 
             {overlayExist && <div className={this.decorateCSS("overlay")}></div>}

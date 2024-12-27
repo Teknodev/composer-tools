@@ -44,14 +44,12 @@
             }
 
             .icons-bar {
-              transition: 0.5s;
               display: flex;
               flex-direction: row;
               opacity: 0;
               gap: var(--composer-gap-sm);
               width: 100%;
               transition: opacity 0.3s ease-in-out;
-
               .icon {
                 font-size: 2.5rem;
                 color: var(--composer-font-color-primary);
@@ -62,30 +60,15 @@
                 transform: translateY(20px);
                 transition: color 300ms;
                 cursor: pointer;
-
                 &:hover {
                   color: var(--composer-primary-color);
                 }
               }
             }
-            .no-animate {
-              font-size: 2.5rem;
-              color: var(--composer-font-color-primary);
-              border-radius: 50%;
-              border: 1px solid var(--composer-font-color-primary);
-              padding: var(--composer-gap-sm);
-              opacity: 0;
-              cursor: pointer;
-
-              &:hover {
-                color: var(--composer-primary-color);
-              }
-            }
           }
 
           &:hover {
-            .icons-bar,
-            .no-animate {
+            .icons-bar {
               opacity: 1;
             }
           }

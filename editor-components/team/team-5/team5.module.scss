@@ -4,7 +4,7 @@
   .max-content {
     display: flex;
     flex-direction: column;
-    row-gap: var(--composer-gap-xl);
+    gap: calc(var(--composer-gap-lg) * 2);
 
     .container-top {
       display: flex;
@@ -15,6 +15,9 @@
 
       .title-container {
         width: 40%;
+        .title{
+          margin: 0px;
+        }
       }
 
       .description-container {
@@ -22,6 +25,7 @@
 
         .description-inner {
           text-align: right;
+          margin: 0px;
         }
       }
     }

@@ -250,11 +250,10 @@ class Team7 extends Team {
   }
 
   render() {
-    const badge = this.getPropValue("badge");
-    const titleValue = this.getPropValue("title", { as_string: true });
+    const titleValue = this.castToString(this.getPropValue("title"));
     const description = this.getPropValue("description");
 
-    const badgeValue = badge.props.html;
+    const badgeValue = this.castToString(this.getPropValue("badge"))
     const descriptionValue = this.castToString(description);
 
     const contentAligment = Base.getContentAlignment();
@@ -268,7 +267,7 @@ class Team7 extends Team {
                 {badgeValue && <Base.SectionSubTitle className={this.decorateCSS("badge")}>{this.getPropValue("badge")}</Base.SectionSubTitle>}
                 <div className={this.decorateCSS("up-page-bottom")}>
                   {titleValue && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-                  {descriptionValue && <Base.SectionDescription className={!titleValue ? this.decorateCSS("description-left") : this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+                  {descriptionValue && <Base.SectionDescription className={`${this.decorateCSS("description")} ${titleValue ? this.decorateCSS("middle") : this.decorateCSS("left")}`}>{this.getPropValue("description")}</Base.SectionDescription>}
                 </div>
               </Base.VerticalContent>
             ) : contentAligment === "center" ? (

@@ -14,7 +14,6 @@ type TeamCardMember = {
   name: string;
   description: string;
   image: string;
-  buttonText: string;
   platforms: { icon: string; url: string }[];
 };
 class Team2 extends Team {
