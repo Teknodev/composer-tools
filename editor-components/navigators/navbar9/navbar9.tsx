@@ -459,8 +459,8 @@ class Navbar9 extends BaseNavigator {
 
     this.addProp({
       type: "icon",
-      key: "localizationClickedIcon",
-      displayer: "Localization Clicked Icon",
+      key: "localizationHoverIcon",
+      displayer: "Localization Hover Icon",
       value: "MdOutlineKeyboardArrowUp"
     });
 
@@ -549,6 +549,9 @@ class Navbar9 extends BaseNavigator {
     });
 
     this.setComponentState("defaultLanguage", this.getPropValue("localization")[0].getPropValue("language", { as_string: true }));
+
+    this.setComponentState("toggle", false);
+    this.setComponentState("dropdownToggle", null);
   }
 
   getName(): string {
@@ -570,9 +573,22 @@ class Navbar9 extends BaseNavigator {
     const languagesOmitDefault = languages.filter(elem => this.castToString(elem.language) !== this.getComponentState("defaultLanguage"));
 
     const localizationIdleIcon = this.getPropValue("localizationIdleIcon");
-    const localizationClickedIcon = this.getPropValue("localizationClickedIcon");
+    const localizationHoverIcon = this.getPropValue("localizationHoverIcon");
 
     const icons = this.castToObject<Icon[]>("icons");
+
+    const toggleMenu = () => {
+      const toggle = !!this.getComponentState("toggle");
+      this.setComponentState("toggle", !toggle);
+    };
+
+    const switchDropdown = (index: number) => {
+      if(this.getComponentState("dropdownToggle") === index) {
+        this.setComponentState("dropdownToggle", null);
+        return;
+      }
+      this.setComponentState("dropdownToggle", index);
+    }
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -583,89 +599,186 @@ class Navbar9 extends BaseNavigator {
             </Base.SectionTitle>
           )}
           {subtitleExist && (
-            <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+            <Base.H2 className={this.decorateCSS("subtitle")}>
               {subtitle}
-            </Base.SectionSubTitle>
+            </Base.H2>
           )}
-          <div className={this.decorateCSS("wrapper")}>
-            {!!languages?.length && (
-              <div className={this.decorateCSS("left-content")}>
-                <div className={this.decorateCSS("localization")}>
-                  {this.getComponentState("defaultLanguage")}
-                  <ComposerIcon name={localizationIdleIcon} propsIcon={{ className: this.decorateCSS("idle-icon") }} />
-                  <ComposerIcon name={localizationClickedIcon} propsIcon={{ className: this.decorateCSS("clicked-icon") }} />
+          <div className={this.decorateCSS("hamburger-container")}>
+            <div onClick={toggleMenu}>
+              <ComposerIcon name="FaHamburger" propsIcon={{ className: this.decorateCSS("icon") }} />
+            </div>
+          </div>
+          {(!!languages?.length || !!links?.length || !!icons?.length) && (
+            <div
+              className={`
+                  ${this.decorateCSS("wrapper-mobile")}
+                  ${!!this.getComponentState("toggle") ? this.decorateCSS("show") : ""}
+                `}
+            >
+              {!!languages?.length && (
+                <div className={this.decorateCSS("left-content")}>
+                  <div className={this.decorateCSS("localization")}>
+                    {this.getComponentState("defaultLanguage")}
+                    <ComposerIcon name={localizationIdleIcon} propsIcon={{ className: this.decorateCSS("idle-icon") }} />
+                    <ComposerIcon name={localizationHoverIcon} propsIcon={{ className: this.decorateCSS("clicked-icon") }} />
 
-                  <div className={this.decorateCSS("options")}>
-                    {languagesOmitDefault.map((option, index: number) => (
-                      <div onClick={() => this.switchLanguage(this.castToString(option.language))} className={this.decorateCSS("option")} key={index}>
-                        {option.language}
-                      </div>
-                    ))}
+                    <div className={this.decorateCSS("options")}>
+                      {languagesOmitDefault.map((option, index: number) => (
+                        <div onClick={() => this.switchLanguage(this.castToString(option.language))} className={this.decorateCSS("option")} key={index}>
+                          {option.language}
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
-            )}
-            {!!links?.length && (
-              <div className={this.decorateCSS("links")}>
-                {links.map((item, index) => {
-                  if (!this.castToString(item.text)) return null;
+              )}
+              {!!links?.length && (
+                <div className={this.decorateCSS("links")}>
+                  {links.map((item, index) => {
+                    if (!this.castToString(item.text)) return null;
 
-                  return (
-                    <ComposerLink path={item.url} key={index}>
-                      <div className={this.decorateCSS("link")}>
-                        {item.text}
-
-                        {item.type === "Dropdown" && (
-                          <div className={this.decorateCSS("subitems")}>
-                            {item.links.map((subitem, index) => {
-                              if (!this.castToString(subitem.text)) return null;
-
-                              return (
-                                <ComposerLink path={subitem.url} key={index}>
-                                  <div className={this.decorateCSS("link")}>
-                                    {subitem.text}
-
-                                    {subitem.type === "Dropdown" && (
-                                      <div className={this.decorateCSS("subitems")}>
-                                        {subitem.links.map((subsubitem, index) => {
-                                          if (!this.castToString(subsubitem.text)) return null;
-
-                                          return (
-                                            <ComposerLink path={subsubitem.url} key={index}>
-                                              <div className={this.decorateCSS("link")}>
-                                                {subsubitem.text}
-                                              </div>
-                                            </ComposerLink>
-                                          );
-                                        })}
-                                      </div>
-                                    )}
-                                  </div>
-                                </ComposerLink>
-                              );
-                            })}
+                    return (
+                      <ComposerLink path={item.url} key={index}>
+                        <div className={this.decorateCSS("link")}>
+                          <div onClick={item.type === "Dropdown" ? () => switchDropdown(index) : null} className={this.decorateCSS("content")}>
+                            {item.text}
+                            {item.type === "Dropdown" && (
+                              <ComposerIcon name={this.getComponentState("dropdownToggle") === index ? "MdOutlineKeyboardArrowUp" : "MdOutlineKeyboardArrowDown"} propsIcon={{ className: this.decorateCSS("dropdown-icon") }} />
+                            )}
                           </div>
-                        )}
-                      </div>
-                    </ComposerLink>
-                  );
-                })}
-              </div>
-            )}
-            {!!icons?.length && (
-              <div className={this.decorateCSS("right-content")}>
-                {icons.map((icon, index) => {
-                  if (!icon.icon) return null;
+                          {(item.type === "Dropdown" && this.getComponentState("dropdownToggle") === index) && (
+                            <div className={this.decorateCSS("subitems")}>
+                              {item.links.map((subitem, index) => {
+                                if (!this.castToString(subitem.text)) return null;
 
-                  return (
-                    <ComposerLink path={icon.url} key={index}>
-                      <ComposerIcon name={icon.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
-                    </ComposerLink>
-                  );
-                })}
-              </div>
-            )}
-          </div>
+                                return (
+                                  <ComposerLink path={subitem.url} key={index}>
+                                    <div className={this.decorateCSS("link")}>
+                                      {subitem.text}
+
+                                      {subitem.type === "Dropdown" && (
+                                        <div className={this.decorateCSS("subitems")}>
+                                          {subitem.links.map((subsubitem, index) => {
+                                            if (!this.castToString(subsubitem.text)) return null;
+
+                                            return (
+                                              <ComposerLink path={subsubitem.url} key={index}>
+                                                <div className={this.decorateCSS("link")}>
+                                                  {subsubitem.text}
+                                                </div>
+                                              </ComposerLink>
+                                            );
+                                          })}
+                                        </div>
+                                      )}
+                                    </div>
+                                  </ComposerLink>
+                                );
+                              })}
+                            </div>
+                          )}
+                        </div>
+                      </ComposerLink>
+                    );
+                  })}
+                </div>
+              )}
+              {!!icons?.length && (
+                <div className={this.decorateCSS("right-content")}>
+                  {icons.map((icon, index) => {
+                    if (!icon.icon) return null;
+
+                    return (
+                      <ComposerLink path={icon.url} key={index}>
+                        <ComposerIcon name={icon.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                      </ComposerLink>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          )}
+          {(!!languages?.length || !!links?.length || !!icons?.length) && (
+            <div className={this.decorateCSS("wrapper")}>
+              {!!languages?.length && (
+                <div className={this.decorateCSS("left-content")}>
+                  <div className={this.decorateCSS("localization")}>
+                    {this.getComponentState("defaultLanguage")}
+                    <ComposerIcon name={localizationIdleIcon} propsIcon={{ className: this.decorateCSS("idle-icon") }} />
+                    <ComposerIcon name={localizationHoverIcon} propsIcon={{ className: this.decorateCSS("clicked-icon") }} />
+
+                    <div className={this.decorateCSS("options")}>
+                      {languagesOmitDefault.map((option, index: number) => (
+                        <div onClick={() => this.switchLanguage(this.castToString(option.language))} className={this.decorateCSS("option")} key={index}>
+                          {option.language}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+              {!!links?.length && (
+                <div className={this.decorateCSS("links")}>
+                  {links.map((item, index) => {
+                    if (!this.castToString(item.text)) return null;
+
+                    return (
+                      <ComposerLink path={item.url} key={index}>
+                        <div className={this.decorateCSS("link")}>
+                          {item.text}
+
+                          {item.type === "Dropdown" && (
+                            <div className={this.decorateCSS("subitems")}>
+                              {item.links.map((subitem, index) => {
+                                if (!this.castToString(subitem.text)) return null;
+
+                                return (
+                                  <ComposerLink path={subitem.url} key={index}>
+                                    <div className={this.decorateCSS("link")}>
+                                      {subitem.text}
+
+                                      {subitem.type === "Dropdown" && (
+                                        <div className={this.decorateCSS("subitems")}>
+                                          {subitem.links.map((subsubitem, index) => {
+                                            if (!this.castToString(subsubitem.text)) return null;
+
+                                            return (
+                                              <ComposerLink path={subsubitem.url} key={index}>
+                                                <div className={this.decorateCSS("link")}>
+                                                  {subsubitem.text}
+                                                </div>
+                                              </ComposerLink>
+                                            );
+                                          })}
+                                        </div>
+                                      )}
+                                    </div>
+                                  </ComposerLink>
+                                );
+                              })}
+                            </div>
+                          )}
+                        </div>
+                      </ComposerLink>
+                    );
+                  })}
+                </div>
+              )}
+              {!!icons?.length && (
+                <div className={this.decorateCSS("right-content")}>
+                  {icons.map((icon, index) => {
+                    if (!icon.icon) return null;
+
+                    return (
+                      <ComposerLink path={icon.url} key={index}>
+                        <ComposerIcon name={icon.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                      </ComposerLink>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          )}
         </Base.MaxContent>
       </Base.Container>
     );
