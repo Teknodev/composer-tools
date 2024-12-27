@@ -3,195 +3,278 @@ import { BaseNavigator } from "../../EditorComponent";
 import styles from "./navbar2.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "composer-tools/composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+
+
+type Image = {
+  image: string;
+  imageLink: string;
+};
+
+type Item = {
+  title: JSX.Element;
+  navigate_to: string;
+};
 
 class Navbar2 extends BaseNavigator {
   constructor(props?: any) {
     super(props, styles);
-    this.addProp({
-      type: "icon",
-      key: "icon",
-      displayer: "Icon",
-      value:
-        "MdMenu",
-    });
-    this.addProp({
-      type: "boolean",
-      key: "sticky",
-      displayer: "Is sticky",
-      value: false,
-    });
 
-    this.addProp({
-      type: "boolean",
-      key: "middle",
-      displayer: "Item List Middle",
-      value: false,
-    });
-    this.addProp({
-      type: "string",
-      key: "title",
-      displayer: "Title",
-      value: "Title",
-    });
+    this.addProp(INPUTS.NAVBAR_POSITION("position", "Navbar Position"));
     this.addProp({
       type: "array",
-      key: "itemList",
-      displayer: "Item List",
+      key: "menuItems",
+      displayer: "Menu",
       value: [
         {
           type: "object",
-          key: "items",
-          displayer: "Items",
+          key: "item",
+          displayer: "Item",
           value: [
             {
               type: "string",
-              key: "item",
-              value: "Features",
-              displayer: "Item",
+              key: "title",
+              displayer: "Title",
+              value: "Home",
             },
             {
               type: "page",
-              key: "url",
-              displayer: "Url",
+              key: "navigate_to",
+              displayer: "Navigate to",
               value: "",
             },
           ],
         },
         {
           type: "object",
-          key: "items",
-          displayer: "Items",
+          key: "item",
+          displayer: "Item",
           value: [
             {
               type: "string",
-              key: "item",
-              value: "Solutions",
-              displayer: "Item",
+              key: "title",
+              displayer: "Title",
+              value: "Portfolio",
             },
             {
               type: "page",
-              key: "url",
-              displayer: "Url",
+              key: "navigate_to",
+              displayer: "Navigate to",
               value: "",
             },
           ],
         },
         {
           type: "object",
-          key: "items",
-          displayer: "Items",
+          key: "item",
+          displayer: "Item",
           value: [
             {
               type: "string",
-              key: "item",
-              value: "Resources",
-              displayer: "Item",
+              key: "title",
+              displayer: "Title",
+              value: "About",
             },
             {
               type: "page",
-              key: "url",
-              displayer: "Url",
+              key: "navigate_to",
+              displayer: "Navigate to",
               value: "",
             },
           ],
         },
         {
           type: "object",
-          key: "items",
-          displayer: "Items",
+          key: "item",
+          displayer: "Item",
           value: [
             {
               type: "string",
-              key: "item",
-              value: "Pricing",
-              displayer: "Item",
+              key: "title",
+              displayer: "Title",
+              value: "Books",
             },
             {
               type: "page",
-              key: "url",
-              displayer: "Url",
+              key: "navigate_to",
+              displayer: "Navigate to",
               value: "",
             },
           ],
         },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Blog",
+            },
+            {
+              type: "page",
+              key: "navigate_to",
+              displayer: "Navigate to",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Client Albums",
+            },
+            {
+              type: "page",
+              key: "navigate_to",
+              displayer: "Navigate to",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Contact",
+            },
+            {
+              type: "page",
+              key: "navigate_to",
+              displayer: "Navigate to",
+              value: "",
+            },
+          ],
+        }
       ],
     });
-    this.state["componentProps"]["navActive"] = true;
+    this.addProp({
+      type: "array",
+      key: "logo-items",
+      displayer: "Logos",
+      value: [
+        INPUTS.LOGO(
+          "logo",
+          "Logo",
+          "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1719584962573"
+        ),
+        INPUTS.LOGO(
+          "logo",
+          "Logo",
+          "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1719584962573"
+        ),
+      ],
+      additionalParams: {
+        maxElementCount: 2,
+      },
+    });
+
+    this.addProp({
+      type: "icon",
+      key: "dropdownIcon",
+      displayer: "Dropdown Icon",
+      value: "MdArrowDropDown",
+    });
+    this.addProp({
+      type: "icon",
+      key: "rightIcon",
+      displayer: "Right Arrow Icon",
+      value: "MdKeyboardArrowRight",
+    });
+
+    this.addProp({
+      type: "icon",
+      key: "menuIcon",
+      displayer: "Menu Icon",
+      value: "FaBars",
+    });
+
+    this.addProp({
+      type: "icon",
+      key: "closeIcon",
+      displayer: "Close Icon",
+      value: "IoMdClose",
+    });
+
+    this.state["componentProps"]["isMobileMenuOpen"] = false;
   }
   getName(): string {
     return "Navbar 2";
   }
-  navClick() {
-    this.setComponentState("navActive", !this.getComponentState("navActive"));
-  }
+
+  toggleMobileMenu = () => {
+    this.setComponentState(
+      "isMobileMenuOpen",
+      !this.getComponentState("isMobileMenuOpen")
+    );
+  };
+
   render() {
+    const position = this.getPropValue("position");
+    const logos = this.castToObject<Image[]>("logo-items");
+    const logo = position === "Absolute" ? logos[0] : logos[1];
+    const menuItems = this.castToObject<Item[]>("menuItems");
+
+    const isMobileMenuOpen = this.getComponentState("isMobileMenuOpen");
+
     return (
-      <div className={`${this.decorateCSS("container")} ${this.getPropValue("sticky") ? this.decorateCSS("sticky") : ""}`}>
-        <div className={this.decorateCSS("max-content")}>
-          <nav>
-            <h2 className={this.decorateCSS("title")}>
-              {this.getPropValue("title")}
-            </h2>
-            <div
-              className={`${this.decorateCSS("items")} ${this.getPropValue("middle") ? this.decorateCSS("middle") : ""
-                }`}
-            >
-              {this.castToObject<[]>("itemList").map(
-                (data: any, indexItemList: number) => {
-                  return (
-                    <ComposerLink
-                      key={indexItemList}
-                      path={data.value[1].value}
-                    >
-                      <h3 key={indexItemList}>{data.value[0].value}</h3>
-                    </ComposerLink>
-                  );
-                }
-              )}
-            </div>
-          </nav>
-          <nav className={this.decorateCSS("navigator-mobile")}>
-            <div className={this.decorateCSS("navbar")}>
-              <h2 className={this.decorateCSS("title")}>
-                {this.getPropValue("title")}
-              </h2>
-              <ComposerIcon
-
-                propsIcon={{
-                  className: `${this.decorateCSS("img-hamburger")} ${this.getComponentState("navActive")
-                    ? this.decorateCSS("rotate")
-                    : ""
-                    }`,
-                  onClick: () => {
-                    this.navClick();
-                  }
-                }}
-                name={this.getPropValue("icon")}
-              />
-            </div>
-            {this.getComponentState("navActive") && (
-              <div className={this.decorateCSS("navbar-child")}>
-                {this.castToObject<[]>("itemList").map(
-                  (data: any, indexItemList: number) => {
-                    return (
-                      <div className={this.decorateCSS("mobile-item")}>
-                        <ComposerLink
-                          key={indexItemList}
-                          path={data.value[1].value}
-
-                        >
-                          <h3 key={indexItemList}>{data.value[0].value}</h3>
-                        </ComposerLink>
-                      </div>
-
-                    );
-                  }
-                )}
+      <Base.Navigator.Container position={position}>
+         <Base.MaxContent className={this.decorateCSS("maxContent")}>
+         <ComposerLink path={logo.imageLink}>
+              <div className={this.decorateCSS("logo")}>
+                <img src={logo.image} alt={""} />
               </div>
-            )}
-          </nav>
-        </div>
-      </div>
+            </ComposerLink>
+            <nav className={this.decorateCSS("largeMenu")}>
+              <div className={this.decorateCSS("menu")}>
+                {this.getPropValue("menuItems") &&
+                  menuItems.map((item: any, index: any) => (
+                      <ComposerLink path={item.navigate_to} key={index}>
+                        <span className={this.decorateCSS("menuItem")}>{item.title}</span>
+                      </ComposerLink>
+                  ))}
+              </div>
+            </nav>
+
+            <button 
+              className={this.decorateCSS("mobileMenuButton")}
+              onClick={this.toggleMobileMenu}
+            >
+              <ComposerIcon name={this.getPropValue("menuIcon")} propsIcon={{className: this.decorateCSS("menuIcon")}} />
+            </button>
+
+            <div className={`${this.decorateCSS("mobileMenu")} ${isMobileMenuOpen ? this.decorateCSS("open") : ""}`}>
+              <button 
+                className={this.decorateCSS("mobileCloseButton")}
+                onClick={this.toggleMobileMenu}
+              >
+                <ComposerIcon name={this.getPropValue("closeIcon")} />
+              </button>
+              
+              <div className={this.decorateCSS("mobileMenuItems")}>
+                {menuItems.map((item: any, index: any) => (
+                  <ComposerLink path={item.navigate_to} key={index}>
+                    <span className={this.decorateCSS("menuItem")}>{item.title}</span>
+                  </ComposerLink>
+                ))}
+              </div>
+            </div>
+         </Base.MaxContent>
+      </Base.Navigator.Container>
     );
   }
 }

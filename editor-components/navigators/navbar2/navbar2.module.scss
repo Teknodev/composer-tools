@@ -1,203 +1,114 @@
-.container {
-  width: 100%;
-  background-color: var(--composer-html-background);
-  .navbar-child {
-    background-color: var(--composer-html-background);
-    margin-top: 30px;
-    .mobile-item {
-      padding: 5px 0;
-      color: var(--composer-font-color-primary);
-    }
-  }
-  &.sticky {
-    position: sticky;
-    top: 0px;
-    z-index: 100;
-    box-shadow: 0px 2px 5px rgba(var(--composer-primary-color-rgb), 0.2);
-  }
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
-  .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
+.maxContent{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-    nav {
+  .largeMenu{
+    .menu{
       display: flex;
-      height: 66px;
-      align-items: center;
-      width: 100%;
       justify-content: space-between;
-      padding: 50px 50px;
-      background-color: var(--composer-html-backgrounds);
-
-      .title {
-        font-size: 35px;
-        font-weight: bold;
-        color: var(--composer-primary-color);
-      }
-
-      .items {
-        display: flex;
-        gap: 40px;
-
-        &.middle {
-          width: 80%;
-          justify-content: center;
-          margin-right: 150px;
-
-          h3 {
-            font-size: 20px;
-            font-weight: 200;
-            width: 100px;
-          }
-        }
-
-        &.right {
-          width: 70%;
-          justify-content: flex-end;
-        }
-
-        h3 {
-          cursor: pointer;
-          transition: all 0.5s;
-          font-weight: 200;
-          font-size: 16px;
-          color: var(--composer-font-color-primary);
-
-          &:hover {
-            opacity: 0.6;
-          }
-        }
-      }
-
-      .button-child {
+      align-items: center;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      gap: var(--composer-gap-md);
+  
+      .menuItem{
         display: flex;
         align-items: center;
-        gap: 15px;
-
-        button {
-          cursor: pointer;
-          transition: all 0.5s;
-          background-color: var(--composer-primary-color);
-          border: 1px solid var(--composer-primary-color);
-          border-radius: 6px;
-          font-size: 15px;
-          font-weight: 700;
-          color: white;
-          margin-left: 20px;
-          margin-top: 8px;
-          padding: 0 20px;
-          min-height: 40px;
-
-          &:hover {
-            background: transparent;
-            color: var(--composer-primary-color);
-          }
+        gap: var(--composer-gap-xs);
+        position: relative;
+        padding: var(--composer-gap-md) 0;
+        cursor: pointer;
+  
+        span {
+          font-size: 1rem;
+          font-weight: 500;
+          transition: all 0.3s ease;
         }
       }
     }
+  }
 
-    .navigator-mobile {
-      display: none;
-      visibility: hidden;
+  .mobileMenuButton {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    
+    .menuIcon {
+      font-size: 2rem;
     }
   }
 
-  .container-sticky {
-    @extend .container;
+  .mobileMenu {
     position: fixed;
     top: 0;
-    z-index: 10;
-  }
+    right: 0;
+    height: 100vh;
+    width: 90%;
+    background: var(--composer-html-background);
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    transform: translateX(100%);
+    transition: all 0.3s ease-in-out;
+    z-index: 1000;
+    padding: var(--composer-gap-md) var(--composer-gap-xl);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    &.open {
+      transform: translateX(0);
+    }
 
-  @media only screen and (max-width: 1400px) {
-    .max-content {
-      max-width: 100%;
+    .mobileCloseButton {
+      position: absolute;
+      top: var(--composer-gap-md);
+      right: var(--composer-gap-md);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 2.5rem;
+    }
 
-      nav {
-        padding: 50px 20px;
+    .mobileMenuItems {
+      margin-top: var(--composer-gap-xl);
+      display: flex;
+      flex-direction: column;
+      gap: var(--composer-gap-lg);
+
+      .menuItem {
+        padding: var(--composer-gap-sm) 0;
+        font-size: 2rem;
       }
     }
   }
+}
 
-  @media only screen and (max-width: 1100px) {
-    .max-content {
-      max-width: 100%;
+@container (max-width: #{$composer-phone-width}){
 
-      nav {
-        display: flex;
-        text-align: center;
-        padding: 50px 0;
+}
+@container (max-width: #{$composer-tablet-width-lg}){ 
+  
+  .maxContent{
 
-        .title {
-          font-weight: bold;
-          font-size: 30px;
-          margin-left: 20px;
-        }
-
-        .items {
-          width: max-content;
-          margin: 0 auto;
-        }
+    .largeMenu{
+      display: none;
+    }
+    .mobileMenuButton{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .mobileMenu{
+      .mobileMenuItems{
+          margin-top: calc(2 * var(--composer-gap-xl));
       }
     }
+
   }
 
-  @media only screen and (max-width: 870px) {
-    .max-content {
-      nav {
-        display: none;
-        visibility: hidden;
-      }
-
-      .navigator-mobile {
-        display: block;
-        visibility: visible;
-
-        .navbar {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          height: 100%;
-          padding: 0 20px 0 5px;
-
-          .img-hamburger {
-            pointer-events: all;
-            cursor: pointer;
-            transition: 0.4s;
-            font-weight: 100;
-            font-size: 30px;
-            width: 25px;
-            height: 25px;
-            color: var(--composer-font-color-primary);
-
-            &.rotate {
-              &:hover {
-                transform: rotate(90deg);
-              }
-            }
-          }
-
-          .navbar-hidden {
-            display: block;
-            visibility: visible;
-          }
-
-          .navbar-child {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.5s;
-            height: 200px;
-            width: 100%;
-            margin-top: 40px;
-            background-color: var(--composer-secondary-color);
-            color: var(--composer-font-color-secondary);
-            position: absolute;
-            z-index: 200;
-          }
-        }
-      }
-    }
-  }
 }
