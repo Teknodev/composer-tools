@@ -237,7 +237,7 @@ export namespace Base {
           {...props}
         >
           <div
-            className={`${styles.navbarPosition} ${styles.position}`}
+            className={`${styles.navbarPosition} ${styles.position} ${props.positionContainer}`}
           >
             {children}
           </div>
