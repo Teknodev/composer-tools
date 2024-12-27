@@ -215,7 +215,7 @@ class List5 extends BaseList {
           <Base.MaxContent className={this.decorateCSS("max-content")}>
             {this.castToString(this.getPropValue("header")) && (
               <Base.VerticalContent className={this.decorateCSS("header")}>
-                <Base.SectionTitle className={this.getPropValue("image") ? this.decorateCSS("header-dark") : this.decorateCSS("header-light")}>
+                <Base.SectionTitle className={`${this.decorateCSS("header-title")} ${this.getPropValue("image") && this.decorateCSS("dark")}`}>
                   {this.getPropValue("header")}
                 </Base.SectionTitle>
               </Base.VerticalContent>

@@ -226,8 +226,5 @@ class List8 extends BaseList {
       </Base.Container>
     );
   }
-
 }
-//end CLASS
-
 export default List8;
