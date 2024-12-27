@@ -75,7 +75,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 color: var(--composer-font-color-secondary);
               }
               .per {
-                color: var(--composer-font-color-primary);
+                color: var(--composer-font-color-secondary);
               }
 
               .tag {
@@ -88,8 +88,11 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               .item-price .price {
                 color: var(--composer-font-color-secondary);
               }
-              .plan-icons .icon {
-                color: var(--composer-font-color-primary);
+
+              .plan-icons {
+                .icon {
+                  color: var(--composer-font-color-secondary);
+                }
               }
             }
             &:not(.active):hover {
