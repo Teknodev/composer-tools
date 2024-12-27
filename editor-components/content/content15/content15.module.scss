@@ -39,7 +39,7 @@
                     display: none;
                     position: absolute;
                     right: 0;
-                    font-size: 4rem; // Because of this element is SVG, the calculation is slightly different due to padding
+                    font-size: 4rem;
                     opacity: 0;
                     transition: opacity 0.3s ease-in-out;
                     transform: translateX(50%);
@@ -97,7 +97,7 @@
                     left: 0;
                     width: 100%;
                     height: 1px;
-                    background-color: rgba(var(--composer-font-color-primary-rgb), 0.1);
+                    background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
                     z-index: 2;
                 }
             }
@@ -235,7 +235,7 @@
                                 transform: translateY(-50%);
                                 width: 1px;
                                 height: 100%;
-                                background-color: rgba(var(--composer-font-color-primary-rgb), 0.5);
+                                background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
                             }
             
                             .icon {

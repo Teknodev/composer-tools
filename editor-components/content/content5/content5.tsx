@@ -351,30 +351,30 @@ class Content5 extends BaseContent {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("tabs")}>
-              <div className={this.decorateCSS("tab-buttons")}>
-                {this.castToObject<ITabs[]>("tabs").map(
-                  (tab: ITabs, index: number) => (
-                    <div
-                      className={
-                        this.decorateCSS("tab-button") +
-                        " " +
-                        (this.getComponentState("activeTab") == index &&
-                          this.decorateCSS("active"))
-                      }
-                      onClick={() => this.setActiveTab(index)}
-                    >
-                      <ComposerIcon
-                        name={tab.icon}
-                        propsIcon={{
-                          className: this.decorateCSS("icon"),
-                        }}
-                      />
-                      <div className={this.decorateCSS("square")}></div>
-                      {tab.tabText}
-                    </div>
-                  )
-                )}
-              </div>
+            <div className={this.decorateCSS("tab-buttons")}>
+              {this.castToObject<ITabs[]>("tabs").map(
+                (tab: ITabs, index: number) => (
+                  <div
+                    className={
+                      this.decorateCSS("tab-button") +
+                      " " +
+                      (this.getComponentState("activeTab") == index &&
+                        this.decorateCSS("active"))
+                    }
+                    onClick={() => this.setActiveTab(index)}
+                  >
+                    <ComposerIcon
+                      name={tab.icon}
+                      propsIcon={{
+                        className: this.decorateCSS("icon"),
+                      }}
+                    />
+                    <div className={this.decorateCSS("square")}></div>
+                    {tab.tabText}
+                  </div>
+                )
+              )}
+            </div>
             {this.castToObject<ITabs[]>("tabs").map(
               (tab: ITabs, index: number) => (
                 <div
@@ -390,14 +390,14 @@ class Content5 extends BaseContent {
                 >
                   <Base.VerticalContent className={this.decorateCSS("content")}>
                     {tab.icon && (
-                      <div className={this.decorateCSS("image-container")}>
+                      <Base.Row className={this.decorateCSS("icon-wrapper")}>
                         <ComposerIcon
                           name={tab.icon}
                           propsIcon={{
                             className: this.decorateCSS("icon"),
                           }}
                         />
-                      </div>
+                      </Base.Row>
                     )}
                     {this.castToString(tab.title) && (
                       <Base.SectionTitle className={this.decorateCSS("title")}>

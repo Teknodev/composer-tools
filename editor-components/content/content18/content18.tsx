@@ -2,6 +2,7 @@ import * as React from "react";
 import { BaseContent } from "../../EditorComponent";
 import styles from "./content18.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "composer-tools/composer-base-components/base/base";
 
 type ProgressItem = {
   progressTitle: string;
@@ -259,25 +260,25 @@ class Content18 extends BaseContent {
             )}
 
             {(badge || title || description || (itemsLength > 0)) && (
-              <div className={this.decorateCSS("right-page")}>
+              <Base.VerticalContent className={this.decorateCSS("right-page")}>
                 {badge && (
-                  <div className={this.decorateCSS("badge")}>
+                  <Base.SectionSubTitle className={this.decorateCSS("badge")}>
                     {this.getPropValue("badge")}
-                  </div>
+                  </Base.SectionSubTitle>
                 )}
                 {title && (
-                  <div className={this.decorateCSS("title")}>
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
                     {this.getPropValue("title")}
-                  </div>
+                  </Base.SectionTitle>
                 )}
                 {description && (
-                  <p className={this.decorateCSS("description")}>
+                  <Base.SectionDescription className={this.decorateCSS("description")}>
                     {this.getPropValue("description")}
-                  </p>
+                  </Base.SectionDescription>
                 )}
 
                 {itemsLength > 0 && (
-                  <div className={this.decorateCSS("progress-container")}>
+                  <Base.Row className={this.decorateCSS("progress-container")}>
                     {this.castToObject<ProgressItem[]>("items").map(
                       (item: ProgressItem, index: number) => (
                         <div className={this.decorateCSS("item")} key={index}>
@@ -325,10 +326,10 @@ class Content18 extends BaseContent {
                         </div>
                       )
                     )}
-                  </div>
+                  </Base.Row>
 
                 )}
-              </div>
+              </Base.VerticalContent>
             )}
           </div>
         </div>

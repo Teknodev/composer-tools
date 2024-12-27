@@ -127,39 +127,39 @@ class Content14 extends BaseContent {
       this.castToString(subTitle) ||
       this.castToString(title) ||
       this.castToString(description) ||
-      this.castToString(buttonText) || 
+      this.castToString(buttonText) ||
       list.length > 0;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {isAnyContentExists && (
-            <div className={this.decorateCSS("content")}>
+            <Base.VerticalContent className={this.decorateCSS("content")}>
               {(this.castToString(subTitle) ||
                 this.castToString(title) ||
                 this.castToString(description)) && (
-                <Base.VerticalContent className={this.decorateCSS("header")}>
-                  {this.castToString(subTitle) && (
-                    <Base.SectionSubTitle
-                      className={this.decorateCSS("subtitle")}
-                    >
-                      {subTitle}
-                    </Base.SectionSubTitle>
-                  )}
-                  {this.castToString(title) && (
-                    <Base.SectionTitle className={this.decorateCSS("title")}>
-                      {title}
-                    </Base.SectionTitle>
-                  )}
-                  {this.castToString(description) && (
-                    <Base.SectionDescription
-                      className={this.decorateCSS("description")}
-                    >
-                      {description}
-                    </Base.SectionDescription>
-                  )}
-                </Base.VerticalContent>
-              )}
+                  <Base.VerticalContent className={this.decorateCSS("header")}>
+                    {this.castToString(subTitle) && (
+                      <Base.SectionSubTitle
+                        className={this.decorateCSS("subtitle")}
+                      >
+                        {subTitle}
+                      </Base.SectionSubTitle>
+                    )}
+                    {this.castToString(title) && (
+                      <Base.SectionTitle className={this.decorateCSS("title")}>
+                        {title}
+                      </Base.SectionTitle>
+                    )}
+                    {this.castToString(description) && (
+                      <Base.SectionDescription
+                        className={this.decorateCSS("description")}
+                      >
+                        {description}
+                      </Base.SectionDescription>
+                    )}
+                  </Base.VerticalContent>
+                )}
 
               {list.length > 0 && (
                 <div className={this.decorateCSS("item-block")}>
@@ -199,7 +199,7 @@ class Content14 extends BaseContent {
                   </Base.Button>
                 </ComposerLink>
               )}
-            </div>
+            </Base.VerticalContent>
           )}
           {this.getPropValue("image") && (
             <div className={`${!isAnyContentExists ? this.decorateCSS("no-content") : ""} ${this.decorateCSS("right-image")}`}>

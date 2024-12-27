@@ -216,7 +216,7 @@ class Content24 extends BaseContent {
                   {(this.castToString(tab.title) ||
                     this.castToString(tab.description) ||
                     this.castToString(tab.buttonText)) && (
-                      <div
+                      <Base.VerticalContent
                         className={this.decorateCSS("content")}
                       >
                         {this.castToString(tab.title) && (
@@ -229,6 +229,7 @@ class Content24 extends BaseContent {
                             {tab.description}
                           </Base.P>
                         )}
+
                         {this.castToString(tab.buttonText) && (
                           <Base.Button className={this.decorateCSS("button")}>
                             <ComposerLink path={tab.buttonUrl}>
@@ -236,7 +237,8 @@ class Content24 extends BaseContent {
                             </ComposerLink>
                           </Base.Button>
                         )}
-                      </div>
+
+                      </Base.VerticalContent>
                     )}
 
                   {tab.image && (

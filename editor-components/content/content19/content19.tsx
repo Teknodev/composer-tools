@@ -204,7 +204,7 @@ class Content19 extends BaseContent {
                   </div>
                 )}
 
-                <div className={this.decorateCSS("description-author")}>
+                <Base.Row className={this.decorateCSS("description-author")}>
                   {authorIcon && (
                     <div className={this.decorateCSS("author-icon")}>
                       <ComposerIcon
@@ -229,8 +229,8 @@ class Content19 extends BaseContent {
                       </h1>
                     )}
                   </div>
-                </div>
-                <div className={this.decorateCSS("button-container")}>
+                </Base.Row>
+                <Base.Row className={this.decorateCSS("button-container")}>
                   {this.castToObject<ButtonProps[]>("buttons").map(
                     (buttonObj, index) => {
                       const buttonData = buttonObj;
@@ -249,7 +249,7 @@ class Content19 extends BaseContent {
                       }
                     }
                   )}
-                </div>
+                </Base.Row>
               </Base.VerticalContent>
             )}
           </Base.ContainerGrid>
