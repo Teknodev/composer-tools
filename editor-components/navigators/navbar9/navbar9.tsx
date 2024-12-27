@@ -84,7 +84,7 @@ class Navbar9 extends BaseNavigator {
                       type: "string",
                       key: "text",
                       displayer: "Text",
-                      value: "Catalog"
+                      value: "Subitem 1"
                     },
                     {
                       type: "page",
@@ -115,7 +115,7 @@ class Navbar9 extends BaseNavigator {
                               type: "string",
                               key: "text",
                               displayer: "Text",
-                              value: "Deneme 1"
+                              value: "Subsubitem 1"
                             },
                             {
                               type: "page",
@@ -173,7 +173,7 @@ class Navbar9 extends BaseNavigator {
                       type: "string",
                       key: "text",
                       displayer: "Text",
-                      value: "Catalog"
+                      value: "Subitem 1"
                     },
                     {
                       type: "page",
@@ -204,7 +204,7 @@ class Navbar9 extends BaseNavigator {
                               type: "string",
                               key: "text",
                               displayer: "Text",
-                              value: "Deneme 1"
+                              value: "Subsubitem 1"
                             },
                             {
                               type: "page",
@@ -583,12 +583,12 @@ class Navbar9 extends BaseNavigator {
     };
 
     const switchDropdown = (index: number) => {
-      if(this.getComponentState("dropdownToggle") === index) {
+      if (this.getComponentState("dropdownToggle") === index) {
         this.setComponentState("dropdownToggle", null);
         return;
       }
       this.setComponentState("dropdownToggle", index);
-    }
+    };
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -640,7 +640,13 @@ class Navbar9 extends BaseNavigator {
                     return (
                       <ComposerLink path={item.url} key={index}>
                         <div className={this.decorateCSS("link")}>
-                          <div onClick={item.type === "Dropdown" ? () => switchDropdown(index) : null} className={this.decorateCSS("content")}>
+                          <div
+                            onClick={item.type === "Dropdown" ? () => switchDropdown(index) : null}
+                            className={`
+                              ${this.decorateCSS("content")}
+                              ${this.getComponentState("dropdownToggle") === index ? this.decorateCSS("dropdown-open") : ""}
+                            `}
+                          >
                             {item.text}
                             {item.type === "Dropdown" && (
                               <ComposerIcon name={this.getComponentState("dropdownToggle") === index ? "MdOutlineKeyboardArrowUp" : "MdOutlineKeyboardArrowDown"} propsIcon={{ className: this.decorateCSS("dropdown-icon") }} />

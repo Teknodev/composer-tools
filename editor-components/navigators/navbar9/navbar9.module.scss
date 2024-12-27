@@ -261,11 +261,13 @@
           font-size: 1rem;
           gap: var(--composer-gap-sm);
 
-          >.link:has(.subitems) {
-            border-bottom: 1px solid red;
-          }
-
           .link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: var(--composer-gap-xs);
+
             .content {
               display: flex;
               align-items: center;
@@ -273,10 +275,22 @@
               gap: var(--composer-gap-xs);
               text-align: center;
 
+              &.dropdown-open {
+                padding-bottom: var(--composer-gap-xs);
+              }
+
               .dropdown-icon {
                 height: 16px;
                 width: 16px;
               }
+            }
+
+            >.subitems {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              flex-direction: column;
+              gap: var(--composer-gap-xs);
             }
           }
         }
