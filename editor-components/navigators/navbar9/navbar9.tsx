@@ -6,7 +6,6 @@ import { Base } from "../../../composer-base-components/base/base";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type Link = {
-  // @ts-ignore
   text: JSX.Element;
   url: string;
   type: "Normal" | "Dropdown";
@@ -14,7 +13,6 @@ type Link = {
 };
 
 type Language = {
-  // @ts-ignore
   language: JSX.Element;
 };
 
@@ -655,7 +653,7 @@ class Navbar9 extends BaseNavigator {
                 if (!icon.icon) return null;
 
                 return (
-                  <ComposerLink path={""} key={index}>
+                  <ComposerLink path={icon.url} key={index}>
                     <ComposerIcon name={icon.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
                   </ComposerLink>
                 );

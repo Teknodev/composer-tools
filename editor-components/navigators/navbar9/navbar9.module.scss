@@ -162,8 +162,16 @@
       .right-content {
         display: flex;
         justify-content: flex-end;
+        align-items: center;
         font-size: 1rem;
         gap: var(--composer-gap-md);
+
+        >div,>a {
+          .icon {
+            height: 16px;
+            width: 16px;
+          }
+        }
       }
     }
   }
