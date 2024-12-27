@@ -7,6 +7,7 @@ import ComposerSlider from "../../../composer-base-components/slider/slider";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 class PricingTable9 extends BasePricingTable {
   constructor(props?: any) {
@@ -42,12 +43,13 @@ class PricingTable9 extends BasePricingTable {
               displayer: "Title",
               value: "Basic",
             },
-            {
-              type: "string",
-              key: "button",
-              displayer: "Button",
-              value: "50$/ month",
-            },
+            // {
+            //   type: "string",
+            //   key: "button",
+            //   displayer: "Button",
+            //   value: "50$/ month",
+            // },
+            INPUTS.BUTTON("buttonType", "Button", "50$/ month", "", "Primary"),
             {
               type: "array",
               key: "contents",
@@ -193,12 +195,14 @@ class PricingTable9 extends BasePricingTable {
               displayer: "Title",
               value: "Starter",
             },
-            {
-              type: "string",
-              key: "button",
-              displayer: "Button",
-              value: "75$/ month",
-            },
+            // {
+            //   type: "string",
+            //   key: "button",
+            //   displayer: "Button",
+            //   value: "75$/ month",
+            // },
+            INPUTS.BUTTON("buttonType", "Button", "75$/ month", "", "Primary"),
+
             {
               type: "array",
               key: "contents",
@@ -344,12 +348,8 @@ class PricingTable9 extends BasePricingTable {
               displayer: "Title",
               value: "Standart",
             },
-            {
-              type: "string",
-              key: "button",
-              displayer: "Button",
-              value: "100$/ month",
-            },
+            INPUTS.BUTTON("buttonType", "Button", "100$/ month", "", "Primary"),
+
             {
               type: "array",
               key: "contents",
@@ -495,12 +495,8 @@ class PricingTable9 extends BasePricingTable {
               displayer: "Title",
               value: "Enterprise",
             },
-            {
-              type: "string",
-              key: "button",
-              displayer: "Button",
-              value: "1000$/ month",
-            },
+            INPUTS.BUTTON("buttonType", "Button", "1000$/ month", "", "Primary"),
+
             {
               type: "array",
               key: "contents",
@@ -778,8 +774,11 @@ class PricingTable9 extends BasePricingTable {
 
             <div className={this.decorateCSS("columns-container")}>
               {this.castToObject<string[]>("columns").map((column: any, index: any) => {
-                const buttonTextExist = this.castToString(column?.button);
+                console.log(column, "column");
+                const buttonTextExist = this.castToString(column?.buttonType.text);
+                console.log(buttonTextExist, "buttonTextExist");
                 const titleExist = this.castToString(column?.title);
+                console.log(column.buttonType);
                 return (
                   <div key={`column-${index}`} className={this.decorateCSS("column-item")}>
                     <div className={this.decorateCSS("title-container")}>{titleExist && <Base.H3 className={this.decorateCSS("column-title")}>{column?.title}</Base.H3>}</div>
@@ -797,8 +796,10 @@ class PricingTable9 extends BasePricingTable {
                     </div>
                     {buttonTextExist && (
                       <div className={this.decorateCSS("column-button-container")}>
-                        <ComposerLink>
-                          <Base.Button className={this.decorateCSS("column-button")}>{column?.button}</Base.Button>
+                        <ComposerLink path={column.buttonType.url}>
+                          <Base.Button buttonType={column.buttonType.type} className={this.decorateCSS("column-button")}>
+                            {column?.buttonType.text}
+                          </Base.Button>
                         </ComposerLink>
                       </div>
                     )}
@@ -820,7 +821,7 @@ class PricingTable9 extends BasePricingTable {
             <div className={this.decorateCSS("slider-container")}>
               <ComposerSlider {...settings}>
                 {this.castToObject<string[]>("columns").map((column: any, index: any) => {
-                  const buttonTextExist = this.castToString(column?.button);
+                  const buttonTextExist = this.castToString(column?.buttonType.text);
                   const titleExist = this.castToString(column?.title);
                   return (
                     <div key={`column-${index}`} className={this.decorateCSS("column-item")}>
@@ -839,8 +840,10 @@ class PricingTable9 extends BasePricingTable {
                       </div>
                       {buttonTextExist && (
                         <div className={this.decorateCSS("column-button-container")}>
-                          <ComposerLink>
-                            <Base.Button className={this.decorateCSS("column-button")}>{column?.button}</Base.Button>
+                          <ComposerLink path={column.buttonType.url}>
+                            <Base.Button buttonType={column.buttonType.type} className={this.decorateCSS("column-button")}>
+                              {column?.buttonType.text}
+                            </Base.Button>
                           </ComposerLink>
                         </div>
                       )}

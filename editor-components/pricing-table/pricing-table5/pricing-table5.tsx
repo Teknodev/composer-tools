@@ -34,27 +34,7 @@ class PricingTable5 extends BasePricingTable {
       type: "array",
       key: "buttons",
       displayer: "Buttons",
-      value: [
-        {
-          type: "object",
-          key: "button",
-          displayer: "Button",
-          value: [
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "VIEW ALL PLANS",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Button Link",
-              value: "",
-            },
-          ],
-        },
-      ],
+      value: [INPUTS.BUTTON("button", "Button", "VIEW ALL PLANS", "", "Primary")],
     });
 
     this.addProp({
@@ -70,9 +50,6 @@ class PricingTable5 extends BasePricingTable {
       displayer: "Less Icon",
       value: "FaAngleUp",
     });
-
-    this.addProp(INPUTS.BUTTON("button", "Button", "", "", "Primary"));
-    this.addProp(INPUTS.BUTTON("planbutton", "Plan Button", "", "", "Tertiary"));
 
     this.addProp({
       type: "array",
@@ -108,18 +85,7 @@ class PricingTable5 extends BasePricingTable {
               displayer: "Price Description",
               value: " / Monthly",
             },
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "GET STARTED",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Button Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "GET STARTED", "", "White"),
           ],
         },
         {
@@ -151,18 +117,7 @@ class PricingTable5 extends BasePricingTable {
               displayer: "Price Description",
               value: " / Monthly",
             },
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "GET STARTED",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Button Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "GET STARTED", "", "White"),
           ],
         },
         {
@@ -194,18 +149,7 @@ class PricingTable5 extends BasePricingTable {
               displayer: "Price Description",
               value: " / Monthly",
             },
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "GET STARTED",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Button Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "GET STARTED", "", "White"),
           ],
         },
       ],
@@ -222,11 +166,6 @@ class PricingTable5 extends BasePricingTable {
 
   render(): React.ReactNode {
     const buttons = this.getPropValue("buttons");
-
-    const buttontype: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
-
-    const planButton: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("planbutton");
-
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
@@ -244,19 +183,19 @@ class PricingTable5 extends BasePricingTable {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
             {showLeftContent && (
-              <Base.VerticalContent className={rightItemsExist ? this.decorateCSS("left-content") : this.decorateCSS("left-content-single")}>
+              <Base.VerticalContent className={`${this.decorateCSS("left-content")} ${!rightItemsExist && this.decorateCSS("left-content-single")}`}>
                 {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
                 {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                 {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
                 <div className={this.decorateCSS("buttons")}>
                   {buttons?.map((button: any) => {
-                    const buttonText = this.castToString(button.getPropValue("buttonText"));
+                    const buttonText = this.castToString(button.getPropValue("text"));
                     return (
                       buttonText && (
                         <ComposerLink path={button.getPropValue("url")}>
                           <div className={this.decorateCSS("button-box")}>
-                            <Base.Button buttonType={buttontype.type} className={this.decorateCSS("button-text")}>
-                              {button.getPropValue("buttonText")}
+                            <Base.Button buttonType={button.getPropValue("type")} className={this.decorateCSS("button-text")}>
+                              {button.getPropValue("text")}
                             </Base.Button>
                           </div>
                         </ComposerLink>
@@ -267,15 +206,16 @@ class PricingTable5 extends BasePricingTable {
               </Base.VerticalContent>
             )}
             {rightItemsExist && (
-              <div className={showLeftContent ? this.decorateCSS("right-content") : this.decorateCSS("right-content-single")}>
-                {this.getPropValue("plans").map((plan: any, index: number) => {
+              <div className={`${this.decorateCSS("right-content")} ${!showLeftContent && this.decorateCSS("right-content-single")}`}>
+                {this.castToObject<any>("plans").map((plan: any, index: number) => {
                   const isActive = index === this.getComponentState("activePlan");
                   const planTitleExist = this.castToString(plan.getPropValue("planTitle"));
                   const priceExist = this.castToString(plan.getPropValue("price"));
                   const planDescription = this.castToString(plan.getPropValue("priceDescription"));
-                  const planButtonText = this.castToString(plan.getPropValue("buttonText"));
+                  const planButtonExist = this.castToString(plan.button.text);
+
                   return (
-                    <div className={`${this.decorateCSS("plan")} ${isActive ? this.decorateCSS("active") : ""}`} onClick={() => this.onPlanClicked(index)}>
+                    <div className={`${this.decorateCSS("plan")} ${isActive && this.decorateCSS("active")}`} onClick={() => this.onPlanClicked(index)}>
                       <div className={this.decorateCSS("plan-upper")}>
                         {planTitleExist && <Base.H5 className={this.decorateCSS("plan-title")}>{plan.getPropValue("planTitle")}</Base.H5>}
                         <div className={isActive ? this.decorateCSS("icon-box-active") : this.decorateCSS("icon-box")}>
@@ -293,10 +233,10 @@ class PricingTable5 extends BasePricingTable {
                           </div>
                         )}
 
-                        <ComposerLink path={plan.getPropValue("link")}>
-                          {planButtonText && (
-                            <Base.Button buttonType={planButton.type} className={this.decorateCSS("plan-button")}>
-                              {plan.getPropValue("buttonText")}
+                        <ComposerLink path={plan.button.link}>
+                          {planButtonExist && (
+                            <Base.Button buttonType={plan.button.type} className={this.decorateCSS("plan-button")}>
+                              {plan.button.text}
                             </Base.Button>
                           )}
                         </ComposerLink>

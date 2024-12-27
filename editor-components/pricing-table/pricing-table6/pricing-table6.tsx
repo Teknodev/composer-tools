@@ -32,12 +32,7 @@ type Pricing = {
         property: string;
         dash_icon: string;
       }[];
-      buttons: {
-        buttonTitle: JSX.Element;
-        url: string;
-        buttonText: JSX.Element;
-        disabled: boolean;
-      }[];
+      buttons: INPUTS.CastedButton[];
     };
   }>;
 };
@@ -59,8 +54,6 @@ class PricingMultipleTwo extends BasePricingTable {
       displayer: "Title",
       value: "Choose the plan that's right for you",
     });
-
-    this.addProp(INPUTS.BUTTON("button", "Button", "", "", "Primary"));
 
     this.addProp({
       type: "array",
@@ -233,27 +226,7 @@ class PricingMultipleTwo extends BasePricingTable {
                           type: "array",
                           key: "buttons",
                           displayer: "Buttons",
-                          value: [
-                            {
-                              type: "object",
-                              key: "button",
-                              displayer: "Button",
-                              value: [
-                                {
-                                  type: "string",
-                                  key: "buttonText",
-                                  displayer: "Button Text",
-                                  value: "Join this plan",
-                                },
-                                {
-                                  type: "page",
-                                  key: "url",
-                                  displayer: "Link",
-                                  value: "",
-                                },
-                              ],
-                            },
-                          ],
+                          value: [INPUTS.BUTTON("button", "Button", "Join this plan", "", "Primary")],
                         },
                       ],
                     },
@@ -409,27 +382,7 @@ class PricingMultipleTwo extends BasePricingTable {
                           type: "array",
                           key: "buttons",
                           displayer: "Buttons",
-                          value: [
-                            {
-                              type: "object",
-                              key: "button",
-                              displayer: "Button",
-                              value: [
-                                {
-                                  type: "string",
-                                  key: "buttonText",
-                                  displayer: "Button Text",
-                                  value: "Join this plan",
-                                },
-                                {
-                                  type: "page",
-                                  key: "url",
-                                  displayer: "Link",
-                                  value: "",
-                                },
-                              ],
-                            },
-                          ],
+                          value: [INPUTS.BUTTON("button", "Button", "Join this plan", "", "Primary")],
                         },
                       ],
                     },
@@ -585,27 +538,7 @@ class PricingMultipleTwo extends BasePricingTable {
                           type: "array",
                           key: "buttons",
                           displayer: "Buttons",
-                          value: [
-                            {
-                              type: "object",
-                              key: "button",
-                              displayer: "Button",
-                              value: [
-                                {
-                                  type: "string",
-                                  key: "buttonText",
-                                  displayer: "Button Text",
-                                  value: "Join this plan",
-                                },
-                                {
-                                  type: "page",
-                                  key: "url",
-                                  displayer: "Link",
-                                  value: "",
-                                },
-                              ],
-                            },
-                          ],
+                          value: [INPUTS.BUTTON("button", "Button", "Join this plan", "", "Primary")],
                         },
                       ],
                     },
@@ -781,27 +714,7 @@ class PricingMultipleTwo extends BasePricingTable {
                           type: "array",
                           key: "buttons",
                           displayer: "Buttons",
-                          value: [
-                            {
-                              type: "object",
-                              key: "button",
-                              displayer: "Button",
-                              value: [
-                                {
-                                  type: "string",
-                                  key: "buttonText",
-                                  displayer: "Button Text",
-                                  value: "Join this plan",
-                                },
-                                {
-                                  type: "page",
-                                  key: "url",
-                                  displayer: "Link",
-                                  value: "",
-                                },
-                              ],
-                            },
-                          ],
+                          value: [INPUTS.BUTTON("button", "Button", "Join this plan", "", "Primary")],
                         },
                       ],
                     },
@@ -958,27 +871,7 @@ class PricingMultipleTwo extends BasePricingTable {
                           type: "array",
                           key: "buttons",
                           displayer: "Buttons",
-                          value: [
-                            {
-                              type: "object",
-                              key: "button",
-                              displayer: "Button",
-                              value: [
-                                {
-                                  type: "string",
-                                  key: "buttonText",
-                                  displayer: "Button Text",
-                                  value: "Join this plan",
-                                },
-                                {
-                                  type: "page",
-                                  key: "url",
-                                  displayer: "Link",
-                                  value: "",
-                                },
-                              ],
-                            },
-                          ],
+                          value: [INPUTS.BUTTON("button", "Button", "Join this plan", "", "Primary")],
                         },
                       ],
                     },
@@ -1134,27 +1027,7 @@ class PricingMultipleTwo extends BasePricingTable {
                           type: "array",
                           key: "buttons",
                           displayer: "Buttons",
-                          value: [
-                            {
-                              type: "object",
-                              key: "button",
-                              displayer: "Button",
-                              value: [
-                                {
-                                  type: "string",
-                                  key: "buttonText",
-                                  displayer: "Button Text",
-                                  value: "Join this plan",
-                                },
-                                {
-                                  type: "page",
-                                  key: "url",
-                                  displayer: "Link",
-                                  value: "",
-                                },
-                              ],
-                            },
-                          ],
+                          value: [INPUTS.BUTTON("button", "Button", "Join this plan", "", "Primary")],
                         },
                       ],
                     },
@@ -1187,8 +1060,6 @@ class PricingMultipleTwo extends BasePricingTable {
     const planIndex = this.getComponentState("activePlan");
 
     const rightItemExist = plan[planIndex]?.right_items?.list.length > 0;
-
-    const buttontype: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -1247,7 +1118,8 @@ class PricingMultipleTwo extends BasePricingTable {
 
                               return (
                                 (listValue || iconValue) && (
-                                  <div key={listItemIndex} className={enableValue ? this.decorateCSS("list-item") : this.decorateCSS("list-item-disabled")}>
+                                  // <div key={listItemIndex} className={enableValue ? this.decorateCSS("list-item") : this.decorateCSS("list-item-disabled")}>
+                                  <div key={listItemIndex} className={`${this.decorateCSS("list-item")} ${!enableValue && this.decorateCSS("list-item-disabled")}`}>
                                     <ComposerIcon
                                       propsIcon={{
                                         className: this.decorateCSS("dash_icon"),
@@ -1265,14 +1137,13 @@ class PricingMultipleTwo extends BasePricingTable {
                             <div className={this.decorateCSS("body-bottom")}>
                               <div className={this.decorateCSS("buttons")}>
                                 {plan[planIndex]?.right_items?.buttons.map((button: any, buttonIndex: number) => {
-                                  const buttonText = this.castToString(button.getPropValue("buttonText"));
-                                  const buttonUrl = button.getPropValue("url");
+                                  const buttonText = this.castToString(button.getPropValue("text"));
 
                                   return (
                                     buttonText && (
-                                      <ComposerLink key={buttonIndex} path={buttonUrl}>
-                                        <Base.Button buttonType={buttontype.type} className={this.decorateCSS("button")}>
-                                          {button.getPropValue("buttonText")}
+                                      <ComposerLink key={buttonIndex} path={button.getPropValue("link")}>
+                                        <Base.Button buttonType={button.getPropValue("type")} className={this.decorateCSS("button")}>
+                                          {button.getPropValue("text")}
                                         </Base.Button>
                                       </ComposerLink>
                                     )

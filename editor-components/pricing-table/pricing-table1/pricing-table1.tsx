@@ -7,9 +7,6 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Pricing = {
-  buttonIcon: string;
-  buttonText: string;
-  link: string;
   cardTitle: JSX.Element;
   cardsubtitle: JSX.Element;
   cardPrice: JSX.Element;
@@ -585,7 +582,6 @@ class PricingTable1 extends BasePricingTable {
     const subtitleExist = this.castToString(subtitle);
     const titleExist = this.castToString(title);
 
-    console.log(this.castToObject<Pricing[]>("pricingTableItem"));
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -617,7 +613,7 @@ class PricingTable1 extends BasePricingTable {
                       </div>
                     )}
                     {cardSubtitleExist && <Base.H3 className={this.decorateCSS("cardsubtitle")}>{table.cardsubtitle}</Base.H3>}
-                    {cardTitleExist && <Base.H3 className={cardSubtitleExist ? this.decorateCSS("card-title") : this.decorateCSS("card-title-no-margin")}>{table.cardTitle}</Base.H3>}
+                    {cardTitleExist && <Base.H3 className={this.decorateCSS("card-title")}>{table.cardTitle}</Base.H3>}
                     <div className={this.decorateCSS("card-list")}>
                       {table.cardList.map((listItem: any, index: number) => {
                         const cardListItemExist = this.castToString(listItem.cardListItem);

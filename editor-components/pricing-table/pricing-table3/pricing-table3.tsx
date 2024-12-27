@@ -12,7 +12,7 @@ type Card = {
   price: JSX.Element;
   tagSettings: TagSettings;
   items: { value: JSX.Element }[];
-  button: Button;
+  button: any;
 };
 
 type TagSettings = {
@@ -20,10 +20,7 @@ type TagSettings = {
   showTag: boolean;
 };
 
-type Button = {
-  text: JSX.Element;
-  link: string;
-};
+type Button = INPUTS.CastedButton;
 
 class PricingTable3 extends BasePricingTable {
   constructor(props?: any) {
@@ -43,27 +40,7 @@ class PricingTable3 extends BasePricingTable {
       value: "Lorem ipsum dolor sit amet consectetur adipiscing elit do eiusmod tempor incididunt labore et dolore magna ut enim.",
     });
 
-    this.addProp(INPUTS.BUTTON("buttontype", "", "", "", "Primary"));
-
-    this.addProp({
-      type: "object",
-      key: "button",
-      displayer: "button",
-      value: [
-        {
-          type: "string",
-          key: "text",
-          displayer: "Button Text",
-          value: "PRICING PLANS",
-        },
-        {
-          type: "page",
-          key: "link",
-          displayer: "Button Link",
-          value: "",
-        },
-      ],
-    });
+    this.addProp(INPUTS.BUTTON("button", "Button", "Join this plan", "", "Primary"));
 
     this.addProp({
       type: "array",
@@ -161,25 +138,7 @@ class PricingTable3 extends BasePricingTable {
                 },
               ],
             },
-            {
-              type: "object",
-              key: "button",
-              displayer: "Card Button",
-              value: [
-                {
-                  type: "string",
-                  key: "text",
-                  displayer: "Button Text",
-                  value: "CHOOSE PACKAGE",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Button Link",
-                  value: "",
-                },
-              ],
-            },
+            INPUTS.BUTTON("button", "Button", "Join this plan", "", "Primary"),
           ],
         },
         {
@@ -270,25 +229,7 @@ class PricingTable3 extends BasePricingTable {
                 },
               ],
             },
-            {
-              type: "object",
-              key: "button",
-              displayer: "Card Button",
-              value: [
-                {
-                  type: "string",
-                  key: "text",
-                  displayer: "Button Text",
-                  value: "CHOOSE PACKAGE",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Button Link",
-                  value: "",
-                },
-              ],
-            },
+            INPUTS.BUTTON("button", "Button", "Join this plan", "", "Primary"),
           ],
         },
         {
@@ -379,25 +320,7 @@ class PricingTable3 extends BasePricingTable {
                 },
               ],
             },
-            {
-              type: "object",
-              key: "button",
-              displayer: "Card Button",
-              value: [
-                {
-                  type: "string",
-                  key: "text",
-                  displayer: "Button Text",
-                  value: "CHOOSE PACKAGE",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Button Link",
-                  value: "",
-                },
-              ],
-            },
+            INPUTS.BUTTON("button", "Button", "Join this plan", "", "Primary"),
           ],
         },
       ],
@@ -410,34 +333,33 @@ class PricingTable3 extends BasePricingTable {
 
   render() {
     const cards = this.castToObject<Card[]>("cards");
-    const featuredButton = this.castToObject<Button>("button");
-    const titleExist = this.getPropValue("title", { as_string: true });
-    const descExist = this.getPropValue("description", { as_string: true });
+    const featuredButton = this.castToObject<any>("button");
+    const titleExist = this.castToString(this.getPropValue("title"));
+    const descExist = this.castToString(this.getPropValue("description"));
     const buttonExist = this.castToString(featuredButton.text);
+    console.log(buttonExist, "buttonExist");
     const hasCards = cards?.length > 0;
     const hasVisibleTag = cards?.some((card) => card.tagSettings.showTag);
 
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("buttontype");
-
     return (
-      <Base.Container className={this.decorateCSS(hasVisibleTag ? "container-alternate" : "container")}>
+      <Base.Container className={`${this.decorateCSS("container")} ${!hasVisibleTag && this.decorateCSS("container-alternate")}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
-            {(titleExist || descExist || buttonExist) && (
-              <Base.VerticalContent className={this.decorateCSS(hasCards ? "featured" : "featured-alternate")}>
+            {(titleExist || descExist) && (
+              <Base.VerticalContent className={`${this.decorateCSS("featured")} ${!hasCards && this.decorateCSS("featured-alternate")} `}>
                 {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                 {descExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
                 {buttonExist && (
                   <ComposerLink path={featuredButton.link}>
                     <div className={this.decorateCSS("featured-button-container")}>
-                      <Base.Button buttonType={button.type}>{featuredButton.text}</Base.Button>
+                      <Base.Button buttonType={featuredButton.type}>{featuredButton.text}</Base.Button>
                     </div>
                   </ComposerLink>
                 )}
               </Base.VerticalContent>
             )}
             {hasCards && (
-              <div className={this.decorateCSS(titleExist || descExist || buttonExist ? "cards-div" : "cards-div-alternate")}>
+              <div className={`${this.decorateCSS("cards-div")} ${!(titleExist || descExist || buttonExist) && this.decorateCSS("cards-div-alternate")}`}>
                 {cards.map((card: Card, idx: number) => {
                   const showTag = card.tagSettings.showTag;
                   const titleExist = this.castToString(card.title);
@@ -479,7 +401,7 @@ class PricingTable3 extends BasePricingTable {
                         {this.castToString(card.button.text) && (
                           <div className={this.decorateCSS("footer")}>
                             <ComposerLink path={card.button.link}>
-                              <Base.Button buttonType={button.type} className={this.decorateCSS("button-text")}>
+                              <Base.Button buttonType={card.button.type} className={this.decorateCSS("button-text")}>
                                 {card.button.text}
                               </Base.Button>
                             </ComposerLink>

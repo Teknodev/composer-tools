@@ -10,7 +10,7 @@
       display: flex;
       flex-direction: column;
       width: 100%;
-      @media only screen and (max-width: #{$composer-tablet-width-lg}) {
+      @container (max-width: #{$composer-tablet-width-lg}) {
         .items {
           .item-card {
             width: 100% !important;
@@ -75,10 +75,6 @@
 
           .card-title {
             margin: 0 0 var(--composer-gap-sm) 0;
-            font-size: 1.5rem;
-            color: var(--composer-font-color-primary);
-          }
-          .card-title-no-margin {
             font-size: 1.5rem;
             color: var(--composer-font-color-primary);
           }

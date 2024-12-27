@@ -4,6 +4,7 @@ import styles from "./pricing-table7.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type PricingItem = {
   itemText: string;
@@ -16,8 +17,7 @@ type MonthlyPlan = {
   duration: string;
   promoText: string;
   description: string;
-  buttonText: string;
-  link: string;
+  buttonType: INPUTS.CastedButton;
   item: PricingItem[];
   isActive: boolean;
   popular_settings: any;
@@ -159,19 +159,7 @@ class PricingTable7 extends BasePricingTable {
               displayer: "Description",
               value: "Our Basic Plan is the perfect entry point for those seeking essential features to get started.",
             },
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Purchase Now",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Button Link",
-              value: "",
-            },
-
+            INPUTS.BUTTON("button", "Button", "Join this plan", "", "Primary"),
             {
               type: "array",
               key: "item",
@@ -273,18 +261,8 @@ class PricingTable7 extends BasePricingTable {
               displayer: "Description",
               value: "Step up your game with our Pro Plan designed for those who demand more from their experience.",
             },
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Purchase Now",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Button Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "Join this plan", "", "Primary"),
+
             {
               type: "array",
               key: "item",
@@ -405,18 +383,8 @@ class PricingTable7 extends BasePricingTable {
               displayer: "Description",
               value: "The Advanced Plan is the pinnacle of our offerings,meticulously curated for those who demand excellence in every aspect.",
             },
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Purchase Now",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Button Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "Join this plan", "", "Primary"),
+
             {
               type: "array",
               key: "item",
@@ -564,18 +532,8 @@ class PricingTable7 extends BasePricingTable {
               displayer: "Description",
               value: "Our Basic Plan is the perfect entry point for those seeking essential features to get started.",
             },
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Purchase Now",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Button Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "Join this plan", "", "Primary"),
+
             {
               type: "array",
               key: "item",
@@ -677,18 +635,8 @@ class PricingTable7 extends BasePricingTable {
               displayer: "Description",
               value: "Step up your game with our Pro Plan designed for those who demand more from their experience.",
             },
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Purchase Now",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Button Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "Join this plan", "", "Primary"),
+
             {
               type: "array",
               key: "item",
@@ -809,18 +757,8 @@ class PricingTable7 extends BasePricingTable {
               displayer: "Description",
               value: "The Advanced Plan is the pinnacle of our offerings,meticulously curated for those who demand excellence in every aspect.",
             },
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Purchase Now",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Button Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "Join this plan", "", "Primary"),
+
             {
               type: "array",
               key: "item",
@@ -1032,9 +970,11 @@ class PricingTable7 extends BasePricingTable {
                       </Base.VerticalContent>
                     )}
 
-                    {this.castToString(pricing.buttonText) && (
-                      <ComposerLink path={pricing.link}>
-                        <Base.Button className={`${this.decorateCSS("button")} ${pricing.isActive ? this.decorateCSS("button-active") : ""}`}>{this.castToString(pricing.buttonText)}</Base.Button>
+                    {this.castToString(pricing.button.text) && (
+                      <ComposerLink path={pricing.button.link}>
+                        <Base.Button buttonType={pricing.button.type} className={`${this.decorateCSS("button")} ${pricing.isActive ? this.decorateCSS("button-active") : ""}`}>
+                          {this.castToString(pricing.button.text)}
+                        </Base.Button>
                       </ComposerLink>
                     )}
                   </Base.VerticalContent>

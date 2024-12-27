@@ -117,6 +117,8 @@
             }
 
             .icon-box-active {
+              background-color: var(--composer-font-color-secondary);
+              color: var(--composer-primary-color);
               .icon {
                 margin-top: 1px;
               }

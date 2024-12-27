@@ -230,12 +230,6 @@ class Content7 extends BaseContent {
                                 onChange={(e) =>
                                   this.handleSliderChange(e, indexCards)
                                 }
-                                onMouseDown={() => {
-                                  console.log("onMouseDown");
-                                }}
-                                onMouseUp={() => {
-                                  console.log("onMouseUp");
-                                }}
                               />
                               <div className={this.decorateCSS("text")}>
                                 <div
