@@ -435,5 +435,13 @@
     justify-content: space-between;
     align-items: center;
 
+    @media only screen and (max-width: $composer-tablet-width) {
+        padding: 20px 40px;
+    }
+
+    @media only screen and (max-width: $composer-phone-width) {
+        padding: 20px;
+    }
+
 }
 
