@@ -232,7 +232,7 @@ class List5 extends BaseList {
                         <ComposerLink path={listItem.url}>
                           <div
                             key={index}
-                            className={this.getPropValue("image") ? this.decorateCSS("item-container-dark") : this.decorateCSS("item-container")}
+                            className={this.decorateCSS("item-container")}
                           >
                             {(listItem.uppericon || this.getPropValue("showIndex")) && (
                               <div className={this.decorateCSS("header-line")}>

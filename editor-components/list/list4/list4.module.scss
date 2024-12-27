@@ -5,13 +5,11 @@
       position: relative;
       margin: var(--composer-gap-xs) 0px 0px var(--composer-gap-md);
       color: var(--composer-primary-color);
+      font-size: 0rem;
+      padding-bottom: var(--composer-gap-xl);
       &.index{
         font-size: 2rem;
         padding-bottom: var(--composer-gap-md);
-      }
-      &.no-index{
-        font-size: 0rem;
-        padding-bottom: var(--composer-gap-xl);
       }
     }
 

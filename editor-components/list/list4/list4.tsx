@@ -158,7 +158,7 @@ class list4 extends BaseList {
                     <div className={this.decorateCSS("line-3")}></div>
                     <div className={this.decorateCSS("line-4")}></div>
                   </div>
-                  <div className={`${this.decorateCSS("card-title")} ${this.getPropValue("showIndex") ? this.decorateCSS("index") : this.decorateCSS("no-index")}`}>
+                  <div className={`${this.decorateCSS("card-title")} ${this.getPropValue("showIndex") && this.decorateCSS("index")}`}>
                     {(index + 1).toLocaleString("en-US", {
                       minimumIntegerDigits: 2,
                       useGrouping: false,

@@ -107,7 +107,7 @@
   .container {
     .max-content {
       .list-item {
-        .item-container, .item-container-no-line{
+        .item-container{
           .cards {
             .icon-title-container {
               .icon {
@@ -126,7 +126,7 @@
   .container {
     .max-content {
       .list-item {
-        .item-container, .item-container-no-line{
+        .item-container{
           flex-direction: column;
           gap: var(--composer-gap-md);
           align-items: flex-start;
