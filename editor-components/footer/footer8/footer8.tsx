@@ -24,7 +24,7 @@ class Footer8Page extends BaseFooter {
       type: "image",
       key: "logo",
       displayer: "Logo",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6762cc190655f8002ca8c66b?alt=media",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676e80240655f8002cadb8be?alt=media",
     });
 
     this.addProp({
@@ -575,7 +575,7 @@ class Footer8Page extends BaseFooter {
                                 return (
                                   elementExist && (
                                     <ComposerLink key={indexFooterText} path={v.path}>
-                                      <div className={this.decorateCSS(v.path ? "element-has-path" : "element")}>{footerTextExist && <Base.P className={this.decorateCSS("text")}>{v.footerText}</Base.P>}</div>
+                                      <div className={`${this.decorateCSS("element")} ${v.path && this.decorateCSS("has-path")}`}> {footerTextExist && <Base.P className={this.decorateCSS("text")}>{v.footerText}</Base.P>}</div>
                                     </ComposerLink>
                                   )
                                 );
@@ -597,7 +597,7 @@ class Footer8Page extends BaseFooter {
                       const textExist = this.castToString(item.text);
                       return (
                         textExist && (
-                          <div className={this.decorateCSS(item.url ? "link-element-has-path" : "link-element")}>
+                          <div className={`${this.decorateCSS("link-element")} ${item.url && this.decorateCSS("has-path")}`}>
                             <ComposerLink key={index} path={item.url}>
                               <Base.P className={this.decorateCSS("link-text")}>{item.text}</Base.P>
                             </ComposerLink>
@@ -630,7 +630,7 @@ class Footer8Page extends BaseFooter {
             )}
           </div>
         </Base.MaxContent>
-      </Base.Container>
+      </Base.Container >
     );
   }
 }

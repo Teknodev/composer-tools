@@ -11,21 +11,30 @@
       .header {
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items: start;
         width: 100%;
         gap: var(--composer-gap-md);
-        .left {
-          width: 70%;
-        }
+
         .left-full {
           width: 100%;
-        }
-      }
 
-      .header-center {
-        display: flex;
-        flex-direction: column;
-        gap: var(--composer-gap-md);
+          &.left {
+            width: 70%;
+          }
+        }
+
+        &.center {
+          flex-direction: column;
+          align-items: center;
+
+          .right {
+            >div {
+              content: "";
+              display: flex;
+              justify-content: center;
+            }
+          }
+        }
       }
     }
   }
@@ -67,28 +76,20 @@
   .container {
     .first-container {
       .first-max-content {
-        .header-center {
-          display: flex;
-          flex-direction: column;
-          gap: var(--composer-gap-md);
-        }
         .header {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          width: 100;
-          gap: var(--composer-gap-md);
-          .left {
-            width: 70%;
+          .left-full {
+            &.left {
+              width: 70%;
+            }
+          }
+
+          &.center {
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-md);
           }
         }
       }
-    }
-
-    .header-center {
-      display: flex;
-      flex-direction: column;
-      gap: var(--composer-gap-md);
     }
 
     .line {
@@ -113,18 +114,18 @@
           .links {
             gap: var(--composer-gap-md);
 
-            .link-element,
-            .link-element-has-path {
+            .link-element {
               .link-text {
                 color: var(--composer-font-color-primary);
                 font-size: 1rem;
                 transition: color 0.3s ease;
               }
+
+              &.has-path .link-text {
+                color: var(--composer-primary-color);
+              }
             }
 
-            .link-element-has-path .link-text {
-              color: var(--composer-primary-color);
-            }
           }
 
           .footer-text {
@@ -142,20 +143,30 @@
     .first-container {
       .first-max-content {
         .header {
-          display: flex;
           flex-direction: column;
-          align-items: baseline;
-          width: 100;
           gap: var(--composer-gap-sm);
-          .left {
-            width: 100%;
+
+          .left-full {
+            &.left {
+              width: 100%;
+            }
           }
         }
+      }
+    }
 
-        .header-center {
-          display: flex;
-          flex-direction: column;
-          gap: var(--composer-gap-md);
+    .second-container {
+      .second-max-content {
+        .bottom {
+
+          .links {
+            justify-content: start;
+
+            &.center {
+              justify-content: center;
+            }
+          }
+
         }
       }
     }

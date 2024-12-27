@@ -123,22 +123,23 @@ class Footer5Page extends BaseFooter {
 
     const alignmentValue = Base.getContentAlignment();
 
-    const headerBottomClass = alignmentValue === "left" ? this.decorateCSS("header") : alignmentValue === "center" ? this.decorateCSS("header-center") : "";
-
     const textsExist = subtitleExist || titleExist;
 
     const bottomExist = links.length > 0 || footerDescriptionExist;
 
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
+    const alignment = Base.getContentAlignment();
+
     return (
       <div className={this.decorateCSS("container")}>
         {headerExist && (
           <Base.Container className={this.decorateCSS("first-container")}>
             <Base.MaxContent className={this.decorateCSS("first-max-content")}>
-              <div className={headerBottomClass}>
+              <div className={`${this.decorateCSS("header")} ${alignmentValue === "center" && this.decorateCSS("center")}`}>
                 {textsExist && (
-                  <Base.VerticalContent className={buttonTextExist ? this.decorateCSS("left") : this.decorateCSS("left-full")}>
+                  <Base.VerticalContent
+                    className={`${this.decorateCSS("left-full")} ${!buttonTextExist && this.decorateCSS("left")}`}>
                     {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
                     {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                   </Base.VerticalContent>
@@ -148,7 +149,8 @@ class Footer5Page extends BaseFooter {
                     {buttonTextExist && (
                       <ComposerLink path={this.getPropValue("buttonLink")}>
                         <Base.Button buttonType={button.type}
-                          className={this.decorateCSS("button")}>{this.getPropValue("buttonText")}</Base.Button>
+                          className={this.decorateCSS("button")}>{this.getPropValue("buttonText")}
+                        </Base.Button>
                       </ComposerLink>
                     )}
                   </div>
@@ -165,12 +167,14 @@ class Footer5Page extends BaseFooter {
             <Base.MaxContent className={this.decorateCSS("second-max-content")}>
               <div className={this.decorateCSS("bottom")}>
                 {links.length > 0 && (
-                  <div className={this.decorateCSS("links")}>
+                  <div className={`${this.decorateCSS("links")}  
+                  ${alignment === "center" && this.decorateCSS("center")}`}>
                     {links.map((item: any, index: number) => {
                       const textExist = this.castToString(item.text);
                       return (
                         textExist && (
-                          <div className={this.decorateCSS(item.url ? "link-element-has-path" : "link-element")}>
+                          <div
+                            className={`${this.decorateCSS("link-element")} ${item.url && this.decorateCSS("has-path")}`}>
                             <ComposerLink key={index} path={item.url}>
                               <Base.P className={this.decorateCSS("link-text")}>{item.text}</Base.P>
                             </ComposerLink>

@@ -31,7 +31,7 @@ class Footer9Page extends BaseFooter {
       type: "image",
       key: "logo",
       displayer: "Logo",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6762cc190655f8002ca8c66b?alt=media",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676e80240655f8002cadb8be?alt=media",
     });
     this.addProp({
       type: "string",
@@ -419,7 +419,7 @@ class Footer9Page extends BaseFooter {
           <div className={this.decorateCSS("bottom")}>
             {footerTextExist && <Base.P className={this.decorateCSS("text")}>{this.getPropValue("footerText")}</Base.P>}
             {pages.length > 0 && (
-              <div className={this.decorateCSS("list")}>
+              <Base.Row className={this.decorateCSS("list")}>
                 {pages.map((item: page, index: number) => {
                   return (
                     <ComposerLink path={item.page}>
@@ -427,7 +427,7 @@ class Footer9Page extends BaseFooter {
                     </ComposerLink>
                   );
                 })}
-              </div>
+              </Base.Row>
             )}
           </div>
         </Base.MaxContent>
