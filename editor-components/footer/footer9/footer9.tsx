@@ -45,20 +45,8 @@ class Footer9Page extends BaseFooter {
       displayer: "Description",
       value: "During this phase to design is developed to meet the reuired technical standards",
     });
-    this.addProp({
-      type: "string",
-      key: "buttonText",
-      displayer: "Button Text",
-      value: "Subscribe",
-    });
-    this.addProp({
-      type: "page",
-      key: "buttonPage",
-      displayer: "Button Page",
-      value: "",
-    });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "", "", "Primary"));
+    this.addProp(INPUTS.BUTTON("button", "Button", "Subscribe", "", "Primary"));
 
     this.addProp({
       type: "array",
@@ -361,18 +349,18 @@ class Footer9Page extends BaseFooter {
   }
 
   render() {
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+
     const logo = this.getPropValue("logo");
     const titleExist = this.castToString(this.getPropValue("title"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
-    const buttonTextExist = this.castToString(this.getPropValue("buttonText"));
-    const buttonPage = this.getPropValue("buttonPage");
+    const buttonTextExist = this.castToString(button.text);
     const footerTextExist = this.castToString(this.getPropValue("footerText"));
 
     const links = this.castToObject<link[]>("links");
     const icons = this.castToObject<icon[]>("icons");
     const pages = this.castToObject<page[]>("pages");
 
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -383,8 +371,8 @@ class Footer9Page extends BaseFooter {
               {titleExist && <Base.H1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.H1>}
               {descriptionExist && <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>}
               {buttonTextExist && (
-                <ComposerLink path={buttonPage}>
-                  <Base.Button buttonType={button.type}>{this.getPropValue("buttonText")}</Base.Button>
+                <ComposerLink path={button.url}>
+                  <Base.Button buttonType={button.type}>{button.text}</Base.Button>
                 </ComposerLink>
               )}
             </div>

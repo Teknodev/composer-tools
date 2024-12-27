@@ -38,14 +38,7 @@ class Footer1Page extends BaseFooter {
       value: "Type your e-mail",
     });
 
-    this.addProp({
-      type: "string",
-      key: "subscriptionButtonText",
-      displayer: "Subscription Button Text",
-      value: "Subscribe",
-    });
-
-    this.addProp(INPUTS.BUTTON("button", "Button", "submitText", "", "Primary"));
+    this.addProp(INPUTS.BUTTON("button", "Button", "Subscribe", "", "Primary"));
 
     this.addProp({
       type: "boolean",
@@ -268,12 +261,11 @@ class Footer1Page extends BaseFooter {
     const titleExist = this.castToString(title);
     const descriptionExist = this.castToString(description);
 
-    const buttonText = this.getPropValue("subscriptionButtonText");
-    const buttonTextExist = this.castToString(buttonText);
-
     const placeholderExist = this.castToString(this.getPropValue("subscriptionPlaceholder"));
 
-    const upperExist = titleExist || descriptionExist || buttonTextExist || placeholderExist;
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+
+    const upperExist = titleExist || descriptionExist || this.castToString(button.text) || placeholderExist;
 
     const line = this.getPropValue("line");
 
@@ -284,7 +276,6 @@ class Footer1Page extends BaseFooter {
 
     const footerBottomExist = pages.length > 0 || social.length > 0 || copyrightExist;
 
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -299,7 +290,7 @@ class Footer1Page extends BaseFooter {
                       {descriptionExist && <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>}
                     </Base.VerticalContent>
                   )}
-                  {(placeholderExist || buttonTextExist) && (
+                  {(placeholderExist || this.castToString(button.text)) && (
                     <div className={this.decorateCSS("subscribe")}>
                       <Formik
                         initialValues={{ email: "" }}
@@ -331,10 +322,10 @@ class Footer1Page extends BaseFooter {
                                 {errors.email && touched.email && <div className={this.decorateCSS("error")}>{errors.email}</div>}
                               </div>
                             )}
-                            {buttonTextExist && (
+                            {this.castToString(button.text) && (
                               <Base.Button buttonType={button.type}
                                 className={this.decorateCSS("button")} type="submit">
-                                {this.getPropValue("subscriptionButtonText")}
+                                {button.text}
                               </Base.Button>
                             )}
                           </Form>

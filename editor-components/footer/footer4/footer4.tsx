@@ -378,14 +378,7 @@ class Footer4Page extends BaseFooter {
       value: "Form successfully submitted!",
     });
 
-    this.addProp({
-      type: "string",
-      key: "subscriptionButtonText",
-      displayer: "Subscription Button Text",
-      value: "Subscribe",
-    });
-
-    this.addProp(INPUTS.BUTTON("button", "Button", "", "", "Primary"));
+    this.addProp(INPUTS.BUTTON("button", "Button", "Subscribe", "", "Primary"));
 
     this.addProp({
       type: "string",
@@ -502,9 +495,11 @@ class Footer4Page extends BaseFooter {
 
     const leftExist = textExist || images.length > 0;
 
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+
     const rightTitleExist = this.castToString(this.getPropValue("rightTitle"));
     const rightDescExist = this.castToString(this.getPropValue("rightDescription"));
-    const buttonTextExist = this.castToString(this.getPropValue("subscriptionButtonText"));
+    const buttonTextExist = this.castToString(button.text);
     const placeHolderExist = this.castToString(this.getPropValue("subscriptionPlaceholder"));
 
     const rightExist = rightTitleExist || rightDescExist || buttonTextExist || placeHolderExist;
@@ -516,7 +511,6 @@ class Footer4Page extends BaseFooter {
     const footerDescription = this.getPropValue("footerDescription");
     const footerDescriptionExist = this.castToString(footerDescription);
 
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
     const alignment = Base.getContentAlignment();
 
@@ -610,7 +604,7 @@ class Footer4Page extends BaseFooter {
                             {buttonTextExist && (
                               <Base.Button buttonType={button.type}
                                 className={this.decorateCSS("button")} type="submit">
-                                {this.getPropValue("subscriptionButtonText")}
+                                {button.text}
                               </Base.Button>
                             )}
                           </Form>
