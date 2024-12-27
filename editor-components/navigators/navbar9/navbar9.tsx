@@ -6,6 +6,7 @@ import { Base } from "../../../composer-base-components/base/base";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type Link = {
+  // @ts-ignore
   text: JSX.Element;
   url: string;
   type: "Normal" | "Dropdown";
@@ -13,7 +14,13 @@ type Link = {
 };
 
 type Language = {
+  // @ts-ignore
   language: JSX.Element;
+};
+
+type Icon = {
+  icon: string;
+  url: string;
 };
 
 class Navbar9 extends BaseNavigator {
@@ -460,10 +467,87 @@ class Navbar9 extends BaseNavigator {
     });
 
     this.addProp({
-      type: "string",
-      key: "rightContent",
-      displayer: "Right Content",
-      value: "Lorem ipsum"
+      type: "array",
+      key: "icons",
+      displayer: "Icons",
+      value: [
+        {
+          type: "object",
+          key: "icon",
+          displayer: "Icon",
+          value: [
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaSearch"
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: ""
+            },
+          ]
+        },
+        {
+          type: "object",
+          key: "icon",
+          displayer: "Icon",
+          value: [
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaUserAlt"
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: ""
+            },
+          ]
+        },
+        {
+          type: "object",
+          key: "icon",
+          displayer: "Icon",
+          value: [
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaHeart"
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: ""
+            },
+          ]
+        },
+        {
+          type: "object",
+          key: "icon",
+          displayer: "Icon",
+          value: [
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaShoppingBag"
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: ""
+            },
+          ]
+        },
+      ]
     });
 
     this.setComponentState("defaultLanguage", this.getPropValue("localization")[0].getPropValue("language", { as_string: true }));
@@ -489,6 +573,8 @@ class Navbar9 extends BaseNavigator {
 
     const localizationIdleIcon = this.getPropValue("localizationIdleIcon");
     const localizationClickedIcon = this.getPropValue("localizationClickedIcon");
+
+    const icons = this.castToObject<Icon[]>("icons");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -565,7 +651,15 @@ class Navbar9 extends BaseNavigator {
               })}
             </div>
             <div className={this.decorateCSS("right-content")}>
-              right content
+              {icons.map((icon, index) => {
+                if (!icon.icon) return null;
+
+                return (
+                  <ComposerLink path={""} key={index}>
+                    <ComposerIcon name={icon.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                  </ComposerLink>
+                );
+              })}
             </div>
           </div>
         </Base.MaxContent>
