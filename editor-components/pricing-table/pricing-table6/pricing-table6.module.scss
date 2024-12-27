@@ -103,8 +103,12 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 color: var(--composer-font-color-secondary);
               }
 
+              .tag {
+                border: 1px solid var(--composer-font-color-secondary);
+              }
+
               .per {
-                color: var(--composer-font-color-primary);
+                color: var(--composer-font-color-secondary);
               }
 
               .plan-icons .plan,
@@ -113,7 +117,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               }
 
               .plan-icons .icon {
-                color: var(--composer-font-color-primary);
+                color: var(--composer-font-color-secondary);
               }
             }
 
