@@ -3,6 +3,8 @@
   padding: 0;
   background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
   .header {
+    background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+
     .max-content {
       .top-content {
         width: 100%;

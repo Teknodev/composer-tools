@@ -163,7 +163,6 @@ class LogoComp6Page extends LogoClouds {
   }
 
   render() {
-    console.log(this.castToObject<TImage[]>("list-items"));
 
     const isSubTitleExists = this.castToString(this.getPropValue("subtitle"));
     const isTitleExists = this.castToString(this.getPropValue("subtitle"));

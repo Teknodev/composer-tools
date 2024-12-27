@@ -11,13 +11,24 @@
         max-width: 100%;
         .leftContainerText {
           .subtitle {
-            margin: 0px;
           }
           .title {
+          }
+          .subtitle {
           }
           .title-with-image,
           .subtitle-with-image {
             color: black;
+          }
+
+          .subtitle-with-image {
+            &:before {
+              background: black;
+            }
+          }
+          .badge-with-image {
+            background-color: black;
+            color: white;
           }
         }
         .arrow {
