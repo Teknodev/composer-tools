@@ -1,91 +1,156 @@
-.container{
-    width: 100%;
-    padding: 50px 0;
-    .max-content{
-        max-width: var(--composer-content-width);
-        margin: auto;
-        .sub-title{
-            width: 50%;
-            font-size: 1.25rem;
-            font-weight: bold;
-            margin: auto;
-            color: var(--composer-secondary-color);
-            text-align: center;
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+
+.container {
+    .max-content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-md);
+
+        .heading {
+            .subtitle {
+                content: ""
+            }
+
+            .title {
+                content: ""
+            }
+
+            .description {
+                content: ""
+            }
         }
-        .header{
-            width: 50%;
-            font-size: 5rem;
-            font-weight: bold;
-            margin: auto;
-            color: var(--composer-primary-color);
-            text-align: center;
-        }
-        .tabs{
+
+        .tabs {
             position: relative;
             width: 100%;
-            .tab-buttons{
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-lg);
+
+            .tab-buttons {
                 width: 100%;
                 display: flex;
-                justify-content: flex-start;
-                gap: 40px;
-                border-bottom: 1px solid var(--composer-tertiary-color);
-                margin-bottom: 40px;
-                .tab-button{
-                    color: var(--composer-font-color-primary);
+                gap: var(--composer-gap-lg);
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                overflow-y: hidden;
+
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+
+                .tab-button {
+                    flex: 1;
+                    text-align: center;
+                    color: rgba(var(--composer-font-color-primary-rgb), 0.7);
                     font-weight: bold;
-                    padding: 10px 0px;
-                    font-size: 1.75rem;
-                    font-weight: bold;
-                    &.active{
-                        border-bottom: 2px solid var(--composer-secondary-color);
-                        color: var(--composer-secondary-color);
+                    padding: var(--composer-gap-sm) 0;
+                    font-size: 1.5rem;
+                    white-space: nowrap;
+                    position: relative;
+                    display: flex;
+
+                    &.active {
+                        border-bottom: 2px solid var(--composer-primary-color);
+                        color: var(--composer-font-color-primary);
+                        font-weight: bold;
                     }
                 }
             }
-            .tab{
-                width: 100%;
-                display: flex;
-                opacity: 0;
-                transition: all 0.5s ease-out;
-                display: none;
-                &.active{
-                    display: flex;
+
+            &:hover {
+                .tab-buttons::-webkit-scrollbar {
+                    height: 2px;
+                    background: rgba(var(--composer-font-color-primary-rgb), 0.2);
                 }
-                &.start{
+
+                .tab-buttons::-webkit-scrollbar-thumb {
+
+                    background: var(--composer-font-color-primary);
+                    border-radius: var(--composer-border-radius-xs);
+                }
+            }
+
+            .tab {
+                width: 100%;
+                display: none;
+                opacity: 0;
+                transition: opacity 0.5s ease-out;
+                align-items: stretch;
+
+                &.active {
+                    display: flex;
                     opacity: 1;
                 }
-                .content{
-                    padding: 0px 60px 0px 0px;
-                    width: 50%;
+
+                .content {
+                    flex: 1;
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
                     align-items: flex-start;
-                    .title{
-                        font-weight: bold;
+                    gap: var(--composer-gap-lg);
+
+                    .title {
                         font-size: 2.5rem;
-                        line-height: 1.3;
+                        color: var(--composer-font-color-primary);
+                        margin: 0;
                     }
-                    .description{
-                        padding: 30px 0px;
+
+                    .description {
                         font-size: 1.5rem;
-                        line-height: 1.5;
-                    }
-                    .button{
-                        border-radius: var(--composer-border-radius);
-                        background-color: var(--composer-secondary-color);
-                        color: var(--composer-font-color-secondary);
-                        border: none;
-                        padding: 15px;
-                        font-size: 1.5rem;
-                        display: inline-block;
+                        color: var(--composer-tertiary-color);
+                        margin: 0;
                     }
                 }
-                .image-container{
-                    width: 50%;
-                    .image{
+
+                .image-container {
+                    flex: 1;
+                    display: flex;
+
+                    .image {
                         width: 100%;
-                        border-radius: var(--composer-border-radius);
+                        aspect-ratio: 4/3;
+                        object-fit: cover;
+                        border-radius: var(--composer-border-radius-md);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-tablet-width-lg}) {
+    .container {
+        .max-content {
+            .tabs {
+                .tab {
+                    flex-direction: row;
+
+                    .image-container {
+                        .image {
+                            aspect-ratio: 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        .max-content {
+            .tabs {
+                .tab {
+                    gap: var(--composer-gap-md);
+                    flex-direction: column-reverse;
+
+                    .content {
+                        gap: var(--composer-gap-md);
                     }
                 }
             }
