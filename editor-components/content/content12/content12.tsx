@@ -1,7 +1,8 @@
 import * as React from "react";
 import styles from "./content12.module.scss";
 import { BaseContent } from "../../EditorComponent";
-
+import { Base } from "../../../composer-base-components/base/base";
+import { ComposerIcon } from "composer-tools/composer-base-components/icon/icon";
 
 class Content12 extends BaseContent {
   constructor(props?: any) {
@@ -17,18 +18,25 @@ class Content12 extends BaseContent {
       type: "video",
       displayer: "Video",
       key: "video",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e77bd0181a1002c334f66?alt=media&timestamp=1719564238038"
+      value:
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e77bd0181a1002c334f66?alt=media&timestamp=1719564238038",
     });
 
     this.addProp({
       type: "image",
       displayer: "Cover image of video",
       key: "cover-image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661ba4ebd2970002c628732?alt=media&timestamp=1719563672206"
+      value:
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661ba4ebd2970002c628732?alt=media&timestamp=1719563672206",
+    });
+    this.addProp({
+      type: "icon",
+      key: "closeIcon",
+      displayer: "Close Button Icon",
+      value: "RxCross2",
     });
 
     this.setComponentState("is_video_visible", false);
-
   }
 
   getName(): string {
@@ -36,24 +44,60 @@ class Content12 extends BaseContent {
   }
 
   render() {
+    const closeIcon: string = this.getPropValue("closeIcon");
+
     return (
-      <div
+      <Base.Container
         className={this.decorateCSS("container")}
         style={{
           backgroundImage: `url(${this.getPropValue("cover-image")})`,
         }}
       >
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("title")} onClick={() => {
-            this.setComponentState("is_video_visible", true)
-          }}>
-            <span className={this.decorateCSS("title")}>{this.getPropValue("title")}</span>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <div
+            className={this.decorateCSS("title-wrapper")}
+            onClick={() => {
+              this.setComponentState("is_video_visible", true);
+            }}
+          >
+            <span className={this.getPropValue("cover-image") ? this.decorateCSS("title") : this.decorateCSS("title-no-image")}>
+              {this.getPropValue("title")}
+            </span>
           </div>
-          {this.getComponentState("is_video_visible") && <div className={this.decorateCSS("video")} onClick={() => this.setComponentState("is_video_visible", false)}>
-            <video onClick={(event) => event.stopPropagation()} controls className={this.decorateCSS("player")} src={this.getPropValue("video")}></video>
-          </div>}
-        </div>
-      </div>
+          {(this.getComponentState("is_video_visible") && this.getPropValue("video")) && (
+
+            <Base.Overlay
+              onClick={() => this.setComponentState("is_video_visible", false)}
+              className={this.decorateCSS("overlay")}
+            >
+              <div className={this.decorateCSS("video-container")}>
+                <div
+                  className={this.decorateCSS("video")}
+                >
+                  <video
+                    onClick={(event) => event.stopPropagation()}
+                    controls
+                    className={this.decorateCSS("player")}
+                    src={this.getPropValue("video")}
+                  ></video>
+
+                </div>
+              </div>
+              {closeIcon && (
+                <div className={this.decorateCSS("close-icon-box")}>
+                  <ComposerIcon
+                    propsIcon={{
+                      className: this.decorateCSS("close-icon"),
+                    }}
+                    name={closeIcon}
+                  />
+                </div>
+              )}
+            </Base.Overlay>
+
+          )}
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
