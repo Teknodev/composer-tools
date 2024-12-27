@@ -230,7 +230,7 @@ export namespace Base {
 
   export namespace Navigator {
     export function Container({ className, children, ...props }: any) {
-      const position = props.position.split(" ").map((item: string) => item.toLowerCase()).join("");
+      const position = props.position?.split(" ").map((item: string) => item.toLowerCase()).join("");
       return (
         <div
           className={`${styles.navbarContainer} ${className} ${styles[position]}`}
