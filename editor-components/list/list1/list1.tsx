@@ -14,6 +14,7 @@ type Card = {
   text: JSX.Element;
   url: string;
   icon: string;
+  button: INPUTS.CastedButton;
 };
 
 class List1 extends BaseList {
@@ -60,18 +61,7 @@ class List1 extends BaseList {
               displayer: "Subtitle",
               value: "BY GINO D'ACAMPO",
             },
-            {
-              type: "string",
-              key: "text",
-              displayer: "text",
-              value: "MAIN COURSE",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Text Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "MAIN COURSE", "", "Link"),
             {
               type: "icon",
               key: "icon",
@@ -104,18 +94,7 @@ class List1 extends BaseList {
               displayer: "Subtitle",
               value: "BY ADDISON",
             },
-            {
-              type: "string",
-              key: "text",
-              displayer: "text",
-              value: "MAIN COURSE",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Text Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "MAIN COURSE", "", "Link"),
             {
               type: "icon",
               key: "icon",
@@ -148,18 +127,7 @@ class List1 extends BaseList {
               displayer: "Subtitle",
               value: "BY GINO D'ACAMPO",
             },
-            {
-              type: "string",
-              key: "text",
-              displayer: "text",
-              value: "MAIN COURSE",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Text Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "MAIN COURSE", "", "Link"),
             {
               type: "icon",
               key: "icon",
@@ -192,18 +160,7 @@ class List1 extends BaseList {
               displayer: "Subtitle",
               value: "BY CHARLES",
             },
-            {
-              type: "string",
-              key: "text",
-              displayer: "text",
-              value: "MAIN COURSE",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Text Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "MAIN COURSE", "", "Link"),
             {
               type: "icon",
               key: "icon",
@@ -236,18 +193,7 @@ class List1 extends BaseList {
               displayer: "Subtitle",
               value: "BY GINO D'ACAMPO",
             },
-            {
-              type: "string",
-              key: "text",
-              displayer: "text",
-              value: "MAIN COURSE",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Text Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "MAIN COURSE", "", "Link"),
             {
               type: "icon",
               key: "icon",
@@ -280,18 +226,7 @@ class List1 extends BaseList {
               displayer: "Subtitle",
               value: "BY ADDISON",
             },
-            {
-              type: "string",
-              key: "text",
-              displayer: "text",
-              value: "MAIN COURSE",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Text Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "MAIN COURSE", "", "Link"),
             {
               type: "icon",
               key: "icon",
@@ -310,7 +245,6 @@ class List1 extends BaseList {
     });
 
     this.setComponentState("active-index", 1);
-    this.addProp(INPUTS.BUTTON("button", "Button", "", "", "Link"));
   }
 
   getName(): string {
@@ -318,7 +252,6 @@ class List1 extends BaseList {
   }
 
   render() {
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
     const sliderItems = this.castToObject<Card[]>("slider");
     const backgroundColor = this.getPropValue("backgroundColor");
     const title = this.getPropValue("title");
@@ -412,11 +345,11 @@ class List1 extends BaseList {
                       </Base.VerticalContent>
                     )}
 
-                    {(this.castToString(item.text) || item.icon) && (
-                      <ComposerLink path={item.url}>
-                        <Base.Button buttonType={button.type} className={this.decorateCSS("link")}>
+                    {(this.castToString(item.button.text) || item.icon) && (
+                      <ComposerLink path={item.button.url}>
+                        <Base.Button buttonType={item.button.type} className={this.decorateCSS("link")}>
                           <div className={this.decorateCSS("text")}>
-                            {item.text}
+                            {item.button.text}
                           </div >
                           {item.icon && (
                             <ComposerIcon

@@ -12,10 +12,6 @@ type CardItem = {
   count_text: JSX.Element;
   card_text: JSX.Element;
 };
-type ButtonItem = {
-  navigate: string;
-  text: JSX.Element;
-}
 
 class List2 extends BaseList {
   constructor(props?: any) {
@@ -289,27 +285,9 @@ class List2 extends BaseList {
         },
       ],
     });
-    this.addProp({
-      type: "object",
-      key: "buttonItem",
-      displayer: "Action Button",
-      value: [
-        {
-          type: "string",
-          key: "text",
-          displayer: "Text of Button",
-          value: "View More Categories",
-        },
-        {
-          type: "page",
-          key: "navigate",
-          displayer: "Navigate",
-          value: "",
-        },
-      ],
-    });
+    this.addProp(INPUTS.BUTTON("button", "Button", "View More Categories", "", "Primary"));
     this.setComponentState("moreImages", 0);
-    this.addProp(INPUTS.BUTTON("button", "Button", "", "", "Primary"));
+    ;
   }
 
   getName(): string {
@@ -324,7 +302,6 @@ class List2 extends BaseList {
       this.setComponentState("imageCount", this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"));
 
     const cards = this.castToObject<CardItem[]>("cards");
-    const button = this.castToObject<ButtonItem>("buttonItem");
     const buttonType: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
     return (
@@ -393,11 +370,11 @@ class List2 extends BaseList {
                 ))}
               </Base.ListGrid>
             )}
-            {((this.getComponentState("imageCount") < cards.length) && this.castToString(button.text)) && (
-              <ComposerLink path={button.navigate}>
+            {((this.getComponentState("imageCount") < cards.length) && this.castToString(buttonType.text)) && (
+              <ComposerLink path={buttonType.url}>
                 <div className={this.decorateCSS("button-wrapper")}>
                   <Base.Button buttonType={buttonType.type} className={this.decorateCSS("button")} onClick={this.handleButtonClick} >
-                    {button.text}
+                    {buttonType.text}
                   </Base.Button>
                 </div>
               </ComposerLink>
