@@ -22,15 +22,8 @@ type Item = {
   navigate_to: string;
   menuType: string;
   sub_items: Item[];
-  tagObject?: {
-    tag: string;
-    tagColor: string;
-  };
 };
 
-// type Icon = {
-//   icon: string;
-// };
 
 type Button = {
   text: JSX.Element;
@@ -1227,17 +1220,17 @@ class Navbar3 extends BaseNavigator {
       <>
         <Base.Container className={this.decorateCSS("laneContainer")}>
           <Base.MaxContent className={this.decorateCSS("lane")}>
-            <Base.P>{lane?.contact}</Base.P>
-            <Base.P>{lane?.news}</Base.P>
+            <p className={this.decorateCSS("laneContact")}>{lane?.contact}</p>
+            <p className={this.decorateCSS("laneNews")}>{lane?.news}</p>
             <ComposerLanguage type="dropdown" />
           </Base.MaxContent>
         </Base.Container>
 
-        <Base.Navigator.Container position={position}>
+        <Base.Navigator.Container position={position} className={this.decorateCSS("navbarContainer")}>
           <Base.MaxContent className={this.decorateCSS("maxContent")}>
             <ComposerLink path={logo.imageLink}>
               <div className={this.decorateCSS("logo")}>
-                <img src={logo.image} alt={""} />
+                <img src={logo.image} alt={""} className={this.decorateCSS("logoImage")}/>
               </div>
               {}
             </ComposerLink>
@@ -1247,7 +1240,7 @@ class Navbar3 extends BaseNavigator {
                   menuItems.map((item: any, index: any) => (
                     <div key={index} className={this.decorateCSS("menuItem")}>
                       <ComposerLink path={item.navigate_to}>
-                        <span>{item.title}</span>
+                        <span className={this.decorateCSS("menuItemTitle")}>{item.title}</span>
                       </ComposerLink>
                       {item.menuType === "Dropdown" && (
                         <>
@@ -1275,7 +1268,7 @@ class Navbar3 extends BaseNavigator {
                                           "dropdownItemContent"
                                         )}
                                       >
-                                        <span>{subItem.title}</span>
+                                        <span className={this.decorateCSS("dropdownItemTitle")}>{subItem.title}</span>
                                       </div>
                                     </ComposerLink>
                                     {subItem.sub_items &&
@@ -1318,7 +1311,7 @@ class Navbar3 extends BaseNavigator {
                                               <ComposerLink
                                                 path={subSubItem.navigate_to}
                                               >
-                                                <span>{subSubItem.title}</span>
+                                                <span className={this.decorateCSS("dropdownItemTitle")}>{subSubItem.title}</span>
                                               </ComposerLink>
                                             </div>
                                           )
@@ -1372,8 +1365,8 @@ class Navbar3 extends BaseNavigator {
                 : ""
             }`}
           >
-            <Base.Container>
-              <Base.MaxContent>
+            <Base.Container className={this.decorateCSS("hamburgerContainer")}>
+              <Base.MaxContent className={this.decorateCSS("hamburgerMaxContent")}>
                 <nav className={this.decorateCSS("hamburgerMenu")}>
                   {menuItems.map((item: Item, index: number) => (
                     <div
@@ -1385,7 +1378,7 @@ class Navbar3 extends BaseNavigator {
                         onClick={() => this.navCLick(index)}
                       >
                         <ComposerLink path={item.navigate_to}>
-                          <span>{item.title}</span>
+                          <span className={this.decorateCSS("hamburgerMenuItemTitle")}>{item.title}</span>
                         </ComposerLink>
                         {item.menuType === "Dropdown" && (
                           <ComposerIcon
@@ -1427,7 +1420,7 @@ class Navbar3 extends BaseNavigator {
                                   }
                                 >
                                   <ComposerLink path={subItem.navigate_to}>
-                                    <span>{subItem.title}</span>
+                                    <span className={this.decorateCSS("hamburgerDropdownItemTitle")}>{subItem.title}</span>
                                   </ComposerLink>
                                   {subItem.sub_items &&
                                      subItem.sub_items.length > 0 &&
@@ -1439,7 +1432,7 @@ class Navbar3 extends BaseNavigator {
                                         name={this.getPropValue("rightIcon")}
                                         propsIcon={{
                                           className: `${this.decorateCSS(
-                                            "rightIcon"
+                                            "dropdownIcon"
                                           )} ${
                                             this.getComponentState(
                                               "subNavActive"
@@ -1482,7 +1475,7 @@ class Navbar3 extends BaseNavigator {
                                             <ComposerLink
                                               path={subSubItem.navigate_to}
                                             >
-                                              <span>{subSubItem.title}</span>
+                                              <span className={this.decorateCSS("hamburgerSubSubmenuItemTitle")}>{subSubItem.title}</span>
                                             </ComposerLink>
                                           </div>
                                         )

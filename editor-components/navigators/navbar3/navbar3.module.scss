@@ -1,29 +1,34 @@
 @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
-.laneContainer{
-  background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-  padding: 10px 50px;
-  .lane{
+.laneContainer {
+  background-color: color-mix(
+    in srgb,
+    var(--composer-html-background),
+    var(--composer-font-color-primary) 5%
+  );
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  .lane {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    p{
+    p {
       padding: 0;
       margin: 0;
       font-size: 1rem;
     }
-   }
+  }
 }
 
-.maxContent{
+.maxContent {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-
- .menuContainer{
-  .menu{
+.menuContainer {
+  .menu {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -32,7 +37,7 @@
     margin: 0;
     gap: var(--composer-gap-md);
 
-    .menuItem{
+    .menuItem {
       display: flex;
       align-items: center;
       gap: var(--composer-gap-xs);
@@ -40,7 +45,7 @@
       padding: var(--composer-gap-md) 0;
       cursor: pointer;
 
-      span {
+      .menuItemTitle {
         font-size: 1rem;
         font-weight: 500;
         transition: all 0.3s ease;
@@ -52,7 +57,6 @@
       }
 
       &:hover {
-
         .dropdownIcon {
           transform: rotate(180deg);
         }
@@ -72,7 +76,6 @@
         background: var(--composer-html-background);
         border-radius: var(--composer-border-radius-sm);
         box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-        padding: var(--composer-gap-sm) 0;
         opacity: 0;
         visibility: hidden;
         transform: translateY(10px);
@@ -80,7 +83,7 @@
         z-index: 100;
 
         &::before {
-          content: '';
+          content: "";
           position: absolute;
           top: calc((var(--composer-gap-sm) - 2px) * -1);
           left: var(--composer-gap-md);
@@ -93,7 +96,7 @@
         }
 
         &::after {
-          content: '';
+          content: "";
           position: absolute;
           top: calc(var(--composer-gap-sm) * -1.5);
           left: 0;
@@ -113,15 +116,22 @@
             justify-content: space-between;
             gap: var(--composer-gap-sm);
 
-            .dropdownItemContent{
+            .dropdownItemContent {
               display: flex;
               align-items: center;
               gap: var(--composer-gap-sm);
+
+              .dropdownItemTitle {
+                font-size: 1rem;
+                font-weight: 400;
+                color: var(--composer-font-color-primary);
+                transition: color 0.3s ease;
+              }
             }
           }
 
           &::after {
-            content: '';
+            content: "";
             position: absolute;
             bottom: 0;
             left: var(--composer-gap-md);
@@ -136,7 +146,6 @@
               width: calc(100% - (var(--composer-gap-md) * 2));
             }
 
-
             .subdropdown {
               opacity: 1;
               visibility: visible;
@@ -144,11 +153,10 @@
             }
           }
 
-          span {
-            font-size: 1rem;
-            font-weight: 400;
-            color: var(--composer-font-color-primary);
-            transition: color 0.3s ease;
+          &:last-child {
+            &::after {
+              content: none;
+            }
           }
 
           .rightIcon {
@@ -165,13 +173,11 @@
             background: var(--composer-html-background);
             border-radius: var(--composer-border-radius-sm);
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            padding: var(--composer-gap-sm) 0;
             opacity: 0;
             visibility: hidden;
             transform: translateX(10px);
             transition: all 0.3s ease;
             z-index: 101;
-
 
             .subdropdownItem {
               padding: var(--composer-gap-sm) var(--composer-gap-md);
@@ -180,7 +186,7 @@
               position: relative;
 
               &::after {
-                content: '';
+                content: "";
                 position: absolute;
                 bottom: 0;
                 left: var(--composer-gap-md);
@@ -194,17 +200,13 @@
                 &::after {
                   width: calc(100% - (var(--composer-gap-md) * 2));
                 }
-                
-                span {
-                  color: var(--composer-primary-color);
-                }
+
               }
 
-              span {
-                font-size: 1rem;
-                font-weight: 400;
-                color: var(--composer-font-color-primary);
-                transition: color 0.3s ease;
+              &:last-child {
+                &::after {
+                  content: none;
+                }
               }
             }
           }
@@ -214,8 +216,8 @@
   }
 }
 
-.maxContent{
-  p{
+.maxContent {
+  p {
     padding: 0;
     margin: 0;
   }
@@ -225,25 +227,25 @@
   height: 40px;
   display: flex;
   align-items: center;
-  
-  img {
+
+  .logoImage {
     height: 100%;
     width: auto;
     object-fit: contain;
   }
 }
 
-.hamburger-nav{
+.hamburger-nav {
   display: none;
 }
 
-.icons{
+.icons {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: var(--composer-gap-sm);
 
-  .icon-element{
+  .icon-element {
     font-size: 1.5rem;
     display: flex;
     align-items: center;
@@ -270,7 +272,7 @@
   overflow: hidden;
 
   transition: all 0.3s ease-in;
-  
+
   &.active {
     max-height: 60vh;
     opacity: 1;
@@ -290,7 +292,7 @@
         padding: var(--composer-gap-sm) 0;
         cursor: pointer;
 
-        span {
+        .hamburgerMenuItemTitle {
           font-size: 1rem;
           font-weight: 500;
         }
@@ -323,8 +325,8 @@
             padding: var(--composer-gap-xs) 0;
             cursor: pointer;
 
-            span {
-              font-size: 0.9rem;
+            .hamburgerMenuItemTitle {
+              font-size: 1rem;
               font-weight: 400;
             }
 
@@ -351,7 +353,7 @@
             .hamburgerSubSubmenuItem {
               padding: var(--composer-gap-xs) 0;
 
-              span {
+              .hamburgerSubSubmenuItemTitle {
                 font-size: 1rem;
                 font-weight: 400;
               }
@@ -368,7 +370,7 @@
     display: none;
   }
 
-  .hamburgerIcon{
+  .hamburgerIcon {
     display: flex;
   }
 
