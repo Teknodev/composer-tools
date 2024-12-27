@@ -35,18 +35,6 @@ class List8 extends BaseList {
       value: "Aliquam sagittis consectetur ligulan aliquam turpis cursus at. In aliquet auguenec libero ultricies velit pellentesque.",
     });
     this.addProp({
-      type: "string",
-      key: "button_text",
-      displayer: "Button Text",
-      value: "List your space",
-    });
-    this.addProp({
-      type: "page",
-      key: "button_url",
-      displayer: "Button Url",
-      value: ""
-    });
-    this.addProp({
       type: "array",
       key: "list-items",
       displayer: "List Items",
@@ -155,7 +143,7 @@ class List8 extends BaseList {
       displayer: "Item Count in a Row",
       value: 3,
     });
-    this.addProp(INPUTS.BUTTON("button", "Button", "", "", "Primary"));
+    this.addProp(INPUTS.BUTTON("button", "Button", "List your space", "", "Primary"));
   }
 
   render() {
@@ -224,11 +212,11 @@ class List8 extends BaseList {
                 ))}
               </Base.ListGrid>
             )}
-            {this.castToString(this.getPropValue("button_text")) && (
+            {this.castToString(buttonType.text) && (
               <div className={this.decorateCSS("button-box")}>
-                <ComposerLink path={this.getPropValue("button_url")}>
+                <ComposerLink path={buttonType.url}>
                   <Base.Button buttonType={buttonType.type} className={this.decorateCSS("button")}>
-                    {this.getPropValue("button_text")}
+                    {buttonType.text}
                   </Base.Button>
                 </ComposerLink>
               </div>

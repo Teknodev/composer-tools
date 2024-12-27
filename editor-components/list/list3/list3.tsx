@@ -33,20 +33,7 @@ class List3 extends BaseList {
       value:
         "Lorem ipsum dolor consectetur eiusmod tempor incididunt labore exercitation tempor.",
     });
-
-    this.addProp({
-      type: "string",
-      key: "buttonText",
-      displayer: "Button",
-      value: "Download Schedule",
-    });
-
-    this.addProp({
-      type: "page",
-      key: "buttonUrl",
-      displayer: "Button URL",
-      value: "",
-    });
+    this.addProp(INPUTS.BUTTON("button", "Button", "Download Schedule", "", "Primary"));
 
     this.addProp({
       type: "array",
@@ -245,7 +232,6 @@ class List3 extends BaseList {
       displayer: "Show Card Number",
       value: true,
     });
-    this.addProp(INPUTS.BUTTON("button", "Button", "", "", "Primary"));
   }
 
   render() {
@@ -253,14 +239,13 @@ class List3 extends BaseList {
     const description = this.castToString(this.getPropValue("description"));
 
     const listItems = this.castToObject<Item[]>("listItems");
-    const buttonExist = this.castToString(this.getPropValue("buttonText"));
     const buttonType: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
     return (
       <Base.Container className={this.decorateCSS("container")} isFull="true">
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ListGrid className={this.decorateCSS("row")} gridCount={{ pc: this.getPropValue("itemCount") }}>
-            {(title || description || buttonExist) && (
+            {(title || description || this.castToString(buttonType.text)) && (
               <Base.VerticalContent className={this.decorateCSS("first")}>
                 {(title || description) && (
                   <Base.VerticalContent className={this.decorateCSS("first-inner")}>
@@ -276,10 +261,10 @@ class List3 extends BaseList {
                     )}
                   </Base.VerticalContent>
                 )}
-                {buttonExist && (
-                  <ComposerLink path={this.getPropValue("buttonUrl")}>
+                {this.castToString(buttonType.text) && (
+                  <ComposerLink path={buttonType.url}>
                     <Base.Button buttonType={buttonType.type} className={this.decorateCSS("button")}>
-                      {this.getPropValue("buttonText")}
+                      {buttonType.text}
                     </Base.Button>
                   </ComposerLink>
                 )}
