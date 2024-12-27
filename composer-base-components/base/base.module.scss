@@ -429,18 +429,17 @@
 
 .navbarPosition{
     width: 100%;
-    padding: 20px 50px;
-   
+    padding: var(--composer-gap-md) var(--composer-gap-xl);
     display: flex;
     justify-content: space-between;
     align-items: center;
 
     @media only screen and (max-width: $composer-tablet-width) {
-        padding: 20px 40px;
+        padding: var(--composer-gap-md) var(--composer-gap-lg);
     }
 
     @media only screen and (max-width: $composer-phone-width) {
-        padding: 20px;
+        padding: var(--composer-gap-md);
     }
 
 }
