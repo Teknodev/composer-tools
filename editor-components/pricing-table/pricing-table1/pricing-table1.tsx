@@ -182,7 +182,7 @@ class PricingTable1 extends BasePricingTable {
               displayer: "Duration1",
               value: "billed annually*",
             },
-            INPUTS.BUTTON("buttonType", "Button", "DENEME", "DENEME", "Primary"),
+            INPUTS.BUTTON("buttonType", "Button", "Join this plan", "", "Primary"),
             {
               type: "string",
               key: "pricingTableTitle",
@@ -334,7 +334,7 @@ class PricingTable1 extends BasePricingTable {
               displayer: "Duration1",
               value: " billed annually*",
             },
-            INPUTS.BUTTON("buttonType", "Button", "DENEME", "DENEME", "Primary"),
+            INPUTS.BUTTON("buttonType", "Button", "Join this plan", "", "Primary"),
             {
               type: "string",
               key: "pricingTableTitle",
@@ -492,7 +492,7 @@ class PricingTable1 extends BasePricingTable {
               displayer: "Duration1",
               value: " billed annually*",
             },
-            INPUTS.BUTTON("buttonType", "Button", "DENEME", "DENEME", "Primary"),
+            INPUTS.BUTTON("buttonType", "Button", "Join this plan", "", "Primary"),
             {
               type: "string",
               key: "pricingTableTitle",
@@ -606,11 +606,8 @@ class PricingTable1 extends BasePricingTable {
                 const durationExist = this.castToString(table.cardDuration);
                 const duration1Exist = this.castToString(table.cardDuration1);
 
-                const cardButtonTextExist = table.buttonType.text;
-                console.log(cardButtonTextExist, "cardButtonTextExist");
+                const cardButtonTextExist = this.castToString(table.buttonType.text);
                 const cardpricingTableTitleExist = this.castToString(table.pricingTableTitle);
-
-                // const buttontype: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>(table.buttonType);
 
                 return (
                   <div key={index} className={`${this.decorateCSS("item-card")} ${table.isActive && this.decorateCSS("active")}`}>
@@ -654,11 +651,11 @@ class PricingTable1 extends BasePricingTable {
                           ))}
                       </div>
 
-                      {/* {cardButtonTextExist && ( */}
-                      <Base.Button buttonType={table.buttonType.type} className={this.decorateCSS("card-button")}>
-                        <ComposerLink path={table.buttonType.url}>{table.buttonType.text}</ComposerLink>
-                      </Base.Button>
-                      {/* )} */}
+                      {cardButtonTextExist && (
+                        <Base.Button buttonType={table.buttonType.type} className={this.decorateCSS("card-button")}>
+                          <ComposerLink path={table.buttonType.url}>{table.buttonType.text}</ComposerLink>
+                        </Base.Button>
+                      )}
 
                       {cardpricingTableTitleExist && <span className={this.decorateCSS("pricingTitle")}>{table.pricingTableTitle}</span>}
                     </div>

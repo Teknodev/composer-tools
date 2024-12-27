@@ -7,13 +7,13 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type PricingItems = {
+  button: any;
   cardTitle: JSX.Element;
   cardPrice: JSX.Element;
   cardDuration: JSX.Element;
   cardIcon: string;
   cardList: ListItem[];
-  cardButtonText: JSX.Element;
-  cardButtonLink: string;
+  buttonType: INPUTS.CastedButton;
 };
 
 type ListItem = {
@@ -49,8 +49,6 @@ class PricingTable2 extends BasePricingTable {
       value: 4,
       max: 5,
     });
-
-    // this.addProp(INPUTS.BUTTON("button", "Button", "", "", "Primary"));
 
     this.addProp({
       type: "array",
@@ -188,19 +186,7 @@ class PricingTable2 extends BasePricingTable {
                 },
               ],
             },
-            INPUTS.BUTTON("button", "Button", "", "", "Primary"),
-            // {
-            //   type: "string",
-            //   key: "cardButtonText",
-            //   displayer: "Button Text",
-            //   value: "Select Now",
-            // },
-            // {
-            //   type: "page",
-            //   key: "cardButtonLink",
-            //   displayer: "Button Link",
-            //   value: "",
-            // },
+            INPUTS.BUTTON("button", "Button", "Select Now", "", "Primary"),
           ],
         },
         {
@@ -334,18 +320,7 @@ class PricingTable2 extends BasePricingTable {
                 },
               ],
             },
-            {
-              type: "string",
-              key: "cardButtonText",
-              displayer: "Button Text",
-              value: "Select Now",
-            },
-            {
-              type: "page",
-              key: "cardButtonLink",
-              displayer: "Button Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "Select Now", "", "Primary"),
           ],
         },
         {
@@ -479,18 +454,7 @@ class PricingTable2 extends BasePricingTable {
                 },
               ],
             },
-            {
-              type: "string",
-              key: "cardButtonText",
-              displayer: "Button Text",
-              value: "Select Now",
-            },
-            {
-              type: "page",
-              key: "cardButtonLink",
-              displayer: "Button Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "Select Now", "", "Primary"),
           ],
         },
         {
@@ -624,18 +588,7 @@ class PricingTable2 extends BasePricingTable {
                 },
               ],
             },
-            {
-              type: "string",
-              key: "cardButtonText",
-              displayer: "Button Text",
-              value: "Select Now",
-            },
-            {
-              type: "page",
-              key: "cardButtonLink",
-              displayer: "Button Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "Select Now", "", "Primary"),
           ],
         },
       ],
@@ -650,8 +603,6 @@ class PricingTable2 extends BasePricingTable {
     const subtitle = this.castToString(this.getPropValue("pricing-table-subtitle"));
     const title = this.castToString(this.getPropValue("pricing-table-title"));
     const description = this.castToString(this.getPropValue("pricing-table-description"));
-
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -673,13 +624,11 @@ class PricingTable2 extends BasePricingTable {
               className={this.decorateCSS("item-div")}
             >
               {this.castToObject<PricingItems[]>("pricingTableItem").map((table: PricingItems, index: number) => {
-                // table.cardList.map((listItem: ListItem, index: number) => {
-                //   return "";
-                // });
                 const cardTitle = this.castToString(table.cardTitle);
                 const cardPrice = this.castToString(table.cardPrice);
                 const cardDuration = this.castToString(table.cardDuration);
 
+                console.log(table);
                 return (
                   <Base.VerticalContent className={this.decorateCSS("card-item-count")}>
                     <div key={index} className={this.decorateCSS("item-card")}>
@@ -722,13 +671,13 @@ class PricingTable2 extends BasePricingTable {
                             })}
                           </Base.VerticalContent>
                         )}
-                        {/* {this.castToString(table.cardButtonText) && (
-                          <ComposerLink path={table.cardButtonLink}>
-                            <Base.Button buttonType={button.type} className={this.decorateCSS("card-button")}>
-                              {table.cardButtonText}
+                        {this.castToString(table.button.text) && (
+                          <ComposerLink path={table.button.url}>
+                            <Base.Button buttonType={table.button.type} className={this.decorateCSS("card-button")}>
+                              {table.button.text}
                             </Base.Button>
                           </ComposerLink>
-                        )} */}
+                        )}
                       </Base.VerticalContent>
                     </div>
                   </Base.VerticalContent>

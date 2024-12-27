@@ -4,6 +4,7 @@ import { BasePricingTable, TypeUsableComponentProps } from "../../EditorComponen
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Pricing = {
   title1: JSX.Element;
@@ -199,20 +200,7 @@ class PricingMultiple extends BasePricingTable {
                   type: "object",
                   key: "button",
                   displayer: "Button",
-                  value: [
-                    {
-                      type: "string",
-                      key: "buttonText",
-                      displayer: "Button Text",
-                      value: "CHOOSE PLAN",
-                    },
-                    {
-                      type: "page",
-                      key: "url",
-                      displayer: "Button Link",
-                      value: "",
-                    },
-                  ],
+                  value: [INPUTS.BUTTON("buttonType", "Button", "CHOOSE PLAN", "", "Primary")],
                 },
               ],
             },
@@ -359,20 +347,7 @@ class PricingMultiple extends BasePricingTable {
                   type: "object",
                   key: "button",
                   displayer: "Button",
-                  value: [
-                    {
-                      type: "string",
-                      key: "buttonText",
-                      displayer: "Button Text",
-                      value: "CHOOSE PLAN",
-                    },
-                    {
-                      type: "page",
-                      key: "url",
-                      displayer: "Button Link",
-                      value: "",
-                    },
-                  ],
+                  value: [INPUTS.BUTTON("buttonType", "Button", "CHOOSE PLAN", "", "Primary")],
                 },
               ],
             },
@@ -519,20 +494,7 @@ class PricingMultiple extends BasePricingTable {
                   type: "object",
                   key: "button",
                   displayer: "Button",
-                  value: [
-                    {
-                      type: "string",
-                      key: "buttonText",
-                      displayer: "Button Text",
-                      value: "CHOOSE PLAN",
-                    },
-                    {
-                      type: "page",
-                      key: "url",
-                      displayer: "Button Link",
-                      value: "",
-                    },
-                  ],
+                  value: [INPUTS.BUTTON("buttonType", "Button", "CHOOSE PLAN", "", "Primary")],
                 },
               ],
             },
@@ -594,12 +556,12 @@ class PricingMultiple extends BasePricingTable {
                         </Base.VerticalContent>
                       </div>
                       <div className={this.decorateCSS("card-down")}>
-                        {price.buttons.map((item: Button, indexButtons: number) => {
-                          const buttonValue = this.castToString(item.buttonText);
+                        {price.buttons.map((item: any, indexButtons: number) => {
+                          const buttonValue = this.castToString(item.buttonType.text);
                           return (
                             buttonValue && (
-                              <ComposerLink key={indexButtons} path={item.url}>
-                                <Base.Button>{item.buttonText}</Base.Button>
+                              <ComposerLink key={indexButtons} path={item.buttonType.url}>
+                                <Base.Button buttonType={item.buttonType.type}>{item.buttonType.text}</Base.Button>
                               </ComposerLink>
                             )
                           );
