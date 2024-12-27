@@ -232,11 +232,13 @@ class Team16 extends Team {
               })}
             </Base.ListGrid>
             {buttonTextExist && (
-              <ComposerLink path={this.getPropValue("button_url")}>
-                <div className={this.decorateCSS("button")}>
-                  <Base.H5 className={alignmentValue === "left" ? this.decorateCSS("button-element") : alignmentValue === "center" ? this.decorateCSS("button-element-center") : null}>{this.getPropValue("button-text")}</Base.H5>
-                </div>
-              </ComposerLink>
+              <div className={this.decorateCSS("button-wrapper")}>
+                <ComposerLink path={this.getPropValue("button_url")}>
+                  <div className={this.decorateCSS("button")}>
+                    <Base.H5 className={alignmentValue === "left" ? this.decorateCSS("button-element") : alignmentValue === "center" ? this.decorateCSS("button-element-center") : null}>{this.getPropValue("button-text")}</Base.H5>
+                  </div>
+                </ComposerLink>
+              </div>
             )}
           </Base.VerticalContent>
         </Base.MaxContent>
