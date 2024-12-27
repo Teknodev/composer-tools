@@ -773,8 +773,6 @@ class Header20 extends BaseHeader {
     const overlay = this.getPropValue("overlay");
 
     const iconText = this.castToObject<any>("iconsHeader");
-    console.log(iconText.icon);
-    console.log(iconText.iconText)
 
     return (
       <div className={this.decorateCSS("container")}>
