@@ -3,24 +3,12 @@ import styles from "./content12.module.scss";
 import { BaseContent } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
 import { ComposerIcon } from "composer-tools/composer-base-components/icon/icon";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 class Content12 extends BaseContent {
   constructor(props?: any) {
     super(props, styles);
-
-    this.addProp({
-      type: "string",
-      key: "title",
-      displayer: "Title",
-      value: "Play me here",
-    });
-    this.addProp({
-      type: "video",
-      displayer: "Video",
-      key: "video",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e77bd0181a1002c334f66?alt=media&timestamp=1719564238038",
-    });
+    this.addProp(INPUTS.BUTTON("button", "Button", "Play me here", "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e77bd0181a1002c334f66?alt=media&timestamp=1719564238038", "Link"));
 
     this.addProp({
       type: "image",
@@ -45,6 +33,7 @@ class Content12 extends BaseContent {
 
   render() {
     const closeIcon: string = this.getPropValue("closeIcon");
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
     return (
       <Base.Container
@@ -60,11 +49,11 @@ class Content12 extends BaseContent {
               this.setComponentState("is_video_visible", true);
             }}
           >
-            <span className={this.getPropValue("cover-image") ? this.decorateCSS("title") : this.decorateCSS("title-no-image")}>
-              {this.getPropValue("title")}
-            </span>
+            <Base.Button buttonType={button.type} className={`${this.decorateCSS("title")} ${this.getPropValue("cover-image") && this.decorateCSS("image")}`}>
+              {button.text}
+            </Base.Button>
           </div>
-          {(this.getComponentState("is_video_visible") && this.getPropValue("video")) && (
+          {(this.getComponentState("is_video_visible") && button.url) && (
 
             <Base.Overlay
               onClick={() => this.setComponentState("is_video_visible", false)}
@@ -78,7 +67,7 @@ class Content12 extends BaseContent {
                     onClick={(event) => event.stopPropagation()}
                     controls
                     className={this.decorateCSS("player")}
-                    src={this.getPropValue("video")}
+                    src={button.url}
                   ></video>
 
                 </div>

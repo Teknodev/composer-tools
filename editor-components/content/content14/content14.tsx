@@ -4,6 +4,7 @@ import styles from "./content14.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 interface ListItem {
   title: string;
@@ -98,20 +99,7 @@ class Content14 extends BaseContent {
         },
       ],
     });
-
-    this.addProp({
-      type: "string",
-      key: "buttonText",
-      displayer: "Button Text",
-      value: "Get In Touch!",
-    });
-
-    this.addProp({
-      type: "page",
-      key: "link",
-      displayer: "Button Link",
-      value: "",
-    });
+    this.addProp(INPUTS.BUTTON("button", "Button", "Get In Tocuh!", "", "Primary"));
   }
   getName(): string {
     return "Content 14";
@@ -121,13 +109,13 @@ class Content14 extends BaseContent {
     const subTitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
-    const buttonText = this.getPropValue("buttonText");
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
     const list = this.castToObject<ListItem[]>("items");
     const isAnyContentExists =
       this.castToString(subTitle) ||
       this.castToString(title) ||
       this.castToString(description) ||
-      this.castToString(buttonText) ||
+      this.castToString(button.text) ||
       list.length > 0;
 
     return (
@@ -164,16 +152,16 @@ class Content14 extends BaseContent {
               {list.length > 0 && (
                 <div className={this.decorateCSS("item-block")}>
                   {list.map((listItem: any, index: number) => (
-                    <div className={this.decorateCSS("texts")}>
-                      {listItem.icon && (
-                        <ComposerIcon
-                          name={listItem.icon}
-                          propsIcon={{
-                            className: this.decorateCSS("icon"),
-                          }}
-                        />
-                      )}
-                      <div className={this.decorateCSS("list-item-content")}>
+                    <Base.VerticalContent className={this.decorateCSS("list-item-content")}>
+                      <Base.Row className={this.decorateCSS("item-content-top")}>
+                        {listItem.icon && (
+                          <ComposerIcon
+                            name={listItem.icon}
+                            propsIcon={{
+                              className: this.decorateCSS("icon"),
+                            }}
+                          />
+                        )}
                         {this.castToString(listItem.title) && (
                           <Base.H2
                             className={this.decorateCSS("list-item-title")}
@@ -181,28 +169,29 @@ class Content14 extends BaseContent {
                             {listItem.title}
                           </Base.H2>
                         )}
-                        {this.castToString(listItem.text) && (
-                          <Base.P className={this.decorateCSS("texts-inside")}>
-                            {listItem.text}
-                          </Base.P>
-                        )}
-                      </div>
-                    </div>
+                      </Base.Row>
+
+                      {this.castToString(listItem.text) && (
+                        <Base.P className={this.decorateCSS("texts-inside")}>
+                          {listItem.text}
+                        </Base.P>
+                      )}
+                    </Base.VerticalContent>
+
                   ))}
                 </div>
               )}
-
-              {this.castToString(buttonText) && (
-                <ComposerLink page={this.getPropValue("link")}>
-                  <Base.Button className={this.decorateCSS("button")}>
-                    {buttonText}
+              {this.castToString(button.text) && (
+                <ComposerLink path={button.url}>
+                  <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                    {button.text}
                   </Base.Button>
                 </ComposerLink>
               )}
             </Base.VerticalContent>
           )}
           {this.getPropValue("image") && (
-            <div className={`${!isAnyContentExists ? this.decorateCSS("no-content") : ""} ${this.decorateCSS("right-image")}`}>
+            <div className={`${this.decorateCSS("right-image")} ${!isAnyContentExists ? this.decorateCSS("no-content") : ""}`}>
               <img
                 src={this.getPropValue("image")}
                 alt="blockPhoto"

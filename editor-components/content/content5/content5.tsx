@@ -4,13 +4,13 @@ import styles from "./content5.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type ITabs = {
   tabText: JSX.Element;
   title: JSX.Element;
   description: JSX.Element;
-  buttonText: JSX.Element;
-  buttonUrl: string;
+  button: INPUTS.CastedButton;
   icon: string;
 };
 
@@ -53,18 +53,7 @@ class Content5 extends BaseContent {
               value:
                 "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptate, quibusdam sunt iste dolores consequatur <br><br> Inventore fugit error iure nisi reiciendis fugiat illo pariatur quam sequi quod iusto facilis officiis nobis sit quis molestias asperiores rem, blanditiis! Commodi exercitationem vitae deserunt qui nihil ea, tempore et quam natus quaerat doloremque.",
             },
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Learn More",
-            },
-            {
-              type: "page",
-              key: "buttonUrl",
-              displayer: "Button Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "Learn More", "", "Primary")
           ],
         },
         {
@@ -97,18 +86,7 @@ class Content5 extends BaseContent {
               value:
                 "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptate, quibusdam sunt iste dolores consequatur <br><br> Inventore fugit error iure nisi reiciendis fugiat illo pariatur quam sequi quod iusto facilis officiis nobis sit quis molestias asperiores rem, blanditiis! Commodi exercitationem vitae deserunt qui nihil ea, tempore et quam natus quaerat doloremque.",
             },
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Learn More",
-            },
-            {
-              type: "page",
-              key: "buttonUrl",
-              displayer: "Button Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "Learn More", "", "Primary")
           ],
         },
         {
@@ -141,18 +119,7 @@ class Content5 extends BaseContent {
               value:
                 "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptate, quibusdam sunt iste dolores consequatur <br><br> Inventore fugit error iure nisi reiciendis fugiat illo pariatur quam sequi quod iusto facilis officiis nobis sit quis molestias asperiores rem, blanditiis! Commodi exercitationem vitae deserunt qui nihil ea, tempore et quam natus quaerat doloremque.",
             },
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Learn More",
-            },
-            {
-              type: "page",
-              key: "buttonUrl",
-              displayer: "Button Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "Learn More", "", "Primary")
           ],
         },
         {
@@ -185,18 +152,7 @@ class Content5 extends BaseContent {
               value:
                 "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptate, quibusdam sunt iste dolores consequatur <br><br> Inventore fugit error iure nisi reiciendis fugiat illo pariatur quam sequi quod iusto facilis officiis nobis sit quis molestias asperiores rem, blanditiis! Commodi exercitationem vitae deserunt qui nihil ea, tempore et quam natus quaerat doloremque.",
             },
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Learn More",
-            },
-            {
-              type: "page",
-              key: "buttonUrl",
-              displayer: "Button Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "Learn More", "", "Primary")
           ],
         },
         {
@@ -229,18 +185,7 @@ class Content5 extends BaseContent {
               value:
                 "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptate, quibusdam sunt iste dolores consequatur <br><br> Inventore fugit error iure nisi reiciendis fugiat illo pariatur quam sequi quod iusto facilis officiis nobis sit quis molestias asperiores rem, blanditiis! Commodi exercitationem vitae deserunt qui nihil ea, tempore et quam natus quaerat doloremque.",
             },
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Learn More",
-            },
-            {
-              type: "page",
-              key: "buttonUrl",
-              displayer: "Button Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "Learn More", "", "Primary")
           ],
         },
         {
@@ -273,18 +218,7 @@ class Content5 extends BaseContent {
               value:
                 "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptate, quibusdam sunt iste dolores consequatur <br><br> Inventore fugit error iure nisi reiciendis fugiat illo pariatur quam sequi quod iusto facilis officiis nobis sit quis molestias asperiores rem, blanditiis! Commodi exercitationem vitae deserunt qui nihil ea, tempore et quam natus quaerat doloremque.",
             },
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Learn More",
-            },
-            {
-              type: "page",
-              key: "buttonUrl",
-              displayer: "Button Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "Learn More", "", "Primary")
           ],
         },
         {
@@ -317,18 +251,7 @@ class Content5 extends BaseContent {
               value:
                 "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptate, quibusdam sunt iste dolores consequatur <br><br> Inventore fugit error iure nisi reiciendis fugiat illo pariatur quam sequi quod iusto facilis officiis nobis sit quis molestias asperiores rem, blanditiis! Commodi exercitationem vitae deserunt qui nihil ea, tempore et quam natus quaerat doloremque.",
             },
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Learn More",
-            },
-            {
-              type: "page",
-              key: "buttonUrl",
-              displayer: "Button Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "Learn More", "", "Primary")
           ],
         },
       ],
@@ -356,10 +279,10 @@ class Content5 extends BaseContent {
                 (tab: ITabs, index: number) => (
                   <div
                     className={
-                      this.decorateCSS("tab-button") +
-                      " " +
-                      (this.getComponentState("activeTab") == index &&
-                        this.decorateCSS("active"))
+                      `${this.decorateCSS("tab-button")} ${this.getComponentState("activeTab") === index
+                        ? this.decorateCSS("active")
+                        : ""
+                      }`
                     }
                     onClick={() => this.setActiveTab(index)}
                   >
@@ -379,13 +302,13 @@ class Content5 extends BaseContent {
               (tab: ITabs, index: number) => (
                 <div
                   className={
-                    this.decorateCSS("tab") +
-                    " " +
-                    (this.getComponentState("activeTab") == index &&
-                      this.decorateCSS("active")) +
-                    " " +
-                    (this.getComponentState("startedIndex") == index &&
-                      this.decorateCSS("start"))
+                    `${this.decorateCSS("tab")} ${this.getComponentState("activeTab") === index
+                      ? this.decorateCSS("active")
+                      : ""
+                    } ${this.getComponentState("startedIndex") === index
+                      ? this.decorateCSS("start")
+                      : ""
+                    }`
                   }
                 >
                   <Base.VerticalContent className={this.decorateCSS("content")}>
@@ -411,12 +334,12 @@ class Content5 extends BaseContent {
                         {tab.description}
                       </Base.SectionDescription>
                     )}
-                    {this.castToString(tab.buttonText) && (
-                      <Base.Button className={this.decorateCSS("button")}>
-                        <ComposerLink path={tab.buttonUrl}>
-                          {tab.buttonText}
-                        </ComposerLink>
-                      </Base.Button>
+                    {this.castToString(tab.button.text) && (
+                      <ComposerLink path={tab.button.url}>
+                        <Base.Button buttonType={tab.button.type} className={this.decorateCSS("button")}>
+                          {tab.button.text}
+                        </Base.Button>
+                      </ComposerLink>
                     )}
                   </Base.VerticalContent>
                 </div>

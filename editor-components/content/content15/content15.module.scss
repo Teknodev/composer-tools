@@ -257,7 +257,7 @@
 }
 
 
-@media screen and (max-width: $composer-tablet-width-lg) {
+@container (max-width: #{$composer-tablet-width-lg}) {
     .container{
         .max-content{
             flex-direction: column;
@@ -309,7 +309,7 @@
     }
 }
 
-@media screen and (max-width: $composer-phone-width) {
+@container (max-width: #{$composer-phone-width}) {
     .container{
         .max-content{
             .tab{

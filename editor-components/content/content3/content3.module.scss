@@ -108,7 +108,7 @@
     }
 }
 
-@media only screen and (max-width: $composer-tablet-width-lg) {
+@container (max-width: #{$composer-tablet-width-lg}) {
     .container {
         .max-content {
             .grid-container{

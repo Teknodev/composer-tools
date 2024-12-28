@@ -285,10 +285,10 @@ class Content15 extends BaseContent {
                   isTabVisible && (
                     <div
                       className={
-                        this.decorateCSS("tab-button") +
-                        " " +
-                        (this.getComponentState("activeTab") == index &&
-                          this.decorateCSS("active"))
+                        `${this.decorateCSS("tab-button")} ${this.getComponentState("activeTab") === index
+                          ? this.decorateCSS("active")
+                          : ""
+                        }`
                       }
                       onClick={() => this.setActiveTab(index)}
                     >
@@ -333,13 +333,13 @@ class Content15 extends BaseContent {
               return (
                 <div
                   className={
-                    this.decorateCSS("tab") +
-                    " " +
-                    (this.getComponentState("activeTab") == index &&
-                      this.decorateCSS("active")) +
-                    " " +
-                    (this.getComponentState("startedIndex") == index &&
-                      this.decorateCSS("start"))
+                    `${this.decorateCSS("tab")} ${this.getComponentState("activeTab") === index
+                      ? this.decorateCSS("active")
+                      : ""
+                    } ${this.getComponentState("startedIndex") === index
+                      ? this.decorateCSS("start")
+                      : ""
+                    }`
                   }
                 >
                   <div className={this.decorateCSS("content")}>
@@ -356,11 +356,7 @@ class Content15 extends BaseContent {
                                 <div className={this.decorateCSS("box1-text")}>
                                   {tab.image_container.box1_text}
                                 </div>
-                                <div
-                                  className={this.decorateCSS(
-                                    "box1-lower-text"
-                                  )}
-                                >
+                                <div className={this.decorateCSS("box1-lower-text")}>
                                   {tab.image_container.box1_lowerText}
                                 </div>
                               </div>
@@ -421,11 +417,7 @@ class Content15 extends BaseContent {
                                 iconContainer.icon || isTextVisible;
                               return (
                                 isIconContainerVisible && (
-                                  <div
-                                    className={this.decorateCSS(
-                                      "icon-container"
-                                    )}
-                                  >
+                                  <div className={this.decorateCSS("icon-container")}>
                                     {iconContainer.icon && (
                                       <ComposerIcon
                                         name={iconContainer.icon}

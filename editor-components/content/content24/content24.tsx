@@ -3,13 +3,13 @@ import { BaseContent } from "../../EditorComponent";
 import styles from "./content24.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type ITabs = {
   tabText: JSX.Element;
   title: JSX.Element;
   description: JSX.Element;
-  buttonText: JSX.Element;
-  buttonUrl: string;
+  button: INPUTS.CastedButton;
   image: string;
 };
 
@@ -76,18 +76,7 @@ class Content24 extends BaseContent {
               value:
                 "Usually, our colleagues don't jump in the air when they hear e-learning but the AI videos created with Writebot have sparked motivation that we haven't seen before.",
             },
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Explore More",
-            },
-            {
-              type: "page",
-              key: "buttonUrl",
-              displayer: "Button Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "Explore More", "", "Primary")
           ],
         },
 
@@ -123,18 +112,7 @@ class Content24 extends BaseContent {
               value:
                 "Usually, our colleagues don't jump in the air when they hear e-learning but the AI videos created with Writebot have sparked motivation that we haven't seen before.",
             },
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Explore More",
-            },
-            {
-              type: "page",
-              key: "buttonUrl",
-              displayer: "Button Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "Explore More", "", "Primary")
           ],
         },
       ],
@@ -192,10 +170,10 @@ class Content24 extends BaseContent {
                 (tab: ITabs, index: number) => (
                   <div
                     className={
-                      this.decorateCSS("tab-button") +
-                      " " +
-                      (this.getComponentState("activeTab") == index &&
-                        this.decorateCSS("active"))
+                      `${this.decorateCSS("tab-button")} ${this.getComponentState("activeTab") === index
+                        ? this.decorateCSS("active")
+                        : ""
+                      }`
                     }
                     onClick={() => this.setActiveTab(index)}
                   >
@@ -208,14 +186,15 @@ class Content24 extends BaseContent {
               (tab: ITabs, index: number) => (
                 <Base.ContainerGrid
                   className={
-                    this.decorateCSS("tab") +
-                    " " +
-                    (this.getComponentState("activeTab") == index &&
-                      this.decorateCSS("active"))}
+                    `${this.decorateCSS("tab")} ${this.getComponentState("activeTab") === index
+                      ? this.decorateCSS("active")
+                      : ""
+                    }`
+                  }
                 >
                   {(this.castToString(tab.title) ||
                     this.castToString(tab.description) ||
-                    this.castToString(tab.buttonText)) && (
+                    this.castToString(tab.button.text)) && (
                       <Base.VerticalContent
                         className={this.decorateCSS("content")}
                       >
@@ -230,12 +209,12 @@ class Content24 extends BaseContent {
                           </Base.P>
                         )}
 
-                        {this.castToString(tab.buttonText) && (
-                          <Base.Button className={this.decorateCSS("button")}>
-                            <ComposerLink path={tab.buttonUrl}>
-                              {tab.buttonText}
-                            </ComposerLink>
-                          </Base.Button>
+                        {this.castToString(tab.button.text) && (
+                          <ComposerLink path={tab.button.url}>
+                            <Base.Button buttonType={tab.button.type} className={this.decorateCSS("button")}>
+                              {tab.button.text}
+                            </Base.Button>
+                          </ComposerLink>
                         )}
 
                       </Base.VerticalContent>

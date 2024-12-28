@@ -4,11 +4,7 @@ import { BaseContent } from "../../EditorComponent";
 import styles from "./content19.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
-
-type ButtonProps = {
-  buttonText: JSX.Element;
-  url: string;
-};
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 class Content19 extends BaseContent {
   constructor(props?: any) {
@@ -84,46 +80,10 @@ class Content19 extends BaseContent {
       additionalParams: {
         maxElementCount: 2,
       },
-      displayer: "Button ",
+      displayer: "Buttons",
       value: [
-        {
-          type: "object",
-          key: "button",
-          displayer: "Button",
-          value: [
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Next",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Button Link",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "button",
-          displayer: "Button",
-          value: [
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Back",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Button Link",
-              value: "",
-            },
-          ],
-        },
+        INPUTS.BUTTON("button", "Button", "Next", "", "Primary"),
+        INPUTS.BUTTON("button", "Button", "Back", "", "Primary")
       ],
     });
 
@@ -145,12 +105,15 @@ class Content19 extends BaseContent {
     const titleText = this.getPropValue("title-text");
     const closeIcon: string = this.getPropValue("closeIcon");
 
+    const buttonItem = this.castToObject<INPUTS.CastedButton[]>("buttons");
+
     const displayContent =
       this.castToString(titleText) ||
       this.castToString(description) ||
       this.castToString(authorDescription) ||
       this.castToString(authorName) ||
-      this.castToObject<ButtonProps[]>("buttons").length > 0;
+      buttonItem.length > 0;
+
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -230,26 +193,27 @@ class Content19 extends BaseContent {
                     )}
                   </div>
                 </Base.Row>
-                <Base.Row className={this.decorateCSS("button-container")}>
-                  {this.castToObject<ButtonProps[]>("buttons").map(
-                    (buttonObj, index) => {
-                      const buttonData = buttonObj;
-                      const buttonText = this.castToString(
-                        buttonData.buttonText
-                      );
-                      const url = buttonData.url;
-                      if (buttonText.trim() !== "") {
-                        return (
-                          <ComposerLink key={index} path={url}>
-                            <Base.Button className={this.decorateCSS("button")}>
-                              {buttonText}
-                            </Base.Button>
-                          </ComposerLink>
+                {buttonItem.length > 0 && (
+                  <Base.Row className={this.decorateCSS("button-container")}>
+                    {buttonItem.map(
+                      (buttonObj, index: number) => {
+                        const buttonText = this.castToString(
+                          buttonObj.text
                         );
+                        const url = buttonObj.url;
+                        if (buttonText) {
+                          return (
+                            <ComposerLink key={index} path={url}>
+                              <Base.Button buttonType={buttonObj.type} className={this.decorateCSS("button")}>
+                                {buttonObj.text}
+                              </Base.Button>
+                            </ComposerLink>
+                          );
+                        }
                       }
-                    }
-                  )}
-                </Base.Row>
+                    )}
+                  </Base.Row>
+                )}
               </Base.VerticalContent>
             )}
           </Base.ContainerGrid>

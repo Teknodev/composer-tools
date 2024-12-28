@@ -1,3 +1,4 @@
+@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
 .container {
   width: 100%;
   padding: 50px 0;
@@ -37,7 +38,7 @@
   }
 }
 
-@media only screen and (max-width: 768px) {
+@container (max-width: #{$composer-tablet-width-lg}) {
   .container {
     width: 100%;
     padding: 50px 20px;

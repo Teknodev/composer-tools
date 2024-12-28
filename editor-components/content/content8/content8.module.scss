@@ -37,29 +37,10 @@
         color: var(--composer-primary-color);
         text-align: right;
       }
-
-      @media only screen and (max-width: $composer-phone-width-lg) {
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-        gap: var(--composer-gap-xs);
-        .title,
-        .subtitle{
-          text-align: center;
-        }
-      }
     }
 
     .cards-box {
       width: 100%;
-      @media only screen and (max-width: 769px) {
-        margin-top: var(--composer-gap-md);
-
-        .card {
-          width: 100% !important;
-        }
-      }
-
       .card {
         display: flex;
         flex-direction: column;
@@ -153,6 +134,29 @@
           margin: auto 0px 0px;
           color: var(--composer-font-color-primary);
         }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width-lg}){
+  .container{
+    .max-content{
+      .up-page{
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start; 
+        gap: var(--composer-gap-xs);
+        .title,
+        .subtitle{
+          text-align: center;
+        }
+      }
+      .cards-box{
+          margin-top: var(--composer-gap-md);
+          .card {
+            width: 100% !important;
+          } 
       }
     }
   }

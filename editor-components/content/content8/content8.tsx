@@ -203,7 +203,7 @@ class Content8 extends BaseContent {
                         <img
                           className={this.decorateCSS("image")}
                           src={card.image}
-                          alt=""
+                          alt={card.image}
                         />
                       )}
                     </div>

@@ -209,13 +209,13 @@ class Content18 extends BaseContent {
     const image1 = this.getPropValue("image1");
     const image2 = this.getPropValue("image2");
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
             {(image1 || image2) && (
               <div className={this.decorateCSS("left-page")}>
                 {image1 && (
-                  <div className={image2 ? this.decorateCSS("up-image") : this.decorateCSS("without-image2")}>
+                  <div className={`${this.decorateCSS("up-image")} ${!image2 && this.decorateCSS("without-image2")}`}>
                     <img
                       className={this.decorateCSS("image1")}
                       src={this.getPropValue("image1")}
@@ -224,7 +224,7 @@ class Content18 extends BaseContent {
                   </div>
                 )}
                 {image2 && (
-                  <div className={image1 ? this.decorateCSS("down-image") : this.decorateCSS("without-image1")}>
+                  <div className={`${this.decorateCSS("down-image")} ${!image1 && this.decorateCSS("without-image1")}`}>
                     <img
                       className={this.decorateCSS("image2")}
                       src={this.getPropValue("image2")}
@@ -239,7 +239,7 @@ class Content18 extends BaseContent {
                     </div>
                     {this.getComponentState("is_video_visible") && (
                       <div
-                        className={this.decorateCSS(this.getPropValue("image1") ? "down-image-video" : "without-image1")}
+                        className={this.decorateCSS("without-image1")}
                         onClick={() => this.setComponentState("is_video_visible", false)}
                       >
                         <div className={this.decorateCSS("player")}>
@@ -327,13 +327,12 @@ class Content18 extends BaseContent {
                       )
                     )}
                   </Base.Row>
-
                 )}
               </Base.VerticalContent>
             )}
           </div>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

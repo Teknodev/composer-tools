@@ -10,6 +10,10 @@ interface ListItem {
   title: string;
   description: string;
 }
+interface Icon {
+  icon: string;
+  link: string;
+}
 class Content11 extends BaseContent {
   constructor(props?: any) {
     super(props, styles);
@@ -195,7 +199,7 @@ class Content11 extends BaseContent {
     const image = this.getPropValue("image");
     const title = this.getPropValue("sectionTitle");
     const icon = this.getPropValue("icon");
-    const rightItems = this.getPropValue("right-items");
+    const rightItems = this.castToObject<Icon[]>("right-items")
     const textContent = this.castToObject<ListItem[]>("items");
 
     return (
@@ -203,20 +207,22 @@ class Content11 extends BaseContent {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {title && (
             <Base.VerticalContent className={this.decorateCSS("heading")}>
-              <Base.SectionTitle className={this.decorateCSS("section-title")}>
-                {this.getPropValue("sectionTitle")}
-              </Base.SectionTitle>
-              {icon && (
-                <ComposerIcon
-                  propsIcon={{ className: this.decorateCSS("icon") }}
-                  name={this.getPropValue("icon")}
-                />
-              )}
+              <Base.Row className={this.decorateCSS("title")}>
+                <Base.SectionTitle className={this.decorateCSS("section-title")}>
+                  {this.getPropValue("sectionTitle")}
+                </Base.SectionTitle>
+                {icon && (
+                  <ComposerIcon
+                    propsIcon={{ className: this.decorateCSS("icon") }}
+                    name={this.getPropValue("icon")}
+                  />
+                )}
+              </Base.Row>
             </Base.VerticalContent>
           )}
           <Base.ContainerGrid className={this.decorateCSS("content")}>
             {image && (
-              <Base.GridCell className={`${!textContent.length ? this.decorateCSS("no-content") : ""} ${this.decorateCSS("image-box")}`}>
+              <Base.GridCell className={`${this.decorateCSS("image-box")} ${!textContent.length ? this.decorateCSS("no-content") : ""}`}>
                 <img
                   className={this.decorateCSS("image")}
                   src={image}
@@ -245,13 +251,13 @@ class Content11 extends BaseContent {
           </Base.ContainerGrid>
           {rightItems.length > 0 && (
             <div className={this.decorateCSS("icons")}>
-              {rightItems.map((leftItem: any) => {
+              {rightItems.map((icons: Icon) => {
                 return (
-                  leftItem.value[0].value && (
-                    <ComposerLink path={leftItem.value[1].value}>
+                  icons.icon && (
+                    <ComposerLink path={icons.link}>
                       <ComposerIcon
                         propsIcon={{ className: this.decorateCSS("Icon") }}
-                        name={leftItem.value[0].value}
+                        name={icons.icon}
                       />
                     </ComposerLink>
                   )

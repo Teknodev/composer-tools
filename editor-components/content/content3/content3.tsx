@@ -182,7 +182,7 @@ class Content3 extends BaseContent {
                     <img
                       className={this.decorateCSS("image")}
                       src={card.image}
-                      alt=""
+                      alt={card.image}
                     />
                   </div>
                   <Base.VerticalContent

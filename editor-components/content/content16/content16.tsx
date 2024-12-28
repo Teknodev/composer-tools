@@ -368,19 +368,15 @@ class Content16 extends BaseContent {
                 <div className={this.decorateCSS("inner-right-link")}>
                   <div
                     className={
-                      this.decorateCSS("inner-div") +
-                      " " +
-                      (disableAnimation ? this.decorateCSS("no-animation") : "")
-                    }
-                  >
+                      `${this.decorateCSS("inner-div")} ${disableAnimation ? this.decorateCSS("no-animation") : ""
+                      }`
+                    }>
                     {text}
                   </div>
                   <ComposerIcon
                     name={rightTextArrow}
                     propsIcon={{
-                      className: disableAnimation
-                        ? this.decorateCSS("no-animation-ico")
-                        : this.decorateCSS("icon"),
+                      className: `${this.decorateCSS("icon")} ${disableAnimation && this.decorateCSS("no-animation")}`
                     }}
                   ></ComposerIcon>
                 </div>
@@ -404,9 +400,8 @@ class Content16 extends BaseContent {
           </header>
 
           <main
-            className={`${this.decorateCSS("wrapper")} ${
-              items.length <= 3 ? this.decorateCSS("no-slider") : ""
-            }`}
+            className={`${this.decorateCSS("wrapper")} ${items.length <= 3 ? this.decorateCSS("no-slider") : ""
+              }`}
           >
             {prevIcon && items.length > 3 && (
               <button
@@ -434,15 +429,13 @@ class Content16 extends BaseContent {
                     >
                       {items.map((item: CardType, index: number) => (
                         <article
-                          className={`${this.decorateCSS("slider-inner-div")} ${
-                            this.getComponentState("prevSlide") === index
-                              ? this.decorateCSS("prevSlide")
-                              : ""
-                          } ${
-                            this.getComponentState("nextSlide") === index
+                          className={`${this.decorateCSS("slider-inner-div")} ${this.getComponentState("prevSlide") === index
+                            ? this.decorateCSS("prevSlide")
+                            : ""
+                            } ${this.getComponentState("nextSlide") === index
                               ? this.decorateCSS("nextSlide")
                               : ""
-                          }`}
+                            }`}
                           key={index}
                         >
                           <div className={this.decorateCSS("content-div")}>
@@ -462,33 +455,32 @@ class Content16 extends BaseContent {
                             )}
                             {(this.castToString(item.imageSubtitle) ||
                               this.castToString(item.imageTitle)) && (
-                              <Base.VerticalContent
-                                className={this.decorateCSS("item-page")}
-                              >
-                                {this.castToString(item.imageSubtitle) && (
-                                  <Base.P
-                                    className={this.decorateCSS("first-item")}
-                                  >
-                                    {item.imageSubtitle}
-                                  </Base.P>
-                                )}
-                                {this.castToString(item.imageTitle) && (
-                                  <Base.H2
-                                    className={`${this.decorateCSS(
-                                      "item-title"
-                                    )} ${
-                                      disableAnimation
+                                <Base.VerticalContent
+                                  className={this.decorateCSS("item-page")}
+                                >
+                                  {this.castToString(item.imageSubtitle) && (
+                                    <Base.P
+                                      className={this.decorateCSS("first-item")}
+                                    >
+                                      {item.imageSubtitle}
+                                    </Base.P>
+                                  )}
+                                  {this.castToString(item.imageTitle) && (
+                                    <Base.H2
+                                      className={`${this.decorateCSS(
+                                        "item-title"
+                                      )} ${disableAnimation
                                         ? this.decorateCSS(
-                                            "no-animation-item-title"
-                                          )
+                                          "no-animation-item-title"
+                                        )
                                         : ""
-                                    }`}
-                                  >
-                                    {item.imageTitle}
-                                  </Base.H2>
-                                )}
-                              </Base.VerticalContent>
-                            )}
+                                        }`}
+                                    >
+                                      {item.imageTitle}
+                                    </Base.H2>
+                                  )}
+                                </Base.VerticalContent>
+                              )}
                           </div>
                         </article>
                       ))}

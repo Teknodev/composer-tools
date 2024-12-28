@@ -187,7 +187,7 @@ class Content10 extends BaseContent {
   render() {
     const closeIcon: string = this.getPropValue("closeIcon");
     return (
-      <Base.Container className={`${!this.getPropValue("cover_image") ? this.decorateCSS("no-image") : ""} ${this.decorateCSS("container")}`}>
+      <Base.Container className={`${this.decorateCSS("container")} ${!this.getPropValue("cover_image") ? this.decorateCSS("no-image") : ""}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ListGrid
             gridCount={{ pc: 2 }}
