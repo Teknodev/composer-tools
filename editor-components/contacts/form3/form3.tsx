@@ -7,6 +7,7 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { TypeUsableComponentProps } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Left = {
   contactName: string;
@@ -494,21 +495,7 @@ class Form3Page extends BaseContacts {
       additionalParams: {
         maxElementCount: 2,
       },
-      value: [
-        {
-          type: "object",
-          key: "button",
-          displayer: "button",
-          value: [
-            {
-              type: "string",
-              key: "button_text",
-              displayer: "Button Text",
-              value: "Contact Us",
-            },
-          ],
-        },
-      ],
+      value: [INPUTS.BUTTON("button", "Button", "Contact Us", "", "Primary")],
     });
   }
 
@@ -680,6 +667,8 @@ class Form3Page extends BaseContacts {
                       validationSchema={getSchema()}
                       onSubmit={(data, { resetForm }) => {
                         const formData = getFormData(data);
+                        console.log("Form Submitted Data:", data); // Orijinal ham veriler
+                        console.log("Converted Form Data:", formData); // Dönüştürülmüş veriler
                         this.insertForm("Contact Us", formData);
                         resetForm();
                       }}
@@ -725,6 +714,21 @@ class Form3Page extends BaseContacts {
                                   )}
                                 </div>
                               ))}
+                              <div className={this.decorateCSS("form-button")}>
+                                {buttons.length > 0 &&
+                                  buttons.map((buttonText: any, index: number) => {
+                                    const buttonExist = this.castToString(buttonText.getPropValue("text"));
+                                    return (
+                                      buttonExist && (
+                                        <div className={this.decorateCSS("buttonSide")} key={index}>
+                                          <Base.Button buttonType={buttonText.getPropValue("type")} className={this.decorateCSS("submit-button")} type="submit">
+                                            {buttonText.getPropValue("text")}
+                                          </Base.Button>
+                                        </div>
+                                      )
+                                    );
+                                  })}
+                              </div>
                             </div>
                           )}
                         </Form>
@@ -732,18 +736,6 @@ class Form3Page extends BaseContacts {
                     </Formik>
                   </div>
                 )}
-                <div className={this.decorateCSS("form-button")}>
-                  {buttons.length > 0 &&
-                    buttons.map((buttonText: any, index: number) => {
-                      return (
-                        <div className={this.decorateCSS("buttonSide")} key={index}>
-                          <Base.Button className={this.decorateCSS("submit-button")} type="submit">
-                            {buttonText.getPropValue("button_text", { as_string: true })}
-                          </Base.Button>
-                        </div>
-                      );
-                    })}
-                </div>
               </div>
             )}
           </div>

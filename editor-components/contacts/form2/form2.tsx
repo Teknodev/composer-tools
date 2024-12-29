@@ -5,10 +5,7 @@ import { ErrorMessage, Form, Formik } from "formik";
 import * as Yup from "yup";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
-
-export type Button = {
-  buttonText?: string;
-};
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 class Form2Page extends BaseContacts {
   constructor(props?: any) {
@@ -111,7 +108,7 @@ class Form2Page extends BaseContacts {
               type: "select",
               key: "type",
               displayer: "Type",
-              value: "Text",
+              value: "E-mail",
               additionalParams: {
                 selectItems: ["Text", "E-mail", "Number", "Text Area"],
               },
@@ -151,7 +148,7 @@ class Form2Page extends BaseContacts {
               type: "select",
               key: "type",
               displayer: "Type",
-              value: "Text",
+              value: "Number",
               additionalParams: {
                 selectItems: ["Text", "E-mail", "Number", "Text Area"],
               },
@@ -200,12 +197,8 @@ class Form2Page extends BaseContacts {
         },
       ],
     });
-    this.addProp({
-      type: "string",
-      key: "buttonText",
-      displayer: "Button Text",
-      value: "Contact Us",
-    });
+
+    this.addProp(INPUTS.BUTTON("button", "Button", "Contact Us", "", "Primary"));
   }
 
   getName(): string {
@@ -216,12 +209,16 @@ class Form2Page extends BaseContacts {
     const inputs = this.getPropValue("inputs");
     const initialValue = getInitialValue();
     const title = this.getPropValue("title");
-    const titleExist = !!this.getPropValue("title", { as_string: true });
-    const buttonText = this.getPropValue("buttonText");
-    const buttonTextExist = !!this.getPropValue("buttonText", { as_string: true });
+    const titleExist = this.castToString(this.getPropValue("title"));
+
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+
+    const buttonText = button.text;
+    const buttonTextExist = this.castToString(button.text);
 
     const imageExist = this.getPropValue("background-img");
     const overlay = this.getPropValue("overlay");
+
     function getInputType(type: string): string {
       switch (type) {
         case "Text Area":
@@ -240,6 +237,7 @@ class Form2Page extends BaseContacts {
       const name = `input_${indexOfInput}`;
       return name;
     }
+
     function getInitialValue() {
       let value: any = {};
       inputs.map((input: TypeUsableComponentProps, indexOfInput: number) => {
@@ -248,6 +246,7 @@ class Form2Page extends BaseContacts {
 
       return value;
     }
+
     const getSchema = () => {
       let schema = Yup.object().shape({});
 
@@ -277,17 +276,80 @@ class Form2Page extends BaseContacts {
 
       return schema;
     };
+
+    // const getSchema = () => {
+    //   let schema = Yup.object().shape({});
+
+    //   const inputs = this.getPropValue("inputs");
+
+    //   inputs.forEach((input: TypeUsableComponentProps, indexOfInput: number) => {
+    //     if (!input["getPropValue"]) return;
+
+    //     const isRequired = input.getPropValue("is_required");
+    //     const inputType = getInputType(input.getPropValue("type"));
+
+    //     let fieldSchema: Yup.StringSchema<string | null | undefined> = Yup.string();
+
+    //     // Eğer required ise required mesajını ekle
+    //     if (isRequired) {
+    //       const requiredMessage = input.getPropValue("required_error_message");
+    //       fieldSchema = fieldSchema.required(requiredMessage);
+    //     } else {
+    //       fieldSchema = fieldSchema.nullable();
+    //     }
+
+    //     // E-mail validasyonu
+    //     if (inputType === "email") {
+    //       const typeErrorMessage = input.getPropValue("type_error_message");
+    //       fieldSchema = fieldSchema.email(typeErrorMessage);
+    //     }
+
+    //     // Tel (Telefon) validasyonu
+    //     if (inputType === "tel") {
+    //       const typeErrorMessage = input.getPropValue("type_error_message");
+    //       fieldSchema = fieldSchema.matches(/^[0-9]+$/, typeErrorMessage); // Sadece rakamlara izin verir.
+    //     }
+
+    //     // Şemaya ekle
+    //     schema = schema.shape({
+    //       [getInputName(indexOfInput)]: fieldSchema,
+    //     });
+    //   });
+
+    //   return schema;
+    // };
+
+    // function getFormDataWithConvertedKeys(obj: any) {
+    //   const newObj: any = {};
+    //   for (const key in obj) {
+    //     if (Object.prototype.hasOwnProperty.call(obj, key)) {
+    //       let adjustedKey = key.startsWith("_") ? key.slice(1) : key;
+    //       const parts = adjustedKey.split("_");
+    //       let newKey = "";
+    //       for (let i = 1; i < parts.length - 1; i++) {
+    //         newKey += (i > 1 ? "_" : "") + parts[i];
+    //       }
+    //       newObj[newKey] = obj[key];
+    //     }
+    //   }
+    //   return newObj;
+    // }
+
     function getFormDataWithConvertedKeys(obj: any) {
       const newObj: any = {};
       for (const key in obj) {
         if (Object.prototype.hasOwnProperty.call(obj, key)) {
           let adjustedKey = key.startsWith("_") ? key.slice(1) : key;
           const parts = adjustedKey.split("_");
-          let newKey = "";
-          for (let i = 1; i < parts.length - 1; i++) {
-            newKey += (i > 1 ? "_" : "") + parts[i];
+
+          if (parts.length === 2) {
+            newObj[parts[1]] = obj[key];
+          } else if (parts.length > 2) {
+            let newKey = parts.slice(1).join("_");
+            newObj[newKey] = obj[key];
+          } else {
+            newObj[adjustedKey] = obj[key];
           }
-          newObj[newKey] = obj[key];
         }
       }
       return newObj;
@@ -306,9 +368,12 @@ class Form2Page extends BaseContacts {
                     initialValues={initialValue}
                     validationSchema={getSchema()}
                     onSubmit={(data, { resetForm }) => {
+                      console.log("Form Submitted Data:", data); // Gönderilen veriler burada loglanır.
                       const formData = getFormDataWithConvertedKeys(data);
-                      this.insertForm("Contact Me", formData);
-                      resetForm();
+                      console.log("Converted Form Data:", formData); // Key'leri dönüştürülmüş veri burada loglanır.
+
+                      this.insertForm("Contact Us", formData); // Veriyi kaydetme işlemi.
+                      resetForm(); // Formu sıfırlama işlemi.
                     }}
                   >
                     {({ handleChange, values }) => (
@@ -343,7 +408,7 @@ class Form2Page extends BaseContacts {
                         ))}
                         {buttonTextExist && (
                           <div className={this.decorateCSS("button-div")}>
-                            <Base.Button className={this.decorateCSS("submit-button")} type="submit">
+                            <Base.Button buttonType={button.type} className={this.decorateCSS("submit-button")} type="submit">
                               {buttonText}
                             </Base.Button>
                           </div>

@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import { BaseContacts, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./form6.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 class Form6 extends BaseContacts {
   constructor(props?: any) {
@@ -339,12 +340,7 @@ class Form6 extends BaseContacts {
       ],
     });
 
-    this.addProp({
-      type: "string",
-      key: "button_text",
-      displayer: "Button Text",
-      value: "Send Email",
-    });
+    this.addProp(INPUTS.BUTTON("button", "Button", "Send Email", "", "Primary"));
   }
 
   getName(): string {
@@ -352,12 +348,14 @@ class Form6 extends BaseContacts {
   }
 
   render() {
-    const titleExist = !!this.getPropValue("title", { as_string: true });
-    const descriptionExist = !!this.getPropValue("description", { as_string: true });
+    const titleExist = this.castToString(this.getPropValue("title"));
+    const descriptionExist = this.castToString(this.getPropValue("description"));
     const isContactVisible = titleExist || descriptionExist;
 
-    const locationExist = !!this.getPropValue("location", { as_string: true });
-    const locationDetailsExist = !!this.getPropValue("locationDetails", { as_string: true });
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+
+    const locationExist = this.castToString(this.getPropValue("location"));
+    const locationDetailsExist = this.castToString(this.getPropValue("locationDetails"));
     const isAddressVisible = locationExist || locationDetailsExist;
 
     const inputItems = this.getPropValue("input_items")!;
@@ -487,7 +485,9 @@ class Form6 extends BaseContacts {
                   initialValues={getInitialValue()}
                   validationSchema={getSchema()}
                   onSubmit={(data, { resetForm }) => {
+                    console.log(data, "data");
                     const formData = getFormDataWithConvertedKeys(data);
+                    console.log(formData, "formdata");
                     this.insertForm("Contact Me", formData);
                     resetForm();
                   }}
@@ -532,8 +532,8 @@ class Form6 extends BaseContacts {
                           </div>
                         </div>
                       ))}
-                      <Base.Button className={this.decorateCSS("submit-button")} type="submit">
-                        {this.getPropValue("button_text")}
+                      <Base.Button buttonType={button.type} className={this.decorateCSS("submit-button")} type="submit">
+                        {button.text}
                       </Base.Button>
                     </Form>
                   )}

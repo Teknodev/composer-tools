@@ -1,9 +1,10 @@
 import * as React from "react";
-import { BaseContacts } from "../../EditorComponent";
+import { BaseContacts, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./form7.module.scss";
 import { ErrorMessage, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 class Form7 extends BaseContacts {
   constructor(props?: any) {
@@ -21,12 +22,9 @@ class Form7 extends BaseContacts {
       displayer: "Badge",
       value: "CONTACT",
     });
-    this.addProp({
-      type: "string",
-      key: "button_text",
-      displayer: "Button Text",
-      value: "Submit",
-    });
+
+    this.addProp(INPUTS.BUTTON("button", "Button", "Submit", "", "Primary"));
+
     this.addProp({
       type: "array",
       key: "first_inputs",
@@ -378,9 +376,12 @@ class Form7 extends BaseContacts {
   }
 
   render() {
-    const badge = this.getPropValue("badge", { as_string: true });
-    const title = this.getPropValue("title", { as_string: true });
-    const buttonText = this.getPropValue("button_text", { as_string: true });
+    const badge = this.castToString(this.getPropValue("badge"));
+    const title = this.castToString(this.getPropValue("title"));
+
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+
+    const buttonText = this.castToString(button.text);
 
     const firstInputs = this.getPropValue("first_inputs");
     const secondInputs = this.getPropValue("second_inputs");
@@ -402,15 +403,16 @@ class Form7 extends BaseContacts {
       }
     }
 
-    function getInputName(indexOfInput: number, prefix: string): string {
-      return `${prefix}_input_${indexOfInput}`;
+    function getInputName(indexOfInput: number): string {
+      return `input_${indexOfInput}`;
     }
 
     function getInitialValue(inputs: any[]) {
       let value: any = {};
-      inputs.forEach((input: any, indexOfInput: number) => {
-        value[getInputName(indexOfInput, input.prefix)] = "";
+      inputs.map((input: TypeUsableComponentProps, indexOfInput: number) => {
+        value[getInputName(indexOfInput)] = "";
       });
+
       return value;
     }
 
@@ -429,7 +431,7 @@ class Form7 extends BaseContacts {
         if (isRequired) validator = validator.required(requiredMessage);
 
         schema = schema.shape({
-          [getInputName(indexOfInput, input.prefix)]: validator,
+          [getInputName(indexOfInput)]: validator,
         });
       });
 
@@ -443,12 +445,19 @@ class Form7 extends BaseContacts {
           let adjustedKey = key.startsWith("_") ? key.slice(1) : key;
           const parts = adjustedKey.split("_");
           let newKey = "";
-          for (let i = 2; i < parts.length - 1; i++) {
-            newKey += (i > 2 ? "_" : "") + parts[i];
+
+          if (parts.length > 2) {
+            for (let i = 2; i < parts.length; i++) {
+              newKey += (i > 2 ? "_" : "") + parts[i];
+            }
+            newObj[newKey] = obj[key];
+          } else {
+            newObj[adjustedKey] = obj[key];
           }
-          newObj[newKey] = obj[key];
         }
       }
+
+      console.log("Adjusted Form Data:", newObj);
       return newObj;
     }
 
@@ -468,6 +477,9 @@ class Form7 extends BaseContacts {
                 validationSchema={getSchema(allInputs)}
                 onSubmit={(data, { resetForm }) => {
                   const formData = getFormDataWithConvertedKeys(data);
+
+                  console.log("Original Form Data:", data);
+                  console.log("Converted Form Data:", formData);
                   this.insertForm("Contact Me", formData);
                   resetForm();
                 }}
@@ -480,16 +492,9 @@ class Form7 extends BaseContacts {
                           {firstInputs.map((input: any, index: number) => (
                             <div key={index} className={this.decorateCSS("input-container")}>
                               {getInputType(input.getPropValue("type")) === "textarea" ? (
-                                <textarea
-                                  value={values[getInputName(index, input.prefix)]}
-                                  placeholder=" "
-                                  className={`${this.decorateCSS("input")} ${this.decorateCSS("textarea")}`}
-                                  rows={12}
-                                  onChange={handleChange}
-                                  name={getInputName(index, input.prefix)}
-                                ></textarea>
+                                <textarea value={values[getInputName(index)]} placeholder=" " className={`${this.decorateCSS("input")} ${this.decorateCSS("textarea")}`} rows={12} onChange={handleChange} name={getInputName(index)}></textarea>
                               ) : getInputType(input.getPropValue("type")) === "select" ? (
-                                <select value={values[getInputName(index, input.prefix)]} onChange={handleChange} name={getInputName(index, input.prefix)} className={`${this.decorateCSS("select")} ${this.decorateCSS("custom-select")}`}>
+                                <select value={values[getInputName(index)]} onChange={handleChange} name={getInputName(index)} className={`${this.decorateCSS("select")} ${this.decorateCSS("custom-select")}`}>
                                   <option value="" disabled hidden>
                                     {input.getPropValue("placeholder")}
                                   </option>
@@ -500,10 +505,10 @@ class Form7 extends BaseContacts {
                                   ))}
                                 </select>
                               ) : (
-                                <input placeholder=" " type={getInputType(input.getPropValue("type"))} onChange={handleChange} value={values[getInputName(index, input.prefix)]} name={getInputName(index, input.prefix)} className={this.decorateCSS("input")} />
+                                <input placeholder=" " type={getInputType(input.getPropValue("type"))} onChange={handleChange} value={values[getInputName(index)]} name={getInputName(index)} className={this.decorateCSS("input")} />
                               )}
                               {getInputType(input.getPropValue("type")) === "select" ? "" : <span className={this.decorateCSS("placeholder")}>{input.getPropValue("placeholder")}</span>}
-                              <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(index, input.prefix)} component={"span"} />
+                              <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(index)} component={"span"} />
                             </div>
                           ))}
                         </div>
@@ -518,16 +523,11 @@ class Form7 extends BaseContacts {
                                   className={`${this.decorateCSS("input")} ${this.decorateCSS("textarea")}`}
                                   rows={12}
                                   onChange={handleChange}
-                                  name={getInputName(index + firstInputs.length, input.prefix)}
-                                  value={values[getInputName(index + firstInputs.length, input.prefix)]}
+                                  name={getInputName(index + firstInputs.length)}
+                                  value={values[getInputName(index + firstInputs.length)]}
                                 ></textarea>
                               ) : getInputType(input.getPropValue("type")) === "select" ? (
-                                <select
-                                  value={values[getInputName(index + firstInputs.length, input.prefix)]}
-                                  onChange={handleChange}
-                                  name={getInputName(index + firstInputs.length, input.prefix)}
-                                  className={`${this.decorateCSS("select")} ${this.decorateCSS("custom-select")}`}
-                                >
+                                <select value={values[getInputName(index + firstInputs.length)]} onChange={handleChange} name={getInputName(index + firstInputs.length)} className={`${this.decorateCSS("select")} ${this.decorateCSS("custom-select")}`}>
                                   <option value="" disabled hidden>
                                     {input.getPropValue("placeholder")}
                                   </option>
@@ -542,19 +542,23 @@ class Form7 extends BaseContacts {
                                   placeholder=" "
                                   type={getInputType(input.getPropValue("type"))}
                                   onChange={handleChange}
-                                  value={values[getInputName(index + firstInputs.length, input.prefix)]}
-                                  name={getInputName(index + firstInputs.length, input.prefix)}
+                                  value={values[getInputName(index + firstInputs.length)]}
+                                  name={getInputName(index + firstInputs.length)}
                                   className={this.decorateCSS("input")}
                                 />
                               )}
                               {getInputType(input.getPropValue("type")) === "select" ? "" : <span className={this.decorateCSS("placeholder")}>{input.getPropValue("placeholder")}</span>}
-                              <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(index + firstInputs.length, input.prefix)} component={"span"} />
+                              <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(index + firstInputs.length)} component={"span"} />
                             </div>
                           ))}
                         </div>
                       )}
                     </div>
-                    {buttonText && <Base.Button className={this.decorateCSS("submit-button")}>{this.getPropValue("button_text")}</Base.Button>}
+                    {buttonText && (
+                      <Base.Button buttonType={button.type} className={this.decorateCSS("submit-button")}>
+                        {button.text}
+                      </Base.Button>
+                    )}
                   </Form>
                 )}
               </Formik>

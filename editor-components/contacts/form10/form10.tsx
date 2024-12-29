@@ -5,6 +5,7 @@ import { BaseContacts } from "../../EditorComponent";
 import styles from "./form10.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 class Form10 extends BaseContacts {
   constructor(props?: any) {
@@ -190,12 +191,9 @@ class Form10 extends BaseContacts {
         },
       ],
     });
-    this.addProp({
-      type: "string",
-      key: "buttonText",
-      displayer: "Button Text",
-      value: "SEND MESSAGE",
-    });
+
+    this.addProp(INPUTS.BUTTON("button", "Button", "SEND MESSAGE", "", "Primary"));
+
     this.addProp({
       type: "string",
       key: "description",
@@ -216,6 +214,8 @@ class Form10 extends BaseContacts {
     const inputItems = this.getPropValue("inputItems")!;
     const buttonTextExist = this.castToString(this.getPropValue("buttonText"));
     const rightItemsExist = inputItems.length > 0 || descriptionExist || buttonTextExist;
+
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
     function toObjectKey(str: string) {
       if (/^\d/.test(str)) {
@@ -384,13 +384,13 @@ class Form10 extends BaseContacts {
                                 <Base.P className={this.decorateCSS("description-text")}>{descriptionExist}</Base.P>
                               </div>
                             )}
-                            {this.getPropValue("buttonText", { as_string: true }) && (
-                              <div className={this.decorateCSS("button-box")}>
-                                <Base.Button className={this.decorateCSS("submit-button")} type="submit">
-                                  <span className={this.decorateCSS("button-text")}>{this.getPropValue("buttonText")}</span>
-                                </Base.Button>
-                              </div>
-                            )}
+                            {this.castToString(button.text)} && (
+                            <div className={this.decorateCSS("button-box")}>
+                              <Base.Button buttonType={button.type} className={this.decorateCSS("submit-button")} type="submit">
+                                <span className={this.decorateCSS("button-text")}>{button.text}</span>
+                              </Base.Button>
+                            </div>
+                            )
                           </div>
                         )}
                       </Form>

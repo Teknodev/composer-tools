@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import styles from "./form11.module.scss";
 import { ErrorMessage, Formik, Form } from "formik";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type ContactItem = {
   text: JSX.Element;
@@ -279,12 +280,7 @@ class Form11Page extends BaseContacts {
       ],
     });
 
-    this.addProp({
-      type: "string",
-      key: "button_text",
-      displayer: "Button Text",
-      value: "Send",
-    });
+    this.addProp(INPUTS.BUTTON("button", "Button", "Send", "", "Primary"));
   }
 
   getName(): string {
@@ -296,6 +292,8 @@ class Form11Page extends BaseContacts {
     const firstTextExist = !!this.getPropValue("first-text", { as_string: true });
     const secondTextExist = !!this.getPropValue("second-text", { as_string: true });
     const contactTexts = this.castToObject<ContactItem[]>("contact-items");
+
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
     const inputItems = this.getPropValue("input-items")!;
 
@@ -420,6 +418,8 @@ class Form11Page extends BaseContacts {
                 validationSchema={getSchema()}
                 onSubmit={(data, { resetForm }) => {
                   const formData = getFormDataWithConvertedKeys(data);
+                  console.log(data, "data");
+                  console.log(formData, "formData");
                   this.insertForm("Contact Me", formData);
                   resetForm();
                 }}
@@ -455,8 +455,8 @@ class Form11Page extends BaseContacts {
                         </div>
                       ))
                     )}
-                    <Base.Button type="submit" className={this.decorateCSS("form-button")}>
-                      {this.getPropValue("button_text")}
+                    <Base.Button buttonType={button.type} type="submit" className={this.decorateCSS("form-button")}>
+                      {button.text}
                     </Base.Button>
                   </Form>
                 )}

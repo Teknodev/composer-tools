@@ -5,6 +5,7 @@ import { ErrorMessage, Formik, Form } from "formik";
 import * as Yup from "yup";
 import { Base } from "../../../composer-base-components/base/base";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 class Form9Page extends BaseContacts {
   constructor(props?: any) {
@@ -326,12 +327,7 @@ class Form9Page extends BaseContacts {
       ],
     });
 
-    this.addProp({
-      type: "string",
-      key: "button-text",
-      displayer: "Button Text",
-      value: "Submit Form",
-    });
+    this.addProp(INPUTS.BUTTON("button", "Button", "Submit Form", "", "Primary"));
   }
 
   getName(): string {
@@ -344,7 +340,7 @@ class Form9Page extends BaseContacts {
 
     inputs.forEach((input: any, index: number) => {
       const label = input.value.find((prop: any) => prop.key === "label")?.value;
-      const key = label.replace(/\s+/g, '_').toLowerCase();
+      const key = label.replace(/\s+/g, "_").toLowerCase();
       const formKey = `input_${index}`;
       newObj[key] = obj[formKey];
     });
@@ -360,14 +356,14 @@ class Form9Page extends BaseContacts {
 
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
-    const buttonText = this.getPropValue("button-text");
+
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
     const titleExist = this.castToString(title);
     const descriptionExist = this.castToString(description);
-    const buttonTextExist = this.castToString(buttonText);
+    const buttonTextExist = this.castToString(button.text);
 
     const rightItemsExist = titleExist || descriptionExist || buttonTextExist || inputs.length > 0;
-
 
     function getInputType(type: string): string {
       switch (type) {
@@ -429,17 +425,17 @@ class Form9Page extends BaseContacts {
     };
 
     return (
-      <Base.Container
-        className={this.decorateCSS("container")}
-      >
+      <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
-            {imageExist &&
-              <div className={`${this.decorateCSS("image-container")} 
-              ${!rightItemsExist && this.decorateCSS("image-full-width")}`}>
+            {imageExist && (
+              <div
+                className={`${this.decorateCSS("image-container")} 
+              ${!rightItemsExist && this.decorateCSS("image-full-width")}`}
+              >
                 <img className={this.decorateCSS("image")} src={this.getPropValue("image")} alt="contact" />
               </div>
-            }
+            )}
             {rightItemsExist && (
               <div
                 className={`
@@ -459,14 +455,15 @@ class Form9Page extends BaseContacts {
                     validationSchema={getSchema()}
                     onSubmit={(data, { resetForm }) => {
                       const formData = this.getFormDataWithConvertedKeys(data);
-                      this.insertForm("Contact Me", formData);
+                      console.log(data, "data");
+                      console.log(formData, "formData");
+                      this.insertForm("Contact Us", formData);
                       resetForm();
                     }}
                   >
                     {({ handleChange, values }) => (
                       <Form className={this.decorateCSS("form")}>
                         {this.getPropValue("inputs").map((input: any, index: number) => {
-
                           return (
                             <div
                               key={index}
@@ -474,13 +471,9 @@ class Form9Page extends BaseContacts {
                               ${this.decorateCSS("form-item")}
                               ${input.getPropValue("isFull") ? this.decorateCSS("full") : ""}`}
                             >
-                              {this.castToString(input.getPropValue("label")) &&
-                                <label className={this.decorateCSS("form-item-label")}>
-                                  {input.getPropValue("label")}
-                                </label>}
+                              {this.castToString(input.getPropValue("label")) && <label className={this.decorateCSS("form-item-label")}>{input.getPropValue("label")}</label>}
 
                               <div className={this.decorateCSS("input-container")}>
-
                                 {input.getPropValue("type") == "Text Area" ? (
                                   <textarea
                                     id={getInputName(index)}
@@ -493,8 +486,7 @@ class Form9Page extends BaseContacts {
                                   />
                                 ) : (
                                   <>
-                                    <ComposerIcon name={(input.getPropValue("icon"))}
-                                      propsIcon={{ className: this.decorateCSS("input-icon") }} />
+                                    <ComposerIcon name={input.getPropValue("icon")} propsIcon={{ className: this.decorateCSS("input-icon") }} />
 
                                     <input
                                       id={getInputName(index)}
@@ -510,13 +502,12 @@ class Form9Page extends BaseContacts {
                                 <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(index)} component={"span"} />
                               </div>
                             </div>
-
-                          )
+                          );
                         })}
                         {buttonTextExist && (
                           <div className={this.decorateCSS("button-div")}>
-                            <Base.Button className={this.decorateCSS("submit-button")} type="submit">
-                              {buttonText}
+                            <Base.Button buttonType={button.type} className={this.decorateCSS("submit-button")} type="submit">
+                              {button.text}
                             </Base.Button>
                           </div>
                         )}
