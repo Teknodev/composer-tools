@@ -1118,7 +1118,6 @@ class PricingMultipleTwo extends BasePricingTable {
 
                               return (
                                 (listValue || iconValue) && (
-                                  // <div key={listItemIndex} className={enableValue ? this.decorateCSS("list-item") : this.decorateCSS("list-item-disabled")}>
                                   <div key={listItemIndex} className={`${this.decorateCSS("list-item")} ${!enableValue && this.decorateCSS("list-item-disabled")}`}>
                                     <ComposerIcon
                                       propsIcon={{

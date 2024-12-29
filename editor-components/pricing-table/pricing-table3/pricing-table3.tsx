@@ -337,7 +337,6 @@ class PricingTable3 extends BasePricingTable {
     const titleExist = this.castToString(this.getPropValue("title"));
     const descExist = this.castToString(this.getPropValue("description"));
     const buttonExist = this.castToString(featuredButton.text);
-    console.log(buttonExist, "buttonExist");
     const hasCards = cards?.length > 0;
     const hasVisibleTag = cards?.some((card) => card.tagSettings.showTag);
 

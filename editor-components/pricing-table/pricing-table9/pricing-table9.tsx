@@ -751,8 +751,8 @@ class PricingTable9 extends BasePricingTable {
       ],
     };
 
-    const titleExist = this.getPropValue("title", { as_string: true });
-    const descriptionExist = this.getPropValue("description", { as_string: true });
+    const titleExist = this.castToString(this.getPropValue("title"));
+    const descriptionExist = this.castToString(this.getPropValue("description"));
 
     return (
       <Base.Container className={this.decorateCSS("container")}>

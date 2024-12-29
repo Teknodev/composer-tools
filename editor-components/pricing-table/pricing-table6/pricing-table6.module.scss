@@ -274,7 +274,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
   }
 }
 
-@media only screen and (max-width: $composer-tablet-width) {
+@container (max-width: #{$composer-tablet-width-lg}) {
   .container {
     .max-content {
       align-items: center;
@@ -292,7 +292,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
   }
 }
 
-@media only screen and (max-width: $composer-phone-width) {
+@container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
       .page {

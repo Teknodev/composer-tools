@@ -896,12 +896,12 @@ class PricingTable7 extends BasePricingTable {
     const planType = this.getComponentState("plan_type");
     const monthly_plans = this.castToObject<MonthlyPlan[]>("monthly_plans");
     const yearly_plans = this.castToObject<YearlyPlan[]>("yearly_plans");
-    const monthlyText = this.getPropValue("text", { as_string: true });
-    const yearlyText = this.getPropValue("text1", { as_string: true });
-    const subtitle = this.getPropValue("subtitle", { as_string: true });
-    const title = this.getPropValue("title", { as_string: true });
-    const description = this.getPropValue("description", { as_string: true });
-    const isHoverActive = this.getPropValue("isHoverActive", { as_string: true });
+    const monthlyText = this.castToString(this.getPropValue("text"));
+    const yearlyText = this.castToString(this.getPropValue("text1"));
+    const subtitle = this.castToString(this.getPropValue("subtitle"));
+    const title = this.castToString(this.getPropValue("title"));
+    const description = this.castToString(this.getPropValue("description"));
+    const isHoverActive = this.getPropValue("isHoverActive");
 
     const line = this.getPropValue("line");
 
@@ -972,7 +972,7 @@ class PricingTable7 extends BasePricingTable {
 
                     {this.castToString(pricing.button.text) && (
                       <ComposerLink path={pricing.button.link}>
-                        <Base.Button buttonType={pricing.button.type} className={`${this.decorateCSS("button")} ${pricing.isActive ? this.decorateCSS("button-active") : ""}`}>
+                        <Base.Button buttonType={pricing.button.type} className={`${this.decorateCSS("button")} ${pricing.isActive && this.decorateCSS("button-active")}`}>
                           {this.castToString(pricing.button.text)}
                         </Base.Button>
                       </ComposerLink>

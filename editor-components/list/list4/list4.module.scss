@@ -1,18 +1,17 @@
 @import '../../../composer-base-components/base/utitilities/viewports.module.scss';
 .container {
   .max-content {    
-    .card-title, .card-title-no-index {
+    .card-title{
       position: relative;
-      font-size: 2rem;
       margin: var(--composer-gap-xs) 0px 0px var(--composer-gap-md);
       color: var(--composer-primary-color);
-      padding-bottom: var(--composer-gap-md);
-    }
-    .card-title-no-index{
       font-size: 0rem;
       padding-bottom: var(--composer-gap-xl);
+      &.index{
+        font-size: 2rem;
+        padding-bottom: var(--composer-gap-md);
+      }
     }
-
 
     .card-child {
       margin-bottom: var(--composer-gap-md);
@@ -99,9 +98,11 @@
                 font-size: 1.5rem;
                 color: var(--composer-font-color-primary);
                 overflow: hidden;
+                margin: 0px;
               }
   
               .card-description {
+                margin: 0px;
                 font-size: 1.5rem;
                 color: var(--composer-tertiary-color);
               }
@@ -117,7 +118,7 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width}){
+@container (max-width: #{$composer-tablet-width-lg}){
   .container{
     .max-content{
       .card-child {

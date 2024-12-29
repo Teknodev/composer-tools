@@ -7,15 +7,23 @@
       gap: calc(3 * var(--composer-gap-xl));
       width: 100%;
 
-      .left-content,
-      .right-content {
+      // .left-content,
+      // .right-content {
+      // width: 50%;
+      // display: flex;
+      // flex-direction: column;
+      // }
+
+      .left-content {
         width: 50%;
         display: flex;
         flex-direction: column;
-      }
 
-      .left-content,
-      .left-content-single {
+        &.left-content-single {
+          width: 100%;
+          gap: var(--composer-gap-md);
+        }
+
         .subtitle {
           content: "";
         }
@@ -38,10 +46,16 @@
         }
       }
 
-      .right-content,
-      .right-content-single {
+      .right-content {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
         justify-content: center;
         gap: var(--composer-gap-md);
+
+        &.right-content-single {
+          width: 100%;
+        }
 
         .plan {
           width: 100%;
@@ -164,19 +178,6 @@
             }
           }
         }
-      }
-      .right-content-single {
-        display: flex;
-        flex-direction: column;
-        gap: var(--composer-gap-md);
-        width: 100%;
-      }
-
-      .left-content-single {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: var(--composer-gap-md);
       }
     }
   }
