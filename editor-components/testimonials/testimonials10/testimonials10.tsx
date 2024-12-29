@@ -296,10 +296,10 @@ class Testimonials10Page extends Testimonials {
                   <div className={this.decorateCSS("slider-style")}>
                     <ComposerSlider {...settings} ref={this.getComponentState("slider-ref")}>
                       {this.castToObject<Item[]>("profile-itemList").map((item: Item, index: number) => (
-                        <div className={`${this.decorateCSS("slider-inner-div")} ${!item.image && this.decorateCSS("slider-inner-div-with-image")}`}>
+                        <div className={this.decorateCSS("slider-inner-div")}>
                           <div className={this.decorateCSS("slider-card")}>
                             {(this.castToString(item.text) || this.castToString(item.position) || this.castToString(item.author)) && (
-                              <div className={item.image ? this.decorateCSS("header-page-container") : this.decorateCSS("header-page-container-no-image")}>
+                              <div className={`${this.decorateCSS("header-page-container")} ${!item.image && this.decorateCSS("header-page-container-no-image")}`}>
                                 <div className={this.decorateCSS("header-page")}>
                                   <div className={this.decorateCSS("top-container")}>
                                     {item.image && (

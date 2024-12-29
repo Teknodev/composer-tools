@@ -173,7 +173,7 @@ class Testimonials7Page extends Testimonials {
         className={`${this.decorateCSS("container")}  ${!this.getPropValue("cover-image") && this.decorateCSS("container-no-image")}`}
         isFull={this.getPropValue("cover-image") ? true : false}
       >
-        <Base.MaxContent className={this.getPropValue("cover-image") ? this.decorateCSS("max-content") : this.decorateCSS("max-content-no-image")}>
+        <Base.MaxContent className={`${this.decorateCSS("max-content")} ${!this.getPropValue("cover-image") && this.decorateCSS("max-content-no-image")}`}>
           {this.getPropValue("cover-image") && <img src={this.getPropValue("cover-image")} className={this.decorateCSS("background-image")} />}
           <div className={`${this.decorateCSS("testimonials7")} ${!this.getPropValue("cover-image") && this.decorateCSS("testimonials7-no-image")}`}>
             <div className={`${this.decorateCSS("slider-wrapper")} ${!this.getPropValue("cover-image") && this.decorateCSS("slider-wrapper-no-image")}`}>
@@ -187,13 +187,13 @@ class Testimonials7Page extends Testimonials {
 
                       if (!hasCoverImage) {
                         if (!hasPrevIcon && !hasNextIcon) {
-                          return this.decorateCSS("card-no-image-padding");
+                          return `${this.decorateCSS("card")} ${this.decorateCSS("card-no-image-padding")}`;
                         } else if (!hasPrevIcon) {
-                          return this.decorateCSS("card-no-image-left");
+                          return `${this.decorateCSS("card")} ${this.decorateCSS("card-no-image-left")}`;
                         } else if (!hasNextIcon) {
-                          return this.decorateCSS("card-no-image-right");
+                          return `${this.decorateCSS("card")} ${this.decorateCSS("card-no-image-right")}`;
                         } else {
-                          return this.decorateCSS("card-no-image");
+                          return `${this.decorateCSS("card")} ${this.decorateCSS("card-no-image")}`;
                         }
                       } else {
                         return this.decorateCSS("card");
@@ -212,7 +212,6 @@ class Testimonials7Page extends Testimonials {
                     )}
                     {(this.castToString(item.description) || item.image || this.castToString(item.name) || this.castToString(item.nameId)) && (
                       <Base.VerticalContent className={this.decorateCSS("item-content")}>
-                        {/* {this.castToString(item.description) && <Base.P className={this.getPropValue("cover-image") ? this.decorateCSS("item-description") : this.decorateCSS("item-description-no-image")}>{item.description}</Base.P>} */}
                         {this.castToString(item.description) && <Base.P className={`${this.decorateCSS("item-description")} ${!this.getPropValue("cover-image") && this.decorateCSS("item-description-no-image")}`}>{item.description}</Base.P>}
                         {(item.image || this.castToString(item.name) || this.castToString(item.nameId)) && (
                           <div className={this.decorateCSS("profile")}>

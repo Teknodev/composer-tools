@@ -210,7 +210,6 @@ class Testimonials12Page extends Testimonials {
     const cards = this.castToObject<CardItem[]>("cards");
     const title = this.getPropValue("title");
     const subtitle = this.getPropValue("subtitle");
-    const sliderRef = this.getComponentState("slider-ref");
 
     const settings = {
       infinite: false,
@@ -235,7 +234,7 @@ class Testimonials12Page extends Testimonials {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("testimonials12")}>
+          <div className={this.decorateCSS("page")}>
             {(this.castToString(title) || this.castToString(subtitle)) && (
               <div className={this.decorateCSS("top-content")}>
                 <Base.VerticalContent className={this.decorateCSS("top-content-text")}>

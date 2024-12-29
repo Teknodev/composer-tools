@@ -3,26 +3,23 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  .max-content,
-  .max-content-no-background {
+  .max-content {
+    padding: var(--composer-gap-xl) 0px;
+
     .wrapper {
       display: flex;
       flex-direction: column;
       gap: var(--composer-gap-xl);
-      .title,
-      .title-no-background {
-        margin: 0px;
-      }
       .title {
-        color: white;
-      }
-      .title-no-background {
+        margin: 0px;
+        &.title-with-image {
+          color: white;
+        }
       }
 
-      .testimonials11 {
+      .content {
         gap: var(--composer-gap-xl);
-        .cards,
-        .cards-no-background {
+        .cards {
           display: flex;
           flex-direction: column;
           background-color: var(--composer-html-background);
@@ -30,6 +27,13 @@
           border-radius: var(--composer-border-radius-md);
           padding: var(--composer-gap-md);
           gap: var(--composer-gap-sm);
+          background-color: white;
+          color: black;
+
+          &.cards-no-background {
+            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+            color: var(--composer-font-color-primary);
+          }
 
           .card-top {
             display: flex;
@@ -55,29 +59,17 @@
             text-align: left;
           }
         }
-        .cards {
-          background-color: white;
-          color: black;
-        }
-        .cards-no-background {
-          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-          color: var(--composer-font-color-primary);
-        }
       }
     }
-  }
-  .max-content {
-    padding: var(--composer-gap-xl) 0px;
   }
 }
 
 @container (max-width: #{$composer-tablet-width-lg}) {
   .container {
-    .max-content,
-    .max-content-no-background {
+    .max-content {
       .wrapper {
         gap: calc(var(--composer-gap-xl));
-        .testimonials11 {
+        .content {
           gap: calc(var(--composer-gap-xl));
         }
       }

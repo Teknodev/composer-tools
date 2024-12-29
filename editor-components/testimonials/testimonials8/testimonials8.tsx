@@ -227,8 +227,8 @@ class Testimonials8Page extends Testimonials {
             {this.castToString(this.getPropValue("title")) && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
             <div
               className={`${this.decorateCSS("content")} 
-              ${arrows.prevArrow && cards.length > 1 ? this.decorateCSS("contentPaddingLeft") : ""} 
-              ${arrows.nextArrow && cards.length > 1 ? this.decorateCSS("contentPaddingRight") : ""}`}
+              ${arrows.prevArrow && cards.length > 1 && this.decorateCSS("contentPaddingLeft")} 
+              ${arrows.nextArrow && cards.length > 1 && this.decorateCSS("contentPaddingRight")}`}
             >
               {arrows.prevArrow && cards.length > 1 && (
                 <button

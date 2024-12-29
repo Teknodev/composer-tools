@@ -14,11 +14,14 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        .content,
-        .content-no-image {
+        .content {
           display: flex;
           flex-direction: column;
           gap: var(--composer-gap-xl);
+
+          &.content-no-image {
+            width: 100%;
+          }
           > div {
             > div {
               > div {
@@ -39,44 +42,39 @@
             flex-direction: column;
             gap: var(--composer-gap-md);
             align-items: center;
-            .icons,
-            .icons-no-image {
+            .icons {
               font-size: 3rem;
               border-radius: 50%;
               display: inline-block;
               padding: var(--composer-gap-sm);
-            }
-            .icons {
               background-color: #d39121;
               color: white;
-            }
-            .icons-no-image {
-              color: var(--composer-font-color-secondary);
-              background-color: var(--composer-primary-color);
-            }
-            .longtext,
-            .longtext-no-image {
-              font-size: 1.5rem;
-              text-align: center;
-            }
-            .longtext {
-              color: black;
-            }
-            .longtext-no-image {
-              color: var(--composer-font-color-primary);
+
+              &.icons-no-image {
+                color: var(--composer-font-color-secondary);
+                background-color: var(--composer-primary-color);
+              }
             }
 
-            .name,
-            .name-no-image {
+            .longtext {
+              font-size: 1.5rem;
+              text-align: center;
+              color: black;
+
+              &.longtext-no-image {
+                color: var(--composer-font-color-primary);
+              }
+            }
+
+            .name {
               width: 100%;
               font-size: 1.5rem;
               text-align: center;
-            }
-            .name {
               color: #d39121;
-            }
-            .name-no-image {
-              color: var(--composer-primary-color);
+
+              &.name-no-image {
+                color: var(--composer-primary-color);
+              }
             }
           }
           .images {
@@ -103,9 +101,6 @@
         .content {
           width: 30%;
         }
-        .content-no-image {
-          width: 100%;
-        }
       }
     }
   }
@@ -118,8 +113,7 @@
     .max-content {
       .wrapper {
         .content-wrapper {
-          .content,
-          .content-no-image {
+          .content {
             width: 100%;
             .images {
               flex-direction: row;

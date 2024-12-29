@@ -232,7 +232,7 @@ class Testimonials4Page extends Testimonials {
                     {(this.castToString(item.title) || this.castToString(item.subtitle)) && (
                       <div className={this.decorateCSS("person-text")}>
                         {this.castToString(item.title) && <div className={`${this.decorateCSS("title")} ${!this.getPropValue("cover-image") && this.decorateCSS("title-dark")} `}>{item.title}</div>}
-                        {this.castToString(item.subtitle) && <div className={this.getPropValue("cover-image") ? this.decorateCSS("subtitle") : this.decorateCSS("subtitle-dark")}>{item.subtitle}</div>}
+                        {this.castToString(item.subtitle) && <div className={`${this.decorateCSS("subtitle")} ${!this.getPropValue("cover-image") && this.decorateCSS("subtitle-dark")}`}>{item.subtitle}</div>}
                       </div>
                     )}
                   </div>

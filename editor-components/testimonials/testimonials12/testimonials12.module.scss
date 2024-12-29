@@ -1,7 +1,7 @@
 @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 .container {
   .max-content {
-    .testimonials12 {
+    .page {
       display: flex;
       flex-direction: column;
       gap: var(--composer-gap-md);
@@ -91,7 +91,7 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
-      .testimonials12 {
+      .page {
         .top-content {
           .arrows {
             display: none;

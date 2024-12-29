@@ -254,25 +254,26 @@ class Testimonials5Page extends Testimonials {
                   {this.castToString(leftItem.subtitle) && (
                     <Base.SectionSubTitle
                       className={`
-  ${backgroundImageExist ? (subtitleType === "badge" ? this.decorateCSS("badge-with-image") : this.decorateCSS("subtitle-with-image")) : this.decorateCSS("subtitle")}
+  ${this.decorateCSS("subtitle")} 
+  ${backgroundImageExist ? (subtitleType === "badge" ? this.decorateCSS("badge-with-image") : this.decorateCSS("subtitle-with-image")) : ""}
 `}
                     >
                       {leftItem.subtitle}
                     </Base.SectionSubTitle>
                   )}
-                  {this.castToString(leftItem.title) && <Base.SectionTitle className={backgroundImageExist ? this.decorateCSS("title-with-image") : this.decorateCSS("title")}>{leftItem.title}</Base.SectionTitle>}
+                  {this.castToString(leftItem.title) && <Base.SectionTitle className={`${this.decorateCSS("title")} ${backgroundImageExist && this.decorateCSS("title-with-image")}`}>{leftItem.title}</Base.SectionTitle>}
                 </Base.VerticalContent>
 
                 <Base.Row>
                   {(leftItem.nextIcon || leftItem.prevIcon) && sliderItem.length > 1 && (
                     <div className={this.decorateCSS("arrow")}>
                       {leftItem.prevIcon && (
-                        <button onClick={() => this.handleSlideChange("prev")} className={this.getPropValue("background-image") ? this.decorateCSS("prevArrow") : this.decorateCSS("prevArrowPrimary")}>
+                        <button onClick={() => this.handleSlideChange("next")} className={`${this.decorateCSS("prevArrow")} ${!this.getPropValue("background-image") && this.decorateCSS("prevArrowPrimary")}`}>
                           <ComposerIcon name={leftItem.prevIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
                         </button>
                       )}
                       {leftItem.nextIcon && (
-                        <button onClick={() => this.handleSlideChange("next")} className={this.getPropValue("background-image") ? this.decorateCSS("nextArrow") : this.decorateCSS("nextArrowPrimary")}>
+                        <button onClick={() => this.handleSlideChange("next")} className={`${this.decorateCSS("nextArrow")} ${!this.getPropValue("background-image") && this.decorateCSS("nextArrowPrimary")}`}>
                           <ComposerIcon name={leftItem.nextIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
                         </button>
                       )}
@@ -282,22 +283,22 @@ class Testimonials5Page extends Testimonials {
               </div>
             )}
 
-            <ComposerSlider {...settings} ref={sliderRef} className={hasLeftContent ? this.decorateCSS("slider") : this.decorateCSS("fullSlider")}>
+            <ComposerSlider {...settings} ref={sliderRef} className={`${this.decorateCSS("slider")} ${!hasLeftContent && this.decorateCSS("fullSlider")}`}>
               {sliderItem.map((item: SliderItem, index: number) => (
                 <div>
                   {item.image && <img src={item.image} alt={item.image} className={this.decorateCSS("image")} />}
 
                   <div className={this.decorateCSS("rightWrapper")}>
-                    {this.castToString(item.sliderTitle) && <Base.H3 className={this.getPropValue("background-image") ? this.decorateCSS("sliderTitle") : this.decorateCSS("sliderTitlePrimary")}>{item.sliderTitle}</Base.H3>}
+                    {this.castToString(item.sliderTitle) && <Base.H3 className={`${this.decorateCSS("sliderTitle")} ${!this.getPropValue("background-image") && this.decorateCSS("sliderTitlePrimary")}`}>{item.sliderTitle}</Base.H3>}
                     {this.getPropValue("lineIsActive") && (
                       <div className={this.decorateCSS("lineContainer")}>
-                        <div className={this.getPropValue("background-image") ? this.decorateCSS("line") : this.decorateCSS("linePrimary")}></div>
+                        <div className={`${this.decorateCSS("line")} ${!this.getPropValue("background-image") && this.decorateCSS("linePrimary")}`}></div>
                       </div>
                     )}
                     <Base.VerticalContent className={this.decorateCSS("rightContainer")}>
-                      {this.castToString(item.description) && <Base.P className={this.getPropValue("background-image") ? this.decorateCSS("description") : this.decorateCSS("descriptionPrimary")}>{item.description}</Base.P>}
+                      {this.castToString(item.description) && <Base.P className={`${this.decorateCSS("description")} ${!this.getPropValue("background-image") && this.decorateCSS("descriptionPrimary")}`}>{item.description}</Base.P>}
                       {item.starIcon && item.star > 0 && (
-                        <div className={this.getPropValue("background-image") ? this.decorateCSS("stars") : this.decorateCSS("starsPrimary")}>
+                        <div className={`${this.decorateCSS("stars")} ${!this.getPropValue("background-image") && this.decorateCSS("starsPrimary")}`}>
                           {[...Array(Number(item.star))].map((_: any, index: number) => (
                             <ComposerIcon name={item.starIcon} propsIcon={{ className: this.decorateCSS("star") }} />
                           ))}
