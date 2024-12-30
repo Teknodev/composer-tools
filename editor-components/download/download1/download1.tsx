@@ -4,11 +4,10 @@ import { BaseDownload } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
-type Button = {
-  buttonText: JSX.Element;
-  url: string;
-  buttonIcon: string;
+type ButtonIcon = {
+  icon: string;
 };
 class DownloadCard1 extends BaseDownload {
   constructor(props?: any) {
@@ -40,81 +39,130 @@ class DownloadCard1 extends BaseDownload {
       key: "buttons",
       displayer: "Button ",
       value: [
+        INPUTS.BUTTON("button", "Button", "PLAYSTORE", "", "Primary"),
+        INPUTS.BUTTON("button", "Button", "APPSTORE", "", "Primary"),
+        INPUTS.BUTTON("button", "Button", "WINDOWS", "", "Primary")
+        // {
+        //   type: "object",
+        //   key: "button",
+        //   displayer: "Button",
+        //   value: [
+        //     {
+        //       type: "string",
+        //       key: "buttonText",
+        //       displayer: "Button Text",
+        //       value: "PLAYSTORE",
+        //     },
+        //     {
+        //       type: "page",
+        //       key: "url",
+        //       displayer: "Button Link",
+        //       value: "",
+        //     },
+        //     {
+        //       type: "icon",
+        //       key: "buttonIcon",
+        //       displayer: "In Button Icon",
+        //       value: "ImAndroid",
+        //     },
+        //   ],
+        // },
+        // {
+        //   type: "object",
+        //   key: "button",
+        //   displayer: "Button",
+        //   value: [
+        //     {
+        //       type: "string",
+        //       key: "buttonText",
+        //       displayer: "Button Text",
+        //       value: "APPSTORE",
+        //     },
+        //     {
+        //       type: "page",
+        //       key: "url",
+        //       displayer: "Button Link",
+        //       value: "",
+        //     },
+        //     {
+        //       type: "icon",
+        //       key: "buttonIcon",
+        //       displayer: "In Button Icon",
+        //       value: "GrApple",
+        //     },
+        //   ],
+        // },
+        // {
+        //   type: "object",
+        //   key: "button",
+        //   displayer: "Button",
+        //   value: [
+        //     {
+        //       type: "string",
+        //       key: "buttonText",
+        //       displayer: "Button Text",
+        //       value: "WINDOWS",
+        //     },
+        //     {
+        //       type: "page",
+        //       key: "url",
+        //       displayer: "Button Link",
+        //       value: "",
+        //     },
+        //     {
+        //       type: "icon",
+        //       key: "buttonIcon",
+        //       displayer: "In Button Icon",
+        //       value: "FaWindows",
+        //     },
+        //   ],
+        // },
+      ],
+    });
+    this.addProp({
+      type: "array",
+      key: "buttonsIcons",
+      displayer: "Button Icons ",
+      value: [
         {
           type: "object",
-          key: "button",
-          displayer: "Button",
+          key: "buttonIcon",
+          displayer: "Button Icon",
           value: [
             {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "PLAYSTORE",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Button Link",
-              value: "",
-            },
-            {
               type: "icon",
-              key: "buttonIcon",
-              displayer: "In Button Icon",
+              key: "icon",
+              displayer: "Icon",
               value: "ImAndroid",
-            },
-          ],
+            }
+          ]
         },
         {
           type: "object",
-          key: "button",
-          displayer: "Button",
+          key: "buttonIcon",
+          displayer: "Button Icon",
           value: [
             {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "APPSTORE",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Button Link",
-              value: "",
-            },
-            {
               type: "icon",
-              key: "buttonIcon",
-              displayer: "In Button Icon",
+              key: "icon",
+              displayer: "Icon",
               value: "GrApple",
             },
-          ],
+          ]
         },
         {
           type: "object",
-          key: "button",
-          displayer: "Button",
+          key: "buttonIcon",
+          displayer: "Button Icon",
           value: [
             {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "WINDOWS",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Button Link",
-              value: "",
-            },
-            {
               type: "icon",
-              key: "buttonIcon",
-              displayer: "In Button Icon",
+              key: "icon",
+              displayer: "Icon",
               value: "FaWindows",
             },
-          ],
-        },
+          ]
+        }
       ],
     });
   }
@@ -124,6 +172,8 @@ class DownloadCard1 extends BaseDownload {
   }
 
   render() {
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const buttonIcons = this.castToObject<ButtonIcon[]>("buttonsIcons");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
 
@@ -136,29 +186,30 @@ class DownloadCard1 extends BaseDownload {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(titleExist || descriptionExist) && (
             <Base.VerticalContent className={this.decorateCSS("header")}>
-              {titleExist && <Base.SectionTitle className={line ? this.decorateCSS("title") : this.decorateCSS("disable-line-title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+              {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${line && this.decorateCSS("line")}`}>{this.getPropValue("title")}</Base.SectionTitle>}
               {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")} </Base.SectionDescription>}
             </Base.VerticalContent>
           )}
 
-          {this.castToObject<Button[]>("buttons").length > 0 && (
+          {buttons.length > 0 && (
             <div className={this.decorateCSS("box")}>
-              {this.castToObject<Button[]>("buttons").map((item: Button, index: number) => {
-                const buttonTitleExist = this.castToString(item.buttonText);
-                const iconExist = item.buttonIcon;
-                const buttonExist = buttonTitleExist || iconExist;
+              {buttons.map((item: INPUTS.CastedButton, index: number) => {
+                const buttonTitleExist = this.castToString(item.text);
+                // const iconExist = item.buttonIcon;
+                const buttonExist = buttonTitleExist
+                // || iconExist;
                 return (
                   buttonExist && (
                     <div className={this.decorateCSS("button-wrapper")}>
                       <ComposerLink key={`dw-1-btn-${index}`} path={item.url}>
-                        <Base.Button className={this.decorateCSS("button")}>
+                        <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                          {item.text}
                           <ComposerIcon
-                            name={item.buttonIcon}
+                            name={buttonIcons[index].icon}
                             propsIcon={{
                               className: this.decorateCSS("icon"),
                             }}
                           />
-                          <Base.P className={this.decorateCSS("button-text")}> {item.buttonText}</Base.P>
                         </Base.Button>
                       </ComposerLink>
                     </div>

@@ -35,14 +35,12 @@
       }
     }
 
-    .left-column-no-image {
-      width: 100%;
-      @include column-styles;
-    }
-
     .left-column {
       width: 70%;
       @include column-styles;
+      &.no-image{
+        width: 100%;
+      }
     }
 
     .right-column {

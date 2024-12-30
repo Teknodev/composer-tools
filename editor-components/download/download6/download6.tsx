@@ -104,12 +104,12 @@ class Download6 extends BaseDownload {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {isLeftColumnVisible && (
-            <Base.VerticalContent className={isRightColumnVisible ? this.decorateCSS("left-column") : this.decorateCSS("left-column-no-image")}>
+            <Base.VerticalContent className={`${this.decorateCSS("left-column")} ${!isRightColumnVisible && this.decorateCSS("no-image")}`} >
               {this.castToString(leftcolumn.title) && <Base.SectionTitle className={this.decorateCSS("title")}>{leftcolumn.title}</Base.SectionTitle>}
               {this.castToString(leftcolumn.description) && <Base.SectionDescription className={this.decorateCSS("description")}>{leftcolumn.description}</Base.SectionDescription>}
 
               {buttons?.length > 0 && (
-                <div className={this.decorateCSS("buttons-container")}>
+                <Base.Row className={this.decorateCSS("buttons-container")}>
                   {buttons.map((button: Button, index: number) => {
                     const buttonTextExist = this.castToString(button.button_text);
                     const buttonExist = button.icon || buttonTextExist;
@@ -124,7 +124,7 @@ class Download6 extends BaseDownload {
                       )
                     );
                   })}
-                </div>
+                </Base.Row>
               )}
             </Base.VerticalContent>
           )}

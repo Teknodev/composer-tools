@@ -127,8 +127,8 @@ class Download3 extends BaseDownload {
           <div className={this.decorateCSS("page")}>
             {alignmentValue === "left" && (
               <div className={this.decorateCSS("group-container")}>
-                {titleExist && <Base.SectionTitle className={buttonsExist ? this.decorateCSS("title") : this.decorateCSS("title-full")}>{this.getPropValue("title")}</Base.SectionTitle>}
-                <Base.SectionDescription className={titleExist ? this.decorateCSS("description") : this.decorateCSS("description-full")}>{this.getPropValue("description")}</Base.SectionDescription>
+                {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${!buttonsExist && this.decorateCSS("full")}`}>{this.getPropValue("title")}</Base.SectionTitle>}
+                <Base.SectionDescription className={`${this.decorateCSS("description")} ${!titleExist && this.decorateCSS("full")}`}>{this.getPropValue("description")}</Base.SectionDescription>
                 {buttonsExist && (
                   <Base.VerticalContent className={this.decorateCSS("button-group")}>
                     {this.castToObject<any[]>("buttons").map((item: any, index: number) => {
@@ -137,7 +137,7 @@ class Download3 extends BaseDownload {
                         <div key={`dw-3-btn-${index}`} className={this.decorateCSS("button")}>
                           <ComposerLink path={item.url}>
                             {item.buttonImage ? (
-                              <img src={item.buttonImage} alt="" className={this.decorateCSS("button-logo")} />
+                              <img src={item.buttonImage} alt={item.buttonImage} className={this.decorateCSS("button-logo")} />
                             ) : (
                               (buttonTextExist || item.buttonIcon) && (
                                 <Base.Button className={this.decorateCSS("button-element")}>
@@ -173,7 +173,7 @@ class Download3 extends BaseDownload {
                       <div key={`dw-3-btn-${index}`} className={this.decorateCSS("button")}>
                         <ComposerLink path={item.url}>
                           {item.buttonImage ? (
-                            <img src={item.buttonImage} alt="" className={this.decorateCSS("button-logo")} />
+                            <img src={item.buttonImage} alt={item.buttonImage} className={this.decorateCSS("button-logo")} />
                           ) : (
                             buttonTextExist && (
                               <Base.Button className={this.decorateCSS("button-element")}>

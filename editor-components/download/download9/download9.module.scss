@@ -2,8 +2,7 @@
 
 .container {
   padding: 0;
-  .page,
-  .page-no-image {
+  .page {
     width: 100vw;
     display: flex;
     justify-content: center;
@@ -11,6 +10,14 @@
     overflow: hidden;
     position: relative;
     height: auto;
+
+      &.image {
+        min-height: 500px;
+      }
+
+      &.no-image {
+        min-height: 250px;
+      }
     .background-image {
       width: 100%;
       object-fit: cover;
@@ -31,8 +38,7 @@
       background-color: var(--composer-overlay-color);
     }
 
-    .max-content,
-    .max-content-no-image {
+    .max-content {
       width: 100vw;
       display: flex;
       overflow: hidden;
@@ -40,6 +46,30 @@
       height: auto;
       min-height: 250px;
       width: 100%;
+
+    &.image {
+      align-items: center;
+      min-height: 500px;
+
+      .middle-container {
+        align-items: center;
+        .title,
+        .description {
+          text-align: center;
+        }
+      }
+      .hover-container {
+        align-items: center;
+      }
+      .card-title,
+      .card-description {
+        text-align: center;
+      }
+      .buttons-container {
+        align-items: center;
+      }
+    }
+  }
 
       .middle-container {
         padding: var(--composer-gap-md) var(--composer-gap-xl);
@@ -55,17 +85,17 @@
         transform: translateY(0);
         transition: opacity 0.5s ease 0.2s, transform 0.5s ease 0.3s;
 
-        .title {
-          color: white;
+        .title { 
+          &.image{
+            color: white;
+          }
         }
 
         .description {
-          color: white;
           font-size: 1.5rem;
-        }
-
-        .description-no-image {
-          font-size: 1.5rem;
+          &.image{
+            color: white;
+          }
         }
       }
 
@@ -88,11 +118,14 @@
         transition: opacity 0.5s ease;
 
         .card-title {
-          color: white;
+          &.image{
+            color: white;
+          }
         }
-
         .card-description {
-          color: white;
+          &.image{
+            color: white;
+          }
         }
 
         .buttons-container {
@@ -157,37 +190,7 @@
       }
     }
 
-    .max-content {
-      align-items: center;
-      min-height: 500px;
 
-      .middle-container {
-        align-items: center;
-        .title,
-        .description {
-          text-align: center;
-        }
-      }
-      .hover-container {
-        align-items: center;
-      }
-      .card-title,
-      .card-description {
-        text-align: center;
-      }
-      .buttons-container {
-        align-items: center;
-      }
-    }
-  }
-
-  .page {
-    min-height: 500px;
-  }
-
-  .page-no-image {
-    min-height: 250px;
-  }
 }
 
 @container (max-width: #{$composer-tablet-width-lg}) {

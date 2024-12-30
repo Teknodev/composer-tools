@@ -10,21 +10,21 @@
     .header {
       align-items: center;
       .title {
-        position: relative;
-        margin-bottom: var(--composer-gap-lg);
-        text-align: center;
+        &.line{
+          position: relative;
+          margin-bottom: var(--composer-gap-lg);
+          text-align: center;
+          &::after {
+            content: "";
+            position: absolute;
+            bottom: calc(-1 * var(--composer-gap-md));
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            border-bottom: var(--composer-gap-xs) solid var(--composer-primary-color);
+          }
+        }
       }
-
-      .title::after {
-        content: "";
-        position: absolute;
-        bottom: calc(-1 * var(--composer-gap-md));
-        left: 50%;
-        transform: translateX(-50%);
-        width: 100px;
-        border-bottom: var(--composer-gap-xs) solid var(--composer-primary-color);
-      }
-
       .description {
         color: var(--composer-font-color-primary);
         text-align: center;
@@ -41,13 +41,8 @@
       .button-wrapper {
         .button {
           display: flex;
-          gap: var(--composer-gap-sm);
-          justify-content: center;
           align-items: center;
-          min-width: 250px;
-          .button-text {
-            font-size: 1.5rem;
-          }
+          gap: var(--composer-gap-sm);
           .icon {
             font-size: 1.5rem;
           }

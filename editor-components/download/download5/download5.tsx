@@ -127,19 +127,17 @@ class Download5 extends BaseDownload {
 
     const alignmentValue = Base.getContentAlignment();
 
-    const buttonContainerClass = alignmentValue === "left" ? this.decorateCSS("buttons-container") : alignmentValue === "center" ? this.decorateCSS("buttons-container-center") : null;
-
     return (
-      <Base.Container className={backgroundImage ? this.decorateCSS("container") : this.decorateCSS("container-single")} style={{ backgroundImage: backgroundImage ? `url(${backgroundImage})` : "none" }}>
+      <Base.Container className={`${this.decorateCSS("container")} ${!backgroundImage && this.decorateCSS("single")}`} style={{ backgroundImage: backgroundImage ? `url(${backgroundImage})` : "none" }}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={backgroundImage ? this.decorateCSS("page") : this.decorateCSS("page-no-image")}>
+          <div className={`${this.decorateCSS("page")} ${!backgroundImage && this.decorateCSS("no-image")}`}>
             <Base.VerticalContent className={this.decorateCSS("header")}>
               {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
               {descExist && <Base.SectionDescription className={this.decorateCSS("description")}>{desc}</Base.SectionDescription>}
             </Base.VerticalContent>
 
             {buttons.length > 0 && (
-              <div className={buttonContainerClass}>
+              <div className={`${this.decorateCSS("buttons-container")} ${alignmentValue === "center" && this.decorateCSS("center")}`}>
                 {buttons.map((item: any, index: number) => {
                   const buttonTextExist = this.castToString(item?.buttonText);
 

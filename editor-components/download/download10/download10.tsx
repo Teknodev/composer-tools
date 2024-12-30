@@ -193,16 +193,16 @@ class Download10 extends BaseDownload {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
             <div
-              className={
-                image ? (alignmentValue === "left" ? this.decorateCSS("left-container") : alignmentValue === "center" ? this.decorateCSS("left-container-center") : this.decorateCSS("left-container-no-image")) : this.decorateCSS("left-container-no-image")
-              }
+              className={`${this.decorateCSS("left-container")} 
+            ${(image && alignmentValue === "center") && this.decorateCSS("center")} 
+            ${!image && this.decorateCSS("no-image")}`}
             >
               <Base.VerticalContent>
                 {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("badge")}</Base.SectionSubTitle>}
                 {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                 {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
                 {buttons.length > 0 && (
-                  <div className={this.decorateCSS("button-group")}>
+                  <Base.Row className={this.decorateCSS("button-group")}>
                     {this.castToObject<any[]>("buttons").map((item: any, index: number) => {
                       const buttonTextExist = this.castToString(item.buttonText);
                       return (
@@ -220,17 +220,17 @@ class Download10 extends BaseDownload {
                         </ComposerLink>
                       );
                     })}
-                  </div>
+                  </Base.Row>
                 )}
               </Base.VerticalContent>
               {(reviewTitle || reviewScore || icons.length > 0) && (
-                <div className={this.decorateCSS("stats")}>
+                <Base.VerticalContent className={this.decorateCSS("stats")}>
                   {reviewTitle && <Base.H5 className={this.decorateCSS("stats-title")}>{this.getPropValue("text1")}</Base.H5>}
-                  <div className={this.decorateCSS("down-description")}>
+                  <Base.Row className={this.decorateCSS("down-description")}>
                     <div className={this.decorateCSS("stars")}>{icons.map((icon: any, index: number) => icon.icon && <ComposerIcon name={icon.icon} propsIcon={{ className: this.decorateCSS("icon") }} />)}</div>
                     {reviewScore && <Base.P className={this.decorateCSS("info")}>{this.getPropValue("text2")}</Base.P>}
-                  </div>
-                </div>
+                  </Base.Row>
+                </Base.VerticalContent>
               )}
             </div>
             {image && (
@@ -240,7 +240,7 @@ class Download10 extends BaseDownload {
             )}
           </div>
         </Base.MaxContent>
-      </Base.Container>
+      </Base.Container >
     );
   }
 }

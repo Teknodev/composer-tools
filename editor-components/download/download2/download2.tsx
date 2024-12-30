@@ -243,11 +243,11 @@ class Download2 extends BaseDownload {
                 const descriptionExist = this.castToString(card.description);
                 const buttonTextExist = this.castToString(card.buttonText);
                 return (
-                  <div className={this.decorateCSS("card")} key={index}>
+                  <Base.VerticalContent className={this.decorateCSS("card")} key={index}>
                     {card.icon && (
-                      <div className={this.decorateCSS("icon-container")}>
+                      <Base.Row className={this.decorateCSS("icon-container")}>
                         <ComposerIcon name={card.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
-                      </div>
+                      </Base.Row>
                     )}
 
                     {deviceExist && <Base.P className={this.decorateCSS("device")}>{card.device}</Base.P>}
@@ -267,9 +267,7 @@ class Download2 extends BaseDownload {
                                 {(buttonTextExist || card.buttonIcon) && (
                                   <div className={this.decorateCSS("button")}>
                                     {card.buttonIcon && (
-                                      <div>
-                                        <ComposerIcon name={card.buttonIcon} propsIcon={{ className: this.decorateCSS("button-icon") }} />
-                                      </div>
+                                      <ComposerIcon name={card.buttonIcon} propsIcon={{ className: this.decorateCSS("button-icon") }} />
                                     )}
                                     {card.buttonText && <Base.P className={this.decorateCSS("button-text")}>{card.buttonText}</Base.P>}
                                   </div>
@@ -280,7 +278,7 @@ class Download2 extends BaseDownload {
                         </ComposerLink>
                       </div>
                     )}
-                  </div>
+                  </Base.VerticalContent>
                 );
               })}
             </Base.ListGrid>

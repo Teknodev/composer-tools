@@ -142,39 +142,39 @@ class Download7 extends BaseDownload {
           <div className={this.decorateCSS("wrapper")} style={{ backgroundImage: `url(${this.getPropValue("image")})` }}>
             {overlay && backgroundImage && <div className={this.decorateCSS("overlay")}></div>}
 
-            <Base.VerticalContent className={backgroundImage ? this.decorateCSS("content-container") : this.decorateCSS("content-container-no-image")}>
-              {titleExist && <Base.SectionTitle className={!backgroundImage ? this.decorateCSS("title") : this.decorateCSS("title-no-image")}>{title}</Base.SectionTitle>}
-              {descExist && <Base.SectionDescription className={!backgroundImage ? this.decorateCSS("description") : this.decorateCSS("description-no-image")}>{description}</Base.SectionDescription>}
+            <Base.VerticalContent className={`${this.decorateCSS("content-container")} ${backgroundImage && this.decorateCSS("image")}`}>
+              {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${backgroundImage && this.decorateCSS("image")}`}>{title}</Base.SectionTitle>}
+              {descExist && <Base.SectionDescription className={`${this.decorateCSS("description")} ${backgroundImage && this.decorateCSS("image")}`}>{description}</Base.SectionDescription>}
               {buttons?.length > 0 && (
-                <div className={backgroundImage ? this.decorateCSS("buttons-container-center") : alignmentValue === "left" ? this.decorateCSS("buttons-container") : alignmentValue === "center" ? this.decorateCSS("buttons-container-center") : ""}>
+                <div className={`${this.decorateCSS("buttons-container")} ${(backgroundImage || (!backgroundImage && alignmentValue === "center")) && this.decorateCSS("center")}`}>
                   {buttons.map((button: Button, index: number) => {
                     const imageExist = button.image;
                     const buttonTextExist = this.castToString(button.text);
                     return !button.image
                       ? (buttonTextExist || button.icon) && (
-                          <div className={this.decorateCSS("button-wrapper")} key={index}>
-                            <ComposerLink path={button.link}>
-                              <Base.Button className={this.decorateCSS("button")}>
-                                {button.icon && (
-                                  <ComposerIcon
-                                    propsIcon={{
-                                      className: this.decorateCSS("button-icon"),
-                                    }}
-                                    name={button.icon}
-                                  />
-                                )}
-                                {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
-                              </Base.Button>
-                            </ComposerLink>
-                          </div>
-                        )
+                        <div className={this.decorateCSS("button-wrapper")} key={index}>
+                          <ComposerLink path={button.link}>
+                            <Base.Button className={this.decorateCSS("button")}>
+                              {button.icon && (
+                                <ComposerIcon
+                                  propsIcon={{
+                                    className: this.decorateCSS("button-icon"),
+                                  }}
+                                  name={button.icon}
+                                />
+                              )}
+                              {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
+                            </Base.Button>
+                          </ComposerLink>
+                        </div>
+                      )
                       : imageExist && (
-                          <div className={this.decorateCSS("button-wrapper")} key={index}>
-                            <ComposerLink path={button.link}>
-                              <img src={button.image} className={this.decorateCSS("button-image")} />
-                            </ComposerLink>
-                          </div>
-                        );
+                        <div className={this.decorateCSS("button-wrapper")} key={index}>
+                          <ComposerLink path={button.link}>
+                            <img src={button.image} className={this.decorateCSS("button-image")} />
+                          </ComposerLink>
+                        </div>
+                      );
                   })}
                 </div>
               )}

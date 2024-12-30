@@ -180,10 +180,10 @@ class Download11 extends BaseDownload {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("cards")}>
             {hasValidCard && (
-              <div className={hasValidRightCard || hasValidBottomRightCard ? this.decorateCSS("left-card") : this.decorateCSS("left-card-full")}>
+              <div className={`${this.decorateCSS("left-card")} ${(hasValidRightCard || hasValidBottomRightCard) ? this.decorateCSS("no-full") : this.decorateCSS("full")}`}>
                 {hasValidCard && (
                   <Base.VerticalContent className={this.decorateCSS("card")}>
-                    {leftItems.image && <img src={leftItems.image} className={leftCardExist ? this.decorateCSS("image") : this.decorateCSS("image-full")} />}
+                    {leftItems.image && <img src={leftItems.image} className={`${this.decorateCSS("image")} ${leftCardExist ? this.decorateCSS("no-full") : this.decorateCSS("full")}`} />}
                     {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{leftItems.subtitle}</Base.SectionSubTitle>}
                     {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{leftItems.title}</Base.SectionTitle>}
                     {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{leftItems.description}</Base.SectionDescription>}
@@ -213,13 +213,13 @@ class Download11 extends BaseDownload {
                           )}
                         </Base.VerticalContent>
                       )}
-                      {rightItems.image && <img src={rightItems.image} className={hasValidRightCardTexts ? this.decorateCSS("image") : this.decorateCSS("image-full")} />}
+                      {rightItems.image && <img src={rightItems.image} className={`${this.decorateCSS("image")} ${!hasValidRightCardTexts && this.decorateCSS("full")}`} />}
                     </div>
                   </div>
                 )}
                 {hasValidBottomRightCard && rightBottomItems.Visibility && (
                   <div className={this.decorateCSS("buttom-card")}>
-                    <div className={alignmentValue === "left" ? this.decorateCSS("card") : alignmentValue === "center" ? this.decorateCSS("card-center") : ""}>
+                    <div className={`${this.decorateCSS("card")} ${alignmentValue === "center" && this.decorateCSS("center")}`}>
                       {this.castToString(rightBottomItems.title) && <Base.SectionTitle className={this.decorateCSS("title")}>{rightBottomItems.title}</Base.SectionTitle>}
                       {rightBottomButtonExist && (
                         <ComposerLink path={rightBottomItems.buttonUrl}>

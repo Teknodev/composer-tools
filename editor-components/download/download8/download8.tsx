@@ -204,26 +204,26 @@ class Download8 extends BaseDownload {
               <img className={this.decorateCSS("background-image")} src={this.getPropValue("image")} alt="" />
             </div>
           )}
-          <Base.MaxContent className={imageExist ? this.decorateCSS("max-content") : this.decorateCSS("max-content-no-image")}>
+          <Base.MaxContent className={`${this.decorateCSS("max-content")} ${imageExist ? this.decorateCSS("image") : this.decorateCSS("no-image")}`}>
             {(titleExist || descriptionExist) && (
-              <Base.VerticalContent id={"left-content"} className={imageExist ? this.decorateCSS("left-content") : this.decorateCSS("left-content-no-image")}>
-                {titleExist && <Base.SectionTitle className={imageExist ? this.decorateCSS("title") : ""}>{this.getPropValue("title")}</Base.SectionTitle>}
-                {descriptionExist && <Base.SectionDescription className={imageExist ? this.decorateCSS("description") : ""}>{this.getPropValue("description")}</Base.SectionDescription>}
+              <Base.VerticalContent id={"left-content"} className={`${this.decorateCSS("left-content")} ${imageExist && this.decorateCSS("center")}`}>
+                {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${imageExist && this.decorateCSS("image")}`}>{this.getPropValue("title")}</Base.SectionTitle>}
+                {descriptionExist && <Base.SectionDescription className={`${this.decorateCSS("description")} ${imageExist && this.decorateCSS("image")}`}>{this.getPropValue("description")}</Base.SectionDescription>}
               </Base.VerticalContent>
             )}
           </Base.MaxContent>
           <div id={"right-content"} className={this.decorateCSS("right-content")}>
-            <div className={this.decorateCSS("card")}>
+            <Base.VerticalContent className={this.decorateCSS("card")}>
               <div className={this.decorateCSS("card-up")}>
                 {cardTitleExist && <Base.H3 className={this.decorateCSS("cardTitle")}>{this.getPropValue("cardTitle")}</Base.H3>}
                 {listExist && (
-                  <div className={this.decorateCSS("list-group")}>
+                  <Base.VerticalContent className={this.decorateCSS("list-group")}>
                     {this.castToObject<any[]>("list").map((item: any, index: number) => {
                       const itemTextExist = this.castToString(item.itemText);
                       const hasItemExist = itemTextExist || item.itemIcon;
                       return (
                         hasItemExist && (
-                          <div className={this.decorateCSS("list-element")}>
+                          <Base.Row className={this.decorateCSS("list-element")}>
                             {item.itemIcon && (
                               <ComposerIcon
                                 name={item.itemIcon}
@@ -233,15 +233,15 @@ class Download8 extends BaseDownload {
                               />
                             )}
                             {itemTextExist && <Base.P className={this.decorateCSS("text")}>{item.itemText}</Base.P>}
-                          </div>
+                          </Base.Row>
                         )
                       );
                     })}
-                  </div>
+                  </Base.VerticalContent>
                 )}
               </div>
               {this.castToObject<Button[]>("buttons").length > 0 && (
-                <div className={this.decorateCSS("card-down")}>
+                <Base.Row className={this.decorateCSS("card-down")}>
                   <div className={this.decorateCSS("buttons-container")}>
                     {this.castToObject<Button[]>("buttons").map((item: Button, index: number) => {
                       const buttonTextExist = this.castToString(item.buttonText);
@@ -263,9 +263,9 @@ class Download8 extends BaseDownload {
                       );
                     })}
                   </div>
-                </div>
+                </Base.Row>
               )}
-            </div>
+            </Base.VerticalContent>
           </div>
         </div>
       </Base.Container>

@@ -26,18 +26,16 @@
         .title {
           width: 20%;
           margin: 0;
-        }
-        .title-full {
-          width: 40%;
-          margin: 0;
+          &.full{
+            width: 40%;
+          }
         }
         .description {
           color: var(--composer-font-color-primary);
           width: 60%;
-        }
-        .description-full {
-          color: var(--composer-font-color-primary);
-          width: 100%;
+          &.full{
+            width: 100%;
+          }
         }
         .button-group {
           .button {

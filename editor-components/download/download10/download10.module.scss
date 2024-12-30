@@ -8,9 +8,10 @@
       justify-content: space-between;
       align-items: center;
       gap: var(--composer-gap-md);
-      .left-container,
-      .left-container-no-image,
-      .left-container-center {
+      .left-container {
+        &.no-image{
+          width: 100%;
+        }
         display: flex;
         flex-direction: column;
         gap: var(--composer-gap-sm);
@@ -87,14 +88,6 @@
           }
         }
       }
-
-      .left-container {
-        width: 50%;
-      }
-      .left-container-no-image {
-        width: 100%;
-      }
-
       .right-container {
         .right-image {
           width: 600px;
