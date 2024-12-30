@@ -68,6 +68,10 @@ $content-background-color: color-mix(in srgb, var(--composer-html-background), v
             resize: vertical;
             min-height: 5rem;
           }
+
+          .form-button {
+            justify-content: center;
+          }
         }
       }
     }

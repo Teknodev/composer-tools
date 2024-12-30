@@ -229,14 +229,6 @@ class Form10 extends BaseContacts {
     const buttonTextExist = this.castToString(button.text);
     const rightItemsExist = inputItems.length > 0 || descriptionExist || buttonTextExist;
 
-    function toObjectKey(str: string) {
-      if (/^\d/.test(str)) {
-        str = "_" + str;
-      }
-      str = str.replace(/[^a-zA-Z0-9_]/g, "_").toLowerCase();
-      return str;
-    }
-
     function getInputType(type: string): string {
       switch (type) {
         case "Text Area":
@@ -254,70 +246,43 @@ class Form10 extends BaseContacts {
 
     const getInputName = (indexOfLabel: number, inputLabel: any, indexOfInput: number): string => {
       const labelText = inputLabel && this.castToString(inputLabel);
-
-      console.log(labelText, "labelText");
-
-      return toObjectKey(`${indexOfLabel} ${labelText} ${indexOfInput}`);
+      return `input_${indexOfLabel}_${labelText}_${indexOfInput}`;
     };
 
-    function getInitialValue() {
-      let value: any = {};
+    const getInitialValue = () => {
+      const value: any = {};
       inputItems.forEach((inputItem: any, indexOfItem: number) => {
         inputItem.getPropValue("inputs")?.forEach((_: any, indexOfInput: number) => {
-          console.log(inputItem.getPropValue("label"));
           const key = getInputName(indexOfItem, inputItem.getPropValue("label"), indexOfInput);
           value[key] = "";
         });
       });
       return value;
-    }
+    };
 
-    function getSchema() {
+    const getSchema = () => {
       let schema = Yup.object().shape({});
-
       inputItems.forEach((inputItem: any, indexOfItem: number) => {
         inputItem.getPropValue("inputs").forEach((input: any, indexOfInput: number) => {
           const key = getInputName(indexOfItem, inputItem.getPropValue("label"), indexOfInput);
-
-          const isRequired = input.getPropValue("isRequired");
-          const isEmail = getInputType(input.getPropValue("type")) === "E-mail";
-
           let fieldSchema = Yup.string();
 
-          if (isRequired) {
+          if (input.getPropValue("isRequired")) {
             fieldSchema = fieldSchema.required(input.getPropValue("requiredErrorMessage"));
           } else {
             fieldSchema = fieldSchema.nullable();
           }
 
-          if (isEmail) {
+          if (getInputType(input.getPropValue("type")) === "E-mail") {
             fieldSchema = fieldSchema.email(input.getPropValue("typeErrorMessage"));
           }
 
-          schema = schema.shape({
-            [key]: fieldSchema,
-          });
+          schema = schema.shape({ [key]: fieldSchema });
         });
       });
-
       return schema;
-    }
+    };
 
-    function getFormDataWithConvertedKeys(obj: any) {
-      const newObj: any = {};
-      for (const key in obj) {
-        if (Object.prototype.hasOwnProperty.call(obj, key)) {
-          let adjustedKey = key.startsWith("_") ? key.slice(1) : key;
-          const parts = adjustedKey.split("_");
-          let newKey = "";
-          for (let i = 1; i < parts.length - 1; i++) {
-            newKey += (i > 1 ? "_" : "") + parts[i];
-          }
-          newObj[newKey] = obj[key];
-        }
-      }
-      return newObj;
-    }
     function isRequiredInput(inputItem: any): boolean {
       return inputItem.getPropValue("inputs").some((input: any) => input.getPropValue("isRequired"));
     }
@@ -340,7 +305,7 @@ class Form10 extends BaseContacts {
                     initialValues={getInitialValue()}
                     validationSchema={getSchema()}
                     onSubmit={(data, { resetForm }) => {
-                      const formData = getFormDataWithConvertedKeys(data);
+                      const formData = data;
                       this.insertForm("CONTACT US", formData);
                       resetForm();
                     }}
@@ -366,20 +331,20 @@ class Form10 extends BaseContacts {
                                     <div className={this.decorateCSS("input-container")}>
                                       {inputObj.getPropValue("type") === "Text Area" ? (
                                         <textarea
-                                          value={values[getInputName(inputItemIndex, inputItem.getPropValue("placeholder"), inputIndex)]}
+                                          value={values[getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)]}
                                           className={this.decorateCSS("input")}
                                           placeholder={inputObj.getPropValue("placeholder", { as_string: true })}
                                           rows={9}
                                           onChange={handleChange}
-                                          name={getInputName(inputItemIndex, inputItem.getPropValue("placeholder"), inputIndex)}
+                                          name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)}
                                         ></textarea>
                                       ) : (
                                         <input
                                           placeholder={inputObj.getPropValue("placeholder", { as_string: true })}
                                           type={getInputType(inputObj.getPropValue("type"))}
                                           onChange={handleChange}
-                                          value={values[getInputName(inputItemIndex, inputItem.getPropValue("placeholder"), inputIndex)]}
-                                          name={getInputName(inputItemIndex, inputItem.getPropValue("placeholder"), inputIndex)}
+                                          value={values[getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)]}
+                                          name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)}
                                           className={this.decorateCSS("input")}
                                         />
                                       )}

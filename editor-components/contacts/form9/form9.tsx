@@ -5,6 +5,7 @@ import { ErrorMessage, Formik, Form } from "formik";
 import * as Yup from "yup";
 import { Base } from "../../../composer-base-components/base/base";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 class Form9Page extends BaseContacts {
   constructor(props?: any) {
@@ -326,12 +327,7 @@ class Form9Page extends BaseContacts {
       ],
     });
 
-    this.addProp({
-      type: "string",
-      key: "button-text",
-      displayer: "Button Text",
-      value: "Submit Form",
-    });
+    this.addProp(INPUTS.BUTTON("button", "Button", "Submit Form", null, null, "Primary"));
   }
 
   getName(): string {
@@ -354,16 +350,17 @@ class Form9Page extends BaseContacts {
 
   render() {
     const inputs = this.getPropValue("inputs");
-    const initialValue = getInitialValue();
-
     const imageExist = !!this.getPropValue("image");
 
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
-    const buttonText = this.getPropValue("button-text");
 
     const titleExist = this.castToString(title);
     const descriptionExist = this.castToString(description);
+
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+
+    const buttonText = button.text;
     const buttonTextExist = this.castToString(buttonText);
 
     const rightItemsExist = titleExist || descriptionExist || buttonTextExist || inputs.length > 0;
