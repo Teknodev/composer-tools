@@ -235,10 +235,7 @@ export namespace Base {
       useEffect(() => {
         const handleScroll = () => {
           const navbarPosition = document.querySelector(`.${styles.navbarPosition}`);
-          console.log("scroll", navbarPosition);
-
           if (navbarPosition) {
-          console.log("inside pos", window.scrollY);
 
             if (window.scrollY > 50) {
               navbarPosition.classList.add(styles.scrolled);
