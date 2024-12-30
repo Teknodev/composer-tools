@@ -294,8 +294,8 @@ class Team8 extends Team {
         >
           <Base.MaxContent className={this.decorateCSS("max-content")}>
             <Base.VerticalContent className={this.decorateCSS("text-box")}>
-              {titleExist && <Base.SectionTitle className={imageExist ? this.decorateCSS("title") : this.decorateCSS("no-image-title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-              {descriptionExist && <Base.SectionDescription className={imageExist ? this.decorateCSS("description") : this.decorateCSS("no-image")}>{this.getPropValue("description")}</Base.SectionDescription>}
+              {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${imageExist && this.decorateCSS("image")}`}>{this.getPropValue("title")}</Base.SectionTitle>}
+              {descriptionExist && <Base.SectionDescription className={`${this.decorateCSS("description")} ${imageExist && this.decorateCSS("image")}`}>{this.getPropValue("description")}</Base.SectionDescription>}
             </Base.VerticalContent>
 
             <div className={this.decorateCSS("wrapper")}>
@@ -319,8 +319,8 @@ class Team8 extends Team {
                             )}
                             {(titleExist || subtitleExist) && (
                               <Base.VerticalContent className={this.decorateCSS("header-page")}>
-                                {titleExist && <Base.P className={imageExist ? this.decorateCSS("item-title") : this.decorateCSS("no-image")}>{item.imagetitle}</Base.P>}
-                                {subtitleExist && <Base.H2 className={imageExist ? this.decorateCSS("first-header") : this.decorateCSS("no-image")}>{item.imagesubtitle}</Base.H2>}
+                                {titleExist && <Base.P className={`${this.decorateCSS("item-title")} ${imageExist ? this.decorateCSS("image") : this.decorateCSS("no-image")}`}>{item.imagetitle}</Base.P>}
+                                {subtitleExist && <Base.H2 className={`${this.decorateCSS("first-header")} ${imageExist ? this.decorateCSS("image") : this.decorateCSS("no-image")}`}>{item.imagesubtitle}</Base.H2>}
                               </Base.VerticalContent>
                             )}
                           </Base.VerticalContent>
