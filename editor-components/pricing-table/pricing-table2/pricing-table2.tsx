@@ -628,7 +628,6 @@ class PricingTable2 extends BasePricingTable {
                 const cardPrice = this.castToString(table.cardPrice);
                 const cardDuration = this.castToString(table.cardDuration);
 
-                console.log(table);
                 return (
                   <Base.VerticalContent className={this.decorateCSS("card-item-count")}>
                     <div key={index} className={this.decorateCSS("item-card")}>

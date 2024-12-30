@@ -764,11 +764,8 @@ class PricingTable9 extends BasePricingTable {
 
             <div className={this.decorateCSS("columns-container")}>
               {this.castToObject<string[]>("columns").map((column: any, index: any) => {
-                console.log(column, "column");
                 const buttonTextExist = this.castToString(column?.buttonType.text);
-                console.log(buttonTextExist, "buttonTextExist");
                 const titleExist = this.castToString(column?.title);
-                console.log(column.buttonType);
                 return (
                   <div key={`column-${index}`} className={this.decorateCSS("column-item")}>
                     <div className={this.decorateCSS("title-container")}>{titleExist && <Base.H3 className={this.decorateCSS("column-title")}>{column?.title}</Base.H3>}</div>

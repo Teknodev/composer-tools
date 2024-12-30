@@ -1140,7 +1140,7 @@ class PricingMultipleTwo extends BasePricingTable {
 
                                   return (
                                     buttonText && (
-                                      <ComposerLink key={buttonIndex} path={button.getPropValue("link")}>
+                                      <ComposerLink key={buttonIndex} path={button.getPropValue("url")}>
                                         <Base.Button buttonType={button.getPropValue("type")} className={this.decorateCSS("button")}>
                                           {button.getPropValue("text")}
                                         </Base.Button>

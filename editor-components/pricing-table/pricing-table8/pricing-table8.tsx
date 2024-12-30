@@ -515,8 +515,8 @@ class PricingTable8 extends BasePricingTable {
 
             <div className={this.decorateCSS("lower-container")}>
               <Base.VerticalContent className={this.decorateCSS("plan-desc")}>
-                {cards[this.getComponentState("currentIndex")].planTitle && <Base.H3 className={this.decorateCSS("text")}>{cards[this.getComponentState("currentIndex")].planTitle}</Base.H3>}
-                {cards[this.getComponentState("currentIndex")].description && <Base.P className={this.decorateCSS("description-text")}>{cards[this.getComponentState("currentIndex")].description}</Base.P>}
+                {this.castToString(cards[this.getComponentState("currentIndex")].planTitle) && <Base.H3 className={this.decorateCSS("text")}>{cards[this.getComponentState("currentIndex")].planTitle}</Base.H3>}
+                {this.castToString(cards[this.getComponentState("currentIndex")].description) && <Base.P className={this.decorateCSS("description-text")}>{cards[this.getComponentState("currentIndex")].description}</Base.P>}
               </Base.VerticalContent>
 
               <div className={this.decorateCSS("bar-rows")}>
