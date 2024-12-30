@@ -215,7 +215,7 @@ class List5 extends BaseList {
           <Base.MaxContent className={this.decorateCSS("max-content")}>
             {this.castToString(this.getPropValue("header")) && (
               <Base.VerticalContent className={this.decorateCSS("header")}>
-                <Base.SectionTitle className={this.getPropValue("image") ? this.decorateCSS("header-dark") : this.decorateCSS("header-light")}>
+                <Base.SectionTitle className={`${this.decorateCSS("header-title")} ${this.getPropValue("image") && this.decorateCSS("dark")}`}>
                   {this.getPropValue("header")}
                 </Base.SectionTitle>
               </Base.VerticalContent>
@@ -232,7 +232,7 @@ class List5 extends BaseList {
                         <ComposerLink path={listItem.url}>
                           <div
                             key={index}
-                            className={this.getPropValue("image") ? this.decorateCSS("item-container-dark") : this.decorateCSS("item-container")}
+                            className={this.decorateCSS("item-container")}
                           >
                             {(listItem.uppericon || this.getPropValue("showIndex")) && (
                               <div className={this.decorateCSS("header-line")}>
