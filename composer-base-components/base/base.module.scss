@@ -280,12 +280,14 @@
     } 
 }
 
-.button{
-    transition: 0.3s;
-    cursor: pointer;
-    font-size: 1rem;
-    border-radius: var(--composer-border-radius-sm);
-
+.button {
+  display: flex;
+  align-items: center;
+  gap: var(--composer-gap-sm);
+  transition: 0.3s;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: var(--composer-border-radius-sm);
 
   &.primary {
     background-color: var(--composer-primary-color);
@@ -328,16 +330,15 @@
 
   &.link {
     color: var(--composer-font-color-primary);
-    text-decoration: underline;
-    text-underline-offset: var(--composer-gap-xs);
-    text-decoration-color: var(--composer-font-color-primary);
     background: transparent;
     border: none;
-    padding: var(--composer-gap-sm) 0;
+    padding: var(--composer-gap-xs) 0;
+    border-bottom: 1px solid var(--composer-font-color-primary);
+    border-radius: 0;
 
     &:hover {
-      text-decoration-color: var(--composer-primary-color);
       color: var(--composer-primary-color);
+      border-bottom: 1px solid var(--composer-primary-color);
     }
   }
 
