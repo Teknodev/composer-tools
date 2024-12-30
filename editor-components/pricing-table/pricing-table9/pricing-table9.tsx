@@ -43,13 +43,8 @@ class PricingTable9 extends BasePricingTable {
               displayer: "Title",
               value: "Basic",
             },
-            // {
-            //   type: "string",
-            //   key: "button",
-            //   displayer: "Button",
-            //   value: "50$/ month",
-            // },
-            INPUTS.BUTTON("buttonType", "Button", "50$/ month", "", "Primary"),
+
+            INPUTS.BUTTON("buttonType", "Button", "50$/ month", "", null, "Primary"),
             {
               type: "array",
               key: "contents",
@@ -195,13 +190,8 @@ class PricingTable9 extends BasePricingTable {
               displayer: "Title",
               value: "Starter",
             },
-            // {
-            //   type: "string",
-            //   key: "button",
-            //   displayer: "Button",
-            //   value: "75$/ month",
-            // },
-            INPUTS.BUTTON("buttonType", "Button", "75$/ month", "", "Primary"),
+
+            INPUTS.BUTTON("buttonType", "Button", "75$/ month", "", null, "Primary"),
 
             {
               type: "array",
@@ -348,7 +338,7 @@ class PricingTable9 extends BasePricingTable {
               displayer: "Title",
               value: "Standart",
             },
-            INPUTS.BUTTON("buttonType", "Button", "100$/ month", "", "Primary"),
+            INPUTS.BUTTON("buttonType", "Button", "100$/ month", "", null, "Primary"),
 
             {
               type: "array",
@@ -495,7 +485,7 @@ class PricingTable9 extends BasePricingTable {
               displayer: "Title",
               value: "Enterprise",
             },
-            INPUTS.BUTTON("buttonType", "Button", "1000$/ month", "", "Primary"),
+            INPUTS.BUTTON("buttonType", "Button", "1000$/ month", "", null, "Primary"),
 
             {
               type: "array",

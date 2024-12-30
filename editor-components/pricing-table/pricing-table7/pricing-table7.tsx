@@ -159,7 +159,7 @@ class PricingTable7 extends BasePricingTable {
               displayer: "Description",
               value: "Our Basic Plan is the perfect entry point for those seeking essential features to get started.",
             },
-            INPUTS.BUTTON("button", "Button", "Join this plan", "", "Primary"),
+            INPUTS.BUTTON("button", "Button", "Join this plan", "", null, "Primary"),
             {
               type: "array",
               key: "item",
@@ -261,7 +261,7 @@ class PricingTable7 extends BasePricingTable {
               displayer: "Description",
               value: "Step up your game with our Pro Plan designed for those who demand more from their experience.",
             },
-            INPUTS.BUTTON("button", "Button", "Join this plan", "", "Primary"),
+            INPUTS.BUTTON("button", "Button", "Join this plan", "", null, "Primary"),
 
             {
               type: "array",
@@ -383,7 +383,7 @@ class PricingTable7 extends BasePricingTable {
               displayer: "Description",
               value: "The Advanced Plan is the pinnacle of our offerings,meticulously curated for those who demand excellence in every aspect.",
             },
-            INPUTS.BUTTON("button", "Button", "Join this plan", "", "Primary"),
+            INPUTS.BUTTON("button", "Button", "Join this plan", "", null, "Primary"),
 
             {
               type: "array",
@@ -532,7 +532,7 @@ class PricingTable7 extends BasePricingTable {
               displayer: "Description",
               value: "Our Basic Plan is the perfect entry point for those seeking essential features to get started.",
             },
-            INPUTS.BUTTON("button", "Button", "Join this plan", "", "Primary"),
+            INPUTS.BUTTON("button", "Button", "Join this plan", "", null, "Primary"),
 
             {
               type: "array",
@@ -635,7 +635,7 @@ class PricingTable7 extends BasePricingTable {
               displayer: "Description",
               value: "Step up your game with our Pro Plan designed for those who demand more from their experience.",
             },
-            INPUTS.BUTTON("button", "Button", "Join this plan", "", "Primary"),
+            INPUTS.BUTTON("button", "Button", "Join this plan", "", null, "Primary"),
 
             {
               type: "array",
@@ -757,7 +757,7 @@ class PricingTable7 extends BasePricingTable {
               displayer: "Description",
               value: "The Advanced Plan is the pinnacle of our offerings,meticulously curated for those who demand excellence in every aspect.",
             },
-            INPUTS.BUTTON("button", "Button", "Join this plan", "", "Primary"),
+            INPUTS.BUTTON("button", "Button", "Join this plan", "", null, "Primary"),
 
             {
               type: "array",

@@ -34,7 +34,7 @@ class PricingTable5 extends BasePricingTable {
       type: "array",
       key: "buttons",
       displayer: "Buttons",
-      value: [INPUTS.BUTTON("button", "Button", "VIEW ALL PLANS", "", "Primary")],
+      value: [INPUTS.BUTTON("button", "Button", "VIEW ALL PLANS", "", null, "Primary")],
     });
 
     this.addProp({
@@ -85,7 +85,7 @@ class PricingTable5 extends BasePricingTable {
               displayer: "Price Description",
               value: " / Monthly",
             },
-            INPUTS.BUTTON("button", "Button", "GET STARTED", "", "White"),
+            INPUTS.BUTTON("button", "Button", "GET STARTED", "", null, "White"),
           ],
         },
         {
@@ -117,7 +117,7 @@ class PricingTable5 extends BasePricingTable {
               displayer: "Price Description",
               value: " / Monthly",
             },
-            INPUTS.BUTTON("button", "Button", "GET STARTED", "", "White"),
+            INPUTS.BUTTON("button", "Button", "GET STARTED", "", null, "White"),
           ],
         },
         {
@@ -149,7 +149,7 @@ class PricingTable5 extends BasePricingTable {
               displayer: "Price Description",
               value: " / Monthly",
             },
-            INPUTS.BUTTON("button", "Button", "GET STARTED", "", "White"),
+            INPUTS.BUTTON("button", "Button", "GET STARTED", "", null, "White"),
           ],
         },
       ],
