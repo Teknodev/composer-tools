@@ -255,8 +255,6 @@ class Team9 extends Team {
     const titleExist = this.getPropValue("title", { as_string: true });
     const members = this.castToObject<Card[]>("team-members");
 
-    const animate = this.getPropValue("animate");
-
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>

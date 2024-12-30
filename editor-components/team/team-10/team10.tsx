@@ -438,7 +438,7 @@ class Team10 extends Team {
             {backgroundImageExist && <img className={this.decorateCSS("background-image")} src={this.getPropValue("background-image")} />}
           </div>
           <div className={this.decorateCSS("right")}>
-            {this.castToObject<TTeam[]>("team").map((teamMember: any, index: number) => {
+            {this.castToObject<TTeam[]>("team").map((teamMember: any) => {
               const imageExist = teamMember.getPropValue("image");
               return (
                 <Base.VerticalContent className={this.decorateCSS("team-member")}>

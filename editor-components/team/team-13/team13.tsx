@@ -220,7 +220,7 @@ class Team13 extends Team {
               </Base.VerticalContent>
             )}
 
-            {cards.map((card: Card, index: number) => {
+            {cards.map((card: Card) => {
               const nameExist = this.castToString(card.name);
               const jobExist = this.castToString(card.job);
               return (

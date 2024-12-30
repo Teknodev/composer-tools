@@ -182,8 +182,6 @@ class Team16 extends Team {
     const titleExist = this.castToString(title);
     const descriptionExist = this.castToString(description);
 
-    const alignmentValue = Base.getContentAlignment();
-
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
     return (
