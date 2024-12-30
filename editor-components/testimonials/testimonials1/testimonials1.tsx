@@ -164,7 +164,7 @@ class Testimonials1Page extends Testimonials {
                     <div className={this.decorateCSS("items")}>
                       {item.icons && <ComposerIcon name={item.icons} propsIcon={{ className: `${this.decorateCSS("icons")} ${!imageExist && this.decorateCSS("icons-no-image")}` }} />}
                       {this.castToString(item.longtext) && <div className={`${this.decorateCSS("longtext")} ${!imageExist && this.decorateCSS("longtext-no-image")}`}>{item.longtext}</div>}
-                      {this.castToString(item.name) && <div className={`${this.decorateCSS("name")} ${!imageExist && this.decorateCSS("no-name-image")}`}>{item.name}</div>}
+                      {this.castToString(item.name) && <div className={`${this.decorateCSS("name")} ${!imageExist && this.decorateCSS("name-no-image")}`}>{item.name}</div>}
                     </div>
                   ))}
                 </ComposerSlider>
