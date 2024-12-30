@@ -2,57 +2,67 @@ import { TypeButton } from "composer-tools/composer-base-components/base/base";
 import { TypeUsableComponentProps } from "composer-tools/editor-components/EditorComponent";
 
 export namespace INPUTS {
-   export type CastedButton = {
-     icon: string;
-     text: JSX.Element;
-     url: string;
-     type: TypeButton;
-   };
+  export type CastedButton = {
+    text: JSX.Element;
+    url: string;
+    icon: string;
+    image: string;
+    type: TypeButton;
+  };
 
-   export const BUTTON = (buttonKey: string, displayer: string, text: string, url: string | null, icon: string | null, type: TypeButton = "Primary") => {
-     const button: TypeUsableComponentProps = {
-       type: "object",
-       key: buttonKey,
-       displayer: displayer,
-       value: [
-         {
-           type: "string",
-           key: "text",
-           displayer: "Text",
-           value: text,
-         },
-         {
-           type: "select",
-           key: "type",
-           displayer: "Type",
-           value: type,
-           additionalParams: {
-             selectItems: ["Primary", "Secondary", "Tertiary", "Link", "White", "Black"],
-           },
-         },
-       ],
-     };
+  export const BUTTON = (buttonKey: string, displayer: string, text: string, url: string | null, icon: string | null, image: string | null, type: TypeButton = "Primary") => {
+    const button: TypeUsableComponentProps = {
+      type: "object",
+      key: buttonKey,
+      displayer: displayer,
+      value: [
+        {
+          type: "string",
+          key: "text",
+          displayer: "Text",
+          value: text,
+        },
+        {
+          type: "select",
+          key: "type",
+          displayer: "Type",
+          value: type,
+          additionalParams: {
+            selectItems: ["Primary", "Secondary", "Tertiary", "Link", "White", "Black"],
+          },
+        },
+      ],
+    };
 
-     if (url !== null) {
-       button.value.push({
-         type: "page",
-         key: "url",
-         displayer: "URL",
-         value: url,
-       });
-     }
+    if (url !== null) {
+      button.value.push({
+        type: "page",
+        key: "url",
+        displayer: "URL",
+        value: url,
+      });
+    }
 
-     if (icon !== null) {
-       button.value.push({
-         type: "icon",
-         key: "icon",
-         displayer: "Icon",
-         value: icon,
-       });
-     }
+    if (icon !== null) {
+      button.value.push({
+        type: "icon",
+        key: "icon",
+        displayer: "Icon",
+        value: icon,
+      });
+    }
 
-     return button;
-   };
+    if (image !== null) {
+      button.value.push({
+        type: "image",
+        key: "image",
+        displayer: "Image",
+        value: image,
+      });
+    }
+
+    return button;
+  };
 
   export const LOGO = (key: string, displayer: string, defaultImage?: string) => {
     return {
