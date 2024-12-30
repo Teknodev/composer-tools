@@ -200,7 +200,7 @@ class Form6 extends BaseContacts {
                       type: "select",
                       key: "type",
                       displayer: "Type",
-                      value: "Text",
+                      value: "E-mail",
                       additionalParams: {
                         selectItems: ["Text", "E-mail", "Number", "Text Area"],
                       },
@@ -340,7 +340,7 @@ class Form6 extends BaseContacts {
       ],
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "Send Email", "", "Primary"));
+    this.addProp(INPUTS.BUTTON("button", "Button", "Send Email", null, null, "Primary"));
   }
 
   getName(): string {

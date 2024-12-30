@@ -158,7 +158,7 @@
   margin-top: var(--composer-gap-xs);
 }
 
-@container (max-width: #{$composer-tablet-width}) {
+@container (max-width: #{$composer-tablet-width-lg}) {
   .top-container {
     flex-direction: column;
     gap: var(--composer-gap-md);

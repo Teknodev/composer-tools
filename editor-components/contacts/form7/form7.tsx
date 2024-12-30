@@ -23,7 +23,7 @@ class Form7 extends BaseContacts {
       value: "CONTACT",
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "Submit", "", "Primary"));
+    this.addProp(INPUTS.BUTTON("button", "Button", "Submit", null, null, "Primary"));
 
     this.addProp({
       type: "array",

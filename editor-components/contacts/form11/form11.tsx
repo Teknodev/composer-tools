@@ -286,7 +286,7 @@ class Form11Page extends BaseContacts {
       ],
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "Send", "", "Primary"));
+    this.addProp(INPUTS.BUTTON("button", "Button", "Send", null, null, "Primary"));
   }
 
   getName(): string {

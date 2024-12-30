@@ -222,7 +222,7 @@ class Form2Page extends BaseContacts {
       ],
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "Contact Us", "", "Primary"));
+    this.addProp(INPUTS.BUTTON("button", "Button", "Contact Us", null, null, "Primary"));
   }
 
   getName(): string {
@@ -361,7 +361,6 @@ class Form2Page extends BaseContacts {
                                   id={getInputName(index, input.getPropValue("label"))}
                                   value={values[getInputName(index, input.getPropValue("label"))]}
                                   placeholder=" "
-                                  // className={`${imageExist ? this.decorateCSS("input") : this.decorateCSS("input-no-image")} ${this.decorateCSS("textarea")}`}
                                   className={`${this.decorateCSS("input")} ${!imageExist && this.decorateCSS("input-no-image")} ${this.decorateCSS("textarea")}`}
                                   rows={12}
                                   onChange={handleChange}
@@ -374,10 +373,9 @@ class Form2Page extends BaseContacts {
                                   onChange={handleChange}
                                   value={values[getInputName(index, input.getPropValue("label"))]}
                                   name={getInputName(index, input.getPropValue("label"))}
-                                  className={imageExist ? this.decorateCSS("input") : this.decorateCSS("input-no-image")}
+                                  className={`${this.decorateCSS("input")} ${!imageExist && this.decorateCSS("input-no-image")} `}
                                 />
                               )}
-                              {/* {this.castToString(input.getPropValue("placeholder")) && <span className={imageExist ? this.decorateCSS("placeholder") : this.decorateCSS("placeholder-no-image")}>{input.getPropValue("placeholder")}</span>} */}
                               {this.castToString(input.getPropValue("placeholder")) && <span className={`${this.decorateCSS("placeholder")} ${!imageExist && this.decorateCSS("placeholder-no-image")}`}>{input.getPropValue("placeholder")}</span>}
                               <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(index, input.getPropValue("label"))} component={"span"} />
                             </div>

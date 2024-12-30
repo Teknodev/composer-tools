@@ -454,19 +454,19 @@ class Form9Page extends BaseContacts {
                 )}
                 {(inputs.length > 0 || buttonTextExist) && (
                   <Formik
-                    initialValues={initialValue}
+                    initialValues={getInitialValue()}
                     validationSchema={getSchema()}
                     onSubmit={(data, { resetForm }) => {
                       const formData = this.getFormDataWithConvertedKeys(data);
-                      console.log(data, "data");
-                      console.log(formData, "data");
                       this.insertForm("Contact Me", formData);
+                      console.log(data);
+                      console.log(formData);
                       resetForm();
                     }}
                   >
                     {({ handleChange, values }) => (
                       <Form className={this.decorateCSS("form")}>
-                        {this.getPropValue("inputs").map((input: any, index: number) => {
+                        {this.castToObject<any>("inputs").map((input: any, index: number) => {
                           return (
                             <div
                               key={index}

@@ -495,7 +495,7 @@ class Form3Page extends BaseContacts {
       additionalParams: {
         maxElementCount: 2,
       },
-      value: [INPUTS.BUTTON("button", "Button", "Contact Us", "", "Primary")],
+      value: [INPUTS.BUTTON("button", "Button", "Contact Us", null, null, "Primary")],
     });
   }
 
@@ -658,7 +658,6 @@ class Form3Page extends BaseContacts {
                       initialValues={getInitialValue()}
                       validationSchema={getSchema()}
                       onSubmit={(data, { resetForm }) => {
-                        console.log("Form Submitted Data:", data);
                         this.insertForm("Contact Us", data);
                         resetForm();
                       }}
