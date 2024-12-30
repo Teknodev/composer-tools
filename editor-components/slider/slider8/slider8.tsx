@@ -7,18 +7,13 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
   image: string;
   backgroundImage: string;
   imageTitle: JSX.Element;
-  buttons: Button[];
-};
-
-type Button = {
-  buttonText: JSX.Element;
-  buttonUrl: string;
-  buttonIcon: string;
+  button: INPUTS.CastedButton;
 };
 
 class Slider8 extends BaseSlider {
@@ -60,33 +55,7 @@ class Slider8 extends BaseSlider {
               additionalParams: {
                 maxElementCount: 2,
               },
-              value: [
-                {
-                  type: "object",
-                  key: "buttons",
-                  displayer: "Buttons",
-                  value: [
-                    {
-                      type: "string",
-                      key: "buttonText",
-                      displayer: "Button Text",
-                      value: "VIEW PROJECT",
-                    },
-                    {
-                      type: "page",
-                      key: "url",
-                      displayer: "Button Link",
-                      value: "",
-                    },
-                    {
-                      type: "icon",
-                      key: "buttonIcon",
-                      displayer: "Button Icon",
-                      value: "FaArrowRight",
-                    },
-                  ],
-                },
-              ],
+              value: [INPUTS.BUTTON("buttons", "Button", "VIEW PROJECT", "", null, null, "White")],
             },
           ],
         },
@@ -120,33 +89,7 @@ class Slider8 extends BaseSlider {
               additionalParams: {
                 maxElementCount: 2,
               },
-              value: [
-                {
-                  type: "object",
-                  key: "buttons",
-                  displayer: "Buttons",
-                  value: [
-                    {
-                      type: "string",
-                      key: "buttonText",
-                      displayer: "Button Text",
-                      value: "VIEW PROJECT",
-                    },
-                    {
-                      type: "page",
-                      key: "url",
-                      displayer: "Button Link",
-                      value: "",
-                    },
-                    {
-                      type: "icon",
-                      key: "buttonIcon",
-                      displayer: "Button Icon",
-                      value: "FaArrowRight",
-                    },
-                  ],
-                },
-              ],
+              value: [INPUTS.BUTTON("buttons", "Button", "VIEW PROJECT", "", null, null, "White")],
             },
           ],
         },
@@ -180,33 +123,7 @@ class Slider8 extends BaseSlider {
               additionalParams: {
                 maxElementCount: 2,
               },
-              value: [
-                {
-                  type: "object",
-                  key: "buttons",
-                  displayer: "Buttons",
-                  value: [
-                    {
-                      type: "string",
-                      key: "buttonText",
-                      displayer: "Button Text",
-                      value: "VIEW PROJECT",
-                    },
-                    {
-                      type: "page",
-                      key: "url",
-                      displayer: "Button Link",
-                      value: "",
-                    },
-                    {
-                      type: "icon",
-                      key: "buttonIcon",
-                      displayer: "Button Icon",
-                      value: "FaArrowRight",
-                    },
-                  ],
-                },
-              ],
+              value: [INPUTS.BUTTON("buttons", "Button", "VIEW PROJECT", "", null, null, "White")],
             },
           ],
         },
@@ -276,7 +193,7 @@ class Slider8 extends BaseSlider {
     const activeSlide = this.getComponentState("activeSlide");
     const anyImagesExist = cards[activeSlide]?.image || cards[activeSlide]?.backgroundImage;
 
-    const alignmentValue = Base.getContentAlignment()
+    const alignmentValue = Base.getContentAlignment();
 
     const settings = {
       fade: true,
@@ -307,29 +224,29 @@ class Slider8 extends BaseSlider {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("slider-parent")}>
             {cards?.length && cards?.length > 0 && (
-              <ComposerSlider
-                {...settings}
-                className={this.decorateCSS("carousel")}
-                ref={this.getComponentState("slider-ref")}>
-                {cards.map((item: Card, index: number) => {
+              <ComposerSlider {...settings} className={this.decorateCSS("carousel")} ref={this.getComponentState("slider-ref")}>
+                {cards.map((item: any, index: number) => {
                   const buttons = item.buttons;
+
+                  console.log(buttons, "buttons");
                   const titleExists = this.castToString(item.imageTitle);
                   const render = titleExists || buttons?.length > 0 || item.image;
                   if (!render) return null;
                   return (
-                    <div
-                      className={this.decorateCSS("slider-inner-div")}
-                      key={`sld-8-${index}`}>
-                      <div className={`${this.decorateCSS("content")} ${anyImagesExist === "" ? this.decorateCSS("no-img") : ""}`}
+                    <div className={this.decorateCSS("slider-inner-div")} key={`sld-8-${index}`}>
+                      <div
+                        className={`${this.decorateCSS("content")} ${anyImagesExist === "" ? this.decorateCSS("no-img") : ""}`}
                         style={{
                           backgroundImage: `url("${item.backgroundImage}")`,
-                        }}>
+                        }}
+                      >
                         {shouldDisplayOverlay(index) === true && <div className={this.decorateCSS("overlay")}></div>}
                         <div
                           className={`
                           ${this.decorateCSS("content-div")}
                              ${this.getComponentState("activeSlide") === index ? this.decorateCSS("fix-location") : ""}
-                          `}>
+                          `}
+                        >
                           {linesContainer && (
                             <div className={this.decorateCSS(anyImagesExist ? "lines-container" : "lines-container2")}>
                               <div className={this.decorateCSS("line-1")}></div>
@@ -338,43 +255,48 @@ class Slider8 extends BaseSlider {
                           )}
 
                           {titleExists && (
-                            <div className={`${this.decorateCSS("title-wrapper")}
-                            ${alignmentValue === "center" && this.decorateCSS("center")}`}>
+                            <div
+                              className={`${this.decorateCSS("title-wrapper")}
+                            ${alignmentValue === "center" && this.decorateCSS("center")}`}
+                            >
                               <Base.SectionTitle
                                 className={`${this.decorateCSS("title")} 
                                 ${this.decorateCSS(anyImagesExist ? "imageTitle" : "imageTitle2")} 
-                                ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("imageTitleAnimation") : ""}`}>
+                                ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("imageTitleAnimation") : ""}`}
+                              >
                                 {item.imageTitle}
                               </Base.SectionTitle>
                             </div>
                           )}
 
                           {buttons?.length > 0 && (
-                            <div
-                              className={`${this.decorateCSS(anyImagesExist ? "buttons" : "buttons2")} ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("animateButtons") : ""
-                                }`}>
-                              {buttons.map((buttonItem: Button, buttonIndex: number) => (
-                                this.castToString(buttonItem.buttonText) &&
-                                <ComposerLink
-                                  key={`dw-7-btn-left ${buttonIndex}`}
-                                  path={buttonItem.buttonUrl}>
-                                  <Base.Button
-                                    className={`${(item.backgroundImage && item.image) && this.decorateCSS("button")}
-                                        ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("animateButtons") : ""}`}>
-                                    {buttonItem.buttonText}
-                                  </Base.Button>
-                                </ComposerLink>
-                              ))}
+                            <div className={`${this.decorateCSS(anyImagesExist ? "buttons" : "buttons2")} ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("animateButtons") : ""}`}>
+                              {buttons.map((buttonItem: any, buttonIndex: number) => {
+                                return (
+                                  this.castToString(buttonItem.text) && (
+                                    <ComposerLink key={`dw-7-btn-left ${buttonIndex}`} path={buttonItem.url}>
+                                      <Base.Button
+                                        buttonType={buttonItem.type}
+                                        className={`${item.backgroundImage && item.image && this.decorateCSS("button")}
+                                        ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("animateButtons") : ""}`}
+                                      >
+                                        {buttonItem.text}
+                                      </Base.Button>
+                                    </ComposerLink>
+                                  )
+                                );
+                              })}
                             </div>
                           )}
-                          {(leftNavButton || rightNavButton) &&
+                          {(leftNavButton || rightNavButton) && (
                             <div className={this.decorateCSS(anyImagesExist ? "nav-buttons" : "nav-buttons2")}>
                               {leftNavButton && (
                                 <button
                                   className={this.decorateCSS("nav-button")}
                                   onClick={() => {
                                     this.getComponentState("slider-ref").current.slickPrev();
-                                  }}>
+                                  }}
+                                >
                                   <ComposerIcon
                                     name={leftNavButton}
                                     propsIcon={{
@@ -388,7 +310,8 @@ class Slider8 extends BaseSlider {
                                   className={this.decorateCSS("nav-button")}
                                   onClick={() => {
                                     this.getComponentState("slider-ref").current.slickNext();
-                                  }}>
+                                  }}
+                                >
                                   <ComposerIcon
                                     name={rightNavButton}
                                     propsIcon={{
@@ -397,35 +320,31 @@ class Slider8 extends BaseSlider {
                                   />
                                 </button>
                               )}
-                            </div>}
+                            </div>
+                          )}
                         </div>
                       </div>
 
-                      <div
-                        className={this.decorateCSS("image")}
-                        style={{ backgroundImage: `url(${item.image})` }}>
+                      <div className={this.decorateCSS("image")} style={{ backgroundImage: `url(${item.image})` }}>
                         {shouldDisplayForegroundOverlay(index) === true && <div className={this.decorateCSS("image-overlay")}></div>}
                       </div>
-
                     </div>
                   );
                 })}
               </ComposerSlider>
             )}
           </div>
-          {cards.length > 1 &&
+          {cards.length > 1 && (
             <ul className={`${this.decorateCSS(anyImagesExist ? "dots" : "dots-2")}`}>
               {cards.map((_, index) => (
-                <li
-                  key={`dot-${index}`}
-                  className={this.getComponentState("activeSlide") === index && this.decorateCSS("slick-active")}
-                  onClick={() => this.getComponentState("slider-ref").current.slickGoTo(index)}>
+                <li key={`dot-${index}`} className={this.getComponentState("activeSlide") === index && this.decorateCSS("slick-active")} onClick={() => this.getComponentState("slider-ref").current.slickGoTo(index)}>
                   <button />
                 </li>
               ))}
-            </ul>}
+            </ul>
+          )}
         </Base.MaxContent>
-      </Base.Container >
+      </Base.Container>
     );
   }
 }

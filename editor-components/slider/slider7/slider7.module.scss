@@ -38,19 +38,19 @@
       width: 100%;
 
       :global(.slick-center) {
-        >div {
+        > div {
           .centerSlide {
-            transform: scale(1.0);
+            transform: scale(1);
             transition: transform 0.3s ease;
           }
         }
       }
 
-      >ul {
+      > ul {
         bottom: -19px;
 
-        >li {
-          >button {
+        > li {
+          > button {
             &:before {
               color: var(--composer-font-color-primary);
             }
@@ -92,7 +92,7 @@
             transition: transform 0.5s ease, filter 0.5s ease;
 
             &:hover {
-              transform: scale(1.0);
+              transform: scale(1);
               filter: brightness(80%);
             }
 
@@ -103,13 +103,6 @@
           }
         }
       }
-
-
-      // .centerSlide {
-      //   transform: scale(1.0);
-      //   transition: transform 0.3s ease;
-      // }
-
     }
   }
 }
@@ -118,7 +111,7 @@
   padding: var(--composer-gap-md) var(--composer-gap-xl) !important;
 }
 
-@container (max-width: #{$composer-tablet-width}) {
+@container (max-width: #{$composer-tablet-width-lg}) {
   .container {
     .max-content {
       .carousel {

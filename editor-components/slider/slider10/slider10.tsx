@@ -66,8 +66,7 @@ class Slider10 extends BaseSlider {
               type: "image",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668bb8f6ba6bbe002b645872?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668bb8f6ba6bbe002b645872?alt=media",
             },
           ],
         },
@@ -86,8 +85,7 @@ class Slider10 extends BaseSlider {
               type: "image",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668bb90fba6bbe002b64588b?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668bb90fba6bbe002b64588b?alt=media",
             },
           ],
         },
@@ -106,8 +104,7 @@ class Slider10 extends BaseSlider {
               type: "image",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668bb921ba6bbe002b645896?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668bb921ba6bbe002b645896?alt=media",
             },
           ],
         },
@@ -126,8 +123,7 @@ class Slider10 extends BaseSlider {
               type: "image",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668bb92dba6bbe002b6458a2?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668bb92dba6bbe002b6458a2?alt=media",
             },
           ],
         },
@@ -146,8 +142,7 @@ class Slider10 extends BaseSlider {
               type: "image",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668bb939ba6bbe002b6458b4?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668bb939ba6bbe002b6458b4?alt=media",
             },
           ],
         },
@@ -166,8 +161,7 @@ class Slider10 extends BaseSlider {
               type: "image",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668bb949ba6bbe002b6458c8?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668bb949ba6bbe002b6458c8?alt=media",
             },
           ],
         },
@@ -203,8 +197,7 @@ class Slider10 extends BaseSlider {
               type: "image",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668bb8f6ba6bbe002b645872?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668bb8f6ba6bbe002b645872?alt=media",
             },
             {
               type: "page",
@@ -235,8 +228,7 @@ class Slider10 extends BaseSlider {
               type: "image",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668bb90fba6bbe002b64588b?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668bb90fba6bbe002b64588b?alt=media",
             },
             {
               type: "page",
@@ -267,8 +259,7 @@ class Slider10 extends BaseSlider {
               type: "image",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668bb921ba6bbe002b645896?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668bb921ba6bbe002b645896?alt=media",
             },
             {
               type: "page",
@@ -307,7 +298,7 @@ class Slider10 extends BaseSlider {
       dots: false,
       arrows: false,
       infinite: true,
-      autoplay: false,
+      autoplay: true,
       speed: 1500,
       autoplaySpeed: 3000,
       slidesToShow: 1,
@@ -320,13 +311,7 @@ class Slider10 extends BaseSlider {
 
     const slides = this.castToObject<SliderItem[]>("slider-items");
     const featuredItems = this.castToObject<FeaturedItem[]>("featured-items");
-    const featuredItemsNonEmptyLength = featuredItems.filter(
-      (item) =>
-        item.image ||
-        this.castToString(item.title) ||
-        this.castToString(item.subtitle),
-    ).length;
-
+    const featuredItemsNonEmptyLength = featuredItems.filter((item) => item.image || this.castToString(item.title) || this.castToString(item.subtitle)).length;
 
     const sliderRef = this.getComponentState("slider-ref");
     const overlay: boolean = this.getPropValue("overlay");
@@ -362,21 +347,14 @@ class Slider10 extends BaseSlider {
                                 className={`
                                 ${this.decorateCSS("slider-item-title")}
                                 ${item.image && this.decorateCSS("slider-item-title-with-img")}
-                                ${(activeIndex === index || textAnimation) &&
-                                  this.decorateCSS("show")}
+                                ${(activeIndex === index || textAnimation) && this.decorateCSS("show")}
                               `}
                               >
                                 {item.title}
                               </Base.SectionTitle>
                             )}
                           </div>
-                          {overlay && (
-                            <div
-                              className={this.decorateCSS(
-                                "slider-item-overlay",
-                              )}
-                            />
-                          )}
+                          {overlay && <div className={this.decorateCSS("slider-item-overlay")} />}
                         </div>
                       </div>
                     );
@@ -388,7 +366,7 @@ class Slider10 extends BaseSlider {
           {(featuredItems?.length > 0 || nextIcon || prevIcon) && (
             <div className={this.decorateCSS("footer-max-content")}>
               <div className={this.decorateCSS("slider-footer")}>
-                {featuredItems.length > 0 &&
+                {featuredItems.length > 0 && (
                   <div className={this.decorateCSS("slider-footer-items")}>
                     {featuredItems.map((item: FeaturedItem, index: number) => {
                       const titleExist = this.castToString(item.title);
@@ -396,35 +374,35 @@ class Slider10 extends BaseSlider {
 
                       if (titleExist || subtitleExist || item.image)
                         return (
-                          <div key={index}
-                            className={`${this.decorateCSS("slider-footer-item")} ${(!item.image || (!titleExist && !subtitleExist)) && this.decorateCSS("half-width")}`}>
+                          <div key={index} className={`${this.decorateCSS("slider-footer-item")} ${(!item.image || (!titleExist && !subtitleExist)) && this.decorateCSS("half-width")}`}>
                             {item.image && (
-                              <img className={`
+                              <img
+                                className={`
                                   ${this.decorateCSS("slider-footer-item-image")}
                                   ${hoverAnimation && this.decorateCSS("hover-animation")}`}
                                 src={item.image}
-                                alt={this.castToString(item.title)} />
+                                alt={this.castToString(item.title)}
+                              />
                             )}
                             {(titleExist || subtitleExist) && (
                               <div className={this.decorateCSS("slider-footer-item-body")}>
                                 {titleExist &&
                                   (!item.link ? (
-                                    <Base.P className={this.decorateCSS("slider-footer-item-title",)}>{item.title}</Base.P>
+                                    <Base.P className={this.decorateCSS("slider-footer-item-title")}>{item.title}</Base.P>
                                   ) : (
                                     <ComposerLink path={item.link}>
                                       <Base.P className={this.decorateCSS("slider-footer-item-title")}>{item.title}</Base.P>
                                     </ComposerLink>
                                   ))}
-                                {subtitleExist && (
-                                  <Base.P className={this.decorateCSS("slider-footer-item-subtitle",)}>{item.subtitle}</Base.P>
-                                )}
+                                {subtitleExist && <Base.P className={this.decorateCSS("slider-footer-item-subtitle")}>{item.subtitle}</Base.P>}
                               </div>
                             )}
                           </div>
                         );
                       return null;
                     })}
-                  </div>}
+                  </div>
+                )}
                 {(prevIcon || nextIcon) && (
                   <div className={this.decorateCSS("slider-buttons")}>
                     {prevIcon && (
@@ -443,15 +421,18 @@ class Slider10 extends BaseSlider {
                       </button>
                     )}
                     {nextIcon && (
-                      <button className={this.decorateCSS("slider-button")}
+                      <button
+                        className={this.decorateCSS("slider-button")}
                         onClick={() => {
                           sliderRef.current.slickNext();
-                        }}>
+                        }}
+                      >
                         <ComposerIcon
                           name={nextIcon}
                           propsIcon={{
                             className: this.decorateCSS("slider-arrow-icon"),
-                          }} />
+                          }}
+                        />
                       </button>
                     )}
                   </div>
