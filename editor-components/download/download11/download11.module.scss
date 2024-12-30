@@ -114,38 +114,44 @@
 }
 
 @container (max-width: #{$composer-tablet-width-lg}) {
-  .container .max-content .cards {
-    flex-direction: column;
-    gap: var(--composer-gap-md);
-  }
-
-  .container .max-content .cards .left-card,
-  .container .max-content .cards .left-card-full {
-    width: 100%;
-  }
-
-  .container .max-content .cards .left-card .card .image,
-  .container .max-content .cards .left-card-full .card .image {
-    width: 100%;
-    height: 200px;
-  }
-
-  .container .max-content .cards .right-cards .upper-card .card {
-    flex-direction: column;
-    gap: var(--composer-gap-md);
-  }
-
-  .container .max-content .cards .right-cards .upper-card .card .image {
-    width: 100%;
-    height: 200px;
-  }
-
-  .container .max-content .cards .right-cards .buttom-card .card {
-    flex-direction: column;
-    gap: var(--composer-gap-md);
-
-    .title {
-      margin: 0;
+  .container{
+    .max-content{
+      .cards{
+        flex-direction: column;
+        gap: var(--composer-gap-md);
+        .left-card{
+          width: 100%;
+          &.no-full{
+            width: 100%;
+          }
+          .image{
+            &.full {
+              height: 200px;
+            }
+          }
+        }
+        .right-cards{
+          .upper-card{
+            .card{
+              flex-direction: column;
+              gap: var(--composer-gap-md);
+              .image{
+                width: 100%;
+                height: 200px;
+              }
+            }
+          }
+          .buttom-card{
+            .card{
+              flex-direction: column;
+              gap: var(--composer-gap-md);
+              .title{
+                margin: 0;
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

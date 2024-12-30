@@ -40,11 +40,12 @@
 
       .button-wrapper {
         .button {
-          display: flex;
-          align-items: center;
-          gap: var(--composer-gap-sm);
-          .icon {
+          padding: var(--composer-gap-md) var(--composer-gap-lg);
+          .button-text{
             font-size: 1.5rem;
+          }
+          .icon{
+            font-size:1.5rem;
           }
         }
       }

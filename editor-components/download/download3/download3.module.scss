@@ -20,7 +20,7 @@
         width: 100%;
         align-items: center;
         justify-content: space-between;
-        padding: var(--composer-gap-md) var(--composer-gap-xl);
+        padding: 20px 50px;
         gap: var(--composer-gap-lg);
 
         .title {
@@ -72,7 +72,7 @@
 
       .group-container-center {
         align-items: center;
-        padding: var(--composer-gap-md) var(--composer-gap-xl);
+        padding: 20px 50px;
 
         .title {
           content: "";
@@ -131,6 +131,7 @@
           flex-direction: column;
           width: 100%;
           gap: 0;
+          padding: 20px 40px;
 
           .title {
             content: "";
@@ -174,6 +175,9 @@
             }
           }
         }
+        .group-container-center{
+          padding: 20px 40px;
+        }
       }
     }
   }
@@ -192,6 +196,7 @@
           flex-direction: column;
           width: 100%;
           gap: 0;
+          padding: 20px;
 
           .title {
             content: "";
@@ -232,6 +237,7 @@
           }
         }
         .group-container-center {
+          padding: 20px;
           .button-group {
             display: flex;
             flex-direction: column;

@@ -114,17 +114,17 @@ class List7 extends BaseList {
                   className={this.decorateCSS("all-card")}
                 >
                   {(this.getPropValue("showIndex") || this.castToString(item.title) || this.castToString(item.text)) && (
-                    <div className={this.decorateCSS("item-content")}>
+                    <Base.VerticalContent className={this.decorateCSS("item-content")}>
                       {this.getPropValue("showIndex") && (
-                        <div className={this.decorateCSS("index")}>{index < 9 ? `0${index + 1}` : index + 1}</div>
+                        <Base.H1 className={this.decorateCSS("index")}>{index < 9 ? `0${index + 1}` : index + 1}</Base.H1>
                       )}
                       {this.castToString(item.title) && (
-                        <div className={this.decorateCSS("title")}>{item.title}</div>
+                        <Base.H3 className={this.decorateCSS("title")}>{item.title}</Base.H3>
                       )}
                       {this.castToString(item.text) && (
-                        <div className={this.decorateCSS("list-item-p")}>{item.text}</div>
+                        <Base.P className={this.decorateCSS("list-item-p")}>{item.text}</Base.P>
                       )}
-                    </div>
+                    </Base.VerticalContent>
                   )}
                 </div>
               ))}

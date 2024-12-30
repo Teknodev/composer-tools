@@ -39,84 +39,9 @@ class DownloadCard1 extends BaseDownload {
       key: "buttons",
       displayer: "Button ",
       value: [
-        INPUTS.BUTTON("button", "Button", "PLAYSTORE", "", "Primary"),
-        INPUTS.BUTTON("button", "Button", "APPSTORE", "", "Primary"),
-        INPUTS.BUTTON("button", "Button", "WINDOWS", "", "Primary")
-        // {
-        //   type: "object",
-        //   key: "button",
-        //   displayer: "Button",
-        //   value: [
-        //     {
-        //       type: "string",
-        //       key: "buttonText",
-        //       displayer: "Button Text",
-        //       value: "PLAYSTORE",
-        //     },
-        //     {
-        //       type: "page",
-        //       key: "url",
-        //       displayer: "Button Link",
-        //       value: "",
-        //     },
-        //     {
-        //       type: "icon",
-        //       key: "buttonIcon",
-        //       displayer: "In Button Icon",
-        //       value: "ImAndroid",
-        //     },
-        //   ],
-        // },
-        // {
-        //   type: "object",
-        //   key: "button",
-        //   displayer: "Button",
-        //   value: [
-        //     {
-        //       type: "string",
-        //       key: "buttonText",
-        //       displayer: "Button Text",
-        //       value: "APPSTORE",
-        //     },
-        //     {
-        //       type: "page",
-        //       key: "url",
-        //       displayer: "Button Link",
-        //       value: "",
-        //     },
-        //     {
-        //       type: "icon",
-        //       key: "buttonIcon",
-        //       displayer: "In Button Icon",
-        //       value: "GrApple",
-        //     },
-        //   ],
-        // },
-        // {
-        //   type: "object",
-        //   key: "button",
-        //   displayer: "Button",
-        //   value: [
-        //     {
-        //       type: "string",
-        //       key: "buttonText",
-        //       displayer: "Button Text",
-        //       value: "WINDOWS",
-        //     },
-        //     {
-        //       type: "page",
-        //       key: "url",
-        //       displayer: "Button Link",
-        //       value: "",
-        //     },
-        //     {
-        //       type: "icon",
-        //       key: "buttonIcon",
-        //       displayer: "In Button Icon",
-        //       value: "FaWindows",
-        //     },
-        //   ],
-        // },
+        INPUTS.BUTTON("button", "Button", "PLAYSTORE", "", "ImAndroid", "Primary"),
+        INPUTS.BUTTON("button", "Button", "APPSTORE", "", "GrApple", "Primary"),
+        INPUTS.BUTTON("button", "Button", "WINDOWS", "", "FaWindows", "Primary")
       ],
     });
     this.addProp({
@@ -195,17 +120,18 @@ class DownloadCard1 extends BaseDownload {
             <div className={this.decorateCSS("box")}>
               {buttons.map((item: INPUTS.CastedButton, index: number) => {
                 const buttonTitleExist = this.castToString(item.text);
-                // const iconExist = item.buttonIcon;
-                const buttonExist = buttonTitleExist
-                // || iconExist;
+                const iconExist = item.icon;
+                const buttonExist = buttonTitleExist || iconExist;
                 return (
                   buttonExist && (
                     <div className={this.decorateCSS("button-wrapper")}>
                       <ComposerLink key={`dw-1-btn-${index}`} path={item.url}>
                         <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                          {item.text}
+                          <div className={this.decorateCSS("button-text")}>
+                            {item.text}
+                          </div>
                           <ComposerIcon
-                            name={buttonIcons[index].icon}
+                            name={item.icon}
                             propsIcon={{
                               className: this.decorateCSS("icon"),
                             }}
