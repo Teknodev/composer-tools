@@ -249,7 +249,7 @@ class Team12 extends Team {
       <Base.Container className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("cards")}>
-            {this.castToObject<TeamMember[]>("team").map((teamMember: any, index: number) => {
+            {this.castToObject<TeamMember[]>("team").map((teamMember: any) => {
               const nameExist = this.castToString(teamMember.name);
               const professionExist = this.castToString(teamMember.profession);
               const descriptionExist = this.castToString(teamMember.description);
@@ -264,8 +264,8 @@ class Team12 extends Team {
                       {professionExist && <Base.H5 className={this.decorateCSS("profession")}>{teamMember.getPropValue("profession")}</Base.H5>}
                       {descriptionExist && <Base.P className={this.decorateCSS("description")}>{teamMember.getPropValue("description")}</Base.P>}
                       {teamMember.platforms.length > 0 && (
-                        <div className={this.decorateCSS("platforms")}>
-                          {teamMember.platforms.map((platform: any, index: number) => (
+                        <Base.Row className={this.decorateCSS("platforms")}>
+                          {teamMember.platforms.map((platform: any) => (
                             <div className={this.decorateCSS("platform")}>
                               <ComposerLink path={platform.getPropValue("url")}>
                                 <ComposerIcon
@@ -277,7 +277,7 @@ class Team12 extends Team {
                               </ComposerLink>
                             </div>
                           ))}
-                        </div>
+                        </Base.Row>
                       )}
                     </Base.VerticalContent>
                   </div>

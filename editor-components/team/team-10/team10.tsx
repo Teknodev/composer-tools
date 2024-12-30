@@ -430,36 +430,32 @@ class Team10 extends Team {
         <div className={this.decorateCSS("wrapper")}>
           <div className={this.decorateCSS("left")}>
             <Base.VerticalContent className={this.decorateCSS("title-wrapper")}>
-              {subtitleExist && <Base.SectionSubTitle className={backgroundImageExist ? this.decorateCSS("subtitle") : this.decorateCSS("subtitle-no-image")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
-              {titleExist && <Base.SectionTitle className={backgroundImageExist ? this.decorateCSS("title") : this.decorateCSS("title-no-image")}>{this.getPropValue("title")}</Base.SectionTitle>}
+              {subtitleExist && <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${backgroundImageExist && this.decorateCSS("image")}`}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+              {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${backgroundImageExist && this.decorateCSS("image")}`}>{this.getPropValue("title")}</Base.SectionTitle>}
             </Base.VerticalContent>
 
             {overlayExist && <div className={this.decorateCSS("overlay")}></div>}
             {backgroundImageExist && <img className={this.decorateCSS("background-image")} src={this.getPropValue("background-image")} />}
           </div>
           <div className={this.decorateCSS("right")}>
-            {this.castToObject<TTeam[]>("team").map((teamMember: any, index: number) => {
+            {this.castToObject<TTeam[]>("team").map((teamMember: any) => {
               const imageExist = teamMember.getPropValue("image");
               return (
                 <Base.VerticalContent className={this.decorateCSS("team-member")}>
                   <div className={this.decorateCSS("info")}>
                     <div className={this.decorateCSS("icon-group")}>
-                      {
-                        <div className={this.decorateCSS("icon-list-container")}>
-                          {teamMember.icons.map((icon: any, indexIcons: number) => {
-                            const iconExist = icon.icon;
-                            return (
-                              iconExist && (
-                                <div key={indexIcons} className={this.decorateCSS("icon-item")}>
-                                  <ComposerLink path={icon.url}>
-                                    <ComposerIcon name={icon.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
-                                  </ComposerLink>
-                                </div>
-                              )
-                            );
-                          })}
-                        </div>
-                      }
+                      {teamMember.icons.map((icon: any, indexIcons: number) => {
+                        const iconExist = icon.icon;
+                        return (
+                          iconExist && (
+                            <div key={indexIcons} className={this.decorateCSS("icon-item")}>
+                              <ComposerLink path={icon.url}>
+                                <ComposerIcon name={icon.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                              </ComposerLink>
+                            </div>
+                          )
+                        );
+                      })}
                     </div>
                     <Base.H3 className={this.decorateCSS("subtitle")}>{teamMember.getPropValue("subtitle")}</Base.H3>
                     <Base.H1 className={this.decorateCSS("title")}>{teamMember.getPropValue("title")}</Base.H1>
@@ -485,7 +481,13 @@ class Team10 extends Team {
                     </div>
                     <Base.SectionDescription className={this.decorateCSS("description")}>{teamMember.getPropValue("description")}</Base.SectionDescription>
                   </div>
-                  {imageExist && <div className={this.decorateCSS("image-container")}>{<img className={this.decorateCSS("image")} src={teamMember.getPropValue("image")} />}</div>}
+                  {imageExist &&
+                    <div className={this.decorateCSS("image-container")}>{
+                      <img className={this.decorateCSS("image")}
+                        src={teamMember.getPropValue("image")} />}
+                      <div className={this.decorateCSS("image-overlay")}></div>
+                    </div>
+                  }
                 </Base.VerticalContent>
               );
             })}
