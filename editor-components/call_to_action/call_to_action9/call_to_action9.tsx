@@ -3,6 +3,8 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action9.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import ButtonNavigator from "components/button-navigator/button-navigator";
 interface ImageItem {
   image: string
 }
@@ -16,18 +18,9 @@ class CallToAction9Page extends BaseCallToAction {
       displayer: "Title",
       value: "98% designers love Shuffle. Not convinced you're one?",
     });
-    this.addProp({
-      type: "string",
-      key: "buttonText",
-      displayer: "Button Text",
-      value: "Start 14 days free trail",
-    });
-    this.addProp({
-      type: "page",
-      key: "link",
-      displayer: "Button Link",
-      value: "",
-    });
+
+    this.addProp(INPUTS.BUTTON("button", "Button", "Start 14 days free trail", "", null, "Primary"));
+
     this.addProp({
       type: "string",
       key: "description",
@@ -134,6 +127,8 @@ class CallToAction9Page extends BaseCallToAction {
 
   render() {
     const images = this.castToObject<ImageItem[]>("imageItems");
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -141,10 +136,10 @@ class CallToAction9Page extends BaseCallToAction {
             {this.castToString(this.getPropValue("title")) && (
               <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
             )}
-            {this.castToString(this.getPropValue("buttonText")) && (
-              <ComposerLink path={this.getPropValue("link")}>
-                <Base.Button className={this.decorateCSS("button")}>
-                  {this.getPropValue("buttonText")}
+            {this.castToString(button.text) && (
+              <ComposerLink path={button.url}>
+                <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>
+                  {button.text}
                 </Base.Button>
               </ComposerLink>
             )}

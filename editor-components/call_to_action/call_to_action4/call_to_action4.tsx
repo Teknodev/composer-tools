@@ -4,14 +4,13 @@ import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action4.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 interface ListItem {
   description: JSX.Element
 }
-interface ButtonItem {
-  buttonText: JSX.Element,
-  buttonLink: string
-}
+
+type Button = INPUTS.CastedButton;
 
 class CallToAction4Page extends BaseCallToAction {
   constructor(props?: any) {
@@ -155,49 +154,13 @@ class CallToAction4Page extends BaseCallToAction {
     });
     this.addProp({
       type: "array",
-      key: "buttonItems",
-      displayer: "Button Items",
+      key: "buttons",
+      displayer: "Buttons",
       value: [
-        {
-          type: "object",
-          key: "buttonItem",
-          displayer: "Button Item",
-          value: [
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Learn More",
-            },
-            {
-              type: "page",
-              key: "buttonLink",
-              displayer: "Button Link",
-              value: "",
-            }
-          ]
-        },
-        {
-          type: "object",
-          key: "buttonItem",
-          displayer: "Button Item",
-          value: [
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Enroll Now",
-            },
-            {
-              type: "page",
-              key: "buttonLink",
-              displayer: "Button Link",
-              value: "",
-            }
-          ]
-        }
-      ]
-    })
+        INPUTS.BUTTON("button", "Button", "Learn More", "", null, "Primary"),
+        INPUTS.BUTTON("button", "Button", "Enroll Now", "", null, "Primary")
+      ],
+    });
   }
 
   getName(): string {
@@ -206,12 +169,12 @@ class CallToAction4Page extends BaseCallToAction {
 
   render() {
     const listItems = this.castToObject<ListItem[]>("listItems");
-    const buttonItems = this.castToObject<ButtonItem[]>("buttonItems")
+    const buttons = this.castToObject<Button[]>("buttons")
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
-            {(this.castToString(this.getPropValue("title")) || (listItems.length > 0) || (buttonItems.length > 0)) && (
+            {(this.castToString(this.getPropValue("title")) || (listItems.length > 0) || (buttons.length > 0)) && (
               <Base.VerticalContent className={this.decorateCSS("left-page")}>
                 {this.castToString(this.getPropValue("title")) && (
                   <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
@@ -234,15 +197,13 @@ class CallToAction4Page extends BaseCallToAction {
                     ))}
                   </Base.ListGrid>
                 )}
-                {(buttonItems.length > 0) && (
+                {(buttons.length > 0) && (
                   <div className={this.decorateCSS("buttons")}>
-                    {buttonItems.map((item: ButtonItem, index: number) => (
-                      <ComposerLink path={item.buttonLink}>
-                        {this.castToString(item.buttonText) && (
-                          <Base.Button
-                            className={this.decorateCSS("button")}
-                          >
-                            {item.buttonText}
+                    {buttons.map((button: Button, index: number) => (
+                      <ComposerLink path={button.url}>
+                        {this.castToString(button.text) && (
+                          <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                            {button.text}
                           </Base.Button>
                         )}
                       </ComposerLink>

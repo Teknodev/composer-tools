@@ -4,12 +4,9 @@ import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action2.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
-type Button = {
-  text: JSX.Element;
-  link: string;
-  icon: string;
-};
+type Button = INPUTS.CastedButton;
 
 class CallToAction2Page extends BaseCallToAction {
   constructor(props?: any) {
@@ -30,33 +27,7 @@ class CallToAction2Page extends BaseCallToAction {
       type: "array",
       key: "buttons",
       displayer: "Buttons",
-      value: [
-        {
-          type: "object",
-          key: "button",
-          displayer: "Button",
-          value: [
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "Start Your Free Trial",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Link",
-              value: "",
-            },
-            {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "MdOutlineKeyboardArrowRight",
-            },
-          ],
-        },
-      ],
+      value: [INPUTS.BUTTON("button", "Button", "Start Your Free Trial", "", null, "Primary")],
     });
 
     this.addProp({
@@ -115,11 +86,13 @@ class CallToAction2Page extends BaseCallToAction {
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        <div className={this.getPropValue("image") ? this.decorateCSS("background") : this.decorateCSS("background-no-image")}> </div>
+        <div className={`${this.decorateCSS("background")} ${!this.getPropValue("image") && this.decorateCSS("no-image")}`}> </div>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             {(titleExist || subtitleExist || (buttons.length > 0)) && (
-              <div className={alignment === "left" ? this.decorateCSS("header") : this.decorateCSS("header-center")}>
+              <div
+                className={`${this.decorateCSS("header")} ${alignment === "center" && this.decorateCSS("center")}`}
+              >
                 {(titleExist || subtitleExist) && (
                   <Base.VerticalContent className={this.decorateCSS("titles")}>
                     {subtitleExist && (
@@ -136,13 +109,16 @@ class CallToAction2Page extends BaseCallToAction {
                 )}
                 {buttons?.length > 0 && (
                   <div className={this.decorateCSS("button-container")}>
-                    {buttons.map((button: Button, index: number) => (
-                      <ComposerLink path={button.link}>
-                        <Base.Button className={this.decorateCSS("button")}>
-                          {button.text}
-                        </Base.Button>
-                      </ComposerLink>
-                    ))}
+                    {buttons.map((button: Button, index: number) => {
+
+                      return (
+                        <ComposerLink path={button.url}>
+                          <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>
+                            {button.text}
+                          </Base.Button>
+                        </ComposerLink>
+                      )
+                    })}
                   </div>
                 )}
               </div>
@@ -183,7 +159,6 @@ class CallToAction2Page extends BaseCallToAction {
                       className={this.decorateCSS("player")}
                       src={this.getPropValue("video")}
                     ></video>
-
                   </div>
                 </div>
                 {closeIcon && (
@@ -201,12 +176,9 @@ class CallToAction2Page extends BaseCallToAction {
                 )}
               </Base.Overlay>
             )
-
             }
           </div>
-
         </Base.MaxContent>
-
       </Base.Container >
     );
   }

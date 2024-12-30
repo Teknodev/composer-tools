@@ -4,6 +4,8 @@ import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action7.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { Form, Formik } from "formik";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import * as Yup from "yup";
 
 class CallToAction7Page extends BaseCallToAction {
   constructor(props?: any) {
@@ -20,32 +22,49 @@ class CallToAction7Page extends BaseCallToAction {
       displayer: "Image",
       value: "https://vault.uicore.co/e-book/wp-content/uploads/sites/51/2022/08/E-Book-Book.webp",
     });
-    this.addProp({
-      type: "string",
-      key: "buttonText",
-      displayer: "Button Text",
-      value: "Get your FREE copy",
-    });
-    this.addProp({
-      type: "page",
-      key: "buttonUrl",
-      displayer: "Button Url",
-      value: "",
-    });
+
+    this.addProp(INPUTS.BUTTON("button", "Button", "Get your FREE copy", null, null, "Primary"));
+
     this.addProp({
       type: "string",
       key: "placeholder",
       displayer: "Placeholder",
       value: "Email",
-    },
-    );
+    });
+    this.addProp({
+      type: "string",
+      key: "submitText",
+      displayer: "Submit Text",
+      value: "Form successfully submitted!",
+    });
+
     this.addProp({
       type: "boolean",
       key: "disableAnimation",
       displayer: "Disable Animation",
       value: false,
     });
+
+    this.setComponentState(
+      "placeholderText",
+      this.castToString(this.getPropValue("placeholder"))
+    );
   }
+
+  componentDidUpdate() {
+    const currentPlaceholder = this.castToString(this.getPropValue("placeholder"));
+    const prevPlaceholder = this.getComponentState("placeholderText");
+
+    if (currentPlaceholder !== prevPlaceholder) {
+      this.setComponentState("placeholderText", currentPlaceholder);
+    }
+  }
+
+  validationSchema = Yup.object().shape({
+    email: Yup.string()
+      .email("Invalid email")
+      .required("Required"),
+  });
 
   getName(): string {
     return "Call To Action 7";
@@ -53,22 +72,20 @@ class CallToAction7Page extends BaseCallToAction {
 
   render() {
     const title = this.castToString(this.getPropValue("title"));
-    const button = this.getPropValue("buttonText");
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
     const placeholder = this.castToString(this.getPropValue("placeholder"));
     const disableAnimation = this.getPropValue("disableAnimation");
 
-    const getSelectedItemPlaceholder = (): string => {
-      const placeholder = this.castToString(this.getPropValue("placeholder"));
-      return placeholder;
-    };
+    const submitText = this.castToString(this.getPropValue("submitText"));
 
     return (
-      <Base.Container className={this.getPropValue("image") ? this.decorateCSS("container") : this.decorateCSS("container-no-image")}>
+      <Base.Container className={`${this.decorateCSS("container")} ${!this.getPropValue("image") && this.decorateCSS("no-image")}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ContainerGrid className={this.decorateCSS("wrapper")}>
             {this.getPropValue("image") &&
               (<Base.GridCell className={this.decorateCSS("left-page")}>
-                <img className={disableAnimation ? this.decorateCSS("image-no-animation") : this.decorateCSS("image")} src={this.getPropValue("image")} alt={this.getPropValue("image")} />
+                <img className={`${this.decorateCSS("image")} ${disableAnimation && this.decorateCSS("no-animation")}`}
+                  src={this.getPropValue("image")} alt={this.getPropValue("image")} />
               </Base.GridCell>)
             }
             {(placeholder || title) &&
@@ -79,26 +96,48 @@ class CallToAction7Page extends BaseCallToAction {
                     <div className={this.decorateCSS("input-button-wrapper")}>
                       <Formik
                         initialValues={{ email: "" }}
+                        validationSchema={this.validationSchema}
                         onSubmit={(data, { resetForm }) => {
-                          this.insertForm("Contact Us", data);
+                          this.setComponentState("placeholderText", submitText);
+                          this.insertForm("Call Me Back", data);
+                          setTimeout(() => {
+                            const defaultPlaceholder = this.castToString(this.getPropValue("placeholder"));
+                            this.setComponentState(
+                              "placeholderText",
+                              defaultPlaceholder
+                            );
+                          }, 2000);
                           resetForm();
                         }}
                       >
-                        {({ handleChange, values }) => (
-                          <Form className={this.decorateCSS("input-div")}>
+                        {({ handleSubmit,
+                          handleChange,
+                          values,
+                          errors,
+                          touched, }) => (
+                          <Form className={this.decorateCSS("input-div")}
+                            onSubmit={handleSubmit}>
                             {placeholder && (
                               <input
-                                placeholder={getSelectedItemPlaceholder()}
-                                type={"text"}
+                                placeholder={
+                                  this.getComponentState("placeholderText") ||
+                                  placeholder
+                                }
+                                type="text"
                                 onChange={handleChange}
                                 value={values.email}
                                 name="email"
                                 className={this.decorateCSS("input")}
                               />
                             )}
-                            {this.castToString(button) && (
-                              <Base.Button className={this.decorateCSS("button")} type="submit">
-                                {button}
+                            {errors.email && touched.email && (
+                              <div className={this.decorateCSS("error")}>
+                                {errors.email}
+                              </div>
+                            )}
+                            {this.castToString(button.text) && (
+                              <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                                {button.text}
                               </Base.Button>
                             )}
                           </Form>
@@ -106,10 +145,10 @@ class CallToAction7Page extends BaseCallToAction {
                       </Formik>
                     </div>
                   }
-                  {(!placeholder && this.castToString(button) && (
-                    <ComposerLink path={this.getPropValue("buttonUrl")}>
-                      <Base.Button className={this.decorateCSS("button")}>
-                        {button}
+                  {(!placeholder && this.castToString(button.text) && (
+                    <ComposerLink path={button.url}>
+                      <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>
+                        {button.text}
                       </Base.Button>
                     </ComposerLink>
                   ))}
