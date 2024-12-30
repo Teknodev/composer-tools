@@ -65,6 +65,7 @@
           flex-direction: column;
           flex: 1;
           gap: var(--composer-gap-lg);
+          align-items: start;
           .title{
             margin: 0;
             color: var(--composer-font-color-primary);
@@ -84,7 +85,7 @@
           justify-content: end;
           height: fit-content;
           .button{
-    
+            content: "";
           }
         }
     

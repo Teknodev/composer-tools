@@ -4,6 +4,7 @@ import { BaseFAQ } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
   cardTitle: JSX.Element;
@@ -19,7 +20,7 @@ type ButtonItem = {
   link: string;
 }
 
-class FaqContainer extends BaseFAQ {
+class Faq2 extends BaseFAQ {
   constructor(props?: any) {
     super(props, styles);
 
@@ -230,25 +231,7 @@ class FaqContainer extends BaseFAQ {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        {
-          type: "object",
-          key: "button",
-          displayer: "Button",
-          value: [
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "Open Positions",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Link",
-              value: "",
-            },
-          ],
-        },
+        INPUTS.BUTTON("button", "Button", "Open Positions", "", null, null, "Primary"),
       ],
     })
   }
@@ -282,11 +265,11 @@ class FaqContainer extends BaseFAQ {
                 {this.castToObject<Card[]>("card").map(
                   (item: Card, indexCard: number) => {
                     return (
-                      <div className={this.decorateCSS("card")}>
+                      <Base.VerticalContent className={this.decorateCSS("card")}>
                         {item.cardIcon && (
-                          <div className={this.decorateCSS("icon-wrapper")}>
+                          <Base.Row className={this.decorateCSS("icon-wrapper")}>
                             <ComposerIcon name={item.cardIcon} propsIcon={{ className: this.decorateCSS("icon") }}></ComposerIcon>
-                          </div>
+                          </Base.Row>
                         )}
                         {this.castToString(item.cardTitle) && (
                           <Base.H3 className={this.decorateCSS("title")}>
@@ -298,7 +281,7 @@ class FaqContainer extends BaseFAQ {
                             {item.description}
                           </Base.P>
                         )}
-                      </div>
+                      </Base.VerticalContent>
                     );
                   }
                 )}
@@ -324,10 +307,10 @@ class FaqContainer extends BaseFAQ {
                 )}
                 {(this.getPropValue("buttons").length > 0) && (
                   <div className={this.decorateCSS("buttons")}>
-                    {this.castToObject<ButtonItem[]>("buttons").map((button: ButtonItem, index: number) => {
+                    {this.castToObject<INPUTS.CastedButton[]>("buttons").map((button: INPUTS.CastedButton, index: number) => {
                       return (
-                        <ComposerLink path={button.link}>
-                          <Base.Button className={this.decorateCSS("button")}>
+                        <ComposerLink path={button.url}>
+                          <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
                             {button.text}
                           </Base.Button>
                         </ComposerLink>
@@ -344,4 +327,4 @@ class FaqContainer extends BaseFAQ {
   }
 }
 
-export default FaqContainer;
+export default Faq2;

@@ -4,6 +4,7 @@ import { BaseFAQ } from "../../EditorComponent";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Faq = {
   title: JSX.Element;
@@ -12,13 +13,12 @@ type Faq = {
 };
 
 type InfoArrayItem = {
-  buttonText: JSX.Element;
-  buttonLink: string;
   title: JSX.Element;
   description: JSX.Element;
+  button: INPUTS.CastedButton;
 };
 
-class FaqContainerTwo extends BaseFAQ {
+class Faq3 extends BaseFAQ {
   constructor(props?: any) {
     super(props, styles);
 
@@ -212,18 +212,19 @@ class FaqContainerTwo extends BaseFAQ {
               value:
                 "Blandit justo vestibulum tincidunt, ipsum id non, volutpat neque pede eget donec.",
             },
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "CONTACT US",
-            },
-            {
-              type: "page",
-              key: "buttonLink",
-              displayer: "Button Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "Primary")
+            // {
+            //   type: "string",
+            //   key: "buttonText",
+            //   displayer: "Button Text",
+            //   value: "CONTACT US",
+            // },
+            // {
+            //   type: "page",
+            //   key: "buttonLink",
+            //   displayer: "Button Link",
+            //   value: "",
+            // },
           ],
         },
         {
@@ -244,18 +245,19 @@ class FaqContainerTwo extends BaseFAQ {
               value:
                 "Etiam nisl cras, arcu dui, wisi aenean non sit quisque nulla, eget aut molestie. Rhoncus sociis, nulla luctus diam montes cubilia.",
             },
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "LEARN MORE",
-            },
-            {
-              type: "page",
-              key: "buttonLink",
-              displayer: "Button Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "Primary")
+            // {
+            //   type: "string",
+            //   key: "buttonText",
+            //   displayer: "Button Text",
+            //   value: "LEARN MORE",
+            // },
+            // {
+            //   type: "page",
+            //   key: "buttonLink",
+            //   displayer: "Button Link",
+            //   value: "",
+            // },
           ],
         },
       ],
@@ -373,7 +375,7 @@ class FaqContainerTwo extends BaseFAQ {
                 {infoArray?.length > 0 && (
                   <div className={this.decorateCSS("content-right")}>
                     {infoArray.map((item: InfoArrayItem, index: number) => (
-                      <div key={index} className={this.decorateCSS("info-items")}>
+                      <Base.VerticalContent key={index} className={this.decorateCSS("info-items")}>
                         {this.castToString(item.title) && (
                           <div className={this.decorateCSS("title-info")}>
                             {item.title}
@@ -384,14 +386,14 @@ class FaqContainerTwo extends BaseFAQ {
                             {item.description}
                           </Base.P>
                         )}
-                        {this.castToString(item.buttonText) && (
-                          <Base.Button className={this.decorateCSS("button-info")}>
-                            <ComposerLink path={item.buttonLink}>
-                              {item.buttonText}
+                        {this.castToString(item.button.text) && (
+                          <Base.Button buttonType={item.button.type} className={this.decorateCSS("button-info")}>
+                            <ComposerLink path={item.button.url}>
+                              {item.button.text}
                             </ComposerLink>
                           </Base.Button>
                         )}
-                      </div>
+                      </Base.VerticalContent>
                     ))}
                   </div>
                 )}
@@ -404,4 +406,4 @@ class FaqContainerTwo extends BaseFAQ {
   }
 }
 
-export default FaqContainerTwo;
+export default Faq3;
