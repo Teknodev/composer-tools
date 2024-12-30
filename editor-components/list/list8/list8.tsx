@@ -143,7 +143,7 @@ class List8 extends BaseList {
       displayer: "Item Count in a Row",
       value: 3,
     });
-    this.addProp(INPUTS.BUTTON("button", "Button", "List your space", "", "Primary"));
+    this.addProp(INPUTS.BUTTON("button", "Button", "List your space", "", null, null, "Primary"));
   }
 
   render() {
