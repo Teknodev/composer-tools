@@ -280,12 +280,14 @@
     } 
 }
 
-.button{
-    transition: 0.3s;
-    cursor: pointer;
-    font-size: 1rem;
-    border-radius: var(--composer-border-radius-sm);
-
+.button {
+  display: flex;
+  align-items: center;
+  gap: var(--composer-gap-sm);
+  transition: 0.3s;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: var(--composer-border-radius-sm);
 
   &.primary {
     background-color: var(--composer-primary-color);
@@ -328,16 +330,15 @@
 
   &.link {
     color: var(--composer-font-color-primary);
-    text-decoration: underline;
-    text-underline-offset: var(--composer-gap-xs);
-    text-decoration-color: var(--composer-font-color-primary);
     background: transparent;
     border: none;
-    padding: var(--composer-gap-sm) 0;
+    padding: var(--composer-gap-xs) 0;
+    border-bottom: 1px solid var(--composer-font-color-primary);
+    border-radius: 0;
 
     &:hover {
-      text-decoration-color: var(--composer-primary-color);
       color: var(--composer-primary-color);
+      border-bottom: 1px solid var(--composer-primary-color);
     }
   }
 
@@ -384,3 +385,63 @@
   justify-content: center;
   align-items: center;
 }
+
+
+.navContainer{
+   width: 100%;
+}
+
+.navbarContainer{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &.sticky,
+    &.stickycolorful,
+    &.stickytransparent {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0px 2px 5px rgba(var(--composer-primary-color-rgb), 0.2);
+    }
+
+    &.stickycolorful {
+        background: var(--composer-html-background);
+    }
+    
+    &.stickytransparent {
+        background: transparent;
+    }
+    
+    &.absolute, &.stickytransparent {
+        .position{
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            background: transparent;
+            color: white;
+        }
+    }
+}
+
+
+.navbarPosition{
+    width: 100%;
+    padding: var(--composer-gap-md) var(--composer-gap-xl);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @media only screen and (max-width: $composer-tablet-width) {
+        padding: var(--composer-gap-md) var(--composer-gap-lg);
+    }
+
+    @media only screen and (max-width: $composer-phone-width) {
+        padding: var(--composer-gap-md);
+    }
+
+}
+

@@ -58,11 +58,13 @@
             font-size: 1.5rem;
             font-weight: bold;
             color: var(--composer-font-color-primary);
+            margin: 0px;
           }
           .cardItem{
             display: flex;
             flex-direction: column;
             gap: var(--composer-gap-md);
+            margin: 0px;
             .itemText {
               font-size: 1rem;
               color: var(--composer-tertiary-color);
@@ -71,8 +73,9 @@
             .spanItem {
               display: block;
               height: 1px;
-              background-color: var(--composer-font-color-primary);
-              opacity: 0.2;
+              width: 100%;
+              background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
+              margin: 0px;
             }
           }
         }
@@ -81,7 +84,6 @@
             position: absolute;
             font-size: 7.5rem;
             -webkit-text-stroke-width: 1px;
-            letter-spacing: -5px;
             color: var(--composer-primary-color);
             -webkit-text-fill-color: transparent;
             bottom: calc(var(--composer-gap-xl) * (-1));
