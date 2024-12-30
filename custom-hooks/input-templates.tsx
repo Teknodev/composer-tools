@@ -9,7 +9,7 @@ export namespace INPUTS {
     displayer: string,
     text: string,
     url: string = "",
-    type: TypeButton = "Normal"
+    type: TypeButton = "Primary"
   ) => {
     return {
       type: "object",
@@ -34,14 +34,14 @@ export namespace INPUTS {
           displayer: "Type",
           value: type,
           additionalParams: {
-            selectItems: ["Normal", "Outline"],
+            selectItems: ["Primary", "Secondary", "Tertiary", "Link", "White", "Black"],
           },
         },
       ],
     } as TypeUsableComponentProps;
   };
 
-  export const LOGO = (key: string, displayer: string) => {
+  export const LOGO = (key: string, displayer: string, defaultImage?: string) => {
     return {
       type: "object",
       key: key,
@@ -50,8 +50,7 @@ export namespace INPUTS {
         {
           type: "image",
           key: "image",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1719584962573",
+          value: defaultImage || "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1719584962573",
           displayer: "Image",
         },
         {
@@ -61,6 +60,17 @@ export namespace INPUTS {
           displayer: "Image Link",
         },
       ],
+    } as TypeUsableComponentProps;
+  };
+  export const NAVBAR_POSITION = (key: string, displayer: string) => {
+    return {
+      type: "select",
+      key: key,
+      displayer: displayer,
+      value: "Default",
+      additionalParams: {
+        selectItems:["Absolute","Sticky Colorful","Sticky Transparent","Default"],
+      },
     } as TypeUsableComponentProps;
   };
 }
