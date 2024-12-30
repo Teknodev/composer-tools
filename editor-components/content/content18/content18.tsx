@@ -239,7 +239,7 @@ class Content18 extends BaseContent {
                     </div>
                     {this.getComponentState("is_video_visible") && (
                       <div
-                        className={this.decorateCSS("without-image1")}
+                        className={this.decorateCSS("image")}
                         onClick={() => this.setComponentState("is_video_visible", false)}
                       >
                         <div className={this.decorateCSS("player")}>

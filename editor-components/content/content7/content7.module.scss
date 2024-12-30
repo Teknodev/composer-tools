@@ -194,12 +194,12 @@
                 &:after{
                   left: 50%;
                   margin-left: -17px;
-                  border-right: 6px solid var(--composer-font-color-secondary);
+                  border-right: 6px solid var(--composer-html-background);
                 }
                 &:before{
                   right: 50%;
                   margin-right: -17px;
-                  border-left: 6px solid var(--composer-font-color-secondary);
+                  border-left: 6px solid var(--composer-html-background);
                 }
               }
             }

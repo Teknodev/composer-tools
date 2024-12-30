@@ -179,11 +179,14 @@ class Content3 extends BaseContent {
               (card: Card, indexCard: number) => (
                 <div key={indexCard} className={this.decorateCSS("card")}>
                   <div className={this.decorateCSS("image-container")}>
-                    <img
-                      className={this.decorateCSS("image")}
-                      src={card.image}
-                      alt={card.image}
-                    />
+                    {card.image && (
+                      <img
+                        className={this.decorateCSS("image")}
+                        src={card.image}
+                        alt={card.image}
+                      />
+                    )}
+
                   </div>
                   <Base.VerticalContent
                     className={this.decorateCSS("little-container")}

@@ -155,7 +155,7 @@
                         }
         
                         .box1 {
-                            background-color: var(--composer-font-color-secondary);
+                            background-color: var(--composer-html-background);
                             flex-direction: column;
             
                             .box1-text {
@@ -172,7 +172,7 @@
         
                         .box2 {
                             background-color: var(--composer-font-color-primary);
-                            color: var(--composer-font-color-secondary);
+                            color: var(--composer-html-background);
                             height: 100%;
                             gap: var(--composer-gap-sm);
             
