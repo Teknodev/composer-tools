@@ -148,18 +148,11 @@
           }
 
           .button {
-            display: flex;
-            align-items: center;
-            gap: var(--composer-gap-xs);
-            cursor: pointer;
-            height: 62px;
-
             .icon {
-              font-size: 1rem;
+              content: "";
             }
-
             .text {
-              font-size: 1rem;
+              content: "";
             }
           }
         }
@@ -219,29 +212,9 @@
                 border-radius: var(--composer-border-radius-sm);
               }
             }
-
-            .button {
-              display: flex;
-              align-items: center;
-              gap: var(--composer-gap-xs);
-              cursor: pointer;
-              height: 45px;
-
-              .icon {
-                font-size: 1rem;
-              }
-
-              .text {
-                font-size: 1rem;
-              }
-            }
           }
         }
       }
-    }
-
-    .page-no-image {
-      min-height: 250px;
     }
   }
 }
@@ -263,25 +236,9 @@
               width: 150px;
               height: 45px;
             }
-
-            .button {
-              height: 45px;
-
-              .icon {
-                font-size: 1rem;
-              }
-
-              .text {
-                font-size: 1rem;
-              }
-            }
           }
         }
       }
-    }
-
-    .page-no-image {
-      min-height: 250px;
     }
   }
 }

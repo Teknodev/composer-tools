@@ -4,6 +4,7 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { BaseDownload } from "../../EditorComponent";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type LeftCol = {
   title: JSX.Element;
@@ -49,25 +50,7 @@ class Download6 extends BaseDownload {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        {
-          type: "object",
-          key: "button",
-          displayer: "Button",
-          value: [
-            {
-              type: "string",
-              key: "button_text",
-              displayer: "Button Text",
-              value: "Download Now",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Button Link",
-              value: "",
-            },
-          ],
-        },
+        INPUTS.BUTTON("button", "Button", "Download Now", "", "", "", "Primary"),
       ],
     });
 
@@ -93,12 +76,10 @@ class Download6 extends BaseDownload {
   render() {
     const leftcolumn = this.castToObject<LeftCol>("left-column");
     const rightcolumn = this.castToObject<RightCol>("right-column");
-    const buttons = this.castToObject<Button[]>("buttons");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
     const isLeftColumnVisible = this.castToString(leftcolumn.title) || this.castToString(leftcolumn.description) || buttons?.length > 0;
     const isRightColumnVisible = rightcolumn.image;
-
-    const alignmentValue = Base.getContentAlignment();
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -110,15 +91,31 @@ class Download6 extends BaseDownload {
 
               {buttons?.length > 0 && (
                 <Base.Row className={this.decorateCSS("buttons-container")}>
-                  {buttons.map((button: Button, index: number) => {
-                    const buttonTextExist = this.castToString(button.button_text);
-                    const buttonExist = button.icon || buttonTextExist;
-
+                  {buttons.map((item: INPUTS.CastedButton, index: number) => {
+                    const buttonTextExist = this.castToString(item?.text);
                     return (
-                      buttonExist && (
-                        <div className={this.decorateCSS("button-element")}>
-                          <ComposerLink key={index} path={button.link} isFullWidth={false}>
-                            <Base.Button className={this.decorateCSS("button")}>{buttonTextExist && <Base.P className={this.decorateCSS("button_text")}>{button.button_text}</Base.P>}</Base.Button>
+                      (item.image || item.icon || buttonTextExist) && (
+                        <div className={this.decorateCSS("button-wrapper")}>
+                          <ComposerLink key={index} path={item.url}>
+                            {item.image ? (
+                              <div>
+                                <img src={item.image} className={this.decorateCSS("button-image")} />
+                              </div>
+                            ) : (
+                              (buttonTextExist || item.icon) && (
+                                <Base.Button buttonType={item.type} className={this.decorateCSS("button-element")}>
+                                  {item.icon && (
+                                    <ComposerIcon
+                                      name={item.icon}
+                                      propsIcon={{
+                                        className: this.decorateCSS("icon"),
+                                      }}
+                                    />
+                                  )}
+                                  {buttonTextExist && <div className={this.decorateCSS("button-text")}>{item.text}</div>}
+                                </Base.Button>
+                              )
+                            )}
                           </ComposerLink>
                         </div>
                       )

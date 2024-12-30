@@ -61,8 +61,7 @@
         .button-wrapper {
           .button {
             padding: var(--composer-gap-sm) var(--composer-gap-md);
-            min-width: 200px;
-            .button-text {
+            .button-text {              
               font-size: 1rem;
             }
             .icon {
@@ -84,16 +83,6 @@
         justify-content: center;
         .button-wrapper {
           width: 100%;
-          .button {
-            padding: var(--composer-gap-xs) var(--composer-gap-sm);
-            margin: 0 auto;
-            .button-text {
-              font-size: 1rem;
-            }
-            .icon {
-              font-size: 1rem;
-            }
-          }
         }
       }
     }

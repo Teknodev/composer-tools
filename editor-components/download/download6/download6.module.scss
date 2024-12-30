@@ -17,21 +17,25 @@
 
       .buttons-container {
         display: flex;
-        align-items: center;
-        width: 100%;
         flex-wrap: wrap;
-        gap: var(--composer-gap-sm);
-      }
-
-      .button {
-        display: flex;
         align-items: center;
-        justify-content: center;
-        min-height: var(--composer-gap-xl);
-      }
-
-      .button_text {
-        margin: 0;
+        gap: var(--composer-gap-md);
+        .button-wrapper {
+          .button-image {
+            min-width: 170px;
+            height: var(--composer-gap-xl);
+            border-radius: var(--composer-border-radius-sm);
+            object-fit: cover;
+          }
+          .button-element {
+            .icon {
+              content: "";
+            }
+            .button-text {
+              content: "";
+            }
+          }
+        }
       }
     }
 
@@ -68,10 +72,6 @@
         .description {
           font-size: 1rem;
         }
-
-        .button {
-          font-size: 1rem;
-        }
       }
       .right-column {
         .image {
@@ -89,13 +89,6 @@
       gap: var(--composer-gap-lg);
       .left-column {
         width: 100%;
-
-        .buttons-container {
-          display: flex;
-          flex-direction: column;
-          align-items: unset;
-          gap: var(--composer-gap-sm);
-        }
       }
       .right-column {
         width: 100%;

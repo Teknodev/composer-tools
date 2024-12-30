@@ -39,9 +39,9 @@ class DownloadCard1 extends BaseDownload {
       key: "buttons",
       displayer: "Button ",
       value: [
-        INPUTS.BUTTON("button", "Button", "PLAYSTORE", "", "ImAndroid", "Primary"),
-        INPUTS.BUTTON("button", "Button", "APPSTORE", "", "GrApple", "Primary"),
-        INPUTS.BUTTON("button", "Button", "WINDOWS", "", "FaWindows", "Primary")
+        INPUTS.BUTTON("button", "Button", "PLAYSTORE", "", "ImAndroid", "", "Primary"),
+        INPUTS.BUTTON("button", "Button", "APPSTORE", "", "GrApple", "", "Primary"),
+        INPUTS.BUTTON("button", "Button", "WINDOWS", "", "FaWindows", "", "Primary")
       ],
     });
     this.addProp({

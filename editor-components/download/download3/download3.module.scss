@@ -47,23 +47,15 @@
               object-fit: cover;
               border-radius: var(--composer-border-radius-sm);
             }
-
             .button-element {
+              width: 100%;
               display: flex;
-              flex-shrink: 0;
-              align-items: center;
               justify-content: center;
-              text-align: center;
-              gap: var(--composer-gap-sm);
-              min-width: 200px;
-              height: 60px;
               .button-text {
-                content: "";
-                font-size: 1rem;
+                font-size: 1.5rem;
               }
               .button-icon {
-                font-size: 1rem;
-                flex-shrink: 0;
+                font-size: 1.5rem;
               }
             }
           }
@@ -95,20 +87,11 @@
             }
 
             .button-element {
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              text-align: center;
-              gap: var(--composer-gap-sm);
-              min-width: 200px;
-              height: 60px;
-
               .button-text {
-                content: "";
-                font-size: 1rem;
+              content: "";
               }
               .button-icon {
-                font-size: 1rem;
+                content: "";
               }
             }
           }
@@ -149,28 +132,11 @@
             width: 100%;
             .button {
               width: auto;
-
               .button-logo {
                 width: 200px;
                 height: 60px;
                 object-fit: cover;
                 border-radius: var(--composer-border-radius-sm);
-              }
-
-              .button-element {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                text-align: center;
-                gap: var(--composer-gap-sm);
-                min-width: 200px;
-                height: 60px;
-                .button-text {
-                  content: "";
-                }
-                .button-icon {
-                  font-size: 1rem;
-                }
               }
             }
           }
@@ -188,7 +154,6 @@
     .image-container {
       height: 300px;
     }
-
     .max-content {
       .page {
         .group-container {
@@ -243,25 +208,12 @@
             flex-direction: column;
             width: 100%;
             gap: var(--composer-gap-sm);
-
             .button {
               width: 100%;
-
               .button-logo {
                 height: 60px;
                 object-fit: cover;
                 border-radius: var(--composer-border-radius-sm);
-              }
-
-              .button-element {
-                display: flex;
-                min-width: 200px;
-                .button-text {
-                  content: "";
-                }
-                .button-icon {
-                  font-size: 1rem;
-                }
               }
             }
           }

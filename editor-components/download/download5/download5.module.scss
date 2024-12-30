@@ -44,19 +44,11 @@ $min-height: 500px;
             object-fit: cover;
           }
           .button-element {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: var(--composer-gap-sm);
-            min-width: 170px;
-            height: var(--composer-gap-xl);
-
             .icon {
-              width: var(--composer-gap-md);
-              height: var(--composer-gap-md);
+              content: "";
             }
             .button-text {
-              font-size: 1.5rem;
+              content: "";
             }
           }
         }
@@ -90,14 +82,10 @@ $min-height: 500px;
       .page {
         width: 55% !important;
 
-        .buttons-container,
-        .buttons-container-center {
+        .buttons-container{
           .button-wrapper {
             .button-image {
               width: 100%;
-            }
-            .button-element {
-              width: fit-content;
             }
           }
         }

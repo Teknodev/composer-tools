@@ -4,16 +4,14 @@ import { BaseDownload } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
   icon: string;
   device: JSX.Element;
   platform: JSX.Element;
   description: JSX.Element;
-  buttonText: JSX.Element;
-  buttonIcon: string;
-  buttonLogo: string;
-  buttonLink: string;
+  button: INPUTS.CastedButton;
 };
 
 class Download2 extends BaseDownload {
@@ -68,30 +66,7 @@ class Download2 extends BaseDownload {
               displayer: "Description",
               value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
             },
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Download",
-            },
-            {
-              type: "icon",
-              key: "buttonIcon",
-              displayer: "Button Icon",
-              value: "RiDownloadLine",
-            },
-            {
-              type: "image",
-              key: "buttonLogo",
-              displayer: "Button Image",
-              value: "",
-            },
-            {
-              type: "page",
-              key: "buttonLink",
-              displayer: "Button Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "Download", "", "RiDownloadLine", "", "Primary"),
           ],
         },
         {
@@ -123,30 +98,7 @@ class Download2 extends BaseDownload {
               displayer: "Description",
               value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
             },
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "",
-            },
-            {
-              type: "icon",
-              key: "buttonIcon",
-              displayer: "Button Icon",
-              value: "",
-            },
-            {
-              type: "image",
-              key: "buttonLogo",
-              displayer: "Button Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/673f5276506a40002c2cf763?alt=media&timestamp=1732203183915",
-            },
-            {
-              type: "page",
-              key: "buttonLink",
-              displayer: "Button Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "", "", "", "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/673f5276506a40002c2cf763?alt=media&timestamp=1732203183915", "Primary"),
           ],
         },
         {
@@ -178,30 +130,7 @@ class Download2 extends BaseDownload {
               displayer: "Description",
               value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
             },
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "",
-            },
-            {
-              type: "icon",
-              key: "buttonIcon",
-              displayer: "Button Icon",
-              value: "",
-            },
-            {
-              type: "image",
-              key: "buttonLogo",
-              displayer: "Button Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/673f51e4506a40002c2cf6eb?alt=media&timestamp=1732203035257",
-            },
-            {
-              type: "page",
-              key: "buttonLink",
-              displayer: "Button Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "", "", "", "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/673f51e4506a40002c2cf6eb?alt=media&timestamp=1732203035257", "Primary"),
           ],
         },
       ],
@@ -241,7 +170,7 @@ class Download2 extends BaseDownload {
                 const deviceExist = this.castToString(card.device);
                 const platformExist = this.castToString(card.platform);
                 const descriptionExist = this.castToString(card.description);
-                const buttonTextExist = this.castToString(card.buttonText);
+                const buttonTextExist = this.castToString(card.button.text);
                 return (
                   <Base.VerticalContent className={this.decorateCSS("card")} key={index}>
                     {card.icon && (
@@ -256,23 +185,27 @@ class Download2 extends BaseDownload {
 
                     {descriptionExist && <Base.P className={this.decorateCSS("description")}>{card.description}</Base.P>}
 
-                    {(card.buttonLogo || card.buttonText) && (
+                    {(card.button.image || card.button.text || card.button.icon) && (
                       <div className={this.decorateCSS("button-container")}>
-                        <ComposerLink path={card?.buttonLink}>
-                          {card?.buttonLogo ? (
-                            <img src={card?.buttonLogo} alt="" className={this.decorateCSS("image")} />
+                        <ComposerLink path={card?.button.url}>
+                          {card?.button.image ? (
+                            <div className={this.decorateCSS("button-element")}>
+                              <div className={this.decorateCSS("button")}>
+                                <img src={card?.button.image} alt="" className={this.decorateCSS("image")} />
+                              </div>
+                            </div>
                           ) : (
-                            (buttonTextExist || card.buttonIcon) && (
-                              <Base.Button className={this.decorateCSS("button-element")}>
-                                {(buttonTextExist || card.buttonIcon) && (
-                                  <div className={this.decorateCSS("button")}>
-                                    {card.buttonIcon && (
-                                      <ComposerIcon name={card.buttonIcon} propsIcon={{ className: this.decorateCSS("button-icon") }} />
+                            (buttonTextExist || card.button.icon) && (
+                              <div className={this.decorateCSS("button-element")}>
+                                {(buttonTextExist || card.button.icon) && (
+                                  <Base.Button buttonType={card.button.type} className={this.decorateCSS("button")}>
+                                    {card.button.icon && (
+                                      <ComposerIcon name={card.button.icon} propsIcon={{ className: this.decorateCSS("button-icon") }} />
                                     )}
-                                    {card.buttonText && <Base.P className={this.decorateCSS("button-text")}>{card.buttonText}</Base.P>}
-                                  </div>
+                                    {this.castToString(card.button.text) && <div className={this.decorateCSS("button-text")}>{card.button.text}</div>}
+                                  </Base.Button>
                                 )}
-                              </Base.Button>
+                              </div>
                             )
                           )}
                         </ComposerLink>
@@ -282,9 +215,9 @@ class Download2 extends BaseDownload {
                 );
               })}
             </Base.ListGrid>
-          </div>
-        </Base.MaxContent>
-      </Base.Container>
+          </div >
+        </Base.MaxContent >
+      </Base.Container >
     );
   }
 }

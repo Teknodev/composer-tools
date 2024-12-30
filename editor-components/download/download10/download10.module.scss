@@ -40,19 +40,11 @@
             border-radius: var(--composer-border-radius-sm);
           }
           .button-element {
-            display: flex;
-            align-items: center;
-            gap: var(--composer-gap-sm);
-            height: 60px;
-
             .button-icon {
-              color: var(--composer-font-color-primary);
-              width: calc(3 * var(--composer-gap-sm));
-              height: calc(3 * var(--composer-gap-sm));
+              content: "";
             }
             .button-text {
-              color: var(--composer-font-color-primary);
-              font-size: 1.5rem;
+              content: "";
             }
           }
         }
@@ -106,9 +98,7 @@
       .page {
         flex-direction: row;
         gap: var(--composer-gap-md);
-        .left-container,
-        .left-container-no-image,
-        .left-container-center {
+        .left-container{
           width: 100%;
           .button-group {
             width: 100%;
