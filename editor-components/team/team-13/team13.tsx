@@ -27,7 +27,7 @@ class Team13 extends Team {
       displayer: "Title",
       value: "Meet the Creative Team",
     });
-    this.addProp(INPUTS.BUTTON("button", "Button", "Contact Us", "", "Link"));
+    this.addProp(INPUTS.BUTTON("button", "Button", "Contact Us", null, null, "", "Link"));
 
     this.addProp({
       type: "string",

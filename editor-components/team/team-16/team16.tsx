@@ -29,7 +29,7 @@ class Team16 extends Team {
       displayer: "Description",
       value: "Meet Our Exceptional Team! Our diverse talents converge to create a dynamic force, driven by shared vakues and a commitment to excellence.",
     });
-    this.addProp(INPUTS.BUTTON("button", "Button", "Join Our Team", "", "Primary"));
+    this.addProp(INPUTS.BUTTON("button", "Button", "Join Our Team", "", null, null, "Primary"));
     this.addProp({
       type: "number",
       key: "itemCount",
