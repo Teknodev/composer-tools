@@ -231,6 +231,29 @@ export namespace Base {
   export namespace Navigator {
     export function Container({ className, children, ...props }: any) {
       const position = props.position?.split(" ").map((item: string) => item.toLowerCase()).join("");
+
+      useEffect(() => {
+        const handleScroll = () => {
+          const navbarPosition = document.querySelector(`.${styles.navbarPosition}`);
+          console.log("scroll", navbarPosition);
+
+          if (navbarPosition) {
+          console.log("inside pos", window.scrollY);
+
+            if (window.scrollY > 50) {
+              navbarPosition.classList.add(styles.scrolled);
+            } else {
+              navbarPosition.classList.remove(styles.scrolled);
+            }
+          }
+        };
+  
+        window.addEventListener("scroll", handleScroll);
+        return () => {
+          window.removeEventListener("scroll", handleScroll);
+        };
+      }, []);
+
       return (
         <div
           className={`${styles.navbarContainer} ${className} ${styles[position]}`}
