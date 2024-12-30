@@ -505,10 +505,10 @@ class Form3Page extends BaseContacts {
 
   render() {
     const buttons = this.getPropValue("buttons");
-    const topTitle = this.getPropValue("topTitle", { as_string: true });
-    const leftTitle = this.getPropValue("leftTitle", { as_string: true });
-    const leftSubtitle = this.getPropValue("leftSubtitle", { as_string: true });
-    const rightTitle = this.getPropValue("rightTitle", { as_string: true });
+    const topTitle = this.castToString(this.getPropValue("topTitle"));
+    const leftTitle = this.castToString(this.getPropValue("leftTitle"));
+    const leftSubtitle = this.castToString(this.getPropValue("leftSubtitle"));
+    const rightTitle = this.castToString(this.getPropValue("rightTitle"));
     const contactInfo = this.getPropValue("contactInfo");
     const contactIcon = this.getPropValue("contactIcon");
     const inputItems = this.getPropValue("input_items");
@@ -536,11 +536,11 @@ class Form3Page extends BaseContacts {
       }
     }
     function getInputValue(indexOfLabel: number, inputLabel: string, indexOfInput: number): string {
-      const name = toObjectKey(`${indexOfLabel} ${indexOfInput}`);
+      const name = toObjectKey(`${indexOfLabel} ${inputLabel} ${indexOfInput}`);
       return toObjectKey(name);
     }
     function getInputName(indexOfLabel: number, inputLabel: string, indexOfInput: number): string {
-      const name = toObjectKey(`input_${indexOfLabel + indexOfInput}`);
+      const name = toObjectKey(`input_${indexOfLabel + inputLabel + indexOfInput}`);
 
       return toObjectKey(name);
     }
@@ -587,14 +587,6 @@ class Form3Page extends BaseContacts {
       return schema;
     }
 
-    function getFormData(obj: any) {
-      const newObj: any = {};
-      Object.values(obj).forEach((value, index) => {
-        newObj["input_" + index] = value;
-      });
-      return newObj;
-    }
-
     const icons = this.castToObject<Social[]>("socials");
     const background = this.getPropValue("background");
 
@@ -612,9 +604,9 @@ class Form3Page extends BaseContacts {
           <div className={this.decorateCSS("box")}>
             {leftItemsExist && (
               <div className={this.decorateCSS("left-container")}>
-                {background && <img className={rightItemsExist ? this.decorateCSS("background") : this.decorateCSS("background-full")} src={this.getPropValue("background")} alt="" />}
+                {background && <img className={`${this.decorateCSS("background")} ${!rightItemsExist && this.decorateCSS("background-full")}`} src={this.getPropValue("background")} alt="" />}
                 <div className={this.decorateCSS("left")}>
-                  <div className={rightItemsExist ? this.decorateCSS("textSide") : this.decorateCSS("textSide-full")}>
+                  <div className={`${this.decorateCSS("textSide")} ${!rightItemsExist && this.decorateCSS("textSide-full")}`}>
                     <div className={this.decorateCSS("left-top")}>
                       {(leftTitle || leftSubtitle) && (
                         <div className={this.decorateCSS("title1")}>
@@ -634,12 +626,12 @@ class Form3Page extends BaseContacts {
                       )}
                     </div>
                     {icons.length > 0 && (
-                      <div className={rightItemsExist ? this.decorateCSS("socials") : this.decorateCSS("socials-full")}>
+                      <div className={`${this.decorateCSS("socials")} ${!rightItemsExist && this.decorateCSS("socials-full")}`}>
                         {icons.map((social: Social, index: number) => {
                           if (!social.icon) return null;
 
                           return (
-                            <div className={background ? this.decorateCSS("icon-container") : this.decorateCSS("icon-container-no-image")}>
+                            <div className={`${this.decorateCSS("icon-container")} ${!background && this.decorateCSS("icon-container-no-image")}`}>
                               <ComposerLink key={index} path={social.url} className={this.decorateCSS("icon-element")}>
                                 <ComposerIcon
                                   name={social.icon}
@@ -658,7 +650,7 @@ class Form3Page extends BaseContacts {
               </div>
             )}
             {rightItemsExist && (
-              <div className={leftItemsExist ? this.decorateCSS("right-container") : this.decorateCSS("right-container-no-image")}>
+              <div className={`${this.decorateCSS("right-container")} ${!leftItemsExist && this.decorateCSS("right-container-no-image")}`}>
                 {rightTitle && <div className={this.decorateCSS("title2")}>{rightTitle && <Base.P className={this.decorateCSS("rightTitle")}> {this.getPropValue("rightTitle")} </Base.P>}</div>}
                 {(buttons || inputItems).length > 0 && (
                   <div className={this.decorateCSS("form-container")}>
@@ -666,10 +658,8 @@ class Form3Page extends BaseContacts {
                       initialValues={getInitialValue()}
                       validationSchema={getSchema()}
                       onSubmit={(data, { resetForm }) => {
-                        const formData = getFormData(data);
-                        console.log("Form Submitted Data:", data); // Orijinal ham veriler
-                        console.log("Converted Form Data:", formData); // Dönüştürülmüş veriler
-                        this.insertForm("Contact Us", formData);
+                        console.log("Form Submitted Data:", data);
+                        this.insertForm("Contact Us", data);
                         resetForm();
                       }}
                     >

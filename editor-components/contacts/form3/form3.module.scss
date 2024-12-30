@@ -27,8 +27,7 @@
         border-bottom-left-radius: var(--composer-gap-sm);
         background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
 
-        .background,
-        .background-full {
+        .background {
           width: 100%;
           height: 100%;
           object-fit: cover;
@@ -36,10 +35,10 @@
           position: absolute;
           border-top-left-radius: var(--composer-gap-sm);
           border-bottom-left-radius: var(--composer-gap-sm);
-        }
 
-        .background-full {
-          border-radius: var(--composer-gap-sm);
+          &.background-full {
+            border-radius: var(--composer-gap-sm);
+          }
         }
 
         .left {
@@ -50,14 +49,17 @@
           align-items: center;
           position: relative;
 
-          .textSide,
-          .textSide-full {
+          .textSide {
             justify-content: space-between;
             height: 100%;
             gap: var(--composer-gap-md);
             display: flex;
             flex-direction: column;
             padding: 0 var(--composer-gap-xl);
+
+            &.textSide-full {
+              width: 100%;
+            }
 
             .left-top {
               position: relative;
@@ -122,22 +124,29 @@
               }
             }
 
-            .socials,
-            .socials-full {
+            .socials {
               width: 100%;
               display: flex;
               flex-direction: row;
               gap: var(--composer-gap-md);
               align-self: center;
               flex-wrap: wrap;
+              justify-content: center;
 
-              .icon-container,
-              .icon-container-no-image {
+              &.socials-full {
+                justify-content: baseline;
+              }
+
+              .icon-container {
                 align-content: center;
                 background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
                 color: var(--composer-font-color-primary);
                 border-radius: 100%;
                 position: relative;
+
+                &.icon-container-no-image {
+                  background-color: var(--composer-html-background);
+                }
 
                 .icon {
                   height: var(--composer-gap-md);
@@ -146,29 +155,12 @@
                   display: flex;
                 }
               }
-
-              .icon-container-no-image {
-                background-color: var(--composer-html-background);
-              }
             }
-
-            .socials {
-              justify-content: center;
-            }
-
-            .socials-full {
-              justify-content: baseline;
-            }
-          }
-
-          .textSide-full {
-            width: 100%;
           }
         }
       }
 
-      .right-container,
-      .right-container-no-image {
+      .right-container {
         display: flex;
         width: 150%;
         flex-direction: column;
@@ -182,6 +174,10 @@
         background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
         border-top-right-radius: var(--composer-gap-sm);
         border-bottom-right-radius: var(--composer-gap-sm);
+
+        &.right-container-no-image {
+          border-radius: var(--composer-gap-sm);
+        }
 
         .title2 {
           width: 100%;
@@ -312,10 +308,6 @@
             align-items: center;
           }
         }
-      }
-
-      .right-container-no-image {
-        border-radius: var(--composer-gap-sm);
       }
     }
   }

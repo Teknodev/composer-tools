@@ -42,6 +42,12 @@ class Form2Page extends BaseContacts {
           value: [
             {
               type: "string",
+              key: "label",
+              displayer: "Label",
+              value: "Full Name",
+            },
+            {
+              type: "string",
               key: "placeholder",
               displayer: "Placeholder",
               value: "Full Name",
@@ -82,6 +88,12 @@ class Form2Page extends BaseContacts {
           value: [
             {
               type: "string",
+              key: "label",
+              displayer: "Label",
+              value: "E-mail",
+            },
+            {
+              type: "string",
               key: "placeholder",
               displayer: "Placeholder",
               value: "E-mail",
@@ -120,6 +132,12 @@ class Form2Page extends BaseContacts {
           key: "input",
           displayer: "Input",
           value: [
+            {
+              type: "string",
+              key: "label",
+              displayer: "Label",
+              value: "Phone",
+            },
             {
               type: "string",
               key: "placeholder",
@@ -160,6 +178,12 @@ class Form2Page extends BaseContacts {
           key: "input",
           displayer: "Input",
           value: [
+            {
+              type: "string",
+              key: "label",
+              displayer: "Label",
+              value: "Message",
+            },
             {
               type: "string",
               key: "placeholder",
@@ -207,7 +231,6 @@ class Form2Page extends BaseContacts {
 
   render() {
     const inputs = this.getPropValue("inputs");
-    const initialValue = getInitialValue();
     const title = this.getPropValue("title");
     const titleExist = this.castToString(this.getPropValue("title"));
 
@@ -233,19 +256,32 @@ class Form2Page extends BaseContacts {
           return "text";
       }
     }
-    function getInputName(indexOfInput: number): string {
-      const name = `input_${indexOfInput}`;
-      return name;
+
+    function toObjectKey(str: string) {
+      if (/^\d/.test(str)) {
+        str = "_" + str;
+      }
+      str = str.replace(/[^a-zA-Z0-9_]/g, "_").toLowerCase();
+      return str;
     }
+
+    const getInputName = (indexOfLabel: number, inputLabel: any): string => {
+      const labelText = inputLabel && this.castToString(inputLabel);
+
+      return toObjectKey(`${indexOfLabel} ${labelText}`);
+    };
 
     function getInitialValue() {
       let value: any = {};
       inputs.map((input: TypeUsableComponentProps, indexOfInput: number) => {
-        value[getInputName(indexOfInput)] = "";
+        const label = input.getPropValue("label");
+        value[getInputName(indexOfInput, label)] = "";
       });
 
       return value;
     }
+
+    const initialValue = getInitialValue();
 
     const getSchema = () => {
       let schema = Yup.object().shape({});
@@ -270,70 +306,12 @@ class Form2Page extends BaseContacts {
         }
 
         schema = schema.shape({
-          [getInputName(indexOfInput)]: fieldSchema,
+          [getInputName(indexOfInput, input.getPropValue("label"))]: fieldSchema,
         });
       });
 
       return schema;
     };
-
-    // const getSchema = () => {
-    //   let schema = Yup.object().shape({});
-
-    //   const inputs = this.getPropValue("inputs");
-
-    //   inputs.forEach((input: TypeUsableComponentProps, indexOfInput: number) => {
-    //     if (!input["getPropValue"]) return;
-
-    //     const isRequired = input.getPropValue("is_required");
-    //     const inputType = getInputType(input.getPropValue("type"));
-
-    //     let fieldSchema: Yup.StringSchema<string | null | undefined> = Yup.string();
-
-    //     // Eğer required ise required mesajını ekle
-    //     if (isRequired) {
-    //       const requiredMessage = input.getPropValue("required_error_message");
-    //       fieldSchema = fieldSchema.required(requiredMessage);
-    //     } else {
-    //       fieldSchema = fieldSchema.nullable();
-    //     }
-
-    //     // E-mail validasyonu
-    //     if (inputType === "email") {
-    //       const typeErrorMessage = input.getPropValue("type_error_message");
-    //       fieldSchema = fieldSchema.email(typeErrorMessage);
-    //     }
-
-    //     // Tel (Telefon) validasyonu
-    //     if (inputType === "tel") {
-    //       const typeErrorMessage = input.getPropValue("type_error_message");
-    //       fieldSchema = fieldSchema.matches(/^[0-9]+$/, typeErrorMessage); // Sadece rakamlara izin verir.
-    //     }
-
-    //     // Şemaya ekle
-    //     schema = schema.shape({
-    //       [getInputName(indexOfInput)]: fieldSchema,
-    //     });
-    //   });
-
-    //   return schema;
-    // };
-
-    // function getFormDataWithConvertedKeys(obj: any) {
-    //   const newObj: any = {};
-    //   for (const key in obj) {
-    //     if (Object.prototype.hasOwnProperty.call(obj, key)) {
-    //       let adjustedKey = key.startsWith("_") ? key.slice(1) : key;
-    //       const parts = adjustedKey.split("_");
-    //       let newKey = "";
-    //       for (let i = 1; i < parts.length - 1; i++) {
-    //         newKey += (i > 1 ? "_" : "") + parts[i];
-    //       }
-    //       newObj[newKey] = obj[key];
-    //     }
-    //   }
-    //   return newObj;
-    // }
 
     function getFormDataWithConvertedKeys(obj: any) {
       const newObj: any = {};
@@ -361,19 +339,16 @@ class Form2Page extends BaseContacts {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(inputs.length > 0 || (titleExist && buttonTextExist)) && (
             <div className={this.decorateCSS("input-items")}>
-              <div className={imageExist ? this.decorateCSS("input-item") : this.decorateCSS("input-item-no-image")}>
+              <div className={`${this.decorateCSS("input-item")} ${!imageExist && this.decorateCSS("input-item-no-image")}`}>
                 {titleExist && <Base.SectionTitle className={imageExist ? this.decorateCSS("title") : this.decorateCSS("title-no-image")}>{title}</Base.SectionTitle>}
                 {(inputs.length > 0 || buttonTextExist) && (
                   <Formik
                     initialValues={initialValue}
                     validationSchema={getSchema()}
                     onSubmit={(data, { resetForm }) => {
-                      console.log("Form Submitted Data:", data); // Gönderilen veriler burada loglanır.
                       const formData = getFormDataWithConvertedKeys(data);
-                      console.log("Converted Form Data:", formData); // Key'leri dönüştürülmüş veri burada loglanır.
-
-                      this.insertForm("Contact Us", formData); // Veriyi kaydetme işlemi.
-                      resetForm(); // Formu sıfırlama işlemi.
+                      this.insertForm("Contact Us", formData);
+                      resetForm();
                     }}
                   >
                     {({ handleChange, values }) => (
@@ -383,26 +358,28 @@ class Form2Page extends BaseContacts {
                             <div className={this.decorateCSS("input-container")}>
                               {input.getPropValue("type") == "Text Area" ? (
                                 <textarea
-                                  id={getInputName(index)}
-                                  value={values[getInputName(index)]}
+                                  id={getInputName(index, input.getPropValue("label"))}
+                                  value={values[getInputName(index, input.getPropValue("label"))]}
                                   placeholder=" "
-                                  className={`${imageExist ? this.decorateCSS("input") : this.decorateCSS("input-no-image")} ${this.decorateCSS("textarea")}`}
+                                  // className={`${imageExist ? this.decorateCSS("input") : this.decorateCSS("input-no-image")} ${this.decorateCSS("textarea")}`}
+                                  className={`${this.decorateCSS("input")} ${!imageExist && this.decorateCSS("input-no-image")} ${this.decorateCSS("textarea")}`}
                                   rows={12}
                                   onChange={handleChange}
                                 />
                               ) : (
                                 <input
-                                  id={getInputName(index)}
+                                  id={getInputName(index, input.getPropValue("label"))}
                                   placeholder=" "
                                   type={getInputType(input.getPropValue("type"))}
                                   onChange={handleChange}
-                                  value={values[getInputName(index)]}
-                                  name={getInputName(index)}
+                                  value={values[getInputName(index, input.getPropValue("label"))]}
+                                  name={getInputName(index, input.getPropValue("label"))}
                                   className={imageExist ? this.decorateCSS("input") : this.decorateCSS("input-no-image")}
                                 />
                               )}
-                              {input.getPropValue("placeholder", { as_string: true }) && <span className={imageExist ? this.decorateCSS("placeholder") : this.decorateCSS("placeholder-no-image")}>{input.getPropValue("placeholder")}</span>}
-                              <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(index)} component={"span"} />
+                              {/* {this.castToString(input.getPropValue("placeholder")) && <span className={imageExist ? this.decorateCSS("placeholder") : this.decorateCSS("placeholder-no-image")}>{input.getPropValue("placeholder")}</span>} */}
+                              {this.castToString(input.getPropValue("placeholder")) && <span className={`${this.decorateCSS("placeholder")} ${!imageExist && this.decorateCSS("placeholder-no-image")}`}>{input.getPropValue("placeholder")}</span>}
+                              <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(index, input.getPropValue("label"))} component={"span"} />
                             </div>
                           </>
                         ))}

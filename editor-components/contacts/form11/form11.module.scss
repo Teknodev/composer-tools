@@ -24,10 +24,10 @@ $content-background-color: color-mix(in srgb, var(--composer-html-background), v
         .contact-texts {
           .contact-element {
             display: flex;
+            align-items: center;
             color: var(--composer-font-color-primary);
             gap: var(--composer-gap-sm);
             .contact-title {
-              font-weight: bold;
             }
           }
         }
@@ -81,7 +81,7 @@ $content-background-color: color-mix(in srgb, var(--composer-html-background), v
   }
 }
 
-@container (max-width: #{$composer-tablet-width}) {
+@container (max-width: #{$composer-tablet-width-lg}) {
   .container {
     .max-content {
       .page-content {
@@ -104,9 +104,6 @@ $content-background-color: color-mix(in srgb, var(--composer-html-background), v
             .contact-element {
               gap: var(--composer-gap-sm);
               margin: 0;
-              .contact-title {
-                font-weight: bold;
-              }
             }
           }
         }

@@ -39,8 +39,7 @@
         }
       }
 
-      .input-item,
-      .input-item-no-image {
+      .input-item {
         width: 100%;
         z-index: 1;
         max-width: 960px;
@@ -54,6 +53,14 @@
         padding: var(--composer-gap-xl);
         gap: var(--composer-gap-md);
         border-radius: var(--composer-border-radius-md);
+
+        background: rgba(0, 0, 0, 0.52);
+        backdrop-filter: blur(4.1px);
+        -webkit-backdrop-filter: blur(4.1px);
+
+        &.input-item-no-image {
+          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+        }
 
         .title {
           margin: 0;
@@ -80,8 +87,7 @@
               color: var(--danger-color);
             }
 
-            .placeholder,
-            .placeholder-no-image {
+            .placeholder {
               font-size: 0.75rem;
               position: absolute;
               top: var(--composer-gap-xs);
@@ -89,9 +95,10 @@
               transition: all 0.3s ease;
               pointer-events: none;
               color: white;
-            }
-            .placeholder-no-image {
-              color: var(--composer-font-color-primary);
+
+              &.placeholder-no-image {
+                color: var(--composer-font-color-primary);
+              }
             }
 
             .input,
@@ -136,16 +143,6 @@
           justify-content: center;
         }
       }
-
-      .input-item {
-        background: rgba(0, 0, 0, 0.52);
-        backdrop-filter: blur(4.1px);
-        -webkit-backdrop-filter: blur(4.1px);
-      }
-
-      .input-item-no-image {
-        background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-      }
     }
   }
 }
@@ -154,8 +151,7 @@
   .container {
     .max-content {
       .input-items {
-        .input-item,
-        .input-item-no-image {
+        .input-item {
           max-width: 700px;
 
           .title {
@@ -175,8 +171,7 @@
   .container {
     .max-content {
       .input-items {
-        .input-item,
-        .input-item-no-image {
+        .input-item {
           max-width: 320px;
           padding: var(--composer-gap-md);
           gap: 0;

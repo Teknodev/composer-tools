@@ -206,7 +206,7 @@ class Form11Page extends BaseContacts {
                       type: "select",
                       key: "type",
                       displayer: "Type",
-                      value: "Text",
+                      value: "E-mail",
                       additionalParams: {
                         selectItems: ["Text", "E-mail", "Number", "Text Area"],
                       },
@@ -228,6 +228,12 @@ class Form11Page extends BaseContacts {
           key: "input-item",
           displayer: "Input Item",
           value: [
+            {
+              type: "string",
+              key: "label",
+              displayer: "Label",
+              value: "Text Area",
+            },
             {
               type: "array",
               key: "inputs",
@@ -288,9 +294,9 @@ class Form11Page extends BaseContacts {
   }
 
   render() {
-    const titleExist = !!this.getPropValue("title", { as_string: true });
-    const firstTextExist = !!this.getPropValue("first-text", { as_string: true });
-    const secondTextExist = !!this.getPropValue("second-text", { as_string: true });
+    const titleExist = this.castToString(this.getPropValue("title"));
+    const firstTextExist = this.castToString(this.getPropValue("first-text"));
+    const secondTextExist = this.castToString(this.getPropValue("second-text"));
     const contactTexts = this.castToObject<ContactItem[]>("contact-items");
 
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
@@ -320,19 +326,27 @@ class Form11Page extends BaseContacts {
       }
     }
 
-    function getInputName(indexOfLabel: number, inputLabel: string, indexOfInput: number): string {
-      const name = toObjectKey(`${indexOfLabel} ${inputLabel} ${indexOfInput}`);
-      return toObjectKey(name);
-    }
+    const getInputName = (indexOfLabel: number, inputLabel: any, indexOfInput: number): string => {
+      const labelText = inputLabel && this.castToString(inputLabel);
+
+      return toObjectKey(`${indexOfLabel} ${labelText} ${indexOfInput}`);
+    };
 
     function getInitialValue() {
-      let value: any = {};
-      inputItems.map((inputItem: any, indexOfItem: number) => {
-        inputItem.getPropValue("inputs")?.map((_: TypeUsableComponentProps, indexOfInput: number) => {
-          const key = getInputName(indexOfItem, inputItem.getPropValue("label"), indexOfInput);
-          value[key] = "";
-        });
+      let value: Record<string, string> = {};
+
+      inputItems.forEach((inputItem: any, indexOfItem: number) => {
+        const inputs = inputItem.getPropValue("inputs");
+        const label = inputItem.getPropValue("label");
+
+        if (Array.isArray(inputs)) {
+          inputs.forEach((_: TypeUsableComponentProps, indexOfInput: number) => {
+            const key = getInputName(indexOfItem, label, indexOfInput);
+            value[key] = "";
+          });
+        }
       });
+
       return value;
     }
 
@@ -402,7 +416,7 @@ class Form11Page extends BaseContacts {
                     return (
                       contactItemExist && (
                         <div key={i} className={this.decorateCSS("contact-element")}>
-                          <Base.P className={this.decorateCSS("contact-title")}>{item.title}</Base.P>
+                          <Base.H5 className={this.decorateCSS("contact-title")}>{item.title}</Base.H5>
                           <Base.P className={this.decorateCSS("contact-text")}>{item.text}</Base.P>
                         </div>
                       )
@@ -418,8 +432,6 @@ class Form11Page extends BaseContacts {
                 validationSchema={getSchema()}
                 onSubmit={(data, { resetForm }) => {
                   const formData = getFormDataWithConvertedKeys(data);
-                  console.log(data, "data");
-                  console.log(formData, "formData");
                   this.insertForm("Contact Me", formData);
                   resetForm();
                 }}
@@ -433,7 +445,7 @@ class Form11Page extends BaseContacts {
                             <textarea
                               value={values[getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)]}
                               className={this.decorateCSS("form-input")}
-                              placeholder={inputObj.getPropValue("placeholder", { as_string: true })}
+                              placeholder={this.castToString(inputObj.getPropValue("placeholder"))}
                               rows={12}
                               onChange={handleChange}
                               name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)}
@@ -441,7 +453,7 @@ class Form11Page extends BaseContacts {
                             ></textarea>
                           ) : (
                             <input
-                              placeholder={inputObj.getPropValue("placeholder", { as_string: true })}
+                              placeholder={this.castToString(inputObj.getPropValue("placeholder"))}
                               type={getInputType(inputObj.getPropValue("type"))}
                               onChange={handleChange}
                               value={values[getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)]}

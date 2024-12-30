@@ -5,7 +5,6 @@ import { ErrorMessage, Formik, Form } from "formik";
 import * as Yup from "yup";
 import { Base } from "../../../composer-base-components/base/base";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 class Form9Page extends BaseContacts {
   constructor(props?: any) {
@@ -229,7 +228,7 @@ class Form9Page extends BaseContacts {
               type: "select",
               key: "type",
               displayer: "Input Type",
-              value: "Email",
+              value: "Phone",
               additionalParams: {
                 selectItems: ["Text", "Text Area", "Phone", "Email"],
               },
@@ -327,7 +326,12 @@ class Form9Page extends BaseContacts {
       ],
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "Submit Form", "", "Primary"));
+    this.addProp({
+      type: "string",
+      key: "button-text",
+      displayer: "Button Text",
+      value: "Submit Form",
+    });
   }
 
   getName(): string {
@@ -356,12 +360,11 @@ class Form9Page extends BaseContacts {
 
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
-
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const buttonText = this.getPropValue("button-text");
 
     const titleExist = this.castToString(title);
     const descriptionExist = this.castToString(description);
-    const buttonTextExist = this.castToString(button.text);
+    const buttonTextExist = this.castToString(buttonText);
 
     const rightItemsExist = titleExist || descriptionExist || buttonTextExist || inputs.length > 0;
 
@@ -456,8 +459,8 @@ class Form9Page extends BaseContacts {
                     onSubmit={(data, { resetForm }) => {
                       const formData = this.getFormDataWithConvertedKeys(data);
                       console.log(data, "data");
-                      console.log(formData, "formData");
-                      this.insertForm("Contact Us", formData);
+                      console.log(formData, "data");
+                      this.insertForm("Contact Me", formData);
                       resetForm();
                     }}
                   >
@@ -506,8 +509,8 @@ class Form9Page extends BaseContacts {
                         })}
                         {buttonTextExist && (
                           <div className={this.decorateCSS("button-div")}>
-                            <Base.Button buttonType={button.type} className={this.decorateCSS("submit-button")} type="submit">
-                              {button.text}
+                            <Base.Button className={this.decorateCSS("submit-button")} type="submit">
+                              {buttonText}
                             </Base.Button>
                           </div>
                         )}

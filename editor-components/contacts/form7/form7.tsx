@@ -457,7 +457,6 @@ class Form7 extends BaseContacts {
         }
       }
 
-      console.log("Adjusted Form Data:", newObj);
       return newObj;
     }
 
@@ -477,9 +476,6 @@ class Form7 extends BaseContacts {
                 validationSchema={getSchema(allInputs)}
                 onSubmit={(data, { resetForm }) => {
                   const formData = getFormDataWithConvertedKeys(data);
-
-                  console.log("Original Form Data:", data);
-                  console.log("Converted Form Data:", formData);
                   this.insertForm("Contact Me", formData);
                   resetForm();
                 }}

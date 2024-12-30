@@ -29,6 +29,12 @@ class Form10 extends BaseContacts {
           displayer: "Input Item",
           value: [
             {
+              type: "string",
+              key: "label",
+              displayer: "Label",
+              value: "Name",
+            },
+            {
               type: "array",
               key: "inputs",
               displayer: "Inputs",
@@ -106,7 +112,7 @@ class Form10 extends BaseContacts {
                       type: "select",
                       key: "type",
                       displayer: "Type",
-                      value: "Text",
+                      value: "E-mail",
                       additionalParams: {
                         selectItems: ["E-mail "],
                       },
@@ -134,6 +140,12 @@ class Form10 extends BaseContacts {
           key: "inputItem",
           displayer: "Input Item",
           value: [
+            {
+              type: "string",
+              key: "label",
+              displayer: "Label",
+              value: "Text Area",
+            },
             {
               type: "array",
               key: "inputs",
@@ -212,10 +224,10 @@ class Form10 extends BaseContacts {
     const titleExist = this.castToString(title);
     const descriptionExist = this.castToString(description);
     const inputItems = this.getPropValue("inputItems")!;
-    const buttonTextExist = this.castToString(this.getPropValue("buttonText"));
-    const rightItemsExist = inputItems.length > 0 || descriptionExist || buttonTextExist;
-
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+
+    const buttonTextExist = this.castToString(button.text);
+    const rightItemsExist = inputItems.length > 0 || descriptionExist || buttonTextExist;
 
     function toObjectKey(str: string) {
       if (/^\d/.test(str)) {
@@ -240,15 +252,19 @@ class Form10 extends BaseContacts {
       }
     }
 
-    function getInputName(indexOfLabel: number, inputLabel: string, indexOfInput: number) {
-      const name = toObjectKey(`${indexOfLabel} ${inputLabel} ${indexOfInput}`);
-      return toObjectKey(name);
-    }
+    const getInputName = (indexOfLabel: number, inputLabel: any, indexOfInput: number): string => {
+      const labelText = inputLabel && this.castToString(inputLabel);
+
+      console.log(labelText, "labelText");
+
+      return toObjectKey(`${indexOfLabel} ${labelText} ${indexOfInput}`);
+    };
 
     function getInitialValue() {
       let value: any = {};
       inputItems.forEach((inputItem: any, indexOfItem: number) => {
         inputItem.getPropValue("inputs")?.forEach((_: any, indexOfInput: number) => {
+          console.log(inputItem.getPropValue("label"));
           const key = getInputName(indexOfItem, inputItem.getPropValue("label"), indexOfInput);
           value[key] = "";
         });
@@ -377,20 +393,20 @@ class Form10 extends BaseContacts {
                           </div>
                         ))}
 
-                        {(descriptionExist || this.getPropValue("buttonText", { as_string: true })) && (
+                        {(descriptionExist || buttonTextExist) && (
                           <div className={this.decorateCSS("bottom-section")}>
                             {descriptionExist && (
                               <div className={this.decorateCSS("description")}>
                                 <Base.P className={this.decorateCSS("description-text")}>{descriptionExist}</Base.P>
                               </div>
                             )}
-                            {this.castToString(button.text)} && (
-                            <div className={this.decorateCSS("button-box")}>
-                              <Base.Button buttonType={button.type} className={this.decorateCSS("submit-button")} type="submit">
-                                <span className={this.decorateCSS("button-text")}>{button.text}</span>
-                              </Base.Button>
-                            </div>
-                            )
+                            {buttonTextExist && (
+                              <div className={this.decorateCSS("button-box")}>
+                                <Base.Button buttonType={button.type} className={this.decorateCSS("submit-button")} type="submit">
+                                  <span className={this.decorateCSS("button-text")}>{button.text}</span>
+                                </Base.Button>
+                              </div>
+                            )}
                           </div>
                         )}
                       </Form>

@@ -383,11 +383,11 @@ class Form6 extends BaseContacts {
           return "text";
       }
     }
+    const getInputName = (indexOfLabel: number, inputLabel: any, indexOfInput: number): string => {
+      const labelText = inputLabel && this.castToString(inputLabel);
 
-    function getInputName(indexOfLabel: number, inputLabel: string, indexOfInput: number): string {
-      const name = toObjectKey(`${indexOfLabel} ${inputLabel} ${indexOfInput}`);
-      return toObjectKey(name);
-    }
+      return toObjectKey(`${indexOfLabel} ${labelText} ${indexOfInput}`);
+    };
 
     function getInitialValue() {
       let value: any = {};
@@ -451,7 +451,7 @@ class Form6 extends BaseContacts {
       return inputItem.getPropValue("inputs").some((input: any) => input.getPropValue("is_required"));
     }
 
-    const buttonText = this.getPropValue("button_text");
+    const buttonText = button.text;
     const buttonTextExist = this.castToString(buttonText);
 
     const formContainerExist = inputItems.length > 0 || buttonTextExist;
@@ -485,9 +485,7 @@ class Form6 extends BaseContacts {
                   initialValues={getInitialValue()}
                   validationSchema={getSchema()}
                   onSubmit={(data, { resetForm }) => {
-                    console.log(data, "data");
                     const formData = getFormDataWithConvertedKeys(data);
-                    console.log(formData, "formdata");
                     this.insertForm("Contact Me", formData);
                     resetForm();
                   }}
@@ -511,14 +509,14 @@ class Form6 extends BaseContacts {
                                   <textarea
                                     value={values[getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)]}
                                     className={this.decorateCSS("input")}
-                                    placeholder={inputObj.getPropValue("placeholder", { as_string: true })}
+                                    placeholder={this.castToString(inputObj.getPropValue("placeholder"))}
                                     rows={12}
                                     onChange={handleChange}
                                     name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)}
                                   ></textarea>
                                 ) : (
                                   <input
-                                    placeholder={inputObj.getPropValue("placeholder", { as_string: true })}
+                                    placeholder={this.castToString(inputObj.getPropValue("placeholder"))}
                                     type={getInputType(inputObj.getPropValue("type"))}
                                     onChange={handleChange}
                                     value={values[getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)]}
@@ -541,7 +539,7 @@ class Form6 extends BaseContacts {
               </div>
             )}
             {image && (
-              <div className={formContainerExist ? this.decorateCSS("image-container") : this.decorateCSS("image-container-no-form")}>
+              <div className={`${this.decorateCSS("image-container")} ${!formContainerExist && this.decorateCSS("image-container-no-form")}`}>
                 <img className={this.decorateCSS("image")} src={image} alt="" />
               </div>
             )}
