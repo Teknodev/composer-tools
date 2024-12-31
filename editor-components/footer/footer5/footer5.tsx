@@ -23,21 +23,7 @@ class Footer5Page extends BaseFooter {
       value: "Would you like more information or do you have a question?",
     });
 
-    this.addProp({
-      type: "string",
-      key: "buttonText",
-      displayer: "Button Text",
-      value: "CONTACT US",
-    });
-
-    this.addProp({
-      type: "page",
-      key: "buttonLink",
-      displayer: "Button Link",
-      value: "",
-    });
-
-    this.addProp(INPUTS.BUTTON("button", "Button", "", "", "Primary"));
+    this.addProp(INPUTS.BUTTON("button", "Button", "CONTACT US", "", null, "Primary"));
 
     this.addProp({
       type: "boolean",
@@ -107,15 +93,15 @@ class Footer5Page extends BaseFooter {
   render() {
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
-    const buttonText = this.getPropValue("buttonText");
     const footerDescription = this.getPropValue("footerDescription");
+    
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
     const subtitleExist = this.castToString(subtitle);
     const titleExist = this.castToString(title);
-    const buttonTextExist = this.castToString(buttonText);
     const footerDescriptionExist = this.castToString(footerDescription);
 
-    const headerExist = subtitleExist || titleExist || buttonTextExist;
+    const headerExist = subtitleExist || titleExist || this.castToString(button.text);
 
     const links = this.castToObject<any[]>("links");
 
@@ -127,7 +113,6 @@ class Footer5Page extends BaseFooter {
 
     const bottomExist = links.length > 0 || footerDescriptionExist;
 
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
     const alignment = Base.getContentAlignment();
 
@@ -139,20 +124,18 @@ class Footer5Page extends BaseFooter {
               <div className={`${this.decorateCSS("header")} ${alignmentValue === "center" && this.decorateCSS("center")}`}>
                 {textsExist && (
                   <Base.VerticalContent
-                    className={`${this.decorateCSS("left-full")} ${!buttonTextExist && this.decorateCSS("left")}`}>
+                    className={`${this.decorateCSS("left-full")} ${!this.castToString(button.text) && this.decorateCSS("left")}`}>
                     {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
                     {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                   </Base.VerticalContent>
                 )}
-                {buttonTextExist && (
+                {this.castToString(button.text) && (
                   <div className={this.decorateCSS("right")}>
-                    {buttonTextExist && (
-                      <ComposerLink path={this.getPropValue("buttonLink")}>
-                        <Base.Button buttonType={button.type}
-                          className={this.decorateCSS("button")}>{this.getPropValue("buttonText")}
-                        </Base.Button>
-                      </ComposerLink>
-                    )}
+                    <ComposerLink path={button.url}>
+                      <Base.Button buttonType={button.type}
+                        className={this.decorateCSS("button")}>{button.text}
+                      </Base.Button>
+                    </ComposerLink>
                   </div>
                 )}
               </div>

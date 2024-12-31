@@ -46,7 +46,7 @@ class Footer9Page extends BaseFooter {
       value: "During this phase to design is developed to meet the reuired technical standards",
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "Subscribe", "", "Primary"));
+    this.addProp(INPUTS.BUTTON("button", "Button", "Subscribe", "", null, "Primary"));
 
     this.addProp({
       type: "array",
@@ -368,7 +368,7 @@ class Footer9Page extends BaseFooter {
           <div className={this.decorateCSS("header")}>
             {logo && <img src={logo} alt="" className={this.decorateCSS("logo")} />}
             <div className={this.decorateCSS("content")}>
-              {titleExist && <Base.H1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.H1>}
+              {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
               {descriptionExist && <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>}
               {buttonTextExist && (
                 <ComposerLink path={button.url}>

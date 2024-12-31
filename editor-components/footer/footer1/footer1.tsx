@@ -38,7 +38,7 @@ class Footer1Page extends BaseFooter {
       value: "Type your e-mail",
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "Subscribe", "", "Primary"));
+    this.addProp(INPUTS.BUTTON("button", "Button", "Subscribe", null, null, "Primary"));
 
     this.addProp({
       type: "boolean",
@@ -324,7 +324,7 @@ class Footer1Page extends BaseFooter {
                             )}
                             {this.castToString(button.text) && (
                               <Base.Button buttonType={button.type}
-                                className={this.decorateCSS("button")} type="submit">
+                                className={this.decorateCSS("button")}>
                                 {button.text}
                               </Base.Button>
                             )}

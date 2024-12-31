@@ -378,7 +378,7 @@ class Footer4Page extends BaseFooter {
       value: "Form successfully submitted!",
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "Subscribe", "", "Primary"));
+    this.addProp(INPUTS.BUTTON("button", "Button", "Subscribe", null, null, "Primary"));
 
     this.addProp({
       type: "string",
@@ -603,7 +603,7 @@ class Footer4Page extends BaseFooter {
 
                             {buttonTextExist && (
                               <Base.Button buttonType={button.type}
-                                className={this.decorateCSS("button")} type="submit">
+                                className={this.decorateCSS("button")}>
                                 {button.text}
                               </Base.Button>
                             )}
