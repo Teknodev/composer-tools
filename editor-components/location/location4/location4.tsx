@@ -185,29 +185,34 @@ class LocationComponent4 extends Location {
     const title = this.getPropValue("title");
     const titleExist = this.castToString(title);
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("page")}>
           {image ? (
             <div className={this.decorateCSS("content")}>
               {overlay && image && <div className={this.decorateCSS("overlay")}></div>}
               {image && <img src={image} className={this.decorateCSS("image")} />}
               {titleExist && (
-                <Base.MaxContent className={this.decorateCSS("max-content")}>
-                  <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
-                </Base.MaxContent>
+                <Base.Container className={this.decorateCSS("content-container")}>
+                  <Base.MaxContent className={this.decorateCSS("max-content")}>
+                    <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
+                  </Base.MaxContent>
+                </Base.Container>
               )}
             </div>
-          ) : (
-            <Base.MaxContent className={this.decorateCSS("max-content-no-image")}>
-              <Base.SectionTitle className={this.decorateCSS("title-no-image")}>{this.getPropValue("title")}</Base.SectionTitle>
-            </Base.MaxContent>
-          )}
+          ) : (titleExist &&
+            (<Base.Container className={this.decorateCSS("content-container")}>
+              <Base.MaxContent className={this.decorateCSS("max-content-no-image")}>
+                <Base.SectionTitle className={this.decorateCSS("title-no-image")}>{this.getPropValue("title")}</Base.SectionTitle>
+              </Base.MaxContent>
+            </Base.Container>)
+          )
+          }
 
           <section className={this.decorateCSS("map-container")}>
             <ComposerMap defaultMarkerIcon={defaultMarkerIcon} defaultZoom={centerZoom} handleMarkerZoom={markerZoom} markers={markers} className={this.decorateCSS("map")} styles={mapStyle.colors} />
           </section>
-        </div>
-      </Base.Container>
+        </div >
+      </div>
     );
   }
 }

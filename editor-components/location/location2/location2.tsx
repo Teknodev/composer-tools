@@ -437,69 +437,71 @@ class LocationComponent2 extends Location {
     const headerExist = isTitleExist || isDescriptionExist || socials.length > 0;
 
     return (
-      <Base.Container className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <Base.MaxContent>
-            {headerExist && (
+      <div className={this.decorateCSS("container")}>
+        {headerExist && (
+          <Base.Container className={this.decorateCSS("content-container")}>
+            <Base.MaxContent className={this.decorateCSS("max-content")}>
               <Base.VerticalContent className={this.decorateCSS("header")}>
                 {isTitleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{headerTitle}</Base.SectionTitle>}
 
-                <div className={alignmentValue === "left" ? this.decorateCSS("description-container") : alignmentValue === "center" ? this.decorateCSS("description-container-center") : null}>
+                <div className={`${this.decorateCSS("description-container")} ${alignmentValue === "center" && this.decorateCSS("center")
+                  }`}
+                >
                   {isDescriptionExist && <Base.SectionDescription className={this.decorateCSS("description-text")}>{headerDescription}</Base.SectionDescription>}
-                  <div className={this.decorateCSS("socials")}>
-                    {socials.map((item: SocialMediaItemType, index: number) => {
-                      return (
-                        item.icon && (
-                          <div className={this.decorateCSS("socials-container")}>
-                            <div className={this.decorateCSS("social-button")}>
-                              <ComposerIcon name={item.icon} />
+                  {socials.length > 0 &&
+                    <div className={this.decorateCSS("socials")}>
+                      {socials.map((item: SocialMediaItemType, index: number) => {
+                        return (
+                          item.icon && (
+                            <div className={this.decorateCSS("socials-container")}>
+                              <div className={this.decorateCSS("social-button")}>
+                                <ComposerIcon name={item.icon} />
+                              </div>
                             </div>
-                          </div>
-                        )
-                      );
-                    })}
-                  </div>
+                          )
+                        );
+                      })}
+                    </div>}
                 </div>
               </Base.VerticalContent>
-            )}
-          </Base.MaxContent>
+            </Base.MaxContent>
+          </Base.Container>
+        )}
 
-          {this.castToObject<ContentItemType[]>("middle-content").length > 0 && (
-            <div className={this.decorateCSS("middle-content")}>
-              <Base.MaxContent>
-                <div className={this.decorateCSS("middle-content-container")}>
-                  {this.castToObject<ContentItemType[]>("middle-content").map((item: ContentItemType, index: number) => {
-                    const isContTitleExist = this.castToString(item.contentTitle);
-                    const isContIconExist = item.contentIcon;
-                    const isDesExist = item.contentDescriptionArray.some((desc) => this.castToString(desc.text));
+        {this.castToObject<ContentItemType[]>("middle-content").length > 0 && (
+          <div className={this.decorateCSS("middle-content")}>
+            <div className={this.decorateCSS("middle-content-container")}>
+              {this.castToObject<ContentItemType[]>("middle-content").map((item: ContentItemType, index: number) => {
+                const isContTitleExist = this.castToString(item.contentTitle);
+                const isContIconExist = item.contentIcon;
+                const isDesExist = item.contentDescriptionArray.some((desc) => this.castToString(desc.text));
 
-                    if (isContTitleExist || isContIconExist || isDesExist) {
-                      return (
-                        <div className={this.decorateCSS("element-container")}>
-                          {isContIconExist && <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={item.contentIcon} />}
-                          {isContTitleExist && (
-                            <div className={this.decorateCSS("content-title-container")}>
-                              <Base.H3 className={this.decorateCSS("content-title")}>{item.contentTitle}</Base.H3>
-                            </div>
-                          )}
-                          {item.contentDescriptionArray.map((item, index: number) => {
-                            const isDesExist = this.castToString(item.text);
-                            return isDesExist && <Base.P className={this.decorateCSS("content-description")}>{item.text}</Base.P>;
-                          })}
+                if (isContTitleExist || isContIconExist || isDesExist) {
+                  return (
+                    <div className={this.decorateCSS("element-container")}>
+                      {isContIconExist && <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={item.contentIcon} />}
+                      {isContTitleExist && (
+                        <div className={this.decorateCSS("content-title-container")}>
+                          <Base.H3 className={this.decorateCSS("content-title")}>{item.contentTitle}</Base.H3>
                         </div>
-                      );
-                    }
-                  })}
-                </div>
-              </Base.MaxContent>
+                      )}
+                      {item.contentDescriptionArray.map((item, index: number) => {
+                        const isDesExist = this.castToString(item.text);
+                        return isDesExist && <Base.P className={this.decorateCSS("content-description")}>{item.text}</Base.P>;
+                      })}
+                    </div>
+                  );
+                }
+              })}
             </div>
-          )}
-        </div>
+          </div>
+        )}
+
 
         <div className={this.decorateCSS("map-container")}>
           <ComposerMap styles={mapStyle.colors} handleMarkerZoom={markerZoom} defaultZoom={centerZoom} markers={markers} className={this.decorateCSS("map")} />
         </div>
-      </Base.Container>
+      </div>
     );
   }
 }
