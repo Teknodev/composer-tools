@@ -221,13 +221,6 @@ class Team9 extends Team {
       value: 4,
       max: 5,
     });
-
-    this.addProp({
-      type: "boolean",
-      key: "animate",
-      displayer: "Enable Animate",
-      value: true,
-    });
   }
 
   getName(): string {
@@ -241,7 +234,7 @@ class Team9 extends Team {
       infinite: true,
       arrows: false,
       speed: 500,
-      autoplay: false,
+      autoplay: true,
       autoplaySpeed: 3000,
       responsive: [
         {
@@ -261,8 +254,6 @@ class Team9 extends Team {
 
     const titleExist = this.getPropValue("title", { as_string: true });
     const members = this.castToObject<Card[]>("team-members");
-
-    const animate = this.getPropValue("animate");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -288,9 +279,7 @@ class Team9 extends Team {
                                     <ComposerLink key={iconIndex} path={card.url}>
                                       <ComposerIcon
                                         name={card.icon}
-                                        propsIcon={{
-                                          className: animate ? this.decorateCSS("icon") : this.decorateCSS("no-animate"),
-                                        }}
+                                        propsIcon={{ className: this.decorateCSS("icon") }}
                                       />
                                     </ComposerLink>
                                   );
@@ -300,7 +289,7 @@ class Team9 extends Team {
                             </div>
                           )}
                           <div className={this.decorateCSS("text-group")}>
-                            <Base.H3 className={this.decorateCSS("item-name")}>{item.name}</Base.H3>
+                            <div className={this.decorateCSS("item-name")}>{item.name}</div>
                           </div>
                         </div>
                       </Base.VerticalContent>
@@ -319,9 +308,9 @@ class Team9 extends Team {
                       <div key={indexCard} className={this.decorateCSS("card")}>
                         {item.image && <img className={this.decorateCSS("person-image")} src={item.image} alt={nameExist} />}
                         {(nameExist || item.icons.length > 0) && (
-                          <div className={this.decorateCSS("person-info")}>
+                          <Base.VerticalContent className={this.decorateCSS("person-info")}>
                             {item.icons.length > 0 && (
-                              <div style={!item.image ? { width: "auto" } : {}} className={this.decorateCSS("icons-bar")}>
+                              <Base.Row style={!item.image ? { width: "auto" } : {}} className={this.decorateCSS("icons-bar")}>
                                 {item.icons.map((card: Icon, indexIcons: number) => {
                                   if (card.icon)
                                     return (
@@ -336,14 +325,14 @@ class Team9 extends Team {
                                     );
                                   return null;
                                 })}
-                              </div>
+                              </Base.Row>
                             )}
                             {nameExist && (
                               <div style={!item.image ? { width: "auto" } : {}} className={this.decorateCSS("text-group")}>
                                 <Base.H1 className={this.decorateCSS("item-name")}>{item.name}</Base.H1>
                               </div>
                             )}
-                          </div>
+                          </Base.VerticalContent>
                         )}
                       </div>
                     );

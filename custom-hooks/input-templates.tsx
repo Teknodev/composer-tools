@@ -88,12 +88,12 @@ export namespace INPUTS {
       ],
     } as TypeUsableComponentProps;
   };
-  export const NAVBAR_POSITION = (key: string, displayer: string) => {
+  export const NAVBAR_POSITION = (key: string, displayer: string, defaultValue: string = "Default") => {
     return {
       type: "select",
       key: key,
       displayer: displayer,
-      value: "Default",
+      value: defaultValue,
       additionalParams: {
         selectItems: ["Absolute", "Sticky Colorful", "Sticky Transparent", "Default"],
       },

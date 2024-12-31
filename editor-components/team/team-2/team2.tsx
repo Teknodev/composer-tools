@@ -14,7 +14,6 @@ type TeamCardMember = {
   name: string;
   description: string;
   image: string;
-  buttonText: string;
   platforms: { icon: string; url: string }[];
 };
 class Team2 extends Team {
@@ -360,7 +359,7 @@ class Team2 extends Team {
                 <Base.VerticalContent className={`${this.decorateCSS("team")}`} key={index}>
                   {team.image && <img className={this.decorateCSS("image")} src={team.image} alt="" />}
                   {name && <Base.H3 className={this.decorateCSS("title")}>{team.name}</Base.H3>}
-                  {position && <Base.H4 className={this.decorateCSS("position")}>{position}</Base.H4>}
+                  {position && <Base.H4 className={this.decorateCSS("position")}>{team.position}</Base.H4>}
                   {description && <Base.P className={this.decorateCSS("long-text")}>{team.description}</Base.P>}
                   <div className={this.decorateCSS("icon-group")}>
                     {team.platforms &&

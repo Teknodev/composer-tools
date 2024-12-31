@@ -285,7 +285,7 @@ class List2 extends BaseList {
         },
       ],
     });
-    this.addProp(INPUTS.BUTTON("button", "Button", "View More Categories", "", "Primary"));
+    this.addProp(INPUTS.BUTTON("button", "Button", "View More Categories", "", null, null, "Primary"));
     this.setComponentState("moreImages", 0);
     ;
   }
