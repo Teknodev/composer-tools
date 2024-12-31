@@ -5,14 +5,7 @@ import { EventEmitter, EVENTS } from "../EventEmitter";
 import sanitizeHtml from "sanitize-html";
 import { renderToString } from "react-dom/server";
 import { THEMES, TTheme } from "./location/themes";
-import { LexicalEditor } from "lexical/LexicalEditor";
-import { $createParagraphNode, $getRoot, EditorState, TextNode } from "lexical";
-import { $generateHtmlFromNodes, $generateNodesFromDOM } from "@lexical/html";
-import { ExtendedTextNode } from "../../prefabs/playground/plugins/ExtendedTextNode";
-import { ListNode, ListItemNode } from "@lexical/list";
-import { HeadingNode, QuoteNode } from "@lexical/rich-text";
-import { CodeHighlightNode, CodeNode } from "@lexical/code";
-import InlineEditor from "../../prefabs/playground/inline-editor";
+import InlineEditor from "../../custom-hooks/UseInlineEditor";
 
 type PreSufFix = {
   label: string;
@@ -120,7 +113,6 @@ export abstract class Component
     this.styles = styles;
     this.id = props?.id || Math.random().toString();
 
-    this.onChange = this.onChange.bind(this);
     let sectionsKeyValue: any = {};
     Object.keys(this.styles).forEach((key, index) => {
       sectionsKeyValue[key] = [];
@@ -140,7 +132,7 @@ export abstract class Component
       });
     }
 
-    EventEmitter.emit(EVENTS.COMPONENT_ADDED, { id: this.id, props });
+    EventEmitter.emit(EVENTS.COMPONENT_ADDED, { data: this });
   }
 
   static getName(): string {
@@ -213,75 +205,6 @@ export abstract class Component
     return doc.body.innerHTML;
   }
 
-  updateHTML(editor: LexicalEditor, value: string, clear: boolean) {
-    const root = $getRoot();
-    const parser = new DOMParser();
-    const dom = parser.parseFromString(value, "text/html");
-    const nodes = $generateNodesFromDOM(editor, dom);
-    if (clear) {
-      root.clear();
-    }
-    try {
-      root.append(...nodes);
-    } catch {
-      const p = $createParagraphNode();
-      p.append(...nodes);
-      root.append(p);
-    }
-  }
-
-  prepopulatedRichText(editor: LexicalEditor, html: string) {
-    this.updateHTML(editor, html, true);
-
-    return editor;
-  }
-
-  findObjectById(arr: any, targetId: string) {
-    for (let i in arr) {
-      if (arr[i].id === targetId) {
-        return i.toString();
-      }
-      if (arr[i].value) {
-        let result: any = this.findObjectById(arr[i].value, targetId);
-        if (result) {
-          return i.toString() + "." + result;
-        }
-      }
-    }
-    return null;
-  }
-
-  setValueAtPath(obj: any, path: string[], value: string) {
-    let current = obj;
-    for (let i = 0; i < path.length - 1; i++) {
-      current = current[path[i]].value;
-    }
-    current[path[path.length - 1]].value = value;
-    return current;
-  }
-
-  onStateReady(editor: LexicalEditor) {
-    const htmlString = $generateHtmlFromNodes(editor, null);
-
-    let propRoute: string[] = this.findObjectById(
-      this.getProps(),
-      editor._config.namespace
-    ).split(".");
-    let componentProps = this.getProps();
-    this.setValueAtPath(componentProps, propRoute, htmlString);
-
-    EventEmitter.emit(EVENTS.PROP_UPDATED, {
-      component: this,
-      type: componentProps[parseInt(propRoute[0])].type,
-      key: componentProps[parseInt(propRoute[0])].key,
-      value: componentProps[parseInt(propRoute[0])].value,
-    });
-  }
-
-  onChange(editorState: EditorState, editor: LexicalEditor) {
-    editorState.read.bind(this);
-    editorState.read(() => this.onStateReady(editor));
-  }
 
   getPropValueAsElement(
     prop: TypeUsableComponentProps,
@@ -331,40 +254,9 @@ export abstract class Component
 
       const sanitizedHtml = sanitize(htmlWithPrefixAndSuffix, options);
 
-      const editorConfig = {
-        namespace: prop.id,
-        onError: (error: Error) => {
-          console.error("Lexical Error:", error);
-        },
-        editorState: (editor: any) =>
-          this.prepopulatedRichText(editor, prop.value as string),
-        nodes: [
-          ExtendedTextNode,
-          {
-            replace: TextNode,
-            with: (node: TextNode) => new ExtendedTextNode(node.__text),
-          },
-          ListNode,
-          ListItemNode,
-          HeadingNode,
-          QuoteNode,
-          CodeNode,
-          CodeHighlightNode,
-        ],
-      };
-
-      return (
-        <InlineEditor
-          initialConfig={editorConfig}
-          onChange={this.onChange}
-          HTML={
-            //@ts-ignore
-            () => (<blinkpage dangerouslySetInnerHTML={sanitizedHtml}></blinkpage>)
-          }
-        />
-      );
+      return <InlineEditor id={prop.id} value={prop.value as string} props={this.getProps()} sanitizedHtml={sanitizedHtml} />
     };
-
+    
     return <SanitizeHTML html={prop?.value}></SanitizeHTML>;
   }
 
@@ -401,7 +293,19 @@ export abstract class Component
       .map((prop: any) => prop.key)
       .indexOf(key);
 
-    if (i == -1) return;
+    const prop: TypeUsableComponentProps = this.state.componentProps.props[i];
+
+    const isInvalidIndex = i === -1;
+    const isMatchingSimpleValue =
+      prop.type !== "array" && prop.type !== "object" && prop.value === value;
+    const isMatchingComplexValue =
+      (prop.type === "array" || prop.type === "object") &&
+      prop.value.every((item) => item.getPropValue) &&
+      prop.value === value;
+
+    if (isInvalidIndex || isMatchingSimpleValue || isMatchingComplexValue) {
+      return;
+    }
 
     this.state.componentProps.props[i].value = value;
     this.state.componentProps.props[i] = this.attachValueGetter(

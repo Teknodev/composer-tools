@@ -9,7 +9,6 @@
     .team-members {
       justify-content: center;
       align-items: center;
-      gap: var(--composer-gap-lg);
       transition: transform 0.5s;
 
       :hover {
@@ -18,8 +17,7 @@
     }
 
     .description {
-      opacity: 0.5;
-      color: var(--composer-font-color-primary);
+      content: "";    
     }
     .team {
       flex: 1 1;
@@ -60,9 +58,8 @@
         gap: var(--composer-gap-sm);
 
         .icon {
-          opacity: 0.5;
           font-size: 1.5rem;
-          color: var(--composer-font-color-primary);
+          color: var(--composer-tertiary-color);
         }
       }
     }

@@ -2,12 +2,13 @@ import * as React from "react";
 import { BaseContent } from "../../EditorComponent";
 import styles from "./content24.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { Base } from "../../../composer-base-components/base/base";
 
 type ITabs = {
-  tabText: string;
-  title: string;
-  description: string;
-  buttonText: string;
+  tabText: JSX.Element;
+  title: JSX.Element;
+  description: JSX.Element;
+  buttonText: JSX.Element;
   buttonUrl: string;
   image: string;
 };
@@ -28,6 +29,14 @@ class Content24 extends BaseContent {
       key: "subtitle",
       displayer: "Subtitle",
       value: "Use Case",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value:
+        "We focus on helping you to make useful content more accessible with an utlimate goal for a good sharing profit as a content creator.",
     });
 
     this.addProp({
@@ -137,27 +146,59 @@ class Content24 extends BaseContent {
     this.setComponentState("activeTab", activeTabIndex);
     setTimeout(() => {
       this.setComponentState("startedIndex", activeTabIndex);
-    },20)
+    }, 20);
   }
 
   getName(): string {
     return "content 24";
   }
   render() {
+    const subTitle = this.getPropValue("subtitle");
+    const title = this.getPropValue("title");
+    const description = this.getPropValue("description");
+
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-        <div className={this.decorateCSS("sub-title")}>
-            {this.getPropValue("subtitle")}
-          </div>
-          <div className={this.decorateCSS("header")}>
-            {this.getPropValue("title")}
-          </div>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          {(this.castToString(subTitle) ||
+            this.castToString(title) ||
+            this.castToString(description)) && (
+              <Base.VerticalContent className={this.decorateCSS("heading")}>
+                {this.castToString(subTitle) && (
+                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                    {subTitle}
+                  </Base.SectionSubTitle>
+                )}
+
+                {this.castToString(title) && (
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
+                    {title}
+                  </Base.SectionTitle>
+                )}
+
+                {this.castToString(description) && (
+                  <Base.SectionDescription
+                    className={this.decorateCSS("description")}
+                  >
+                    {description}
+                  </Base.SectionDescription>
+                )}
+              </Base.VerticalContent>
+            )}
+
           <div className={this.decorateCSS("tabs")}>
             <div className={this.decorateCSS("tab-buttons")}>
               {this.castToObject<ITabs[]>("tabs").map(
                 (tab: ITabs, index: number) => (
-                  <div className={this.decorateCSS("tab-button") + " " + ((this.getComponentState("activeTab") == index) && this.decorateCSS("active"))} onClick={() => this.setActiveTab(index)}>
+                  <div
+                    className={
+                      this.decorateCSS("tab-button") +
+                      " " +
+                      (this.getComponentState("activeTab") == index &&
+                        this.decorateCSS("active"))
+                    }
+                    onClick={() => this.setActiveTab(index)}
+                  >
                     {tab.tabText}
                   </div>
                 )
@@ -165,30 +206,53 @@ class Content24 extends BaseContent {
             </div>
             {this.castToObject<ITabs[]>("tabs").map(
               (tab: ITabs, index: number) => (
-                <div className={this.decorateCSS("tab") + " " + ((this.getComponentState("activeTab") == index) && this.decorateCSS("active")) + " " + ((this.getComponentState("startedIndex") == index) && styles["start"])}>
-                  <div className={this.decorateCSS("content")}>
-                    <div className={this.decorateCSS("title")}>{tab.title}</div>
-                    <div className={this.decorateCSS("description")}>
-                      {tab.description}
+                <Base.ContainerGrid
+                  className={
+                    this.decorateCSS("tab") +
+                    " " +
+                    (this.getComponentState("activeTab") == index &&
+                      this.decorateCSS("active"))}
+                >
+                  {(this.castToString(tab.title) ||
+                    this.castToString(tab.description) ||
+                    this.castToString(tab.buttonText)) && (
+                      <div
+                        className={this.decorateCSS("content")}
+                      >
+                        {this.castToString(tab.title) && (
+                          <Base.H2 className={this.decorateCSS("title")}>
+                            {tab.title}
+                          </Base.H2>
+                        )}
+                        {this.castToString(tab.description) && (
+                          <Base.P className={this.decorateCSS("description")}>
+                            {tab.description}
+                          </Base.P>
+                        )}
+                        {this.castToString(tab.buttonText) && (
+                          <Base.Button className={this.decorateCSS("button")}>
+                            <ComposerLink path={tab.buttonUrl}>
+                              {tab.buttonText}
+                            </ComposerLink>
+                          </Base.Button>
+                        )}
+                      </div>
+                    )}
+
+                  {tab.image && (
+                    <div className={this.decorateCSS("image-container")}>
+                      <img
+                        className={this.decorateCSS("image")}
+                        src={tab.image}
+                      />
                     </div>
-                    <button className={this.decorateCSS("button")}>
-                      <ComposerLink path={tab.buttonUrl}>
-                        {tab.buttonText}
-                      </ComposerLink>
-                    </button>
-                  </div>
-                  <div className={this.decorateCSS("image-container")}>
-                    <img
-                      className={this.decorateCSS("image")}
-                      src={tab.image}
-                    />
-                  </div>
-                </div>
+                  )}
+                </Base.ContainerGrid>
               )
             )}
           </div>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

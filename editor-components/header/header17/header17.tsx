@@ -4,6 +4,15 @@ import { BaseHeader } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "composer-tools/composer-base-components/base/base";
+
+type ISliderData = {
+  title: JSX.Element;
+  image: string;
+  description: JSX.Element;
+  buttonText: JSX.Element;
+  buttonUrl: string;
+};
 
 class Header17 extends BaseHeader {
   constructor(props?: any) {
@@ -34,33 +43,32 @@ class Header17 extends BaseHeader {
           value: [
             {
               type: "string",
-              displayer: "Year",
-              key: "year",
+              displayer: "Title",
+              key: "title",
               value: "2023",
             },
             {
               type: "string",
-              displayer: "Title",
-              key: "title",
+              displayer: "Description",
+              key: "description",
               value: "Scandinavian Style House",
             },
             {
               type: "image",
               displayer: "Image",
               key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666193cabd2970002c625d54?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666193cabd2970002c625d54?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
               displayer: "Button Text",
-              key: "button-text",
+              key: "buttonText",
               value: "View Content",
             },
             {
               type: "page",
               displayer: "Button Link",
-              key: "button-url",
+              key: "buttonUrl",
               value: "",
             },
           ],
@@ -72,33 +80,32 @@ class Header17 extends BaseHeader {
           value: [
             {
               type: "string",
-              displayer: "Year",
-              key: "year",
+              displayer: "Title",
+              key: "title",
               value: "2021",
             },
             {
               type: "string",
-              displayer: "Title",
-              key: "title",
+              displayer: "Description",
+              key: "description",
               value: "Contemporary Style House",
             },
             {
               type: "image",
               displayer: "Image",
               key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666193cabd2970002c625d53?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666193cabd2970002c625d53?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
               displayer: "Button Text",
-              key: "button-text",
+              key: "buttonText",
               value: "View Content",
             },
             {
               type: "page",
               displayer: "Button Link",
-              key: "button-url",
+              key: "buttonUrl",
               value: "",
             },
           ],
@@ -110,33 +117,32 @@ class Header17 extends BaseHeader {
           value: [
             {
               type: "string",
-              displayer: "Year",
-              key: "year",
+              displayer: "Title",
+              key: "title",
               value: "2019",
             },
             {
               type: "string",
-              displayer: "Title",
-              key: "title",
+              displayer: "Description",
+              key: "description",
               value: "Metal Facade Coatings",
             },
             {
               type: "image",
               displayer: "Image",
               key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666193cabd2970002c625d52?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666193cabd2970002c625d52?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
               displayer: "Button Text",
-              key: "button-text",
+              key: "buttonText",
               value: "View Content",
             },
             {
               type: "page",
               displayer: "Button Link",
-              key: "button-url",
+              key: "buttonUrl",
               value: "",
             },
           ],
@@ -153,70 +159,66 @@ class Header17 extends BaseHeader {
 
   render() {
     const settings = {
-      dots: false,
+      dots: true,
+      dotsClass: this.decorateCSS("dots"),
       infinite: true,
-      speed: 440,
+      speed: 1000,
       autoplay: true,
       autoplaySpeed: 5000,
       slidesToShow: 1,
       slidesToScroll: 1,
       arrows: false,
     };
-
+    const slider = this.castToObject<ISliderData[]>("slider");
     return (
       <div className={this.decorateCSS("container")}>
-        <ComposerSlider
-          {...settings}
-          ref={this.getComponentState("slider-ref")}
-          className={this.decorateCSS("carousel")}
-        >
-          {this.getPropValue("slider").map((item: any, index: number) => (
-            <div className={this.decorateCSS("content")} key={`key${index}`}>
-              {item.getPropValue("image") && (
-                <img
-                  src={item.getPropValue("image")}
-                  alt=""
-                  className={this.decorateCSS("bg-img")}
-                />
-              )}
-
-              <div className={this.decorateCSS("slider-item-container")}>
-                <div className={this.decorateCSS("slider-item-content")}>
-                  <div className={this.decorateCSS("title-box")}>
-                    <span className={this.decorateCSS("year")}>{item.getPropValue("year")}</span>
-                    <h1 className={this.decorateCSS("title")}>{item.getPropValue("title")}</h1>
-                    <div className={this.decorateCSS("view-button")}>
-                      <ComposerLink path={item.getPropValue("button-url")}>
-                        <span className={this.decorateCSS("view-button-text")}>
-                          {item.getPropValue("button-text")}
-                        </span>
-                      </ComposerLink>
-                    </div>
-                  </div>
+        <ComposerSlider {...settings} ref={this.getComponentState("slider-ref")} className={this.decorateCSS("carousel")}>
+          {slider.map((item: ISliderData, index: number) => {
+            const image = item.image;
+            const buttonExist = this.castToString(item.buttonText);
+            const cardExist = !!(this.castToString(item.title) || this.castToString(item.description));
+            const sliderExist = !!(this.castToString(item.buttonText) || this.castToString(item.title) || this.castToString(item.description) || image);
+            return (
+              sliderExist && (
+                <div className={this.decorateCSS("slider-content")} key={`key${index}`}>
+                  {image && <img src={item.image} alt="" className={this.decorateCSS("bg-img")} />}
+                  <Base.Container className={this.decorateCSS("sub-container")}>
+                    <Base.MaxContent className={this.decorateCSS("sub-content")}>
+                      {cardExist && (
+                        <div className={this.decorateCSS("card")}>
+                          <Base.H5 className={this.decorateCSS("title")}>{item.title}</Base.H5>
+                          <Base.H5 className={this.decorateCSS("description")}>{item.description}</Base.H5>
+                        </div>
+                      )}
+                      {buttonExist && (
+                        <ComposerLink path={item.buttonUrl}>
+                          <Base.Button className={this.decorateCSS("button")}>{item.buttonText}</Base.Button>
+                        </ComposerLink>
+                      )}
+                    </Base.MaxContent>
+                  </Base.Container>
+                  <ComposerIcon
+                    name={this.getPropValue("next_icon")}
+                    propsIcon={{
+                      className: `${this.decorateCSS("next-icon")} ${!image && this.decorateCSS("slider-icon-without-image")}`,
+                      onClick: () => {
+                        this.getComponentState("slider-ref").current.slickNext();
+                      },
+                    }}
+                  />
+                  <ComposerIcon
+                    name={this.getPropValue("prev_icon")}
+                    propsIcon={{
+                      className: `${this.decorateCSS("prev-icon")} ${!image && this.decorateCSS("slider-icon-without-image")}`,
+                      onClick: () => {
+                        this.getComponentState("slider-ref").current.slickPrev();
+                      },
+                    }}
+                  />
                 </div>
-              </div>
-              <ComposerIcon
-                name={this.getPropValue("next_icon")}
-                propsIcon={{
-                  className: `${this.decorateCSS("next-icon")} ${this.decorateCSS("arrow")} `,
-                  size: 40,
-                  onClick: () => {
-                    this.getComponentState("slider-ref").current.slickNext();
-                  },
-                }}
-              />
-              <ComposerIcon
-                name={this.getPropValue("prev_icon")}
-                propsIcon={{
-                  className: `${this.decorateCSS("prev-icon")} ${this.decorateCSS("arrow")}`,
-                  size: 40,
-                  onClick: () => {
-                    this.getComponentState("slider-ref").current.slickPrev();
-                  },
-                }}
-              />
-            </div>
-          ))}
+              )
+            );
+          })}
         </ComposerSlider>
       </div>
     );
