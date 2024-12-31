@@ -3,7 +3,6 @@ import { BaseList } from "../../EditorComponent";
 import styles from "./list3.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Item = {
@@ -33,7 +32,7 @@ class List3 extends BaseList {
       value:
         "Lorem ipsum dolor consectetur eiusmod tempor incididunt labore exercitation tempor.",
     });
-    this.addProp(INPUTS.BUTTON("button", "Button", "Download Schedule", "", "Primary"));
+    this.addProp(INPUTS.BUTTON("button", "Button", "Download Schedule", "", null, null, "Primary"));
 
     this.addProp({
       type: "array",
@@ -251,12 +250,12 @@ class List3 extends BaseList {
                   <Base.VerticalContent className={this.decorateCSS("first-inner")}>
                     {title && (
                       <Base.SectionTitle className={this.decorateCSS("title")}>
-                        {title}
+                        {this.getPropValue("title")}
                       </Base.SectionTitle>
                     )}
                     {description && (
                       <Base.SectionDescription className={this.decorateCSS("description")}>
-                        {description}
+                        {this.getPropValue("description")}
                       </Base.SectionDescription>
                     )}
                   </Base.VerticalContent>
