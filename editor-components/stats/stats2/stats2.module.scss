@@ -26,7 +26,7 @@
       .subHeader {
         flex: 1;
         position: sticky;
-        top: 5rem;
+        top: calc(var(--composer-gap-lg) * 2);
         display: unset;
         line-height: 1.5;
 
@@ -70,7 +70,7 @@
           display: flex;
           flex-direction: column;
           border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
-          padding: 1rem 3rem 1.5rem 3rem;
+          padding: var(--composer-gap-md) var(--composer-gap-lg);
           gap: var(--composer-gap-xl);
 
           .card-text {
@@ -177,7 +177,7 @@
         .cards-container {
           .listed {
             width: 100%;
-            padding: 2rem 2.5rem;
+            padding: var(--composer-gap-lg) var(--composer-gap-xl);
             max-width: 100%;
 
             .card-amount-container {
