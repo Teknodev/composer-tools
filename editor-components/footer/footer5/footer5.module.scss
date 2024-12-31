@@ -25,6 +25,10 @@
           min-width: 10%;
           display: flex;
           justify-content: end;
+
+          .button{
+            content: "";
+          }
         }
 
         &.center {

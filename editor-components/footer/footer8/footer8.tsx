@@ -544,7 +544,7 @@ class Footer8Page extends BaseFooter {
 
     const logo = this.getPropValue("logo");
 
-    const buttonTextExist = this.castToString(this.getPropValue("bottomText"));
+    const bottomTextExist = this.castToString(this.getPropValue("bottomText"));
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -589,7 +589,7 @@ class Footer8Page extends BaseFooter {
               </div>
             }
 
-            {(buttonTextExist || links.length > 0) && (
+            {(bottomTextExist || links.length > 0) && (
               <div className={this.decorateCSS("footer-bottom")}>
                 {links.length > 0 && (
                   <div className={this.decorateCSS("links")}>
@@ -607,7 +607,7 @@ class Footer8Page extends BaseFooter {
                     })}
                   </div>
                 )}
-                {buttonTextExist && <Base.P className={this.decorateCSS("text")}>{this.getPropValue("bottomText")}</Base.P>}
+                {bottomTextExist && <Base.P className={this.decorateCSS("text")}>{this.getPropValue("bottomText")}</Base.P>}
 
                 {socials.length > 0 && (
                   <div className={this.decorateCSS("socials-container")}>

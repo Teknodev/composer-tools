@@ -591,7 +591,7 @@ class Footer3Page extends BaseFooter {
     const logo = this.getPropValue("logo");
     const line = this.getPropValue("line");
 
-    const buttonTextExist = this.castToString(this.getPropValue("bottomText"));
+    const bottomTextExist = this.castToString(this.getPropValue("bottomText"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
 
     const headerExist = logo || descriptionExist || socials.length > 0;
@@ -674,10 +674,10 @@ class Footer3Page extends BaseFooter {
 
             <Base.Container>
               <Base.MaxContent>
-                {(buttonTextExist || links.length > 0) && (
+                {(bottomTextExist || links.length > 0) && (
                   <div className={`${this.decorateCSS("footer-bottom")} 
                   ${alignment === "center" && this.decorateCSS("center")}`}>
-                    {buttonTextExist && <Base.P className={this.decorateCSS("text")}>{this.getPropValue("bottomText")}</Base.P>}
+                    {bottomTextExist && <Base.P className={this.decorateCSS("text")}>{this.getPropValue("bottomText")}</Base.P>}
                     {links.length > 0 && (
                       <Base.Row className={this.decorateCSS("links")}>
                         {links.map((item: any, index: number) => {

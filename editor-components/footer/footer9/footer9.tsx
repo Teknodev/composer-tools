@@ -372,7 +372,7 @@ class Footer9Page extends BaseFooter {
               {descriptionExist && <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>}
               {buttonTextExist && (
                 <ComposerLink path={button.url}>
-                  <Base.Button buttonType={button.type}>{button.text}</Base.Button>
+                  <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>{button.text}</Base.Button>
                 </ComposerLink>
               )}
             </div>
