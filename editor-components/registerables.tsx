@@ -210,12 +210,12 @@ import HttpCodes4 from "./http_codes/http_codes4/http_codes4";
 import HttpCodes1 from "./http_codes/http_codes1/http_codes1";
 import ImageGalleryComponent1 from "./Image_gallery/image_gallery_1/image-gallery1";
 import ImageGalleryComponent2 from "./Image_gallery/image_gallery_2/image-gallery2";
+import ImageGalleryComponent4 from "./Image_gallery/image_gallery_4/image-gallery4";
 import ImageGalleryCompanent5 from "./Image_gallery/image_gallery_5/image-gallery5";
 import ImageGalleryCompanent6 from "./Image_gallery/image_gallery_6/image-gallery6";
 import ImageGalleryCompanent7 from "./Image_gallery/image_gallery_7/image-gallery7";
 import NotificationModal1 from "./modal/notification-modal1/notificationmodal1";
 import ConfirmationModal1 from "./modal/confirmation-modal1/confirmationmodal1";
-import ImageGalleryComponent4 from "./Image_gallery/image_gallery_4/image-gallery4";
 import TermsOfUseModal from "./modal/terms-of-use/terms-of-use";
 import SurveyModal from "./modal/survey-modal/survey-modal";
 import NoticeModal from "./modal/notice-modal/notice";
@@ -363,10 +363,10 @@ function Registerables(composer: ComponentsRegistery) {
     NavbarComponent9,
     ImageGalleryComponent1,
     ImageGalleryComponent2,
+    ImageGalleryComponent4,
     ImageGalleryCompanent5,
     ImageGalleryCompanent6,
     ImageGalleryCompanent7,
-    ImageGalleryComponent4,
     FeatureComponent1,
     FeatureComponent2,
     FeatureComponent3,

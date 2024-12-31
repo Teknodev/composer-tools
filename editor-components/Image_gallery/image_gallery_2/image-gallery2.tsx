@@ -3,6 +3,7 @@ import { BaseImageGallery } from "../../EditorComponent";
 import styles from "./image-gallery2.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type ImageType = {
     image: string;
@@ -644,12 +645,8 @@ class ImageGallery2 extends BaseImageGallery {
             displayer: "Image Page Number",
             value: true,
         });
-        this.addProp({
-            type: "string",
-            key: "buttonText",
-            displayer: "Button Text",
-            value: "Load More",
-        });
+
+        this.addProp(INPUTS.BUTTON("button", "Button", "Load More", null, null, null, "Primary"));
 
         document.addEventListener("keydown", this.handleKeyDown);
         this.setComponentState("default", 0);
@@ -743,6 +740,7 @@ class ImageGallery2 extends BaseImageGallery {
         const magnifierIcon = this.getPropValue("icon");
         const imgCount = `${currentImageIndex + 1} of ${currentGallery.length}`;
         const showAll = this.getPropValue("showAll");
+        const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
@@ -799,7 +797,9 @@ class ImageGallery2 extends BaseImageGallery {
                         </Base.ListGrid>
                         {(currentGallery.length > this.getComponentState("imageCount")) && (
                             <div className={this.decorateCSS("button-wrapper")}>
-                                <Base.Button className={this.decorateCSS("button")} onClick={this.handleLoadMoreButton}> {this.getPropValue("buttonText")}</Base.Button>
+                                <Base.Button className={this.decorateCSS("button")} buttonType={button.type} onClick={this.handleLoadMoreButton}>
+                                    {button.text}
+                                </Base.Button>
                             </div>
                         )}
 

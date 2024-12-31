@@ -5,6 +5,7 @@ import styles from "./image-gallery6.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 interface GalleryItem {
     sectionTitle: JSX.Element,
     images: ImageItem[],
@@ -19,7 +20,7 @@ interface ImageItem {
     nextArrow: string
 }
 
-class ImageGalleryComponent6 extends BaseImageGallery {
+class ImageGallery6 extends BaseImageGallery {
     constructor(props?: any) {
         super(props, styles);
         this.addProp(
@@ -42,12 +43,7 @@ class ImageGalleryComponent6 extends BaseImageGallery {
             displayer: "More Image Count",
             value: 3
         })
-        this.addProp({
-            type: "string",
-            key: "buttonText",
-            displayer: "Button Text",
-            value: "Load More"
-        })
+        this.addProp(INPUTS.BUTTON("button", "Button", "Load More", null, null, null, "Primary"));
 
         this.addProp({
             type: "array",
@@ -513,6 +509,9 @@ class ImageGalleryComponent6 extends BaseImageGallery {
         const selectedSection = this.getComponentState("selectedSection");
         if (this.getComponentState("imageCount") != this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"))
             this.setComponentState("imageCount", this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"));
+
+        const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+
         return (
 
             <Base.Container className={this.decorateCSS("container")}>
@@ -670,8 +669,8 @@ class ImageGalleryComponent6 extends BaseImageGallery {
                     </div>
                     {(this.getComponentState("imageCount") < currentGallery.length) && (
                         <div className={this.decorateCSS("button-wrapper")}>
-                            <Base.Button className={this.decorateCSS("button")} onClick={this.handleButtonClick} >
-                                {this.getPropValue("buttonText")}
+                            <Base.Button className={this.decorateCSS("button")} buttonType={button.type} onClick={this.handleButtonClick} >
+                                {button.text}
                             </Base.Button>
                         </div>
                     )}
@@ -681,4 +680,4 @@ class ImageGalleryComponent6 extends BaseImageGallery {
     }
 }
 
-export default ImageGalleryComponent6;
+export default ImageGallery6;
