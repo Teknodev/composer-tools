@@ -43,7 +43,7 @@ class Testimonials10Page extends Testimonials {
       type: "array",
       key: "buttons",
       displayer: "Buttons",
-      value: [INPUTS.BUTTON("button", "Button", "Contact Us", null, null, "Primary")],
+      value: [INPUTS.BUTTON("button", "Button", "Contact Us", null, null, null, "Primary")],
       additionalParams: {
         maxElementCount: 2,
       },
