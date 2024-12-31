@@ -27,7 +27,7 @@ class CallToAction2Page extends BaseCallToAction {
       type: "array",
       key: "buttons",
       displayer: "Buttons",
-      value: [INPUTS.BUTTON("button", "Button", "Start Your Free Trial", "", null, "Primary")],
+      value: [INPUTS.BUTTON("button", "Button", "Start Your Free Trial", "", null, null, "Primary")],
     });
 
     this.addProp({

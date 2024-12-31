@@ -29,7 +29,7 @@ class CallToAction1Page extends BaseCallToAction {
         "Create a free demo account to digitize your business and attract more customers. In our demo account, you can test our digital marketing tools and learn how you can use them to grow your business.",
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "Create Account", "", null, "Primary"));
+    this.addProp(INPUTS.BUTTON("button", "Button", "Create Account", "", null, null, "Primary"));
   }
 
   getName(): string {

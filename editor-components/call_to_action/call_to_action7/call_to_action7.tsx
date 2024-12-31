@@ -23,7 +23,7 @@ class CallToAction7Page extends BaseCallToAction {
       value: "https://vault.uicore.co/e-book/wp-content/uploads/sites/51/2022/08/E-Book-Book.webp",
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "Get your FREE copy", null, null, "Primary"));
+    this.addProp(INPUTS.BUTTON("button", "Button", "Get your FREE copy", null, null, null, "Primary"));
 
     this.addProp({
       type: "string",

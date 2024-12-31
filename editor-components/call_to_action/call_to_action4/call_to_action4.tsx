@@ -157,8 +157,8 @@ class CallToAction4Page extends BaseCallToAction {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "Learn More", "", null, "Primary"),
-        INPUTS.BUTTON("button", "Button", "Enroll Now", "", null, "Primary")
+        INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary"),
+        INPUTS.BUTTON("button", "Button", "Enroll Now", "", null, null, "Primary")
       ],
     });
   }

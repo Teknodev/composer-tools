@@ -28,8 +28,8 @@ class CallToAction3Page extends BaseCallToAction {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "LEARN MORE", "", null, "Primary"),
-        INPUTS.BUTTON("button", "Button", "GET IN TOUCH", "", null, "Primary")
+        INPUTS.BUTTON("button", "Button", "LEARN MORE", "", null, null, "Primary"),
+        INPUTS.BUTTON("button", "Button", "GET IN TOUCH", "", null, null, "Primary")
       ],
     });
     this.addProp({

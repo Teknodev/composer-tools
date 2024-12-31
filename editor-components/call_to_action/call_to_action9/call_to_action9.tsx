@@ -19,7 +19,7 @@ class CallToAction9Page extends BaseCallToAction {
       value: "98% designers love Shuffle. Not convinced you're one?",
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "Start 14 days free trail", "", null, "Primary"));
+    this.addProp(INPUTS.BUTTON("button", "Button", "Start 14 days free trail", "", null, null, "Primary"));
 
     this.addProp({
       type: "string",

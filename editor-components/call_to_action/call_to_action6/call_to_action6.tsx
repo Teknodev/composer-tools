@@ -48,7 +48,7 @@ class CallToAction6Page extends BaseCallToAction {
       value: "* We promise we will never spam your account. *",
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "Subscribe", null, null, "Primary"));
+    this.addProp(INPUTS.BUTTON("button", "Button", "Subscribe", null, null, null, "Primary"));
 
 
 

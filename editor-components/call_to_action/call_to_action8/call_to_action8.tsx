@@ -24,7 +24,7 @@ class CallToAction8Page extends BaseCallToAction {
         "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6683ec390181a1002c338033?alt=media&timestamp=1719921738698",
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "Get Started", "", null, "Primary"));
+    this.addProp(INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "Primary"));
   }
 
   getName(): string {

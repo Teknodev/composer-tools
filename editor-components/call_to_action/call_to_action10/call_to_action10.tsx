@@ -34,7 +34,7 @@ class CallToAction10Page extends BaseCallToAction {
       value: "Fast and easy setup.14-day free trial.No credit card required.",
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "Create Account", "", null, "Primary"));
+    this.addProp(INPUTS.BUTTON("button", "Button", "Create Account", "", null, null, "Primary"));
 
     this.addProp({
       type: "number",

@@ -36,7 +36,7 @@ class CallToAction5Page extends BaseCallToAction {
       value: "Get immediate and full access to our solution for 10 days completely free. Onlt $19 per month afterwards.",
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "SUBSCRIBE NOW", "", null, "Primary"));
+    this.addProp(INPUTS.BUTTON("button", "Button", "SUBSCRIBE NOW", "", null, null, "Primary"));
 
     this.addProp({
       type: "string",
