@@ -20,8 +20,6 @@ type TagSettings = {
   showTag: boolean;
 };
 
-type Button = INPUTS.CastedButton;
-
 class PricingTable3 extends BasePricingTable {
   constructor(props?: any) {
     super(props, styles);
@@ -333,7 +331,7 @@ class PricingTable3 extends BasePricingTable {
 
   render() {
     const cards = this.castToObject<Card[]>("cards");
-    const featuredButton = this.castToObject<any>("button");
+    const featuredButton = this.castToObject<INPUTS.CastedButton>("button");
     const titleExist = this.castToString(this.getPropValue("title"));
     const descExist = this.castToString(this.getPropValue("description"));
     const buttonExist = this.castToString(featuredButton.text);
@@ -349,7 +347,7 @@ class PricingTable3 extends BasePricingTable {
                 {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                 {descExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
                 {buttonExist && (
-                  <ComposerLink path={featuredButton.link}>
+                  <ComposerLink path={featuredButton.url}>
                     <div className={this.decorateCSS("featured-button-container")}>
                       <Base.Button buttonType={featuredButton.type}>{featuredButton.text}</Base.Button>
                     </div>

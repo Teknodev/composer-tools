@@ -233,7 +233,7 @@ class PricingTable5 extends BasePricingTable {
                           </div>
                         )}
 
-                        <ComposerLink path={plan.button.link}>
+                        <ComposerLink path={plan.button.url}>
                           {planButtonExist && (
                             <Base.Button buttonType={plan.button.type} className={this.decorateCSS("plan-button")}>
                               {plan.button.text}

@@ -873,19 +873,17 @@ class PricingTable7 extends BasePricingTable {
 
   renderDurationItems() {
     const planType = this.getComponentState("plan_type");
-    const monthlyText = this.getPropValue("text", { as_string: true });
-    const yearlyText = this.getPropValue("text1", { as_string: true });
     const durationIcon = this.getPropValue("icon");
     const plansDiscountText = this.getPropValue("text2");
 
     return (
       <div className={this.decorateCSS("duration-items")}>
-        <Base.P className={`${this.decorateCSS("text")} ${planType === "monthly-plans" ? this.decorateCSS("active") : ""}`}>{monthlyText}</Base.P>
+        <Base.P className={`${this.decorateCSS("text")} ${planType === "monthly-plans" ? this.decorateCSS("active") : ""}`}>{this.getPropValue("text")}</Base.P>
         <div className={this.decorateCSS("switch")} onClick={this.togglePlanType.bind(this)}>
           <input className={this.decorateCSS("input")} type="checkbox" checked={planType === "yearly-plans"} />
           <span className={`${this.decorateCSS("slider")} ${this.decorateCSS("round")}`}></span>
         </div>
-        <Base.P className={`${this.decorateCSS("yearlyText")} ${planType === "yearly-plans" ? this.decorateCSS("active") : ""}`}>{yearlyText}</Base.P>
+        <Base.P className={`${this.decorateCSS("yearlyText")} ${planType === "yearly-plans" ? this.decorateCSS("active") : ""}`}>{ this.getPropValue("text1")}</Base.P>
         <ComposerIcon name={durationIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
         <Base.P className={this.decorateCSS("planDiscount")}>{plansDiscountText}</Base.P>
       </div>
@@ -971,9 +969,9 @@ class PricingTable7 extends BasePricingTable {
                     )}
 
                     {this.castToString(pricing.button.text) && (
-                      <ComposerLink path={pricing.button.link}>
+                      <ComposerLink path={pricing.button.url}>
                         <Base.Button buttonType={pricing.button.type} className={`${this.decorateCSS("button")} ${pricing.isActive && this.decorateCSS("button-active")}`}>
-                          {this.castToString(pricing.button.text)}
+                          {pricing.button.text}
                         </Base.Button>
                       </ComposerLink>
                     )}
