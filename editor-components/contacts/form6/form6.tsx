@@ -433,36 +433,30 @@ class Form6 extends BaseContacts {
 
     function getFormDataWithConvertedKeys(obj: any) {
       const newObj: any = {};
-      let nameParts: string[] = []; // Name değerlerini birleştirmek için bir array.
+      let nameParts: string[] = [];
 
       for (const key in obj) {
         if (Object.prototype.hasOwnProperty.call(obj, key)) {
-          console.log(obj, "obj");
           let adjustedKey = key.startsWith("_") ? key.slice(1) : key;
-          console.log(adjustedKey, "adjustedKey");
           const parts = adjustedKey.split("_");
-          console.log(parts, "parts");
 
           let newKey = "";
           for (let i = 1; i < parts.length - 1; i++) {
             newKey += (i > 1 ? "_" : "") + parts[i];
           }
 
-          // Eğer "name" alanıysa, birleştir
           if (newKey === "name") {
-            nameParts.push(obj[key]); // Name değerini kaydet
+            nameParts.push(obj[key]);
           } else {
             newObj[newKey] = obj[key];
           }
         }
       }
 
-      // Name değerlerini birleştirerek ekle
       if (nameParts.length > 0) {
-        newObj["name"] = nameParts.join(" "); // İlk ve soyadları birleştir
+        newObj["name"] = nameParts.join(" ");
       }
 
-      console.log(newObj, "newObj");
       return newObj;
     }
 
@@ -505,7 +499,6 @@ class Form6 extends BaseContacts {
                   validationSchema={getSchema()}
                   onSubmit={(data, { resetForm }) => {
                     const formData = getFormDataWithConvertedKeys(data);
-                    console.log(formData, "formdata");
                     this.insertForm("Contact Me", formData);
                     resetForm();
                   }}
