@@ -5,7 +5,7 @@ import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
-type TImage = {
+type TImage = {
   imageLink: string,
   image: string
 }
@@ -76,10 +76,10 @@ class LogoComp3Page extends LogoClouds {
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
 
     return (
-      <Base.Container className={`${this.decorateCSS("container")}`}>
-        <Base.MaxContent className={`${this.decorateCSS("max-content")}`}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(titleExist || subtitleExist) && (
-            <div className={`${this.decorateCSS("titles")} `}>
+            <Base.VerticalContent className={this.decorateCSS("titles")}>
               {titleExist && (
                 <Base.H1 className={this.decorateCSS("title")}>
                   {this.getPropValue("title")}
@@ -89,11 +89,11 @@ class LogoComp3Page extends LogoClouds {
                 <div className={this.decorateCSS("title-line")}></div>
               )}
               {subtitleExist && (
-                <Base.H2 className={this.decorateCSS("subtitle")}>
+                <div className={this.decorateCSS("subtitle")}>
                   {this.getPropValue("subtitle")}
-                </Base.H2>
+                </div>
               )}
-            </div>
+            </Base.VerticalContent>
           )}
           {items?.length > 0 && (
             <Base.ListGrid
@@ -102,7 +102,7 @@ class LogoComp3Page extends LogoClouds {
                 tablet: this.getPropValue("itemCount"),
                 phone: 1,
               }}
-              className={`${this.getPropValue("toggleLines") ? this.decorateCSS("lines-active") : ""} ${this.decorateCSS("images-container")}`}
+              className={`${this.decorateCSS("images-container")} ${this.getPropValue("toggleLines") ? this.decorateCSS("lines-active") : ""} `}
             >
               {items.map((item: TImage, index: number) => {
                 return (
@@ -116,14 +116,12 @@ class LogoComp3Page extends LogoClouds {
                     </div>
                   </ComposerLink>
                 );
-                return null;
               })}
               {emptyGrids.map((item: TImage, index: number) => {
                 return (
                   <div className={this.decorateCSS("image-item")} key={index}>
                   </div>
                 );
-                return null;
               })}
             </Base.ListGrid>
           )}

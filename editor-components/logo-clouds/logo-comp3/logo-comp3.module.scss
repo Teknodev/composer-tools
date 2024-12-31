@@ -10,12 +10,11 @@
       justify-content: center;
       align-items: center;
       gap: var(--composer-gap-md);
+      flex-direction: row;
       
       .title {
         text-align: center;
-        font-size: 1.4rem;
-        font-weight: 800;
-        letter-spacing: 1px;
+        font-size: 1.5rem;
         text-transform: uppercase;
         background: linear-gradient(to right, var(--composer-primary-color), var(--composer-secondary-color));
         background-clip: text;
@@ -24,15 +23,15 @@
       }
       .title-line {
         width: 2px;
-        height: 2.2rem;
+        height: 2rem;
         background-color: var(--composer-font-color-primary);
+        margin: 0px;
       }
       .subtitle {
         text-align: center;
         font-size: 3rem;
-        font-weight: 400;
-        color: var(--composer-font-color-primary);
         margin: 0px;
+        color: var(--composer-font-color-primary);
       }
     }
 
