@@ -5,10 +5,6 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-
-type ButtonIcon = {
-  icon: string;
-};
 class DownloadCard1 extends BaseDownload {
   constructor(props?: any) {
     super(props, styles);
@@ -44,52 +40,6 @@ class DownloadCard1 extends BaseDownload {
         INPUTS.BUTTON("button", "Button", "WINDOWS", "", "FaWindows", "", "Primary")
       ],
     });
-    this.addProp({
-      type: "array",
-      key: "buttonsIcons",
-      displayer: "Button Icons ",
-      value: [
-        {
-          type: "object",
-          key: "buttonIcon",
-          displayer: "Button Icon",
-          value: [
-            {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "ImAndroid",
-            }
-          ]
-        },
-        {
-          type: "object",
-          key: "buttonIcon",
-          displayer: "Button Icon",
-          value: [
-            {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "GrApple",
-            },
-          ]
-        },
-        {
-          type: "object",
-          key: "buttonIcon",
-          displayer: "Button Icon",
-          value: [
-            {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "FaWindows",
-            },
-          ]
-        }
-      ],
-    });
   }
 
   getName(): string {
@@ -98,7 +48,6 @@ class DownloadCard1 extends BaseDownload {
 
   render() {
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
-    const buttonIcons = this.castToObject<ButtonIcon[]>("buttonsIcons");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
 

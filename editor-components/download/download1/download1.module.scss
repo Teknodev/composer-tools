@@ -78,11 +78,16 @@
   .container {
     .max-content {
       gap: var(--composer-gap-sm);
+      .header{
+        align-items: center !important;
+      }
       .box {
         flex-direction: column;
         justify-content: center;
         .button-wrapper {
           width: 100%;
+          display: flex;
+          justify-content: center;
         }
       }
     }

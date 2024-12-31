@@ -72,7 +72,7 @@
             background-color: var(--composer-font-color-primary);
 
             .icon-container {
-              background-color: var(--composer-font-color-secondary);
+              background-color: var(--composer-html-background);
 
               .icon {
                 color: var(--composer-font-color-primary);
@@ -82,7 +82,7 @@
             .device,
             .platform,
             .description {
-              color: var(--composer-font-color-secondary);
+              color: var(--composer-html-background);
             }
           }
         }
