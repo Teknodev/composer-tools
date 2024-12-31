@@ -72,21 +72,15 @@
             color: var(--composer-font-color-secondary);
             z-index: 4;
 
-            .title,
-            .title-overlay {
+            .title {
               min-width: 100px;
               width: 100%;
               margin: var(--composer-gap-sm);
-            }
-
-            .title,
-            .title-overlay {
               color: white;
               &:hover {
                 color: var(--composer-primary-color);
               }
             }
-
             .labels {
               position: relative;
               bottom: 0;
@@ -127,10 +121,8 @@
                 }
               }
 
-              .description,
-              .description-overlay {
+              .description{
                 color: white;
-                word-break: normal;
                 opacity: 0.5;
                 margin: 0;
               }
@@ -141,9 +133,7 @@
                 color: var(--composer-font-color-secondary);
 
                 .firstIcon,
-                .secondIcon,
-                .firstIcon-overlay,
-                .secondIcon-overlay {
+                .secondIcon {
                   width: var(--composer-gap-md);
                   height: var(--composer-gap-md);
                   color: white;

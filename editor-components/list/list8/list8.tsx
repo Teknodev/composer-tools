@@ -5,6 +5,7 @@ import styles from "./list8.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type listItem = {
   number: number;
@@ -32,18 +33,6 @@ class List8 extends BaseList {
       key: "titledesc",
       displayer: "Description",
       value: "Aliquam sagittis consectetur ligulan aliquam turpis cursus at. In aliquet auguenec libero ultricies velit pellentesque.",
-    });
-    this.addProp({
-      type: "string",
-      key: "button_text",
-      displayer: "Button Text",
-      value: "List your space",
-    });
-    this.addProp({
-      type: "page",
-      key: "button_url",
-      displayer: "Button Url",
-      value: ""
     });
     this.addProp({
       type: "array",
@@ -154,12 +143,14 @@ class List8 extends BaseList {
       displayer: "Item Count in a Row",
       value: 3,
     });
+    this.addProp(INPUTS.BUTTON("button", "Button", "List your space", "", "Primary"));
   }
 
   render() {
     const listItems = this.castToObject<listItem[]>("list-items");
     const title = this.getPropValue("title");
     const titledesc = this.getPropValue("titledesc");
+    const buttonType: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -221,11 +212,11 @@ class List8 extends BaseList {
                 ))}
               </Base.ListGrid>
             )}
-            {this.castToString(this.getPropValue("button_text")) && (
+            {this.castToString(buttonType.text) && (
               <div className={this.decorateCSS("button-box")}>
-                <ComposerLink path={this.getPropValue("button_url")}>
-                  <Base.Button className={this.decorateCSS("button")}>
-                    {this.getPropValue("button_text")}
+                <ComposerLink path={buttonType.url}>
+                  <Base.Button buttonType={buttonType.type} className={this.decorateCSS("button")}>
+                    {buttonType.text}
                   </Base.Button>
                 </ComposerLink>
               </div>
@@ -235,8 +226,5 @@ class List8 extends BaseList {
       </Base.Container>
     );
   }
-
 }
-//end CLASS
-
 export default List8;
