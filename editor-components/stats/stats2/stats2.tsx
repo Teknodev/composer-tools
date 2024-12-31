@@ -28,33 +28,31 @@ class Stats2Page extends BaseStats {
       type: "string",
       key: "header",
       displayer: "Title",
-      value:
-        "Intuition and strategy integrate the research methodology that we also apply to traditional media.",
+      value: "Intuition and strategy integrate the research methodology that we also apply to traditional media.",
     });
 
     this.addProp({
       type: "string",
       key: "subHeader",
       displayer: "Description",
-      value:
-        "We combine human empathy and intelligent data to provide the highest level of satisfaction.",
+      value: "We combine human empathy and intelligent data to provide the highest level of satisfaction.",
     });
 
-    this.addProp({
-      type: "string",
-      key: "contactButton",
-      displayer: "Button Content",
-      value: "LET'S TALK NOW",
-    });
+    // this.addProp({
+    //   type: "string",
+    //   key: "contactButton",
+    //   displayer: "Button Content",
+    //   value: "LET'S TALK NOW",
+    // });
 
-    this.addProp({
-      type: "page",
-      key: "contactButtonLink",
-      displayer: "Button Link",
-      value: "",
-    });
+    // this.addProp({
+    //   type: "page",
+    //   key: "contactButtonLink",
+    //   displayer: "Button Link",
+    //   value: "",
+    // });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "", "", "Primary"));
+    this.addProp(INPUTS.BUTTON("button", "Button", "LET'S TALK NOW", "", null, null, "Primary"));
 
     this.addProp({
       type: "array",
@@ -206,27 +204,13 @@ class Stats2Page extends BaseStats {
     const cardLength = cards.length;
     const animationDuration = this.getPropValue("animation-duration") as number;
 
-    const contactButtonIcon = this.getPropValue("contactButtonIcon");
-    const contactButtonLink = this.getPropValue("contactButtonLink");
     const itemCount = this.getPropValue("itemCount");
 
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
     const totalRows = Math.ceil(cards.length / itemCount);
 
-    const AnimatedCard = ({
-      card,
-      animationDuration,
-      isTextExist,
-      isFirstRow,
-      isLastRow,
-    }: {
-      card: Card;
-      animationDuration: number;
-      isTextExist: string;
-      isFirstRow: boolean;
-      isLastRow: boolean;
-    }) => {
+    const AnimatedCard = ({ card, animationDuration, isTextExist, isFirstRow, isLastRow }: { card: Card; animationDuration: number; isTextExist: string; isFirstRow: boolean; isLastRow: boolean }) => {
       const [amount, setAmount] = React.useState<string | null>(null);
       const [showDecimals, setShowDecimals] = React.useState(false);
       const ref = React.useRef<HTMLDivElement>(null);
@@ -277,10 +261,7 @@ class Stats2Page extends BaseStats {
         intervalRef.current = setInterval(() => {
           currentAmount += increment;
 
-          if (
-            (increment > 0 && currentAmount >= parseFloat(finalAmount)) ||
-            (increment < 0 && currentAmount <= parseFloat(finalAmount))
-          ) {
+          if ((increment > 0 && currentAmount >= parseFloat(finalAmount)) || (increment < 0 && currentAmount <= parseFloat(finalAmount))) {
             currentAmount = parseFloat(finalAmount);
             clearInterval(intervalRef.current);
             setShowDecimals(true);
@@ -293,41 +274,24 @@ class Stats2Page extends BaseStats {
       const integerPart = amount ? Math.floor(parseFloat(amount)) : null;
       const decimalPart = amount ? amount.split(".")[1] || "" : "";
 
-      const conditionalClasses = [
-        isFirstRow ? this.decorateCSS("border-top-none") : "",
-        isLastRow ? this.decorateCSS("border-bottom-none") : "",
-      ]
-        .filter(Boolean)
-        .join(" ");
+      const conditionalClasses = [isFirstRow ? this.decorateCSS("border-top-none") : "", isLastRow ? this.decorateCSS("border-bottom-none") : ""].filter(Boolean).join(" ");
 
       const classes = `${this.decorateCSS("listed")} ${conditionalClasses}`.trim();
 
       return (
         (isTextExist || amount !== null || card.icon || card.secondIcon) && (
           <div ref={ref} className={classes}>
-            {isTextExist && (
-              <Base.P className={this.decorateCSS("card-text")}>{card.text}</Base.P>
-            )}
+            {isTextExist && <Base.P className={this.decorateCSS("card-text")}>{card.text}</Base.P>}
             {(amount !== null || card.icon || card.secondIcon) && (
               <div className={this.decorateCSS("card-amount-container")}>
-                {card.icon && (
-                  <ComposerIcon
-                    propsIcon={{ className: this.decorateCSS("card-icon") }}
-                    name={card.icon}
-                  />
-                )}
-                {(amount !== null && amount !== "NaN") && (
+                {card.icon && <ComposerIcon propsIcon={{ className: this.decorateCSS("card-icon") }} name={card.icon} />}
+                {amount !== null && amount !== "NaN" && (
                   <div className={this.decorateCSS("card-amount")}>
                     {integerPart}
                     {showDecimals && decimalPart && <span>.{decimalPart}</span>}
                   </div>
                 )}
-                {card.secondIcon && (
-                  <ComposerIcon
-                    propsIcon={{ className: this.decorateCSS("card-icon-after") }}
-                    name={card.secondIcon}
-                  />
-                )}
+                {card.secondIcon && <ComposerIcon propsIcon={{ className: this.decorateCSS("card-icon-after") }} name={card.secondIcon} />}
               </div>
             )}
           </div>
@@ -345,20 +309,15 @@ class Stats2Page extends BaseStats {
           )}
 
           <Base.ContainerGrid className={this.decorateCSS("bottom-content")}>
-            {(this.castToString(this.getPropValue("subHeader")) || this.castToString(this.getPropValue("contactButton")) || contactButtonIcon) && (
+            {this.castToString(this.getPropValue("subHeader")) && (
               <div className={`${this.decorateCSS("subHeader")} ${cardLength <= 0 ? this.decorateCSS("full-width") : ""}  ${!this.castToString(this.getPropValue("header")) && this.decorateCSS("no-title")}`}>
-                {this.castToString(this.getPropValue("subHeader")) && (
-                  <Base.SectionDescription className={`${this.decorateCSS("description")} ${cardLength <= 0 ? this.decorateCSS("full-width") : ""}`}>
-                    {this.getPropValue("subHeader")}
-                  </Base.SectionDescription>
-                )}
+                {this.castToString(this.getPropValue("subHeader")) && <Base.SectionDescription className={`${this.decorateCSS("description")} ${cardLength <= 0 ? this.decorateCSS("full-width") : ""}`}>{this.getPropValue("subHeader")}</Base.SectionDescription>}
 
-                {(this.castToString(this.getPropValue("contactButton")) || contactButtonIcon) && (
+                {this.castToString(button.text) && (
                   <div className={this.decorateCSS("button-content")}>
-                    <ComposerLink path={contactButtonLink}>
-                      <Base.Button buttonType={button.type}
-                        className={`${this.decorateCSS("contact-button")} ${cardLength <= 0 ? this.decorateCSS("button-full-width") : ""}`}>
-                        {this.getPropValue("contactButton")}
+                    <ComposerLink path={button.url}>
+                      <Base.Button buttonType={button.type} className={`${this.decorateCSS("contact-button")} ${cardLength <= 0 ? this.decorateCSS("button-full-width") : ""}`}>
+                        {button.text}
                       </Base.Button>
                     </ComposerLink>
                   </div>
@@ -374,16 +333,7 @@ class Stats2Page extends BaseStats {
                   const isLastRow = currentRow === totalRows;
 
                   const isTextExist = this.castToString(card.text);
-                  return (
-                    <AnimatedCard
-                      key={index}
-                      card={card}
-                      animationDuration={animationDuration}
-                      isTextExist={isTextExist}
-                      isFirstRow={isFirstRow}
-                      isLastRow={isLastRow}
-                    />
-                  );
+                  return <AnimatedCard key={index} card={card} animationDuration={animationDuration} isTextExist={isTextExist} isFirstRow={isFirstRow} isLastRow={isLastRow} />;
                 })}
               </Base.ListGrid>
             )}

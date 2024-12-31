@@ -84,7 +84,6 @@ $font-color-primary: var(--composer-font-color-primary);
         }
 
         .author {
-          font-weight: 600;
           color: $font-color-primary;
           word-break: break-word;
           text-transform: uppercase;
@@ -102,7 +101,7 @@ $font-color-primary: var(--composer-font-color-primary);
           }
 
           .author-role-background {
-            width: 10%;
+            width: 50%;
             background-color: $color-mix;
             position: absolute;
             left: 0;
@@ -153,7 +152,6 @@ $font-color-primary: var(--composer-font-color-primary);
 
               .stat-counter {
                 font-size: 3rem;
-                font-weight: 700;
                 text-align: center;
                 color: $font-color-primary;
               }
@@ -215,7 +213,6 @@ $font-color-primary: var(--composer-font-color-primary);
             .description {
               letter-spacing: 1px;
               line-height: 1.5;
-              font-weight: 600;
               color: white;
               word-break: break-word;
               margin: 0;

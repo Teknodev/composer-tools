@@ -4,6 +4,7 @@ import styles from "./stats3.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 class Stats3Page extends BaseStats {
   constructor(props?: any) {
@@ -35,25 +36,26 @@ class Stats3Page extends BaseStats {
         maxElementCount: 2,
       },
       value: [
-        {
-          type: "object",
-          key: "button",
-          displayer: "Button",
-          value: [
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "READ MORE",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Button Link",
-              value: "",
-            },
-          ],
-        },
+        // {
+        //   type: "object",
+        //   key: "button",
+        //   displayer: "Button",
+        //   value: [
+        //     {
+        //       type: "string",
+        //       key: "buttonText",
+        //       displayer: "Button Text",
+        //       value: "READ MORE",
+        //     },
+        //     {
+        //       type: "page",
+        //       key: "url",
+        //       displayer: "Button Link",
+        //       value: "",
+        //     },
+        //   ],
+        // },
+        INPUTS.BUTTON("button", "Button", "READ MORE", "", null, null, "Primary"),
       ],
     });
     this.addProp({
@@ -171,20 +173,20 @@ class Stats3Page extends BaseStats {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ContainerGrid className={this.decorateCSS("page")}>
             {(subtitle || title || description || buttons.length > 0) && (
-              <Base.VerticalContent className={this.decorateCSS(image ? "left-page" : "left-page-without-image")}>
+              <Base.VerticalContent className={`${this.decorateCSS("left-page")} ${!image && this.decorateCSS("left-page-without-image")}`}>
                 {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subTitle")}>{this.getPropValue("subTitle")}</Base.SectionSubTitle>}
                 {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                 {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
                 {buttons.length > 0 && (
                   <div className={this.decorateCSS("button-container")}>
                     {this.castToObject<any>("buttons").map((item: any, index: number) => {
-                      const buttonTextExist = this.castToString(item.buttonText);
+                      const buttonTextExist = this.castToString(item.text);
                       return (
                         buttonTextExist && (
                           <ComposerLink key={`stats-${index}`} path={item.url}>
-                            <button className={this.decorateCSS("button")}>
-                              <span className={this.decorateCSS("button-text")}>{item.buttonText}</span>
-                            </button>
+                            <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                              {item.text}
+                            </Base.Button>
                           </ComposerLink>
                         )
                       );
@@ -194,10 +196,10 @@ class Stats3Page extends BaseStats {
               </Base.VerticalContent>
             )}
             {(image || (cardContent.length > 0 && isBoxVisible)) && (
-              <Base.VerticalContent className={this.decorateCSS(image ? "right-container" : "right-container-without-image")}>
-                {image && <img src={this.getPropValue("backgroundImage")} alt="image" className={this.decorateCSS("image")} />}
+              <Base.VerticalContent className={`${this.decorateCSS("right-container")} ${!image && this.decorateCSS("right-container-without-image")}`}>
+                {image && <img src={this.getPropValue("backgroundImage")} alt="" className={this.decorateCSS("image")} />}
                 {isBoxVisible && cardContent.length > 0 && (
-                  <div className={this.decorateCSS(image ? "card-container" : "card-container-without-image")}>
+                  <div className={`${this.decorateCSS("card-container")} ${!image && this.decorateCSS("card-container-without-image")}`}>
                     <div className={this.decorateCSS("card")}>
                       {this.castToObject<any>("card-content").map((item: any, index: number) => {
                         return (
@@ -207,8 +209,8 @@ class Stats3Page extends BaseStats {
                                 <div className={this.decorateCSS("first-container")}>
                                   <ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
                                   <Base.VerticalContent className={this.decorateCSS("text")}>
-                                    <Base.H5 className={this.decorateCSS("number")}>{item.number}</Base.H5>
-                                    <Base.P className={this.decorateCSS("right-text")}>{item.text}</Base.P>
+                                    {this.castToString(item.number) && <Base.H5 className={this.decorateCSS("number")}>{item.number}</Base.H5>}
+                                    {this.castToString(item.text) && <Base.P className={this.decorateCSS("right-text")}>{item.text}</Base.P>}
                                   </Base.VerticalContent>
                                 </div>
                               </Base.VerticalContent>

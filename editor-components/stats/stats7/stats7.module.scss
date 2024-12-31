@@ -7,7 +7,6 @@
 
   .subtitle {
     text-transform: uppercase;
-    max-width: 95%;
   }
 
   .title {
@@ -35,16 +34,14 @@
     .progress-title {
       display: flex;
       font-size: 1rem;
-      font-weight: bold;
       color: var(--composer-font-color-primary);
       margin-bottom: var(--composer-gap-xs);
       gap: var(--composer-gap-md);
-      align-items: end;
+      align-items: center;
     }
 
     .progress-percent {
       display: flex;
-      font-weight: bold;
       margin-bottom: var(--composer-gap-xs);
       color: (--composer-font-color-primary);
       align-items: end;
@@ -94,7 +91,7 @@
   }
 }
 
-@container (max-width: #{$composer-phone-width-lg}) {
+@container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
       flex-direction: column;
