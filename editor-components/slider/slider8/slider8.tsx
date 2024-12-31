@@ -261,7 +261,7 @@ class Slider8 extends BaseSlider {
                             >
                               <Base.SectionTitle
                                 className={`${this.decorateCSS("title")} 
-                                ${this.decorateCSS(anyImagesExist ? "imageTitle" : "imageTitle2")} 
+                                 ${this.decorateCSS(anyImagesExist && "imageTitle")} 
                                 ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("imageTitleAnimation") : ""}`}
                               >
                                 {item.imageTitle}

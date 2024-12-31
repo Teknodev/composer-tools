@@ -113,8 +113,11 @@
               }
 
               .title-wrapper {
-                .imageTitle,
-                .imageTitle2 {
+                .imageTitleAnimation {
+                  animation: downAnimate 1s ease;
+                }
+
+                .title {
                   margin: var(--composer-gap-lg) 0 var(--composer-gap-md) 0;
                   display: -webkit-box;
                   -webkit-line-clamp: 2;
@@ -126,20 +129,11 @@
                   justify-content: center;
                   align-items: center;
                   font-size: 6rem;
-                  color: #fff;
                   z-index: 1;
                   text-align: left;
-                }
-
-                .imageTitle2 {
-                  color: var(--composer-font-color-primary);
-                }
-
-                .imageTitleAnimation {
-                  animation: downAnimate 1s ease;
-                }
-
-                .title {
+                  &.imageTitle {
+                    color: #fff;
+                  }
                   > blinkpage {
                     display: -webkit-box;
                     -webkit-line-clamp: 3;

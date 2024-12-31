@@ -4,15 +4,13 @@
   width: 100%;
   height: 100vh;
   .max-content {
-    max-width: var(--composer-content-width);
     .carousel {
-      //   max-height: 700px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      height: 100%;
+      height: 100vh;
       img {
         object-fit: cover;
         height: 100vh;
@@ -25,19 +23,6 @@
 }
 
 @container (max-width: #{$composer-tablet-width-lg}) {
-  .container {
-    .max-content {
-      .carousel {
-        img {
-          height: 100vh;
-          object-fit: cover;
-        }
-      }
-    }
-  }
-}
-
-@container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
       .carousel {

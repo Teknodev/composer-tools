@@ -311,7 +311,6 @@ class Slider10 extends BaseSlider {
 
     const slides = this.castToObject<SliderItem[]>("slider-items");
     const featuredItems = this.castToObject<FeaturedItem[]>("featured-items");
-    const featuredItemsNonEmptyLength = featuredItems.filter((item) => item.image || this.castToString(item.title) || this.castToString(item.subtitle)).length;
 
     const sliderRef = this.getComponentState("slider-ref");
     const overlay: boolean = this.getPropValue("overlay");
