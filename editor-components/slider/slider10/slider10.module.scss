@@ -52,14 +52,14 @@
               overflow: hidden;
               text-overflow: ellipsis;
 
+              &.slider-item-title-with-img {
+                color: white;
+              }
+
               &.show {
                 margin-bottom: var(--composer-gap-lg);
                 opacity: 1;
               }
-            }
-
-            .slider-item-title-with-img {
-              color: white;
             }
 
             .slider-item-overlay {
