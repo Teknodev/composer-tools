@@ -1010,7 +1010,7 @@ class Navbar2 extends BaseNavigator {
           type: "image",
           key: "image",
           value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6771911d0655f8002cae536c?alt=media",
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676a9ac20655f8002caba0b7?alt=media",
           displayer: "Image",
         },
         {
@@ -1037,7 +1037,7 @@ class Navbar2 extends BaseNavigator {
           type: "image",
           key: "image",
           value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6771ecfc0655f8002cae6536?alt=media",
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6762cc190655f8002ca8c66b?alt=media",
           displayer: "Image",
         },
         {
@@ -1089,8 +1089,12 @@ class Navbar2 extends BaseNavigator {
       value: true,
     });
 
-    this.state["componentProps"]["isMobileMenuOpen"] = false;
     this.state["componentProps"]["isScrolled"] = false;
+    this.state["componentProps"]["hamburgerNavActive"] = false;
+    this.state["componentProps"]["navActive"] = false;
+    this.state["componentProps"]["subNavActiveIndex"] = null;
+    this.state["componentProps"]["subNavActive"] = null;
+    this.state["componentProps"]["changeBackground"] = false;
   }
   getName(): string {
     return "Navbar 2";
@@ -1102,30 +1106,24 @@ class Navbar2 extends BaseNavigator {
       !this.getComponentState("isMobileMenuOpen")
     );
   };
-
-  navCLick(index: number) {
+  navClick(index: number) {
     const currentValue = this.getComponentState("subNavActiveIndex");
     if (currentValue === index) {
       this.setComponentState("navActive", !this.getComponentState("navActive"));
       this.setComponentState("subNavActiveIndex", null);
       this.setComponentState("subNavActive", null);
     } else {
-      this.setComponentState("subNavActiveIndex", null);
-      this.setComponentState("navActive", false);
-      this.setComponentState("subNavActive", null);
-
       this.setComponentState("navActive", true);
       this.setComponentState("subNavActiveIndex", index);
+      this.setComponentState("subNavActive", null);
     }
   }
 
-  subNavCLick(index: any) {
+  subNavClick(index: any) {
     const currentValue = this.getComponentState("subNavActive");
     if (currentValue === index) {
       this.setComponentState("subNavActive", null);
     } else {
-      this.setComponentState("subNavActive", null);
-
       this.setComponentState("subNavActive", index);
     }
   }
@@ -1147,24 +1145,24 @@ class Navbar2 extends BaseNavigator {
   render() {
     const position = this.getPropValue("position");
     const isScrolled = this.getComponentState("isScrolled");
-
     const defaultLogo = this.castToObject<Logo>("defaultLogo");
     const absoluteLogo = this.castToObject<Logo>("absoluteLogo");
+    const hamburgerNavActive = this.getComponentState("hamburgerNavActive");
+    const transparentBackground =(position === "Sticky Transparent" || position === "Absolute") && !isScrolled;
     const currentLogo =
-      (position === "Absolute" || position === "Sticky Transparent") && isScrolled
-        ? defaultLogo
-        : absoluteLogo;
-
-
+      transparentBackground && !hamburgerNavActive ? absoluteLogo : defaultLogo;
     const menuItems = this.castToObject<Item[]>("menuItems");
-
     const isMobileMenuOpen = this.getComponentState("isMobileMenuOpen");
-
     const divider = this.getPropValue("divider");
+    const changeBackground = this.getComponentState("changeBackground");
 
     return (
-      <Base.Navigator.Container position={position} >
-        <Base.MaxContent className={this.decorateCSS("maxContent")}>
+      <Base.Navigator.Container position={position} 
+      //  positionContainer={
+      //   changeBackground ? this.decorateCSS("filledBackground") : ""
+      // }
+      >
+        <Base.MaxContent className={`${this.decorateCSS("maxContent")} ${transparentBackground ? this.decorateCSS("transparentBackground") : ""}`}>
           <ComposerLink path={currentLogo.navigateTo}>
             <div className={this.decorateCSS("logo")}>
               <img
@@ -1306,7 +1304,7 @@ class Navbar2 extends BaseNavigator {
                 >
                   <div
                     className={this.decorateCSS("hamburgerMenuItemHeader")}
-                    onClick={() => this.navCLick(index)}
+                    onClick={() => this.navClick(index)}
                   >
                     <ComposerLink path={item.navigate_to}>
                       <span
@@ -1347,7 +1345,7 @@ class Navbar2 extends BaseNavigator {
                               "hamburgerSubmenuItemHeader"
                             )}
                             onClick={() =>
-                              this.subNavCLick(`${index}-${subIndex}`)
+                              this.subNavClick(`${index}-${subIndex}`)
                             }
                           >
                             <ComposerLink path={subItem.navigate_to}>

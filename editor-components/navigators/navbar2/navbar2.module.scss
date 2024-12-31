@@ -176,6 +176,7 @@
 
     .menuIcon {
       font-size: 2rem;
+      color: var(--composer-font-color-primary);
     }
   }
 
@@ -313,11 +314,44 @@
 }
 
 .languageAccordion, .languageAccordionItem{
-  font-size: 1.5rem;
   color: var(--composer-font-color-primary);
    text-transform: uppercase;
 }
 }
+
+.filledBackground{
+  background: var(--composer-html-background) !important;
+}
+
+.transparentBackground{
+     .pcNavbar{
+      .menuItemContainer{
+        .menuItemTitle{
+          color: white;
+        }
+        .dropdownIcon{
+          color: white;
+        }
+      }
+
+      .divider{
+        background-color: white ;
+      }
+      .languageDropdownLabel{
+        color: white;
+      }
+     }
+     .mobileMenuButton{
+      .menuIcon{
+        color: white;
+      }
+     }
+     .languageAccordionItem{
+      color: color;
+     }
+}
+
+
 
 @container (max-width: #{$composer-phone-width}) {
   .maxContent {
