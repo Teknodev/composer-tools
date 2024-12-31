@@ -3,6 +3,7 @@ import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature5.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 class Feature5 extends BaseFeature {
   constructor(props?: any) {
@@ -59,18 +60,7 @@ class Feature5 extends BaseFeature {
               value:
                 "Newspaper is not only convenient to use, but it also uses very low resources and loads extremely fast. Welcome to the future!",
             },
-            {
-              type: "string",
-              displayer: "Button Text",
-              key: "button_text",
-              value: "EXPLORE",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "URL",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "EXPLORE", "", null, null, "Link")
           ],
         },
         {
@@ -216,8 +206,7 @@ class Feature5 extends BaseFeature {
     const row2 = this.castToObject<{
       first_item: {
         description: JSX.Element;
-        button_text: JSX.Element;
-        link: string;
+        button: INPUTS.CastedButton;
       };
       second_item: {
         text: JSX.Element;
@@ -251,8 +240,8 @@ class Feature5 extends BaseFeature {
 
     const isFirstColumnVisible =
       this.castToString(row2.first_item.description) ||
-      this.castToString(row2.first_item.button_text) ||
-      row2.first_item.link;
+      this.castToString(row2.first_item.button.text) ||
+      row2.first_item.button.url;
     const isSecondColumnVisible = this.castToString(row2.second_item.text);
     const isThirdColumnVisible = row2.third_item.image;
 
@@ -333,20 +322,20 @@ class Feature5 extends BaseFeature {
               {isFirstColumnVisible && (
                 <div className={this.decorateCSS("first")}>
                   {(!!this.castToString(row2.first_item.description) ||
-                    !!this.castToString(row2.first_item.button_text)) && (
+                    !!this.castToString(row2.first_item.button.text)) && (
                       <div className={this.decorateCSS("first-items-wrapper")}>
                         {!!this.castToString(row2.first_item.description) && (
                           <Base.P className={this.decorateCSS("description")}>
                             {row2.first_item.description}
                           </Base.P>
                         )}
-                        {!!this.castToString(row2.first_item.button_text) && (
+                        {!!this.castToString(row2.first_item.button.text) && (
                           <div className={this.decorateCSS("button-text-container")}>
-                            <span className={this.decorateCSS("button-text")}>
-                              <ComposerLink path={row2.first_item.link}>
-                                {this.castToString(row2.first_item.button_text)}
-                              </ComposerLink>
-                            </span>
+                            <ComposerLink path={row2.first_item.button.url}>
+                              <Base.Button buttonType={row2.first_item.button.type} className={this.decorateCSS("button-text")}>
+                                {this.castToString(row2.first_item.button.text)}
+                              </Base.Button>
+                            </ComposerLink>
                           </div>
                         )}
                       </div>
@@ -472,7 +461,7 @@ class Feature5 extends BaseFeature {
             </div>
           )}
         </Base.MaxContent>
-      </Base.Container>
+      </Base.Container >
     );
   }
 }

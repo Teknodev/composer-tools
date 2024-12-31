@@ -4,17 +4,16 @@ import styles from "./feature7.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Feature = {
   title: JSX.Element;
   iconFeature: string;
 };
 
-type Link = {
-  linkText: JSX.Element;
-  iconLink: string;
-  url: string;
-};
+// type Link = {
+//   button: INPUTS.CastedButton;
+// };
 
 class Feature7 extends BaseFeature {
   constructor(props?: any) {
@@ -120,31 +119,7 @@ class Feature7 extends BaseFeature {
       key: "links",
       displayer: "Links",
       value: [
-        {
-          type: "object",
-          key: "link",
-          displayer: "link",
-          value: [
-            {
-              type: "string",
-              key: "linkText",
-              displayer: "Link Text",
-              value: "Want to learn more? Click here",
-            },
-            {
-              type: "icon",
-              key: "iconLink",
-              displayer: "Icon",
-              value: "FaArrowRight",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "URL",
-              value: "",
-            }
-          ],
-        },
+        INPUTS.BUTTON("button", "Button", "Want to learn more? Click here", "", "FaArrowRight", null, "Link")
       ],
     });
   }
@@ -160,7 +135,7 @@ class Feature7 extends BaseFeature {
     const image = this.getPropValue("image");
 
     const features = this.castToObject<Feature[]>("features");
-    const links = this.castToObject<Link[]>("links");
+    const links = this.castToObject<INPUTS.CastedButton[]>("links");
 
     const hasTextContent =
       subtitleExist ||
@@ -237,28 +212,20 @@ class Feature7 extends BaseFeature {
 
                 {(this.getPropValue("links").length > 0) && (
                   <div className={this.decorateCSS("linkList")}>
-                    {links.map((item: Link, index: number) => {
-                      const textExist = !!this.castToString(item.linkText);
+                    {links.map((item: INPUTS.CastedButton, index: number) => {
+                      const textExist = !!this.castToString(item.text);
 
                       return (
                         <div key={index} className={this.decorateCSS("linkContainer")}>
-                          <div className={this.decorateCSS("link")}>
-                            {textExist && (
-                              <ComposerLink path={item.url}>
-                                <span className={this.decorateCSS("linkText")}>
-                                  {item.linkText}
-                                </span>
-                              </ComposerLink>
-                            )}
-                            {!!item.iconLink && (
-                              <div className={this.decorateCSS("iconWrapper")}>
-                                <ComposerIcon
-                                  name={item.iconLink}
-                                  propsIcon={{ className: this.decorateCSS("iconLink") }}
-                                />
-                              </div>
-                            )}
-                          </div>
+                          <ComposerLink path={item.url}>
+                            <Base.Button buttonType={item.type} className={this.decorateCSS("link")}>
+                              {item.text}
+                              < ComposerIcon
+                                name={item.icon}
+                                propsIcon={{ className: this.decorateCSS("iconLink") }}
+                              />
+                            </Base.Button>
+                          </ComposerLink>
                         </div>
                       );
                     })}

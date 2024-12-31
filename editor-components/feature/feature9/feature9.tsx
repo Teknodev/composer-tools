@@ -5,6 +5,7 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature9.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
   icon: string;
@@ -13,10 +14,10 @@ type Card = {
   num: JSX.Element;
 };
 
-type Button = {
-  text: JSX.Element;
-  link: string;
-};
+// type Button = {
+//   text: JSX.Element;
+//   link: string;
+// };
 
 class Feature9 extends BaseFeature {
   observer: IntersectionObserver;
@@ -200,25 +201,7 @@ class Feature9 extends BaseFeature {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        {
-          type: "object",
-          key: "button",
-          displayer: "Button",
-          value: [
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "View our services"
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Link",
-              value: ""
-            }
-          ]
-        }
+        INPUTS.BUTTON("button", "Button", "View our services", "", null, null, "Primary")
       ]
     });
   }
@@ -252,7 +235,7 @@ class Feature9 extends BaseFeature {
 
   render() {
     const cards = this.castToObject<Card[]>("cards");
-    const buttons = this.castToObject<Button[]>("buttons");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const cardElements = document.querySelectorAll("." + this.decorateCSS("card"));
     const title = this.getPropValue("title");
 
@@ -332,11 +315,11 @@ class Feature9 extends BaseFeature {
           </div>
           {(buttons?.length > 0) && (
             <div className={this.decorateCSS("buttons-container")}>
-              {buttons.map((button: Button, index: number) => {
+              {buttons.map((button: INPUTS.CastedButton, index: number) => {
                 if (this.castToString(button.text)) {
                   return (
-                    <ComposerLink key={index} path={button.link}>
-                      <Base.Button className={this.decorateCSS("button")}>
+                    <ComposerLink key={index} path={button.url}>
+                      <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
                         {button.text}
                       </Base.Button>
                     </ComposerLink>

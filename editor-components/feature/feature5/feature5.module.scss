@@ -101,14 +101,7 @@
 
           .button-text-container {
             .button-text {
-              font-size: 1rem;
-              font-weight: 900;
-              cursor: pointer;
-              border-bottom: 3px solid var(--composer-font-color-primary);
-
-              >div {
-                display: inline;
-              }
+              content: "";
             }
           }
         }

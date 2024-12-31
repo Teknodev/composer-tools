@@ -4,6 +4,7 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import styles from "./feature4.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
   title: JSX.Element;
@@ -11,12 +12,7 @@ type Card = {
   icon: string;
   description: JSX.Element;
   image: string;
-  buttons: Button[];
-};
-
-type Button = {
-  text: JSX.Element;
-  link: string;
+  buttons: INPUTS.CastedButton[];
 };
 
 class Feature4 extends BaseFeature {
@@ -53,19 +49,7 @@ class Feature4 extends BaseFeature {
       displayer: "Subtitle",
       value: "Empower Solutions",
     });
-    this.addProp({
-      type: "string",
-      key: "linkText",
-      displayer: "Link Text",
-      value: "Navigating possibilities",
-    });
-    this.addProp({
-      type: "page",
-      key: "link",
-      displayer: "Link",
-      value: "",
-    });
-
+    this.addProp(INPUTS.BUTTON("link", "Link Button", "Navigating possibilities", "", null, null, "Link"));
     this.addProp({
       type: "array",
       key: "cards",
@@ -116,25 +100,7 @@ class Feature4 extends BaseFeature {
               key: "buttons",
               displayer: "Buttons",
               value: [
-                {
-                  type: "object",
-                  key: "buttonItem",
-                  displayer: "Button Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "text",
-                      displayer: "Button Text",
-                      value: "More Info",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Button Link",
-                      value: "",
-                    },
-                  ],
-                },
+                INPUTS.BUTTON("button", "Button", "More Info", "", null, null, "White")
               ],
             },
           ],
@@ -184,25 +150,7 @@ class Feature4 extends BaseFeature {
               },
               displayer: "Buttons",
               value: [
-                {
-                  type: "object",
-                  key: "buttonItem",
-                  displayer: "Button Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "text",
-                      displayer: "Button Text",
-                      value: "More Info",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Button Link",
-                      value: "",
-                    },
-                  ],
-                },
+                INPUTS.BUTTON("button", "Button", "More Info", "", null, null, "White")
               ],
             },
           ],
@@ -252,25 +200,7 @@ class Feature4 extends BaseFeature {
               },
               displayer: "Buttons",
               value: [
-                {
-                  type: "object",
-                  key: "buttonItem",
-                  displayer: "Button Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "text",
-                      displayer: "Button Text",
-                      value: "More Info",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Button Link",
-                      value: "",
-                    },
-                  ],
-                },
+                INPUTS.BUTTON("button", "Button", "More Info", "", null, null, "White")
               ],
             },
           ],
@@ -320,25 +250,7 @@ class Feature4 extends BaseFeature {
               },
               displayer: "Buttons",
               value: [
-                {
-                  type: "object",
-                  key: "buttonItem",
-                  displayer: "Button Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "text",
-                      displayer: "Button Text",
-                      value: "More Info",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Button Link",
-                      value: "",
-                    },
-                  ],
-                },
+                INPUTS.BUTTON("button", "Button", "More Info", "", null, null, "White")
               ],
             },
           ],
@@ -388,25 +300,7 @@ class Feature4 extends BaseFeature {
               },
               displayer: "Buttons",
               value: [
-                {
-                  type: "object",
-                  key: "buttonItem",
-                  displayer: "Button Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "text",
-                      displayer: "Button Text",
-                      value: "More Info",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Button Link",
-                      value: "",
-                    },
-                  ],
-                },
+                INPUTS.BUTTON("button", "Button", "More Info", "", null, null, "White")
               ],
             },
           ],
@@ -422,11 +316,12 @@ class Feature4 extends BaseFeature {
   render() {
     const cards = this.castToObject<Card[]>("cards");
 
-    const itemCount = this.getPropValue("itemCount");
+    const itemCount = this.getPropValue("itemCount")
+    const linkButton: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("link");
 
-    const subtitleExist = !!this.getPropValue("subtitle", { as_string: true });
-    const titleExist = !!this.getPropValue("title", { as_string: true });
-    const linkTextExist = !!this.getPropValue("linkText", { as_string: true });
+    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+    const titleExist = this.castToString(this.getPropValue("title"));
+    const linkTextExist = this.castToString(linkButton.text);
 
     const imageOverlay = !!this.getPropValue("imageOverlay");
 
@@ -456,14 +351,14 @@ class Feature4 extends BaseFeature {
                   </Base.SectionTitle>
                 )}
                 {linkTextExist && (
-                  <span className={`
+                  <ComposerLink path={linkButton.url}>
+                    <Base.Button buttonType={linkButton.type} className={`
                     ${this.decorateCSS("featured-card-link")}
                     ${!!this.getPropValue("backgroundImage") ? this.decorateCSS("black") : ""}
                   `}>
-                    <ComposerLink path={this.getPropValue("link")}>
-                      {this.getPropValue("linkText")}
-                    </ComposerLink>
-                  </span>
+                      {linkButton.text}
+                    </Base.Button>
+                  </ComposerLink>
                 )}
               </div>
             )}
@@ -530,18 +425,19 @@ class Feature4 extends BaseFeature {
                           {card?.buttons?.length > 0 && (
                             <div className={this.decorateCSS("overlay-links-container")}>
                               {card?.buttons.map(
-                                (item: Button, index: number) => {
+                                (item: INPUTS.CastedButton, index: number) => {
                                   if (!this.castToString(item.text)) return null;
 
                                   return (
                                     <Base.Button
+                                      buttonType={item.type}
                                       key={index}
                                       className={`
                                         ${this.decorateCSS("overlay-link")}
                                         ${card.image || imageOverlay ? this.decorateCSS("image-or-overlay-exist") : ""}
                                       `}
                                     >
-                                      <ComposerLink path={item.link}>
+                                      <ComposerLink path={item.url}>
                                         {item.text}
                                       </ComposerLink>
                                     </Base.Button>

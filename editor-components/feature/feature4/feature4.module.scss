@@ -19,6 +19,9 @@
 
           &.black {
             color: black;
+            &::before{
+              background-color: black;
+            }
           }
         }
 
@@ -32,12 +35,9 @@
         }
 
         .featured-card-link {
-          color: var(--composer-tertiary-color);
-          font-size: 1.5rem;
-          text-decoration: underline;
-
           &.black {
             color: black;
+            border-bottom: 1px solid black;
           }
         }
       }
@@ -110,20 +110,7 @@
             gap: var(--composer-gap-sm);
 
             .overlay-link {
-              text-decoration: none;
-              padding: var(--composer-gap-sm) var(--composer-gap-md);
-              text-transform: uppercase;
-
-              &.image-or-overlay-exist {
-                color: white;
-                border: 1px solid white;
-                background-color: transparent;
-
-                &:hover {
-                  color: black;
-                  background-color: white;
-                }
-              }
+              content: "";
             }
           }
         }
