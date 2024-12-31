@@ -222,7 +222,7 @@ class Form2Page extends BaseContacts {
       ],
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "Contact Us", null, null, "Primary"));
+    this.addProp(INPUTS.BUTTON("button", "Button", "Contact Us", null, null, null, "Primary"));
   }
 
   getName(): string {
@@ -340,7 +340,7 @@ class Form2Page extends BaseContacts {
           {(inputs.length > 0 || (titleExist && buttonTextExist)) && (
             <div className={this.decorateCSS("input-items")}>
               <div className={`${this.decorateCSS("input-item")} ${!imageExist && this.decorateCSS("input-item-no-image")}`}>
-                {titleExist && <Base.SectionTitle className={imageExist ? this.decorateCSS("title") : this.decorateCSS("title-no-image")}>{title}</Base.SectionTitle>}
+                {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${imageExist && this.decorateCSS("title-with-image")}`}>{title}</Base.SectionTitle>}
                 {(inputs.length > 0 || buttonTextExist) && (
                   <Formik
                     initialValues={initialValue}

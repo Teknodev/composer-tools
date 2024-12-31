@@ -340,7 +340,7 @@ class Form6 extends BaseContacts {
       ],
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "Send Email", null, null, "Primary"));
+    this.addProp(INPUTS.BUTTON("button", "Button", "Send Email", null, null, null, "Primary"));
   }
 
   getName(): string {
@@ -433,17 +433,36 @@ class Form6 extends BaseContacts {
 
     function getFormDataWithConvertedKeys(obj: any) {
       const newObj: any = {};
+      let nameParts: string[] = []; // Name değerlerini birleştirmek için bir array.
+
       for (const key in obj) {
         if (Object.prototype.hasOwnProperty.call(obj, key)) {
+          console.log(obj, "obj");
           let adjustedKey = key.startsWith("_") ? key.slice(1) : key;
+          console.log(adjustedKey, "adjustedKey");
           const parts = adjustedKey.split("_");
+          console.log(parts, "parts");
+
           let newKey = "";
           for (let i = 1; i < parts.length - 1; i++) {
             newKey += (i > 1 ? "_" : "") + parts[i];
           }
-          newObj[newKey] = obj[key];
+
+          // Eğer "name" alanıysa, birleştir
+          if (newKey === "name") {
+            nameParts.push(obj[key]); // Name değerini kaydet
+          } else {
+            newObj[newKey] = obj[key];
+          }
         }
       }
+
+      // Name değerlerini birleştirerek ekle
+      if (nameParts.length > 0) {
+        newObj["name"] = nameParts.join(" "); // İlk ve soyadları birleştir
+      }
+
+      console.log(newObj, "newObj");
       return newObj;
     }
 
@@ -486,6 +505,7 @@ class Form6 extends BaseContacts {
                   validationSchema={getSchema()}
                   onSubmit={(data, { resetForm }) => {
                     const formData = getFormDataWithConvertedKeys(data);
+                    console.log(formData, "formdata");
                     this.insertForm("Contact Me", formData);
                     resetForm();
                   }}

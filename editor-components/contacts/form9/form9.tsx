@@ -327,7 +327,7 @@ class Form9Page extends BaseContacts {
       ],
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "Submit Form", null, null, "Primary"));
+    this.addProp(INPUTS.BUTTON("button", "Button", "Submit Form", null, null, null, "Primary"));
   }
 
   getName(): string {
@@ -440,7 +440,7 @@ class Form9Page extends BaseContacts {
               <div
                 className={`
                 ${this.decorateCSS("form-container")}
-                ${!imageExist ? this.decorateCSS("without-image") : ""}
+                ${!imageExist && this.decorateCSS("without-image")}
               `}
               >
                 {(titleExist || descriptionExist) && (
@@ -456,8 +456,6 @@ class Form9Page extends BaseContacts {
                     onSubmit={(data, { resetForm }) => {
                       const formData = this.getFormDataWithConvertedKeys(data);
                       this.insertForm("Contact Me", formData);
-                      console.log(data);
-                      console.log(formData);
                       resetForm();
                     }}
                   >
@@ -506,7 +504,7 @@ class Form9Page extends BaseContacts {
                         })}
                         {buttonTextExist && (
                           <div className={this.decorateCSS("button-div")}>
-                            <Base.Button className={this.decorateCSS("submit-button")} type="submit">
+                            <Base.Button buttonType={button.type} className={this.decorateCSS("submit-button")} type="submit">
                               {buttonText}
                             </Base.Button>
                           </div>

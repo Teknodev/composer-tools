@@ -495,7 +495,7 @@ class Form3Page extends BaseContacts {
       additionalParams: {
         maxElementCount: 2,
       },
-      value: [INPUTS.BUTTON("button", "Button", "Contact Us", null, null, "Primary")],
+      value: [INPUTS.BUTTON("button", "Button", "Contact Us", null, null, null, "Primary")],
     });
   }
 
@@ -535,21 +535,17 @@ class Form3Page extends BaseContacts {
           return "text";
       }
     }
-    function getInputValue(indexOfLabel: number, inputLabel: string, indexOfInput: number): string {
-      const name = toObjectKey(`${indexOfLabel} ${inputLabel} ${indexOfInput}`);
-      return toObjectKey(name);
-    }
-    function getInputName(indexOfLabel: number, inputLabel: string, indexOfInput: number): string {
-      const name = toObjectKey(`input_${indexOfLabel + inputLabel + indexOfInput}`);
 
-      return toObjectKey(name);
-    }
+    const getInputName = (indexOfLabel: number, inputLabel: any, indexOfInput: number): string => {
+      const labelText = inputLabel && this.castToString(inputLabel);
+      return `input_${indexOfLabel}_${labelText}_${indexOfInput}`;
+    };
 
     function getInitialValue() {
       let value: any = {};
       inputItems.map((inputItem: any, indexOfItem: number) => {
         inputItem.getPropValue("inputs")?.map((input: TypeUsableComponentProps, indexOfInput: number) => {
-          const key = getInputValue(indexOfItem, input.getPropValue("label", { as_string: true }), indexOfInput);
+          const key = getInputName(indexOfItem, input.getPropValue("label"), indexOfInput);
           value[key] = "";
         });
       });
@@ -561,7 +557,7 @@ class Form3Page extends BaseContacts {
 
       inputItems.map((inputItem: any, indexOfItem: number) => {
         inputItem.getPropValue("inputs").map((input: any, indexOfInput: number) => {
-          const key = getInputValue(indexOfItem, input.getPropValue("label", { as_string: true }), indexOfInput);
+          const key = getInputName(indexOfItem, input.getPropValue("label"), indexOfInput);
 
           const isRequired = input.getPropValue("is_required");
           const isEmail = getInputType(input.getPropValue("type")) == "email";
@@ -677,27 +673,27 @@ class Form3Page extends BaseContacts {
                                         </span>
                                         {inputObj.getPropValue("type") == "Text Area" ? (
                                           <textarea
-                                            value={values[getInputName(inputItemIndex, inputObj.getPropValue("label", { as_string: true }), inputIndex)]}
+                                            value={values[getInputName(inputItemIndex, inputObj.getPropValue("label"), inputIndex)]}
                                             className={`
                                               ${this.decorateCSS("input")}
                                               ${this.decorateCSS("textarea")}  
                                             `}
-                                            placeholder={inputObj.getPropValue("placeholder", { as_string: true })}
+                                            placeholder={this.castToString(inputObj.getPropValue("placeholder"))}
                                             onChange={handleChange}
                                             rows={1}
-                                            name={getInputValue(inputItemIndex, inputObj.getPropValue("label", { as_string: true }), inputIndex)}
+                                            name={getInputName(inputItemIndex, inputObj.getPropValue("label"), inputIndex)}
                                           ></textarea>
                                         ) : (
                                           <input
-                                            placeholder={inputObj.getPropValue("placeholder", { as_string: true })}
+                                            placeholder={this.castToString(inputObj.getPropValue("placeholder"))}
                                             type={getInputType(inputObj.getPropValue("type"))}
                                             onChange={handleChange}
-                                            value={values[getInputName(inputItemIndex, inputObj.getPropValue("label", { as_string: true }), inputIndex)]}
-                                            name={getInputValue(inputItemIndex, inputObj.getPropValue("label", { as_string: true }), inputIndex)}
+                                            value={values[getInputName(inputItemIndex, inputObj.getPropValue("label"), inputIndex)]}
+                                            name={getInputName(inputItemIndex, inputObj.getPropValue("label"), inputIndex)}
                                             className={this.decorateCSS("input")}
                                           />
                                         )}
-                                        <ErrorMessage className={this.decorateCSS("error-message")} name={getInputValue(inputItemIndex, inputObj.getPropValue("label", { as_string: true }), inputIndex)} component={"span"} />
+                                        <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(inputItemIndex, inputObj.getPropValue("label"), inputIndex)} component={"span"} />
                                       </div>
                                     ) : null
                                   )}

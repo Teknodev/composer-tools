@@ -166,13 +166,13 @@ class Form10 extends BaseContacts {
                       type: "boolean",
                       key: "isRequired",
                       displayer: "Is Required",
-                      value: false,
+                      value: true,
                     },
                     {
                       type: "string",
                       key: "requiredErrorMessage",
                       displayer: "Required error message",
-                      value: "",
+                      value: "Required",
                     },
                     {
                       type: "select",
@@ -204,7 +204,7 @@ class Form10 extends BaseContacts {
       ],
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "SEND MESSAGE", "", "Primary"));
+    this.addProp(INPUTS.BUTTON("button", "Button", "SEND MESSAGE", null, null, null, "Primary"));
 
     this.addProp({
       type: "string",
@@ -303,7 +303,7 @@ class Form10 extends BaseContacts {
                 <div className={this.decorateCSS("form-container")}>
                   <Formik
                     initialValues={getInitialValue()}
-                    validationSchema={getSchema()}
+                    validationSchema={getSchema}
                     onSubmit={(data, { resetForm }) => {
                       const formData = data;
                       this.insertForm("CONTACT US", formData);
@@ -333,14 +333,14 @@ class Form10 extends BaseContacts {
                                         <textarea
                                           value={values[getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)]}
                                           className={this.decorateCSS("input")}
-                                          placeholder={inputObj.getPropValue("placeholder", { as_string: true })}
+                                          placeholder={this.castToString(inputObj.getPropValue("placeholder"))}
                                           rows={9}
                                           onChange={handleChange}
                                           name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)}
                                         ></textarea>
                                       ) : (
                                         <input
-                                          placeholder={inputObj.getPropValue("placeholder", { as_string: true })}
+                                          placeholder={this.castToString(inputObj.getPropValue("placeholder"))}
                                           type={getInputType(inputObj.getPropValue("type"))}
                                           onChange={handleChange}
                                           value={values[getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)]}
@@ -350,7 +350,7 @@ class Form10 extends BaseContacts {
                                       )}
                                       <ComposerIcon name={inputObj.getPropValue("icon")} propsIcon={{ className: this.decorateCSS("icon") }} />
                                     </div>
-                                    <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(inputItemIndex, inputItem.getPropValue("placeholder"), inputIndex)} component={"span"} />
+                                    <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)} component={"span"} />
                                   </div>
                                 );
                               })}
@@ -362,7 +362,7 @@ class Form10 extends BaseContacts {
                           <div className={this.decorateCSS("bottom-section")}>
                             {descriptionExist && (
                               <div className={this.decorateCSS("description")}>
-                                <Base.P className={this.decorateCSS("description-text")}>{descriptionExist}</Base.P>
+                                <Base.P className={this.decorateCSS("description-text")}>{description}</Base.P>
                               </div>
                             )}
                             {buttonTextExist && (
