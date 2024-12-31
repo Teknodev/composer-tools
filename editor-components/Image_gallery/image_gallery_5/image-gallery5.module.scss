@@ -159,7 +159,7 @@
                                 }
 
                                 .badge {
-                                    background-color: var(--composer-font-color-secondary);
+                                    background-color: var(--composer-html-background);
                                     color: var(--composer-font-color-primary);
                                     z-index: 2;
                                 }
@@ -178,6 +178,10 @@
 
                                         .bottom-container {
                                             opacity: 1;
+
+                                            .button{
+                                                background-color: var(--composer-html-background);
+                                            }
                                         }
                                     }
                                 }
