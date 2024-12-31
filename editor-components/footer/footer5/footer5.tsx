@@ -23,7 +23,7 @@ class Footer5Page extends BaseFooter {
       value: "Would you like more information or do you have a question?",
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "CONTACT US", "", null, "Primary"));
+    this.addProp(INPUTS.BUTTON("button", "Button", "CONTACT US", "", null, null, "Primary"));
 
     this.addProp({
       type: "boolean",

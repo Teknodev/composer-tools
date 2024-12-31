@@ -46,7 +46,7 @@ class Footer9Page extends BaseFooter {
       value: "During this phase to design is developed to meet the reuired technical standards",
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "Subscribe", "", null, "Primary"));
+    this.addProp(INPUTS.BUTTON("button", "Button", "Subscribe", "", null, null, "Primary"));
 
     this.addProp({
       type: "array",

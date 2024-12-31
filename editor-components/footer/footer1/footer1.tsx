@@ -38,7 +38,7 @@ class Footer1Page extends BaseFooter {
       value: "Type your e-mail",
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "Subscribe", null, null, "Primary"));
+    this.addProp(INPUTS.BUTTON("button", "Button", "Subscribe", null, null, null, "Primary"));
 
     this.addProp({
       type: "boolean",

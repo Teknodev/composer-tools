@@ -378,7 +378,7 @@ class Footer4Page extends BaseFooter {
       value: "Form successfully submitted!",
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "Subscribe", null, null, "Primary"));
+    this.addProp(INPUTS.BUTTON("button", "Button", "Subscribe", null, null, null, "Primary"));
 
     this.addProp({
       type: "string",
