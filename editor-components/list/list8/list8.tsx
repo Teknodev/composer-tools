@@ -3,18 +3,37 @@ import { BaseList } from "../../EditorComponent";
 import React from "react";
 import styles from "./list8.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
-//CLASS
+type listItem = {
+  number: number;
+  icon: JSX.Element;
+  title: JSX.Element;
+  text: JSX.Element;
+};
+
 class List8 extends BaseList {
-  //getName
   getName(): string {
     return "List 8";
   }
 
-  //constructor
   constructor(props?: any) {
     super(props, styles);
 
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "How It Works?",
+    });
+    this.addProp({
+      type: "string",
+      key: "titledesc",
+      displayer: "Description",
+      value: "Aliquam sagittis consectetur ligulan aliquam turpis cursus at. In aliquet auguenec libero ultricies velit pellentesque.",
+    });
     this.addProp({
       type: "array",
       key: "list-items",
@@ -32,15 +51,21 @@ class List8 extends BaseList {
               value: 1,
             },
             {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaMapLocationDot",
+            },
+            {
               type: "string",
               key: "title",
-              displayer: "Item Title",
+              displayer: "Title",
               value: "List Your Space",
             },
             {
               type: "string",
               key: "text",
-              displayer: "Item Text",
+              displayer: "Text",
               value:
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, ab",
             },
@@ -58,15 +83,21 @@ class List8 extends BaseList {
               value: 2,
             },
             {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "HiChartBar",
+            },
+            {
               type: "string",
               key: "title",
-              displayer: "Item Title",
+              displayer: "Title",
               value: "Get More Orders",
             },
             {
               type: "string",
               key: "text",
-              displayer: "Item Text",
+              displayer: "Text",
               value:
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, ab",
             },
@@ -84,15 +115,21 @@ class List8 extends BaseList {
               value: 3,
             },
             {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaMoneyBillAlt",
+            },
+            {
               type: "string",
               key: "title",
-              displayer: "Item Title",
+              displayer: "Title",
               value: "Earn Money",
             },
             {
               type: "string",
               key: "text",
-              displayer: "Item Text",
+              displayer: "Text",
               value:
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, ab",
             },
@@ -105,110 +142,89 @@ class List8 extends BaseList {
       key: "itemCount",
       displayer: "Item Count in a Row",
       value: 3,
-      max: 4
     });
-    this.addProp({
-      type: "string",
-      key: "title",
-      displayer: "Title",
-      value: "How It Works?",
-    });
-    this.addProp({
-      type: "string",
-      key: "titledesc",
-      displayer: "Title Description",
-      value:
-        " Lorem, ipsum dolor sit amet consectetur adipisicing elit.Saepe, quis.",
-    });
-    this.addProp({
-        type: "string",
-        key: "button_text",
-        displayer: "Button Text",
-        value:
-          "List your space",
-      });
-      this.addProp({
-        type: "page",
-        key: "button_url",
-        displayer: "Button Url",
-        value: ""
-      });
+    this.addProp(INPUTS.BUTTON("button", "Button", "List your space", "", "Primary"));
   }
-  //end constructor
 
-  render(): ReactNode {
+  render() {
+    const listItems = this.castToObject<listItem[]>("list-items");
+    const title = this.getPropValue("title");
+    const titledesc = this.getPropValue("titledesc");
+    const buttonType: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
-    //RETURN
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("border")}>
-            {/* main start */}
-            <main id="main_id" className={this.decorateCSS("main")}>
-              <div className={this.decorateCSS("container2")}>
-                <section
-                  id="section_id"
-                  className={this.decorateCSS("section")}
-                >
-                  <h1 className={this.decorateCSS("h1")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <div className={this.decorateCSS("section")}>
+            {(this.castToString(title) || this.castToString(titledesc)) && (
+              <Base.VerticalContent className={this.decorateCSS("section-wrapper")} >
+                {this.castToString(title) && (
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
                     {this.getPropValue("title")}
-                  </h1>
-                  <p className={this.decorateCSS("h1-lowertext")}>
+                  </Base.SectionTitle>
+                )}
+                {this.castToString(titledesc) && (
+                  <Base.SectionDescription className={this.decorateCSS("description")}>
                     {this.getPropValue("titledesc")}
-                  </p>
-
-                  {/* Boxes Start */}
-
-                  {/* Boxlower */}
-                  <div className={this.decorateCSS("boxes")}>
-                    {/* MAP */}
-                    {this.getPropValue("list-items").map(
-                      (item: any, index: number) => (
-                        <div
-                          key={index}
-                          className={this.decorateCSS("boxlower")}
-                          style={{
-                            width:
-                              this.getPropValue("itemCount") == 1
-                                ? "100%"
-                                : 90 / this.getPropValue("itemCount") + "%",
-                          }}
-                        >
-                          <div className={this.decorateCSS("circle")}>
-                            {item.getPropValue("number")}
-                          </div>
-                          <h3 className={this.decorateCSS("midwriting")}>
-                            {item.getPropValue("title")}
-                          </h3>{" "}
-                          <br />
-                          <span className={this.decorateCSS("text")}>
-                            {item.getPropValue("text")}
-                          </span>
+                  </Base.SectionDescription>
+                )}
+              </Base.VerticalContent>
+            )}
+            {(listItems.length > 0) && (
+              <Base.ListGrid
+                className={this.decorateCSS("boxes")}
+                gridCount={{ pc: this.getPropValue("itemCount") }}
+              >
+                {listItems.map((item: any, index: number) => (
+                  <div key={index} className={this.decorateCSS("boxlower")}>
+                    {item.getPropValue("number") && (
+                      <div className={this.decorateCSS("circle")}>
+                        <div className={this.decorateCSS("index")}>
+                          {item.getPropValue("number")}
                         </div>
-                      )
+                      </div>
+                    )}
+                    {item.icon && (
+                      <div className={this.decorateCSS("icon-box")}>
+                        <ComposerIcon
+                          name={item.icon}
+                          propsIcon={{
+                            className: this.decorateCSS("icon"),
+                          }}
+                        />
+                      </div>
+                    )}
+                    {(this.castToString(item.title) || this.castToString(item.text)) && (
+                      <div className={this.decorateCSS("titles")}>
+                        {this.castToString(item.title) && (
+                          <div className={this.decorateCSS("midwriting")}>
+                            {item.title}
+                          </div>
+                        )}
+                        {this.castToString(item.text) && (
+                          <div className={this.decorateCSS("text")}>
+                            {item.text}
+                          </div>
+                        )}
+                      </div>
                     )}
                   </div>
-                  {/* Boxes end */}
-
-                  {/* Button */}
-                 <div className={this.decorateCSS("button-box")}>
-                    <ComposerLink path={this.getPropValue("button_url")}>
-                        <button className={this.decorateCSS("button")}>
-                            {this.getPropValue("button_text")}
-                        </button>
-                    </ComposerLink>
-                 </div>
-                </section>
+                ))}
+              </Base.ListGrid>
+            )}
+            {this.castToString(buttonType.text) && (
+              <div className={this.decorateCSS("button-box")}>
+                <ComposerLink path={buttonType.url}>
+                  <Base.Button buttonType={buttonType.type} className={this.decorateCSS("button")}>
+                    {buttonType.text}
+                  </Base.Button>
+                </ComposerLink>
               </div>
-            </main>
-            {/* main end */}
+            )}
           </div>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
-    //end RETURN
   }
 }
-//end CLASS
-
 export default List8;

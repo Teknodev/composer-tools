@@ -3,15 +3,15 @@ import styles from "./team5.module.scss";
 import { Team } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
 
 type eggs = {
   background: string;
   picture: string;
-  socials: Array<{ icon: string, url: string }>;
-  name: string;
-  occupation: string;
+  socials: Array<{ icon: string; url: string }>;
+  name: JSX.Element;
+  occupation: JSX.Element;
 };
-
 
 class Team5 extends Team {
   constructor(props?: any) {
@@ -73,7 +73,7 @@ class Team5 extends Team {
                       displayer: "Url",
                       value: "",
                     },
-                  ]
+                  ],
                 },
                 {
                   type: "object",
@@ -92,7 +92,7 @@ class Team5 extends Team {
                       displayer: "Url",
                       value: "",
                     },
-                  ]
+                  ],
                 },
                 {
                   type: "object",
@@ -111,10 +111,9 @@ class Team5 extends Team {
                       displayer: "Url",
                       value: "",
                     },
-                  ]
-                }
-              ]
-
+                  ],
+                },
+              ],
             },
             {
               type: "string",
@@ -125,10 +124,10 @@ class Team5 extends Team {
             {
               type: "string",
               key: "occupation",
-              displayer: "Occupation",
+              displayer: "Position",
               value: "Office Manager",
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -169,7 +168,7 @@ class Team5 extends Team {
                       displayer: "Url",
                       value: "",
                     },
-                  ]
+                  ],
                 },
                 {
                   type: "object",
@@ -188,7 +187,7 @@ class Team5 extends Team {
                       displayer: "Url",
                       value: "",
                     },
-                  ]
+                  ],
                 },
                 {
                   type: "object",
@@ -207,10 +206,9 @@ class Team5 extends Team {
                       displayer: "Url",
                       value: "",
                     },
-                  ]
-                }
-              ]
-
+                  ],
+                },
+              ],
             },
             {
               type: "string",
@@ -224,7 +222,7 @@ class Team5 extends Team {
               displayer: "Occupation",
               value: "Receptionist",
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -265,7 +263,7 @@ class Team5 extends Team {
                       displayer: "Url",
                       value: "",
                     },
-                  ]
+                  ],
                 },
                 {
                   type: "object",
@@ -284,7 +282,7 @@ class Team5 extends Team {
                       displayer: "Url",
                       value: "",
                     },
-                  ]
+                  ],
                 },
                 {
                   type: "object",
@@ -303,10 +301,9 @@ class Team5 extends Team {
                       displayer: "Url",
                       value: "",
                     },
-                  ]
-                }
-              ]
-
+                  ],
+                },
+              ],
             },
             {
               type: "string",
@@ -317,10 +314,10 @@ class Team5 extends Team {
             {
               type: "string",
               key: "occupation",
-              displayer: "Occupation",
+              displayer: "Position",
               value: "Accounting",
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -361,7 +358,7 @@ class Team5 extends Team {
                       displayer: "Url",
                       value: "",
                     },
-                  ]
+                  ],
                 },
                 {
                   type: "object",
@@ -380,7 +377,7 @@ class Team5 extends Team {
                       displayer: "Url",
                       value: "",
                     },
-                  ]
+                  ],
                 },
                 {
                   type: "object",
@@ -399,10 +396,9 @@ class Team5 extends Team {
                       displayer: "Url",
                       value: "",
                     },
-                  ]
-                }
-              ]
-
+                  ],
+                },
+              ],
             },
             {
               type: "string",
@@ -413,20 +409,20 @@ class Team5 extends Team {
             {
               type: "string",
               key: "occupation",
-              displayer: "Occupation",
+              displayer: "Position",
               value: "Pet Trainer",
             },
-          ]
+          ],
         },
       ],
-    })
+    });
     this.addProp({
       type: "number",
       key: "itemCount",
       displayer: "Item count in a row",
       value: 4,
-      max: 4
-    })
+      max: 5,
+    });
   }
 
   getName(): string {
@@ -434,40 +430,47 @@ class Team5 extends Team {
   }
 
   render() {
+    const titleExist = this.castToString(this.getPropValue("title"));
+    const descriptionExist = this.castToString(this.getPropValue("description"));
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("container-top")}>
-            <div className={this.decorateCSS("title-container")}>
-              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
-            </div>
-            <div className={this.decorateCSS("description-container")}>
-              <div className={this.decorateCSS("description-inner")}>{this.getPropValue("description")}</div>
-            </div>
+            <div className={this.decorateCSS("title-container")}>{titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}</div>
+            <div className={this.decorateCSS("description-container")}>{descriptionExist && <Base.SectionDescription className={this.decorateCSS("description-inner")}>{this.getPropValue("description")}</Base.SectionDescription>}</div>
           </div>
-          <div className={this.decorateCSS("container-bottom")}>
-            {this.castToObject<eggs[]>("teamList").map((item: eggs, index: number) => (
-              <div key={index} className={this.decorateCSS("egg-item")} style={{
-                width: 100 / this.getPropValue("itemCount") + "%",
-              }}>
-                <div className={this.decorateCSS("image-container")}>
-                  <img className={this.decorateCSS("background-image")} src={item.background} alt="" />
-                  <img className={this.decorateCSS("member-image")} src={item.picture} alt="" />
-                </div>
-                <div className={this.decorateCSS("icon-container")}>
-                  {item.socials.map((value, index) => <ComposerLink key={index} path={value.url}>
-                    <ComposerIcon name={value.icon} />
-                  </ComposerLink>)}
-                </div>
-                <div className={this.decorateCSS("members-container")}>
-                  <h4 className={this.decorateCSS("name")}>{item.name}</h4>
-                  <span className={this.decorateCSS("occupation")}>{item.occupation}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+
+          <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("container-bottom")}>
+            {this.castToObject<eggs[]>("teamList").map((item: eggs, index: number) => {
+              const itemName = this.castToString(item.name);
+              const itemOccupation = this.castToString(item.occupation);
+              const hasItem = itemName || itemOccupation || item.background || item.picture || item.socials.length > 0;
+
+              return (
+                hasItem && (
+                  <Base.VerticalContent key={index} className={this.decorateCSS("egg-item")}>
+                    <div className={this.decorateCSS("image-container")}>
+                      {item.background && <img className={this.decorateCSS("background-image")} src={item.background} alt="" />}
+                      {item.picture && <img className={this.decorateCSS("member-image")} src={item.picture} alt="" />}
+                    </div>
+                    <Base.Row className={this.decorateCSS("icon-container")}>
+                      {item.socials.map((value, i) => (
+                        <ComposerLink key={i} path={value.url}>
+                          <ComposerIcon name={value.icon} />
+                        </ComposerLink>
+                      ))}
+                    </Base.Row>
+                    <Base.VerticalContent className={this.decorateCSS("members-container")}>
+                      {itemName && <Base.H4 className={this.decorateCSS("name")}>{item.name}</Base.H4>}
+                      {itemOccupation && <Base.H5 className={this.decorateCSS("occupation")}>{item.occupation}</Base.H5>}
+                    </Base.VerticalContent>
+                  </Base.VerticalContent>
+                )
+              );
+            })}
+          </Base.ListGrid>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
