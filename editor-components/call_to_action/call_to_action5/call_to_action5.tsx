@@ -158,7 +158,7 @@ class CallToAction5Page extends BaseCallToAction {
             <div className={this.decorateCSS("button-container")}>
               <ComposerLink path={button.url}>
                 <Base.Button buttonType={button.type}
-                  className={`${this.decorateCSS("button")} ${!this.getPropValue("background") && this.decorateCSS("no-image")}`}>
+                  className={this.decorateCSS("button")}>
                   {button.text}
                 </Base.Button>
               </ComposerLink>

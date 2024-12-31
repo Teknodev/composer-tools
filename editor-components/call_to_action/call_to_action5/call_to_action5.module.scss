@@ -75,7 +75,7 @@
             height: 100%;
             width: 100%;
             outline: none;
-            border: 1px solid transparent;
+            border: none;
             border-top-left-radius: var(--composer-border-radius-md);
             border-bottom-left-radius: var(--composer-border-radius-md);
 
@@ -100,6 +100,8 @@
 
         .submit-button {
           content: "";
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
         }
       }
     }
@@ -111,6 +113,8 @@
 
       .button {
         content: "";
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
       }
     }
   }

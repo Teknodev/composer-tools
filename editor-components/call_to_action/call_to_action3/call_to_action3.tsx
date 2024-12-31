@@ -52,7 +52,6 @@ class CallToAction3Page extends BaseCallToAction {
 
   render() {
     const buttons = this.castToObject<Button[]>("buttons");
-
     return (
       <Base.Container
         className={`${this.decorateCSS("container")} ${this.getPropValue("overlayActive") && this.decorateCSS("overlay-active")}`}
@@ -73,6 +72,8 @@ class CallToAction3Page extends BaseCallToAction {
               <div className={this.decorateCSS("buttons")}>
                 {buttons.map(
                   (button: Button, index: number) => {
+                    button.type = this.getPropValue("image") ? "White" : button.type
+
                     return (
                       <ComposerLink path={button.url}>
                         {this.castToString(button.text) && (
