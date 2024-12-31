@@ -1,3 +1,4 @@
+
 import * as React from "react";
 import { BaseImageGallery } from "../../EditorComponent";
 import styles from "./image-gallery4.module.scss";
@@ -5,363 +6,140 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
-type NavItem = {
-  title: JSX.Element;
-  hasSubnav: boolean;
-  subnavItems: SubnavItem[];
-  images: Image[];
-};
-
-type SubnavItem = {
-  title: JSX.Element;
-  images: Image[];
-};
-
-type Image = {
+interface GalleryItem {
   image: string;
-};
+  caption: JSX.Element;
+}
 
 class ImageGallery4 extends BaseImageGallery {
+  private imageGalleryRef: React.RefObject<HTMLDivElement>;
   constructor(props?: any) {
     super(props, styles);
+    this.imageGalleryRef = React.createRef();
+    this.handleKeyPress = this.handleKeyPress.bind(this);
 
     this.addProp({
       type: "array",
-      key: "navItems",
-      additionalParams: { maxElementCount: 7 },
-      displayer: "Nav Items",
+      key: "gallery",
+      displayer: "Gallery",
       value: [
         {
           type: "object",
-          key: "nav-item",
-          displayer: "Nav Item",
+          key: "imageGallery",
+          displayer: "Image Gallery",
           value: [
             {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20b8c2f8a5b002ce65828?alt=media",
+            },
+            {
               type: "string",
-              key: "title",
-              displayer: "Nav Title",
-              value: "Meat",
-            },
-            {
-              type: "boolean",
-              key: "hasSubnav",
-              displayer: "Show Sub Navs?",
-              value: true,
-            },
-            {
-              type: "array",
-              key: "images",
-              displayer: "Images",
-              value: [
-                {
-                  type: "object",
-                  key: "image-item",
-                  displayer: "Image",
-                  value: [
-                    {
-                      type: "image",
-                      key: "image",
-                      displayer: "Image",
-                      value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c35b8f07399d002cb493dd?alt=media",
-                    },
-                  ],
-                },
-              ],
-            },
-            {
-              type: "array",
-              key: "subnavItems",
-              displayer: "Sub Items",
-              value: [
-                {
-                  type: "object",
-                  key: "subnavItem",
-                  displayer: "Subnav Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "Beef",
-                    },
-                    {
-                      type: "array",
-                      key: "images",
-                      displayer: "Images",
-                      value: [
-                        {
-                          type: "object",
-                          key: "image-item",
-                          displayer: "Image",
-                          value: [
-                            {
-                              type: "image",
-                              key: "image",
-                              displayer: "Image",
-                              value:
-                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c35bc507399d002cb49422?alt=media",
-                            },
-                          ],
-                        },
-                        {
-                          type: "object",
-                          key: "image-item",
-                          displayer: "Image",
-                          value: [
-                            {
-                              type: "image",
-                              key: "image",
-                              displayer: "Image",
-                              value:
-                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c35bea07399d002cb4942e?alt=media",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "subnavItem",
-                  displayer: "Subnav Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "Pork",
-                    },
-                    {
-                      type: "array",
-                      key: "images",
-                      displayer: "Images",
-                      value: [
-                        {
-                          type: "object",
-                          key: "image-item",
-                          displayer: "Image",
-                          value: [
-                            {
-                              type: "image",
-                              key: "image",
-                              displayer: "Image",
-                              value:
-                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c35c0607399d002cb4943b?alt=media",
-                            },
-                          ],
-                        },
-                        {
-                          type: "object",
-                          key: "image-item",
-                          displayer: "Image",
-                          value: [
-                            {
-                              type: "image",
-                              key: "image",
-                              displayer: "Image",
-                              value:
-                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c35c5a07399d002cb49448?alt=media",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "subnavItem",
-                  displayer: "Subnav Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "Lamb",
-                    },
-                    {
-                      type: "array",
-                      key: "images",
-                      displayer: "Images",
-                      value: [
-                        {
-                          type: "object",
-                          key: "image-item",
-                          displayer: "Image",
-                          value: [
-                            {
-                              type: "image",
-                              key: "image",
-                              displayer: "Image",
-                              value:
-                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c35c8007399d002cb49454?alt=media",
-                            },
-                          ],
-                        },
-                        {
-                          type: "object",
-                          key: "image-item",
-                          displayer: "Image",
-                          value: [
-                            {
-                              type: "image",
-                              key: "image",
-                              displayer: "Image",
-                              value:
-                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c35c9e07399d002cb49466?alt=media",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-              ],
+              key: "caption",
+              displayer: "Caption",
+              value: "Gallery Image 1 Caption",
             },
           ],
         },
         {
           type: "object",
-          key: "nav-item",
-          displayer: "Nav Item",
+          key: "imageGallery",
+          displayer: "Image Gallery",
           value: [
             {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20c6a2f8a5b002ce65834?alt=media",
+            },
+            {
               type: "string",
-              key: "title",
-              displayer: "Nav Title",
-              value: "Seafood",
+              key: "caption",
+              displayer: "Caption",
+              value: "Gallery Image 2 Caption",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "imageGallery",
+          displayer: "Image Gallery",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20c962f8a5b002ce65840?alt=media",
             },
             {
-              type: "boolean",
-              key: "hasSubnav",
-              displayer: "Show Sub Navs?",
-              value: true,
+              type: "string",
+              key: "caption",
+              displayer: "Caption",
+              value: "Gallery Image 3 Caption",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "imageGallery",
+          displayer: "Image Gallery",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20cbc2f8a5b002ce6584c?alt=media",
             },
             {
-              type: "array",
-              key: "images",
-              displayer: "Images",
-              value: [
-                {
-                  type: "object",
-                  key: "image-item",
-                  displayer: "Image",
-                  value: [
-                    {
-                      type: "image",
-                      key: "image",
-                      displayer: "Image",
-                      value:
-                        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c35cc307399d002cb49472?alt=media",
-                    },
-                  ],
-                },
-              ],
+              type: "string",
+              key: "caption",
+              displayer: "Caption",
+              value: "Gallery Image 4 Caption",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "imageGallery",
+          displayer: "Image Gallery",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20cd82f8a5b002ce65858?alt=media",
             },
             {
-              type: "array",
-              key: "subnavItems",
-              displayer: "Sub Items",
-              value: [
-                {
-                  type: "object",
-                  key: "subnavItem",
-                  displayer: "Subnav Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "Fish",
-                    },
-                    {
-                      type: "array",
-                      key: "images",
-                      displayer: "Images",
-                      value: [
-                        {
-                          type: "object",
-                          key: "image-item",
-                          displayer: "Image",
-                          value: [
-                            {
-                              type: "image",
-                              key: "image",
-                              displayer: "Image",
-                              value:
-                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c35cea07399d002cb49488?alt=media",
-                            },
-                          ],
-                        },
-                        {
-                          type: "object",
-                          key: "image-item",
-                          displayer: "Image",
-                          value: [
-                            {
-                              type: "image",
-                              key: "image",
-                              displayer: "Image",
-                              value:
-                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c35d1107399d002cb494a8?alt=media",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "subnavItem",
-                  displayer: "Subnav Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "title",
-                      displayer: "Title",
-                      value: "Octopus",
-                    },
-                    {
-                      type: "array",
-                      key: "images",
-                      displayer: "Images",
-                      value: [
-                        {
-                          type: "object",
-                          key: "image-item",
-                          displayer: "Image",
-                          value: [
-                            {
-                              type: "image",
-                              key: "image",
-                              displayer: "Image",
-                              value:
-                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c35d4007399d002cb49503?alt=media",
-                            },
-                          ],
-                        },
-                        {
-                          type: "object",
-                          key: "image-item",
-                          displayer: "Image",
-                          value: [
-                            {
-                              type: "image",
-                              key: "image",
-                              displayer: "Image",
-                              value:
-                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c35d4e07399d002cb49516?alt=media",
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-              ],
+              type: "string",
+              key: "caption",
+              displayer: "Caption",
+              value: "Gallery Image 5 Caption",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "imageGallery",
+          displayer: "Image Gallery",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20cee2f8a5b002ce6586d?alt=media",
+            },
+            {
+              type: "string",
+              key: "caption",
+              displayer: "Caption",
+              value: "Gallery Image 6 Caption",
             },
           ],
         },
@@ -370,10 +148,36 @@ class ImageGallery4 extends BaseImageGallery {
 
     this.addProp({
       type: "number",
-      key: "itemsPerRow",
+      key: "itemCount",
       displayer: "Item Count in a Row",
       value: 3,
-      max: 4,
+    });
+
+    this.addProp({
+      type: "icon",
+      key: "closeIcon",
+      displayer: "Close Button Icon",
+      value: "RxCross1",
+    });
+
+    this.addProp({
+      type: "icon",
+      key: "nextIcon",
+      displayer: "Next Button Icon",
+      value: "GrCaretNext",
+    });
+
+    this.addProp({
+      type: "icon",
+      key: "prevIcon",
+      displayer: "Previous Button Icon",
+      value: "GrCaretPrevious",
+    });
+    this.addProp({
+      type: "boolean",
+      key: "imageIndex",
+      displayer: "Image Index Enabled",
+      value: true,
     });
     this.addProp({
       type: "number",
@@ -387,312 +191,166 @@ class ImageGallery4 extends BaseImageGallery {
       displayer: "More Image Count",
       value: 3
     })
-
     this.addProp(INPUTS.BUTTON("button", "Button", "Load More", null, null, null, "Primary"));
 
-    this.addProp({
-      type: "icon",
-      key: "close-icon",
-      displayer: "Close Icon",
-      value: "RxCross1",
-    });
-    this.addProp({
-      type: "icon",
-      key: "imageIcon",
-      displayer: "Image Icon",
-      value: "IoSearchOutline",
-    });
-    this.addProp({
-      type: "icon",
-      key: "nextIcon",
-      displayer: "Next Icon",
-      value: "HiArrowRight",
-    });
-    this.addProp({
-      type: "icon",
-      key: "prevIcon",
-      displayer: "Prev Icon",
-      value: "HiArrowLeft",
-    });
-
-
-    this.setComponentState("activeNav", 0);
-    this.setComponentState("activeSubnav", null);
-    this.setComponentState("focusedImage", null);
-    this.setComponentState("isFocused", false);
+    this.setComponentState("is_image_clicked", false);
+    this.setComponentState("clicked_image_index", 0);
     this.setComponentState("moreImages", 0);
-    document.addEventListener("keydown", this.handleKeyDown);
   }
 
   getName(): string {
-    return "Image Gallery 4";
+    return "Image Gallery 5";
   }
-  handleKeyDown = (event: KeyboardEvent) => {
+
+  handleImageClick(index: number) {
+    this.setComponentState("is_image_clicked", true);
+    this.setComponentState("clicked_image_index", index);
+  }
+
+  handleCloseClick() {
+    this.setComponentState("is_image_clicked", false);
+  }
+
+  handleNextImage() {
+    const galleries = this.getPropValue("gallery");
+    let currentIndex = this.getComponentState("clicked_image_index");
+    currentIndex = (currentIndex + 1) % galleries.length;
+    this.setComponentState("clicked_image_index", currentIndex);
+  }
+
+  handlePrevImage() {
+    const galleries = this.getPropValue("gallery");
+    let currentIndex = this.getComponentState("clicked_image_index");
+    currentIndex = (currentIndex - 1 + galleries.length) % galleries.length;
+    this.setComponentState("clicked_image_index", currentIndex);
+  }
+
+  handleKeyPress(event: KeyboardEvent) {
     switch (event.key) {
       case "ArrowLeft":
-        this.prevImage();
+        this.handlePrevImage();
         break;
       case "ArrowRight":
-        this.nextImage();
+        this.handleNextImage();
         break;
       case "Escape":
-        this.closeFocus();
+        this.handleCloseClick();
         break;
       default:
         break;
     }
-  };
-
-  handleSectionClick(index: number): void {
-    this.setComponentState("activeNav", index);
-    this.setComponentState("activeSubnav", null);
-    this.setComponentState("imageCount", this.getPropValue("imageCountInitial"));
-    this.setComponentState("moreImages", 0);
   }
-  handleSubSectionClick(index: number): void {
-    this.setComponentState("activeSubnav", index);
-    this.setComponentState("imageCount", this.getPropValue("imageCountInitial"));
-    this.setComponentState("moreImages", 0);
-  }
-
-
-  focusImage(index: number) {
-    this.setComponentState("focusedImage", index);
-    this.setComponentState("isFocused", true);
-  }
-
-  closeFocus() {
-    this.setComponentState("focusedImage", null);
-    this.setComponentState("isFocused", false);
-  }
-
-  makeArrayPure(arr: any[]): Image[] {
-    if (!arr?.length) return [];
-
-    return arr.filter((el) => el !== undefined);
-  }
-
-  getImages(): Image[] {
-    const activeNav: number = this.getComponentState("activeNav");
-    const activeSubnav: number = this.getComponentState("activeSubnav");
-    const navItems = this.castToObject<NavItem[]>("navItems");
-
-    if (!navItems || !navItems[activeNav]) return [];
-    let result: any[] = [];
-    result = navItems[activeNav]?.images;
-
-    if (typeof activeSubnav === "number") {
-      result = navItems[activeNav]?.subnavItems[activeSubnav]?.images;
-      return this.makeArrayPure(result);
-    }
-
-    navItems[activeNav].subnavItems.forEach((item) => {
-      result = result.concat(item.images);
-    });
-
-    return this.makeArrayPure(result);
-  }
-  changeImage = (direction: string) => {
-    const focusedImageIndex = this.getComponentState("focusedImage");
-    const currentGallery = this.getImages();
-    const galleryLength = currentGallery.length;
-    let newIndex;
-    if (direction === "prev") {
-      newIndex = (focusedImageIndex - 1 + galleryLength) % galleryLength;
-    } else if (direction === "next") {
-      newIndex = (focusedImageIndex + 1) % galleryLength;
-    }
-    this.setComponentState("focusedImage", newIndex);
-  };
-
-  prevImage = () => {
-    this.changeImage("prev");
-  };
-
-  nextImage = () => {
-    this.changeImage("next");
-  };
-
   handleButtonClick = () => {
     this.setComponentState("moreImages", this.getComponentState("moreImages") + this.getPropValue("imageCount"))
 
   };
   render() {
-    const itemsPerRow: number = this.getPropValue("itemsPerRow");
-    const activeNav: number = this.getComponentState("activeNav");
-    const activeSubnav: number = this.getComponentState("activeSubnav");
-    const navItems = this.castToObject<NavItem[]>("navItems");
-    const subnavItems = navItems[activeNav]?.subnavItems;
-    const showActiveNavSubnavs = navItems[activeNav]?.hasSubnav;
-    const galleryItems = this.getImages();
+    const galleries = this.castToObject<GalleryItem[]>("gallery");
+    const isImageClicked = this.getComponentState("is_image_clicked");
+    const clickedImageIndex = this.getComponentState("clicked_image_index");
+    const nextIcon = this.getPropValue("nextIcon");
+    const prevIcon = this.getPropValue("prevIcon");
+    const imageIndex = this.getPropValue("imageIndex");
+    const closeIcon = this.getPropValue("closeIcon");
     if (this.getComponentState("imageCount") != this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"))
       this.setComponentState("imageCount", this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"));
 
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container
+        className={this.decorateCSS("container")}
+        ref={this.imageGalleryRef}
+        tabIndex={0}
+        onKeyDown={this.handleKeyPress}
+      >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("gallery-wrapper")}>
-            {(navItems?.length > 0 || subnavItems?.length > 0) && (
-              <Base.VerticalContent className={this.decorateCSS("gallery-nav")}>
-                {navItems?.length > 0 && (
-                  <div
-                    className={`${this.decorateCSS("nav-list")} ${this.decorateCSS("hide-scrollbar")}`}
-                  >
-                    {navItems?.map((item: NavItem, index: number) => {
-                      if (!this.castToString(item.title)) return null;
-                      return (
-                        <div
-                          key={index}
-                          className={this.decorateCSS("list-item")}
-                        >
-                          {this.castToString(item.title) && (
-                            <button
-                              className={`${this.decorateCSS("button")} ${activeNav === index ? this.decorateCSS("active") : ""}`}
-                              onClick={() => {
-                                this.handleSectionClick(index);
-                              }}
-                            >
-                              {item.title}
-                            </button>
-                          )}
-                        </div>
-                      );
-                    })}
-                  </div>
-                )}
-                {showActiveNavSubnavs && subnavItems?.length > 0 && (
-                  <div
-                    className={`${this.decorateCSS("subnav-list")} ${this.decorateCSS("hide-scrollbar")}`}
-                  >
-                    {(subnavItems || []).map(
-                      (item: SubnavItem, index: number) => {
-                        if (!this.castToString(item.title)) return null;
-                        return (
-                          <div
-                            key={index}
-                            className={this.decorateCSS("list-item")}
-                          >
-                            {this.castToString(item.title) && (
-                              <button
-                                className={`${this.decorateCSS("button")} ${activeSubnav === index ? this.decorateCSS("active") : ""}`}
-                                onClick={() => {
-                                  this.handleSubSectionClick(index);
-                                }}
-                              >
-                                {item.title}
-                              </button>
-                            )}
-                          </div>
-                        );
-                      },
-                    )}
-                  </div>
-                )}
-              </Base.VerticalContent>
-            )}
-            {galleryItems?.length > 0 && (
-              <Base.ListGrid gridCount={{ pc: itemsPerRow }} className={this.decorateCSS("gallery-container")}>
-                {galleryItems.slice(0, this.getComponentState("imageCount")).map((item: Image, index: number) => {
-                  if (!item.image) return null;
-                  return (
-                    <div
-                      key={index}
-                      className={this.decorateCSS("gallery-item")}
-
-                    >
-                      {item.image && (
-                        <div className={this.decorateCSS("gallery-image-container")}>
-                          <img
-                            src={item.image}
-                            alt={item.image}
-                            className={this.decorateCSS("gallery-image")}
-                          ></img>
-                          <div className={this.decorateCSS("gallery-image-overlay")}
-                            onClick={() => {
-                              this.focusImage(index)
-                            }}></div>
-                        </div>
-
-                      )}
-                      {this.getPropValue("imageIcon") && (
-                        <div className={this.decorateCSS("icon-overlay")} onClick={() => {
-                          this.focusImage(index)
-                        }}>
-                          <ComposerIcon
-                            name={this.getPropValue("imageIcon")}
-                            propsIcon={{ className: this.decorateCSS("icon") }}
-
-                          />
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
-              </Base.ListGrid>
-            )}
-            {(this.getComponentState("imageCount") < galleryItems.length) && (
-              <div className={this.decorateCSS("button-wrapper")}>
-                <Base.Button className={this.decorateCSS("button")}
-                  buttonType={button.type}
-                  onClick={this.handleButtonClick}>
-                  {button.text}
-                </Base.Button>
-              </div>
-            )}
-
-          </div>
-
-          {galleryItems[this.getComponentState("focusedImage")]?.image && (
-            <div
-              className={this.getComponentState("isFocused") ? this.decorateCSS("gallery-item-fullscreen") : ""}
-              onClick={() => {
-                this.closeFocus();
-              }}
-            >
-              {this.getPropValue("nextIcon") && (
-                <div className={this.decorateCSS("right-arrow")} onClick={this.nextImage}>
-                  <ComposerIcon
-                    name={this.getPropValue("nextIcon")}
-                    propsIcon={{ className: this.decorateCSS("icon") }}
-
-                  />
-                </div>
-              )}
-              {this.getPropValue("prevIcon") && (
-                <div className={this.decorateCSS("left-arrow")} onClick={this.prevImage}>
-                  <ComposerIcon
-                    name={this.getPropValue("prevIcon")}
-                    propsIcon={{ className: this.decorateCSS("icon") }}
-                  />
-                </div>
-              )}
-              <div className={this.decorateCSS("fullscreen-container")}>
-                <div className={this.decorateCSS("focused-image-container")} onClick={(e) => e.stopPropagation()}>
-                  {galleryItems[this.getComponentState("focusedImage")].image && (
+          <Base.ListGrid
+            className={this.decorateCSS("images")}
+            gridCount={{ pc: this.getPropValue("itemCount") }}
+          >
+            {galleries.slice(0, this.getComponentState("imageCount")).map((galleryItem: any, index: number) => {
+              return (
+                <div className={this.decorateCSS("image-container")}>
+                  {galleryItem.image && (
                     <img
-                      className={this.decorateCSS("focused-image")}
-                      src={
-                        galleryItems[this.getComponentState("focusedImage")].image
-                      }
-                      alt={galleryItems[this.getComponentState("focusedImage")].image}
+                      src={galleryItem.image}
+                      alt={galleryItem.image}
+                      className={this.decorateCSS("image")}
+                      onClick={() => this.handleImageClick(index)}
                     />
                   )}
-                  {this.getPropValue("close-icon") && (
-                    <button
-                      onClick={() => {
-                        this.closeFocus();
-                      }}
-                      className={this.decorateCSS("close-button")}
-                    >
-                      <ComposerIcon
-                        propsIcon={{ className: this.decorateCSS("close-icon") }}
-                        name={this.getPropValue("close-icon")}
-                      />
+                </div>
+              );
+            })}
+          </Base.ListGrid>
+          {(galleries.length > this.getComponentState("imageCount")) && (
+            <div className={this.decorateCSS("button-wrapper")}>
+              <Base.Button className={this.decorateCSS("button")} buttonType={button.type} onClick={this.handleButtonClick} >
+                {button.text}
+              </Base.Button>
+            </div>
+          )}
+          {isImageClicked && (
+            <div
+              className={this.decorateCSS("overlay")}
+              onClick={() => this.handleCloseClick()}
+            >
+              <div className={this.decorateCSS("overlay-content")}>
+                <div className={this.decorateCSS("middle-content")}>
+                  {closeIcon && (
+                    <button className={this.decorateCSS("image-close-button")}>
+                      <ComposerIcon name={closeIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
                     </button>
                   )}
+                  {galleries[clickedImageIndex].image && (
+                    <div className={this.decorateCSS("large-image-container")}>
+                      {prevIcon && (
+                        <button
+                          className={this.decorateCSS("prev-button")}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            this.handlePrevImage();
+                          }}
+                        >
+                          <ComposerIcon name={prevIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                        </button>
+                      )}
+                      <img
+                        src={galleries[clickedImageIndex].image}
+                        alt={galleries[clickedImageIndex].image}
+                        className={this.decorateCSS("large-image")}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          this.handleNextImage();
+                        }}
+                      />
+                      {nextIcon && (
+                        <button
+                          className={this.decorateCSS("next-button")}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            this.handleNextImage();
+                          }}
+                        >
+                          <ComposerIcon name={nextIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                        </button>
+                      )}
+                    </div>
+
+                  )}
+                  <div className={this.decorateCSS("caption-container")}>
+                    {imageIndex && (
+                      <div className={this.decorateCSS("image-caption")}>
+                        {clickedImageIndex + 1} of {galleries.length}
+                      </div>
+                    )}
+                    <div className={this.decorateCSS("gallery-image")}>
+                      {galleries[clickedImageIndex].caption}
+                    </div>
+                  </div>
                 </div>
+
               </div>
             </div>
           )}
