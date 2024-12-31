@@ -1,164 +1,476 @@
+import { ReactNode } from "react";
 import { BaseNavigator } from "../../EditorComponent";
-import React, { useState } from "react";
+import React from "react";
 import styles from "./navbar6.module.scss";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { Base } from "composer-tools/composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import ComposerLanguage from "composer-tools/composer-base-components/language/language";
 
-const menuType = {
-  selectItems: ["Dropdown", "Normal"],
-};
-
-type NavbarSubSection = {
-  text: JSX.Element;
-  link: string;
+interface Logo {
   image: string;
-};
+  imageLink: string;
+  alt: string;
+}
 
-type Navbar = {
-  label: JSX.Element;
-  menu_type: any;
+interface Icon {
   icon: string;
-  link: string;
-  section: NavbarSubSection[];
-};
+  page: string;
+}
+
+interface MenuItem {
+  title: string;
+  navigate_to: string;
+  menuType: string;
+  sub_items: MenuItem[];
+}
 
 class Navbar6 extends BaseNavigator {
-  getName(): string {
-    return "Navbar 6";
-  }
-
   constructor(props?: any) {
     super(props, styles);
 
+    this.addProp(INPUTS.NAVBAR_POSITION("position", "Position"));
+
     this.addProp({
-      type: "boolean",
-      key: "sticky",
-      displayer: "Is sticky",
-      value: false,
+      type: "object",
+      key: "defaultLogo",
+      displayer: "Default Logo",
+      value: [
+        {
+          type: "image",
+          key: "image",
+          value:
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676a9ac20655f8002caba0b7?alt=media",
+          displayer: "Image",
+        },
+        {
+          type: "page",
+          key: "navigateTo",
+          value: "",
+          displayer: "Navigate To",
+        },
+        {
+          type: "string",
+          key: "alt",
+          value: "Logo",
+          displayer: "Alt",
+        },
+      ],
     });
 
     this.addProp({
-      type: "image",
-      key: "center-image",
-      displayer: "Center Image",
-      value: "https://dstal.com.au/wp-content/uploads/2021/09/logoipsum.png",
+      type: "object",
+      key: "absoluteLogo",
+      displayer: "Absolute Logo",
+      value: [
+        {
+          type: "image",
+          key: "image",
+          value:
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6762cc190655f8002ca8c66b?alt=media",
+          displayer: "Image",
+        },
+        {
+          type: "page",
+          key: "navigateTo",
+          value: "",
+          displayer: "Navigate To",
+        },
+        {
+          type: "string",
+          key: "alt",
+          value: "Logo",
+          displayer: "Alt",
+        },
+      ],
     });
 
     this.addProp({
       type: "array",
-      key: "extendable",
-      displayer: "Extendable",
+      key: "icons",
+      displayer: "Icons",
       value: [
         {
           type: "object",
           key: "item",
-          displayer: "Main Text",
+          displayer: "Item",
+          value: [
+            {
+              type: "icon",
+              key: "icon",
+              value: "BiLogoFacebookCircle",
+              displayer: "Icon",
+            },
+            {
+              type: "page",
+              key: "page",
+              displayer: "Page",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "image",
+              key: "icon",
+              value: "FaTwitter",
+              displayer: "Icon",
+            },
+            {
+              type: "page",
+              key: "page",
+              displayer: "Page",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "image",
+              key: "icon",
+              value: "FaInstagram",
+              displayer: "Icon",
+            },
+            {
+              type: "page",
+              key: "page",
+              displayer: "Page",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "image",
+              key: "icon",
+              value: "FaLinkedin",
+              displayer: "Icon",
+            },
+            {
+              type: "page",
+              key: "page",
+              displayer: "Page",
+              value: "",
+            },
+          ],
+        },
+      ],
+    });
+
+    this.addProp({
+      type: "array",
+      key: "menuItems",
+      displayer: "Menu",
+      value: [
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
           value: [
             {
               type: "string",
-              key: "label",
-              value: "HOME",
-              displayer: "Text",
+              key: "title",
+              displayer: "Title",
+              value: "Catalog",
+            },
+            {
+              type: "page",
+              key: "navigate_to",
+              displayer: "Navigate to",
+              value: "",
             },
             {
               type: "select",
-              key: "menu_type",
+              key: "menuType",
               displayer: "Type",
               value: "Dropdown",
-              additionalParams: menuType,
-            },
-            {
-              type: "icon",
-              key: "icon",
-              displayer: "Dropdown Icon",
-              value: "FaChevronDown",
-            },
-            {
-              type: "page",
-              key: "link",
-              value: "",
-              displayer: "Navigate To",
+              additionalParams: { selectItems: ["Dropdown", "Normal"] },
             },
             {
               type: "array",
-              key: "section",
-              displayer: "Extendable Section",
+              key: "sub_items",
+              displayer: "Sub Items",
               value: [
                 {
                   type: "object",
-                  key: "item1",
-                  displayer: "Extendable Section Item",
+                  key: "sub_item",
+                  displayer: "Sub Item",
                   value: [
                     {
                       type: "string",
-                      key: "text",
-                      value: "Creative 01",
-                      displayer: "Info Text 1",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Fashion Home",
                     },
                     {
                       type: "page",
-                      key: "link",
+                      key: "navigate_to",
+                      displayer: "Navigate to",
                       value: "",
-                      displayer: "Navigate To",
                     },
                     {
-                      type: "image",
-                      key: "image",
-                      value:
-                        "https://plus.unsplash.com/premium_photo-1681666713641-8d722b681edc?q=80&w=1820&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                      displayer: "Image",
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate to",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
                     },
                   ],
                 },
                 {
                   type: "object",
-                  key: "item1",
-                  displayer: "Extendable Section Item",
+                  key: "sub_item",
+                  displayer: "Sub Item",
                   value: [
                     {
                       type: "string",
-                      key: "text",
-                      value: "Creative 02",
-                      displayer: "Info Text 2",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Winery Home",
                     },
                     {
                       type: "page",
-                      key: "link",
+                      key: "navigate_to",
+                      displayer: "Navigate to",
                       value: "",
-                      displayer: "Navigate To",
                     },
                     {
-                      type: "image",
-                      key: "image",
-                      value:
-                        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                      displayer: "Image",
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate to",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
                     },
                   ],
                 },
                 {
                   type: "object",
-                  key: "item1",
-                  displayer: "Extendable Section Item",
+                  key: "sub_item",
+                  displayer: "Sub Item",
                   value: [
                     {
                       type: "string",
-                      key: "text",
-                      value: "Creative 03",
-                      displayer: "Info Text 3",
+                      key: "title",
+                      displayer: "Title",
+                      value: "New Arrivals",
                     },
                     {
                       type: "page",
-                      key: "link",
+                      key: "navigate_to",
+                      displayer: "Navigate to",
                       value: "",
-                      displayer: "Navigate To",
                     },
                     {
-                      type: "image",
-                      key: "image",
-                      value:
-                        "https://plus.unsplash.com/premium_photo-1681566925294-7ff6eba5a9c2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                      displayer: "Image",
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate to",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "sub_item",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Men & Women",
+                    },
+                    {
+                      type: "page",
+                      key: "navigate_to",
+                      displayer: "Navigate to",
+                      value: "",
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate to",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "sub_item",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Trend Collection",
+                    },
+                    {
+                      type: "page",
+                      key: "navigate_to",
+                      displayer: "Navigate to",
+                      value: "",
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate to",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "sub_item",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Creative",
+                    },
+                    {
+                      type: "page",
+                      key: "navigate_to",
+                      displayer: "Navigate to",
+                      value: "",
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate to",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
                     },
                   ],
                 },
@@ -169,113 +481,74 @@ class Navbar6 extends BaseNavigator {
         {
           type: "object",
           key: "item",
-          displayer: "Main Text",
+          displayer: "Item",
           value: [
             {
               type: "string",
-              key: "label",
-              value: "BLOG",
-              displayer: "Text",
-            },
-            {
-              type: "select",
-              key: "menu_type",
-              displayer: "Type",
-              value: "Normal",
-              additionalParams: menuType,
-            },
-            {
-              type: "icon",
-              key: "icon",
-              displayer: "Dropdown Icon",
-              value: "FaChevronDown",
+              key: "title",
+              displayer: "Title",
+              value: "About Us",
             },
             {
               type: "page",
-              key: "link",
+              key: "navigate_to",
+              displayer: "Navigate to",
               value: "",
-              displayer: "Navigate To",
+            },
+            {
+              type: "select",
+              key: "menuType",
+              displayer: "Type",
+              value: "Normal",
+              additionalParams: { selectItems: ["Dropdown", "Normal"] },
             },
             {
               type: "array",
-              key: "section",
-              displayer: "Extendable Section",
+              key: "sub_items",
+              displayer: "Sub Items",
               value: [
                 {
                   type: "object",
-                  key: "item1",
-                  displayer: "Extendable Section Item",
+                  key: "sub_item",
+                  displayer: "Sub Item",
                   value: [
                     {
                       type: "string",
-                      key: "text",
-                      value: "Creative 01",
-                      displayer: "Info Text 1",
+                      key: "title",
+                      displayer: "Title",
+                      value: "SUB ITEM1",
                     },
                     {
                       type: "page",
-                      key: "link",
+                      key: "navigate_to",
+                      displayer: "Navigate to",
                       value: "",
-                      displayer: "Navigate To",
                     },
                     {
-                      type: "image",
-                      key: "image",
-                      value:
-                        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                      displayer: "Image",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "item2",
-                  displayer: "Extendable Section Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "text",
-                      value: "Creative 02",
-                      displayer: "Info Text 2",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      value: "",
-                      displayer: "Navigate To",
-                    },
-                    {
-                      type: "image",
-                      key: "image",
-                      value:
-                        "https://plus.unsplash.com/premium_photo-1681566925294-7ff6eba5a9c2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                      displayer: "Image",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "item3",
-                  displayer: "Extendable Section Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "text",
-                      value: "Creative 03",
-                      displayer: "Info Text 3",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      value: "",
-                      displayer: "Navigate To",
-                    },
-                    {
-                      type: "image",
-                      key: "image",
-                      value:
-                        "https://plus.unsplash.com/premium_photo-1681666713641-8d722b681edc?q=80&w=1820&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                      displayer: "Image",
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate to",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
                     },
                   ],
                 },
@@ -286,113 +559,429 @@ class Navbar6 extends BaseNavigator {
         {
           type: "object",
           key: "item",
-          displayer: "Main Text",
+          displayer: "Item",
           value: [
             {
               type: "string",
-              key: "label",
-              value: "CONTACT",
-              displayer: "Text",
-            },
-            {
-              type: "select",
-              key: "menu_type",
-              displayer: "Type",
-              value: "Normal",
-              additionalParams: menuType,
-            },
-            {
-              type: "icon",
-              key: "icon",
-              displayer: "Dropdown Icon",
-              value: "FaChevronDown",
+              key: "title",
+              displayer: "Title",
+              value: "Blog",
             },
             {
               type: "page",
-              key: "link",
+              key: "navigate_to",
+              displayer: "Navigate to",
               value: "",
-              displayer: "Navigate To",
+            },
+            {
+              type: "select",
+              key: "menuType",
+              displayer: "Type",
+              value: "Normal",
+              additionalParams: { selectItems: ["Dropdown", "Normal"] },
             },
             {
               type: "array",
-              key: "section",
-              displayer: "Extendable Section",
+              key: "sub_items",
+              displayer: "Sub Items",
               value: [
                 {
                   type: "object",
-                  key: "item1",
-                  displayer: "Extendable Section Item",
+                  key: "sub_item",
+                  displayer: "Sub Item",
                   value: [
                     {
                       type: "string",
-                      key: "text",
-                      value: "Creative 01",
-                      displayer: "Info Text 1",
+                      key: "title",
+                      displayer: "Title",
+                      value: "ABOUT US",
                     },
                     {
                       type: "page",
-                      key: "link",
+                      key: "navigate_to",
+                      displayer: "Navigate to",
                       value: "",
-                      displayer: "Navigate To",
                     },
                     {
-                      type: "image",
-                      key: "image",
-                      value:
-                        "https://plus.unsplash.com/premium_photo-1681666713641-8d722b681edc?q=80&w=1820&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                      displayer: "Image",
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate to",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
                     },
                   ],
                 },
                 {
                   type: "object",
-                  key: "item2",
-                  displayer: "Extendable Section Item",
+                  key: "sub_item",
+                  displayer: "Sub Item",
                   value: [
                     {
                       type: "string",
-                      key: "text",
-                      value: "Creative 02",
-                      displayer: "Info Text 2",
+                      key: "title",
+                      displayer: "Title",
+                      value: "LOOKBOOK",
                     },
                     {
                       type: "page",
-                      key: "link",
+                      key: "navigate_to",
+                      displayer: "Navigate to",
                       value: "",
-                      displayer: "Navigate To",
                     },
                     {
-                      type: "image",
-                      key: "image",
-                      value:
-                        "https://plus.unsplash.com/premium_photo-1681666713641-8d722b681edc?q=80&w=1820&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                      displayer: "Image",
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate to",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
                     },
                   ],
                 },
                 {
                   type: "object",
-                  key: "item3",
-                  displayer: "Extendable Section Item",
+                  key: "sub_item",
+                  displayer: "Sub Item",
                   value: [
                     {
                       type: "string",
-                      key: "text",
-                      value: "Creative 03",
-                      displayer: "Info Text 3",
+                      key: "title",
+                      displayer: "Title",
+                      value: "TYPOGRAPHY",
                     },
                     {
                       type: "page",
-                      key: "link",
+                      key: "navigate_to",
+                      displayer: "Navigate to",
                       value: "",
-                      displayer: "Navigate To",
                     },
                     {
-                      type: "image",
-                      key: "image",
-                      value:
-                        "https://plus.unsplash.com/premium_photo-1681666713641-8d722b681edc?q=80&w=1820&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                      displayer: "Image",
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate to",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "sub_item",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "SHORTCODES",
+                    },
+                    {
+                      type: "page",
+                      key: "navigate_to",
+                      displayer: "Navigate to",
+                      value: "",
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate to",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "sub_item",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "COMING SOON",
+                    },
+                    {
+                      type: "page",
+                      key: "navigate_to",
+                      displayer: "Navigate to",
+                      value: "",
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate to",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "sub_item",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "PAGE 404",
+                    },
+                    {
+                      type: "page",
+                      key: "navigate_to",
+                      displayer: "Navigate to",
+                      value: "",
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate to",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Contacts",
+            },
+            {
+              type: "page",
+              key: "navigate_to",
+              displayer: "Navigate to",
+              value: "",
+            },
+            {
+              type: "select",
+              key: "menuType",
+              displayer: "Type",
+              value: "Mormal",
+              additionalParams: { selectItems: ["Dropdown", "Normal"] },
+            },
+            {
+              type: "array",
+              key: "sub_items",
+              displayer: "Sub Items",
+              value: [
+                {
+                  type: "object",
+                  key: "sub_item",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "BLOG POSTS",
+                    },
+                    {
+                      type: "page",
+                      key: "navigate_to",
+                      displayer: "Navigate to",
+                      value: "",
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate to",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "sub_item",
+                  displayer: "Sub Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "MASONARY",
+                    },
+                    {
+                      type: "page",
+                      key: "navigate_to",
+                      displayer: "Navigate to",
+                      value: "",
+                    },
+                    {
+                      type: "select",
+                      key: "menuType",
+                      displayer: "Type",
+                      value: "Normal",
+                      additionalParams: { selectItems: ["Dropdown", "Normal"] },
+                    },
+                    {
+                      type: "array",
+                      key: "sub_items",
+                      displayer: "Sub Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "sub_item",
+                          displayer: "Sub Item",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "",
+                            },
+                            {
+                              type: "page",
+                              key: "navigate_to",
+                              displayer: "Navigate to",
+                              value: "",
+                            },
+                          ],
+                        },
+                      ],
                     },
                   ],
                 },
@@ -403,331 +992,451 @@ class Navbar6 extends BaseNavigator {
       ],
     });
 
+    this.addProp({
+      type: "icon",
+      key: "dropdownIcon",
+      displayer: "Dropdown Icon",
+      value: "MdArrowDropDown",
+    });
+    this.addProp({
+      type: "icon",
+      key: "rightIcon",
+      displayer: "Right Arrow Icon",
+      value: "MdKeyboardArrowRight",
+    });
+
+    this.addProp({
+      type: "icon",
+      key: "menuIcon",
+      displayer: "Menu Icon",
+      value: "FaBars",
+    });
+
+    this.addProp({
+      type: "icon",
+      key: "closeIcon",
+      displayer: "Close Icon",
+      value: "IoMdClose",
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "divider",
+      displayer: "Divider",
+      value: true,
+    });
+
+    this.state["componentProps"]["isScrolled"] = false;
+    this.state["componentProps"]["hamburgerNavActive"] = false;
     this.state["componentProps"]["navActive"] = false;
-    this.state["componentProps"]["dropdownActive"] = false;
+    this.state["componentProps"]["subNavActiveIndex"] = null;
+    this.state["componentProps"]["subNavActive"] = null;
+    this.state["componentProps"]["changeBackground"] = false;
+  }
+
+  getName(): string {
+    return "Navbar 6";
   }
 
   navClick() {
     let value: boolean = this.getComponentState("navActive");
     this.setComponentState("navActive", !value);
-    this.setComponentState("navClosing", value);
   }
 
-  dropdownClick(index: number, activeValue: boolean) {
-    let value: boolean = this.getComponentState("dropdownActive");
-    this.setComponentState("activeDropdownIndex", index);
-    if (activeValue) {
-      this.setComponentState("dropdownActive", !value);
+  componentDidMount() {
+    window.addEventListener("scroll", this.handleScroll);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.handleScroll);
+  }
+
+  handleScroll = () => {
+    const isScrolled = window.scrollY > 50;
+    this.setComponentState("isScrolled", isScrolled);
+  };
+
+  hamburgerNavClick() {
+    this.setComponentState("hamburgerNavActive", true);
+    this.setComponentState("changeBackground", true);
+  }
+
+  handleCloseMenu() {
+    this.setComponentState("hamburgerNavActive", false);
+    setTimeout(() => {
+      this.setComponentState("changeBackground", false);
+    }, 300);
+  }
+
+  navCLick(index: number) {
+    const currentValue = this.getComponentState("subNavActiveIndex");
+    if (currentValue === index) {
+      this.setComponentState("navActive", !this.getComponentState("navActive"));
+      this.setComponentState("subNavActiveIndex", null);
+      this.setComponentState("subNavActive", null);
     } else {
-      this.setComponentState("dropdownActive", true);
+      this.setComponentState("subNavActiveIndex", null);
+      this.setComponentState("navActive", false);
+      this.setComponentState("subNavActive", null);
+
+      this.setComponentState("navActive", true);
+      this.setComponentState("subNavActiveIndex", index);
     }
   }
 
-  handleMouseEnter(index: number) {
-    this.setComponentState("is-dropdown-open", true);
-    this.setComponentState("dropdown-active-index", index);
-  }
+  subNavCLick(index: any) {
+    const currentValue = this.getComponentState("subNavActive");
+    if (currentValue === index) {
+      this.setComponentState("subNavActive", null);
+    } else {
+      this.setComponentState("subNavActive", null);
 
-  handleMouseLeave() {
-    this.setComponentState("is-dropdown-open", false);
-    this.setComponentState("dropdown-active-index", null);
+      this.setComponentState("subNavActive", index);
+    }
   }
 
   render() {
-    const extendable = this.castToObject<Navbar[]>("extendable") ?? [];
-    const navActive = this.getComponentState("navActive");
+    const defaultLogo = this.castToObject<Logo>("defaultLogo");
+    const absoluteLogo = this.castToObject<Logo>("absoluteLogo");
+    const position = this.getPropValue("position");
+    const isScrolled = this.getComponentState("isScrolled");
+    const transparentBackground =
+      (position === "Sticky Transparent" || position === "Absolute") &&
+      !isScrolled;
 
-    const dropdownActive = this.getComponentState("dropdownActive");
-    const activeDropdownIndex = this.getComponentState("activeDropdownIndex");
+    const hamburgerNavActive = this.getComponentState("hamburgerNavActive");
+
+    const currentLogo =
+      transparentBackground && !hamburgerNavActive ? absoluteLogo : defaultLogo;
+    const icons = this.castToObject<Icon[]>("icons");
+    const menuItems = this.castToObject<MenuItem[]>("menuItems");
+
+    const changeBackground = this.getComponentState("changeBackground");
+    const divider = this.getPropValue("divider");
 
     return (
-      <>
-        <div
-          className={`${this.decorateCSS("container")} ${
-            this.getPropValue("sticky") ? this.decorateCSS("sticky") : ""
+      <Base.Navigator.Container
+        position={position}
+        positionContainer={
+          changeBackground ? this.decorateCSS("filledBackground") : ""
+        }
+      >
+        <Base.MaxContent
+          className={`${this.decorateCSS("maxContent")} ${
+            transparentBackground
+              ? this.decorateCSS("transparentBackground")
+              : ""
           }`}
         >
-          <div className={this.decorateCSS("max-content")}>
-            <div className={this.decorateCSS("content")}>
-              <div className={this.decorateCSS("content-left")}>
-                <img src={this.getPropValue("center-image")} alt="logo" />
-              </div>
-
-              <div className={this.decorateCSS("content-right")}>
-                {
-                  <div
-                    className={`${this.decorateCSS("navbar-child")} ${
-                      navActive
-                        ? this.decorateCSS("active")
-                        : this.decorateCSS("closing")
-                    }`}
-                  >
-                    {extendable.map((item: Navbar, index: number) => {
-                      const hasValue = this.castToString(item.label);
-                      const isActive = activeDropdownIndex === index;
-
-                      return (
-                        <>
-                          {hasValue && (
-                            <>
-                              {item?.menu_type === "Dropdown" ? (
-                                <>
-                                  {window.innerWidth < 769 ? (
-                                    <>
-                                      <div
-                                        className={this.decorateCSS(
-                                          "right-section"
-                                        )}
-                                      >
-                                        <h3
-                                          className={this.decorateCSS(
-                                            "extendable"
-                                          )}
-                                        >
-                                          <ComposerLink
-                                            path={item?.link}
-                                            key={index}
-                                          >
-                                            <div
-                                              className={this.decorateCSS(
-                                                "dropdown-content-tablet-telephone"
-                                              )}
-                                            >
-                                              {item?.label}
-                                            </div>
-                                          </ComposerLink>
-                                        </h3>
-                                        <div
-                                          className={
-                                            dropdownActive && isActive
-                                              ? this.decorateCSS("rotate")
-                                              : ""
-                                          }
-                                          onClick={() =>
-                                            this.dropdownClick(index, isActive)
-                                          }
-                                        >
-                                          <ComposerIcon name={item?.icon} />
-                                        </div>
-                                      </div>
-                                      {item?.section.length > 0 && (
-                                        <ul
-                                          className={this.decorateCSS(
-                                            `${
-                                              dropdownActive && isActive
-                                                ? ""
-                                                : "ul-none"
-                                            }`
-                                          )}
-                                        >
-                                          {item?.section.map(
-                                            (
-                                              dropdownItem: NavbarSubSection,
-                                              dropdownIndex: number
-                                            ) => {
-                                              const text = this.castToString(
-                                                dropdownItem?.text
-                                              );
-                                              const url = dropdownItem?.link;
-
-                                              return (
-                                                <div
-                                                  className={`${this.decorateCSS(
-                                                    "right-slider"
-                                                  )} ${this.decorateCSS(
-                                                    dropdownActive && isActive
-                                                      ? "active-child"
-                                                      : "inactive"
-                                                  )}`}
-                                                >
-                                                  {text &&
-                                                    dropdownActive &&
-                                                    isActive && (
-                                                      <li key={index}>
-                                                        <ComposerLink
-                                                          path={url}
-                                                          isFullWidth={true}
-                                                        >
-                                                          {text}
-                                                        </ComposerLink>
-                                                      </li>
-                                                    )}
-                                                </div>
-                                              );
-                                            }
-                                          )}
-                                        </ul>
-                                      )}
-                                    </>
-                                  ) : (
-                                    <>
-                                      {item?.label && (
-                                        <h3
-                                          className={this.decorateCSS(
-                                            "extendable"
-                                          )}
-                                          onMouseEnter={() =>
-                                            this.handleMouseEnter(index)
-                                          }
-                                          onMouseLeave={() =>
-                                            this.handleMouseLeave()
-                                          }
-                                        >
-                                          <div
-                                            className={`${this.decorateCSS(
-                                              "extendable-title-content"
-                                            )}
-                                            ${
-                                              this.getComponentState(
-                                                "is-dropdown-open"
-                                              ) &&
-                                              this.getComponentState(
-                                                "dropdown-active-index"
-                                              ) === index &&
-                                              this.decorateCSS("active")
-                                            }`}
-                                          >
-                                            <ComposerLink path={item?.link}>
-                                              {item?.label}
-                                            </ComposerLink>
-                                            {item?.section.length > 0 && (
-                                              <ComposerIcon name={item?.icon} />
-                                            )}
-                                          </div>
-
-                                          {item?.section.length > 0 &&
-                                            this.getComponentState(
-                                              "dropdown-active-index"
-                                            ) === index && (
-                                              <div
-                                                className={this.decorateCSS(
-                                                  "dropdown-content"
-                                                )}
-                                              >
-                                                <div
-                                                  className={this.decorateCSS(
-                                                    "container-border"
-                                                  )}
-                                                >
-                                                  {item?.section?.map(
-                                                    (
-                                                      dropdownItem: NavbarSubSection,
-                                                      index: number
-                                                    ) => {
-                                                      const text =
-                                                        dropdownItem?.text;
-                                                      const url =
-                                                        dropdownItem?.link;
-                                                      const image =
-                                                        dropdownItem?.image;
-
-                                                      if (image || text) {
-                                                        return (
-                                                          <>
-                                                            {image ? (
-                                                              <ComposerLink
-                                                                path={url}
-                                                                key={index}
-                                                              >
-                                                                <div
-                                                                  className={this.decorateCSS(
-                                                                    "image-container"
-                                                                  )}
-                                                                >
-                                                                  <div
-                                                                    className={this.decorateCSS(
-                                                                      "image-overlay"
-                                                                    )}
-                                                                  >
-                                                                    {image && (
-                                                                      <img
-                                                                        src={
-                                                                          image
-                                                                        }
-                                                                        alt=""
-                                                                        className={this.decorateCSS(
-                                                                          "image"
-                                                                        )}
-                                                                      />
-                                                                    )}
-                                                                    <div
-                                                                      className={this.decorateCSS(
-                                                                        "text-overlay"
-                                                                      )}
-                                                                    >
-                                                                      {text}
-                                                                    </div>
-                                                                  </div>
-                                                                </div>
-                                                              </ComposerLink>
-                                                            ) : (
-                                                              <>
-                                                                {this.castToString(
-                                                                  text
-                                                                ) && (
-                                                                  <ComposerLink
-                                                                    path={url}
-                                                                  >
-                                                                    <div
-                                                                      className={this.decorateCSS(
-                                                                        "no-image-text"
-                                                                      )}
-                                                                    >
-                                                                      {text}
-                                                                    </div>
-                                                                  </ComposerLink>
-                                                                )}
-                                                              </>
-                                                            )}
-                                                          </>
-                                                        );
-                                                      }
-
-                                                      return null;
-                                                    }
-                                                  )}
-                                                </div>
-                                              </div>
-                                            )}
-                                        </h3>
-                                      )}
-                                    </>
-                                  )}
-                                </>
-                              ) : (
-                                <h3>
-                                  <ComposerLink key={index} path={item?.link}>
-                                    <div>{item?.label}</div>
-                                  </ComposerLink>
-                                </h3>
-                              )}
-                            </>
-                          )}
-                        </>
-                      );
-                    })}
-                  </div>
-                }
-
+          {menuItems.length > 0 && (
+            <nav className={this.decorateCSS("pcNavbar")}>
+              {menuItems.map((item: any, index: any) => (
                 <div
-                  className={this.decorateCSS("hamburger-container")}
-                  onClick={() => this.navClick()}
+                  key={index}
+                  className={this.decorateCSS("menuItemContainer")}
                 >
-                  <span
-                    className={`${this.decorateCSS("hamburger")} ${
-                      navActive ? this.decorateCSS("open") : ""
-                    }`}
-                  >
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </span>
+                  <ComposerLink path={item.navigate_to}>
+                    <div className={this.decorateCSS("menuItem")}>
+                      <span
+                        className={`${this.decorateCSS("menuItemTitle")} ${
+                          transparentBackground
+                            ? this.decorateCSS("whiteColor")
+                            : ""
+                        }`}
+                      >
+                        {item.title}
+                      </span>
+                      {item.menuType === "Dropdown" && (
+                        <ComposerIcon
+                          name={this.getPropValue("dropdownIcon")}
+                          propsIcon={{
+                            className: `${this.decorateCSS("dropdownIcon")} ${
+                              transparentBackground
+                                ? this.decorateCSS("whiteColor")
+                                : ""
+                            }`,
+                          }}
+                        />
+                      )}
+                    </div>
+                  </ComposerLink>
+                  {item.menuType === "Dropdown" && (
+                    <div className={this.decorateCSS("dropdown")}>
+                      {item.sub_items?.map((subItem: any, subIndex: number) => (
+                        <div
+                          key={subIndex}
+                          className={this.decorateCSS("dropdownItemContainer")}
+                        >
+                          <div className={this.decorateCSS("dropdownItem")}>
+                            <ComposerLink path={subItem.navigate_to}>
+                              <div
+                                className={this.decorateCSS(
+                                  "dropdownItemContent"
+                                )}
+                              >
+                                <span
+                                  className={this.decorateCSS(
+                                    "dropdownItemTitle"
+                                  )}
+                                >
+                                  {subItem.title}
+                                </span>
+                              </div>
+                            </ComposerLink>
+                            {subItem.sub_items.length > 0 &&
+                              subItem.sub_items.some((item: any) =>
+                                this.castToString(item.title)
+                              ) && (
+                                <ComposerIcon
+                                  name={this.getPropValue("rightIcon")}
+                                  propsIcon={{
+                                    className: this.decorateCSS("rightIcon"),
+                                  }}
+                                />
+                              )}
+                          </div>
+                          {subItem.sub_items.length > 0 &&
+                            subItem.sub_items.some((item: any) =>
+                              this.castToString(item.title)
+                            ) && (
+                              <div className={this.decorateCSS("subdropdown")}>
+                                {subItem.sub_items.map(
+                                  (
+                                    subSubItem: MenuItem,
+                                    subSubIndex: number
+                                  ) => (
+                                    <div
+                                      key={subSubIndex}
+                                      className={this.decorateCSS(
+                                        "subdropdownItem"
+                                      )}
+                                    >
+                                      <ComposerLink
+                                        path={subSubItem.navigate_to}
+                                      >
+                                        <span
+                                          className={this.decorateCSS(
+                                            "dropdownItemTitle"
+                                          )}
+                                        >
+                                          {subSubItem.title}
+                                        </span>
+                                      </ComposerLink>
+                                    </div>
+                                  )
+                                )}
+                              </div>
+                            )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
-              </div>
+              ))}
+            </nav>
+          )}
+
+          {currentLogo && (
+            <div className={this.decorateCSS("logoContainer")}>
+              <ComposerLink path={currentLogo.imageLink}>
+                <img src={currentLogo.image} alt={currentLogo.alt} />
+              </ComposerLink>
             </div>
+          )}
+
+          <div className={this.decorateCSS("iconsContainer")}>
+            {icons?.length > 0 && (
+              <div className={this.decorateCSS("icons")}>
+                {icons.map((icon: Icon, index: number) => (
+                  <ComposerLink path={icon.page}>
+                    <ComposerIcon
+                      name={icon.icon}
+                      propsIcon={{ className: this.decorateCSS("icon") }}
+                    />
+                  </ComposerLink>
+                ))}
+              </div>
+            )}
+            {divider && icons.length > 0 && (
+              <div className={this.decorateCSS("divider")}></div>
+            )}
+            <ComposerLanguage
+              type="dropdown"
+              title="name"
+              dropdownClassName={this.decorateCSS("localizationLabel")}
+            />
           </div>
-        </div>
-      </>
+
+          {hamburgerNavActive ? (
+            <ComposerIcon
+              name={this.getPropValue("closeIcon")}
+              propsIcon={{
+                className: this.decorateCSS("closeIcon"),
+                onClick: () => this.handleCloseMenu(),
+              }}
+            />
+          ) : (
+            <ComposerIcon
+              name={this.getPropValue("menuIcon")}
+              propsIcon={{
+                className: `${this.decorateCSS("hamburgerIcon")}`,
+                onClick: () => this.hamburgerNavClick(),
+              }}
+            />
+          )}
+
+          <div
+            className={`${this.decorateCSS("mobileMenu")} ${
+              hamburgerNavActive ? this.decorateCSS("open") : ""
+            }`}
+          >
+            <nav className={this.decorateCSS("hamburgerMenu")}>
+              {menuItems.map((item: any, index: number) => (
+                <div
+                  key={index}
+                  className={this.decorateCSS("hamburgerMenuItem")}
+                >
+                  <div
+                    className={this.decorateCSS("hamburgerMenuItemHeader")}
+                    onClick={() => this.navCLick(index)}
+                  >
+                    <ComposerLink path={item.navigate_to}>
+                      <span
+                        className={this.decorateCSS("hamburgerMenuItemTitle")}
+                      >
+                        {item.title}
+                      </span>
+                    </ComposerLink>
+                    {item.menuType === "Dropdown" && (
+                      <ComposerIcon
+                        name={this.getPropValue("rightIcon")}
+                        propsIcon={{
+                          className: `${this.decorateCSS("dropdownIcon")} ${
+                            this.getComponentState("subNavActiveIndex") ===
+                            index
+                              ? this.decorateCSS("active")
+                              : ""
+                          }`,
+                        }}
+                      />
+                    )}
+                  </div>
+                  {item.menuType === "Dropdown" && (
+                    <div
+                      className={`${this.decorateCSS("hamburgerSubmenu")} ${
+                        this.getComponentState("subNavActiveIndex") === index
+                          ? this.decorateCSS("active")
+                          : ""
+                      }`}
+                    >
+                      {item.sub_items?.map((subItem: any, subIndex: number) => (
+                        <div
+                          key={subIndex}
+                          className={this.decorateCSS("hamburgerSubmenuItem")}
+                        >
+                          <div
+                            className={this.decorateCSS(
+                              "hamburgerSubmenuItemHeader"
+                            )}
+                            onClick={() =>
+                              this.subNavCLick(`${index}-${subIndex}`)
+                            }
+                          >
+                            <ComposerLink path={subItem.navigate_to}>
+                              <span
+                                className={this.decorateCSS(
+                                  "hamburgerMenuItemTitle"
+                                )}
+                              >
+                                {subItem.title}
+                              </span>
+                            </ComposerLink>
+                            {subItem.sub_items.length > 0 &&
+                              subItem.sub_items.some((item: any) =>
+                                this.castToString(item.title)
+                              ) && (
+                                <ComposerIcon
+                                  name={this.getPropValue("rightIcon")}
+                                  propsIcon={{
+                                    className: `${this.decorateCSS(
+                                      "dropdownIcon"
+                                    )} ${
+                                      this.getComponentState("subNavActive") ===
+                                      `${index}-${subIndex}`
+                                        ? this.decorateCSS("active")
+                                        : ""
+                                    }`,
+                                  }}
+                                />
+                              )}
+                          </div>
+                          {subItem.sub_items.length > 0 &&
+                            subItem.sub_items.some((item: any) =>
+                              this.castToString(item.title)
+                            ) && (
+                              <div
+                                className={`${this.decorateCSS(
+                                  "hamburgerSubSubmenu"
+                                )} ${
+                                  this.getComponentState("subNavActive") ===
+                                  `${index}-${subIndex}`
+                                    ? this.decorateCSS("active")
+                                    : ""
+                                }`}
+                              >
+                                {subItem.sub_items.map(
+                                  (subSubItem: any, subSubIndex: number) => (
+                                    <div
+                                      key={subSubIndex}
+                                      className={this.decorateCSS(
+                                        "hamburgerSubSubmenuItem"
+                                      )}
+                                    >
+                                      <ComposerLink
+                                        path={subSubItem.navigate_to}
+                                      >
+                                        <span
+                                          className={this.decorateCSS(
+                                            "hamburgerSubSubmenuItemTitle"
+                                          )}
+                                        >
+                                          {subSubItem.title}
+                                        </span>
+                                      </ComposerLink>
+                                    </div>
+                                  )
+                                )}
+                              </div>
+                            )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+              <ComposerLanguage
+                type="accordion"
+                title="name"
+                headerClassName={this.decorateCSS("languageAccordion")}
+                itemClassName={this.decorateCSS("languageAccordionItem")}
+              />
+            </nav>
+
+            {icons.length > 0 && (
+              <div className={this.decorateCSS("iconsContainer")}>
+                {icons.map((icon: Icon, index: number) => (
+                  <ComposerLink path={icon.page}>
+                    <ComposerIcon
+                      name={icon.icon}
+                      propsIcon={{ className: this.decorateCSS("icon") }}
+                    />
+                  </ComposerLink>
+                ))}
+              </div>
+            )}
+          </div>
+        </Base.MaxContent>
+      </Base.Navigator.Container>
     );
   }
 }
