@@ -15,12 +15,16 @@
         width: 100%;
         gap: var(--composer-gap-md);
 
-        .left-full {
-          width: 100%;
-
-          &.left {
-            width: 70%;
+        .left {
+          &.left-full {
+            width: 100%;
           }
+        }
+
+        .right {
+          min-width: 10%;
+          display: flex;
+          justify-content: end;
         }
 
         &.center {
@@ -28,6 +32,7 @@
           align-items: center;
 
           .right {
+            justify-content: center;
             >div {
               content: "";
               display: flex;
@@ -77,9 +82,9 @@
     .first-container {
       .first-max-content {
         .header {
-          .left-full {
-            &.left {
-              width: 70%;
+          .left {
+            .title {
+              font-size: 2.5rem;
             }
           }
 
@@ -146,9 +151,11 @@
           flex-direction: column;
           gap: var(--composer-gap-sm);
 
-          .left-full {
-            &.left {
-              width: 100%;
+          .left {
+            width: 100%;
+
+            .title {
+              font-size: 2rem;
             }
           }
         }

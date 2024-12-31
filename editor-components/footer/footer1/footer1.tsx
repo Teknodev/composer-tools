@@ -286,7 +286,8 @@ class Footer1Page extends BaseFooter {
                 <div className={this.decorateCSS("footer-upper")}>
                   {(titleExist || descriptionExist) && (
                     <Base.VerticalContent className={this.decorateCSS("header")}>
-                      {titleExist && <Base.H3 className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.H3>}
+                      {titleExist &&
+                        <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                       {descriptionExist && <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>}
                     </Base.VerticalContent>
                   )}
