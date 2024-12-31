@@ -453,13 +453,13 @@ class Team5 extends Team {
                       {item.background && <img className={this.decorateCSS("background-image")} src={item.background} alt="" />}
                       {item.picture && <img className={this.decorateCSS("member-image")} src={item.picture} alt="" />}
                     </div>
-                    <div className={this.decorateCSS("icon-container")}>
+                    <Base.Row className={this.decorateCSS("icon-container")}>
                       {item.socials.map((value, i) => (
                         <ComposerLink key={i} path={value.url}>
                           <ComposerIcon name={value.icon} />
                         </ComposerLink>
                       ))}
-                    </div>
+                    </Base.Row>
                     <Base.VerticalContent className={this.decorateCSS("members-container")}>
                       {itemName && <Base.H4 className={this.decorateCSS("name")}>{item.name}</Base.H4>}
                       {itemOccupation && <Base.H5 className={this.decorateCSS("occupation")}>{item.occupation}</Base.H5>}
