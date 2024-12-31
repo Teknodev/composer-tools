@@ -186,7 +186,7 @@ class PricingTable2 extends BasePricingTable {
                 },
               ],
             },
-            INPUTS.BUTTON("button", "Button", "Select Now", "", null, "Primary"),
+            INPUTS.BUTTON("button", "Button", "Select Now", "", null, null, "Primary"),
           ],
         },
         {
@@ -320,7 +320,7 @@ class PricingTable2 extends BasePricingTable {
                 },
               ],
             },
-            INPUTS.BUTTON("button", "Button", "Select Now", "", null, "Primary"),
+            INPUTS.BUTTON("button", "Button", "Select Now", "", null, null, "Primary"),
           ],
         },
         {
@@ -454,7 +454,7 @@ class PricingTable2 extends BasePricingTable {
                 },
               ],
             },
-            INPUTS.BUTTON("button", "Button", "Select Now", "", null, "Primary"),
+            INPUTS.BUTTON("button", "Button", "Select Now", "", null, null, "Primary"),
           ],
         },
         {
@@ -588,7 +588,7 @@ class PricingTable2 extends BasePricingTable {
                 },
               ],
             },
-            INPUTS.BUTTON("button", "Button", "Select Now", "", null, "Primary"),
+            INPUTS.BUTTON("button", "Button", "Select Now", "", null, null, "Primary"),
           ],
         },
       ],

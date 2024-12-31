@@ -364,7 +364,7 @@ class PricingTable8 extends BasePricingTable {
       },
     });
 
-    let button: TypeUsableComponentProps = INPUTS.BUTTON("buttonType", "Button", "CONTINUE", "", null, "Primary");
+    let button: TypeUsableComponentProps = INPUTS.BUTTON("buttonType", "Button", "CONTINUE", "", null, null, "Primary");
 
     this.setComponentState("currentIndex", 0);
     this.setComponentState("slider-ref", React.createRef());

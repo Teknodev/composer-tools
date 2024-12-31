@@ -40,7 +40,7 @@ class PricingTable3 extends BasePricingTable {
       value: "Lorem ipsum dolor sit amet consectetur adipiscing elit do eiusmod tempor incididunt labore et dolore magna ut enim.",
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "Join this plan", "", null, "Primary"));
+    this.addProp(INPUTS.BUTTON("button", "Button", "Join this plan", "", null, null, "Primary"));
 
     this.addProp({
       type: "array",
@@ -138,7 +138,7 @@ class PricingTable3 extends BasePricingTable {
                 },
               ],
             },
-            INPUTS.BUTTON("button", "Button", "Join this plan", "", null, "Primary"),
+            INPUTS.BUTTON("button", "Button", "Join this plan", "", null, null, "Primary"),
           ],
         },
         {
@@ -229,7 +229,7 @@ class PricingTable3 extends BasePricingTable {
                 },
               ],
             },
-            INPUTS.BUTTON("button", "Button", "Join this plan", "", null, "Primary"),
+            INPUTS.BUTTON("button", "Button", "Join this plan", "", null, null, "Primary"),
           ],
         },
         {
@@ -320,7 +320,7 @@ class PricingTable3 extends BasePricingTable {
                 },
               ],
             },
-            INPUTS.BUTTON("button", "Button", "Join this plan", "", null, "Primary"),
+            INPUTS.BUTTON("button", "Button", "Join this plan", "", null, null, "Primary"),
           ],
         },
       ],

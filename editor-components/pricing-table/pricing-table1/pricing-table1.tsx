@@ -179,7 +179,7 @@ class PricingTable1 extends BasePricingTable {
               displayer: "Duration1",
               value: "billed annually*",
             },
-            INPUTS.BUTTON("buttonType", "Button", "Join this plan", "", null, "Primary"),
+            INPUTS.BUTTON("buttonType", "Button", "Join this plan", "", null, null, "Primary"),
             {
               type: "string",
               key: "pricingTableTitle",
@@ -331,7 +331,7 @@ class PricingTable1 extends BasePricingTable {
               displayer: "Duration1",
               value: " billed annually*",
             },
-            INPUTS.BUTTON("buttonType", "Button", "Join this plan", "", null, "Primary"),
+            INPUTS.BUTTON("buttonType", "Button", "Join this plan", "", null, null, "Primary"),
             {
               type: "string",
               key: "pricingTableTitle",
@@ -489,7 +489,7 @@ class PricingTable1 extends BasePricingTable {
               displayer: "Duration1",
               value: " billed annually*",
             },
-            INPUTS.BUTTON("buttonType", "Button", "Join this plan", "", null, "Primary"),
+            INPUTS.BUTTON("buttonType", "Button", "Join this plan", "", null, null, "Primary"),
             {
               type: "string",
               key: "pricingTableTitle",
