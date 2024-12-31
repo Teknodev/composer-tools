@@ -229,7 +229,7 @@ class Testimonials8Page extends Testimonials {
     const arrows = this.castToObject<ArrowItem>("arrows");
     const sliderRef = this.getComponentState("slider-ref");
     const cards = this.castToObject<Item[]>("card-items");
-    console.log("card", cards.length)
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("maxContent")}>

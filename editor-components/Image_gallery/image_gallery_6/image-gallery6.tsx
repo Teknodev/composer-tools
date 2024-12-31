@@ -543,8 +543,6 @@ class ImageGalleryComponent6 extends BaseImageGallery {
                             {currentGallery.slice(0, this.getComponentState("imageCount")).map((item: ImageItem, index: number) => {
                                 if (index % 2 === 0) {
                                     if (this.getComponentState("imageCount") <= 3) {
-                                        console.log(this.getComponentState("imageCount"))
-                                        console.log("imageindexleft", index)
                                         var imageClass = index === 0 || index === 2
                                             ? this.decorateCSS("normal-image")
                                             : (index / 2) % 2 === 0
@@ -609,8 +607,6 @@ class ImageGalleryComponent6 extends BaseImageGallery {
                             {currentGallery.slice(0, this.getComponentState("imageCount")).map((item: ImageItem, index: number) => {
                                 if (index % 2 === 1) {
                                     if (this.getComponentState("imageCount") <= 3) {
-                                        console.log(this.getComponentState("imageCount"))
-                                        console.log("imageindexright", index)
                                         var imageClass = index === 1
                                             ? this.decorateCSS("normal-image")
                                             : ((index - 1) / 2) % 2 === 0
