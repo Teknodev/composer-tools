@@ -293,12 +293,12 @@ class List1 extends BaseList {
             <Base.VerticalContent className={this.decorateCSS("card-titles")}>
               {this.castToString(subTitle) && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                  {this.castToString(subTitle)}
+                  {subTitle}
                 </Base.SectionSubTitle>
               )}
               {this.castToString(title) && (
                 <Base.SectionTitle className={this.decorateCSS("title")}>
-                  {this.castToString(title)}
+                  {title}
                 </Base.SectionTitle>
               )}
             </Base.VerticalContent>
