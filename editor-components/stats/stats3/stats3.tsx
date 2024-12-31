@@ -35,34 +35,13 @@ class Stats3Page extends BaseStats {
       additionalParams: {
         maxElementCount: 2,
       },
-      value: [
-        // {
-        //   type: "object",
-        //   key: "button",
-        //   displayer: "Button",
-        //   value: [
-        //     {
-        //       type: "string",
-        //       key: "buttonText",
-        //       displayer: "Button Text",
-        //       value: "READ MORE",
-        //     },
-        //     {
-        //       type: "page",
-        //       key: "url",
-        //       displayer: "Button Link",
-        //       value: "",
-        //     },
-        //   ],
-        // },
-        INPUTS.BUTTON("button", "Button", "READ MORE", "", null, null, "Primary"),
-      ],
+      value: [INPUTS.BUTTON("button", "Button", "READ MORE", "", null, null, "Primary")],
     });
     this.addProp({
       type: "image",
       key: "backgroundImage",
       displayer: "Card Background Image",
-      value: "https://vzkit.rometheme.pro/persona/wp-content/uploads/sites/15/2024/01/group-therapy-support-or-mental-health-community-2023-11-27-05-33-38-utc.jpg",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6773f9390655f8002caf5eca?alt=media",
     });
     this.addProp({
       type: "array",

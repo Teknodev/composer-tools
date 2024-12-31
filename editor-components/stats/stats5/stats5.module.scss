@@ -55,8 +55,13 @@
       .bottom-child {
         .card {
           padding: 0 !important;
-
           margin: 0px !important;
+
+          &.stick {
+            &:nth-child(2n)::after {
+              display: none !important;
+            }
+          }
 
           .card-data-title {
             font-size: 5rem !important;

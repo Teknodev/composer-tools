@@ -38,20 +38,6 @@ class Stats2Page extends BaseStats {
       value: "We combine human empathy and intelligent data to provide the highest level of satisfaction.",
     });
 
-    // this.addProp({
-    //   type: "string",
-    //   key: "contactButton",
-    //   displayer: "Button Content",
-    //   value: "LET'S TALK NOW",
-    // });
-
-    // this.addProp({
-    //   type: "page",
-    //   key: "contactButtonLink",
-    //   displayer: "Button Link",
-    //   value: "",
-    // });
-
     this.addProp(INPUTS.BUTTON("button", "Button", "LET'S TALK NOW", "", null, null, "Primary"));
 
     this.addProp({
