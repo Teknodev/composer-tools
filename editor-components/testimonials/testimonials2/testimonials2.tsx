@@ -275,9 +275,9 @@ class Testimonials2Page extends Testimonials {
               {(item.star > 0 || item.icon || this.castToString(item.description)) && (
                 <Base.VerticalContent className={this.decorateCSS("top-container")}>
                   {(item.star > 0 || item.icon) && (
-                    <Base.Row className={this.decorateCSS("icon")}>
+                    <Base.Row className={this.decorateCSS("icon-element")}>
                       {[...Array(Number(item.star))].map((_: any, index: number) => (
-                        <ComposerIcon name={item.icon} />
+                        <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={item.icon} />
                       ))}
                     </Base.Row>
                   )}

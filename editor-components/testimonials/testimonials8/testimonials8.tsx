@@ -256,7 +256,7 @@ class Testimonials8Page extends Testimonials {
                       {item.starNumber > 0 && item.starIcon && (
                         <div className={this.decorateCSS("star")}>
                           {[...Array(Number(item.starNumber))].map((_: any, index: number) => (
-                            <ComposerIcon name={item.starIcon} />
+                            <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={item.starIcon} />
                           ))}
                         </div>
                       )}

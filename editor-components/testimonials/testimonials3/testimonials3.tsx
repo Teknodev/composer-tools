@@ -2,12 +2,12 @@ import * as React from "react";
 import { Testimonials } from "../../EditorComponent";
 import styles from "./testimonials3.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
-import { Base } from "../../../composer-base-components/base/base"
+import { Base } from "../../../composer-base-components/base/base";
 
 interface CardItem {
-  star: number,
-  subtitle: JSX.Element,
-  image: string
+  star: number;
+  subtitle: JSX.Element;
+  image: string;
 }
 class Testimonials3Page extends Testimonials {
   constructor(props?: any) {
@@ -16,13 +16,13 @@ class Testimonials3Page extends Testimonials {
       type: "icon",
       key: "star_icon",
       displayer: "Icon",
-      value: "FaStar"
-    })
+      value: "FaStar",
+    });
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "295+ Customers gave their opinion"
+      value: "295+ Customers gave their opinion",
     });
     this.addProp({
       type: "number",
@@ -111,48 +111,36 @@ class Testimonials3Page extends Testimonials {
           ],
         },
       ],
-    },
-    );
+    });
   }
   getName(): string {
     return "Testimonials 3";
   }
   render() {
-    const card = this.castToObject<CardItem[]>("card-items")
+    const card = this.castToObject<CardItem[]>("card-items");
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("testimonials3")}>
-            {this.castToString(this.getPropValue("title")) && (
-              <Base.SectionTitle className={this.decorateCSS("title")}>
-                {this.getPropValue("title")}
-              </Base.SectionTitle>
-            )}
+            {this.castToString(this.getPropValue("title")) && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
             <Base.ListGrid className={this.decorateCSS("card-container")} gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }}>
               {card.map((card: any, index: number) => (
                 <div className={this.decorateCSS("card")}>
-                  {((card.star > 0) && this.getPropValue("star_icon")) && (
+                  {card.star > 0 && this.getPropValue("star_icon") && (
                     <div className={this.decorateCSS("stars")}>
-                      {[...Array(Number(card.star))].map(
-                        (_: any, index: number) => (
-                          <ComposerIcon name={this.getPropValue("star_icon")} />
-                        )
-                      )}
+                      {[...Array(Number(card.star))].map((_: any, index: number) => (
+                        <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={this.getPropValue("star_icon")} />
+                      ))}
                     </div>
                   )}
-                  {this.castToString(card.subtitle) && (
-                    <Base.P className={this.decorateCSS("cardSubtitle")} > {card.subtitle}</Base.P>
-                  )}
-                  {card.image && (
-                    <img className={this.decorateCSS("image")} src={card.image} alt={card.image} />
-                  )}
+                  {this.castToString(card.subtitle) && <Base.P className={this.decorateCSS("cardSubtitle")}> {card.subtitle}</Base.P>}
+                  {card.image && <img className={this.decorateCSS("image")} src={card.image} alt={card.image} />}
                 </div>
-              )
-              )}
+              ))}
             </Base.ListGrid>
           </Base.VerticalContent>
-        </Base.MaxContent >
-      </Base.Container >
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

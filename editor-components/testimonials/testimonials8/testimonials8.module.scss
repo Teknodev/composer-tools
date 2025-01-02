@@ -110,9 +110,13 @@
             display: flex;
             gap: var(--composer-gap-sm);
             .star {
-              color: var(--composer-primary-color);
               display: flex;
               gap: var(--composer-gap-xs);
+
+              .icon {
+                color: var(--composer-primary-color);
+                font-size: 1rem;
+              }
             }
             .line {
               width: 1px;
@@ -167,7 +171,7 @@
     }
   }
 }
-@container (max-width: #{$composer-phone-width-sm}) {
+@container (max-width: #{$composer-phone-width}) {
   .container {
     .maxContent {
       .testimonials8 {

@@ -334,9 +334,9 @@ class Testimonials10Page extends Testimonials {
                                     />
                                   </div>
                                   <div className={this.decorateCSS("card")}>
-                                    {this.castToString(item.text) && <Base.P className={this.decorateCSS("text")}>{this.castToString(item.text)}</Base.P>}
-                                    {this.castToString(item.author) && <Base.P className={this.decorateCSS("author")}>{this.castToString(item.author)}</Base.P>}
-                                    {this.castToString(item.position) && <Base.P className={this.decorateCSS("position")}>{this.castToString(item.position)}</Base.P>}
+                                    {this.castToString(item.text) && <Base.P className={this.decorateCSS("text")}>{item.text}</Base.P>}
+                                    {this.castToString(item.author) && <Base.P className={this.decorateCSS("author")}>{item.author}</Base.P>}
+                                    {this.castToString(item.position) && <Base.P className={this.decorateCSS("position")}>{item.position}</Base.P>}
                                   </div>
                                 </div>
                               </div>

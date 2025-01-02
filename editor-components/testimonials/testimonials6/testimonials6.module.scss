@@ -48,7 +48,10 @@
             }
           }
           .star {
-            color: var(--composer-primary-color);
+            .icon {
+              color: var(--composer-primary-color);
+              font-size: 1rem;
+            }
           }
         }
         &:hover {

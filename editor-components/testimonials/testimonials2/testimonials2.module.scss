@@ -34,9 +34,12 @@
       flex-direction: column;
       margin: var(--composer-gap-md);
       .top-container {
-        .icon {
+        .icon-element {
           width: 100%;
           color: var(--composer-primary-color);
+          .icon {
+            font-size: 1rem;
+          }
         }
 
         .item-description {
