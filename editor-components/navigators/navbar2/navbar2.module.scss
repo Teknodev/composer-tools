@@ -5,6 +5,14 @@
   justify-content: space-between;
   align-items: center;
 
+  .logo{
+    .logoImg{
+      width: 100%;
+      max-height: 60px;
+      object-fit: contain;
+    }
+  }
+
   .pcNavbar {
 
       display: flex;

@@ -18,6 +18,12 @@ interface Logo {
   alt: string;
 }
 
+interface Language {
+  label: "code" | "name";
+  icon: string;
+  showLanguage: boolean;
+}
+
 class Navbar2 extends BaseNavigator {
   constructor(props?: any) {
     super(props, styles);
@@ -1089,6 +1095,35 @@ class Navbar2 extends BaseNavigator {
       value: true,
     });
 
+    this.addProp({
+      type: "object",
+      key: "language",
+      displayer: "Language",
+      value: [
+        {
+          type: "select",
+          key: "label",
+          displayer: "Label",
+          value: "code",
+          additionalParams: {
+            selectItems: ["code", "name"],
+          },
+        },
+        {
+          type: "icon",
+          key: "icon",
+          displayer: "Icon",
+          value: "GrLanguage",
+        },
+        {
+          type: "boolean",
+          key: "showLanguage",
+          displayer: "Show Language",
+          value: true,
+        },
+      ],
+    });
+
     this.state["componentProps"]["isScrolled"] = false;
     this.state["componentProps"]["hamburgerNavActive"] = false;
     this.state["componentProps"]["navActive"] = false;
@@ -1155,15 +1190,13 @@ class Navbar2 extends BaseNavigator {
     const isMobileMenuOpen = this.getComponentState("isMobileMenuOpen");
     const divider = this.getPropValue("divider");
     const changeBackground = this.getComponentState("changeBackground");
-
+    const language = this.castToObject<Language>("language");
+    
     return (
       <Base.Navigator.Container position={position} 
-      //  positionContainer={
-      //   changeBackground ? this.decorateCSS("filledBackground") : ""
-      // }
       >
         <Base.MaxContent className={`${this.decorateCSS("maxContent")} ${transparentBackground ? this.decorateCSS("transparentBackground") : ""}`}>
-          <ComposerLink path={currentLogo.navigateTo}>
+      {currentLogo && <ComposerLink path={currentLogo.navigateTo}>
             <div className={this.decorateCSS("logo")}>
               <img
                 src={currentLogo.image}
@@ -1171,8 +1204,8 @@ class Navbar2 extends BaseNavigator {
                 className={this.decorateCSS("logoImg")}
               />
             </div>
-          </ComposerLink>
-          <nav className={this.decorateCSS("pcNavbar")}>
+          </ComposerLink>}
+       {menuItems.length > 0 && <nav className={this.decorateCSS("pcNavbar")}>
             {this.getPropValue("menuItems") &&
               menuItems.map((item: any, index: any) => (
                 <div
@@ -1265,14 +1298,15 @@ class Navbar2 extends BaseNavigator {
                 </div>
               ))}
             {divider && <div className={this.decorateCSS("divider")} />}
-            <div className={this.decorateCSS("localization")}>
+           { language.showLanguage && <div className={this.decorateCSS("localization")}>
               <ComposerLanguage
                 type="dropdown"
-                title="code"
+                title={language.label}
                 dropdownClassName={this.decorateCSS("languageDropdownLabel")}
+                icon={<ComposerIcon name={language.icon} propsIcon={{className: this.decorateCSS("languageIcon")}}/>}
               />
-            </div>
-          </nav>
+            </div>}
+          </nav>}
 
           <button
             className={this.decorateCSS("mobileMenuButton")}
@@ -1296,7 +1330,7 @@ class Navbar2 extends BaseNavigator {
               <ComposerIcon name={this.getPropValue("closeIcon")} />
             </button>
 
-            <nav className={this.decorateCSS("hamburgerMenu")}>
+           { menuItems.length > 0 && <nav className={this.decorateCSS("hamburgerMenu")}>
               {menuItems.map((item: any, index: number) => (
                 <div
                   key={index}
@@ -1428,7 +1462,7 @@ class Navbar2 extends BaseNavigator {
 
                           itemClassName={this.decorateCSS("languageAccordionItem")}
                         />
-            </nav>
+            </nav>}
           </div>
         </Base.MaxContent>
       </Base.Navigator.Container>
