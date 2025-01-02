@@ -360,24 +360,13 @@
 }
 
 
-
-@container (max-width: #{$composer-phone-width}) {
-  .maxContent {
-    .mobileMenu {
-      .hamburgerMenu {
-        .hamburgerMenuItem {
-        .hamburgerMenuItemHeader {
-          .hamburgerMenuItemTitle {
-            font-size: 1rem;
-          }
-        }
-      }
-    }
-  }
-}
-}
 @container (max-width: #{$composer-tablet-width-lg}) {
   .maxContent {
+    .logo{
+      .logoImg{
+        max-height: 50px;
+      }
+    }
     .pcNavbar {
       display: none;
     }
@@ -395,4 +384,25 @@
       }
     }
   }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .maxContent {
+    .mobileMenu {
+      .hamburgerMenu {
+        .hamburgerMenuItem {
+        .hamburgerMenuItemHeader {
+          .hamburgerMenuItemTitle {
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+  }
+  .logo{
+    .logoImg{
+      max-height: 40px;
+    }
+  }
+}
 }
