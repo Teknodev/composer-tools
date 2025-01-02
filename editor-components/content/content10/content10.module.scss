@@ -184,6 +184,10 @@
         .max-content{
             .cards{
                 padding: 0px;
+                border-radius: 0px;
+                .card{
+                    border-radius: 0px;
+                }
             }
         }
     }
