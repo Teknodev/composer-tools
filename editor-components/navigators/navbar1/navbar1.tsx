@@ -47,7 +47,7 @@ class Navbar1 extends BaseNavigator {
           type: "image",
           key: "image",
           value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676a9ac20655f8002caba0b7?alt=media",
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc964?alt=media&timestamp=1735826277716",
           displayer: "Image",
         },
         {
@@ -74,7 +74,7 @@ class Navbar1 extends BaseNavigator {
           type: "image",
           key: "image",
           value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6762cc190655f8002ca8c66b?alt=media",
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc965?alt=media&timestamp=1735826277716",
           displayer: "Image",
         },
         {
@@ -1075,25 +1075,7 @@ class Navbar1 extends BaseNavigator {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        {
-          type: "object",
-          key: "button",
-          displayer: "Button",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Contact Us",
-            },
-            {
-              type: "page",
-              key: "navigateTo",
-              displayer: "Navigate to",
-              value: "",
-            },
-          ],
-        },
+        INPUTS.BUTTON("button", "Button", "Contact Us", "", null, null, "Primary")
       ],
     });
 
@@ -1167,6 +1149,13 @@ class Navbar1 extends BaseNavigator {
       ],
     });
 
+    this.addProp({
+      type: "boolean",
+      key: "divider",
+      displayer: "Divider",
+      value: true,
+    })
+
     this.state["componentProps"]["isScrolled"] = false;
     this.state["componentProps"]["hamburgerNavActive"] = false;
     this.state["componentProps"]["navActive"] = false;
@@ -1187,20 +1176,14 @@ class Navbar1 extends BaseNavigator {
   handleCloseMenu() {
     this.setComponentState("hamburgerNavActive", false);
     setTimeout(() => {
-      this.setComponentState("changeBackground", false);
-    }, 300);
+    this.setComponentState("changeBackground", false);
+    }, 400);
   }
   navClick(index: number) {
-    const currentValue = this.getComponentState("subNavActiveIndex");
-    if (currentValue === index) {
-      this.setComponentState("navActive", !this.getComponentState("navActive"));
-      this.setComponentState("subNavActiveIndex", null);
-      this.setComponentState("subNavActive", null);
-    } else {
-      this.setComponentState("navActive", true);
-      this.setComponentState("subNavActiveIndex", index);
-      this.setComponentState("subNavActive", null);
-    }
+    const isActive = this.getComponentState("subNavActiveIndex") === index;
+    this.setComponentState("navActive", !isActive);
+    this.setComponentState("subNavActiveIndex", isActive ? null : index);
+    this.setComponentState("subNavActive", null);
   }
 
   subNavClick(index: any) {
@@ -1231,39 +1214,38 @@ class Navbar1 extends BaseNavigator {
     const position = this.getPropValue("position");
     const menuItems = this.castToObject<MenuItems[]>("menuItems");
     const hamburgerNavActive = this.getComponentState("hamburgerNavActive");
+    const changeBackground = this.getComponentState("changeBackground");
     const isScrolled = this.getComponentState("isScrolled");
     const transparentBackground =(position === "Sticky Transparent" || position === "Absolute") && !isScrolled;
     const currentLogo =
-      transparentBackground && !hamburgerNavActive ? absoluteLogo : defaultLogo;
-    const buttons = this.castToObject<Button[]>("buttons");
-    const changeBackground = this.getComponentState("changeBackground");
-
+      transparentBackground && !changeBackground ? absoluteLogo : defaultLogo;
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const divider = this.getPropValue("divider");
     const language = this.castToObject<Language>("language");
-
+    
     return (
       <Base.Navigator.Container
         position={position}
-        className={`${this.decorateCSS("navbarContainer")}`}
-        positionContainer={
-          changeBackground ? this.decorateCSS("filledBackground") : ""
-        }
-
+        positionContainer={`${this.decorateCSS("navbarContainer")}`}
       >
         <Base.MaxContent   className={`${this.decorateCSS("maxContent")} ${
             transparentBackground
               ? this.decorateCSS("transparentBackground")
               : ""
           }`}>
-          <div className={this.decorateCSS("logo")}>
+        {currentLogo && <div className={this.decorateCSS("logo")}>
             <ComposerLink path={currentLogo.image}>
+              <div>
               <img
                 src={currentLogo.image}
                 alt={""}
                 className={this.decorateCSS("logoImage")}
               />
+              </div>
+           
             </ComposerLink>
-          </div>
-          <nav className={this.decorateCSS("pcNavbar")}>
+          </div>}
+          {menuItems.length > 0 && <nav className={this.decorateCSS("pcNavbar")}>
             {this.getPropValue("menuItems") &&
               menuItems.map((item: any, index: any) => (
                 <div
@@ -1358,15 +1340,15 @@ class Navbar1 extends BaseNavigator {
                   )}
                 </div>
               ))}
-          </nav>
+          </nav>}
 
           <div className={this.decorateCSS("rightSide")}>
             {buttons.length > 0 && (
               <div className={this.decorateCSS("buttons")}>
-                {buttons.map((button: Button, index: number) => (
-                  <ComposerLink path={button.navigateTo}>
-                    <Base.Button className={this.decorateCSS("button")}>
-                      {button.title}
+                {buttons.map((button, index: number) => (
+                  <ComposerLink path={button.url}>
+                    <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>
+                      {button.text}
                     </Base.Button>
                   </ComposerLink>
                 ))}
@@ -1401,7 +1383,7 @@ class Navbar1 extends BaseNavigator {
         </Base.MaxContent>
         <div
           className={`${this.decorateCSS("hamburgerNav")} ${
-            this.getComponentState("hamburgerNavActive")
+            hamburgerNavActive
               ? this.decorateCSS("active")
               : ""
           }`}
@@ -1410,7 +1392,7 @@ class Navbar1 extends BaseNavigator {
             <Base.MaxContent
               className={this.decorateCSS("hamburgerMaxContent")}
             >
-              <nav className={this.decorateCSS("hamburgerMenu")}>
+            {menuItems.length > 0 &&  <nav className={this.decorateCSS("hamburgerMenu")}>
                 {menuItems.map((item: MenuItems, index: number) => (
                   <div
                     key={index}
@@ -1544,17 +1526,18 @@ class Navbar1 extends BaseNavigator {
                     )}
                   </div>
                 ))}
+                {divider && language.showLanguage && <div className={this.decorateCSS("divider")}></div>}
                 <div className={this.decorateCSS("accordionLocalization")}>
                  {language.showLanguage && <ComposerLanguage
                     type="accordion"
                     title={language.label}
                     headerClassName={`${this.decorateCSS("localization")}`}
-                    contentClassName={`${this.decorateCSS(
+                    itemClassName={`${this.decorateCSS(
                       "localizationItem"
                     )}`}
                   />}
                 </div>
-              </nav>
+              </nav>}
             </Base.MaxContent>
           </Base.Container>
         </div>
