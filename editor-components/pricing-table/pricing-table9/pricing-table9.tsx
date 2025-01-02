@@ -818,7 +818,7 @@ class PricingTable9 extends BasePricingTable {
                           <div key={`content-${contentIndex}`} className={this.decorateCSS("content-item")}>
                             {content?.icon && (
                               <span className={this.decorateCSS("content-icon")}>
-                                <ComposerIcon name={content.icon} />
+                                <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={content.icon} />
                               </span>
                             )}
                             {this.castToString(content.text) && <Base.P className={this.decorateCSS("content-text")}>{content?.text}</Base.P>}
