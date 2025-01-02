@@ -28,34 +28,7 @@ class HTTP_CODES4 extends BaseHTTPCodes {
       type: "array",
       key: "buttons",
       displayer: "Buttons",
-      value: [
-        // {
-        //   type: "object",
-        //   key: "button",
-        //   displayer: "Button",
-        //   value: [
-        //     {
-        //       type: "string",
-        //       key: "text",
-        //       displayer: "Text",
-        //       value: "Go to Home page",
-        //     },
-        //     {
-        //       type: "page",
-        //       key: "link",
-        //       displayer: "Link",
-        //       value: "",
-        //     },
-        //     {
-        //       type: "icon",
-        //       key: "icon",
-        //       displayer: "Icon",
-        //       value: "GoArrowLeft",
-        //     },
-        //   ],
-        // },
-        INPUTS.BUTTON("button", "Button", "Go to Home page", "", "GoArrowLeft", null, "Link"),
-      ],
+      value: [INPUTS.BUTTON("button", "Button", "Go to Home page", "", "GoArrowLeft", null, "Link")],
     });
 
     this.addProp({
