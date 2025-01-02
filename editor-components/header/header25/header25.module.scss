@@ -4,6 +4,7 @@
   width: 100%;
   background: var(--composer-html-background);
   position: relative;
+  padding: 0;
 
   .carousel {
 
@@ -60,6 +61,19 @@
         width: fit-content;
         max-width: 20%;
 
+        .arrow, 
+        .arrow-text {
+          color: var(--composer-font-color-primary);
+        }
+
+        &.with-image {
+
+          .arrow,
+          .arrow-text {
+            color: white;
+          }
+        }
+
         div {
           display: flex;
           align-items: center;
@@ -67,8 +81,6 @@
           .arrow {
             transition: 0.2s all;
             min-width: fit-content;
-            color: white;
-            opacity: 0.2;
             transition: all 0.5s;
           }
 
@@ -79,17 +91,9 @@
           .arrow:nth-child(2) {
             margin-left: var(--composer-gap-sm);
           }
-
-          &:hover {
-            .arrow {
-              color: white;
-              opacity: 1;
-            }
-          }
         }
 
         .arrow-text {
-          color: white;
           max-width: 100%;
           font-size: 1.5rem;
         }
@@ -133,17 +137,16 @@
         height: 35%;
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
         z-index: 1;
         flex-direction: column;
         gap: var(--composer-gap-xs);
-        padding-top: var(--composer-gap-xl);
 
         .pagination {
 
           .active-slide {
             color: var(--composer-primary-color);
-            font-size: 10vh;
+            font-size: 6rem;
           }
 
           .slide-count-power {
@@ -151,19 +154,17 @@
             vertical-align: top;
 
             .divider {
-              font-size: 3vh;
+              font-size: 2rem;
             }
 
             .slide-count {
-              font-size: 3vh;
+              font-size: 2rem;
             }
           }
         }
 
         .low-op-text {
-          opacity: 0.1;
-          font-size: 11vh;
-          color: var(--composer-font-color-primary);
+          font-size: 6rem;
           font-weight: bold;
           border-radius: var(--composer-border-radius-sm);
           z-index: 14;
@@ -171,9 +172,11 @@
           display: -webkit-box;
           -webkit-box-orient: vertical;
           -webkit-line-clamp: 1;
+          line-clamp: 1;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
+          color: rgba($color: var(--composer-font-color-primary-rgb), $alpha: 0.5);
 
           .background-op-text {
             margin: 0;
@@ -183,14 +186,15 @@
 
       .bottom-figure {
         width: 10%;
-        height: 65%;
+        height: 66%;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: end;
         gap: var(--composer-gap-md);
-        padding-bottom: var(--composer-gap-xl);
-        top: 35%;
+        padding-bottom: var(--composer-gap-md);
+        top: 100%;
+        transform: translateY(-100%);
 
         .side-text {
           writing-mode: vertical-rl;
@@ -199,7 +203,6 @@
           word-spacing: 6px;
           letter-spacing: 4px;
           color: var(--composer-font-color-primary);
-          opacity: 0.5;
 
           .side-text-content {
             display: flex;
@@ -207,7 +210,7 @@
         }
 
         .line {
-          height: 5vh;
+          height: 30px;
           width: 1px;
           background-color: var(--composer-tertiary-color);
           flex-shrink: 0;
@@ -285,7 +288,11 @@
               overflow: hidden;
               text-overflow: ellipsis;
               -webkit-line-clamp: 3;
-              color: white;
+              line-clamp: 3;
+
+              &.with-image {
+                color: white;
+              }
             }
 
             .description {
@@ -298,7 +305,11 @@
               overflow: hidden;
               text-overflow: ellipsis;
               -webkit-line-clamp: 5;
-              color: white;
+              line-clamp: 5;
+
+              &.with-image {
+                color: white;
+              }
             }
 
             .button {
@@ -306,6 +317,11 @@
               align-items: center;
               justify-content: center;
               gap: var(--composer-gap-sm);
+
+              &.with-image {
+                color: inherit;
+                border-bottom-color: white;
+              }
 
               .button-icon {
                 width: 20px;
@@ -370,6 +386,10 @@
         }
 
         .top-figure {
+          padding-top: var(--composer-gap-md);
+          justify-content: center;
+          height: 36%;
+
           .low-op-text {
             font-size: 5rem;
             margin-left: 25%;
@@ -378,6 +398,7 @@
 
         .bottom-figure {
           width: 15%;
+          padding-bottom: var(--composer-gap-md);
 
           &.no-index-display {
             padding: var(--composer-gap-md) 0;
@@ -438,25 +459,25 @@
 
         .top-figure {
           width: 40%;
-          height: 20%;
+          height: 21%;
           padding-top: var(--composer-gap-md);
 
           .pagination {
             .active-slide {
-              font-size: 6vh;
+              font-size: 3rem;
             }
 
             .slide-count-power {
 
               .divider,
               .slide-count {
-                font-size: 2vh;
+                font-size: 1rem;
               }
             }
           }
 
           .low-op-text {
-            font-size: 6vh;
+            font-size: 3rem;
             margin-left: 35%;
           }
         }
@@ -464,7 +485,7 @@
         .bottom-figure {
           width: 20%;
           height: 80%;
-          top: 20%;
+          justify-content: center;
 
           .icons {
             gap: var(--composer-gap-sm);
