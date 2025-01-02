@@ -15,10 +15,6 @@ type BottomItem = {
   title: JSX.Element;
   description: JSX.Element;
 }
-type ButtonItem = {
-  text: JSX.Element;
-  link: string;
-}
 
 class Faq2 extends BaseFAQ {
   constructor(props?: any) {
@@ -263,7 +259,7 @@ class Faq2 extends BaseFAQ {
             {(this.getPropValue("card").length > 0) && (
               <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("card-page")}>
                 {this.castToObject<Card[]>("card").map(
-                  (item: Card, indexCard: number) => {
+                  (item: Card) => {
                     return (
                       <Base.VerticalContent className={this.decorateCSS("card")}>
                         {item.cardIcon && (
@@ -307,7 +303,7 @@ class Faq2 extends BaseFAQ {
                 )}
                 {(this.getPropValue("buttons").length > 0) && (
                   <div className={this.decorateCSS("buttons")}>
-                    {this.castToObject<INPUTS.CastedButton[]>("buttons").map((button: INPUTS.CastedButton, index: number) => {
+                    {this.castToObject<INPUTS.CastedButton[]>("buttons").map((button: INPUTS.CastedButton) => {
                       return (
                         <ComposerLink path={button.url}>
                           <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>

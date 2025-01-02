@@ -213,18 +213,6 @@ class Faq3 extends BaseFAQ {
                 "Blandit justo vestibulum tincidunt, ipsum id non, volutpat neque pede eget donec.",
             },
             INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "Primary")
-            // {
-            //   type: "string",
-            //   key: "buttonText",
-            //   displayer: "Button Text",
-            //   value: "CONTACT US",
-            // },
-            // {
-            //   type: "page",
-            //   key: "buttonLink",
-            //   displayer: "Button Link",
-            //   value: "",
-            // },
           ],
         },
         {
@@ -246,24 +234,12 @@ class Faq3 extends BaseFAQ {
                 "Etiam nisl cras, arcu dui, wisi aenean non sit quisque nulla, eget aut molestie. Rhoncus sociis, nulla luctus diam montes cubilia.",
             },
             INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "Primary")
-            // {
-            //   type: "string",
-            //   key: "buttonText",
-            //   displayer: "Button Text",
-            //   value: "LEARN MORE",
-            // },
-            // {
-            //   type: "page",
-            //   key: "buttonLink",
-            //   displayer: "Button Link",
-            //   value: "",
-            // },
           ],
         },
       ],
     });
 
-    this.state["componentProps"]["selectCardIndex"] = null;
+    this.setComponentState("selectCardIndex", null);
   }
 
   getName(): string {

@@ -97,7 +97,7 @@ class Faq1 extends BaseFAQ {
       ],
     });
 
-    this.state["componentProps"]["selectCardIndex"] = null;
+    this.setComponentState("selectCardIndex", null);
   }
 
   getName(): string {
