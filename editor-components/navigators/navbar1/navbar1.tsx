@@ -1156,12 +1156,12 @@ class Navbar1 extends BaseNavigator {
       value: true,
     })
 
-    this.state["componentProps"]["isScrolled"] = false;
-    this.state["componentProps"]["hamburgerNavActive"] = false;
-    this.state["componentProps"]["navActive"] = false;
-    this.state["componentProps"]["subNavActiveIndex"] = null;
-    this.state["componentProps"]["subNavActive"] = null;
-    this.state["componentProps"]["changeBackground"] = false;
+    this.setComponentState("isScrolled", false);
+    this.setComponentState("hamburgerNavActive", false);
+    this.setComponentState("navActive", false);
+    this.setComponentState("subNavActiveIndex", null);
+    this.setComponentState("subNavActive", null);
+    this.setComponentState("changeBackground", false);
   }
 
   getName(): string {
@@ -1345,7 +1345,7 @@ class Navbar1 extends BaseNavigator {
           <div className={this.decorateCSS("rightSide")}>
             {buttons.length > 0 && (
               <div className={this.decorateCSS("buttons")}>
-                {buttons.map((button, index: number) => (
+                {buttons.map((button) => (
                   <ComposerLink path={button.url}>
                     <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>
                       {button.text}
