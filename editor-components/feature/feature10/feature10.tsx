@@ -256,7 +256,6 @@ class Feature10 extends BaseFeature {
   render() {
     const sliderRef = this.getComponentState("slider-ref");
     const cards = this.castToObject<Card[]>("cards");
-    console.log(cards.length)
 
     const title = this.getPropValue("title");
 
