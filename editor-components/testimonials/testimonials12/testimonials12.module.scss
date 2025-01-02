@@ -1,119 +1,116 @@
 @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 .container {
-    .max-content {
-        .testimonials12 {
-            display: flex;
-            flex-direction: column;
-            gap: var(--composer-gap-md);
-            .top-content {
-                display: flex;
-                .top-content-text{
-                    width: 100%;
-                    .title {
-                    }
-                    .subtitle {
-                    }
-                }
-                .arrows{
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    gap:var(--composer-gap-xl);
-                    .button{
-                        border: none;
-                        background-color: transparent;
-                        .prev-arrow, .next-arrow{
-                            width: 30px;
-                            height: 30px;
-                            opacity: 0.5;
-                            color: var(--composer-font-color-primary);
-                            transition: opacity 0.5s ease;
-                        }
-                        &:hover{
-                            .prev-arrow, .next-arrow{
-                               opacity: 1;
-                            }
-                        }
-                    }
-                }
-            }
-            .slider-style {
-                width: 100%;
-                >div{
-                    >div{
-                        display: flex;
-                        gap: var(--composer-gap-lg);
-                    }
-                }
-                button {
-                    display: none !important;
-                }
-                .card {
-                    border-radius: var(--composer-gap-md);
-                    padding: var(--composer-gap-md);
-                    background-color: color-mix(
-                        in srgb,
-                        var(--composer-html-background),
-                        var(--composer-font-color-primary) 5%
-                      );
-                    .span-image {
-                        width: 45px;
-                        height: 45px;
-                        color: var(--composer-font-color-primary);
-                    }
-                    .card-description{
-                        color: var(--composer-font-color-primary);
-                    }
-                    .below-content {
-                        display: flex;
-                        gap: var(--composer-gap-md);
-                        .card-image {
-                            width: 60px;
-                            height: 60px;
-                            border-radius: 50%;
-                        }
-                        .below-right-content {
-                            justify-content: center;
-                            .below-title {
-                                font-size: 1rem;
-                                color: var(--composer-font-color-primary);
-                            }
-                            .below-subtitle {
-                                font-size: 1rem;
-                                opacity: 0.5;
-                                color: var(--composer-font-color-primary);
-                            }
-                        }
-                    }
-                }
-            }
+  .max-content {
+    .page {
+      display: flex;
+      flex-direction: column;
+      gap: var(--composer-gap-md);
+      .top-content {
+        display: flex;
+        .top-content-text {
+          width: 100%;
+          .title {
+          }
+          .subtitle {
+          }
         }
+        .arrows {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: var(--composer-gap-xl);
+          .button {
+            border: none;
+            background-color: transparent;
+            .prev-arrow,
+            .next-arrow {
+              width: 30px;
+              height: 30px;
+              color: var(--composer-tertiary-color);
+              transition: color 0.5s ease;
+              cursor: pointer;
+            }
+            &:hover {
+              .prev-arrow,
+              .next-arrow {
+                color: var(--composer-font-color-primary);
+              }
+            }
+          }
+        }
+      }
+      .slider-style {
+        width: 100%;
+        > div {
+          > div {
+            display: flex;
+            gap: var(--composer-gap-lg);
+          }
+        }
+        button {
+          display: none !important;
+        }
+        .card {
+          border-radius: var(--composer-gap-md);
+          padding: var(--composer-gap-md);
+          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+          .span-image {
+            width: 45px;
+            height: 45px;
+            color: var(--composer-font-color-primary);
+          }
+          .card-description {
+            color: var(--composer-font-color-primary);
+          }
+          .below-content {
+            display: flex;
+            gap: var(--composer-gap-md);
+            .card-image {
+              width: 60px;
+              height: 60px;
+              border-radius: 50%;
+            }
+            .below-right-content {
+              justify-content: center;
+              .below-title {
+                font-size: 1rem;
+                color: var(--composer-font-color-primary);
+              }
+              .below-subtitle {
+                font-size: 1rem;
+                color: var(--composer-tertiary-color);
+              }
+            }
+          }
+        }
+      }
     }
+  }
 }
 
-@container (max-width: #{$composer-phone-width-sm}) {
-    .container{
-        .max-content{
-            .testimonials12{
-                .top-content{
-                    .arrows{
-                        display: none;
-                    }
-                }
-                .slider-style{
-                    >div{
-                        >div{
-                            gap: var(--composer-gap-xs);
-                        }
-                    }
-                    .card{
-                        .span-image{
-                            width: 40px;
-                            height: 40px;
-                        }
-                    }
-                }
-            }
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .page {
+        .top-content {
+          .arrows {
+            display: none;
+          }
         }
+        .slider-style {
+          > div {
+            > div {
+              gap: var(--composer-gap-xs);
+            }
+          }
+          .card {
+            .span-image {
+              width: 40px;
+              height: 40px;
+            }
+          }
+        }
+      }
     }
+  }
 }
