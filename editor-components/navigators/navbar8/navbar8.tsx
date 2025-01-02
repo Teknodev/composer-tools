@@ -3,9 +3,11 @@ import { BaseNavigator } from "../../EditorComponent";
 import styles from "./navbar8.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 class Navbar8 extends BaseNavigator {
   constructor(props?: any) {
     super(props, styles);
+    
     this.addProp({
       type: "select",
       key: "position",
@@ -27,6 +29,7 @@ class Navbar8 extends BaseNavigator {
       displayer: "Image Dark",
       value: "https://dstal.com.au/wp-content/uploads/2021/09/logoipsum.png",
     });
+    
     this.addProp({
       type: "page",
       key: "logo_navigate",
@@ -63,6 +66,7 @@ class Navbar8 extends BaseNavigator {
       displayer: "Is sticky",
       value: false,
     });
+    
     this.addProp({
       type: "string",
       key: "title1",
@@ -223,6 +227,7 @@ class Navbar8 extends BaseNavigator {
             },
             {
               type: "page",
+              
               key: "link",
               value: "",
               displayer: "Navigate To",
@@ -232,13 +237,16 @@ class Navbar8 extends BaseNavigator {
       ],
     });
   }
+  
   getName(): string {
     return "Navbar 8";
   }
+  
   navClick() {
     let value: boolean = this.getComponentState("navActive");
     this.setComponentState("navActive", !value);
   }
+  
   render() {
     const navActive = this.getComponentState("navActive");
     const logoSrc = this.getPropValue(navActive ? "image_light" : "image_dark");
@@ -255,6 +263,7 @@ class Navbar8 extends BaseNavigator {
             </div>
             <div className={this.decorateCSS("middle")}>
               <div className={`${this.decorateCSS("title")} ${navActive && this.decorateCSS("active-title")}`}>{this.getPropValue("title")}</div>
+              
               <div className={`${this.decorateCSS("subtitle")} ${navActive && this.decorateCSS("active-subtitle")}`}>{this.getPropValue("subtitle")}</div>
             </div>
             <div className={this.decorateCSS("navbar")}>
@@ -313,7 +322,9 @@ class Navbar8 extends BaseNavigator {
           )}
         </div>
       </div>
+      
     );
   }
 }
+
 export default Navbar8;
