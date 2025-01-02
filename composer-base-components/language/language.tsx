@@ -52,7 +52,7 @@ const ComposerLanguage = (props: ComposerLanguageProps) => {
       dropdownClassName,
       dropdownLabelClassName,
       dropdownItemClassName,
-      icon = <Language />,
+      icon = <Language/>,
       title = "name",
     } = props;
     return (
@@ -60,7 +60,7 @@ const ComposerLanguage = (props: ComposerLanguageProps) => {
         disabled={false}
         buttonClassName={dropdownClassName}
         buttonLabel={composerToolsCurrentLanguage[title]}
-        labelClassName={dropdownLabelClassName}
+        labelClassName={`${styles["label"]} ${dropdownLabelClassName}`}
         icon={icon}
       >
         {composerToolsLanguages.map((lang) => (
