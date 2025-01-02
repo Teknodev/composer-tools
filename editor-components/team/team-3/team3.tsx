@@ -329,7 +329,7 @@ class Team3 extends Team {
 
                 return hasContent ? (
                   <div key={indexCard} className={this.decorateCSS("all-card")}>
-                    <div className={this.decorateCSS(item.profile ? "card" : "no-image-card")}>
+                    <div className={`${this.decorateCSS("card")} ${item.profile ? this.decorateCSS("card-image") : ""}`}>
                       <div className={this.decorateCSS("card-items")}>
                         <div className={this.decorateCSS("item-content")}>
                           {item.profile && <div className={this.decorateCSS("box-image")}>{item.profile && <img className={this.decorateCSS("profile-image")} src={item.profile} alt="" />}</div>}

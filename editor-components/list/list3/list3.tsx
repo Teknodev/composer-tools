@@ -3,7 +3,7 @@ import { BaseList } from "../../EditorComponent";
 import styles from "./list3.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Item = {
   itemTitle: JSX.Element;
@@ -32,20 +32,7 @@ class List3 extends BaseList {
       value:
         "Lorem ipsum dolor consectetur eiusmod tempor incididunt labore exercitation tempor.",
     });
-
-    this.addProp({
-      type: "string",
-      key: "button",
-      displayer: "Button",
-      value: "Download Schedule",
-    });
-
-    this.addProp({
-      type: "page",
-      key: "buttonUrl",
-      displayer: "Button URL",
-      value: "",
-    });
+    this.addProp(INPUTS.BUTTON("button", "Button", "Download Schedule", "", null, null, "Primary"));
 
     this.addProp({
       type: "array",
@@ -251,55 +238,55 @@ class List3 extends BaseList {
     const description = this.castToString(this.getPropValue("description"));
 
     const listItems = this.castToObject<Item[]>("listItems");
-    const buttonExist = this.castToString(this.getPropValue("button"));
+    const buttonType: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
     return (
       <Base.Container className={this.decorateCSS("container")} isFull="true">
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ListGrid className={this.decorateCSS("row")} gridCount={{ pc: this.getPropValue("itemCount") }}>
-            {(title || description || buttonExist) && (
-              <div className={this.decorateCSS("first")}>
+            {(title || description || this.castToString(buttonType.text)) && (
+              <Base.VerticalContent className={this.decorateCSS("first")}>
                 {(title || description) && (
                   <Base.VerticalContent className={this.decorateCSS("first-inner")}>
                     {title && (
                       <Base.SectionTitle className={this.decorateCSS("title")}>
-                        {title}
+                        {this.getPropValue("title")}
                       </Base.SectionTitle>
                     )}
                     {description && (
                       <Base.SectionDescription className={this.decorateCSS("description")}>
-                        {description}
+                        {this.getPropValue("description")}
                       </Base.SectionDescription>
                     )}
                   </Base.VerticalContent>
                 )}
-                {buttonExist && (
-                  <ComposerLink path={this.getPropValue("buttonUrl")}>
-                    <Base.Button className={this.decorateCSS("button")}>
-                      {this.getPropValue("button")}
+                {this.castToString(buttonType.text) && (
+                  <ComposerLink path={buttonType.url}>
+                    <Base.Button buttonType={buttonType.type} className={this.decorateCSS("button")}>
+                      {buttonType.text}
                     </Base.Button>
                   </ComposerLink>
                 )}
-              </div>
+              </Base.VerticalContent>
             )}
             {listItems.map((listItem: Item, index: number) => {
               return (
                 <div key={index} className={this.decorateCSS("card")}>
-                  <div className={this.decorateCSS("card-content")}>
+                  <Base.VerticalContent className={this.decorateCSS("card-content")}>
                     {this.castToString(listItem.itemTitle) && (
                       <div className={this.decorateCSS("itemTitle")}>
                         {listItem.itemTitle}
                       </div>
                     )}
                     {listItem.texts.map((item: TextItem, index: number) => (
-                      <div className={this.decorateCSS("cardItem")}>
+                      <Base.VerticalContent className={this.decorateCSS("cardItem")}>
                         <div className={this.decorateCSS("spanItem")}></div>
-                        <div className={this.decorateCSS("itemText")}>
+                        <Base.H1 className={this.decorateCSS("itemText")}>
                           {item.itemText}
-                        </div>
-                      </div>
+                        </Base.H1>
+                      </Base.VerticalContent>
                     ))}
-                  </div>
+                  </Base.VerticalContent>
                   {this.getPropValue("showCardNumber") && (
                     <div className={this.decorateCSS("index")}>
                       {index < 9 ? `0${index + 1}` : index + 1}
