@@ -1125,7 +1125,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                       }}
                                       name={iconValue}
                                     />
-                                    <Base.P className={this.decorateCSS("property")}>{listValue}</Base.P>
+                                    <Base.P className={this.decorateCSS("property")}>{property}</Base.P>
                                   </div>
                                 )
                               );

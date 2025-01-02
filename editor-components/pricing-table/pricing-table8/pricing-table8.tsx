@@ -560,8 +560,5 @@ class PricingTable8 extends BasePricingTable {
       </Base.Container>
     );
   }
-  handleCardClick(index: number): void {
-    throw new Error("Method not implemented.");
-  }
 }
 export default PricingTable8;
