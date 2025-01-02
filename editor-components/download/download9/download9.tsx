@@ -79,7 +79,7 @@ class Download9 extends BaseDownload {
             (item.icon || buttonTextExist) && (
               <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
                 {item.icon && <ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }} />}
-                {buttonTextExist && item.text && <Base.P className={this.decorateCSS("text")}>{item.text}</Base.P>}
+                {buttonTextExist && item.text && <div className={this.decorateCSS("text")}>{item.text}</div>}
               </Base.Button>
             )
           )}
