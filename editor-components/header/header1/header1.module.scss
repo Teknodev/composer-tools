@@ -13,10 +13,7 @@
 @mixin titleSize($size, $important: "") {
   .container {
     .max-content {
-      .title,
-      .without-image-title,
-      .dark-title,
-      .dark-without-image-title {
+      .title{
         font-size: $size#{$important};
       }
     }
@@ -152,16 +149,20 @@
           display: flex;
           align-items: center;
           position: relative;
-          .image-wrapper,
-          .without-image-wrapper {
+          .image-wrapper {
             display: flex;
             align-items: flex-start;
             justify-content: flex-end;
             position: relative;
             width: 90%;
+            &.without-image{
+              min-height: 50vh;
+              .subtitle {
+                width: 50%;
+              }
+            }
 
-            .subtitle,
-            .subtitle-dark {
+            .subtitle{
               position: absolute;
               color: white;
               text-align: center;
@@ -197,9 +198,9 @@
                   text-overflow: ellipsis;
                 }
               }
-            }
-            .subtitle-dark {
-              color: var(--composer-font-color-primary) !important;
+              &.dark{
+                color: var(--composer-font-color-primary) ;
+              }
             }
             .image {
               border-radius: var(--composer-border-radius-md);
@@ -226,35 +227,25 @@
               align-items: center;
               justify-content: center;
               gap: var(--composer-gap-sm);
-              .overlay,
-              .dark-overlay {
+              .overlay{
                 height: 1px;
                 width: 2rem;
                 background: white;
+                &.dark{
+                  background-color: var(--composer-font-color-primary)
+                }
               }
-              .dark-overlay {
-                background-color: var(--composer-font-color-primary) !important;
-              }
-              .slider-number,
-              .dark-slider-number {
+              .slider-number {
                 font-size: 1rem;
                 color: white;
-              }
-              .dark-slider-number {
-                color: var(--composer-font-color-primary) !important;
+                &.dark{
+                  color: var(--composer-font-color-primary) 
+                }
               }
             }
           }
-          .without-image-wrapper {
-            min-height: 50vh;
-            .subtitle {
-              width: 50%;
-            }
-          }
-          .title,
-          .without-image-title,
-          .dark-title,
-          .dark-without-image-title {
+
+          .title {
             position: absolute;
             margin: 0;
             top: 50%;
@@ -268,6 +259,30 @@
             opacity: 0;
             transition: all 0.3s linear;
             @include textEllipsis(3);
+            &.dark{
+              color: var(--composer-font-color-primary); 
+            }
+            &.dark-without-image{
+              color: var(--composer-font-color-primary);
+              > blinkpage {
+                > p {
+                  display: flex;
+                  overflow: visible;
+                  text-overflow: none;
+                  flex-wrap: wrap;
+                }
+              }
+            }
+            &.without-image{
+              > blinkpage {
+                > p {
+                  display: flex;
+                  overflow: visible;
+                  text-overflow: none;
+                  flex-wrap: wrap;
+                }
+              }
+            }
 
             > blinkpage {
               > p {
@@ -280,42 +295,23 @@
               }
             }
           }
-          .dark-title,
-          .dark-without-image-title {
-            color: var(--composer-font-color-primary) !important;
-          }
-          .without-image-title,
-          .dark-without-image-title {
-            > blinkpage {
-              > p {
-                display: flex;
-                overflow: visible;
-                text-overflow: none;
-                flex-wrap: wrap;
-              }
-            }
-          }
+
         }
 
         &.animation {
           .content-container {
-            .title,
-            .without-image-title,
-            .dark-title,
-            .dark-without-image-title {
+            .title {
               opacity: 1;
             }
 
-            .subtitle,
-            .subtitle-dark {
+            .subtitle{
               scale: 1;
               opacity: 1;
             }
           }
         }
       }
-      .dots,
-      .dark-dots {
+      .dots {
         position: absolute;
         top: 0px;
         list-style: none;
@@ -325,6 +321,18 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        &.dark{
+          li {
+            button {
+              &::before {
+                color: var(--composer-font-color-primary) !important;
+              }
+            }
+          }
+          :global(li.slick-active) button{
+            border: 1px solid var(--composer-font-color-primary) 
+          }
+        }
         li {
           height: 30px;
           cursor: pointer;
@@ -366,26 +374,12 @@
           }
         }
       }
-      .dark-dots {
-        li {
-          button {
-            &::before {
-              color: var(--composer-font-color-primary) !important;
-            }
-          }
-        }
-      }
-      .dots :global(li.slick-active) button,
-      .dark-dots :global(li.slick-active) button {
+      .dots :global(li.slick-active) button {
         border: 1px solid white;
         border-radius: 50%;
-
         &::before {
           opacity: 1;
         }
-      }
-      .dark-dots :global(li.slick-active) button {
-        border: 1px solid var(--composer-font-color-primary) !important;
       }
     }
   }
@@ -420,8 +414,7 @@
                 transform: scale(1) !important;
               }
 
-              .subtitle,
-              .subtitle-dark {
+              .subtitle{
                 display: none;
               }
               .sliderNumber {
@@ -431,10 +424,7 @@
                 }
               }
             }
-            .title,
-            .without-image-title,
-            .dark-title,
-            .dark-without-image-title {
+            .title{
               @include absoluteCenter;
             }
           }
@@ -504,10 +494,7 @@
               }
             }
 
-            .title,
-            .without-image-title,
-            .dark-title,
-            .dark-without-image-title {
+            .title{
               right: unset;
               @include absoluteCenter;
             }

@@ -16,62 +16,6 @@ interface IAnimationProps {
   startingAnimation: string;
 }
 
-function SampleNextArrow(props: any) {
-  const { className, style, onClick, customOnClick, disabled } = props;
-  return (
-    <div
-      className={`${className} ${styles["arrow-next"]}`}
-      onClick={() => {
-        if (!disabled) {
-          onClick();
-          customOnClick();
-        }
-      }}
-    ></div>
-  );
-}
-function SampleNextArrowNoImage(props: any) {
-  const { className, style, onClick, customOnClick, disabled } = props;
-  return (
-    <div
-      className={`${className} ${styles["arrow-next-no-image"]}`}
-      onClick={() => {
-        if (!disabled) {
-          onClick();
-          customOnClick();
-        }
-      }}
-    ></div>
-  );
-}
-function SamplePrevArrow(props: any) {
-  const { className, style, onClick, customOnClick, disabled } = props;
-  return (
-    <div
-      className={`${className} ${styles["arrow-prev"]}`}
-      onClick={() => {
-        if (!disabled) {
-          onClick();
-          customOnClick();
-        }
-      }}
-    ></div>
-  );
-}
-function SamplePrevArrowNoImage(props: any) {
-  const { className, style, onClick, customOnClick, disabled } = props;
-  return (
-    <div
-      className={`${className} ${styles["arrow-prev-no-image"]}`}
-      onClick={() => {
-        if (!disabled) {
-          onClick();
-          customOnClick();
-        }
-      }}
-    ></div>
-  );
-}
 class Header8 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
@@ -311,25 +255,14 @@ class Header8 extends BaseHeader {
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        <ComposerSlider {...settings} ref={sliderRef} className={allSlidesWithoutImages ? this.decorateCSS("carousel-no-image") : this.decorateCSS("carousel")}>
+        <ComposerSlider {...settings} ref={sliderRef} className={`${this.decorateCSS("carousel")} ${allSlidesWithoutImages && this.decorateCSS("no-image")}`}>
           {this.castToObject<ISliderData[]>("slider").map((item: ISliderData, index: number) => (
-            <div
-              className={item.image ? (
-                this.getPropValue("disabled")
-                  ? this.decorateCSS("slide-disabled-animate") : this.decorateCSS("slide") +
-                  " " +
-                  ((this.getComponentState("centerSlide")) == index + 1 && this.decorateCSS("disabled")
-                    ? this.decorateCSS("active-disabled")
-                    : this.decorateCSS("active"))
-              ) : (
-                this.getPropValue("disabled")
-                  ? this.decorateCSS("slide-disabled-animate") : this.decorateCSS("slide-no-image") +
-                  " " +
-                  ((this.getComponentState("centerSlide")) == index + 1 && this.decorateCSS("disabled")
-                    ? this.decorateCSS("active-disabled")
-                    : this.decorateCSS("active"))
-              )}
-            >
+            <div className={`
+              ${this.decorateCSS("slide")}
+              ${this.getPropValue("slider_animation") ? this.decorateCSS("disabled-animate") : ""}
+              ${!item.image ? this.decorateCSS("slide-no-image") : ""}
+              ${(this.getComponentState("centerSlide") === index + 1) && this.decorateCSS("active")}
+            `}>
               <div className={this.getPropValue("overlay") ? this.decorateCSS("image-wrapper-overlay") : this.decorateCSS("image-wrapper")}>
                 {item.image && (
                   <img src={item.image} alt={item.title} className={this.decorateCSS("image")} />

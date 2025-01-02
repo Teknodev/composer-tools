@@ -4,6 +4,7 @@ import { BaseHeader } from "../../EditorComponent";
 import styles from "./header11.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 class Header11 extends BaseHeader {
   constructor(props?: any) {
@@ -22,20 +23,20 @@ class Header11 extends BaseHeader {
       displayer: "Description",
       value: "Our world is full of wonders. Mountains, rivers, desserts, jungles and much more is waiting for you.",
     })
+    this.addProp(INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "Primary"));
+    // this.addProp({
+    //   type: "string",
+    //   key: "linktext",
+    //   displayer: "Link Text",
+    //   value: "Sign up now"
+    // })
 
-    this.addProp({
-      type: "string",
-      key: "linktext",
-      displayer: "Link Text",
-      value: "Sign up now"
-    })
-
-    this.addProp({
-      type: "page",
-      key: "linkpage",
-      displayer: "Link Page",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e77bd0181a1002c334f66?alt=media&timestamp=1719564238038"
-    })
+    // this.addProp({
+    //   type: "page",
+    //   key: "linkpage",
+    //   displayer: "Link Page",
+    //   value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e77bd0181a1002c334f66?alt=media&timestamp=1719564238038"
+    // })
 
     this.addProp({
       type: "icon",
@@ -83,7 +84,7 @@ class Header11 extends BaseHeader {
 
   render() {
     const hasLeft = this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("description")) || this.castToString(this.getPropValue("linktext"));
-
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
     return (
       <Base.Container className={this.decorateCSS("container")} isFull="true">
         {(hasLeft) && (
@@ -100,10 +101,10 @@ class Header11 extends BaseHeader {
                     {this.getPropValue("description")}
                   </Base.SectionDescription>
                 )}
-                {this.castToString(this.getPropValue("linktext")) && (
-                  <ComposerLink path={this.getPropValue("linkpage")}>
-                    <Base.Button className={this.decorateCSS("button")}>
-                      {this.getPropValue("linktext")}
+                {this.castToString(button.text) && (
+                  <ComposerLink path={button.url}>
+                    <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                      {button.text}
                     </Base.Button>
                   </ComposerLink>
                 )}

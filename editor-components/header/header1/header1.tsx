@@ -306,9 +306,7 @@ class Header1 extends BaseHeader {
       vertical: true,
       verticalSwiping: true,
       adaptiveHeight: true,
-      dotsClass: this.getPropValue("background-layout")
-        ? this.decorateCSS("dots")
-        : this.decorateCSS("dark-dots"),
+      dotsClass: `${this.decorateCSS("dots")} ${!this.getPropValue("background-layout") && this.decorateCSS("dark")}`,
       beforeChange: (current: number, next: number) => {
         this.setActiveTab(next);
         this.setComponentState("animation", false);
@@ -322,17 +320,17 @@ class Header1 extends BaseHeader {
     const animation = this.getComponentState("animation");
 
     return (
-      <Base.Container className={this.decorateCSS("container")} isFull={true} onWheel={this.handleWheel} style={{ backgroundImage: `url(${this.getPropValue("background-layout")})`}}>
+      <Base.Container className={this.decorateCSS("container")} isFull={true} onWheel={this.handleWheel} style={{ backgroundImage: `url(${this.getPropValue("background-layout")})` }}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <img
             className={this.decorateCSS("image-container-2")}
             src={this.getPropValue("sun")}
-            alt=""
+            alt={this.getPropValue("sun")}
           />
           <img
             className={this.decorateCSS("image-container-3")}
             src={this.getPropValue("sun")}
-            alt=""
+            alt={this.getPropValue("sun")}
           />
           <div className={this.decorateCSS("wrapper")}>
             <ComposerSlider ref={this.sliderRef} {...settings}>
@@ -340,16 +338,14 @@ class Header1 extends BaseHeader {
                 const isActive = this.getComponentState("activeTab") === index;
                 return (
                   <div
-                    className={`${this.decorateCSS("return-container")} ${
-                      animation && this.decorateCSS("animation")
-                    }`}
+                    className={`${this.decorateCSS("return-container")} ${animation && this.decorateCSS("animation")
+                      }`}
                     key={index}
                   >
                     <div className={this.decorateCSS("background-container")}>
                       <div
-                        className={`${this.decorateCSS("background-text")} ${
-                          isActive && this.decorateCSS("active-text")
-                        }`}
+                        className={`${this.decorateCSS("background-text")} ${isActive && this.decorateCSS("active-text")
+                          }`}
                       >
                         {item.backgroundTitle}
                       </div>
@@ -357,18 +353,10 @@ class Header1 extends BaseHeader {
 
                     <div className={this.decorateCSS("content-container")}>
                       <div
-                        className={
-                          item.image
-                            ? this.decorateCSS("image-wrapper")
-                            : this.decorateCSS("without-image-wrapper")
-                        }
+                        className={`${this.decorateCSS("image-wrapper")} ${!item.image && this.decorateCSS("without-image")}`}
                       >
                         <h1
-                          className={
-                            backgroundLayout
-                              ? this.decorateCSS("subtitle")
-                              : this.decorateCSS("subtitle-dark")
-                          }
+                          className={`${this.decorateCSS("subtitle")} ${!backgroundLayout && this.decorateCSS("dark")}`}
                         >
                           {item.subtitle}
                         </h1>
@@ -379,19 +367,14 @@ class Header1 extends BaseHeader {
                             (isActive && this.decorateCSS("active-image"))
                           }
                           src={item.image}
-                          alt=""
+                          alt={item.image}
                         />
                         {item.title && (
                           <h1
-                            className={
-                              backgroundLayout
-                                ? item.image
-                                  ? this.decorateCSS("title")
-                                  : this.decorateCSS("without-image-title")
-                                : item.image
-                                ? this.decorateCSS("dark-title")
-                                : this.decorateCSS("dark-without-image-title")
-                            }
+                            className={`${this.decorateCSS("title")}
+                          ${(backgroundLayout && !item.image) && this.decorateCSS("without-image")}
+                          ${(!backgroundLayout && item.image) && this.decorateCSS("dark")}
+                          ${(!backgroundLayout && !item.image) && this.decorateCSS("dark-without-image")}`}
                           >
                             {item.title}
                           </h1>
@@ -399,21 +382,9 @@ class Header1 extends BaseHeader {
 
                         <h1 className={this.decorateCSS("sliderNumber")}>
                           {isLineActive && (
-                            <span
-                              className={
-                                backgroundLayout
-                                  ? this.decorateCSS("overlay")
-                                  : this.decorateCSS("dark-overlay")
-                              }
-                            ></span>
+                            <span className={`${this.decorateCSS("overlay")} ${!backgroundLayout && this.decorateCSS("dark")}`}></span>
                           )}
-                          <span
-                            className={
-                              backgroundLayout
-                                ? this.decorateCSS("slider-number")
-                                : this.decorateCSS("dark-slider-number")
-                            }
-                          >
+                          <span className={`${this.decorateCSS("slider-number")} ${!backgroundLayout && this.decorateCSS("dark")}`}>
                             {item.sliderNumber}
                           </span>
                         </h1>

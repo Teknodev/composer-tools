@@ -3,6 +3,7 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header5.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Heading = {
   titleColored: JSX.Element;
@@ -66,25 +67,7 @@ class Header5 extends BaseHeader {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        {
-          type: "object",
-          key: "button",
-          displayer: "Button",
-          value: [
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "View More",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Button Link",
-              value: "",
-            },
-          ],
-        },
+        INPUTS.BUTTON("button", "Button", "View More", "", null, null, "Primary")
       ],
     });
   }
@@ -95,7 +78,7 @@ class Header5 extends BaseHeader {
 
   render() {
     const heading = this.castToObject<Heading>("heading");
-    const buttons = this.castToObject<Button[]>("buttons");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const isTitleExist = this.castToString(heading.title);
     const description = this.castToString(heading.description);
     const isTitleColoredExist = this.castToString(heading.titleColored);
@@ -103,26 +86,21 @@ class Header5 extends BaseHeader {
     const subTitleType = Base.getSectionSubTitleType();
 
     return (
-      <Base.Container
-        className={`${this.decorateCSS("container")} ${this.decorateCSS(
-          `alignment-${alignmentValue}`
-        )} ${this.decorateCSS(`subtitle-type-${subTitleType}`)}`}
-      >
+      <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div
-            className={`${this.decorateCSS("background-layer")} ${
-              heading.backgroundImage && this.decorateCSS("with-image")
-            }`}
+            className={`${this.decorateCSS("background-layer")} ${heading.backgroundImage && this.decorateCSS("with-image")
+              }`}
             style={{
               backgroundImage: `url(${heading.backgroundImage})`,
             }}
           >
-            <div className={heading.overlay ? this.decorateCSS("overlay") : ""}>
+            <div className={`${this.decorateCSS("overlay")} ${!heading.overlay && this.decorateCSS("no")}`}>
               <div className={this.decorateCSS("heading-page")}>
                 {isTitleColoredExist && (
-                  <Base.SectionSubTitle className={this.decorateCSS("sub-title")}>
+                  <Base.H1 className={this.decorateCSS("sub-title")}>
                     {heading.titleColored}
-                  </Base.SectionSubTitle>
+                  </Base.H1>
                 )}
                 {isTitleExist && (
                   <Base.SectionTitle className={this.decorateCSS("title")}>
@@ -135,12 +113,12 @@ class Header5 extends BaseHeader {
                   </Base.SectionDescription>
                 )}
                 <div className={this.decorateCSS("button-container")}>
-                  {buttons.map((item: Button, index: number) => {
-                    if (this.castToString(item.buttonText))
+                  {buttons.map((item: INPUTS.CastedButton, index: number) => {
+                    if (this.castToString(item.text))
                       return (
                         <ComposerLink key={index} path={item.url}>
-                          <Base.Button className={this.decorateCSS("button")}>
-                            {item.buttonText}
+                          <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                            {item.text}
                           </Base.Button>
                         </ComposerLink>
                       );
