@@ -343,22 +343,18 @@ class Feature4 extends BaseFeature {
                   </Base.SectionSubTitle>
                 )}
                 {titleExist && (
-                  <Base.SectionTitle className={`
-                    ${this.decorateCSS("section-title")}
-                    ${!!this.getPropValue("backgroundImage") ? this.decorateCSS("black") : ""}
-                  `}>
+                  <Base.SectionTitle className={this.decorateCSS("section-title")}>
                     {this.getPropValue("title")}
                   </Base.SectionTitle>
                 )}
                 {linkTextExist && (
-                  <ComposerLink path={linkButton.url}>
-                    <Base.Button buttonType={linkButton.type} className={`
-                    ${this.decorateCSS("featured-card-link")}
-                    ${!!this.getPropValue("backgroundImage") ? this.decorateCSS("black") : ""}
-                  `}>
-                      {linkButton.text}
-                    </Base.Button>
-                  </ComposerLink>
+                  <Base.Row className={this.decorateCSS("card-link-container")} >
+                    <ComposerLink path={linkButton.url}>
+                      <Base.Button buttonType={linkButton.type} className={this.decorateCSS("featured-card-link")}>
+                        {linkButton.text}
+                      </Base.Button>
+                    </ComposerLink>
+                  </Base.Row>
                 )}
               </div>
             )}

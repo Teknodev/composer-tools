@@ -33,11 +33,9 @@
             color: black;
           }
         }
-
-        .featured-card-link {
-          &.black {
-            color: black;
-            border-bottom: 1px solid black;
+        .card-link-container{
+          .featured-card-link {
+            content: "";
           }
         }
       }

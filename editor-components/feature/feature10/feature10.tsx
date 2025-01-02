@@ -256,6 +256,7 @@ class Feature10 extends BaseFeature {
   render() {
     const sliderRef = this.getComponentState("slider-ref");
     const cards = this.castToObject<Card[]>("cards");
+    console.log(cards.length)
 
     const title = this.getPropValue("title");
 
@@ -265,12 +266,12 @@ class Feature10 extends BaseFeature {
     const settings = {
       arrows: false,
       dots: false,
-      infinite: false,
       speed: 725,
       autoplay: true,
-      autoplaySpeed: 3000,
-      slidesToShow: 3,
+      autoplaySpeed: 2000,
+      slidesToShow: cards.length > 2 ? 3 : cards.length,
       slidesToScroll: 1,
+      infinity: true,
 
       responsive: [
         {

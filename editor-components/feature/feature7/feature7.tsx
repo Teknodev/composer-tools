@@ -158,10 +158,10 @@ class Feature7 extends BaseFeature {
             )}
             {hasTextContent && (
               <Base.GridCell
-                className={this.decorateCSS("text-container")}
+                className={`${this.decorateCSS("text-container")} ${!image && this.decorateCSS("padding")}`}
               >
                 {(subtitleExist || titleExist || descriptionExist) && (
-                  <Base.VerticalContent className={this.decorateCSS("title-wrapper")}>
+                  <Base.VerticalContent className={`${this.decorateCSS("title-wrapper")} ${image && this.decorateCSS("left")}`}>
                     {subtitleExist && (
                       <Base.SectionSubTitle className={this.decorateCSS("title")}>
                         {this.getPropValue("title")}
@@ -177,60 +177,61 @@ class Feature7 extends BaseFeature {
                         {this.getPropValue("description")}
                       </Base.SectionDescription>
                     )}
+                    {(this.getPropValue("features").length > 0) && (
+                      <Base.Row className={this.decorateCSS("featuresList")}>
+                        {features.map((item: Feature, index: number) => {
+                          const titleExist = !!this.castToString(item.title);
+
+                          if (!titleExist && !item.iconFeature) return null;
+
+                          return (
+                            <div key={index} className={this.decorateCSS("feature")}>
+                              {item.iconFeature && (
+                                <div className={this.decorateCSS("icon-wrapper")}>
+                                  <ComposerIcon
+                                    name={item.iconFeature}
+                                    propsIcon={{
+                                      className: this.decorateCSS("iconFeature"),
+                                    }}
+                                  />
+                                </div>
+                              )}
+                              {titleExist && (
+                                <div className={this.decorateCSS("featureTitle")}>
+                                  {item.title}
+                                </div>
+                              )}
+                            </div>
+                          );
+                        })}
+                      </Base.Row>
+                    )}
+
+                    {(this.getPropValue("links").length > 0) && (
+                      <Base.Row className={this.decorateCSS("linkList")}>
+                        {links.map((item: INPUTS.CastedButton, index: number) => {
+                          const textExist = !!this.castToString(item.text);
+
+                          return (
+                            <div key={index} className={this.decorateCSS("linkContainer")}>
+                              <ComposerLink path={item.url}>
+                                <Base.Button buttonType={item.type} className={this.decorateCSS("link")}>
+                                  {item.text}
+                                  < ComposerIcon
+                                    name={item.icon}
+                                    propsIcon={{ className: this.decorateCSS("iconLink") }}
+                                  />
+                                </Base.Button>
+                              </ComposerLink>
+                            </div>
+                          );
+                        })}
+                      </Base.Row>
+                    )}
                   </Base.VerticalContent>
                 )}
 
-                {(this.getPropValue("features").length > 0) && (
-                  <div className={this.decorateCSS("featuresList")}>
-                    {features.map((item: Feature, index: number) => {
-                      const titleExist = !!this.castToString(item.title);
 
-                      if (!titleExist && !item.iconFeature) return null;
-
-                      return (
-                        <div key={index} className={this.decorateCSS("feature")}>
-                          {item.iconFeature && (
-                            <div className={this.decorateCSS("icon-wrapper")}>
-                              <ComposerIcon
-                                name={item.iconFeature}
-                                propsIcon={{
-                                  className: this.decorateCSS("iconFeature"),
-                                }}
-                              />
-                            </div>
-                          )}
-                          {titleExist && (
-                            <div className={this.decorateCSS("featureTitle")}>
-                              {item.title}
-                            </div>
-                          )}
-                        </div>
-                      );
-                    })}
-                  </div>
-                )}
-
-                {(this.getPropValue("links").length > 0) && (
-                  <div className={this.decorateCSS("linkList")}>
-                    {links.map((item: INPUTS.CastedButton, index: number) => {
-                      const textExist = !!this.castToString(item.text);
-
-                      return (
-                        <div key={index} className={this.decorateCSS("linkContainer")}>
-                          <ComposerLink path={item.url}>
-                            <Base.Button buttonType={item.type} className={this.decorateCSS("link")}>
-                              {item.text}
-                              < ComposerIcon
-                                name={item.icon}
-                                propsIcon={{ className: this.decorateCSS("iconLink") }}
-                              />
-                            </Base.Button>
-                          </ComposerLink>
-                        </div>
-                      );
-                    })}
-                  </div>
-                )}
               </Base.GridCell>
             )}
           </Base.ContainerGrid>
