@@ -75,25 +75,25 @@ class LogoComp2Page extends LogoClouds {
     return (
       <Base.Container
         isFull={true}
-        className={`${this.decorateCSS("container")}`}
+        className={this.decorateCSS("container")}
       >
         {(isSubtitleExists || isTitleExists || isDescriptionExists) && (
-          <Base.VerticalContent className={`${this.decorateCSS("heading")}`}>
+          <Base.VerticalContent className={this.decorateCSS("heading")}>
             {isSubtitleExists && (
               <Base.SectionSubTitle
-                className={`${this.decorateCSS("subtitle")} `}
+                className={this.decorateCSS("subtitle")}
               >
                 {this.getPropValue("subtitle")}
               </Base.SectionSubTitle>
             )}
             {isTitleExists && (
-              <Base.SectionTitle className={`${this.decorateCSS("title")}`}>
+              <Base.SectionTitle className={this.decorateCSS("title")}>
                 {this.getPropValue("title")}
               </Base.SectionTitle>
             )}
             {isDescriptionExists && (
               <Base.SectionDescription
-                className={`${this.decorateCSS("description")} `}
+                className={this.decorateCSS("description")}
               >
                 {this.getPropValue("description")}
               </Base.SectionDescription>
@@ -121,9 +121,7 @@ class LogoComp2Page extends LogoClouds {
               ))}
             </div>
             <div
-              className={`${this.decorateCSS(
-                "images-container"
-              )} ${this.decorateCSS("reverse")}`}
+              className={`${this.decorateCSS("images-container")} ${this.decorateCSS("reverse")}`}
               style={{ animationDuration: `${images.length * 2}s` }}
             >
               {images.map((imageItem: TImage, index: number) => (

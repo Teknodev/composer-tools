@@ -1,8 +1,8 @@
 .container {
     &.image-active{
         background-size: cover;
-        padding-top: 160px;
-        padding-bottom: 160px;
+        padding-top: calc(var(--composer-gap-xl) * 3);
+        padding-bottom: calc(var(--composer-gap-xl) * 3);
     }
     &.overlay-active{
         position: relative;
@@ -21,12 +21,14 @@
         flex-direction: column;
         gap: var(--composer-gap-xl);
         .heading {
+            position: relative;
             .title {content: ""}
             .description {content: ""}
             .subtitle {content: ""}
         }
 
         .images-container {
+            position: relative;
             .image-item{
                 display: flex;
                 align-items: center;
