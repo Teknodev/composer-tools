@@ -28,7 +28,7 @@ class Content12 extends BaseContent {
   }
 
   getName(): string {
-    return "Content-12";
+    return "Content 12";
   }
 
   render() {

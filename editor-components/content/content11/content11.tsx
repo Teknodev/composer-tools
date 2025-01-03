@@ -4,7 +4,6 @@ import styles from "./content11.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
-import { Type } from "react-toastify/dist/utils";
 
 interface ListItem {
   title: string;

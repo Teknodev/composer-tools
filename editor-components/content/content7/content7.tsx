@@ -2,9 +2,7 @@ import * as React from "react";
 import { BaseContent } from "../../EditorComponent";
 import styles from "./content7.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
-import { $flushMutations } from "lexical/LexicalUtils";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 interface Card {
   direction: boolean;
