@@ -1214,11 +1214,15 @@ class Navbar1 extends BaseNavigator {
     const position = this.getPropValue("position");
     const menuItems = this.castToObject<MenuItems[]>("menuItems");
     const hamburgerNavActive = this.getComponentState("hamburgerNavActive");
-    const changeBackground = this.getComponentState("changeBackground");
     const isScrolled = this.getComponentState("isScrolled");
-    const transparentBackground =(position === "Sticky Transparent" || position === "Absolute") && !isScrolled;
-    const currentLogo =
-      transparentBackground && !changeBackground ? absoluteLogo : defaultLogo;
+    const isStickyTransparent = position === "Sticky Transparent";
+    const isAbsolute = position === "Absolute";
+    const transparentBackground = isStickyTransparent && !isScrolled;
+    
+    const currentLogo = (isStickyTransparent && !isScrolled) || isAbsolute
+      ? absoluteLogo
+      : defaultLogo;
+
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const divider = this.getPropValue("divider");
     const language = this.castToObject<Language>("language");
