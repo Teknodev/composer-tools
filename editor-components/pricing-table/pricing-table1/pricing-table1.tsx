@@ -4,11 +4,9 @@ import { BasePricingTable } from "../../EditorComponent";
 import styles from "./pricing-table1.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Pricing = {
-  buttonIcon: string;
-  buttonText: string;
-  link: string;
   cardTitle: JSX.Element;
   cardsubtitle: JSX.Element;
   cardPrice: JSX.Element;
@@ -21,6 +19,7 @@ type Pricing = {
   isActive: boolean;
   popular_settings: any;
   text3: string;
+  buttonType: INPUTS.CastedButton;
 };
 class PricingTable1 extends BasePricingTable {
   constructor(props?: any) {
@@ -36,70 +35,6 @@ class PricingTable1 extends BasePricingTable {
       key: "pricing-table-title",
       displayer: "Title",
       value: "Tailored pricing plans for everyone",
-    });
-    this.addProp({
-      type: "array",
-      key: "titles",
-      displayer: "Titles",
-      value: [
-        {
-          type: "object",
-          key: "title",
-          displayer: "Title",
-          value: [
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "Get 30 day free trial",
-            },
-            {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "LuCalendarCheck",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "title",
-          displayer: "Title",
-          value: [
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "No any hidden fees pay",
-            },
-            {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "BsWallet2",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "title",
-          displayer: "Title",
-          value: [
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "You can cancel anytime",
-            },
-            {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "FaRegClock",
-            },
-          ],
-        },
-      ],
     });
 
     this.addProp({
@@ -244,19 +179,7 @@ class PricingTable1 extends BasePricingTable {
               displayer: "Duration1",
               value: "billed annually*",
             },
-
-            {
-              type: "string",
-              key: "cardButtonText",
-              displayer: "Button Text",
-              value: "Join this plan",
-            },
-            {
-              type: "page",
-              key: "cardButtonLink",
-              displayer: "Button Link",
-              value: "",
-            },
+            INPUTS.BUTTON("buttonType", "Button", "Join this plan", "", null, null, "Primary"),
             {
               type: "string",
               key: "pricingTableTitle",
@@ -408,18 +331,7 @@ class PricingTable1 extends BasePricingTable {
               displayer: "Duration1",
               value: " billed annually*",
             },
-            {
-              type: "string",
-              key: "cardButtonText",
-              displayer: "Button Text",
-              value: "Join this plan",
-            },
-            {
-              type: "page",
-              key: "cardButtonLink",
-              displayer: "Button Link",
-              value: "",
-            },
+            INPUTS.BUTTON("buttonType", "Button", "Join this plan", "", null, null, "Primary"),
             {
               type: "string",
               key: "pricingTableTitle",
@@ -577,18 +489,7 @@ class PricingTable1 extends BasePricingTable {
               displayer: "Duration1",
               value: " billed annually*",
             },
-            {
-              type: "string",
-              key: "cardButtonText",
-              displayer: "Button Text",
-              value: "Join this plan",
-            },
-            {
-              type: "page",
-              key: "cardButtonLink",
-              displayer: "Button Link",
-              value: "",
-            },
+            INPUTS.BUTTON("buttonType", "Button", "Join this plan", "", null, null, "Primary"),
             {
               type: "string",
               key: "pricingTableTitle",
@@ -605,6 +506,71 @@ class PricingTable1 extends BasePricingTable {
         },
       ],
     });
+
+    this.addProp({
+      type: "array",
+      key: "titles",
+      displayer: "Titles",
+      value: [
+        {
+          type: "object",
+          key: "title",
+          displayer: "Title",
+          value: [
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "Get 30 day free trial",
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "LuCalendarCheck",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "title",
+          displayer: "Title",
+          value: [
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "No any hidden fees pay",
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "BsWallet2",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "title",
+          displayer: "Title",
+          value: [
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "You can cancel anytime",
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaRegClock",
+            },
+          ],
+        },
+      ],
+    });
   }
   getName(): string {
     return "Pricing Table 1";
@@ -615,6 +581,7 @@ class PricingTable1 extends BasePricingTable {
 
     const subtitleExist = this.castToString(subtitle);
     const titleExist = this.castToString(title);
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -635,18 +602,18 @@ class PricingTable1 extends BasePricingTable {
                 const durationExist = this.castToString(table.cardDuration);
                 const duration1Exist = this.castToString(table.cardDuration1);
 
-                const cardButtonTextExist = this.castToString(table.cardButtonText);
+                const cardButtonTextExist = this.castToString(table.buttonType.text);
                 const cardpricingTableTitleExist = this.castToString(table.pricingTableTitle);
 
                 return (
                   <div key={index} className={`${this.decorateCSS("item-card")} ${table.isActive && this.decorateCSS("active")}`}>
                     {popularText && (
                       <div className={`${this.decorateCSS("popular-box")} ${table.popular_settings.is_popular && this.decorateCSS("active")}`}>
-                        <span className={this.decorateCSS("popular-text")}>{table.popular_settings.text}</span>
+                        <Base.P className={this.decorateCSS("popular-text")}>{table.popular_settings.text}</Base.P>
                       </div>
                     )}
                     {cardSubtitleExist && <Base.H3 className={this.decorateCSS("cardsubtitle")}>{table.cardsubtitle}</Base.H3>}
-                    {cardTitleExist && <Base.H3 className={cardSubtitleExist ? this.decorateCSS("card-title") : this.decorateCSS("card-title-no-margin")}>{table.cardTitle}</Base.H3>}
+                    {cardTitleExist && <Base.H3 className={this.decorateCSS("card-title")}>{table.cardTitle}</Base.H3>}
                     <div className={this.decorateCSS("card-list")}>
                       {table.cardList.map((listItem: any, index: number) => {
                         const cardListItemExist = this.castToString(listItem.cardListItem);
@@ -654,7 +621,7 @@ class PricingTable1 extends BasePricingTable {
 
                         return (
                           cardExist && (
-                            <div key={index} className={this.decorateCSS("card-list-item")}>
+                            <Base.Row key={index} className={this.decorateCSS("card-list-item")}>
                               <ComposerIcon
                                 name={listItem.buttonIcon}
                                 propsIcon={{
@@ -662,7 +629,7 @@ class PricingTable1 extends BasePricingTable {
                                 }}
                               />
                               <span className={this.decorateCSS("list-item")}>{listItem.cardListItem}</span>
-                            </div>
+                            </Base.Row>
                           )
                         );
                       })}
@@ -681,9 +648,9 @@ class PricingTable1 extends BasePricingTable {
                       </div>
 
                       {cardButtonTextExist && (
-                        <button className={this.decorateCSS("card-button")}>
-                          <ComposerLink path={table.cardButtonLink}>{table.cardButtonText}</ComposerLink>
-                        </button>
+                        <Base.Button buttonType={table.buttonType.type} className={this.decorateCSS("card-button")}>
+                          <ComposerLink path={table.buttonType.url}>{table.buttonType.text}</ComposerLink>
+                        </Base.Button>
                       )}
 
                       {cardpricingTableTitleExist && <span className={this.decorateCSS("pricingTitle")}>{table.pricingTableTitle}</span>}

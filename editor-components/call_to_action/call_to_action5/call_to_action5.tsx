@@ -14,13 +14,13 @@ class CallToAction5Page extends BaseCallToAction {
       type: "image",
       key: "background",
       displayer: "Background Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6749ac99506a40002c2f82f5?alt=media"
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6749ac99506a40002c2f82f5?alt=media",
     });
     this.addProp({
       type: "boolean",
       key: "overlay",
       displayer: "Overlay",
-      value: true
+      value: true,
     });
     this.addProp({
       type: "string",
@@ -42,7 +42,7 @@ class CallToAction5Page extends BaseCallToAction {
       type: "string",
       key: "placeholder",
       displayer: "Placeholder",
-      value: "Enter e-mail address"
+      value: "Enter e-mail address",
     });
     this.addProp({
       type: "string",
@@ -51,10 +51,7 @@ class CallToAction5Page extends BaseCallToAction {
       value: "Form successfully submitted!",
     });
 
-    this.setComponentState(
-      "placeholderText",
-      this.castToString(this.getPropValue("placeholder"))
-    );
+    this.setComponentState("placeholderText", this.castToString(this.getPropValue("placeholder")));
   }
 
   componentDidUpdate() {
@@ -67,11 +64,8 @@ class CallToAction5Page extends BaseCallToAction {
   }
 
   validationSchema = Yup.object().shape({
-    email: Yup.string()
-      .email("Invalid email")
-      .required("Required"),
+    email: Yup.string().email("Invalid email").required("Required"),
   });
-
 
   getName(): string {
     return "Call To Action 5";
@@ -93,18 +87,13 @@ class CallToAction5Page extends BaseCallToAction {
         style={{ backgroundImage: `url(${this.getPropValue("background")})` }}
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(titleExist || subtitleExist) &&
-            <Base.VerticalContent
-              className={`${this.decorateCSS("header")} ${this.getPropValue("background") && this.decorateCSS("with-image")}`}>
-              {titleExist && (
-                <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
-              )}
-              {subtitleExist && (
-                <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>
-              )}
+          {(titleExist || subtitleExist) && (
+            <Base.VerticalContent className={`${this.decorateCSS("header")} ${this.getPropValue("background") && this.decorateCSS("with-image")}`}>
+              {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+              {subtitleExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
             </Base.VerticalContent>
-          }
-          {(this.castToString(button.text) && this.castToString(this.getPropValue("placeholder"))) &&
+          )}
+          {this.castToString(button.text) && this.castToString(this.getPropValue("placeholder")) && (
             <div className={this.decorateCSS("form")}>
               <Formik
                 initialValues={{ email: "" }}
@@ -114,34 +103,24 @@ class CallToAction5Page extends BaseCallToAction {
                   this.insertForm("Call Me Back", data);
                   setTimeout(() => {
                     const defaultPlaceholder = this.castToString(this.getPropValue("placeholder"));
-                    this.setComponentState(
-                      "placeholderText",
-                      defaultPlaceholder
-                    );
+                    this.setComponentState("placeholderText", defaultPlaceholder);
                   }, 2000);
                   resetForm();
                 }}
               >
                 {({ handleSubmit, handleChange, values, errors, touched }) => (
                   <Form className={this.decorateCSS("newsletter")} onSubmit={handleSubmit}>
-                    {(this.castToString(this.getPropValue("placeholder")) && this.castToString(button.text)) && (
+                    {this.castToString(this.getPropValue("placeholder")) && this.castToString(button.text) && (
                       <div className={this.decorateCSS("inputs")}>
                         <input
-                          placeholder={
-                            this.getComponentState("placeholderText") ||
-                            placeholder
-                          }
+                          placeholder={this.getComponentState("placeholderText") || placeholder}
                           type="text"
                           onChange={handleChange}
                           value={values.email}
                           name="email"
                           className={`${this.decorateCSS("input")} ${!this.getPropValue("background") && this.decorateCSS("no-image")}`}
                         />
-                        {errors.email && touched.email && (
-                          <div className={this.decorateCSS("error")}>
-                            {errors.email}
-                          </div>
-                        )}
+                        {errors.email && touched.email && <div className={this.decorateCSS("error")}>{errors.email}</div>}
                       </div>
                     )}
                     {this.castToString(button.text) && (
@@ -153,19 +132,18 @@ class CallToAction5Page extends BaseCallToAction {
                 )}
               </Formik>
             </div>
-          }
-          {(this.castToString(button.text) && !this.castToString(this.getPropValue("placeholder"))) && (
+          )}
+          {this.castToString(button.text) && !this.castToString(this.getPropValue("placeholder")) && (
             <div className={this.decorateCSS("button-container")}>
               <ComposerLink path={button.url}>
-                <Base.Button buttonType={button.type}
-                  className={this.decorateCSS("button")}>
+                <Base.Button buttonType={button.type} className={`${this.decorateCSS("button")} ${!this.castToString(this.getPropValue("placeholder")) && this.decorateCSS("button-no-item")}`}>
                   {button.text}
                 </Base.Button>
               </ComposerLink>
             </div>
           )}
         </Base.MaxContent>
-      </Base.Container >
+      </Base.Container>
     );
   }
 }

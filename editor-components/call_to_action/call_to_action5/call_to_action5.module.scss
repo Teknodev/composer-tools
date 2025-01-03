@@ -1,4 +1,4 @@
-@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
 .container {
   position: relative;
@@ -76,8 +76,8 @@
             width: 100%;
             outline: none;
             border: none;
-            border-top-left-radius: var(--composer-border-radius-md);
-            border-bottom-left-radius: var(--composer-border-radius-md);
+            border-top-left-radius: var(--composer-border-radius-sm);
+            border-bottom-left-radius: var(--composer-border-radius-sm);
 
             &.no-image {
               background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
@@ -85,7 +85,6 @@
 
               &::placeholder {
                 color: var(--composer-font-color-primary);
-
               }
             }
           }
@@ -115,13 +114,16 @@
         content: "";
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
+
+        &.button-no-item {
+          border-radius: var(--composer-border-radius-sm);
+        }
       }
     }
   }
 }
 
 @container (max-width: #{$composer-tablet-width-lg}) {
-
   .container {
     padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-lg);
 
@@ -146,7 +148,6 @@
 }
 
 @container (max-width: #{$composer-phone-width}) {
-
   .container {
     padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-md);
 
@@ -167,7 +168,6 @@
           min-width: 100%;
 
           .inputs {
-
             .input {
               padding: var(--composer-gap-sm) var(--composer-gap-sm);
             }

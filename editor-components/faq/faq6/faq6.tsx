@@ -4,7 +4,7 @@ import { BaseFAQ } from "../../EditorComponent";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
 
-class FaqPost extends BaseFAQ {
+class Faq6 extends BaseFAQ {
   constructor(props?: any) {
     super(props, styles);
 
@@ -195,4 +195,4 @@ class FaqPost extends BaseFAQ {
   }
 }
 
-export default FaqPost;
+export default Faq6;

@@ -1,16 +1,16 @@
 import * as React from "react";
 import { Testimonials } from "../../EditorComponent";
 import styles from "./testimonials6.module.scss";
-import { Base } from "../../../composer-base-components/base/base"
+import { Base } from "../../../composer-base-components/base/base";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 interface CardItem {
-  star: number,
-  description: JSX.Element,
-  profileImage: string,
-  name: JSX.Element,
-  personTitle: string,
-  line: boolean
+  star: number;
+  description: JSX.Element;
+  profileImage: string;
+  name: JSX.Element;
+  personTitle: string;
+  line: boolean;
 }
 
 class Testimonials6Page extends Testimonials {
@@ -59,15 +59,13 @@ class Testimonials6Page extends Testimonials {
             {
               type: "string",
               key: "description",
-              value:
-                "Their design skills are truly exceptional, and they have a keen eye for aesthetics that sets them apart from others in the field.",
+              value: "Their design skills are truly exceptional, and they have a keen eye for aesthetics that sets them apart from others in the field.",
               displayer: "Review Text",
             },
             {
               type: "image",
               key: "profileImage",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644933b3f72de2002caa9a16?alt=media&timestamp=1719483639147",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644933b3f72de2002caa9a16?alt=media&timestamp=1719483639147",
               displayer: "Author Image",
             },
             {
@@ -104,15 +102,13 @@ class Testimonials6Page extends Testimonials {
             {
               type: "string",
               key: "description",
-              value:
-                "An online learning platform can provide access to educational content from anywhere with an internet connection.",
+              value: "An online learning platform can provide access to educational content from anywhere with an internet connection.",
               displayer: "Review Text",
             },
             {
               type: "image",
               key: "profileImage",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64493501f72de2002caa9a46?alt=media&timestamp=1719483639147",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64493501f72de2002caa9a46?alt=media&timestamp=1719483639147",
               displayer: "Author Image",
             },
             {
@@ -149,15 +145,13 @@ class Testimonials6Page extends Testimonials {
             {
               type: "string",
               key: "description",
-              value:
-                "A personal finance website can be incredibly helpful for people looking to improve their financial literacy and manage their money better.",
+              value: "A personal finance website can be incredibly helpful for people looking to improve their financial literacy and manage their money better.",
               displayer: "Review Text",
             },
             {
               type: "image",
               key: "profileImage",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6449364af72de2002caa9ad0?alt=media&timestamp=1719483639147",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6449364af72de2002caa9ad0?alt=media&timestamp=1719483639147",
               displayer: "Author Image",
             },
             {
@@ -194,15 +188,13 @@ class Testimonials6Page extends Testimonials {
             {
               type: "string",
               key: "description",
-              value:
-                "Their design skills are truly exceptional, and they have a keen eye for aesthetics that sets them apart from others in the field.",
+              value: "Their design skills are truly exceptional, and they have a keen eye for aesthetics that sets them apart from others in the field.",
               displayer: "Review Text",
             },
             {
               type: "image",
               key: "profileImage",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644933b3f72de2002caa9a16?alt=media&timestamp=1719483639147",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644933b3f72de2002caa9a16?alt=media&timestamp=1719483639147",
               displayer: "Author Image",
             },
             {
@@ -239,15 +231,13 @@ class Testimonials6Page extends Testimonials {
             {
               type: "string",
               key: "description",
-              value:
-                "An online learning platform can provide access to educational content from anywhere with an internet connection.",
+              value: "An online learning platform can provide access to educational content from anywhere with an internet connection.",
               displayer: "Review Text",
             },
             {
               type: "image",
               key: "profileImage",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64493501f72de2002caa9a46?alt=media&timestamp=1719483639147",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64493501f72de2002caa9a46?alt=media&timestamp=1719483639147",
               displayer: "Author Image",
             },
             {
@@ -284,15 +274,13 @@ class Testimonials6Page extends Testimonials {
             {
               type: "string",
               key: "description",
-              value:
-                "A personal finance website can be incredibly helpful for people looking to improve their financial literacy and manage their money better.",
+              value: "A personal finance website can be incredibly helpful for people looking to improve their financial literacy and manage their money better.",
               displayer: "Review Text",
             },
             {
               type: "image",
               key: "profileImage",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6449364af72de2002caa9ad0?alt=media&timestamp=1719483639147",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6449364af72de2002caa9ad0?alt=media&timestamp=1719483639147",
               displayer: "Author Image",
             },
             {
@@ -322,44 +310,24 @@ class Testimonials6Page extends Testimonials {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("maxContent")}>
-          {this.castToString(this.getPropValue("title")) && (
-            <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
-          )}
+          {this.castToString(this.getPropValue("title")) && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
           <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("cardContainer")}>
             {card.map((item: any, index: number) => (
               <div className={this.decorateCSS("card")}>
-                {this.castToString(item.description) && (
-                  <Base.P className={this.decorateCSS("description")}>
-                    {item.description}
-                  </Base.P>
-                )}
-                {item.line && (
-                  <div className={this.decorateCSS("line")}></div>
-                )}
-                {(item.profileImage || this.castToString(item.name) || this.castToString(item.personTitle) || (item.star > 0)) && (
+                {this.castToString(item.description) && <Base.P className={this.decorateCSS("description")}>{item.description}</Base.P>}
+                {item.line && <div className={this.decorateCSS("line")}></div>}
+                {(item.profileImage || this.castToString(item.name) || this.castToString(item.personTitle) || item.star > 0) && (
                   <div className={this.decorateCSS("bottomContainer")}>
-                    {item.profileImage && (
-                      <img src={item.profileImage} alt={item.profileImage} className={this.decorateCSS("image")} />
-                    )}
+                    {item.profileImage && <img src={item.profileImage} alt={item.profileImage} className={this.decorateCSS("image")} />}
                     <Base.VerticalContent className={this.decorateCSS("person")}>
-                      {this.castToString(item.name) && (
-                        <div className={this.decorateCSS("name")}>
-                          {item.name}
-                        </div>
-                      )}
-                      {this.castToString(item.personTitle) && (
-                        <div className={this.decorateCSS("personTitle")}>
-                          {item.personTitle}
-                        </div>
-                      )}
-                    </Base.VerticalContent >
-                    {(item.star > 0) && (
+                      {this.castToString(item.name) && <div className={this.decorateCSS("name")}>{item.name}</div>}
+                      {this.castToString(item.personTitle) && <div className={this.decorateCSS("personTitle")}>{item.personTitle}</div>}
+                    </Base.VerticalContent>
+                    {item.star > 0 && (
                       <div className={this.decorateCSS("star")}>
-                        {[...Array(Number(item.star))].map(
-                          (_: any, index: number) => (
-                            <ComposerIcon name={this.getPropValue("starIcon")} />
-                          )
-                        )}
+                        {[...Array(Number(item.star))].map((_: any, index: number) => (
+                          <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={this.getPropValue("starIcon")} />
+                        ))}
                       </div>
                     )}
                   </div>
@@ -368,7 +336,7 @@ class Testimonials6Page extends Testimonials {
             ))}
           </Base.ListGrid>
         </Base.MaxContent>
-      </Base.Container >
+      </Base.Container>
     );
   }
 }

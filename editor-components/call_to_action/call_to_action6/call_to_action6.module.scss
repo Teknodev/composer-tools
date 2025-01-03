@@ -1,4 +1,4 @@
-@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
 .container {
   background-size: cover;
@@ -57,22 +57,23 @@
         .space {
           content: "";
           height: 1px;
-          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+          background-color: rgb(var(--composer-font-color-primary-rgb), 0.2);
           width: 15%;
         }
       }
 
       .placeholder {
         min-width: 500px;
-        color: var(--composer-font-color-primary);
-        background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+        color: var(--composer-html-background);
         width: 30%;
         padding: var(--composer-gap-md);
         border-radius: var(--composer-border-radius-md);
-        border: 1px solid color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+        border: 1px solid var(--composer-font-color-primary);
+        background-color: var(--composer-font-color-primary);
+        outline: none;
 
         &::placeholder {
-          color: var(--composer-font-color-primary);
+          color: var(--composer-html-background);
         }
       }
 
@@ -142,7 +143,6 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     padding: var(--composer-gap-xl) var(--composer-gap-md);
-
   }
 
   .container {
