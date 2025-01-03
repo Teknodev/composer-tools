@@ -3,14 +3,12 @@ import { BaseHTTPCodes } from "../../EditorComponent";
 import styles from "./http_codes1.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
-type ButtonType = {
-  text?: string;
-  url?: string;
-};
+type ButtonType = INPUTS.CastedButton;
 type ButtonsArray = ButtonType[];
 
-class HTTP_CODES1 extends BaseHTTPCodes {
+class HttpCodes1 extends BaseHTTPCodes {
   constructor(props?: any) {
     super(props, styles);
 
@@ -39,27 +37,7 @@ class HTTP_CODES1 extends BaseHTTPCodes {
       type: "array",
       key: "buttons",
       displayer: "Buttons",
-      value: [
-        {
-          type: "object",
-          key: "button",
-          displayer: "Button",
-          value: [
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "Go home",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Url",
-              value: "",
-            },
-          ],
-        },
-      ],
+      value: [INPUTS.BUTTON("button", "Button", "Go home", "", null, null, "Primary")],
     });
   }
 
@@ -70,34 +48,30 @@ class HTTP_CODES1 extends BaseHTTPCodes {
   render() {
     const image = this.getPropValue("image");
     const buttons = this.castToObject<ButtonsArray>("buttons");
-    const hasRightSide = this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("description")) || (buttons.length > 0);
+    const hasRightSide = this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("description")) || buttons.length > 0;
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content-box")}>
             <div className={this.decorateCSS("content")}>
               {image && (
-                <div className={hasRightSide ? this.decorateCSS("left-side") : this.decorateCSS("left-side-full-width")}>
-                  <div className={hasRightSide ? this.decorateCSS("image-box") : this.decorateCSS("image-box-full-width")} >
-                    <img className={this.decorateCSS("image")} src={this.getPropValue("image")} alt="" />
+                <div className={`${this.decorateCSS("left-side")} ${!hasRightSide && this.decorateCSS("left-side-full-width")}`}>
+                  <div className={`${this.decorateCSS("image-box")} ${!hasRightSide && this.decorateCSS("image-box-full-width")}`}>
+                    <img className={`${this.decorateCSS("image")} ${!hasRightSide && this.decorateCSS("image-full")}`} src={this.getPropValue("image")} alt="" />
                   </div>
                 </div>
               )}
-              {(hasRightSide) && (
+              {hasRightSide && (
                 <div className={this.decorateCSS("right-side")}>
-                  <div className={this.decorateCSS("right-content")}>
-                    {this.castToString(this.getPropValue("title")) && (
-                      <div className={image ? this.decorateCSS("title") : this.decorateCSS("title-no-image")}>{this.getPropValue("title")}</div>
-                    )}
-                    {this.castToString(this.getPropValue("description")) && (
-                      <div className={image ? this.decorateCSS("description") : this.decorateCSS("description-no-image")}>{this.getPropValue("description")}</div>
-                    )}
-                    {(buttons.length > 0) && (
-                      <div className={image ? this.decorateCSS("button-wrapper") : this.decorateCSS("button-wrapper-no-image")}>
+                  <Base.VerticalContent className={this.decorateCSS("right-content")}>
+                    {this.castToString(this.getPropValue("title")) && <Base.SectionTitle className={`${this.decorateCSS("title")} ${!image && this.decorateCSS("title-no-image")}`}>{this.getPropValue("title")}</Base.SectionTitle>}
+                    {this.castToString(this.getPropValue("description")) && <div className={`${this.decorateCSS("description")} ${!image && this.decorateCSS("description-no-image")}`}>{this.getPropValue("description")}</div>}
+                    {buttons.length > 0 && (
+                      <div className={`${this.decorateCSS("button-wrapper")} ${!image && this.decorateCSS("button-wrapper-no-image")}`}>
                         {buttons.map((button: ButtonType, index: number) => {
                           return (
                             <ComposerLink path={button.url}>
-                              <Base.Button className={this.decorateCSS("button")}>
+                              <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
                                 {button.text}
                               </Base.Button>
                             </ComposerLink>
@@ -105,7 +79,7 @@ class HTTP_CODES1 extends BaseHTTPCodes {
                         })}
                       </div>
                     )}
-                  </div>
+                  </Base.VerticalContent>
                 </div>
               )}
             </div>
@@ -116,4 +90,4 @@ class HTTP_CODES1 extends BaseHTTPCodes {
   }
 }
 
-export default HTTP_CODES1;
+export default HttpCodes1;
