@@ -165,6 +165,19 @@ class Header25 extends BaseHeader {
       displayer: "Prev Arrow Text",
       value: "PREV",
     });
+
+    this.addProp({
+      type: "select",
+      key: "buttonType",
+      displayer: "Button Type",
+      value: "Link",
+      additionalParams: {
+        selectItems: [
+          "Primary" , "Secondary" , "Tertiary" , "Link" , "White" , "Black"
+        ]
+      }
+    })
+
     this.addProp({
       type: "array",
       displayer: "Slider Carousel",
@@ -358,8 +371,8 @@ class Header25 extends BaseHeader {
       arrows: false,
       speed: 1000,
       fade: true,
-      autoplay: false,
-      autoplaySpeed: 3000,
+      autoplay: true,
+      autoplaySpeed: 5000,
       slidesToShow: 1,
       slidesToScroll: 1,
       beforeChange: (oldIndex: number, newIndex: number) => {
@@ -395,8 +408,10 @@ class Header25 extends BaseHeader {
       this.getPropValue("lineIsActive") ||
       socialMediaIcons.length > 0)
 
+    const buttonType = this.getPropValue("buttonType");
+
     return (
-      <div className={this.decorateCSS("container")}>
+      <Base.Container className={this.decorateCSS("container")}>
         {sliderItemObject && (
           <ComposerSlider
             {...settings}
@@ -421,7 +436,7 @@ class Header25 extends BaseHeader {
         )}
 
         <div className={this.decorateCSS("item")}>
-          <div className={`${this.decorateCSS("left-figure-container")} ${imageless && this.decorateCSS("imageless")}`}>
+          <div className={`${this.decorateCSS("left-figure-container")} ${imageless ? this.decorateCSS("imageless") : ""}`}>
             {isIndexDisplayExist &&
               <div className={this.decorateCSS("top-figure")}>
                 {topContent.page_show && (
@@ -445,7 +460,7 @@ class Header25 extends BaseHeader {
                   </div>}
               </div>}
             {(isIndexDisplayExist || isMediaPanelExist) &&
-              <div className={`${this.decorateCSS("bottom-figure")} ${!isIndexDisplayExist && this.decorateCSS("no-index-display")}`}>
+              <div className={`${this.decorateCSS("bottom-figure")} ${!isIndexDisplayExist ? this.decorateCSS("no-index-display") : ""}`}>
                 {this.castToString(this.getPropValue("side-text")) &&
                   <div className={this.decorateCSS("side-text")}>
                     <span className={this.decorateCSS("side-text-content")}>
@@ -476,9 +491,10 @@ class Header25 extends BaseHeader {
                 this.castToString(nextArrowText) ||
                 nextIcon)) && (
                 <div className={`${this.decorateCSS("arrows")} 
-                      ${(!isIndexDisplayExist && !isMediaPanelExist) && this.decorateCSS("no-left-side")}
-                      ${!isIndexDisplayExist && this.decorateCSS("icon-bottom")}
-                      ${imageless && this.decorateCSS("black-theme")}`}>
+                      ${(!isIndexDisplayExist && !isMediaPanelExist) ? this.decorateCSS("no-left-side") : ""}
+                      ${!isIndexDisplayExist ? this.decorateCSS("icon-bottom") : ""}
+                      ${!imageless ? this.decorateCSS("with-image") : ""}
+                      `}>
                   {(this.castToString(prevArrowText) || prevIcon) &&
                     <div
                       className={this.decorateCSS("prev-arrow")}
@@ -530,7 +546,7 @@ class Header25 extends BaseHeader {
               return (
                 <Base.Container className={this.decorateCSS("content-container")}>
                   <Base.MaxContent
-                    className={`${this.decorateCSS("content-max-content")} ${!sliderItem.image && this.decorateCSS("black-theme")}`}
+                    className={`${this.decorateCSS("content-max-content")}`}
                     key={index}
                   >
                     {(this.castToString(sliderItem.button.buttonText) ||
@@ -545,8 +561,9 @@ class Header25 extends BaseHeader {
                               className={`
                               ${this.decorateCSS("title")} 
                               animate__animated 
-                              ${this.getComponentState("titleAnimationClass")
-                                }`}
+                              ${this.getComponentState("titleAnimationClass")}
+                              ${!!sliderItem.image ? this.decorateCSS("with-image") : ""}
+                              `}
                               onAnimationEnd={() => {
                                 this.handleAnimationEnd({
                                   animationState: "titleAnimationClass",
@@ -561,7 +578,9 @@ class Header25 extends BaseHeader {
                             <Base.SectionDescription
                               className={`${this.decorateCSS("description")} 
                             animate__animated 
-                            ${this.getComponentState("descriptionAnimationClass")}`}
+                            ${this.getComponentState("descriptionAnimationClass")}
+                            ${!!sliderItem.image ? this.decorateCSS("with-image") : ""}
+                            `}
                               onAnimationEnd={() => {
                                 this.handleAnimationEnd({
                                   animationState: "descriptionAnimationClass",
@@ -576,9 +595,12 @@ class Header25 extends BaseHeader {
                             sliderItem.button.next_icon) &&
                             <ComposerLink path={sliderItem.button.link}>
                               <Base.Button
+                                buttonType={buttonType}
                                 className={`${this.decorateCSS("button")} animate__animated ${this.getComponentState(
                                   "buttonAnimationClass"
-                                )}`}
+                                )}
+                                  ${!!sliderItem.image ? this.decorateCSS("with-image") : ""}
+                                `}
                                 onAnimationEnd={() => {
                                   this.handleAnimationEnd({
                                     animationState: "buttonAnimationClass",
@@ -608,7 +630,7 @@ class Header25 extends BaseHeader {
           }
           )}
         </div>
-      </div >
+      </Base.Container >
     );
   }
 
