@@ -110,7 +110,6 @@
 
       &::after {
         background-color: rgba(0, 0, 0, 0.25);
-        // background-color: var(--composer-overlay-color);
         content: "";
         width: 100%;
         height: 100%;
@@ -151,6 +150,7 @@
       left: 50%;
       transform: translateX(-50%);
       height: calc(37vh - var(--composer-gap-md));
+      z-index: 5;
 
       @container (max-width: #{$composer-tablet-width-lg}) {
         top: 58%;

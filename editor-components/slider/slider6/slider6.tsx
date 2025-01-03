@@ -232,7 +232,7 @@ class Slider6 extends BaseSlider {
           },
         },
       ],
-      beforeChange: (current: number, next: number) => {
+      beforeChange: (_: number, next: number) => {
         this.setComponentState("prevSlide", next - 1 < 0 ? this.castToObject<Card[]>("header").length - 1 : next - 1);
         this.setComponentState("activeSlide", next);
         this.setComponentState("nextSlide", next + 1 > this.castToObject<Card[]>("header").length - 1 ? 0 : next + 1);

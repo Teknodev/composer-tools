@@ -214,7 +214,7 @@ class Slider2 extends BaseSlider {
     });
 
     this.setComponentState("active_index", 0);
-    this.setComponentState("text", this.castToString(this.castToObject<Card[]>("slider")[0].text));
+    this.setComponentState("text", this.castToObject<Card[]>("slider")[0].text);
     this.setComponentState("text_visibility", true);
   }
 
@@ -258,7 +258,7 @@ class Slider2 extends BaseSlider {
         this.setComponentState("text_visibility", false);
         setTimeout(() => {
           this.setComponentState("text_visibility", true);
-          this.setComponentState("text", this.castToString(nextSlideData?.text));
+          this.setComponentState("text", nextSlideData?.text);
         }, 200);
       },
     };
@@ -310,7 +310,7 @@ class Slider2 extends BaseSlider {
                       this.setComponentState("text_visibility", false);
                       setTimeout(() => {
                         this.setComponentState("text_visibility", true);
-                        this.setComponentState("text", this.castToString(item.text));
+                        this.setComponentState("text", item.text);
                       }, 200);
                     }}
                   >

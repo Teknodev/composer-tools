@@ -337,7 +337,7 @@ class Slider8 extends BaseSlider {
           {cards.length > 1 && (
             <ul className={`${this.decorateCSS(anyImagesExist ? "dots" : "dots-2")}`}>
               {cards.map((_, index) => (
-                <li key={`dot-${index}`} className={this.getComponentState("activeSlide") === index && this.decorateCSS("slick-active")} onClick={() => this.getComponentState("slider-ref").current.slickGoTo(index)}>
+                <li key={`dot-${index}`} className={`${this.decorateCSS("slick")} ${this.getComponentState("activeSlide") === index && this.decorateCSS("slick-active")}`} onClick={() => this.getComponentState("slider-ref").current.slickGoTo(index)}>
                   <button />
                 </li>
               ))}
