@@ -24,20 +24,6 @@ class Header11 extends BaseHeader {
       value: "Our world is full of wonders. Mountains, rivers, desserts, jungles and much more is waiting for you.",
     })
     this.addProp(INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "Primary"));
-    // this.addProp({
-    //   type: "string",
-    //   key: "linktext",
-    //   displayer: "Link Text",
-    //   value: "Sign up now"
-    // })
-
-    // this.addProp({
-    //   type: "page",
-    //   key: "linkpage",
-    //   displayer: "Link Page",
-    //   value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e77bd0181a1002c334f66?alt=media&timestamp=1719564238038"
-    // })
-
     this.addProp({
       type: "icon",
       key: "icon",
@@ -90,7 +76,8 @@ class Header11 extends BaseHeader {
         {(hasLeft) && (
           <div className={this.decorateCSS("box")}>
             <Base.MaxContent className={this.decorateCSS("max-content")}>
-              <Base.VerticalContent className={this.getPropValue("backgroundImage") ? this.decorateCSS("content") : this.decorateCSS("content-no-image")}>
+
+              <Base.VerticalContent className={`${this.decorateCSS("content")} ${!this.getPropValue("backgroundImage") && this.decorateCSS("no-image")}`}>
                 {this.castToString(this.getPropValue("title")) && (
                   <Base.SectionTitle className={this.decorateCSS("title")}>
                     {this.getPropValue("title")}
@@ -113,7 +100,7 @@ class Header11 extends BaseHeader {
           </div>
         )}
         {this.getPropValue("backgroundImage") && (
-          <div className={(hasLeft) ? this.decorateCSS("right") : this.decorateCSS("right-no-left")}>
+          <div className={`${this.decorateCSS("right")} ${!hasLeft && this.decorateCSS("no-left")}`}>
             <div className={this.decorateCSS("image-wrapper")}>
               <img src={this.getPropValue("backgroundImage")} alt={this.getPropValue("backgroundImage")} className={this.decorateCSS("image")} />
             </div>

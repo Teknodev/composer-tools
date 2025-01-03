@@ -259,11 +259,11 @@ class Header8 extends BaseHeader {
           {this.castToObject<ISliderData[]>("slider").map((item: ISliderData, index: number) => (
             <div className={`
               ${this.decorateCSS("slide")}
-              ${this.getPropValue("slider_animation") ? this.decorateCSS("disabled-animate") : ""}
+              ${!this.getPropValue("slider_animation") ? this.decorateCSS("disabled-animate") : ""}
               ${!item.image ? this.decorateCSS("slide-no-image") : ""}
               ${(this.getComponentState("centerSlide") === index + 1) && this.decorateCSS("active")}
             `}>
-              <div className={this.getPropValue("overlay") ? this.decorateCSS("image-wrapper-overlay") : this.decorateCSS("image-wrapper")}>
+              <div className={`${this.decorateCSS("image-wrapper")} ${this.getPropValue("overlay") && this.decorateCSS("overlay")}`}>
                 {item.image && (
                   <img src={item.image} alt={item.title} className={this.decorateCSS("image")} />
                 )}
@@ -271,8 +271,8 @@ class Header8 extends BaseHeader {
             </div>
           ))}
         </ComposerSlider>
-        <Base.Container className={allSlidesWithoutImages ? this.decorateCSS("max-content-no-image") : this.decorateCSS("max-content")}>
-          <Base.MaxContent className={this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("image") ? this.decorateCSS("info-box") : this.decorateCSS("info-box-no-image")}>
+        <Base.Container className={`${this.decorateCSS("max-content")}`}>
+          <Base.MaxContent className={`${this.decorateCSS("info-box")} ${!this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("image") && this.decorateCSS("no-image")}`}>
             {this.castToString(this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("topWriting")) &&
               <div
                 className={`${this.decorateCSS("tag")} ${this.getPropValue("text_animation")
@@ -334,7 +334,7 @@ class Header8 extends BaseHeader {
               <div className={this.decorateCSS("total-page")}>{slideCount}</div>
             </div>
             <div className={this.decorateCSS("arrow-wrapper")}>
-              <div className={this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("image") ? this.decorateCSS("arrow-prev-wrapper") : this.decorateCSS("arrow-prev-wrapper-no-image")} onClick={() => {
+              <div className={`${this.decorateCSS("arrow-prev-wrapper")} ${this.decorateCSS("prev")} ${!this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("image") && this.decorateCSS("no-image")}`} onClick={() => {
                 sliderRef.current.slickPrev();
               }}>
                 <div className={this.decorateCSS("arrow-prev")}>
@@ -344,7 +344,7 @@ class Header8 extends BaseHeader {
                   />
                 </div>
               </div>
-              <div className={this.getPropValue("slider")[this.getComponentState("centerSlide")].getPropValue("image") ? this.decorateCSS("arrow-next-wrapper") : this.decorateCSS("arrow-next-wrapper-no-image")} onClick={() => {
+              <div className={`${this.decorateCSS("arrow-next-wrapper")} ${this.decorateCSS("next")} ${!this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("image") && this.decorateCSS("no-image")}`} onClick={() => {
                 sliderRef.current.slickNext();
               }}>
                 <div className={this.decorateCSS("arrow-next")}>

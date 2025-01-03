@@ -1,6 +1,7 @@
 @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
 .container {
+  padding: 0px 50px 20px 50px;
   .max-content {
     .background-layer {
       background-color: var(--composer-html-background);
@@ -86,9 +87,15 @@
     }
   }
 }
-
-@media only screen and (max-width: $composer-phone-width) {
+@container (max-width: #{$composer-tablet-width-lg}) {
   .container {
+    padding: 0px 40px 20px 40px;
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    padding: 0px 20px 20px 20px;
     .max-content {
       .heading-page {
         padding: var(--composer-gap-md);

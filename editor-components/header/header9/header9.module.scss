@@ -173,24 +173,20 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width}) {
+@container (max-width: #{$composer-tablet-width-lg}) {
   .container {
     .max-content {
       .tabs {
         .left-content {
-
           .buttons {
             left: 40px;
           }
-
           .tab-buttons {
             padding-right: var(--composer-gap-lg);
             padding-left: calc(var(--composer-gap-xl) * 2);
-
             .tabText {
               font-size: 2rem;
             }
-
             &.no-tabs {
               padding-left: var(--composer-gap-lg);
             }
@@ -205,19 +201,15 @@
   .container {
     .max-content {
       height: auto;
-
       .tabs {
         flex-direction: column;
-
         .left-content {
           order: 1;
           height: auto;
           padding: var(--composer-gap-md);
-
           .buttons {
             display: none;
           }
-
           .tab-buttons {
             position: static;
             align-items: center;

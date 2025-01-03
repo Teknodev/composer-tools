@@ -26,6 +26,7 @@
 }
 
 .container {
+  padding: 0px 50px 20px 50px !important;
   .max-content {
     .slider {
       height: 43vw;
@@ -185,6 +186,7 @@
 
 @container (max-width : #{$composer-phone-width-sm}) {
   .container {
+    padding: 0px 40px 20px 40px !important;
     .max-content {
       .slider {
         width: 100%;
@@ -221,6 +223,7 @@
 
 @container (min-width: #{$composer-phone-width-sm}) and (max-width: #{$composer-tablet-width-lg}) {
   .container {
+    padding: 0px 20px 20px 20px !important;
     .max-content {
       .slider {
         width: 100%;

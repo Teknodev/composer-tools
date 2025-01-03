@@ -222,7 +222,7 @@
 
 @container (max-width: #{$composer-tablet-width-lg}) {
   .container {
-    padding: 20px 40px;
+    padding: 0px 40px 20px 40px;
     .max-content {
       .carousel {
         max-height: 100%;
@@ -293,7 +293,7 @@
 }
 @container (max-width: #{$composer-phone-width}) {
   .container{
-    padding: 20px;
+    padding:0px 20px 20px 20px;
     .max-content{
       .carousel{
         max-height: 100%;
