@@ -7,15 +7,16 @@
       gap: calc(3 * var(--composer-gap-xl));
       width: 100%;
 
-      .left-content,
-      .right-content {
+      .left-content {
         width: 50%;
         display: flex;
         flex-direction: column;
-      }
 
-      .left-content,
-      .left-content-single {
+        &.left-content-single {
+          width: 100%;
+          gap: var(--composer-gap-md);
+        }
+
         .subtitle {
           content: "";
         }
@@ -38,10 +39,16 @@
         }
       }
 
-      .right-content,
-      .right-content-single {
+      .right-content {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
         justify-content: center;
         gap: var(--composer-gap-md);
+
+        &.right-content-single {
+          width: 100%;
+        }
 
         .plan {
           width: 100%;
@@ -69,7 +76,8 @@
 
             .plan-description,
             .price-description {
-              color: var(--composer-tertiary-color);
+              color: var(--composer-font-color-secondary);
+              text-align: left;
             }
 
             .plan-title,
@@ -83,7 +91,6 @@
 
               .icon-box {
                 .icon {
-                  margin-top: 0px;
                 }
               }
             }
@@ -101,26 +108,24 @@
 
             .icon-box,
             .icon-box-active {
-              color: var(--composer-font-color-secondary);
-              background-color: var(--composer-font-color-primary);
-              width: var(--composer-gap-md);
-              height: var(--composer-gap-md);
+              color: var(--composer-primary-color);
+              background-color: var(--composer-html-background);
+              width: 20px;
+              height: 20px;
               display: flex;
               justify-content: center;
               align-items: center;
               border-radius: var(--composer-border-radius-xl);
 
               .icon {
-                margin-top: 2px;
+                font-size: 1rem;
               }
             }
 
             .icon-box-active {
-              background-color: var(--composer-font-color-primary);
-              opacity: 0.5;
-
+              background-color: var(--composer-font-color-secondary);
+              color: var(--composer-primary-color);
               .icon {
-                margin-top: 1px;
               }
             }
           }
@@ -162,33 +167,8 @@
                 transition: color 0.5s ease;
               }
             }
-
-            .plan-button {
-              background-color: transparent;
-              border: 1px solid var(--composer-font-color-secondary);
-              color: var(--composer-font-color-secondary);
-
-              &:hover {
-                background-color: white;
-                border: 1px solid white;
-                color: black;
-              }
-            }
           }
         }
-      }
-      .right-content-single {
-        display: flex;
-        flex-direction: column;
-        gap: var(--composer-gap-md);
-        width: 100%;
-      }
-
-      .left-content-single {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: var(--composer-gap-md);
       }
     }
   }

@@ -4,6 +4,9 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 .container {
   .max-content {
     .page {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
       .plan-items {
         display: flex;
         box-shadow: var(--box-shadow-active);
@@ -72,12 +75,12 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 color: var(--composer-font-color-secondary);
               }
               .per {
-                color: var(--composer-tertiary-color);
+                color: var(--composer-font-color-secondary);
               }
 
               .tag {
                 background-color: var(--composer-font-color-primary);
-                color: var(--composer-font-color-secondary);
+                color: var(--composer-html-background);
                 border: var(--composer-font-color-primary);
               }
 
@@ -85,8 +88,11 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               .item-price .price {
                 color: var(--composer-font-color-secondary);
               }
-              .plan-icons .icons {
-                color: var(--composer-tertiary-color);
+
+              .plan-icons {
+                .icon {
+                  color: var(--composer-font-color-secondary);
+                }
               }
             }
             &:not(.active):hover {
@@ -97,8 +103,20 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 color: var(--composer-font-color-secondary);
               }
 
+              .tag {
+                border: 1px solid var(--composer-font-color-secondary);
+              }
+
+              .per {
+                color: var(--composer-font-color-secondary);
+              }
+
               .plan-icons .plan,
               .item-price .price {
+                color: var(--composer-font-color-secondary);
+              }
+
+              .plan-icons .icon {
                 color: var(--composer-font-color-secondary);
               }
             }
@@ -179,6 +197,9 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             .title {
               color: var(--composer-font-color-primary);
               padding: 0 var(--composer-gap-md);
+              margin: 0;
+              width: 100%;
+              text-align: left;
             }
             .list-body {
               flex-grow: 1;
@@ -201,6 +222,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 }
                 .property {
                   color: var(--composer-font-color-primary);
+                  margin: 0;
                 }
               }
 
@@ -230,6 +252,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               width: 100%;
               gap: var(--composer-gap-md);
               align-items: center;
+              justify-content: space-between;
               border-radius: var(--composer-border-radius-md);
 
               .buttons {
@@ -237,6 +260,11 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 max-width: 50%;
                 gap: var(--composer-gap-sm);
                 flex-wrap: wrap;
+              }
+
+              .bottom-text {
+                color: var(--composer-font-color-primary);
+                font-size: 1rem;
               }
             }
           }
@@ -246,7 +274,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
   }
 }
 
-@media only screen and (max-width: $composer-tablet-width) {
+@container (max-width: #{$composer-tablet-width-lg}) {
   .container {
     .max-content {
       align-items: center;
@@ -264,7 +292,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
   }
 }
 
-@media only screen and (max-width: $composer-phone-width) {
+@container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
       .page {
@@ -299,12 +327,6 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 background-color: var(--composer-secondary-color);
                 color: var(--composer-font-color-secondary);
                 gap: 0;
-
-                .tag {
-                  background-color: var(--composer-font-color-primary);
-                  color: var(--composer-font-color-secondary);
-                  border: var(--composer-font-color-primary);
-                }
               }
             }
           }

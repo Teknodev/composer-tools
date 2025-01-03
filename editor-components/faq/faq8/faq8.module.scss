@@ -150,6 +150,7 @@
             flex-direction: column;
             .question {
               display: flex;
+              align-items: center;
               .question-title{
                 color: var(--composer-font-color-primary);
                 flex:1;

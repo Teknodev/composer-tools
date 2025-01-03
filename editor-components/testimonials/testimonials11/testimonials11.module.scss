@@ -1,76 +1,78 @@
-@import '../../../composer-base-components/base//utitilities/viewports.module.scss';
+@import "../../../composer-base-components/base//utitilities/viewports.module.scss";
 .container {
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;  
-    .max-content, .max-content-no-background {
-        .wrapper{
-            gap:var(--composer-gap-xl);
-            .title, .title-no-background {
-                margin:0px;
-            }
-            .title{
-                color: white;
-            }
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  .max-content {
+    padding: var(--composer-gap-xl) 0px;
 
-            .testimonials11 {
-                gap:var(--composer-gap-xl);
-                .cards, .cards-no-background {
-                    display: flex;
-                    flex-direction: column;
-                    background-color: var(--composer-html-background);
-                    width: 100%;
-                    border-radius: var(--composer-border-radius-md);
-                    padding: var(--composer-gap-md);
-                    gap: var(--composer-gap-sm);
-
-                    .card-top {
-                        display: flex;
-                        gap: var(--composer-gap-md);
-                        align-items: center;
-                        .card-image {
-                            border-radius: 50%;
-                            width: 70px;
-                            height: 70px;
-                        }
-                        .card-top-right {
-                            .card-title {
-                            }
-                            .card-subtitle {
-                                opacity: 0.5;
-                            }
-                        }
-                    }
-                    .card-description {
-                    }
-                }
-                .cards{
-                    background-color: white;
-                    color:black;
-                }
-                .cards-no-background {
-                    background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);;
-                    color:var(--composer-font-color-primary)
-                }
-            }
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: var(--composer-gap-xl);
+      .title {
+        margin: 0px;
+        &.title-with-image {
+          color: white;
         }
+      }
+
+      .content {
+        gap: var(--composer-gap-xl);
+        .cards {
+          display: flex;
+          flex-direction: column;
+          background-color: var(--composer-html-background);
+          width: 100%;
+          border-radius: var(--composer-border-radius-md);
+          padding: var(--composer-gap-md);
+          gap: var(--composer-gap-sm);
+          background-color: white;
+          color: black;
+
+          &.cards-no-background {
+            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+            color: var(--composer-font-color-primary);
+          }
+
+          .card-top {
+            display: flex;
+            gap: var(--composer-gap-md);
+            .card-image {
+              border-radius: 50%;
+              width: 70px;
+              height: 70px;
+            }
+            .card-top-right {
+              display: flex;
+              flex-direction: column;
+              align-items: baseline;
+              .card-title {
+                margin: 0;
+              }
+              .card-subtitle {
+                color: var(--composer-tertiary-color);
+              }
+            }
+          }
+          .card-description {
+            text-align: left;
+          }
+        }
+      }
     }
-    .max-content{
-        padding: var(--composer-gap-xl) 0px;
-    }
+  }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}){
-    .container{
-        .max-content, .max-content-no-background{
-            .wrapper{
-                gap:calc(var(--composer-gap-xl));
-                .testimonials11 {
-                    gap:calc(var(--composer-gap-xl)); 
-                }
-            }
-
+@container (max-width: #{$composer-tablet-width-lg}) {
+  .container {
+    .max-content {
+      .wrapper {
+        gap: calc(var(--composer-gap-xl));
+        .content {
+          gap: calc(var(--composer-gap-xl));
         }
+      }
     }
-
+  }
 }

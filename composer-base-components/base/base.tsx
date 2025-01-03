@@ -231,13 +231,14 @@ export namespace Base {
   export namespace Navigator {
     export function Container({ className, children, ...props }: any) {
       const position = props.position?.split(" ").map((item: string) => item.toLowerCase()).join("");
-
+      
       useEffect(() => {
         const handleScroll = () => {
           const navbarPosition = document.querySelector(`.${styles.navbarPosition}`);
+          console.log("navbarPosition", navbarPosition);
           if (navbarPosition) {
 
-            if (window.scrollY > 50) {
+            if (window.scrollY > 50 && position !== "absolute") {
               navbarPosition.classList.add(styles.scrolled);
             } else {
               navbarPosition.classList.remove(styles.scrolled);
