@@ -25,12 +25,7 @@
                 align-items: center;
 
                 .about-button {
-                    background-color: var(--composer-primary-color);
-                    color: var(--composer-font-color-secondary);
-                    border: none;
-                    border-radius: var(--composer-border-radius-sm);
-                    cursor: pointer;
-                    padding: var(--composer-gap-md);
+                    content: "";
                 }
 
                 .phone-icon {
@@ -116,7 +111,7 @@
     }
 }
 
-@media only screen and (max-width: $composer-tablet-width-lg) {
+@container (max-width: #{$composer-tablet-width-lg}) {
     .container {
 
         .max-content {

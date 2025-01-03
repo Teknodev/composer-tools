@@ -19,7 +19,7 @@ interface ImageItem {
     nextArrow: string
 }
 
-class ImageGalleryComponent6 extends BaseImageGallery {
+class ImageGallery6 extends BaseImageGallery {
     constructor(props?: any) {
         super(props, styles);
         this.addProp(
@@ -681,4 +681,4 @@ class ImageGalleryComponent6 extends BaseImageGallery {
     }
 }
 
-export default ImageGalleryComponent6;
+export default ImageGallery6;

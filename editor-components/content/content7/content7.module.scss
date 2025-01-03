@@ -150,7 +150,7 @@
                 appearance: none;
                 width: 100%;
                 height: 100%;
-                background: rgba(242, 242, 242, 0);
+                background:var(--composer-overlay-color);
                 outline: none;
                 margin: 0;
                 transition: all 0.2s;
@@ -194,12 +194,12 @@
                 &:after{
                   left: 50%;
                   margin-left: -17px;
-                  border-right: 6px solid var(--composer-font-color-secondary);
+                  border-right: 6px solid var(--composer-html-background);
                 }
                 &:before{
                   right: 50%;
                   margin-right: -17px;
-                  border-left: 6px solid var(--composer-font-color-secondary);
+                  border-left: 6px solid var(--composer-html-background);
                 }
               }
             }
@@ -210,7 +210,7 @@
   }
 }
 
-@media only screen and (max-width: $composer-tablet-width) {
+@container (max-width: #{$composer-tablet-width-lg}) {
   .container {
     .max-content {
       .down-page {
@@ -238,7 +238,7 @@
   }
 }
 
-@media only screen and (max-width: $composer-phone-width-sm) {
+@container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
       .down-page {

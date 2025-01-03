@@ -1,3 +1,4 @@
+@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
 .container {
     .max-content {
         display: flex;
@@ -16,11 +17,14 @@
             flex-wrap: wrap;
             justify-content: center;
             gap: var(--composer-gap-sm);
+            .button{
+                content: "";
+            }
         }
     }
 }
 
-@media only screen and (max-width: 768px) {
+@container (max-width: #{$composer-tablet-width-lg}) {
     .container {
         .max-content {
             .heading-page {

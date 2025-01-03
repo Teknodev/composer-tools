@@ -52,7 +52,7 @@
 }
 
 
-@media only screen and (max-width: $composer-phone-width) {
+@container (max-width: #{$composer-phone-width}) {
   .container{
     .max-content{
       flex-direction: column;
