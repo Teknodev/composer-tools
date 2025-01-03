@@ -231,8 +231,7 @@ export namespace Base {
   export namespace Navigator {
     export function Container({ className, children, ...props }: any) {
       const position = props.position?.split(" ").map((item: string) => item.toLowerCase()).join("");
-      console.log("position", position);
-
+      
       useEffect(() => {
         const handleScroll = () => {
           const navbarPosition = document.querySelector(`.${styles.navbarPosition}`);
