@@ -7,6 +7,7 @@ import ComposerSlider from "../../../composer-base-components/slider/slider";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type SliderItemType = {
   background: string;
@@ -23,11 +24,7 @@ type SliderItemType = {
   statsLine: Boolean;
   customerDesc: JSX.Element;
   rightDescription: JSX.Element;
-  buttonObject: {
-    buttonText: JSX.Element;
-    buttonLink: JSX.Element;
-    buttonIcon: string;
-  };
+  button: INPUTS.CastedButton;
   pageNumberPart: boolean;
 };
 
@@ -126,31 +123,7 @@ class Header27 extends BaseHeader {
                 },
               ],
             },
-            {
-              type: "object",
-              key: "buttonObject",
-              displayer: "Button Items",
-              value: [
-                {
-                  type: "string",
-                  key: "buttonText",
-                  displayer: "Button Text",
-                  value: "Explore",
-                },
-                {
-                  type: "page",
-                  key: "buttonLink",
-                  displayer: "Link",
-                  value: "",
-                },
-                {
-                  type: "icon",
-                  key: "buttonIcon",
-                  displayer: "Icon",
-                  value: "MdOutlineArrowOutward",
-                },
-              ],
-            },
+            INPUTS.BUTTON("button", "Button", "Explore", "", "MdOutlineArrowOutward", null, "Primary"),
             {
               type: "boolean",
               displayer: "Page Number Part",
@@ -283,31 +256,7 @@ class Header27 extends BaseHeader {
                 },
               ],
             },
-            {
-              type: "object",
-              key: "buttonObject",
-              displayer: "Button Items",
-              value: [
-                {
-                  type: "string",
-                  key: "buttonText",
-                  displayer: "Button Text",
-                  value: "Read More",
-                },
-                {
-                  type: "page",
-                  key: "buttonLink",
-                  displayer: "Button Link",
-                  value: "",
-                },
-                {
-                  type: "icon",
-                  key: "buttonIcon",
-                  displayer: "Icon",
-                  value: "MdOutlineArrowOutward",
-                },
-              ],
-            },
+            INPUTS.BUTTON("button", "Button", "Read More", "", "MdOutlineArrowOutward", null, "Primary"),
             {
               type: "boolean",
               displayer: "Page Number Part",
@@ -377,7 +326,7 @@ class Header27 extends BaseHeader {
       infinite: sliderCount > 1,
       fade: sliderCount > 1,
       speed: 700,
-      autoplay: false,
+      autoplay: true,
       autoplaySpeed: 3000,
       slidesToShow: Math.min(sliderCount, 1),
       slidesToScroll: 1,
@@ -404,15 +353,14 @@ class Header27 extends BaseHeader {
 
     const minHeight = items.sort((a, b) => b.clientHeight - a.clientHeight)[0]
       ?.clientHeight;
-    
-    if(!slider.length) return <></>
+
+    if (!slider.length) return <></>
     return (
       <Base.Container
         className={this.decorateCSS("container")}
         style={{
-          backgroundImage: `url(${
-            slider[this.getComponentState("active-index")].background
-          })`,
+          backgroundImage: `url(${slider[this.getComponentState("active-index")].background
+            })`,
         }}
       >
         <div className={this.decorateCSS("content")}>
@@ -430,9 +378,8 @@ class Header27 extends BaseHeader {
                 return (
                   <div
                     key={sliderIndex}
-                    className={`${this.decorateCSS("max-content")} ${
-                      item.background && this.decorateCSS("withBackgroundImage")
-                    }`}
+                    className={`${this.decorateCSS("max-content")} ${item.background && this.decorateCSS("withBackgroundImage")
+                      }`}
                   >
                     <React.Fragment key={this.castToString(item.upTitle)}>
                       <div className={this.decorateCSS("upperDiv")}>
@@ -462,29 +409,20 @@ class Header27 extends BaseHeader {
                       <div className={this.decorateCSS("middleDiv")}>
                         <div className={this.decorateCSS("middleDiv-content")}>
                           <div
-                            className={this.decorateCSS(
-                              "middleImages-container"
-                            )}
+                            className={this.decorateCSS("middleImages-container")}
                           >
                             {item.imageArray.map(
                               (imageItems, imageIndex: number) => {
                                 return (
                                   imageItems.downImage && (
-                                    <div
-                                      className={this.decorateCSS(
-                                        "image-wrapper"
-                                      )}
+                                    <div className={this.decorateCSS("image-wrapper")}
                                       style={{
-                                        width: `${
-                                          100 / item.imageArray.length
-                                        }%`,
+                                        width: `${100 / item.imageArray.length
+                                          }%`,
                                       }}
                                       key={imageIndex}
                                     >
-                                      <img
-                                        className={this.decorateCSS(
-                                          "middleImages"
-                                        )}
+                                      <img className={this.decorateCSS("middleImages")}
                                         src={imageItems.downImage}
                                       />
                                     </div>
@@ -493,11 +431,7 @@ class Header27 extends BaseHeader {
                               }
                             )}
                           </div>
-                          <div
-                            className={this.decorateCSS(
-                              "middleTitle-container"
-                            )}
-                          >
+                          <div className={this.decorateCSS("middleTitle-container")}>
                             <h3 className={this.decorateCSS("middleTitle")}>
                               {item.downTitle}
                             </h3>
@@ -506,88 +440,78 @@ class Header27 extends BaseHeader {
                       </div>
                     </React.Fragment>
                     <div
-                      key={this.castToString(item.buttonObject.buttonLink)}
+                      key={item.button.url}
                       className={this.decorateCSS("LowerDiv")}
                     >
-                      {(this.castToString(item.buttonObject.buttonText) ||
-                        item.buttonObject.buttonIcon) && (
-                        <div className={this.decorateCSS("button-container")}>
-                          <div className={this.decorateCSS("button-content")}>
-                            {(this.castToString(item.buttonObject.buttonText) ||
-                              item.buttonObject.buttonIcon) && (
-                              <ComposerLink path={item.buttonObject.buttonLink}>
-                                <Base.Button
-                                  className={`${this.decorateCSS("button")}`}
-                                >
-                                  {this.castToString(
-                                    item.buttonObject.buttonText
-                                  ) && (
-                                    <span
-                                      className={this.decorateCSS(
-                                        "button-text"
-                                      )}
+                      {(this.castToString(item.button.text) ||
+                        item.button.icon) && (
+                          <div className={this.decorateCSS("button-container")}>
+                            <div className={this.decorateCSS("button-content")}>
+                              {(this.castToString(item.button.text) ||
+                                item.button.icon) && (
+                                  <ComposerLink path={item.button.url}>
+                                    <Base.Button buttonType={item.button.type}
+                                      className={`${this.decorateCSS("button")}`}
                                     >
-                                      {item.buttonObject.buttonText}
-                                    </span>
-                                  )}
-                                  {item.buttonObject.buttonIcon && (
-                                    <ComposerIcon
-                                      name={item.buttonObject.buttonIcon}
-                                      propsIcon={{
-                                        className:
-                                          this.decorateCSS("button-icon"),
-                                        size: 20,
-                                      }}
-                                    />
-                                  )}
-                                </Base.Button>
-                              </ComposerLink>
-                            )}
-                            {item.pageNumberPart && (
-                              <div className={this.decorateCSS("figure")}>
-                                {slider.length > 1 && (
-                                  <div
-                                    className={this.decorateCSS("pagination")}
-                                  >
-                                    <span
-                                      className={this.decorateCSS(
-                                        "active-slide"
+                                      {item.button.text}
+                                      {item.button.icon && (
+                                        <ComposerIcon
+                                          name={item.button.icon}
+                                          propsIcon={{
+                                            className:
+                                              this.decorateCSS("button-icon"),
+                                            size: 20,
+                                          }}
+                                        />
                                       )}
+                                    </Base.Button>
+                                  </ComposerLink>
+                                )}
+                              {item.pageNumberPart && (
+                                <div className={this.decorateCSS("figure")}>
+                                  {slider.length > 1 && (
+                                    <div
+                                      className={this.decorateCSS("pagination")}
                                     >
-                                      {(
-                                        this.getComponentState("active-index") +
-                                        1
-                                      )
-                                        .toString()
-                                        .padStart(2, "0")}
-                                    </span>
-                                    <sup
-                                      className={this.decorateCSS(
-                                        "slide-count-power"
-                                      )}
-                                    >
-                                      <span
-                                        className={this.decorateCSS("divider")}
-                                      >
-                                        /{" "}
-                                      </span>
                                       <span
                                         className={this.decorateCSS(
-                                          "slide-count"
+                                          "active-slide"
                                         )}
                                       >
-                                        {sliderCount
+                                        {(
+                                          this.getComponentState("active-index") +
+                                          1
+                                        )
                                           .toString()
                                           .padStart(2, "0")}
                                       </span>
-                                    </sup>
-                                  </div>
-                                )}
-                              </div>
-                            )}
+                                      <sup
+                                        className={this.decorateCSS(
+                                          "slide-count-power"
+                                        )}
+                                      >
+                                        <span
+                                          className={this.decorateCSS("divider")}
+                                        >
+                                          /{" "}
+                                        </span>
+                                        <span
+                                          className={this.decorateCSS(
+                                            "slide-count"
+                                          )}
+                                        >
+                                          {sliderCount
+                                            .toString()
+                                            .padStart(2, "0")}
+                                        </span>
+                                      </sup>
+                                    </div>
+                                  )}
+                                </div>
+                              )}
+                            </div>
                           </div>
-                        </div>
-                      )}
+                        )}
 
                       {(this.castToString(item.leftDescription) ||
                         this.castToString(item.itemNo) ||
@@ -595,44 +519,44 @@ class Header27 extends BaseHeader {
                         this.castToString(item.customerNo) ||
                         this.castToString(item.customerDesc) ||
                         this.castToString(item.rightDescription)) && (
-                        <div className={this.decorateCSS("desc-container")}>
-                          <div className={this.decorateCSS("desc-content")}>
-                            <div
-                              className={this.decorateCSS("leftDescription")}
-                            >
-                              {item.leftDescription}
-                            </div>
-                            <div className={this.decorateCSS("count")}>
-                              <div className={this.decorateCSS("count-items")}>
-                                <div className={this.decorateCSS("itemsNo")}>
-                                  {item.itemNo}
+                          <div className={this.decorateCSS("desc-container")}>
+                            <div className={this.decorateCSS("desc-content")}>
+                              <div
+                                className={this.decorateCSS("leftDescription")}
+                              >
+                                {item.leftDescription}
+                              </div>
+                              <div className={this.decorateCSS("count")}>
+                                <div className={this.decorateCSS("count-items")}>
+                                  <div className={this.decorateCSS("itemsNo")}>
+                                    {item.itemNo}
+                                  </div>
+                                  <div className={this.decorateCSS("itemDesc")}>
+                                    {item.itemDesc}
+                                  </div>
                                 </div>
-                                <div className={this.decorateCSS("itemDesc")}>
-                                  {item.itemDesc}
+                                {item.statsLine && (
+                                  <div className={this.decorateCSS("line")}></div>
+                                )}
+                                <div className={this.decorateCSS("customers")}>
+                                  <div className={this.decorateCSS("customerNo")}>
+                                    {item.customerNo}
+                                  </div>
+                                  <div
+                                    className={this.decorateCSS("customerDesc")}
+                                  >
+                                    {item.customerDesc}
+                                  </div>
                                 </div>
                               </div>
-                              {item.statsLine && (
-                                <div className={this.decorateCSS("line")}></div>
-                              )}
-                              <div className={this.decorateCSS("customers")}>
-                                <div className={this.decorateCSS("customerNo")}>
-                                  {item.customerNo}
-                                </div>
-                                <div
-                                  className={this.decorateCSS("customerDesc")}
-                                >
-                                  {item.customerDesc}
-                                </div>
+                              <div
+                                className={this.decorateCSS("rightDescription")}
+                              >
+                                {item.rightDescription}
                               </div>
-                            </div>
-                            <div
-                              className={this.decorateCSS("rightDescription")}
-                            >
-                              {item.rightDescription}
                             </div>
                           </div>
-                        </div>
-                      )}
+                        )}
                     </div>
                   </div>
                 );

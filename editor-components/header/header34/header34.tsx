@@ -6,12 +6,14 @@ import ComposerSlider from "../../../composer-base-components/slider/slider";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 interface Slider {
   image: string;
   title: JSX.Element;
+  button: INPUTS.CastedButton;
 }
 
-class HeaderComponent34 extends BaseHeader {
+class Header34 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
@@ -49,18 +51,7 @@ class HeaderComponent34 extends BaseHeader {
               displayer: "Title",
               value: "Premium Quality Design",
             },
-            {
-              type: "string",
-              key: "button_text",
-              displayer: "Button Text",
-              value: "PURCHASE INTACT",
-            },
-            {
-              type: "page",
-              key: "button_link",
-              displayer: "Button Navigate",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "PURCHASE INTACT", "", null, null, "Primary"),
           ],
         },
         {
@@ -81,18 +72,7 @@ class HeaderComponent34 extends BaseHeader {
               displayer: "Title",
               value: "Premium Quality Jobs",
             },
-            {
-              type: "string",
-              key: "button_text",
-              displayer: "Button Text",
-              value: "CONTACT US",
-            },
-            {
-              type: "page",
-              key: "button_link",
-              displayer: "Button Navigate",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "CONTACT US", "", null, null, "Primary"),
           ],
         },
         {
@@ -113,18 +93,7 @@ class HeaderComponent34 extends BaseHeader {
               displayer: "Title",
               value: "Premium Quality Clothes",
             },
-            {
-              type: "string",
-              key: "button_text",
-              displayer: "Button Text",
-              value: "BUY",
-            },
-            {
-              type: "page",
-              key: "button_link",
-              displayer: "Button Navigate",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "BUY", "", null, null, "Primary"),
           ],
         },
       ],
@@ -149,18 +118,10 @@ class HeaderComponent34 extends BaseHeader {
   }
 
   render() {
-    const allImagesAbsent = this.getPropValue("slider").every(
-      (item: any) => !item.getPropValue("image")
-    );
-
-    const slides = this.getPropValue("slider").map((item: any) => ({
-      image: item.getPropValue("image"),
-      title: item.getPropValue("title"),
-      buttonText: item.getPropValue("button_text"),
-      link: item.getPropValue("button_link"),
-    }));
+    const slides = this.castToObject<Slider[]>("slider");
 
     const activeIndex = this.getComponentState("active-index");
+    const activeSlide = slides[activeIndex] || { image: "" };
     const slideStatus = this.getComponentState("slideStatus");
     const slideDirection = this.getComponentState("slide-direction");
     const overlayActiveIndex = this.getComponentState("overlay-active-index");
@@ -212,37 +173,33 @@ class HeaderComponent34 extends BaseHeader {
     };
 
     return (
-      <div className={this.decorateCSS("container")}>
+      <div className={`${this.decorateCSS("container")} ${!!activeSlide.image == false && this.decorateCSS("no-image")}`}>
         <div
-          className={
-            !allImagesAbsent
-              ? this.decorateCSS("max-content")
-              : this.decorateCSS("max-content-no-image")
-          }
+          className={this.decorateCSS("max-content")}
         >
           <div className={this.decorateCSS("slider-container")}>
             <div
-              className={`${this.decorateCSS("overlay")} ${this.decorateCSS(`overlay-${slideDirection}`)} ${
-                slideStatus === "sliding"
-                  ? this.decorateCSS("active")
-                  : slideStatus === "ended"
+              className={`${this.decorateCSS("overlay")} ${this.decorateCSS(`overlay-${slideDirection}`)} ${slideStatus === "sliding"
+                ? this.decorateCSS("active")
+                : slideStatus === "ended"
                   ? this.decorateCSS("close")
                   : slideStatus === "idle"
-                  ? this.decorateCSS("idle")
-                  : ""
-              }`}
+                    ? this.decorateCSS("idle")
+                    : ""
+                }`}
             >
               <div className={this.decorateCSS("overlay-image")}>
-                <img src={slides[overlayActiveIndex].image} alt="" />
+                {slides[overlayActiveIndex].image && <img src={slides[overlayActiveIndex].image} alt="" />}
               </div>
             </div>
 
             <div className={this.decorateCSS("slider")}>
-              <img
-                src={slides[activeIndex].image}
-                alt=""
-                className={this.decorateCSS("image")}
-              />
+              {slides[activeIndex].image &&
+                <img
+                  src={slides[activeIndex].image}
+                  alt=""
+                  className={this.decorateCSS("image")}
+                />}
             </div>
           </div>
           <div
@@ -258,10 +215,10 @@ class HeaderComponent34 extends BaseHeader {
                   {slides[overlayActiveIndex].title}
                 </Base.H1>
               )}
-              {slides[overlayActiveIndex].buttonText && (
-                <ComposerLink path={slides[overlayActiveIndex].link}>
-                  <Base.Button>
-                    {slides[overlayActiveIndex].buttonText}
+              {this.castToString(slides[overlayActiveIndex].button.text) && (
+                <ComposerLink path={slides[overlayActiveIndex].button.url}>
+                  <Base.Button className={this.decorateCSS("button")} buttonType={slides[overlayActiveIndex].button.type}>
+                    {slides[overlayActiveIndex].button.text}
                   </Base.Button>
                 </ComposerLink>
               )}
@@ -290,9 +247,8 @@ class HeaderComponent34 extends BaseHeader {
             {slides.map((_: any, index: number) => (
               <div
                 key={index}
-                className={`${this.decorateCSS("dot")} ${
-                  index === activeIndex ? this.decorateCSS("active") : ""
-                }`}
+                className={`${this.decorateCSS("dot")} ${index === activeIndex ? this.decorateCSS("active") : ""
+                  }`}
                 onClick={async () => {
                   if (slideStatus === "sliding") return;
 
@@ -325,4 +281,4 @@ class HeaderComponent34 extends BaseHeader {
   }
 }
 
-export default HeaderComponent34;
+export default Header34;

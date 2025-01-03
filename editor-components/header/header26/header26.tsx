@@ -258,7 +258,7 @@ class Header26 extends BaseHeader {
                   >
                     <div className={this.decorateCSS("slider")}>
                       {(titleExist || subtitleExist) && (
-                        <div className={item.image ? this.decorateCSS("left-side") : this.decorateCSS("left-side-no-image")}>
+                        <div className={`${this.decorateCSS("left-side")} ${!item.image && this.decorateCSS("no-image")}`}>
                           <div
                             className={this.decorateCSS("left-side-content")}
                           >
