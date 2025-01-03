@@ -40,6 +40,7 @@
             color: var(--composer-font-color-primary);
             padding: 0 var(--composer-gap-md);
             width: 100%;
+            border-radius: var(--composer-border-radius-md);
 
             .button-element {
               display: flex;
@@ -77,6 +78,14 @@
       .map {
         width: 100%;
         height: 100%;
+        > div {
+          border-top-left-radius: var(--composer-border-radius-xs);
+          border-bottom-left-radius: var(--composer-border-radius-xs);
+          > div {
+            border-top-left-radius: var(--composer-border-radius-xs);
+            border-bottom-left-radius: var(--composer-border-radius-xs);
+          }
+        }
       }
     }
   }
@@ -84,7 +93,7 @@
 
 .popup {
   background: var(--composer-font-color-primary);
-  color: var(--composer-font-color-secondary);
+  color: var(--composer-html-background);
   padding: var(--composer-gap-sm);
   border-radius: calc(2 * var(--composer-border-radius-xl));
   width: 200px;
@@ -194,7 +203,6 @@
 
         .map {
           width: 100%;
-          height: 400px !important;
         }
       }
     }

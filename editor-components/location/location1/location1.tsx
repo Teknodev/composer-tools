@@ -36,7 +36,7 @@ type ButtomType = {
   phoneUrl: string;
 };
 
-class LocationComponent1 extends Location {
+class Location1 extends Location {
   constructor(props?: any) {
     super(props, styles);
 
@@ -294,15 +294,12 @@ class LocationComponent1 extends Location {
           const content =
             description || popupTitle || popupButtonText ? (
               <div className={this.decorateCSS("popup")}>
-                {(popupTitle || description) &&
+                {(popupTitle || description) && (
                   <div className={this.decorateCSS("popup-header")}>
-                    {popupTitle &&
-                      <Base.P className={this.decorateCSS("popup-title")}>
-                        {popupTitle}
-                      </Base.P>}
-                    {description &&
-                      <Base.P className={this.decorateCSS("popup-content")}>{description}</Base.P>}
-                  </div>}
+                    {popupTitle && <Base.P className={this.decorateCSS("popup-title")}>{popupTitle}</Base.P>}
+                    {description && <Base.P className={this.decorateCSS("popup-content")}>{description}</Base.P>}
+                  </div>
+                )}
                 {popupButtonText && (
                   <div className={this.decorateCSS("popup-link")}>
                     <ComposerLink path={popupButtonUrl}>
@@ -365,7 +362,7 @@ class LocationComponent1 extends Location {
             )}
 
             <section className={this.decorateCSS("map-container")}>
-              <ComposerMap defaultMarkerIcon={defaultMarkerIcon} defaultZoom={centerZoom} handleMarkerZoom={markerZoom} markers={markers} className={this.decorateCSS("map")} styles={mapStyle.colors} />
+              <ComposerMap allContentShow={true} defaultMarkerIcon={defaultMarkerIcon} defaultZoom={centerZoom} handleMarkerZoom={markerZoom} markers={markers} className={this.decorateCSS("map")} styles={mapStyle.colors} />
             </section>
 
             {(description || phone) && (
@@ -387,4 +384,4 @@ class LocationComponent1 extends Location {
   }
 }
 
-export default LocationComponent1;
+export default Location1;

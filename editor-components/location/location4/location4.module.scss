@@ -114,6 +114,17 @@
       }
     }
   }
+
+  .popup {
+    width: 250px;
+
+    .popup-texts {
+      .popup-title,
+      .popup-content {
+        font-size: 1rem;
+      }
+    }
+  }
 }
 
 @container (max-width: #{$composer-phone-width}) {

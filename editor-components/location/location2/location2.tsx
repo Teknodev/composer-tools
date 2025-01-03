@@ -41,7 +41,7 @@ type SocialMediaItemType = {
   icon: string;
 };
 
-class LocationComponent2 extends Location {
+class Location2 extends Location {
   constructor(props?: any) {
     super(props, styles);
 
@@ -64,7 +64,7 @@ class LocationComponent2 extends Location {
       type: "number",
       key: "centerZoom",
       displayer: "Center Zoom Value",
-      value: 3,
+      value: 2,
     });
 
     this.addProp({
@@ -444,11 +444,9 @@ class LocationComponent2 extends Location {
               <Base.VerticalContent className={this.decorateCSS("header")}>
                 {isTitleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{headerTitle}</Base.SectionTitle>}
 
-                <div className={`${this.decorateCSS("description-container")} ${alignmentValue === "center" && this.decorateCSS("center")
-                  }`}
-                >
+                <div className={`${this.decorateCSS("description-container")} ${alignmentValue === "center" && this.decorateCSS("center")}`}>
                   {isDescriptionExist && <Base.SectionDescription className={this.decorateCSS("description-text")}>{headerDescription}</Base.SectionDescription>}
-                  {socials.length > 0 &&
+                  {socials.length > 0 && (
                     <div className={this.decorateCSS("socials")}>
                       {socials.map((item: SocialMediaItemType, index: number) => {
                         return (
@@ -461,7 +459,8 @@ class LocationComponent2 extends Location {
                           )
                         );
                       })}
-                    </div>}
+                    </div>
+                  )}
                 </div>
               </Base.VerticalContent>
             </Base.MaxContent>
@@ -497,7 +496,6 @@ class LocationComponent2 extends Location {
           </div>
         )}
 
-
         <div className={this.decorateCSS("map-container")}>
           <ComposerMap styles={mapStyle.colors} handleMarkerZoom={markerZoom} defaultZoom={centerZoom} markers={markers} className={this.decorateCSS("map")} />
         </div>
@@ -506,4 +504,4 @@ class LocationComponent2 extends Location {
   }
 }
 
-export default LocationComponent2;
+export default Location2;

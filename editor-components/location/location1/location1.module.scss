@@ -73,9 +73,9 @@
         .bottom-title {
           font-size: 2.5rem;
           padding-bottom: 2px;
-          word-break: break-word;
           color: var(--composer-primary-color);
           max-width: 50%;
+          margin: 0;
         }
 
         .phone-container {
@@ -84,6 +84,7 @@
             color: var(--composer-primary-color);
             width: fit-content;
             border-bottom: solid 2px var(--composer-primary-color);
+            margin: 0;
           }
         }
       }
@@ -121,8 +122,6 @@
           }
         }
 
-
-
         .popup-link {
           z-index: 10;
           cursor: pointer;
@@ -130,7 +129,7 @@
 
           .popup-button {
             background-color: var(--composer-font-color-primary);
-            color: var(--composer-font-color-secondary);
+            color: var(--composer-html-background);
             cursor: pointer;
             width: 100%;
             padding: var(--composer-gap-md);
@@ -149,6 +148,23 @@
     .max-content {
       .wrapper {
         gap: var(--composer-gap-md);
+
+        .popup {
+          width: 200px;
+          .popup-header {
+            gap: var(--composer-gap-sm);
+            .popup-title,
+            .popup-content {
+              font-size: 1rem;
+            }
+          }
+
+          .popup-link {
+            .popup-button {
+              font-size: 1rem;
+            }
+          }
+        }
       }
     }
   }

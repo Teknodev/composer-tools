@@ -29,7 +29,7 @@ type MarkerObject = {
   };
 };
 
-class LocationComponent3 extends Location {
+class Location3 extends Location {
   constructor(props?: any) {
     super(props, styles);
 
@@ -58,7 +58,7 @@ class LocationComponent3 extends Location {
       type: "number",
       key: "centerZoom",
       displayer: "Center Zoom Value",
-      value: 3,
+      value: 2,
     });
 
     this.addProp({
@@ -345,4 +345,4 @@ class LocationComponent3 extends Location {
   }
 }
 
-export default LocationComponent3;
+export default Location3;

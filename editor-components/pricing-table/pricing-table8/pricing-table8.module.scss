@@ -117,8 +117,7 @@
             color: var(--composer-font-color-primary);
           }
           .description-text {
-            color: var(--composer-font-color-primary);
-            opacity: 0.5;
+            color: var(--composer-tertiary-color);
           }
         }
 
@@ -208,6 +207,7 @@
               justify-content: space-between;
               background-color: var(--composer-html-background);
               border: var(--composer-gap-xs) solid color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+              border-radius: var(--composer-border-radius-md);
 
               .title {
                 color: var(--composer-primary-color);

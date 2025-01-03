@@ -8,7 +8,6 @@
   .container {
     padding-bottom: 0;
     .max-content {
-
       .header {
         text-align: center;
         align-items: center;
@@ -24,11 +23,11 @@
         }
 
         .title {
-          content: "";
+          text-align: center;
         }
 
         .description {
-          content: "";
+          text-align: center;
         }
 
         .continents-wrapper {
@@ -48,7 +47,6 @@
             align-items: center;
 
             .continent-name {
-              font-weight: bold;
               font-size: 1rem;
               color: var(--composer-primary-color);
             }
@@ -68,6 +66,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+    padding-bottom: var(--composer-gap-md);
 
     .map {
       width: 100%;

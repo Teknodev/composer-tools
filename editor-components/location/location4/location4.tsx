@@ -28,7 +28,7 @@ type MarkerObject = {
   };
 };
 
-class LocationComponent4 extends Location {
+class Location4 extends Location {
   constructor(props?: any) {
     super(props, styles);
 
@@ -199,22 +199,23 @@ class LocationComponent4 extends Location {
                 </Base.Container>
               )}
             </div>
-          ) : (titleExist &&
-            (<Base.Container className={this.decorateCSS("content-container")}>
-              <Base.MaxContent className={this.decorateCSS("max-content-no-image")}>
-                <Base.SectionTitle className={this.decorateCSS("title-no-image")}>{this.getPropValue("title")}</Base.SectionTitle>
-              </Base.MaxContent>
-            </Base.Container>)
-          )
-          }
+          ) : (
+            titleExist && (
+              <Base.Container className={this.decorateCSS("content-container")}>
+                <Base.MaxContent className={this.decorateCSS("max-content-no-image")}>
+                  <Base.SectionTitle className={this.decorateCSS("title-no-image")}>{this.getPropValue("title")}</Base.SectionTitle>
+                </Base.MaxContent>
+              </Base.Container>
+            )
+          )}
 
           <section className={this.decorateCSS("map-container")}>
-            <ComposerMap defaultMarkerIcon={defaultMarkerIcon} defaultZoom={centerZoom} handleMarkerZoom={markerZoom} markers={markers} className={this.decorateCSS("map")} styles={mapStyle.colors} />
+            <ComposerMap allContentShow={true} defaultMarkerIcon={defaultMarkerIcon} defaultZoom={centerZoom} handleMarkerZoom={markerZoom} markers={markers} className={this.decorateCSS("map")} styles={mapStyle.colors} />
           </section>
-        </div >
+        </div>
       </div>
     );
   }
 }
 
-export default LocationComponent4;
+export default Location4;
