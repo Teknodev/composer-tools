@@ -1,4 +1,3 @@
-import { ReactNode } from "react";
 import { BaseList } from "../../EditorComponent";
 import React from "react";
 import styles from "./list7.module.scss";

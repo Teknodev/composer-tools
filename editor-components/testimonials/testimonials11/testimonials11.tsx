@@ -4,10 +4,10 @@ import styles from "./testimonials11.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
 interface CardItem {
-  image: string,
-  title: JSX.Element,
-  subtitle: JSX.Element,
-  description: JSX.Element,
+  image: string;
+  title: JSX.Element;
+  subtitle: JSX.Element;
+  description: JSX.Element;
 }
 
 class Testimonials11Page extends Testimonials {
@@ -23,8 +23,7 @@ class Testimonials11Page extends Testimonials {
       type: "image",
       key: "cover-image",
       displayer: "Background Image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67239fe77acba6002c5d6377?alt=media",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67239fe77acba6002c5d6377?alt=media",
     });
     this.addProp({
       type: "array",
@@ -40,8 +39,7 @@ class Testimonials11Page extends Testimonials {
               type: "image",
               key: "image",
               displayer: "Author Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623daf?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623daf?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -59,8 +57,7 @@ class Testimonials11Page extends Testimonials {
               type: "string",
               key: "description",
               displayer: "Review Text",
-              value:
-                "I think if you do something and it turns out pretty good, then you should go do something else wonderful, not dwell on it for too long.",
+              value: "I think if you do something and it turns out pretty good, then you should go do something else wonderful, not dwell on it for too long.",
             },
           ],
         },
@@ -73,8 +70,7 @@ class Testimonials11Page extends Testimonials {
               type: "image",
               key: "image",
               displayer: "Author Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db0?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db0?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -92,8 +88,7 @@ class Testimonials11Page extends Testimonials {
               type: "string",
               key: "description",
               displayer: "Review Text",
-              value:
-                "The principal element of Suprematism in painting, as in architecture, is its liberation from all social or materialist tendencies. Through Suprematism, art comes into its pure and unpolluted form.",
+              value: "The principal element of Suprematism in painting, as in architecture, is its liberation from all social or materialist tendencies. Through Suprematism, art comes into its pure and unpolluted form.",
             },
           ],
         },
@@ -106,8 +101,7 @@ class Testimonials11Page extends Testimonials {
               type: "image",
               key: "image",
               displayer: "Author Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db1?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db1?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -125,8 +119,7 @@ class Testimonials11Page extends Testimonials {
               type: "string",
               key: "description",
               displayer: "Review Text",
-              value:
-                "I think if you do something and it turns out pretty good, then you should go do something else wonderful, not dwell on it for too long.",
+              value: "I think if you do something and it turns out pretty good, then you should go do something else wonderful, not dwell on it for too long.",
             },
           ],
         },
@@ -139,8 +132,7 @@ class Testimonials11Page extends Testimonials {
               type: "image",
               key: "image",
               displayer: "Author Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db1?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db1?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -158,8 +150,7 @@ class Testimonials11Page extends Testimonials {
               type: "string",
               key: "description",
               displayer: "Review Text",
-              value:
-                "I think if you do something and it turns out pretty good, then you should go do something else wonderful, not dwell on it for too long.",
+              value: "I think if you do something and it turns out pretty good, then you should go do something else wonderful, not dwell on it for too long.",
             },
           ],
         },
@@ -172,8 +163,7 @@ class Testimonials11Page extends Testimonials {
               type: "image",
               key: "image",
               displayer: "Author Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db1?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db1?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -191,8 +181,7 @@ class Testimonials11Page extends Testimonials {
               type: "string",
               key: "description",
               displayer: "Review Text",
-              value:
-                "I think if you do something and it turns out pretty good, then you should go do something else wonderful, not dwell on it for too long.",
+              value: "I think if you do something and it turns out pretty good, then you should go do something else wonderful, not dwell on it for too long.",
             },
           ],
         },
@@ -205,8 +194,7 @@ class Testimonials11Page extends Testimonials {
               type: "image",
               key: "image",
               displayer: "Author Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db1?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db1?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -224,8 +212,7 @@ class Testimonials11Page extends Testimonials {
               type: "string",
               key: "description",
               displayer: "Review Text",
-              value:
-                "I think if you do something and it turns out pretty good, then you should go do something else wonderful, not dwell on it for too long.",
+              value: "I think if you do something and it turns out pretty good, then you should go do something else wonderful, not dwell on it for too long.",
             },
           ],
         },
@@ -243,55 +230,36 @@ class Testimonials11Page extends Testimonials {
   }
 
   render() {
+    const coverImage = this.getPropValue("cover-image");
     const cardList = this.castToObject<CardItem[]>("items");
     return (
-      <Base.Container className={this.decorateCSS("container")}
+      <Base.Container
+        className={this.decorateCSS("container")}
         style={{
-          backgroundImage: `url(${this.getPropValue("cover-image")})`
-        }}>
-        <Base.MaxContent className={this.getPropValue("cover-image") ? this.decorateCSS("max-content") : this.decorateCSS("max-content-no-background")}>
-          <Base.VerticalContent className={this.decorateCSS("wrapper")}>
-            {this.castToString(this.getPropValue("title")) && (
-              <Base.SectionTitle className={this.getPropValue("cover-image") ? this.decorateCSS("title") : this.decorateCSS("title-no-background")}>
-                {this.getPropValue("title")}
-              </Base.SectionTitle>
-            )}
+          backgroundImage: `url(${this.getPropValue("cover-image")})`,
+        }}
+      >
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <div className={this.decorateCSS("wrapper")}>
+            {this.castToString(this.getPropValue("title")) && <Base.SectionTitle className={`${this.decorateCSS("title")} ${this.getPropValue("cover-image") && this.decorateCSS("title-with-image")}`}>{this.getPropValue("title")}</Base.SectionTitle>}
 
-            <Base.ListGrid gridCount={{ phone: 1, tablet: 2, pc: this.getPropValue("itemCount") }} className={this.decorateCSS("testimonials11")}>
-              {cardList.map(
-                (item: any, index: number) => (
-                  <div className={this.getPropValue("cover-image") ? this.decorateCSS("cards") : this.decorateCSS("cards-no-background")}>
-                    <div className={this.decorateCSS("card-top")}>
-                      {item.image && (
-                        <img
-                          src={item.image}
-                          alt={item.image}
-                          className={this.decorateCSS("card-image")}
-                        />
-                      )}
-                      <Base.VerticalContent className={this.decorateCSS("card-top-right")}>
-                        {this.castToString(item.title) && (
-                          <Base.H4 className={this.decorateCSS("card-title")}>
-                            {item.title}
-                          </Base.H4>
-                        )}
-                        {this.castToString(item.subtitle) && (
-                          <Base.H5 className={this.decorateCSS("card-subtitle")}>
-                            {item.subtitle}
-                          </Base.H5>
-                        )}
-                      </Base.VerticalContent>
+            <Base.ListGrid gridCount={{ phone: 1, tablet: 2, pc: this.getPropValue("itemCount") }} className={this.decorateCSS("content")}>
+              {cardList.map((item: any, index: number) => (
+                <div className={`${this.decorateCSS("cards")} ${!coverImage && this.decorateCSS("cards-no-background")} `}>
+                  <div className={this.decorateCSS("card-top")}>
+                    {item.image && <img src={item.image} alt={item.image} className={this.decorateCSS("card-image")} />}
+                    <div className={this.decorateCSS("card-top-right")}>
+                      {this.castToString(item.title) && <Base.H4 className={this.decorateCSS("card-title")}>{item.title}</Base.H4>}
+                      {this.castToString(item.subtitle) && <Base.H5 className={this.decorateCSS("card-subtitle")}>{item.subtitle}</Base.H5>}
                     </div>
-                    <Base.P className={this.decorateCSS("card-description")}>
-                      {item.description}
-                    </Base.P>
                   </div>
-                )
-              )}
+                  <Base.P className={this.decorateCSS("card-description")}>{item.description}</Base.P>
+                </div>
+              ))}
             </Base.ListGrid>
-          </Base.VerticalContent>
+          </div>
         </Base.MaxContent>
-      </Base.Container >
+      </Base.Container>
     );
   }
 }
