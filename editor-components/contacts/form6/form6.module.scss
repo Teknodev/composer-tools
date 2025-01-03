@@ -1,199 +1,147 @@
 @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
 .container {
+  position: relative;
+  overflow: hidden;
+  min-height: 500px;
+
   .max-content {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-}
-
-.top-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
-
-  .contact {
-    width: 66%;
-
-    .title {
-      margin: 0;
-      color: var(--composer-primary-color);
-      word-wrap: break-word;
-      width: 100%;
-      text-transform: uppercase;
-      font-size: 2.5rem;
-    }
-
-    .description {
-      margin: 0;
-      margin-top: var(--composer-gap-md);
-      font-size: 1.5rem;
-      color: var(--composer-font-color-primary);
-    }
-  }
-
-  .address {
-    display: flex;
-    align-items: flex-end;
-    flex-direction: column;
-    width: 33%;
-    text-align: right;
-
-    .title-2 {
-      margin: 0;
-      color: var(--composer-tertiary-color);
-      word-wrap: break-word;
-      width: 100%;
-      text-transform: uppercase;
-      font-size: 2.5rem;
-    }
-
-    .description-2 {
-      margin: 0;
-      margin-top: var(--composer-gap-md);
-      font-size: 1.5rem;
-      color: var(--composer-font-color-primary);
-    }
-  }
-}
-
-.lower-container {
-  transition: 1s;
-  display: flex;
-  margin-top: var(--composer-gap-md);
-  width: 100%;
-  gap: var(--composer-gap-xl);
-
-  .form-container {
-    width: 100%;
-  }
-
-  .image-container,
-  .image-container-no-form {
-    background-size: cover;
-    position: relative;
-    width: 50%;
-
-    .image {
-      object-fit: cover;
-      width: 100%;
-      height: 100%;
-      border-radius: var(--composer-gap-sm);
-    }
-  }
-
-  .image-container-no-form {
-    width: 100%;
-    max-height: 500px;
-  }
-}
-
-.description {
-  color: var(--composer-font-color-primary);
-  word-wrap: break-word;
-  width: 100%;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: var(--composer-gap-xs);
-
-  .input-container {
-    width: 100%;
-    margin-bottom: var(--composer-gap-md);
-    display: flex;
-    flex-direction: column;
-
-    .label {
-      color: var(--composer-font-color-primary);
-      margin-bottom: var(--composer-gap-sm);
+    .wrapper {
       display: flex;
-      align-items: center;
-      gap: var(--composer-gap-xs);
-
-      .require-star {
-        color: var(--composer-tertiary-color);
-      }
-    }
-
-    .inputs {
-      display: flex;
-      gap: var(--composer-gap-md);
-
-      .input-box {
-        width: 100%;
-      }
-    }
-  }
-}
-
-.name {
-  color: var(--composer-font-color-primary);
-}
-
-.input {
-  resize: vertical;
-  padding: var(--composer-gap-md) var(--composer-gap-sm);
-  border: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.2);
-  background-color: var(--composer-html-background);
-  width: 100%;
-  font-family: inherit;
-  color: var(--composer-font-color-primary);
-}
-
-.input::placeholder {
-  color: var(--composer-tertiary-color);
-}
-
-.input:focus {
-  outline: none;
-  border: 1px solid var(--composer-font-color-primary);
-}
-
-.error-message {
-  color: red;
-  font-size: 1rem;
-  margin-top: var(--composer-gap-xs);
-}
-
-@container (max-width: #{$composer-tablet-width}) {
-  .top-container {
-    flex-direction: column;
-    gap: var(--composer-gap-md);
-
-    .contact,
-    .address {
       width: 100%;
-    }
+      justify-content: end;
 
-    .address {
-      .title-2 {
-        text-align: left;
+      .image-container {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: calc(50% - var(--composer-gap-md));
+        flex: 1;
+        height: 100%;
+
+        &.image-full-width {
+          width: 100%;
+        }
+
+        .image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
       }
 
-      .description-2 {
-        width: 100%;
-        text-align: left;
+      .form-container {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: var(--composer-gap-md);
+
+        &.without-image {
+          width: 100%;
+        }
+
+        .form {
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--composer-gap-md);
+          justify-content: space-between;
+
+          .form-item {
+            width: calc(50% - (var(--composer-gap-md) / 2));
+
+            &.full {
+              width: 100%;
+            }
+
+            .form-item-label {
+              margin-bottom: var(--composer-gap-xs);
+              color: var(--composer-font-color-primary);
+            }
+
+            .input-container {
+              position: relative;
+
+              .input-icon {
+                height: 1rem;
+                width: 1rem;
+                color: var(--composer-font-color-primary);
+                position: absolute;
+                left: var(--composer-gap-sm);
+                top: 50%;
+                transform: translateY(-50%);
+              }
+
+              .input-textarea {
+                width: 100%;
+                resize: vertical;
+                border: 1px solid var(--composer-tertiary-color);
+                border-radius: var(--composer-border-radius-sm);
+                padding: var(--composer-gap-sm) var(--composer-gap-md) var(--composer-gap-sm) var(--composer-gap-sm);
+                min-height: 130px;
+                outline: none;
+                background: transparent;
+                color: var(--composer-font-color-primary);
+              }
+
+              .input {
+                width: 100%;
+                border: 1px solid var(--composer-tertiary-color);
+                border-radius: var(--composer-border-radius-sm);
+                outline: none;
+                padding: var(--composer-gap-sm) var(--composer-gap-md) var(--composer-gap-sm) calc(var(--composer-gap-md) + var(--composer-gap-sm));
+                background: transparent;
+                color: var(--composer-font-color-primary);
+              }
+
+              .input::placeholder,
+              .input-textarea::placeholder {
+                color: var(--composer-font-color-primary);
+              }
+            }
+          }
+
+          .error-message {
+            color: red;
+            margin-top: 3px;
+          }
+        }
       }
     }
   }
+}
 
-  .lower-container {
-    display: flex;
-    flex-direction: column-reverse;
-    flex-wrap: wrap;
-    gap: 0;
-
-    .image-container {
-      width: 100%;
-      height: 400px;
-    }
+@container (max-width: #{$composer-tablet-width-lg}) {
+  .container {
+    min-height: 400px;
   }
+}
 
-  .form {
-    margin-top: var(--composer-gap-md);
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    min-height: 300px;
+    padding: 0;
+
+    .max-content {
+      .wrapper {
+        flex-direction: column;
+
+        .image-container {
+          width: 100%;
+          position: unset;
+        }
+
+        .form-container {
+          width: 100%;
+          padding: var(--composer-gap-md);
+
+          .form {
+            .error-message {
+              margin-top: 3px;
+            }
+          }
+        }
+      }
+    }
   }
 }

@@ -4,7 +4,7 @@ import styles from "./form1.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
-class Form1Page extends BaseContacts {
+class Form1 extends BaseContacts {
   constructor(props?: any) {
     super(props, styles);
 
@@ -211,20 +211,22 @@ class Form1Page extends BaseContacts {
 
   render() {
     const title = this.getPropValue("title");
-    const titleExist = !!this.getPropValue("title", { as_string: true });
+    const titleExist = this.castToString(title);
 
     const description = this.getPropValue("description");
-    const descriptionExist = !!this.getPropValue("description", { as_string: true });
+    const descriptionExist = this.castToString(description);
 
     const cards = this.castToObject<any>("cards");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent>
-            {titleExist && <Base.SectionTitle className={this.decorateCSS("section-title")}>{title}</Base.SectionTitle>}
-            {descriptionExist && <Base.SectionDescription className={this.decorateCSS("section-description")}>{description}</Base.SectionDescription>}
-          </Base.VerticalContent>
+          {(titleExist || descriptionExist) && (
+            <Base.VerticalContent>
+              {titleExist && <Base.SectionTitle className={this.decorateCSS("section-title")}>{title}</Base.SectionTitle>}
+              {descriptionExist && <Base.SectionDescription className={this.decorateCSS("section-description")}>{description}</Base.SectionDescription>}
+            </Base.VerticalContent>
+          )}
 
           {cards?.length > 0 && (
             <Base.ListGrid gridCount={{ pc: 3 }} className={this.decorateCSS("cards-container")}>
@@ -240,7 +242,7 @@ class Form1Page extends BaseContacts {
                       <div
                         className={`
                     ${this.decorateCSS("icon-container")}
-                    ${item.isIconFilled ? this.decorateCSS("filled") : ""}
+                    ${item.isIconFilled && this.decorateCSS("filled")}
                   `}
                       >
                         <ComposerIcon
@@ -255,7 +257,7 @@ class Form1Page extends BaseContacts {
                     <Base.VerticalContent className={this.decorateCSS("rows")}>
                       {item.rows.map((row: any, rowIndex: number) => {
                         const itemExist = this.castToString(row.item);
-                        return itemExist && <Base.P className={this.decorateCSS("row")}>{itemExist}</Base.P>;
+                        return itemExist && <Base.P className={this.decorateCSS("row")}>{row.item}</Base.P>;
                       })}
                     </Base.VerticalContent>
                   </Base.VerticalContent>
@@ -269,4 +271,4 @@ class Form1Page extends BaseContacts {
   }
 }
 
-export default Form1Page;
+export default Form1;
