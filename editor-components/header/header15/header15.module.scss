@@ -1,4 +1,4 @@
-@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 .container {
   min-height: 100vh;
   position: relative;
@@ -19,32 +19,35 @@
     position: relative;
     .wrapper {
       display: flex;
-      .left, .left-no-image {
+      .left {
         display: flex;
         align-items: center;
         flex: 1;
         max-width: 50%;
-        .content-wrapper{
+
+        &.left-no-image {
+          max-width: 100%;
+        }
+        .content-wrapper {
           width: 100%;
           .content {
-            display: flex;
-            flex-direction: column;
-            gap: var(--composer-gap-md);
-            .title, .title-no-image {
+            .title {
               font-size: 4rem;
-              color: #2f1c64;
+
+              &.title-with-image {
+                color: white;
+              }
             }
-            .title-no-image {
-              color: var(--composer-primary-color);
-            }
-            .description, .description-no-image {
+
+            .description {
               font-size: 1.5rem;
-              color: rgb(118, 118, 118);
+
+              &.description-with-image {
+                color: white;
+              }
             }
-            .description-no-image{
-              color: var(--composer-tertiary-color);
-            }
-            .form-display, .form-display-no-image {
+
+            .form-display {
               display: flex;
               justify-content: center;
               align-items: center;
@@ -54,15 +57,19 @@
               max-width: 75%;
               width: fit-content;
               min-width: 30%;
-              .form-wrapper{
+
+              &.form-display-no-image {
+                background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+              }
+              .form-wrapper {
                 width: 100%;
-                display: flex;            
+                display: flex;
                 gap: var(--composer-gap-md);
                 .form {
                   width: 100%;
-                  display: flex;            
+                  display: flex;
                   gap: var(--composer-gap-md);
-                  .input{
+                  .input {
                     flex: 1;
                     height: 100%;
                     width: 100%;
@@ -70,24 +77,39 @@
                       width: 100%;
                       height: 100%;
                       margin: 0px;
-                      border: 1px solid #e5e5e5;  
-                      border-radius: var(--composer-border-radius-md);  
+                      border: 1px solid #e5e5e5;
+                      border-radius: var(--composer-border-radius-md);
                       padding: var(--composer-gap-sm);
                       background-color: transparent;
-                      color: white;
-                      color:black;
-                      .placeholder{
+                      color: black;
+
+                      &.placeholder-no-image {
+                        border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
+                        color: var(--composer-font-color-primary);
                         &::placeholder {
-                          color:rgb(118, 118, 118);
-                        }   
+                          color: rgba(var(--composer-font-color-primary-rgb), 0.2);
+                        }
+                        &:focus {
+                          border: 1px solid var(--composer-font-color-primary);
+
+                          &::placeholder {
+                            color: var(--composer-font-color-primary);
+                          }
+                        }
                       }
-                      &:focus{
+
+                      .placeholder {
+                        &::placeholder {
+                          color: rgb(118, 118, 118);
+                        }
+                      }
+                      &:focus {
                         outline: none;
                         border: 1px solid rgb(118, 118, 118);
                         &::placeholder {
                           color: black;
                         }
-                      }  
+                      }
                     }
                   }
                   .button-box {
@@ -98,48 +120,23 @@
                 }
               }
             }
-            .form-display-no-image{
-              background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-              .form-wrapper{
-                .form {
-                  .input {
-                    .placeholder{
-                      border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
-                      color: var(--composer-font-color-primary);     
-                      &::placeholder {
-                        color:rgba(var(--composer-font-color-primary-rgb), 0.2)
-                      }
-                      &:focus{
-                        border: 1px solid var(--composer-font-color-primary);
-                       
-                        &::placeholder {
-                          color: var(--composer-font-color-primary); 
-                        }
-                      }  
-                    }
-                  }
-                }
-              }
-            }
           }
         }
-      }
-      .left-no-image{
-        max-width: 100%;
       }
     }
   }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}){
-  .container{
-    .max-content{
-      .wrapper{
-        .left, .left-no-image{
+@container (max-width: #{$composer-tablet-width-lg}) {
+  .container {
+    .max-content {
+      .wrapper {
+        .left,
+        .left-no-image {
           max-width: 100%;
-          .content-wrapper{
-            .content{
-              .form-display, .form-display-no-image{
+          .content-wrapper {
+            .content {
+              .form-display {
                 min-width: 75%;
               }
             }
@@ -149,27 +146,27 @@
     }
   }
 }
-@container (max-width: #{$composer-phone-width}){
-  .container{
-    .max-content{
-      .wrapper{
-        .left, .left-no-image{
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .wrapper {
+        .left {
           max-width: 100%;
-          .content-wrapper{
+          .content-wrapper {
             .content {
-              .form-display, .form-display-no-image {
+              .form-display {
                 gap: var(--composer-gap-sm);
                 width: 100%;
                 max-width: 100%;
-                .form-wrapper{
+                .form-wrapper {
                   width: 100%;
                   .form {
                     width: 100%;
                     flex-direction: column;
                     align-items: center;
-                    .input{
+                    .input {
                       width: 100%;
-                      .placeholder{
+                      .placeholder {
                         min-height: 50px;
                       }
                     }

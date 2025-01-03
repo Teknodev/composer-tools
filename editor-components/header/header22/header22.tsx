@@ -46,15 +46,13 @@ class HeaderComponent22 extends BaseHeader {
               type: "image",
               key: "right_image",
               displayer: "Right Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619d5dbd2970002c62664e?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619d5dbd2970002c62664e?alt=media&timestamp=1719483639150",
             },
             {
               type: "image",
               key: "left_image",
               displayer: "Left Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619d5dbd2970002c62664d?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619d5dbd2970002c62664d?alt=media&timestamp=1719483639150",
             },
             {
               type: "array",
@@ -257,7 +255,7 @@ class HeaderComponent22 extends BaseHeader {
       arrows: false,
       infinite: slider.length > 1,
       speed: 1500,
-      autoplay: false,
+      autoplay: true,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -267,31 +265,25 @@ class HeaderComponent22 extends BaseHeader {
         }
       },
     };
-    const elements = document.getElementsByClassName(
-      this.decorateCSS("sliders")
-    );
+    const elements = document.getElementsByClassName(this.decorateCSS("sliders"));
     const items = [];
 
     for (let index = 0; index < elements.length; index++) {
       items.push(elements.item(index));
-
     }
 
     const minHeight = items.sort((a, b) => {
       return b.clientHeight - a.clientHeight;
     })[0]?.clientHeight;
 
-    if (!isSliderExist) return <></>
+    if (!isSliderExist) return <></>;
     return (
       <>
         {isSliderExist && (
           <Base.Container className={this.decorateCSS("container")}>
             <div className={this.decorateCSS("max-content")}>
-              <div className={this.decorateCSS("slider-parent")} style={{ minHeight: minHeight + "px" }} >
-                <ComposerSlider
-                  {...settings}
-                  className={this.decorateCSS("carousel")}
-                  ref={this.getComponentState("slider-ref")}>
+              <div className={this.decorateCSS("slider-parent")} style={{ minHeight: minHeight + "px" }}>
+                <ComposerSlider {...settings} className={this.decorateCSS("carousel")} ref={this.getComponentState("slider-ref")}>
                   {slider.map((item: SliderObject, index: number) => {
                     const isActive = this.getComponentState("activeSlide") === index;
                     const leftImageExist = item.left_image;
@@ -299,23 +291,18 @@ class HeaderComponent22 extends BaseHeader {
                     const middleClass = leftImageExist ? "middle-content" : "middle-content2";
                     const middleClassWithPadding = (!leftImageExist && !rightImageExist) || (!leftImageExist && !this.getPropValue("dots")) ? "middle-content3" : middleClass;
                     return (
-                      <div
-                        className={this.decorateCSS("sliders")}
-                        key={index}>
+                      <div className={this.decorateCSS("sliders")} key={index}>
                         <div className={this.decorateCSS("slider")}>
                           {leftImageExist && (
                             <div className={this.decorateCSS("left-content")}>
-                              <img
-                                className={`${this.decorateCSS("left-image")} ${(animation && isActive) ? this.decorateCSS("left-animation") : ""}  `}
-                                src={item.left_image}
-                                alt=""
-                              />
+                              <img className={`${this.decorateCSS("left-image")} ${animation && isActive ? this.decorateCSS("left-animation") : ""}  `} src={item.left_image} alt="" />
                             </div>
                           )}
 
                           <div
                             className={`${this.decorateCSS(middleClassWithPadding)}
-                          } ${animation && isActive ? this.decorateCSS("mid-right-animation") : ""}  `}>
+                          } ${animation && isActive ? this.decorateCSS("mid-right-animation") : ""}  `}
+                          >
                             <Base.VerticalContent className={this.decorateCSS("text-wrapper")}>
                               {hasDivider && <div className={this.decorateCSS("divider")} />}
                               {this.castToString(item.title) && <Base.SectionTitle className={this.decorateCSS("title")}>{item.title}</Base.SectionTitle>}
@@ -325,10 +312,7 @@ class HeaderComponent22 extends BaseHeader {
                                 if (buttonText) {
                                   return (
                                     <div className={this.decorateCSS("link-button-container")}>
-                                      <ComposerLink
-                                        className={this.decorateCSS("link-button")}
-                                        key={`hdr-22-${indexButton}`}
-                                        path={buttonItem.link}>
+                                      <ComposerLink className={this.decorateCSS("link-button")} key={`hdr-22-${indexButton}`} path={buttonItem.link}>
                                         <button className={this.decorateCSS("button")}>{buttonItem.buttonText}</button>
                                       </ComposerLink>
                                     </div>
@@ -336,17 +320,10 @@ class HeaderComponent22 extends BaseHeader {
                                 }
                               })}
                             </Base.VerticalContent>
-
                           </div>
                           {rightImageExist && (
-                            <div
-                              className={`${this.decorateCSS("right-content")} ${animation && isActive ? this.decorateCSS("mid-right-animation") : ""
-                                }  `}>
-                              <img
-                                className={this.decorateCSS("right-image")}
-                                src={item.right_image}
-                                alt=""
-                              />
+                            <div className={`${this.decorateCSS("right-content")} ${animation && isActive ? this.decorateCSS("mid-right-animation") : ""}  `}>
+                              <img className={this.decorateCSS("right-image")} src={item.right_image} alt="" />
                             </div>
                           )}
                         </div>
@@ -361,22 +338,18 @@ class HeaderComponent22 extends BaseHeader {
                     className={this.decorateCSS("nav-buttons")}
                     onClick={() => {
                       this.getComponentState("slider-ref").current.slickPrev();
-                    }}>
-                    <ComposerIcon
-                      name={this.getPropValue("prev-button-icon")}
-                      propsIcon={{ className: `${this.decorateCSS("icon")}` }}
-                    />
+                    }}
+                  >
+                    <ComposerIcon name={this.getPropValue("prev-button-icon")} propsIcon={{ className: `${this.decorateCSS("icon")}` }} />
                   </button>
 
                   <button
                     className={this.decorateCSS("nav-buttons")}
                     onClick={() => {
                       this.getComponentState("slider-ref").current.slickNext();
-                    }}>
-                    <ComposerIcon
-                      name={this.getPropValue("next-button-icon")}
-                      propsIcon={{ className: `${this.decorateCSS("icon")}` }}
-                    />
+                    }}
+                  >
+                    <ComposerIcon name={this.getPropValue("next-button-icon")} propsIcon={{ className: `${this.decorateCSS("icon")}` }} />
                   </button>
                 </div>
               )}

@@ -377,15 +377,15 @@ class Header18 extends BaseHeader {
                         <div className={this.decorateCSS("text-content")}>
                           {(titleExist || subtitleExist) && (
                             <div className={this.decorateCSS("text-content")}>
-                              {subtitleExist && <Base.H5 className={cover ? this.decorateCSS("subtitle") : this.decorateCSS("subtitle-no-image")}>{item.subtitle}</Base.H5>}
-                              {titleExist && <Base.H2 className={cover ? this.decorateCSS("title") : this.decorateCSS("title-no-image")}>{item.title}</Base.H2>}
+                              {subtitleExist && <Base.H5 className={`${this.decorateCSS("subtitle")} ${!cover && this.decorateCSS("subtitle-no-image")}`}>{item.subtitle}</Base.H5>}
+                              {titleExist && <Base.H2 className={`${this.decorateCSS("title")} ${!cover && this.decorateCSS("title-no-image")}`}>{item.title}</Base.H2>}
                             </div>
                           )}
                           {showPagination && slides.length > 1 && (
-                            <div className={cover ? this.decorateCSS("pagination") : this.decorateCSS("pagination-no-image")}>
+                            <div className={`${this.decorateCSS("pagination")} ${!cover && this.decorateCSS("pagination-no-image")}`}>
                               <Base.H5 className={this.decorateCSS("active-slide")}>{(this.getComponentState("active-index") + 1).toString().padStart(2, "0")}</Base.H5>
-                              <div className={cover ? this.decorateCSS("progress-bar") : this.decorateCSS("progress-bar-no-image")}>
-                                <div className={cover ? this.decorateCSS("active") : this.decorateCSS("active-no-image")} style={{ width: `${progressPercentage}%` }} />
+                              <div className={`${this.decorateCSS("progress-bar")} ${!cover && this.decorateCSS("progress-bar-no-image")}`}>
+                                <div className={`${this.decorateCSS("active")} ${!cover && this.decorateCSS("active-no-image")}`} style={{ width: `${progressPercentage}%` }} />
                               </div>
                               <Base.H5 className={this.decorateCSS("slide-count")}>{sliderCount.toString().padStart(2, "0")}</Base.H5>
                             </div>
@@ -394,7 +394,7 @@ class Header18 extends BaseHeader {
                       </div>
                       {!!item.image && <img src={item.image} className={this.decorateCSS("image")} />}
                       {(descTitleExist || descExist) && (
-                        <div className={cover ? this.decorateCSS("description-div") : this.decorateCSS("description-div-no-image")}>
+                        <div className={`${this.decorateCSS("description-div")} ${!cover && this.decorateCSS("description-div-no-image")}`}>
                           {descTitleExist && <Base.H3 className={this.decorateCSS("description-title")}>{item.description_title}</Base.H3>}
                           {descExist && <Base.P className={this.decorateCSS("item-description")}>{item.description}</Base.P>}
                         </div>
@@ -411,7 +411,7 @@ class Header18 extends BaseHeader {
                 <div className={this.decorateCSS("socials")}>
                   {socials.map((item: Social, index: number) => (
                     <ComposerLink path={item.url} key={index}>
-                      <Base.H5 className={cover ? this.decorateCSS("name") : this.decorateCSS("name-no-image")}>{item.text}</Base.H5>
+                      <Base.H5 className={`${this.decorateCSS("name")} ${!cover && this.decorateCSS("name-no-image")}`}>{item.text}</Base.H5>
                     </ComposerLink>
                   ))}
                 </div>
@@ -420,7 +420,7 @@ class Header18 extends BaseHeader {
                 <ComposerIcon
                   name={this.getPropValue("prev_icon")}
                   propsIcon={{
-                    className: cover ? this.decorateCSS("prev-icon") : this.decorateCSS("prev-icon-no-image"),
+                    className: `${this.decorateCSS("prev-icon")} ${!cover && this.decorateCSS("prev-icon-no-image")}`,
                     onClick: () => sliderRef.current.slickPrev(),
                   }}
                 />
@@ -429,7 +429,8 @@ class Header18 extends BaseHeader {
                 <ComposerIcon
                   name={this.getPropValue("next_icon")}
                   propsIcon={{
-                    className: cover ? this.decorateCSS("next-icon") : this.decorateCSS("next-icon-no-image"),
+                    className: `${this.decorateCSS("next-icon")} ${!cover && this.decorateCSS("next-icon-no-image")}`,
+
                     onClick: () => sliderRef.current.slickNext(),
                   }}
                 />

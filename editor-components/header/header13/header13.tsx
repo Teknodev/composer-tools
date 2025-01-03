@@ -9,12 +9,12 @@ import { Base } from "../../../composer-base-components/base/base";
 type RightItem = {
   icon: string;
   link: string;
-}
+};
 
 type LeftItem = {
   label: string;
   link: string;
-}
+};
 
 class Header13 extends BaseHeader {
   constructor(props?: any) {
@@ -168,8 +168,7 @@ class Header13 extends BaseHeader {
             {
               type: "icon",
               key: "icon",
-              value:
-                "FaFacebook",
+              value: "FaFacebook",
               displayer: "Icon",
             },
             {
@@ -188,8 +187,7 @@ class Header13 extends BaseHeader {
             {
               type: "icon",
               key: "icon",
-              value:
-                "FaInstagram",
+              value: "FaInstagram",
               displayer: "Icon",
             },
             {
@@ -208,8 +206,7 @@ class Header13 extends BaseHeader {
             {
               type: "icon",
               key: "icon",
-              value:
-                "FaPinterest",
+              value: "FaPinterest",
               displayer: "Icon",
             },
             {
@@ -228,8 +225,7 @@ class Header13 extends BaseHeader {
             {
               type: "icon",
               key: "icon",
-              value:
-                "FaLinkedin",
+              value: "FaLinkedin",
               displayer: "Icon",
             },
             {
@@ -280,56 +276,44 @@ class Header13 extends BaseHeader {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          {slider.length > 0 &&
+          {slider.length > 0 && (
             <div className={this.decorateCSS("slider-parent")}>
               <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
-                {slider.map(
-                  (item: any, indexSlider: number) => {
-                    return (
-                      <img
-                        alt=""
-                        src={item.value}
-                        className={`${this.decorateCSS("img")} ${!item.value && this.decorateCSS("no-img")}`}
-                        key={indexSlider}
-                      />
-                    )
-                  }
-                )}
+                {slider.map((item: any, indexSlider: number) => {
+                  return <img alt="" src={item.value} className={`${this.decorateCSS("img")} ${!item.value && this.decorateCSS("no-img")}`} key={indexSlider} />;
+                })}
               </ComposerSlider>
               {overlay && <div className={this.decorateCSS("overlay")}></div>}
-            </div>}
-          {(leftItems.length > 0 || rightItems.length > 0) &&
+            </div>
+          )}
+          {(leftItems.length > 0 || rightItems.length > 0) && (
             <Base.Container className={this.decorateCSS("content-container")}>
-              <Base.MaxContent className={`${this.decorateCSS("Box")} ${imageless ? this.decorateCSS("imageless") : ""
-                }`}
-              >
-                {leftItems.length > 0 &&
+              <Base.MaxContent className={`${this.decorateCSS("box")} ${imageless && this.decorateCSS("imageless")}`}>
+                {leftItems.length > 0 && (
                   <div className={this.decorateCSS("content-left")}>
                     {leftItems.map((item: LeftItem) => {
                       return (
                         <ComposerLink path={item.link}>
-                          <span className={this.decorateCSS("text")}>
-                            {item.label}
-                          </span>
+                          <span className={this.decorateCSS("text")}>{item.label}</span>
                         </ComposerLink>
                       );
                     })}
-                  </div>}
-                {rightItems.length > 0 &&
+                  </div>
+                )}
+                {rightItems.length > 0 && (
                   <div className={this.decorateCSS("content-right")}>
                     {rightItems.map((item: RightItem) => {
                       return (
                         <ComposerLink path={item.link}>
-                          <ComposerIcon
-                            propsIcon={{ className: this.decorateCSS("icon") }}
-                            name={item.icon}
-                          />
+                          <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={item.icon} />
                         </ComposerLink>
                       );
                     })}
-                  </div>}
+                  </div>
+                )}
               </Base.MaxContent>
-            </Base.Container>}
+            </Base.Container>
+          )}
         </div>
       </div>
     );

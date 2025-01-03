@@ -5,6 +5,7 @@ import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Slides = {
   title: JSX.Element;
@@ -14,12 +15,9 @@ type Slides = {
   buttons: Array<Buttons>;
 };
 
-type Buttons = {
-  buttonText: string;
-  buttonUrl: string;
-};
+type Buttons = INPUTS.CastedButton;
 
-class HeaderComponent14 extends BaseHeader {
+class Header14 extends BaseHeader {
   slideRefs: React.RefObject<HTMLDivElement>[] = [];
   constructor(props?: any) {
     super(props, styles);
@@ -62,42 +60,20 @@ class HeaderComponent14 extends BaseHeader {
               type: "string",
               displayer: "Description",
               key: "description",
-              value:
-                "A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.",
+              value: "A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.",
             },
             {
               type: "image",
               displayer: "Image",
               key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ab4df803b007002cc71dac?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ab4df803b007002cc71dac?alt=media",
             },
 
             {
               type: "array",
               displayer: "Buttons",
               key: "buttons",
-              value: [
-                {
-                  type: "object",
-                  displayer: "Button",
-                  key: "button",
-                  value: [
-                    {
-                      type: "string",
-                      displayer: "Button Text",
-                      key: "buttonText",
-                      value: "TO SHOP",
-                    },
-                    {
-                      type: "page",
-                      displayer: "Button Link",
-                      key: "buttonUrl",
-                      value: "",
-                    },
-                  ],
-                },
-              ],
+              value: [INPUTS.BUTTON("button", "Button", "TO SHOP", "", null, null, "Primary")],
             },
           ],
         },
@@ -116,61 +92,19 @@ class HeaderComponent14 extends BaseHeader {
               type: "string",
               displayer: "Description",
               key: "description",
-              value:
-                "Even if your less into design and more into content strategy you may find some redeeming value with, wait for it, dummy copy.",
+              value: "Even if your less into design and more into content strategy you may find some redeeming value with, wait for it, dummy copy.",
             },
             {
               type: "image",
               displayer: "Image",
               key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ab4e4703b007002cc71de2?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ab4e4703b007002cc71de2?alt=media",
             },
             {
               type: "array",
               displayer: "Buttons",
               key: "buttons",
-              value: [
-                {
-                  type: "object",
-                  displayer: "Button",
-                  key: "button",
-                  value: [
-                    {
-                      type: "string",
-                      displayer: "Button Text",
-                      key: "buttonText",
-                      value: "TO SHOP",
-                    },
-                    {
-                      type: "page",
-                      displayer: "Button Link",
-                      key: "buttonUrl",
-                      value: "",
-                    },
-
-                  ],
-                },
-                {
-                  type: "object",
-                  displayer: "Button",
-                  key: "button",
-                  value: [
-                    {
-                      type: "string",
-                      displayer: "Button Text",
-                      key: "buttonText",
-                      value: "READ MORE",
-                    },
-                    {
-                      type: "page",
-                      displayer: "Button Link",
-                      key: "buttonUrl",
-                      value: "",
-                    },
-                  ],
-                },
-              ],
+              value: [INPUTS.BUTTON("button", "Button", "TO SHOP", "", null, null, "Primary"), INPUTS.BUTTON("button", "Button", "READ MORE", "", null, null, "Primary")],
             },
           ],
         },
@@ -189,60 +123,19 @@ class HeaderComponent14 extends BaseHeader {
               type: "string",
               displayer: "Description",
               key: "description",
-              value:
-                "A client that's unhappy for a reason is a problem, a client that's unhappy though required he or her can't quite put a finger.",
+              value: "A client that's unhappy for a reason is a problem, a client that's unhappy though required he or her can't quite put a finger.",
             },
             {
               type: "image",
               displayer: "Image",
               key: "image",
-              value:
-                "https://mobiles77.com/wp-content/uploads/2022/09/accessories-slide-3.jpg",
+              value: "https://mobiles77.com/wp-content/uploads/2022/09/accessories-slide-3.jpg",
             },
             {
               type: "array",
               displayer: "Buttons",
               key: "buttons",
-              value: [
-                {
-                  type: "object",
-                  displayer: "Button",
-                  key: "button",
-                  value: [
-                    {
-                      type: "string",
-                      displayer: "Button Text",
-                      key: "buttonText",
-                      value: "TO SHOP",
-                    },
-                    {
-                      type: "page",
-                      displayer: "Button Link",
-                      key: "buttonUrl",
-                      value: "",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  displayer: "Button",
-                  key: "button",
-                  value: [
-                    {
-                      type: "string",
-                      displayer: "Button Text",
-                      key: "buttonText",
-                      value: "READ MORE",
-                    },
-                    {
-                      type: "page",
-                      displayer: "Button Link",
-                      key: "buttonUrl",
-                      value: "",
-                    },
-                  ],
-                },
-              ],
+              value: [INPUTS.BUTTON("button", "Button", "TO SHOP", "", null, null, "Primary"), INPUTS.BUTTON("button", "Button", "READ MORE", "", null, null, "Primary")],
             },
           ],
         },
@@ -268,7 +161,7 @@ class HeaderComponent14 extends BaseHeader {
       speed: 2000,
       slidesToShow: 1,
       slidesToScroll: 1,
-      dotsClass: `slick-dots ${this.decorateCSS("customDots")} ${!isImagePresent ? this.decorateCSS("noDots-img") : ""}`,
+      dotsClass: `slick-dots ${this.decorateCSS("customDots")} ${!isImagePresent && this.decorateCSS("noDots-img")}`,
       beforeChange: (_: number, newIndex: number) => {
         if (this.getComponentState("activeSlide") !== newIndex) {
           this.setComponentState("activeSlide", newIndex);
@@ -282,11 +175,7 @@ class HeaderComponent14 extends BaseHeader {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <ComposerSlider
-            {...settings}
-            className={this.decorateCSS("carousel")}
-            ref={this.getComponentState("slider-ref")}
-          >
+          <ComposerSlider {...settings} className={this.decorateCSS("carousel")} ref={this.getComponentState("slider-ref")}>
             {slides.map((item: Slides, index: number) => {
               const image = item.image;
               const title = this.castToString(item.title);
@@ -296,63 +185,35 @@ class HeaderComponent14 extends BaseHeader {
                 !this.getPropValue("prevIcon") && !this.getPropValue("nextIcon")
                   ? this.decorateCSS("content-full")
                   : !this.getPropValue("prevIcon")
-                    ? this.decorateCSS("content-left")
-                    : !this.getPropValue("nextIcon")
-                      ? this.decorateCSS("content-right")
-                      : this.decorateCSS("content");
+                  ? this.decorateCSS("content-left")
+                  : !this.getPropValue("nextIcon")
+                  ? this.decorateCSS("content-right")
+                  : this.decorateCSS("content");
 
-              const noBgClass = !image ? this.decorateCSS("no-bg") : "";
-
+              const noBgClass = !image && this.decorateCSS("no-bg");
 
               return (
-                <div
-                  className={this.decorateCSS("slide")}
-                  key={`sld-8-${index}`}
-                >
-                  {image && (
-                    <img
-                      src={item.image}
-                      alt={item.image}
-                      className={this.decorateCSS("bg-img")}
-                    />
-                  )}
-                  <div className={`${this.decorateCSS("content-wrapper")} ${(isActive && isAnimation) ? this.decorateCSS("fade-in") : ""
-                    }`}>
+                <div className={this.decorateCSS("slide")} key={`header14-${index}`}>
+                  {image && <img src={item.image} alt={item.image} className={this.decorateCSS("bg-img")} />}
+                  <div className={`${this.decorateCSS("content-wrapper")} ${isActive && isAnimation && this.decorateCSS("fade-in")}`}>
                     <div className={`${containerClass} ${noBgClass}`}>
-                      {title && (
-                        <div className={this.decorateCSS("title")}>
-                          {item.title}
-                        </div>
-                      )}
-                      {description && (
-                        <div className={this.decorateCSS("description")}>
-                          {item.description}
-                        </div>
-                      )}
+                      {title && <div className={this.decorateCSS("title")}>{item.title}</div>}
+                      {description && <div className={this.decorateCSS("description")}>{item.description}</div>}
 
                       {item.buttons.length > 0 && (
                         <div className={this.decorateCSS("buttons-container")}>
-                          {item.buttons.map(
-                            (buttonItem: any, indexButton: number) => {
-                              const buttonText = this.castToString(
-                                buttonItem.buttonText
-                              );
-                              return (
-                                buttonText && (
-                                  <ComposerLink path={buttonItem.buttonUrl}>
-                                    <Base.Button
-                                      key={indexButton}
-                                      className={this.decorateCSS("button")}
-                                    >
-                                      <span className={this.decorateCSS("text")}>
-                                        {buttonItem.buttonText}
-                                      </span>
-                                    </Base.Button>
-                                  </ComposerLink>
-                                )
-                              );
-                            }
-                          )}
+                          {item.buttons.map((buttonItem: any, indexButton: number) => {
+                            const buttonText = this.castToString(buttonItem.text);
+                            return (
+                              buttonText && (
+                                <ComposerLink path={buttonItem.url}>
+                                  <Base.Button buttonType={buttonItem.type} key={indexButton} className={this.decorateCSS("button")}>
+                                    <span className={this.decorateCSS("text")}>{buttonItem.text}</span>
+                                  </Base.Button>
+                                </ComposerLink>
+                              )
+                            );
+                          })}
                         </div>
                       )}
                     </div>
@@ -362,29 +223,18 @@ class HeaderComponent14 extends BaseHeader {
                       <ComposerIcon
                         name={this.getPropValue("prevIcon")}
                         propsIcon={{
-                          className: `${this.decorateCSS(
-                            "arrow"
-                          )} ${!image ? this.decorateCSS("no-bg") : ""
-                            } ${this.decorateCSS("prev-icon")}`,
+                          className: `${this.decorateCSS("arrow")} ${!image && this.decorateCSS("no-bg")} ${this.decorateCSS("prev-icon")}`,
                           onClick: () => {
-                            this.getComponentState(
-                              "slider-ref"
-                            ).current.slickPrev();
+                            this.getComponentState("slider-ref").current.slickPrev();
                           },
                         }}
                       />
                       <ComposerIcon
                         name={this.getPropValue("nextIcon")}
                         propsIcon={{
-                          className: `${this.decorateCSS(
-                            "arrow"
-                          )} ${!image ? this.decorateCSS(
-                            "no-bg"
-                          ) : ""} ${this.decorateCSS("next-icon")}`,
+                          className: `${this.decorateCSS("arrow")} ${!image && this.decorateCSS("no-bg")} ${this.decorateCSS("next-icon")}`,
                           onClick: () => {
-                            this.getComponentState(
-                              "slider-ref"
-                            ).current.slickNext();
+                            this.getComponentState("slider-ref").current.slickNext();
                           },
                         }}
                       />
@@ -400,4 +250,4 @@ class HeaderComponent14 extends BaseHeader {
   }
 }
 
-export default HeaderComponent14;
+export default Header14;
