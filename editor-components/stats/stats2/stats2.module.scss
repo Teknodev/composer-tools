@@ -17,6 +17,7 @@
 
       .header {
         word-break: break-word;
+        text-align: left;
       }
     }
 
@@ -37,6 +38,8 @@
         .description {
           max-width: 90%;
           word-break: break-word;
+          margin-left: 0;
+          text-align: left;
 
           &.full-width {
             min-width: 100%;
@@ -44,12 +47,10 @@
         }
 
         .button-content {
-
-          >div {
+          > div {
             width: 100% !important;
 
             .contact-button {
-
               &.button-full-width {
                 max-width: 30%;
               }
@@ -83,6 +84,7 @@
             text-overflow: ellipsis;
             line-height: 1.5;
             overflow: hidden;
+            margin-left: 0;
           }
 
           .card-amount-container {
@@ -201,7 +203,7 @@
   }
 }
 
-@container (max-width: #{$composer-phone-width-lg}) {
+@container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
       .bottom-content {
