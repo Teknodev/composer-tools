@@ -36,7 +36,7 @@ type ButtomType = {
   phoneUrl: string;
 };
 
-class LocationComponent1 extends Location {
+class Location1 extends Location {
   constructor(props?: any) {
     super(props, styles);
 
@@ -294,8 +294,12 @@ class LocationComponent1 extends Location {
           const content =
             description || popupTitle || popupButtonText ? (
               <div className={this.decorateCSS("popup")}>
-                {popupTitle && <Base.P className={description ? this.decorateCSS("popup-title") : this.decorateCSS("popup-title-no-desc")}>{popupTitle} </Base.P>}
-                {description && <Base.P className={this.decorateCSS("popup-content")}>{description}</Base.P>}
+                {(popupTitle || description) && (
+                  <div className={this.decorateCSS("popup-header")}>
+                    {popupTitle && <Base.P className={this.decorateCSS("popup-title")}>{popupTitle}</Base.P>}
+                    {description && <Base.P className={this.decorateCSS("popup-content")}>{description}</Base.P>}
+                  </div>
+                )}
                 {popupButtonText && (
                   <div className={this.decorateCSS("popup-link")}>
                     <ComposerLink path={popupButtonUrl}>
@@ -322,7 +326,8 @@ class LocationComponent1 extends Location {
       return acc;
     }, []);
 
-    const title = this.getPropValue("title", { as_string: true });
+    const title = this.getPropValue("title");
+    const titleExist = this.castToString(title);
     const buttom = this.castToObject<ButtomType>("buttom_row");
     const icons = this.getPropValue("icons");
     const line = this.getPropValue("line");
@@ -336,10 +341,10 @@ class LocationComponent1 extends Location {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("wrapper")}>
-            {(title || icons.length > 0) && (
+            {(titleExist || icons.length > 0) && (
               <div className={this.decorateCSS("connect")}>
-                {title && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
-                {title && icons.length > 0 && line && <div className={this.decorateCSS("divider")} />}
+                {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
+                {titleExist && icons.length > 0 && line && <div className={this.decorateCSS("divider")} />}
                 {icons.length > 0 && (
                   <div className={this.decorateCSS("icon-container")}>
                     {icons.map((icon: any, index: number) => {
@@ -357,7 +362,7 @@ class LocationComponent1 extends Location {
             )}
 
             <section className={this.decorateCSS("map-container")}>
-              <ComposerMap defaultMarkerIcon={defaultMarkerIcon} defaultZoom={centerZoom} handleMarkerZoom={markerZoom} markers={markers} className={this.decorateCSS("map")} styles={mapStyle.colors} />
+              <ComposerMap allContentShow={true} defaultMarkerIcon={defaultMarkerIcon} defaultZoom={centerZoom} handleMarkerZoom={markerZoom} markers={markers} className={this.decorateCSS("map")} styles={mapStyle.colors} />
             </section>
 
             {(description || phone) && (
@@ -379,4 +384,4 @@ class LocationComponent1 extends Location {
   }
 }
 
-export default LocationComponent1;
+export default Location1;

@@ -2,6 +2,7 @@
 
 .container {
   background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+
   .max-content {
     .title {
       margin-top: 0;
@@ -13,24 +14,30 @@
     gap: var(--composer-gap-lg);
     flex-wrap: wrap;
     justify-content: space-between;
+
     .map-container {
       display: flex;
       flex-direction: column;
       width: 100%;
       gap: var(--composer-gap-lg);
+
       .location-item {
         display: flex;
         text-align: left;
+
         .location-items {
           width: 40%;
+
           .location-index {
             font-size: 1.5rem;
             color: var(--composer-font-color-primary);
           }
+
           .location-city {
             font-size: 2rem;
             color: var(--composer-font-color-primary);
           }
+
           .location-adress,
           .location-description {
             font-size: 1rem;
@@ -42,13 +49,15 @@
       .location-map {
         width: 60%;
         min-height: 300px;
-        box-shadow: var(--composer-box-shadow);
-      }
+        box-shadow: var(--box-shadow-active);
 
-      .location-map-full-width {
-        box-shadow: var(--composer-box-shadow);
-        width: 100%;
-        min-height: 300px;
+        > div {
+          border-radius: var(--composer-border-radius-xs);
+        }
+
+        &.full-width {
+          width: 100%;
+        }
       }
     }
   }
@@ -63,10 +72,12 @@
             display: flex;
             flex-direction: column;
             gap: var(--composer-gap-md);
+
             .location-items {
               width: 100%;
             }
           }
+
           .location-map {
             width: 100%;
             max-width: 100%;

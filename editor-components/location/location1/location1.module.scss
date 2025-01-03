@@ -8,12 +8,14 @@
       width: 100%;
       height: 100%;
       gap: var(--composer-gap-xl);
+
       .connect {
         display: flex;
         align-items: center;
         justify-content: center;
         gap: var(--composer-gap-lg);
         width: 100%;
+
         .title {
           margin: 0;
         }
@@ -39,6 +41,7 @@
               width: var(--composer-gap-md);
               height: var(--composer-gap-md);
               color: var(--composer-primary-color);
+
               &:hover {
                 color: var(--composer-secondary-color);
               }
@@ -53,6 +56,7 @@
         align-items: center;
         width: 100%;
         max-width: 100%;
+
         .map {
           width: 100%;
           height: 700px;
@@ -65,12 +69,13 @@
         gap: var(--composer-gap-md);
         align-items: center;
         justify-content: center;
+
         .bottom-title {
           font-size: 2.5rem;
           padding-bottom: 2px;
-          word-break: break-word;
           color: var(--composer-primary-color);
           max-width: 50%;
+          margin: 0;
         }
 
         .phone-container {
@@ -79,6 +84,7 @@
             color: var(--composer-primary-color);
             width: fit-content;
             border-bottom: solid 2px var(--composer-primary-color);
+            margin: 0;
           }
         }
       }
@@ -95,22 +101,25 @@
         margin: 0;
         border-radius: var(--composer-border-radius-xs);
 
-        .popup-title {
-          font-size: 1.5rem;
-          color: var(--composer-font-color-primary);
-          margin: 0;
-          margin-top: var(--composer-gap-lg);
-        }
+        .popup-header {
+          display: flex;
+          flex-direction: column;
+          gap: var(--composer-gap-md);
+          padding: var(--composer-gap-md);
 
-        .popup-title-no-desc {
-          font-size: 1.5rem;
-          color: var(--composer-font-color-primary);
-        }
+          .popup-title {
+            font-size: 1.5rem;
+            color: var(--composer-font-color-primary);
+            margin: 0;
+            text-align: center;
+          }
 
-        .popup-content {
-          font-size: 1.5rem;
-          color: var(--composer-tertiary-color);
-          margin-bottom: var(--composer-gap-md);
+          .popup-content {
+            font-size: 1.5rem;
+            color: var(--composer-tertiary-color);
+            text-align: center;
+            margin: 0;
+          }
         }
 
         .popup-link {
@@ -120,7 +129,7 @@
 
           .popup-button {
             background-color: var(--composer-font-color-primary);
-            color: var(--composer-font-color-secondary);
+            color: var(--composer-html-background);
             cursor: pointer;
             width: 100%;
             padding: var(--composer-gap-md);
@@ -139,6 +148,23 @@
     .max-content {
       .wrapper {
         gap: var(--composer-gap-md);
+
+        .popup {
+          width: 200px;
+          .popup-header {
+            gap: var(--composer-gap-sm);
+            .popup-title,
+            .popup-content {
+              font-size: 1rem;
+            }
+          }
+
+          .popup-link {
+            .popup-button {
+              font-size: 1rem;
+            }
+          }
+        }
       }
     }
   }
@@ -154,6 +180,7 @@
           display: flex;
           flex-direction: column;
           gap: var(--composer-gap-sm);
+
           .title {
             margin: 0;
             text-align: center;
@@ -171,6 +198,7 @@
           flex-direction: column;
           margin: 0;
           gap: 0;
+
           .bottom-title {
             font-size: 1.5rem;
             max-width: 100%;

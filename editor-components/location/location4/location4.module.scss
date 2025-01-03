@@ -1,7 +1,7 @@
 @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
 .container {
-  padding: 0;
+  width: 100%;
 
   .page {
     display: flex;
@@ -15,7 +15,6 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      padding: var(--composer-gap-md) var(--composer-gap-xl);
 
       .image {
         width: 100%;
@@ -35,27 +34,32 @@
         z-index: 2;
       }
 
-      .max-content {
-        position: relative;
-        z-index: 3;
-        text-align: center;
-        font-weight: bold;
+      .content-container {
+        .max-content {
+          position: relative;
+          z-index: 3;
+          text-align: center;
+          font-weight: bold;
 
-        .title {
-          color: white;
+          .title {
+            color: white;
+          }
         }
       }
     }
-    .max-content-no-image {
-      padding: var(--composer-gap-md) var(--composer-gap-xl) !important;
-      .title-no-image {
-        margin: 0 !important;
+
+    .content-container {
+      .max-content-no-image {
+        .title-no-image {
+          margin: 0 !important;
+        }
       }
     }
 
     .map-container {
       width: 100%;
       height: 500px;
+
       .map {
         width: 100%;
         height: 100%;
@@ -104,36 +108,30 @@
 
 @container (max-width: #{$composer-tablet-width-lg}) {
   .container {
-    padding: 0;
-
     .page {
       .content {
         min-height: 200px;
-        padding: var(--composer-gap-md) var(--composer-gap-lg);
       }
-      .max-content-no-image {
-        padding: var(--composer-gap-md) var(--composer-gap-lg);
-        .title-no-image {
-          margin: 0 !important;
-        }
+    }
+  }
+
+  .popup {
+    width: 250px;
+
+    .popup-texts {
+      .popup-title,
+      .popup-content {
+        font-size: 1rem;
       }
     }
   }
 }
+
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: 0;
-
     .page {
       .content {
         min-height: 200px;
-        padding: var(--composer-gap-md);
-      }
-      .max-content-no-image {
-        padding: var(--composer-gap-md);
-        .title-no-image {
-          margin: 0 !important;
-        }
       }
     }
   }
