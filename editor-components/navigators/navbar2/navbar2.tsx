@@ -1178,15 +1178,18 @@ class Navbar2 extends BaseNavigator {
 
   render() {
     const position = this.getPropValue("position");
-    const isScrolled = this.getComponentState("isScrolled");
+
     const defaultLogo = this.castToObject<Logo>("defaultLogo");
     const absoluteLogo = this.castToObject<Logo>("absoluteLogo");
     const hamburgerNavActive = this.getComponentState("hamburgerNavActive");
-    const transparentBackground =
-      (position === "Sticky Transparent" || position === "Absolute") &&
-      !isScrolled;
-    const currentLogo =
-      transparentBackground && !hamburgerNavActive ? absoluteLogo : defaultLogo;
+    const isScrolled = this.getComponentState("isScrolled");
+    const isStickyTransparent = position === "Sticky Transparent";
+    const isAbsolute = position === "Absolute";
+    const transparentBackground = isStickyTransparent && !isScrolled;
+    
+    const currentLogo = (isStickyTransparent && !isScrolled) || isAbsolute
+      ? absoluteLogo
+      : defaultLogo;
     const menuItems = this.castToObject<Item[]>("menuItems");
     const isMobileMenuOpen = this.getComponentState("isMobileMenuOpen");
     const divider = this.getPropValue("divider");
