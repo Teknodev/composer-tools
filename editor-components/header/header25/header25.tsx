@@ -5,6 +5,7 @@ import ComposerSlider from "../../../composer-base-components/slider/slider";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "composer-tools/composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 interface IAnimationProps {
   animationState: string;
@@ -16,14 +17,8 @@ interface SliderItem {
   title: JSX.Element;
   description: JSX.Element;
   image: string;
-  button: ButtonItem;
+  button: INPUTS.CastedButton;
 };
-
-interface ButtonItem {
-  buttonText: JSX.Element;
-  link: JSX.Element;
-  next_icon: string;
-}
 
 interface TopContentItem {
   background_text: JSX.Element;
@@ -195,31 +190,7 @@ class Header25 extends BaseHeader {
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619ff6bd2970002c6268b0?alt=media&timestamp=1719483639150",
             },
-            {
-              type: "object",
-              key: "button",
-              displayer: "Button",
-              value: [
-                {
-                  type: "string",
-                  key: "buttonText",
-                  displayer: "Button Text",
-                  value: "LOOK MORE",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
-                },
-                {
-                  type: "icon",
-                  key: "next_icon",
-                  displayer: "Next icon",
-                  value: "FaArrowRightLong",
-                }
-              ],
-            },
+            INPUTS.BUTTON("button", "Button", "Read More", "", "FaArrowRightLong", null, "Primary"),
           ],
         },
         {
@@ -247,31 +218,7 @@ class Header25 extends BaseHeader {
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619ff6bd2970002c6268b1?alt=media&timestamp=1719483639150https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619ff6bd2970002c6268b1?alt=media&timestamp=1719483639150",
             },
-            {
-              type: "object",
-              key: "button",
-              displayer: "Button",
-              value: [
-                {
-                  type: "string",
-                  key: "buttonText",
-                  displayer: "Button Text",
-                  value: "Read More",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
-                },
-                {
-                  type: "icon",
-                  key: "next_icon",
-                  displayer: "Next icon",
-                  value: "FaArrowRightLong",
-                }
-              ],
-            },
+            INPUTS.BUTTON("button", "Button", "Read More", "", "FaArrowRightLong", null, "Primary"),
           ],
         },
         {
@@ -299,31 +246,7 @@ class Header25 extends BaseHeader {
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619ff6bd2970002c6268b2?alt=media&timestamp=1719483639150",
             },
-            {
-              type: "object",
-              key: "button",
-              displayer: "Button",
-              value: [
-                {
-                  type: "string",
-                  key: "buttonText",
-                  displayer: "Button Text",
-                  value: "Read More",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
-                },
-                {
-                  type: "icon",
-                  key: "next_icon",
-                  displayer: "Next icon",
-                  value: "FaArrowRightLong",
-                }
-              ],
-            },
+            INPUTS.BUTTON("button", "Button", "Read More", "", "FaArrowRightLong", null, "Primary"),
           ],
         },
       ]
@@ -358,7 +281,7 @@ class Header25 extends BaseHeader {
       arrows: false,
       speed: 1000,
       fade: true,
-      autoplay: false,
+      autoplay: true,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -533,8 +456,8 @@ class Header25 extends BaseHeader {
                     className={`${this.decorateCSS("content-max-content")} ${!sliderItem.image && this.decorateCSS("black-theme")}`}
                     key={index}
                   >
-                    {(this.castToString(sliderItem.button.buttonText) ||
-                      sliderItem.button.next_icon ||
+                    {(this.castToString(sliderItem.button.text) ||
+                      sliderItem.button.icon ||
                       this.castToString(sliderItem.title) ||
                       this.castToString(sliderItem.description)) &&
                       <div className={`${this.decorateCSS("layout")} 
@@ -572,10 +495,10 @@ class Header25 extends BaseHeader {
                             >
                               {sliderItem.description}
                             </Base.SectionDescription>}
-                          {(this.castToString(sliderItem.button.buttonText) ||
-                            sliderItem.button.next_icon) &&
-                            <ComposerLink path={sliderItem.button.link}>
-                              <Base.Button
+                          {(this.castToString(sliderItem.button.text) ||
+                            sliderItem.button.icon) &&
+                            <ComposerLink path={sliderItem.button.url}>
+                              <Base.Button buttonType={sliderItem.button.type}
                                 className={`${this.decorateCSS("button")} animate__animated ${this.getComponentState(
                                   "buttonAnimationClass"
                                 )}`}
@@ -587,15 +510,14 @@ class Header25 extends BaseHeader {
                                   });
                                 }}
                               >
-                                <span className={this.decorateCSS("button-text")}>
-                                  {sliderItem.button.buttonText}
-                                </span>
-                                <ComposerIcon
-                                  name={sliderItem.button.next_icon}
-                                  propsIcon={{
-                                    className: this.decorateCSS("button-icon"),
-                                  }}
-                                />
+                                {sliderItem.button.text}
+                                {sliderItem.button.icon &&
+                                  <ComposerIcon
+                                    name={sliderItem.button.icon}
+                                    propsIcon={{
+                                      className: this.decorateCSS("button-icon"),
+                                    }}
+                                  />}
                               </Base.Button>
                             </ComposerLink>}
                         </Base.VerticalContent>

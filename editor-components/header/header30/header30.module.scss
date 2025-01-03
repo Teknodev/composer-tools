@@ -18,6 +18,7 @@
   .max-content {
     width: 100%;
     height: 100%;
+
     .video-section {
       width: 100%;
       height: 100%;
@@ -46,8 +47,7 @@
         margin: 0;
       }
 
-      .first-title {
-      }
+
       .second-title {
         color: #ffffff00;
         -webkit-text-stroke-width: 2px;
@@ -83,31 +83,28 @@
           }
         }
       }
+
       .description {
         font-size: 1.5rem;
         font-weight: 500;
         max-width: 640px;
         margin: 0 0 var(--composer-gap-lg) 0;
       }
+
       .buttons {
         display: flex;
         flex-wrap: wrap;
         gap: var(--composer-gap-sm);
 
         .button {
-          padding: var(--composer-gap-md) var(--composer-gap-lg);
-
-          &:hover {
-            background: transparent;
-            transition: 0.3s all;
-          }
+          content: "";
         }
       }
     }
   }
 }
 
-@container (max-width : #{$composer-tablet-width-sm}){
+@container (max-width : #{$composer-tablet-width-sm}) {
   .container {
     .max-content {
       .content {
@@ -136,17 +133,19 @@
   }
 }
 
-@container (max-width : #{$composer-phone-width-sm}){
+@container (max-width : #{$composer-phone-width-sm}) {
   .container {
     .max-content {
       .content {
         .titles {
           font-size: 4rem;
         }
+
         .title-with-image {
           flex-direction: column;
           align-items: start;
           width: 100%;
+
           .title-image {
             width: 100%;
             height: 100px;
@@ -163,6 +162,7 @@
     transform: translateY(50rem);
     opacity: 0;
   }
+
   to {
     transform: translateY(0);
     opacity: 1;

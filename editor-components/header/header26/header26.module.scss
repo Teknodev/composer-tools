@@ -1,17 +1,21 @@
 @import '../../../composer-base-components/base/utitilities/viewports.module.scss';
+
 .container {
   width: 100%;
   height: 100vh;
   overflow: hidden;
   position: relative;
 }
+
 .max-content {
   margin: 0 auto;
   height: 100%;
-  > div > div > div > div {
+
+  >div>div>div>div {
     border: none !important;
   }
 }
+
 .sliders {
   height: 100vh;
   transition: transform 500ms ease;
@@ -32,22 +36,24 @@
   gap: var(--composer-gap-md);
 }
 
-.left-side, .left-side-no-image {
+.left-side {
   width: 100%;
   display: flex;
   justify-content: end;
   align-items: center;
-}
-.left-side-no-image{
-  .left-side-content{
-    width: 100%;
-    padding: 20px 50px;
+
+  &.no-image {
+    .left-side-content {
+      width: 100%;
+      padding: var(--composer-gap-md) var(--composer-gap-xl);
+    }
   }
 }
 
-.left-side-content{
+.left-side-content {
   width: 75%;
 }
+
 .title {
   font-size: 5rem;
   font-weight: bold;
@@ -103,6 +109,7 @@
 .up-arrow,
 .down-arrow {
   cursor: pointer;
+
   .icon {
     width: 40px;
     height: 40px;
@@ -116,51 +123,60 @@
   align-items: center;
   overflow: hidden;
 }
+
 .image {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-@container (max-width: #{$composer-tablet-width-lg}){
-  .container{
-    .max-content{
-      .sliders{
-        .slider{
+@container (max-width: #{$composer-tablet-width-lg}) {
+  .container {
+    .max-content {
+      .sliders {
+        .slider {
           flex-direction: column;
-          .left-side, .left-side-no-image {
+
+          .left-side {
             padding: var(--composer-gap-xl);
             justify-content: center;
-            .left-side-contnet {
+
+            .left-side-content {
               .title {
-                font-size: 4rem;            
+                font-size: 4rem;
               }
+
               .subtitle {
                 font-size: 1rem;
               }
             }
-          }
-          .left-side-no-image{
-            padding:0px;
-            height: 100%;
-            .left-side-content{
-              padding: 20px 40px;
+
+            &.no-image {
+              padding: 0px;
+              height: 100%;
+
+              .left-side-content {
+                padding: var(--composer-gap-md) var(--composer-gap-lg);
+              }
             }
           }
+
           .right-side {
             flex: 1;
             margin: 0 auto;
           }
+
           .up-arrow,
           .down-arrow {
-            .icon{
+            .icon {
               width: 35px;
               height: 35px;
             }
           }
+
           .arrows {
             left: 40px;
-            bottom: var(--composer-gap-xl);          
+            bottom: var(--composer-gap-xl);
           }
         }
       }
@@ -168,46 +184,55 @@
   }
 }
 
-@container (max-width: #{$composer-phone-width-sm}){
-  .container{
-    .max-content{
-      .sliders{
-        .slider{
-          .left-side,  .left-side-no-image{
+@container (max-width: #{$composer-phone-width-sm}) {
+  .container {
+    .max-content {
+      .sliders {
+        .slider {
+
+          .left-side {
             margin: 0 auto;
             width: 100%;
             padding: var(--composer-gap-md);
             flex: 1;
+
             .left-side-content {
               width: 100%;
+
               .title {
                 font-size: 3.5rem;
               }
+
               .subtitle {
                 font-size: 2rem;
               }
             }
-          }
-          .left-side-no-image{
-            .left-side-content{
-              padding: 20px;
+
+            &.no-image {
+              .left-side-content {
+                padding: var(--composer-gap-md);
+              }
             }
           }
+
           .right-side {
             align-items: start;
             margin: 0;
             flex: 4;
+
             .image {
               height: 70%;
             }
           }
+
           .arrows {
             left: 20px;
             bottom: var(--composer-gap-md);
           }
+
           .up-arrow,
           .down-arrow {
-            .icon{
+            .icon {
               width: 30px;
               height: 30px;
             }
@@ -217,5 +242,3 @@
     }
   }
 }
-
-

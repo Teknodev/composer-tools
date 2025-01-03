@@ -224,9 +224,18 @@ class Header33 extends BaseHeader {
   }
 
   render() {
-    const slides = this.castToObject<Slide[]>("slider");
-    const activeSlide = this.getComponentState("activeSlide");
-    const currentSlide = slides[activeSlide];
+
+    const slides = this.castToObject<Slide[]>("slider") || [];
+    const activeSlide: number = this.getComponentState("activeSlide");
+    const currentSlide: Slide = slides[activeSlide] || {
+      centered: false,
+      backgroundImage: "",
+      image: "",
+      title: <></>,
+      rotate_icon: "",
+      rotate_text: <></>,
+      buttons: []
+    };
 
     const settings = {
       dots: true,
@@ -234,29 +243,32 @@ class Header33 extends BaseHeader {
       infinite: true,
       accessibility: false,
       speed: 500,
-      autoplay: false,
+      autoplay: true,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
-      beforeChange: (current: number, next: number) => {
-        this.setComponentState("activeSlide", next);
+      beforeChange: (current9: number, next: number) => {
+        if (slides.length > 0) {
+          this.setComponentState("activeSlide", next);
+        }
       },
       dotsClass: this.decorateCSS("dotContainer"),
       appendDots: (dots: any[]) => (
-        <div className={this.decorateCSS("dotContainer")}>
-          {dots.map((dot, index) => (
-            <div
-              key={index}
-              className={`
+        slides.length > 0 && (
+          <div className={this.decorateCSS("dotContainer")}>
+            {dots.map((dot, index) => (
+              <div
+                key={index}
+                className={`
                 ${this.decorateCSS("dotBullet")} 
               ${activeSlide == index && this.decorateCSS("withCenterDot")}
               ${!currentSlide.backgroundImage && this.decorateCSS("primaryBackground")}
               `}
-            >
-              <div>{dot}</div>
-            </div>
-          ))}
-        </div>
+              >
+                <div>{dot}</div>
+              </div>
+            ))}
+          </div>)
       ),
     };
 
@@ -265,7 +277,7 @@ class Header33 extends BaseHeader {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          {slides && slides.length && (
+          {slides.length > 0 && (
             <ComposerSlider
               {...settings}
               ref={this.getComponentState("slider-ref")}
@@ -290,16 +302,14 @@ class Header33 extends BaseHeader {
                       <div
                         className={`
                             ${this.decorateCSS("carousel-content")}
-                            ${
-                              animation
-                                ? this.decorateCSS("with-transition")
-                                : ""
-                            }
-                            ${
-                              activeSlide === index
-                                ? this.decorateCSS("fix-location")
-                                : ""
-                            }
+                            ${animation
+                            ? this.decorateCSS("with-transition")
+                            : ""
+                          }
+                            ${activeSlide === index
+                            ? this.decorateCSS("fix-location")
+                            : ""
+                          }
                             ${item.centered && this.decorateCSS("centered")}
                           `}
                       >
@@ -314,10 +324,9 @@ class Header33 extends BaseHeader {
                         )}
                         {titleExist && (
                           <h1
-                            className={`${this.decorateCSS("content-title")} ${
-                              item.backgroundImage &&
+                            className={`${this.decorateCSS("content-title")} ${item.backgroundImage &&
                               this.decorateCSS("blackColor")
-                            }`}
+                              }`}
                           >
                             {item.title}
                           </h1>
@@ -333,10 +342,9 @@ class Header33 extends BaseHeader {
                                   path={button.button_link}
                                 >
                                   <button
-                                    className={`${this.decorateCSS("button")} ${
-                                      item.backgroundImage &&
+                                    className={`${this.decorateCSS("button")} ${item.backgroundImage &&
                                       this.decorateCSS("blackColor")
-                                    }`}
+                                      }`}
                                   >
                                     {button.button_text}
                                   </button>

@@ -5,9 +5,8 @@ import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Base } from "../../../composer-base-components/base/base";
 
-class HeaderComponent28 extends BaseHeader {
+class Header28 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
 
@@ -189,7 +188,7 @@ class HeaderComponent28 extends BaseHeader {
       infinite: true,
       accessibility: true,
       speed: 800,
-      autoplay: false,
+      autoplay: true,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       draggable: false,
@@ -197,10 +196,9 @@ class HeaderComponent28 extends BaseHeader {
       fade: true,
       customPaging: (i: any) => (
         <div
-          className={`${this.decorateCSS("dot")} ${
-            this.getComponentState("active-index") == i &&
+          className={`${this.decorateCSS("dot")} ${this.getComponentState("active-index") == i &&
             this.decorateCSS("activeDot")
-          } ${slides[this.getComponentState("active-index")].getPropValue("image") && this.decorateCSS("withImageDot")}`}
+            } ${slides[this.getComponentState("active-index")].getPropValue("image") && this.decorateCSS("withImageDot")}`}
         />
       ),
       afterChange: (index: number) => {
@@ -212,7 +210,7 @@ class HeaderComponent28 extends BaseHeader {
           this.setComponentState("animation-active", true);
         setTimeout(() => {
           this.setComponentState("animation-active", false);
-        },400)
+        }, 400)
         this.setComponentState("play-video", false);
         this.setComponentState("from", oldIndex > newIndex ? "left" : "right");
 
@@ -240,10 +238,9 @@ class HeaderComponent28 extends BaseHeader {
 
               {item.getPropValue("video") && (
                 <div
-                  className={`${this.decorateCSS("video-player-container")} ${
-                    this.getComponentState("play-video") &&
+                  className={`${this.decorateCSS("video-player-container")} ${this.getComponentState("play-video") &&
                     this.decorateCSS("video-player")
-                  }`}
+                    }`}
                   onClick={() => {
                     this.setComponentState("play-video", false);
                   }}
@@ -279,13 +276,12 @@ class HeaderComponent28 extends BaseHeader {
               )}
               {this.getPropValue("play_icon") && (
                 <div
-                  className={`${this.decorateCSS("play-button")} ${
-                    item.getPropValue("image") && this.decorateCSS("withImage")
-                  }`}
+                  className={`${this.decorateCSS("play-button")} ${item.getPropValue("image") && this.decorateCSS("withImage")
+                    }`}
                   onClick={
                     item.getPropValue("video")
                       ? () => this.setComponentState("play-video", true)
-                      : () => {}
+                      : () => { }
                   }
                 >
                   <ComposerIcon name={this.getPropValue("play_icon")} />
@@ -293,52 +289,47 @@ class HeaderComponent28 extends BaseHeader {
               )}
               <div
                 className={`${this.decorateCSS("slide-content")}
-                ${
-                  !this.getComponentState("animation-active") &&
+                ${!this.getComponentState("animation-active") &&
                   this.decorateCSS("visible")
-                }`}
+                  }`}
                 onClick={
                   item.getPropValue("video")
                     ? () => this.setComponentState("play-video", true)
-                    : () => {}
+                    : () => { }
                 }
               >
                 {this.castToString(item.getPropValue("tag")) && (
                   <span
-                    className={`${this.decorateCSS("tag")} ${
-                      item.getPropValue("image") &&
+                    className={`${this.decorateCSS("tag")} ${item.getPropValue("image") &&
                       this.decorateCSS("withImage")
-                    }`}
+                      }`}
                   >
                     {item.getPropValue("tag")}
                   </span>
                 )}
                 {this.castToString(item.getPropValue("title")) && (
                   <h1
-                    className={`${this.decorateCSS("title")} ${
-                      item.getPropValue("image") &&
+                    className={`${this.decorateCSS("title")} ${item.getPropValue("image") &&
                       this.decorateCSS("withImage")
-                    }`}
+                      }`}
                   >
                     {item.getPropValue("title")}
                   </h1>
                 )}
                 {this.castToString(item.getPropValue("sub_title")) && (
                   <h3
-                    className={`${this.decorateCSS("sub_title")} ${
-                      item.getPropValue("image") &&
+                    className={`${this.decorateCSS("sub_title")} ${item.getPropValue("image") &&
                       this.decorateCSS("withImage")
-                    }`}
+                      }`}
                   >
                     {item.getPropValue("sub_title")}
                   </h3>
                 )}
                 {this.castToString(item.getPropValue("description")) && (
                   <p
-                    className={`${this.decorateCSS("description")} ${
-                      item.getPropValue("image") &&
+                    className={`${this.decorateCSS("description")} ${item.getPropValue("image") &&
                       this.decorateCSS("withImage")
-                    }`}
+                      }`}
                   >
                     {item.getPropValue("description")}
                   </p>
@@ -352,4 +343,4 @@ class HeaderComponent28 extends BaseHeader {
   }
 }
 
-export default HeaderComponent28;
+export default Header28;
