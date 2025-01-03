@@ -34,6 +34,7 @@ export namespace INPUTS {
       ],
     };
 
+
     if (url !== null) {
       button.value.push({
         type: "page",
@@ -60,6 +61,8 @@ export namespace INPUTS {
         value: image,
       });
     }
+
+    button["getPropValue"] = null;
 
     return button;
   };
@@ -92,7 +95,7 @@ export namespace INPUTS {
       displayer: displayer,
       value: defaultValue,
       additionalParams: {
-        selectItems:["Absolute","Sticky Colorful","Sticky Transparent","Default"],
+        selectItems: ["Absolute", "Sticky Colorful", "Sticky Transparent", "Default"],
       },
     } as TypeUsableComponentProps;
   };

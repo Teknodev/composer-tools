@@ -30,14 +30,16 @@
         background-color: var(--composer-overlay-color);
       }
     }
-    .max-content,
-    .max-content-no-image {
+    .max-content{
       display: flex;
       overflow: hidden;
       position: relative;
       height: auto;
-      .left-content,
-      .left-content-no-image {
+      .left-content {
+        &.center{
+          align-items: center;
+          text-align: center;
+        }
         width: 100%;
         justify-content: center;
         bottom: 0;
@@ -51,26 +53,26 @@
         position: relative;
 
         .title {
-          color: white;
+          &.image{
+            color: white;
+          }
         }
         .description {
-          color: white;
+          &.image{
+            color: white;
+          } 
         }
       }
-
-      .left-content {
-        align-items: center;
-        text-align: center;
+      &.image {
+        min-height: 350px;
+      }
+  
+      &.no-image {
+        min-height: 250px;
       }
     }
 
-    .max-content {
-      min-height: 350px;
-    }
 
-    .max-content-no-image {
-      min-height: 250px;
-    }
 
     .right-content {
       width: fit-content;
@@ -103,6 +105,7 @@
           display: flex;
           flex-direction: column;
           overflow: hidden;
+          margin: 0px;
           .cardTitle {
             color: var(--composer-font-color-primary);
             padding: var(--composer-gap-md);
@@ -120,6 +123,7 @@
               display: flex;
               align-items: center;
               gap: var(--composer-gap-sm);
+              margin: 0px;
 
               .icon {
                 color: var(--composer-font-color-primary);
@@ -161,11 +165,12 @@
             }
 
             .button {
-              display: flex;
-              align-items: center;
-              gap: var(--composer-gap-xs);
-              cursor: pointer;
-              height: var(--composer-gap-xl);
+              .icon{
+                content: "";
+              }
+              .text{
+                content: "";
+              }
             }
           }
         }
@@ -195,10 +200,8 @@
 
 @container (max-width: #{$composer-tablet-width-lg}) {
   .container .page {
-    .max-content,
-    .max-content-no-image {
-      .left-content,
-      .left-content-no-image {
+    .max-content {
+      .left-content {
         padding: var(--composer-gap-md) var(--composer-gap-lg);
       }
     }
@@ -208,10 +211,8 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .page {
-      .max-content,
-      .max-content-no-image {
-        .left-content,
-        .left-content-no-image {
+      .max-content{
+        .left-content{
           padding: var(--composer-gap-md) !important;
         }
       }
@@ -239,14 +240,10 @@
               .image-container {
                 width: 120px;
                 height: 35px;
-
                 .image {
                   width: 100%;
                   height: 100%;
                 }
-              }
-              .button {
-                height: 35px;
               }
             }
           }
