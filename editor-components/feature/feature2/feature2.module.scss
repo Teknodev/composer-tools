@@ -27,8 +27,8 @@ $icon-size: 56px;
                     border-radius: 50%;
                     width: 25px;
                     height: 25px;
-                    top: calc(var(--composer-gap-sm) * -1);
-                    left: calc(50% + var(--composer-gap-lg));
+                    top: -15px;
+                    left: calc(50% + 30px);
                     transform: translateX(-50%);
                 }
 
@@ -86,8 +86,8 @@ $icon-size: 56px;
                     .item-index {
                         width: 30px;
                         height: 30px;
-                        top: calc(var(--composer-gap-md) * -1);
-                        left: calc(50% + var(--composer-gap-lg));
+                        top: -20px;
+                        left: calc(50% + 35px);
                     }
                 }
             }
@@ -107,8 +107,8 @@ $icon-size: 56px;
                     .item-index {
                         width: 25px;
                         height: 25px;
-                        top: calc(var(--composer-gap-md) * -1);
-                        left: calc(50% + var(--composer-gap-md));
+                        top: -15px;
+                        left: calc(50% + 30px);
                     }
                 }
             }

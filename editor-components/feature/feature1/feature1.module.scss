@@ -211,6 +211,12 @@
               margin: 0;
               text-align: start;
 
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              -webkit-line-clamp: 2;
+
               &.underline-animation::after {
                 @include itemTitleAfter(hidden, 0);
               }
@@ -225,6 +231,11 @@
               width: 100%;
               margin: 0;
               text-align: start;
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              -webkit-line-clamp: 3;
             }
 
             .user-info {

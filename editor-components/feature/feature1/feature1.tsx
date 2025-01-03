@@ -397,14 +397,6 @@ class Feature1 extends BaseFeature {
     return "Feature 1";
   }
 
-  truncateText(text: string, maxLength: number, isTitle: boolean = false): string {
-    if (!text) return "";
-    const shouldTruncate = isTitle ? this.getPropValue("enableEllipsisTitle") : this.getPropValue("enableEllipsisDesc");
-    if (shouldTruncate && text.length > maxLength) {
-      return text.slice(0, maxLength) + "...";
-    }
-    return text;
-  }
 
   render() {
     const itemCountInARow = this.getPropValue("itemCountInARow");
@@ -489,13 +481,13 @@ class Feature1 extends BaseFeature {
                     ${underlineAnimation ? this.decorateCSS("underline-animation") : ""}
                   `}
                 >
-                  {this.truncateText(title, this.getPropValue("maxTitleLength"), true)}
+                  {data.title}
                 </Base.H2>
               </ComposerLink>
             )}
             {description && (
               <Base.P className={this.decorateCSS("description")}>
-                {this.truncateText(description, this.getPropValue("maxDescriptionLength"))}
+                {data.description}
               </Base.P>
             )}
 
