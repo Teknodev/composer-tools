@@ -18,7 +18,7 @@ type SliderItem = {
 type SocialIcon = {
   icon_text: JSX.Element;
   link: string;
-}
+};
 
 class Header20 extends BaseHeader {
   sliderRef: React.RefObject<any>;
@@ -76,8 +76,7 @@ class Header20 extends BaseHeader {
               type: "image",
               displayer: "Image",
               key: "image",
-              value:
-                "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/01hero.jpg",
+              value: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/01hero.jpg",
             },
             {
               type: "page",
@@ -121,8 +120,7 @@ class Header20 extends BaseHeader {
               type: "image",
               displayer: "Image",
               key: "image",
-              value:
-                "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/02hero.jpg",
+              value: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/02hero.jpg",
             },
             {
               type: "page",
@@ -142,7 +140,7 @@ class Header20 extends BaseHeader {
                   value: "Design",
                 },
               ],
-            }
+            },
           ],
         },
         {
@@ -166,8 +164,7 @@ class Header20 extends BaseHeader {
               type: "image",
               displayer: "Image",
               key: "image",
-              value:
-                "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/03hero.jpg",
+              value: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/03hero.jpg",
             },
             {
               type: "page",
@@ -211,8 +208,7 @@ class Header20 extends BaseHeader {
               type: "image",
               displayer: "Image",
               key: "image",
-              value:
-                "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/04hero.jpg",
+              value: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/04hero.jpg",
             },
             {
               type: "page",
@@ -256,8 +252,7 @@ class Header20 extends BaseHeader {
               type: "image",
               displayer: "Image",
               key: "image",
-              value:
-                "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/05hero.jpg",
+              value: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/05hero.jpg",
             },
             {
               type: "page",
@@ -301,8 +296,7 @@ class Header20 extends BaseHeader {
               type: "image",
               displayer: "Image",
               key: "image",
-              value:
-                "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/06hero.jpg",
+              value: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/06hero.jpg",
             },
             {
               type: "page",
@@ -346,8 +340,7 @@ class Header20 extends BaseHeader {
               type: "image",
               displayer: "Image",
               key: "image",
-              value:
-                "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/07hero.jpg",
+              value: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/07hero.jpg",
             },
             {
               type: "page",
@@ -391,8 +384,7 @@ class Header20 extends BaseHeader {
               type: "image",
               displayer: "Image",
               key: "image",
-              value:
-                "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/08hero.jpg",
+              value: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/08hero.jpg",
             },
             {
               type: "page",
@@ -436,8 +428,7 @@ class Header20 extends BaseHeader {
               type: "image",
               displayer: "Image",
               key: "image",
-              value:
-                "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/09hero.jpg",
+              value: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/09hero.jpg",
             },
             {
               type: "page",
@@ -481,8 +472,7 @@ class Header20 extends BaseHeader {
               type: "image",
               displayer: "Image",
               key: "image",
-              value:
-                "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/10hero.jpg",
+              value: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/10hero.jpg",
             },
             {
               type: "page",
@@ -526,8 +516,7 @@ class Header20 extends BaseHeader {
               type: "image",
               displayer: "Image",
               key: "image",
-              value:
-                "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/11hero.jpg",
+              value: "http://clapat.ro/themes/hervin-wordpress/wp-content/uploads/2019/05/11hero.jpg",
             },
             {
               type: "page",
@@ -570,7 +559,7 @@ class Header20 extends BaseHeader {
           displayer: "Icon Text",
           value: "Follow Us",
         },
-      ]
+      ],
     });
 
     this.addProp({
@@ -718,13 +707,9 @@ class Header20 extends BaseHeader {
     const totalSlides = slider.length;
 
     return [
-      index > 0
-        ? { ...slider[index - 1], position: "previous" }
-        : { title: "", number: "", position: "previous", isPlaceholder: true },
+      index > 0 ? { ...slider[index - 1], position: "previous" } : { title: "", number: "", position: "previous", isPlaceholder: true },
       { ...slider[index], position: "current" },
-      index < totalSlides - 1
-        ? { ...slider[index + 1], position: "next" }
-        : { title: "", number: "", position: "next", isPlaceholder: true }
+      index < totalSlides - 1 ? { ...slider[index + 1], position: "next" } : { title: "", number: "", position: "next", isPlaceholder: true },
     ].map((title) => ({
       ...title,
       link: "link" in title ? title.link : undefined,
@@ -736,7 +721,7 @@ class Header20 extends BaseHeader {
 
     const settings = {
       dots: false,
-      infinite: false,
+      infinite: true,
       vertical: true,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -744,6 +729,7 @@ class Header20 extends BaseHeader {
       verticalSwiping: true,
       swipeToSlide: true,
       draggable: true,
+      autoplay: true,
       beforeChange: (current: number, next: number) => {
         this.setComponentState("slider", next);
         this.setComponentState("titleSlider", next);
@@ -776,24 +762,11 @@ class Header20 extends BaseHeader {
 
     return (
       <div className={this.decorateCSS("container")}>
-        <ComposerSlider ref={this.sliderRef} {...settings} >
+        <ComposerSlider ref={this.sliderRef} {...settings}>
           {slider.map((slide, index) => (
-            <div
-              className={this.decorateCSS("image-container")}
-              key={`title-key-${index}`}
-            >
-              {slide.image && (
-                <img
-                  src={slide.image}
-                  alt={slide.title}
-                  className={this.decorateCSS("image")}
-                />
-              )}
-              {(overlay && !imageless) && (
-                <div className={this.decorateCSS("overlay")}
-                  key={`title-key-${index}`}
-                ></div>
-              )}
+            <div className={this.decorateCSS("image-container")} key={`title-key-${index}`}>
+              {slide.image && <img src={slide.image} alt={slide.title} className={this.decorateCSS("image")} />}
+              {overlay && !imageless && <div className={this.decorateCSS("overlay")} key={`title-key-${index}`}></div>}
             </div>
           ))}
         </ComposerSlider>
@@ -804,31 +777,18 @@ class Header20 extends BaseHeader {
               <div className={this.decorateCSS("title-container")}>
                 <ComposerSlider ref={this.titleSliderRef} {...titleSettings}>
                   {this.getTitlesToShow(currentSlide).map((slide, index) => (
-                    <div
-                      key={`title-${index}`}
-                      className={this.decorateCSS(slide.position)}
-                    >
+                    <div key={`title-${index}`} className={this.decorateCSS(slide.position)}>
                       {slide.position === "current" && slide.link ? (
                         <ComposerLink path={slide.link} isFullWidth={true}>
-                          <h2 className={this.decorateCSS("title")}>
-                            {slide.title}
-                          </h2>
-                          <span className={this.decorateCSS("number")}>
-                            {slide.number}
-                          </span>
+                          <h2 className={this.decorateCSS("title")}>{slide.title}</h2>
+                          <span className={this.decorateCSS("number")}>{slide.number}</span>
                         </ComposerLink>
                       ) : slide.isPlaceholder ? (
                         <h2 className={this.decorateCSS("title")}>&nbsp;</h2>
                       ) : (
-                        <h2
-                          className={`${this.decorateCSS(
-                            "title"
-                          )} ${this.decorateCSS(slide.position)}`}
-                        >
+                        <h2 className={`${this.decorateCSS("title")} ${this.decorateCSS(slide.position)}`}>
                           {slide.title}
-                          <span className={this.decorateCSS("number")}>
-                            {slide.number}
-                          </span>
+                          <span className={this.decorateCSS("number")}>{slide.number}</span>
                         </h2>
                       )}
                     </div>
@@ -836,12 +796,11 @@ class Header20 extends BaseHeader {
                 </ComposerSlider>
               </div>
               <div className={this.decorateCSS("buttomRow")}>
-                {(this.castToString(slider[currentSlide].buttomRow.comment) ||
-                  up_icon ||
-                  down_icon) && <div className={this.decorateCSS("left")}>
+                {(this.castToString(slider[currentSlide].buttomRow.comment) || up_icon || down_icon) && (
+                  <div className={this.decorateCSS("left")}>
                     {(up_icon || down_icon) && (
                       <div className={this.decorateCSS("navigation")}>
-                        {up_icon &&
+                        {up_icon && (
                           <ComposerIcon
                             name={up_icon}
                             propsIcon={{
@@ -849,8 +808,8 @@ class Header20 extends BaseHeader {
                               onClick: this.handleUpClick,
                             }}
                           />
-                        }
-                        {down_icon &&
+                        )}
+                        {down_icon && (
                           <ComposerIcon
                             name={down_icon}
                             propsIcon={{
@@ -858,24 +817,16 @@ class Header20 extends BaseHeader {
                               onClick: this.handleDownClick,
                             }}
                           />
-                        }
+                        )}
                       </div>
-                    )
-                    }
-                    {this.castToString(slider[currentSlide].buttomRow.comment) &&
-                      <div className={this.decorateCSS("comment")}>
-                        {slider[currentSlide].buttomRow.comment}
-                      </div>}
-                  </div>}
-                {(this.castToString(iconText.iconText) ||
-                  iconText.icon ||
-                  icons.length > 0) &&
+                    )}
+                    {this.castToString(slider[currentSlide].buttomRow.comment) && <div className={this.decorateCSS("comment")}>{slider[currentSlide].buttomRow.comment}</div>}
+                  </div>
+                )}
+                {(this.castToString(iconText.iconText) || iconText.icon || icons.length > 0) && (
                   <div className={this.decorateCSS("comment-and-icon-text-container")}>
                     <div className={this.decorateCSS("icon-text-container")}>
-                      {this.castToString(iconText.iconText) &&
-                        <div className={this.decorateCSS("icon_text")}>
-                          {iconText.iconText}
-                        </div>}
+                      {this.castToString(iconText.iconText) && <div className={this.decorateCSS("icon_text")}>{iconText.iconText}</div>}
                       {iconText.icon && (
                         <ComposerIcon
                           name={iconText.icon}
@@ -884,18 +835,18 @@ class Header20 extends BaseHeader {
                           }}
                         />
                       )}
-                      {(!(this.castToString(iconText.iconText) && !iconText.icon) || icons.length > 0) &&
+                      {(!(this.castToString(iconText.iconText) && !iconText.icon) || icons.length > 0) && (
                         <div className={this.decorateCSS("social-icons")}>
                           {icons.map((icon, i) => (
                             <div className={this.decorateCSS("icon")}>
-                              <ComposerLink path={icon.link}>
-                                {icon.icon_text}
-                              </ComposerLink>
+                              <ComposerLink path={icon.link}>{icon.icon_text}</ComposerLink>
                             </div>
                           ))}
-                        </div>}
+                        </div>
+                      )}
                     </div>
-                  </div>}
+                  </div>
+                )}
               </div>
             </div>
           </div>

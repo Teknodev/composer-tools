@@ -4,7 +4,6 @@ import { BaseHeader } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
-
 type SliderItem = {
   topImage: string;
   upperText: JSX.Element;
@@ -33,8 +32,7 @@ class Header23 extends BaseHeader {
               type: "image",
               displayer: "Top Image",
               key: "topImage",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266cc?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266cc?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -52,29 +50,25 @@ class Header23 extends BaseHeader {
               type: "image",
               displayer: "Background 1",
               key: "background1",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266cd?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266cd?alt=media&timestamp=1719483639150",
             },
             {
               type: "image",
               displayer: "Background 2",
               key: "background2",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266ce?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266ce?alt=media&timestamp=1719483639150",
             },
             {
               type: "image",
               displayer: "Background 3",
               key: "background3",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266d0?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266d0?alt=media&timestamp=1719483639150",
             },
             {
               type: "image",
               displayer: "Background 4",
               key: "background4",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266cf?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266cf?alt=media&timestamp=1719483639150",
             },
           ],
         },
@@ -87,8 +81,7 @@ class Header23 extends BaseHeader {
               type: "image",
               displayer: "Top Image",
               key: "topImage",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266c7?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266c7?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -106,29 +99,25 @@ class Header23 extends BaseHeader {
               type: "image",
               displayer: "Background 1",
               key: "background1",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266c8?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266c8?alt=media&timestamp=1719483639150",
             },
             {
               type: "image",
               displayer: "Background 2",
               key: "background2",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266c8?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266c8?alt=media&timestamp=1719483639150",
             },
             {
               type: "image",
               displayer: "Background 3",
               key: "background3",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266c8?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266c8?alt=media&timestamp=1719483639150",
             },
             {
               type: "image",
               displayer: "Background 4",
               key: "background4",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266cb?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266cb?alt=media&timestamp=1719483639150",
             },
             {
               type: "boolean",
@@ -147,8 +136,7 @@ class Header23 extends BaseHeader {
               type: "image",
               displayer: "Top Image",
               key: "topImage",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266d3?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266d3?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -166,29 +154,25 @@ class Header23 extends BaseHeader {
               type: "image",
               displayer: "Background 1",
               key: "background1",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266d4?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266d4?alt=media&timestamp=1719483639150",
             },
             {
               type: "image",
               displayer: "Background 2",
               key: "background2",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266d2?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266d2?alt=media&timestamp=1719483639150",
             },
             {
               type: "image",
               displayer: "Background 3",
               key: "background3",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266d1?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619e2fbd2970002c6266d1?alt=media&timestamp=1719483639150",
             },
             {
               type: "image",
               displayer: "Background 4",
               key: "background4",
-              value:
-                "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2019/07/bakery-slider-2-l-2-new-opt.png",
+              value: "https://a6n4d3q9.rocketcdn.me/wp-content/uploads/2019/07/bakery-slider-2-l-2-new-opt.png",
             },
           ],
         },
@@ -222,15 +206,14 @@ class Header23 extends BaseHeader {
       type: "icon",
       key: "previousArrow",
       displayer: "Previous Arrow Icon",
-      value: "IoIosArrowBack"
+      value: "IoIosArrowBack",
     });
     this.addProp({
       type: "icon",
       key: "nextArrow",
       displayer: "Next Arrow Icon",
-      value: "IoIosArrowForward"
+      value: "IoIosArrowForward",
     });
-
 
     this.setComponentState("active", 0);
     this.setComponentState("slider-ref", React.createRef());
@@ -243,7 +226,7 @@ class Header23 extends BaseHeader {
     const yRatio = ((e.clientY - container.top) / container.height - 0.5) * 2;
 
     const applyTransform = (elements: HTMLElement[], transform: string) => {
-      elements.forEach(element => {
+      elements.forEach((element) => {
         element.style.transform = transform;
       });
     };
@@ -279,13 +262,12 @@ class Header23 extends BaseHeader {
   }
 
   render() {
-
     const settings = {
       arrows: true,
       dots: false,
       infinite: true,
       speed: 440,
-      autoplay: false,
+      autoplay: true,
       autoplaySpeed: 5000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -311,8 +293,7 @@ class Header23 extends BaseHeader {
       <div className={this.decorateCSS("container")} onMouseMove={mouseMoveActive ? this.handleMouseMove : undefined}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
-
-            {(slider.length > 1 && previousArrow) &&
+            {slider.length > 1 && previousArrow && (
               <ComposerIcon
                 name={this.getPropValue("previousArrow")}
                 propsIcon={{
@@ -321,8 +302,9 @@ class Header23 extends BaseHeader {
                     sliderRef.current.slickPrev();
                   },
                 }}
-              />}
-            {nextArrow &&
+              />
+            )}
+            {nextArrow && (
               <ComposerIcon
                 name={this.getPropValue("nextArrow")}
                 propsIcon={{
@@ -332,76 +314,58 @@ class Header23 extends BaseHeader {
                   },
                 }}
               />
-            }
-            {
-              slider.length > 1 &&
+            )}
+            {slider.length > 1 && (
               <ul className={this.decorateCSS("dots")}>
                 {slider.map((_, index) => (
-                  <li
-                    key={`dot-${index}`}
-                    className={activeSlide === index && this.decorateCSS("slick-active")}
-                    onClick={() => sliderRef.current.slickGoTo(index)}>
+                  <li key={`dot-${index}`} className={activeSlide === index && this.decorateCSS("slick-active")} onClick={() => sliderRef.current.slickGoTo(index)}>
                     <button />
                   </li>
                 ))}
               </ul>
-            }
+            )}
 
             <ComposerSlider {...settings} className={this.decorateCSS("carousel")} ref={sliderRef}>
               {slider.map((item: SliderItem, index: number) => {
                 const isActive = activeSlide === index;
 
                 return (
-                  <div className={this.decorateCSS("items")}
-                    key={`key${index}`} >
+                  <div className={this.decorateCSS("items")} key={`key${index}`}>
                     <div className={`${this.decorateCSS("wrapper-slick")} ${bgColorActivation && this.decorateCSS("bg-color-activation")}`}>
                       {item.background1 && (
                         <div className={this.decorateCSS("header23-background1-wrapper")}>
-                          <img
-                            className={`${this.decorateCSS("background1")} ${(isActive && animateActive) && this.decorateCSS("animate")}`}
-                            src={item.background1}
-                            alt=""
-                          />
-                        </div>)}
+                          <img className={`${this.decorateCSS("background1")} ${isActive && animateActive && this.decorateCSS("animate")}`} src={item.background1} alt="" />
+                        </div>
+                      )}
 
-                      {item.background3 &&
+                      {item.background3 && (
                         <div className={this.decorateCSS("header23-background3-wrapper")}>
-                          <img
-                            className={`${this.decorateCSS("background3")} ${(isActive && animateActive) && this.decorateCSS("animate")}`}
-                            src={item.background3}
-                            alt=""
-                          />
-                        </div>}
-                      {item.topImage &&
+                          <img className={`${this.decorateCSS("background3")} ${isActive && animateActive && this.decorateCSS("animate")}`} src={item.background3} alt="" />
+                        </div>
+                      )}
+                      {item.topImage && (
                         <div className={this.decorateCSS("header23-wrapper-topImg")}>
-                          <img
-                            className={`${this.decorateCSS("top-img")} ${(isActive && animateActive) && this.decorateCSS("animate")}`}
-                            src={item.topImage}
-                            alt=""
-                          />
-                        </div>}
-                      {item.background2 &&
+                          <img className={`${this.decorateCSS("top-img")} ${isActive && animateActive && this.decorateCSS("animate")}`} src={item.topImage} alt="" />
+                        </div>
+                      )}
+                      {item.background2 && (
                         <div className={this.decorateCSS("header23-background2-wrapper")}>
-                          <img
-                            className={`${this.decorateCSS("background2")} ${(isActive && animateActive) && this.decorateCSS("animate")}`}
-                            src={item.background2}
-                            alt=""
-                          />
-                        </div>}
-                      {item.background4 &&
+                          <img className={`${this.decorateCSS("background2")} ${isActive && animateActive && this.decorateCSS("animate")}`} src={item.background2} alt="" />
+                        </div>
+                      )}
+                      {item.background4 && (
                         <div className={this.decorateCSS("header23-img-bg")}>
-                          <img
-                            className={`${this.decorateCSS("img-background")} ${(isActive && animateActive) && this.decorateCSS("animate")}`}
-                            src={item.background4}
-                            alt=""
-                          />
-                        </div>}
+                          <img className={`${this.decorateCSS("img-background")} ${isActive && animateActive && this.decorateCSS("animate")}`} src={item.background4} alt="" />
+                        </div>
+                      )}
 
                       {this.castToString(item.upperText) && (
                         <div className={this.decorateCSS("header23-wrapper-upperText")}>
-                          <div className={`${this.decorateCSS("upper-text")} 
-                          ${(isActive && animateActive) && this.decorateCSS("animate")}
-                          ${bgColorActivation && this.decorateCSS("bg-active-text")}`}>
+                          <div
+                            className={`${this.decorateCSS("upper-text")} 
+                          ${isActive && animateActive && this.decorateCSS("animate")}
+                          ${bgColorActivation && this.decorateCSS("bg-active-text")}`}
+                          >
                             {item.upperText}
                           </div>
                         </div>
@@ -409,27 +373,31 @@ class Header23 extends BaseHeader {
 
                       {this.castToString(item.bottomText) && (
                         <div className={this.decorateCSS("header23-wrapper-lowerText")}>
-                          <div className={`${this.decorateCSS("lower-text")} 
-                          ${(isActive && animateActive) && this.decorateCSS("animate")}
-                          ${bgColorActivation && this.decorateCSS("bg-active-text")}`}>
+                          <div
+                            className={`${this.decorateCSS("lower-text")} 
+                          ${isActive && animateActive && this.decorateCSS("animate")}
+                          ${bgColorActivation && this.decorateCSS("bg-active-text")}`}
+                          >
                             {item.bottomText}
                           </div>
                         </div>
                       )}
-                      {this.getPropValue("circleActivation") &&
-                        <div className={`${this.decorateCSS("circle")} ${(isActive && animateActive) && this.decorateCSS("animate")}
-                        ${bgColorActivation && this.decorateCSS("bg-active-c")}`}>
+                      {this.getPropValue("circleActivation") && (
+                        <div
+                          className={`${this.decorateCSS("circle")} ${isActive && animateActive && this.decorateCSS("animate")}
+                        ${bgColorActivation && this.decorateCSS("bg-active-c")}`}
+                        >
                           <div className={`${this.decorateCSS("innerCircle")} ${bgColorActivation && this.decorateCSS("bg-active-ic")}`}></div>
-                        </div>}
+                        </div>
+                      )}
                     </div>
                   </div>
-                )
-              }
-              )}
+                );
+              })}
             </ComposerSlider>
           </div>
-        </div >
-      </div >
+        </div>
+      </div>
     );
   }
 }
