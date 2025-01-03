@@ -2,6 +2,7 @@
 
 .container {
   width: 100%;
+
   .max-content {
     .footer-page {
       width: 100%;
@@ -73,13 +74,14 @@
             font-size: 1rem;
             color: var(--composer-font-color-primary);
             margin: 0;
+            width: 100%;
           }
 
           .text-container {
             gap: var(--composer-gap-xs);
+            width: 100%;
 
-            .element,
-            .element-has-path {
+            .element {
               display: flex;
               align-items: center;
               gap: var(--composer-gap-sm);
@@ -96,10 +98,11 @@
                 font-size: 1rem;
                 transition: color 0.3s ease;
               }
-            }
 
-            .element-has-path .text:hover {
-              color: var(--composer-primary-color);
+              &.has-path .text:hover {
+                color: var(--composer-primary-color);
+              }
+
             }
           }
         }
@@ -122,6 +125,7 @@
         .text {
           font-size: 1rem;
           color: var(--composer-font-color-primary);
+          text-align: start;
         }
 
         .links {
@@ -130,18 +134,18 @@
           justify-content: end;
           gap: var(--composer-gap-md);
 
-          .link-element,
-          .link-element-has-path {
+          .link-element {
             .link-text {
               font-size: 1rem;
               color: var(--composer-font-color-primary);
               transition: color 0.3s ease;
             }
+
+            &.has-path .link-text:hover {
+              color: var(--composer-primary-color);
+            }
           }
 
-          .link-element-has-path .link-text:hover {
-            color: var(--composer-primary-color);
-          }
         }
       }
     }
@@ -151,12 +155,14 @@
 @container (max-width: #{$composer-tablet-width-lg}) {
   .container {
     width: 100%;
+
     .max-content {
       .footer-page {
         flex-direction: column;
         gap: var(--composer-gap-md);
 
         .items {
+
           .header,
           .list-group {
             flex: 1;
@@ -164,6 +170,7 @@
             max-width: 310px;
             width: 100%;
           }
+
           .list-group {
             display: flex;
             flex-direction: column;
@@ -181,11 +188,55 @@
         }
 
         .footer-bottom {
-          justify-content: space-between;
+          flex-direction: column;
+          align-items: flex-start;
+
+          &.center {
+            align-items: center;
+          }
+
+          .links {}
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width-lg}) {
+  .container {
+    .max-content {
+      .footer-page {
+        gap: 0;
+
+        .items {
           flex-direction: column;
 
+          .header,
+          .list-group {
+            flex: 1;
+            min-width: unset;
+            max-width: unset;
+            width: 100%;
+          }
+
+          .list-group {
+            .text-container {
+              .element {}
+            }
+          }
+        }
+
+        .footer-bottom {
+          gap: var(--composer-gap-md);
+
+          .text {
+            margin: 0;
+          }
+
           .links {
-            justify-content: flex-start;
+            .link-text {
+              margin: 0;
+            }
           }
         }
       }

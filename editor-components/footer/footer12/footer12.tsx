@@ -21,7 +21,7 @@ class Footer12Page extends BaseFooter {
       type: "image",
       key: "logo",
       displayer: "Logo",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6762cc190655f8002ca8c66b?alt=media",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676e80240655f8002cadb8be?alt=media",
     });
 
     this.addProp({
@@ -431,14 +431,14 @@ class Footer12Page extends BaseFooter {
           <Base.Container className={this.decorateCSS("first-container")}>
             <Base.MaxContent className={this.decorateCSS("first-max-content")}>
               {headerExist && (
-                <div className={this.decorateCSS("left")}>
+                <Base.VerticalContent className={this.decorateCSS("left")}>
                   {image && (
                     <div className={this.decorateCSS("logo")}>
                       <img src={logo} className={this.decorateCSS("image")} alt="" />
                     </div>
                   )}
                   {descriptionExist && <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>}
-                </div>
+                </Base.VerticalContent>
               )}
 
               {footer.length > 0 &&
@@ -473,9 +473,13 @@ class Footer12Page extends BaseFooter {
           <Base.Container className={this.decorateCSS("second-container")}>
             <Base.MaxContent className={this.decorateCSS("second-max-content")}>
               <div className={this.decorateCSS("footer-bottom")}>
-                {footerTextExist && <Base.P className={imagesExist ? this.decorateCSS("footer-text") : this.decorateCSS("footer-text-no-image")}>{this.getPropValue("footerText")}</Base.P>}
+                {footerTextExist &&
+                  <Base.P
+                    className={`${this.decorateCSS("footer-text")} ${!imagesExist && this.decorateCSS("no-image")}`}>
+                    {this.getPropValue("footerText")}
+                  </Base.P>}
                 {imagesExist && (
-                  <div className={footerTextExist ? this.decorateCSS("image-container") : this.decorateCSS("image-container-full")}>
+                  <div className={`${this.decorateCSS("image-container")} ${!footerTextExist && this.decorateCSS("full-width")}`}>
                     {images.map((item: any, index: number) => {
                       return (
                         item.image && (

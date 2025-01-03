@@ -18,7 +18,7 @@ class Footer10Page extends BaseFooter {
       type: "image",
       key: "logo",
       displayer: "Logo",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6762cc190655f8002ca8c66b?alt=media",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676e80240655f8002cadb8be?alt=media",
     });
 
     this.addProp({
@@ -220,25 +220,27 @@ class Footer10Page extends BaseFooter {
     const iconsExist = icons.length > 0;
     const bottomExist = footerTextExist || iconsExist;
 
+    const alignment = Base.getContentAlignment();
+
     return (
       <div className={this.decorateCSS("container")}>
         {upperExist && (
           <Base.Container className={this.decorateCSS("first-container")}>
             <Base.MaxContent className={this.decorateCSS("first-max-content")}>
               {upperExist && (
-                <div className={this.decorateCSS("upper")}>
+                <div className={`${this.decorateCSS("upper")} ${alignment === "center" && this.decorateCSS("center")}`}>
                   {logo && (
                     <div className={this.decorateCSS("logo")}>
                       <img src={logo} className={this.decorateCSS("image")} alt="" />
                     </div>
                   )}
                   {links.length > 0 && (
-                    <div className={logo ? this.decorateCSS("links") : this.decorateCSS("links-full")}>
+                    <div className={`${this.decorateCSS("links")} ${logo && this.decorateCSS("full-width")}`}>
                       {links.map((item: any, index: number) => {
                         const textExist = this.castToString(item.text);
                         return (
                           textExist && (
-                            <div className={this.decorateCSS(item.url ? "link-element-has-path" : "link-element")}>
+                            <div className={`${this.decorateCSS("link-element")} ${item.url && this.decorateCSS("has-path")}`}>
                               <ComposerLink key={index} path={item.url}>
                                 <Base.H3 className={this.decorateCSS("link-text")}>{item.text}</Base.H3>
                               </ComposerLink>
@@ -259,7 +261,7 @@ class Footer10Page extends BaseFooter {
         {bottomExist && (
           <Base.Container>
             <Base.MaxContent>
-              <div className={this.decorateCSS("bottom")}>
+              <div className={`${this.decorateCSS("bottom")} ${alignment === "center" && this.decorateCSS("center")}`}>
                 {footerTextExist && (
                   <div className={iconsExist ? this.decorateCSS("left") : this.decorateCSS("left-full")}>
                     <Base.P className={this.decorateCSS("text")}>{this.getPropValue("footerText")}</Base.P>

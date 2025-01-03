@@ -24,8 +24,6 @@
         justify-content: center;
         align-items: center;
         .title {
-          font-size: 3rem;
-          color: var(--composer-font-color-primary);
           text-align: center;
           margin: 0;
         }
@@ -34,6 +32,10 @@
           font-size: 1.5rem;
           color: var(--composer-tertiary-color);
           text-align: center;
+        }
+
+        .button{
+          content: "";
         }
       }
     }
@@ -76,6 +78,7 @@
         max-width: 50%;
         font-size: 1rem;
         color: var(--composer-tertiary-color);
+        margin-left: 0;
       }
 
       .list {
@@ -146,6 +149,7 @@
           max-width: 100%;
           font-size: 1rem;
           color: var(--composer-font-color-primary);
+          margin-left: auto;
         }
 
         .list {

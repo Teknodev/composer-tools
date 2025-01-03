@@ -295,7 +295,8 @@ class Footer2Page extends BaseFooter {
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("footer-page")} style={{ backgroundImage: `url(${image})` }}>
             {(footer.length > 0 || image) && (
-              <Base.MaxContent className={image ? this.decorateCSS("items") : this.decorateCSS("items-no-image")}>
+              <Base.MaxContent
+                className={`${this.decorateCSS("items")} ${!image && this.decorateCSS("no-image")}`}>
                 {this.castToObject<any[]>("footer").map((item: FooterValues, indexFooter: number) => {
                   const titleExist = this.castToString(item.footerTitle);
                   return (

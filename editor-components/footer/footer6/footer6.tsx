@@ -302,7 +302,7 @@ class Footer6Page extends BaseFooter {
             {(subtitleExist || titleExist) && (
               <Base.VerticalContent className={this.decorateCSS("header")}>
                 {subtitleExist && <Base.P className={this.decorateCSS("subtitle")}>{subtitle}</Base.P>}
-                {titleExist && <Base.H1 className={this.decorateCSS("title")}>{title}</Base.H1>}
+                {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
               </Base.VerticalContent>
             )}
 
