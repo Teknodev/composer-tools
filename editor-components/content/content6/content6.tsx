@@ -282,27 +282,6 @@ class Content6 extends BaseContent {
   getName(): string {
     return "Content 6";
   }
-  renderDots() {
-    const activeSlideIndex = this.getComponentState("activeSlideIndex");
-    const items = this.castToObject<CardType[]>("items");
-
-    return (
-      <ul className={this.decorateCSS("custom-dots")}>
-        {items.map((item, index) => (
-          <li
-            key={index}
-            className={
-              index === activeSlideIndex ? this.decorateCSS("slick-active") : ""
-            }
-          >
-            <button>
-              <span></span>
-            </button>
-          </li>
-        ))}
-      </ul>
-    );
-  }
 
   render() {
     const items = this.castToObject<CardType[]>("items").filter(
@@ -357,6 +336,30 @@ class Content6 extends BaseContent {
     const rightTextArrow: string = this.getPropValue("right-arrow");
     const faintLine = this.getPropValue("faintLine");
     const disableAnimation = this.getPropValue("disableAnimation");
+
+    const renderDots = () => {
+      const activeSlideIndex = this.getComponentState("activeSlideIndex");
+      const items = this.castToObject<CardType[]>("items");
+  
+      return (
+        <ul className={this.decorateCSS("custom-dots")}>
+          {items.map((item, index) => (
+            <li
+              key={index}
+              className={
+                index === activeSlideIndex ? this.decorateCSS("slick-active") : ""
+              }
+            >
+              <button onClick={() => {
+                sliderRef.current?.slickGoTo(index)
+              }}>
+                <span></span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      );
+    }
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -484,7 +487,7 @@ class Content6 extends BaseContent {
                         </article>
                       ))}
                     </ComposerSlider>
-                    {items.length > 3 && this.renderDots()}
+                    {items.length > 3 && renderDots()}
                   </>
                 }
               </div>

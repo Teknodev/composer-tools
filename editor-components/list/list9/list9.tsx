@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseContent, BaseList } from "../../EditorComponent";
+import { BaseList } from "../../EditorComponent";
 import styles from "./list9.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
