@@ -424,6 +424,13 @@
           padding: var(--composer-gap-md);
           width: auto;
 
+          .background {
+            border-top-left-radius: var(--composer-gap-sm);
+            border-top-right-radius: var(--composer-gap-sm);
+            border-bottom-left-radius: unset;
+            border-bottom-right-radius: unset;
+          }
+
           .left {
             height: 75%;
 
@@ -480,6 +487,7 @@
         .right-container {
           width: 100%;
           padding: var(--composer-gap-md);
+          border-radius: var(--composer-gap-sm);
 
           .form-container {
             margin: 0;
