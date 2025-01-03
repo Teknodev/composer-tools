@@ -5,7 +5,6 @@ import styles from "./feature10.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-import { Slideshow } from "@mui/icons-material";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
@@ -13,11 +12,6 @@ type Card = {
   title: JSX.Element;
   description: JSX.Element;
   url: string;
-};
-
-type Button = {
-  text: JSX.Element;
-  link: string;
 };
 
 class Feature10 extends BaseFeature {
@@ -291,7 +285,7 @@ class Feature10 extends BaseFeature {
           },
         },
       ],
-      beforeChange: (current: number, next: number) => {
+      beforeChange: (_: number, next: number) => {
         this.setComponentState("active", next);
         this.setComponentState("activeSlideIndex", next);
       },

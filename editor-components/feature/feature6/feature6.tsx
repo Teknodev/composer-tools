@@ -12,10 +12,6 @@ type Card = {
   link: string;
 };
 
-// type Button = {
-//   button: INPUTS.CastedButton;
-// };
-
 class Feature6 extends BaseFeature {
   constructor(props?: any) {
     super(props, styles);
@@ -223,7 +219,7 @@ class Feature6 extends BaseFeature {
 
             {buttons?.length > 0 && (
               <Base.ContainerGrid className={this.decorateCSS("button-container")}>
-                {buttons.map((item: INPUTS.CastedButton, index: number) => {
+                {buttons.map((item: INPUTS.CastedButton) => {
                   if (!this.castToString(item.text)) return null;
                   return (
                     <ComposerLink path={item.url}>

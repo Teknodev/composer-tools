@@ -11,10 +11,6 @@ type Feature = {
   iconFeature: string;
 };
 
-// type Link = {
-//   button: INPUTS.CastedButton;
-// };
-
 class Feature7 extends BaseFeature {
   constructor(props?: any) {
     super(props, styles);
@@ -210,7 +206,6 @@ class Feature7 extends BaseFeature {
                     {(this.getPropValue("links").length > 0) && (
                       <Base.Row className={this.decorateCSS("linkList")}>
                         {links.map((item: INPUTS.CastedButton, index: number) => {
-                          const textExist = !!this.castToString(item.text);
 
                           return (
                             <div key={index} className={this.decorateCSS("linkContainer")}>

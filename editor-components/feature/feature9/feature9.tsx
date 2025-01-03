@@ -14,10 +14,6 @@ type Card = {
   num: JSX.Element;
 };
 
-// type Button = {
-//   text: JSX.Element;
-//   link: string;
-// };
 
 class Feature9 extends BaseFeature {
   observer: IntersectionObserver;

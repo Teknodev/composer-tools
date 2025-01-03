@@ -333,7 +333,7 @@ class Feature5 extends BaseFeature {
                           <Base.Row className={this.decorateCSS("button-text-container")}>
                             <ComposerLink path={row2.first_item.button.url}>
                               <Base.Button buttonType={row2.first_item.button.type} className={this.decorateCSS("button-text")}>
-                                {this.castToString(row2.first_item.button.text)}
+                                {row2.first_item.button.text}
                               </Base.Button>
                             </ComposerLink>
                           </Base.Row>
@@ -347,7 +347,7 @@ class Feature5 extends BaseFeature {
                   {!!this.castToString(row2.second_item.text) && (
                     <Base.H2 className={this.decorateCSS("text")}>
                       <ComposerLink path={row2.second_item.link}>
-                        {this.castToString(row2.second_item.text)}
+                        {row2.second_item.text}
                       </ComposerLink>
                     </Base.H2>
                   )}

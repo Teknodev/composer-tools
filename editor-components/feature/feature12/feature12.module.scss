@@ -1,7 +1,7 @@
 @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 @keyframes slideInLeft {
   from {
-    transform: translateX(-50px);
+    transform: translateX(calc(var(--composer-gap-xl) * - 1));
     opacity: 0;
   }
   to {
@@ -54,7 +54,7 @@
       }
       .card-item-count {
         opacity: 0;
-        transform: translateX(-50px);
+        transform: translateX(calc(var(--composer-gap-xl) * - 1));
         animation-name: slideInLeft;
         animation-duration: 0.5s;
         animation-timing-function: ease;
@@ -95,12 +95,4 @@
       }
     }
   }
-}
-
-@container (max-width: #{$composer-tablet-width}) {
-
-}
-
-@container (max-width: #{$composer-phone-width}) {
-
 }
