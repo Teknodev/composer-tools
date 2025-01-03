@@ -1,146 +1,229 @@
+@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
 .container {
-  position: relative;
-
-  .carousel {
-    width: 100vw;
-    height: 100vh;
+  width: 100%;
+  height: 100vh;
+  .max-content {
+    width: 100%;
+    height: 100%;
     position: relative;
-
-    .content {
+    .slider-container {
+      width: 100%;
+      height: 100%;
       position: relative;
-      z-index: 20;
-
-      img {
-        width: 100vw;
-        height: 100vh;
-        object-fit: cover;
-      }
-
-      .overlay {
-        &::after {
-          content: "";
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background-color: rgba(0, 0, 0, 0.6);
-        }
-      }
-
-      .text-and-button {
-        position: absolute;
+      display: flex;
+      z-index: 6;
+      .slider {
         width: 100%;
         height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        top: 0;
-        left: 0;
-        gap: 10px;
-        transition: 0.4s;
-
-        h1 {
-          color: white;
-          font-size: 6rem;
-          max-width: 700px;
-          text-align: center;
+        z-index: 7;
+        .image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
         }
+      }
 
-        button {
-          padding: 15px 40px;
-          border-radius: 20px;
-          outline: none;
-          border: 2px solid transparent;
-          font-weight: 700;
-          cursor: pointer;
-          transition: 0.3s;
+      .overlay{
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        overflow: hidden;
+        z-index: 8;
 
-          &:hover {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
+        &.idle {
+          z-index: 0;
+          width: 100%;
+          transition: all 0.01s ease-in-out;
+        }
+      
+
+        .overlay-image{
+          position: relative;
+          width: 100%;
+          height: 100%;
+          opacity: 0.5;
+
+          img{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
           }
         }
 
-        &.un-visible {
-          opacity: 0;
-          margin-top: 30px;
-        }
       }
+      
 
-      .arrow {
-        position: absolute;
-        top: 0;
-        z-index: 999;
-        color: white;
-        cursor: pointer;
-        bottom: 0;
-        margin: auto 0;
-
-
-        &.prev-icon {
+      .overlay-right {
+        left: 100%;
+        transition: left 0.8s ease-in-out, width 0.8s ease-in-out;
+        &.active {
           left: 0;
         }
-        &.next-icon {
+        &.close {
+          left: 0;
+          width: 0;
+        }
+        &.idle {
+          left: 100%;
+        }
+  
+      }
+
+      .overlay-left {
+        right: 100%;
+        transition: right 0.8s ease-in, width 0.8s ease-in;
+        &.active {
           right: 0;
         }
-
-        &.un-visible{
-          opacity: 0;
+        &.close {
+          right: 0;
+          width: 0;
+        }
+        &.idle {
+          right: 100%;
         }
       }
     }
 
-  }
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      z-index: 11;
 
-  .overlay-animation-box {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    transition: 1.7s;
-    display: unset;
+      color: white;
+      font-size: 6rem;
 
-    &.left {
-      margin-left: -100vw;
-    }
-
-    &.right {
-      margin-left: 100vw;
-    }
-
-    &.visible {
-      &.left {
-        margin-left: 100vw;
+      &.prev {
+        left: var(--composer-gap-sm);
       }
-      &.right {
-        margin-left: -100vw;
+      &.next {
+        right: var(--composer-gap-sm);
       }
     }
 
-    &.display-none {
-      display: none !important;
-    }
-
-    &::after {
-      content: "";
+    .contentContainer {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: black;
-      opacity: 0.7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: var(--composer-gap-lg);
+      z-index: 9;
+      animation-duration: 1s;
+
+      .content{
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-md);
+        align-items: center;
+        justify-content: center;
+      }
+
+      .content-title {
+        color: white;
+        font-size: 6rem;
+        font-weight: 700;
+        text-align: center;
+        margin:0;
+      }
     }
 
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .dots {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: var(--composer-gap-sm);
+      z-index: 11;
+
+      .dot {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &.active {
+          background-color: white;
+          transform: scale(1.2);
+        }
+
+        &:hover {
+          background-color: white;
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width-lg}) {
+  .container {
+    background-color: red;
+    .max-content {
+      .slider-container {
+       
+      }
+      .contentContainer{
+        .content {
+          .content-title {
+            font-size: 5rem;
+
+          }
+        }
+      }
+   
+      .arrow{
+        font-size: 4rem;
+      }
+      .dots{
+        .dot{
+          width: 10px;
+          height: 10px;
+        } 
+      }
+    }
+  }
+}
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    background-color: red;
+    .max-content {
+      .slider-container {
+       
+      }
+      .contentContainer{
+        .content {
+          padding: 0 1rem;
+          .content-title {
+          font-size: 3rem;
+          }
+        }
+      }
+      .arrow{
+        font-size: 3rem;
+
+
+      &.prev {
+        left: var(--composer-gap-xs);
+      }
+      &.next {
+        right: var(--composer-gap-xs);
+      }
+      }
+
     }
   }
 }

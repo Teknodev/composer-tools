@@ -11,7 +11,7 @@
         width: 100%;
         gap: var(--composer-gap-xs);
         .subtitle {
-          width: 97%;
+          content: "";
         }
         .title2 {
           color: var(--composer-font-color-primary);
@@ -21,12 +21,10 @@
     .down-page {
       .all-card {
         min-width: 250px;
-
         .card {
           flex: 1 1;
           width: 100%;
           min-width: 250px;
-
           .top {
             margin: 0;
             .position {
@@ -51,11 +49,9 @@
             display: flex;
             gap: var(--composer-gap-sm);
             margin-top: var(--composer-gap-md);
-            opacity: 0.5;
-            font-size: 1.5rem;
-
             .icon {
-              color: var(--composer-font-color-primary);
+              color: var(--composer-tertiary-color);
+              font-size: 1.5rem;
             }
           }
         }
@@ -64,19 +60,12 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width-sm}) {
+@container (max-width: #{$composer-tablet-width-lg}) {
   .container {
-    .up-page {
-      .text-group {
-        .subtitle {
-          width: 90% !important;
-        }
-      }
-    }
     .down-page {
       gap: var(--composer-gap-xl);
       .all-card {
-        width: unset !important;
+        width: unset;
       }
     }
   }
