@@ -5,6 +5,7 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { BasePricingTable, TypeUsableComponentProps } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type IIconBoxes = {
   planTitle: JSX.Element;
@@ -25,10 +26,7 @@ type Button = {
   url: string;
 };
 
-type Buttons = {
-  buttonText: JSX.Element;
-  url: string;
-};
+type Buttons = INPUTS.CastedButton;
 
 class PricingTable8 extends BasePricingTable {
   constructor(props?: any) {
@@ -366,25 +364,7 @@ class PricingTable8 extends BasePricingTable {
       },
     });
 
-    let button: TypeUsableComponentProps = {
-      type: "object",
-      key: "button",
-      displayer: "Button",
-      value: [
-        {
-          type: "string",
-          key: "buttonText",
-          displayer: "Button Text",
-          value: "CONTINUE",
-        },
-        {
-          type: "page",
-          key: "url",
-          displayer: "Button Link",
-          value: "",
-        },
-      ],
-    };
+    let button: TypeUsableComponentProps = INPUTS.BUTTON("buttonType", "Button", "CONTINUE", "", null, null, "Primary");
 
     this.setComponentState("currentIndex", 0);
     this.setComponentState("slider-ref", React.createRef());
@@ -420,7 +400,7 @@ class PricingTable8 extends BasePricingTable {
       dots: false,
       infinite: true,
       speed: 1000,
-      autoplay: false,
+      autoplay: true,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -535,8 +515,8 @@ class PricingTable8 extends BasePricingTable {
 
             <div className={this.decorateCSS("lower-container")}>
               <Base.VerticalContent className={this.decorateCSS("plan-desc")}>
-                {cards[this.getComponentState("currentIndex")].planTitle && <Base.H3 className={this.decorateCSS("text")}>{cards[this.getComponentState("currentIndex")].planTitle}</Base.H3>}
-                {cards[this.getComponentState("currentIndex")].description && <Base.P className={this.decorateCSS("description-text")}>{cards[this.getComponentState("currentIndex")].description}</Base.P>}
+                {this.castToString(cards[this.getComponentState("currentIndex")].planTitle) && <Base.H3 className={this.decorateCSS("text")}>{cards[this.getComponentState("currentIndex")].planTitle}</Base.H3>}
+                {this.castToString(cards[this.getComponentState("currentIndex")].description) && <Base.P className={this.decorateCSS("description-text")}>{cards[this.getComponentState("currentIndex")].description}</Base.P>}
               </Base.VerticalContent>
 
               <div className={this.decorateCSS("bar-rows")}>
@@ -563,11 +543,13 @@ class PricingTable8 extends BasePricingTable {
 
             <div className={this.decorateCSS("button-position")}>
               {this.castToObject<Buttons[]>("buttons").map((item, index) => {
-                const buttonExist = this.castToString(item.buttonText);
+                const buttonExist = this.castToString(item.text);
                 return (
                   buttonExist && (
                     <ComposerLink path={item.url} key={index}>
-                      <Base.Button className={this.decorateCSS("button")}>{item.buttonText}</Base.Button>
+                      <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                        {item.text}
+                      </Base.Button>
                     </ComposerLink>
                   )
                 );
@@ -577,9 +559,6 @@ class PricingTable8 extends BasePricingTable {
         </Base.MaxContent>
       </Base.Container>
     );
-  }
-  handleCardClick(index: number): void {
-    throw new Error("Method not implemented.");
   }
 }
 export default PricingTable8;
