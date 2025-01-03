@@ -1,18 +1,21 @@
 @import '../../../composer-base-components/base/utitilities/viewports.module.scss';
+
 @keyframes fadeInFromRight {
   0% {
     opacity: 0;
     transform: translateX(25%);
   }
+
   100% {
     opacity: 1;
     transform: translateX(0);
   }
 }
 
-.container, .container-no-image {
+.container {
   position: relative;
-  &::before{
+
+  &::before {
     content: " ";
     position: absolute;
     top: 0px;
@@ -21,37 +24,47 @@
     height: 70%;
     width: 100%;
   }
+
   .max-content {
     position: relative;
     z-index: 1;
-    .wrapper{
+
+    .wrapper {
       .left-page {
         display: flex;
         justify-content: center;
-        .image, .image-no-animation {
+
+        .image {
           width: 70%;
           border-radius: var(--composer-border-radius-md);
-          object-fit: cover;        
-        }
-        .image{
+          object-fit: cover;
           animation: fadeInFromRight 1s ease-out forwards;
+
+          &.no-animation {
+            animation: unset;
+          }
         }
       }
+
       .right-page {
-        .right-content{
+        .right-content {
           height: 100%;
           display: flex;
           justify-content: center;
-          .title {
-          }
+
+          .title {}
+
           .input-button-wrapper {
             display: flex;
             width: 100%;
             align-items: stretch;
             gap: var(--composer-gap-md);
+
             .input-div {
               display: flex;
               gap: var(--composer-gap-md);
+              position: relative;
+
               .input {
                 flex: 5;
                 height: auto;
@@ -63,15 +76,26 @@
                 border-radius: var(--composer-border-radius-sm);
                 background-color: var(--composer-html-background);
                 color: var(--composer-font-color-primary);
-                &::placeholder{
+
+                &::placeholder {
                   font-size: 1rem;
                   color: var(--composer-font-color-primary);
                 }
+
                 &:focus::placeholder {
                   opacity: 0.5;
                 }
               }
+
+              .error {
+                position: absolute;
+                bottom: -20px;
+                left: 0;
+                color: var(--warning);
+              }
+
               .button {
+                content: "";
                 flex: 2;
               }
             }
@@ -80,41 +104,45 @@
       }
     }
   }
-}
-.container-no-image {
-  &::before{
-    height: 100%;
-  }
-}
-@container (max-width: #{$composer-tablet-width}){
-  .container{
-    .max-content{
-      .wrapper{
-        flex-direction: column-reverse ;
-      }
-      
+
+  &.no-image {
+    &::before {
+      height: 100%;
     }
   }
 }
 
-@container (max-width: #{$composer-phone-width}){
-  .container{
-    .max-content{
-      .wrapper{
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .wrapper {
+        flex-direction: column-reverse;
+      }
+
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .wrapper {
         .left-page {
           .image {
             width: 90%;
           }
         }
+
         .right-page {
-          .right-content{
+          .right-content {
             .input-button-wrapper {
               .input-div {
-                .input{
-                  flex:1;
+                .input {
+                  flex: 1;
                 }
-                .button{
-                  flex:1;
+
+                .button {
+                  flex: 1;
                 }
               }
             }

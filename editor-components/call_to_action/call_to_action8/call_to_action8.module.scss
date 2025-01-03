@@ -1,68 +1,67 @@
 @import '../../../composer-base-components/base/utitilities/viewports.module.scss';
+
 .container {
     .max-content {
-        background-color: color-mix(in srgb,var(--composer-html-background), var(--composer-font-color-primary) 5%);
+        background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
         border-radius: var(--composer-border-radius-xl);
-            .content {
-                display: flex;
-                gap: var(--composer-gap-md);
-                .title-box{
-                    padding: var(--composer-gap-xl) 0px var(--composer-gap-xl) var(--composer-gap-xl) ;
-                    flex: 3;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-between;
-                    .title{
-                        .text{
-                            content: "";
-                        }
-                    }
-                    .button{
-                        .button-element{
-                            content: "";
-                        }
-                    }
 
-                }
-                .image-box, .image-box-no-radius{
-                    flex: 2;
-                    max-height: 80vh; 
-                    display: flex;
-                    .image{
-                        width: 100%;
-                        height: 100%;
-                        object-fit: cover;     
+        .content {
+            display: flex;
+            gap: var(--composer-gap-md);
+
+            .title-box {
+                padding: var(--composer-gap-xl) 0px var(--composer-gap-xl) var(--composer-gap-xl);
+                flex: 3;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+
+                .title {
+                    .text {
+                        content: "";
                     }
                 }
-                .image-box-no-radius{
-                    .image{
-                        border-radius: var(--composer-gap-md);        
-                    }
-                }
-                .image-box{
-                    .image{
-                        border-top-right-radius: var(--composer-border-radius-xl);
-                        border-bottom-right-radius: var(--composer-border-radius-xl);  
+
+                .button {
+                    .button-element {
+                        content: "";
                     }
                 }
 
             }
+
+            .image-box {
+                flex: 2;
+                max-height: 80vh;
+                display: flex;
+
+                .image {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    border-top-right-radius: var(--composer-border-radius-xl);
+                    border-bottom-right-radius: var(--composer-border-radius-xl);
+                }
+            }
+        }
     }
 }
 
-@container (max-width : #{$composer-phone-width}){
-    .container{
-        .max-content{
-            .content{
+@container (max-width : #{$composer-phone-width}) {
+    .container {
+        .max-content {
+            .content {
                 flex-direction: column;
-                .title-box{
+
+                .title-box {
                     padding: var(--composer-gap-md);
                 }
-                .image-box{
-                    .image{
+
+                .image-box {
+                    .image {
                         border-top-right-radius: 0px;
                         border-bottom-left-radius: var(--composer-border-radius-xl);
-                        border-bottom-right-radius: var(--composer-border-radius-xl);                       
+                        border-bottom-right-radius: var(--composer-border-radius-xl);
                     }
                 }
             }

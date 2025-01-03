@@ -1,40 +1,47 @@
 @import '../../../composer-base-components/base/utitilities/viewports.module.scss';
+
 .container {
     .max-content {
         .content {
             gap: var(--composer-gap-md);
             align-items: center;
-            .icon{
+
+            .icon {
                 width: 70px;
                 height: 70px;
                 color: var(--composer-primary-color);
             }
+
             .title {
                 font-size: 3.5rem;
                 text-align: center;
             }
+
             .description {
                 font-size: 2rem;
                 color: var(--composer-font-color-primary);
                 text-align: center;
             }
 
-            .button-container{
+            .button-container {
                 display: flex;
-                .button {
+                .button{
+                    content: "";
                 }
             }
-    
+
         }
     }
 }
-@container (max-width : #{$composer-tablet-width}){
+
+@container (max-width : #{$composer-tablet-width}) {
     .container {
         .max-content {
             .content {
                 .title {
                     font-size: 3rem;
                 }
+
                 .description {
                     font-size: 1.5rem;
                 }
@@ -42,13 +49,15 @@
         }
     }
 }
-@container (max-width : #{$composer-tablet-width}){
+
+@container (max-width : #{$composer-tablet-width}) {
     .container {
         .max-content {
             .content {
                 .title {
                     font-size: 2rem;
                 }
+
                 .description {
                     font-size: 1rem;
                 }

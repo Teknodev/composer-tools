@@ -1,11 +1,14 @@
-@import '../../../composer-base-components/base/utitilities/viewports.module.scss'; 
-.container, .container-no-image {
+@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
+
+.container {
   position: relative;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-xl);
+
   &.overlay-active {
-    &::before{
+    &::before {
       position: absolute;
       content: "";
       background: var(--composer-overlay-color);
@@ -15,62 +18,64 @@
       top: 0px;
     }
   }
+
   .max-content {
     position: relative;
     z-index: 1;
-      .content-container {
-        align-items: center;
+
+    .content-container {
+      align-items: center;
+      gap: var(--composer-gap-md);
+
+      .title {
+        font-size: 3.5rem;
+        text-align: center;
+
+        &.with-image {
+          color: white;
+        }
+      }
+
+      .description {
+        color: var(--composer-font-color-primary);
+        font-size: 2rem;
+        text-align: center;
+
+        &.with-image {
+          color: white;
+        }
+      }
+
+      .buttons {
+        display: flex;
+        width: 100%;
+        flex-wrap: wrap;
         gap: var(--composer-gap-md);
-        .title, .title-no-image {        
-          font-size: 3.5rem;
-          text-align: center;
+        justify-content: center;
+
+        .button {
+          content: "";
         }
-        .title{
-          color: white;
-        }
-        .description, .description-no-image {
-          color: var(--composer-font-color-primary);
-          font-size: 2rem;
-          text-align: center;
-        }
-        .description{
-          color: white;
-        }
-        .buttons {
-          display: flex;
-          width: 100%;
-          flex-wrap: wrap;
-          gap: var(--composer-gap-md);
-          justify-content: center;
-          .button, .button-no-image {
-   
-          }
-          .button{
-            border: 2px solid white;
-            background-color: transparent;
-            color: white;
-            &:hover {
-              background-color: white;
-              color: black;
-              border: 2px solid white;
-            }
-          }
-        }
-      
+      }
     }
   }
 }
-.container{
-  padding: 100px 50px !important;
-}
-@container (max-width: #{$composer-tablet-width}){
-  .container, .container-no-image{
-    .max-content{
-      .content-container{
-        .title, .title-no-image {        
+
+@container (max-width: #{$composer-tablet-width-lg}) {
+
+  .container {
+    padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-lg);
+
+    .max-content {
+      .content-container {
+
+        .title,
+        .title-no-image {
           font-size: 3rem;
         }
-        .description, .description-no-image {
+
+        .description,
+        .description-no-image {
           font-size: 1.5rem;
         }
       }
@@ -78,14 +83,21 @@
   }
 }
 
-@container (max-width: #{$composer-phone-width}){
-  .container, .container-no-image{
+@container (max-width: #{$composer-phone-width}) {
+
+  .container {
+    padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-md);
+
     .max-content {
       .content-container {
-        .title, .title-no-image {        
+
+        .title,
+        .title-no-image {
           font-size: 2rem;
         }
-        .description, .description-no-image {
+
+        .description,
+        .description-no-image {
           font-size: 1rem;
         }
       }

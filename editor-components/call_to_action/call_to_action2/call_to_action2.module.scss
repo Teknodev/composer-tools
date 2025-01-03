@@ -1,30 +1,37 @@
 @import '../../../composer-base-components/base/utitilities/viewports.module.scss';
+
 @keyframes button {
-  70%{
+  70% {
     box-shadow: 0 0 0 var(--glow-size, 15px) var(--composer-primary-color);
     opacity: 0;
   }
+
   100% {
     box-shadow: 0 0 0 var(--composer-primary-color);
     opacity: 0;
   }
 }
+
 .container {
   position: relative;
-  .background, .background-no-image{
+
+  .background {
     top: 0px;
     left: 0px;
     position: absolute;
     width: 100%;
     height: 80%;
     background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+
+    &.no-image {
+      height: 100%;
+    }
   }
-  .background-no-image{
-    height: 100%;
-  }
+
   .max-content {
     position: relative;
     z-index: 1;
+
     .wrapper {
       width: 100%;
       position: relative;
@@ -35,52 +42,61 @@
       justify-content: center;
       align-items: center;
       gap: var(--composer-gap-lg);
-      .header, .header-center {
+
+      .header {
         display: flex;
         align-items: center;
         width: 100%;
         gap: var(--composer-gap-md);
+
         .titles {
           flex: 1;
+
           .subtitle {
             content: "";
           }
+
           .title {
             content: "";
           }
         }
+
         .button-container {
           width: fit-content;
           display: flex;
           gap: var(--composer-gap-md);
           flex-wrap: wrap;
-          align-items: stretch;   
-          max-width: 50%;     
+          align-items: stretch;
+          max-width: 50%;
+
           .button {
             content: "";
           }
         }
-      }
-      .header-center {
-        flex-direction: column;
-        .button-container {
-          justify-content: center;
+
+        &.center {
+          flex-direction: column;
+  
+          .button-container {
+            justify-content: center;
+          }
         }
       }
-  
       .image-container {
         width: 100%;
         background-size: cover;
         position: relative;
         cursor: pointer;
         min-height: 700px;
+        border-radius: var(--composer-border-radius-xs);
+
         .play-icon-box {
           position: absolute;
           left: 50%;
           top: 50%;
           transform: translate(-50%, -50%);
           border-radius: 50%;
-          background-color:var(--composer-font-color-secondary);
+          background-color: var(--composer-font-color-secondary);
           width: 80px;
           height: 80px;
           display: flex;
@@ -88,12 +104,13 @@
           justify-content: center;
           cursor: pointer;
           transition: all 0.4s ease;
-      
+
           .play-icon {
             color: var(--composer-primary-color);
             font-size: 30px;
           }
-          &::before{
+
+          &::before {
             color: var(--composer-primary-color);
             animation-name: button;
             animation-duration: 3s;
@@ -110,7 +127,8 @@
             opacity: 0.6;
             z-index: -1;
           }
-          &::after{
+
+          &::after {
             color: var(--composer-primary-color);
             animation-name: button;
             animation-duration: 3s;
@@ -127,24 +145,29 @@
             opacity: 0.6;
             z-index: -1;
           }
-          &:hover{
-            background-color:var(--composer-primary-color);
+
+          &:hover {
+            background-color: var(--composer-primary-color);
+
             .play-icon {
               color: var(--composer-font-color-secondary);
             }
           }
         }
-   
+
       }
+
       .overlay {
         .video-container {
           height: fit-content;
           width: 70%;
+
           .video {
             height: 100%;
             display: flex;
             align-items: center;
             position: relative;
+
             .player {
               max-height: 100%;
               height: fit-content;
@@ -154,12 +177,14 @@
             }
           }
         }
+
         .close-icon-box {
           position: absolute;
           top: var(--composer-gap-md);
           right: var(--composer-gap-md);
           color: var(--composer-font-color-secondary);
-          background-color: transparent;   
+          background-color: transparent;
+
           .close-icon {
             width: 1.5em;
             height: 1.5em;
@@ -170,13 +195,15 @@
 
   }
 }
-@container (max-width: #{$composer-tablet-width}){
-  .container{
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
     .max-content {
-      .wrapper{
+      .wrapper {
         .image-container {
-          min-height: 500px;      
+          min-height: 500px;
         }
+
         .overlay {
           .video-container {
             width: 90%;
@@ -187,18 +214,20 @@
   }
 }
 
-@container (max-width: #{$composer-phone-width}){
-  .container{
+@container (max-width: #{$composer-phone-width}) {
+  .container {
     .max-content {
-      .wrapper{
-        .header{
+      .wrapper {
+        .header {
           flex-direction: column;
           gap: var(--composer-gap-md);
-          .button-container{
+
+          .button-container {
             max-width: 100%;
           }
         }
-        .image-container{
+
+        .image-container {
           width: 100%;
           min-height: 300px;
         }

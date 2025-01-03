@@ -4,6 +4,7 @@ import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action10.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 interface CardItem {
   cardIcon: string,
   cardTitle: JSX.Element,
@@ -32,18 +33,9 @@ class CallToAction10Page extends BaseCallToAction {
       displayer: "Description",
       value: "Fast and easy setup.14-day free trial.No credit card required.",
     });
-    this.addProp({
-      type: "string",
-      key: "buttonText",
-      displayer: "Button Text",
-      value: "Try Heyday free for 14 days",
-    });
-    this.addProp({
-      type: "page",
-      key: "link",
-      displayer: "Button Link",
-      value: "",
-    });
+
+    this.addProp(INPUTS.BUTTON("button", "Button", "Create Account", "", null, null, "Primary"));
+
     this.addProp({
       type: "number",
       key: "itemCount",
@@ -141,6 +133,7 @@ class CallToAction10Page extends BaseCallToAction {
 
   render() {
     const cardItem = this.castToObject<CardItem[]>("cardItems");
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -159,17 +152,17 @@ class CallToAction10Page extends BaseCallToAction {
                 {this.getPropValue("description")}
               </Base.SectionDescription>
             )}
-            {this.castToString(this.getPropValue("buttonText")) && (
-              <ComposerLink path={this.getPropValue("link")}>
-                <Base.Button className={this.decorateCSS("button")}>
-                  {this.getPropValue("buttonText")}
+            {this.castToString(button.text) && (
+              <ComposerLink path={button.url}>
+                <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>
+                  {button.text}
                 </Base.Button>
               </ComposerLink>
             )}
             {(cardItem.length > 0) && (
               <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("card-container")}>
                 {cardItem.map((item: CardItem, index: number) => (
-                  <div className={this.decorateCSS("card")}>
+                  <Base.VerticalContent className={this.decorateCSS("card")}>
                     {item.cardIcon && (
                       <div className={this.decorateCSS("icon-wrapper")}>
                         <ComposerIcon name={item.cardIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
@@ -185,7 +178,7 @@ class CallToAction10Page extends BaseCallToAction {
                         {item.cardDescription}
                       </Base.P>
                     )}
-                  </div>
+                  </Base.VerticalContent>
                 ))}
               </Base.ListGrid>
             )}

@@ -24,18 +24,18 @@ class CallToAction8Page extends BaseCallToAction {
         "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6683ec390181a1002c338033?alt=media&timestamp=1719921738698",
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "Get Started", "", "Primary"));
+    this.addProp(INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "Primary"));
   }
 
   getName(): string {
     return "Call To Action 8";
   }
   render() {
-    
+
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
     const buttonText = this.castToString(button.text);
     const title = this.castToString(this.getPropValue("title"));
-    
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -65,12 +65,7 @@ class CallToAction8Page extends BaseCallToAction {
             )}
             {this.getPropValue("image") && (
               <div
-                className={
-                  title || buttonText
-                    ? this.decorateCSS("image-box")
-                    : this.decorateCSS("image-box-no-radius")
-                }
-              >
+                className={this.decorateCSS("image-box")}>
                 <img
                   className={this.decorateCSS("image")}
                   src={this.getPropValue("image")}
