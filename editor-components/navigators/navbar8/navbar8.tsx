@@ -373,10 +373,16 @@ class Navbar8 extends BaseNavigator {
     const itemList = this.castToObject<MenuItems[]>("itemList");
 
     const backgroundChange = this.getComponentState("backgroundChange");
-    const isScrolled = this.getComponentState("isScrolled");
+
     const menuOpen = this.getComponentState("isMenuOpen");
-    const transparentBackground =
-      (position === "Sticky Transparent" || position === "Absolute") && !isScrolled && !backgroundChange;
+    const isScrolled = this.getComponentState("isScrolled");
+    const isStickyTransparent = position === "Sticky Transparent";
+    const isAbsolute = position === "Absolute";
+    const transparentBackground = isStickyTransparent && !isScrolled;
+    
+    const currentLogo = (isStickyTransparent && !isScrolled) || isAbsolute
+      ? absoluteLogo
+      : defaultLogo;
 
     const dropdownSocialMediaTitle = this.castToString(
       this.getPropValue("dropdownSocialMediaTitle")
@@ -389,9 +395,6 @@ class Navbar8 extends BaseNavigator {
     const dropdownTitle = this.castToString(this.getPropValue("dropdownTitle"));
 
     const titleContainer = title || subtitle;
-
-    const currentLogo =
-      transparentBackground && !menuOpen ? absoluteLogo : defaultLogo;
 
     const isMenuOpen = this.getComponentState("isMenuOpen");
     const divider = this.getPropValue("divider");
