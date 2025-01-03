@@ -1347,7 +1347,7 @@ class Navbar1 extends BaseNavigator {
               <div className={this.decorateCSS("buttons")}>
                 {buttons.map((button) => (
                   <ComposerLink path={button.url}>
-                    <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>
+                    <Base.Button className={`${transparentBackground && (button.type === "Tertiary" || button.type === "Link") && !hamburgerNavActive ? this.decorateCSS("white") : ""} ${this.decorateCSS("button")}`} buttonType={button.type}>
                       {button.text}
                     </Base.Button>
                   </ComposerLink>
@@ -1358,6 +1358,7 @@ class Navbar1 extends BaseNavigator {
               {language.showLanguage && <ComposerLanguage
                 type="dropdown"
                 title={language.label}
+                dropdownLabelClassName={`${this.decorateCSS("localizationLabel")}`}
                 dropdownClassName={`${this.decorateCSS("localization")}`}
                 icon={<ComposerIcon name={language.icon} propsIcon={{className: this.decorateCSS("languageIcon")}}/>}
               />}
