@@ -3,7 +3,7 @@
 .navbarContainer {
   padding-top: var(--composer-gap-sm);
   padding-bottom: var(--composer-gap-sm);
-  transition: all 0.3s ease;
+  transition: all 0.3s ease !important;
 
   .maxContent {
     display: flex;
@@ -223,7 +223,7 @@
   .hamburgerNav {
     display: none;
     position: absolute;
-    top: 0;
+    top: 100%;
     left: 0;
     width: 100%;
     background: var(--composer-html-background);
@@ -359,10 +359,10 @@
     .menuItemContainer {
       .menuItem {
         .menuItemTitle {
-          color: white;
+          color: white !important;
         }
         .dropdownIcon {
-          color: white;
+          color: white !important;
         }
       }
     }
@@ -371,7 +371,7 @@
   .rightSide {
     .localizationContainer {
       .localizationLabel {
-        color: white;
+        color: white !important;
       }
       .languageIcon{
         color: white;
