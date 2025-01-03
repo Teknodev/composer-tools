@@ -235,6 +235,7 @@ export namespace Base {
       useEffect(() => {
         const handleScroll = () => {
           const navbarPosition = document.querySelector(`.${styles.navbarPosition}`);
+          console.log("navbarPosition", navbarPosition);
           if (navbarPosition) {
 
             if (window.scrollY > 50 && position !== "absolute") {
