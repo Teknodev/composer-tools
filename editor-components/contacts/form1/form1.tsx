@@ -4,7 +4,7 @@ import styles from "./form1.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
-class Form1Page extends BaseContacts {
+class Form1 extends BaseContacts {
   constructor(props?: any) {
     super(props, styles);
 
@@ -271,4 +271,4 @@ class Form1Page extends BaseContacts {
   }
 }
 
-export default Form1Page;
+export default Form1;

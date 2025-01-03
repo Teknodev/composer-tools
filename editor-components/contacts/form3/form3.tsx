@@ -20,7 +20,7 @@ type Social = {
   icon: string;
 };
 
-class Form3Page extends BaseContacts {
+class Form3 extends BaseContacts {
   constructor(props?: any) {
     super(props, styles);
 
@@ -513,14 +513,6 @@ class Form3Page extends BaseContacts {
     const contactIcon = this.getPropValue("contactIcon");
     const inputItems = this.getPropValue("input_items");
 
-    function toObjectKey(str: string) {
-      if (/^\d/.test(str)) {
-        str = "_" + str;
-      }
-      str = str.replace(/[^a-zA-Z0-9_]/g, "_").toLowerCase();
-      return str;
-    }
-
     function getInputType(type: string): string {
       switch (type) {
         case "Text Area":
@@ -730,4 +722,4 @@ class Form3Page extends BaseContacts {
   }
 }
 
-export default Form3Page;
+export default Form3;

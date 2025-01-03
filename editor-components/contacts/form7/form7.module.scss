@@ -2,128 +2,139 @@
 
 .container {
   .max-content {
-    .wrapper {
-      .texts {
-        content: "";
-      }
+    .wrapper,
+    .wrapper-center {
+      display: flex;
+      gap: var(--composer-gap-lg);
+      .left-container {
+        flex: 1;
 
-      .input-items {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin: 0 auto;
-        width: 100%;
-
-        .form {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: var(--composer-gap-md);
-
-          .inputs {
-            display: flex;
-            position: relative;
-            width: 100%;
-            justify-content: center;
-            gap: calc(2 * var(--composer-gap-xl));
-          }
-
-          .first-inputs,
-          .second-inputs {
-            display: flex;
-            flex-direction: column;
-            gap: var(--composer-gap-lg);
-            width: 100%;
-
-            .input-container {
-              position: relative;
-
-              .placeholder {
-                position: absolute;
-                left: var(--composer-gap-xs);
-                font-size: 1.5rem;
-                bottom: var(--composer-gap-md);
-                transition: all 0.2s ease;
-                color: var(--composer-font-color-primary);
-              }
-
-              .error-message {
-                color: var(--danger-color);
-                font-size: 1rem;
-                position: absolute;
-                left: 0;
-                bottom: calc(-1 * var(--composer-gap-md));
-              }
-            }
-          }
-
-          .input {
-            border: none;
-            border-bottom: 1px solid var(--composer-font-color-primary);
-            height: var(--composer-gap-lg);
-            margin-bottom: var(--composer-gap-sm);
-            outline: none;
-            width: 100%;
-            background-color: transparent;
-            color: var(--composer-font-color-primary);
-            transform: translateY(var(--composer-gap-xs));
-          }
-
-          .input:focus + .placeholder,
-          .input:not(:placeholder-shown) + .placeholder {
-            bottom: var(--composer-gap-lg);
-          }
-
-          .select {
-            border: none;
-            border-bottom: 1px solid var(--composer-font-color-primary);
-            height: var(--composer-gap-lg);
-            outline: none;
-            width: 100%;
-            background-color: transparent;
-            font-size: 1.5rem;
-            color: var(--composer-font-color-primary);
-            margin-bottom: var(--composer-gap-sm);
-            transform: translateY(var(--composer-gap-xs));
-
-            option {
-              background-color: var(--composer-font-color-secondary);
-              color: var(--composer-font-color-primary);
-              padding: var(--composer-gap-sm);
-            }
-          }
-
-          .select:focus + .placeholder,
-          .select:valid + .placeholder {
-            bottom: 45px;
-          }
-
-          .select:invalid + .placeholder {
-            bottom: 25px;
-          }
+        .title {
+          margin-top: 0;
+          margin-bottom: 0;
         }
       }
 
-      .submit-button {
-        align-self: flex-end;
+      .right-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-md);
+
+        .bottom-section {
+          display: flex;
+          justify-content: space-between;
+          gap: var(--composer-gap-md);
+
+          .description {
+            width: 100%;
+            flex: 1;
+
+            .description-text {
+              margin-top: 0;
+              margin-bottom: 0;
+              color: var(--composer-font-color-primary);
+              font-size: 1.5rem;
+            }
+          }
+
+          .button-box {
+            .submit-button {
+              content: "";
+            }
+          }
+        }
+
+        .inputs {
+          display: flex;
+          gap: var(--composer-gap-md);
+
+          .input-box {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            grid-row: auto;
+
+            .input-container {
+              display: flex;
+              gap: var(--composer-gap-sm);
+              border-bottom: 1px solid var(--composer-font-color-primary);
+
+              .input {
+                color: var(--composer-font-color-primary);
+                resize: vertical;
+                padding: var(--composer-gap-md) var(--composer-gap-sm);
+                border: none;
+                background-color: var(--composer-html-background);
+                width: 100%;
+                font-family: inherit;
+                overflow-y: auto;
+                font-size: 1rem;
+                resize: none;
+              }
+
+              .input::placeholder {
+                color: var(--composer-font-color-primary);
+                font-size: 1rem;
+              }
+
+              .input:focus,
+              textarea:focus {
+                outline: none;
+                box-shadow: none;
+              }
+
+              .input.error {
+                border-bottom-color: var(--danger-color);
+              }
+
+              .icon {
+                width: var(--composer-gap-md);
+                transform: translateY(80%);
+                height: var(--composer-gap-md);
+                color: var(--composer-font-color-primary);
+              }
+
+              &:has(textarea) {
+                .icon {
+                  transform: translateY(80%);
+                  top: var(--composer-gap-md);
+                }
+              }
+            }
+          }
+        }
+
+        .error-message {
+          color: var(--danger-color);
+          font-size: 1rem;
+          margin-top: var(--composer-gap-xs);
+        }
       }
     }
+
+    .wrapper-center {
+      flex-direction: column;
+    }
   }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--composer-gap-md);
 }
 
 @container (max-width: #{$composer-tablet-width-lg}) {
   .container {
     .max-content {
-      .wrapper {
-        .input-items {
-          .form {
-            .inputs {
-              padding: 0;
-            }
-          }
-
-          .submit-button {
-            margin-right: 0;
+      .wrapper,
+      .wrapper-center {
+        flex-direction: column;
+        gap: var(--composer-gap-md);
+        .right-container {
+          .bottom-section {
+            margin-top: var(--composer-gap-md);
           }
         }
       }
@@ -134,17 +145,15 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
-      .wrapper {
-        .input-items {
-          .form {
-            .inputs {
-              flex-direction: column;
-              gap: var(--composer-gap-lg);
-            }
+      .wrapper,
+      .wrapper-center {
+        .right-container {
+          .bottom-section {
+            flex-direction: column;
           }
 
-          .submit-button {
-            width: 100%;
+          .inputs {
+            flex-direction: column;
           }
         }
       }

@@ -7,7 +7,7 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
-class Form2Page extends BaseContacts {
+class Form2 extends BaseContacts {
   constructor(props?: any) {
     super(props, styles);
 
@@ -401,4 +401,4 @@ class Form2Page extends BaseContacts {
   }
 }
 
-export default Form2Page;
+export default Form2;

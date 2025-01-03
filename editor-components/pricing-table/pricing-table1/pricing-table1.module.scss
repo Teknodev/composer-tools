@@ -10,7 +10,7 @@
       display: flex;
       flex-direction: column;
       width: 100%;
-      @media only screen and (max-width: #{$composer-tablet-width-lg}) {
+      @container (max-width: #{$composer-tablet-width-lg}) {
         .items {
           .item-card {
             width: 100% !important;
@@ -59,6 +59,8 @@
               opacity: 1;
             }
             .popular-text {
+              margin: 0;
+              text-align: center;
               color: var(--composer-font-color-secondary);
             }
           }
@@ -76,14 +78,8 @@
             font-size: 1.5rem;
             color: var(--composer-font-color-primary);
           }
-          .card-title-no-margin {
-            font-size: 1.5rem;
-            color: var(--composer-font-color-primary);
-          }
 
           .card-list {
-            display: flex;
-            flex-direction: column;
             width: 100%;
 
             .card-list-item {
@@ -91,12 +87,15 @@
               align-items: center;
               gap: var(--composer-gap-xs);
               padding: var(--composer-gap-sm) var(--composer-gap-lg);
-              border-top: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.5);
+              border-top: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
               color: var(--composer-font-color-primary);
+              font-size: 1rem;
+              width: 100%;
 
               .icon {
                 min-width: var(--composer-gap-sm);
                 color: var(--composer-font-color-primary);
+                font-size: 1rem;
               }
             }
           }
@@ -108,6 +107,7 @@
             align-items: center;
             justify-content: center;
             width: 100%;
+            font-size: 1rem;
             color: var(--composer-font-color-primary);
             &.active {
               background: var(--composer-primary-color);
@@ -133,12 +133,8 @@
             }
 
             .card-button {
-              padding: var(--composer-gap-md) 0;
               width: 100%;
-              border-radius: var(--composer-border-radius-sm);
-              background: var(--composer-primary-color);
-              color: var(--composer-font-color-secondary);
-              border: none;
+              justify-content: center;
             }
 
             .pricingTitle {
@@ -159,6 +155,7 @@
         color: var(--composer-font-color-primary);
 
         .title-bottom {
+          font-size: 1rem;
           display: flex;
           align-items: center;
           gap: var(--composer-gap-xs);

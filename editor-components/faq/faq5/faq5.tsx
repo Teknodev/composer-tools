@@ -14,7 +14,7 @@ type Item = {
   description: JSX.Element;
 }
 
-class FaqMiddle extends BaseFAQ {
+class Faq5 extends BaseFAQ {
   constructor(props?: any) {
     super(props, styles);
 
@@ -603,4 +603,4 @@ class FaqMiddle extends BaseFAQ {
   }
 }
 
-export default FaqMiddle;
+export default Faq5;

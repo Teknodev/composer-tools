@@ -4,6 +4,7 @@ import styles from "./pricing-table7.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type PricingItem = {
   itemText: string;
@@ -16,8 +17,7 @@ type MonthlyPlan = {
   duration: string;
   promoText: string;
   description: string;
-  buttonText: string;
-  link: string;
+  buttonType: INPUTS.CastedButton;
   item: PricingItem[];
   isActive: boolean;
   popular_settings: any;
@@ -159,19 +159,7 @@ class PricingTable7 extends BasePricingTable {
               displayer: "Description",
               value: "Our Basic Plan is the perfect entry point for those seeking essential features to get started.",
             },
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Purchase Now",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Button Link",
-              value: "",
-            },
-
+            INPUTS.BUTTON("button", "Button", "Join this plan", "", null, null, "Primary"),
             {
               type: "array",
               key: "item",
@@ -273,18 +261,8 @@ class PricingTable7 extends BasePricingTable {
               displayer: "Description",
               value: "Step up your game with our Pro Plan designed for those who demand more from their experience.",
             },
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Purchase Now",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Button Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "Join this plan", "", null, null, "Primary"),
+
             {
               type: "array",
               key: "item",
@@ -405,18 +383,8 @@ class PricingTable7 extends BasePricingTable {
               displayer: "Description",
               value: "The Advanced Plan is the pinnacle of our offerings,meticulously curated for those who demand excellence in every aspect.",
             },
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Purchase Now",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Button Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "Join this plan", "", null, null, "Primary"),
+
             {
               type: "array",
               key: "item",
@@ -564,18 +532,8 @@ class PricingTable7 extends BasePricingTable {
               displayer: "Description",
               value: "Our Basic Plan is the perfect entry point for those seeking essential features to get started.",
             },
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Purchase Now",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Button Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "Join this plan", "", null, null, "Primary"),
+
             {
               type: "array",
               key: "item",
@@ -677,18 +635,8 @@ class PricingTable7 extends BasePricingTable {
               displayer: "Description",
               value: "Step up your game with our Pro Plan designed for those who demand more from their experience.",
             },
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Purchase Now",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Button Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "Join this plan", "", null, null, "Primary"),
+
             {
               type: "array",
               key: "item",
@@ -809,18 +757,8 @@ class PricingTable7 extends BasePricingTable {
               displayer: "Description",
               value: "The Advanced Plan is the pinnacle of our offerings,meticulously curated for those who demand excellence in every aspect.",
             },
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Purchase Now",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Button Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "Join this plan", "", null, null, "Primary"),
+
             {
               type: "array",
               key: "item",
@@ -935,19 +873,17 @@ class PricingTable7 extends BasePricingTable {
 
   renderDurationItems() {
     const planType = this.getComponentState("plan_type");
-    const monthlyText = this.getPropValue("text", { as_string: true });
-    const yearlyText = this.getPropValue("text1", { as_string: true });
     const durationIcon = this.getPropValue("icon");
     const plansDiscountText = this.getPropValue("text2");
 
     return (
       <div className={this.decorateCSS("duration-items")}>
-        <Base.P className={`${this.decorateCSS("text")} ${planType === "monthly-plans" ? this.decorateCSS("active") : ""}`}>{monthlyText}</Base.P>
+        <Base.P className={`${this.decorateCSS("text")} ${planType === "monthly-plans" ? this.decorateCSS("active") : ""}`}>{this.getPropValue("text")}</Base.P>
         <div className={this.decorateCSS("switch")} onClick={this.togglePlanType.bind(this)}>
           <input className={this.decorateCSS("input")} type="checkbox" checked={planType === "yearly-plans"} />
           <span className={`${this.decorateCSS("slider")} ${this.decorateCSS("round")}`}></span>
         </div>
-        <Base.P className={`${this.decorateCSS("yearlyText")} ${planType === "yearly-plans" ? this.decorateCSS("active") : ""}`}>{yearlyText}</Base.P>
+        <Base.P className={`${this.decorateCSS("yearlyText")} ${planType === "yearly-plans" ? this.decorateCSS("active") : ""}`}>{ this.getPropValue("text1")}</Base.P>
         <ComposerIcon name={durationIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
         <Base.P className={this.decorateCSS("planDiscount")}>{plansDiscountText}</Base.P>
       </div>
@@ -958,12 +894,12 @@ class PricingTable7 extends BasePricingTable {
     const planType = this.getComponentState("plan_type");
     const monthly_plans = this.castToObject<MonthlyPlan[]>("monthly_plans");
     const yearly_plans = this.castToObject<YearlyPlan[]>("yearly_plans");
-    const monthlyText = this.getPropValue("text", { as_string: true });
-    const yearlyText = this.getPropValue("text1", { as_string: true });
-    const subtitle = this.getPropValue("subtitle", { as_string: true });
-    const title = this.getPropValue("title", { as_string: true });
-    const description = this.getPropValue("description", { as_string: true });
-    const isHoverActive = this.getPropValue("isHoverActive", { as_string: true });
+    const monthlyText = this.castToString(this.getPropValue("text"));
+    const yearlyText = this.castToString(this.getPropValue("text1"));
+    const subtitle = this.castToString(this.getPropValue("subtitle"));
+    const title = this.castToString(this.getPropValue("title"));
+    const description = this.castToString(this.getPropValue("description"));
+    const isHoverActive = this.getPropValue("isHoverActive");
 
     const line = this.getPropValue("line");
 
@@ -1032,9 +968,11 @@ class PricingTable7 extends BasePricingTable {
                       </Base.VerticalContent>
                     )}
 
-                    {this.castToString(pricing.buttonText) && (
-                      <ComposerLink path={pricing.link}>
-                        <Base.Button className={`${this.decorateCSS("button")} ${pricing.isActive ? this.decorateCSS("button-active") : ""}`}>{this.castToString(pricing.buttonText)}</Base.Button>
+                    {this.castToString(pricing.button.text) && (
+                      <ComposerLink path={pricing.button.url}>
+                        <Base.Button buttonType={pricing.button.type} className={`${this.decorateCSS("button")} ${pricing.isActive && this.decorateCSS("button-active")}`}>
+                          {pricing.button.text}
+                        </Base.Button>
                       </ComposerLink>
                     )}
                   </Base.VerticalContent>
