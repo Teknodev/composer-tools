@@ -5,7 +5,7 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
-class HTTP_CODES3 extends BaseHTTPCodes {
+class HttpCodes3 extends BaseHTTPCodes {
   constructor(props?: any) {
     super(props, styles);
 
@@ -91,4 +91,4 @@ class HTTP_CODES3 extends BaseHTTPCodes {
   }
 }
 
-export default HTTP_CODES3;
+export default HttpCodes3;

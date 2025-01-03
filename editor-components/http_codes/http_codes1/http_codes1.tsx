@@ -8,7 +8,7 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 type ButtonType = INPUTS.CastedButton;
 type ButtonsArray = ButtonType[];
 
-class HTTP_CODES1 extends BaseHTTPCodes {
+class HttpCodes1 extends BaseHTTPCodes {
   constructor(props?: any) {
     super(props, styles);
 
@@ -64,7 +64,7 @@ class HTTP_CODES1 extends BaseHTTPCodes {
               {hasRightSide && (
                 <div className={this.decorateCSS("right-side")}>
                   <Base.VerticalContent className={this.decorateCSS("right-content")}>
-                    {this.castToString(this.getPropValue("title")) && <div className={`${this.decorateCSS("title")} ${!image && this.decorateCSS("title-no-image")}`}>{this.getPropValue("title")}</div>}
+                    {this.castToString(this.getPropValue("title")) && <Base.SectionTitle className={`${this.decorateCSS("title")} ${!image && this.decorateCSS("title-no-image")}`}>{this.getPropValue("title")}</Base.SectionTitle>}
                     {this.castToString(this.getPropValue("description")) && <div className={`${this.decorateCSS("description")} ${!image && this.decorateCSS("description-no-image")}`}>{this.getPropValue("description")}</div>}
                     {buttons.length > 0 && (
                       <div className={`${this.decorateCSS("button-wrapper")} ${!image && this.decorateCSS("button-wrapper-no-image")}`}>
@@ -90,4 +90,4 @@ class HTTP_CODES1 extends BaseHTTPCodes {
   }
 }
 
-export default HTTP_CODES1;
+export default HttpCodes1;

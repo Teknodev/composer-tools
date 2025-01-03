@@ -46,8 +46,8 @@
           .right-content {
             gap: var(--composer-gap-md);
             .title {
-              color: var(--composer-font-color-primary);
               font-size: 4rem;
+              margin: 0;
               &.title-no-image {
                 text-align: center;
               }

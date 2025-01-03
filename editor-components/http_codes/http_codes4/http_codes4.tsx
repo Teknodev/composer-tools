@@ -6,7 +6,7 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
-class HTTP_CODES4 extends BaseHTTPCodes {
+class HttpCodes4 extends BaseHTTPCodes {
   constructor(props?: any) {
     super(props, styles);
 
@@ -55,7 +55,7 @@ class HTTP_CODES4 extends BaseHTTPCodes {
           <div className={this.decorateCSS("content")}>
             {(titleWords || descriptionWords || buttons?.length > 0) && (
               <Base.VerticalContent className={this.decorateCSS("left-side")}>
-                {titleWords && <Base.H3 className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.H3>}
+                {titleWords && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                 {descriptionWords && <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>}
 
                 {buttons?.length > 0 && (
@@ -91,4 +91,4 @@ class HTTP_CODES4 extends BaseHTTPCodes {
   }
 }
 
-export default HTTP_CODES4;
+export default HttpCodes4;
