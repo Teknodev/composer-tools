@@ -65,13 +65,16 @@
           flex-direction: column;
           flex: 1;
           gap: var(--composer-gap-lg);
+          align-items: start;
           .title{
             margin: 0;
             color: var(--composer-font-color-primary);
+            text-align: start;
           }
           .description{
             margin: 0;
             color: var(--composer-font-color-primary);
+            text-align: start;
           }
     
         }
@@ -84,7 +87,7 @@
           justify-content: end;
           height: fit-content;
           .button{
-    
+            content: "";
           }
         }
     
@@ -103,6 +106,7 @@
           flex-direction: column;
           gap: var(--composer-gap-xl);
           .content{
+            align-items: center;
             .title{
               text-align: center;
             }
