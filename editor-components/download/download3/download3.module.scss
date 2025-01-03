@@ -39,12 +39,17 @@
         }
         .button-group {
           .button {
-            width: 100%;
-
+            display: flex;
+            width: 170px;
+            height: 50px;
+            >div,>a{
+              width: 100% !important;
+            }
             .button-logo {
-              width: 200px;
-              height: 60px;
+              height: 100%;
+              width: 100%;
               object-fit: cover;
+              cursor: pointer;
               border-radius: var(--composer-border-radius-sm);
             }
             .button-element {
@@ -130,15 +135,6 @@
             gap: var(--composer-gap-md);
             justify-content: unset;
             width: 100%;
-            .button {
-              width: auto;
-              .button-logo {
-                width: 200px;
-                height: 60px;
-                object-fit: cover;
-                border-radius: var(--composer-border-radius-sm);
-              }
-            }
           }
         }
         .group-container-center{
@@ -171,19 +167,11 @@
             width: 100%;
           }
           .button-group {
-            flex-direction: row;
-            align-items: center;
-            flex-wrap: wrap;
-            justify-content: space-between;
             gap: var(--composer-gap-sm);
-            width: 100%;
             .button {
-              .button-logo {
-                height: 60px;
-                object-fit: cover;
-                border-radius: var(--composer-border-radius-sm);
-              }
-
+              width: 120px;
+              height: 50px;
+              margin: 0px;
               .button-element {
                 display: flex;
                 align-items: center;

@@ -98,9 +98,7 @@ class Download6 extends BaseDownload {
                         <div className={this.decorateCSS("button-wrapper")}>
                           <ComposerLink key={index} path={item.url}>
                             {item.image ? (
-                              <div>
-                                <img src={item.image} className={this.decorateCSS("button-image")} />
-                              </div>
+                              <img src={item.image} className={this.decorateCSS("button-image")} />
                             ) : (
                               (buttonTextExist || item.icon) && (
                                 <Base.Button buttonType={item.type} className={this.decorateCSS("button-element")}>

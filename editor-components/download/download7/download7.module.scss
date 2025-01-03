@@ -53,8 +53,8 @@
           gap: var(--composer-gap-md);
           .button-wrapper {
             .button-image {
-              min-width: 200px;
-              height: var(--composer-gap-xl);
+              width: 170px;
+              height:50px;
               border-radius: var(--composer-border-radius-sm);
               object-fit: cover;
             }
@@ -99,6 +99,19 @@
         .content-container {
           min-height: 600px;
           padding: var(--composer-gap-sm) var(--composer-gap-md);
+          .description{
+            text-align: center;
+          }
+          .buttons-container{
+            justify-content: center;
+            flex-direction: column;
+            .button-wrapper{
+              .button-image{
+                width: 120px;
+                height: 40px;
+              }
+            }
+          }
         }
       }
     }

@@ -34,8 +34,8 @@
           height: auto;
 
           .button-image {
-            width: 200px;
-            height: 60px;
+            width: 170px;
+            height: 50px;
             object-fit: cover;
             border-radius: var(--composer-border-radius-sm);
           }
@@ -124,6 +124,14 @@
       .page {
         flex-direction: column;
         gap: var(--composer-gap-md);
+        .left-container{
+          .button-group{
+            .button-image{
+              width: 150px;
+              height: 40px;
+            }
+          }
+        }
 
         .right-container {
           width: 100%;

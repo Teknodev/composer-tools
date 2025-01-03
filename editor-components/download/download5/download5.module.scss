@@ -35,14 +35,25 @@ $min-height: 500px;
         display: flex;
         flex-wrap: wrap;
         align-items: center;
-        gap: var(--composer-gap-md);
+        gap: var(--composer-gap-sm);
         .button-wrapper {
+          width: 170px;
+          height: 50px;
+          >div, >a{
+            width: 100% !important;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
           .button-image {
-            min-width: 170px;
-            height: var(--composer-gap-xl);
+            height: 100%;
+            width: 100%;
+            cursor: pointer;
             border-radius: var(--composer-border-radius-sm);
             object-fit: cover;
           }
+        }
           .button-element {
             .icon {
               content: "";
@@ -51,7 +62,7 @@ $min-height: 500px;
               content: "";
             }
           }
-        }
+    
         &.center {
           justify-content: center;
         }
