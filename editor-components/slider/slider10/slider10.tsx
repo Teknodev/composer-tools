@@ -304,7 +304,7 @@ class Slider10 extends BaseSlider {
       slidesToShow: 1,
       slidesToScroll: 1,
       fade: true,
-      beforeChange: (current: number, next: number) => {
+      beforeChange: (_: number, next: number) => {
         this.setComponentState("active", next);
       },
     };

@@ -2,7 +2,6 @@ import * as React from "react";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { BaseSlider } from "../../EditorComponent";
 import styles from "./slider4.module.scss";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 

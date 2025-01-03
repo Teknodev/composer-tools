@@ -1,22 +1,25 @@
 @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
+$minusLeft: calc(var(--composer-gap-lg) * -1);
+$left: var(--composer-gap-lg);
+
 @keyframes moveRight {
     from {
-        transform: translateY(-50%) translateX(-30px);
+        transform: translateY(-50%) translateX($minusLeft);
     }
 
     to {
-        transform: translateY(-50%) translateX(30px);
+        transform: translateY(-50%) translateX($left);
     }
 }
 
 @keyframes moveLeft {
     from {
-        transform: translateY(-50%) translateX(30px);
+        transform: translateY(-50%) translateX($left);
     }
 
     to {
-        transform: translateY(-50%) translateX(-30px);
+        transform: translateY(-50%) translateX($minusLeft);
     }
 }
 
@@ -204,11 +207,11 @@
                         }
 
                         .horizontalPreviousArrow {
-                            left: -30px;
+                            left: $minusLeft;
                         }
 
                         .horizontalNextArrow {
-                            right: -30px;
+                            right: $minusLeft;
                         }
                     }
 
@@ -313,21 +316,21 @@
                             }
 
                             .overlay-left-button {
-                                left: 50px;
+                                left:var(--composer-gap-xl);
                                 top: 50%;
                                 transform: translateY(-50%);
                             }
 
                             .overlay-right-button {
-                                right: 50px;
+                                right:var(--composer-gap-xl);
                                 top: 50%;
                                 transform: translateY(-50%);
                             }
 
                             .close-button-wrapper {
                                 position: absolute;
-                                top: 20px;
-                                right: 20px;
+                                top: var(--composer-gap-md);
+                                right: var(--composer-gap-md);
                                 color: #fff;
                                 cursor: pointer;
                                 z-index: 10;
@@ -403,8 +406,8 @@
 
                     .close-button-wrapper {
                         position: absolute;
-                        top: 10px;
-                        right: 10px;
+                        top: var(--composer-gap-sm);
+                        right: var(--composer-gap-sm);
                         color: #fff;
                         cursor: pointer;
                         z-index: 10;
@@ -492,11 +495,11 @@
                         .horizontalArrows {
 
                             .horizontalPreviousArrow {
-                                left: -30px;
+                                left: $minusLeft;
                             }
 
                             .horizontalNextArrow {
-                                right: -30px;
+                                right: $minusLeft;
                             }
                         }
 
@@ -526,17 +529,17 @@
                             .fullscreen-overlay {
 
                                 .overlay-left-button {
-                                    left: 40px;
+                                    left: var(--composer-gap-lg);
                                 }
 
                                 .overlay-right-button {
-                                    right: 40px;
+                                    right: var(--composer-gap-lg);
                                 }
 
                                 .close-button-wrapper {
                                     .close-button {
-                                        width: 30px;
-                                        height: 30px;
+                                        width: $left;
+                                        height: $left;
                                     }
                                 }
                             }
@@ -544,8 +547,8 @@
 
                         .close-button-wrapper {
                             .close-button {
-                                width: 30px;
-                                height: 30px;
+                                width: $left;
+                                height: $left;
                             }
                         }
                     }
@@ -586,11 +589,11 @@
                         .horizontalArrows {
 
                             .horizontalPreviousArrow {
-                                left: -30px;
+                                left: $minusLeft;
                             }
 
                             .horizontalNextArrow {
-                                right: -30px;
+                                right: $minusLeft;
                             }
                         }
 
@@ -623,11 +626,11 @@
                                 }
 
                                 .overlay-left-button {
-                                    left: 5px;
+                                    left: var(--composer-gap-xs);
                                 }
 
                                 .overlay-right-button {
-                                    right: 5px;
+                                    right: var(--composer-gap-xs);
                                 }
                             }
 
