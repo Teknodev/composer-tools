@@ -205,7 +205,7 @@ class Slider7 extends BaseSlider {
         }
       ],
 
-      beforeChange: (current: number, next: number) => {
+      beforeChange: (_: number, next: number) => {
         this.setComponentState("centerSlide", next);
       },
     };
