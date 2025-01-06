@@ -61,15 +61,21 @@ class Cookies2 extends BaseModal {
 
             {textExist && <Base.P className={this.decorateCSS("text")}>{this.getPropValue("text")}</Base.P>}
 
-            <div className={this.decorateCSS("button-wrapper")}>
-              <Base.Button onClick={this.handleAccept} buttonType={buttonAccept.type} className={this.decorateCSS("button")}>
-                {buttonAccept.text}
-              </Base.Button>
+            {(this.castToString(buttonAccept.text) || this.castToString(buttonDecline.text)) && (
+              <div className={this.decorateCSS("button-wrapper")}>
+                {this.castToString(buttonAccept.text) && (
+                  <Base.Button onClick={this.handleAccept} buttonType={buttonAccept.type} className={this.decorateCSS("button")}>
+                    {buttonAccept.text}
+                  </Base.Button>
+                )}
 
-              <Base.Button onClick={this.handleDecline} buttonType={buttonDecline.type} className={this.decorateCSS("button")}>
-                {buttonDecline.text}
-              </Base.Button>
-            </div>
+                {this.castToString(buttonDecline.text) && (
+                  <Base.Button onClick={this.handleDecline} buttonType={buttonDecline.type} className={this.decorateCSS("button")}>
+                    {buttonDecline.text}
+                  </Base.Button>
+                )}
+              </div>
+            )}
           </div>
         </Base.MaxContent>
       </Base.Container>
