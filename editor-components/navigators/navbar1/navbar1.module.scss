@@ -230,7 +230,7 @@
     max-height: 0;
 
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
+    z-index: 100;
     overflow: hidden;
     transition: all 0.3s linear;
 
@@ -379,16 +379,19 @@
     .languageIcon {
       color: white;
     }
+
+    .button{
+      &.Tertiary,
+      &.Link {
+        color: white !important;
+        border-color: white !important;
+       }
+    }
   }
 
   .hamburgerIcon {
     color: white;
   }
-}
-
-.white {
-  color: white !important;
-  border-color: white !important;
 }
 
 @container (max-width: #{$composer-tablet-width-lg}) {

@@ -28,6 +28,7 @@ interface Language {
   label: "code" | "name";
   icon: string;
   showLanguage: boolean;
+  showDivider: boolean;
 }
 
 class Navbar1 extends BaseNavigator {
@@ -1141,6 +1142,12 @@ class Navbar1 extends BaseNavigator {
           displayer: "Show Language",
           value: true,
         },
+        {
+          type: "boolean",
+          key: "showDivider",
+          displayer: "Show Divider",
+          value: true,
+        },
       ],
     });
 
@@ -1375,14 +1382,12 @@ class Navbar1 extends BaseNavigator {
                 {buttons.map((button) => (
                   <ComposerLink path={button.url}>
                     <Base.Button
-                      className={`${
+                      className={`${this.decorateCSS("button")} ${
                         transparentBackground &&
-                        (button.type === "Tertiary" ||
-                          button.type === "Link") &&
                         !hamburgerNavActive
-                          ? this.decorateCSS("white")
+                          ? this.decorateCSS(`${button.type}`)
                           : ""
-                      } ${this.decorateCSS("button")}`}
+                      }`}
                       buttonType={button.type}
                     >
                       {button.text}
@@ -1406,7 +1411,7 @@ class Navbar1 extends BaseNavigator {
                 dropdownContentClassName={this.decorateCSS(
                   "localizationContent"
                 )}
-                divider={divider}
+                divider={language.showDivider}
               />
             )}
 
