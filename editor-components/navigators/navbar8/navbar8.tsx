@@ -5,7 +5,6 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "composer-tools/composer-base-components/base/base";
 import ComposerLanguage from "composer-tools/composer-base-components/language/language";
-import { TiThSmall } from "react-icons/ti";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Icon = {
@@ -14,20 +13,20 @@ type Icon = {
 };
 
 type MenuItems = {
-  item: JSX.Element;
+  title: JSX.Element;
   url: string;
 };
 
 interface Logo {
   image: string;
   navigateTo: string;
-  alt: string;
 }
 
 interface Language {
   label: "code" | "name";
   icon: string;
   showLanguage: boolean;
+  showDivider: boolean;
 }
 
 class Navbar8 extends BaseNavigator {
@@ -54,12 +53,6 @@ class Navbar8 extends BaseNavigator {
           value: "",
           displayer: "Navigate To",
         },
-        {
-          type: "string",
-          key: "alt",
-          value: "Logo",
-          displayer: "Alt",
-        },
       ],
     });
 
@@ -80,12 +73,6 @@ class Navbar8 extends BaseNavigator {
           key: "navigateTo",
           value: "",
           displayer: "Navigate To",
-        },
-        {
-          type: "string",
-          key: "alt",
-          value: "Logo",
-          displayer: "Alt",
         },
       ],
     });
@@ -130,6 +117,12 @@ class Navbar8 extends BaseNavigator {
           displayer: "Show Language",
           value: true,
         },
+        {
+          type: "boolean",
+          key: "showDivider",
+          displayer: "Show Divider",
+          value: true,
+        },
       ],
     });
 
@@ -158,8 +151,8 @@ class Navbar8 extends BaseNavigator {
           value: [
             {
               type: "string",
-              key: "item",
-              displayer: "Item",
+              key: "title",
+              displayer: "Title",
               value: "Home",
             },
             {
@@ -177,8 +170,8 @@ class Navbar8 extends BaseNavigator {
           value: [
             {
               type: "string",
-              key: "item",
-              displayer: "Item",
+              key: "title",
+              displayer: "Title",
               value: "About",
             },
             {
@@ -196,8 +189,8 @@ class Navbar8 extends BaseNavigator {
           value: [
             {
               type: "string",
-              key: "item",
-              displayer: "Item",
+              key: "title",
+              displayer: "Title",
               value: "Portfolio",
             },
             {
@@ -215,8 +208,8 @@ class Navbar8 extends BaseNavigator {
           value: [
             {
               type: "string",
-              key: "item",
-              displayer: "Item",
+              key: "title",
+              displayer: "Title",
               value: "Contact",
             },
             {
@@ -420,7 +413,7 @@ class Navbar8 extends BaseNavigator {
               : ""
           }`}
         >
-          {currentLogo && (
+          {currentLogo.image && (
             <div className={this.decorateCSS("logo")}>
               <ComposerLink href={currentLogo.navigateTo}>
                 <img
@@ -432,27 +425,31 @@ class Navbar8 extends BaseNavigator {
           )}
           {titleContainer && (
             <div className={this.decorateCSS("titleContainer")}>
-              {title && <h1 className={this.decorateCSS("title")}>{title}</h1>}
-              {subtitle && (
-                <h4 className={this.decorateCSS("subtitle")}>{subtitle}</h4>
-              )}
+              <div className={this.decorateCSS("titleContainerContent")}>
+                {title && <h1 className={this.decorateCSS("title")}>{title}</h1>}
+                {subtitle && (
+                  <h4 className={this.decorateCSS("subtitle")}>{subtitle}</h4>
+                )}
+              </div>
             </div>
           )}
 
           <div className={this.decorateCSS("icons")}>
-            {language.showLanguage && (
+          {language.showLanguage && (
               <ComposerLanguage
                 type="dropdown"
                 title={language.label}
-                icon={
-                  <ComposerIcon
-                    name={language.icon}
-                    propsIcon={{
-                      className: `${this.decorateCSS("language-icon")}`,
-                    }}
-                  />
-                }
-                dropdownClassName={this.decorateCSS("localizationDropdown")}
+                icon={language.icon}
+                dropdownButtonClassName={`${this.decorateCSS("localization")}`}
+                dropdownLabelClassName={`${this.decorateCSS(
+                  "localizationLabel"
+                )}`}
+                iconClassName={this.decorateCSS("languageIcon")}
+                dropdownItemClassName={this.decorateCSS("localizationItem")}
+                dropdownContentClassName={this.decorateCSS(
+                  "localizationContent"
+                )}
+                divider={language.showDivider}
               />
             )}
             {isMenuOpen ? (
@@ -474,7 +471,14 @@ class Navbar8 extends BaseNavigator {
             )}
           </div>
 
-          <Base.Container
+        </Base.MaxContent>
+        <div
+          className={`${
+            isMenuOpen ? this.decorateCSS("overlay") : ""
+          }`}
+          onClick={() => this.handleCloseMenu()}
+        />
+               <Base.Container
             className={`${this.decorateCSS("dropdownMenuContainer")} ${
               isMenuOpen ? this.decorateCSS("open") : ""
             }`}
@@ -501,14 +505,14 @@ class Navbar8 extends BaseNavigator {
               )}
               {leftSide && (
                 <div className={this.decorateCSS("dropdownItemList")}>
-                  {itemList.map((item: any, index: number) => (
+                  {itemList.map((item: MenuItems, index: number) => this.castToString(item.title) && (
                     <div
                       className={this.decorateCSS("dropdownItem")}
                       key={index}
                     >
                       <ComposerLink href={item.url}>
                         <p className={this.decorateCSS("dropdownItem")}>
-                          {item.item}
+                          {item.title}
                         </p>
                       </ComposerLink>
                     </div>
@@ -542,7 +546,6 @@ class Navbar8 extends BaseNavigator {
               )}
             </Base.MaxContent>
           </Base.Container>
-        </Base.MaxContent>
       </Base.Navigator.Container>
     );
   }
