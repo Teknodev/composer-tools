@@ -5,7 +5,7 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-class DownloadCard1 extends BaseDownload {
+class Download1 extends BaseDownload {
   constructor(props?: any) {
     super(props, styles);
 
@@ -99,4 +99,4 @@ class DownloadCard1 extends BaseDownload {
   }
 }
 
-export default DownloadCard1;
+export default Download1;
