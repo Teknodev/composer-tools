@@ -15,9 +15,7 @@ type Card = {
   number: JSX.Element;
 };
 
-
 class Slider2 extends BaseSlider {
-
   constructor(props?: any) {
     super(props, styles);
 
@@ -202,7 +200,7 @@ class Slider2 extends BaseSlider {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661ca8fbd2970002c6294df?alt=media&timestamp=1719584962578",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/677297550655f8002caea7ff?alt=media",
             },
             {
               type: "string",
@@ -216,8 +214,8 @@ class Slider2 extends BaseSlider {
     });
 
     this.setComponentState("active_index", 0);
-    this.setComponentState("text", this.castToString(this.castToObject<Card[]>("slider")[0].text))
-    this.setComponentState("text_visibility", true)
+    this.setComponentState("text", this.castToObject<Card[]>("slider")[0].text);
+    this.setComponentState("text_visibility", true);
   }
 
   getName(): string {
@@ -227,7 +225,7 @@ class Slider2 extends BaseSlider {
   render() {
     const settings = {
       arrows: false,
-      autoplay: false,
+      autoplay: true,
       dots: false,
       infinite: true,
       speed: 1000,
@@ -248,7 +246,7 @@ class Slider2 extends BaseSlider {
           breakpoint: 640,
           settings: {
             slidesToShow: 1.5,
-            slidesToScroll: 1
+            slidesToScroll: 1,
           },
         },
       ],
@@ -260,7 +258,7 @@ class Slider2 extends BaseSlider {
         this.setComponentState("text_visibility", false);
         setTimeout(() => {
           this.setComponentState("text_visibility", true);
-          this.setComponentState("text", this.castToString(nextSlideData?.text));
+          this.setComponentState("text", nextSlideData?.text);
         }, 200);
       },
     };
@@ -272,60 +270,61 @@ class Slider2 extends BaseSlider {
             <div className={this.decorateCSS("overlay")}>
               {this.castToObject<Card[]>("slider").map((slide, index) => {
                 const isActive = this.getComponentState("active_index") === index;
-                if (!slide.image) return null;
                 return (
-                  <img
-                    key={index}
-                    src={slide.image}
-                    className={`
+                  slide.image && (
+                    <img
+                      key={index}
+                      src={slide.image}
+                      className={`
                       ${this.decorateCSS("image")} 
-                      ${isActive && this.decorateCSS("active")}`
-                    }
-                  />
+                      ${isActive && this.decorateCSS("active")}`}
+                    />
+                  )
                 );
               })}
             </div>
           </div>
-          {this.getComponentState("text") && <div className={this.decorateCSS("text-box")}>
-            <Base.P
-              className={`${this.decorateCSS("text")} 
-              ${this.getComponentState("text_visibility") && this.decorateCSS("visible")}`}>
-              {this.getComponentState("text")}
-            </Base.P>
-          </div>}
-          <ComposerSlider
-            {...settings}
-            className={this.decorateCSS("carousel")}>
-            {this.castToObject<Card[]>("slider").map(
-              (item: Card, indexSlider: number) => {
-                const isActive = this.getComponentState("active_index") === indexSlider;
+          {this.getComponentState("text") && (
+            <div className={this.decorateCSS("text-box")}>
+              <Base.P
+                className={`${this.decorateCSS("text")} 
+              ${this.getComponentState("text_visibility") && this.decorateCSS("visible")}`}
+              >
+                {this.getComponentState("text")}
+              </Base.P>
+            </div>
+          )}
+          <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
+            {this.castToObject<Card[]>("slider").map((item: Card, indexSlider: number) => {
+              const isActive = this.getComponentState("active_index") === indexSlider;
 
-                return <div key={indexSlider} className={this.decorateCSS("card")}>
-                  <button className={this.decorateCSS("button")} onMouseOver={() => {
+              return (
+                <div key={indexSlider} className={this.decorateCSS("card")}>
+                  <button
+                    className={this.decorateCSS("button")}
+                    onMouseOver={() => {
+                      const isIndexSame = this.getComponentState("active_index") === indexSlider;
+                      if (isIndexSame) return;
 
-                    const isIndexSame = this.getComponentState("active_index") === indexSlider;
-                    if (isIndexSame) return;
-
-                    this.setComponentState("active_index", indexSlider);
-                    this.setComponentState("text_visibility", false);
-                    setTimeout(() => {
-                      this.setComponentState("text_visibility", true);
-                      this.setComponentState("text", this.castToString(item.text));
-                    }, 200);
-                  }}>
+                      this.setComponentState("active_index", indexSlider);
+                      this.setComponentState("text_visibility", false);
+                      setTimeout(() => {
+                        this.setComponentState("text_visibility", true);
+                        this.setComponentState("text", item.text);
+                      }, 200);
+                    }}
+                  >
                     <ComposerLink key={indexSlider} path={item.url}>
-                      {this.castToString(item.number) &&
-                        <p className={this.decorateCSS("number")}>{item.number}</p>}
-                      {this.castToString(item.button) &&
-                        <span className={`${this.decorateCSS("text")} ${isActive && this.decorateCSS("active")}`}>{item.button}</span>}
+                      {this.castToString(item.number) && <p className={this.decorateCSS("number")}>{item.number}</p>}
+                      {this.castToString(item.button) && <span className={`${this.decorateCSS("text")} ${isActive && this.decorateCSS("active")}`}>{item.button}</span>}
                     </ComposerLink>
                   </button>
                 </div>
-              }
-            )}
+              );
+            })}
           </ComposerSlider>
         </Base.MaxContent>
-      </Base.Container >
+      </Base.Container>
     );
   }
 }
