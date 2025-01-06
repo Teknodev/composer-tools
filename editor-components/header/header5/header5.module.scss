@@ -9,11 +9,11 @@
       height: 100%;
 
       &.with-image {
-        border-radius: var(--composer-border-radius-xs);
+        border-bottom-left-radius: var(--composer-border-radius-sm);
+        border-bottom-right-radius: var(--composer-border-radius-sm);
         overflow: hidden;
         background-size: cover;
         background-position: center;
-        border-radius: var(--composer-gap-xs);
 
         .sub-title,
         .title,

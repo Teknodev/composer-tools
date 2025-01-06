@@ -34,7 +34,8 @@
 
       .slider-item-inner-container {
         height: 40vw;
-        border-radius: var(--composer-border-radius-xs);
+        border-bottom-left-radius: var(--composer-border-radius-xs);
+        border-bottom-right-radius: var(--composer-border-radius-xs);
       }
 
       div {

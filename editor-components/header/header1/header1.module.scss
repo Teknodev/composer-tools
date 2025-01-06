@@ -447,7 +447,7 @@
   }
 }
 
-@container (min-width: #{$composer-phone-width-sm}) and (max-width: #{$composer-phone-width-lg}) {
+@container (max-width: #{$composer-tablet-width-lg}) {
   @include titleSize(6rem !important);
 
   .container {
@@ -464,11 +464,14 @@
     }
     .max-content {
       .wrapper {
-        .background-text {
-          line-height: 1 !important;
-          font-size: calc(60rem + 10vh) !important;
-        }
         .return-container {
+          .background-container{
+            height: 150%;
+            top: -25%;
+            .background-text{
+              font-size: 50rem;
+            }
+          }
           .content-container {
             width: 80% !important;
             .image-wrapper,
@@ -514,10 +517,6 @@
   }
 }
 
-@container (min-width: #{$composer-phone-width-lg}) and (max-width: #{$composer-desktop-width}) {
-  @include titleSize(9rem !important);
-}
-
-@container (max-width : #{$composer-phone-width-sm}) {
+@container (max-width : #{$composer-phone-width}) {
   @include titleSize(4rem !important);
 }
