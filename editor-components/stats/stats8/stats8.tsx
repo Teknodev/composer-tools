@@ -296,7 +296,6 @@ class Stats8Page extends BaseStats {
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        {/* <Base.MaxContent className={!isContentPresent ? this.decorateCSS("max-content") : this.decorateCSS("max-content")}> */}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {isContentPresent && (
             <Base.VerticalContent className={this.decorateCSS("stats8-page")}>
@@ -343,7 +342,7 @@ class Stats8Page extends BaseStats {
                   {(this.getComponentState("overlayNumberDisplay") || overlayDescription) && (
                     <div className={this.decorateCSS("overlay")}>
                       {this.getComponentState("overlayNumberDisplay") && <span className={this.decorateCSS("number")}>{this.getComponentState("overlayNumberDisplay")}</span>}
-                      {overlayDescription && <Base.P className={this.decorateCSS("description")}>{overlayDescription}</Base.P>}
+                      {overlayDescription && <Base.P className={this.decorateCSS("description")}>{this.getPropValue("overlayDescription")}</Base.P>}
                     </div>
                   )}
                 </div>

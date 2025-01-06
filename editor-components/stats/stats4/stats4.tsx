@@ -252,7 +252,7 @@ class Stats4Page extends BaseStats {
   }
 
   init() {
-    this.castToObject<Stat[]>("statItems").map((card, index) => {
+    this.castToObject<Stat[]>("statItems").map((_, index) => {
       this.setComponentState(`number-${index}`, 0);
       this.setComponentState(`numberForControl-${index}`, 0);
     });

@@ -122,7 +122,7 @@ class Stats1Page extends BaseStats {
   }
 
   init() {
-    this.castToObject<CardData[]>("card-list").map((statsData, index) => {
+    this.castToObject<CardData[]>("card-list").map((_, index) => {
       this.setComponentState(`number-${index}`, "");
       this.setComponentState(`numberForControl-${index}`, "");
     });
@@ -184,12 +184,9 @@ class Stats1Page extends BaseStats {
           let nextValue = Math.min(numericPart, currentNumber + Math.ceil(numericPart / Math.round(incrementValue / 30)));
 
           let formattedNextValue = nextValue ? nextValue.toString() : "";
-
           const formattedNextValueWithDots = this.formatNumberWithDots(formattedNextValue) === "0" ? "" : this.formatNumberWithDots(formattedNextValue);
-
-          var updatedValue = currentNumber > 0 ? newNonNumericPrefix + formattedNextValueWithDots + newNonNumericSuffix : newNonNumericPrefix + formattedNextValueWithDots;
-
-          var updatedValueForControl = currentNumber > 0 ? newNonNumericPrefix + formattedNextValue + newNonNumericSuffix : newNonNumericPrefix + formattedNextValue;
+          const updatedValue = currentNumber > 0 ? newNonNumericPrefix + formattedNextValueWithDots + newNonNumericSuffix : newNonNumericPrefix + formattedNextValueWithDots;
+          const updatedValueForControl = currentNumber > 0 ? newNonNumericPrefix + formattedNextValue + newNonNumericSuffix : newNonNumericPrefix + formattedNextValue;
 
           this.setComponentState(`number-${index}`, updatedValue);
 
