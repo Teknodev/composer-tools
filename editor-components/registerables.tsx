@@ -227,6 +227,7 @@ import LocationComponent5 from "./location/location5/location5";
 import LocationComponent2 from "./location/location2/location2";
 import ConfirmationModal2 from "./modal/confirmation-modal-2/confirmation-modal-2";
 import LocationComponent4 from "./location/location4/location4";
+import Cookies3 from "./cookies/cookies3/cookies3";
 
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
@@ -458,6 +459,7 @@ function Registerables(composer: ComponentsRegistery) {
     HttpCodes4,
     HttpCodes1,
     ConfirmationModal2,
+    Cookies3,
   ]);
 }
 
