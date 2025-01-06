@@ -223,11 +223,12 @@ class Slider2 extends BaseSlider {
   }
 
   render() {
+    const slider = this.castToObject<Card[]>("slider");
     const settings = {
       arrows: false,
       autoplay: true,
       dots: false,
-      infinite: true,
+      infinite: slider.length > 2,
       speed: 1000,
       variableWidth: true,
       slidesToShow: 2.5,
