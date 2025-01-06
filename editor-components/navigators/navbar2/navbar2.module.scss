@@ -187,6 +187,18 @@
       right: var(--composer-gap-xl);
     }
 
+    .overlay {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: var(--composer-overlay-color);
+      z-index: 102;
+    }
+  
+
     .mobileMenu {
       display: none;
       position: fixed;
@@ -343,15 +355,20 @@
       .divider {
         background-color: white;
       }
-      .languageDropdownLabel {
-        color: white;
+      .localization {
+
+        .languageIcon{
+          color: white;
+        }
+        .localizationLabel{
+          color: white;
+        }
       }
     }
-    .mobileMenuButton {
       .menuIcon {
         color: white;
       }
-    }
+
     .languageAccordionItem {
       color: color;
     }
@@ -380,6 +397,12 @@
       .menuIcon, .closeIcon{
         display: block;
       } 
+      .overlay {
+        &.overlayActive {
+          display: block;
+          transition: all 0.3s ease;
+        }
+      }
       .mobileMenu {
         display: flex;
         flex-direction: column;

@@ -15,13 +15,13 @@ type Item = {
 interface Logo {
   image: string;
   navigateTo: string;
-  alt: string;
 }
 
 interface Language {
   label: "code" | "name";
   icon: string;
   showLanguage: boolean;
+  showDivider: boolean;
 }
 
 class Navbar2 extends BaseNavigator {
@@ -1025,12 +1025,6 @@ class Navbar2 extends BaseNavigator {
           value: "",
           displayer: "Navigate To",
         },
-        {
-          type: "string",
-          key: "alt",
-          value: "Logo",
-          displayer: "Alt",
-        },
       ],
     });
 
@@ -1051,12 +1045,6 @@ class Navbar2 extends BaseNavigator {
           key: "navigateTo",
           value: "",
           displayer: "Navigate To",
-        },
-        {
-          type: "string",
-          key: "alt",
-          value: "Logo",
-          displayer: "Alt",
         },
       ],
     });
@@ -1120,6 +1108,12 @@ class Navbar2 extends BaseNavigator {
           key: "showLanguage",
           displayer: "Show Language",
           value: true,
+        },
+        {
+          type: "boolean",
+          key: "showDivider",
+          displayer: "Show Divider",
+          value: false,
         },
       ],
     });
@@ -1185,15 +1179,14 @@ class Navbar2 extends BaseNavigator {
     const isScrolled = this.getComponentState("isScrolled");
     const isStickyTransparent = position === "Sticky Transparent";
     const isAbsolute = position === "Absolute";
-    const transparentBackground = isStickyTransparent && !isScrolled;
-    
-    const currentLogo = (isStickyTransparent && !isScrolled) || isAbsolute
-      ? absoluteLogo
-      : defaultLogo;
+    const transparentBackground =
+      (isStickyTransparent && !isScrolled) || isAbsolute;
+
+    const currentLogo =
+      transparentBackground ? absoluteLogo : defaultLogo;
     const menuItems = this.castToObject<Item[]>("menuItems");
     const isMobileMenuOpen = this.getComponentState("isMobileMenuOpen");
     const divider = this.getPropValue("divider");
-    const changeBackground = this.getComponentState("changeBackground");
     const language = this.castToObject<Language>("language");
 
     return (
@@ -1213,7 +1206,6 @@ class Navbar2 extends BaseNavigator {
               <div className={this.decorateCSS("logo")}>
                 <img
                   src={currentLogo.image}
-                  alt={currentLogo.alt}
                   className={this.decorateCSS("logoImg")}
                 />
               </div>
@@ -1221,8 +1213,8 @@ class Navbar2 extends BaseNavigator {
           )}
           {menuItems.length > 0 && (
             <nav className={this.decorateCSS("pcNavbar")}>
-              {this.getPropValue("menuItems") &&
-                menuItems.map((item: any, index: any) => (
+              {
+                menuItems.map((item: any, index: any) =>  this.castToString(item.title) && (
                   <div
                     key={index}
                     className={this.decorateCSS("menuItemContainer")}
@@ -1245,7 +1237,7 @@ class Navbar2 extends BaseNavigator {
                     {item.menuType === "Dropdown" && (
                       <div className={this.decorateCSS("dropdown")}>
                         {item.sub_items?.map(
-                          (subItem: any, subIndex: number) => (
+                          (subItem: any, subIndex: number) => this.castToString(subItem.title) && (
                             <div
                               key={subIndex}
                               className={this.decorateCSS(
@@ -1324,23 +1316,23 @@ class Navbar2 extends BaseNavigator {
                 ))}
               {divider && <div className={this.decorateCSS("divider")} />}
               {language.showLanguage && (
-                <div className={this.decorateCSS("localization")}>
-                  <ComposerLanguage
-                    type="dropdown"
-                    title={language.label}
-                    dropdownClassName={this.decorateCSS(
-                      "languageDropdownLabel"
-                    )}
-                    icon={
-                      <ComposerIcon
-                        name={language.icon}
-                        propsIcon={{
-                          className: this.decorateCSS("languageIcon"),
-                        }}
-                      />
-                    }
-                  />
-                </div>
+                <ComposerLanguage
+                  type="dropdown"
+                  title={language.label}
+                  icon={language.icon}
+                  dropdownButtonClassName={`${this.decorateCSS(
+                    "localization"
+                  )}`}
+                  dropdownLabelClassName={`${this.decorateCSS(
+                    "localizationLabel"
+                  )}`}
+                  iconClassName={this.decorateCSS("languageIcon")}
+                  dropdownItemClassName={this.decorateCSS("localizationItem")}
+                  dropdownContentClassName={this.decorateCSS(
+                    "localizationContent"
+                  )}
+                  divider={language.showDivider}
+                />
               )}
             </nav>
           )}
@@ -1352,6 +1344,13 @@ class Navbar2 extends BaseNavigator {
               onClick: this.toggleMobileMenu,
             }}
           />
+
+<div
+          className={`${this.decorateCSS("overlay")} ${
+            isMobileMenuOpen ? this.decorateCSS("overlayActive") : ""
+          }`}
+          onClick={() => this.toggleMobileMenu()}
+        />
 
           <div
             className={`${this.decorateCSS("mobileMenu")} ${
@@ -1368,10 +1367,11 @@ class Navbar2 extends BaseNavigator {
 
             {menuItems.length > 0 && (
               <nav className={this.decorateCSS("hamburgerMenu")}>
-                {menuItems.map((item: any, index: number) => (
-                  <div
-                    key={index}
-                    className={this.decorateCSS("hamburgerMenuItem")}
+                {menuItems.map((item: any, index: number) =>
+                  this.castToString(item.title) && (
+                    <div
+                      key={index}
+                      className={this.decorateCSS("hamburgerMenuItem")}
                   >
                     <div
                       className={this.decorateCSS("hamburgerMenuItemHeader")}
