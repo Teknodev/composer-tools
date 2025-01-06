@@ -134,6 +134,7 @@
           .radio-input {
             margin-right: var(--composer-gap-xs);
             cursor: pointer;
+            display: flex !important;
           }
         }
         .error {

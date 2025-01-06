@@ -25,11 +25,11 @@
             font-size: 1.5rem;
             margin: var(--composer-gap-xs);
             color: white;
-          }
-          .icon-no-image {
-            font-size: 1.5rem;
-            margin: var(--composer-gap-xs);
-            color: var(--composer-font-color-primary);
+            &.no-image{
+              font-size: 1.5rem;
+              margin: var(--composer-gap-xs);
+              color: var(--composer-font-color-primary);
+            }
           }
         }
 
@@ -71,17 +71,20 @@
           .terms-container {
             .terms {
               width: 100%;
+              display: flex;
+              align-items: center;
               .termsDescription {
                 color: var(--composer-font-color-primary);
                 display: inline;
+                margin: 0px;
               }
 
-              .termsText {
-                color: var(--composer-font-color-primary);
-                display: inline-block;
-                margin-left: var(--composer-gap-xs);
-                text-decoration: underline;
-                cursor: pointer;
+              .termsButton {
+                display: flex;
+                height: fit-content;
+                .termsText{
+                  margin-left: var(--composer-gap-xs);
+                }
               }
             }
           }
@@ -89,8 +92,10 @@
 
         .button-background {
           display: flex;
-          justify-content: center;
           gap: var(--composer-gap-md);
+          .button{
+            content: "";
+          }
         }
       }
     }

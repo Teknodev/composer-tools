@@ -5,6 +5,7 @@ import styles from "./terms-of-use.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Button = {
   buttonText: JSX.Element;
@@ -42,21 +43,7 @@ class TermsOfUseModal extends BaseModal {
       displayer: "Terms Description",
       value: "To proceed, please accept our",
     });
-
-    this.addProp({
-      type: "string",
-      key: "termsText",
-      displayer: "Terms Text",
-      value: "Terms and Conditions",
-    });
-
-    this.addProp({
-      type: "page",
-      key: "termsLink",
-      displayer: "Terms Link",
-      value: "",
-    });
-
+    this.addProp(INPUTS.BUTTON("buttonTerms", "Button Terms", "Terms and Conditions", "", null, null, "Link"));
     this.addProp({
       type: "string",
       key: "description",
@@ -79,44 +66,8 @@ class TermsOfUseModal extends BaseModal {
         maxElementCount: 2,
       },
       value: [
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Maybe later",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Button Link",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Accept",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Button Link",
-              value: "",
-            },
-          ],
-        },
+        INPUTS.BUTTON("button", "Button", "Maybe later", "", null, null, "Primary"),
+        INPUTS.BUTTON("button", "Button", "Accept", "", null, null, "Primary"),
       ],
     });
   }
@@ -128,12 +79,12 @@ class TermsOfUseModal extends BaseModal {
   render() {
     const image = this.getPropValue("image");
     const overlay = this.getPropValue("overlay");
+    const buttonTerms: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("buttonTerms");
     const title = this.castToString(this.getPropValue("title"));
-    const termsText = this.castToString(this.getPropValue("termsText"));
+    const termsText = this.castToString(buttonTerms.text);
     const termsDescription = this.castToString(this.getPropValue("termsDescription"));
     const description = this.castToString(this.getPropValue("description"));
-    const buttons = this.castToObject<Button[]>("buttons");
-    const validButtons = buttons.filter((item: Button) => this.castToString(item.buttonText));
+    const buttons: INPUTS.CastedButton[] = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
     return (
       <Base.Container isModal={true} className={this.decorateCSS("container")}>
@@ -142,7 +93,7 @@ class TermsOfUseModal extends BaseModal {
             <div className={this.decorateCSS("top-wrapper")}>
               <div className={this.decorateCSS("exit-icon")}>
                 <ComposerModalClose>
-                  <ComposerIcon propsIcon={{ className: image ? this.decorateCSS("icon") : this.decorateCSS("icon-no-image") }} name={this.getPropValue("exitIcon")} />
+                  <ComposerIcon propsIcon={{ className: `${this.decorateCSS("icon")} ${!image && this.decorateCSS("no-image")}` }} name={this.getPropValue("exitIcon")} />
                 </ComposerModalClose>
               </div>
 
@@ -157,8 +108,12 @@ class TermsOfUseModal extends BaseModal {
                   {(termsDescription || termsText) && (
                     <Base.SectionDescription className={this.decorateCSS("terms")}>
                       <Base.SectionDescription className={this.decorateCSS("termsDescription")}>{termsDescription}</Base.SectionDescription>
-                      <span className={this.decorateCSS("termsText")}>
-                        <ComposerLink path={this.getPropValue("termsLink")}> {termsText}</ComposerLink>
+                      <span className={this.decorateCSS("termsButton")}>
+                        <ComposerLink path={buttonTerms.url}>
+                          <Base.Button buttonType={buttonTerms.type} className={this.decorateCSS("termsText")} >
+                            {buttonTerms.text}
+                          </Base.Button>
+                        </ComposerLink>
                       </span>
                     </Base.SectionDescription>
                   )}
@@ -167,11 +122,11 @@ class TermsOfUseModal extends BaseModal {
                 {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
               </div>
 
-              {validButtons.length > 0 && (
+              {buttons.length > 0 && (
                 <div className={this.decorateCSS("button-background")}>
-                  {validButtons.map((item: Button, index: number) => (
-                    <ComposerLink path={item.link}>
-                      <Base.Button className={this.decorateCSS("button")}>{item.buttonText}</Base.Button>
+                  {buttons.map((item: INPUTS.CastedButton, index: number) => (
+                    <ComposerLink path={item.url}>
+                      <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>{item.text}</Base.Button>
                     </ComposerLink>
                   ))}
                 </div>
