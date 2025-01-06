@@ -52,7 +52,6 @@
           display: flex;
           flex-direction: column;
           gap: var(--composer-gap-sm);
-          margin-top: var(--composer-gap-sm);
 
           .form-group {
             .input {
@@ -77,6 +76,7 @@
           }
 
           .button {
+            content: "";
             width: 100%;
           }
         }
