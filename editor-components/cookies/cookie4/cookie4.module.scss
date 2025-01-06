@@ -1,0 +1,120 @@
+.container{
+    max-width: 400px;
+    border-radius: var(--composer-border-radius-xl);
+    .max-content{
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-md);
+        .heading{
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            gap:var(--composer-gap-md);
+            .title{
+                font-size: 2rem;
+            }
+            .description-contianer{
+                display: flex;
+                align-items: center;
+                .description-text{
+                    font-size: 1rem;
+                    color: var(--composer-tertiary-color);
+                }
+                .description-link-container{
+                    .description-link{
+                        content: "";
+                    }
+                }
+
+            }
+            .divider{
+                position: absolute;
+                height: 1px;
+                width: 100%;
+                background-color: var(--composer-font-color-primary);
+                opacity: 0.2;
+                bottom: calc(var(--composer-gap-md) * (-1));
+            }
+        }
+
+        .terms-container{
+            display: flex;
+            margin-top: var(--composer-gap-md);
+            .terms-content{
+                display: flex;
+                flex-direction: column;
+                flex: 1;
+                gap: var(--composer-gap-sm);
+                .terms-title{
+                    font-size: 1rem;
+                    color: var(--composer-font-color-primary);
+                }
+                .terms-description{
+                    font-size: 1rem;
+                    color: var(--composer-tertiary-color);
+                }
+
+            }
+            .icon-container{
+                border: 2px solid var(--composer-font-color-primary);
+                border-radius: var(--composer-border-radius-xl);
+                width: 70px;
+                height: 30px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                .icon{
+                    color: var(--composer-font-color-primary);
+                    width: 30px;
+                    height: 30px;
+                }
+            }
+
+            .terms-toogle{      
+                width: 60px;
+                height: 30px;
+                border-radius: var(--composer-border-radius-xl);    
+                position: relative;    
+                display: flex;
+                align-items: center;
+                justify-content: center;  
+                &.accepted{
+                    background-color: var(--composer-primary-color);
+                    .round{
+                        right: 5px;
+                    }
+                }
+                &.rejected{
+                    background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);     
+                    .round{
+                        left: 5px;
+                    }
+                }
+                .input{
+                    display: none;
+                }
+                .round{
+                    position: absolute;
+                    background-color: var(--composer-font-color-secondary);
+                    width: 50%;
+                    height: 80% ;
+                    border-radius: 50%;
+                }
+            }
+        }
+        .button-container{
+            display: flex;
+            gap: var(--composer-gap-md);
+            >div{
+                flex:1;
+            }
+            .button{
+               width: 100%;
+               display: flex;
+               align-items: center;
+               justify-content: center;
+            }
+        }
+
+    }
+}

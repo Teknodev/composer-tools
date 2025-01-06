@@ -222,6 +222,7 @@ import NoticeModal from "./modal/notice-modal/notice";
 import NotificationModal2 from "./modal/notificationmodal2/notificationmodal2";
 import SubscriptionModal from "./modal/subscription-modal/subscription-modal";
 import FormModal1 from "./modal/formmodal1/formmodal1";
+import Cookie4 from "./cookies/cookie4/cookie4";
 import LocationComponent6 from "./location/location6/location6";
 import LocationComponent5 from "./location/location5/location5";
 import LocationComponent2 from "./location/location2/location2";
@@ -447,6 +448,7 @@ function Registerables(composer: ComponentsRegistery) {
     NotificationModal2,
     SubscriptionModal,
     FormModal1,
+    Cookie4,
     LocationComponent1,
     LocationComponent6,
     LocationComponent5,
