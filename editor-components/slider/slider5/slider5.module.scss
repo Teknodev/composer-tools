@@ -10,7 +10,10 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      height: 100vh;
+      height: 100%;
+      > div > div {
+        margin: 0;
+      }
       img {
         object-fit: cover;
         height: 100vh;

@@ -290,7 +290,7 @@ class Slider8 extends BaseSlider {
                           )}
                           {(leftNavButton || rightNavButton) && (
                             <div className={this.decorateCSS(anyImagesExist ? "nav-buttons" : "nav-buttons2")}>
-                              {leftNavButton && (
+                              {leftNavButton && cards.length > 1 && (
                                 <button
                                   className={this.decorateCSS("nav-button")}
                                   onClick={() => {
@@ -305,7 +305,7 @@ class Slider8 extends BaseSlider {
                                   />
                                 </button>
                               )}
-                              {rightNavButton && (
+                              {rightNavButton && cards.length > 1 && (
                                 <button
                                   className={this.decorateCSS("nav-button")}
                                   onClick={() => {
