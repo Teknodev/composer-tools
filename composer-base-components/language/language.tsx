@@ -1,23 +1,24 @@
 import React, { useState } from "react";
 import { Language } from "@mui/icons-material";
 import { ArrowDropDown } from "@mui/icons-material";
-import DropDown, {
-  DropDownItem,
-} from "../ui/dropdown/Dropdown";
+import Dropdown, { DropDownItem } from "../ui/dropdown/Dropdown";
 import styles from "./language.module.scss";
 import { useComposerToolsData } from "../../context/DataContext";
 import Accordion from "../ui/accordion/Accordion";
 
 interface ComposerLanguageCommonProps {
-  icon?: React.ReactNode;
+  icon?: string;
   title?: "code" | "name";
 }
 
 interface DropdownProps extends ComposerLanguageCommonProps {
   type: "dropdown";
-  dropdownClassName?: string;
+  dropdownButtonClassName?: string;
   dropdownLabelClassName?: string;
   dropdownItemClassName?: string;
+  dropdownContentClassName?: string;
+  iconClassName?: string;
+  divider?: boolean;
 }
 
 interface AccordionProps extends ComposerLanguageCommonProps {
@@ -49,32 +50,37 @@ const ComposerLanguage = (props: ComposerLanguageProps) => {
 
   if (props.type === "dropdown") {
     const {
-      dropdownClassName,
+      dropdownButtonClassName,
       dropdownLabelClassName,
       dropdownItemClassName,
-      icon = <Language />,
+      icon = "GrLanguage",
       title = "name",
+      iconClassName,
+      dropdownContentClassName,
+      divider = true,
     } = props;
+
     return (
-      <DropDown
-        disabled={false}
-        buttonClassName={dropdownClassName}
+      <Dropdown
         buttonLabel={composerToolsCurrentLanguage[title]}
+        dropdownButtonClassName={dropdownButtonClassName}
         labelClassName={dropdownLabelClassName}
         icon={icon}
+        iconClassName={iconClassName}
+        disabled={false}
+        dropdownContentClassName={dropdownContentClassName}
       >
-        {composerToolsLanguages.map((lang) => (
+        {composerToolsLanguages.map((lang, index) => (
           <DropDownItem
             key={lang.code}
-            className={`item`}
+            className={dropdownItemClassName}
             onClick={() => handleLanguageChange(lang)}
+            divider={divider && index < composerToolsLanguages.length - 1}
           >
-            <span className={`${styles["title"]} ${dropdownItemClassName}`}>
-              {lang.name}
-            </span>
+            <span className={dropdownItemClassName}>{lang[title].toUpperCase()}</span>
           </DropDownItem>
         ))}
-      </DropDown>
+      </Dropdown>
     );
   }
 

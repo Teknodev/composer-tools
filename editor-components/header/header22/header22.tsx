@@ -7,18 +7,16 @@ import ComposerSlider from "../../../composer-base-components/slider/slider";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type SliderObject = {
   title: JSX.Element;
   right_image: string;
   left_image: string;
-  button: ButtonObject[];
+  button: INPUTS.CastedButton[];
 };
 
-type ButtonObject = {
-  buttonText: JSX.Element;
-  link: string;
-};
+
 
 class HeaderComponent22 extends BaseHeader {
   private sliderRef: React.RefObject<any>;
@@ -58,27 +56,7 @@ class HeaderComponent22 extends BaseHeader {
               type: "array",
               key: "button",
               displayer: "Buttons",
-              value: [
-                {
-                  type: "object",
-                  key: "buttonObject",
-                  displayer: "Button",
-                  value: [
-                    {
-                      type: "string",
-                      key: "buttonText",
-                      displayer: "Button Text",
-                      value: "SHOP NOW",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Button Link",
-                      value: "",
-                    },
-                  ],
-                },
-              ],
+              value: [INPUTS.BUTTON("button", "Button", "SHOP NOW", "", null, null, "Link")],
             },
           ],
         },
@@ -109,27 +87,7 @@ class HeaderComponent22 extends BaseHeader {
               type: "array",
               key: "button",
               displayer: "Buttons",
-              value: [
-                {
-                  type: "object",
-                  key: "buttonObject",
-                  displayer: "Button",
-                  value: [
-                    {
-                      type: "string",
-                      key: "buttonText",
-                      displayer: "Button Text",
-                      value: "SHOP NOW",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Button Link",
-                      value: "",
-                    },
-                  ],
-                },
-              ],
+              value: [INPUTS.BUTTON("button", "Button", "SHOP NOW", "", null, null, "Link")],
             },
           ],
         },
@@ -160,27 +118,7 @@ class HeaderComponent22 extends BaseHeader {
               type: "array",
               key: "button",
               displayer: "Buttons",
-              value: [
-                {
-                  type: "object",
-                  key: "buttonObject",
-                  displayer: "Button",
-                  value: [
-                    {
-                      type: "string",
-                      key: "buttonText",
-                      displayer: "Button Text",
-                      value: "SHOP NOW",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Button Link",
-                      value: "",
-                    },
-                  ],
-                },
-              ],
+              value: [INPUTS.BUTTON("button", "Button", "SHOP NOW", "", null, null, "Link")],
             },
           ],
         },
@@ -308,12 +246,12 @@ class HeaderComponent22 extends BaseHeader {
                               {this.castToString(item.title) && <Base.SectionTitle className={this.decorateCSS("title")}>{item.title}</Base.SectionTitle>}
 
                               {item.button.map((buttonItem: any, indexButton: number) => {
-                                const buttonText = this.castToString(buttonItem.buttonText);
+                                const buttonText = this.castToString(buttonItem.text);
                                 if (buttonText) {
                                   return (
                                     <div className={this.decorateCSS("link-button-container")}>
-                                      <ComposerLink className={this.decorateCSS("link-button")} key={`hdr-22-${indexButton}`} path={buttonItem.link}>
-                                        <button className={this.decorateCSS("button")}>{buttonItem.buttonText}</button>
+                                      <ComposerLink className={this.decorateCSS("link-button")} key={`hdr-22-${indexButton}`} path={buttonItem.url}>
+                                        <Base.Button buttonType={buttonItem.type} className={this.decorateCSS("button")}>{buttonItem.text}</Base.Button>
                                       </ComposerLink>
                                     </div>
                                   );

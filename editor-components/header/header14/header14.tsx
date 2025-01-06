@@ -197,7 +197,7 @@ class Header14 extends BaseHeader {
                   {image && <img src={item.image} alt={item.image} className={this.decorateCSS("bg-img")} />}
                   <div className={`${this.decorateCSS("content-wrapper")} ${isActive && isAnimation && this.decorateCSS("fade-in")}`}>
                     <div className={`${containerClass} ${noBgClass}`}>
-                      {title && <div className={this.decorateCSS("title")}>{item.title}</div>}
+                      {title && <Base.SectionTitle className={`${this.decorateCSS("title")} ${image && this.decorateCSS("title-with-image")}`}>{item.title}</Base.SectionTitle>}
                       {description && <div className={this.decorateCSS("description")}>{item.description}</div>}
 
                       {item.buttons.length > 0 && (
