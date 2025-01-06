@@ -11,10 +11,11 @@
 
   .max-content {
     position: relative;
+
     .close-icon-wrapper {
       position: absolute;
-      top: var(--composer-gap-xs);
-      right: var(--composer-gap-xs);
+      top: 0;
+      right: 0;
       cursor: pointer;
     }
 
@@ -26,6 +27,7 @@
         color: var(--composer-primary-color);
       }
     }
+
     .content {
       justify-content: center;
       align-items: center;
@@ -35,6 +37,7 @@
 
       .icon {
         color: var(--composer-primary-color);
+        margin: 0;
 
         .icon-element {
           font-size: 3rem;
@@ -43,46 +46,65 @@
 
       .notification-title {
         font-size: 2rem;
+        margin: 0;
       }
 
       .displayer-message {
         color: var(--composer-tertiary-color);
         text-align: center;
+        margin: 0;
       }
 
-      .send-mail {
+      .form {
+        display: flex;
+        gap: var(--composer-gap-sm);
         width: 100%;
 
-        .input-group {
-          display: flex;
-          align-items: stretch;
+        .input-container {
           width: 100%;
-          margin: var(--composer-gap-sm) 0;
+          position: relative;
+          align-items: stretch;
 
           .input {
             flex: 1;
-            padding: var(--composer-gap-sm) var(--composer-gap-sm);
+            padding: var(--composer-gap-sm);
             border-radius: var(--composer-border-radius-sm);
             border: none;
             background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
             color: var(--composer-font-color-primary);
+            width: 100%;
+            outline: none;
+            padding-left: var(--composer-gap-sm);
+            height: 100%;
+
+            &::placeholder {
+              color: var(--composer-tertiary-color);
+            }
           }
 
           .button {
+            content: "";
             max-width: 40%;
-            height: auto;
-            padding: 0 var(--composer-gap-md);
+          }
+
+          .error {
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            color: var(--warning);
           }
         }
       }
     }
   }
 }
+
 @container (max-width: #{$composer-phone-width}) {
   .container {
     max-width: 300px;
     min-width: 200px;
     max-height: 500px;
+
     .max-content {
       position: relative;
 
@@ -90,14 +112,15 @@
         .notification-title {
           font-size: 1.5rem;
         }
-        .send-mail {
-          .input-group {
+
+        .form {
+          .input-container {
             .input {
               padding: var(--composer-gap-sm) var(--composer-gap-xs);
             }
+
             .button {
               max-width: 50%;
-              padding: 0 var(--composer-gap-sm);
             }
           }
         }
