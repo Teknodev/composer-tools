@@ -128,8 +128,10 @@ class Header17 extends BaseHeader {
   }
 
   render() {
+    const slider = this.castToObject<ISliderData[]>("slider");
+
     const settings = {
-      dots: true,
+      dots: slider.length > 1,
       dotsClass: this.decorateCSS("dots"),
       infinite: true,
       speed: 1000,
@@ -139,7 +141,6 @@ class Header17 extends BaseHeader {
       slidesToScroll: 1,
       arrows: false,
     };
-    const slider = this.castToObject<ISliderData[]>("slider");
     return (
       <div className={this.decorateCSS("container")}>
         <ComposerSlider {...settings} ref={this.getComponentState("slider-ref")} className={this.decorateCSS("carousel")}>
@@ -170,24 +171,28 @@ class Header17 extends BaseHeader {
                       )}
                     </Base.MaxContent>
                   </Base.Container>
-                  <ComposerIcon
-                    name={this.getPropValue("next_icon")}
-                    propsIcon={{
-                      className: `${this.decorateCSS("next-icon")} ${!image && this.decorateCSS("slider-icon-without-image")}`,
-                      onClick: () => {
-                        this.getComponentState("slider-ref").current.slickNext();
-                      },
-                    }}
-                  />
-                  <ComposerIcon
-                    name={this.getPropValue("prev_icon")}
-                    propsIcon={{
-                      className: `${this.decorateCSS("prev-icon")} ${!image && this.decorateCSS("slider-icon-without-image")}`,
-                      onClick: () => {
-                        this.getComponentState("slider-ref").current.slickPrev();
-                      },
-                    }}
-                  />
+                  {slider.length > 1 && (
+                    <ComposerIcon
+                      name={this.getPropValue("next_icon")}
+                      propsIcon={{
+                        className: `${this.decorateCSS("next-icon")} ${!image && this.decorateCSS("slider-icon-without-image")}`,
+                        onClick: () => {
+                          this.getComponentState("slider-ref").current.slickNext();
+                        },
+                      }}
+                    />
+                  )}
+                  {slider.length > 1 && (
+                    <ComposerIcon
+                      name={this.getPropValue("prev_icon")}
+                      propsIcon={{
+                        className: `${this.decorateCSS("prev-icon")} ${!image && this.decorateCSS("slider-icon-without-image")}`,
+                        onClick: () => {
+                          this.getComponentState("slider-ref").current.slickPrev();
+                        },
+                      }}
+                    />
+                  )}
                 </div>
               )
             );

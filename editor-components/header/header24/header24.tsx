@@ -190,8 +190,10 @@ class HeaderComponent24 extends BaseHeader {
   }
 
   render() {
+    const slider = this.castToObject<ISliderData[]>("slider");
+
     const settings = {
-      dots: true,
+      dots: slider.length > 1,
       infinite: true,
       speed: 500,
       autoplay: true,
@@ -218,99 +220,103 @@ class HeaderComponent24 extends BaseHeader {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
-            <ComposerSlider ref={sliderRef} {...settings} className={`${this.decorateCSS("carousel")} ${!this.getPropValue("slider")[this.getComponentState("currentIndex")].getPropValue("background_image") && this.decorateCSS("carousel-no-image")}`}>
-              {this.castToObject<ISliderData[]>("slider").map((item: ISliderData, index: number) => (
-                <div className={this.decorateCSS("item")} key={`key${index}`}>
-                  {item.background_image && (
-                    <div className={`${this.decorateCSS("background-image")} ${!item.image && this.decorateCSS("no-image")}`}>
-                      <img src={item.background_image} alt={this.castToString(item.title)} className={this.decorateCSS("image")} />
-                    </div>
-                  )}
-                  <div className={`${this.decorateCSS("main-content")} ${!item.image && this.decorateCSS("no-image-content")}`}>
-                    {(item.flower_image || this.castToString(item.title) || this.castToString(item.description) || item.buttons.length > 0) && (
-                      <div className={this.decorateCSS("left")}>
-                        <div className={this.decorateCSS("content")}>
-                          {item.flower_image && (
-                            <div
-                              className={`${this.decorateCSS("flower")}
+            {slider.length > 0 && (
+              <ComposerSlider ref={sliderRef} {...settings} className={`${this.decorateCSS("carousel")} ${!this.getPropValue("slider")[this.getComponentState("currentIndex")].getPropValue("background_image") && this.decorateCSS("carousel-no-image")}`}>
+                {slider.map((item: ISliderData, index: number) => (
+                  <div className={this.decorateCSS("item")} key={`key${index}`}>
+                    {item.background_image && (
+                      <div className={`${this.decorateCSS("background-image")} ${!item.image && this.decorateCSS("no-image")}`}>
+                        <img src={item.background_image} alt={this.castToString(item.title)} className={this.decorateCSS("image")} />
+                      </div>
+                    )}
+                    <div className={`${this.decorateCSS("main-content")} ${!item.image && this.decorateCSS("no-image-content")}`}>
+                      {(item.flower_image || this.castToString(item.title) || this.castToString(item.description) || item.buttons.length > 0) && (
+                        <div className={this.decorateCSS("left")}>
+                          <div className={this.decorateCSS("content")}>
+                            {item.flower_image && (
+                              <div
+                                className={`${this.decorateCSS("flower")}
                             ${this.getComponentState("currentIndex") == index && this.decorateCSS("active")}`}
-                            >
-                              <img src={item.flower_image} alt={this.castToString(item.title)} />
-                            </div>
-                          )}
-                          {this.castToString(item.title) && (
-                            <div
-                              className={`${this.decorateCSS("title")} ${!item.background_image && this.decorateCSS("title-no-image")}
+                              >
+                                <img src={item.flower_image} alt={this.castToString(item.title)} />
+                              </div>
+                            )}
+                            {this.castToString(item.title) && (
+                              <div
+                                className={`${this.decorateCSS("title")} ${!item.background_image && this.decorateCSS("title-no-image")}
                             ${this.getComponentState("currentIndex") == index && this.decorateCSS("active")}
                              ${!item.image && this.decorateCSS("no-image")}
                             `}
-                            >
-                              {item.title}
-                            </div>
-                          )}
-                          {this.castToString(item.description) && (
-                            <div
-                              className={`${this.decorateCSS("description")} ${!item.background_image && this.decorateCSS("description-no-image")}
+                              >
+                                {item.title}
+                              </div>
+                            )}
+                            {this.castToString(item.description) && (
+                              <div
+                                className={`${this.decorateCSS("description")} ${!item.background_image && this.decorateCSS("description-no-image")}
                             ${this.getComponentState("currentIndex") == index && this.decorateCSS("active")}
                             ${!item.image && this.decorateCSS("no-image")}
                             `}
-                            >
-                              {item.description}
-                            </div>
-                          )}
-                          <div
-                            className={`${this.decorateCSS("buttons")}
+                              >
+                                {item.description}
+                              </div>
+                            )}
+                            <div
+                              className={`${this.decorateCSS("buttons")}
                             ${this.getComponentState("currentIndex") == index && this.decorateCSS("active")}
                             `}
-                          >
-                            {item.buttons.map((item: IButton, index: number) => (
-                              <div className={this.decorateCSS("button-wrapper")}>
-                                {this.castToString(item.text) && (
-                                  <ComposerLink path={item.url} className={this.decorateCSS("composer-link")}>
-                                    <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                                      {item.text}
-                                    </Base.Button>
-                                  </ComposerLink>
-                                )}
-                              </div>
-                            ))}
+                            >
+                              {item.buttons.map((item: IButton, index: number) => (
+                                <div className={this.decorateCSS("button-wrapper")}>
+                                  {this.castToString(item.text) && (
+                                    <ComposerLink path={item.url} className={this.decorateCSS("composer-link")}>
+                                      <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                                        {item.text}
+                                      </Base.Button>
+                                    </ComposerLink>
+                                  )}
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                      {item.image && (
+                        <div className={this.decorateCSS("right")}>
+                          <div className={this.decorateCSS("image-wrapper")}>
+                            <img src={item.image} alt={this.castToString(item.title)} className={`${this.decorateCSS("image")} ${this.getComponentState("currentIndex") == index && this.decorateCSS("active")}`} />
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                    {slider.length > 1 && (
+                      <div className={this.decorateCSS("arrow-wrapper")}>
+                        <div
+                          className={this.getPropValue("slider")[this.getComponentState("currentIndex")].getPropValue("background_image") ? this.decorateCSS("arrow-prev-wrapper") : this.decorateCSS("arrow-prev-wrapper-no-image")}
+                          onClick={() => {
+                            sliderRef.current.slickPrev();
+                          }}
+                        >
+                          <div className={this.decorateCSS("arrow-prev")}>
+                            <ComposerIcon name={this.getPropValue("prevIcon")} propsIcon={{ className: this.decorateCSS("icon") }} />
+                          </div>
+                        </div>
+                        <div
+                          className={this.getPropValue("slider")[this.getComponentState("currentIndex")].getPropValue("background_image") ? this.decorateCSS("arrow-next-wrapper") : this.decorateCSS("arrow-next-wrapper-no-image")}
+                          onClick={() => {
+                            sliderRef.current.slickNext();
+                          }}
+                        >
+                          <div className={this.decorateCSS("arrow-next")}>
+                            <ComposerIcon name={this.getPropValue("nextIcon")} propsIcon={{ className: this.decorateCSS("icon") }} />
                           </div>
                         </div>
                       </div>
                     )}
-                    {item.image && (
-                      <div className={this.decorateCSS("right")}>
-                        <div className={this.decorateCSS("image-wrapper")}>
-                          <img src={item.image} alt={this.castToString(item.title)} className={`${this.decorateCSS("image")} ${this.getComponentState("currentIndex") == index && this.decorateCSS("active")}`} />
-                        </div>
-                      </div>
-                    )}
                   </div>
-                  <div className={this.decorateCSS("arrow-wrapper")}>
-                    <div
-                      className={this.getPropValue("slider")[this.getComponentState("currentIndex")].getPropValue("background_image") ? this.decorateCSS("arrow-prev-wrapper") : this.decorateCSS("arrow-prev-wrapper-no-image")}
-                      onClick={() => {
-                        sliderRef.current.slickPrev();
-                      }}
-                    >
-                      <div className={this.decorateCSS("arrow-prev")}>
-                        <ComposerIcon name={this.getPropValue("prevIcon")} propsIcon={{ className: this.decorateCSS("icon") }} />
-                      </div>
-                    </div>
-                    <div
-                      className={this.getPropValue("slider")[this.getComponentState("currentIndex")].getPropValue("background_image") ? this.decorateCSS("arrow-next-wrapper") : this.decorateCSS("arrow-next-wrapper-no-image")}
-                      onClick={() => {
-                        sliderRef.current.slickNext();
-                      }}
-                    >
-                      <div className={this.decorateCSS("arrow-next")}>
-                        <ComposerIcon name={this.getPropValue("nextIcon")} propsIcon={{ className: this.decorateCSS("icon") }} />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </ComposerSlider>
+                ))}
+              </ComposerSlider>
+            )}
           </div>
         </div>
       </div>

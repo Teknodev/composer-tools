@@ -304,7 +304,7 @@ class Header23 extends BaseHeader {
                 }}
               />
             )}
-            {nextArrow && (
+            {slider.length > 1 && nextArrow && (
               <ComposerIcon
                 name={this.getPropValue("nextArrow")}
                 propsIcon={{

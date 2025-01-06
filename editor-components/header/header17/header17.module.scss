@@ -8,6 +8,9 @@
     width: 100%;
     display: flex;
     overflow: hidden;
+    > div {
+      width: 100% !important;
+    }
     .slider-content {
       position: relative;
       width: 100%;

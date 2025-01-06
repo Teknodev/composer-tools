@@ -771,86 +771,88 @@ class Header20 extends BaseHeader {
           ))}
         </ComposerSlider>
 
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("item")}>
-            <div className={`${this.decorateCSS("content-container")} ${imageless && this.decorateCSS("imageless")}`}>
-              <div className={this.decorateCSS("title-container")}>
-                <ComposerSlider ref={this.titleSliderRef} {...titleSettings}>
-                  {this.getTitlesToShow(currentSlide).map((slide, index) => (
-                    <div key={`title-${index}`} className={this.decorateCSS(slide.position)}>
-                      {slide.position === "current" && slide.link ? (
-                        <ComposerLink path={slide.link} isFullWidth={true}>
-                          <h2 className={this.decorateCSS("title")}>{slide.title}</h2>
-                          <span className={this.decorateCSS("number")}>{slide.number}</span>
-                        </ComposerLink>
-                      ) : slide.isPlaceholder ? (
-                        <h2 className={this.decorateCSS("title")}>&nbsp;</h2>
-                      ) : (
-                        <h2 className={`${this.decorateCSS("title")} ${this.decorateCSS(slide.position)}`}>
-                          {slide.title}
-                          <span className={this.decorateCSS("number")}>{slide.number}</span>
-                        </h2>
-                      )}
-                    </div>
-                  ))}
-                </ComposerSlider>
-              </div>
-              <div className={this.decorateCSS("buttomRow")}>
-                {(this.castToString(slider[currentSlide].buttomRow.comment) || up_icon || down_icon) && (
-                  <div className={this.decorateCSS("left")}>
-                    {(up_icon || down_icon) && (
-                      <div className={this.decorateCSS("navigation")}>
-                        {up_icon && (
-                          <ComposerIcon
-                            name={up_icon}
-                            propsIcon={{
-                              className: this.decorateCSS("icon"),
-                              onClick: this.handleUpClick,
-                            }}
-                          />
-                        )}
-                        {down_icon && (
-                          <ComposerIcon
-                            name={down_icon}
-                            propsIcon={{
-                              className: this.decorateCSS("icon"),
-                              onClick: this.handleDownClick,
-                            }}
-                          />
+        {slider.length > 0 && (
+          <div className={this.decorateCSS("max-content")}>
+            <div className={this.decorateCSS("item")}>
+              <div className={`${this.decorateCSS("content-container")} ${imageless && this.decorateCSS("imageless")}`}>
+                <div className={this.decorateCSS("title-container")}>
+                  <ComposerSlider ref={this.titleSliderRef} {...titleSettings}>
+                    {this.getTitlesToShow(currentSlide).map((slide, index) => (
+                      <div key={`title-${index}`} className={this.decorateCSS(slide.position)}>
+                        {slide.position === "current" && slide.link ? (
+                          <ComposerLink path={slide.link} isFullWidth={true}>
+                            <h2 className={this.decorateCSS("title")}>{slide.title}</h2>
+                            <span className={this.decorateCSS("number")}>{slide.number}</span>
+                          </ComposerLink>
+                        ) : slide.isPlaceholder ? (
+                          <h2 className={this.decorateCSS("title")}>&nbsp;</h2>
+                        ) : (
+                          <h2 className={`${this.decorateCSS("title")} ${this.decorateCSS(slide.position)}`}>
+                            {slide.title}
+                            <span className={this.decorateCSS("number")}>{slide.number}</span>
+                          </h2>
                         )}
                       </div>
-                    )}
-                    {this.castToString(slider[currentSlide].buttomRow.comment) && <div className={this.decorateCSS("comment")}>{slider[currentSlide].buttomRow.comment}</div>}
-                  </div>
-                )}
-                {(this.castToString(iconText.iconText) || iconText.icon || icons.length > 0) && (
-                  <div className={this.decorateCSS("comment-and-icon-text-container")}>
-                    <div className={this.decorateCSS("icon-text-container")}>
-                      {this.castToString(iconText.iconText) && <div className={this.decorateCSS("icon_text")}>{iconText.iconText}</div>}
-                      {iconText.icon && (
-                        <ComposerIcon
-                          name={iconText.icon}
-                          propsIcon={{
-                            className: this.decorateCSS("icon-next-to-text"),
-                          }}
-                        />
-                      )}
-                      {(!(this.castToString(iconText.iconText) && !iconText.icon) || icons.length > 0) && (
-                        <div className={this.decorateCSS("social-icons")}>
-                          {icons.map((icon, i) => (
-                            <div className={this.decorateCSS("icon")}>
-                              <ComposerLink path={icon.link}>{icon.icon_text}</ComposerLink>
-                            </div>
-                          ))}
+                    ))}
+                  </ComposerSlider>
+                </div>
+                <div className={this.decorateCSS("buttomRow")}>
+                  {(this.castToString(slider[currentSlide].buttomRow.comment) || up_icon || down_icon) && (
+                    <div className={this.decorateCSS("left")}>
+                      {(up_icon || down_icon) && (
+                        <div className={this.decorateCSS("navigation")}>
+                          {up_icon && (
+                            <ComposerIcon
+                              name={up_icon}
+                              propsIcon={{
+                                className: this.decorateCSS("icon"),
+                                onClick: this.handleUpClick,
+                              }}
+                            />
+                          )}
+                          {down_icon && (
+                            <ComposerIcon
+                              name={down_icon}
+                              propsIcon={{
+                                className: this.decorateCSS("icon"),
+                                onClick: this.handleDownClick,
+                              }}
+                            />
+                          )}
                         </div>
                       )}
+                      {this.castToString(slider[currentSlide].buttomRow.comment) && <div className={this.decorateCSS("comment")}>{slider[currentSlide].buttomRow.comment}</div>}
                     </div>
-                  </div>
-                )}
+                  )}
+                  {(this.castToString(iconText.iconText) || iconText.icon || icons.length > 0) && (
+                    <div className={this.decorateCSS("comment-and-icon-text-container")}>
+                      <div className={this.decorateCSS("icon-text-container")}>
+                        {this.castToString(iconText.iconText) && <div className={this.decorateCSS("icon_text")}>{iconText.iconText}</div>}
+                        {iconText.icon && (
+                          <ComposerIcon
+                            name={iconText.icon}
+                            propsIcon={{
+                              className: this.decorateCSS("icon-next-to-text"),
+                            }}
+                          />
+                        )}
+                        {(!(this.castToString(iconText.iconText) && !iconText.icon) || icons.length > 0) && (
+                          <div className={this.decorateCSS("social-icons")}>
+                            {icons.map((icon, i) => (
+                              <div className={this.decorateCSS("icon")}>
+                                <ComposerLink path={icon.link}>{icon.icon_text}</ComposerLink>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     );
   }
