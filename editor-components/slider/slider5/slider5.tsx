@@ -1,6 +1,5 @@
-
 import * as React from "react";
-import { BaseSlider} from "../../EditorComponent";
+import { BaseSlider } from "../../EditorComponent";
 import styles from "./slider5.module.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -28,7 +27,7 @@ class Slider5 extends BaseSlider {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436c2d568c3c2002cd30043?alt=media&timestamp=1719584962573",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6773e1800655f8002caf431d?alt=media",
             },
           ],
         },
@@ -41,7 +40,7 @@ class Slider5 extends BaseSlider {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436c2d568c3c2002cd30042?alt=media&timestamp=1719584962573",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6773e1f50655f8002caf4427?alt=media",
             },
           ],
         },
@@ -54,10 +53,11 @@ class Slider5 extends BaseSlider {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436c2d568c3c2002cd30041?alt=media&timestamp=1719584962573",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6773e1ca0655f8002caf43fb?alt=media",
             },
           ],
         },
+
         {
           type: "object",
           key: "items1",
@@ -67,20 +67,7 @@ class Slider5 extends BaseSlider {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436c2d568c3c2002cd30040?alt=media&timestamp=1719584962572",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "items1",
-          displayer: "Header",
-          value: [
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436c2d568c3c2002cd3003f?alt=media&timestamp=1719584962572",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6773e0fb0655f8002caf4243?alt=media",
             },
           ],
         },
@@ -106,16 +93,12 @@ class Slider5 extends BaseSlider {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("carousel")}>
-
-          <ComposerSlider {...settings} >
-            {this.castToObject<Card[]>("slider").map(
-              (item: Card, index: number) => (
-                <img src={item.image} key={index} alt=""/>
-              )
-            )}
-          </ComposerSlider>
+            <ComposerSlider {...settings}>
+              {this.castToObject<Card[]>("slider").map((item: Card, index: number) => (
+                <img src={item.image} key={index} alt="" />
+              ))}
+            </ComposerSlider>
           </div>
-
         </div>
       </div>
     );
