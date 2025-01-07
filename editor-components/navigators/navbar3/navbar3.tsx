@@ -6,7 +6,7 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "composer-tools/composer-base-components/base/base";
 import ComposerLanguage from "composer-tools/composer-base-components/language/language";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import HamburgerNav from "../../../composer-base-components/ui/hamburger-nav/HamburgerNav";
+
 
 interface Lane {
   contact: JSX.Element;
