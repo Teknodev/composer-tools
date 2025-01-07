@@ -8,7 +8,13 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 class Content12 extends BaseContent {
   constructor(props?: any) {
     super(props, styles);
-    this.addProp(INPUTS.BUTTON("button", "Button", "Play me here", "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e77bd0181a1002c334f66?alt=media&timestamp=1719564238038", "Link"));
+    this.addProp(INPUTS.BUTTON("button", "Button", "Play me here", null, null, null, "Link"));
+    this.addProp({
+      type: "video",
+      key: "videoUrl",
+      displayer: "Video Url",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e77bd0181a1002c334f66?alt=media&timestamp=1719564238038"
+    })
 
     this.addProp({
       type: "image",
@@ -53,7 +59,7 @@ class Content12 extends BaseContent {
               {button.text}
             </Base.Button>
           </div>
-          {(this.getComponentState("is_video_visible") && button.url) && (
+          {(this.getComponentState("is_video_visible") && this.getPropValue("videoUrl")) && (
 
             <Base.Overlay
               onClick={() => this.setComponentState("is_video_visible", false)}
@@ -64,10 +70,12 @@ class Content12 extends BaseContent {
                   className={this.decorateCSS("video")}
                 >
                   <video
-                    onClick={(event) => event.stopPropagation()}
+                    onClick={(event) => {
+                      event.stopPropagation();
+                    }}
                     controls
                     className={this.decorateCSS("player")}
-                    src={button.url}
+                    src={this.getPropValue("videoUrl")}
                   ></video>
 
                 </div>
@@ -83,7 +91,6 @@ class Content12 extends BaseContent {
                 </div>
               )}
             </Base.Overlay>
-
           )}
         </Base.MaxContent>
       </Base.Container>
