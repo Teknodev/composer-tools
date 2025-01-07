@@ -459,6 +459,11 @@
       }
     }
   }
+    .overlay {
+    &.overlayActive {
+      display: block;
+    }
+  }
 }
 
 @container (max-width: #{$composer-phone-width}) {
@@ -473,12 +478,6 @@
           max-height: 40px;
         }
       }
-    }
-  }
-
-  .overlay {
-    &.overlayActive {
-      display: block;
     }
   }
 }
