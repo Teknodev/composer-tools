@@ -3,16 +3,12 @@ import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature6.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
   title: JSX.Element;
   image: string;
   overlay: boolean;
-  link: string;
-};
-
-type Button = {
-  text: JSX.Element;
   link: string;
 };
 
@@ -139,25 +135,7 @@ class Feature6 extends BaseFeature {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        {
-          type: "object",
-          key: "button",
-          displayer: "Button",
-          value: [
-            {
-              type: "string",
-              key: "text",
-              displayer: "Button Text",
-              value: "VIEW ALL CASE STUDIES",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Button Link",
-              value: "",
-            },
-          ],
-        },
+        INPUTS.BUTTON("button", "Button", "VIEW ALL CASE STUDIES", "", null, null, "Primary"),
       ],
       additionalParams: {
         maxElementCount: 2,
@@ -171,10 +149,10 @@ class Feature6 extends BaseFeature {
 
   render() {
     const cards = this.castToObject<Card[]>("cards");
-    const buttons = this.castToObject<Button[]>("buttons");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
-    const titleExist = !!this.getPropValue("title", { as_string: true });
-    const descExist = !!this.getPropValue("description", { as_string: true });
+    const titleExist = this.castToString(this.getPropValue("title"));
+    const descExist = this.castToString(this.getPropValue("description"));
 
     const overlay: boolean = this.getPropValue("overlay");
 
@@ -241,12 +219,14 @@ class Feature6 extends BaseFeature {
 
             {buttons?.length > 0 && (
               <Base.ContainerGrid className={this.decorateCSS("button-container")}>
-                {buttons.map((item: Button, index: number) => {
+                {buttons.map((item: INPUTS.CastedButton) => {
                   if (!this.castToString(item.text)) return null;
                   return (
-                    <Base.Button className={this.decorateCSS("button")} path={item.link} key={index}>
-                      {item.text}
-                    </Base.Button>
+                    <ComposerLink path={item.url}>
+                      <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                        {item.text}
+                      </Base.Button>
+                    </ComposerLink>
                   );
                 })}
               </Base.ContainerGrid>

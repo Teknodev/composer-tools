@@ -4,17 +4,17 @@
     display: flex;
     gap: var(--composer-gap-xl);
     flex-direction: column;
-    .sectionTitle, .sectionTitle-no-animation{
-      margin:0px;
-    }
     .sectionTitle{
-      animation: fadeInUp 400ms ease-out;
+      margin:0px;
+      &.animation{
+        animation: fadeInUp 400ms ease-out;
+      }
     }
     .list-item {
       display: flex;
       flex-wrap: wrap;
       max-width: 100%;
-      .item-container, .item-container-no-line {
+      .item-container {
         width: 100%;
         display: flex;
         align-items: center;
@@ -61,33 +61,33 @@
             color: var(--composer-tertiary-color);
           }
         }
-      }
-      .item-container{
-        &::before,
-        &:last-child::after {
-          content: '';
-          position: absolute;
-          left: 0;
-          right: 0;
-          width: 100%;
-          opacity: 0.5;
-          margin: 0;
+        &.line{
+          &::before,
+          &:last-child::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            width: 100%;
+            margin: 0;
+          }
+          
+          &::before {
+            top: 0;
+            bottom: auto;
+            border-top: 1px solid var(--composer-font-color-primary);
+            opacity: 0.2;
+          }
+          
+          &:last-child::after {
+            top: auto;
+            bottom: 0;
+            border-bottom: 1px solid var(--composer-font-color-primary);
+            opacity: 0.2;
+          }      
         }
-        
-        &::before {
-          top: 0;
-          bottom: auto;
-          border-top: 1px solid var(--composer-font-color-primary);
-          opacity: 0.2;
-        }
-        
-        &:last-child::after {
-          top: auto;
-          bottom: 0;
-          border-bottom: 1px solid var(--composer-font-color-primary);
-          opacity: 0.2;
-        }      
       }
+
     }
   }
 }
@@ -107,7 +107,7 @@
   .container {
     .max-content {
       .list-item {
-        .item-container, .item-container-no-line{
+        .item-container{
           .cards {
             .icon-title-container {
               .icon {
@@ -126,7 +126,7 @@
   .container {
     .max-content {
       .list-item {
-        .item-container, .item-container-no-line{
+        .item-container{
           flex-direction: column;
           gap: var(--composer-gap-md);
           align-items: flex-start;

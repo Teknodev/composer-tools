@@ -3,6 +3,7 @@ import { Team } from "../../EditorComponent";
 import styles from "./team16.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
   image: string;
@@ -28,20 +29,7 @@ class Team16 extends Team {
       displayer: "Description",
       value: "Meet Our Exceptional Team! Our diverse talents converge to create a dynamic force, driven by shared vakues and a commitment to excellence.",
     });
-
-    this.addProp({
-      type: "string",
-      key: "button-text",
-      displayer: "Button",
-      value: "Join Our Team",
-    });
-    this.addProp({
-      type: "page",
-      key: "button_url",
-      displayer: "Button Url",
-      value: "",
-    });
-
+    this.addProp(INPUTS.BUTTON("button", "Button", "Join Our Team", "", null, null, "Primary"));
     this.addProp({
       type: "number",
       key: "itemCount",
@@ -190,13 +178,11 @@ class Team16 extends Team {
   render() {
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
-    const buttonText = this.getPropValue("button-text");
 
     const titleExist = this.castToString(title);
     const descriptionExist = this.castToString(description);
-    const buttonTextExist = this.castToString(buttonText);
 
-    const alignmentValue = Base.getContentAlignment();
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -231,12 +217,14 @@ class Team16 extends Team {
                 );
               })}
             </Base.ListGrid>
-            {buttonTextExist && (
-              <ComposerLink path={this.getPropValue("button_url")}>
-                <div className={this.decorateCSS("button")}>
-                  <Base.H5 className={alignmentValue === "left" ? this.decorateCSS("button-element") : alignmentValue === "center" ? this.decorateCSS("button-element-center") : null}>{this.getPropValue("button-text")}</Base.H5>
-                </div>
-              </ComposerLink>
+            {this.castToString(button.text) && (
+              <div className={this.decorateCSS("button-wrapper")}>
+                <ComposerLink path={button.url}>
+                  <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                    {button.text}
+                  </Base.Button>
+                </ComposerLink>
+              </div>
             )}
           </Base.VerticalContent>
         </Base.MaxContent>
