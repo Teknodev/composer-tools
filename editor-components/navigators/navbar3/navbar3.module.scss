@@ -4,20 +4,81 @@
   background-color: color-mix(
     in srgb,
     var(--composer-html-background),
-    var(--composer-font-color-primary) 5%
-  );
+    var(--composer-font-color-primary) 5%);
   padding-top: 10px;
   padding-bottom: 10px;
 
   .lane {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+
+    .laneContact {
+      font-size: 1rem;
+      color: var(--composer-font-color-primary);
+    }
+
+
+
+    .laneNews {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      color: var(--composer-font-color-primary);
+    }
+
     p {
       padding: 0;
       margin: 0;
-      font-size: 1rem;
     }
+    
+    .laneContact, .laneNews, .loacalizationContainer{
+      flex:1;
+    }
+  }
+  .lane > :first-child{
+    display: flex;
+    justify-content: flex-start;
+  }
+  .lane > :last-child{
+    display: flex;
+    justify-content: flex-end;
+  }
+  .lane > :only-child{
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.smallDeviceNavbarContainer{
+  display: none;
+
+  .filledBackground{
+    background: transparent !important;
+  }
+
+  .maxContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .logo {
+      .logoImage {
+        max-height: 50px;
+        width: auto;
+      }
+    }
+
+
+
+      .hamburgerIcon,
+      .closeIcon {
+        cursor: pointer;
+        font-size: 1.5rem;
+        color: var(--composer-font-color-primary);
+        transition: all 0.3s ease;
+      }
+
   }
 }
 
@@ -25,10 +86,21 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
 
-.menuContainer {
-  .menu {
+  p {
+    padding: 0;
+    margin: 0;
+  }
+
+  .logo {  
+    .logoImage {
+      width: 100%;
+      max-height: 60px;
+      object-fit: contain;
+    }
+  }
+
+  .pcNavbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -37,7 +109,7 @@
     margin: 0;
     gap: var(--composer-gap-md);
 
-    .menuItem {
+    .menuItemContainer {
       display: flex;
       align-items: center;
       gap: var(--composer-gap-xs);
@@ -45,15 +117,21 @@
       padding: var(--composer-gap-md) 0;
       cursor: pointer;
 
+      .menuItem {
+        display: flex;
+        align-items: center;
+      }
+
       .menuItemTitle {
         font-size: 1rem;
         font-weight: 500;
-        transition: all 0.3s ease;
+        color: var(--composer-font-color-primary);
       }
 
       .dropdownIcon {
-        font-size: 1.2rem;
-        transition: all 0.3s ease;
+        font-size: 1.5rem;
+        color: var(--composer-font-color-primary);
+
       }
 
       &:hover {
@@ -70,7 +148,7 @@
 
       .dropdown {
         position: absolute;
-        top: calc(100% + 15px);
+        top: 100%;
         left: 0;
         min-width: 200px;
         background: var(--composer-html-background);
@@ -79,33 +157,12 @@
         opacity: 0;
         visibility: hidden;
         transform: translateY(10px);
+        padding: var(--composer-gap-xs);
         transition: all 0.3s ease;
         z-index: 100;
 
-        &::before {
-          content: "";
-          position: absolute;
-          top: calc((var(--composer-gap-sm) - 2px) * -1);
-          left: var(--composer-gap-md);
-          width: 16px;
-          height: 16px;
-          background: var(--composer-html-background);
-          transform: rotate(45deg);
-          border-radius: var(--composer-border-radius-xs);
-          box-shadow: -3px -3px 5px rgba(0, 0, 0, 0.04);
-        }
-
-        &::after {
-          content: "";
-          position: absolute;
-          top: calc(var(--composer-gap-sm) * -1.5);
-          left: 0;
-          width: 100%;
-          height: 15px;
-        }
-
         .dropdownItemContainer {
-          padding: var(--composer-gap-sm) var(--composer-gap-md);
+          padding: var(--composer-gap-sm) var(--composer-gap-sm);
           transition: all 0.3s ease;
           border-radius: var(--composer-border-radius-sm);
           position: relative;
@@ -114,18 +171,16 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: var(--composer-gap-sm);
 
             .dropdownItemContent {
               display: flex;
               align-items: center;
-              gap: var(--composer-gap-sm);
 
               .dropdownItemTitle {
                 font-size: 1rem;
                 font-weight: 400;
                 color: var(--composer-font-color-primary);
-                transition: color 0.3s ease;
+                transition: all 0.3s ease;
               }
             }
           }
@@ -134,11 +189,10 @@
             content: "";
             position: absolute;
             bottom: 0;
-            left: var(--composer-gap-md);
             width: 0;
             height: 1px;
             background-color: var(--composer-primary-color);
-            transition: width 0.3s ease;
+            transition: all 0.3s ease;
           }
 
           &:hover {
@@ -153,14 +207,8 @@
             }
           }
 
-          &:last-child {
-            &::after {
-              content: none;
-            }
-          }
-
           .rightIcon {
-            font-size: 1rem;
+            font-size: 1.5rem;
             color: var(--composer-font-color-primary);
             transition: all 0.3s ease;
           }
@@ -168,44 +216,38 @@
           .subdropdown {
             position: absolute;
             top: 0;
-            left: calc(100% + 2px);
+            left: calc(100% + 8px);
             min-width: 200px;
             background: var(--composer-html-background);
             border-radius: var(--composer-border-radius-sm);
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
             opacity: 0;
             visibility: hidden;
+            padding: var(--composer-gap-xs);
             transform: translateX(10px);
             transition: all 0.3s ease;
             z-index: 101;
 
             .subdropdownItem {
-              padding: var(--composer-gap-sm) var(--composer-gap-md);
+              padding: var(--composer-gap-sm) var(--composer-gap-sm);
               transition: all 0.3s ease;
               border-radius: var(--composer-border-radius-sm);
               position: relative;
+              color: var(--composer-font-color-primary);
 
               &::after {
                 content: "";
                 position: absolute;
                 bottom: 0;
-                left: var(--composer-gap-md);
                 width: 0;
                 height: 1px;
                 background-color: var(--composer-primary-color);
-                transition: width 0.3s ease;
+                transition: all 0.3s ease;
               }
 
               &:hover {
                 &::after {
                   width: calc(100% - (var(--composer-gap-md) * 2));
-                }
-
-              }
-
-              &:last-child {
-                &::after {
-                  content: none;
                 }
               }
             }
@@ -214,150 +256,186 @@
       }
     }
   }
-}
+  
+  .icons {
 
-.maxContent {
-  p {
-    padding: 0;
-    margin: 0;
+    gap: var(--composer-gap-sm);
+    .icon-element {
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  
+      .icon {
+        color: var(--composer-font-color-primary);
+      }
+    }
+  }
+
+  .menuContainer, .icons, .logo {
+    flex: 1;
   }
 }
 
-.logo {
-  height: 40px;
+.maxContent > :first-child{
+  display: flex;
+  justify-content: flex-start;
+}
+.maxContent > :last-child{
   display: flex;
   align-items: center;
-
-  .logoImage {
-    height: 100%;
-    width: auto;
-    object-fit: contain;
-  }
+  justify-content: flex-end;
 }
 
-.hamburger-nav {
-  display: none;
-}
-
-.icons {
+.maxContent > :only-child{
   display: flex;
-  align-items: center;
   justify-content: center;
-  gap: var(--composer-gap-sm);
+}
 
-  .icon-element {
-    font-size: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.transparentBackground {
+  .pcNavbar {
+    .menuItemContainer {
+      .menuItem {
+        .menuItemTitle {
+          color: white !important;
+        }
+        .dropdownIcon {
+          color: white !important;
+        }
+      }
+    }
+  }
+
+  .icons{
+    .icon-element{
+      .icon{
+        color: white !important;
+      }
+    }
+  }
+  .hamburgerIcon {
+    color: white !important;
   }
 }
 
-.hamburgerIcon {
+.overlay {
   display: none;
-  cursor: pointer;
-  font-size: 1.5rem;
+  position: absolute;
+  top: 5%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 98;
+  background: var(--composer-overlay-color);
 }
 
-.hamburger-nav {
+.hamburgerNav {
+  display: none;
   position: absolute;
   top: 100%;
   left: 0;
   width: 100%;
   background: var(--composer-html-background);
   max-height: 0;
-  visibility: hidden;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-  z-index: 99;
-  overflow: hidden;
 
-  transition: all 0.3s ease-in;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  overflow: hidden;
+  transition: all 0.3s linear;
 
   &.active {
-    max-height: 60vh;
-    opacity: 1;
+    max-height: 70vh;
     overflow: scroll;
-    visibility: visible;
-    transition: all 0.3s ease-out;
+    transition: all 0.3s linear;
   }
 
-  .hamburgerMenu {
-    padding: var(--composer-gap-md) 0;
-
-    .hamburgerMenuItem {
-      .hamburgerMenuItemHeader {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: var(--composer-gap-sm) 0;
-        cursor: pointer;
-
-        .hamburgerMenuItemTitle {
-          font-size: 1rem;
-          font-weight: 500;
-        }
-
-        .dropdownIcon {
-          font-size: 1rem;
-          transition: transform 0.3s ease;
-
-          &.active {
-            transform: rotate(180deg);
-          }
-        }
-      }
-
-      .hamburgerSubmenu {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease;
-        padding-left: var(--composer-gap-md);
-
-        &.active {
-          max-height: 1000px;
-        }
-
-        .hamburgerSubmenuItem {
-          .hamburgerSubmenuItemHeader {
+  .hamburgerNavContainer {
+    padding-top: var(--composer-gap-md);
+    padding-bottom: var(--composer-gap-md);
+    .hamburgerNavMaxContent {
+      .hamburgerMenu {
+        .hamburgerMenuItem {
+          .hamburgerMenuItemHeader {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: var(--composer-gap-xs) 0;
+            padding: var(--composer-gap-sm) 0;
             cursor: pointer;
 
             .hamburgerMenuItemTitle {
               font-size: 1rem;
-              font-weight: 400;
-            }
-
-            .rightIcon {
-              font-size: 1rem;
-              transition: transform 0.3s ease;
-
-              &.active {
-                transform: rotate(90deg);
-              }
+              font-weight: 500;
+              color: var(--composer-font-color-primary);
             }
           }
 
-          .hamburgerSubSubmenu {
+          .hamburgerSubmenu {
             max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
+            overflow: scroll;
             padding-left: var(--composer-gap-md);
+            transition: all 0.3s ease;
 
             &.active {
               max-height: 1000px;
+              transition: all 1s ease;
             }
 
-            .hamburgerSubSubmenuItem {
-              padding: var(--composer-gap-xs) 0;
+            .hamburgerSubmenuItem {
+              .hamburgerSubmenuItemHeader {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: var(--composer-gap-xs) 0;
+                cursor: pointer;
+                color: var(--composer-font-color-primary);
 
-              .hamburgerSubSubmenuItemTitle {
-                font-size: 1rem;
-                font-weight: 400;
+                .hamburgerMenuItemTitle {
+                  font-size: 1rem;
+                  font-weight: 400;
+                  color: var(--composer-font-color-primary);
+                }
+
+                .rightIcon {
+                  font-size: 1.5rem;
+                  transition: all 0.3s ease;
+                  color: var(--composer-font-color-primary);
+                  &.active {
+                    transform: rotate(90deg);
+                  }
+                }
+              }
+
+              .hamburgerSubSubmenu {
+                max-height: 0;
+                overflow: scroll;
+                padding-left: var(--composer-gap-md);
+                transition: all 0.3s linear;
+                &.active {
+                  max-height: 1000px;
+                  transition: all 0.3s linear;
+                }
+
+                .hamburgerSubSubmenuItem {
+                  padding: var(--composer-gap-xs) 0;
+
+                  .hamburgerSubSubmenuItemTitle {
+                    font-size: 1rem;
+                    font-weight: 400;
+                    color: var(--composer-font-color-primary);
+                  }
+                }
               }
             }
+          }
+        }
+        .dropdownIcon {
+          font-size: 1.5rem;
+          transition: all 0.3s ease;
+          color: var(--composer-font-color-primary);
+          transform: rotate(0deg);
+
+          &.active {
+            transform: rotate(-180deg);
           }
         }
       }
@@ -366,15 +444,33 @@
 }
 
 @container (max-width: #{$composer-tablet-width-lg}) {
-  .menuContainer {
+  .laneContainer{
     display: none;
+  }
+
+  .pcNavbarContainer{
+    display: none;
+  }
+
+  .smallDeviceNavbarContainer{
+    display: block;
+
+    &.filledBackground {
+      background: var(--composer-html-background) !important;
+      color: var(--composer-font-color-primary) !important;
+      transition: all 0.3s ease !important;
+    }
+
+  
   }
 
   .hamburgerIcon {
     display: flex;
   }
 
-  .hamburger-nav {
-    display: block;
+  .overlay {
+    &.overlayActive {
+      display: block;
+    }
   }
 }
