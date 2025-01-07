@@ -54,8 +54,8 @@ class Slider1 extends BaseSlider {
               key: "image",
               displayer: "Image",
               value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67516278506a40002c316b2b?alt=media",
-            }
-          ]
+            },
+          ],
         },
         {
           type: "object",
@@ -80,7 +80,7 @@ class Slider1 extends BaseSlider {
               displayer: "Image",
               value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67516251506a40002c316acd?alt=media",
             },
-          ]
+          ],
         },
       ],
     });
@@ -106,7 +106,7 @@ class Slider1 extends BaseSlider {
               displayer: "Url",
               value: "",
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -125,7 +125,7 @@ class Slider1 extends BaseSlider {
               displayer: "Url",
               value: "",
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -144,7 +144,7 @@ class Slider1 extends BaseSlider {
               displayer: "Url",
               value: "",
             },
-          ]
+          ],
         },
       ],
     });
@@ -177,7 +177,7 @@ class Slider1 extends BaseSlider {
     const sliderItems = this.castToObject<Slider[]>("slider");
     const ImagesExist = sliderItems[this.getComponentState("activeSlide")]?.image;
 
-    const alignmentValue = Base.getContentAlignment()
+    const alignmentValue = Base.getContentAlignment();
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -186,73 +186,69 @@ class Slider1 extends BaseSlider {
             <ComposerSlider {...settings} className={this.decorateCSS("carousel")} ref={this.getComponentState("slider-ref")}>
               {sliderItems.map((item: Slider, indexSlider: number) => (
                 <div key={indexSlider} className={this.decorateCSS("slider-item")}>
-
                   <div className={this.decorateCSS("img-wrapper")}>
-                    {item.image &&
-                      <img
-                        alt=""
-                        src={item.image}
-                        className={this.decorateCSS("img")}
-                      />}
+                    {item.image && <img alt="" src={item.image} className={this.decorateCSS("img")} />}
                     {isOverlayActive && <div className={this.decorateCSS("overlay")}></div>}
                   </div>
 
                   <div className={this.decorateCSS("content")}>
                     <div className={this.decorateCSS("box-parent")}>
-                      {(this.castToString(item.subtitle) || this.castToString(item.title)) &&
-                        <Base.VerticalContent className={`
+                      {(this.castToString(item.subtitle) || this.castToString(item.title)) && (
+                        <Base.VerticalContent
+                          className={`
                         ${this.decorateCSS("box")} 
                       ${item.image && this.decorateCSS("with-img")}
-                      ${alignmentValue === "center" && this.decorateCSS("center")}`}>
-                          {this.castToString(item.subtitle) &&
+                      ${alignmentValue === "center" && this.decorateCSS("center")}`}
+                        >
+                          {this.castToString(item.subtitle) && (
                             <Base.SectionSubTitle
                               className={`
                         ${this.decorateCSS("subtitle")} 
-                        ${item.image && this.decorateCSS("with-img")}`}>
+                        ${item.image && this.decorateCSS("with-img")}`}
+                            >
                               {item.subtitle}
-                            </Base.SectionSubTitle>}
-                          {this.castToString(item.title) && <Base.SectionTitle className={`${this.decorateCSS("title")} ${item.image && this.decorateCSS("with-img")}`}>
-                            {item.title}
-                          </Base.SectionTitle>}
-                        </Base.VerticalContent>}
+                            </Base.SectionSubTitle>
+                          )}
+                          {this.castToString(item.title) && <Base.SectionTitle className={`${this.decorateCSS("title")} ${item.image && this.decorateCSS("with-img")}`}>{item.title}</Base.SectionTitle>}
+                        </Base.VerticalContent>
+                      )}
                     </div>
 
-                    {icons.length > 0 &&
+                    {icons.length > 0 && (
                       <div className={this.decorateCSS("socials")} id="slider1IconsHeight">
                         {icons.map((social: Social, index: number) => {
                           return (
-                            <ComposerLink key={index} path={social.url}>
-                              <ComposerIcon
-                                name={social.icon}
-                                propsIcon={{
-                                  className: `${this.decorateCSS("icon")} ${!item.image && this.decorateCSS("no-img")}`,
-                                }}
-                              />
-                            </ComposerLink>
+                            social.icon && (
+                              <ComposerLink key={index} path={social.url}>
+                                <ComposerIcon
+                                  name={social.icon}
+                                  propsIcon={{
+                                    className: `${this.decorateCSS("icon")} ${!item.image && this.decorateCSS("no-img")}`,
+                                  }}
+                                />
+                              </ComposerLink>
+                            )
                           );
                         })}
-                      </div>}
+                      </div>
+                    )}
                   </div>
-
                 </div>
               ))}
-
             </ComposerSlider>
           </div>
-          {
-            sliderItems.length > 1 && <ul className={`${this.decorateCSS(ImagesExist ? "dots" : "dots-2")}`}>
+
+          {sliderItems.length > 1 && (
+            <ul className={`${this.decorateCSS("dots")} ${!ImagesExist && this.decorateCSS("dots-2")}`}>
               {sliderItems.map((_, index) => (
-                <li
-                  key={`dot-${index}`}
-                  className={this.getComponentState("activeSlide") === index && this.decorateCSS("slick-active")}
-                  onClick={() => this.getComponentState("slider-ref").current.slickGoTo(index)}>
+                <li key={`dot-${index}`} className={`${this.decorateCSS("slick")} ${this.getComponentState("activeSlide") === index && this.decorateCSS("slick-active")}`} onClick={() => this.getComponentState("slider-ref").current.slickGoTo(index)}>
                   <button />
                 </li>
               ))}
             </ul>
-          }
-        </Base.MaxContent >
-      </Base.Container >
+          )}
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

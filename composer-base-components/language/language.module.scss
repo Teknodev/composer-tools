@@ -1,5 +1,4 @@
 
-
 .accordionList{
     display: flex;
     flex-direction: column;
@@ -11,4 +10,8 @@
     .accordionLanguageOption{
         display: flex;   
     }
+}
+
+.languageIcon{
+    color: var(--composer-font-color-primary);
 }
