@@ -37,7 +37,7 @@ class Navbar7 extends BaseNavigator {
     super(props, styles);
 
     this.addProp(
-      INPUTS.NAVBAR_POSITION("position", "Position", "Sticky Transparent")
+      INPUTS.NAVBAR_POSITION("position", "Position")
     );
 
     this.addProp({
