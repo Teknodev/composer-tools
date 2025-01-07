@@ -19,12 +19,18 @@
                 .description-text{
                     font-size: 1rem;
                     color: var(--composer-tertiary-color);
-                }
-                .description-link-container{
+                    display: inline;
+                    > div:first-child {
+                        display: inline;
+                    }
+                    >div{
+                        display: inline-block;
+                    }
                     .description-link{
                         content: "";
                     }
                 }
+      
 
             }
             .divider{
@@ -40,6 +46,7 @@
         .terms-container{
             display: flex;
             margin-top: var(--composer-gap-md);
+            gap: var(--composer-gap-xs);
             .terms-content{
                 display: flex;
                 flex-direction: column;
@@ -58,21 +65,21 @@
             .icon-container{
                 border: 2px solid var(--composer-font-color-primary);
                 border-radius: var(--composer-border-radius-xl);
-                width: 70px;
-                height: 30px;
+                width: 40px;
+                height: 20px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 .icon{
                     color: var(--composer-font-color-primary);
-                    width: 30px;
-                    height: 30px;
+                    width: 25px;
+                    height: 15px;
                 }
             }
 
             .terms-toogle{      
-                width: 60px;
-                height: 30px;
+                width: 40px;
+                height: 20px;
                 border-radius: var(--composer-border-radius-xl);    
                 position: relative;    
                 display: flex;
@@ -81,13 +88,13 @@
                 &.accepted{
                     background-color: var(--composer-primary-color);
                     .round{
-                        right: 5px;
+                        right: 1px;
                     }
                 }
                 &.rejected{
                     background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);     
                     .round{
-                        left: 5px;
+                        left: 1px;
                     }
                 }
                 .input{
@@ -96,9 +103,9 @@
                 .round{
                     position: absolute;
                     background-color: var(--composer-font-color-secondary);
-                    width: 50%;
-                    height: 80% ;
-                    border-radius: 50%;
+                    width: 45%;
+                    height: 90% ;
+                    border-radius: var(--composer-border-radius-xl);    
                 }
             }
         }

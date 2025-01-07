@@ -157,13 +157,19 @@ class Cookie4 extends BaseModal {
         INPUTS.BUTTON("button", "Button", "Save Settings", null, null, null, "Secondary")
       ]
     });
+    this.setComponentState("accepted", null)
 
   }
 
   getName(): string {
     return "Cookie 4";
   }
-
+  toggle(index: number) {
+    const terms = this.castToObject<TermItem[]>("terms");
+    terms[index].termAccepted = !terms[index].termAccepted;
+    console.log("accpeted", this.castToObject<TermItem[]>("terms")[index].termAccepted)
+    this.setComponentState("accepted", terms);
+  }
   render() {
     const buttonLink: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("buttonLink");
     const termItem = this.castToObject<TermItem[]>("terms")
@@ -175,8 +181,7 @@ class Cookie4 extends BaseModal {
           <div className={this.decorateCSS("heading")}>
             <div className={this.decorateCSS("title")}>{this.getPropValue("title")}</div>
             <div className={this.decorateCSS("description-contianer")}>
-              <div className={this.decorateCSS("description-text")}>{this.getPropValue("description")}</div>
-              <div className={this.decorateCSS("description-link-container")}>
+              <div className={this.decorateCSS("description-text")}>{this.getPropValue("description")}{" "}
                 <ComposerLink path={buttonLink.url}>
                   <Base.Button buttonType={buttonLink.type} className={this.decorateCSS("description-link")}>
                     {buttonLink.text}
@@ -205,7 +210,7 @@ class Cookie4 extends BaseModal {
                 )}
                 {(!item.termDeactivable) && (
                   <div className={`${this.decorateCSS("terms-toogle")} ${item.termAccepted ?
-                    this.decorateCSS("accepted") : this.decorateCSS("rejected")}`}>
+                    this.decorateCSS("accepted") : this.decorateCSS("rejected")}`} onClick={() => this.toggle(index)}>
                     <input className={this.decorateCSS("input")} type="checkbox" />
                     <span className={this.decorateCSS("round")}></span>
                   </div>
