@@ -1345,13 +1345,7 @@ class Navbar2 extends BaseNavigator {
             }}
           />
 
-<div
-          className={`${this.decorateCSS("overlay")} ${
-            isMobileMenuOpen ? this.decorateCSS("overlayActive") : ""
-          }`}
-          onClick={() => this.toggleMobileMenu()}
-        />
-
+       {isMobileMenuOpen && <Base.Overlay className={this.decorateCSS("overlay")} onClick={this.toggleMobileMenu}>
           <div
             className={`${this.decorateCSS("mobileMenu")} ${
               isMobileMenuOpen ? this.decorateCSS("open") : ""
@@ -1508,6 +1502,9 @@ class Navbar2 extends BaseNavigator {
               </nav>
             )}
           </div>
+          </Base.Overlay>}
+
+         
         </Base.MaxContent>
       </Base.Navigator.Container>
     );
