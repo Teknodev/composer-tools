@@ -1,5 +1,10 @@
 @import "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss";
 
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
 .maxContent {
   width: 100%;
   display: flex;
@@ -100,36 +105,27 @@
   }
 }
 
-.downPage {
-  position: absolute;
+.dropdownMenu {
+  height: 0;
   width: 100%;
-  top: 0;
-  left: 0;
-  background-color: var(--composer-html-background);
-  display: flex;
-  flex-direction: column;
-  gap: var(--composer-gap-md);
-  justify-content: center;
-  opacity: 0;
-  z-index: 15;
-  height: fit-content;
-  min-height: 100vh;
+  overflow: hidden;
+  transition: all 0.3s ease;
 
   &.active {
-    opacity: 1;
-    transform: translateY(0);
-    animation: fadeIn 1s ease forwards;
-  }
-
-  &.closing {
-    animation: fadeOut 1s ease forwards;
+    height: 83vh;
+    overflow: visible;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
   }
 
   .up {
     display: flex;
     align-items: center;
     gap: var(--composer-gap-md);
-    margin: 0 var(--composer-gap-xl);
+    justify-content: center;
+    margin: 0 calc(var(--composer-gap-xl) * 2);
 
     .leftPage {
       .title {
@@ -177,11 +173,13 @@
     justify-content: center;
     align-items: center;
     gap: var(--composer-gap-md);
-    margin: var(--composer-gap-md) var(--composer-gap-xl);
-    .text1,
-    .text2 {
+
+    .text {
       font-size: 1.5rem;
       color: var(--composer-font-color-primary);
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .divider {
@@ -190,6 +188,16 @@
       height: 1px;
       border-bottom: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.5);
     }
+
+    .text,
+    .divider {
+      flex: 1 1;
+    }
+  }
+
+  .down > :first-child {
+    display: flex;
+    justify-content: start;
   }
 
   @keyframes fadeOut {
