@@ -9,7 +9,6 @@
       align-items: center;
       margin: 0 auto;
       gap: var(--composer-gap-md);
-
       .header {
         align-items: center;
 
@@ -29,31 +28,27 @@
         gap: var(--composer-gap-sm);
 
         .image-container {
-          width: 200px;
-          height: 100px;
+          width: 170px;
+          height: 50px;
           .image {
             width: 100%;
             height: 100%;
+            object-fit: cover;
+            cursor: pointer;
+            border-radius:var(--composer-border-radius-sm);
           }
         }
         .button {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          gap: var(--composer-gap-xs);
-          height: 60px;
-          min-width: 200px;
           .icon {
-            font-size: 1.5rem;
+            content: "";
           }
           .text {
-            font-size: 1.5rem;
+            content: "";
           }
         }
 
         .image-container {
           height: 60px;
-
           .image {
             object-fit: cover;
           }
@@ -92,11 +87,6 @@
               width: 200px;
               height: 100%;
             }
-          }
-          .button {
-            display: flex;
-            align-items: center;
-            gap: var(--composer-gap-xs);
           }
         }
 
