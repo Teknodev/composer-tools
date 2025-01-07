@@ -20,52 +20,47 @@
         width: 100%;
         align-items: center;
         justify-content: space-between;
-        padding: var(--composer-gap-md) var(--composer-gap-xl);
+        padding: 20px 50px;
         gap: var(--composer-gap-lg);
 
         .title {
           width: 20%;
           margin: 0;
-        }
-        .title-full {
-          width: 40%;
-          margin: 0;
+          &.full{
+            width: 40%;
+          }
         }
         .description {
           color: var(--composer-font-color-primary);
           width: 60%;
-        }
-        .description-full {
-          color: var(--composer-font-color-primary);
-          width: 100%;
+          &.full{
+            width: 100%;
+          }
         }
         .button-group {
           .button {
-            width: 100%;
-
+            display: flex;
+            width: 170px;
+            height: 50px;
+            >div,>a{
+              width: 100% !important;
+            }
             .button-logo {
-              width: 200px;
-              height: 60px;
+              height: 100%;
+              width: 100%;
               object-fit: cover;
+              cursor: pointer;
               border-radius: var(--composer-border-radius-sm);
             }
-
             .button-element {
+              width: 100%;
               display: flex;
-              flex-shrink: 0;
-              align-items: center;
               justify-content: center;
-              text-align: center;
-              gap: var(--composer-gap-sm);
-              min-width: 200px;
-              height: 60px;
               .button-text {
-                content: "";
-                font-size: 1rem;
+                font-size: 1.5rem;
               }
               .button-icon {
-                font-size: 1rem;
-                flex-shrink: 0;
+                font-size: 1.5rem;
               }
             }
           }
@@ -74,7 +69,7 @@
 
       .group-container-center {
         align-items: center;
-        padding: var(--composer-gap-md) var(--composer-gap-xl);
+        padding: 20px 50px;
 
         .title {
           content: "";
@@ -97,20 +92,11 @@
             }
 
             .button-element {
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              text-align: center;
-              gap: var(--composer-gap-sm);
-              min-width: 200px;
-              height: 60px;
-
               .button-text {
-                content: "";
-                font-size: 1rem;
+              content: "";
               }
               .button-icon {
-                font-size: 1rem;
+                content: "";
               }
             }
           }
@@ -133,6 +119,7 @@
           flex-direction: column;
           width: 100%;
           gap: 0;
+          padding: 20px 40px;
 
           .title {
             content: "";
@@ -148,33 +135,10 @@
             gap: var(--composer-gap-md);
             justify-content: unset;
             width: 100%;
-            .button {
-              width: auto;
-
-              .button-logo {
-                width: 200px;
-                height: 60px;
-                object-fit: cover;
-                border-radius: var(--composer-border-radius-sm);
-              }
-
-              .button-element {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                text-align: center;
-                gap: var(--composer-gap-sm);
-                min-width: 200px;
-                height: 60px;
-                .button-text {
-                  content: "";
-                }
-                .button-icon {
-                  font-size: 1rem;
-                }
-              }
-            }
           }
+        }
+        .group-container-center{
+          padding: 20px 40px;
         }
       }
     }
@@ -186,7 +150,6 @@
     .image-container {
       height: 300px;
     }
-
     .max-content {
       .page {
         .group-container {
@@ -194,6 +157,7 @@
           flex-direction: column;
           width: 100%;
           gap: 0;
+          padding: 20px;
 
           .title {
             content: "";
@@ -203,19 +167,11 @@
             width: 100%;
           }
           .button-group {
-            flex-direction: row;
-            align-items: center;
-            flex-wrap: wrap;
-            justify-content: space-between;
             gap: var(--composer-gap-sm);
-            width: 100%;
             .button {
-              .button-logo {
-                height: 60px;
-                object-fit: cover;
-                border-radius: var(--composer-border-radius-sm);
-              }
-
+              width: 120px;
+              height: 50px;
+              margin: 0px;
               .button-element {
                 display: flex;
                 align-items: center;
@@ -234,30 +190,18 @@
           }
         }
         .group-container-center {
+          padding: 20px;
           .button-group {
             display: flex;
             flex-direction: column;
             width: 100%;
             gap: var(--composer-gap-sm);
-
             .button {
               width: 100%;
-
               .button-logo {
                 height: 60px;
                 object-fit: cover;
                 border-radius: var(--composer-border-radius-sm);
-              }
-
-              .button-element {
-                display: flex;
-                min-width: 200px;
-                .button-text {
-                  content: "";
-                }
-                .button-icon {
-                  font-size: 1rem;
-                }
               }
             }
           }

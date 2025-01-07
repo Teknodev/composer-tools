@@ -4,6 +4,7 @@ import { BasePricingTable } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
   icon: string;
@@ -11,17 +12,12 @@ type Card = {
   price: JSX.Element;
   tagSettings: TagSettings;
   items: { value: JSX.Element }[];
-  button: Button;
+  button: any;
 };
 
 type TagSettings = {
   tag: JSX.Element;
   showTag: boolean;
-};
-
-type Button = {
-  text: JSX.Element;
-  link: string;
 };
 
 class PricingTable3 extends BasePricingTable {
@@ -42,25 +38,7 @@ class PricingTable3 extends BasePricingTable {
       value: "Lorem ipsum dolor sit amet consectetur adipiscing elit do eiusmod tempor incididunt labore et dolore magna ut enim.",
     });
 
-    this.addProp({
-      type: "object",
-      key: "button",
-      displayer: "button",
-      value: [
-        {
-          type: "string",
-          key: "text",
-          displayer: "Button Text",
-          value: "PRICING PLANS",
-        },
-        {
-          type: "page",
-          key: "link",
-          displayer: "Button Link",
-          value: "",
-        },
-      ],
-    });
+    this.addProp(INPUTS.BUTTON("button", "Button", "Join this plan", "", null, null, "Primary"));
 
     this.addProp({
       type: "array",
@@ -158,25 +136,7 @@ class PricingTable3 extends BasePricingTable {
                 },
               ],
             },
-            {
-              type: "object",
-              key: "button",
-              displayer: "Card Button",
-              value: [
-                {
-                  type: "string",
-                  key: "text",
-                  displayer: "Button Text",
-                  value: "CHOOSE PACKAGE",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Button Link",
-                  value: "",
-                },
-              ],
-            },
+            INPUTS.BUTTON("button", "Button", "Join this plan", "", null, null, "Primary"),
           ],
         },
         {
@@ -267,25 +227,7 @@ class PricingTable3 extends BasePricingTable {
                 },
               ],
             },
-            {
-              type: "object",
-              key: "button",
-              displayer: "Card Button",
-              value: [
-                {
-                  type: "string",
-                  key: "text",
-                  displayer: "Button Text",
-                  value: "CHOOSE PACKAGE",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Button Link",
-                  value: "",
-                },
-              ],
-            },
+            INPUTS.BUTTON("button", "Button", "Join this plan", "", null, null, "Primary"),
           ],
         },
         {
@@ -376,25 +318,7 @@ class PricingTable3 extends BasePricingTable {
                 },
               ],
             },
-            {
-              type: "object",
-              key: "button",
-              displayer: "Card Button",
-              value: [
-                {
-                  type: "string",
-                  key: "text",
-                  displayer: "Button Text",
-                  value: "CHOOSE PACKAGE",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Button Link",
-                  value: "",
-                },
-              ],
-            },
+            INPUTS.BUTTON("button", "Button", "Join this plan", "", null, null, "Primary"),
           ],
         },
       ],
@@ -407,32 +331,32 @@ class PricingTable3 extends BasePricingTable {
 
   render() {
     const cards = this.castToObject<Card[]>("cards");
-    const featuredButton = this.castToObject<Button>("button");
-    const titleExist = this.getPropValue("title", { as_string: true });
-    const descExist = this.getPropValue("description", { as_string: true });
+    const featuredButton = this.castToObject<INPUTS.CastedButton>("button");
+    const titleExist = this.castToString(this.getPropValue("title"));
+    const descExist = this.castToString(this.getPropValue("description"));
     const buttonExist = this.castToString(featuredButton.text);
     const hasCards = cards?.length > 0;
     const hasVisibleTag = cards?.some((card) => card.tagSettings.showTag);
 
     return (
-      <Base.Container className={this.decorateCSS(hasVisibleTag ? "container-alternate" : "container")}>
+      <Base.Container className={`${this.decorateCSS("container")} ${!hasVisibleTag && this.decorateCSS("container-alternate")}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
-            {(titleExist || descExist || buttonExist) && (
-              <Base.VerticalContent className={this.decorateCSS(hasCards ? "featured" : "featured-alternate")}>
+            {(titleExist || descExist) && (
+              <Base.VerticalContent className={`${this.decorateCSS("featured")} ${!hasCards && this.decorateCSS("featured-alternate")} `}>
                 {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                 {descExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
                 {buttonExist && (
-                  <ComposerLink path={featuredButton.link}>
+                  <ComposerLink path={featuredButton.url}>
                     <div className={this.decorateCSS("featured-button-container")}>
-                      <Base.Button>{featuredButton.text}</Base.Button>
+                      <Base.Button buttonType={featuredButton.type}>{featuredButton.text}</Base.Button>
                     </div>
                   </ComposerLink>
                 )}
               </Base.VerticalContent>
             )}
             {hasCards && (
-              <div className={this.decorateCSS(titleExist || descExist || buttonExist ? "cards-div" : "cards-div-alternate")}>
+              <div className={`${this.decorateCSS("cards-div")} ${!(titleExist || descExist || buttonExist) && this.decorateCSS("cards-div-alternate")}`}>
                 {cards.map((card: Card, idx: number) => {
                   const showTag = card.tagSettings.showTag;
                   const titleExist = this.castToString(card.title);
@@ -452,7 +376,7 @@ class PricingTable3 extends BasePricingTable {
                             />
                           )}
                           {titleExist && <Base.H3 className={this.decorateCSS("title")}>{card.title}</Base.H3>}
-                          <Base.H1 className={this.decorateCSS("price")}>{card.price}</Base.H1>
+                          {this.castToString(card.price) && <Base.H1 className={this.decorateCSS("price")}>{card.price}</Base.H1>}
                         </Base.VerticalContent>
                         {card.items.length > 0 && (
                           <div className={this.decorateCSS("body")}>
@@ -474,7 +398,9 @@ class PricingTable3 extends BasePricingTable {
                         {this.castToString(card.button.text) && (
                           <div className={this.decorateCSS("footer")}>
                             <ComposerLink path={card.button.link}>
-                              <Base.Button className={this.decorateCSS("button-text")}>{card.button.text}</Base.Button>
+                              <Base.Button buttonType={card.button.type} className={this.decorateCSS("button-text")}>
+                                {card.button.text}
+                              </Base.Button>
                             </ComposerLink>
                           </div>
                         )}

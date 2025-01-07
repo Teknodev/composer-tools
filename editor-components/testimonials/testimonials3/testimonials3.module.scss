@@ -2,10 +2,10 @@
   .max-content {
     .testimonials3 {
       gap: var(--composer-gap-md);
-      .title{
+      .title {
         width: 100%;
       }
-      .card-container{
+      .card-container {
         .card {
           display: flex;
           flex-direction: column;
@@ -16,11 +16,15 @@
             display: flex;
             gap: var(--composer-gap-xs);
             color: var(--composer-secondary-color);
+
+            .icon {
+              font-size: 1rem;
+            }
           }
-          .cardSubtitle{
+          .cardSubtitle {
             color: var(--composer-font-color-primary);
           }
-          .image{
+          .image {
             align-items: center;
             max-width: 30%;
             height: 100%;
@@ -28,6 +32,6 @@
           }
         }
       }
-      }
     }
+  }
 }

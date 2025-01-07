@@ -4,6 +4,7 @@ import styles from "./feature12.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
   title: JSX.Element;
@@ -13,7 +14,6 @@ type Card = {
 
 type FirstItem = {
   title: JSX.Element;
-  button: JSX.Element;
   backgroundImage: string;
   overlay: boolean;
 };
@@ -45,18 +45,6 @@ class Feature12 extends BaseFeature {
           value: "Best Of Our Features",
         },
         {
-          type: "string",
-          key: "button",
-          displayer: "Button",
-          value: "SEE ALL SERVICES",
-        },
-        {
-          type: "page",
-          key: "buttonLink",
-          displayer: "Button Link",
-          value: ""
-        },
-        {
           type: "image",
           key: "backgroundImage",
           displayer: "Background Image",
@@ -71,6 +59,7 @@ class Feature12 extends BaseFeature {
         },
       ],
     });
+    this.addProp(INPUTS.BUTTON("button", "Button", "SEE ALL SERVICES", "", null, null, "Primary"));
     this.addProp({
       type: "array",
       key: "cards",
@@ -182,10 +171,13 @@ class Feature12 extends BaseFeature {
     const firstItem = this.castToObject<FirstItem>("firstItem");
 
     const firstCardTitleExist = this.castToString(firstItem.title);
-    const buttonTextExist = this.castToString(firstItem.button);
 
     const firstItemBackgroundImage = firstItem.backgroundImage;
     const firstItemOverlay = firstItem.overlay;
+
+    const button = this.castToObject<INPUTS.CastedButton>("button");
+
+    const buttonTextExist = this.castToString(button.text)
 
     const renderFirstItem =
       firstCardTitleExist || buttonTextExist || firstItemBackgroundImage;
@@ -223,9 +215,9 @@ class Feature12 extends BaseFeature {
                   </Base.H3>
                 )}
                 {buttonTextExist && (
-                  <ComposerLink path={this.getPropValue("buttonLink")}>
-                    <Base.Button className={this.decorateCSS("button")}>
-                      {firstItem.button}
+                  <ComposerLink path={button.url}>
+                    <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                      {button.text}
                     </Base.Button>
                   </ComposerLink>
                 )}

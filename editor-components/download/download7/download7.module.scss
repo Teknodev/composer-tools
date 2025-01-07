@@ -20,78 +20,54 @@
         z-index: 1;
       }
 
-      .content-container,
-      .content-container-no-image {
+      .content-container{
         height: 100%;
         justify-content: center;
         position: relative;
         z-index: 2;
+        &.image{
+          min-height: 600px;
+          padding: var(--composer-gap-md) var(--composer-gap-xl);
+          align-items: center;
+          text-align: center;
+        }
         .title {
           font-size: 1.5rem;
           content: "";
-        }
-        .title-no-image {
-          font-size: 1.5rem;
-          color: white;
+          &.image{
+            color: white;
+          }
         }
 
         .description {
           font-size: 2rem;
-        }
-        .description-no-image {
-          font-size: 2rem;
-          color: white;
+          &.image{
+            color: white;
+          }
         }
 
-        .buttons-container,
-        .buttons-container-center {
+        .buttons-container {
           display: flex;
           flex-wrap: wrap;
           align-items: center;
-          width: 100%;
           gap: var(--composer-gap-md);
-          .button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: var(--composer-gap-sm);
-            min-width: 200px;
-            height: 60px;
-
-            .button-icon {
-              width: var(--composer-gap-md);
-              height: var(--composer-gap-md);
-            }
-
-            .button-text {
-              font-size: 1.5rem;
-            }
-          }
-
           .button-wrapper {
-            min-width: 200px;
-            height: 60px;
-
             .button-image {
-              width: 100%;
+              width: 170px;
+              height:50px;
               border-radius: var(--composer-border-radius-sm);
-              max-height: 60px;
-              height: 100%;
               object-fit: cover;
             }
+            .button-element {
+              .icon {
+                content: "";
+              }
+              .button-text {
+                content: "";
+              }
+            }
           }
         }
-
-        .buttons-container-center {
-          justify-content: center;
-        }
-      }
-
-      .content-container {
-        min-height: 600px;
-        padding: var(--composer-gap-md) var(--composer-gap-xl);
-        align-items: center;
-        text-align: center;
       }
     }
   }
@@ -101,24 +77,15 @@
   .container {
     .max-content {
       .wrapper {
-        .content-container,
-        .content-container-no-image {
-          .title,
-          .title-no-image {
-            font-size: 1rem;
-          }
-          .description,
-          .description-no-image {
-            font-size: 1.5rem;
-          }
-        }
-
         .content-container {
           min-height: 600px;
           padding: var(--composer-gap-sm) var(--composer-gap-md);
-        }
-        .content-container-no-image {
-          content: "";
+          .title {
+            font-size: 1rem;
+          }
+          .description {
+            font-size: 1.5rem;
+          }
         }
       }
     }
@@ -129,49 +96,22 @@
   .container {
     .max-content {
       .wrapper {
-        .content-container,
-        .content-container-no-image {
-          .buttons-container,
-          .buttons-container-center {
-            flex-direction: column;
-            align-items: baseline;
-            .button {
-              min-width: 200px;
-              height: 60px;
-
-              .button-icon {
-                width: var(--composer-gap-md);
-                height: var(--composer-gap-md);
-              }
-
-              .button-text {
-                font-size: 1rem;
-              }
-            }
-
-            .button-wrapper {
-              min-width: 200px;
-              height: 60px;
-
-              .button-image {
-                width: 100%;
-                max-height: 60px;
-                height: 100%;
-              }
-            }
-          }
-
-          .buttons-container-center {
-            justify-content: center;
-          }
-        }
-
         .content-container {
           min-height: 600px;
           padding: var(--composer-gap-sm) var(--composer-gap-md);
-        }
-        .content-container-no-image {
-          content: "";
+          .description{
+            text-align: center;
+          }
+          .buttons-container{
+            justify-content: center;
+            flex-direction: column;
+            .button-wrapper{
+              .button-image{
+                width: 120px;
+                height: 40px;
+              }
+            }
+          }
         }
       }
     }
