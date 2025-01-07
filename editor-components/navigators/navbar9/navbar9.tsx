@@ -10,14 +10,24 @@ import ComposerLanguage from "composer-tools/composer-base-components/language/l
 interface Logo {
   image: string;
   imageLink: string;
-  alt: string;
 }
 
 interface MenuItems {
-  title: string;
+  title: JSX.Element;
   navigate_to: string;
   menuType: string;
   sub_items: MenuItems[];
+}
+interface Language {
+  label: "code" | "name";
+  icon: string;
+  showLanguage: boolean;
+  showDivider: boolean;
+}
+
+interface Icons {
+  icon: string;
+  page: string;
 }
 
 class Navbar9 extends BaseNavigator {
@@ -35,7 +45,7 @@ class Navbar9 extends BaseNavigator {
           type: "image",
           key: "image",
           value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676a9ac20655f8002caba0b7?alt=media",
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc964?alt=media&timestamp=1735826277716",
           displayer: "Image",
         },
         {
@@ -43,26 +53,20 @@ class Navbar9 extends BaseNavigator {
           key: "navigateTo",
           value: "",
           displayer: "Navigate To",
-        },
-        {
-          type: "string",
-          key: "alt",
-          value: "Logo",
-          displayer: "Alt",
         },
       ],
     });
 
     this.addProp({
       type: "object",
-      key: "transparentLogo",
-      displayer: "Transparent Logo",
+      key: "absoluteLogo",
+      displayer: "Absolute Logo",
       value: [
         {
           type: "image",
           key: "image",
           value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6762cc190655f8002ca8c66b?alt=media",
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc965?alt=media&timestamp=1735826277716",
           displayer: "Image",
         },
         {
@@ -71,11 +75,40 @@ class Navbar9 extends BaseNavigator {
           value: "",
           displayer: "Navigate To",
         },
+      ],
+    });
+
+    this.addProp({
+      type: "object",
+      key: "language",
+      displayer: "Language",
+      value: [
         {
-          type: "string",
-          key: "alt",
-          value: "Logo",
-          displayer: "Alt",
+          type: "select",
+          key: "label",
+          displayer: "Label",
+          value: "code",
+          additionalParams: {
+            selectItems: ["code", "name"],
+          },
+        },
+        {
+          type: "icon",
+          key: "icon",
+          displayer: "Icon",
+          value: "GrLanguage",
+        },
+        {
+          type: "boolean",
+          key: "showLanguage",
+          displayer: "Show Language",
+          value: true,
+        },
+        {
+          type: "boolean",
+          key: "showDivider",
+          displayer: "Show Divider",
+          value: true,
         },
       ],
     });
@@ -903,6 +936,90 @@ class Navbar9 extends BaseNavigator {
     });
 
     this.addProp({
+      type: "array",
+      key: "icons",
+      displayer: "Icons",
+      value: [
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "icon",
+              key: "icon",
+              value: "FaTelegram",
+              displayer: "Icon",
+            },
+            {
+              type: "page",
+              key: "page",
+              displayer: "Page",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "image",
+              key: "icon",
+              value: "FaTwitter",
+              displayer: "Icon",
+            },
+            {
+              type: "page",
+              key: "page",
+              displayer: "Page",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "image",
+              key: "icon",
+              value: "FaInstagram",
+              displayer: "Icon",
+            },
+            {
+              type: "page",
+              key: "page",
+              displayer: "Page",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "image",
+              key: "icon",
+              value: "FaLinkedin",
+              displayer: "Icon",
+            },
+            {
+              type: "page",
+              key: "page",
+              displayer: "Page",
+              value: "",
+            },
+          ],
+        },
+      ],
+    });
+
+    this.addProp({
       type: "boolean",
       key: "overlay",
       displayer: "Overlay",
@@ -959,41 +1076,33 @@ class Navbar9 extends BaseNavigator {
     this.setComponentState("isScrolled", isScrolled);
   };
 
-  hamburgerNavClick() {
-    this.setComponentState("hamburgerNavActive", true);
+  handleOpenMenu = () => {
     this.setComponentState("changeBackground", true);
-  }
-  
-  handleCloseMenu() {
+    setTimeout(() => {
+      this.setComponentState("hamburgerNavActive", true);
+    }, 100);
+  };
+
+  handleCloseMenu = () => {
     this.setComponentState("hamburgerNavActive", false);
+
     setTimeout(() => {
       this.setComponentState("changeBackground", false);
-    }, 300);
+    }, 200);
+  };
+
+  navClick(index: number) {
+    const isActive = this.getComponentState("subNavActiveIndex") === index;
+    this.setComponentState("navActive", !isActive);
+    this.setComponentState("subNavActiveIndex", isActive ? null : index);
+    this.setComponentState("subNavActive", null);
   }
 
-  navCLick(index: number) {
-    const currentValue = this.getComponentState("subNavActiveIndex");
-    if (currentValue === index) {
-      this.setComponentState("navActive", !this.getComponentState("navActive"));
-      this.setComponentState("subNavActiveIndex", null);
-      this.setComponentState("subNavActive", null);
-    } else {
-      this.setComponentState("subNavActiveIndex", null);
-      this.setComponentState("navActive", false);
-      this.setComponentState("subNavActive", null);
-
-      this.setComponentState("navActive", true);
-      this.setComponentState("subNavActiveIndex", index);
-    }
-  }
-
-  subNavCLick(index: any) {
+  subNavClick(index: any) {
     const currentValue = this.getComponentState("subNavActive");
     if (currentValue === index) {
       this.setComponentState("subNavActive", null);
     } else {
-      this.setComponentState("subNavActive", null);
-
       this.setComponentState("subNavActive", index);
     }
   }
@@ -1001,331 +1110,407 @@ class Navbar9 extends BaseNavigator {
   render() {
     const position = this.getPropValue("position");
     const defaultLogo = this.castToObject<Logo>("defaultLogo");
-    const transparentLogo = this.castToObject<Logo>("transparentLogo");
+    const absoluteLogo = this.castToObject<Logo>("absoluteLogo");
     const isScrolled = this.getComponentState("isScrolled");
     const hamburgerNavActive = this.getComponentState("hamburgerNavActive");
 
+    const isStickyTransparent = position === "Sticky Transparent";
+    const isAbsolute = position === "Absolute";
     const transparentBackground =
-      (position === "Sticky Transparent" || position === "Absolute") &&
-      !isScrolled;
-    const currentLogo = transparentBackground && !hamburgerNavActive ? transparentLogo : defaultLogo;
-    const menuItems = this.castToObject<MenuItems[]>("menuItems");
-    const overlay = this.getPropValue("overlay");
+      (isStickyTransparent && !isScrolled) || isAbsolute;
     const changeBackground = this.getComponentState("changeBackground");
 
-    return (
-      <Base.Navigator.Container
-        position={position}
-        className={`${this.decorateCSS("container")}`}
-        positionContainer={`${
-          overlay && !isScrolled ? this.decorateCSS("overlay") : ""
-        } ${
-          changeBackground ? this.decorateCSS("defaultBackground") : ""
-        }`}
-      >
-        <Base.MaxContent className={this.decorateCSS("maxContent")}>
-          {currentLogo && (
-            <div className={this.decorateCSS("logo")}>
-              <ComposerLink link={currentLogo.imageLink}>
-                <img
-                  src={currentLogo.image}
-                  alt={currentLogo.alt}
-                  className={this.decorateCSS("logoImage")}
-                />
-              </ComposerLink>
-            </div>
-          )}
+    const currentLogo =
+      transparentBackground && !changeBackground ? absoluteLogo : defaultLogo;
 
-          <div className={this.decorateCSS("pcNavbarContainer")}>
-            <div className={this.decorateCSS("localizationContainer")}>
-              <ComposerLanguage
-                type="dropdown"
-                title="code"
-                dropdownClassName={`${this.decorateCSS("localizationLabel")} ${
-                  transparentBackground ? this.decorateCSS("whiteColor") : ""
-                }`}
-              />
-            </div>
-            <nav className={this.decorateCSS("pcNavbar")}>
-              {this.getPropValue("menuItems") &&
-                menuItems.map((item: any, index: any) => (
-                  <div
-                    key={index}
-                    className={this.decorateCSS("menuItemContainer")}
-                  >
-                    <ComposerLink path={item.navigate_to}>
-                      <div className={this.decorateCSS("menuItem")}>
-                        <span
-                          className={`${this.decorateCSS("menuItemTitle")} ${
-                            transparentBackground
-                              ? this.decorateCSS("whiteColor")
-                              : ""
-                          }`}
-                        >
-                          {item.title}
-                        </span>
-                        {item.menuType === "Dropdown" && (
-                          <ComposerIcon
-                            name={this.getPropValue("dropdownIcon")}
-                            propsIcon={{
-                              className: `${this.decorateCSS("dropdownIcon")} ${
-                                transparentBackground
-                                  ? this.decorateCSS("whiteColor")
-                                  : ""
-                              }`,
-                            }}
-                          />
-                        )}
-                      </div>
-                    </ComposerLink>
-                    {item.menuType === "Dropdown" && (
-                      <div className={this.decorateCSS("dropdown")}>
-                        {item.sub_items?.map(
-                          (subItem: any, subIndex: number) => (
-                            <div
-                              key={subIndex}
-                              className={this.decorateCSS(
-                                "dropdownItemContainer"
-                              )}
-                            >
-                              <div className={this.decorateCSS("dropdownItem")}>
-                                <ComposerLink path={subItem.navigate_to}>
-                                  <div
-                                    className={this.decorateCSS(
-                                      "dropdownItemContent"
-                                    )}
-                                  >
-                                    <span
+    const menuItems = this.castToObject<MenuItems[]>("menuItems");
+    const overlay = this.getPropValue("overlay");
+    const language = this.castToObject<Language>("language");
+    const icons = this.castToObject<Icons[]>("icons");
+
+    return (
+      <>
+        <Base.Navigator.Container
+          position={position}
+          className={`${this.decorateCSS("container")}`}
+          positionContainer={`${this.decorateCSS("navbarContainer")} ${
+            overlay && (isStickyTransparent && !isScrolled) ? this.decorateCSS("overlay") : ""
+          } ${changeBackground ? this.decorateCSS("filledBackground") : ""}`}
+        >
+          <Base.MaxContent className={`${this.decorateCSS("maxContent")} ${transparentBackground ? this.decorateCSS("transparentBackground") : ""}`}>
+            {currentLogo.image && (
+              <ComposerLink link={currentLogo.imageLink}>
+                <div className={this.decorateCSS("logo")}>
+                  <img
+                    src={currentLogo.image}
+                    className={this.decorateCSS("logoImage")}
+                  />
+                </div>
+              </ComposerLink>
+            )}
+
+            <div className={this.decorateCSS("pcNavbarContainer")}>
+              {language.showLanguage && (
+                <div className={this.decorateCSS("localizationContainer")}>
+                  <ComposerLanguage
+                    type="dropdown"
+                    title={language.label}
+                    icon={language.icon}
+                    dropdownButtonClassName={`${this.decorateCSS(
+                      "localization"
+                    )}`}
+                    dropdownLabelClassName={`${this.decorateCSS(
+                      "localizationLabel"
+                    )}`}
+                    iconClassName={this.decorateCSS("languageIcon")}
+                    dropdownItemClassName={this.decorateCSS("localizationItem")}
+                    dropdownContentClassName={this.decorateCSS(
+                      "localizationContent"
+                    )}
+                    divider={language.showDivider}
+                  />
+                </div>
+              )}
+
+              {menuItems.length > 0 && (
+                <nav className={this.decorateCSS("pcNavbar")}>
+                  {menuItems.map((item: any, index: any) => (
+                    <div
+                      key={index}
+                      className={this.decorateCSS("menuItemContainer")}
+                    >
+                      <ComposerLink path={item.navigate_to}>
+                        <div className={this.decorateCSS("menuItem")}>
+                          <span
+                            className={this.decorateCSS("menuItemTitle")}
+                          >
+                            {item.title}
+                          </span>
+                          {item.menuType === "Dropdown" && (
+                            <ComposerIcon
+                              name={this.getPropValue("dropdownIcon")}
+                              propsIcon={{
+                                className: this.decorateCSS(
+                                  "dropdownIcon"
+                                )
+                              }}
+                            />
+                          )}
+                        </div>
+                      </ComposerLink>
+                      {item.menuType === "Dropdown" && (
+                        <div className={this.decorateCSS("dropdown")}>
+                          {item.sub_items?.map(
+                            (subItem: any, subIndex: number) => (
+                              <div
+                                key={subIndex}
+                                className={this.decorateCSS(
+                                  "dropdownItemContainer"
+                                )}
+                              >
+                                <div
+                                  className={this.decorateCSS("dropdownItem")}
+                                >
+                                  <ComposerLink path={subItem.navigate_to}>
+                                    <div
                                       className={this.decorateCSS(
-                                        "dropdownItemTitle"
+                                        "dropdownItemContent"
                                       )}
                                     >
-                                      {subItem.title}
-                                    </span>
-                                  </div>
-                                </ComposerLink>
+                                      <span
+                                        className={this.decorateCSS(
+                                          "dropdownItemTitle"
+                                        )}
+                                      >
+                                        {subItem.title}
+                                      </span>
+                                    </div>
+                                  </ComposerLink>
+                                  {subItem.sub_items.length > 0 &&
+                                    subItem.sub_items.some((item: any) =>
+                                      this.castToString(item.title)
+                                    ) && (
+                                      <ComposerIcon
+                                        name={this.getPropValue("rightIcon")}
+                                        propsIcon={{
+                                          className:
+                                            this.decorateCSS("rightIcon"),
+                                        }}
+                                      />
+                                    )}
+                                </div>
                                 {subItem.sub_items.length > 0 &&
                                   subItem.sub_items.some((item: any) =>
                                     this.castToString(item.title)
                                   ) && (
-                                    <ComposerIcon
-                                      name={this.getPropValue("rightIcon")}
-                                      propsIcon={{
-                                        className:
-                                          this.decorateCSS("rightIcon"),
-                                      }}
-                                    />
+                                    <div
+                                      className={this.decorateCSS(
+                                        "subdropdown"
+                                      )}
+                                    >
+                                      {subItem.sub_items.map(
+                                        (
+                                          subSubItem: MenuItems,
+                                          subSubIndex: number
+                                        ) => (
+                                          <div
+                                            key={subSubIndex}
+                                            className={this.decorateCSS(
+                                              "subdropdownItem"
+                                            )}
+                                          >
+                                            <ComposerLink
+                                              path={subSubItem.navigate_to}
+                                            >
+                                              <span
+                                                className={this.decorateCSS(
+                                                  "dropdownItemTitle"
+                                                )}
+                                              >
+                                                {subSubItem.title}
+                                              </span>
+                                            </ComposerLink>
+                                          </div>
+                                        )
+                                      )}
+                                    </div>
                                   )}
                               </div>
-                              {subItem.sub_items.length > 0 &&
-                                subItem.sub_items.some((item: any) =>
-                                  this.castToString(item.title)
-                                ) && (
-                                  <div
-                                    className={this.decorateCSS("subdropdown")}
-                                  >
-                                    {subItem.sub_items.map(
-                                      (
-                                        subSubItem: MenuItems,
-                                        subSubIndex: number
-                                      ) => (
-                                        <div
-                                          key={subSubIndex}
-                                          className={this.decorateCSS(
-                                            "subdropdownItem"
-                                          )}
-                                        >
-                                          <ComposerLink
-                                            path={subSubItem.navigate_to}
-                                          >
-                                            <span
-                                              className={this.decorateCSS(
-                                                "dropdownItemTitle"
-                                              )}
-                                            >
-                                              {subSubItem.title}
-                                            </span>
-                                          </ComposerLink>
-                                        </div>
-                                      )
-                                    )}
-                                  </div>
-                                )}
-                            </div>
-                          )
-                        )}
-                      </div>
-                    )}
-                  </div>
-                ))}
-            </nav>
+                            )
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </nav>
+              )}
 
-            <div className={this.decorateCSS("icons")}></div>
-          </div>
-       
-          {  hamburgerNavActive ? <ComposerIcon
-            name={ this.getPropValue("closeIcon")}
-            propsIcon={{
-              className: this.decorateCSS("hamburgerIcon"),
-              onClick: () => this.handleCloseMenu(),
-            }}
-          /> : <ComposerIcon
-            name={ this.getPropValue("menuIcon")}
-            propsIcon={{
-              className: `${this.decorateCSS("hamburgerIcon")} ${transparentBackground ? this.decorateCSS("whiteColor") : ""}`,
-              onClick: () => this.hamburgerNavClick(),
-            }}
-          /> }
+              {icons.length > 0 && (
+                <div className={this.decorateCSS("icons")}>
+                  {icons.map((icon: Icons, index: number) => (
+                    <ComposerLink key={index} path={icon.page}>
+                      <ComposerIcon
+                        name={icon.icon}
+                        propsIcon={{ className: this.decorateCSS("icon") }}
+                      />
+                    </ComposerLink>
+                  ))}
+                </div>
+              )}
+            </div>
 
-        </Base.MaxContent>
-        <div
-          className={`${this.decorateCSS("hamburgerNav")} ${
-            this.getComponentState("hamburgerNavActive")
-              ? this.decorateCSS("active")
-              : ""
-          }`}
-        >
-          <Base.Container className={this.decorateCSS("hamburgerContainer")}>
-            <Base.MaxContent
-              className={this.decorateCSS("hamburgerMaxContent")}
-            >
-              <nav className={this.decorateCSS("hamburgerMenu")}>
-                {menuItems.map((item: MenuItems, index: number) => (
-                  <div
-                    key={index}
-                    className={this.decorateCSS("hamburgerMenuItem")}
-                  >
-                    <div
-                      className={this.decorateCSS("hamburgerMenuItemHeader")}
-                      onClick={() => this.navCLick(index)}
-                    >
-                      <ComposerLink path={item.navigate_to}>
-                        <span
-                          className={this.decorateCSS("hamburgerMenuItemTitle")}
+            {hamburgerNavActive ? (
+              <ComposerIcon
+                name={this.getPropValue("closeIcon")}
+                propsIcon={{
+                  className: this.decorateCSS("hamburgerIcon"),
+                  onClick: () => this.handleCloseMenu(),
+                }}
+              />
+            ) : (
+              <ComposerIcon
+                name={this.getPropValue("menuIcon")}
+                propsIcon={{
+                  className: `${this.decorateCSS("hamburgerIcon")} ${
+                    transparentBackground ? this.decorateCSS("whiteColor") : ""
+                  }`,
+                  onClick: () => this.handleOpenMenu(),
+                }}
+              />
+            )}
+          </Base.MaxContent>
+          <div
+            className={`${this.decorateCSS("hamburgerNav")} ${
+              this.getComponentState("hamburgerNavActive")
+                ? this.decorateCSS("active")
+                : ""
+            }`}
+          >
+            <Base.Container className={this.decorateCSS("hamburgerContainer")}>
+              <Base.MaxContent
+                className={this.decorateCSS("hamburgerMaxContent")}
+              >
+                {menuItems.length > 0 && (
+                  <nav className={this.decorateCSS("hamburgerMenu")}>
+                    {menuItems.map((item: MenuItems, index: number) => this.castToString(item.title) && (
+                      <div
+                        key={index}
+                        className={this.decorateCSS("hamburgerMenuItem")}
+                      >
+                        <div
+                          className={this.decorateCSS(
+                            "hamburgerMenuItemHeader"
+                          )}
+                          onClick={() => this.navClick(index)}
                         >
-                          {item.title}
-                        </span>
-                      </ComposerLink>
-                      {item.menuType === "Dropdown" && (
-                        <ComposerIcon
-                          name={this.getPropValue("dropdownIcon")}
-                          propsIcon={{
-                            className: `${this.decorateCSS("dropdownIcon")} ${
+                          <ComposerLink path={item.navigate_to}>
+                            <span
+                              className={this.decorateCSS(
+                                "hamburgerMenuItemTitle"
+                              )}
+                            >
+                              {item.title}
+                            </span>
+                          </ComposerLink>
+                          {item.menuType === "Dropdown" && (
+                            <ComposerIcon
+                              name={this.getPropValue("dropdownIcon")}
+                              propsIcon={{
+                                className: `${this.decorateCSS(
+                                  "dropdownIcon"
+                                )} ${
+                                  this.getComponentState(
+                                    "subNavActiveIndex"
+                                  ) === index
+                                    ? this.decorateCSS("active")
+                                    : ""
+                                }`,
+                              }}
+                            />
+                          )}
+                        </div>
+                        {item.menuType === "Dropdown" && (
+                          <div
+                            className={`${this.decorateCSS(
+                              "hamburgerSubmenu"
+                            )} ${
                               this.getComponentState("subNavActiveIndex") ===
                               index
                                 ? this.decorateCSS("active")
                                 : ""
-                            }`,
-                          }}
-                        />
-                      )}
-                    </div>
-                    {item.menuType === "Dropdown" && (
-                      <div
-                        className={`${this.decorateCSS("hamburgerSubmenu")} ${
-                          this.getComponentState("subNavActiveIndex") === index
-                            ? this.decorateCSS("active")
-                            : ""
-                        }`}
-                      >
-                        {item.sub_items?.map(
-                          (subItem: MenuItems, subIndex: number) => (
-                            <div
-                              key={subIndex}
-                              className={this.decorateCSS(
-                                "hamburgerSubmenuItem"
-                              )}
-                            >
-                              <div
-                                className={this.decorateCSS(
-                                  "hamburgerSubmenuItemHeader"
-                                )}
-                                onClick={() =>
-                                  this.subNavCLick(`${index}-${subIndex}`)
-                                }
-                              >
-                                <ComposerLink path={subItem.navigate_to}>
-                                  <span
+                            }`}
+                          >
+                            {item.sub_items?.map(
+                              (subItem: MenuItems, subIndex: number) => this.castToString(subItem.title) && (
+                                <div
+                                  key={subIndex}
+                                  className={this.decorateCSS(
+                                    "hamburgerSubmenuItem"
+                                  )}
+                                >
+                                  <div
                                     className={this.decorateCSS(
-                                      "hamburgerDropdownItemTitle"
+                                      "hamburgerSubmenuItemHeader"
                                     )}
+                                    onClick={() =>
+                                      this.subNavClick(`${index}-${subIndex}`)
+                                    }
                                   >
-                                    {subItem.title}
-                                  </span>
-                                </ComposerLink>
-                                {subItem.sub_items.length > 0 &&
-                                  subItem.sub_items.some((item: any) =>
-                                    this.castToString(item.title)
-                                  ) && (
-                                    <ComposerIcon
-                                      name={this.getPropValue("rightIcon")}
-                                      propsIcon={{
-                                        className: `${this.decorateCSS(
-                                          "dropdownIcon"
+                                    <ComposerLink path={subItem.navigate_to}>
+                                      <span
+                                        className={this.decorateCSS(
+                                          "hamburgerDropdownItemTitle"
+                                        )}
+                                      >
+                                        {subItem.title}
+                                      </span>
+                                    </ComposerLink>
+                                    {subItem.sub_items.length > 0 &&
+                                      subItem.sub_items.some((item: any) => this.castToString(item.title)) && (
+                                        this.castToString(item.title)
+                                      ) && (
+                                        <ComposerIcon
+                                          name={this.getPropValue("rightIcon")}
+                                          propsIcon={{
+                                            className: `${this.decorateCSS(
+                                              "dropdownIcon"
+                                            )} ${
+                                              this.getComponentState(
+                                                "subNavActive"
+                                              ) === `${index}-${subIndex}`
+                                                ? this.decorateCSS("active")
+                                                : ""
+                                            }`,
+                                          }}
+                                        />
+                                      )}
+                                  </div>
+                                  {subItem.sub_items.length > 0 &&
+                                    subItem.sub_items.some((item: any) =>
+                                      this.castToString(item.title)
+                                    ) && (
+                                      <div
+                                        className={`${this.decorateCSS(
+                                          "hamburgerSubSubmenu"
                                         )} ${
                                           this.getComponentState(
                                             "subNavActive"
                                           ) === `${index}-${subIndex}`
                                             ? this.decorateCSS("active")
                                             : ""
-                                        }`,
-                                      }}
-                                    />
-                                  )}
-                              </div>
-                              {subItem.sub_items.length > 0 &&
-                                subItem.sub_items.some((item: any) =>
-                                  this.castToString(item.title)
-                                ) && (
-                                  <div
-                                    className={`${this.decorateCSS(
-                                      "hamburgerSubSubmenu"
-                                    )} ${
-                                      this.getComponentState("subNavActive") ===
-                                      `${index}-${subIndex}`
-                                        ? this.decorateCSS("active")
-                                        : ""
-                                    }`}
-                                  >
-                                    {subItem.sub_items.map(
-                                      (
-                                        subSubItem: MenuItems,
-                                        subSubIndex: number
-                                      ) => (
-                                        <div
-                                          key={subSubIndex}
-                                          className={this.decorateCSS(
-                                            "hamburgerSubSubmenuItem"
-                                          )}
-                                        >
-                                          <ComposerLink
-                                            path={subSubItem.navigate_to}
-                                          >
-                                            <span
+                                        }`}
+                                      >
+                                        {subItem.sub_items.map(
+                                          (
+                                            subSubItem: MenuItems,
+                                            subSubIndex: number
+                                          ) => this.castToString(subSubItem.title) && (
+                                            <div
+                                              key={subSubIndex}
                                               className={this.decorateCSS(
-                                                "hamburgerSubSubmenuItemTitle"
+                                                "hamburgerSubSubmenuItem"
                                               )}
                                             >
-                                              {subSubItem.title}
-                                            </span>
-                                          </ComposerLink>
-                                        </div>
-                                      )
+                                              <ComposerLink
+                                                path={subSubItem.navigate_to}
+                                              >
+                                                <span
+                                                  className={this.decorateCSS(
+                                                    "hamburgerSubSubmenuItemTitle"
+                                                  )}
+                                                >
+                                                  {subSubItem.title}
+                                                </span>
+                                              </ComposerLink>
+                                            </div>
+                                          )
+                                        )}
+                                      </div>
                                     )}
-                                  </div>
-                                )}
-                            </div>
-                          )
+                                </div>
+                              )
+                            )}
+                          </div>
                         )}
                       </div>
-                    )}
+                    ))}
+
+                    <div className={this.decorateCSS("accordionLocalization")}>
+                      {language.showLanguage && (
+                        <ComposerLanguage
+                          type="accordion"
+                          title={language.label}
+                          headerClassName={`${this.decorateCSS(
+                            "localization"
+                          )}`}
+                          itemClassName={`${this.decorateCSS(
+                            "localizationItem"
+                          )}`}
+                        />
+                      )}
+                    </div>
+                  </nav>
+                )}
+                {icons.length > 0 && (
+                  <div className={this.decorateCSS("icons")}>
+                    {icons.map((icon: Icons, index: number) => (
+                      <ComposerLink key={index} path={icon.page}>
+                        <ComposerIcon name={icon.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                      </ComposerLink>
+                    ))}
                   </div>
-                ))}
-              </nav>
-            </Base.MaxContent>
-          </Base.Container>
-        </div>
-      </Base.Navigator.Container>
+                )}
+              </Base.MaxContent>
+            </Base.Container>
+          </div>
+        </Base.Navigator.Container>
+        <div
+          className={`${this.decorateCSS("hamburgerOverlay")} ${
+            hamburgerNavActive ? this.decorateCSS("overlayActive") : ""
+          }`}
+          onClick={() => this.handleCloseMenu()}
+        />
+      </>
     );
   }
 }
