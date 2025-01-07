@@ -4,15 +4,16 @@ import { BasePricingTable } from "../../EditorComponent";
 import styles from "./pricing-table2.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type PricingItems = {
+  button: any;
   cardTitle: JSX.Element;
   cardPrice: JSX.Element;
   cardDuration: JSX.Element;
   cardIcon: string;
   cardList: ListItem[];
-  cardButtonText: JSX.Element;
-  cardButtonLink: string;
+  buttonType: INPUTS.CastedButton;
 };
 
 type ListItem = {
@@ -185,18 +186,7 @@ class PricingTable2 extends BasePricingTable {
                 },
               ],
             },
-            {
-              type: "string",
-              key: "cardButtonText",
-              displayer: "Button Text",
-              value: "Select Now",
-            },
-            {
-              type: "page",
-              key: "cardButtonLink",
-              displayer: "Button Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "Select Now", "", null, null, "Primary"),
           ],
         },
         {
@@ -330,18 +320,7 @@ class PricingTable2 extends BasePricingTable {
                 },
               ],
             },
-            {
-              type: "string",
-              key: "cardButtonText",
-              displayer: "Button Text",
-              value: "Select Now",
-            },
-            {
-              type: "page",
-              key: "cardButtonLink",
-              displayer: "Button Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "Select Now", "", null, null, "Primary"),
           ],
         },
         {
@@ -475,18 +454,7 @@ class PricingTable2 extends BasePricingTable {
                 },
               ],
             },
-            {
-              type: "string",
-              key: "cardButtonText",
-              displayer: "Button Text",
-              value: "Select Now",
-            },
-            {
-              type: "page",
-              key: "cardButtonLink",
-              displayer: "Button Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "Select Now", "", null, null, "Primary"),
           ],
         },
         {
@@ -620,18 +588,7 @@ class PricingTable2 extends BasePricingTable {
                 },
               ],
             },
-            {
-              type: "string",
-              key: "cardButtonText",
-              displayer: "Button Text",
-              value: "Select Now",
-            },
-            {
-              type: "page",
-              key: "cardButtonLink",
-              displayer: "Button Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "Select Now", "", null, null, "Primary"),
           ],
         },
       ],
@@ -651,11 +608,13 @@ class PricingTable2 extends BasePricingTable {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("table")}>
-            <Base.VerticalContent className={this.decorateCSS("up-content")}>
-              {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
-              {title && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
-              {description && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
-            </Base.VerticalContent>
+            {(subtitle || title || description) && (
+              <Base.VerticalContent className={this.decorateCSS("up-content")}>
+                {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("pricing-table-subtitle")}</Base.SectionSubTitle>}
+                {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("pricing-table-title")}</Base.SectionTitle>}
+                {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("pricing-table-description")}</Base.SectionDescription>}
+              </Base.VerticalContent>
+            )}
             <Base.ListGrid
               gridCount={{
                 pc: this.getPropValue("itemCount"),
@@ -665,9 +624,6 @@ class PricingTable2 extends BasePricingTable {
               className={this.decorateCSS("item-div")}
             >
               {this.castToObject<PricingItems[]>("pricingTableItem").map((table: PricingItems, index: number) => {
-                table.cardList.map((listItem: ListItem, index: number) => {
-                  return "";
-                });
                 const cardTitle = this.castToString(table.cardTitle);
                 const cardPrice = this.castToString(table.cardPrice);
                 const cardDuration = this.castToString(table.cardDuration);
@@ -676,11 +632,13 @@ class PricingTable2 extends BasePricingTable {
                   <Base.VerticalContent className={this.decorateCSS("card-item-count")}>
                     <div key={index} className={this.decorateCSS("item-card")}>
                       <Base.VerticalContent className={`${this.decorateCSS("card-upper")} ${cardTitle || cardPrice || cardDuration ? "" : this.decorateCSS("hidden")}`}>
-                        {cardTitle && <Base.H2 className={this.decorateCSS("card-title")}>{cardTitle}</Base.H2>}
-                        <div className={this.decorateCSS("card-price")}>
-                          {cardPrice && <Base.H1 className={this.decorateCSS("price")}>{table.cardPrice}</Base.H1>}
-                          {cardDuration && <Base.H2 className={this.decorateCSS("duration")}>{table.cardDuration}</Base.H2>}
-                        </div>
+                        {cardTitle && <Base.H2 className={this.decorateCSS("card-title")}>{table.cardTitle}</Base.H2>}
+                        {(cardPrice || cardDuration) && (
+                          <div className={this.decorateCSS("card-price")}>
+                            {cardPrice && <Base.H1 className={this.decorateCSS("price")}>{table.cardPrice}</Base.H1>}
+                            {cardDuration && <Base.H2 className={this.decorateCSS("duration")}>{table.cardDuration}</Base.H2>}
+                          </div>
+                        )}
                       </Base.VerticalContent>
 
                       <Base.VerticalContent className={this.decorateCSS("card-bottom")}>
@@ -712,9 +670,11 @@ class PricingTable2 extends BasePricingTable {
                             })}
                           </Base.VerticalContent>
                         )}
-                        {this.castToString(table.cardButtonText) && (
-                          <ComposerLink path={table.cardButtonLink}>
-                            <Base.Button className={this.decorateCSS("card-button")}>{table.cardButtonText}</Base.Button>
+                        {this.castToString(table.button.text) && (
+                          <ComposerLink path={table.button.url}>
+                            <Base.Button buttonType={table.button.type} className={this.decorateCSS("card-button")}>
+                              {table.button.text}
+                            </Base.Button>
                           </ComposerLink>
                         )}
                       </Base.VerticalContent>

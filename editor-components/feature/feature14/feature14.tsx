@@ -4,6 +4,7 @@ import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature14.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type CardItem = {
   icon: JSX.Element,
@@ -33,24 +34,7 @@ class Feature14 extends BaseFeature {
       displayer: "Second Description",
       value: "The company was formed in response to an overwhelming market demand for concreate staining services, predominantly in the commercial construction industry. NCS'work commonly includes the artisanal staining of bridges, sound walls, abutments, and buildings.",
     });
-    this.addProp({
-      type: "string",
-      key: "linkTitle",
-      displayer: "Link Text",
-      value: "About Us",
-    });
-    this.addProp({
-      type: "icon",
-      key: "linkIcon",
-      displayer: "Link Icon",
-      value: "GoArrowRight",
-    });
-    this.addProp({
-      type: "page",
-      key: "linkPage",
-      displayer: "Link Page",
-      value: "",
-    });
+    this.addProp(INPUTS.BUTTON("button", "Button", "About Us", "", "GoArrowRight", null, "Link"));
     this.addProp({
       type: "array",
       key: "cards",
@@ -176,24 +160,28 @@ class Feature14 extends BaseFeature {
 
     const alignment = Base.getContentAlignment();
 
+    const button = this.castToObject<INPUTS.CastedButton>("button");
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("linkTitle"))
             || this.castToString(this.getPropValue("firstdescription")) || this.castToString(this.getPropValue("seconddescription"))) && (
-              <div className={alignment == "left" ? this.decorateCSS("title-wrapper") : this.decorateCSS("title-wrapper-center")}>
+              <div className={`${this.decorateCSS("title-wrapper")} ${alignment == "center" && this.decorateCSS("center")}`}>
                 <Base.VerticalContent className={this.decorateCSS("title-left")}>
                   {this.castToString(this.getPropValue("title")) && (
                     <Base.SectionTitle className={this.decorateCSS("header")}>
                       {this.getPropValue("title")}
                     </Base.SectionTitle>
                   )}
-                  {(alignment == "left" && this.castToString(this.getPropValue("linkTitle"))) && (
+                  {(alignment == "left" && this.castToString(button.text)) && (
                     <div className={this.decorateCSS("link")}>
-                      <ComposerLink path={this.getPropValue("linkPage")}>
-                        {this.getPropValue("linkTitle")}
+                      <ComposerLink path={button.url}>
+                        <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                          {button.text}
+                          <ComposerIcon name={button.icon} />
+                        </Base.Button>
                       </ComposerLink>
-                      <ComposerIcon name={this.getPropValue("linkIcon")} />
                     </div>
                   )}
                 </Base.VerticalContent>
@@ -209,12 +197,14 @@ class Feature14 extends BaseFeature {
                       {this.getPropValue("seconddescription")}
                     </Base.SectionDescription>
                   )}
-                  {(alignment == "center" && this.castToString(this.getPropValue("linkTitle"))) && (
+                  {(alignment == "center" && this.castToString(button.text)) && (
                     <div className={this.decorateCSS("link")}>
-                      <ComposerLink path={this.getPropValue("linkPage")}>
-                        {this.getPropValue("linkTitle")}
+                      <ComposerLink path={button.url}>
+                        <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                          {button.text}
+                          <ComposerIcon name={button.icon} />
+                        </Base.Button>
                       </ComposerLink>
-                      <ComposerIcon name={this.getPropValue("linkIcon")} />
                     </div>
                   )}
                 </Base.VerticalContent>
