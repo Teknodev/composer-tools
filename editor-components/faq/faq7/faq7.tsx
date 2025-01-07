@@ -3,13 +3,14 @@ import styles from "./faq7.module.scss";
 import { BaseFAQ } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
   title: JSX.Element;
   description: JSX.Element;
 };
 
-class FaqButton extends BaseFAQ {
+class Faq7 extends BaseFAQ {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
@@ -175,12 +176,8 @@ class FaqButton extends BaseFAQ {
         },
       ],
     });
-    this.addProp({
-      type: "string",
-      key: "buttonText",
-      displayer: "Button Text",
-      value: "More",
-    });
+    this.addProp(INPUTS.BUTTON("button", "Button", "More", null, null, null, "Primary"));
+
     this.setComponentState("activeIndex", -1);
     this.setComponentState("moreImages", 0);
 
@@ -203,6 +200,7 @@ class FaqButton extends BaseFAQ {
   render() {
     if (this.getComponentState("cardCount") != this.getPropValue("initialCardCount") + this.getComponentState("moreImages"))
       this.setComponentState("cardCount", this.getPropValue("initialCardCount") + this.getComponentState("moreImages"));
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -254,8 +252,8 @@ class FaqButton extends BaseFAQ {
             )}
             {(this.getPropValue("card").length > this.getComponentState("cardCount")) && (
               <div className={this.decorateCSS("button-wrapper")}>
-                <Base.Button className={this.decorateCSS("button")} onClick={this.handleButtonClick} >
-                  {this.getPropValue("buttonText")}
+                <Base.Button buttonType={button.type} className={this.decorateCSS("button")} onClick={this.handleButtonClick} >
+                  {button.text}
                 </Base.Button>
               </div>
             )}
@@ -266,4 +264,4 @@ class FaqButton extends BaseFAQ {
   }
 }
 
-export default FaqButton;
+export default Faq7;
