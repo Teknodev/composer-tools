@@ -1,0 +1,53 @@
+@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
+
+.container {
+    width: 700px;
+    padding: var(--composer-gap-lg);
+    position: relative;
+
+    .max-content {
+        .content {
+            display: flex;
+            gap: var(--composer-gap-lg);
+
+            .title {
+                width: 100%;
+                margin: 0;
+                font-size: 2rem;
+                text-align: center;
+            }
+
+            .description {
+                margin: 0;
+            }
+
+            .button-row {
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+
+                >div {
+                    width: 32% !important;
+                }
+
+                .button {
+                    width: 32%;
+                }
+
+                .view-button {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    .close-icon {
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        right: 20px;
+        top: 20px;
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {}
