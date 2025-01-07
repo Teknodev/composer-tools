@@ -31,6 +31,12 @@ class Cookie4 extends BaseModal {
     });
     this.addProp(INPUTS.BUTTON("buttonLink", "Button Link", "Learn more", "", null, null, "Link"));
     this.addProp({
+      type: "boolean",
+      key: "divider",
+      displayer: "Divider Active",
+      value: true
+    });
+    this.addProp({
       type: "array",
       key: "terms",
       displayer: "Terms",
@@ -157,19 +163,15 @@ class Cookie4 extends BaseModal {
         INPUTS.BUTTON("button", "Button", "Save Settings", null, null, null, "Secondary")
       ]
     });
-    this.setComponentState("accepted", null)
 
   }
 
   getName(): string {
     return "Cookie 4";
   }
-  toggle(index: number) {
-    const terms = this.castToObject<TermItem[]>("terms");
-    terms[index].termAccepted = !terms[index].termAccepted;
-    console.log("accpeted", this.castToObject<TermItem[]>("terms")[index].termAccepted)
-    this.setComponentState("accepted", terms);
-  }
+
+  toggle(index: number) { }
+  handleButtonClick() { }
   render() {
     const buttonLink: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("buttonLink");
     const termItem = this.castToObject<TermItem[]>("terms")
@@ -178,57 +180,72 @@ class Cookie4 extends BaseModal {
     return (
       <Base.Container isModal={true} className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("heading")}>
-            <div className={this.decorateCSS("title")}>{this.getPropValue("title")}</div>
-            <div className={this.decorateCSS("description-contianer")}>
-              <div className={this.decorateCSS("description-text")}>{this.getPropValue("description")}{" "}
-                <ComposerLink path={buttonLink.url}>
-                  <Base.Button buttonType={buttonLink.type} className={this.decorateCSS("description-link")}>
-                    {buttonLink.text}
-                  </Base.Button>
-                </ComposerLink>
-              </div>
-            </div>
-            <div className={this.decorateCSS("divider")}></div>
-          </div>
-
-          {termItem.map((item: TermItem, index: number) => {
-            return (
-              <div className={this.decorateCSS("terms-container")}>
-                <div className={this.decorateCSS("terms-content")}>
-                  <div className={this.decorateCSS("terms-title")}>
-                    {item.termTitle}
-                  </div>
-                  <div className={this.decorateCSS("terms-description")}>
-                    {item.termDescription}
-                  </div>
+          {(this.castToString(this.getPropValue("title")) || this.castToString(buttonLink.text) || this.castToString(this.getPropValue("description")) || this.getPropValue("divider")) && (
+            <div className={this.decorateCSS("heading")}>
+              {this.castToString(this.getPropValue("title")) && <div className={this.decorateCSS("title")}>{this.getPropValue("title")}</div>}
+              {(this.castToString(buttonLink.text) || this.castToString(this.getPropValue("description"))) && (
+                <div className={this.decorateCSS("description-contianer")}>
+                  {this.castToString(this.getPropValue("description")) && (<div className={this.decorateCSS("description-text")}>{this.getPropValue("description")}</div>)}
+                  {this.castToString(buttonLink.text) && (
+                    <ComposerLink path={buttonLink.url}>
+                      <Base.Button buttonType={buttonLink.type} className={this.decorateCSS("description-link")}>
+                        {buttonLink.text}
+                      </Base.Button>
+                    </ComposerLink>
+                  )}
                 </div>
-                {item.termDeactivaIcon && (
-                  <div className={this.decorateCSS("icon-container")}>
-                    <ComposerIcon name={item.termDeactivaIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
-                  </div>
-                )}
-                {(!item.termDeactivable) && (
-                  <div className={`${this.decorateCSS("terms-toogle")} ${item.termAccepted ?
-                    this.decorateCSS("accepted") : this.decorateCSS("rejected")}`} onClick={() => this.toggle(index)}>
-                    <input className={this.decorateCSS("input")} type="checkbox" />
-                    <span className={this.decorateCSS("round")}></span>
-                  </div>
-                )}
-              </div>
-            )
-          })}
-          <div className={this.decorateCSS("button-container")}>
-            {buttons.map((item: INPUTS.CastedButton, index: number) => {
+              )}
+              {this.getPropValue("divider") && <div className={this.decorateCSS("divider")}></div>}
+            </div>
+          )}
+          {termItem.length > 0 && (
+            termItem.map((item: TermItem, index: number) => {
               return (
+                <div className={this.decorateCSS("terms-container")} key={index}>
+                  <div className={this.decorateCSS("terms-content")}>
+                    <div className={this.decorateCSS("terms-title")}>
+                      {item.termTitle}
+                    </div>
+                    <div className={this.decorateCSS("terms-description")}>
+                      {item.termDescription}
+                    </div>
+                  </div>
+                  {item.termDeactivable && (
+                    <div className={this.decorateCSS("icon-container")}>
+                      <ComposerIcon name={item.termDeactivaIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                    </div>
+                  )}
+                  {!item.termDeactivable && (
+                    <div
+                      className={`${this.decorateCSS("terms-toogle")} ${item.termAccepted ?
+                        this.decorateCSS("accepted") : this.decorateCSS("rejected")}`}
+                      onClick={() => this.toggle(index)}
+                    >
+                      <span className={this.decorateCSS("round")}></span>
+                    </div>
+                  )}
+                </div>
+              );
+            })
+          )}
+          {buttons.length > 0 && (
+            <div className={this.decorateCSS("button-container")}>
+              {buttons.map((item: INPUTS.CastedButton, index: number) => {
+                return item.text ? (
+                  <ComposerLink path={item.url} key={index}>
+                    <Base.Button
+                      buttonType={item.type}
+                      className={this.decorateCSS("button")}
+                      onClick={() => this.handleButtonClick()}
+                    >
+                      {item.text}
+                    </Base.Button>
+                  </ComposerLink>
+                ) : null;
+              })}
+            </div>
+          )}
 
-                <ComposerLink path={item.url}>
-                  <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>{item.text}</Base.Button>
-                </ComposerLink>
-
-              )
-            })}
-          </div>
         </Base.MaxContent>
       </Base.Container >
     );

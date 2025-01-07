@@ -15,23 +15,15 @@
             }
             .description-contianer{
                 display: flex;
-                align-items: center;
+                flex-direction: column;
+                gap: var(--composer-gap-xs);
                 .description-text{
                     font-size: 1rem;
                     color: var(--composer-tertiary-color);
-                    display: inline;
-                    > div:first-child {
-                        display: inline;
-                    }
-                    >div{
-                        display: inline-block;
-                    }
-                    .description-link{
-                        content: "";
-                    }
                 }
-      
-
+                .description-link{
+                    content: "";
+                }
             }
             .divider{
                 position: absolute;
@@ -63,7 +55,7 @@
 
             }
             .icon-container{
-                border: 2px solid var(--composer-font-color-primary);
+                border: 1px solid var(--composer-font-color-primary);
                 border-radius: var(--composer-border-radius-xl);
                 width: 40px;
                 height: 20px;
@@ -112,6 +104,7 @@
         .button-container{
             display: flex;
             gap: var(--composer-gap-md);
+            margin-top: var(--composer-gap-md);
             >div{
                 flex:1;
             }
