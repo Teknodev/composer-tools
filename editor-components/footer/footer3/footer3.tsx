@@ -597,7 +597,6 @@ class Footer3Page extends BaseFooter {
     const headerExist = logo || descriptionExist || socials.length > 0;
 
     const alignment = Base.getContentAlignment();
-    console.log(alignment);
 
     return (
       <div className={this.decorateCSS("container")}>

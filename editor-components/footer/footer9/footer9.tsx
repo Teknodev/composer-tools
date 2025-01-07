@@ -380,7 +380,7 @@ class Footer9Page extends BaseFooter {
 
           {links.length > 0 && (
             <div className={this.decorateCSS("list-group")}>
-              {links.map((item: link, index: number) => {
+              {links.map((item: link) => {
                 return (
                   <ComposerLink path={item.page}>
                     <Base.P className={this.decorateCSS("text")}>{item.title}</Base.P>
@@ -392,7 +392,7 @@ class Footer9Page extends BaseFooter {
 
           {icons.length > 0 && (
             <div className={this.decorateCSS("icon-container")}>
-              {icons.map((item: icon, index: number) => {
+              {icons.map((item: icon) => {
                 return (
                   <ComposerLink path={item.page}>
                     <div className={this.decorateCSS("icon-element")}>
@@ -408,7 +408,7 @@ class Footer9Page extends BaseFooter {
             {footerTextExist && <Base.P className={this.decorateCSS("text")}>{this.getPropValue("footerText")}</Base.P>}
             {pages.length > 0 && (
               <Base.Row className={this.decorateCSS("list")}>
-                {pages.map((item: page, index: number) => {
+                {pages.map((item: page,) => {
                   return (
                     <ComposerLink path={item.page}>
                       <Base.P className={this.decorateCSS("item")}>{item.title}</Base.P>
