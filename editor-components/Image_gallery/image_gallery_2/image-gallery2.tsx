@@ -615,7 +615,7 @@ class ImageGallery2 extends BaseImageGallery {
             type: "icon",
             key: "icon",
             displayer: "Magnifier Icon",
-            value: "FaSearch",
+            value: "IoSearchOutline",
         });
 
         this.addProp({
