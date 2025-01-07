@@ -34,6 +34,7 @@ export namespace INPUTS {
       ],
     };
 
+
     if (url !== null) {
       button.value.push({
         type: "page",
@@ -61,6 +62,8 @@ export namespace INPUTS {
       });
     }
 
+    button["getPropValue"] = null;
+
     return button;
   };
 
@@ -85,14 +88,14 @@ export namespace INPUTS {
       ],
     } as TypeUsableComponentProps;
   };
-  export const NAVBAR_POSITION = (key: string, displayer: string) => {
+  export const NAVBAR_POSITION = (key: string, displayer: string, defaultValue: string = "Default") => {
     return {
       type: "select",
       key: key,
       displayer: displayer,
-      value: "Default",
+      value: defaultValue,
       additionalParams: {
-        selectItems:["Absolute","Sticky Colorful","Sticky Transparent","Default"],
+        selectItems: ["Absolute", "Sticky Colorful", "Sticky Transparent", "Default"],
       },
     } as TypeUsableComponentProps;
   };

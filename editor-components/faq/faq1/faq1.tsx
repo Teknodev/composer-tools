@@ -10,7 +10,7 @@ type FAQ = {
   image: string;
 };
 
-class Faq extends BaseFAQ {
+class Faq1 extends BaseFAQ {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
@@ -97,7 +97,7 @@ class Faq extends BaseFAQ {
       ],
     });
 
-    this.state["componentProps"]["selectCardIndex"] = null;
+    this.setComponentState("selectCardIndex", null);
   }
 
   getName(): string {
@@ -137,7 +137,7 @@ class Faq extends BaseFAQ {
             <div className={this.decorateCSS("page")}>
               {this.castToObject<FAQ[]>("card").map((card: FAQ, indexCard: number) => (
                 <div
-                  className={`${this.decorateCSS("card")}`}
+                  className={this.decorateCSS("card")}
                   onClick={() => {
                     this.cardClicked(indexCard);
                   }}
@@ -173,4 +173,4 @@ class Faq extends BaseFAQ {
   }
 }
 
-export default Faq;
+export default Faq1;
