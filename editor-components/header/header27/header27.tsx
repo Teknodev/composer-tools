@@ -123,7 +123,7 @@ class Header27 extends BaseHeader {
                 },
               ],
             },
-            INPUTS.BUTTON("button", "Button", "Explore", "", "MdOutlineArrowOutward", null, "Primary"),
+            INPUTS.BUTTON("button", "Button", "Explore", "", "MdOutlineArrowOutward", null, "Black"),
             {
               type: "boolean",
               displayer: "Page Number Part",
@@ -256,7 +256,7 @@ class Header27 extends BaseHeader {
                 },
               ],
             },
-            INPUTS.BUTTON("button", "Button", "Read More", "", "MdOutlineArrowOutward", null, "Primary"),
+            INPUTS.BUTTON("button", "Button", "Read More", "", "MdOutlineArrowOutward", null, "Black"),
             {
               type: "boolean",
               displayer: "Page Number Part",
@@ -375,6 +375,7 @@ class Header27 extends BaseHeader {
               className={this.decorateCSS("carousel")}
             >
               {slider.map((item: SliderItemType, sliderIndex: number) => {
+
                 return (
                   <div
                     key={sliderIndex}

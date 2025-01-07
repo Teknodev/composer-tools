@@ -190,7 +190,7 @@ class Header25 extends BaseHeader {
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619ff6bd2970002c6268b0?alt=media&timestamp=1719483639150",
             },
-            INPUTS.BUTTON("button", "Button", "Read More", "", "FaArrowRightLong", null, "Primary"),
+            INPUTS.BUTTON("button", "Button", "Read More", "", "FaArrowRightLong", null, "White"),
           ],
         },
         {
@@ -218,7 +218,7 @@ class Header25 extends BaseHeader {
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619ff6bd2970002c6268b1?alt=media&timestamp=1719483639150https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619ff6bd2970002c6268b1?alt=media&timestamp=1719483639150",
             },
-            INPUTS.BUTTON("button", "Button", "Read More", "", "FaArrowRightLong", null, "Primary"),
+            INPUTS.BUTTON("button", "Button", "Read More", "", "FaArrowRightLong", null, "White"),
           ],
         },
         {
@@ -246,7 +246,7 @@ class Header25 extends BaseHeader {
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619ff6bd2970002c6268b2?alt=media&timestamp=1719483639150",
             },
-            INPUTS.BUTTON("button", "Button", "Read More", "", "FaArrowRightLong", null, "Primary"),
+            INPUTS.BUTTON("button", "Button", "Read More", "", "FaArrowRightLong", null, "White"),
           ],
         },
       ]

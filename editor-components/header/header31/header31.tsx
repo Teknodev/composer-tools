@@ -101,7 +101,7 @@ class Header31 extends BaseHeader {
               key: "actions",
               displayer: "Action",
               value: [
-                INPUTS.BUTTON("button", "Button", "VIEW CASE", "", null, null, "Primary"),
+                INPUTS.BUTTON("button", "Button", "VIEW CASE", "", null, null, "White"),
               ],
             },
           ],
@@ -161,7 +161,7 @@ class Header31 extends BaseHeader {
               key: "actions",
               displayer: "Action",
               value: [
-                INPUTS.BUTTON("button", "Button", "VIEW CASE", "", null, null, "Primary"),
+                INPUTS.BUTTON("button", "Button", "VIEW CASE", "", null, null, "White"),
               ],
             },
           ],
@@ -215,7 +215,7 @@ class Header31 extends BaseHeader {
               key: "actions",
               displayer: "Action",
               value: [
-                INPUTS.BUTTON("button", "Button", "VIEW CASE", "", null, null, "Primary"),
+                INPUTS.BUTTON("button", "Button", "VIEW CASE", "", null, null, "White"),
               ],
             },
           ],
@@ -269,7 +269,7 @@ class Header31 extends BaseHeader {
               key: "actions",
               displayer: "Action",
               value: [
-                INPUTS.BUTTON("button", "Button", "VIEW CASE", "", null, null, "Primary"),
+                INPUTS.BUTTON("button", "Button", "VIEW CASE", "", null, null, "White"),
               ],
             },
           ],
@@ -323,7 +323,7 @@ class Header31 extends BaseHeader {
               key: "actions",
               displayer: "Action",
               value: [
-                INPUTS.BUTTON("button", "Button", "VIEW CASE", "", null, null, "Primary"),
+                INPUTS.BUTTON("button", "Button", "VIEW CASE", "", null, null, "White"),
               ],
             },
           ],
@@ -376,7 +376,7 @@ class Header31 extends BaseHeader {
               key: "actions",
               displayer: "Action",
               value: [
-                INPUTS.BUTTON("button", "Button", "VIEW CASE", "", null, null, "Primary"),
+                INPUTS.BUTTON("button", "Button", "VIEW CASE", "", null, null, "White"),
               ],
             },
           ],
@@ -430,7 +430,7 @@ class Header31 extends BaseHeader {
               key: "actions",
               displayer: "Action",
               value: [
-                INPUTS.BUTTON("button", "Button", "VIEW CASE", "", null, null, "Primary"),
+                INPUTS.BUTTON("button", "Button", "VIEW CASE", "", null, null, "White"),
               ],
             },
           ],
@@ -484,7 +484,7 @@ class Header31 extends BaseHeader {
               key: "actions",
               displayer: "Action",
               value: [
-                INPUTS.BUTTON("button", "Button", "VIEW CASE", "", null, null, "Primary"),
+                INPUTS.BUTTON("button", "Button", "VIEW CASE", "", null, null, "White"),
               ],
             },
           ],
@@ -544,7 +544,7 @@ class Header31 extends BaseHeader {
               key: "actions",
               displayer: "Action",
               value: [
-                INPUTS.BUTTON("button", "Button", "VIEW CASE", "", null, null, "Primary"),
+                INPUTS.BUTTON("button", "Button", "VIEW CASE", "", null, null, "White"),
               ],
             },
           ],

@@ -51,7 +51,7 @@ class Header34 extends BaseHeader {
               displayer: "Title",
               value: "Premium Quality Design",
             },
-            INPUTS.BUTTON("button", "Button", "PURCHASE INTACT", "", null, null, "Primary"),
+            INPUTS.BUTTON("button", "Button", "PURCHASE INTACT", "", null, null, "White"),
           ],
         },
         {
@@ -72,7 +72,7 @@ class Header34 extends BaseHeader {
               displayer: "Title",
               value: "Premium Quality Jobs",
             },
-            INPUTS.BUTTON("button", "Button", "CONTACT US", "", null, null, "Primary"),
+            INPUTS.BUTTON("button", "Button", "CONTACT US", "", null, null, "White"),
           ],
         },
         {
@@ -93,7 +93,7 @@ class Header34 extends BaseHeader {
               displayer: "Title",
               value: "Premium Quality Clothes",
             },
-            INPUTS.BUTTON("button", "Button", "BUY", "", null, null, "Primary"),
+            INPUTS.BUTTON("button", "Button", "BUY", "", null, null, "White"),
           ],
         },
       ],
