@@ -217,8 +217,8 @@ class HeaderComponent24 extends BaseHeader {
     const sliderRef = this.getComponentState("slider-ref");
 
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             {slider.length > 0 && (
               <ComposerSlider ref={sliderRef} {...settings} className={`${this.decorateCSS("carousel")} ${!this.getPropValue("slider")[this.getComponentState("currentIndex")].getPropValue("background_image") && this.decorateCSS("carousel-no-image")}`}>
@@ -242,14 +242,14 @@ class HeaderComponent24 extends BaseHeader {
                               </div>
                             )}
                             {this.castToString(item.title) && (
-                              <div
-                                className={`${this.decorateCSS("title")} ${!item.background_image && this.decorateCSS("title-no-image")}
+                              <Base.SectionTitle
+                                className={`${this.decorateCSS("title")} ${item.background_image && this.decorateCSS("title-no-image")}
                             ${this.getComponentState("currentIndex") == index && this.decorateCSS("active")}
                              ${!item.image && this.decorateCSS("no-image")}
                             `}
                               >
                                 {item.title}
-                              </div>
+                              </Base.SectionTitle>
                             )}
                             {this.castToString(item.description) && (
                               <div
@@ -318,8 +318,8 @@ class HeaderComponent24 extends BaseHeader {
               </ComposerSlider>
             )}
           </div>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
