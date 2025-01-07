@@ -5,6 +5,75 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  .socialMediaBox {
+    display: flex;
+    .social {
+      display: flex;
+      align-items: center;
+      gap: var(--composer-gap-sm);
+      .icon {
+        font-size: 1.5rem;
+        color: var(--composer-font-color-primary);
+        transition: color 0.3s;
+        cursor: pointer;
+
+        &:hover {
+          color: var(--composer-tertiary-color);
+        }
+      }
+    }
+  }
+
+  .logo {
+    .logoImage {
+      width: 100%;
+      max-height: 60px;
+      object-fit: contain;
+    }
+  }
+
+  .navbar {
+    color: var(--composer-font-color-primary);
+    display: flex;
+    gap: var(--composer-gap-sm);
+    justify-content: end;
+    align-items: flex-end;
+    align-items: center;
+    height: fit-content;
+    z-index: 20;
+
+    .language {
+      color: var(--composer-font-color-primary);
+    }
+
+    .hamburgerIcon {
+      font-size: 2.5rem;
+      cursor: pointer;
+    }
+
+    .activeHamburgerIcon {
+      color: var(--composer-font-color-primary) !important;
+    }
+  }
+
+  .logo,
+  .socialMediaBox,
+  .navbar {
+    flex: 1 1;
+  }
+}
+
+.maxContent > :first-child {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.maxContent > :only-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .bg-color {
@@ -15,7 +84,7 @@
   background-color: var(--composer-html-background);
   .max-content {
     .bar {
-      .social-media-box {
+      .socialMediaBox {
         .title,
         .subtitle {
           color: var(--composer-font-color-primary);
@@ -23,71 +92,12 @@
       }
     }
     .navbar {
-      .hamburger-icon {
+      .hamburgerIcon {
         z-index: 20;
         color: var(--composer-font-color-primary);
       }
     }
   }
-}
-
-.social-media-box {
-  display: flex;
-  .social {
-    display: flex;
-    align-items: center;
-    gap: var(--composer-gap-sm);
-    .icon {
-      font-size: 1.5rem;
-      color: var(--composer-font-color-primary);
-      transition: color 0.3s;
-      cursor: pointer;
-
-      &:hover {
-        color: var(--composer-tertiary-color);
-      }
-    }
-  }
-}
-
-.image-box {
-  display: flex;
-  justify-content: center;
-  .image {
-    width: 150px;
-    height: var(--composer-gap-xl);
-    object-fit: cover;
-  }
-}
-
-.navbar {
-  color: var(--composer-font-color-primary);
-  display: flex;
-  gap: var(--composer-gap-sm);
-  justify-content: end;
-  align-items: flex-end;
-  align-items: center;
-  height: fit-content;
-  z-index: 20;
-
-  .language {
-    color: var(--composer-font-color-primary);
-  }
-
-  .hamburger-icon {
-    font-size: 2.5rem;
-    cursor: pointer;
-  }
-
-  .active-hamburger-icon {
-    content: "";
-  }
-}
-
-.image-box,
-.social-media-box,
-.navbar {
-  flex: 1 1;
 }
 
 .downPage {
@@ -108,8 +118,7 @@
   &.active {
     opacity: 1;
     transform: translateY(0);
-  animation: fadeIn 1s ease forwards;
-
+    animation: fadeIn 1s ease forwards;
   }
 
   &.closing {
@@ -206,93 +215,58 @@
   }
 }
 
+.transparentBackground {
+  .socialMediaBox {
+    .social {
+      .icon {
+        color: white;
+      }
+    }
+  }
+  .navbar {
+    .hamburgerIcon {
+      color: white;
+    }
+  }
+}
+
 @container (max-width: #{$composer-tablet-width-lg}) {
-
-    .maxContent {
-        .social-media-box {
-          .social {
-            gap: var(--composer-gap-sm);
-            .icon {
-              font-size: 1.5rem;
-            }
-          }
-        }
-
-        .image-box {
-          .image {
-            width: 150px;
-            height: var(--composer-gap-lg);
-          }
-        }
-
-
-      .downPage {
-        justify-content: center;
-        .up {
-          gap: var(--composer-gap-md);
-          margin: 0 var(--composer-gap-xl);
-
-          .leftPage {
-            display: none;
-          }
-
-          .rightPage {
-            width: 100%;
-            text-align: center;
-
-            .items {
-              .item-title {
-                font-size: 2.5rem;
-                text-align: center;
-              }
-            }
-          }
-        }
-
-        .line {
-          display: none;
-        }
-
-        .down {
-          display: none;
+  .maxContent {
+    .socialMediaBox {
+      .social {
+        gap: var(--composer-gap-sm);
+        .icon {
+          font-size: 1.5rem;
         }
       }
     }
 
-}
-
-@container (max-width: #{$composer-phone-width}) {
-
-    .maxContent {
-
-        .social-media-box {
-          display: none;
-        }
-
-        .image-box {
-          .image {
-            width: 150px;
-            height: var(--composer-gap-lg);
-          }
-        }
-      
+    .logo {
+      .logoImage {
+        width: 100%;
+        max-height: 50px;
+        object-fit: contain;
+      }
     }
+
     .downPage {
+      justify-content: center;
       .up {
+        gap: var(--composer-gap-md);
+        margin: 0 var(--composer-gap-xl);
+
         .leftPage {
           display: none;
         }
 
         .rightPage {
-          .items {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: var(--composer-gap-lg);
+          width: 100%;
+          text-align: center;
 
+          .items {
             .item-title {
-              margin:  0;
+              font-size: 2.5rem;
+              text-align: center;
             }
           }
         }
@@ -306,7 +280,50 @@
         display: none;
       }
     }
+  }
+}
 
+@container (max-width: #{$composer-phone-width}) {
+  .maxContent {
+    .socialMediaBox {
+      display: none;
+    }
 
+    .logo {
+      .logoImage {
+        width: 100%;
+        max-height: 40px;
+        object-fit: contain;
+      }
+    }
+  }
+  .downPage {
+    .up {
+      .leftPage {
+        display: none;
+      }
 
+      .rightPage {
+        .items {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: var(--composer-gap-lg);
+
+          .item-title {
+            margin: 0;
+          }
+        }
+      }
+    }
+
+    .line {
+      display: none;
+    }
+
+    .down {
+      display: none;
+    }
+  }
 }

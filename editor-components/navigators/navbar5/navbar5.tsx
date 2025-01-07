@@ -7,6 +7,18 @@ import { Base } from "composer-tools/composer-base-components/base/base";
 import ComposerLanguage from "composer-tools/composer-base-components/language/language";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
+interface Logo {
+  image: string;
+  navigateTo: string;
+}
+
+interface Language {
+  label: "code" | "name";
+  icon: string;
+  showLanguage: boolean;
+  showDivider: boolean;
+}
+
 class Navbar5 extends BaseNavigator {
   constructor(props?: any) {
     super(props, styles);
@@ -98,19 +110,80 @@ class Navbar5 extends BaseNavigator {
     });
 
     this.addProp({
-      type: "image",
-      key: "logo_default",
-      displayer: "Logo 1",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676a9ac20655f8002caba0b7?alt=media",
+      type: "object",
+      key: "defaultLogo",
+      displayer: "Default Logo",
+      value: [
+        {
+          type: "image",
+          key: "image",
+          value:
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc964?alt=media&timestamp=1735826277716",
+          displayer: "Image",
+        },
+        {
+          type: "page",
+          key: "navigateTo",
+          value: "",
+          displayer: "Navigate To",
+        },
+      ],
     });
 
     this.addProp({
-      type: "image",
-      key: "logo_transparent",
-      displayer: "Logo 2",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6762cc190655f8002ca8c66b?alt=media",
+      type: "object",
+      key: "absoluteLogo",
+      displayer: "Absolute Logo",
+      value: [
+        {
+          type: "image",
+          key: "image",
+          value:
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67769b510655f8002cafc965?alt=media&timestamp=1735826277716",
+          displayer: "Image",
+        },
+        {
+          type: "page",
+          key: "navigateTo",
+          value: "",
+          displayer: "Navigate To",
+        },
+      ],
+    });
+
+    this.addProp({
+      type: "object",
+      key: "language",
+      displayer: "Language",
+      value: [
+        {
+          type: "select",
+          key: "label",
+          displayer: "Label",
+          value: "code",
+          additionalParams: {
+            selectItems: ["code", "name"],
+          },
+        },
+        {
+          type: "icon",
+          key: "icon",
+          displayer: "Icon",
+          value: "GrLanguage",
+        },
+        {
+          type: "boolean",
+          key: "showLanguage",
+          displayer: "Show Language",
+          value: true,
+        },
+        {
+          type: "boolean",
+          key: "showDivider",
+          displayer: "Show Divider",
+          value: true,
+        },
+      ],
     });
 
     this.addProp({
@@ -118,13 +191,6 @@ class Navbar5 extends BaseNavigator {
       key: "logo_navigate",
       displayer: "Logo Navigation",
       value: "",
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "language",
-      displayer: "Language",
-      value: true,
     });
 
     this.addProp({
@@ -317,17 +383,18 @@ class Navbar5 extends BaseNavigator {
   render() {
     const navbarElement = document.getElementById(`navbar5-height`);
     const isScrolled = this.getComponentState("isScrolled");
+    const position = this.getPropValue("position");
 
     const navActive = this.getComponentState("navActive");
-    const logoDefault = this.getPropValue("logo_default");
-    const logoTransparent = this.getPropValue("logo_transparent");
+    const defaultLogo = this.castToObject<Logo>("defaultLogo");
+    const absoluteLogo = this.castToObject<Logo>("absoluteLogo");
 
-    const position = this.getPropValue("position");
-    const logo =
-      position === "Absolute" ||
-      (position === "Sticky Transparent" && !isScrolled)
-        ? logoTransparent
-        : logoDefault;
+    const isStickyTransparent = position === "Sticky Transparent";
+    const isAbsolute = position === "Absolute";
+    const transparentBackground =
+      (isStickyTransparent && !isScrolled) || isAbsolute;
+
+    const currentLogo = transparentBackground ? absoluteLogo : defaultLogo;
 
     const social = this.castToObject<any[]>("social");
     const listItems = this.castToObject<any[]>("listItems");
@@ -336,7 +403,8 @@ class Navbar5 extends BaseNavigator {
 
     const upExist = titleExist || listItems.length > 0;
 
-    const language = this.getPropValue("language");
+    const language = this.castToObject<Language>("language");
+
     const line = this.getPropValue("line");
     const divider = this.getPropValue("divider");
 
@@ -350,15 +418,14 @@ class Navbar5 extends BaseNavigator {
 
     const iconsExist = hamburgerIcon || crossIcon;
 
-
     const isClosing = this.getComponentState("isClosing");
 
     return (
       <>
         <Base.Navigator.Container id={"navbar5-height"} position={position}>
-          <Base.MaxContent className={this.decorateCSS("maxContent")}>
+          <Base.MaxContent className={`${this.decorateCSS("maxContent")} ${transparentBackground ? this.decorateCSS("transparentBackground") : ""}`}>
             {social.length > 0 && (
-              <div className={this.decorateCSS("social-media-box")}>
+              <div className={this.decorateCSS("socialMediaBox")}>
                 {social.length > 0 && (
                   <div className={this.decorateCSS("social")}>
                     {social.map(
@@ -382,27 +449,36 @@ class Navbar5 extends BaseNavigator {
               </div>
             )}
 
-            {logo && (
-              <ComposerLink
-                className={this.decorateCSS("image-container")}
-                path={this.getPropValue("logo_navigate")}
-              >
-                <div className={this.decorateCSS("image-box")}>
+            {currentLogo.image && (
+              <div className={this.decorateCSS("logo")}>
+                <ComposerLink path={currentLogo.navigateTo}>
                   <img
-                    className={this.decorateCSS("image")}
-                    src={logo}
-                    alt=""
+                    src={currentLogo.image}
+                    className={this.decorateCSS("logoImage")}
                   />
-                </div>
-              </ComposerLink>
+                </ComposerLink>
+              </div>
             )}
 
             {(language || iconsExist) && (
               <div className={this.decorateCSS("navbar")}>
-                {language && (
+                {language.showLanguage && (
                   <ComposerLanguage
                     type="dropdown"
-                    dropdownClassName={this.decorateCSS("language")}
+                    title={language.label}
+                    icon={language.icon}
+                    dropdownButtonClassName={`${this.decorateCSS(
+                      "localization"
+                    )}`}
+                    dropdownLabelClassName={`${this.decorateCSS(
+                      "localizationLabel"
+                    )}`}
+                    iconClassName={this.decorateCSS("languageIcon")}
+                    dropdownItemClassName={this.decorateCSS("localizationItem")}
+                    dropdownContentClassName={this.decorateCSS(
+                      "localizationContent"
+                    )}
+                    divider={language.showDivider}
                   />
                 )}
 
@@ -413,8 +489,8 @@ class Navbar5 extends BaseNavigator {
                       : this.getPropValue("hamburger-icon")
                   }
                   propsIcon={{
-                    className: `${this.decorateCSS("hamburger-icon")} ${
-                      navActive && this.decorateCSS("active-hamburger-icon")
+                    className: `${this.decorateCSS("hamburgerIcon")} ${
+                      navActive && this.decorateCSS("activeHamburgerIcon")
                     } `,
                     onClick: () => {
                       this.navClick();
@@ -425,14 +501,12 @@ class Navbar5 extends BaseNavigator {
             )}
           </Base.MaxContent>
 
-
           <div
             className={`${this.decorateCSS("downPage")} ${
               navActive ? this.decorateCSS("active") : ""
             } ${isClosing ? this.decorateCSS("closing") : ""}`}
           >
             <Base.MaxContent>
-          
               {upExist && (
                 <div className={this.decorateCSS("up")}>
                   {titleExist && (
@@ -495,8 +569,6 @@ class Navbar5 extends BaseNavigator {
             </Base.MaxContent>
           </div>
         </Base.Navigator.Container>
-
-     
       </>
     );
   }
