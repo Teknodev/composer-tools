@@ -7,7 +7,7 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { Base } from "composer-tools/composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLanguage from "composer-tools/composer-base-components/language/language";
-
+import stylesb from "../../../composer-base-components/base/base.module.scss";
 interface Logo {
   image: string;
   imageLink: string;
@@ -1063,7 +1063,18 @@ class Navbar7 extends BaseNavigator {
 
   componentDidMount() {
     window.addEventListener("scroll", this.handleScroll);
+
+    window.addEventListener("resize", this.handleResize);
   }
+
+  handleResize = () => {
+    if (window.matchMedia("(min-width: 1025px)").matches) {
+      document.documentElement.style.overflow = "";
+    }else if (this.getComponentState("isMobileMenuOpen")) {
+      document.documentElement.style.overflow = "hidden";
+    }
+  }
+
 
   componentWillUnmount() {
     window.removeEventListener("scroll", this.handleScroll);
@@ -1080,15 +1091,16 @@ class Navbar7 extends BaseNavigator {
 
     setTimeout(() => {
       this.setComponentState("isMobileMenuOpen", true);
-    }, 100);
+    }, 50);
   };
 
   handleCloseMenu = () => {
     document.documentElement.style.overflow = "";
     this.setComponentState("isMobileMenuOpen", false);
+
     setTimeout(() => {
       this.setComponentState("changeBackground", false);
-    }, 200);
+    }, 100);
   };
 
   navClick(index: number) {
@@ -1135,9 +1147,7 @@ class Navbar7 extends BaseNavigator {
       <>
         <Base.Navigator.Container
           position={position}
-          positionContainer={`${this.decorateCSS("pcNavbarContainer")} ${
-            changeBackground ? this.decorateCSS("filledBackground") : ""
-          }`}
+          positionContainer={`${this.decorateCSS("pcNavbarContainer")}`}
         >
           <Base.MaxContent
             className={`${this.decorateCSS("maxContent")} ${
@@ -1303,14 +1313,16 @@ class Navbar7 extends BaseNavigator {
                 )}
               </div>
             )}
-          </Base.MaxContent>
+          </Base.MaxContent>  
         </Base.Navigator.Container>
 
         <Base.Navigator.Container
           position={position}
           positionContainer={`${this.decorateCSS(
             "smallDeviceNavbar"
-          )} ${changeBackground ? this.decorateCSS("filledBackground") : ""}`}
+          )} ${
+            changeBackground ? this.decorateCSS("filledBackground") : ""
+          }`}
         >
           <Base.MaxContent
             className={`${this.decorateCSS("maxContent")} ${
