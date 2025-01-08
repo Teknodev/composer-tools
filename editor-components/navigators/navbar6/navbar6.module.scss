@@ -12,6 +12,8 @@
   justify-content: space-between;
   align-items: center;
 
+
+
   .pcNavbarContainer {
     display: flex;
     width: 100%;
@@ -150,7 +152,7 @@
             .subdropdown {
               position: absolute;
               top: 0;
-              left: calc(100% + 2px);
+              left: calc(100% + 8px);
               min-width: 200px;
               background: var(--composer-html-background);
               border-radius: var(--composer-border-radius-sm);
@@ -247,132 +249,121 @@
     color: var(--composer-font-color-primary);
   }
 
-  .mobileMenuButton {
-    display: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: var(--composer-font-color-primary);
-    padding: 0;
-
-    .menuIcon {
-      font-size: 2rem;
-    }
-  }
-
-  .mobileMenu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    max-height: 0;
-    width: 100%;
-    background: var(--composer-html-background);
-    overflow: hidden;
-    transition: all 0.3s ease-in-out;
-    z-index: 100;
-    padding: 0 var(--composer-gap-md);
-
-
-    &.open {
-      max-height: 65vh;
-      overflow: scroll;
-    }
-
-    .mobileCloseButton {
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: var(--composer-font-color-primary);
-      padding: var(--composer-gap-md) 0;
-      font-size: 2.5rem;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-    }
-
-    .hamburgerMenu {
-      gap: var(--composer-gap-xs);
-      display: flex;
-      flex-direction: column;
-
-      .hamburgerMenuItem {
-        .hamburgerMenuItemHeader {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: var(--composer-gap-sm) 0;
-          color: var(--composer-font-color-primary);
-          cursor: pointer;
-
-          .hamburgerMenuItemTitle {
+    .mobileMenu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      max-height: 0;
+      width: 100%;
+      background: var(--composer-html-background);
+      overflow: hidden;
+      transition: all 0.3s linear;
+      z-index: 100;
+      padding: 0 var(--composer-gap-md);
+      box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+  
+      &.open {
+        max-height: 65vh;
+        overflow: scroll;
+        transition: all 0.3s linear;
+      }
+  
+      .mobileCloseButton {
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--composer-font-color-primary);
+        padding: var(--composer-gap-md) 0;
+        font-size: 2.5rem;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+      }
+  
+      .hamburgerMenu {
+        gap: var(--composer-gap-xs);
+        display: flex;
+        flex-direction: column;
+  
+        .hamburgerMenuItem {
+          .hamburgerMenuItemHeader {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--composer-gap-sm) 0;
             color: var(--composer-font-color-primary);
-            font-size: 1.5rem;
-            font-weight: bold;
-          }
-
-          .dropdownIcon {
-            font-size: 1.5rem;
-            color: var(--composer-font-color-primary);
-            transition: transform 0.3s ease;
-
-            &.active {
-              transform: rotate(180deg);
+            cursor: pointer;
+  
+            .hamburgerMenuItemTitle {
+              color: var(--composer-font-color-primary);
+              font-size: 1.5rem;
+              font-weight: bold;
             }
-          }
-        }
-
-        .hamburgerSubmenu {
-          max-height: 0;
-          overflow: hidden;
-          transition: max-height 0.3s ease;
-          padding-left: var(--composer-gap-md);
-
-          &.active {
-            max-height: 1000px;
-          }
-
-          .hamburgerSubmenuItem {
-            .hamburgerSubmenuItemHeader {
-              display: flex;
-              align-items: center;
-              justify-content: space-between;
-              padding: var(--composer-gap-xs) 0;
-              cursor: pointer;
-
-              .hamburgerMenuItemTitle {
-                color: var(--composer-font-color-primary);
-                font-size: 1rem;
-                font-weight: 400;
-              }
-
-              .dropdownIcon {
-                font-size: 1.5rem;
-                transition: transform 0.3s ease;
-                color: var(--composer-font-color-primary);
-                &.active {
-                  transform: rotate(90deg);
-                }
-              }
-            }
-
-            .hamburgerSubSubmenu {
-              max-height: 0;
-              overflow: hidden;
-              transition: max-height 0.3s ease;
-              padding-left: var(--composer-gap-md);
-
+  
+            .dropdownIcon {
+              font-size: 1.5rem;
+              color: var(--composer-font-color-primary);
+              transition: transform 0.3s ease;
+  
               &.active {
-                max-height: 1000px;
+                transform: rotate(90deg);
               }
-
-              .hamburgerSubSubmenuItem {
+            }
+          }
+  
+          .hamburgerSubmenu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding-left: var(--composer-gap-md);
+  
+            &.active {
+              max-height: 1000px;
+            }
+  
+            .hamburgerSubmenuItem {
+              .hamburgerSubmenuItemHeader {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
                 padding: var(--composer-gap-xs) 0;
-
-                .hamburgerSubSubmenuItemTitle {
+                cursor: pointer;
+  
+                .hamburgerMenuItemTitle {
                   color: var(--composer-font-color-primary);
                   font-size: 1rem;
                   font-weight: 400;
+                }
+  
+                .dropdownIcon {
+                  font-size: 1.5rem;
+                  transition: transform 0.3s ease;
+                  color: var(--composer-font-color-primary);
+                  &.active {
+                    transform: rotate(90deg);
+                  }
+                }
+              }
+  
+              .hamburgerSubSubmenu {
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+                padding-left: var(--composer-gap-md);
+  
+                &.active {
+                  max-height: 1000px;
+                }
+  
+                .hamburgerSubSubmenuItem {
+                  padding: var(--composer-gap-xs) 0;
+  
+                  .hamburgerSubSubmenuItemTitle {
+                    color: var(--composer-font-color-primary);
+                    font-size: 1rem;
+                    font-weight: 400;
+                  }
                 }
               }
             }
@@ -380,7 +371,9 @@
         }
       }
     }
-  }
+
+
+ 
 
   .languageAccordion {
     color: var(--composer-font-color-primary);
@@ -433,16 +426,12 @@
   .localizationLabel {
     color: white;
   }
-
-  .mobileMenuButton {
-    color: white;
-  }
-
 }
+
 
 @container (max-width: #{$composer-tablet-width-lg}) {
   .maxContent {
-    .closeIcon{
+    .closeIcon {
       display: flex;
     }
     .logoContainer {
@@ -463,27 +452,20 @@
       }
     }
 
-    .mobileMenuButton {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-    }
-    .mobileMenu {
-      display: flex;
-      flex-direction: column;
-      padding: 0 var(--composer-gap-xl);
+      .mobileMenu {
+        display: flex;
+        flex-direction: column;
+        padding: 0 var(--composer-gap-xl);
 
-      .iconsContainer {
-        margin-bottom: var(--composer-gap-md);
-        .icon {
-          color: var(--composer-font-color-primary);
-          font-size: 1.5rem;
+        .iconsContainer {
+          padding: var(--composer-gap-md) 0;
+          gap: var(--composer-gap-sm);
+          .icon {
+            color: var(--composer-font-color-primary);
+            font-size: 1.5rem;
+          }
         }
       }
-    
-
-    }
   }
   .container {
     &.filledBackground {
