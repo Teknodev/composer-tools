@@ -1063,15 +1063,15 @@ class Navbar7 extends BaseNavigator {
 
   componentDidMount() {
     window.addEventListener("scroll", this.handleScroll);
-
     window.addEventListener("resize", this.handleResize);
   }
 
   handleResize = () => {
+    const playground = document.getElementById("playground") as HTMLElement;
     if (window.matchMedia("(min-width: 1025px)").matches) {
-      document.documentElement.style.overflow = "";
+      playground.style.overflow = "";
     }else if (this.getComponentState("isMobileMenuOpen")) {
-      document.documentElement.style.overflow = "hidden";
+      playground.style.overflow = "hidden";
     }
   }
 
@@ -1086,7 +1086,9 @@ class Navbar7 extends BaseNavigator {
   };
 
   handleOpenMenu = () => {
-    document.documentElement.style.overflow = "hidden";
+    const playground = document.getElementById("playground") as HTMLElement;
+    playground.style.overflow = "hidden";
+
     this.setComponentState("changeBackground", true);
 
     setTimeout(() => {
@@ -1095,7 +1097,8 @@ class Navbar7 extends BaseNavigator {
   };
 
   handleCloseMenu = () => {
-    document.documentElement.style.overflow = "";
+    const playground = document.getElementById("playground") as HTMLElement;
+    playground.style.overflow = "";
     this.setComponentState("isMobileMenuOpen", false);
 
     setTimeout(() => {
