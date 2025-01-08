@@ -324,7 +324,7 @@ class Location3 extends Location {
                       return (
                         (name || count) && (
                           <div key={index} className={styles["continent-item"]}>
-                            <Base.P className={this.decorateCSS("continent-name")}>{name}</Base.P>
+                            <Base.P className={this.decorateCSS("continent-name")}>{continentObj.getPropValue("name")}</Base.P>
                             <Base.P className={this.decorateCSS("continent-count")}>{count}</Base.P>
                           </div>
                         )
