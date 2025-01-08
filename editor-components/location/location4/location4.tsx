@@ -153,8 +153,8 @@ class Location4 extends Location {
                 {popupImage && <img className={this.decorateCSS("popup-image")} src={popupImage} />}
                 {(popupTitle || description) && (
                   <div className={this.decorateCSS("popup-texts")}>
-                    {popupTitle && <Base.P className={this.decorateCSS("popup-title")}>{popupTitle} </Base.P>}
-                    {description && <Base.P className={this.decorateCSS("popup-content")}>{description}</Base.P>}
+                    {popupTitle && <Base.P className={this.decorateCSS("popup-title")}>{address.getPropValue("popupTitle")} </Base.P>}
+                    {description && <Base.P className={this.decorateCSS("popup-content")}>{address.getPropValue("description")}</Base.P>}
                   </div>
                 )}
               </div>
