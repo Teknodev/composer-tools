@@ -4,7 +4,6 @@ import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action9.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import ButtonNavigator from "components/button-navigator/button-navigator";
 interface ImageItem {
   image: string
 }
