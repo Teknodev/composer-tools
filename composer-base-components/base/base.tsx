@@ -234,17 +234,15 @@ export namespace Base {
       
       useEffect(() => {
         const handleScroll = () => {
-          const navbarPosition = document.querySelectorAll(`.${styles.navbarPosition}`);
+          const navbarPosition = document.querySelectorAll(`.${styles.navbarPosition}`) as  NodeListOf<Element>;
     
           if (navbarPosition) {
-            console.log(window.scrollY);
-            
             if (window.scrollY > 50 && position !== "absolute") {
-              navbarPosition.forEach((item: any) => {
+              navbarPosition.forEach((item) => {
                 item.classList.add(styles.scrolled);
               });
             } else {
-              navbarPosition.forEach((item: any) => {
+              navbarPosition.forEach((item) => {
                 item.classList.remove(styles.scrolled);
               });
             }
