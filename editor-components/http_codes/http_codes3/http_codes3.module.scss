@@ -1,4 +1,4 @@
-@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 @keyframes slide-in {
   from {
     opacity: 0;
@@ -12,7 +12,7 @@
 
 .container {
   height: 100vh;
-  
+
   .max-content {
     height: 100%;
     .content {
@@ -24,19 +24,24 @@
       align-items: center;
       width: 100%;
 
-      .title-wrapper, .title-wrapper-animation {
+      .title-wrapper {
         position: relative;
         padding: 0px var(--composer-gap-sm);
         width: 75%;
         justify-content: center;
         display: flex;
-        .title{
+
+        &.title-wrapper-animation {
+          opacity: 0;
+          animation: slide-in 1s ease-out 1s forwards;
+        }
+        .title {
           justify-content: center;
           display: flex;
           position: relative;
           min-width: 500px;
           width: 70%;
-          .title-text{
+          .title-text {
             font-size: 8rem;
             color: var(--composer-font-color-primary);
           }
@@ -48,74 +53,72 @@
             width: fit-content;
             background-color: var(--composer-primary-color);
             border-radius: var(--composer-border-radius-md);
-            .text{
+            .text {
               color: var(--composer-font-color-secondary);
               font-size: 1.5rem;
             }
           }
         }
-        .line-right, .line-left{
+        .line-right,
+        .line-left {
           position: absolute;
           background-color: var(--composer-font-color-primary);
-          content: "";
           height: 2px;
           width: 150px;
         }
-        .line-right{
+        .line-right {
           bottom: 0px;
           right: 0px;
         }
-        .line-left{
+        .line-left {
           top: 0px;
           left: 0px;
         }
       }
-      .title-wrapper-animation{
-        opacity: 0;
-        animation: slide-in 1s ease-out 1s forwards;
-      }
-    
-      .description, .description-animation {
+
+      .description {
         font-size: 2rem;
         color: var(--composer-font-color-primary);
         width: 50%;
 
+        &.description-animation {
+          opacity: 0;
+          animation: slide-in 1s ease-out 1.3s forwards;
+        }
       }
-      .description-animation{
-        opacity: 0;
-        animation: slide-in 1s ease-out 1.3s forwards;
-      }
-    
-      .button, .button-animation {  
+
+      .button {
         content: "";
+
+        &.button-animation {
+          opacity: 0;
+          animation: slide-in 1s ease-out 1.6s forwards;
+        }
       }
-      .button-animation{
-        opacity: 0;
-        animation: slide-in 1s ease-out 1.6s forwards;
-      }
-    }    
-  }  
+    }
+  }
 }
-@container (max-width: #{$composer-tablet-width}){
-  .container{
-    .max-content{
-      .content{
-        .title-wrapper, .title-wrapper-animation{
+@container (max-width: #{$composer-tablet-width-lg}) {
+  .container {
+    .max-content {
+      .content {
+        .title-wrapper {
           width: 100%;
-          .title{
+          .title {
             min-width: 200px;
-            .title-text{
+            .title-text {
               font-size: 7rem;
             }
-            .error-message{
+            .error-message {
               bottom: calc(var(--composer-gap-sm) * 3);
             }
           }
-          .line-right, .line-left{
+          .line-right,
+          .line-left {
             width: 100px;
           }
         }
-        .description, .description-animation {
+        .description {
           width: 65%;
           font-size: 1.5rem;
         }
@@ -123,23 +126,24 @@
     }
   }
 }
-@container (max-width: #{$composer-phone-width}){
-  .container{
-    .max-content{
-      .content{
-        .title-wrapper, .title-wrapper-animation{
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .content {
+        .title-wrapper {
           width: 100%;
-          .title{
+          .title {
             width: 80%;
-            .title-text{
+            .title-text {
               font-size: 5.5rem;
             }
           }
-          .line-right, .line-left{
+          .line-right,
+          .line-left {
             width: 100px;
           }
         }
-        .description, .description-animation {
+        .description {
           width: 70%;
           font-size: 1.5rem;
         }
