@@ -1,8 +1,6 @@
 import * as React from "react";
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header34.module.scss";
-
-import ComposerSlider from "../../../composer-base-components/slider/slider";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
