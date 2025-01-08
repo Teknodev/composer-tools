@@ -61,11 +61,11 @@
           width: 10px; 
           height: 1px;
           background-color:var(--composer-font-color-primary);
-          opacity: 0.5;
+          opacity: 0.2;
   
         }
         .section{
-          color :var(--composer-font-color-tertiary);
+          color :var(--composer-tertiary-color);
           max-width: 40%;
         }
       }
@@ -85,7 +85,7 @@
       align-items: center;
       justify-content: center;
       .button{
-        width: fit-content;
+        content: "";
       }
     }
   }

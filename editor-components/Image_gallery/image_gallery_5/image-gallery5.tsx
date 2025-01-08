@@ -4,6 +4,7 @@ import { BaseImageGallery } from "../../EditorComponent";
 import styles from "./image-gallery5.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 interface GalleryItem {
   image: string;
@@ -190,12 +191,7 @@ class ImageGallery5 extends BaseImageGallery {
       displayer: "More Image Count",
       value: 3
     })
-    this.addProp({
-      type: "string",
-      key: "buttonText",
-      displayer: "Button Text",
-      value: "Load More"
-    })
+    this.addProp(INPUTS.BUTTON("button", "Button", "Load More", null, null, null, "Primary"));
 
     this.setComponentState("is_image_clicked", false);
     this.setComponentState("clicked_image_index", 0);
@@ -258,6 +254,9 @@ class ImageGallery5 extends BaseImageGallery {
     const closeIcon = this.getPropValue("closeIcon");
     if (this.getComponentState("imageCount") != this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"))
       this.setComponentState("imageCount", this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"));
+
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+
     return (
       <Base.Container
         className={this.decorateCSS("container")}
@@ -287,12 +286,11 @@ class ImageGallery5 extends BaseImageGallery {
           </Base.ListGrid>
           {(galleries.length > this.getComponentState("imageCount")) && (
             <div className={this.decorateCSS("button-wrapper")}>
-              <Base.Button className={this.decorateCSS("button")} onClick={this.handleButtonClick} >
-                {this.getPropValue("buttonText")}
+              <Base.Button className={this.decorateCSS("button")} buttonType={button.type} onClick={this.handleButtonClick} >
+                {button.text}
               </Base.Button>
             </div>
           )}
-
           {isImageClicked && (
             <div
               className={this.decorateCSS("overlay")}

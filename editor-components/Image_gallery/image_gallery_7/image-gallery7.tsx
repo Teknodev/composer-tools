@@ -1,8 +1,8 @@
 import * as React from "react";
 import { BaseImageGallery } from "../../EditorComponent";
 import styles from "./image-gallery7.module.scss";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type CardItemType = {
     image: string;
@@ -348,12 +348,7 @@ class ImageGallery7 extends BaseImageGallery {
                     }
                 ]
         });
-        this.addProp({
-            type: "string",
-            key: "buttonText",
-            displayer: "Button Text",
-            value: "Load More"
-        })
+        this.addProp(INPUTS.BUTTON("button", "Button", "Load More", null, null, null, "Primary"));
 
         this.setComponentState("scroll", 0);
         this.handleScroll = this.handleScroll.bind(this);
@@ -407,6 +402,9 @@ class ImageGallery7 extends BaseImageGallery {
         const gallery = this.castToObject<CardItemType[]>("gallery");
         if (this.getComponentState("imageCount") != this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"))
             this.setComponentState("imageCount", this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"));
+
+        const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+
         return (
             <Base.Container className={this.decorateCSS("container")} onScroll={this.debouncedHandleScroll}>
                 <Base.MaxContent className={this.decorateCSS("maxContent")}>
@@ -422,7 +420,8 @@ class ImageGallery7 extends BaseImageGallery {
                                         {(this.castToString(cards.title) || this.castToString(cards.subtitle) || cards.image) &&
                                             <div className={this.decorateCSS("card")}>
                                                 {cards.image && (
-                                                    <img src={cards.image} alt={cards.image} className={this.castToString(cards.title) || this.castToString(cards.subtitle) ? this.decorateCSS("image") : this.decorateCSS("full-image")} />
+                                                    <img src={cards.image} alt={cards.image}
+                                                        className={this.decorateCSS("image")} />
                                                 )}
                                                 {(this.castToString(cards.title) || this.castToString(cards.subtitle)) && (
                                                     <div className={this.decorateCSS("textContainer")}>
@@ -443,7 +442,9 @@ class ImageGallery7 extends BaseImageGallery {
                     </Base.ListGrid>
                     {(this.getComponentState("imageCount") <= gallery.length) && (
                         <div className={this.decorateCSS("button-wrapper")}>
-                            <Base.Button className={this.decorateCSS("button")} onClick={this.handleButtonClick} >{this.getPropValue("buttonText")}</Base.Button>
+                            <Base.Button className={this.decorateCSS("button")} buttonType={button.type} onClick={this.handleButtonClick}>
+                                {button.text}
+                            </Base.Button>
                         </div>
                     )}
                 </Base.MaxContent>
