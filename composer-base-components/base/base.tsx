@@ -234,14 +234,17 @@ export namespace Base {
       
       useEffect(() => {
         const handleScroll = () => {
-          const navbarPosition = document.querySelector(`.${styles.navbarPosition}`);
-          console.log("navbarPosition", navbarPosition);
+          const navbarPosition = document.querySelectorAll(`.${styles.navbarPosition}`) as  NodeListOf<Element>;
+    
           if (navbarPosition) {
-
             if (window.scrollY > 50 && position !== "absolute") {
-              navbarPosition.classList.add(styles.scrolled);
+              navbarPosition.forEach((item) => {
+                item.classList.add(styles.scrolled);
+              });
             } else {
-              navbarPosition.classList.remove(styles.scrolled);
+              navbarPosition.forEach((item) => {
+                item.classList.remove(styles.scrolled);
+              });
             }
           }
         };
