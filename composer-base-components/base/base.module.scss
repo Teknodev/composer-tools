@@ -435,11 +435,11 @@
     justify-content: space-between;
     align-items: center;
 
-    @media only screen and (max-width: $composer-tablet-width-lg) {
+    @container (max-width: #{$composer-tablet-width-lg}) {
         padding: var(--composer-gap-md) var(--composer-gap-lg);
     }
 
-    @media only screen and (max-width: $composer-phone-width) {
+    @container (max-width: #{$composer-phone-width}) {
         padding: var(--composer-gap-md);
     }
 
