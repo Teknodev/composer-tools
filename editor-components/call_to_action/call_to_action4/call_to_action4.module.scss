@@ -5,10 +5,13 @@
       display: flex;
       gap: var(--composer-gap-md);
       .left-page {
+        display: flex;
+        flex-direction: column;
         flex: 1;
         gap: var(--composer-gap-lg);
         .title {
           margin: 0px;
+          text-align: left;
         }
         .list-container {
           margin: 0px;

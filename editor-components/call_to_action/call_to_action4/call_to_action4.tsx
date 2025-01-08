@@ -170,19 +170,19 @@ class CallToAction4Page extends BaseCallToAction {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
             {(this.castToString(this.getPropValue("title")) || listItems.length > 0 || buttons.length > 0) && (
-              <Base.VerticalContent className={this.decorateCSS("left-page")}>
+              <div className={this.decorateCSS("left-page")}>
                 {this.castToString(this.getPropValue("title")) && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                 {listItems.length > 0 && (
                   <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("list-container")}>
                     {listItems.map((item: ListItem, index: number) => (
-                      <Base.Row className={this.decorateCSS("list")}>
+                      <div className={this.decorateCSS("list")}>
                         {this.getPropValue("icon") && (
                           <div className={this.decorateCSS("icon-container")}>
                             <ComposerIcon name={this.getPropValue("icon")} propsIcon={{ className: this.decorateCSS("icon") }} />
                           </div>
                         )}
                         {this.castToString(item.description) && <div className={this.decorateCSS("description")}>{item.description}</div>}
-                      </Base.Row>
+                      </div>
                     ))}
                   </Base.ListGrid>
                 )}
@@ -199,7 +199,7 @@ class CallToAction4Page extends BaseCallToAction {
                     ))}
                   </div>
                 )}
-              </Base.VerticalContent>
+              </div>
             )}
             {this.getPropValue("image") && (
               <div className={this.decorateCSS("right-page")}>
