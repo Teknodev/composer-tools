@@ -1,214 +1,237 @@
 import * as React from "react";
 import { BaseContent } from "../../EditorComponent";
 import styles from "./content3.module.scss";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
-type Card = {
-  icon: string;
-  image: string;
+type ITabs = {
+  tabText: JSX.Element;
   title: JSX.Element;
   description: JSX.Element;
+  button: INPUTS.CastedButton;
+  image: string;
 };
 
 class Content3 extends BaseContent {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "Use Case",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Use Case",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value:
+        "We focus on helping you to make useful content more accessible with an utlimate goal for a good sharing profit as a content creator.",
+    });
+
     this.addProp({
       type: "array",
-      key: "cards",
-      displayer: "Cards",
+      key: "tabs",
+      displayer: "Tabs",
       value: [
         {
           type: "object",
-          key: "card",
-          displayer: "Card",
+          key: "tab",
+          displayer: "Button text",
           value: [
             {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "LiaBicycleSolid",
+              type: "string",
+              key: "tabText",
+              displayer: "Image of Card",
+              value: "AI Sales Enablement",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image of Card",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c387bd2970002c628e59?alt=media&timestamp=1719564433797",
             },
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "CREATE AMAZING DESING WITH MINT THEME",
+              value:
+                "Transform mundane text, PowerPoints & PDFs into compelling videos that will captivate your team",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
               value:
-                "Creating a higher spacing for people through a unique campaigns.",
+                "Usually, our colleagues don't jump in the air when they hear e-learning but the AI videos created with Writebot have sparked motivation that we haven't seen before.",
             },
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b814bd2970002c6285a5?alt=media&timestamp=1719561551671",
-            },
+            INPUTS.BUTTON("button", "Button", "Explore More", "", "Primary")
           ],
         },
+
         {
           type: "object",
-          key: "card",
-          displayer: "Card",
+          key: "tab",
+          displayer: "Button text",
           value: [
             {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "LiaBicycleSolid",
+              type: "string",
+              key: "tabText",
+              displayer: "Image of Card",
+              value: "AI Sales Enablement",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image of Card",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c387bd2970002c628e59?alt=media&timestamp=1719564433797",
             },
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "WE CRAFT BEAUTIFUL & AWESOME THEMES",
+              value:
+                "Transform mundane text, PowerPoints & PDFs into compelling videos that will captivate your team",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
               value:
-                "Creating a higher spacing for people through a unique campaigns.",
+                "Usually, our colleagues don't jump in the air when they hear e-learning but the AI videos created with Writebot have sparked motivation that we haven't seen before.",
             },
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b814bd2970002c6285a4?alt=media&timestamp=1719561551671",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "card",
-          displayer: "Card",
-          value: [
-            {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "LiaBicycleSolid",
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "READY TO START YOUR NEXT WEB PROJECT NOW?",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value:
-                "Creating a higher spacing for people through a unique campaigns.",
-            },
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b814bd2970002c6285a3?alt=media&timestamp=1719561551671",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "card",
-          displayer: "Card",
-          value: [
-            {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "LiaBicycleSolid",
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "WE BELIEVE IN THE POWER OF GREAT DESIGN",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value:
-                "Creating a higher spacing for people through a unique campaigns.",
-            },
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b814bd2970002c6285a6?alt=media&timestamp=1719561551671",
-            },
+            INPUTS.BUTTON("button", "Button", "Explore More", "", "Primary")
           ],
         },
       ],
     });
+    this.setActiveTab(0);
+  }
 
-    this.addProp({
-      type: "number",
-      key: "itemCount",
-      displayer: "Item count in a row",
-      value: 4,
-      max: 4,
-    });
+  setActiveTab(activeTabIndex: number) {
+    this.setComponentState("activeTab", activeTabIndex);
+    setTimeout(() => {
+      this.setComponentState("startedIndex", activeTabIndex);
+    }, 20);
   }
 
   getName(): string {
     return "Content 3";
   }
-
   render() {
+    const subTitle = this.getPropValue("subtitle");
+    const title = this.getPropValue("title");
+    const description = this.getPropValue("description");
+
     return (
-      <Base.Container isFull={true} className={this.decorateCSS("container")}>
+      <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.ListGrid
-            gridCount={{ pc: this.getPropValue("itemCount") }}
-            className={this.decorateCSS("grid-container")}
-          >
-            {this.castToObject<Card[]>("cards").map(
-              (card: Card, indexCard: number) => (
-                <div key={indexCard} className={this.decorateCSS("card")}>
-                  <div className={this.decorateCSS("image-container")}>
-                    <img
-                      className={this.decorateCSS("image")}
-                      src={card.image}
-                      alt=""
-                    />
-                  </div>
-                  <Base.VerticalContent
-                    className={this.decorateCSS("little-container")}
+          {(this.castToString(subTitle) ||
+            this.castToString(title) ||
+            this.castToString(description)) && (
+              <Base.VerticalContent className={this.decorateCSS("heading")}>
+                {this.castToString(subTitle) && (
+                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                    {subTitle}
+                  </Base.SectionSubTitle>
+                )}
+
+                {this.castToString(title) && (
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
+                    {title}
+                  </Base.SectionTitle>
+                )}
+
+                {this.castToString(description) && (
+                  <Base.SectionDescription
+                    className={this.decorateCSS("description")}
                   >
-                    {card.icon && (
-                      <ComposerIcon
-                        name={card.icon}
-                        propsIcon={{ className: this.decorateCSS("icon") }}
+                    {description}
+                  </Base.SectionDescription>
+                )}
+              </Base.VerticalContent>
+            )}
+
+          <div className={this.decorateCSS("tabs")}>
+            <div className={this.decorateCSS("tab-buttons")}>
+              {this.castToObject<ITabs[]>("tabs").map(
+                (tab: ITabs, index: number) => (
+                  <div
+                    className={
+                      `${this.decorateCSS("tab-button")} ${this.getComponentState("activeTab") === index
+                        ? this.decorateCSS("active")
+                        : ""
+                      }`
+                    }
+                    onClick={() => this.setActiveTab(index)}
+                  >
+                    {tab.tabText}
+                  </div>
+                )
+              )}
+            </div>
+            {this.castToObject<ITabs[]>("tabs").map(
+              (tab: ITabs, index: number) => (
+                <Base.ContainerGrid
+                  className={
+                    `${this.decorateCSS("tab")} ${this.getComponentState("activeTab") === index
+                      ? this.decorateCSS("active")
+                      : ""
+                    }`
+                  }
+                >
+                  {(this.castToString(tab.title) ||
+                    this.castToString(tab.description) ||
+                    this.castToString(tab.button.text)) && (
+                      <Base.VerticalContent
+                        className={this.decorateCSS("content")}
+                      >
+                        {this.castToString(tab.title) && (
+                          <Base.H2 className={this.decorateCSS("title")}>
+                            {tab.title}
+                          </Base.H2>
+                        )}
+                        {this.castToString(tab.description) && (
+                          <Base.P className={this.decorateCSS("description")}>
+                            {tab.description}
+                          </Base.P>
+                        )}
+
+                        {this.castToString(tab.button.text) && (
+                          <ComposerLink path={tab.button.url}>
+                            <Base.Button buttonType={tab.button.type} className={this.decorateCSS("button")}>
+                              {tab.button.text}
+                            </Base.Button>
+                          </ComposerLink>
+                        )}
+
+                      </Base.VerticalContent>
+                    )}
+
+                  {tab.image && (
+                    <div className={this.decorateCSS("image-container")}>
+                      <img
+                        className={this.decorateCSS("image")}
+                        src={tab.image}
                       />
-                    )}
-                    {this.castToString(card.title) && (
-                      <Base.H2 className={this.decorateCSS("title")}>
-                        {card.title}
-                      </Base.H2>
-                    )}
-                    {this.castToString(card.description) && (
-                      <Base.P className={this.decorateCSS("description")}>
-                        {card.description}
-                      </Base.P>
-                    )}
-                  </Base.VerticalContent>
-                </div>
+                    </div>
+                  )}
+                </Base.ContainerGrid>
               )
             )}
-          </Base.ListGrid>
+          </div>
         </Base.MaxContent>
       </Base.Container>
     );

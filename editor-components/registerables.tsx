@@ -18,6 +18,8 @@ import ListComponent5 from "./list/list5/list5";
 import ListComponent6 from "./list/list6/list6";
 import ListComponent7 from "./list/list7/list7";
 import ListComponent8 from "./list/list8/list8";
+import ListComponent9 from "./list/list9/list9";
+import ListComponent10 from "./list/list10/list10";
 import LocationComponent1 from "./location/location1/location1";
 import LocationComponent3 from "./location/location3/location3";
 import ContentComponent1 from "./content/content1/content1";
@@ -33,17 +35,6 @@ import ContentComponent10 from "./content/content10/content10";
 import ContentComponent11 from "./content/content11/content11";
 import ContentComponent12 from "./content/content12/content12";
 import ContentComponent13 from "./content/content13/content13";
-import ContentComponent18 from "./content/content18/content18";
-import ContentComponent19 from "./content/content19/content19";
-import ContentComponent14 from "./content/content14/content14";
-import ContentComponent15 from "./content/content15/content15";
-import ContentComponent16 from "./content/content16/content16";
-import ContentComponent17 from "./content/content17/content17";
-import ContentComponent20 from "./content/content20/content20";
-import ContentComponent21 from "./content/content21/content21";
-import ContentComponent22 from "./content/content22/content22";
-import ContentComponent23 from "./content/content23/content23";
-import ContentComponent24 from "./content/content24/content24";
 import SliderComponent1 from "./slider/slider1/slider1";
 import SliderComponent2 from "./slider/slider2/slider2";
 import SliderComponent3 from "./slider/slider3/slider3";
@@ -135,6 +126,7 @@ import FeatureComponent11 from "./feature/feature11/feature11";
 import FeatureComponent12 from "./feature/feature12/feature12";
 import FeatureComponent13 from "./feature/feature13/feature13";
 import FeatureComponent14 from "./feature/feature14/feature14";
+import FeatureComponent15 from "./feature/feature15/feature15";
 import CallToAction1 from "./call_to_action/call_to_action1/call_to_action1";
 import CallToAction2 from "./call_to_action/call_to_action2/call_to_action2";
 import CallToAction3 from "./call_to_action/call_to_action3/call_to_action3";
@@ -210,12 +202,14 @@ import HttpCodes3 from "./http_codes/http_codes3/http_codes3";
 import HttpCodes4 from "./http_codes/http_codes4/http_codes4";
 import ImageGalleryComponent1 from "./Image_gallery/image_gallery_1/image-gallery1";
 import ImageGalleryComponent2 from "./Image_gallery/image_gallery_2/image-gallery2";
+import ImageGalleryComponent3 from "./Image_gallery/image_gallery_3/image-gallery3";
+import ImageGalleryComponent4 from "./Image_gallery/image_gallery_4/image-gallery4";
 import ImageGalleryCompanent5 from "./Image_gallery/image_gallery_5/image-gallery5";
 import ImageGalleryCompanent6 from "./Image_gallery/image_gallery_6/image-gallery6";
 import ImageGalleryCompanent7 from "./Image_gallery/image_gallery_7/image-gallery7";
+import ImageGalleryCompanent8 from "./Image_gallery/image_gallery_8/image-gallery8";
 import NotificationModal1 from "./modal/notification-modal1/notificationmodal1";
 import ConfirmationModal1 from "./modal/confirmation-modal1/confirmationmodal1";
-import ImageGalleryComponent4 from "./Image_gallery/image_gallery_4/image-gallery4";
 import TermsOfUseModal from "./modal/terms-of-use/terms-of-use";
 import SurveyModal from "./modal/survey-modal/survey-modal";
 import NoticeModal from "./modal/notice-modal/notice";
@@ -251,6 +245,8 @@ function Registerables(composer: ComponentsRegistery) {
     ListComponent6,
     ListComponent7,
     ListComponent8,
+    ListComponent9,
+    ListComponent10,
     ContentComponent1,
     ContentComponent2,
     ContentComponent3,
@@ -264,17 +260,6 @@ function Registerables(composer: ComponentsRegistery) {
     ContentComponent11,
     ContentComponent12,
     ContentComponent13,
-    ContentComponent14,
-    ContentComponent15,
-    ContentComponent16,
-    ContentComponent17,
-    ContentComponent18,
-    ContentComponent19,
-    ContentComponent20,
-    ContentComponent21,
-    ContentComponent22,
-    ContentComponent23,
-    ContentComponent24,
     SliderComponent1,
     SliderComponent2,
     SliderComponent3,
@@ -363,10 +348,12 @@ function Registerables(composer: ComponentsRegistery) {
     NavbarComponent9,
     ImageGalleryComponent1,
     ImageGalleryComponent2,
+    ImageGalleryComponent3,
+    ImageGalleryComponent4,
     ImageGalleryCompanent5,
     ImageGalleryCompanent6,
     ImageGalleryCompanent7,
-    ImageGalleryComponent4,
+    ImageGalleryCompanent8,
     FeatureComponent1,
     FeatureComponent2,
     FeatureComponent3,
@@ -381,6 +368,7 @@ function Registerables(composer: ComponentsRegistery) {
     FeatureComponent12,
     FeatureComponent13,
     FeatureComponent14,
+    FeatureComponent15,
     CallToAction1,
     CallToAction2,
     CallToAction3,
