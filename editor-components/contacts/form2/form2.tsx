@@ -3,7 +3,6 @@ import { BaseContacts, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./form2.module.scss";
 import { ErrorMessage, Form, Formik } from "formik";
 import * as Yup from "yup";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 

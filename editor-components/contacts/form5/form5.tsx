@@ -466,8 +466,8 @@ class Form5 extends BaseContacts {
           <Base.VerticalContent className={this.decorateCSS("wrapper")}>
             {(badge || title) && (
               <Base.VerticalContent className={this.decorateCSS("texts")}>
-                {badge && <Base.SectionSubTitle className={this.decorateCSS("badge")}>{badge}</Base.SectionSubTitle>}
-                {title && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
+                {badge && <Base.SectionSubTitle className={this.decorateCSS("badge")}>{this.getPropValue("badge")}</Base.SectionSubTitle>}
+                {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
               </Base.VerticalContent>
             )}
             <div className={this.decorateCSS("input-items")}>
