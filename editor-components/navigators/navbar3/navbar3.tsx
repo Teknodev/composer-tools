@@ -7,32 +7,16 @@ import { Base } from "composer-tools/composer-base-components/base/base";
 import ComposerLanguage from "composer-tools/composer-base-components/language/language";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
-
 interface Lane {
   contact: JSX.Element;
   news: JSX.Element;
 }
-
-type TImage = {
-  image: string;
-  imageLink: string;
-};
 
 type Item = {
   title: JSX.Element;
   navigate_to: string;
   menuType: string;
   sub_items: Item[];
-};
-
-type Button = {
-  text: JSX.Element;
-  link: string;
-};
-
-type Social = {
-  icon: string;
-  link: string;
 };
 
 interface Logo {
@@ -1224,7 +1208,6 @@ class Navbar3 extends BaseNavigator {
     const position = this.getPropValue("position");
 
     const menuItems = this.castToObject<Item[]>("menuItems");
-    const hamburgerIcon: string = this.getPropValue("hamburgerIcon");
     const icons = this.castToObject<any[]>("icons");
 
     const defaultLogo = this.castToObject<Logo>("defaultLogo");

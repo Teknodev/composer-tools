@@ -5,8 +5,8 @@
     in srgb,
     var(--composer-html-background),
     var(--composer-font-color-primary) 5%);
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: var(--composer-gap-sm);
+  padding-bottom: var(--composer-gap-sm);
 
   .lane {
     display: flex;
