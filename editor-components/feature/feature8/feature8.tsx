@@ -234,7 +234,7 @@ class Feature8 extends BaseFeature {
   }
 
   render() {
-    const titleExist = !!this.getPropValue("title", { as_string: true });
+    const titleExist = this.castToString(this.getPropValue("title"));
     const title = this.getPropValue("title");
 
     const cards = this.castToObject<Card[]>("cards");

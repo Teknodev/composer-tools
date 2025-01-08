@@ -1,228 +1,221 @@
 @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
 .container {
-    padding-bottom: 0;
+  padding-bottom: 0;
 
-    @container(max-width: #{$composer-tablet-width}) {
-        padding: 0;
+  @container (max-width: #{$composer-tablet-width-lg}) {
+    padding: 0;
+  }
+
+  @container (max-width: #{$composer-phone-width}) {
+    padding: 0;
+  }
+
+  .max-content {
+    display: flex;
+    gap: var(--composer-gap-sm);
+    flex-direction: column;
+
+    @container (max-width: #{$composer-tablet-width-lg}) {
+      gap: 0;
     }
 
-    @container(max-width: #{$composer-phone-width}) {
-        padding: 0;
+    .header {
+      @container (max-width: #{$composer-tablet-width-lg}) {
+        padding: var(--composer-gap-md) var(--composer-gap-lg) 0 var(--composer-gap-lg);
+      }
+
+      @container (max-width: #{$composer-phone-width}) {
+        padding: var(--composer-gap-md) var(--composer-gap-md) 0 var(--composer-gap-md);
+      }
+
+      .description {
+        content: "";
+      }
     }
 
-    .max-content {
+    .down-page {
+      gap: var(--composer-gap-md);
+
+      @container (max-width: #{$composer-phone-width}) {
+        padding: 0;
+      }
+
+      @container (max-width: #{$composer-tablet-width-lg}) {
+        gap: 0;
+      }
+
+      .control-part {
+        flex: 1;
+        max-width: 100%;
         display: flex;
-        gap: var(--composer-gap-sm);
         flex-direction: column;
+        padding: var(--composer-gap-md);
+        margin: var(--composer-gap-md) 0;
+        background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+        border-radius: var(--composer-border-radius-lg);
+        gap: var(--composer-gap-sm);
 
-        @container(max-width: #{$composer-tablet-width}) {
-            gap: 0;
+        @container (max-width: #{$composer-tablet-width-lg}) {
+          margin: var(--composer-gap-md) var(--composer-gap-lg) 0 var(--composer-gap-lg);
         }
 
-        .header {
-            @container(max-width: #{$composer-tablet-width}) {
-                padding: var(--composer-gap-md) var(--composer-gap-lg) 0 var(--composer-gap-lg);
-            }
-
-            @container(max-width: #{$composer-phone-width}) {
-                padding: var(--composer-gap-md) var(--composer-gap-md) 0 var(--composer-gap-md);
-            }
-
-            .description {
-                color: var(--composer-tertiary-color);
-                margin-bottom: 0;
-            }
+        @container (max-width: #{$composer-phone-width}) {
+          margin: var(--composer-gap-md) var(--composer-gap-md) 0 var(--composer-gap-md);
         }
 
-        .down-page {
+        .control-title {
+          margin-top: var(--composer-gap-sm);
+          color: var(--composer-primary-color);
+          font-size: 1.5rem;
+        }
+
+        .control-description {
+          color: var(--composer-font-color-primary);
+        }
+
+        .arrows {
+          display: flex;
+          gap: var(--composer-gap-sm);
+          align-items: end;
+          height: 100%;
+          margin-bottom: var(--composer-gap-sm);
+
+          .icon-wrapper {
+            width: 35px;
+            height: 35px;
+
+            .prevArrow,
+            .nextArrow {
+              flex-shrink: 0;
+              color: var(--composer-font-color-primary);
+              border-radius: 50%;
+              border: 2px solid var(--composer-primary-color);
+              width: 100%;
+              height: 100%;
+              padding: var(--composer-gap-xs);
+              background-color: var(--composer-html-background);
+
+              &:hover {
+                background-color: var(--composer-primary-color);
+                color: var(--composer-font-color-secondary);
+              }
+            }
+          }
+        }
+      }
+
+      .slider-parent {
+        flex: 3;
+        max-width: 80%;
+
+        @container (max-width: #{$composer-tablet-width-lg}) {
+          max-width: 100%;
+        }
+
+        .carousel {
+          display: flex;
+          overflow: hidden;
+          gap: var(--composer-gap-md);
+
+          @container (max-width: #{$composer-tablet-width-lg}) {
+            padding: 0 var(--composer-gap-md);
+          }
+
+          @container (max-width: #{$composer-phone-width}) {
+            padding: 0;
+          }
+
+          > div {
+            > div {
+              padding: var(--composer-gap-md) 0;
+              display: flex;
+              align-items: stretch;
+              height: 100%;
+
+              > div {
+                padding: 0 var(--composer-gap-md);
+                height: auto;
+                min-height: 219px;
+
+                > div {
+                  height: 100%;
+                }
+              }
+            }
+          }
+
+          .card {
+            flex: 1;
+            padding: var(--composer-gap-md);
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
+            border-radius: var(--composer-border-radius-lg);
             gap: var(--composer-gap-md);
+            height: 100%;
 
-            @container(max-width: #{$composer-phone-width}) {
-                padding: 0;
+            &:hover {
+              transform: scale(1.05);
+
+              @container (max-width: #{$composer-tablet-width-lg}) {
+                transform: scale(1.03);
+              }
+
+              @container (max-width: #{$composer-phone-width}) {
+                transform: scale(1.02);
+              }
             }
 
-            @container(max-width: #{$composer-tablet-width}) {
-                gap: 0;
+            .play-icon {
+              flex-shrink: 0;
+              font-size: 3rem;
+              color: var(--composer-primary-color);
             }
 
-            .control-part {
-                flex: 1;
-                max-width: 100%;
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                padding: var(--composer-gap-md);
-                margin: var(--composer-gap-md) 0;
-                background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-                border-radius: var(--composer-border-radius-lg);
-                gap: var(--composer-gap-sm);
-
-                @container(max-width: #{$composer-tablet-width}) {
-                    margin: var(--composer-gap-md) var(--composer-gap-lg) 0 var(--composer-gap-lg);
-                }
-
-                @container(max-width: #{$composer-phone-width}) {
-                    margin: var(--composer-gap-md) var(--composer-gap-md) 0 var(--composer-gap-md);
-                }
-
-                .control-title {
-                    margin-top: var(--composer-gap-sm);
-                    color: var(--composer-primary-color);
-                    font-size: 1.5rem;
-                }
-
-                .control-description {
-                    color: var(--composer-font-color-primary);
-                }
-
-                .arrows {
-                    display: flex;
-                    gap: var(--composer-gap-sm);
-                    align-items: end;
-                    height: 100%;
-                    margin-bottom: var(--composer-gap-sm);
-
-                    .icon-wrapper {
-                        width: 35px;
-                        height: 35px;
-
-                        .prevArrow,
-                        .nextArrow {
-                            flex-shrink: 0;
-                            color: var(--composer-font-color-primary);
-                            border-radius: 50%;
-                            border: 2px solid var(--composer-primary-color);
-                            width: 100%;
-                            height: 100%;
-                            padding: 5px;
-                            background-color: var(--composer-html-background);
-
-                            &:hover {
-                                background-color: var(--composer-primary-color);
-                                color: var(--composer-font-color-secondary);
-                            }
-                        }
-                    }
-                }
+            .item-header {
+              color: var(--composer-font-color-primary);
             }
 
-            .slider-parent {
-                flex: 3;
-                max-width: 80%;
-
-                @container(max-width: #{$composer-tablet-width}) {
-                    max-width: 100%;
-                }
-
-                .carousel {
-                    display: flex;
-                    overflow: hidden;
-                    gap: var(--composer-gap-md);
-
-                    @container(max-width: #{$composer-tablet-width}) {
-                        padding: 0 var(--composer-gap-md);
-                    }
-
-                    @container(max-width: #{$composer-phone-width}) {
-                        padding: 0;
-                    }
-
-                    >div {
-                        >div {
-                            padding: var(--composer-gap-md) 0;
-                            display: flex;
-                            align-items: stretch;
-                            height: 100%;
-
-                            >div {
-                                padding: 0 var(--composer-gap-md);
-                                height: auto;
-                                min-height: 219px;
-
-                                >div {
-                                    height: 100%;
-                                }
-                            }
-                        }
-                    }
-
-                    .card {
-                        flex: 1;
-                        padding: var(--composer-gap-md);
-                        transition: transform 0.3s ease;
-                        border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
-                        border-radius: var(--composer-border-radius-lg);
-                        display: flex !important;
-                        flex-direction: column;
-                        gap: var(--composer-gap-md);
-                        height: 100%;
-
-                        &:hover {
-                            transform: scale(1.05);
-
-                            @container(max-width: #{$composer-tablet-width}) {
-                                transform: scale(1.03);
-                            }
-
-                            @container(max-width: #{$composer-phone-width}) {
-                                transform: scale(1.02);
-                            }
-                        }
-
-                        .play-icon {
-                            flex-shrink: 0;
-                            font-size: 3rem;
-                            color: var(--composer-primary-color);
-                        }
-
-                        .item-header {
-                            font-weight: bold;
-                            color: var(--composer-font-color-primary);
-                            margin: 0;
-                        }
-
-                        .item-content {
-                            color: var(--composer-tertiary-color);
-                            margin: 0;
-                        }
-                    }
-
-                    .for-single-card {
-                        &:hover {
-                            transform: scale(1.02);
-
-                            @container(max-width: #{$composer-tablet-width}) {
-                                transform: scale(1.02);
-                            }
-
-                            @container(max-width: #{$composer-phone-width}) {
-                                transform: scale(1.02);
-                            }
-                        }
-                    }
-                }
-
-                .carousel--singleCard {
-                    width: 100%;
-
-                    >div {
-                        width: 100%;
-                    }
-                }
-
-                .carousel--multipleCards {
-                    width: auto;
-                }
+            .item-content {
+              color: var(--composer-tertiary-color);
             }
+          }
 
-            .no-control-part {
-                max-width: 100%;
+          .for-single-card {
+            &:hover {
+              transform: scale(1.02);
+
+              @container (max-width: #{$composer-tablet-width-lg}) {
+                transform: scale(1.02);
+              }
+
+              @container (max-width: #{$composer-phone-width}) {
+                transform: scale(1.02);
+              }
             }
+          }
         }
+
+        .carousel--singleCard {
+          width: 100%;
+
+          > div {
+            width: 100%;
+          }
+        }
+
+        .carousel--multipleCards {
+          width: auto;
+        }
+      }
+
+      .no-control-part {
+        max-width: 100%;
+      }
     }
+  }
 }
 
 .no-header {
-    padding-top: 0;
+  padding-top: 0;
 }

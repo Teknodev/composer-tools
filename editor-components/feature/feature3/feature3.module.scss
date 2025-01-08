@@ -23,7 +23,6 @@ $circlepaddingbottom: calc(-1 * $cardsmargintop + var(--composer-gap-xl));
                     margin-bottom: var(--composer-gap-md);
 
                     &.circle-exist {
-                        // reset alignment if circle exists
                         text-align: left;
                         margin: 0;
 

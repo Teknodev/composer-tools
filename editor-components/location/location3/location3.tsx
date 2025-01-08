@@ -318,9 +318,8 @@ class Location3 extends Location {
                 {continents.length > 0 && (
                   <div className={styles["continents-wrapper"]}>
                     {continents.map((continentObj: any, index: number) => {
-                      const continent = continentObj.value;
-                      const name = continent.find((item: any) => item.key === "name")?.value;
-                      const count = continent.find((item: any) => item.key === "count")?.value;
+                      const name = this.castToString(continentObj.getPropValue("name"));
+                      const count = continentObj.getPropValue("count");
 
                       return (
                         (name || count) && (
