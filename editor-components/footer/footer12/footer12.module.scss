@@ -21,6 +21,7 @@
         display: flex;
         flex-direction: column;
         gap: var(--composer-gap-xs);
+
         .logo {
           .image {
             width: 150px;
@@ -39,6 +40,7 @@
           font-size: 1rem;
           color: var(--composer-tertiary-color);
         }
+
         .text {
           font-size: 1rem;
           color: var(--composer-font-color-primary);
@@ -57,18 +59,18 @@
       .footer-bottom {
         display: flex;
         justify-content: space-between;
-        .footer-text,
-        .footer-text-no-image {
+
+        .footer-text {
           max-width: 50%;
           font-size: 1rem;
           color: var(--composer-font-color-primary);
-        }
-        .footer-text-no-image {
-          max-width: 100%;
+
+          &.no-image {
+            max-width: 100%;
+          }
         }
 
-        .image-container,
-        .image-container-full {
+        .image-container {
           display: flex;
           flex-wrap: wrap;
           align-items: center;
@@ -84,10 +86,10 @@
               border-radius: var(--composer-border-radius-sm);
             }
           }
-        }
 
-        .image-container-full {
-          max-width: 100%;
+          &.full-width {
+            max-width: 100%;
+          }
         }
       }
     }
@@ -108,6 +110,7 @@
         .list-group {
           flex: 1 1 100%;
           max-width: 100%;
+          width: 100%;
         }
       }
     }
@@ -116,6 +119,7 @@
       .second-max-content {
         .footer-bottom {
           flex-direction: column;
+
           .footer-text {
             max-width: 100%;
           }
