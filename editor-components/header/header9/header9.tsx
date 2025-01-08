@@ -85,18 +85,6 @@ class Header9 extends BaseHeader {
       ],
     });
     this.addProp(INPUTS.BUTTON("featuredLink", "Featured Button", "see all works", "", null, null, "Link"));
-    // this.addProp({
-    //   type: "string",
-    //   key: "featuredText",
-    //   displayer: "Featured Link Text",
-    //   value: "see all works",
-    // });
-    // this.addProp({
-    //   type: "page",
-    //   key: "featuredLink",
-    //   displayer: "Featured Link URL",
-    //   value: "",
-    // });
     this.addProp({
       type: "array",
       key: "tabs",
@@ -342,7 +330,6 @@ class Header9 extends BaseHeader {
   render() {
     const textExist: string = this.getPropValue("text", { as_string: true });
     const socials = this.castToObject<ISocial[]>("socials");
-    // const featuredText: string = this.getPropValue("featuredText", { as_string: true });
     const tabs = this.castToObject<ITab[]>("tabs");
     const activeTabIndex: number = this.getComponentState("activeTab");
 
@@ -408,7 +395,7 @@ class Header9 extends BaseHeader {
                         }
                         onMouseEnter={() => this.handleMouseEnter(index)}
                       >
-                        {this.castToString(tab.tabText)}
+                        {tab.tabText}
                       </div>
                     );
                   })}

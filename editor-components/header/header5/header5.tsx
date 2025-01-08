@@ -14,10 +14,6 @@ type Heading = {
   overlay: boolean;
   backgroundImage: string;
 };
-type Button = {
-  buttonText: JSX.Element;
-  url: string;
-};
 
 class Header5 extends BaseHeader {
   constructor(props?: any) {
@@ -82,8 +78,6 @@ class Header5 extends BaseHeader {
     const isTitleExist = this.castToString(heading.title);
     const description = this.castToString(heading.description);
     const isTitleColoredExist = this.castToString(heading.titleColored);
-    const alignmentValue = Base.getContentAlignment();
-    const subTitleType = Base.getSectionSubTitleType();
 
     return (
       <Base.Container className={this.decorateCSS("container")}>

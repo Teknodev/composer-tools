@@ -225,7 +225,6 @@ class Header8 extends BaseHeader {
   }
 
   render() {
-    let currentSlide = this.getComponentState("currentIndex");
     let slideCount = this.castToObject<ISliderData[]>("slider").length;
     let sliderEffect = this.getPropValue("slider_animation") ? true : false;
     const allSlidesWithoutImages = this.castToObject<ISliderData[]>("slider").every(

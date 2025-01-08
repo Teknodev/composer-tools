@@ -164,19 +164,19 @@ class Header6 extends BaseHeader {
                   <div className={this.decorateCSS("title-container")}>
                     {this.castToString(title.title) && (
                       <h2 className={`${this.decorateCSS("title")} ${!title.titleAnimation && this.decorateCSS("noanimation")}`}>
-                        {this.castToString(title.title)}
+                        {title.title}
                       </h2>
                     )}
                     {this.castToString(title2.title2) && (
                       <h3 className={`${this.decorateCSS("title2")} ${!title2.title2Animation && this.decorateCSS("noanimation")}`}>
-                        {this.castToString(title2.title2)}
+                        {title2.title2}
                       </h3>
                     )}
                   </div>
                 )}
                 {this.castToString(description.description) && (
                   <p className={`${this.decorateCSS("description")} ${!description.descriptionAnimation && this.decorateCSS("noanimation")}`}>
-                    {this.castToString(description.description)}
+                    {description.description}
                   </p>
                 )}
                 {this.getPropValue("buttons").length > 0 && (

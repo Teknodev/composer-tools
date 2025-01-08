@@ -3,13 +3,6 @@ import { BaseHeader } from "../../EditorComponent";
 import styles from "./header1.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
-interface Slider {
-  title: string;
-  subtitle: string;
-  backgroundTitle: JSX.Element;
-  sliderNumber: number;
-  image: string;
-}
 class Header1 extends BaseHeader {
   sliderRef: React.RefObject<any>;
 
@@ -248,28 +241,6 @@ class Header1 extends BaseHeader {
       this.setComponentState("startedIndex", activeTabIndex);
     }, 20);
   }
-  throttle = <T extends (...args: any[]) => void>(
-    func: T,
-    limit: number
-  ): ((...args: Parameters<T>) => void) => {
-    let inThrottle: boolean;
-    return (...args: Parameters<T>) => {
-      if (!inThrottle) {
-        func(...args);
-        inThrottle = true;
-        setTimeout(() => (inThrottle = false), limit);
-      }
-    };
-  };
-  handleWheel = this.throttle((event: React.WheelEvent) => {
-    // ref isn't work;
-    return;
-    if (event.deltaY < 0) {
-      this.handleUpClick();
-    } else if (event.deltaY > 0) {
-      this.handleDownClick();
-    }
-  }, 2000);
 
   handleUpClick = () => {
     const currentIndex = this.getComponentState("activeTab");
@@ -320,7 +291,7 @@ class Header1 extends BaseHeader {
     const animation = this.getComponentState("animation");
 
     return (
-      <Base.Container className={this.decorateCSS("container")} isFull={true} onWheel={this.handleWheel} style={{ backgroundImage: `url(${this.getPropValue("background-layout")})` }}>
+      <Base.Container className={this.decorateCSS("container")} isFull={true} style={{ backgroundImage: `url(${this.getPropValue("background-layout")})` }}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <img
             className={this.decorateCSS("image-container-2")}
