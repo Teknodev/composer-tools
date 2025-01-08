@@ -1302,7 +1302,6 @@ class Navbar4 extends BaseNavigator {
     const defaultLogo = this.castToObject<Logo>("defaultLogo");
     const information = this.castToObject<Information>("information");
     const menuItems = this.castToObject<MenuItems[]>("menuItems");
-    const hamburgerIcon: string = this.getPropValue("hamburgerIcon");
     const hamburgerMenuTitle: string = this.getPropValue("hamburgerMenuTitle");
 
     const informationTitle = this.castToString(information.title);
@@ -1353,7 +1352,7 @@ class Navbar4 extends BaseNavigator {
                       >
                         {informationTitle && (
                           <h6 className={this.decorateCSS("informationTitle")}>
-                            {informationTitle}
+                            {information.title}
                           </h6>
                         )}
                         {informationDescription && (
