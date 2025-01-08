@@ -1,448 +1,675 @@
+
 import * as React from "react";
 import { BaseImageGallery } from "../../EditorComponent";
 import styles from "./image-gallery6.module.scss";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+interface GalleryItem {
+    sectionTitle: JSX.Element,
+    images: ImageItem[],
+}
+interface ImageItem {
+    image: string,
+    badge: JSX.Element,
+    title: JSX.Element,
+    description: JSX.Element,
+    buttonText: JSX.Element,
+    url: string,
+    nextArrow: string
+}
 
-type CardItemType = {
-    image: string;
-    title: JSX.Element;
-    subtitle: JSX.Element;
-};
 class ImageGallery6 extends BaseImageGallery {
     constructor(props?: any) {
         super(props, styles);
+        this.addProp(
+            {
+                type: "boolean",
+                key: "showAll",
+                displayer: "Show All",
+                value: true
+            }
+        )
         this.addProp({
             type: "number",
             key: "imageCountInitial",
             displayer: "Image Count Initial",
-            value: 8
+            value: 3
         })
         this.addProp({
             type: "number",
             key: "imageCount",
             displayer: "More Image Count",
-            value: 4
+            value: 3
         })
-        this.addProp({
-            type: "array",
-            key: "gallery",
-            displayer: "Gallery",
-            value:
-                [
-                    {
-                        type: "object",
-                        key: "card",
-                        displayer: "Card",
-                        value: [
-                            {
-                                type: "image",
-                                key: "image",
-                                displayer: "Image",
-                                value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669dfff22f8a5b002ce60115?alt=media",
-                            },
-                            {
-                                type: "string",
-                                key: "title",
-                                displayer: "Title",
-                                value: "Dubai",
-                            },
-                            {
-                                type: "string",
-                                key: "subtitle",
-                                displayer: "Subtitle",
-                                value: "Summer, Fashion"
-                            }
-                        ]
-                    },
-                    {
-                        type: "object",
-                        key: "card",
-                        displayer: "Card",
-                        value: [
-                            {
-                                type: "image",
-                                key: "image",
-                                displayer: "Image",
-                                value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00122f8a5b002ce60121?alt=media",
-                            },
-                            {
-                                type: "string",
-                                key: "title",
-                                displayer: "Title",
-                                value: "Cosmoso",
-                            },
-                            {
-                                type: "string",
-                                key: "subtitle",
-                                displayer: "Subtitle",
-                                value: "Architecture"
-                            },
-                        ]
-                    },
-                    {
-                        type: "object",
-                        key: "card",
-                        displayer: "Card",
-                        value: [
-                            {
-                                type: "image",
-                                key: "image",
-                                displayer: "Image",
-                                value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e003a2f8a5b002ce6012d?alt=media",
-                            },
-                            {
-                                type: "string",
-                                key: "title",
-                                displayer: "Title",
-                                value: "Ron Mcclenny",
-                            },
-                            {
-                                type: "string",
-                                key: "subtitle",
-                                displayer: "Subtitle",
-                                value: "Portraits, Summer"
-                            },
-                        ]
-                    },
-                    {
-                        type: "object",
-                        key: "card",
-                        displayer: "Card",
-                        value: [
-                            {
-                                type: "image",
-                                key: "image",
-                                displayer: "Image",
-                                value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e005b2f8a5b002ce60139?alt=media",
-                            },
-                            {
-                                type: "string",
-                                key: "title",
-                                displayer: "Title",
-                                value: "Curitiba Brasil",
-                            },
-                            {
-                                type: "string",
-                                key: "subtitle",
-                                displayer: "Subtitle",
-                                value: "Architecture, Interior"
-                            },
-                        ]
-                    },
-                    {
-                        type: "object",
-                        key: "card",
-                        displayer: "Card",
-                        value: [
-                            {
-                                type: "image",
-                                key: "image",
-                                displayer: "Image",
-                                value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00772f8a5b002ce60145?alt=media",
-                            },
-                            {
-                                type: "string",
-                                key: "title",
-                                displayer: "Title",
-                                value: "John Doe",
-                            },
-                            {
-                                type: "string",
-                                key: "subtitle",
-                                displayer: "Subtitle",
-                                value: "Architecture, Interior"
-                            },
-                        ]
-                    },
-                    {
-                        type: "object",
-                        key: "card",
-                        displayer: "Card",
-                        value: [
-                            {
-                                type: "image",
-                                key: "image",
-                                displayer: "Image",
-                                value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00952f8a5b002ce60151?alt=media",
-                            },
-                            {
-                                type: "string",
-                                key: "title",
-                                displayer: "Title",
-                                value: "Creme",
-                            },
-                            {
-                                type: "string",
-                                key: "subtitle",
-                                displayer: "Subtitle",
-                                value: "Architecture, Interior"
-                            }
-                        ]
-                    }
-                    ,
-                    {
-                        type: "object",
-                        key: "card",
-                        displayer: "Card",
-                        value: [
-                            {
-                                type: "image",
-                                key: "image",
-                                displayer: "Image",
-                                value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00ba2f8a5b002ce6015d?alt=media"
-                                ,
-                            },
-                            {
-                                type: "string",
-                                key: "title",
-                                displayer: "Title",
-                                value: "Dublin",
-                            },
-                            {
-                                type: "string",
-                                key: "subtitle",
-                                displayer: "Subtitle",
-                                value: "Brutalism, Portraits"
-                            }
-                        ]
-                    },
-                    {
-                        type: "object",
-                        key: "card",
-                        displayer: "Card",
-                        value: [
-                            {
-                                type: "image",
-                                key: "image",
-                                displayer: "Image",
-                                value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00d52f8a5b002ce60169?alt=media"
-
-                                ,
-                            },
-                            {
-                                type: "string",
-                                key: "title",
-                                displayer: "Title",
-                                value: "Annie Spratt",
-                            },
-                            {
-                                type: "string",
-                                key: "subtitle",
-                                displayer: "Subtitle",
-                                value: "Portraits Summer"
-                            }
-                        ]
-                    },
-                    {
-                        type: "object",
-                        key: "card",
-                        displayer: "Card",
-                        value: [
-                            {
-                                type: "image",
-                                key: "image",
-                                displayer: "Image",
-                                value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00f72f8a5b002ce60175?alt=media"
-
-                                ,
-                            },
-                            {
-                                type: "string",
-                                key: "title",
-                                displayer: "Title",
-                                value: "Ulitsa",
-                            },
-                            {
-                                type: "string",
-                                key: "subtitle",
-                                displayer: "Subtitle",
-                                value: "Brutalism, Portraits"
-                            },
-
-
-                        ]
-                    },
-                    {
-                        type: "object",
-                        key: "card",
-                        displayer: "Card",
-                        value: [
-                            {
-                                type: "image",
-                                key: "image",
-                                displayer: "Image",
-                                value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e01132f8a5b002ce60181?alt=media"
-
-                                ,
-                            },
-                            {
-                                type: "string",
-                                key: "title",
-                                displayer: "Title",
-                                value: "Brabant",
-                            },
-                            {
-                                type: "string",
-                                key: "subtitle",
-                                displayer: "Subtitle",
-                                value: "Summer, Fashion"
-                            },
-
-                        ]
-                    },
-                    {
-                        type: "object",
-                        key: "card",
-                        displayer: "Card",
-                        value: [
-                            {
-                                type: "image",
-                                key: "image",
-                                displayer: "Image",
-                                value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00122f8a5b002ce60121?alt=media"
-
-                                ,
-                            },
-                            {
-                                type: "string",
-                                key: "title",
-                                displayer: "Title",
-                                value: "Snowy Swiss Alps",
-                            },
-                            {
-                                type: "string",
-                                key: "subtitle",
-                                displayer: "Subtitle",
-                                value: "Summer, Fashion"
-                            },
-
-                        ]
-                    },
-                    {
-                        type: "object",
-                        key: "card",
-                        displayer: "Card",
-                        value: [
-                            {
-                                type: "image",
-                                key: "image",
-                                displayer: "Image",
-                                value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e01732f8a5b002ce6018d?alt=media"
-
-                                ,
-                            },
-                            {
-                                type: "string",
-                                key: "title",
-                                displayer: "Title",
-                                value: "National Aquarium Dubai",
-                            },
-                            {
-                                type: "string",
-                                key: "subtitle",
-                                displayer: "Subtitle",
-                                value: "Brutalism, Portraits"
-                            }
-                        ]
-                    }
-                ]
-        });
         this.addProp(INPUTS.BUTTON("button", "Button", "Load More", null, null, null, "Primary"));
 
-        this.setComponentState("scroll", 0);
-        this.handleScroll = this.handleScroll.bind(this);
+        this.addProp({
+            type: "array",
+            key: "galleries",
+            displayer: "Galleries",
+            value: [
+                {
+                    type: "object",
+                    key: "gallery",
+                    displayer: "Gallery",
+                    value: [
+                        {
+                            type: "string",
+                            key: "sectionTitle",
+                            displayer: "Section Title",
+                            value: "ARCHITECTURE"
+                        },
+                        {
+                            type: "array",
+                            key: "images",
+                            displayer: "Images",
+                            value: [
+                                {
+                                    type: "object",
+                                    key: "image",
+                                    displayer: "Image",
+                                    value: [
+                                        {
+                                            type: "image",
+                                            key: "image",
+                                            displayer: "Image",
+                                            value:
+                                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/671618cab4a116002cfc6451?alt=media",
+                                        },
+                                        {
+                                            type: "string",
+                                            key: "badge",
+                                            displayer: "Badge",
+                                            value: "ARCHITECTURE",
+                                        },
+                                        {
+                                            type: "string",
+                                            key: "title",
+                                            displayer: "Title",
+                                            value: "INTERIOR DESIGN STUDIO",
+                                        },
+                                        {
+                                            type: "string",
+                                            key: "description",
+                                            displayer: "Description",
+                                            value: "START A PROJECT",
+                                        },
+                                        {
+                                            type: "icon",
+                                            key: "nextArrow",
+                                            displayer: "Next Arrow",
+                                            value: "FaArrowRightLong",
+                                        },
+                                        {
+                                            type: "page",
+                                            key: "url",
+                                            displayer: "Link",
+                                            value: "",
+                                        },
+                                    ]
+                                },
+                                {
+                                    type: "object",
+                                    key: "image",
+                                    displayer: "Image",
+                                    value: [
+                                        {
+                                            type: "image",
+                                            key: "image",
+                                            displayer: "Image",
+                                            value:
+                                                "https://ruizarch-react.vercel.app/img/covers/2.jpg",
+                                        },
+                                        {
+                                            type: "string",
+                                            key: "badge",
+                                            displayer: "Badge",
+                                            value: "ARCHITECTURE",
+                                        },
+                                        {
+                                            type: "string",
+                                            key: "title",
+                                            displayer: "Title",
+                                            value: "CITY HOUSE",
+                                        },
+                                        {
+                                            type: "string",
+                                            key: "description",
+                                            displayer: "Description",
+                                            value: "START A PROJECT",
+                                        },
+                                        {
+                                            type: "icon",
+                                            key: "nextArrow",
+                                            displayer: "Next Arrow",
+                                            value: "FaArrowRightLong",
+                                        },
+                                        {
+                                            type: "page",
+                                            key: "url",
+                                            displayer: "Link",
+                                            value: "",
+                                        },
+                                    ]
+                                },
+                                {
+                                    type: "object",
+                                    key: "image",
+                                    displayer: "Image",
+                                    value: [
+                                        {
+                                            type: "image",
+                                            key: "image",
+                                            displayer: "Image",
+                                            value:
+                                                "https://ruizarch-react.vercel.app/img/covers/3.jpg",
+                                        },
+                                        {
+                                            type: "string",
+                                            key: "badge",
+                                            displayer: "Badge",
+                                            value: "ARCHITECTURE",
+                                        },
+                                        {
+                                            type: "string",
+                                            key: "title",
+                                            displayer: "Title",
+                                            value: "KEMIA INDUSTRIAL FACTORY",
+                                        },
+                                        {
+                                            type: "string",
+                                            key: "description",
+                                            displayer: "Description",
+                                            value: "START A PROJECT",
+                                        },
+                                        {
+                                            type: "icon",
+                                            key: "nextArrow",
+                                            displayer: "Next Arrow",
+                                            value: "FaArrowRightLong",
+                                        },
+
+                                        {
+                                            type: "page",
+                                            key: "url",
+                                            displayer: "Link",
+                                            value: "",
+                                        },
+                                    ]
+                                }
+                            ]
+                        },
+
+                    ],
+                },
+                {
+                    type: "object",
+                    key: "gallery",
+                    displayer: "Gallery",
+                    value: [
+                        {
+                            type: "string",
+                            key: "sectionTitle",
+                            displayer: "Section Title",
+                            value: "INTERIOR"
+                        },
+                        {
+                            type: "array",
+                            key: "images",
+                            displayer: "Images",
+                            value: [
+                                {
+                                    type: "object",
+                                    key: "image",
+                                    displayer: "Image",
+                                    value: [
+                                        {
+                                            type: "image",
+                                            key: "image",
+                                            displayer: "Image",
+                                            value:
+                                                "https://ruizarch-react.vercel.app/img/covers/5.jpg",
+                                        },
+                                        {
+                                            type: "string",
+                                            key: "badge",
+                                            displayer: "Badge",
+                                            value: "INTERIOR",
+                                        },
+                                        {
+                                            type: "string",
+                                            key: "title",
+                                            displayer: "Title",
+                                            value: "SMART HOUSE BY MOLEKULE",
+                                        },
+                                        {
+                                            type: "string",
+                                            key: "description",
+                                            displayer: "Description",
+                                            value: "START A PROJECT",
+                                        },
+                                        {
+                                            type: "icon",
+                                            key: "nextArrow",
+                                            displayer: "Next Arrow",
+                                            value: "FaArrowRightLong",
+                                        },
+                                        {
+                                            type: "page",
+                                            key: "url",
+                                            displayer: "Link",
+                                            value: "",
+                                        },
+                                    ]
+                                },
+                                {
+                                    type: "object",
+                                    key: "image",
+                                    displayer: "Image",
+                                    value: [
+                                        {
+                                            type: "image",
+                                            key: "image",
+                                            displayer: "Image",
+                                            value:
+                                                "https://ruizarch-react.vercel.app/img/covers/6.jpg",
+                                        },
+                                        {
+                                            type: "string",
+                                            key: "badge",
+                                            displayer: "Badge",
+                                            value: "INTERIOR",
+                                        },
+                                        {
+                                            type: "string",
+                                            key: "title",
+                                            displayer: "Title",
+                                            value: "TONY'S CHOCOLONELY",
+                                        },
+                                        {
+                                            type: "string",
+                                            key: "description",
+                                            displayer: "Description",
+                                            value: "START A PROJECT",
+                                        },
+                                        {
+                                            type: "icon",
+                                            key: "nextArrow",
+                                            displayer: "Next Arrow",
+                                            value: "FaArrowRightLong",
+                                        },
+                                        {
+                                            type: "page",
+                                            key: "url",
+                                            displayer: "Link",
+                                            value: "",
+                                        },
+                                    ]
+                                },
+                                {
+                                    type: "object",
+                                    key: "image",
+                                    displayer: "Image",
+                                    value: [
+                                        {
+                                            type: "image",
+                                            key: "image",
+                                            displayer: "Image",
+                                            value:
+                                                "https://ruizarch-react.vercel.app/img/covers/8.jpg",
+                                        },
+                                        {
+                                            type: "string",
+                                            key: "badge",
+                                            displayer: "Badge",
+                                            value: "INTERIOR",
+                                        },
+                                        {
+                                            type: "string",
+                                            key: "title",
+                                            displayer: "Title",
+                                            value: "DENTAL CLINIC",
+                                        },
+                                        {
+                                            type: "string",
+                                            key: "description",
+                                            displayer: "Description",
+                                            value: "START A PROJECT",
+                                        },
+                                        {
+                                            type: "icon",
+                                            key: "nextArrow",
+                                            displayer: "Next Arrow",
+                                            value: "FaArrowRightLong",
+                                        },
+                                        {
+                                            type: "page",
+                                            key: "url",
+                                            displayer: "Link",
+                                            value: "",
+                                        },
+                                    ]
+                                },
+                                {
+                                    type: "object",
+                                    key: "image",
+                                    displayer: "Image",
+                                    value: [
+                                        {
+                                            type: "image",
+                                            key: "image",
+                                            displayer: "Image",
+                                            value:
+                                                "https://ruizarch-react.vercel.app/img/covers/7.jpg",
+                                        },
+                                        {
+                                            type: "string",
+                                            key: "badge",
+                                            displayer: "Badge",
+                                            value: "INTERIOR",
+                                        },
+                                        {
+                                            type: "string",
+                                            key: "title",
+                                            displayer: "Title",
+                                            value: "CONFIDENTIAL TECHNOLOGY",
+                                        },
+                                        {
+                                            type: "string",
+                                            key: "description",
+                                            displayer: "Description",
+                                            value: "START A PROJECT",
+                                        },
+                                        {
+                                            type: "icon",
+                                            key: "nextArrow",
+                                            displayer: "Next Arrow",
+                                            value: "FaArrowRightLong",
+                                        },
+                                        {
+                                            type: "page",
+                                            key: "url",
+                                            displayer: "Link",
+                                            value: "",
+                                        },
+                                    ]
+                                }
+                            ]
+                        },
+                    ],
+                },
+                {
+                    type: "object",
+                    key: "gallery",
+                    displayer: "Gallery",
+                    value: [
+                        {
+                            type: "string",
+                            key: "sectionTitle",
+                            displayer: "Section Title",
+                            value: "DECOR"
+                        },
+                        {
+                            type: "array",
+                            key: "images",
+                            displayer: "Images",
+                            value: [
+                                {
+                                    type: "object",
+                                    key: "image",
+                                    displayer: "Image",
+                                    value: [
+                                        {
+                                            type: "image",
+                                            key: "image",
+                                            displayer: "Image",
+                                            value:
+                                                "https://ruizarch-react.vercel.app/img/covers/4.jpg",
+                                        },
+                                        {
+                                            type: "string",
+                                            key: "badge",
+                                            displayer: "Badge",
+                                            value: "INTERIOR",
+                                        },
+                                        {
+                                            type: "string",
+                                            key: "title",
+                                            displayer: "Title",
+                                            value: "CASCADE OF LAVA",
+                                        },
+                                        {
+                                            type: "string",
+                                            key: "description",
+                                            displayer: "Description",
+                                            value: "START A PROJECT",
+                                        },
+                                        {
+                                            type: "icon",
+                                            key: "nextArrow",
+                                            displayer: "Next Arrow",
+                                            value: "FaArrowRightLong",
+                                        },
+                                        {
+                                            type: "page",
+                                            key: "url",
+                                            displayer: "Link",
+                                            value: "",
+                                        },
+                                    ]
+                                }
+
+                            ]
+                        },
+                    ]
+                }
+            ],
+        });
+        this.setComponentState("selectedSection", "ALL");
         this.setComponentState("moreImages", 0);
     }
 
-
     getName(): string {
-        return "Image Gallery 7";
+        return "Image Gallery 6";
     }
-    private timeoutId: NodeJS.Timeout | null = null;
-    private scrollOffset: number = 0;
-    private previousScrollY: number = 0;
-    debounce(func: Function, wait: number) {
-        return (...args: any[]) => {
-            if (this.timeoutId) {
-                clearTimeout(this.timeoutId);
-            }
-            this.timeoutId = setTimeout(() => {
-                func(...args);
-            }, wait);
-        };
-    }
+    getCurrentGallery() {
+        const galleryCollection = this.castToObject<GalleryItem[]>("galleries");
+        const selectedSection = this.getComponentState("selectedSection");
 
-    handleScroll = (event: any): void => {
-        const currentScrollY = event.target.scrollTop;
-        const contentClass = this.decorateCSS("columnOdd");
-        const columns = document.querySelectorAll(`.${contentClass}`);
-
-        if (currentScrollY === 0) {
-            this.scrollOffset = 0;
-        } else if (currentScrollY > this.previousScrollY) {
-            this.scrollOffset += 10;
+        if (selectedSection === "ALL") {
+            return galleryCollection.flatMap(gallery => gallery.images);
         } else {
-            this.scrollOffset = Math.max(0, this.scrollOffset - 10);
+            const currentGallery = galleryCollection.find(
+                gallery => this.castToString(gallery.sectionTitle) === selectedSection
+            );
+            return currentGallery?.images || [];
         }
-        columns.forEach((column) => {
-            (column as HTMLElement).style.transform = `translateY(-${this.scrollOffset}px)`;
-        });
-        this.previousScrollY = currentScrollY;
-
+    }
+    handleSectionClickAll(): void {
+        this.setComponentState("selectedSection", "ALL");
+        this.setComponentState("imageCount", this.getPropValue("imageCountInitial"));
+        this.setComponentState("moreImages", 0);
+    }
+    handleSectionClick(element: any): void {
+        this.setComponentState("selectedSection", this.castToString(element.sectionTitle))
+        this.setComponentState("imageCount", this.getPropValue("imageCountInitial"));
+        this.setComponentState("moreImages", 0);
     }
 
-    debouncedHandleScroll = this.debounce(this.handleScroll, 12);
     handleButtonClick = () => {
         this.setComponentState("moreImages", this.getComponentState("moreImages") + this.getPropValue("imageCount"))
 
     };
 
     render() {
-        const gallery = this.castToObject<CardItemType[]>("gallery");
+        const galleries = this.castToObject<GalleryItem[]>("galleries");
+        const currentGallery = this.getCurrentGallery();
+        const selectedSection = this.getComponentState("selectedSection");
         if (this.getComponentState("imageCount") != this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"))
             this.setComponentState("imageCount", this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"));
 
         const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
         return (
-            <Base.Container className={this.decorateCSS("container")} onScroll={this.debouncedHandleScroll}>
-                <Base.MaxContent className={this.decorateCSS("maxContent")}>
-                    <Base.ListGrid gridCount={{ pc: 4, tablet: 1, phone: 1 }} className={this.decorateCSS("gridContainer")} >
-                        {gallery.slice(0, this.getComponentState("imageCount")).map((cards: CardItemType, columnIndex: number) => {
-                            const isEven = (columnIndex) % 2 !== 0;
-                            const columnClass = isEven ? "columnEven" : "columnOdd";
-                            const style = isEven ? null : { transform: `translateY(-${this.scrollOffset}px)` };
-                            return (
-                                <div className={`${this.decorateCSS("column")} ${this.decorateCSS(columnClass)}`}
-                                    style={style}>
-                                    <div className={this.decorateCSS("wrapper")}>
-                                        {(this.castToString(cards.title) || this.castToString(cards.subtitle) || cards.image) &&
-                                            <div className={this.decorateCSS("card")}>
-                                                {cards.image && (
-                                                    <img src={cards.image} alt={cards.image}
-                                                        className={this.decorateCSS("image")} />
-                                                )}
-                                                {(this.castToString(cards.title) || this.castToString(cards.subtitle)) && (
-                                                    <div className={this.decorateCSS("textContainer")}>
-                                                        {this.castToString(cards.title) && (
-                                                            <div className={this.decorateCSS("title")}>{cards.title}</div>
-                                                        )}
-                                                        {this.castToString(cards.subtitle) && (
-                                                            <div className={this.decorateCSS("subtitle")}>{cards.subtitle}</div>
-                                                        )}
-                                                    </div>
-                                                )}
+
+            <Base.Container className={this.decorateCSS("container")}>
+                <Base.MaxContent className={this.decorateCSS("max-content")}>
+                    <Base.VerticalContent className={this.decorateCSS("section-container")}>
+                        {this.getPropValue("showAll") && (
+                            <Base.H4
+                                className={`${this.decorateCSS("section-text")} ${(selectedSection === "ALL" || !selectedSection) ? this.decorateCSS("active") : ""
+                                    }`}
+                                onClick={() => this.handleSectionClickAll()}
+                            >
+                                ALL
+                            </Base.H4>
+                        )}
+
+                        {galleries.map((element: any) => (
+                            <Base.H4
+                                className={`${this.decorateCSS("section-text")} ${this.castToString(element.sectionTitle) === this.getComponentState("selectedSection") ? this.decorateCSS("active") : ""
+                                    }`}
+                                onClick={() => this.handleSectionClick(element)}
+                            >
+                                {element.getPropValue("sectionTitle")}
+                            </Base.H4>
+                        ))}
+                    </Base.VerticalContent>
+                    <div className={this.decorateCSS("content")}>
+                        <div className={this.decorateCSS("left-container")}>
+                            {currentGallery.slice(0, this.getComponentState("imageCount")).map((item: ImageItem, index: number) => {
+                                if (index % 2 === 0) {
+                                    if (this.getComponentState("imageCount") <= 3) {
+                                        var imageClass = index === 0 || index === 2
+                                            ? this.decorateCSS("normal-image")
+                                            : (index / 2) % 2 === 0
+                                                ? this.decorateCSS("large-image")
+                                                : this.decorateCSS("small-image");
+                                    } else {
+                                        var imageClass =
+                                            (index / 2) % 2 === 0
+                                                ? this.decorateCSS("large-image")
+                                                : this.decorateCSS("small-image");
+                                    }
+
+                                    return (
+                                        <ComposerLink path={item.url}>
+                                            <div className={`${this.decorateCSS("images")} ${imageClass}`}>
+
+                                                <div className={this.decorateCSS("image-wrapper")}>
+                                                    {item.image && (
+                                                        <img src={item.image} alt={item.image} className={this.decorateCSS("image")} />
+                                                    )}
+                                                    {this.castToString(item.badge) && (
+                                                        <div className={this.decorateCSS("badge")}>
+                                                            <div className={this.decorateCSS("badge-text")}>
+                                                                {item.badge}
+                                                            </div>
+                                                        </div>
+                                                    )}
+                                                    {(this.castToString(item.title) || this.castToString(item.description) || item.nextArrow) && (
+                                                        <div className={this.decorateCSS("badge-container")}>
+                                                            <div className={this.decorateCSS("text-container")}>
+                                                                {this.castToString(item.title) && (
+                                                                    <div className={this.decorateCSS("title")}>
+                                                                        {item.title}
+                                                                    </div>
+                                                                )}
+                                                                {(this.castToString(item.description) || item.nextArrow) && (
+                                                                    <div className={this.decorateCSS("bottom-container")}>
+                                                                        {this.castToString(item.description) && (
+                                                                            <div className={this.decorateCSS("description")}>
+                                                                                {item.description}
+                                                                            </div>
+                                                                        )}
+                                                                        {item.nextArrow && (
+                                                                            <div className={this.decorateCSS("button")}>
+                                                                                <ComposerIcon name={item.nextArrow} propsIcon={{ className: this.decorateCSS("icon") }}></ComposerIcon>
+                                                                            </div>
+                                                                        )}
+                                                                    </div>
+                                                                )}
+                                                            </div>
+                                                        </div>
+                                                    )}
+                                                </div>
                                             </div>
-                                        }
-                                    </div>
-                                </div>
-                            );
-                        })}
-                    </Base.ListGrid>
-                    {(this.getComponentState("imageCount") <= gallery.length) && (
+                                        </ComposerLink>
+                                    );
+                                }
+                                return null;
+                            })}
+                        </div>
+                        <div className={this.decorateCSS("right-container")}>
+                            {currentGallery.slice(0, this.getComponentState("imageCount")).map((item: ImageItem, index: number) => {
+                                if (index % 2 === 1) {
+                                    if (this.getComponentState("imageCount") <= 3) {
+                                        var imageClass = index === 1
+                                            ? this.decorateCSS("normal-image")
+                                            : ((index - 1) / 2) % 2 === 0
+                                                ? this.decorateCSS("small-image")
+                                                : this.decorateCSS("large-image");
+                                    } else {
+                                        var imageClass =
+                                            ((index - 1) / 2) % 2 === 0
+                                                ? this.decorateCSS("small-image")
+                                                : this.decorateCSS("large-image");
+                                    }
+                                    return (
+                                        <ComposerLink path={item.url}>
+                                            <div className={`${this.decorateCSS("images")} ${imageClass}`}>
+                                                <div className={this.decorateCSS("image-wrapper")}>
+                                                    {item.image && (
+                                                        <img src={item.image} alt={item.image} className={this.decorateCSS("image")} />
+                                                    )}
+                                                    {this.castToString(item.badge) && (
+                                                        <div className={this.decorateCSS("badge")}>
+                                                            <div className={this.decorateCSS("badge-text")}>
+                                                                {item.badge}
+                                                            </div>
+                                                        </div>
+                                                    )}
+                                                    {(this.castToString(item.title) || this.castToString(item.description) || item.nextArrow) && (
+                                                        <div className={this.decorateCSS("badge-container")}>
+                                                            <div className={this.decorateCSS("text-container")}>
+                                                                {this.castToString(item.title) && (
+                                                                    <div className={this.decorateCSS("title")}>
+                                                                        {item.title}
+                                                                    </div>
+                                                                )}
+                                                                {(this.castToString(item.description) || item.nextArrow) && (
+                                                                    <div className={this.decorateCSS("bottom-container")}>
+                                                                        {this.castToString(item.description) && (
+                                                                            <div className={this.decorateCSS("description")}>
+                                                                                {item.description}
+                                                                            </div>
+                                                                        )}
+                                                                        {item.nextArrow && (
+
+                                                                            <button className={this.decorateCSS("button")}>
+                                                                                <ComposerIcon name={item.nextArrow} propsIcon={{ className: this.decorateCSS("icon") }}></ComposerIcon>
+                                                                            </button>
+
+                                                                        )}
+                                                                    </div>
+                                                                )}
+                                                            </div>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        </ComposerLink>
+                                    );
+                                }
+                                return null;
+                            })}
+                        </div>
+                    </div>
+                    {(this.getComponentState("imageCount") < currentGallery.length) && (
                         <div className={this.decorateCSS("button-wrapper")}>
-                            <Base.Button className={this.decorateCSS("button")} buttonType={button.type} onClick={this.handleButtonClick}>
+                            <Base.Button className={this.decorateCSS("button")} buttonType={button.type} onClick={this.handleButtonClick} >
                                 {button.text}
                             </Base.Button>
                         </div>
@@ -452,4 +679,5 @@ class ImageGallery6 extends BaseImageGallery {
         );
     }
 }
+
 export default ImageGallery6;
