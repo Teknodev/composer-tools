@@ -226,8 +226,6 @@ class Header22 extends BaseHeader {
                     const isActive = this.getComponentState("activeSlide") === index;
                     const leftImageExist = item.left_image;
                     const rightImageExist = item.right_image;
-                    const middleClass = leftImageExist ? "middle-content" : "middle-content2";
-                    const middleClassWithPadding = (!leftImageExist && !rightImageExist) || (!leftImageExist && !this.getPropValue("dots")) ? "middle-content3" : middleClass;
                     return (
                       <div className={this.decorateCSS("sliders")} key={index}>
                         <div className={this.decorateCSS("slider")}>
@@ -238,8 +236,9 @@ class Header22 extends BaseHeader {
                           )}
 
                           <div
-                            className={`${this.decorateCSS(middleClassWithPadding)}
-                          } ${animation && isActive ? this.decorateCSS("mid-right-animation") : ""}  `}
+                            className={`${this.decorateCSS("middle-content")} ${!leftImageExist && this.decorateCSS("middle-content2")} ${(!leftImageExist && !rightImageExist) || (!leftImageExist && !this.getPropValue("dots")) && this.decorateCSS("middle-content3")}  ${
+                              animation && isActive ? this.decorateCSS("mid-right-animation") : ""
+                            }  `}
                           >
                             <Base.VerticalContent className={this.decorateCSS("text-wrapper")}>
                               {hasDivider && <div className={this.decorateCSS("divider")} />}
@@ -251,7 +250,9 @@ class Header22 extends BaseHeader {
                                   return (
                                     <div className={this.decorateCSS("link-button-container")}>
                                       <ComposerLink className={this.decorateCSS("link-button")} key={`hdr-22-${indexButton}`} path={buttonItem.url}>
-                                        <Base.Button buttonType={buttonItem.type} className={this.decorateCSS("button")}>{buttonItem.text}</Base.Button>
+                                        <Base.Button buttonType={buttonItem.type} className={this.decorateCSS("button")}>
+                                          {buttonItem.text}
+                                        </Base.Button>
                                       </ComposerLink>
                                     </div>
                                   );

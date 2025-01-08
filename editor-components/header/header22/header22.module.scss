@@ -96,13 +96,30 @@
                 animation: scaleUpDown 1s ease-in-out;
               }
             }
-            .middle-content,
-            .middle-content2,
-            .middle-content3 {
+            .middle-content {
               flex: 1;
               width: 100%;
               position: relative;
               left: calc(var(--composer-gap-md) * (-1));
+
+              &.middle-content2 {
+                left: 0px;
+                .text-wrapper {
+                  left: calc(var(--composer-gap-xl) * 2);
+                }
+              }
+
+              &.middle-content3 {
+                left: var(--composer-gap-xl);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                .text-wrapper {
+                  padding-left: var(--composer-gap-xl);
+                  width: 100%;
+                  position: static;
+                }
+              }
 
               .text-wrapper {
                 height: 100%;
@@ -142,24 +159,6 @@
               }
             }
 
-            .middle-content2 {
-              left: 0px;
-              .text-wrapper {
-                left: calc(var(--composer-gap-xl) * 2);
-              }
-            }
-
-            .middle-content3 {
-              left: var(--composer-gap-xl);
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              .text-wrapper {
-                padding-left: var(--composer-gap-xl);
-                width: 100%;
-                position: static;
-              }
-            }
             .right-content {
               flex: 1;
               display: flex;
@@ -266,82 +265,103 @@
               .left-content {
                 min-width: 50%;
               }
-              .middle-content,
-              .middle-content2,
-              .middle-content3 {
-                .text-wrapper {
-                  .title {
-                    font-size: 2rem;
+              .middle-content {
+                &.middle-content2 {
+                  left: var(--composer-gap-lg);
+                  .text-wrapper {
+                    left: 0px;
+                    gap: var(--composer-gap-xs);
+                    padding-left: var(--composer-gap-lg);
                   }
-                  .link-button-container {
-                    .button {
-                      font-size: 1rem;
+
+                  &.middle-content3 {
+                    left: var(--composer-gap-lg);
+                    .text-wrapper {
+                      gap: var(--composer-gap-xs);
+                      padding-left: var(--composer-gap-lg);
+                    }
+                  }
+                  .text-wrapper {
+                    .title {
+                      font-size: 2rem;
+                    }
+                    .link-button-container {
+                      .button {
+                        font-size: 1rem;
+                      }
                     }
                   }
                 }
-              }
-              .middle-content3,
-              .middle-content2 {
-                left: var(--composer-gap-lg);
-                .text-wrapper {
-                  gap: var(--composer-gap-xs);
-                  padding-left: var(--composer-gap-lg);
+
+                .right-content {
+                  display: none;
                 }
-              }
-              .middle-content2 {
-                .text-wrapper {
-                  left: 0px;
-                }
-              }
-              .right-content {
-                display: none;
               }
             }
           }
         }
-      }
-      .dots {
-        left: var(--composer-gap-lg);
-        li {
-          button {
-            padding: var(--composer-gap-xs);
-            &::before {
-              font-size: 1rem;
+        .dots {
+          left: var(--composer-gap-lg);
+          li {
+            button {
+              padding: var(--composer-gap-xs);
+              &::before {
+                font-size: 1rem;
+              }
             }
           }
         }
-      }
-      .nav-controls {
-        right: var(--composer-gap-lg);
-        .nav-buttons {
-          .icon {
-            font-size: 1.5rem;
+        .nav-controls {
+          right: var(--composer-gap-lg);
+          .nav-buttons {
+            .icon {
+              font-size: 1.5rem;
+            }
           }
         }
       }
     }
   }
-}
 
-@container (max-width: #{$composer-phone-width}) {
-  .container {
-    padding: 0 var(--composer-gap-md) var(--composer-gap-md) 0;
-    .max-content {
-      .slider-parent {
-        .carousel {
-          .sliders {
-            .slider {
-              .middle-content3 {
-                left: 0px;
-                .text-wrapper {
-                  padding-left: var(--composer-gap-md);
-                  width: 100%;
+  @container (max-width: #{$composer-phone-width}) {
+    .container {
+      padding: 0 var(--composer-gap-md) var(--composer-gap-md) 0;
+      .max-content {
+        .slider-parent {
+          .carousel {
+            .sliders {
+              .slider {
+                .middle-content {
+                  &.middle-content2 {
+                    left: 0px;
+                    .text-wrapper {
+                      padding-left: var(--composer-gap-md);
+                    }
+                  }
+
+                  &.middle-content3 {
+                    left: 0px;
+                    .text-wrapper {
+                      padding-left: var(--composer-gap-md);
+                      width: 100%;
+                    }
+                  }
+
+                  .text-wrapper {
+                    gap: var(--composer-gap-sm);
+                    .title {
+                      font-size: 1rem;
+                    }
+                    .link-button-container {
+                      .button {
+                        font-size: 1rem;
+                      }
+                    }
+                  }
                 }
-              }
-              .middle-content2 {
-                left: 0px;
-                .text-wrapper {
-                  padding-left: var(--composer-gap-md);
+
+                .right-content {
+                  display: none;
                 }
               }
             }
