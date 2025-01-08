@@ -17,7 +17,7 @@ type ISliderData = {
 };
 type IButton = INPUTS.CastedButton;
 
-class HeaderComponent24 extends BaseHeader {
+class Header24 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
@@ -324,4 +324,4 @@ class HeaderComponent24 extends BaseHeader {
   }
 }
 
-export default HeaderComponent24;
+export default Header24;

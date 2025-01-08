@@ -18,7 +18,7 @@ type SliderObject = {
 
 
 
-class HeaderComponent22 extends BaseHeader {
+class Header22 extends BaseHeader {
   private sliderRef: React.RefObject<any>;
 
   constructor(props?: any) {
@@ -299,4 +299,4 @@ class HeaderComponent22 extends BaseHeader {
   }
 }
 
-export default HeaderComponent22;
+export default Header22;
