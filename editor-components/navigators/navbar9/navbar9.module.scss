@@ -29,12 +29,12 @@
 
       .pcNavbar {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
         list-style: none;
         padding: 0;
         margin: 0;
-        gap: var(--composer-gap-md);
+        gap: var(--composer-gap-xl);
 
         .menuItemContainer {
           display: flex;
@@ -260,10 +260,11 @@
           .dropdownIcon {
             color: var(--composer-font-color-primary);
             font-size: 1.5rem;
+            transform: rotate(-90deg);
             transition: transform 0.3s ease;
 
             &.active {
-              transform: rotate(180deg);
+              transform: rotate(0deg);
             }
           }
         }
@@ -356,7 +357,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: var(--composer-gap-sm);
+    gap: var(--composer-gap-md);
 
     .icon {
       font-size: 1.5rem;
@@ -377,7 +378,7 @@
 .hamburgerOverlay {
   display: none;
   position: absolute;
-  top: 0;
+  top: 10%;
   left: 0;
   width: 100%;
   height: 100%;
@@ -436,7 +437,7 @@
             .hamburgerMenuItem{
               .hamburgerMenuItemHeader{
                 .hamburgerMenuItemTitle{
-                  font-size: 1.5rem;
+                  // font-size: 1.5rem;
                 }
               }
             }
@@ -475,9 +476,6 @@
         .hamburgerMaxContent {
           .hamburgerMenuItem {
             .hamburgerMenuItemHeader {
-              .hamburgerMenuItemTitle {
-                font-size: 1.5rem;
-              }
               .dropdownIcon {
                 font-size: 1.5rem;
               }

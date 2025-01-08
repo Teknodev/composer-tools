@@ -34,7 +34,7 @@ class Navbar9 extends BaseNavigator {
   constructor(props?: any) {
     super(props, styles);
 
-    this.addProp(INPUTS.NAVBAR_POSITION("position", "Navbar Type", "Absolute"));
+    this.addProp(INPUTS.NAVBAR_POSITION("position", "Navbar Type"));
 
     this.addProp({
       type: "object",
