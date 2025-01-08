@@ -164,17 +164,14 @@ import StatsComponent5 from "./stats/stats5/stats5";
 import StatsComponent6 from "./stats/stats6/stats6";
 import StatsComponent7 from "./stats/stats7/stats7";
 import StatsComponent8 from "./stats/stats8/stats8";
-import ContactsComponent1 from "./contacts/form1/form1";
-import ContactsComponent2 from "./contacts/form2/form2";
-import ContactsComponent3 from "./contacts/form3/form3";
-import ContactsComponent4 from "./contacts/form4/form4";
-import ContactsComponent5 from "./contacts/form5/form5";
-import ContactsComponent6 from "./contacts/form6/form6";
-import ContactsComponent8 from "./contacts/form7/form7";
-import ContactsComponent9 from "./contacts/form8/form8";
-import ContactsComponent10 from "./contacts/form9/form9";
-import ContactsComponent11 from "./contacts/form10/form10";
-import ContactsComponent12 from "./contacts/form11/form11";
+import Form1 from "./contacts/form1/form1";
+import Form2 from "./contacts/form2/form2";
+import Form3 from "./contacts/form3/form3";
+import Form4 from "./contacts/form4/form4";
+import Form5 from "./contacts/form5/form5";
+import Form6 from "./contacts/form6/form6";
+import Form7 from "./contacts/form7/form7";
+import Form8 from "./contacts/form8/form8";
 import FooterComponent1 from "./footer/footer1/footer1";
 import FooterComponent2 from "./footer/footer2/footer2";
 import FooterComponent3 from "./footer/footer3/footer3";
@@ -406,17 +403,14 @@ function Registerables(composer: ComponentsRegistery) {
     StatsComponent6,
     StatsComponent7,
     StatsComponent8,
-    ContactsComponent1,
-    ContactsComponent2,
-    ContactsComponent3,
-    ContactsComponent4,
-    ContactsComponent5,
-    ContactsComponent6,
-    ContactsComponent8,
-    ContactsComponent9,
-    ContactsComponent10,
-    ContactsComponent11,
-    ContactsComponent12,
+    Form1,
+    Form2,
+    Form3,
+    Form4,
+    Form5,
+    Form6,
+    Form7,
+    Form8,
     FooterComponent1,
     FooterComponent2,
     FooterComponent3,
