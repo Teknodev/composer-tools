@@ -268,5 +268,15 @@ export namespace Base {
         </div>
       );
     }
+
+    export function getPlaygroundElement(){
+      return document.getElementById("playground") as HTMLElement;
+    }
+
+    export function changeScrollBehaviour(behaviour: "hidden" | "auto"){
+      const playground = getPlaygroundElement();
+      if (!playground) return;
+      playground.style.overflow = behaviour;
+    }
   }
 }
