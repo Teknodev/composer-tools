@@ -233,11 +233,15 @@ export namespace Base {
       const position = props.position?.split(" ").map((item: string) => item.toLowerCase()).join("");
       
       useEffect(() => {
+        const playground = getPlaygroundElement();
+        const scrollContainer = playground || window;
+
         const handleScroll = () => {
           const navbarPosition = document.querySelectorAll(`.${styles.navbarPosition}`) as  NodeListOf<Element>;
+          const scrollAmount = playground ? playground.scrollTop : window.scrollY;
     
           if (navbarPosition) {
-            if (window.scrollY > 50 && position !== "absolute") {
+            if (scrollAmount > 50 && position !== "absolute") {
               navbarPosition.forEach((item) => {
                 item.classList.add(styles.scrolled);
               });
@@ -249,9 +253,9 @@ export namespace Base {
           }
         };
   
-        window.addEventListener("scroll", handleScroll);
+        scrollContainer.addEventListener("scroll", handleScroll);
         return () => {
-          window.removeEventListener("scroll", handleScroll);
+          scrollContainer.removeEventListener("scroll", handleScroll);
         };
       }, []);
 
