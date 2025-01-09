@@ -397,23 +397,15 @@ class Feature1 extends BaseFeature {
     return "Feature 1";
   }
 
-  truncateText(text: string, maxLength: number, isTitle: boolean = false): string {
-    if (!text) return "";
-    const shouldTruncate = isTitle ? this.getPropValue("enableEllipsisTitle") : this.getPropValue("enableEllipsisDesc");
-    if (shouldTruncate && text.length > maxLength) {
-      return text.slice(0, maxLength) + "...";
-    }
-    return text;
-  }
 
   render() {
     const itemCountInARow = this.getPropValue("itemCountInARow");
 
     const underlineAnimation = !!this.getPropValue("underlineAnimation");
 
-    const leftSideTextExist = !!this.getPropValue("leftSideText", { as_string: true });
+    const leftSideTextExist = this.castToString(this.getPropValue("leftSideText"));
 
-    const rightSideTextExist = !!this.getPropValue("rightSideText", { as_string: true });
+    const rightSideTextExist = this.castToString(this.getPropValue("rightSideText"));
     const rightSideIcon = this.getPropValue("rightSideIcon");
     const rightSideUrl = this.getPropValue("url");
 
@@ -489,13 +481,13 @@ class Feature1 extends BaseFeature {
                     ${underlineAnimation ? this.decorateCSS("underline-animation") : ""}
                   `}
                 >
-                  {this.truncateText(title, this.getPropValue("maxTitleLength"), true)}
+                  {data.title}
                 </Base.H2>
               </ComposerLink>
             )}
             {description && (
               <Base.P className={this.decorateCSS("description")}>
-                {this.truncateText(description, this.getPropValue("maxDescriptionLength"))}
+                {data.description}
               </Base.P>
             )}
 
@@ -594,7 +586,6 @@ class Feature1 extends BaseFeature {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {/* Header */}
           {(leftSideTextExist || !!rightSideIcon || rightSideTextExist) && (
             <header className={this.decorateCSS("header")}>
               {(rightSideTextExist || !!rightSideIcon) && (
@@ -623,8 +614,6 @@ class Feature1 extends BaseFeature {
               )}
             </header>
           )}
-
-          {/* Cards */}
           <Base.ListGrid gridCount={{ pc: itemCountInARow }} className={this.decorateCSS("cards-row")}>
             <Blocks cards={this.castToObject<CardData[]>("cards")} />
           </Base.ListGrid>

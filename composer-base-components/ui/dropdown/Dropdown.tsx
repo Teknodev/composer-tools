@@ -1,275 +1,89 @@
-/**
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
+import React, { useState, useRef, useEffect } from 'react';
+import styles from './Dropdown.module.scss';
+import { ComposerIcon } from '../../icon/icon';
 
-import * as React from 'react';
-import {
-  ReactNode,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
-import {createPortal} from 'react-dom';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import styles from "./Dropdown.module.scss";
+export interface DropDownItem {
+  className?: string;
+  onClick?: () => void;
+  children: React.ReactNode;
+  divider?: boolean;
+}
 
-type DropDownContextType = {
-  registerItem: (ref: React.RefObject<HTMLButtonElement>) => void;
+interface DropdownProps {
+  buttonLabel: string;
+  icon?: string;
+  dropdownButtonClassName?: string;
+  labelClassName?: string;
+  iconClassName?: string;
+  dropdownContentClassName?: string;
+  disabled?: boolean;
+  children: React.ReactNode;
+}
+
+const Dropdown: React.FC<DropdownProps> = ({ 
+  buttonLabel, 
+  icon,
+  dropdownButtonClassName, 
+  labelClassName,
+  iconClassName,
+  dropdownContentClassName,
+  disabled = false,
+  children 
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [shouldOpenLeft, setShouldOpenLeft] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (isOpen && dropdownRef.current) {
+      const rect = dropdownRef.current.getBoundingClientRect();
+      const viewportWidth = window.innerWidth;
+      setShouldOpenLeft(rect.right > viewportWidth - 100); // 100px buffer
+    }
+  }, [isOpen]);
+
+  const toggleDropdown = () => {
+    if (!disabled) {
+      setIsOpen(!isOpen);
+    }
+  };
+
+  return (
+    <div className={`${styles.dropdownContainer} ${dropdownButtonClassName || ''}`} ref={dropdownRef}>
+      <button 
+        className={styles.dropdownButton} 
+        onClick={toggleDropdown}
+        disabled={disabled}
+      >
+        <span className={`${styles.label} ${labelClassName || ''}`}>{buttonLabel}</span>
+        {icon && <ComposerIcon name={icon} propsIcon={{className: `${styles.icon} ${iconClassName || ''}`}}/>}
+      </button>
+      {isOpen && (
+        <div className={`${styles.dropdownContent} ${dropdownContentClassName || ''} ${shouldOpenLeft ? styles.openLeft : ''}`}>
+          {children}
+        </div>
+      )}
+    </div>
+  );
 };
 
-const DropDownContext = React.createContext<DropDownContextType | null>(null);
-
-const dropDownPadding = 4;
-
-interface DropDownItemProps{
-  children: React.ReactNode;
-  className?: string;
-  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
-  title?: string;
-}
-
-export function DropDownItem({
-  children,
+export const DropDownItem: React.FC<DropDownItem> = ({ 
   className,
   onClick,
-  title,
-}: DropDownItemProps) {
-  const ref = useRef<HTMLButtonElement>(null);
-
-  const dropDownContext = React.useContext(DropDownContext);
-
-  if (dropDownContext === null) {
-    throw new Error('DropDownItem must be used within a DropDown');
-  }
-
-  const {registerItem} = dropDownContext;
-
-  useEffect(() => {
-    if (ref && ref.current) {
-      registerItem(ref);
-    }
-  }, [ref, registerItem]);
-
-  return (
-    <button
-      className={`item ${className}`}
-      onClick={onClick}
-      ref={ref}
-      title={title}
-      type="button">
-      {children}
-    </button>
-  );
-}
-
-interface DropDownItemsProps{
-  children: React.ReactNode;
-  dropDownRef: React.Ref<HTMLDivElement>;
-  onClose: () => void;
-}
-
-function DropDownItems({
   children,
-  dropDownRef,
-  onClose,
-}: DropDownItemsProps) {
-  const [items, setItems] = useState<React.RefObject<HTMLButtonElement>[]>();
-  const [highlightedItem, setHighlightedItem] =
-    useState<React.RefObject<HTMLButtonElement>>();
-
-  const registerItem = useCallback(
-    (itemRef: React.RefObject<HTMLButtonElement>) => {
-      setItems((prev) => (prev ? [...prev, itemRef] : [itemRef]));
-    },
-    [setItems],
-  );
-
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (!items) {
-      return;
-    }
-
-    const key = event.key;
-
-    if (['Escape', 'ArrowUp', 'ArrowDown', 'Tab'].includes(key)) {
-      event.preventDefault();
-    }
-
-    if (key === 'Escape' || key === 'Tab') {
-      onClose();
-    } else if (key === 'ArrowUp') {
-      setHighlightedItem((prev) => {
-        if (!prev) {
-          return items[0];
-        }
-        const index = items.indexOf(prev) - 1;
-        return items[index === -1 ? items.length - 1 : index];
-      });
-    } else if (key === 'ArrowDown') {
-      setHighlightedItem((prev) => {
-        if (!prev) {
-          return items[0];
-        }
-        return items[items.indexOf(prev) + 1];
-      });
-    }
-  };
-
-  const contextValue = useMemo(
-    () => ({
-      registerItem,
-    }),
-    [registerItem],
-  );
-
-  useEffect(() => {
-    if (items && !highlightedItem) {
-      setHighlightedItem(items[0]);
-    }
-
-    if (highlightedItem && highlightedItem.current) {
-      highlightedItem.current.focus();
-    }
-  }, [items, highlightedItem]);
-
-  return (
-    <DropDownContext.Provider value={contextValue}>
-      <div className="dropdown" ref={dropDownRef} onKeyDown={handleKeyDown}>
-        {children}
-      </div>
-    </DropDownContext.Provider>
-  );
-}
-
-interface DropDownProps{
-  disabled?: boolean;
-  buttonAriaLabel?: string;
-  buttonClassName?: string;
-  buttonIconClassName?: string;
-  buttonLabel?: any;
-  labelClassName?: string,
-  children: ReactNode;
-  icon?: ReactNode;
-  stopCloseOnClickSelf?: boolean;
-  buttonOnClick?: () => void;
-}
-
-export default function DropDown({
-  disabled = false,
-  buttonLabel,
-  buttonAriaLabel,
-  buttonClassName,
-  buttonIconClassName,
-  labelClassName,
-  children,
-  icon = <KeyboardArrowDownIcon />,
-  stopCloseOnClickSelf,
-  buttonOnClick
-
-}: DropDownProps): JSX.Element {
-  const dropDownRef = useRef<HTMLDivElement>(null);
-  const buttonRef = useRef<HTMLButtonElement>(null);
-  const [showDropDown, setShowDropDown] = useState(false);
-
-  const handleClose = () => {
-    setShowDropDown(false);
-    if (buttonRef && buttonRef.current) {
-      buttonRef.current.focus();
-    }
-  };
-
-  useEffect(() => {
-    const button = buttonRef.current;
-    const dropDown = dropDownRef.current;
-
-    if (showDropDown && button !== null && dropDown !== null) {
-      const {top, left} = button.getBoundingClientRect();
-      dropDown.style.top = `${top + button.offsetHeight + dropDownPadding}px`;
-      dropDown.style.left = `${Math.min(
-        left,
-        window.innerWidth - dropDown.offsetWidth - 20,
-      )}px`;
-    }
-  }, [dropDownRef, buttonRef, showDropDown]);
-
-  useEffect(() => {
-    const button = buttonRef.current;
-
-    if (button !== null && showDropDown) {
-      const handle = (event: MouseEvent) => {
-        const target = event.target;
-        if (stopCloseOnClickSelf) {
-          if (
-            dropDownRef.current &&
-            dropDownRef.current.contains(target as Node)
-          ) {
-            return;
-          }
-        }
-        if (!button.contains(target as Node)) {
-          setShowDropDown(false);
-        }
-      };
-      document.addEventListener('click', handle);
-
-      return () => {
-        document.removeEventListener('click', handle);
-      };
-    }
-  }, [dropDownRef, buttonRef, showDropDown, stopCloseOnClickSelf]);
-
-  useEffect(() => {
-    const handleButtonPositionUpdate = () => {
-      if (showDropDown) {
-        const button = buttonRef.current;
-        const dropDown = dropDownRef.current;
-        if (button !== null && dropDown !== null) {
-          const {top} = button.getBoundingClientRect();
-          const newPosition = top + button.offsetHeight + dropDownPadding;
-          if (newPosition !== dropDown.getBoundingClientRect().top) {
-            dropDown.style.top = `${newPosition}px`;
-          }
-        }
-      }
-    };
-
-    document.addEventListener('scroll', handleButtonPositionUpdate);
-
-    return () => {
-      document.removeEventListener('scroll', handleButtonPositionUpdate);
-    };
-  }, [buttonRef, dropDownRef, showDropDown]);
-
+  divider 
+}) => {
   return (
     <>
-      <button
-        type="button"
-        disabled={disabled}
-        aria-label={buttonAriaLabel || buttonLabel}
-        className={`${styles["dropdownButton"]} ${buttonClassName}`}
-        onClick={() => {
-          setShowDropDown(!showDropDown);
-          buttonOnClick && buttonOnClick();
-        }}
-        ref={buttonRef}>
-        {buttonIconClassName && <span className={`icon ${buttonIconClassName}`} />}
-        {buttonLabel && (<div className={labelClassName}>{buttonLabel}</div>)}
-        {icon}
-      </button>
-
-      {showDropDown &&
-        createPortal(
-          <DropDownItems dropDownRef={dropDownRef} onClose={handleClose}>
-            {children}
-          </DropDownItems>,
-          document.body,
-        )}
+      <div
+        className={`${styles.dropdownItem} ${className || ''}`}
+        onClick={onClick}
+      >
+        {children}
+      </div>
+      {divider && <div className={styles.divider} />}
     </>
   );
-}
+};
+
+export default Dropdown;

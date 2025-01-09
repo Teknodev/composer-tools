@@ -24,14 +24,14 @@ class Testimonials9Page extends Testimonials {
       type: "icon",
       key: "left_icon",
       displayer: "Left İcon",
-      value: "RiDoubleQuotesL"
+      value: "RiDoubleQuotesL",
     });
     this.addProp({
       type: "icon",
       key: "right_icon",
       displayer: "Right İcon",
-      value: "RiDoubleQuotesR"
-    })
+      value: "RiDoubleQuotesR",
+    });
     this.addProp({
       type: "array",
       key: "slider",
@@ -46,8 +46,7 @@ class Testimonials9Page extends Testimonials {
               type: "image",
               key: "image",
               displayer: "Author Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b38?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b38?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -78,8 +77,7 @@ class Testimonials9Page extends Testimonials {
               type: "image",
               key: "image",
               displayer: "Author Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b33?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b33?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -110,8 +108,7 @@ class Testimonials9Page extends Testimonials {
               type: "image",
               key: "image",
               displayer: "Author Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b34?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b34?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -142,8 +139,7 @@ class Testimonials9Page extends Testimonials {
               type: "image",
               key: "image",
               displayer: "Author Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b37?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b37?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -174,8 +170,7 @@ class Testimonials9Page extends Testimonials {
               type: "image",
               key: "image",
               displayer: "Author Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b36?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b36?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -206,8 +201,7 @@ class Testimonials9Page extends Testimonials {
               type: "image",
               key: "image",
               displayer: "Author Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b35?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b35?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -238,8 +232,7 @@ class Testimonials9Page extends Testimonials {
               type: "image",
               key: "image",
               displayer: "Author Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617728bd2970002c623bd5?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617728bd2970002c623bd5?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -270,8 +263,7 @@ class Testimonials9Page extends Testimonials {
               type: "image",
               key: "image",
               displayer: "Author Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b37?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b37?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
@@ -315,9 +307,9 @@ class Testimonials9Page extends Testimonials {
       arrows: false,
 
       beforeChange: (newIndex: number) => {
-        let adjustedIndex = (newIndex + 1) % this.castToObject<Card[]>("slider").length;;
+        let adjustedIndex = (newIndex + 1) % this.castToObject<Card[]>("slider").length;
         this.setComponentState("active-index", adjustedIndex);
-      }
+      },
     };
     const activeIndex = this.getComponentState("active-index");
     const title = this.getPropValue("title");
@@ -332,48 +324,41 @@ class Testimonials9Page extends Testimonials {
             )}
             <Base.ContainerGrid className={this.decorateCSS("down-page")}>
               <Base.GridCell className={this.decorateCSS("carousel")}>
-                <ComposerSlider {...settings} >
-                  {this.castToObject<Card[]>("slider").map(
-                    (item: Card, index: number) => {
-                      return (
-                        <div className={`${this.decorateCSS("card-inner")} ${activeIndex === index ? this.decorateCSS("active") : ""}`}>
-                          {item.image && (
-                            <img alt="" src={item.image} className={this.decorateCSS("img")} />
-                          )}
-                          {(this.castToString(item.title) || this.castToString(item.subtitle)) && (
-                            <Base.VerticalContent className={this.decorateCSS("text")}>
-                              {this.castToString(item.title) && (
-                                <Base.H4 className={this.decorateCSS("title")}>{item.title}</Base.H4>
-                              )}
-                              {this.castToString(item.subtitle) && (
-                                <Base.H5 className={this.decorateCSS("subtitle")}>{item.subtitle}</Base.H5>
-                              )}
-                            </Base.VerticalContent>
-                          )}
-                        </div>
-                      )
-
-                    }
-                  )}
+                <ComposerSlider {...settings}>
+                  {this.castToObject<Card[]>("slider").map((item: Card, index: number) => {
+                    return (
+                      <div className={`${this.decorateCSS("card-inner")} ${activeIndex === index ? this.decorateCSS("active") : ""}`}>
+                        {item.image && <img alt="" src={item.image} className={this.decorateCSS("img")} />}
+                        {(this.castToString(item.title) || this.castToString(item.subtitle)) && (
+                          <Base.VerticalContent className={this.decorateCSS("text")}>
+                            {this.castToString(item.title) && <Base.H4 className={this.decorateCSS("title")}>{item.title}</Base.H4>}
+                            {this.castToString(item.subtitle) && <Base.H5 className={this.decorateCSS("subtitle")}>{item.subtitle}</Base.H5>}
+                          </Base.VerticalContent>
+                        )}
+                      </div>
+                    );
+                  })}
                 </ComposerSlider>
               </Base.GridCell>
               <Base.GridCell className={this.decorateCSS("right-page")}>
                 {this.getPropValue("left_icon") && (
-                  <ComposerIcon name={this.getPropValue("left_icon")} propsIcon={{
-                    className: this.decorateCSS("left-icon")
-                  }} />
+                  <ComposerIcon
+                    name={this.getPropValue("left_icon")}
+                    propsIcon={{
+                      className: this.decorateCSS("left-icon"),
+                    }}
+                  />
                 )}
                 {this.castToObject<Card[]>("slider").map((item: Card, index: number) => (
-                  <div className={this.decorateCSS("text")}>
-                    {((index === activeIndex) && (this.castToString(item.description))) && (
-                      <Base.H3 className={this.decorateCSS("description")}>{item.description}</Base.H3>
-                    )}
-                  </div>
+                  <div className={this.decorateCSS("text")}>{index === activeIndex && this.castToString(item.description) && <Base.H3 className={this.decorateCSS("description")}>{item.description}</Base.H3>}</div>
                 ))}
                 {this.getPropValue("right_icon") && (
-                  <ComposerIcon name={this.getPropValue("right_icon")} propsIcon={{
-                    className: this.decorateCSS("right-icon")
-                  }} />
+                  <ComposerIcon
+                    name={this.getPropValue("right_icon")}
+                    propsIcon={{
+                      className: this.decorateCSS("right-icon"),
+                    }}
+                  />
                 )}
               </Base.GridCell>
             </Base.ContainerGrid>

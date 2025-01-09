@@ -4,15 +4,14 @@ import { BaseHeader } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type ISliderData = {
   title: string;
   image: string;
   description: string;
   type: string;
-  button: {
-    button_text: string;
-  };
+  button: INPUTS.CastedButton;
 };
 
 class Header3 extends BaseHeader {
@@ -56,25 +55,7 @@ class Header3 extends BaseHeader {
                 selectItems: ["1", "2", "3"],
               },
             },
-            {
-              type: "object",
-              displayer: "Button",
-              key: "button",
-              value: [
-                {
-                  type: "string",
-                  displayer: "Button Text",
-                  key: "button_text",
-                  value: "discover more",
-                },
-                {
-                  type: "page",
-                  displayer: "Button Link",
-                  key: "button-url",
-                  value: "",
-                },
-              ],
-            },
+            INPUTS.BUTTON("button", "Button", "Discover More", "", "", "", "Primary")
           ],
         },
         {
@@ -110,25 +91,7 @@ class Header3 extends BaseHeader {
                 selectItems: ["1", "2", "3"],
               },
             },
-            {
-              type: "object",
-              displayer: "Button",
-              key: "button",
-              value: [
-                {
-                  type: "string",
-                  displayer: "Button Text",
-                  key: "button_text",
-                  value: "discover more",
-                },
-                {
-                  type: "page",
-                  displayer: "Button Link",
-                  key: "button-url",
-                  value: "",
-                },
-              ],
-            },
+            INPUTS.BUTTON("button", "Button", "Discover More", "", "", "", "Primary")
           ],
         },
         {
@@ -165,25 +128,7 @@ class Header3 extends BaseHeader {
                 selectItems: ["1", "2", "3"],
               },
             },
-            {
-              type: "object",
-              displayer: "Button",
-              key: "button",
-              value: [
-                {
-                  type: "string",
-                  displayer: "Button Text",
-                  key: "button_text",
-                  value: "discover more",
-                },
-                {
-                  type: "page",
-                  displayer: "Button Link",
-                  key: "button-url",
-                  value: "",
-                },
-              ],
-            },
+            INPUTS.BUTTON("button", "Button", "Discover More", "", null, null, "Primary")
           ],
         },
       ],
@@ -238,7 +183,7 @@ class Header3 extends BaseHeader {
             {this.castToObject<ISliderData[]>("slider").map((item: ISliderData, index: number) => {
               const title = this.castToString(item.title as any);
               const description = this.castToString(item.description as any);
-              const buttonText = this.castToString(item.button.button_text as any);
+              const buttonText = this.castToString(item.button.text);
               const showContent = title || description || buttonText;
 
               return (
@@ -256,29 +201,28 @@ class Header3 extends BaseHeader {
 
                   <div className={this.decorateCSS("content")}>
                     {showContent && (
-                      <div className={this.decorateCSS("text-container")}>
-                        {title && <h1 className={this.decorateCSS("title")}>{item.title}</h1>}
+                      <Base.VerticalContent className={this.decorateCSS("text-container")}>
+                        {title && <Base.H1 className={this.decorateCSS("title")}>{item.title}</Base.H1>}
                         {(description || buttonText) && (
-                          <div
-                            className={`${this.decorateCSS("bottom-section")} ${
-                              description && this.decorateCSS("bottom-section-line")
-                            }`}
+                          <Base.VerticalContent
+                            className={`${this.decorateCSS("bottom-section")} ${description && this.decorateCSS("bottom-section-line")
+                              }`}
                           >
                             {description && (
-                              <p className={this.decorateCSS("description")}>{item.description}</p>
+                              <Base.P className={this.decorateCSS("description")}>{item.description}</Base.P>
                             )}
                             {buttonText && (
-                              <div className={this.decorateCSS("button-container")}>
-                                <ComposerLink path={this.getPropValue("link")}>
-                                  <Base.Button className={this.decorateCSS("button")}>
-                                    {item.button.button_text}
+                              <Base.Row className={this.decorateCSS("button-container")}>
+                                <ComposerLink path={item.button.url}>
+                                  <Base.Button buttonType={item.button.type} className={this.decorateCSS("button")}>
+                                    {item.button.text}
                                   </Base.Button>
                                 </ComposerLink>
-                              </div>
+                              </Base.Row>
                             )}
-                          </div>
+                          </Base.VerticalContent>
                         )}
-                      </div>
+                      </Base.VerticalContent>
                     )}
                     {item.image && (
                       <div className={this.decorateCSS("image-container")}>
@@ -297,9 +241,8 @@ class Header3 extends BaseHeader {
           <div className={this.decorateCSS("pagination")}>
             {this.castToObject<ISliderData[]>("slider").map((slider: ISliderData, index) => (
               <div
-                className={`${this.decorateCSS("page-number")} ${
-                  activeSlide === index && this.decorateCSS("active")
-                }`}
+                className={`${this.decorateCSS("page-number")} ${activeSlide === index && this.decorateCSS("active")
+                  }`}
                 onClick={() => this.handleSlideChange(index)}
               >
                 0{index + 1}

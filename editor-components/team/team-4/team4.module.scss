@@ -5,9 +5,11 @@
     gap: var(--composer-gap-md);
 
     .up-content {
+      .title{
+        content: "";
+      }
       .description {
-        color: var(--composer-font-color-primary);
-        opacity: 0.5;
+        content: "";
       }
     }
 

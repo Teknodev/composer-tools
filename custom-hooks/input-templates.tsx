@@ -10,7 +10,7 @@ export namespace INPUTS {
     type: TypeButton;
   };
 
-  export const BUTTON = (buttonKey: string, displayer: string, text: string, url: string | null, icon: string | null, image: string | null, type: TypeButton = "Primary") => {
+  export const BUTTON = (buttonKey: string, displayer: string, text: string, url: string | null, icon: string | null, image: string | null = "", type: TypeButton = "Primary") => {
     const button: TypeUsableComponentProps = {
       type: "object",
       key: buttonKey,
@@ -33,6 +33,7 @@ export namespace INPUTS {
         },
       ],
     };
+
 
     if (url !== null) {
       button.value.push({
@@ -61,6 +62,8 @@ export namespace INPUTS {
       });
     }
 
+    button["getPropValue"] = null;
+
     return button;
   };
 
@@ -85,14 +88,14 @@ export namespace INPUTS {
       ],
     } as TypeUsableComponentProps;
   };
-  export const NAVBAR_POSITION = (key: string, displayer: string) => {
+  export const NAVBAR_POSITION = (key: string, displayer: string, defaultValue: string = "Default") => {
     return {
       type: "select",
       key: key,
       displayer: displayer,
-      value: "Default",
+      value: defaultValue,
       additionalParams: {
-        selectItems:["Absolute","Sticky Colorful","Sticky Transparent","Default"],
+        selectItems: ["Absolute", "Sticky Colorful", "Sticky Transparent", "Default"],
       },
     } as TypeUsableComponentProps;
   };

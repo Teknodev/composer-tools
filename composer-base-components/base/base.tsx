@@ -231,26 +231,31 @@ export namespace Base {
   export namespace Navigator {
     export function Container({ className, children, ...props }: any) {
       const position = props.position?.split(" ").map((item: string) => item.toLowerCase()).join("");
-
+      
       useEffect(() => {
+        const playground = getPlaygroundElement();
+        const scrollContainer = playground || window;
+
         const handleScroll = () => {
-          const navbarPosition = document.querySelector(`.${styles.navbarPosition}`);
-          console.log("scroll", navbarPosition);
-
+          const navbarPosition = document.querySelectorAll(`.${styles.navbarPosition}`) as  NodeListOf<Element>;
+          const scrollAmount = playground ? playground.scrollTop : window.scrollY;
+    
           if (navbarPosition) {
-          console.log("inside pos", window.scrollY);
-
-            if (window.scrollY > 50) {
-              navbarPosition.classList.add(styles.scrolled);
+            if (scrollAmount > 50 && position !== "absolute") {
+              navbarPosition.forEach((item) => {
+                item.classList.add(styles.scrolled);
+              });
             } else {
-              navbarPosition.classList.remove(styles.scrolled);
+              navbarPosition.forEach((item) => {
+                item.classList.remove(styles.scrolled);
+              });
             }
           }
         };
   
-        window.addEventListener("scroll", handleScroll);
+        scrollContainer.addEventListener("scroll", handleScroll);
         return () => {
-          window.removeEventListener("scroll", handleScroll);
+          scrollContainer.removeEventListener("scroll", handleScroll);
         };
       }, []);
 
@@ -266,6 +271,16 @@ export namespace Base {
           </div>
         </div>
       );
+    }
+
+    export function getPlaygroundElement(){
+      return document.getElementById("playground") as HTMLElement;
+    }
+
+    export function changeScrollBehaviour(behaviour: "hidden" | "auto"){
+      const playground = getPlaygroundElement();
+      if (!playground) return;
+      playground.style.overflow = behaviour;
     }
   }
 }

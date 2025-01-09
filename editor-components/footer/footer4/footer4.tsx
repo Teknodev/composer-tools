@@ -4,8 +4,9 @@ import { BaseFooter } from "../../EditorComponent";
 import styles from "./footer4.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
-import { Formik, Form, ErrorMessage } from "formik";
+import { Formik, Form } from "formik";
 import * as Yup from "yup";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type FooterValues = {
   footerTitle: JSX.Element;
@@ -377,12 +378,7 @@ class Footer4Page extends BaseFooter {
       value: "Form successfully submitted!",
     });
 
-    this.addProp({
-      type: "string",
-      key: "subscriptionButtonText",
-      displayer: "Subscription Button Text",
-      value: "Subscribe",
-    });
+    this.addProp(INPUTS.BUTTON("button", "Button", "Subscribe", null, null, null, "Primary"));
 
     this.addProp({
       type: "string",
@@ -481,8 +477,11 @@ class Footer4Page extends BaseFooter {
   }
 
   validationSchema = Yup.object().shape({
-    message: Yup.string().required("Required"),
+    email: Yup.string()
+      .email("Invalid email format")
+      .required("Email is required"),
   });
+
   getName(): string {
     return "Footer 4";
   }
@@ -496,9 +495,11 @@ class Footer4Page extends BaseFooter {
 
     const leftExist = textExist || images.length > 0;
 
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+
     const rightTitleExist = this.castToString(this.getPropValue("rightTitle"));
     const rightDescExist = this.castToString(this.getPropValue("rightDescription"));
-    const buttonTextExist = this.castToString(this.getPropValue("subscriptionButtonText"));
+    const buttonTextExist = this.castToString(button.text);
     const placeHolderExist = this.castToString(this.getPropValue("subscriptionPlaceholder"));
 
     const rightExist = rightTitleExist || rightDescExist || buttonTextExist || placeHolderExist;
@@ -509,6 +510,9 @@ class Footer4Page extends BaseFooter {
 
     const footerDescription = this.getPropValue("footerDescription");
     const footerDescriptionExist = this.castToString(footerDescription);
+
+
+    const alignment = Base.getContentAlignment();
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -522,7 +526,7 @@ class Footer4Page extends BaseFooter {
                       {textExist && <Base.P className={this.decorateCSS("text")}>{this.getPropValue("text")}</Base.P>}
                       <div className={this.decorateCSS("images")}>
                         {images.length > 0 && (
-                          <div className={this.decorateCSS("image-container")}>
+                          <Base.Row className={this.decorateCSS("image-container")}>
                             {images.map((item: any, index: number) => {
                               return (
                                 item.image && (
@@ -534,7 +538,7 @@ class Footer4Page extends BaseFooter {
                                 )
                               );
                             })}
-                          </div>
+                          </Base.Row>
                         )}
                       </div>
                     </div>
@@ -567,7 +571,7 @@ class Footer4Page extends BaseFooter {
                     <div className={this.decorateCSS("right")}>
                       {rightTitleExist && <Base.H3 className={this.decorateCSS("title")}>{this.getPropValue("rightTitle")}</Base.H3>}
                       <Formik
-                        initialValues={{ message: "" }}
+                        initialValues={{ email: "" }}
                         validationSchema={this.validationSchema}
                         onSubmit={(data, { resetForm }) => {
                           this.setComponentState("placeholderText", submitText);
@@ -577,6 +581,7 @@ class Footer4Page extends BaseFooter {
                             this.setComponentState("placeholderText", defaultPlaceholder);
                           }, 2000);
 
+                          this.insertForm("Subscribe", data);
                           resetForm();
                         }}
                       >
@@ -588,17 +593,18 @@ class Footer4Page extends BaseFooter {
                                   className={this.decorateCSS("input")}
                                   type="text"
                                   placeholder={this.getComponentState("placeholderText") || this.castToString(this.getPropValue("subscriptionPlaceholder"))}
-                                  name="message"
-                                  value={values.message}
+                                  name="email"
+                                  value={values.email}
                                   onChange={handleChange}
                                 />
-                                {errors.message && touched.message && <div className={this.decorateCSS("error")}>{errors.message}</div>}
+                                {errors.email && touched.email && <div className={this.decorateCSS("error")}>{errors.email}</div>}
                               </div>
                             )}
 
                             {buttonTextExist && (
-                              <Base.Button className={this.decorateCSS("button")} type="submit">
-                                {this.getPropValue("subscriptionButtonText")}
+                              <Base.Button buttonType={button.type}
+                                className={this.decorateCSS("button")}>
+                                {button.text}
                               </Base.Button>
                             )}
                           </Form>
@@ -616,16 +622,17 @@ class Footer4Page extends BaseFooter {
 
           <Base.Container>
             <Base.MaxContent>
-              <div className={this.decorateCSS("bottom")}>
+              <Base.VerticalContent className={this.decorateCSS("bottom")}>
                 {footerDescriptionExist && <Base.P className={this.decorateCSS("footer-text")}>{this.getPropValue("footerDescription")}</Base.P>}
 
                 {links.length > 0 && (
-                  <div className={this.decorateCSS("links")}>
+                  <Base.Row className={`${this.decorateCSS("links")}
+                  ${alignment === "center" && this.decorateCSS("center")}`}>
                     {links.map((item: any, index: number) => {
                       const textExist = this.castToString(item.text);
                       return (
                         textExist && (
-                          <div className={this.decorateCSS(item.url ? "link-element-has-path" : "link-element")}>
+                          <div className={this.decorateCSS("link-element")}>
                             <ComposerLink key={index} path={item.url}>
                               <Base.P className={this.decorateCSS("link-text")}>{item.text}</Base.P>
                             </ComposerLink>
@@ -633,9 +640,9 @@ class Footer4Page extends BaseFooter {
                         )
                       );
                     })}
-                  </div>
+                  </Base.Row>
                 )}
-              </div>
+              </Base.VerticalContent>
             </Base.MaxContent>
           </Base.Container>
         </div>

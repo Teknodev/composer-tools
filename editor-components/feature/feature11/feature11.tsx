@@ -4,18 +4,12 @@ import styles from "./feature11.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-
-type Button = {
-  text: JSX.Element;
-  link: string;
-  icon: string;
-};
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type LeftContent = {
   subtitle: JSX.Element;
   title: JSX.Element;
   description: JSX.Element;
-  button: Button;
 };
 
 type Card = {
@@ -51,27 +45,9 @@ class Feature11 extends BaseFeature {
           displayer: "Description",
           value: "Powerful tool for creating landing pages, websites and dashboards in Figma. Contains UI Kit (web), Data Visualization, Icon Set."
         },
-        {
-          type: "object",
-          key: "button",
-          displayer: "Button",
-          value: [
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "Start Creating"
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Link",
-              value: ""
-            },
-          ]
-        }
       ]
     });
+    this.addProp(INPUTS.BUTTON("button", "Button", "Start Creating", "", null, null, "Primary"));
 
     this.addProp({
       type: "array",
@@ -246,13 +222,14 @@ class Feature11 extends BaseFeature {
   render() {
     const leftContent = this.castToObject<LeftContent>("leftContent");
     const cards = this.castToObject<Card[]>("cards");
+    const button = this.castToObject<INPUTS.CastedButton>("button");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             {(this.castToString(leftContent.subtitle) || this.castToString(leftContent.title) ||
-              this.castToString(leftContent.description) || this.castToString(leftContent.button.text)) && (
+              this.castToString(leftContent.description) || this.castToString(button.text)) && (
                 <Base.VerticalContent className={this.decorateCSS("left")}>
                   {this.castToString(leftContent.subtitle) && (
                     <Base.SectionSubTitle className={this.decorateCSS("section-subtitle")}>
@@ -272,10 +249,10 @@ class Feature11 extends BaseFeature {
                     </Base.SectionDescription>
                   )}
 
-                  {this.castToString(leftContent.button.text) && (
-                    <ComposerLink path={leftContent.button.link}>
-                      <Base.Button className={this.decorateCSS("button")}>
-                        {leftContent.button.text}
+                  {this.castToString(button.text) && (
+                    <ComposerLink path={button.url}>
+                      <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                        {button.text}
                       </Base.Button>
                     </ComposerLink>
                   )}

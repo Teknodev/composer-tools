@@ -9,7 +9,7 @@ type Category = {
   questions: Array<any>;
 };
 
-class FaqButton extends BaseFAQ {
+class Faq8 extends BaseFAQ {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
@@ -772,4 +772,4 @@ class FaqButton extends BaseFAQ {
   }
 }
 
-export default FaqButton;
+export default Faq8;

@@ -4,9 +4,11 @@
   .max-content {
     .page {
       .up-content {
+        .title{
+          content: "";
+        }
         .description {
-          color: var(--composer-font-color-primary);
-          opacity: 0.5;
+          content: "";
         }
       }
 
@@ -34,17 +36,14 @@
               }
 
               .job {
-                color: var(--composer-font-color-primary);
+                color: var(--composer-tertiary-color);
                 transition: color 0.5s;
-
-                opacity: 0.5;
               }
             }
 
             .description {
-              color: var(--composer-font-color-primary);
+              color: var(--composer-tertiary-color);
               transition: color 0.5s;
-              opacity: 0.5;
             }
           }
 
@@ -66,30 +65,17 @@
             .text-box .text-up .job,
             .text-box .description {
               color: var(--composer-font-color-secondary);
-              opacity: 0.5;
             }
           }
         }
       }
-
-      .button {
-        .button-element {
-          width: 100%;
-          height: 100%;
-          padding: var(--composer-gap-sm) var(--composer-gap-md);
-          background-color: var(--composer-primary-color);
-          color: var(--composer-font-color-secondary);
-          border-radius: var(--composer-border-radius-xl);
-        }
-        .button-element-center {
-          width: fit-content;
-          margin: 0 auto;
-          height: 100%;
-          padding: var(--composer-gap-sm) var(--composer-gap-md);
-          margin-top: var(--composer-gap-sm);
-          background-color: var(--composer-primary-color);
-          color: var(--composer-font-color-secondary);
-          border-radius: var(--composer-border-radius-xl);
+      .button-wrapper{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .button {
+          content: "";
         }
       }
     }
