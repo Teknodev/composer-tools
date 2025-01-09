@@ -10,15 +10,12 @@
         display: flex;
         justify-content: center;
         .title-wrapper{
-            .title, .title-no-image {
-                color: white;
-                font-size: 3rem;
-                position: relative;
-                display: inline-block;
-                text-decoration: underline;
-            }
-            .title-no-image{
-                color: var(--composer-font-color-primary);
+            .title{
+                font-size: 2rem;
+                &.image{
+                    color: white;
+                    text-decoration-color: white;
+                }
             }
         }
         .overlay {

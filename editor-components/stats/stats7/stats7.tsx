@@ -160,7 +160,7 @@ class Stats7Page extends BaseStats {
                           {this.castToString(title) && title}
                           {this.castToString(text) && (
                             <div className={this.decorateCSS("progress-percent")}>
-                              <div className={this.decorateCSS("progress-text")}>{this.castToString(text) && text}</div>
+                              <div className={this.decorateCSS("progress-text")}>{text}</div>
                             </div>
                           )}
                         </div>
