@@ -1211,6 +1211,7 @@ class Navbar1 extends BaseNavigator {
     const menuItems = this.castToObject<MenuItems[]>("menuItems");
     const hamburgerNavActive = this.getComponentState("hamburgerNavActive");
     const isScrolled = this.getComponentState("isScrolled");
+    const isBigScreen = this.getComponentState("isBigScreen");
     const isStickyTransparent = position === "Sticky Transparent";
     const isAbsolute = position === "Absolute";
     const transparentBackground =
@@ -1219,7 +1220,7 @@ class Navbar1 extends BaseNavigator {
     const changeBackground = this.getComponentState("changeBackground");
 
     const currentLogo =
-      (transparentBackground && !changeBackground) || (hamburgerNavActive && this.getComponentState("bigScreen"))
+      (transparentBackground && !changeBackground) || (hamburgerNavActive && isBigScreen)
         ? absoluteLogo
         : defaultLogo;
 
