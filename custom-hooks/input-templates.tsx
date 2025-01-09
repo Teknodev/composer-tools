@@ -1,6 +1,5 @@
 import { TypeButton } from "composer-tools/composer-base-components/base/base";
 import { TypeUsableComponentProps } from "composer-tools/editor-components/EditorComponent";
-
 export namespace INPUTS {
   export type CastedButton = {
     text: JSX.Element;
@@ -10,7 +9,7 @@ export namespace INPUTS {
     type: TypeButton;
   };
 
-  export const BUTTON = (buttonKey: string, displayer: string, text: string, url: string | null, icon: string | null, image: string | null = "", type: TypeButton = "Primary") => {
+  export const BUTTON = (buttonKey: string, displayer: string, text: string, url: string | null, icon: string | null, image: string | null, type: TypeButton = "Primary") => {
     const button: TypeUsableComponentProps = {
       type: "object",
       key: buttonKey,
@@ -33,8 +32,6 @@ export namespace INPUTS {
         },
       ],
     };
-
-
     if (url !== null) {
       button.value.push({
         type: "page",
@@ -43,7 +40,6 @@ export namespace INPUTS {
         value: url,
       });
     }
-
     if (icon !== null) {
       button.value.push({
         type: "icon",
@@ -52,7 +48,6 @@ export namespace INPUTS {
         value: icon,
       });
     }
-
     if (image !== null) {
       button.value.push({
         type: "image",
@@ -61,12 +56,9 @@ export namespace INPUTS {
         value: image,
       });
     }
-
     button["getPropValue"] = null;
-
     return button;
   };
-
   export const LOGO = (key: string, displayer: string, defaultImage?: string) => {
     return {
       type: "object",
