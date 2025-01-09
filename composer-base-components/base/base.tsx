@@ -239,7 +239,7 @@ export namespace Base {
       className,
       children,
       position,
-      hamburgerNavActive,
+      hamburgerNavActive = false,
       setIsScrolled = (scrolled: boolean) => {},
       setIsBigScreen = (bigScreen: boolean) => {},
       ...props
@@ -257,7 +257,8 @@ export namespace Base {
         .map((item: string) => item.toLowerCase())
         .join("");
  
-        const resizeObserverRef = useRef<ResizeObserver | null>(null);
+      const resizeObserverRef = useRef<ResizeObserver | null>(null);
+      const mediaSize = 1025;
 
       useEffect(() => {
         const wrapperContainer = getWrapperContainer();
@@ -270,12 +271,12 @@ export namespace Base {
 
           if (navbarPosition) {
             if (wrapperContainer.scrollY > 50 && positionClass !== "absolute") {
-              setIsScrolled(true);
+              setIsScrolled && setIsScrolled(true);
               navbarPosition.forEach((item) => {
                 item.classList.add(styles.scrolled);
               });
             } else {
-              setIsScrolled(false);
+              setIsScrolled && setIsScrolled(false);
               navbarPosition.forEach((item) => {
                 item.classList.remove(styles.scrolled);
               });
@@ -288,14 +289,14 @@ export namespace Base {
           const wrapperContainer = getWrapperContainer();
           const matchedMedia =
             wrapperContainer.wrapper === window
-              ? window.matchMedia("(min-width: 1025px)").matches
-              : (wrapperContainer.wrapper as HTMLElement).clientWidth >= 1025;
+              ? window.matchMedia(`(min-width: ${mediaSize}px)`).matches
+              : (wrapperContainer.wrapper as HTMLElement).clientWidth >= mediaSize;
           if (matchedMedia) {
             Base.Navigator.changeScrollBehaviour("auto");
-            setIsBigScreen(true);
+            setIsBigScreen && setIsBigScreen(true);
           } else if (hamburgerNavActive) {
             Base.Navigator.changeScrollBehaviour("hidden");
-            setIsBigScreen(false);
+            setIsBigScreen && setIsBigScreen(false);
           }
         }
     
