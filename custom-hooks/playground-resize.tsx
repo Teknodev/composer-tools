@@ -6,7 +6,8 @@ const usePlaygroundResize = () => {
   useEffect(() => {
     const element = document.getElementById("playground");
     if (!element) {
-      setTimeout(() => {setStyle({ maxWidth: "100vw", maxHeight: "100vh"})}, 200)
+      setTimeout(() => {setStyle({ maxWidth: "100vw", maxHeight: "100vh"})}, 200);
+      return;
     };
 
     const resizeObserver = new ResizeObserver(() => {
@@ -16,10 +17,10 @@ const usePlaygroundResize = () => {
       });
     });
 
-    resizeObserver.observe(element);
+    resizeObserver?.observe(element);
 
     return () => {
-      resizeObserver.disconnect();
+      resizeObserver?.disconnect();
     };
   }, []);
 
