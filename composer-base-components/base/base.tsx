@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import styles from "./base.module.scss";
+import usePlaygroundResize from "composer-tools/custom-hooks/playground-resize";
 
 export type TypeContentView = "monochrome" | "colorful";
 export type TypeContentAlignment = "left" | "center";
@@ -219,13 +220,15 @@ export namespace Base {
   }
 
   export function Overlay({ className, ...props }: any) {
+    const { style } = usePlaygroundResize();
+
     useEffect(() => {
       document.documentElement.style.overflow = "hidden";
       return () => {
         document.documentElement.style.overflow = "";
       };
     }, []);
-    return <div className={`${styles.overlay} ${className}`} {...props}></div>;
+    return <div style={style} className={`${styles.overlay} ${className}`} {...props}></div>;
   }
 
   export namespace Navigator {
