@@ -1164,7 +1164,7 @@ class Navbar1 extends BaseNavigator {
     this.setComponentState("subNavActiveIndex", null);
     this.setComponentState("subNavActive", null);
     this.setComponentState("changeBackground", false);
-    this.setComponentState("bigScreen", false);
+    this.setComponentState("isBigScreen", false);
 
   }
 
@@ -1234,8 +1234,8 @@ class Navbar1 extends BaseNavigator {
         positionContainer={`${this.decorateCSS("navbarContainer")} ${
           changeBackground ? this.decorateCSS("filledBackground") : ""
         }`}
-        setScrolled={(value: boolean) => this.setComponentState("isScrolled", value)}
-        setBigScreen={(value: boolean) => this.setComponentState("bigScreen", value)}
+        setIsScrolled={(value: boolean) => this.setComponentState("isScrolled", value)}
+        setIsBigScreen={(value: boolean) => this.setComponentState("isBigScreen", value)}
       >
         <Base.MaxContent
           className={`${this.decorateCSS("maxContent")} ${
