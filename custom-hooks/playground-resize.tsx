@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
 
 const usePlaygroundResize = () => {
-  const [style, setStyle] = useState({ maxWidth: "0", maxHeight: "0" });
+  const [style, setStyle] = useState({maxWidth: '0', maxHeight: '0'});
 
   useEffect(() => {
     const element = document.getElementById("playground");
-    if (!element) return;
+    if (!element) {
+      setTimeout(() => {setStyle({ maxWidth: "100vw", maxHeight: "100vh"})}, 200)
+    };
 
     const resizeObserver = new ResizeObserver(() => {
       setStyle({
-        maxWidth: `${element.offsetWidth}px` || "100vw",
-        maxHeight: `${element.offsetHeight}px` || "100vh",
+        maxWidth: `${element.offsetWidth}px`,
+        maxHeight: `${element.offsetHeight}px`,
       });
     });
 
