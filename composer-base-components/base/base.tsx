@@ -240,10 +240,18 @@ export namespace Base {
       children,
       position,
       hamburgerNavActive,
-      setScrolled,
-      setBigScreen,
+      setIsScrolled = (scrolled: boolean) => {},
+      setIsBigScreen = (bigScreen: boolean) => {},
       ...props
-    }: any) {
+    }: {
+      className?: string;
+      children?: React.ReactNode;
+      position?: string;
+      hamburgerNavActive?: boolean;
+      setIsScrolled?: (scrolled: boolean) => void;
+      setIsBigScreen?: (bigScreen: boolean) => void;
+      [key: string]: any;
+    }) {
       const positionClass = position
         ?.split(" ")
         .map((item: string) => item.toLowerCase())
@@ -262,12 +270,12 @@ export namespace Base {
 
           if (navbarPosition) {
             if (wrapperContainer.scrollY > 50 && positionClass !== "absolute") {
-              setScrolled(true);
+              setIsScrolled(true);
               navbarPosition.forEach((item) => {
                 item.classList.add(styles.scrolled);
               });
             } else {
-              setScrolled(false);
+              setIsScrolled(false);
               navbarPosition.forEach((item) => {
                 item.classList.remove(styles.scrolled);
               });
@@ -284,10 +292,10 @@ export namespace Base {
               : (wrapperContainer.wrapper as HTMLElement).clientWidth >= 1025;
           if (matchedMedia) {
             Base.Navigator.changeScrollBehaviour("auto");
-            setBigScreen(true);
+            setIsBigScreen(true);
           } else if (hamburgerNavActive) {
             Base.Navigator.changeScrollBehaviour("hidden");
-            setBigScreen(false);
+            setIsBigScreen(false);
           }
         }
     
