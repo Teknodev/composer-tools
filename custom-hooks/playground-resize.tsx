@@ -7,7 +7,6 @@ const usePlaygroundResize = () => {
     const element = document.getElementById("playground");
     if (!element) {
       setTimeout(() => {setStyle({ maxWidth: "100vw", maxHeight: "100vh"})}, 200);
-      return;
     };
 
     const resizeObserver = new ResizeObserver(() => {
