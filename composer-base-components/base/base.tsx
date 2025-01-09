@@ -1,10 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./base.module.scss";
 
 export type TypeContentView = "monochrome" | "colorful";
 export type TypeContentAlignment = "left" | "center";
 export type TypeSubtitle = "line" | "badge" | "none";
-export type TypeButton = "Primary" | "Secondary" | "Tertiary" | "Link" | "White" | "Black";
+export type TypeButton =
+  | "Primary"
+  | "Secondary"
+  | "Tertiary"
+  | "Link"
+  | "White"
+  | "Black";
 export namespace Base {
   const rootStyles = getComputedStyle(document.documentElement);
 
@@ -229,39 +235,97 @@ export namespace Base {
   }
 
   export namespace Navigator {
-    export function Container({ className, children, ...props }: any) {
-      const position = props.position?.split(" ").map((item: string) => item.toLowerCase()).join("");
-      
+    export function Container({
+      className,
+      children,
+      position,
+      hamburgerNavActive = false,
+      setIsScrolled = (scrolled: boolean) => {},
+      setIsBigScreen = (bigScreen: boolean) => {},
+      ...props
+    }: {
+      className?: string;
+      children?: React.ReactNode;
+      position?: string;
+      hamburgerNavActive?: boolean;
+      setIsScrolled?: (scrolled: boolean) => void;
+      setIsBigScreen?: (bigScreen: boolean) => void;
+      [key: string]: any;
+    }) {
+      const positionClass = position
+        ?.split(" ")
+        .map((item: string) => item.toLowerCase())
+        .join("");
+ 
+      const resizeObserverRef = useRef<ResizeObserver | null>(null);
+      const mediaSize = 1025;
+
       useEffect(() => {
-        const playground = getPlaygroundElement();
-        const scrollContainer = playground || window;
+        const wrapperContainer = getWrapperContainer();
 
         const handleScroll = () => {
-          const navbarPosition = document.querySelectorAll(`.${styles.navbarPosition}`) as  NodeListOf<Element>;
-          const scrollAmount = playground ? playground.scrollTop : window.scrollY;
-    
+          const wrapperContainer = getWrapperContainer();
+          const navbarPosition = document.querySelectorAll(
+            `.${styles.navbarPosition}`
+          ) as NodeListOf<Element>;
+
           if (navbarPosition) {
-            if (scrollAmount > 50 && position !== "absolute") {
+            if (wrapperContainer.scrollY > 50 && positionClass !== "absolute") {
+              setIsScrolled && setIsScrolled(true);
               navbarPosition.forEach((item) => {
                 item.classList.add(styles.scrolled);
               });
             } else {
+              setIsScrolled && setIsScrolled(false);
               navbarPosition.forEach((item) => {
                 item.classList.remove(styles.scrolled);
               });
             }
           }
         };
-  
-        scrollContainer.addEventListener("scroll", handleScroll);
+
+        const handleResize = () => {
+
+          const wrapperContainer = getWrapperContainer();
+          const matchedMedia =
+            wrapperContainer.wrapper === window
+              ? window.matchMedia(`(min-width: ${mediaSize}px)`).matches
+              : (wrapperContainer.wrapper as HTMLElement).clientWidth >= mediaSize;
+          if (matchedMedia) {
+            Base.Navigator.changeScrollBehaviour("auto");
+            setIsBigScreen && setIsBigScreen(true);
+          } else if (hamburgerNavActive) {
+            Base.Navigator.changeScrollBehaviour("hidden");
+            setIsBigScreen && setIsBigScreen(false);
+          }
+        }
+    
+        const createResizeListener = () => {
+          const wrapperContainer = getWrapperContainer();
+          if (wrapperContainer.wrapper === window) {
+            window.addEventListener("resize", handleResize);
+            return;
+          }
+          resizeObserverRef.current = new ResizeObserver(handleResize);
+          resizeObserverRef.current.observe(wrapperContainer.wrapper as HTMLElement);
+        }
+
+        wrapperContainer.wrapper.addEventListener("scroll", handleScroll);
+        wrapperContainer.wrapper.addEventListener("resize", handleResize);
+        createResizeListener();
         return () => {
-          scrollContainer.removeEventListener("scroll", handleScroll);
+          wrapperContainer.wrapper.removeEventListener("scroll", handleScroll);
+          if (wrapperContainer.wrapper === window) {
+            window.removeEventListener("resize", handleResize);
+          } else if (resizeObserverRef.current) {
+            resizeObserverRef.current.disconnect();
+          }
         };
-      }, []);
+      }, [hamburgerNavActive]);
 
       return (
         <div
-          className={`${styles.navbarContainer} ${className} ${styles[position]}`}
+          className={`${styles.navbarContainer} ${className} ${styles[positionClass]}`}
           {...props}
         >
           <div
@@ -273,14 +337,20 @@ export namespace Base {
       );
     }
 
-    export function getPlaygroundElement(){
-      return document.getElementById("playground") as HTMLElement;
+    export function getWrapperContainer() {
+      const playground = document.getElementById("playground") as HTMLElement;
+      const isPlayground = !!playground;
+      return {
+        wrapper: isPlayground ? playground : window,
+        scrollY: isPlayground ? playground.scrollTop : window.scrollY,
+        style: isPlayground ? playground.style : document.documentElement.style,
+      };
     }
 
-    export function changeScrollBehaviour(behaviour: "hidden" | "auto"){
-      const playground = getPlaygroundElement();
-      if (!playground) return;
-      playground.style.overflow = behaviour;
+    export function changeScrollBehaviour(behaviour: "hidden" | "auto") {
+      const wrapperContainer = getWrapperContainer();
+      if (!wrapperContainer) return;
+      wrapperContainer.style.overflow = behaviour;
     }
   }
 }
