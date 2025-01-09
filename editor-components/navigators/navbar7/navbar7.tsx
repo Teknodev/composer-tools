@@ -1048,12 +1048,12 @@ class Navbar7 extends BaseNavigator {
       value: "IoMdClose",
     });
 
-    this.state["componentProps"]["isScrolled"] = false;
-    this.state["componentProps"]["isMobileMenuOpen"] = false;
-    this.state["componentProps"]["navActive"] = false;
-    this.state["componentProps"]["subNavActiveIndex"] = null;
-    this.state["componentProps"]["subNavActive"] = null;
-    this.state["componentProps"]["changeBackground"] = false;
+    this.setComponentState("isScrolled", false);
+    this.setComponentState("isMobileMenuOpen", false);
+    this.setComponentState("navActive", false);
+    this.setComponentState("subNavActiveIndex", null);
+    this.setComponentState("subNavActive", null);
+    this.setComponentState("changeBackground", false);
 
   }
 
@@ -1067,11 +1067,10 @@ class Navbar7 extends BaseNavigator {
   }
 
   handleResize = () => {
-    const playground = document.getElementById("playground") as HTMLElement;
     if (window.matchMedia("(min-width: 1025px)").matches) {
-      playground.style.overflow = "";
+      Base.Navigator.changeScrollBehaviour("auto");
     }else if (this.getComponentState("isMobileMenuOpen")) {
-      playground.style.overflow = "hidden";
+      Base.Navigator.changeScrollBehaviour("hidden");
     }
   }
 
@@ -1086,9 +1085,7 @@ class Navbar7 extends BaseNavigator {
   };
 
   handleOpenMenu = () => {
-    const playground = document.getElementById("playground") as HTMLElement;
-    playground.style.overflow = "hidden";
-
+    Base.Navigator.changeScrollBehaviour("hidden");
     this.setComponentState("changeBackground", true);
 
     setTimeout(() => {
@@ -1097,8 +1094,7 @@ class Navbar7 extends BaseNavigator {
   };
 
   handleCloseMenu = () => {
-    const playground = document.getElementById("playground") as HTMLElement;
-    playground.style.overflow = "";
+    Base.Navigator.changeScrollBehaviour("auto");
     this.setComponentState("isMobileMenuOpen", false);
 
     setTimeout(() => {

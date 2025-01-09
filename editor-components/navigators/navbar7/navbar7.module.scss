@@ -44,7 +44,7 @@
         }
 
         .dropdownIcon {
-          font-size: 1.2rem;
+          font-size: 1rem;
           color: var(--composer-font-color-primary);
           transition: all 0.3s ease;
         }
@@ -426,7 +426,6 @@
       .mobileMenu {
         display: flex;
         flex-direction: column;
-        // justify-content: space-around;
         .mobileMenuContent {
           padding: 0 var(--composer-gap-lg);
           .iconsContainer {
