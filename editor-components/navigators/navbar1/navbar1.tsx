@@ -32,7 +32,7 @@ interface Language {
 }
 
 class Navbar1 extends BaseNavigator {
-  navigatorRef: React.RefObject<any>;
+
   constructor(props?: any) {
     super(props, styles);
 
@@ -1164,6 +1164,8 @@ class Navbar1 extends BaseNavigator {
     this.setComponentState("subNavActiveIndex", null);
     this.setComponentState("subNavActive", null);
     this.setComponentState("changeBackground", false);
+    this.setComponentState("bigScreen", false);
+
   }
 
   getName(): string {
@@ -1171,6 +1173,7 @@ class Navbar1 extends BaseNavigator {
   }
 
   handleOpenMenu = () => {
+    Base.Navigator.changeScrollBehaviour("hidden");
     this.setComponentState("changeBackground", true);
     setTimeout(() => {
       this.setComponentState("hamburgerNavActive", true);
@@ -1178,12 +1181,13 @@ class Navbar1 extends BaseNavigator {
   };
 
   handleCloseMenu = () => {
+    Base.Navigator.changeScrollBehaviour("auto");
     this.setComponentState("hamburgerNavActive", false);
-
     setTimeout(() => {
       this.setComponentState("changeBackground", false);
     }, 200);
   };
+
   navClick(index: number) {
     const isActive = this.getComponentState("subNavActiveIndex") === index;
     this.setComponentState("navActive", !isActive);
@@ -1200,19 +1204,6 @@ class Navbar1 extends BaseNavigator {
     }
   }
 
-  componentDidMount() {
-    window.addEventListener("scroll", this.handleScroll);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleScroll);
-  }
-
-  handleScroll = () => {
-    const isScrolled = window.scrollY > 50;
-    this.setComponentState("isScrolled", isScrolled);
-  };
-
   render() {
     const defaultLogo = this.castToObject<Logo>("defaultLogo");
     const absoluteLogo = this.castToObject<Logo>("absoluteLogo");
@@ -1228,7 +1219,9 @@ class Navbar1 extends BaseNavigator {
     const changeBackground = this.getComponentState("changeBackground");
 
     const currentLogo =
-      transparentBackground && !changeBackground ? absoluteLogo : defaultLogo;
+      (transparentBackground && !changeBackground) || (hamburgerNavActive && this.getComponentState("bigScreen"))
+        ? absoluteLogo
+        : defaultLogo;
 
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const divider = this.getPropValue("divider");
@@ -1237,9 +1230,12 @@ class Navbar1 extends BaseNavigator {
     return (
       <Base.Navigator.Container
         position={position}
+        hamburgerNavActive={hamburgerNavActive}
         positionContainer={`${this.decorateCSS("navbarContainer")} ${
           changeBackground ? this.decorateCSS("filledBackground") : ""
         }`}
+        setScrolled={(value: boolean) => this.setComponentState("isScrolled", value)}
+        setBigScreen={(value: boolean) => this.setComponentState("bigScreen", value)}
       >
         <Base.MaxContent
           className={`${this.decorateCSS("maxContent")} ${
@@ -1383,8 +1379,7 @@ class Navbar1 extends BaseNavigator {
                   <ComposerLink path={button.url}>
                     <Base.Button
                       className={`${this.decorateCSS("button")} ${
-                        transparentBackground &&
-                        !hamburgerNavActive
+                        transparentBackground && !hamburgerNavActive
                           ? this.decorateCSS(`${button.type}`)
                           : ""
                       }`}
@@ -1448,7 +1443,9 @@ class Navbar1 extends BaseNavigator {
           }`}
         >
           <Base.Container className={this.decorateCSS("hamburgerNavContainer")}>
-            <Base.MaxContent className={this.decorateCSS("hamburgerNavMaxContent")}>
+            <Base.MaxContent
+              className={this.decorateCSS("hamburgerNavMaxContent")}
+            >
               {menuItems.length > 0 && (
                 <nav className={this.decorateCSS("hamburgerMenu")}>
                   {menuItems.map((item: MenuItems, index: number) => (

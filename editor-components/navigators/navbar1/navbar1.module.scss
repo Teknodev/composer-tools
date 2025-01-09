@@ -241,8 +241,7 @@
     }
 
     .hamburgerNavContainer {
-      padding-top: var(--composer-gap-md);
-      padding-bottom: var(--composer-gap-md);
+      padding: var(--composer-gap-md) var(--composer-gap-lg);
       .hamburgerNavMaxContent {
         .hamburgerMenu {
           .hamburgerMenuItem {
@@ -355,7 +354,7 @@
 }
 
 .filledBackground {
-  background: transparent !important;
+  background: transparent;
 }
 
 .transparentBackground {
@@ -443,6 +442,11 @@
         .logoImage {
           max-height: 40px;
         }
+      }
+    }
+    .hamburgerNav {
+      .hamburgerNavContainer {
+        padding: var(--composer-gap-md);
       }
     }
   }
