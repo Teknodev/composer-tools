@@ -33,7 +33,7 @@ const Accordion = ({
         <div className={styles["accordion"]}>
             <div className={`${styles["accordionHeader"]} ${headerClassName || ''}`} onClick={handleToggle}>
                 <h3 className={`${styles["accordionTitle"]} ${titleClassName || ''}`}>{title}</h3>
-                {icon && <ComposerIcon name={icon} propsIcon={{className: `${styles["accordionIcon"]} ${accordionIconClassName || ''}`}}/>}
+                {icon && <ComposerIcon name={icon} propsIcon={{className: `${styles["accordionIcon"]} ${isOpen ? styles["open"] : ''} ${accordionIconClassName || ''}`}}/>}
             </div>
             <div className={`${styles["accordionContent"]} ${isOpen ? styles[openClassName] : ''} ${contentClassName || ''}`}>
                     {children}
