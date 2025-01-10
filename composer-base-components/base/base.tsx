@@ -262,10 +262,10 @@ export namespace Base {
 
       useEffect(() => {
         const wrapperContainer = getWrapperContainer();
-
+        const shouldChangeBackground = wrapperContainer.scrollY > 50 && positionClass !== "absolute";
         const handleScroll = () => {
           const wrapperContainer = getWrapperContainer();
-          changeNavbarBackground(wrapperContainer.scrollY > 50 && positionClass !== "absolute");
+          changeNavbarBackground(shouldChangeBackground);
         };
 
        
@@ -289,7 +289,7 @@ export namespace Base {
         };
 
         if(!hamburgerNavActive){
-          changeNavbarBackground(wrapperContainer.scrollY > 50 && positionClass !== "absolute");
+          changeNavbarBackground(shouldChangeBackground);
         }
 
         const handleResize = () => {
