@@ -2,39 +2,41 @@
 
 .container {
   width: 100%;
+
   .first-container {
     .first-max-content {
       .upper {
         display: flex;
         align-items: center;
         justify-content: space-between;
+
         .logo {
           .image {
             width: 200px;
             height: 80px;
           }
         }
-        .links,
-        .links-full {
+
+        .links {
           display: flex;
           gap: var(--composer-gap-md);
           max-width: 80%;
 
-          .link-element,
-          .link-element-has-path {
+          .link-element {
             .link-text {
               font-size: 1rem;
               color: var(--composer-font-color-primary);
               transition: color 0.3s ease;
             }
+
+            &.has-path .link-text:hover {
+              color: var(--composer-primary-color);
+            }
           }
 
-          .link-element-has-path .link-text:hover {
-            color: var(--composer-primary-color);
+          &.full-width {
+            max-width: 100%;
           }
-        }
-        .links-full {
-          max-width: 100%;
         }
       }
     }
@@ -53,11 +55,13 @@
     .left,
     .left-full {
       max-width: 50%;
+
       .text {
         font-size: 1rem;
         color: var(--composer-font-color-primary);
       }
     }
+
     .left-full {
       max-width: 100%;
     }
@@ -75,6 +79,7 @@
         border-radius: 50%;
         display: inline-block;
         position: relative;
+
         .icon {
           position: absolute;
           top: 50%;
@@ -98,6 +103,7 @@
           display: flex;
           align-items: center;
           justify-content: space-between;
+
           .logo {
             .image {
               width: 150px;
@@ -125,12 +131,18 @@
           flex-direction: column;
           align-items: baseline;
           justify-content: space-between;
+
+          &.center {
+            align-items: center;
+          }
+
           .logo {
             .image {
               width: 120px;
               height: var(--composer-gap-lg);
             }
           }
+
           .links {
             display: flex;
             flex-wrap: wrap;
@@ -146,6 +158,10 @@
       flex-direction: column;
       align-items: baseline;
       justify-content: space-between;
+
+      &.center {
+        align-items: center;
+      }
 
       .left {
         max-width: 100%;

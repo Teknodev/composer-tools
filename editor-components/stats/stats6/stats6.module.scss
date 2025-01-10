@@ -1,15 +1,13 @@
 @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
 .container {
-  background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%) !important;
+  background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
   .max-content {
     .banner {
       margin-bottom: calc(2 * var(--composer-gap-lg));
 
       .description {
-        width: 100%;
-        color: var(--composer-font-color-primary);
-        opacity: 0.5;
+        color: var(--composer-tertiary-color);
       }
     }
 
@@ -28,9 +26,9 @@
 
         .data-card-description {
           margin: 0;
-          color: var(--composer-font-color-primary);
+          color: var(--composer-tertiary-color);
           font-size: 1.5rem;
-          opacity: 0.5;
+          text-align: center;
         }
       }
     }

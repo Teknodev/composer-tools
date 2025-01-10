@@ -13,46 +13,47 @@
       &.wrapper-reverse {
         flex-flow: row-reverse;
       }
+
       .image-container {
         flex: 1;
-        img {
+
+        .image {
           width: 100%;
           height: 100%;
           object-fit: cover;
           border-radius: var(--border-radius-xs);
         }
       }
+
       .content {
         flex: 1.5;
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
-        gap: calc(var(--composer-gap-md) * 1.5);
-        .title {
-          width: 100%;
-          display: flex;
-          flex-direction: row;
-          flex-wrap: wrap;
-          font-weight: bold;
+        gap: var(--composer-gap-md);
 
-          color: var(--composer-font-color-primary);
-          .colored-title {
-            padding: 0 var(--composer-gap-sm);
-            color: var(--composer-primary-color);
+        .header {
+          .title {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            color: var(--composer-font-color-primary);
+          }
+
+          .description {
+            color: var(--composer-tertiary-color);
+            margin: 0;
           }
         }
 
-        .description {
-          color: var(--composer-tertiary-color);
-          margin: 0;
-        }
         .form {
           display: flex;
           gap: var(--composer-gap-sm);
-          width: 100%;
+          width: auto;
+
           .input-container {
             position: relative;
-            width: 45%;
+            width: 45vh;
             border-radius: var(--composer-border-radius-sm);
             border: var(--composer-font-color-primary) solid 2px;
 
@@ -69,6 +70,7 @@
                 color: var(--composer-tertiary-color);
               }
             }
+
             .error {
               position: absolute;
               bottom: -20px;
@@ -76,35 +78,44 @@
               color: var(--warning);
             }
           }
+
+          .button {
+            content: "";
+          }
         }
 
-        .service-card {
-          gap: var(--composer-gap-sm);
-          display: flex;
-          flex-direction: column;
-          .service-svg {
-            font-size: 2rem;
-            color: var(--composer-primary-color);
-          }
-          .service-title {
-            font-weight: bold;
-            margin: 0;
-            color: var(--composer-font-color-primary);
-          }
-          .service-description {
-            color: var(--composer-tertiary-color);
+        .service-card-list {
+          .service-card {
+            gap: var(--composer-gap-sm);
+            display: flex;
+            flex-direction: column;
+
+            .service-svg {
+              font-size: 2rem;
+              color: var(--composer-primary-color);
+              margin: 0;
+            }
+
+            .service-title {
+              margin: 0;
+              color: var(--composer-font-color-primary);
+            }
+
+            .service-description {
+              color: var(--composer-tertiary-color);
+            }
           }
         }
       }
-      .content-center {
-        align-items: center;
-      }
+
     }
+
     .center {
       justify-content: center;
     }
   }
 }
+
 @container (max-width: #{$composer-tablet-width-lg}) {
   .container {
     .max-content {
@@ -117,42 +128,46 @@
         &.wrapper-reverse {
           flex-direction: column-reverse;
         }
+
         .content {
           padding-top: 0;
           width: 100%;
-          .title {
-            font-size: 4rem;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-          }
-          .description {
-            font-size: 1.3rem;
-            text-align: center;
+
+          .header {
+            .title {
+              font-size: 3rem;
+              display: flex;
+            }
+
+            .description {
+              font-size: 1.5rem;
+            }
           }
 
           .form {
-            justify-content: space-between;
             gap: var(--composer-gap-sm);
+
             .input-container {
-              width: 77%;
-              .input {
+              .input {}
+            }
+          }
+
+          .service-card-list {
+            .service-card {
+              gap: var(--composer-gap-sm);
+              flex: 1;
+
+              .service-title {
+                font-size: 1.5rem;
+              }
+
+              .service-description {
+                font-size: 1rem;
               }
             }
           }
-          .service-card {
-            align-items: center;
-            gap: var(--composer-gap-sm);
-            flex: 1;
-            .service-title {
-              font-size: 1.5rem;
-            }
-            .service-description {
-              font-size: 1rem;
-              text-align: center;
-            }
-          }
         }
+
         .image {
           height: 470px;
           width: 90%;
@@ -174,38 +189,55 @@
         &.wrapper-reverse {
           flex-direction: column-reverse;
         }
+
         .content {
           width: 100%;
+          align-items: center;
 
-          .title {
-            font-size: 4rem;
-            justify-content: center;
+          .header {
+            .title {
+              font-size: 2.5rem;
+              justify-content: center;
+              text-align: center;
+            }
+
+            .description {
+              width: 100%;
+              font-size: 1rem;
+              text-align: center;
+            }
           }
-          .description {
-            width: 100%;
-            font-size: 1.5rem;
-          }
+
           .form {
             gap: var(--composer-gap-sm);
+            width: 100%;
 
             .input-container {
+              width: 65%;
+
               .input {
                 font-size: 1rem;
               }
             }
+
+            .button {
+              width: 35%;
+            }
           }
 
-          .service-card {
-            max-width: 100%;
-            gap: var(--composer-gap-sm);
-            .service-title {
-              font-size: 1.4rem;
-            }
-            .service-description {
-              font-size: 1.5rem;
+          .service-card-list {
+            .service-card {
+              max-width: 100%;
+              gap: var(--composer-gap-sm);
+              align-items: center;
+
+              .service-title {}
+
+              .service-description {}
             }
           }
         }
+
         .image {
           height: 350px;
         }

@@ -86,7 +86,7 @@ class Download11 extends BaseDownload {
 
       ],
     });
-    this.addProp(INPUTS.BUTTON("buttonRight", "Right Button", "More", "", "", "", "Primary")),
+    this.addProp(INPUTS.BUTTON("buttonRight", "Right Button", "More", "", "", "", "Primary"));
 
       this.addProp({
         type: "object",

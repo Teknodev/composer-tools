@@ -3,6 +3,7 @@ import { BaseHeader } from "../../EditorComponent";
 import styles from "./header4.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 class Header4 extends BaseHeader {
   constructor(props?: any) {
@@ -40,24 +41,13 @@ class Header4 extends BaseHeader {
         },
         {
           type: "string",
-          key: "buttonText",
-          displayer: "Button Text",
-          value: "More Projects",
-        },
-        {
-          type: "page",
-          key: "buttonLink",
-          displayer: "Button Link",
-          value: "",
-        },
-        {
-          type: "string",
           key: "note",
           displayer: "Note",
           value: "NOTE: Some details are very important.",
         },
       ],
     });
+    this.addProp(INPUTS.BUTTON("button", "Button", "More Projects", "", null, null, "Primary"));
     this.addProp({
       type: "image",
       key: "image",
@@ -85,13 +75,14 @@ class Header4 extends BaseHeader {
   }
 
   render() {
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
     let card: any = this.castToObject("card");
     const imageAnm = this.getPropValue("image-anm");
     const image = this.getPropValue("image");
     const subTitle = this.castToString(card.subtitle);
     const title = this.castToString(card.title);
     const description = this.castToString(card.desc);
-    const buttonText = this.castToString(card.buttonText);
+    const buttonText = this.castToString(button.text);
     const note = this.castToString(card.note);
     const showCard = subTitle || title || description || buttonText || note;
     const scrollY = this.getComponentState("scrollY");
@@ -149,7 +140,8 @@ class Header4 extends BaseHeader {
                 {buttonText && (
                   <div className={this.decorateCSS("button-container")}>
                     <ComposerLink path={card.buttonLink}>
-                      <Base.Button className={this.decorateCSS("button")}>{card.buttonText}</Base.Button>
+                      <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                        {button.text}</Base.Button>
                     </ComposerLink>
                   </div>
                 )}

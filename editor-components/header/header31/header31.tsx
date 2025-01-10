@@ -2,21 +2,19 @@ import * as React from "react";
 import styles from "./header31.module.scss";
 import { BaseHeader } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { TypeUsableComponentProps } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "composer-tools/composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type ISliderData = {
-  title: JSX.Element;
-  subtitle: JSX.Element;
-  sliderNumber: number;
-  image: string;
   rightImage: string;
   leftImage: string;
+  subtitle: JSX.Element;
+  title: JSX.Element;
   description: JSX.Element;
-  circleIcon: string;
-  text: JSX.Element;
+  sliderNumber: number;
+  actions: INPUTS.CastedButton[];
 };
 interface IAnimationProps {
   animationState: string;
@@ -103,25 +101,7 @@ class Header31 extends BaseHeader {
               key: "actions",
               displayer: "Action",
               value: [
-                {
-                  type: "object",
-                  key: "button",
-                  displayer: "Button",
-                  value: [
-                    {
-                      type: "string",
-                      key: "buttonText",
-                      displayer: "Button Text",
-                      value: "VIEW CASE",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Link",
-                      value: "",
-                    },
-                  ],
-                },
+                INPUTS.BUTTON("button", "Button", "VIEW CASE", "", null, null, "White"),
               ],
             },
           ],
@@ -181,25 +161,7 @@ class Header31 extends BaseHeader {
               key: "actions",
               displayer: "Action",
               value: [
-                {
-                  type: "object",
-                  key: "button",
-                  displayer: "Button",
-                  value: [
-                    {
-                      type: "string",
-                      key: "buttonText",
-                      displayer: "Button Text",
-                      value: "VIEW CASE",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Link",
-                      value: "",
-                    },
-                  ],
-                },
+                INPUTS.BUTTON("button", "Button", "VIEW CASE", "", null, null, "White"),
               ],
             },
           ],
@@ -253,25 +215,7 @@ class Header31 extends BaseHeader {
               key: "actions",
               displayer: "Action",
               value: [
-                {
-                  type: "object",
-                  key: "button",
-                  displayer: "Button",
-                  value: [
-                    {
-                      type: "string",
-                      key: "buttonText",
-                      displayer: "Button Text",
-                      value: "VIEW CASE",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Link",
-                      value: "",
-                    },
-                  ],
-                },
+                INPUTS.BUTTON("button", "Button", "VIEW CASE", "", null, null, "White"),
               ],
             },
           ],
@@ -325,25 +269,7 @@ class Header31 extends BaseHeader {
               key: "actions",
               displayer: "Action",
               value: [
-                {
-                  type: "object",
-                  key: "button",
-                  displayer: "Button",
-                  value: [
-                    {
-                      type: "string",
-                      key: "buttonText",
-                      displayer: "Button Text",
-                      value: "VIEW CASE",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Link",
-                      value: "",
-                    },
-                  ],
-                },
+                INPUTS.BUTTON("button", "Button", "VIEW CASE", "", null, null, "White"),
               ],
             },
           ],
@@ -397,25 +323,7 @@ class Header31 extends BaseHeader {
               key: "actions",
               displayer: "Action",
               value: [
-                {
-                  type: "object",
-                  key: "button",
-                  displayer: "Button",
-                  value: [
-                    {
-                      type: "string",
-                      key: "buttonText",
-                      displayer: "Button Text",
-                      value: "VIEW CASE",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Link",
-                      value: "",
-                    },
-                  ],
-                },
+                INPUTS.BUTTON("button", "Button", "VIEW CASE", "", null, null, "White"),
               ],
             },
           ],
@@ -468,25 +376,7 @@ class Header31 extends BaseHeader {
               key: "actions",
               displayer: "Action",
               value: [
-                {
-                  type: "object",
-                  key: "button",
-                  displayer: "Button",
-                  value: [
-                    {
-                      type: "string",
-                      key: "buttonText",
-                      displayer: "Button Text",
-                      value: "VIEW CASE",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Link",
-                      value: "",
-                    },
-                  ],
-                },
+                INPUTS.BUTTON("button", "Button", "VIEW CASE", "", null, null, "White"),
               ],
             },
           ],
@@ -540,25 +430,7 @@ class Header31 extends BaseHeader {
               key: "actions",
               displayer: "Action",
               value: [
-                {
-                  type: "object",
-                  key: "button",
-                  displayer: "Button",
-                  value: [
-                    {
-                      type: "string",
-                      key: "buttonText",
-                      displayer: "Button Text",
-                      value: "VIEW CASE",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Link",
-                      value: "",
-                    },
-                  ],
-                },
+                INPUTS.BUTTON("button", "Button", "VIEW CASE", "", null, null, "White"),
               ],
             },
           ],
@@ -612,25 +484,7 @@ class Header31 extends BaseHeader {
               key: "actions",
               displayer: "Action",
               value: [
-                {
-                  type: "object",
-                  key: "button",
-                  displayer: "Button",
-                  value: [
-                    {
-                      type: "string",
-                      key: "buttonText",
-                      displayer: "Button Text",
-                      value: "VIEW CASE",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Link",
-                      value: "",
-                    },
-                  ],
-                },
+                INPUTS.BUTTON("button", "Button", "VIEW CASE", "", null, null, "White"),
               ],
             },
           ],
@@ -690,25 +544,7 @@ class Header31 extends BaseHeader {
               key: "actions",
               displayer: "Action",
               value: [
-                {
-                  type: "object",
-                  key: "button",
-                  displayer: "Button",
-                  value: [
-                    {
-                      type: "string",
-                      key: "buttonText",
-                      displayer: "Button Text",
-                      value: "VIEW CASE",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Link",
-                      value: "",
-                    },
-                  ],
-                },
+                INPUTS.BUTTON("button", "Button", "VIEW CASE", "", null, null, "White"),
               ],
             },
           ],
@@ -841,10 +677,13 @@ class Header31 extends BaseHeader {
     }
   };
   render() {
+    const slider = this.castToObject<any>("slider");
+    const conditionalInfinite = slider.length > 2;
+
     const settings = {
       arrows: false,
       dots: false,
-      infinite: true,
+      infinite: conditionalInfinite,
       accessibility: false,
       speed: 1500,
       autoplay: true,
@@ -879,15 +718,16 @@ class Header31 extends BaseHeader {
     };
 
     const activeIndex = this.getComponentState("active-index");
-    const slider = this.castToObject<any>("slider");
-    const activeSlideObj = slider[activeIndex];
+    const activeSlideObj = slider[activeIndex] || {};
     const textAnimationEnabled = this.getPropValue("textAnimation");
     const overlay = this.getPropValue("overlay");
 
     const icons = this.castToObject<Icon[]>("icons");
 
     return (
-      <div className={slider[this.getComponentState("active-index")].rightImage ? this.decorateCSS("container") : this.decorateCSS("container-no-image")}>
+      <div
+        className={`${this.decorateCSS("container")} ${!activeSlideObj.rightImage && this.decorateCSS("no-image")
+          }`}>
         <div className={this.decorateCSS("max-content")}>
           {slider?.length > 0 && (
             <>
@@ -900,17 +740,14 @@ class Header31 extends BaseHeader {
                   {slider?.map((item: ISliderData, index: number) => (
                     <div key={index} className={this.decorateCSS("wrapper")}>
                       <div className={this.decorateCSS("right-slider")}>
-                        {item.rightImage && (
+                        {item?.rightImage && (
                           <img
                             className={this.decorateCSS("background-right")}
                             src={item.rightImage}
                             alt={item.rightImage}
                           />
                         )}
-                        <div
-                          className={`${overlay ? this.decorateCSS("overlay") : ""
-                            }`}
-                        ></div>
+                        {overlay && <div className={this.decorateCSS("overlay")}></div>}
                       </div>
                     </div>
                   ))}
@@ -1038,27 +875,30 @@ class Header31 extends BaseHeader {
                         {activeSlideObj.description}
                       </p>
                     )}
-                    {activeSlideObj.actions.map((item: any) => (
-                      <ComposerLink path={item.link}>
-                        <div className={this.decorateCSS("button-box")}>
-                          <Base.Button
-                            className={`${this.decorateCSS("button")} ${textAnimationEnabled ? "animate__animated" : ""
-                              } ${this.getComponentState(
-                                "buttonAnimationClass"
-                              )}`}
-                            onAnimationEnd={() => {
-                              this.handleAnimationEnd({
-                                animationState: "buttonAnimationClass",
-                                startingAnimation: "animate__fadeInUp",
-                                endingAnimation: "animate__fadeOutDown",
-                              });
-                            }}
-                          >
-                            {item.buttonText}
-                          </Base.Button>
-                        </div>
-                      </ComposerLink>
-                    ))}
+
+                    {activeSlideObj.actions.length > 0 &&
+                      activeSlideObj.actions.map((buttonItem: INPUTS.CastedButton) => (
+                        <ComposerLink path={buttonItem.url}>
+                          <div className={this.decorateCSS("button-box")}>
+                            <Base.Button buttonType={buttonItem.type}
+                              className={`${this.decorateCSS("button")} ${textAnimationEnabled ? "animate__animated" : ""
+                                } ${this.getComponentState(
+                                  "buttonAnimationClass"
+                                )}`}
+                              onAnimationEnd={() => {
+                                this.handleAnimationEnd({
+                                  animationState: "buttonAnimationClass",
+                                  startingAnimation: "animate__fadeInUp",
+                                  endingAnimation: "animate__fadeOutDown",
+                                });
+                              }}
+                            >
+                              {buttonItem.text}
+                            </Base.Button>
+                          </div>
+                        </ComposerLink>
+                      ))
+                    }
                   </div>
                 </div>
                 <div className={this.decorateCSS("main-social")}>
