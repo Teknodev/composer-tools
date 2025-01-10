@@ -55,6 +55,7 @@
 
   .filledBackground{
     background: transparent !important;
+    transition: all 0.3s ease !important;
   }
 
   .maxContent {
@@ -78,6 +79,22 @@
         color: var(--composer-font-color-primary);
         transition: all 0.3s ease;
       }
+
+
+         .localization{
+          padding: var(--composer-gap-sm) 0;
+          .localizationItemTitle{
+            color: var(--composer-font-color-primary);
+            font-weight: normal;
+            margin: 0;
+          }
+          .accordionIcon{
+            // font-size: 1rem;
+            color: var(--composer-font-color-primary);
+            // margin-right: var(--composer-gap-xs);
+          }
+
+         }
 
   }
 }
@@ -432,10 +449,10 @@
           font-size: 1.5rem;
           transition: all 0.3s ease;
           color: var(--composer-font-color-primary);
-          transform: rotate(0deg);
+          transform: rotate(-90deg);
 
           &.active {
-            transform: rotate(-180deg);
+            transform: rotate(0deg);
           }
         }
       }
