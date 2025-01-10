@@ -26,7 +26,7 @@ class Content1 extends BaseContent {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "Button Text", "", "Primary")
+        INPUTS.BUTTON("button", "Button", "Button Text", "", null, null,"Primary")
       ],
     });
   }

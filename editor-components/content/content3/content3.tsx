@@ -76,7 +76,7 @@ class Content3 extends BaseContent {
               value:
                 "Usually, our colleagues don't jump in the air when they hear e-learning but the AI videos created with Writebot have sparked motivation that we haven't seen before.",
             },
-            INPUTS.BUTTON("button", "Button", "Explore More", "", "Primary")
+            INPUTS.BUTTON("button", "Button", "Explore More", "", null, null, "Primary")
           ],
         },
 
@@ -112,7 +112,7 @@ class Content3 extends BaseContent {
               value:
                 "Usually, our colleagues don't jump in the air when they hear e-learning but the AI videos created with Writebot have sparked motivation that we haven't seen before.",
             },
-            INPUTS.BUTTON("button", "Button", "Explore More", "", "Primary")
+            INPUTS.BUTTON("button", "Button", "Explore More", "", null, null, "Primary")
           ],
         },
       ],
