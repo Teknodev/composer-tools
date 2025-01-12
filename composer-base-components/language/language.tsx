@@ -93,7 +93,7 @@ const ComposerLanguage = (props: ComposerLanguageProps) => {
       itemClassName,
       openClassName,
       languageAccordionClassName,
-      icon = "IoIosArrowDown",
+      icon = "MdArrowDropDown",
       title = "name",
       accordionIconClassName,
       titleClassName

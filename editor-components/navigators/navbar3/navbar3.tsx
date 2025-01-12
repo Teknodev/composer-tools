@@ -1213,13 +1213,8 @@ class Navbar3 extends BaseNavigator {
     const transparentBackground =
       (isStickyTransparent && !isScrolled) || isAbsolute;
 
-    // console.log("transparentBackground", transparentBackground);
-    // console.log("transparentBackground props", isStickyTransparent, isScrolled, isAbsolute);
-
     const changeBackground = this.getComponentState("changeBackground");
     const isBigScreen = this.getComponentState("isBigScreen");
-    // const currentLogo =
-    //   transparentBackground && !changeBackground ? absoluteLogo : defaultLogo;
 
     const currentLogo =
       (transparentBackground && !changeBackground) ||
