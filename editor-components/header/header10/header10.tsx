@@ -5,6 +5,7 @@ import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type SliderObject = {
   title: JSX.Element;
@@ -14,12 +15,7 @@ type SliderObject = {
   subtitle: JSX.Element;
   description1: JSX.Element;
   icons: { icon: string; url: string }[];
-  button: Array<ButtonObject>;
-};
-
-type ButtonObject = {
-  buttonText: JSX.Element;
-  buttonLink: JSX.Element;
+  button: INPUTS.CastedButton[];
 };
 
 class Header10 extends BaseHeader {
@@ -173,25 +169,7 @@ class Header10 extends BaseHeader {
               key: "button",
               displayer: "Buttons",
               value: [
-                {
-                  type: "object",
-                  key: "buttonObject",
-                  displayer: "Button",
-                  value: [
-                    {
-                      type: "string",
-                      key: "buttonText",
-                      displayer: "Button Text",
-                      value: "Get a quote",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Button Link",
-                      value: "",
-                    },
-                  ],
-                },
+                INPUTS.BUTTON("button", "Button", "Get a quote", "", null, null, "Link")
               ],
             },
             {
@@ -255,25 +233,7 @@ class Header10 extends BaseHeader {
               key: "button",
               displayer: "Buttons",
               value: [
-                {
-                  type: "object",
-                  key: "buttonObject",
-                  displayer: "Button",
-                  value: [
-                    {
-                      type: "string",
-                      key: "buttonText",
-                      displayer: "Button Text",
-                      value: "Get a quote",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Button Link",
-                      value: "",
-                    },
-                  ],
-                },
+                INPUTS.BUTTON("button", "Button", "Get a quote", "", null, null, "Link")
               ],
             },
             {
@@ -422,9 +382,9 @@ class Header10 extends BaseHeader {
                           </div>
                         )}
                         {item.button.map(
-                          (buttonItem: any, indexButton: number) => {
+                          (buttonItem: INPUTS.CastedButton, indexButton: number) => {
                             const buttonText = this.castToString(
-                              buttonItem.buttonText
+                              buttonItem.text
                             );
                             if (buttonText)
                               return (
@@ -438,11 +398,11 @@ class Header10 extends BaseHeader {
                                       className={this.decorateCSS("line")}
                                     />
                                   )}
-                                  <ComposerLink path={buttonItem.buttonLink}>
-                                    <Base.Button
+                                  <ComposerLink path={buttonItem.url}>
+                                    <Base.Button buttonType={buttonItem.type}
                                       className={this.decorateCSS("button")}
                                     >
-                                      {buttonItem.buttonText}
+                                      {buttonItem.text}
                                     </Base.Button>
                                   </ComposerLink>
                                 </div>
