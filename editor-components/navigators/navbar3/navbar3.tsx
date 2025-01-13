@@ -1217,8 +1217,7 @@ class Navbar3 extends BaseNavigator {
     const isBigScreen = this.getComponentState("isBigScreen");
 
     const currentLogo =
-      (transparentBackground && !changeBackground) ||
-      (hamburgerNavActive && isBigScreen)
+      (transparentBackground && !changeBackground)
         ? absoluteLogo
         : defaultLogo;
 
