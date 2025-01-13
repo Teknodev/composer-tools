@@ -4,8 +4,9 @@ import styles from "./http_codes4.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
-class HTTP_CODES4 extends BaseHTTPCodes {
+class HttpCodes4 extends BaseHTTPCodes {
   constructor(props?: any) {
     super(props, styles);
 
@@ -27,33 +28,7 @@ class HTTP_CODES4 extends BaseHTTPCodes {
       type: "array",
       key: "buttons",
       displayer: "Buttons",
-      value: [
-        {
-          type: "object",
-          key: "button",
-          displayer: "Button",
-          value: [
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "Go to Home page",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Link",
-              value: "",
-            },
-            {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "GoArrowLeft",
-            },
-          ],
-        },
-      ],
+      value: [INPUTS.BUTTON("button", "Button", "Go to Home page", "", "GoArrowLeft", null, "Link")],
     });
 
     this.addProp({
@@ -71,38 +46,37 @@ class HTTP_CODES4 extends BaseHTTPCodes {
   render() {
     const titleWords = this.castToString(this.getPropValue("title"));
     const description_words = this.getPropValue("description");
-    const descriptionWords = description_words.props.html;
+    const descriptionWords = this.castToString(description_words);
     const buttons = this.castToObject<any[]>("buttons");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
-            {(titleWords || descriptionWords || (buttons?.length > 0)) && (
-              <div className={this.decorateCSS("left-side")}>
-                {titleWords && <div className={this.decorateCSS("title")}>{this.getPropValue("title")}</div>}
-                {descriptionWords && <div className={this.decorateCSS("description")}>{this.getPropValue("description")}</div>}
+            {(titleWords || descriptionWords || buttons?.length > 0) && (
+              <Base.VerticalContent className={this.decorateCSS("left-side")}>
+                {titleWords && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                {descriptionWords && <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>}
 
-                {(buttons?.length > 0) && (
+                {buttons?.length > 0 && (
                   <div className={this.decorateCSS("button-container")}>
                     {buttons.map((button: any, index: number) => {
                       const buttonTextExist = this.castToString(button.text);
+                      const buttonExist = buttonTextExist || button.icon;
                       return (
-                        <ComposerLink path={button.link}>
-                          <div key={index} className={this.decorateCSS("button")}>
-                            {button.icon && (
-                              <ComposerIcon name={button.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
-                            )}
-                            {buttonTextExist && (
-                              <div className={this.decorateCSS("button-text")}> {button.text}</div>
-                            )}
-                          </div>
-                        </ComposerLink>
+                        buttonExist && (
+                          <ComposerLink path={button.link}>
+                            <Base.Button buttonType={button.type} key={index} className={this.decorateCSS("button")}>
+                              {button.icon && <ComposerIcon name={button.icon} propsIcon={{ className: this.decorateCSS("icon") }} />}
+                              {buttonTextExist && <div className={this.decorateCSS("button-text")}> {button.text}</div>}
+                            </Base.Button>
+                          </ComposerLink>
+                        )
                       );
                     })}
                   </div>
                 )}
-              </div>
+              </Base.VerticalContent>
             )}
 
             {this.castToString(this.getPropValue("right")) && (
@@ -117,4 +91,4 @@ class HTTP_CODES4 extends BaseHTTPCodes {
   }
 }
 
-export default HTTP_CODES4;
+export default HttpCodes4;

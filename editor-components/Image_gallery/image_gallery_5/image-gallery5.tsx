@@ -10,7 +10,7 @@ interface GalleryItem {
   caption: JSX.Element;
 }
 
-class ImageGalleryComponent5 extends BaseImageGallery {
+class ImageGallery5 extends BaseImageGallery {
   private imageGalleryRef: React.RefObject<HTMLDivElement>;
   constructor(props?: any) {
     super(props, styles);
@@ -362,4 +362,4 @@ class ImageGalleryComponent5 extends BaseImageGallery {
   }
 }
 
-export default ImageGalleryComponent5;
+export default ImageGallery5;

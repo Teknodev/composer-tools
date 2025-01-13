@@ -3,8 +3,9 @@ import styles from "./header30.module.scss";
 import { BaseHeader } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
-class HeaderComponent30 extends BaseHeader {
+class Header30 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
 
@@ -43,30 +44,13 @@ class HeaderComponent30 extends BaseHeader {
         "An award-winning Prague-based indie game studio pushing the boundaries of narrative and serious games",
     });
 
+
     this.addProp({
       type: "array",
       key: "buttons",
       displayer: "Buttons",
       value: [
-        {
-          type: "object",
-          key: "button_link",
-          displayer: "Button Navigate",
-          value: [
-            {
-              type: "page",
-              key: "link",
-              displayer: "Button",
-              value: "",
-            },
-            {
-              type: "string",
-              key: "button_text",
-              displayer: "Button Text",
-              value: "OUR PROJECTS",
-            },
-          ],
-        },
+        INPUTS.BUTTON("button", "Button", "OUR PROJECTS", "", null, null, "Primary"),
       ],
     });
   }
@@ -79,11 +63,12 @@ class HeaderComponent30 extends BaseHeader {
     const video = this.getPropValue("video");
     const image = this.getPropValue("image");
 
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+
     return (
       <Base.Container
-        className={`${this.decorateCSS("container")} ${
-          !video && this.decorateCSS("withoutVideoContainer")
-        }`}
+        className={`${this.decorateCSS("container")} ${!video && this.decorateCSS("withoutVideoContainer")
+          }`}
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {video && (
@@ -133,18 +118,17 @@ class HeaderComponent30 extends BaseHeader {
               </p>
             )}
 
-            {Array.isArray(this.getPropValue("buttons")) &&
-              this.getPropValue("buttons").length > 0 && (
-                <div className={this.decorateCSS("buttons")}>
-                  {this.getPropValue("buttons").map((button: any) => (
-                    <ComposerLink path={button.getPropValue("link")}>
-                      <Base.Button className={this.decorateCSS("button")}>
-                        {button.getPropValue("button_text")}
-                      </Base.Button>
-                    </ComposerLink>
-                  ))}
-                </div>
-              )}
+            {buttons.length > 0 &&
+              <div className={this.decorateCSS("buttons")}>
+                {buttons.map((button: INPUTS.CastedButton) => (
+                  <ComposerLink path={button.url}>
+                    <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                      {button.text}
+                    </Base.Button>
+                  </ComposerLink>
+                ))}
+              </div>
+            }
           </div>
         </Base.MaxContent>
       </Base.Container>
@@ -152,4 +136,4 @@ class HeaderComponent30 extends BaseHeader {
   }
 }
 
-export default HeaderComponent30;
+export default Header30;

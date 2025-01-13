@@ -3,6 +3,7 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header9.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type ITab = {
   tabText: JSX.Element;
@@ -83,18 +84,7 @@ class Header9 extends BaseHeader {
         },
       ],
     });
-    this.addProp({
-      type: "string",
-      key: "featuredText",
-      displayer: "Featured Link Text",
-      value: "see all works",
-    });
-    this.addProp({
-      type: "page",
-      key: "featuredLink",
-      displayer: "Featured Link URL",
-      value: "",
-    });
+    this.addProp(INPUTS.BUTTON("featuredLink", "Featured Button", "see all works", "", null, null, "Link"));
     this.addProp({
       type: "array",
       key: "tabs",
@@ -340,7 +330,6 @@ class Header9 extends BaseHeader {
   render() {
     const textExist: string = this.getPropValue("text", { as_string: true });
     const socials = this.castToObject<ISocial[]>("socials");
-    const featuredText: string = this.getPropValue("featuredText", { as_string: true });
     const tabs = this.castToObject<ITab[]>("tabs");
     const activeTabIndex: number = this.getComponentState("activeTab");
 
@@ -349,6 +338,8 @@ class Header9 extends BaseHeader {
     const socialHeight = window.document.getElementById("header9-social")?.clientHeight
     const isCounterActive = this.getPropValue("isCounterActive")
     const noTabs = ((tabs.length < 1 || !isCounterActive) && !textExist);
+
+    const featured: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("featuredLink");
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -404,15 +395,15 @@ class Header9 extends BaseHeader {
                         }
                         onMouseEnter={() => this.handleMouseEnter(index)}
                       >
-                        {this.castToString(tab.tabText)}
+                        {tab.tabText}
                       </div>
                     );
                   })}
-                {featuredText && (
-                  <ComposerLink path={this.getPropValue("featuredLink")}>
-                    <h2 className={this.decorateCSS("linkText")}>
-                      {this.getPropValue("featuredText")}
-                    </h2>
+                {this.castToString(featured.text) && (
+                  <ComposerLink path={featured.url}>
+                    <Base.Button buttonType={featured.type} className={this.decorateCSS("linkText")}>
+                      {featured.text}
+                    </Base.Button>
                   </ComposerLink>
                 )}
               </Base.VerticalContent>

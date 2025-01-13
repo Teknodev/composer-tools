@@ -3,6 +3,7 @@ import { BaseHeader } from "../../EditorComponent";
 import styles from "./header6.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 interface TitleItem {
   title: JSX.Element;
@@ -89,7 +90,7 @@ class Header6 extends BaseHeader {
     this.addProp({
       type: "image",
       key: "image1",
-      displayer: " Background Image",
+      displayer: "Background Image",
       value:
         "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617f52bd2970002c624523?alt=media&timestamp=1719483639150",
     });
@@ -97,19 +98,19 @@ class Header6 extends BaseHeader {
     this.addProp({
       type: "object",
       key: "image2Item",
-      displayer: "Image2 Item",
+      displayer: "Image Item",
       value: [
         {
           type: "image",
           key: "image2",
-          displayer: "Image2",
+          displayer: "Image",
           value:
             "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617f52bd2970002c624524?alt=media&timestamp=1719483639150",
         },
         {
           type: "boolean",
           key: "image2Animation",
-          displayer: "Image2 Animation",
+          displayer: "Image Animation",
           value: true,
         },
       ],
@@ -123,33 +124,16 @@ class Header6 extends BaseHeader {
         maxElementCount: 2,
       },
       value: [
-        {
-          type: "object",
-          key: "button",
-          displayer: "Button",
-          value: [
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Explore",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Button Link",
-              value: "",
-            },
-            {
-              type: "boolean",
-              key: "buttonAnimation",
-              displayer: "Button Animation",
-              value: true,
-            },
-          ],
-        },
+        INPUTS.BUTTON("button", "Button", "Explore", "", null, null, "Primary")
       ],
     });
+
+    this.addProp({
+      type: "boolean",
+      key: "buttonAnimation",
+      displayer: "Button Animation",
+      value: true,
+    },)
   }
 
   getName(): string {
@@ -160,78 +144,54 @@ class Header6 extends BaseHeader {
     const title2 = this.castToObject<Title2Item>("title2Item");
     const description = this.castToObject<DescriptionItem>("descriptionItem");
     const image2 = this.castToObject<Image2Item>("image2Item");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
     const showLeftContent =
       this.castToString(title.title) ||
       this.castToString(title2.title2) ||
       this.castToString(description.description) ||
-      this.castToObject<ButtonItem[]>("buttons").some((el) => this.castToString(el.buttonText));
+      buttons.length > 0
 
     const showRightContent = this.getPropValue("image1") || image2.image2;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <section className={`${this.decorateCSS("child-container")}`}>
+          <section className={this.decorateCSS("child-container")}>
             {showLeftContent ? (
               <div className={this.decorateCSS("left-content")}>
                 {(this.castToString(title.title) || this.castToString(title2.title2)) && (
                   <div className={this.decorateCSS("title-container")}>
                     {this.castToString(title.title) && (
-                      <h2
-                        className={
-                          title.titleAnimation
-                            ? this.decorateCSS("title")
-                            : this.decorateCSS("title-noanimation")
-                        }
-                      >
-                        {this.castToString(title.title)}
+                      <h2 className={`${this.decorateCSS("title")} ${!title.titleAnimation && this.decorateCSS("noanimation")}`}>
+                        {title.title}
                       </h2>
                     )}
                     {this.castToString(title2.title2) && (
-                      <h3
-                        className={
-                          title2.title2Animation
-                            ? this.decorateCSS("title2")
-                            : this.decorateCSS("title2-noanimation")
-                        }
-                      >
-                        {this.castToString(title2.title2)}
+                      <h3 className={`${this.decorateCSS("title2")} ${!title2.title2Animation && this.decorateCSS("noanimation")}`}>
+                        {title2.title2}
                       </h3>
                     )}
                   </div>
                 )}
                 {this.castToString(description.description) && (
-                  <p
-                    className={
-                      description.descriptionAnimation
-                        ? this.decorateCSS("description")
-                        : this.decorateCSS("description-noanimation")
-                    }
-                  >
-                    {this.castToString(description.description)}
+                  <p className={`${this.decorateCSS("description")} ${!description.descriptionAnimation && this.decorateCSS("noanimation")}`}>
+                    {description.description}
                   </p>
                 )}
                 {this.getPropValue("buttons").length > 0 && (
                   <div className={this.decorateCSS("buttondiv")}>
-                    {this.castToObject<ButtonItem[]>("buttons").map(
-                      (item: any, indexButtons: number) => {
-                        const buttonText = this.castToString(item.buttonText);
-                        return buttonText ? (
-                          <ComposerLink path={item.url} key={indexButtons}>
-                            <Base.Button
-                              className={
-                                item.buttonAnimation
-                                  ? this.decorateCSS("button")
-                                  : this.decorateCSS("button-noanimation")
-                              }
-                            >
-                              {buttonText}
-                            </Base.Button>
-                          </ComposerLink>
-                        ) : null;
-                      }
-                    )}
+                    {buttons.map((item: INPUTS.CastedButton, indexButtons: number) => (
+                      <ComposerLink path={item.url} key={indexButtons}>
+                        <Base.Button buttonType={item.type}
+                          className={`${this.decorateCSS("button")} ${!this.getPropValue("buttonAnimation") && this.decorateCSS("noanimation")}`}
+                        >
+                          {item.text}
+                        </Base.Button>
+                      </ComposerLink>
+                    ))
+
+                    }
                   </div>
                 )}
               </div>
@@ -242,23 +202,17 @@ class Header6 extends BaseHeader {
                 {this.getPropValue("image1") && (
                   <img
                     src={this.getPropValue("image1")}
-                    alt=""
+                    alt={this.getPropValue("image1")}
                     className={this.decorateCSS("image1")}
                   />
                 )}
                 {image2.image2 && (
                   <img
                     src={image2.image2}
-                    alt=""
-                    className={
-                      this.getPropValue("image1")
-                        ? image2.image2Animation
-                          ? this.decorateCSS("image2")
-                          : this.decorateCSS("image2-noanimation")
-                        : image2.image2Animation
-                        ? this.decorateCSS("image2-without-image1")
-                        : this.decorateCSS("image2-noanimation")
-                    }
+                    alt={image2.image2}
+                    className={`${this.decorateCSS("image2")} 
+                    ${(!image2.image2Animation) && this.decorateCSS("noanimation")}
+                    ${(!this.getPropValue("image1")) && this.decorateCSS("without-image1")}`}
                   />
                 )}
               </div>
