@@ -7,7 +7,7 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { Base } from "composer-tools/composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLanguage from "composer-tools/composer-base-components/language/language";
-import stylesb from "../../../composer-base-components/base/base.module.scss";
+
 interface Logo {
   image: string;
   imageLink: string;
@@ -1049,6 +1049,7 @@ class Navbar7 extends BaseNavigator {
     });
 
     this.setComponentState("isScrolled", false);
+    this.setComponentState("isBigScreen", false);
     this.setComponentState("isMobileMenuOpen", false);
     this.setComponentState("navActive", false);
     this.setComponentState("subNavActiveIndex", null);
@@ -1061,32 +1062,10 @@ class Navbar7 extends BaseNavigator {
     return "Navbar 7";
   }
 
-  componentDidMount() {
-    window.addEventListener("scroll", this.handleScroll);
-    window.addEventListener("resize", this.handleResize);
-  }
-
-  handleResize = () => {
-    if (window.matchMedia("(min-width: 1025px)").matches) {
-      Base.Navigator.changeScrollBehaviour("auto");
-    }else if (this.getComponentState("isMobileMenuOpen")) {
-      Base.Navigator.changeScrollBehaviour("hidden");
-    }
-  }
-
-
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleScroll);
-  }
-
-  handleScroll = () => {
-    const isScrolled = window.scrollY > 50;
-    this.setComponentState("isScrolled", isScrolled);
-  };
-
   handleOpenMenu = () => {
     Base.Navigator.changeScrollBehaviour("hidden");
-    this.setComponentState("changeBackground", true);
+    const wrapper = Base.Navigator.getWrapperContainer();
+    this.setComponentState("changeBackground", wrapper.scrollY === 0);
 
     setTimeout(() => {
       this.setComponentState("isMobileMenuOpen", true);
@@ -1123,30 +1102,39 @@ class Navbar7 extends BaseNavigator {
     const absoluteLogo = this.castToObject<Logo>("absoluteLogo");
     const position = this.getPropValue("position");
     const isScrolled = this.getComponentState("isScrolled");
+    const isBigScreen = this.getComponentState("isBigScreen");
     const isStickyTransparent = position === "Sticky Transparent";
     const isAbsolute = position === "Absolute";
     const transparentBackground =
       (isStickyTransparent && !isScrolled) || isAbsolute;
     const changeBackground = this.getComponentState("changeBackground");
 
+    const isMobileMenuOpen = this.getComponentState("isMobileMenuOpen");
 
-      const currentLogo =
-      transparentBackground && !changeBackground ? absoluteLogo : defaultLogo;
+    const currentLogo =
+      ((transparentBackground && !changeBackground) || (isMobileMenuOpen && isBigScreen)) && !isScrolled
+        ? absoluteLogo
+        : defaultLogo;
+        
+      console.log("transparentBackground", transparentBackground);
+      console.log("changeBackground", changeBackground);
+      console.log("isBigScreen", isBigScreen);
+      console.log("isMobileMenuOpen", isMobileMenuOpen);
+      
 
     const icons = this.castToObject<Icon[]>("icons");
     const menuItems = this.castToObject<MenuItem[]>("menuItems");
-    const isMobileMenuOpen = this.getComponentState("isMobileMenuOpen");
 
     const language = this.castToObject<Language>("language");
-
-    const isOverlayOpen = this.getComponentState("isOverlayOpen");
     
-
     return (
       <>
         <Base.Navigator.Container
           position={position}
           positionContainer={`${this.decorateCSS("pcNavbarContainer")}`}
+          setIsScrolled={(value: boolean) => this.setComponentState("isScrolled", value)}
+          setIsBigScreen={(value: boolean) => this.setComponentState("isBigScreen", value)}
+
         >
           <Base.MaxContent
             className={`${this.decorateCSS("maxContent")} ${
@@ -1322,6 +1310,10 @@ class Navbar7 extends BaseNavigator {
           )} ${
             changeBackground ? this.decorateCSS("filledBackground") : ""
           }`}
+          hamburgerNavActive={isMobileMenuOpen}
+          setIsScrolled={(value: boolean) => this.setComponentState("isScrolled", value)}
+          setIsBigScreen={(value: boolean) => this.setComponentState("isBigScreen", value)}
+
         >
           <Base.MaxContent
             className={`${this.decorateCSS("maxContent")} ${
