@@ -4,6 +4,7 @@ import { BaseFooter } from "../../EditorComponent";
 import styles from "./footer9.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type link = {
   title: string;
@@ -30,7 +31,7 @@ class Footer9Page extends BaseFooter {
       type: "image",
       key: "logo",
       displayer: "Logo",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6762cc190655f8002ca8c66b?alt=media",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676e80240655f8002cadb8be?alt=media",
     });
     this.addProp({
       type: "string",
@@ -44,18 +45,8 @@ class Footer9Page extends BaseFooter {
       displayer: "Description",
       value: "During this phase to design is developed to meet the reuired technical standards",
     });
-    this.addProp({
-      type: "string",
-      key: "buttonText",
-      displayer: "Button Text",
-      value: "Subscribe",
-    });
-    this.addProp({
-      type: "page",
-      key: "buttonPage",
-      displayer: "Button Page",
-      value: "",
-    });
+
+    this.addProp(INPUTS.BUTTON("button", "Button", "Subscribe", "", null, null, "Primary"));
 
     this.addProp({
       type: "array",
@@ -358,16 +349,18 @@ class Footer9Page extends BaseFooter {
   }
 
   render() {
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+
     const logo = this.getPropValue("logo");
     const titleExist = this.castToString(this.getPropValue("title"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
-    const buttonTextExist = this.castToString(this.getPropValue("buttonText"));
-    const buttonPage = this.getPropValue("buttonPage");
+    const buttonTextExist = this.castToString(button.text);
     const footerTextExist = this.castToString(this.getPropValue("footerText"));
 
     const links = this.castToObject<link[]>("links");
     const icons = this.castToObject<icon[]>("icons");
     const pages = this.castToObject<page[]>("pages");
+
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -375,11 +368,11 @@ class Footer9Page extends BaseFooter {
           <div className={this.decorateCSS("header")}>
             {logo && <img src={logo} alt="" className={this.decorateCSS("logo")} />}
             <div className={this.decorateCSS("content")}>
-              {titleExist && <Base.H1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.H1>}
+              {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
               {descriptionExist && <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>}
               {buttonTextExist && (
-                <ComposerLink path={buttonPage}>
-                  <Base.Button>{this.getPropValue("buttonText")}</Base.Button>
+                <ComposerLink path={button.url}>
+                  <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>{button.text}</Base.Button>
                 </ComposerLink>
               )}
             </div>
@@ -387,7 +380,7 @@ class Footer9Page extends BaseFooter {
 
           {links.length > 0 && (
             <div className={this.decorateCSS("list-group")}>
-              {links.map((item: link, index: number) => {
+              {links.map((item: link) => {
                 return (
                   <ComposerLink path={item.page}>
                     <Base.P className={this.decorateCSS("text")}>{item.title}</Base.P>
@@ -399,7 +392,7 @@ class Footer9Page extends BaseFooter {
 
           {icons.length > 0 && (
             <div className={this.decorateCSS("icon-container")}>
-              {icons.map((item: icon, index: number) => {
+              {icons.map((item: icon) => {
                 return (
                   <ComposerLink path={item.page}>
                     <div className={this.decorateCSS("icon-element")}>
@@ -414,15 +407,15 @@ class Footer9Page extends BaseFooter {
           <div className={this.decorateCSS("bottom")}>
             {footerTextExist && <Base.P className={this.decorateCSS("text")}>{this.getPropValue("footerText")}</Base.P>}
             {pages.length > 0 && (
-              <div className={this.decorateCSS("list")}>
-                {pages.map((item: page, index: number) => {
+              <Base.Row className={this.decorateCSS("list")}>
+                {pages.map((item: page,) => {
                   return (
                     <ComposerLink path={item.page}>
                       <Base.P className={this.decorateCSS("item")}>{item.title}</Base.P>
                     </ComposerLink>
                   );
                 })}
-              </div>
+              </Base.Row>
             )}
           </div>
         </Base.MaxContent>
