@@ -256,21 +256,23 @@ export namespace Base {
         ?.split(" ")
         .map((item: string) => item.toLowerCase())
         .join("");
- 
+
       const resizeObserverRef = useRef<ResizeObserver | null>(null);
       const mediaSize = 1025;
 
       useEffect(() => {
         const wrapperContainer = getWrapperContainer();
-
         const handleScroll = () => {
           const wrapperContainer = getWrapperContainer();
+          changeNavbarBackground(wrapperContainer.scrollY > 50 && positionClass !== "absolute");
+        };
+
+        const changeNavbarBackground = (condition: boolean) => {
           const navbarPosition = document.querySelectorAll(
             `.${styles.navbarPosition}`
           ) as NodeListOf<Element>;
-
           if (navbarPosition) {
-            if (wrapperContainer.scrollY > 50 && positionClass !== "absolute") {
+            if (condition) {
               setIsScrolled && setIsScrolled(true);
               navbarPosition.forEach((item) => {
                 item.classList.add(styles.scrolled);
@@ -284,13 +286,17 @@ export namespace Base {
           }
         };
 
-        const handleResize = () => {
+        if(!hamburgerNavActive){
+          changeNavbarBackground(wrapperContainer.scrollY > 50 && positionClass !== "absolute");
+        }
 
+        const handleResize = () => {
           const wrapperContainer = getWrapperContainer();
           const matchedMedia =
             wrapperContainer.wrapper === window
               ? window.matchMedia(`(min-width: ${mediaSize}px)`).matches
-              : (wrapperContainer.wrapper as HTMLElement).clientWidth >= mediaSize;
+              : (wrapperContainer.wrapper as HTMLElement).clientWidth >=
+                mediaSize;
           if (matchedMedia) {
             Base.Navigator.changeScrollBehaviour("auto");
             setIsBigScreen && setIsBigScreen(true);
@@ -298,8 +304,8 @@ export namespace Base {
             Base.Navigator.changeScrollBehaviour("hidden");
             setIsBigScreen && setIsBigScreen(false);
           }
-        }
-    
+        };
+
         const createResizeListener = () => {
           const wrapperContainer = getWrapperContainer();
           if (wrapperContainer.wrapper === window) {
@@ -307,8 +313,10 @@ export namespace Base {
             return;
           }
           resizeObserverRef.current = new ResizeObserver(handleResize);
-          resizeObserverRef.current.observe(wrapperContainer.wrapper as HTMLElement);
-        }
+          resizeObserverRef.current.observe(
+            wrapperContainer.wrapper as HTMLElement
+          );
+        };
 
         wrapperContainer.wrapper.addEventListener("scroll", handleScroll);
         wrapperContainer.wrapper.addEventListener("resize", handleResize);

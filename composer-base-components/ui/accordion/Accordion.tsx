@@ -10,6 +10,7 @@ interface AccordionProps {
     contentClassName?: string;
     openClassName?: string;
     accordionIconClassName?: string;
+    titleClassName?: string;
 }
 
 const Accordion = ({
@@ -19,7 +20,8 @@ const Accordion = ({
     headerClassName, 
     contentClassName, 
     openClassName="open",
-    accordionIconClassName
+    accordionIconClassName,
+    titleClassName
 }: AccordionProps) => {
     const [isOpen, setIsOpen] = useState(false);
 
@@ -30,8 +32,8 @@ const Accordion = ({
     return (
         <div className={styles["accordion"]}>
             <div className={`${styles["accordionHeader"]} ${headerClassName || ''}`} onClick={handleToggle}>
-                <h3>{title}</h3>
-                {icon && <ComposerIcon name={icon} propsIcon={{className: `${styles["accordionIcon"]} ${accordionIconClassName || ''}`}}/>}
+                <h3 className={`${styles["accordionTitle"]} ${titleClassName || ''}`}>{title}</h3>
+                {icon && <ComposerIcon name={icon} propsIcon={{className: `${styles["accordionIcon"]} ${isOpen ? styles["open"] : ''} ${accordionIconClassName || ''}`}}/>}
             </div>
             <div className={`${styles["accordionContent"]} ${isOpen ? styles[openClassName] : ''} ${contentClassName || ''}`}>
                     {children}
