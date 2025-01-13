@@ -296,7 +296,7 @@ class Stats8Page extends BaseStats {
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        <Base.MaxContent className={!isContentPresent ? this.decorateCSS("max-content") : this.decorateCSS("max-content")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           {isContentPresent && (
             <Base.VerticalContent className={this.decorateCSS("stats8-page")}>
               <div className={this.decorateCSS("content")}>
@@ -309,19 +309,19 @@ class Stats8Page extends BaseStats {
 
                 {isAuthorExist && <Base.P className={this.decorateCSS("author")}>{author}</Base.P>}
                 {isAuthorRoleExist && (
-                  <div className={this.decorateCSS("author-role-container")}>
+                  <Base.Row className={this.decorateCSS("author-role-container")}>
                     <Base.P className={this.decorateCSS("author-role")}>
                       {showBackground && <span className={this.decorateCSS("author-role-background")}></span>}
                       {authorRole}
                     </Base.P>
-                  </div>
+                  </Base.Row>
                 )}
 
-                <Base.ContainerGrid className={this.decorateCSS("stats")}>
+                <Base.Row className={this.decorateCSS("stats")}>
                   {statsData.map((statData: CardData, indexStat: number) => {
                     return (
                       (this.castToString(statData.counter) || this.castToString(statData.description)) && (
-                        <div className={`${this.decorateCSS("stat-border")} ${!imageSrc ? this.decorateCSS("stat-border-full-width") : ""}`}>
+                        <div className={`${this.decorateCSS("stat-border")} ${!imageSrc && this.decorateCSS("stat-border-full-width")}`}>
                           <div key={indexStat} className={`${this.decorateCSS("stat")} ${showBackground ? this.decorateCSS("with-background") : this.decorateCSS("no-background")}`}>
                             {this.getComponentState(`number-${indexStat}`) !== "0" && <span className={this.decorateCSS("stat-counter")}>{this.getComponentState(`number-${indexStat}`)}</span>}
                             <Base.P className={this.decorateCSS("stat-description")}>{statData.description}</Base.P>
@@ -330,7 +330,7 @@ class Stats8Page extends BaseStats {
                       )
                     );
                   })}
-                </Base.ContainerGrid>
+                </Base.Row>
               </div>
             </Base.VerticalContent>
           )}
@@ -342,7 +342,7 @@ class Stats8Page extends BaseStats {
                   {(this.getComponentState("overlayNumberDisplay") || overlayDescription) && (
                     <div className={this.decorateCSS("overlay")}>
                       {this.getComponentState("overlayNumberDisplay") && <span className={this.decorateCSS("number")}>{this.getComponentState("overlayNumberDisplay")}</span>}
-                      {overlayDescription && <Base.P className={this.decorateCSS("description")}>{overlayDescription}</Base.P>}
+                      {overlayDescription && <Base.P className={this.decorateCSS("description")}>{this.getPropValue("overlayDescription")}</Base.P>}
                     </div>
                   )}
                 </div>
