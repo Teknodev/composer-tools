@@ -297,7 +297,7 @@
   
             .hamburgerMenuItemTitle {
               color: var(--composer-font-color-primary);
-              font-size: 1.5rem;
+              font-size: 1rem;
               font-weight: bold;
             }
   
@@ -377,16 +377,25 @@
 
   .languageAccordion {
     color: var(--composer-font-color-primary);
-    margin-top: var(--composer-gap-sm);
 
-    h3 {
+    languageAccordionTitle {
       margin: 0;
-      font-size: 1.5rem;
+      font-size: 1rem;
     }
   }
   .languageAccordionItem {
     color: var(--composer-font-color-primary);
   }
+}
+
+.overlay {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: var(--composer-overlay-color);
 }
 
 .transparentBackground {
@@ -455,7 +464,7 @@
       .mobileMenu {
         display: flex;
         flex-direction: column;
-        padding: 0 var(--composer-gap-xl);
+        padding: 0 var(--composer-gap-lg);
 
         .iconsContainer {
           padding: var(--composer-gap-md) 0;
@@ -466,6 +475,11 @@
           }
         }
       }
+  }
+  .overlay {
+    &.overlayActive {
+      display: block;
+    }
   }
   .container {
     &.filledBackground {

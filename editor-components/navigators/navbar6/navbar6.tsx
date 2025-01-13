@@ -1055,39 +1055,30 @@ class Navbar6 extends BaseNavigator {
       value: true,
     });
 
-    this.state["componentProps"]["isScrolled"] = false;
-    this.state["componentProps"]["hamburgerNavActive"] = false;
-    this.state["componentProps"]["navActive"] = false;
-    this.state["componentProps"]["subNavActiveIndex"] = null;
-    this.state["componentProps"]["subNavActive"] = null;
-    this.state["componentProps"]["changeBackground"] = false;
+    this.setComponentState("isScrolled", false);
+    this.setComponentState("hamburgerNavActive", false);
+    this.setComponentState("navActive", false);
+    this.setComponentState("subNavActiveIndex", null);
+    this.setComponentState("subNavActive", null);
+    this.setComponentState("changeBackground", false);
   }
 
   getName(): string {
     return "Navbar 6";
   }
 
-  componentDidMount() {
-    window.addEventListener("scroll", this.handleScroll);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleScroll);
-  }
-
-  handleScroll = () => {
-    const isScrolled = window.scrollY > 50;
-    this.setComponentState("isScrolled", isScrolled);
-  };
 
   handleOpenMenu = () => {
-    this.setComponentState("changeBackground", true);
+    Base.Navigator.changeScrollBehaviour("hidden");
+    const wrapperContainer = Base.Navigator.getWrapperContainer();
+    this.setComponentState("changeBackground", wrapperContainer.scrollY === 0);
     setTimeout(() => {
       this.setComponentState("hamburgerNavActive", true);
     }, 100);
   };
 
   handleCloseMenu = () => {
+    Base.Navigator.changeScrollBehaviour("auto");
     this.setComponentState("hamburgerNavActive", false);
 
     setTimeout(() => {
@@ -1116,6 +1107,7 @@ class Navbar6 extends BaseNavigator {
     const absoluteLogo = this.castToObject<Logo>("absoluteLogo");
     const position = this.getPropValue("position");
     const isScrolled = this.getComponentState("isScrolled");
+    const isBigScreen = this.getComponentState("isBigScreen");
     const isStickyTransparent = position === "Sticky Transparent";
     const isAbsolute = position === "Absolute";
     const transparentBackground =
@@ -1139,6 +1131,13 @@ class Navbar6 extends BaseNavigator {
           positionContainer={`${this.decorateCSS("container")} ${
             changeBackground ? this.decorateCSS("filledBackground") : ""
           }`}
+          hamburgerNavActive={hamburgerNavActive}
+          setIsScrolled={(value: boolean)=>{
+            this.setComponentState("isScrolled", value);
+          }}
+          setIsBigScreen={(value: boolean)=>{
+            this.setComponentState("isBigScreen", value);
+          }}
         >
           <Base.MaxContent
             className={`${this.decorateCSS("maxContent")} ${
@@ -1497,6 +1496,7 @@ class Navbar6 extends BaseNavigator {
                     title="name"
                     headerClassName={this.decorateCSS("languageAccordion")}
                     itemClassName={this.decorateCSS("languageAccordionItem")}
+                    titleClassName={this.decorateCSS("languageAccordionTitle")}
                   />
                 </nav>
 
@@ -1515,6 +1515,13 @@ class Navbar6 extends BaseNavigator {
               </div>
 
           </Base.MaxContent>
+
+          <div
+          className={`${this.decorateCSS("overlay")} ${
+            hamburgerNavActive ? this.decorateCSS("overlayActive") : ""
+          }`}
+          onClick={() => this.handleCloseMenu()}
+        />
         </Base.Navigator.Container>
       </>
     );
