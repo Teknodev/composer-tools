@@ -4,6 +4,7 @@ import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action1.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 class CallToAction1Page extends BaseCallToAction {
   constructor(props?: any) {
@@ -27,24 +28,16 @@ class CallToAction1Page extends BaseCallToAction {
       value:
         "Create a free demo account to digitize your business and attract more customers. In our demo account, you can test our digital marketing tools and learn how you can use them to grow your business.",
     });
-    this.addProp({
-      type: "string",
-      key: "buttonText",
-      displayer: "Button Text",
-      value: "Create Account",
-    });
-    this.addProp({
-      type: "page",
-      key: "link",
-      displayer: "Button Link",
-      value: "",
-    });
+
+    this.addProp(INPUTS.BUTTON("button", "Button", "Create Account", "", null, null, "Primary"));
   }
 
   getName(): string {
     return "Call To Action 1";
   }
   render() {
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -56,11 +49,11 @@ class CallToAction1Page extends BaseCallToAction {
             {this.castToString(this.getPropValue("description")) && (
               <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>
             )}
-            {this.castToString(this.getPropValue("buttonText")) && (
+            {this.castToString(button.text) && (
               <div className={this.decorateCSS("button-container")}>
-                <ComposerLink path={this.getPropValue("link")}>
-                  <Base.Button className={this.decorateCSS("button")}>
-                    {this.getPropValue("buttonText")}
+                <ComposerLink path={button.url}>
+                  <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>
+                    {button.text}
                   </Base.Button>
                 </ComposerLink>
               </div>
