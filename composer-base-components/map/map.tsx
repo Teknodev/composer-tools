@@ -230,7 +230,9 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, 
       }
     });
 
-    map.setCenter({ lat: marker.lat, lng: marker.lng });
+    const offsetLat = -0.005;
+
+    map.setCenter({ lat: marker.lat - offsetLat, lng: marker.lng });
     map.setZoom(handleMarkerZoom || 15);
   };
 
