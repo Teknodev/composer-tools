@@ -211,6 +211,12 @@
     .localizationDropdown {
       color: white;
     }
+    .localizationLabel{
+      color: white;
+    }
+    .languageIcon{
+      color: white;
+    }
     .closeIcon,
     .menuIcon {
       color: white;
@@ -250,8 +256,12 @@
     .titleContainer {
       display: none;
     }
-  
+
+  }
+    
     .dropdownMenuContainer {
+      flex-direction: column;
+
       .dropdownMenuContent {
         .dropdownRightSide {
           display: none;
@@ -269,7 +279,6 @@
         }
       }
     }
-  }
 
 
 }

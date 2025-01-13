@@ -318,6 +318,7 @@ class Navbar8 extends BaseNavigator {
     });
 
     this.setComponentState("isScrolled", false);
+
     this.setComponentState("isMenuOpen", false);
     this.setComponentState("backgroundChange", false)
   }
@@ -327,31 +328,21 @@ class Navbar8 extends BaseNavigator {
   }
 
   handleMenuClick = () => {
-    this.setComponentState("backgroundChange", true);
+    Base.Navigator.changeScrollBehaviour("hidden");
+    const wrapperContainer = Base.Navigator.getWrapperContainer();
+    this.setComponentState("backgroundChange", wrapperContainer.scrollY === 0);
     setTimeout(() => {
     this.setComponentState("isMenuOpen", true);
     }, 100);
   };
 
   handleCloseMenu = () => {
+    Base.Navigator.changeScrollBehaviour("auto");
     this.setComponentState("isMenuOpen", false);
     setTimeout(() => {
       this.setComponentState("backgroundChange", false);
     }, 200);
   }
-
-  componentDidMount() {
-    window.addEventListener("scroll", this.handleScroll);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleScroll);
-  }
-
-  handleScroll = () => {
-    const isScrolled = window.scrollY > 50;
-    this.setComponentState("isScrolled", isScrolled);
-  };
 
   render() {
     const defaultLogo = this.castToObject<Logo>("defaultLogo");
@@ -369,13 +360,15 @@ class Navbar8 extends BaseNavigator {
 
     const menuOpen = this.getComponentState("isMenuOpen");
     const isScrolled = this.getComponentState("isScrolled");
+    const isBigScreen = this.getComponentState("isBigScreen");
     const isStickyTransparent = position === "Sticky Transparent";
     const isAbsolute = position === "Absolute";
     const transparentBackground = isStickyTransparent && !isScrolled;
     
-    const currentLogo = (isStickyTransparent && !isScrolled) || isAbsolute
-      ? absoluteLogo
-      : defaultLogo;
+    const currentLogo =
+      (transparentBackground && !backgroundChange)
+        ? absoluteLogo
+        : defaultLogo;
 
     const dropdownSocialMediaTitle = this.castToString(
       this.getPropValue("dropdownSocialMediaTitle")
@@ -405,10 +398,13 @@ class Navbar8 extends BaseNavigator {
       socialMediaLinks.length > 0 || dropdownSocialMediaTitle;
 
     return (
-      <Base.Navigator.Container position={position} positionContainer={`${this.decorateCSS("container")} ${backgroundChange ? this.decorateCSS("fillBackground") : ""}`}>
+      <Base.Navigator.Container position={position} positionContainer={`${this.decorateCSS("container")} ${backgroundChange ? this.decorateCSS("fillBackground") : ""}`} 
+      hamburgerNavActive={isMenuOpen}
+      setIsScrolled={(value: boolean) => this.setComponentState("isScrolled", value)}
+      >
         <Base.MaxContent
           className={`${this.decorateCSS("maxContent")} ${
-            transparentBackground
+            transparentBackground && !backgroundChange
               ? this.decorateCSS("transparentBackground")
               : ""
           }`}
