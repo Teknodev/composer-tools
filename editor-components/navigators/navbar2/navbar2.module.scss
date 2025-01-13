@@ -188,28 +188,39 @@
       right: var(--composer-gap-xl);
     }
 
-    .mobileMenuOverlay {
-      display: none;
-      position: absolute;
-      top: 0;
-      right: 0;
-      height: 100vh;
-      width: 100%;
-      background: var(--composer-overlay-color);
-      transform: translateX(100%);
-      transition: all 0.3s ease-in-out;
-      z-index: 100;
+    // .mobileMenuOverlay {
+    //   display: none;
+    //   position: absolute;
+    //   top: 0;
+    //   right: 0;
+    //   height: 100vh;
+    //   width: 100%;
+    //   background: var(--composer-overlay-color);
+    //   transform: translateX(100%);
+    //   transition: all 0.3s ease-in-out;
+    //   z-index: 100;
 
 
-      &.open {
-        transform: translateX(0);
-      }
+    //   &.open {
+    //     transform: translateX(0);
+    //   }
 
       .mobileMenu {
+             position: absolute;
+             top: 0;
+               right: 0;
+               height: 100vh;
+                     transform: translateX(100%);
+      transition: all 0.3s ease-in-out;
+      z-index: 100;
         background: var(--composer-html-background);
         width: 90%;
         box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
         padding: var(--composer-gap-md) var(--composer-gap-xl);
+
+        &.open {
+          transform: translateX(0);
+        }
 
         .mobileCloseButton {
           position: absolute;
@@ -316,7 +327,7 @@
           }
         }
       }
-    }
+    // }
 
     .divider {
       width: 2px;
@@ -340,6 +351,16 @@
       color: var(--composer-font-color-primary);
       font-size: 1rem;
     }
+  }
+
+  .overlay {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: var(--composer-overlay-color);
   }
 
   .transparentBackground {
@@ -398,9 +419,9 @@
       .closeIcon {
         display: block;
       }
-      .mobileMenuOverlay {
-        display: flex;
-        justify-content: flex-end;
+      // .mobileMenuOverlay {
+      //   display: flex;
+      //   justify-content: flex-end;
         .mobileMenu {
           display: flex;
           flex-direction: column;
@@ -423,8 +444,14 @@
             font-weight: bold;
           }
         }
-      }
+      // }
    
+    }
+    .overlay {
+      &.overlayActive {
+        z-index: 10;
+        display: block;
+      }
     }
   }
 }
@@ -432,7 +459,7 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .maxContent {
-      .mobileMenuOverlay {
+      // .mobileMenuOverlay {
         .mobileMenu {
           padding-left: var(--composer-gap-md);
           padding-right: var(--composer-gap-md);
@@ -450,7 +477,7 @@
             font-weight: bold;
           }
         }
-      }
+      // }
     
       .logo {
         .logoImg {
