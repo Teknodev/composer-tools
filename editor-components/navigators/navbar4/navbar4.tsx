@@ -1250,6 +1250,7 @@ class Navbar4 extends BaseNavigator {
     this.setComponentState("subNavActiveIndex", null);
     this.setComponentState("subNavActive", null);
     this.setComponentState("changeBackground", false);
+    this.setComponentState("isBigScreen", false);
   }
 
   hamburgerNavClick() {
@@ -1258,13 +1259,17 @@ class Navbar4 extends BaseNavigator {
   }
 
   handleOpenMenu = () => {
-    this.setComponentState("backgroundChange", true);
+    Base.Navigator.changeScrollBehaviour("hidden");
+    const wrapper = Base.Navigator.getWrapperContainer();
+    this.setComponentState("backgroundChange", wrapper.scrollY === 0);
     setTimeout(() => {
       this.setComponentState("hamburgerNavActive", true);
     }, 100);
   };
 
   handleCloseMenu = () => {
+    Base.Navigator.changeScrollBehaviour("auto");
+
     this.setComponentState("hamburgerNavActive", false);
     setTimeout(() => {
       this.setComponentState("backgroundChange", false);
@@ -1283,18 +1288,6 @@ class Navbar4 extends BaseNavigator {
     this.setComponentState("subNavActive", isActive ? null : index);
   }
 
-  componentDidMount() {
-    window.addEventListener("scroll", this.handleScroll);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleScroll);
-  }
-
-  handleScroll = () => {
-    const isScrolled = window.scrollY > 50;
-    this.setComponentState("isScrolled", isScrolled);
-  };
 
   render(): ReactNode {
     const icons = this.castToObject<any[]>("icons");
@@ -1412,6 +1405,9 @@ class Navbar4 extends BaseNavigator {
             backgroundChange ? this.decorateCSS("activeBackground") : ""
           }`}
           className={this.decorateCSS("pcNavbarContainer")}
+          hamburgerNavActive={isHamburgerActive}
+          setIsBigScreen={(value: boolean) => this.setComponentState("isBigScreen", value)}
+          setIsScrolled={(value: boolean) => this.setComponentState("isScrolled", value)}
         >
           <Base.MaxContent
             className={`${this.decorateCSS("maxContent")} ${
@@ -1726,7 +1722,7 @@ class Navbar4 extends BaseNavigator {
                       )}
                     </div>
                   ))}
-                  <div className={this.decorateCSS("accordionLocalization")}>
+
                     {language.showLanguage && (
                       <ComposerLanguage
                         type="accordion"
@@ -1735,9 +1731,13 @@ class Navbar4 extends BaseNavigator {
                         itemClassName={`${this.decorateCSS(
                           "localizationItem"
                         )}`}
+                        titleClassName={`${this.decorateCSS(
+                          "localizationTitle"
+                        )}`}
+                        
                       />
                     )}
-                  </div>
+
                 </nav>
               )}
             </div>

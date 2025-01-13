@@ -279,11 +279,15 @@
     }
   }
 
-  .accordionLocalization{
+
     .localization{
-       color: var(--composer-font-color-primary);
+      .localizationTitle{
+        font-weight: normal;
+        color: var(--composer-font-color-primary);
+      }
     }
-  }
+ 
+
 
 
   .hamburgerNav {
