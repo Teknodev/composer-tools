@@ -1174,7 +1174,8 @@ class Navbar1 extends BaseNavigator {
 
   handleOpenMenu = () => {
     Base.Navigator.changeScrollBehaviour("hidden");
-    this.setComponentState("changeBackground", true);
+    const wrapper = Base.Navigator.getWrapperContainer();
+    this.setComponentState("changeBackground", wrapper.scrollY === 0);
     setTimeout(() => {
       this.setComponentState("hamburgerNavActive", true);
     }, 100);
