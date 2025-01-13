@@ -241,7 +241,6 @@
     }
 
     .hamburgerMenu {
-      padding: var(--composer-gap-md) 0;
 
       .hamburgerMenuItem {
         .hamburgerMenuItemHeader {
@@ -338,6 +337,9 @@
         }
       }
     }
+    .localizationTitle{
+      font-weight: normal;
+    }
   }
 
   .logo {
@@ -358,6 +360,7 @@
     justify-content: center;
     align-items: center;
     gap: var(--composer-gap-md);
+    margin-top: var(--composer-gap-sm);
 
     .icon {
       font-size: 1.5rem;
@@ -368,7 +371,7 @@
 
 .overlay {
   background-color: rgba(0, 0, 0, 0.2) !important;
-  border-bottom: 2px solid var(--color-divider) !important;
+  border-bottom: 2px solid var(--color-divider);
 }
 
 .filledBackground {
@@ -432,6 +435,7 @@
     }
     .hamburgerNav {
       .hamburgerContainer{
+        padding: var(--composer-gap-md) var(--composer-gap-lg);
         .hamburgerMaxContent{
           .hamburgerMenu{
             .hamburgerMenuItem{
@@ -473,6 +477,7 @@
     }
     .hamburgerNav {
       .hamburgerContainer {
+        padding: var(--composer-gap-md);
         .hamburgerMaxContent {
           .hamburgerMenuItem {
             .hamburgerMenuItemHeader {

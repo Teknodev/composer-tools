@@ -1054,36 +1054,27 @@ class Navbar9 extends BaseNavigator {
     });
 
     this.setComponentState("isScrolled", false);
-
-    this.state["componentProps"]["hamburgerNavActive"] = true;
-    this.state["componentProps"]["changeBackground"] = false;
+    this.setComponentState("hamburgerNavActive", false);
+    this.setComponentState("changeBackground", false);
+    this.setComponentState("isBigScreen", false);
   }
 
   getName(): string {
     return "Navbar 9";
   }
 
-  componentDidMount() {
-    window.addEventListener("scroll", this.handleScroll);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleScroll);
-  }
-
-  handleScroll = () => {
-    const isScrolled = window.scrollY > 50;
-    this.setComponentState("isScrolled", isScrolled);
-  };
 
   handleOpenMenu = () => {
-    this.setComponentState("changeBackground", true);
+    Base.Navigator.changeScrollBehaviour("hidden");
+    const wrapperContainer = Base.Navigator.getWrapperContainer();
+    this.setComponentState("changeBackground", wrapperContainer.scrollY === 0);
     setTimeout(() => {
       this.setComponentState("hamburgerNavActive", true);
     }, 100);
   };
 
   handleCloseMenu = () => {
+    Base.Navigator.changeScrollBehaviour("auto");
     this.setComponentState("hamburgerNavActive", false);
 
     setTimeout(() => {
@@ -1112,6 +1103,8 @@ class Navbar9 extends BaseNavigator {
     const defaultLogo = this.castToObject<Logo>("defaultLogo");
     const absoluteLogo = this.castToObject<Logo>("absoluteLogo");
     const isScrolled = this.getComponentState("isScrolled");
+    const isBigScreen = this.getComponentState("isBigScreen");
+
     const hamburgerNavActive = this.getComponentState("hamburgerNavActive");
 
     const isStickyTransparent = position === "Sticky Transparent";
@@ -1119,9 +1112,10 @@ class Navbar9 extends BaseNavigator {
     const transparentBackground =
       (isStickyTransparent && !isScrolled) || isAbsolute;
     const changeBackground = this.getComponentState("changeBackground");
-
     const currentLogo =
-      transparentBackground && !changeBackground ? absoluteLogo : defaultLogo;
+      ((transparentBackground && !changeBackground) || (hamburgerNavActive && isBigScreen)) && !isScrolled
+        ? absoluteLogo
+        : defaultLogo;
 
     const menuItems = this.castToObject<MenuItems[]>("menuItems");
     const overlay = this.getPropValue("overlay");
@@ -1134,8 +1128,11 @@ class Navbar9 extends BaseNavigator {
           position={position}
           className={`${this.decorateCSS("container")}`}
           positionContainer={`${this.decorateCSS("navbarContainer")} ${
-            overlay && (isStickyTransparent && !isScrolled) ? this.decorateCSS("overlay") : ""
+            overlay && ((isStickyTransparent || isAbsolute) && !isScrolled) ? this.decorateCSS("overlay") : ""
           } ${changeBackground ? this.decorateCSS("filledBackground") : ""}`}
+          hamburgerNavActive={hamburgerNavActive}
+          setIsBigScreen={(value: boolean) => this.setComponentState("isBigScreen", value)}
+          setIsScrolled={(value: boolean) => this.setComponentState("isScrolled", value)}
         >
           <Base.MaxContent className={`${this.decorateCSS("maxContent")} ${transparentBackground ? this.decorateCSS("transparentBackground") : ""}`}>
             {currentLogo.image && (
@@ -1475,7 +1472,7 @@ class Navbar9 extends BaseNavigator {
                       </div>
                     ))}
 
-                    <div className={this.decorateCSS("accordionLocalization")}>
+
                       {language.showLanguage && (
                         <ComposerLanguage
                           type="accordion"
@@ -1486,9 +1483,10 @@ class Navbar9 extends BaseNavigator {
                           itemClassName={`${this.decorateCSS(
                             "localizationItem"
                           )}`}
+                          titleClassName={this.decorateCSS("localizationTitle")}
                         />
                       )}
-                    </div>
+
                   </nav>
                 )}
                 {icons.length > 0 && (
