@@ -397,13 +397,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    z-index: 100;
 
     &.sticky,
     &.stickycolorful,
     &.stickytransparent {
         position: sticky;
         top: 0;
-        z-index: 100;
         box-shadow: 0px 2px 5px rgba(var(--composer-primary-color-rgb), 0.2);
     }
 
