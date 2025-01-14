@@ -153,7 +153,7 @@
   }
 
   .line {
-    border-bottom: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.5);
+    border-bottom: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.2);
   }
 
   .down {
@@ -174,7 +174,7 @@
       flex-shrink: 0;
       width: var(--composer-gap-xl);
       height: 1px;
-      border-bottom: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.5);
+      border-bottom: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.2);
     }
 
     .text,

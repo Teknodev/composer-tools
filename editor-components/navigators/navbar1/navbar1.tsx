@@ -14,11 +14,6 @@ interface MenuItems {
   sub_items: MenuItems[];
 }
 
-interface Button {
-  title: string;
-  navigateTo: string;
-}
-
 interface Logo {
   image: string;
   navigateTo: string;
