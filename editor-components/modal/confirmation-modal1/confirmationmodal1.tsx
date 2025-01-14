@@ -5,11 +5,9 @@ import styles from "./confirmationmodal1.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
-type Button = {
-  buttonText: JSX.Element;
-  link: string;
-};
+type Button = INPUTS.CastedButton
 
 class ConfirmationModal1 extends BaseModal {
   constructor(props?: any) {
@@ -51,44 +49,8 @@ class ConfirmationModal1 extends BaseModal {
         maxElementCount: 2,
       },
       value: [
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Count Me In",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Button Link",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Let Me Rethink",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Button Link",
-              value: "",
-            },
-          ],
-        },
+        INPUTS.BUTTON("item", "Button", "Count Me In", null, null, null, "Primary"),
+        INPUTS.BUTTON("item", "Button", "Let Me Rethink", null, null, null, "Primary"),
       ],
     });
   }
@@ -102,7 +64,7 @@ class ConfirmationModal1 extends BaseModal {
     const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
     const buttons = this.castToObject<Button[]>("buttons");
-    const validButtons = buttons.filter((item: Button) => this.castToString(item.buttonText));
+    const validButtons = buttons.filter((item: Button) => this.castToString(item.text));
     const icon = this.getPropValue("exitIcon");
     return (
       <Base.Container isModal={true} className={this.decorateCSS("container")}>
@@ -112,7 +74,7 @@ class ConfirmationModal1 extends BaseModal {
               {icon && (
                 <div className={this.decorateCSS("exit-icon")}>
                   <ComposerModalClose>
-                    <ComposerIcon propsIcon={{ className: image ? this.decorateCSS("icon") : this.decorateCSS("icon-no-image") }} name={this.getPropValue("exitIcon")} />
+                    <ComposerIcon propsIcon={{ className: `${this.decorateCSS("icon")} ${!image && this.decorateCSS("icon-no-image")}` }} name={this.getPropValue("exitIcon")} />
                   </ComposerModalClose>
                 </div>
               )}
@@ -122,16 +84,14 @@ class ConfirmationModal1 extends BaseModal {
 
             <div className={this.decorateCSS("button-wrapper")}>
               <div className={this.decorateCSS("second-div")}>
-                {title && <Base.SectionTitle className={image ? this.decorateCSS("title") : this.decorateCSS("title-no-image")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                {title && <Base.SectionTitle className={`${this.decorateCSS("title")} ${!image && this.decorateCSS("title-no-image")}`}>{this.getPropValue("title")}</Base.SectionTitle>}
                 {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
               </div>
 
               {validButtons.length > 0 && (
                 <div className={this.decorateCSS("button-background")}>
                   {validButtons.map((item: Button, index: number) => (
-                    <ComposerLink path={item.link}>
-                      <Base.Button className={this.decorateCSS("button")}>{item.buttonText}</Base.Button>
-                    </ComposerLink>
+                      <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>{item.text}</Base.Button>
                   ))}
                 </div>
               )}

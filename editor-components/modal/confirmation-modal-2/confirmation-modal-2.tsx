@@ -5,6 +5,7 @@ import styles from "./confirmation-modal-2.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Speaker = {
   name: JSX.Element;
@@ -18,7 +19,6 @@ type ContactInfo = {
 };
 
 type EventDetail = {
-  eventButton: JSX.Element;
   eventDateFirstPart: JSX.Element;
   eventDateDivider: boolean;
   eventDateSecondPart: JSX.Element;
@@ -159,18 +159,6 @@ class ConfirmationModal2 extends BaseModal {
       value: [
         {
           type: "string",
-          key: "eventButton",
-          displayer: "Event Button Text",
-          value: "REGISTER NOW",
-        },
-        {
-          type: "page",
-          key: "eventButtonLink",
-          displayer: "Event Button Link",
-          value: "",
-        },
-        {
-          type: "string",
           key: "eventDateFirstPart",
           displayer: "Event Date First Part",
           value: "24 JUNE 2022 ",
@@ -189,6 +177,9 @@ class ConfirmationModal2 extends BaseModal {
         },
       ],
     });
+
+    this.addProp(INPUTS.BUTTON("button", "Button", "REGISTER NOW", "", null, null, "Primary"));
+
 
     this.addProp({
       type: "array",
@@ -270,16 +261,19 @@ class ConfirmationModal2 extends BaseModal {
     const speakers = this.castToObject<Speaker[]>("speakers");
     const backgroundImage = this.getPropValue("backgroundImage");
     const eventDetails = this.castToObject<EventDetail>("eventDetails");
+
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const buttonExist = this.castToString(button.text);
     const contactInfos = this.castToObject<ContactInfo[]>("contactInfos");
 
     return (
       <Base.Container isModal={true} className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={yearTextExist ? this.decorateCSS("content") : this.decorateCSS("content-no-yeartext")}>
+          <Base.VerticalContent className={`${this.decorateCSS("content")} ${!yearTextExist && this.decorateCSS("content-no-yeartext")}`}>
             {yearTextExist && <Base.H1 className={this.decorateCSS("year-text")}>{yearText}</Base.H1>}
             {(this.castToString(headerHighlight) || this.castToString(header)) && (
               <div className={this.decorateCSS("header")}>
-                <Base.H2 className={backgroundImage ? this.decorateCSS("header-text") : this.decorateCSS("header-text-no-image")}>
+                <Base.H2 className={`${this.decorateCSS("header-text")} ${!backgroundImage && this.decorateCSS("header-text-no-image")}`}>
                   {this.getPropValue("header")}
                   {this.castToString(headerHighlight) && (
                     <span>
@@ -293,7 +287,7 @@ class ConfirmationModal2 extends BaseModal {
 
             <div className={this.decorateCSS("exit-icon-container")}>
               <ComposerModalClose>
-                <ComposerIcon propsIcon={{ className: backgroundImage ? this.decorateCSS("exit-icon") : this.decorateCSS("exit-icon-no-image") }} name={this.getPropValue("exitIcon")} />
+                <ComposerIcon propsIcon={{ className: `${this.decorateCSS("exit-icon")} ${!backgroundImage && this.decorateCSS("exit-icon-no-image")}` }} name={this.getPropValue("exitIcon")} />
               </ComposerModalClose>
             </div>
 
@@ -322,11 +316,13 @@ class ConfirmationModal2 extends BaseModal {
                   )}
                 </div>
               )}
-              {(this.castToString(eventDetails.eventButton) || this.castToString(eventDetails.eventDateFirstPart) || this.castToString(eventDetails.eventDateSecondPart)) && (
+              {(buttonExist || this.castToString(eventDetails.eventDateFirstPart) || this.castToString(eventDetails.eventDateSecondPart)) && (
                 <Base.VerticalContent className={this.decorateCSS("event-details")}>
-                  {this.castToString(eventDetails.eventButton) && (
-                    <ComposerLink path={this.getPropValue("eventButtonLink")}>
-                      <Base.Button className={this.decorateCSS("event-button")}>{eventDetails.eventButton}</Base.Button>
+                  {buttonExist && (
+                    <ComposerLink path={button.url}>
+                      <Base.Button buttonType={button.type} className={this.decorateCSS("event-button")}>
+                        {button.text}
+                      </Base.Button>
                     </ComposerLink>
                   )}
                   {(this.castToString(eventDetails.eventDateFirstPart) || this.castToString(eventDetails.eventDateSecondPart)) && (

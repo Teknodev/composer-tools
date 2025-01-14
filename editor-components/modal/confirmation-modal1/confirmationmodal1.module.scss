@@ -25,11 +25,12 @@
           .icon {
             font-size: 1.5rem;
             color: white;
+
+            &.icon-no-image {
+              color: var(--composer-font-color-primary);
+            }
           }
-          .icon-no-image {
-            font-size: 1.5rem;
-            color: var(--composer-font-color-primary);
-          }
+          
         }
 
         .image {
@@ -49,21 +50,20 @@
         width: 100%;
 
         .second-div {
-          text-align: center;
-
           .title {
             margin: 0;
             font-size: 2rem;
-          }
-          .title-no-image {
-            margin: 0;
-            font-size: 2rem;
-            width: 95%;
-            margin-top: var(--composer-gap-md);
-          }
+            text-align: center;
 
-          .description {
-            content: "";
+            &.title-no-image {
+              width: 95%;
+              margin-top: var(--composer-gap-md);
+            }
+          }
+          
+
+          .description { 
+            text-align: center;
           }
         }
 
@@ -78,32 +78,32 @@
   }
 }
 
-// @container (max-width: #{$composer-phone-width}) {
-@media only screen and (max-width: 468px) {
+@container (max-width: #{$composer-phone-width}) {
   .container {
-    max-width: 300px;
+    max-width: 350px;
     max-height: 700px;
-    width: 300px;
 
     .max-content {
       .content {
         .button-wrapper {
           .second-div {
-            text-align: center;
-
-            .title {
+            .title{
               font-size: 1.5rem;
+              text-align: center;
             }
-            .title-no-image {
-              font-size: 1.5rem;
+
+            .description{
+              text-align: center;
             }
           }
 
           .button-background {
             flex-direction: column;
+            margin: 0;
 
             .button {
               width: 100%;
+              justify-content: center;
             }
           }
         }

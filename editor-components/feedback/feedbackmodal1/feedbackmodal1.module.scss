@@ -89,7 +89,7 @@
 
       .emojiLabel {
         background-color: var(--composer-font-color-primary);
-        color: var(--composer-font-color-secondary);
+        color: var(--composer-html-background);
         margin: 0;
         padding: var(--composer-gap-sm) var(--composer-gap-md);
         border-radius: var(--composer-border-radius-xl);
@@ -234,6 +234,7 @@
 
   .button {
     width: 100%;
+    justify-content: center;
   }
 }
 
@@ -241,6 +242,7 @@
   .feedback-modal {
     max-width: 320px !important;
     max-height: 700px !important;
+    padding: var(--composer-gap-md);
 
     .modal-content-wrapper {
       .modalContent {
