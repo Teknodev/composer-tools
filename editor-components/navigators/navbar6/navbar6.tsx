@@ -1107,7 +1107,6 @@ class Navbar6 extends BaseNavigator {
     const absoluteLogo = this.castToObject<Logo>("absoluteLogo");
     const position = this.getPropValue("position");
     const isScrolled = this.getComponentState("isScrolled");
-    const isBigScreen = this.getComponentState("isBigScreen");
     const isStickyTransparent = position === "Sticky Transparent";
     const isAbsolute = position === "Absolute";
     const transparentBackground =
