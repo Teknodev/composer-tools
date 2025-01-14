@@ -401,9 +401,7 @@ class Navbar5 extends BaseNavigator {
   }
 
   render() {
-    const navbarElement = document.getElementById(`navbar5-height`);
     const isScrolled = this.getComponentState("isScrolled");
-    const isBigScreen = this.getComponentState("isBigScreen");
     const position = this.getPropValue("position");
 
     const navActive = this.getComponentState("navActive");
