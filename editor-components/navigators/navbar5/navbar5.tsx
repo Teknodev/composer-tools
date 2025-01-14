@@ -444,9 +444,7 @@ class Navbar5 extends BaseNavigator {
       <Base.Navigator.Container
         id={"navbar5-height"}
         position={position}
-        positionContainer={`${this.decorateCSS("container")} ${
-          navActive ? this.decorateCSS("filledBackground") : ""
-        }`}
+        positionContainer={`${this.decorateCSS("container")} ${navActive ? this.decorateCSS("filledBackground") : ""}`}
         hamburgerNavActive={navActive}
         setIsBigScreen={(value: boolean) => {
           this.setComponentState("isBigScreen", value);
@@ -455,13 +453,7 @@ class Navbar5 extends BaseNavigator {
           this.setComponentState("isScrolled", value);
         }}
       >
-        <Base.MaxContent
-          className={`${this.decorateCSS("maxContent")} ${
-            transparentBackground && !navActive
-              ? this.decorateCSS("transparentBackground")
-              : ""
-          }`}
-        >
+        <Base.MaxContent className={`${this.decorateCSS("maxContent")} ${transparentBackground && !navActive ? this.decorateCSS("transparentBackground") : ""}`}>
           {social.length > 0 && (
             <div className={this.decorateCSS("socialMediaBox")}>
               {social.length > 0 && (
@@ -502,17 +494,11 @@ class Navbar5 extends BaseNavigator {
                   type="dropdown"
                   title={language.label}
                   icon={language.icon}
-                  dropdownButtonClassName={`${this.decorateCSS(
-                    "localization"
-                  )}`}
-                  dropdownLabelClassName={`${this.decorateCSS(
-                    "localizationLabel"
-                  )}`}
+                  dropdownButtonClassName={`${this.decorateCSS("localization")}`}
+                  dropdownLabelClassName={`${this.decorateCSS("localizationLabel")}`}
                   iconClassName={this.decorateCSS("languageIcon")}
                   dropdownItemClassName={this.decorateCSS("localizationItem")}
-                  dropdownContentClassName={this.decorateCSS(
-                    "localizationContent"
-                  )}
+                  dropdownContentClassName={this.decorateCSS("localizationContent")}
                   divider={language.showDivider}
                 />
               )}
@@ -520,9 +506,7 @@ class Navbar5 extends BaseNavigator {
                 <ComposerIcon
                   name={this.getPropValue("cross-icon")}
                   propsIcon={{
-                    className: `${this.decorateCSS("hamburgerIcon")} ${
-                      navActive && this.decorateCSS("activeHamburgerIcon")
-                    } `,
+                    className: `${this.decorateCSS("hamburgerIcon")} ${navActive && this.decorateCSS("activeHamburgerIcon")} `,
                     onClick: () => {
                       this.closeNav();
                     },
@@ -532,9 +516,7 @@ class Navbar5 extends BaseNavigator {
                 <ComposerIcon
                   name={this.getPropValue("hamburger-icon")}
                   propsIcon={{
-                    className: `${this.decorateCSS("hamburgerIcon")} ${
-                      navActive && this.decorateCSS("activeHamburgerIcon")
-                    } `,
+                    className: `${this.decorateCSS("hamburgerIcon")} ${navActive && this.decorateCSS("activeHamburgerIcon")} `,
                     onClick: () => {
                       this.openNav();
                     },
@@ -545,43 +527,25 @@ class Navbar5 extends BaseNavigator {
           )}
         </Base.MaxContent>
 
-        <div
-          className={`${this.decorateCSS("dropdownMenu")} ${
-            navActive ? this.decorateCSS("active") : ""
-          }`}
-        >
+        <div className={`${this.decorateCSS("overlay")} ${navActive ? this.decorateCSS("overlayActive") : ""}`} onClick={() => this.closeNav()} />
+
+        <div className={`${this.decorateCSS("dropdownMenu")} ${navActive ? this.decorateCSS("active") : ""}`}>
           {upExist && (
             <div className={this.decorateCSS("up")}>
               {titleExist && (
                 <div className={this.decorateCSS("leftPage")}>
-                  <Base.H1
-                    className={`${this.decorateCSS(
-                      "title"
-                    )} animate__animated ${this.getComponentState(
-                      "dropdownMenuItemAnimationClass"
-                    )}`}
-                  >
-                    {this.getPropValue("title")}
-                  </Base.H1>
+                  <Base.H1 className={`${this.decorateCSS("title")} animate__animated ${this.getComponentState("dropdownMenuItemAnimationClass")}`}>{this.getPropValue("title")}</Base.H1>
                 </div>
               )}
               {listItems.length > 0 && (
                 <div className={this.decorateCSS("rightPage")}>
-                  <div
-                    className={`${this.decorateCSS(
-                      "items"
-                    )} animate__animated ${this.getComponentState(
-                      "dropdownMenuItemAnimationClass"
-                    )}`}
-                  >
+                  <div className={`${this.decorateCSS("items")} animate__animated ${this.getComponentState("dropdownMenuItemAnimationClass")}`}>
                     {listItems.map((item: any, indexSocial: number) => {
                       const itemTitleExist = this.castToString(item.itemTitle);
                       return (
                         itemTitleExist && (
                           <ComposerLink key={indexSocial} path={item.pageLink}>
-                            <Base.H5 className={this.decorateCSS("item-title")}>
-                              {item.itemTitle}
-                            </Base.H5>
+                            <Base.H5 className={this.decorateCSS("item-title")}>{item.itemTitle}</Base.H5>
                           </ComposerLink>
                         )
                       );
@@ -596,30 +560,9 @@ class Navbar5 extends BaseNavigator {
 
           {(bottomTextExist || bottomText2Exist) && (
             <div className={this.decorateCSS("down")}>
-              {bottomTextExist && (
-                <Base.P
-                  className={`${this.decorateCSS(
-                    "text"
-                  )} animate__animated ${this.getComponentState(
-                    "footerLeftTextAnimationClass"
-                  )}`}
-                >
-                  {this.getPropValue("bottomText")}
-                </Base.P>
-              )}
+              {bottomTextExist && <Base.P className={`${this.decorateCSS("text")} animate__animated ${this.getComponentState("footerLeftTextAnimationClass")}`}>{this.getPropValue("bottomText")}</Base.P>}
               {divider && <div className={this.decorateCSS("divider")}></div>}
-              {bottomText2Exist && (
-                <Base.P
-                  className={`${this.decorateCSS(
-                    "text"
-                  )} animate__animated ${this.getComponentState(
-                    "footerRightTextAnimationClass"
-                  )}`}
-                >
-                  {" "}
-                  {this.getPropValue("bottomText2")}
-                </Base.P>
-              )}
+              {bottomText2Exist && <Base.P className={`${this.decorateCSS("text")} animate__animated ${this.getComponentState("footerRightTextAnimationClass")}`}> {this.getPropValue("bottomText2")}</Base.P>}
             </div>
           )}
         </div>
