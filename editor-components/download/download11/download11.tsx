@@ -3,6 +3,8 @@ import styles from "./download11.module.scss";
 import { BaseDownload } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { ComposerIcon } from "composer-tools/composer-base-components/icon/icon";
 
 class Download11 extends BaseDownload {
   constructor(props?: any) {
@@ -15,8 +17,8 @@ class Download11 extends BaseDownload {
       value: [
         {
           type: "boolean",
-          key: "Visibility",
-          displayer: "visibility",
+          key: "visibility",
+          displayer: "Visibility",
           value: true,
         },
         {
@@ -43,21 +45,9 @@ class Download11 extends BaseDownload {
           displayer: "Description",
           value: "Unlock the power of data with our advanced analytics tools. Gain actionable insignhts into customer behavior, market trends.",
         },
-        {
-          type: "string",
-          key: "buttonText",
-          displayer: "Button Text",
-          value: "More",
-        },
-        {
-          type: "page",
-          key: "buttonUrl",
-          displayer: "Button Url",
-          value: "",
-        },
       ],
     });
-
+    this.addProp(INPUTS.BUTTON("buttonLeft", "Left Button", "More", "", "", "", "Primary"))
     this.addProp({
       type: "object",
       displayer: "Right Card Upper",
@@ -65,7 +55,7 @@ class Download11 extends BaseDownload {
       value: [
         {
           type: "boolean",
-          key: "Visibility",
+          key: "visibility",
           displayer: "visibility",
           value: true,
         },
@@ -88,58 +78,37 @@ class Download11 extends BaseDownload {
           value: "Unlock the power of data with our advanced analytics tools. Gain actionable insights into customer behavior, market trends.",
         },
         {
-          type: "string",
-          key: "buttonText",
-          displayer: "Button Text",
-          value: "More",
-        },
-        {
-          type: "page",
-          key: "buttonUrl",
-          displayer: "Button Url",
-          value: "",
-        },
-        {
           type: "image",
           key: "image",
           value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6759ac1d0655f8002ca5ecee?alt=media",
           displayer: "Image",
         },
+
       ],
     });
+    this.addProp(INPUTS.BUTTON("buttonRight", "Right Button", "More", "", "", "", "Primary"));
 
-    this.addProp({
-      type: "object",
-      displayer: "Right Card Bottom",
-      key: "rightBottom",
-      value: [
-        {
-          type: "boolean",
-          key: "Visibility",
-          displayer: "visibility",
-          value: true,
-        },
-        {
-          type: "string",
-          key: "title",
-          displayer: "Title",
-          value: "Best new app and updates*",
-        },
+      this.addProp({
+        type: "object",
+        displayer: "Right Card Bottom",
+        key: "rightBottom",
+        value: [
+          {
+            type: "boolean",
+            key: "visibility",
+            displayer: "visibility",
+            value: true,
+          },
+          {
+            type: "string",
+            key: "title",
+            displayer: "Title",
+            value: "Best new app and updates*",
+          },
 
-        {
-          type: "string",
-          key: "buttonText",
-          displayer: "Button Text",
-          value: "Download app",
-        },
-        {
-          type: "page",
-          key: "buttonUrl",
-          displayer: "Button Url",
-          value: "",
-        },
-      ],
-    });
+        ],
+      });
+    this.addProp(INPUTS.BUTTON("buttonRightBottom", "Right Bottom Button", "More", "", "", "", "Primary"))
   }
 
   getName(): string {
@@ -150,26 +119,29 @@ class Download11 extends BaseDownload {
     const leftItems = this.castToObject<any>("left");
     const rightItems = this.castToObject<any>("right");
     const rightBottomItems = this.castToObject<any>("rightBottom");
+    const buttonLeft: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("buttonLeft");
+    const buttonRight: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("buttonRight");
+    const buttonRightBottom: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("buttonRightBottom");
 
     const subtitleExist = this.castToString(leftItems.subtitle);
     const titleExist = this.castToString(leftItems.title);
     const descriptionExist = this.castToString(leftItems.description);
-    const buttonTextExist = this.castToString(leftItems.buttonText);
+    const buttonTextExist = this.castToString(buttonLeft.text);
 
     const leftCardExist = subtitleExist || titleExist || descriptionExist || buttonTextExist;
-    const hasValidCard = (leftCardExist || leftItems.image) && leftItems.Visibility;
+    const hasValidCard = (leftCardExist || leftItems.image) && leftItems.visibility;
 
     const rightSubtitleExist = this.castToString(rightItems.subtitle);
     const rightTitleExist = this.castToString(rightItems.title);
     const rightDescriptionExist = this.castToString(rightItems.description);
-    const rightbuttonTextExist = this.castToString(rightItems.buttonText);
+    const rightbuttonTextExist = this.castToString(buttonRight.text);
 
     const hasValidRightCardTexts = rightSubtitleExist || rightTitleExist || rightDescriptionExist || rightbuttonTextExist;
-    const hasValidRightCard = (hasValidRightCardTexts || rightItems.image) && rightItems.Visibility;
+    const hasValidRightCard = (hasValidRightCardTexts || rightItems.image) && rightItems.visibility;
 
     const rightBottomTitleExist = this.castToString(rightBottomItems.title);
-    const rightBottomButtonExist = this.castToString(rightBottomItems.buttonText);
-    const hasValidBottomRightCard = (rightBottomTitleExist || rightBottomButtonExist) && rightBottomItems.Visibility;
+    const rightBottomButtonExist = this.castToString(buttonRightBottom.text);
+    const hasValidBottomRightCard = (rightBottomTitleExist || rightBottomButtonExist) && rightBottomItems.visibility;
 
     const hasValidRightCards = hasValidRightCard || hasValidBottomRightCard;
 
@@ -180,17 +152,36 @@ class Download11 extends BaseDownload {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("cards")}>
             {hasValidCard && (
-              <div className={hasValidRightCard || hasValidBottomRightCard ? this.decorateCSS("left-card") : this.decorateCSS("left-card-full")}>
+              <div className={`${this.decorateCSS("left-card")} ${(hasValidRightCard || hasValidBottomRightCard) ? this.decorateCSS("no-full") : this.decorateCSS("full")}`}>
                 {hasValidCard && (
                   <Base.VerticalContent className={this.decorateCSS("card")}>
-                    {leftItems.image && <img src={leftItems.image} className={leftCardExist ? this.decorateCSS("image") : this.decorateCSS("image-full")} />}
+                    {leftItems.image && <img src={leftItems.image} className={`${this.decorateCSS("image")} ${leftCardExist ? this.decorateCSS("no-full") : this.decorateCSS("full")}`} />}
                     {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{leftItems.subtitle}</Base.SectionSubTitle>}
                     {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{leftItems.title}</Base.SectionTitle>}
                     {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{leftItems.description}</Base.SectionDescription>}
-                    {buttonTextExist && (
-                      <ComposerLink path={leftItems.buttonUrl}>
-                        <Base.Button>{leftItems.buttonText}</Base.Button>
-                      </ComposerLink>
+                    {(!buttonLeft.image && (buttonLeft.icon || buttonLeft.text)) && (
+                      <div className={this.decorateCSS("button-wrapper")}>
+                        <ComposerLink path={buttonLeft.url}>
+                          <Base.Button buttonType={buttonLeft.type} className={this.decorateCSS("button")}>
+                            {buttonLeft.icon && (
+                              <ComposerIcon
+                                propsIcon={{
+                                  className: this.decorateCSS("button-icon"),
+                                }}
+                                name={buttonLeft.icon}
+                              />
+                            )}
+                            {buttonTextExist && <div className={this.decorateCSS("button-text")}>{buttonLeft.text}</div>}
+                          </Base.Button>
+                        </ComposerLink>
+                      </div>
+                    )}
+                    {buttonLeft.image && (
+                      <div className={this.decorateCSS("button-wrapper")}>
+                        <ComposerLink path={buttonLeft.url}>
+                          <img src={buttonLeft.image} className={this.decorateCSS("button-image")} />
+                        </ComposerLink>
+                      </div>
                     )}
                   </Base.VerticalContent>
                 )}
@@ -198,7 +189,7 @@ class Download11 extends BaseDownload {
             )}
             {hasValidRightCards && (
               <div className={this.decorateCSS("right-cards")}>
-                {hasValidRightCard && rightItems.Visibility && (
+                {hasValidRightCard && rightItems.visibility && (
                   <div className={this.decorateCSS("upper-card")}>
                     <div className={this.decorateCSS("card")}>
                       {hasValidRightCardTexts && (
@@ -206,25 +197,63 @@ class Download11 extends BaseDownload {
                           {rightSubtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{rightItems.subtitle}</Base.SectionSubTitle>}
                           {rightTitleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{rightItems.title}</Base.SectionTitle>}
                           {rightDescriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{rightItems.description}</Base.SectionDescription>}
-                          {rightbuttonTextExist && (
-                            <ComposerLink path={rightItems.buttonUrl}>
-                              <Base.Button>{rightItems.buttonText}</Base.Button>
-                            </ComposerLink>
+                          {(!buttonRight.image && (buttonRight.icon || buttonRight.text)) && (
+                            <div className={this.decorateCSS("button-wrapper")}>
+                              <ComposerLink path={buttonRight.url}>
+                                <Base.Button buttonType={buttonRight.type} className={this.decorateCSS("button")}>
+                                  {buttonRight.icon && (
+                                    <ComposerIcon
+                                      propsIcon={{
+                                        className: this.decorateCSS("button-icon"),
+                                      }}
+                                      name={buttonRight.icon}
+                                    />
+                                  )}
+                                  {rightbuttonTextExist && <div className={this.decorateCSS("button-text")}>{buttonRight.text}</div>}
+                                </Base.Button>
+                              </ComposerLink>
+                            </div>
+                          )}
+                          {buttonRight.image && (
+                            <div className={this.decorateCSS("button-wrapper")}>
+                              <ComposerLink path={buttonRight.url}>
+                                <img src={buttonRight.image} className={this.decorateCSS("button-image")} />
+                              </ComposerLink>
+                            </div>
                           )}
                         </Base.VerticalContent>
                       )}
-                      {rightItems.image && <img src={rightItems.image} className={hasValidRightCardTexts ? this.decorateCSS("image") : this.decorateCSS("image-full")} />}
+                      {rightItems.image && <img src={rightItems.image} className={`${this.decorateCSS("image")} ${!hasValidRightCardTexts && this.decorateCSS("full")}`} />}
                     </div>
                   </div>
                 )}
-                {hasValidBottomRightCard && rightBottomItems.Visibility && (
+                {hasValidBottomRightCard && rightBottomItems.visibility && (
                   <div className={this.decorateCSS("buttom-card")}>
-                    <div className={alignmentValue === "left" ? this.decorateCSS("card") : alignmentValue === "center" ? this.decorateCSS("card-center") : ""}>
+                    <div className={`${this.decorateCSS("card")} ${alignmentValue === "center" && this.decorateCSS("center")}`}>
                       {this.castToString(rightBottomItems.title) && <Base.SectionTitle className={this.decorateCSS("title")}>{rightBottomItems.title}</Base.SectionTitle>}
-                      {rightBottomButtonExist && (
-                        <ComposerLink path={rightBottomItems.buttonUrl}>
-                          <Base.Button>{rightBottomItems.buttonText}</Base.Button>
-                        </ComposerLink>
+                      {(!buttonRightBottom.image && (buttonRightBottom.icon || buttonRightBottom.text)) && (
+                        <div className={this.decorateCSS("button-wrapper")}>
+                          <ComposerLink path={buttonRightBottom.url}>
+                            <Base.Button buttonType={buttonRightBottom.type} className={this.decorateCSS("button")}>
+                              {buttonRightBottom.icon && (
+                                <ComposerIcon
+                                  propsIcon={{
+                                    className: this.decorateCSS("button-icon"),
+                                  }}
+                                  name={buttonRightBottom.icon}
+                                />
+                              )}
+                              {rightBottomTitleExist && <div className={this.decorateCSS("button-text")}>{buttonRightBottom.text}</div>}
+                            </Base.Button>
+                          </ComposerLink>
+                        </div>
+                      )}
+                      {buttonRightBottom.image && (
+                        <div className={this.decorateCSS("button-wrapper")}>
+                          <ComposerLink path={buttonRightBottom.url}>
+                            <img src={buttonRightBottom.image} className={this.decorateCSS("button-image")} />
+                          </ComposerLink>
+                        </div>
                       )}
                     </div>
                   </div>

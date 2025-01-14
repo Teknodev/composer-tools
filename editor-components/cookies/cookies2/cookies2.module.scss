@@ -1,3 +1,5 @@
+@import "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss";
+
 .container {
   max-width: 700px;
   max-height: 800px;
@@ -32,4 +34,24 @@
       }
     }
   }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+  max-width: 350px;
+  max-height: 700px;
+
+  .max-content {
+    .content {
+      display: flex;
+      flex-direction: column;
+      padding: var(--composer-gap-md);
+      gap: 0;
+
+      .text {
+        text-align: center;
+      }
+    }
+  }
+}
 }

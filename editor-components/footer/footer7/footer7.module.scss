@@ -17,8 +17,7 @@
         }
       }
 
-      .right,
-      .right-full {
+      .right {
         display: flex;
         flex-direction: column;
         max-width: 70%;
@@ -30,41 +29,40 @@
           flex-wrap: wrap;
           gap: var(--composer-gap-md);
 
-          .link-element,
-          .link-element-has-path {
+          .link-element {
             .link-text {
               font-size: 1rem;
               color: var(--composer-font-color-primary);
               transition: color 0.3s ease;
             }
-          }
 
-          .link-element-has-path .link-text:hover {
-            color: var(--composer-primary-color);
+            &.has-path .link-text:hover {
+              color: var(--composer-primary-color);
+            }
           }
         }
 
         .bottom {
           display: flex;
           justify-content: flex-end;
+
           .text {
             font-size: 1rem;
             text-align: end;
             color: var(--composer-tertiary-color);
-          }
 
-          .text-left {
-            font-size: 1rem;
-            text-align: left;
-            color: var(--composer-tertiary-color);
+            &.left {
+              text-align: left;
+            }
           }
         }
-      }
 
-      .right-full {
-        max-width: 100%;
-        .upper {
-          justify-content: flex-start;
+        &.full-width {
+          max-width: 100%;
+
+          .upper {
+            justify-content: flex-start;
+          }
         }
       }
 
@@ -86,6 +84,7 @@
         .left {
           max-width: 30%;
         }
+
         .right {
           max-width: 70%;
         }
@@ -99,8 +98,18 @@
     .max-content {
       .footer-page {
         flex-direction: column;
-        align-items: baseline;
+        align-items: start;
         gap: var(--composer-gap-xs);
+
+        &.center {
+          align-items: center;
+
+          .right {
+            .upper {
+              justify-content: center;
+            }
+          }
+        }
 
         .left {
           max-width: 100%;
@@ -116,12 +125,14 @@
           flex-direction: column;
           max-width: 100%;
           gap: var(--composer-gap-xs);
+
           .upper {
             justify-content: flex-start;
           }
 
           .bottom {
             justify-content: flex-start;
+
             .text {
               text-align: left;
             }
