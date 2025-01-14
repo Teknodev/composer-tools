@@ -78,7 +78,11 @@
         .first-button-container,
         .second-button-container {
           flex: 1;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           text-align: center;
+          padding: var(--composer-gap-md) var(--composer-gap-xs);
         }
 
         .first-button,
@@ -90,31 +94,7 @@
           border: none;
           margin: var(--composer-gap-sm);
           cursor: pointer;
-        }
-      }
-    }
-  }
-}
-
-@container (max-width: #{$composer-tablet-width-lg}) {
-  .container {
-    max-width: 550px;
-    max-height: 800px;
-
-    .max-content {
-      .content {
-        .icon {
-          .icon {
-            font-size: 2rem;
-          }
-        }
-
-        .text {
-          font-size: 1.5rem;
-        }
-
-        .button-wrapper {
-          gap: var(--composer-gap-md);
+          padding: 0px;
         }
       }
     }
@@ -128,27 +108,19 @@
 
     .max-content {
       .content {
-        .icon {
-          .icon {
-            font-size: 2rem;
-          }
-        }
-
          .image-container {
           .image {
             height: 250px;
           }
         }
-
-        .text {
-          font-size: 1.5rem;
-        }
-
         .button-wrapper {
-          gap: var(--composer-gap-md);
+          .first-button-container,
+          .second-button-container {
+            padding: var(--composer-gap-xs) var(--composer-gap-xs);
+          }
           .first-button,
           .second-button {
-            font-size: 1rem;
+            font-size: 1.5rem;
           }
         }
       }
