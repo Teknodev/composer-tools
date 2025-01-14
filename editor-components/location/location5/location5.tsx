@@ -4,7 +4,7 @@ import styles from "./location5.module.scss";
 import ComposerMap from "../../../composer-base-components/map/map";
 import { Base } from "../../../composer-base-components/base/base";
 
-class LocationComponent5 extends Location {
+class Location5 extends Location {
   constructor(props?: any) {
     super(props, styles);
 
@@ -240,7 +240,7 @@ class LocationComponent5 extends Location {
                       defaultMarkerIcon={defaultMarkerIcon}
                       markers={markers}
                       styles={mapStyle.colors}
-                      className={hasItemsExist ? this.decorateCSS("location-map") : this.decorateCSS("location-map-full-width")}
+                      className={`${this.decorateCSS("location-map")} ${!hasItemsExist && this.decorateCSS("full-width")}`}
                       defaultZoom={centerZoom}
                       handleMarkerZoom={markerZoom}
                     />
@@ -255,4 +255,4 @@ class LocationComponent5 extends Location {
   }
 }
 
-export default LocationComponent5;
+export default Location5;

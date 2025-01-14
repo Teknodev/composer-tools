@@ -5,6 +5,7 @@ import { Base } from "../../../composer-base-components/base/base";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
+import ComposerModalClose from "composer-tools/composer-base-components/close/close";
 
 class Cookies6 extends BaseModal {
   constructor(props?: any) {
@@ -89,7 +90,9 @@ class Cookies6 extends BaseModal {
               </Base.Row>}
           </Base.VerticalContent>
         </Base.MaxContent>
-        <ComposerIcon propsIcon={{ className: this.decorateCSS("close-icon") }} name={this.getPropValue("close-icon")}></ComposerIcon>
+        <ComposerModalClose>
+          <ComposerIcon propsIcon={{ className: this.decorateCSS("close-icon") }} name={this.getPropValue("close-icon")}></ComposerIcon>
+        </ComposerModalClose>
       </Base.Container>
     );
   }

@@ -1,375 +1,369 @@
-import { ErrorMessage, Formik, Form } from "formik";
 import * as React from "react";
-import * as Yup from "yup";
 import { BaseContacts, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./form6.module.scss";
+import { ErrorMessage, Formik, Form } from "formik";
+import * as Yup from "yup";
 import { Base } from "../../../composer-base-components/base/base";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 class Form6 extends BaseContacts {
   constructor(props?: any) {
     super(props, styles);
-
     this.addProp({
       type: "image",
       key: "image",
       displayer: "Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c55dbd2970002c6290b4?alt=media&timestamp=1719564433797",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c6a2bd2970002c62912f?alt=media&timestamp=1719564433797",
     });
-
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "CONTACT ME",
+      value: "Let's Get In Touch.",
     });
-
     this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "Feel free to get in touch with me via the form below or by emailing me directly at",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "mail",
-      displayer: "Mail",
-      value: "hello@yelizsarioglu.com",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "location",
-      displayer: "Location Title",
-      value: "CURRENTLY",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "locationDetails",
-      displayer: "Location Details",
-      value: "Dubai, UNITED ARAB EMIRATES. Able to travel for commissions and projects",
+      value: "Or just react out manually to hello@example.com",
     });
 
     this.addProp({
       type: "array",
-      key: "input_items",
-      displayer: "Input Items",
+      key: "inputs",
+      displayer: "Form Items",
       value: [
         {
           type: "object",
-          key: "input_item",
-          displayer: "Input Item",
+          key: "form-item",
+          displayer: "Form Item",
           value: [
             {
               type: "string",
-              displayer: "Label",
               key: "label",
-              value: "Name",
+              displayer: "Label",
+              value: "First Name",
             },
             {
-              type: "array",
-              key: "inputs",
-              displayer: "Inputs",
-              value: [
-                {
-                  type: "object",
-                  displayer: "Input",
-                  key: "input",
-                  value: [
-                    {
-                      type: "string",
-                      displayer: "Placeholder",
-                      key: "placeholder",
-                      value: "First name",
-                    },
-                    {
-                      type: "boolean",
-                      key: "is_required",
-                      displayer: "Is Required",
-                      value: true,
-                    },
-                    {
-                      type: "string",
-                      key: "required_error_message",
-                      displayer: "Required error message",
-                      value: "Required",
-                    },
-                    {
-                      type: "select",
-                      key: "type",
-                      displayer: "Type",
-                      value: "Text",
-                      additionalParams: {
-                        selectItems: ["Text", "E-mail", "Number", "Text Area"],
-                      },
-                    },
-                    {
-                      type: "string",
-                      key: "type_error_message",
-                      displayer: "Type error message",
-                      value: "Invalid type",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  displayer: "Input",
-                  key: "input",
-                  value: [
-                    {
-                      type: "string",
-                      displayer: "Placeholder",
-                      key: "placeholder",
-                      value: "Last name",
-                    },
-                    {
-                      type: "boolean",
-                      key: "is_required",
-                      displayer: "Is Required",
-                      value: true,
-                    },
-                    {
-                      type: "string",
-                      key: "required_error_message",
-                      displayer: "Required error message",
-                      value: "Required",
-                    },
-                    {
-                      type: "select",
-                      key: "type",
-                      displayer: "Type",
-                      value: "Text",
-                      additionalParams: {
-                        selectItems: ["Text", "E-mail", "Number", "Text Area"],
-                      },
-                    },
-                    {
-                      type: "string",
-                      key: "type_error_message",
-                      displayer: "Type error message",
-                      value: "Invalid type",
-                    },
-                  ],
-                },
-              ],
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaUser",
+            },
+            {
+              type: "select",
+              key: "type",
+              displayer: "Input Type",
+              value: "Text",
+              additionalParams: {
+                selectItems: ["Text", "Text Area", "Phone", "Email"],
+              },
+            },
+            {
+              type: "string",
+              key: "placeholder",
+              displayer: "Placeholder",
+              value: "Enter your first name...",
+            },
+            {
+              type: "boolean",
+              key: "isFull",
+              displayer: "Is Full Width?",
+              value: false,
+            },
+            {
+              type: "boolean",
+              key: "is_required",
+              displayer: "Is Required",
+              value: true,
+            },
+            {
+              type: "string",
+              key: "type_error_message",
+              displayer: "Type Error Message",
+              value: "Required",
+            },
+            {
+              type: "string",
+              key: "required_error_message",
+              displayer: "Required error message",
+              value: "*Required",
             },
           ],
         },
         {
           type: "object",
-          key: "input_item",
-          displayer: "Input Item",
+          key: "form-item",
+          displayer: "Form Item",
           value: [
             {
               type: "string",
-              displayer: "Label",
               key: "label",
-              value: "E-mail",
+              displayer: "Label",
+              value: "Last Name",
             },
             {
-              type: "array",
-              key: "inputs",
-              displayer: "Inputs",
-              value: [
-                {
-                  type: "object",
-                  displayer: "Input",
-                  key: "input",
-                  value: [
-                    {
-                      type: "string",
-                      displayer: "Placeholder",
-                      key: "placeholder",
-                      value: "example@gmail.com",
-                    },
-                    {
-                      type: "boolean",
-                      key: "is_required",
-                      displayer: "Is Required",
-                      value: true,
-                    },
-                    {
-                      type: "string",
-                      key: "required_error_message",
-                      displayer: "Required error message",
-                      value: "Required",
-                    },
-                    {
-                      type: "select",
-                      key: "type",
-                      displayer: "Type",
-                      value: "Text",
-                      additionalParams: {
-                        selectItems: ["Text", "E-mail", "Number", "Text Area"],
-                      },
-                    },
-                    {
-                      type: "string",
-                      key: "type_error_message",
-                      displayer: "Type error message",
-                      value: "Invalid type",
-                    },
-                  ],
-                },
-              ],
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaUser",
+            },
+            {
+              type: "select",
+              key: "type",
+              displayer: "Input Type",
+              value: "Text",
+              additionalParams: {
+                selectItems: ["Text", "Text Area", "Phone", "Email"],
+              },
+            },
+            {
+              type: "string",
+              key: "placeholder",
+              displayer: "Placeholder",
+              value: "Enter your last name...",
+            },
+            {
+              type: "boolean",
+              key: "isFull",
+              displayer: "Is Full Width?",
+              value: false,
+            },
+            {
+              type: "boolean",
+              key: "is_required",
+              displayer: "Is Required",
+              value: true,
+            },
+            {
+              type: "string",
+              key: "type_error_message",
+              displayer: "Type Error Message",
+              value: "Required",
+            },
+            {
+              type: "string",
+              key: "required_error_message",
+              displayer: "Required error message",
+              value: "*Required",
             },
           ],
         },
         {
           type: "object",
-          key: "input_item",
-          displayer: "Input Item",
+          key: "form-item",
+          displayer: "Form Item",
           value: [
             {
               type: "string",
-              displayer: "Label",
               key: "label",
-              value: "Subject",
+              displayer: "Label",
+              value: "Email Address",
             },
             {
-              type: "array",
-              key: "inputs",
-              displayer: "Inputs",
-              value: [
-                {
-                  type: "object",
-                  displayer: "Input",
-                  key: "input",
-                  value: [
-                    {
-                      type: "string",
-                      displayer: "Placeholder",
-                      key: "placeholder",
-                      value: "ex: Suggestion",
-                    },
-                    {
-                      type: "boolean",
-                      key: "is_required",
-                      displayer: "Is Required",
-                      value: false,
-                    },
-                    {
-                      type: "string",
-                      key: "required_error_message",
-                      displayer: "Required error message",
-                      value: "",
-                    },
-                    {
-                      type: "select",
-                      key: "type",
-                      displayer: "Type",
-                      value: "Text",
-                      additionalParams: {
-                        selectItems: ["Text", "E-mail", "Number", "Text Area"],
-                      },
-                    },
-                    {
-                      type: "string",
-                      key: "type_error_message",
-                      displayer: "Type error message",
-                      value: "",
-                    },
-                  ],
-                },
-              ],
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaEnvelope",
+            },
+            {
+              type: "select",
+              key: "type",
+              displayer: "Input Type",
+              value: "Email",
+              additionalParams: {
+                selectItems: ["Text", "Text Area", "Phone", "Email"],
+              },
+            },
+            {
+              type: "string",
+              key: "placeholder",
+              displayer: "Placeholder",
+              value: "Enter your email address...",
+            },
+            {
+              type: "boolean",
+              key: "isFull",
+              displayer: "Is Full Width?",
+              value: true,
+            },
+            {
+              type: "boolean",
+              key: "is_required",
+              displayer: "Is Required",
+              value: true,
+            },
+            {
+              type: "string",
+              key: "type_error_message",
+              displayer: "Type Error Message",
+              value: "Required",
+            },
+            {
+              type: "string",
+              key: "required_error_message",
+              displayer: "Required error message",
+              value: "*Required",
             },
           ],
         },
         {
           type: "object",
-          key: "input_item",
-          displayer: "Input Item",
+          key: "form-item",
+          displayer: "Form Item",
           value: [
             {
               type: "string",
-              displayer: "Label",
               key: "label",
+              displayer: "Label",
+              value: "Phone Number",
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaPhoneAlt",
+            },
+            {
+              type: "select",
+              key: "type",
+              displayer: "Input Type",
+              value: "Phone",
+              additionalParams: {
+                selectItems: ["Text", "Text Area", "Phone", "Email"],
+              },
+            },
+            {
+              type: "string",
+              key: "placeholder",
+              displayer: "Placeholder",
+              value: "+44 (000)000-0000",
+            },
+            {
+              type: "boolean",
+              key: "isFull",
+              displayer: "Is Full Width?",
+              value: true,
+            },
+            {
+              type: "boolean",
+              key: "is_required",
+              displayer: "Is Required",
+              value: true,
+            },
+            {
+              type: "string",
+              key: "type_error_message",
+              displayer: "Type Error Message",
+              value: "Required",
+            },
+            {
+              type: "string",
+              key: "required_error_message",
+              displayer: "Required error message",
+              value: "*Required",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "form-item",
+          displayer: "Form Item",
+          value: [
+            {
+              type: "string",
+              key: "label",
+              displayer: "Label",
               value: "Message",
             },
             {
-              type: "array",
-              key: "inputs",
-              displayer: "Inputs",
-              value: [
-                {
-                  type: "object",
-                  displayer: "Input",
-                  key: "input",
-                  value: [
-                    {
-                      type: "string",
-                      displayer: "Placeholder",
-                      key: "placeholder",
-                      value: "Write your message...",
-                    },
-                    {
-                      type: "boolean",
-                      key: "is_required",
-                      displayer: "Is Required",
-                      value: true,
-                    },
-                    {
-                      type: "string",
-                      key: "required_error_message",
-                      displayer: "Required error message",
-                      value: "Required",
-                    },
-                    {
-                      type: "select",
-                      key: "type",
-                      displayer: "Type",
-                      value: "Text Area",
-                      additionalParams: {
-                        selectItems: ["Text", "E-mail", "Number", "Text Area"],
-                      },
-                    },
-                    {
-                      type: "string",
-                      key: "type_error_message",
-                      displayer: "Type error message",
-                      value: "",
-                    },
-                  ],
-                },
-              ],
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaMail",
+            },
+            {
+              type: "select",
+              key: "type",
+              displayer: "Input Type",
+              value: "Text Area",
+              additionalParams: {
+                selectItems: ["Text", "Text Area", "Phone", "Email"],
+              },
+            },
+            {
+              type: "string",
+              key: "placeholder",
+              displayer: "Placeholder",
+              value: "Enter your message here...",
+            },
+            {
+              type: "boolean",
+              key: "isFull",
+              displayer: "Is Full Width?",
+              value: true,
+            },
+            {
+              type: "boolean",
+              key: "is_required",
+              displayer: "Is Required",
+              value: true,
+            },
+            {
+              type: "string",
+              key: "type_error_message",
+              displayer: "Type Error Message",
+              value: "Required",
+            },
+            {
+              type: "string",
+              key: "required_error_message",
+              displayer: "Required error message",
+              value: "*Required",
             },
           ],
         },
       ],
     });
 
-    this.addProp({
-      type: "string",
-      key: "button_text",
-      displayer: "Button Text",
-      value: "Send Email",
-    });
+    this.addProp(INPUTS.BUTTON("button", "Button", "Submit Form", null, null, null, "Primary"));
   }
 
   getName(): string {
-    return "Form6";
+    return "Form 6";
+  }
+
+  getFormDataWithConvertedKeys(obj: any) {
+    const newObj: any = {};
+    const inputs = this.getPropValue("inputs");
+
+    inputs.forEach((input: any, index: number) => {
+      const label = input.value.find((prop: any) => prop.key === "label")?.value;
+      const key = label.replace(/\s+/g, "_").toLowerCase();
+      const formKey = `input_${index}`;
+      newObj[key] = obj[formKey];
+    });
+
+    return newObj;
   }
 
   render() {
-    const titleExist = !!this.getPropValue("title", { as_string: true });
-    const descriptionExist = !!this.getPropValue("description", { as_string: true });
-    const isContactVisible = titleExist || descriptionExist;
+    const inputs = this.getPropValue("inputs");
+    const imageExist = !!this.getPropValue("image");
 
-    const locationExist = !!this.getPropValue("location", { as_string: true });
-    const locationDetailsExist = !!this.getPropValue("locationDetails", { as_string: true });
-    const isAddressVisible = locationExist || locationDetailsExist;
+    const title = this.getPropValue("title");
+    const description = this.getPropValue("description");
 
-    const inputItems = this.getPropValue("input_items")!;
-    const image = this.getPropValue("image");
+    const titleExist = this.castToString(title);
+    const descriptionExist = this.castToString(description);
 
-    function toObjectKey(str: string) {
-      if (/^\d/.test(str)) {
-        str = "_" + str;
-      }
-      str = str.replace(/[^a-zA-Z0-9_]/g, "_").toLowerCase();
-      return str;
-    }
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+
+    const buttonText = button.text;
+    const buttonTextExist = this.castToString(buttonText);
+
+    const rightItemsExist = titleExist || descriptionExist || buttonTextExist || inputs.length > 0;
 
     function getInputType(type: string): string {
       switch (type) {
@@ -386,163 +380,139 @@ class Form6 extends BaseContacts {
       }
     }
 
-    function getInputName(indexOfLabel: number, inputLabel: string, indexOfInput: number): string {
-      const name = toObjectKey(`${indexOfLabel} ${inputLabel} ${indexOfInput}`);
-      return toObjectKey(name);
+    function getInputName(indexOfInput: number): string {
+      const name = `input_${indexOfInput}`;
+      return name;
     }
 
     function getInitialValue() {
       let value: any = {};
-      inputItems.map((inputItem: any, indexOfItem: number) => {
-        inputItem.getPropValue("inputs")?.map((_: TypeUsableComponentProps, indexOfInput: number) => {
-          const key = getInputName(indexOfItem, inputItem.getPropValue("label"), indexOfInput);
-          value[key] = "";
-        });
+      inputs.map((input: TypeUsableComponentProps, indexOfInput: number) => {
+        value[getInputName(indexOfInput)] = "";
       });
+
       return value;
     }
 
-    function getSchema() {
+    const getSchema = () => {
       let schema = Yup.object().shape({});
 
-      inputItems.map((inputItem: any, indexOfItem: number) => {
-        inputItem.getPropValue("inputs").map((input: any, indexOfInput: number) => {
-          const key = getInputName(indexOfItem, inputItem.getPropValue("label"), indexOfInput);
+      const inputs = this.getPropValue("inputs");
 
-          const isRequired = input.getPropValue("is_required");
-          const isEmail = getInputType(input.getPropValue("type")) == "email";
+      inputs.map((input: TypeUsableComponentProps, indexOfInput: number) => {
+        if (!input["getPropValue"]) return;
+        const isRequired = input.getPropValue("is_required");
+        const isEmail = getInputType(input.getPropValue("type")) == "email";
 
-          let fieldSchema = Yup.string() as any;
+        let fieldSchema: Yup.StringSchema<string | null | undefined> = Yup.string();
 
-          if (isRequired) {
-            fieldSchema = fieldSchema.required(input.getPropValue("required_error_message"));
-          } else {
-            fieldSchema = fieldSchema.nullable();
-          }
+        if (isRequired) {
+          fieldSchema = fieldSchema.required(input.getPropValue("required_error_message"));
+        } else {
+          fieldSchema = fieldSchema.nullable();
+        }
 
-          if (isEmail) {
-            fieldSchema = fieldSchema.email(input.getPropValue("type_error_message"));
-          }
+        if (isEmail) {
+          fieldSchema = fieldSchema.email(input.getPropValue("type_error_message"));
+        }
 
-          schema = schema.shape({
-            [key]: fieldSchema,
-          });
+        schema = schema.shape({
+          [getInputName(indexOfInput)]: fieldSchema,
         });
       });
 
       return schema;
-    }
-
-    function getFormDataWithConvertedKeys(obj: any) {
-      const newObj: any = {};
-      for (const key in obj) {
-        if (Object.prototype.hasOwnProperty.call(obj, key)) {
-          let adjustedKey = key.startsWith("_") ? key.slice(1) : key;
-          const parts = adjustedKey.split("_");
-          let newKey = "";
-          for (let i = 1; i < parts.length - 1; i++) {
-            newKey += (i > 1 ? "_" : "") + parts[i];
-          }
-          newObj[newKey] = obj[key];
-        }
-      }
-      return newObj;
-    }
-
-    function isRequiredInput(inputItem: any): boolean {
-      return inputItem.getPropValue("inputs").some((input: any) => input.getPropValue("is_required"));
-    }
-
-    const buttonText = this.getPropValue("button_text");
-    const buttonTextExist = this.castToString(buttonText);
-
-    const formContainerExist = inputItems.length > 0 || buttonTextExist;
+    };
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("top-container")}>
-            {isContactVisible && (
-              <div className={this.decorateCSS("contact")}>
-                {titleExist && <Base.P className={this.decorateCSS("title")}> {this.getPropValue("title")} </Base.P>}
-                {descriptionExist && (
-                  <Base.P className={this.decorateCSS("description")}>
-                    {this.getPropValue("description")}
-                    {this.getPropValue("mail")}
-                  </Base.P>
+          <div className={this.decorateCSS("wrapper")}>
+            {imageExist && (
+              <div
+                className={`${this.decorateCSS("image-container")} 
+              ${!rightItemsExist && this.decorateCSS("image-full-width")}`}
+              >
+                <img className={this.decorateCSS("image")} src={this.getPropValue("image")} alt="contact" />
+              </div>
+            )}
+            {rightItemsExist && (
+              <div
+                className={`
+                ${this.decorateCSS("form-container")}
+                ${!imageExist && this.decorateCSS("without-image")}
+              `}
+              >
+                {(titleExist || descriptionExist) && (
+                  <Base.VerticalContent className={this.decorateCSS("header")}>
+                    {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                    {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+                  </Base.VerticalContent>
                 )}
-              </div>
-            )}
-            {isAddressVisible && (
-              <div className={this.decorateCSS("address")}>
-                {locationExist && <Base.P className={this.decorateCSS("title-2")}>{this.getPropValue("location")}</Base.P>}
-                {locationDetailsExist && <Base.P className={this.decorateCSS("description-2")}>{this.getPropValue("locationDetails")}</Base.P>}
-              </div>
-            )}
-          </div>
-          <div className={this.decorateCSS("lower-container")}>
-            {formContainerExist && (
-              <div className={this.decorateCSS("form-container")}>
-                <Formik
-                  initialValues={getInitialValue()}
-                  validationSchema={getSchema()}
-                  onSubmit={(data, { resetForm }) => {
-                    const formData = getFormDataWithConvertedKeys(data);
-                    this.insertForm("Contact Me", formData);
-                    resetForm();
-                  }}
-                >
-                  {({ handleChange, values }) => (
-                    <Form className={this.decorateCSS("form")}>
-                      {inputItems.map((inputItem: any, inputItemIndex: number) => (
-                        <div className={this.decorateCSS("input-container")}>
-                          <span className={this.decorateCSS("label")}>
-                            {inputItem.getPropValue("label", {
-                              suffix: {
-                                label: isRequiredInput(inputItem) && "*",
-                                className: this.decorateCSS("require-star"),
-                              },
-                            })}
-                          </span>
-                          <div className={this.decorateCSS("inputs")}>
-                            {inputItem.getPropValue("inputs").map((inputObj: any, inputIndex: number) => (
-                              <div className={this.decorateCSS("input-box")}>
-                                {inputObj.getPropValue("type") === "Text Area" ? (
+                {(inputs.length > 0 || buttonTextExist) && (
+                  <Formik
+                    initialValues={getInitialValue()}
+                    validationSchema={getSchema()}
+                    onSubmit={(data, { resetForm }) => {
+                      const formData = this.getFormDataWithConvertedKeys(data);
+                      this.insertForm("Contact Me", formData);
+                      resetForm();
+                    }}
+                  >
+                    {({ handleChange, values }) => (
+                      <Form className={this.decorateCSS("form")}>
+                        {this.castToObject<any>("inputs").map((input: any, index: number) => {
+                          return (
+                            <div
+                              key={index}
+                              className={`
+                              ${this.decorateCSS("form-item")}
+                              ${input.getPropValue("isFull") ? this.decorateCSS("full") : ""}`}
+                            >
+                              {this.castToString(input.getPropValue("label")) && <label className={this.decorateCSS("form-item-label")}>{input.getPropValue("label")}</label>}
+
+                              <div className={this.decorateCSS("input-container")}>
+                                {input.getPropValue("type") == "Text Area" ? (
                                   <textarea
-                                    value={values[getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)]}
-                                    className={this.decorateCSS("input")}
-                                    placeholder={inputObj.getPropValue("placeholder", { as_string: true })}
-                                    rows={12}
+                                    id={getInputName(index)}
+                                    name={getInputName(index)}
+                                    value={values[getInputName(index)]}
+                                    placeholder={this.castToString(input.getPropValue("placeholder"))}
+                                    className={this.decorateCSS("input-textarea")}
+                                    rows={6}
                                     onChange={handleChange}
-                                    name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)}
-                                  ></textarea>
-                                ) : (
-                                  <input
-                                    placeholder={inputObj.getPropValue("placeholder", { as_string: true })}
-                                    type={getInputType(inputObj.getPropValue("type"))}
-                                    onChange={handleChange}
-                                    value={values[getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)]}
-                                    name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)}
-                                    className={this.decorateCSS("input")}
                                   />
+                                ) : (
+                                  <>
+                                    <ComposerIcon name={input.getPropValue("icon")} propsIcon={{ className: this.decorateCSS("input-icon") }} />
+
+                                    <input
+                                      id={getInputName(index)}
+                                      name={getInputName(index)}
+                                      placeholder={this.castToString(input.getPropValue("placeholder"))}
+                                      type={getInputType(input.getPropValue("type"))}
+                                      onChange={handleChange}
+                                      value={values[getInputName(index)]}
+                                      className={this.decorateCSS("input")}
+                                    />
+                                  </>
                                 )}
-                                <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)} component={"span"} />
+                                <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(index)} component={"span"} />
                               </div>
-                            ))}
+                            </div>
+                          );
+                        })}
+                        {buttonTextExist && (
+                          <div className={this.decorateCSS("button-div")}>
+                            <Base.Button buttonType={button.type} className={this.decorateCSS("submit-button")} type="submit">
+                              {buttonText}
+                            </Base.Button>
                           </div>
-                        </div>
-                      ))}
-                      <Base.Button className={this.decorateCSS("submit-button")} type="submit">
-                        {this.getPropValue("button_text")}
-                      </Base.Button>
-                    </Form>
-                  )}
-                </Formik>
-              </div>
-            )}
-            {image && (
-              <div className={formContainerExist ? this.decorateCSS("image-container") : this.decorateCSS("image-container-no-form")}>
-                <img className={this.decorateCSS("image")} src={image} alt="" />
+                        )}
+                      </Form>
+                    )}
+                  </Formik>
+                )}
               </div>
             )}
           </div>

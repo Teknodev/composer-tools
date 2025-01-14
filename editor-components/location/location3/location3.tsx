@@ -29,7 +29,7 @@ type MarkerObject = {
   };
 };
 
-class LocationComponent3 extends Location {
+class Location3 extends Location {
   constructor(props?: any) {
     super(props, styles);
 
@@ -58,7 +58,7 @@ class LocationComponent3 extends Location {
       type: "number",
       key: "centerZoom",
       displayer: "Center Zoom Value",
-      value: 3,
+      value: 2,
     });
 
     this.addProp({
@@ -301,9 +301,9 @@ class LocationComponent3 extends Location {
 
     const topExist = iconExist || titleExist || descriptionExist || continents.length > 0;
     return (
-      <Base.Container className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("wrapper")}>
-          {topExist && (
+      <div className={this.decorateCSS("wrapper")}>
+        {topExist && (
+          <Base.Container className={this.decorateCSS("container")}>
             <Base.MaxContent className={this.decorateCSS("max-content")}>
               <Base.VerticalContent className={this.decorateCSS("header")}>
                 {this.getPropValue("icon") && (
@@ -318,14 +318,13 @@ class LocationComponent3 extends Location {
                 {continents.length > 0 && (
                   <div className={styles["continents-wrapper"]}>
                     {continents.map((continentObj: any, index: number) => {
-                      const continent = continentObj.value;
-                      const name = continent.find((item: any) => item.key === "name")?.value;
-                      const count = continent.find((item: any) => item.key === "count")?.value;
+                      const name = this.castToString(continentObj.getPropValue("name"));
+                      const count = continentObj.getPropValue("count");
 
                       return (
                         (name || count) && (
                           <div key={index} className={styles["continent-item"]}>
-                            <Base.P className={this.decorateCSS("continent-name")}>{name}</Base.P>
+                            <Base.P className={this.decorateCSS("continent-name")}>{continentObj.getPropValue("name")}</Base.P>
                             <Base.P className={this.decorateCSS("continent-count")}>{count}</Base.P>
                           </div>
                         )
@@ -335,14 +334,14 @@ class LocationComponent3 extends Location {
                 )}
               </Base.VerticalContent>
             </Base.MaxContent>
-          )}
-          <section className={this.decorateCSS("map-container")}>
-            <ComposerMap defaultMarkerIcon={defaultMarkerIcon} handleMarkerZoom={markerZoom} defaultZoom={centerZoom} markers={markers} className={this.decorateCSS("map")} styles={mapStyle.colors} />
-          </section>
-        </div>
-      </Base.Container>
+          </Base.Container>
+        )}
+        <section className={this.decorateCSS("map-container")}>
+          <ComposerMap defaultMarkerIcon={defaultMarkerIcon} handleMarkerZoom={markerZoom} defaultZoom={centerZoom} markers={markers} className={this.decorateCSS("map")} styles={mapStyle.colors} />
+        </section>
+      </div>
     );
   }
 }
 
-export default LocationComponent3;
+export default Location3;
