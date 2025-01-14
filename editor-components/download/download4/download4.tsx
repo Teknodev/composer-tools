@@ -2,148 +2,102 @@ import * as React from "react";
 import styles from "./download4.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseDownload } from "../../EditorComponent";
-
-
-type Button = {
-    buttonText1: string,
-    buttonText2: string,
-    url: string,
-    buttonImage: string,
-};
+import { Base } from "../../../composer-base-components/base/base";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 class Download4 extends BaseDownload {
-    constructor(props?: any) {
-        super(props, styles);
+  constructor(props?: any) {
+    super(props, styles);
 
-        let googlePlayIcon = require("./google-play.png")
-        let appStoreIcon = require("./pngegg.png")
-        this.addProp({
-            type: "string",
-            key: "title",
-            displayer: "Title",
-            value: "Start with lucky,Grow your business",
-        });
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "Download app",
+    });
 
-        this.addProp({
-            type: "image",
-            key: "image",
-            displayer: "Image",
-            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e5f9a9057bdf002c29c5ef?alt=media&timestamp=1719564433795"
-        })
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+    });
 
-        this.addProp({
-            type: "string",
-            key: "description",
-            displayer: "Description",
-            value: "To grow a business, it's important to establish clear goals, identify and target the right audience, continually innovate and adapt to changing market trends, and build strong relationships with customers and stakeholders.",
-        });
+    this.addProp({
+      type: "image",
+      key: "image",
+      displayer: "Image",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6748510e506a40002c2f0943?alt=media&timestamp=1732792647249",
+    });
 
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Download", "", "", "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67586eb80655f8002ca57e58?alt=media", "Primary"),
+        INPUTS.BUTTON("button", "Button", "Download", "", "", "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/673f51e4506a40002c2cf6eb?alt=media&timestamp=1732203035257", "Primary"),
+      ],
+    });
+  }
 
+  getName(): string {
+    return "Download-4";
+  }
 
-        this.addProp({
-            type: "array",
-            key: "buttons",
-            displayer: "Buttons",
-            value: [
-                {
-                    type: "object",
-                    key: "button",
-                    displayer: "Displayer",
-                    value: [
-                        {
-                            type: "string",
-                            key: "buttonText1",
-                            displayer: "Button Text",
-                            value: "DOWNLOAD ON THE",
-                        },
-                        {
-                            type: "string",
-                            key: "buttonText2",
-                            displayer: "Button Text",
-                            value: "App Store",
-                        },
-                        {
-                            type: "page",
-                            key: "url",
-                            displayer: "Button Link",
-                            value: "",
-                        },
-                        {
-                            type: "image",
-                            key: "buttonImage",
-                            displayer: "In Button Icon",
-                            value: appStoreIcon,
-                        }
-                    ],
-                },
-                {
-                    type: "object",
-                    key: "button",
-                    displayer: "Displayer",
-                    value: [
-                        {
-                            type: "string",
-                            key: "buttonText1",
-                            displayer: "Button Text",
-                            value: "GET IT ON",
-                        },
-                        {
-                            type: "string",
-                            key: "buttonText2",
-                            displayer: "Button Text",
-                            value: "Google Play",
-                        },
-                        {
-                            type: "page",
-                            key: "url",
-                            displayer: "Button Link",
-                            value: "",
-                        },
-                        {
-                            type: "image",
-                            key: "buttonImage",
-                            displayer: "In Button Icon",
-                            value: googlePlayIcon,
-                        }
-                    ],
-                }
-            ]
-        });
-    }
+  render() {
+    const title = this.getPropValue("title");
+    const description = this.getPropValue("description");
+    const image = this.getPropValue("image");
 
-    getName(): string {
-        return "Download-4";
-    }
+    const titleExist = this.castToString(title);
+    const descriptionExist = this.castToString(description);
 
-
-    render() {
-        return (
-            <div className={this.decorateCSS("container")}>
-                <div className={this.decorateCSS("max-content")}>
-                    <div className={this.decorateCSS("page")}>
-                        <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
-                        <img src={this.getPropValue("image")} alt="" className={this.decorateCSS("image")} />
-                        <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
-                        <div className={this.decorateCSS("button-group")}>
-                            {this.castToObject<Button[]>("buttons").map((item: Button, index: number) => {
-                                return (
-                                    <ComposerLink key={`dw-2-btn-${index}`} path={item.url} >
-                                        <div className={this.decorateCSS("button")}>
-                                            <img src={item.buttonImage} alt="icon" className={this.decorateCSS("button-logo")} />
-                                            <div className={this.decorateCSS("button-texts")}>
-                                                <p className={this.decorateCSS("up-text")}>{item.buttonText1}</p>
-                                                <p className={this.decorateCSS("down-text")}>{item.buttonText2}</p>
-                                            </div>
-                                        </div>
-                                    </ComposerLink>
-                                )
-                            })}
+    return (
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <div className={this.decorateCSS("page")}>
+            {(titleExist || descriptionExist) && (
+              <Base.VerticalContent className={this.decorateCSS("header")}>
+                {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
+                {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
+              </Base.VerticalContent>
+            )}
+            {this.castToObject<INPUTS.CastedButton[]>("buttons").length > 0 && (
+              <div className={this.decorateCSS("buttons-container")}>
+                {this.castToObject<INPUTS.CastedButton[]>("buttons").map((item: INPUTS.CastedButton, index: number) => {
+                  const buttonTextExist = this.castToString(item.text);
+                  return (
+                    <ComposerLink key={`dw-4-btn-${index}`} path={item.url}>
+                      {item.image ? (
+                        <div className={this.decorateCSS("image-container")}>
+                          <img src={item.image} className={this.decorateCSS("image")} />
                         </div>
-                    </div>
-                </div>
-            </div>
-        );
-    }
+                      ) : (
+                        (item.icon || buttonTextExist) && (
+                          <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                            {item.icon && <ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }} />}
+                            {buttonTextExist && item.text && <div className={this.decorateCSS("text")}>{item.text}</div>}
+                          </Base.Button>
+                        )
+                      )}
+                    </ComposerLink>
+                  );
+                })}
+              </div>
+            )}
+            {image && (
+              <div className={this.decorateCSS("image-container")}>
+                <img className={this.decorateCSS("image")} src={this.getPropValue("image")} />
+              </div>
+            )}
+          </div>
+        </Base.MaxContent>
+      </Base.Container>
+    );
+  }
 }
 
 export default Download4;

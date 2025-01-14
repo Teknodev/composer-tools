@@ -2,6 +2,7 @@ import * as React from "react";
 import { BaseFeature } from "../../EditorComponent";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import styles from "./feature13.module.scss";
+import { Base } from "../../../composer-base-components/base/base";
 
 type Tab = {
   title: JSX.Element;
@@ -19,10 +20,9 @@ type SliderImage = {
   imageIndex: number;
 };
 
-
 class Feature13 extends BaseFeature {
   intervalId: any;
-  
+
   constructor(props?: any) {
     super(props, styles);
 
@@ -30,14 +30,14 @@ class Feature13 extends BaseFeature {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: '"Discover Our Story"',
+      value: "Discover Our Story",
     });
     this.addProp({
       type: "boolean",
       key: "divider",
       displayer: "Line",
       value: true,
-    })
+    });
     this.addProp({
       type: "string",
       key: "description",
@@ -276,9 +276,9 @@ class Feature13 extends BaseFeature {
       ],
     });
 
-    // this.intervalId = setInterval(() => {
-    //   this.sliderNext();
-    // }, 3000);
+    this.intervalId = setInterval(() => {
+      this.sliderNext();
+    }, 3000);
 
     this.addProp({
       type: "icon",
@@ -307,9 +307,6 @@ class Feature13 extends BaseFeature {
 
   resetSliderInterval = () => {
     clearInterval(this.intervalId);
-    // this.intervalId = setInterval(() => {
-    //   this.sliderNext();
-    // }, 3000);
   }
 
   sliderNext = () => {
@@ -349,7 +346,6 @@ class Feature13 extends BaseFeature {
     const sliderImagesChanged = JSON.stringify(this.getComponentState("slider-images-temp")) !==
       JSON.stringify(this.castToObject<SliderImage[]>("slider-images"));
 
-
     if (sliderImagesChanged) {
       this.setComponentState(
         "slider-images-temp",
@@ -369,44 +365,43 @@ class Feature13 extends BaseFeature {
     const progressList = this.castToObject<Progress[]>("progresses");
 
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("comp-container")}>
-            <header className={this.decorateCSS("comp-header")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <div className={this.decorateCSS("wrapper")}>
+            <Base.VerticalContent className={this.decorateCSS("header")}>
               {titleExist && (
-                <h1 className={this.decorateCSS("comp-header-title")}>
+                <Base.SectionTitle className={this.decorateCSS("header-title")}>
                   {this.getPropValue("title")}
-                </h1>
+                </Base.SectionTitle>
               )}
               {dividerExist &&
-                <hr
-                  className={this.decorateCSS("divider")}
-                />}
+                <hr className={this.decorateCSS("divider")} />
+              }
               {descExist && (
-                <p className={this.decorateCSS("comp-header-description")}>
+                <Base.SectionDescription className={this.decorateCSS("header-description")}>
                   {this.getPropValue("description")}
-                </p>
+                </Base.SectionDescription>
               )}
-            </header>
-            <main className={this.decorateCSS("comp-wrapper")}>
+            </Base.VerticalContent>
+            <Base.ContainerGrid className={this.decorateCSS("comp-wrapper")}>
               {sliderImages.length > 0 && (
-                <div className={this.decorateCSS("comp-slider")}>
+                <Base.GridCell className={this.decorateCSS("comp-slider")}>
                   {this.getComponentState("slider-images").map(
                     (image: SliderImage, index: number) => {
-                      if (image.imageSource)
-                        return (
-                          <img
-                            key={index}
-                            style={{
-                              marginLeft: `${image.imageIndex * 20}px`,
-                              marginTop: `${image.imageIndex * 20}px`,
-                              zIndex: image.imageIndex + 1,
-                            }}
-                            className={this.decorateCSS("slider-item")}
-                            src={image.imageSource}
-                            alt={"Image"}
-                          />
-                        );
+                      if (!image.imageSource) return null;
+                      return (
+                        <img
+                          key={index}
+                          style={{
+                            marginLeft: `calc(${image.imageIndex} * var(--composer-gap-md))`,
+                            marginTop: `calc(${image.imageIndex} * var(--composer-gap-md))`,
+                            zIndex: image.imageIndex + 1,
+                          }}
+                          className={this.decorateCSS("slider-item")}
+                          src={image.imageSource}
+                          alt={"Image"}
+                        />
+                      );
                     }
                   )}
                   <footer className={this.decorateCSS("slider-buttons")}>
@@ -433,74 +428,72 @@ class Feature13 extends BaseFeature {
                       </button>
                     )}
                   </footer>
-                </div>
+                </Base.GridCell>
               )}
 
               {(tabList.length > 0 || progressList.length > 0) && (
-                <div className={this.decorateCSS("comp-body-wrapper")}>
+                <Base.GridCell className={this.decorateCSS("comp-body-wrapper")}>
                   {tabList.length > 0 && (
                     <>
-                      <header className={this.decorateCSS("tabs")}>
-                        <ul className={this.decorateCSS("tabs-list")}>
+                      <div className={this.decorateCSS("tabs")}>
+                        <div className={this.decorateCSS("tabs-list")}>
                           {tabList.map((item: Tab, index: number) => {
-                            const titleExist = this.castToString(item.title);
+                            const titleExist = !!this.castToString(item.title);
 
-                            if (titleExist)
-                              return (
-                                <li
-                                  className={this.decorateCSS("tabs-list-item")}
+                            if (!titleExist) return null;
+
+                            return (
+                              <div
+                                key={index}
+                                className={this.decorateCSS("tabs-list-item")}
+                              >
+                                <button
+                                  onClick={() => {
+                                    this.switchTab(index);
+                                  }}
+                                  className={`${this.decorateCSS("button")} ${this.activeTab === index
+                                    ? this.decorateCSS("active")
+                                    : ""
+                                    }`}
                                 >
-                                  <button
-                                    onClick={() => {
-                                      this.switchTab(index);
-                                    }}
-                                    className={`${this.decorateCSS("button")} ${this.activeTab === index
-                                      ? this.decorateCSS("active")
-                                      : ""
-                                      }`}
-                                  >
-                                    {item.title}
-                                  </button>
-                                </li>
-                              );
+                                  {item.title}
+                                </button>
+                              </div>
+                            );
                           })}
-                        </ul>
-                      </header>
+                        </div>
+                      </div>
                       {this.castToString(tabList[this.activeTab].title) &&
                         this.castToString(tabList[this.activeTab].content) && (
-                          <p className={this.decorateCSS("comp-body-content")}>
+                          <Base.P className={this.decorateCSS("comp-body-content")}>
                             {tabList[this.activeTab].content}
-                          </p>
+                          </Base.P>
                         )}
                     </>
                   )}
                   {progressList.length > 0 && (
                     <footer className={this.decorateCSS("comp-progresses")}>
                       {progressList.map((item: Progress, index: number) => {
-                        const titleExist = this.castToString(item.title);
-                        const percentage: number = item.percentage
+                        const titleExist = !!this.castToString(item.title);
+                        const percentage: number = item.percentage;
                         const utility = item.utility;
 
-                        if (titleExist)
-                          return (
-                            <div
-                              className={this.decorateCSS("progress-item")}
-                            >
+                        if (!titleExist) return null;
+
+                        return (
+                          <div key={index} className={this.decorateCSS("progress-item")}>
+                            <div className={this.decorateCSS("progress-header")}>
+                              <Base.H3 className={this.decorateCSS("progress-title")}>
+                                {item.title}
+                              </Base.H3>
+                              {utility && (<span
+                                className={this.decorateCSS(
+                                  "progress-percent"
+                                )}
+                              >{utility}</span>)}
+                            </div>
+                            {percentage && (
                               <div
-                                className={this.decorateCSS("progress-header")}
-                              >
-                                <h3
-                                  className={this.decorateCSS("progress-title")}
-                                >
-                                  {item.title}
-                                </h3>
-                                {percentage && (<span
-                                  className={this.decorateCSS(
-                                    "progress-percent"
-                                  )}
-                                >{utility}</span>)}
-                              </div>
-                              {percentage && (<div
                                 className={this.decorateCSS("progress-line")}
                                 style={{
                                   width: `${percentage >= 100
@@ -510,18 +503,18 @@ class Feature13 extends BaseFeature {
                                       : `${percentage}%`
                                     }`,
                                 }}
-                              ></div>)}
-                            </div>
-                          );
+                              />)}
+                          </div>
+                        );
                       })}
                     </footer>
                   )}
-                </div>
+                </Base.GridCell>
               )}
-            </main>
+            </Base.ContainerGrid>
           </div>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
 
   }

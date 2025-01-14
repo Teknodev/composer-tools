@@ -3,16 +3,15 @@ import { BaseContent } from "../../EditorComponent";
 import styles from "./content5.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
-
+import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type ITabs = {
-  tabText: string;
-  title: string;
-  description: string;
-  buttonText: string;
-  buttonUrl: string;
-  text: string;
-  icon:string;
+  tabText: JSX.Element;
+  title: JSX.Element;
+  description: JSX.Element;
+  button: INPUTS.CastedButton;
+  icon: string;
 };
 
 class Content5 extends BaseContent {
@@ -45,38 +44,19 @@ class Content5 extends BaseContent {
               type: "string",
               key: "title",
               displayer: "Title",
-              value:
-                "Business Strategy",
+              value: "Business Strategy",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
               value:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptate, quibusdam sunt iste dolores consequatur",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptate, quibusdam sunt iste dolores consequatur <br><br> Inventore fugit error iure nisi reiciendis fugiat illo pariatur quam sequi quod iusto facilis officiis nobis sit quis molestias asperiores rem, blanditiis! Commodi exercitationem vitae deserunt qui nihil ea, tempore et quam natus quaerat doloremque.",
             },
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value:
-                "Inventore fugit error iure nisi reiciendis fugiat illo pariatur quam sequi quod iusto facilis officiis nobis sit quis molestias asperiores rem, blanditiis! Commodi exercitationem vitae deserunt qui nihil ea, tempore et quam natus quaerat doloremque.",
-            },
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Learn More",
-            },
-            {
-              type: "page",
-              key: "buttonUrl",
-              displayer: "Button Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary")
           ],
         },
-       {
+        {
           type: "object",
           key: "tab",
           displayer: "Button text",
@@ -86,7 +66,7 @@ class Content5 extends BaseContent {
               key: "tabText",
               displayer: "Button",
               value: "Research",
-            }, 
+            },
             {
               type: "icon",
               key: "icon",
@@ -97,35 +77,16 @@ class Content5 extends BaseContent {
               type: "string",
               key: "title",
               displayer: "Title",
-              value:
-                "Research",
+              value: "Research",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
               value:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptate, quibusdam sunt iste dolores consequatur ",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptate, quibusdam sunt iste dolores consequatur <br><br> Inventore fugit error iure nisi reiciendis fugiat illo pariatur quam sequi quod iusto facilis officiis nobis sit quis molestias asperiores rem, blanditiis! Commodi exercitationem vitae deserunt qui nihil ea, tempore et quam natus quaerat doloremque.",
             },
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value:
-                "Inventore fugit error iure nisi reiciendis fugiat illo pariatur quam sequi quod iusto facilis officiis nobis sit quis molestias asperiores rem, blanditiis! Commodi exercitationem vitae deserunt qui nihil ea, tempore et quam natus quaerat doloremque.",
-            },
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Learn More",
-            },
-            {
-              type: "page",
-              key: "buttonUrl",
-              displayer: "Button Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary")
           ],
         },
         {
@@ -144,40 +105,21 @@ class Content5 extends BaseContent {
               key: "icon",
               displayer: "Icon",
               value: "GrAnalytics",
-            },   
+            },
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value:
-                "Data Analysis",
+              value: "Data Analysis",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
               value:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptate, quibusdam sunt iste dolores consequatur ",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptate, quibusdam sunt iste dolores consequatur <br><br> Inventore fugit error iure nisi reiciendis fugiat illo pariatur quam sequi quod iusto facilis officiis nobis sit quis molestias asperiores rem, blanditiis! Commodi exercitationem vitae deserunt qui nihil ea, tempore et quam natus quaerat doloremque.",
             },
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value:
-                "Inventore fugit error iure nisi reiciendis fugiat illo pariatur quam sequi quod iusto facilis officiis nobis sit quis molestias asperiores rem, blanditiis! Commodi exercitationem vitae deserunt qui nihil ea, tempore et quam natus quaerat doloremque.",
-            },
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Learn More",
-            },
-            {
-              type: "page",
-              key: "buttonUrl",
-              displayer: "Button Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "Learn More", "",null,null, "Primary")
           ],
         },
         {
@@ -201,35 +143,16 @@ class Content5 extends BaseContent {
               type: "string",
               key: "title",
               displayer: "Title",
-              value:
-                "UI Design",
+              value: "UI Design",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
               value:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptate, quibusdam sunt iste dolores consequatur ",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptate, quibusdam sunt iste dolores consequatur <br><br> Inventore fugit error iure nisi reiciendis fugiat illo pariatur quam sequi quod iusto facilis officiis nobis sit quis molestias asperiores rem, blanditiis! Commodi exercitationem vitae deserunt qui nihil ea, tempore et quam natus quaerat doloremque.",
             },
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value:
-                "Inventore fugit error iure nisi reiciendis fugiat illo pariatur quam sequi quod iusto facilis officiis nobis sit quis molestias asperiores rem, blanditiis! Commodi exercitationem vitae deserunt qui nihil ea, tempore et quam natus quaerat doloremque.",
-            },
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Learn More",
-            },
-            {
-              type: "page",
-              key: "buttonUrl",
-              displayer: "Button Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary")
           ],
         },
         {
@@ -248,47 +171,28 @@ class Content5 extends BaseContent {
               key: "icon",
               displayer: "Icon",
               value: "SiAltiumdesigner",
-            }, 
+            },
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value:
-                "Ux Design",
+              value: "Ux Design",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
               value:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptate, quibusdam sunt iste dolores consequatur",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptate, quibusdam sunt iste dolores consequatur <br><br> Inventore fugit error iure nisi reiciendis fugiat illo pariatur quam sequi quod iusto facilis officiis nobis sit quis molestias asperiores rem, blanditiis! Commodi exercitationem vitae deserunt qui nihil ea, tempore et quam natus quaerat doloremque.",
             },
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value:
-                "Inventore fugit error iure nisi reiciendis fugiat illo pariatur quam sequi quod iusto facilis officiis nobis sit quis molestias asperiores rem, blanditiis! Commodi exercitationem vitae deserunt qui nihil ea, tempore et quam natus quaerat doloremque.",
-            },
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Learn More",
-            },
-            {
-              type: "page",
-              key: "buttonUrl",
-              displayer: "Button Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary")
           ],
         },
         {
           type: "object",
           key: "tab",
           displayer: "Button text",
-          value: [        
+          value: [
             {
               type: "string",
               key: "tabText",
@@ -305,42 +209,23 @@ class Content5 extends BaseContent {
               type: "string",
               key: "title",
               displayer: "Title",
-              value:
-                "Technology",
+              value: "Technology",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
               value:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptate, quibusdam sunt iste dolores consequatur",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptate, quibusdam sunt iste dolores consequatur <br><br> Inventore fugit error iure nisi reiciendis fugiat illo pariatur quam sequi quod iusto facilis officiis nobis sit quis molestias asperiores rem, blanditiis! Commodi exercitationem vitae deserunt qui nihil ea, tempore et quam natus quaerat doloremque.",
             },
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value:
-                "Inventore fugit error iure nisi reiciendis fugiat illo pariatur quam sequi quod iusto facilis officiis nobis sit quis molestias asperiores rem, blanditiis! Commodi exercitationem vitae deserunt qui nihil ea, tempore et quam natus quaerat doloremque.",
-            },
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Learn More",
-            },
-            {
-              type: "page",
-              key: "buttonUrl",
-              displayer: "Button Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary")
           ],
         },
         {
           type: "object",
           key: "tab",
           displayer: "Button text",
-          value: [                  
+          value: [
             {
               type: "string",
               key: "tabText",
@@ -352,40 +237,21 @@ class Content5 extends BaseContent {
               key: "icon",
               displayer: "Icon",
               value: "FiAperture",
-            }, 
+            },
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value:
-                "Creative",
+              value: "Creative",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
               value:
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptate, quibusdam sunt iste dolores consequatur",
+                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptate, quibusdam sunt iste dolores consequatur <br><br> Inventore fugit error iure nisi reiciendis fugiat illo pariatur quam sequi quod iusto facilis officiis nobis sit quis molestias asperiores rem, blanditiis! Commodi exercitationem vitae deserunt qui nihil ea, tempore et quam natus quaerat doloremque.",
             },
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value:
-                "Inventore fugit error iure nisi reiciendis fugiat illo pariatur quam sequi quod iusto facilis officiis nobis sit quis molestias asperiores rem, blanditiis! Commodi exercitationem vitae deserunt qui nihil ea, tempore et quam natus quaerat doloremque.",
-            },
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Learn More",
-            },
-            {
-              type: "page",
-              key: "buttonUrl",
-              displayer: "Button Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary")
           ],
         },
       ],
@@ -397,66 +263,91 @@ class Content5 extends BaseContent {
     this.setComponentState("activeTab", activeTabIndex);
     setTimeout(() => {
       this.setComponentState("startedIndex", activeTabIndex);
-    },20);
+    }, 5);
   }
-  
+
   getName(): string {
-    return "content 5";
+    return "Content 5";
   }
   render() {
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("tabs")}>
-            <div className={this.decorateCSS("tab-1")}>
             <div className={this.decorateCSS("tab-buttons")}>
               {this.castToObject<ITabs[]>("tabs").map(
                 (tab: ITabs, index: number) => (
-                  <div className={ this.decorateCSS("tab-button") +" " +
-                      ((this.getComponentState("activeTab") == index) &&
-                        this.decorateCSS("active"))}
-                    onClick={() => this.setActiveTab(index)}>
-                      <ComposerIcon name={tab.icon} propsIcon={{
-                      className:this.decorateCSS("icon"),
-                    }}/>
-                          <div className={this.decorateCSS("kare")}></div>
-                          {tab.tabText}
+                  <div
+                    className={
+                      `${this.decorateCSS("tab-button")} ${this.getComponentState("activeTab") === index
+                        ? this.decorateCSS("active")
+                        : ""
+                      }`
+                    }
+                    onClick={() => this.setActiveTab(index)}
+                  >
+                    <ComposerIcon
+                      name={tab.icon}
+                      propsIcon={{
+                        className: this.decorateCSS("icon"),
+                      }}
+                    />
+                    <div className={this.decorateCSS("square")}></div>
+                    {tab.tabText}
                   </div>
                 )
               )}
             </div>
-            </div>
             {this.castToObject<ITabs[]>("tabs").map(
               (tab: ITabs, index: number) => (
-                <div className={this.decorateCSS("tab") +" " +
-                    ((this.getComponentState("activeTab") == index) &&
-                      this.decorateCSS("active")) +
-                    " " + ((this.getComponentState("startedIndex") == index) &&
-                      this.decorateCSS("start"))}>
-                  <div className={this.decorateCSS("content")}>
-                  <div className={this.decorateCSS("image-container")}>
-                    <ComposerIcon name={tab.icon} propsIcon={{
-                      className:this.decorateCSS("icon")
-                    }}/>
-                  </div>
-                    <div className={this.decorateCSS("title")}>{tab.title}</div>
-                    <div className={this.decorateCSS("description")}>
-                      {tab.description}
-                    </div>
-                    <div className={this.decorateCSS("text")}>{tab.text}</div>
-                    <button className={this.decorateCSS("button")}>
-                      <ComposerLink path={tab.buttonUrl}>
-                        {tab.buttonText}
+                <div
+                  className={
+                    `${this.decorateCSS("tab")} ${this.getComponentState("activeTab") === index
+                      ? this.decorateCSS("active")
+                      : ""
+                    } ${this.getComponentState("startedIndex") === index
+                      ? this.decorateCSS("start")
+                      : ""
+                    }`
+                  }
+                >
+                  <Base.VerticalContent className={this.decorateCSS("content")}>
+                    {tab.icon && (
+                      <Base.Row className={this.decorateCSS("icon-wrapper")}>
+                        <ComposerIcon
+                          name={tab.icon}
+                          propsIcon={{
+                            className: this.decorateCSS("icon"),
+                          }}
+                        />
+                      </Base.Row>
+                    )}
+                    {this.castToString(tab.title) && (
+                      <Base.SectionTitle className={this.decorateCSS("title")}>
+                        {tab.title}
+                      </Base.SectionTitle>
+                    )}
+                    {this.castToString(tab.description) && (
+                      <Base.SectionDescription
+                        className={this.decorateCSS("description")}
+                      >
+                        {tab.description}
+                      </Base.SectionDescription>
+                    )}
+                    {this.castToString(tab.button.text) && (
+                      <ComposerLink path={tab.button.url}>
+                        <Base.Button buttonType={tab.button.type} className={this.decorateCSS("button")}>
+                          {tab.button.text}
+                        </Base.Button>
                       </ComposerLink>
-                    </button>
-                  </div>
-                  
+                    )}
+                  </Base.VerticalContent>
                 </div>
               )
             )}
           </div>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

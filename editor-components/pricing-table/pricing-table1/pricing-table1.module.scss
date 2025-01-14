@@ -1,60 +1,29 @@
-.container {
-  width: 100%;
-  padding: 50px 0;
-  background-color: var(--composer-html-background);
+@import "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss";
 
+.container {
   .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    width: 100%;
 
     .table {
       display: flex;
       flex-direction: column;
-      border-radius: 6px;
-      padding: 20px;
-      width: 70%;
-      @media only screen and (max-width: 1000px) {
-        width: 90%;
-      }
-      @media only screen and (max-width: 1200px) {
-        width: 80%;
-      }
-
-      @media only screen and (max-width: 800px) {
-        .items{
-          .item-card{
+      width: 100%;
+      @container (max-width: #{$composer-tablet-width-lg}) {
+        .items {
+          .item-card {
             width: 100% !important;
             flex: unset !important;
             border: 1px solid var(--composer-primary-color);
-            border-radius: var(--composer-border-radius);
             overflow: hidden;
           }
         }
       }
 
       .top-titles {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        margin-bottom: 20px;
-        color: var(--composer-primary-color);
-
         .title {
-          font-size: 3rem;
-          max-width: 450px;
-        }
-        .subtitle {
-          padding: 6px 20px;
-          border-radius: 25px;
-          background: color-mix(in srgb, var(--composer-primary-color), #fff 80%);
-          color: var(--composer-primary-color);
-          font-size: 1.2rem;
+          content: "";
         }
       }
 
@@ -65,14 +34,15 @@
         align-items: center;
         width: 100%;
 
-
         .item-card {
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          margin-bottom: 20px;
+          margin-bottom: var(--composer-gap-md);
           flex: 1;
+          border-radius: var(--composer-border-radius-md);
+          overflow: hidden;
 
           &.active {
             box-shadow: var(--composer-box-shadow);
@@ -82,18 +52,15 @@
             opacity: 0;
             width: 100%;
             text-align: center;
-            background-image: linear-gradient(
-              to right,
-              var(--composer-font-color-primary),
-              var(--composer-secondary-color)
-            );
-
-            padding: 10px 0;
+            background-image: linear-gradient(to right, var(--composer-primary-color), var(--composer-secondary-color));
+            padding: var(--composer-gap-sm) 0;
 
             &.active {
               opacity: 1;
             }
             .popular-text {
+              margin: 0;
+              text-align: center;
               color: var(--composer-font-color-secondary);
             }
           }
@@ -101,45 +68,46 @@
           .cardsubtitle {
             background: color-mix(in srgb, var(--composer-primary-color), #fff 80%);
             color: var(--composer-primary-color);
-            padding: 4px 15px;
-            border-radius: 25px;
-            font-weight: 500;
-            font-size: 0.75rem;
+            padding: var(--composer-gap-xs) var(--composer-gap-md);
+            border-radius: var(--composer-border-radius-xl);
+            font-size: 1rem;
           }
 
           .card-title {
-            margin: 0 0 10px 0;
-            font-size: 1.4rem;
+            margin: 0 0 var(--composer-gap-sm) 0;
+            font-size: 1.5rem;
             color: var(--composer-font-color-primary);
-
           }
 
           .card-list {
-            display: flex;
-            flex-direction: column;
             width: 100%;
 
             .card-list-item {
               display: flex;
               align-items: center;
-              gap: 6px;
-              padding: 15px 30px;
-              border-top: 1px solid var(--composer-tertiary-color);
+              gap: var(--composer-gap-xs);
+              padding: var(--composer-gap-sm) var(--composer-gap-lg);
+              border-top: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
               color: var(--composer-font-color-primary);
+              font-size: 1rem;
+              width: 100%;
 
               .icon {
-                min-width: 12px;
+                min-width: var(--composer-gap-sm);
+                color: var(--composer-font-color-primary);
+                font-size: 1rem;
               }
             }
           }
 
           .card-bottom {
-            padding: 15px 30px;
+            padding: var(--composer-gap-md) var(--composer-gap-lg);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             width: 100%;
+            font-size: 1rem;
             color: var(--composer-font-color-primary);
             &.active {
               background: var(--composer-primary-color);
@@ -154,28 +122,24 @@
               display: flex;
               align-items: center;
               justify-content: center;
-              gap: 6px;
+              gap: var(--composer-gap-xs);
+              margin: var(--composer-gap-xs);
               .price {
                 font-size: 2.5rem;
-                font-weight: 600;
               }
               .card-duration {
-                font-size: 0.8rem;
+                font-size: 1rem;
               }
             }
 
             .card-button {
-              padding: 15px 0;
               width: 100%;
-              border-radius: var(--composer-border-radius);
-              background: var(--composer-primary-color);
-              color: var(--composer-font-color-secondary);
-              border: none;
+              justify-content: center;
             }
 
             .pricingTitle {
-              margin-top: 15px;
-              font-size: 0.8rem;
+              margin-top: var(--composer-gap-md);
+              font-size: 1rem;
             }
           }
         }
@@ -185,15 +149,16 @@
         display: flex;
         justify-content: space-evenly;
         align-items: center;
-        margin: 30px 0;
+        margin: var(--composer-gap-lg) 0;
         flex-wrap: wrap;
-        gap: 20px;
+        gap: var(--composer-gap-md);
         color: var(--composer-font-color-primary);
 
         .title-bottom {
+          font-size: 1rem;
           display: flex;
           align-items: center;
-          gap: 5px;
+          gap: var(--composer-gap-xs);
         }
       }
     }

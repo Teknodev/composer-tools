@@ -1,21 +1,41 @@
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+
 .container {
-  width: 100%;
   height: 100%;
   position: relative;
+  padding: 0;
 
   .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
-
+    max-width: unset;
     position: relative;
     background: black;
 
     .carousel {
       width: 100%;
       text-align: center;
+      margin: 0 auto;
+
+      > div {
+        > div {
+          > div {
+            > div {
+              padding: 0 var(--composer-gap-xl);
+
+              @container (max-width: #{$composer-tablet-width-lg}) {
+                padding: 0 var(--composer-gap-lg);
+              }
+
+              @container (max-width: #{$composer-phone-width}) {
+                padding: 0 var(--composer-gap-md);
+              }
+            }
+          }
+        }
+      }
+
       .card {
         width: 100%;
-        height: 900px;
+        height: 100vh;
         position: relative;
 
         .button {
@@ -31,21 +51,30 @@
           -webkit-text-stroke: 1px white;
           text-transform: uppercase;
           transition: 0.3s ease-out;
-          font-weight: 700;
           display: flex;
           align-items: flex-start;
           justify-content: center;
           width: 100%;
+          padding-left: 0;
+
           &:hover {
             color: white;
             -webkit-text-stroke: 1px white;
           }
 
-          @media only screen and (max-width: 768px) {
-            font-size: 3.2rem;
+          @container (max-width: #{$composer-tablet-width-lg}) {
+            font-size: 3rem;
           }
-          @media only screen and (max-width: 400px) {
-            font-size: 2.2rem;
+
+          @container (max-width: #{$composer-phone-width}) {
+            font-size: 2rem;
+          }
+
+          > div {
+            width: 100%;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
           }
 
           .number {
@@ -53,12 +82,12 @@
             color: white;
             align-self: flex-start;
             margin: 0;
-            margin-top: 5px;
-            font-weight: normal !important;
+            margin-top: var(--composer-gap-xs);
           }
 
           .text {
             white-space: nowrap;
+
             &.active {
               color: white;
             }
@@ -74,9 +103,11 @@
       width: 65%;
       z-index: 0;
       overflow: hidden;
-      @media only screen and (max-width: 768px) {
+
+      @container (max-width: #{$composer-tablet-width}) {
         width: 100%;
       }
+
       &::after {
         background-color: rgba(0, 0, 0, 0.25);
         content: "";
@@ -112,28 +143,66 @@
     }
 
     .text-box {
+      width: 100%;
+      margin: auto;
       position: absolute;
-      bottom: 300px;
-      left: 5%;
-      @media only screen and (max-width: 768px) {
-        left: 40px;
+      top: 63%;
+      left: 50%;
+      transform: translateX(-50%);
+      height: calc(37vh - var(--composer-gap-md));
+      z-index: 5;
+
+      @container (max-width: #{$composer-tablet-width-lg}) {
+        top: 58%;
+        height: calc(42vh - var(--composer-gap-md));
       }
-      &::after {
+
+      @container (max-width: #{$composer-phone-width}) {
+        height: calc(45vh - var(--composer-gap-md));
+        top: 55%;
+      }
+
+      &::before {
         background-color: white;
         content: "";
         width: 20px;
         height: 2px;
         position: absolute;
-        left: 0px;
-        top: -25px;
+        top: -15px;
+        left: var(--composer-gap-xl);
+
+        @container (max-width: #{$composer-tablet-width-lg}) {
+          left: var(--composer-gap-lg);
+        }
+
+        @container (max-width: #{$composer-phone-width}) {
+          left: var(--composer-gap-md);
+          top: calc(-1 * var(--composer-gap-sm));
+        }
       }
 
       .text {
         color: white;
-        font-weight: 700;
-        font-size: 1.05rem;
+        font-size: 1rem;
         transition: 0.3s;
         opacity: 0;
+        width: 100%;
+        max-width: 35%;
+        padding: 0 var(--composer-gap-xl);
+        overflow: hidden;
+        max-height: 100%;
+        margin: 0;
+        text-align: left;
+
+        @container (max-width: #{$composer-tablet-width-lg}) {
+          padding: 0 var(--composer-gap-lg);
+          max-width: 100%;
+        }
+
+        @container (max-width: #{$composer-phone-width}) {
+          padding: 0 var(--composer-gap-md);
+          max-width: 100%;
+        }
 
         &.visible {
           opacity: 1;

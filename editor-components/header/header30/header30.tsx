@@ -2,9 +2,10 @@ import * as React from "react";
 import styles from "./header30.module.scss";
 import { BaseHeader } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
-class HeaderComponent30 extends BaseHeader {
+class Header30 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
 
@@ -32,7 +33,8 @@ class HeaderComponent30 extends BaseHeader {
       type: "image",
       key: "image",
       displayer: "Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a311bd2970002c626c17?alt=media&timestamp=1719483639151",
+      value:
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a311bd2970002c626c17?alt=media&timestamp=1719483639151",
     });
     this.addProp({
       type: "string",
@@ -42,36 +44,13 @@ class HeaderComponent30 extends BaseHeader {
         "An award-winning Prague-based indie game studio pushing the boundaries of narrative and serious games",
     });
 
+
     this.addProp({
       type: "array",
       key: "buttons",
       displayer: "Buttons",
       value: [
-        {
-          type: "object",
-          key: "button_link",
-          displayer: "Button Navigate",
-          value: [
-            {
-              type: "page",
-              key: "link",
-              displayer: "Button",
-              value: "",
-            },
-            {
-              type: "string",
-              key: "button_text",
-              displayer: "Button Text",
-              value: "OUR PROJECTS",
-            },
-            {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "GrLinkNext",
-            },
-          ],
-        },
+        INPUTS.BUTTON("button", "Button", "OUR PROJECTS", "", null, null, "Primary"),
       ],
     });
   }
@@ -81,51 +60,80 @@ class HeaderComponent30 extends BaseHeader {
   }
 
   render() {
+    const video = this.getPropValue("video");
+    const image = this.getPropValue("image");
+
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <video src={this.getPropValue("video")} autoPlay loop muted className={this.decorateCSS("video-section")}></video>
+      <Base.Container
+        className={`${this.decorateCSS("container")} ${!video && this.decorateCSS("withoutVideoContainer")
+          }`}
+      >
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          {video && (
+            <video
+              src={video}
+              autoPlay
+              loop
+              muted
+              className={this.decorateCSS("video-section")}
+            />
+          )}
 
           <div className={this.decorateCSS("content")}>
-            <h1 className={`${this.decorateCSS("titles")} ${this.decorateCSS("first-title")} `}>
-              {this.getPropValue("title_first")}
-            </h1>
+            {this.castToString(this.getPropValue("title_first")) && (
+              <h1
+                className={`${this.decorateCSS("titles")} ${this.decorateCSS(
+                  "first-title"
+                )}`}
+              >
+                {this.getPropValue("title_first")}
+              </h1>
+            )}
+
             <div className={this.decorateCSS("title-with-image")}>
-              {this.getPropValue("image") ? (
+              {image && (
                 <img
                   className={this.decorateCSS("title-image")}
-                  src={this.getPropValue("image")}
+                  src={image}
                   alt=""
                 />
-              ) : null}
+              )}
 
-              <h1 className={`${this.decorateCSS("titles")} ${this.decorateCSS("second-title")} `}>
-                {this.getPropValue("title_second")}
-              </h1>
+              {this.castToString(this.getPropValue("title_second")) && (
+                <h1
+                  className={`${this.decorateCSS("titles")} ${this.decorateCSS(
+                    "second-title"
+                  )} ${!image && this.decorateCSS("withoutImage")}`}
+                >
+                  {this.getPropValue("title_second")}
+                </h1>
+              )}
             </div>
-            <p className={this.decorateCSS("description")}>{this.getPropValue("description")}</p>
-            <div className={this.decorateCSS("buttons")}>
-              {this.getPropValue("buttons").map((item: any, index: number) => (
-                <div className={this.decorateCSS("button")} key={index}>
-                  <ComposerLink path={item.getPropValue("link")}>
-                    <div className={this.decorateCSS("navigate-button")}>
-                      <span className={this.decorateCSS("button-text")}>
-                        {item.getPropValue("button_text")}
-                      </span>
-                      <ComposerIcon
-                        name={item.getPropValue("icon")}
-                        propsIcon={{ className: `${this.decorateCSS("button-icon")}` }}
-                      />
-                    </div>
+
+            {this.castToString(this.getPropValue("description")) && (
+              <p className={this.decorateCSS("description")}>
+                {this.getPropValue("description")}
+              </p>
+            )}
+
+            {buttons.length > 0 &&
+              <div className={this.decorateCSS("buttons")}>
+                {buttons.map((button: INPUTS.CastedButton) => (
+                  <ComposerLink path={button.url}>
+                    <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                      {button.text}
+                    </Base.Button>
                   </ComposerLink>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            }
           </div>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
 
-export default HeaderComponent30;
+export default Header30;

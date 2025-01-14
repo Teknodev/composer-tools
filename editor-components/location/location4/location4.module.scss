@@ -1,0 +1,138 @@
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+
+.container {
+  width: 100%;
+
+  .page {
+    display: flex;
+    flex-direction: column;
+
+    .content {
+      position: relative;
+      width: 100%;
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+
+      .image {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        object-fit: cover;
+        z-index: 1;
+      }
+
+      .overlay {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--composer-overlay-color);
+        z-index: 2;
+      }
+
+      .content-container {
+        .max-content {
+          position: relative;
+          z-index: 3;
+          text-align: center;
+          font-weight: bold;
+
+          .title {
+            color: white;
+          }
+        }
+      }
+    }
+
+    .content-container {
+      .max-content-no-image {
+        .title-no-image {
+          margin: 0 !important;
+        }
+      }
+    }
+
+    .map-container {
+      width: 100%;
+      height: 500px;
+
+      .map {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}
+
+.popup {
+  background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+  width: 300px;
+  min-height: auto;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  border-radius: var(--composer-border-radius-sm);
+  box-shadow: var(--box-shadow-active);
+
+  .popup-image {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+  }
+
+  .popup-texts {
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-sm);
+    margin: var(--composer-gap-md);
+
+    .popup-title {
+      font-size: 1.5rem;
+      margin: 0;
+      color: var(--composer-font-color-primary);
+    }
+
+    .popup-content {
+      font-size: 1.5rem;
+      margin: 0;
+      color: var(--composer-tertiary-color);
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width-lg}) {
+  .container {
+    .page {
+      .content {
+        min-height: 200px;
+      }
+    }
+  }
+
+  .popup {
+    width: 250px;
+
+    .popup-texts {
+      .popup-title,
+      .popup-content {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .page {
+      .content {
+        min-height: 200px;
+      }
+    }
+  }
+}

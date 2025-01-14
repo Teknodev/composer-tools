@@ -2,6 +2,8 @@ import * as React from "react";
 import { BaseImageGallery } from "../../EditorComponent";
 import styles from "./image-gallery4.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type NavItem = {
   title: JSX.Element;
@@ -373,6 +375,20 @@ class ImageGallery4 extends BaseImageGallery {
       value: 3,
       max: 4,
     });
+    this.addProp({
+      type: "number",
+      key: "imageCountInitial",
+      displayer: "Image Count Initial",
+      value: 3
+    })
+    this.addProp({
+      type: "number",
+      key: "imageCount",
+      displayer: "More Image Count",
+      value: 3
+    })
+
+    this.addProp(INPUTS.BUTTON("button", "Button", "Load More", null, null, null, "Primary"));
 
     this.addProp({
       type: "icon",
@@ -380,25 +396,65 @@ class ImageGallery4 extends BaseImageGallery {
       displayer: "Close Icon",
       value: "RxCross1",
     });
+    this.addProp({
+      type: "icon",
+      key: "imageIcon",
+      displayer: "Image Icon",
+      value: "IoSearchOutline",
+    });
+    this.addProp({
+      type: "icon",
+      key: "nextIcon",
+      displayer: "Next Icon",
+      value: "HiArrowRight",
+    });
+    this.addProp({
+      type: "icon",
+      key: "prevIcon",
+      displayer: "Prev Icon",
+      value: "HiArrowLeft",
+    });
+
 
     this.setComponentState("activeNav", 0);
     this.setComponentState("activeSubnav", null);
-    this.setComponentState("focusedImage", 0);
+    this.setComponentState("focusedImage", null);
     this.setComponentState("isFocused", false);
+    this.setComponentState("moreImages", 0);
+    document.addEventListener("keydown", this.handleKeyDown);
   }
 
   getName(): string {
     return "Image Gallery 4";
   }
+  handleKeyDown = (event: KeyboardEvent) => {
+    switch (event.key) {
+      case "ArrowLeft":
+        this.prevImage();
+        break;
+      case "ArrowRight":
+        this.nextImage();
+        break;
+      case "Escape":
+        this.closeFocus();
+        break;
+      default:
+        break;
+    }
+  };
 
-  switchNav(index: number) {
+  handleSectionClick(index: number): void {
     this.setComponentState("activeNav", index);
     this.setComponentState("activeSubnav", null);
+    this.setComponentState("imageCount", this.getPropValue("imageCountInitial"));
+    this.setComponentState("moreImages", 0);
+  }
+  handleSubSectionClick(index: number): void {
+    this.setComponentState("activeSubnav", index);
+    this.setComponentState("imageCount", this.getPropValue("imageCountInitial"));
+    this.setComponentState("moreImages", 0);
   }
 
-  switchSubnav(index: number) {
-    this.setComponentState("activeSubnav", index);
-  }
 
   focusImage(index: number) {
     this.setComponentState("focusedImage", index);
@@ -419,13 +475,10 @@ class ImageGallery4 extends BaseImageGallery {
   getImages(): Image[] {
     const activeNav: number = this.getComponentState("activeNav");
     const activeSubnav: number = this.getComponentState("activeSubnav");
-
     const navItems = this.castToObject<NavItem[]>("navItems");
 
     if (!navItems || !navItems[activeNav]) return [];
-
     let result: any[] = [];
-
     result = navItems[activeNav]?.images;
 
     if (typeof activeSubnav === "number") {
@@ -439,131 +492,193 @@ class ImageGallery4 extends BaseImageGallery {
 
     return this.makeArrayPure(result);
   }
+  changeImage = (direction: string) => {
+    const focusedImageIndex = this.getComponentState("focusedImage");
+    const currentGallery = this.getImages();
+    const galleryLength = currentGallery.length;
+    let newIndex;
+    if (direction === "prev") {
+      newIndex = (focusedImageIndex - 1 + galleryLength) % galleryLength;
+    } else if (direction === "next") {
+      newIndex = (focusedImageIndex + 1) % galleryLength;
+    }
+    this.setComponentState("focusedImage", newIndex);
+  };
 
+  prevImage = () => {
+    this.changeImage("prev");
+  };
+
+  nextImage = () => {
+    this.changeImage("next");
+  };
+
+  handleButtonClick = () => {
+    this.setComponentState("moreImages", this.getComponentState("moreImages") + this.getPropValue("imageCount"))
+
+  };
   render() {
     const itemsPerRow: number = this.getPropValue("itemsPerRow");
-
     const activeNav: number = this.getComponentState("activeNav");
     const activeSubnav: number = this.getComponentState("activeSubnav");
-
     const navItems = this.castToObject<NavItem[]>("navItems");
     const subnavItems = navItems[activeNav]?.subnavItems;
-
     const showActiveNavSubnavs = navItems[activeNav]?.hasSubnav;
-
     const galleryItems = this.getImages();
+    if (this.getComponentState("imageCount") != this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"))
+      this.setComponentState("imageCount", this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"));
+
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("gallery-wrapper")}>
             {(navItems?.length > 0 || subnavItems?.length > 0) && (
-              <nav className={this.decorateCSS("gallery-nav")}>
+              <Base.VerticalContent className={this.decorateCSS("gallery-nav")}>
                 {navItems?.length > 0 && (
-                  <ul
+                  <div
                     className={`${this.decorateCSS("nav-list")} ${this.decorateCSS("hide-scrollbar")}`}
                   >
                     {navItems?.map((item: NavItem, index: number) => {
                       if (!this.castToString(item.title)) return null;
                       return (
-                        <li
+                        <div
                           key={index}
                           className={this.decorateCSS("list-item")}
                         >
-                          <button
-                            className={
-                              activeNav === index
-                                ? this.decorateCSS("active")
-                                : ""
-                            }
-                            onClick={() => {
-                              this.switchNav(index);
-                            }}
-                          >
-                            {item.title}
-                          </button>
-                        </li>
+                          {this.castToString(item.title) && (
+                            <button
+                              className={`${this.decorateCSS("button")} ${activeNav === index ? this.decorateCSS("active") : ""}`}
+                              onClick={() => {
+                                this.handleSectionClick(index);
+                              }}
+                            >
+                              {item.title}
+                            </button>
+                          )}
+                        </div>
                       );
                     })}
-                  </ul>
+                  </div>
                 )}
                 {showActiveNavSubnavs && subnavItems?.length > 0 && (
-                  <ul
+                  <div
                     className={`${this.decorateCSS("subnav-list")} ${this.decorateCSS("hide-scrollbar")}`}
                   >
                     {(subnavItems || []).map(
                       (item: SubnavItem, index: number) => {
                         if (!this.castToString(item.title)) return null;
                         return (
-                          <li
+                          <div
                             key={index}
                             className={this.decorateCSS("list-item")}
                           >
-                            <button
-                              className={
-                                activeSubnav === index
-                                  ? this.decorateCSS("active")
-                                  : ""
-                              }
-                              onClick={() => {
-                                this.switchSubnav(index);
-                              }}
-                            >
-                              {item.title}
-                            </button>
-                          </li>
+                            {this.castToString(item.title) && (
+                              <button
+                                className={`${this.decorateCSS("button")} ${activeSubnav === index ? this.decorateCSS("active") : ""}`}
+                                onClick={() => {
+                                  this.handleSubSectionClick(index);
+                                }}
+                              >
+                                {item.title}
+                              </button>
+                            )}
+                          </div>
                         );
                       },
                     )}
-                  </ul>
+                  </div>
                 )}
-              </nav>
+              </Base.VerticalContent>
             )}
             {galleryItems?.length > 0 && (
-              <div
-                className={this.decorateCSS("gallery-container")}
-                style={{ gridTemplateColumns: `repeat(${itemsPerRow}, 1fr)` }}
-              >
-                {galleryItems.map((item: Image, index: number) => {
+              <Base.ListGrid gridCount={{ pc: itemsPerRow }} className={this.decorateCSS("gallery-container")}>
+                {galleryItems.slice(0, this.getComponentState("imageCount")).map((item: Image, index: number) => {
                   if (!item.image) return null;
                   return (
                     <div
                       key={index}
                       className={this.decorateCSS("gallery-item")}
-                      onClick={() => {
-                        this.focusImage(index);
-                      }}
+
                     >
-                      <img
-                        src={item.image}
-                        alt="gallery item"
-                      />
+                      {item.image && (
+                        <div className={this.decorateCSS("gallery-image-container")}>
+                          <img
+                            src={item.image}
+                            alt={item.image}
+                            className={this.decorateCSS("gallery-image")}
+                          ></img>
+                          <div className={this.decorateCSS("gallery-image-overlay")}
+                            onClick={() => {
+                              this.focusImage(index)
+                            }}></div>
+                        </div>
+
+                      )}
+                      {this.getPropValue("imageIcon") && (
+                        <div className={this.decorateCSS("icon-overlay")} onClick={() => {
+                          this.focusImage(index)
+                        }}>
+                          <ComposerIcon
+                            name={this.getPropValue("imageIcon")}
+                            propsIcon={{ className: this.decorateCSS("icon") }}
+
+                          />
+                        </div>
+                      )}
                     </div>
                   );
                 })}
+              </Base.ListGrid>
+            )}
+            {(this.getComponentState("imageCount") < galleryItems.length) && (
+              <div className={this.decorateCSS("button-wrapper")}>
+                <Base.Button className={this.decorateCSS("button")}
+                  buttonType={button.type}
+                  onClick={this.handleButtonClick}>
+                  {button.text}
+                </Base.Button>
               </div>
             )}
+
           </div>
 
           {galleryItems[this.getComponentState("focusedImage")]?.image && (
             <div
-              className={`
-                ${this.decorateCSS("gallery-item-fullscreen")}
-                ${this.getComponentState("isFocused") ? this.decorateCSS("show-fullscreen") : ""}
-              `}
+              className={this.getComponentState("isFocused") ? this.decorateCSS("gallery-item-fullscreen") : ""}
               onClick={() => {
                 this.closeFocus();
               }}
             >
-              <div className={this.decorateCSS("fullscreen-container")}>
-                <div className={this.decorateCSS("focused-image-container")}>
-                  <img
-                    className={this.decorateCSS("focused-image")}
-                    src={
-                      galleryItems[this.getComponentState("focusedImage")].image
-                    }
-                    alt="gallery item"
+              {this.getPropValue("nextIcon") && (
+                <div className={this.decorateCSS("right-arrow")} onClick={this.nextImage}>
+                  <ComposerIcon
+                    name={this.getPropValue("nextIcon")}
+                    propsIcon={{ className: this.decorateCSS("icon") }}
+
                   />
+                </div>
+              )}
+              {this.getPropValue("prevIcon") && (
+                <div className={this.decorateCSS("left-arrow")} onClick={this.prevImage}>
+                  <ComposerIcon
+                    name={this.getPropValue("prevIcon")}
+                    propsIcon={{ className: this.decorateCSS("icon") }}
+                  />
+                </div>
+              )}
+              <div className={this.decorateCSS("fullscreen-container")}>
+                <div className={this.decorateCSS("focused-image-container")} onClick={(e) => e.stopPropagation()}>
+                  {galleryItems[this.getComponentState("focusedImage")].image && (
+                    <img
+                      className={this.decorateCSS("focused-image")}
+                      src={
+                        galleryItems[this.getComponentState("focusedImage")].image
+                      }
+                      alt={galleryItems[this.getComponentState("focusedImage")].image}
+                    />
+                  )}
                   {this.getPropValue("close-icon") && (
                     <button
                       onClick={() => {
@@ -572,7 +687,7 @@ class ImageGallery4 extends BaseImageGallery {
                       className={this.decorateCSS("close-button")}
                     >
                       <ComposerIcon
-                        propsIcon={{ className: this.decorateCSS("Icon") }}
+                        propsIcon={{ className: this.decorateCSS("close-icon") }}
                         name={this.getPropValue("close-icon")}
                       />
                     </button>
@@ -581,8 +696,8 @@ class ImageGallery4 extends BaseImageGallery {
               </div>
             </div>
           )}
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

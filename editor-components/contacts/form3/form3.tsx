@@ -6,11 +6,13 @@ import * as Yup from "yup";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { TypeUsableComponentProps } from "../../EditorComponent";
+import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Left = {
   contactName: string;
   contactIcon: string;
-  image: JSX.Element
+  image: JSX.Element;
 };
 
 type Social = {
@@ -18,17 +20,9 @@ type Social = {
   icon: string;
 };
 
-
-class Form3Page extends BaseContacts {
+class Form3 extends BaseContacts {
   constructor(props?: any) {
     super(props, styles);
-
-    this.addProp({
-      type: "string",
-      key: "topSubtitle",
-      displayer: "Top Subtitle",
-      value: "Reach Out",
-    });
 
     this.addProp({
       type: "string",
@@ -143,7 +137,7 @@ class Form3Page extends BaseContacts {
               displayer: "Url",
               value: "",
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -162,7 +156,7 @@ class Form3Page extends BaseContacts {
               displayer: "Url",
               value: "",
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -181,7 +175,7 @@ class Form3Page extends BaseContacts {
               displayer: "Url",
               value: "",
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -200,7 +194,7 @@ class Form3Page extends BaseContacts {
               displayer: "Url",
               value: "",
             },
-          ]
+          ],
         },
       ],
     });
@@ -210,12 +204,6 @@ class Form3Page extends BaseContacts {
       key: "rightTitle",
       displayer: "Right Title",
       value: "Contact Us",
-    });
-    this.addProp({
-      type: "string",
-      key: "rightSubtitle",
-      displayer: "Right Subtitle",
-      value: "Work With Us",
     });
 
     this.addProp({
@@ -251,19 +239,19 @@ class Form3Page extends BaseContacts {
                       type: "string",
                       displayer: "Placeholder",
                       key: "placeholder",
-                      value: "First name"
+                      value: "First name",
                     },
                     {
                       type: "boolean",
                       key: "is_required",
                       displayer: "Is Required",
-                      value: true
+                      value: true,
                     },
                     {
                       type: "string",
                       key: "required_error_message",
                       displayer: "Required error message",
-                      value: "Required"
+                      value: "Required",
                     },
                     {
                       type: "select",
@@ -271,16 +259,16 @@ class Form3Page extends BaseContacts {
                       displayer: "Type",
                       value: "Text",
                       additionalParams: {
-                        selectItems: ["Text", "E-mail", "Number", "Text Area"]
-                      }
+                        selectItems: ["Text", "E-mail", "Number", "Text Area"],
+                      },
                     },
                     {
                       type: "string",
                       key: "type_error_message",
                       displayer: "Type error message",
-                      value: "Invalid type"
+                      value: "Invalid type",
                     },
-                  ]
+                  ],
                 },
                 {
                   type: "object",
@@ -297,19 +285,19 @@ class Form3Page extends BaseContacts {
                       type: "string",
                       displayer: "Placeholder",
                       key: "placeholder",
-                      value: "Last name"
+                      value: "Last name",
                     },
                     {
                       type: "boolean",
                       key: "is_required",
                       displayer: "Is Required",
-                      value: true
+                      value: true,
                     },
                     {
                       type: "string",
                       key: "required_error_message",
                       displayer: "Required error message",
-                      value: "Required"
+                      value: "Required",
                     },
                     {
                       type: "select",
@@ -317,20 +305,20 @@ class Form3Page extends BaseContacts {
                       displayer: "Type",
                       value: "Text",
                       additionalParams: {
-                        selectItems: ["Text", "E-mail", "Number", "Text Area"]
-                      }
+                        selectItems: ["Text", "E-mail", "Number", "Text Area"],
+                      },
                     },
                     {
                       type: "string",
                       key: "type_error_message",
                       displayer: "Type error message",
-                      value: "Invalid type"
+                      value: "Invalid type",
                     },
-                  ]
+                  ],
                 },
-              ]
-            }
-          ]
+              ],
+            },
+          ],
         },
         {
           type: "object",
@@ -357,19 +345,19 @@ class Form3Page extends BaseContacts {
                       type: "string",
                       displayer: "Placeholder",
                       key: "placeholder",
-                      value: "example@gmail.com"
+                      value: "example@gmail.com",
                     },
                     {
                       type: "boolean",
                       key: "is_required",
                       displayer: "Is Required",
-                      value: true
+                      value: true,
                     },
                     {
                       type: "string",
                       key: "required_error_message",
                       displayer: "Required error message",
-                      value: "Required"
+                      value: "Required",
                     },
                     {
                       type: "select",
@@ -377,16 +365,16 @@ class Form3Page extends BaseContacts {
                       displayer: "Type",
                       value: "E-mail",
                       additionalParams: {
-                        selectItems: ["Text", "E-mail", "Number", "Text Area"]
-                      }
+                        selectItems: ["Text", "E-mail", "Number", "Text Area"],
+                      },
                     },
                     {
                       type: "string",
                       key: "type_error_message",
                       displayer: "Type error message",
-                      value: "Invalid type"
+                      value: "Invalid type",
                     },
-                  ]
+                  ],
                 },
                 {
                   type: "object",
@@ -403,19 +391,19 @@ class Form3Page extends BaseContacts {
                       type: "string",
                       displayer: "Placeholder",
                       key: "placeholder",
-                      value: "+111 11 111 111"
+                      value: "+111 11 111 111",
                     },
                     {
                       type: "boolean",
                       key: "is_required",
                       displayer: "Is Required",
-                      value: false
+                      value: false,
                     },
                     {
                       type: "string",
                       key: "required_error_message",
                       displayer: "Required error message",
-                      value: ""
+                      value: "",
                     },
                     {
                       type: "select",
@@ -423,20 +411,20 @@ class Form3Page extends BaseContacts {
                       displayer: "Type",
                       value: "Number",
                       additionalParams: {
-                        selectItems: ["Text", "E-mail", "Number", "Text Area"]
-                      }
+                        selectItems: ["Text", "E-mail", "Number", "Text Area"],
+                      },
                     },
                     {
                       type: "string",
                       key: "type_error_message",
                       displayer: "Type error message",
-                      value: ""
+                      value: "",
                     },
-                  ]
+                  ],
                 },
-              ]
-            }
-          ]
+              ],
+            },
+          ],
         },
         {
           type: "object",
@@ -463,19 +451,19 @@ class Form3Page extends BaseContacts {
                       type: "string",
                       displayer: "Placeholder",
                       key: "placeholder",
-                      value: "Write your message..."
+                      value: "Write your message...",
                     },
                     {
                       type: "boolean",
                       key: "is_required",
                       displayer: "Is Required",
-                      value: false
+                      value: false,
                     },
                     {
                       type: "string",
                       key: "required_error_message",
                       displayer: "Required error message",
-                      value: "Required"
+                      value: "Required",
                     },
                     {
                       type: "select",
@@ -483,22 +471,22 @@ class Form3Page extends BaseContacts {
                       displayer: "Type",
                       value: "Text Area",
                       additionalParams: {
-                        selectItems: ["Text", "E-mail", "Number", "Text Area"]
-                      }
+                        selectItems: ["Text", "E-mail", "Number", "Text Area"],
+                      },
                     },
                     {
                       type: "string",
                       key: "type_error_message",
                       displayer: "Type error message",
-                      value: ""
+                      value: "",
                     },
-                  ]
+                  ],
                 },
-              ]
-            }
-          ]
-        }
-      ]
+              ],
+            },
+          ],
+        },
+      ],
     });
     this.addProp({
       type: "array",
@@ -507,23 +495,8 @@ class Form3Page extends BaseContacts {
       additionalParams: {
         maxElementCount: 2,
       },
-      value: [
-        {
-          type: "object",
-          key: "button",
-          displayer: "button",
-          value: [
-            {
-              type: "string",
-              key: "button_text",
-              displayer: "Button Text",
-              value: "Contact Us"
-            }
-
-          ]
-        }
-      ]
-    })
+      value: [INPUTS.BUTTON("button", "Button", "Contact Us", null, null, null, "Primary")],
+    });
   }
 
   getName(): string {
@@ -532,23 +505,13 @@ class Form3Page extends BaseContacts {
 
   render() {
     const buttons = this.getPropValue("buttons");
-    const topTitle = this.getPropValue("topTitle", { as_string: true });
-    const topSubtitle = this.getPropValue("topSubtitle", { as_string: true });
-    const leftTitle = this.getPropValue("leftTitle", { as_string: true });
-    const leftSubtitle = this.getPropValue("leftSubtitle", { as_string: true });
-    const rightTitle = this.getPropValue("rightTitle", { as_string: true });
-    const rightSubtitle = this.getPropValue("rightSubtitle", { as_string: true });
+    const topTitle = this.castToString(this.getPropValue("topTitle"));
+    const leftTitle = this.castToString(this.getPropValue("leftTitle"));
+    const leftSubtitle = this.castToString(this.getPropValue("leftSubtitle"));
+    const rightTitle = this.castToString(this.getPropValue("rightTitle"));
     const contactInfo = this.getPropValue("contactInfo");
     const contactIcon = this.getPropValue("contactIcon");
     const inputItems = this.getPropValue("input_items");
-
-    function toObjectKey(str: string) {
-      if (/^\d/.test(str)) {
-        str = "_" + str;
-      }
-      str = str.replace(/[^a-zA-Z0-9_]/g, "_").toLowerCase();
-      return str;
-    }
 
     function getInputType(type: string): string {
       switch (type) {
@@ -559,32 +522,25 @@ class Form3Page extends BaseContacts {
         case "Tel":
           return "tel";
         case "Number":
-          return "number"
+          return "number";
         default:
-          return "text"
+          return "text";
       }
     }
-    function getInputValue(indexOfLabel: number, inputLabel: string, indexOfInput: number): string {
 
-      const name = toObjectKey(`${indexOfLabel} ${indexOfInput}`);
-      return toObjectKey(name);
-
-    }
-    function getInputName(indexOfLabel: number, inputLabel: string, indexOfInput: number): string {
-      const name = toObjectKey(`input_${indexOfLabel + indexOfInput}`);
-
-      return toObjectKey(name);
-
-    }
+    const getInputName = (indexOfLabel: number, inputLabel: any, indexOfInput: number): string => {
+      const labelText = inputLabel && this.castToString(inputLabel);
+      return `input_${indexOfLabel}_${labelText}_${indexOfInput}`;
+    };
 
     function getInitialValue() {
       let value: any = {};
       inputItems.map((inputItem: any, indexOfItem: number) => {
         inputItem.getPropValue("inputs")?.map((input: TypeUsableComponentProps, indexOfInput: number) => {
-          const key = getInputValue(indexOfItem, input.getPropValue("label", { as_string: true }), indexOfInput);
+          const key = getInputName(indexOfItem, input.getPropValue("label"), indexOfInput);
           value[key] = "";
-        })
-      })
+        });
+      });
       return value;
     }
 
@@ -593,9 +549,7 @@ class Form3Page extends BaseContacts {
 
       inputItems.map((inputItem: any, indexOfItem: number) => {
         inputItem.getPropValue("inputs").map((input: any, indexOfInput: number) => {
-
-          const key = getInputValue(indexOfItem, input.getPropValue("label", { as_string: true }), indexOfInput);
-
+          const key = getInputName(indexOfItem, input.getPropValue("label"), indexOfInput);
 
           const isRequired = input.getPropValue("is_required");
           const isEmail = getInputType(input.getPropValue("type")) == "email";
@@ -603,215 +557,169 @@ class Form3Page extends BaseContacts {
           let fieldSchema = Yup.string() as any;
 
           if (isRequired) {
-            fieldSchema = fieldSchema.required(input.getPropValue("required_error_message"))
+            fieldSchema = fieldSchema.required(input.getPropValue("required_error_message"));
           } else {
             fieldSchema = fieldSchema.nullable();
           }
 
           if (isEmail) {
-            fieldSchema = fieldSchema.email(input.getPropValue("type_error_message"))
+            fieldSchema = fieldSchema.email(input.getPropValue("type_error_message"));
           }
 
           schema = schema.shape({
             [key]: fieldSchema,
           });
-        })
-      })
+        });
+      });
 
       return schema;
-    };
-
-    function getFormData(obj: any) {
-      const newObj: any = {};
-      Object.values(obj).forEach((value, index) => {
-        newObj["input_" + index] = value;
-      })
-      return newObj;
-    }
-
-    function isRequiredInput(inputItem: any): boolean {
-      return inputItem.getPropValue("inputs").some((input: any) => input.getPropValue("is_required"))
-    }
-
-    function updateTextareaHeight(el: HTMLTextAreaElement): void {
-      if (el) {
-        el.style.height = '20px';
-        const scrollHeight = el.scrollHeight;
-        if (scrollHeight < 50) {
-          el.style.height = scrollHeight + 'px';
-        } else {
-          el.style.height = '50px';
-          el.style.overflowY = 'scroll';
-        }
-      }
     }
 
     const icons = this.castToObject<Social[]>("socials");
     const background = this.getPropValue("background");
+
+    const leftItemsExist = icons.length > 0 || background || leftSubtitle || leftTitle || contactInfo.length > 0 || contactIcon;
+    const rightItemsExist = rightTitle || buttons.length > 0 || inputItems.length > 0;
+
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          {(topSubtitle || topTitle) && (
-            <div className={this.decorateCSS("top")}>
-              {topSubtitle && (
-                <h3 className={this.decorateCSS("topSubtitle")}> {this.getPropValue("topSubtitle")} </h3>)}
-              {topTitle && (
-                <h1 className={this.decorateCSS("topTitle")}> {this.getPropValue("topTitle")} </h1>)}
-              {!topTitle && (
-                <h1 className={this.decorateCSS("topTitle")}> {this.getPropValue("no-topTitle")} </h1>)}
-            </div>)}
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          {topTitle && (
+            <Base.VerticalContent>
+              <Base.SectionTitle className={this.decorateCSS("topTitle")}> {this.getPropValue("topTitle")} </Base.SectionTitle>
+            </Base.VerticalContent>
+          )}
           <div className={this.decorateCSS("box")}>
-            {(icons || background || leftSubtitle || leftTitle || contactInfo || contactIcon).length > 1 &&
+            {leftItemsExist && (
               <div className={this.decorateCSS("left-container")}>
-                {background && (
-                  <img
-                    className={this.decorateCSS("background")}
-                    src={this.getPropValue("background")}
-                  />)}
+                {background && <img className={`${this.decorateCSS("background")} ${!rightItemsExist && this.decorateCSS("background-full")}`} src={this.getPropValue("background")} alt="" />}
                 <div className={this.decorateCSS("left")}>
-                  <div className={this.decorateCSS("textSide")}>
+                  <div className={`${this.decorateCSS("textSide")} ${!rightItemsExist && this.decorateCSS("textSide-full")}`}>
                     <div className={this.decorateCSS("left-top")}>
                       {(leftTitle || leftSubtitle) && (
                         <div className={this.decorateCSS("title1")}>
-                          {leftTitle && (
-                            <h3 className={this.decorateCSS("leftTitle")}> {this.getPropValue("leftTitle")} </h3>)}
-                          {leftSubtitle && (
-                            <h1 className={this.decorateCSS("leftSubtitle")}>{this.getPropValue("leftSubtitle")}  </h1>)}
-                        </div>)}
+                          {leftTitle && <Base.P className={this.decorateCSS("leftTitle")}> {this.getPropValue("leftTitle")} </Base.P>}
+                          {leftSubtitle && <Base.P className={this.decorateCSS("leftSubtitle")}>{this.getPropValue("leftSubtitle")} </Base.P>}
+                        </div>
+                      )}
                       {(contactInfo || contactIcon) && (
                         <div className={this.decorateCSS("contacts")}>
                           {this.castToObject<Left[]>("contactInfo").map((contact: any, index: number) => (
                             <div className={this.decorateCSS("contact")}>
                               <ComposerIcon name={contact.contactIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
-                              {(this.castToString(contact.contactName)) && (
-                                <div className={this.decorateCSS("contactName")}> {contact.contactName} </div>)}
+                              {this.castToString(contact.contactName) && <div className={this.decorateCSS("contactName")}> {contact.contactName} </div>}
                             </div>
                           ))}
-                        </div>)}
-
+                        </div>
+                      )}
                     </div>
-                    {
-                      icons.length > 0 &&
-                      <div className={this.decorateCSS("socials")}>
+                    {icons.length > 0 && (
+                      <div className={`${this.decorateCSS("socials")} ${!rightItemsExist && this.decorateCSS("socials-full")}`}>
                         {icons.map((social: Social, index: number) => {
+                          if (!social.icon) return null;
 
-                          if (social.icon)
-                            return (
-                              <div className={this.decorateCSS("icon-container")}>
-                                <ComposerLink key={index} path={social.url}>
-                                  <ComposerIcon
-                                    name={social.icon}
-                                    propsIcon={{
-                                      className: this.decorateCSS("icon")
-                                    }} />
-                                </ComposerLink>
-                              </div>
-                            )
+                          return (
+                            <div className={`${this.decorateCSS("icon-container")} ${!background && this.decorateCSS("icon-container-no-image")}`}>
+                              <ComposerLink key={index} path={social.url} className={this.decorateCSS("icon-element")}>
+                                <ComposerIcon
+                                  name={social.icon}
+                                  propsIcon={{
+                                    className: this.decorateCSS("icon"),
+                                  }}
+                                />
+                              </ComposerLink>
+                            </div>
+                          );
                         })}
                       </div>
-                    }
+                    )}
                   </div>
-
-
                 </div>
-              </div>}
-            {((rightSubtitle || rightTitle) || buttons || inputItems).length > 0 &&
-              <div className={this.decorateCSS("right-container")}>
-                {(rightTitle || rightSubtitle) && (
-                  <div className={this.decorateCSS("title2")} >
-                    {rightTitle && (
-                      <h1 className={this.decorateCSS("rightTitle")}> {this.getPropValue("rightTitle")} </h1>)}
-                    {rightSubtitle && (
-                      <h3 className={this.decorateCSS("rightSubtitle")}> {this.getPropValue("rightSubtitle")} </h3>)}
-                    {!rightTitle && (
-                      <h3 className={this.decorateCSS("rightTitle")}> {this.getPropValue("no-rightTitle")} </h3>)}
-                  </div>)}
-
-                {(buttons || inputItems).length > 0 &&
-                  <div className={this.decorateCSS("form-container")} >
+              </div>
+            )}
+            {rightItemsExist && (
+              <div className={`${this.decorateCSS("right-container")} ${!leftItemsExist && this.decorateCSS("right-container-no-image")}`}>
+                {rightTitle && <div className={this.decorateCSS("title2")}>{rightTitle && <Base.P className={this.decorateCSS("rightTitle")}> {this.getPropValue("rightTitle")} </Base.P>}</div>}
+                {(buttons || inputItems).length > 0 && (
+                  <div className={this.decorateCSS("form-container")}>
                     <Formik
                       initialValues={getInitialValue()}
                       validationSchema={getSchema()}
                       onSubmit={(data, { resetForm }) => {
-                        const formData = getFormData(data)
-                        this.insertForm("Contact Us", formData);
+                        this.insertForm("Contact Us", data);
                         resetForm();
                       }}
                     >
                       {({ handleChange, values }) => (
                         <Form className={this.decorateCSS("form")}>
-                          {inputItems &&
+                          {inputItems && (
                             <div className={this.decorateCSS("inputSide")}>
-                              {inputItems.map((inputItem: any, inputItemIndex: number) =>
+                              {inputItems.map((inputItem: any, inputItemIndex: number) => (
                                 <div className={this.decorateCSS("input-container")} key={inputItemIndex}>
                                   {inputItem.getPropValue("inputs").map((inputObj: any, inputIndex: number) =>
-                                    inputObj.getPropValue("label", { as_string: true }) ?
+                                    inputObj.getPropValue("label", { as_string: true }) ? (
                                       <div className={this.decorateCSS("input-box")} key={inputIndex}>
                                         <span className={this.decorateCSS("label")}>
                                           {inputObj.getPropValue("label")}
-                                          <p className={this.decorateCSS("require-star")}>
-                                            {inputObj.getPropValue("is_required") && "*"}
-                                          </p>
+                                          <Base.P className={this.decorateCSS("require-star")}>{inputObj.getPropValue("is_required") && "*"}</Base.P>
                                         </span>
                                         {inputObj.getPropValue("type") == "Text Area" ? (
                                           <textarea
-                                            value={values[getInputName(inputItemIndex, inputObj.getPropValue("label", { as_string: true }), inputIndex)]}
-                                            className={this.decorateCSS("input")}
-                                            placeholder={inputObj.getPropValue("placeholder", { as_string: true })}
+                                            value={values[getInputName(inputItemIndex, inputObj.getPropValue("label"), inputIndex)]}
+                                            className={`
+                                              ${this.decorateCSS("input")}
+                                              ${this.decorateCSS("textarea")}  
+                                            `}
+                                            placeholder={this.castToString(inputObj.getPropValue("placeholder"))}
                                             onChange={handleChange}
                                             rows={1}
-                                            name={getInputValue(inputItemIndex, inputObj.getPropValue("label", { as_string: true }), inputIndex)}
-                                            ref={(el) => updateTextareaHeight(el)}
+                                            name={getInputName(inputItemIndex, inputObj.getPropValue("label"), inputIndex)}
                                           ></textarea>
                                         ) : (
                                           <input
-                                            placeholder={inputObj.getPropValue("placeholder", { as_string: true })}
+                                            placeholder={this.castToString(inputObj.getPropValue("placeholder"))}
                                             type={getInputType(inputObj.getPropValue("type"))}
                                             onChange={handleChange}
-                                            value={values[getInputName(inputItemIndex, inputObj.getPropValue("label", { as_string: true }), inputIndex)]}
-                                            name={getInputValue(inputItemIndex, inputObj.getPropValue("label", { as_string: true }), inputIndex)}
+                                            value={values[getInputName(inputItemIndex, inputObj.getPropValue("label"), inputIndex)]}
+                                            name={getInputName(inputItemIndex, inputObj.getPropValue("label"), inputIndex)}
                                             className={this.decorateCSS("input")}
                                           />
                                         )}
-                                        <ErrorMessage
-                                          className={this.decorateCSS("error-message")}
-                                          name={getInputValue(inputItemIndex, inputObj.getPropValue("label", { as_string: true }), inputIndex)}
-                                          component={"span"}
-                                        />
-                                      </div> : null
+                                        <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(inputItemIndex, inputObj.getPropValue("label"), inputIndex)} component={"span"} />
+                                      </div>
+                                    ) : null
                                   )}
                                 </div>
-
-                              )}</div>}
-
+                              ))}
+                              <div className={this.decorateCSS("form-button")}>
+                                {buttons.length > 0 &&
+                                  buttons.map((buttonText: any, index: number) => {
+                                    const buttonExist = this.castToString(buttonText.getPropValue("text"));
+                                    return (
+                                      buttonExist && (
+                                        <div className={this.decorateCSS("buttonSide")} key={index}>
+                                          <Base.Button buttonType={buttonText.getPropValue("type")} className={this.decorateCSS("submit-button")} type="submit">
+                                            {buttonText.getPropValue("text")}
+                                          </Base.Button>
+                                        </div>
+                                      )
+                                    );
+                                  })}
+                              </div>
+                            </div>
+                          )}
                         </Form>
                       )}
                     </Formik>
-                  </div>}
-                <div className={this.decorateCSS("form-button")}>
-                  {buttons.length > 0 && (
-                    buttons.map((buttonText: any, buttonIndex: number) => {
-                      return (
-                        <div className={this.decorateCSS("buttonSide")}>
-                          <button
-                            className={this.decorateCSS("submit-button")}
-                            type="submit"
-                          >
-                            {buttonText.getPropValue("button_text", { as_string: true })}
-                          </button>
-                        </div>
-                      )
-
-                    })
-                  )
-                  }
-                </div>
-              </div>}
+                  </div>
+                )}
+              </div>
+            )}
           </div>
-        </div>
-      </div >
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
 
-export default Form3Page;
+export default Form3;

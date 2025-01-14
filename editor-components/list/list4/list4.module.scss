@@ -1,50 +1,25 @@
+@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
 .container {
-  width: 100%;
-  padding: 50px 0;
-  .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    .header {
-      text-align: initial;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      text-align: center;
-      .subtitle {
-          margin: 0;
-          font-weight: 800;
-          font-size: 2rem;
-          color: var(--composer-primary-color);
-          text-transform: uppercase;
-      }
-      .title {
-          font-size: 4rem;
-          margin-bottom: 150px;
-          color: var(--composer-primary-color);
-      }
-    }
-    
-    .card-title {
+  .max-content {    
+    .card-title{
       position: relative;
-      font-size: 2rem;
-      margin: 5px 0px 0px 20px;
+      margin: var(--composer-gap-xs) 0px 0px var(--composer-gap-md);
       color: var(--composer-primary-color);
-      padding-bottom: 20px;
+      font-size: 0rem;
+      padding-bottom: var(--composer-gap-xl);
+      &.index{
+        font-size: 2rem;
+        padding-bottom: var(--composer-gap-md);
+      }
     }
 
     .card-child {
-      display: flex;
-      justify-content: center;
-      height: 100%;
-      gap: 40px;
-      flex-wrap: wrap;
+      margin-bottom: var(--composer-gap-md);
+      gap: var(--composer-gap-lg);
+      
       .card-item-count{
         position: relative;
-        padding: 40px;
+        padding: var(--composer-gap-lg);
         .line-box{
           position: absolute;
           width: calc(100% - 80px);
@@ -56,7 +31,7 @@
             left: 0px;
             height: calc(100% + 30px);
             width: 1px;
-            background-color: rgba(var(--composer-tertiary-color-rgb), 0.2);
+            background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
           }
     
           .line-2{
@@ -65,15 +40,15 @@
             left: -30px;
             height: 1px;
             width: calc(100% + 60px);
-            background-color: rgba(var(--composer-tertiary-color-rgb), 0.2);
+            background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
             &:after{
               content: "";
               position:absolute;
-              left: 60px;
+              left: 90px;
               top: 0px;
-              background-color: var(--composer-tertiary-color);
+              background-color: var(--composer-font-color-primary);
               height: 1px;
-              width: calc(100% - 60px);
+              width: calc(100% - 90px);
             }
           }
 
@@ -83,7 +58,7 @@
             right: 0px;
             height: calc(100% + 20px);
             width: 1px;
-            background-color: rgba(var(--composer-tertiary-color-rgb), 0.2);
+            background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
           }
 
           .line-4{
@@ -92,48 +67,47 @@
             left: -30px;
             height: 1px;
             width: calc(100% + 60px);
-            background-color: rgba(var(--composer-tertiary-color-rgb), 0.2);
+            background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
             
           }
         }
         .card {
           position: relative;
-          padding: 20px;
+          padding: var(--composer-gap-md) ;
 
           .color-box{
-            padding: 20px;
-            background-color:  rgba(var(--composer-secondary-color-rgb), 0.2);
+            padding: var(--composer-gap-md);
+            background-color:  color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
 
-            img {
-                height: 65px;
-                margin-top: 20px;
+            .icon {
+                font-size: 2.5rem;
+                color: var(--composer-primary-color);
+                margin: var(--composer-gap-md) 0;
             }
 
             .card-number{
                 position: absolute;
                 font-size: 3rem;
-                margin-left: 100px;
-                margin-top: -40px;
+                color: var(--composer-font-color-primary);
             }
-
-            .card-subtitle{
-              font-size: 1.7rem;
-              color: var(--composer-primary-color);
-              font-weight: 400;
-              overflow: hidden;
-              text-overflow: ellipsis;
-              white-space: normal;
+            .card-title-wrapper{
+              display: flex;
+              flex-direction: column;
+              gap: var(--composer-gap-md);
+              .card-subtitle{
+                font-size: 1.5rem;
+                color: var(--composer-font-color-primary);
+                overflow: hidden;
+                margin: 0px;
+              }
+  
+              .card-description {
+                margin: 0px;
+                font-size: 1.5rem;
+                color: var(--composer-tertiary-color);
+              }
             }
-
-            .card-description {
-              font-size: 1.3rem;
-              color: var(--composer-font-color-primary);
-              font-weight: 400;
-              margin-top: 20px;
-              overflow: hidden;
-              text-overflow: ellipsis;
-              white-space: normal;
-            }
+  
           }          
         }  
         &:nth-child(3n + 2){
@@ -143,88 +117,39 @@
     }
   }
 }
-  
-  @media only screen and (max-width: 768px) {
-    .container {
-        .max-content {
-            align-items: center;
-            flex-direction: column;
-            .header {
-                width: 100%;
-                text-align: center;
+
+@container (max-width: #{$composer-tablet-width-lg}){
+  .container{
+    .max-content{
+      .card-child {
+        gap: var(--composer-gap-xs);
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}){
+  .container{
+    .max-content{
+      .card-child {
+        .card-item-count{
+          padding: 0px;
+          .line-box{
+            width: 100%;
+            height: 100%;
+            .line-1{
+              top: 10px;
+              height: calc(100% + 20px);
             }
-            .card-child {
-              display: flex;
-              justify-content: center;
-              height: 100%;
-              gap: 120px;
-              margin-left: -80px;
-              flex-wrap: wrap;
-              .card-item-count{
-                position: relative;
-                padding: 40px;
-              .line-box{
-                position: absolute;
-                width: calc(100% + 20px);
-                height: calc(100% - 90px);
-                
-              }
-              .card {
-                position: relative;
-                margin-bottom: 20px;     
-                .color-box{
-                  width: calc(100% + 100px);
-                  padding: 20px;
-                  background-color: rgba(var(--composer-composer-secondary-color-rgb), 02);
-                }
-              }
-              &:nth-child(3n +2){
-                transform: translateY(0px);
-              }  
-              &:nth-child(2n){
-                transform: translateY(40px);
-              }    
+            .line-3{
+              top: 10px;
             }
           }
-          }
+          &:nth-child(3n + 2){
+          transform: none
+          }    
         }
       }
-
-
-      @media only screen and (max-width: 400px) {
-        .container {
-            .max-content {
-                align-items: center;
-                flex-direction: column;
-                .header {
-                    width: 100%;
-                    text-align: center;
-                }
-                .card-child {
-                  display: block;
-                  justify-content: center;
-                  height: 100%;
-                  margin-left: 50px;
-                  flex-wrap: wrap;
-                  .card-item-count{
-                    position: relative;
-                  .line-box{
-                    position: absolute;
-                    width: calc(100% + 120px);
-                    left: 75px;
-                  }
-                  .card {
-                    width: calc(100% + 120px);
-                    position: relative;
-                    margin-bottom: 20px;     
-                    left: 25px;
-                    .color-box{
-                      background-color: rgba(var(--composer-composer-secondary-color-rgb), 02);
-                    }
-                  }
-                }
-              }
-              }
-            }
-          }
-    
+    }
+  }
+}

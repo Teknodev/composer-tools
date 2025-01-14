@@ -13,8 +13,8 @@ type PreSufFix = {
 };
 
 export type TypeLocation = {
-  lat: number;
   lng: number;
+  lat: number;
 };
 
 type GetPropValueProperties = {
@@ -95,6 +95,7 @@ export enum CATEGORIES {
   FEATURE = "feature",
   IMAGEGALLERY = "imageGallery",
   LOCATION = "Location",
+  HTTP_CODES = "HTTPCodes",
 }
 
 //@ts-ignore
@@ -235,9 +236,9 @@ export abstract class Component
       const stringPrefix = renderToString(prefix || <></>);
       const stringSuffix = renderToString(suffix || <></>);
 
-      const hasHtmlTag = html.includes("<");
+      const hasHtmlTag = html.indexOf("<");
 
-      if (!hasHtmlTag) {
+      if (hasHtmlTag != 0 && hasHtmlTag != -1) {
         html = `<p> ${html} </p>`;
       }
 
@@ -255,7 +256,7 @@ export abstract class Component
 
       return <InlineEditor id={prop.id} value={prop.value as string} props={this.getProps()} sanitizedHtml={sanitizedHtml} />
     };
-
+    
     return <SanitizeHTML html={prop?.value}></SanitizeHTML>;
   }
 
@@ -491,6 +492,10 @@ export abstract class BaseSlider extends Component {
 
 export abstract class BaseFAQ extends Component {
   static category = CATEGORIES.FAQ;
+}
+
+export abstract class BaseHTTPCodes extends Component {
+  static category = CATEGORIES.HTTP_CODES;
 }
 
 export abstract class BaseImageGallery extends Component {

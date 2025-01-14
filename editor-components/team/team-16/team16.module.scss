@@ -1,70 +1,110 @@
+@import "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss";
+
 .container {
-    width: 100%;
-    padding: 50px 0;
-  
-    .max-content {
-      max-width: var(--composer-content-width);
-      margin: auto;
-      
-      .content {
-        display: flex;
-        gap: 20px;
+  .max-content {
+    .page {
+      .up-content {
+        .title{
+          content: "";
+        }
+        .description {
+          content: "";
+        }
+      }
 
-  
-        .listed {
+      .down-content {
+        .card {
+          width: 100%;
+          height: auto;
           transition: all 0.8s;
-          position: relative;
           flex: 1 1;
-          &:hover{
-            .text-box{
-                background-color: var(--composer-primary-color);
-            }
-            .image{
-            filter: brightness(1.2);
-            }
-          }
+          border-radius: var(--composer-border-radius-xl);
+          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
 
-        .text-box{
-            text-align: center;
-            margin: 0px;
+          .text-box {
+            padding: var(--composer-gap-md);
             width: 100%;
-            background-color: var(--composer-secondary-color);
-            padding: 20px 0;
-            transition: 0.4s;
+            transition: 0.5s;
 
-            .title{
-                color: white;
-                margin: 0px 0px 10px;
-                font-size: 2.2rem;
-                font-weight: normal;
+            .text-up {
+              display: flex;
+              gap: var(--composer-gap-md);
+
+              .name {
+                color: var(--composer-font-color-primary);
+                transition: color 0.5s;
+              }
+
+              .job {
+                color: var(--composer-tertiary-color);
+                transition: color 0.5s;
+              }
             }
-            .sub-title{
-                color: white;
-                font-size: 1.4rem;
-                margin: 0px;
-                font-weight: normal;
-            }
-            .sub-title2{
-                color: white;
-                font-size: 1.4rem;
-                margin: 10px;
-                font-weight: normal;
+
+            .description {
+              color: var(--composer-tertiary-color);
+              transition: color 0.5s;
             }
           }
 
           .image {
-            height: 425px;
+            height: 500px;
             width: 100%;
             object-fit: cover;
             transition: filter 0.3s ease;
+            border-top-right-radius: var(--composer-border-radius-xl);
+            border-top-left-radius: var(--composer-border-radius-xl);
+          }
+
+          &:hover {
+            background-color: var(--composer-primary-color);
+
+            .text-box .text-up .name {
+              color: var(--composer-font-color-secondary);
+            }
+            .text-box .text-up .job,
+            .text-box .description {
+              color: var(--composer-font-color-secondary);
+            }
+          }
+        }
+      }
+      .button-wrapper{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .button {
+          content: "";
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width-lg}) {
+  .container {
+    .max-content {
+      .page {
+        .down-content {
+          .card {
+            .text-box {
+              .text-up {
+                flex-direction: column;
+                gap: var(--composer-gap-sm);
+
+                .name {
+                  margin: 0;
+                }
+
+                .job {
+                  margin: 0;
+                }
+              }
+            }
           }
         }
       }
     }
   }
-  
-  @media only screen and (max-width: 768px) {
-    .container {
-      padding: 50px 20px;
-    }
-  }
+}

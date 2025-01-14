@@ -2,12 +2,10 @@ import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header11.module.scss";
+import { Base } from "../../../composer-base-components/base/base";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
-type Card = {
-  title: string;
-  description: string;
-  image: string;
-};
 class Header11 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
@@ -15,183 +13,140 @@ class Header11 extends BaseHeader {
     this.addProp({
       type: "string",
       key: "title",
-      value: "Why Composer ?",
       displayer: "Title",
+      value: "Explore the world",
     })
 
     this.addProp({
       type: "string",
       key: "description",
-      value: "Let our artificial intelligence generate creatives that convert, so you can save time and money to scale. Check out why and how you should use Composer",
       displayer: "Description",
+      value: "Our world is full of wonders. Mountains, rivers, desserts, jungles and much more is waiting for you.",
     })
+    this.addProp(INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "Primary"));
+    this.addProp({
+      type: "icon",
+      key: "icon",
+      displayer: "Icon",
+      value: "IoMdPlay"
+    });
+    this.addProp({
+      type: "icon",
+      key: "exitButton",
+      displayer: "Exit Button",
+      value: "IoMdClose"
+    });
 
     this.addProp({
       type: "image",
       key: "backgroundImage",
       displayer: "Background Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64e3760c057bdf002c296572?alt=media&timestamp=1719483639148"
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675aa2fe0655f8002ca633bf?alt=media"
     })
-    this.addProp({
-      type: "array",
-      key: "button",
-      displayer: "Buttons",
-      value: [
-        {
-          type: "object",
-          key: "buttonObject",
-          displayer: "Button",
-          value: [
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Go There",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Button Link",
-              value: "",
-            },
-          ],
-        },
-      ],
-    });
-
-    this.addProp({
-      type: "array",
-      key: "header-card",
-      displayer: "Header Card",
-      value: [
-        {
-          type: "object",
-          key: "card",
-          displayer: "Card",
-          value: [
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667d67b90181a1002c334885?alt=media&timestamp=1719494609268",
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Trained A.I.",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value:
-                "Our machine learning model is learning every day and provides up-to-date creatives with a sole purpose: conversion.",
-            },
-          ],
-        },
-
-        {
-          type: "object",
-          key: "card",
-          displayer: "Card",
-          value: [
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667d67b90181a1002c334886?alt=media&timestamp=1719494609268",
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Better Conversions",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value:
-                "Up to 14x better conversion rates than ad creatives designed with no data-driven approach.",
-            },
-          ],
-        },
-
-        {
-          type: "object",
-          key: "card",
-          displayer: "Card",
-          value: [
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667d67b90181a1002c334887?alt=media&timestamp=1719494609268",
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Super Scalable",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value:
-                "1 creative or 10,000 creatives a month, Composer is designed to match your ad creative/banner needs.",
-            },
-          ],
-        },
-      ],
-    });
+    this.setComponentState("isVideoModalOpen", false);
+    this.setComponentState("videoUrl", null);
   }
 
   getName(): string {
     return "Header 11";
   }
 
-  render() {
-    const styling = {
-      backgroundImage: `url(${this.getPropValue("backgroundImage")})`,
+  handlePlayVideo = () => {
+    const selectedVideo = this.getPropValue("linkpage");
+
+    if (selectedVideo) {
+      this.setComponentState("isVideoModalOpen", true);
+      this.setComponentState("videoUrl", selectedVideo);
     }
+  };
+
+  handleCloseVideoModal = () => {
+    this.setComponentState("isVideoModalOpen", false);
+    this.setComponentState("videoUrl", null);
+  };
+
+
+
+
+  render() {
+    const hasLeft = this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("description")) || this.castToString(this.getPropValue("linktext"));
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")} style={styling}>
-          <div className={this.decorateCSS("content")}>
-            <div className={this.decorateCSS("header-page")}>
-              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
-              <h2 className={this.decorateCSS("description")}>{this.getPropValue("description")}</h2>
-              {this.castToObject<[]>("button").map((item: any, indexButton: number) => {
-                return (
-                  <ComposerLink key={`hdr-11-${indexButton}`} path={item.link}>
-                    <button className={this.decorateCSS("button")}>
-                      {item.buttonText}
-                    </button>
+      <Base.Container className={this.decorateCSS("container")} isFull="true">
+        {(hasLeft) && (
+          <div className={this.decorateCSS("box")}>
+            <Base.MaxContent className={this.decorateCSS("max-content")}>
+
+              <Base.VerticalContent className={`${this.decorateCSS("content")} ${!this.getPropValue("backgroundImage") && this.decorateCSS("no-image")}`}>
+                {this.castToString(this.getPropValue("title")) && (
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
+                    {this.getPropValue("title")}
+                  </Base.SectionTitle>
+                )}
+                {this.castToString(this.getPropValue("description")) && (
+                  <Base.SectionDescription className={this.decorateCSS("description")}>
+                    {this.getPropValue("description")}
+                  </Base.SectionDescription>
+                )}
+                {this.castToString(button.text) && (
+                  <ComposerLink path={button.url}>
+                    <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                      {button.text}
+                    </Base.Button>
                   </ComposerLink>
-                );
-              })}
+                )}
+              </Base.VerticalContent>
+            </Base.MaxContent>
+          </div>
+        )}
+        {this.getPropValue("backgroundImage") && (
+          <div className={`${this.decorateCSS("right")} ${!hasLeft && this.decorateCSS("no-left")}`}>
+            <div className={this.decorateCSS("image-wrapper")}>
+              <img src={this.getPropValue("backgroundImage")} alt={this.getPropValue("backgroundImage")} className={this.decorateCSS("image")} />
             </div>
-            <div className={this.decorateCSS("card-child")}>
-              {this.castToObject<Card[]>("header-card").map(
-                (card: Card, index: number) => (
-                  <div key={`hdr-11-card-${index}`} className={this.decorateCSS("card")}>
-                    <div className={this.decorateCSS("img-child")}>
-                      <img src={card.image} alt=""/>
-                    </div>
-                    <h5 className={this.decorateCSS("card-title")}>{card.title}</h5>
-                    <p className={this.decorateCSS("card-description")}>{card.description}</p>
+            {this.getPropValue("icon") && (
+              <div className={this.decorateCSS("icon-box")}>
+                <div className={this.decorateCSS("icon-wrapper")}>
+                  <div className={this.decorateCSS("icon")}>
+                    <ComposerIcon name={this.getPropValue("icon")} propsIcon={{
+                      className: this.decorateCSS("button"),
+                      onClick: () => this.handlePlayVideo(),
+                    }} />
                   </div>
-                )
-              )}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {this.getComponentState("isVideoModalOpen") && (
+          <div className={this.decorateCSS("video-modal")}>
+            <div
+              className={this.decorateCSS("video-overlay")}
+              onClick={this.handleCloseVideoModal}
+            ></div>
+            <div className={this.decorateCSS("video-content")}>
+              <button
+                className={this.decorateCSS("close-button-wrapper")}
+                onClick={this.handleCloseVideoModal}
+              >
+                <ComposerIcon name={this.getPropValue("exitButton")}
+                  propsIcon={{
+                    className: this.decorateCSS("close-button"),
+                  }}
+                />
+              </button>
+
+              <video
+                src={this.getComponentState("videoUrl")}
+                controls
+                className={this.decorateCSS("video-player")}
+                autoPlay
+              />
             </div>
           </div>
-        </div>
-      </div>
+        )}
+      </Base.Container>
     );
   }
 }

@@ -2,209 +2,245 @@ import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature10.module.scss";
+import { Base } from "../../../composer-base-components/base/base";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import ComposerSlider from "../../../composer-base-components/slider/slider";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
-type listedListItem = {
-  listedItem: string;
-};
-type Listed = {
-  title: string;
-  description: string;
+type Card = {
   image: string;
-  buttonText: string;
-  link: string;
-  listedListItem: listedListItem[];
+  title: JSX.Element;
+  description: JSX.Element;
+  url: string;
 };
+
 class Feature10 extends BaseFeature {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "Moving to the cloud, made simple"
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "We've helped plenty of SaaS startups and scaleups develop reliable, secure infrastructure."
+    });
+    this.addProp({
+      type: "icon",
+      key: "rightArrow",
+      displayer: "Right Arrow",
+      value: "GoArrowRight"
+    });
+    this.addProp({
+      type: "icon",
+      key: "leftArrow",
+      displayer: "Right Arrow",
+      value: "GoArrowLeft"
+    });
+
     this.addProp({
       type: "array",
-      key: "listed-card",
-      displayer: "Listed Card",
+      key: "cards",
+      displayer: "Cards",
       value: [
         {
           type: "object",
-          key: "listed",
-          displayer: "Listed",
+          key: "card",
+          displayer: "Card",
           value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67372f90506a40002c2aba0e?alt=media"
+            },
             {
               type: "string",
               key: "title",
-              value: "Vision",
               displayer: "Title",
+              value: "Lets Get Digital Case Study"
             },
             {
               type: "string",
               key: "description",
-              value: "Having a clear vision is essential for achieving success, as it provides direction and purpose, and helps to prioritize goals and actions.",
               displayer: "Description",
-            },
-            {
-              type: "image",
-              key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436ac9768c3c2002cd2f948?alt=media&timestamp=1682585227355",
-              displayer: "Image",
-            },
-            {
-              type: "string",
-              key: "buttonText",
-              value: "LEARN MORE",
-              displayer: "Button Text",
+              value: "Here's how Acme improved the infrastructure quality for Lets Get Digital without increasing costs."
             },
             {
               type: "page",
-              key: "link",
-              displayer: "Button Link",
-              value: "",
-            },
-            {
-              type: "array",
-              key: "listedListItem",
-              displayer: "Listed Item",
-              value: [
-                {
-                  type: "object",
-                  key: "listItem",
-                  displayer: "List Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "listedItem",
-                      value: "Vision",
-                      displayer: "Item",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
+              key: "url",
+              displayer: "Url",
+              value: ""
+            }
+          ]
         },
         {
           type: "object",
-          key: "listed",
-          displayer: "Listed",
+          key: "card",
+          displayer: "Card",
           value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6737443e506a40002c2ac5ae?alt=media"
+            },
             {
               type: "string",
               key: "title",
-              value: "Top 5 Must-Visit Tourist Attractions in Paris",
               displayer: "Title",
+              value: "Dataswitcher Case Study"
             },
             {
               type: "string",
               key: "description",
-              value:
-                "Paris is one of the most popular tourist destinations in the world, and for good reason. In this article, we'll take a look at the top 5 must-visit tourist attractions in Paris. From the iconic Eiffel Tower to the stunning Palace of Versailles, these attractions offer a glimpse into the rich history and culture of this beautiful city. ",
               displayer: "Description",
-            },
-            {
-              type: "image",
-              key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644a6ed1f72de2002caaa496?alt=media&timestamp=1682599647063",
-              displayer: "Image",
-            },
-            {
-              type: "string",
-              key: "buttonText",
-              value: "LEARN MORE",
-              displayer: "Button Text",
+              value: "Acme implemented ES Foundation at Dataswitcher to improve scalability around peak conversions."
             },
             {
               type: "page",
-              key: "link",
-              displayer: "Button Link",
-              value: "",
-            },
-            {
-              type: "array",
-              key: "listedListItem",
-              displayer: "Listed Item",
-              value: [
-                {
-                  type: "object",
-                  key: "listItem",
-                  displayer: "List Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "listedItem",
-                      value: "Must visit Paris",
-                      displayer: "Item",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
+              key: "url",
+              displayer: "Url",
+              value: ""
+            }
+          ]
         },
         {
           type: "object",
-          key: "listed",
-          displayer: "Listed",
+          key: "card",
+          displayer: "Card",
           value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67374467506a40002c2ac5c9?alt=media"
+            },
             {
               type: "string",
               key: "title",
-              value: "The Power of Positive Thinking",
               displayer: "Title",
+              value: "AI Maid Help Case Study"
             },
             {
               type: "string",
               key: "description",
-              value: "Positive thinking is a mindset that can have a profound impact on one's life. When we focus on the good in every situation, we are able to approach challenges with a sense of optimism and resilience.",
               displayer: "Description",
-            },
-            {
-              type: "image",
-              key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/644a6ed1f72de2002caaa495?alt=media&timestamp=1682599647064",
-              displayer: "Image",
-            },
-            {
-              type: "string",
-              key: "buttonText",
-              value: "LEARN MORE",
-              displayer: "Button Text",
+              value: "Here's how Acme improved the infrastructure quality for AI Maid Help without increasing costs."
             },
             {
               type: "page",
-              key: "link",
-              displayer: "Button Link",
-              value: "",
+              key: "url",
+              displayer: "Url",
+              value: ""
+            }
+          ]
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67374467506a40002c2ac5c9?alt=media"
             },
             {
-              type: "array",
-              key: "listedListItem",
-              displayer: "Listed Item",
-              value: [
-                {
-                  type: "object",
-                  key: "listItem",
-                  displayer: "List Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "listedItem",
-                      value: "Positive thinking",
-                      displayer: "Item",
-                    },
-                  ],
-                },
-              ],
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "AI Maid Help Case Study"
             },
-          ],
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Here's how Acme improved the infrastructure quality for AI Maid Help without increasing costs."
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: ""
+            }
+          ]
         },
-      ],
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67374467506a40002c2ac5c9?alt=media"
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "AI Maid Help Case Study"
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Here's how Acme improved the infrastructure quality for AI Maid Help without increasing costs."
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: ""
+            }
+          ]
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67374467506a40002c2ac5c9?alt=media"
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "AI Maid Help Case Study"
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Here's how Acme improved the infrastructure quality for AI Maid Help without increasing costs."
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: ""
+            }
+          ]
+        }
+      ]
     });
-    this.addProp({
-      type: "number",
-      key: "itemCount",
-      displayer: "Item count in a row",
-      value: 3,
-    });
+    this.addProp(INPUTS.BUTTON("button", "Button", "View our services", "", null, null, "Primary"));
+    this.setComponentState("slider-ref", React.createRef());
+    this.setComponentState("active", 0);
+    this.setComponentState("activeSlideIndex", 0);
   }
 
   getName(): string {
@@ -212,52 +248,146 @@ class Feature10 extends BaseFeature {
   }
 
   render() {
-    return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("content")}>
-            {this.castToObject<Listed[]>("listed-card").map(
-              (listed: any, index: number) => (
-                <div className={this.decorateCSS("card-item-count")} style={{
-                  width: 90 / this.getPropValue("itemCount") + "%",
-                }}>
-                <div key={index} className={this.decorateCSS("listed")}>
-                  <img
-                    alt=""
-                    className={this.decorateCSS("image")}
-                    src={listed.image}
-                  ></img>
-                  <h3 className={this.decorateCSS("title")}>{listed.title}</h3>
-                  <p className={this.decorateCSS("long-text")}>
-                    {listed.description}
-                  </p>
+    const sliderRef = this.getComponentState("slider-ref");
+    const cards = this.castToObject<Card[]>("cards");
 
-                  <ComposerLink path={listed.link}>
-                    <span className={this.decorateCSS("button")}>
-                      {listed.buttonText}
-                    </span>
-                  </ComposerLink>
-                  <ul className={this.decorateCSS("list")}>
-                    {listed.listedListItem.map(
-                      (tableData: listedListItem, index: number) => {
-                        return (
-                          <li
-                            className={this.decorateCSS("list-item")}
-                            key={index}
-                          >
-                            {tableData.listedItem}
-                          </li>
-                        );
-                      }
-                    )}
-                  </ul>
-                </div>
-                </div>
-              )
+    const title = this.getPropValue("title");
+
+    const description = this.getPropValue("description");
+
+    const button = this.castToObject<INPUTS.CastedButton>("button");
+    const settings = {
+      arrows: false,
+      dots: false,
+      speed: 725,
+      autoplay: true,
+      autoplaySpeed: 2000,
+      slidesToShow: cards.length > 2 ? 3 : cards.length,
+      slidesToScroll: 1,
+      infinity: true,
+
+      responsive: [
+        {
+          breakpoint: 868,
+          settings: {
+            arrows: false,
+            slidesToShow: 2,
+            slidesToScroll: 1,
+          },
+        },
+
+        {
+          breakpoint: 500,
+          settings: {
+            arrows: false,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+          },
+        },
+      ],
+      beforeChange: (_: number, next: number) => {
+        this.setComponentState("active", next);
+        this.setComponentState("activeSlideIndex", next);
+      },
+    };
+
+    return (
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <div className={this.decorateCSS("wrapper")}>
+            <Base.VerticalContent className={this.decorateCSS("section-wrapper")}>
+              {this.castToString(title) && (
+                <Base.SectionTitle className={this.decorateCSS("section-title")}>
+                  {title}
+                </Base.SectionTitle>
+              )}
+              {this.castToString(description) && (
+                <Base.SectionDescription className={this.decorateCSS("section-description")}>
+                  {description}
+                </Base.SectionDescription>
+              )}
+            </Base.VerticalContent>
+            {(this.getPropValue("leftArrow") || this.getPropValue("rightArrow")) && (
+              <div className={this.decorateCSS("arrow-container")}>
+                {this.getPropValue("leftArrow") && (
+                  <button
+                    onClick={() => {
+                      sliderRef.current.slickPrev();
+                    }}
+                    className={this.decorateCSS("arrow-left")}>
+                    <ComposerIcon name={this.getPropValue("leftArrow")} propsIcon={{ className: this.decorateCSS("icon") }} ></ComposerIcon>
+                  </button>
+                )}
+                {this.getPropValue("rightArrow") && (
+                  <button
+                    onClick={() => {
+                      sliderRef.current.slickNext();
+                    }}
+                    className={this.decorateCSS("arrow-right")}>
+                    <ComposerIcon name={this.getPropValue("rightArrow")} propsIcon={{ className: this.decorateCSS("icon") }}></ComposerIcon>
+                  </button>
+                )}
+              </div>
             )}
+            <div className={this.decorateCSS("cards-container")}>
+              {cards?.length > 0 && (
+                <ComposerSlider
+                  ref={sliderRef}
+                  {...settings}
+                  className={`${this.decorateCSS("carousel")} 
+                    ${!(this.castToString(title) || this.castToString(description) || this.getPropValue("leftArrow") || this.getPropValue("rightArrow")) && this.decorateCSS("no-padding")}`}
+                >
+
+                  {cards.map((item: Card, index: number) => {
+                    const titleExist = !!this.castToString(item.title);
+                    const descExist = !!this.castToString(item.description);
+
+                    if (!item.image && !titleExist && !descExist) return null;
+
+                    return (
+                      <ComposerLink path={item.url}>
+                        <div
+                          key={index}
+                          className={`${this.decorateCSS("card-container")} ${!(titleExist || descExist) && this.decorateCSS("fit-content")}`}
+                        >
+                          {item.image && (
+                            <img className={`${this.decorateCSS("image")} ${!(titleExist || descExist) && this.decorateCSS("border-radius")}`} src={item.image} alt={this.castToString(item.title)} />
+                          )}
+                          {(titleExist || descExist) && (
+                            <div className={this.decorateCSS("bottom")}>
+                              {titleExist && (
+                                <div className={this.decorateCSS("title")}>
+                                  {item.title}
+                                </div>
+                              )}
+                              {descExist && (
+                                <div className={this.decorateCSS("description")}>
+                                  {item.description}
+                                </div>
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      </ComposerLink>
+                    );
+                  })}
+                </ComposerSlider>
+              )}
+            </div>
+            <div className={this.decorateCSS("button-wrapper")}>
+              {!!this.castToString(button.text) && (
+                <ComposerLink path={button.url}>
+                  <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                    {button.text}
+                  </Base.Button>
+                </ComposerLink>
+              )}
+            </div>
+
+
           </div>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

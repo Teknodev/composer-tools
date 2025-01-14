@@ -3,6 +3,8 @@ import styles from "./download6.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseDownload } from "../../EditorComponent";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type LeftCol = {
   title: JSX.Element;
@@ -38,8 +40,7 @@ class Download6 extends BaseDownload {
           type: "string",
           key: "description",
           displayer: "Description",
-          value:
-            "Packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.",
+          value: "Packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.",
         },
       ],
     });
@@ -49,31 +50,7 @@ class Download6 extends BaseDownload {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        {
-          type: "object",
-          key: "button",
-          displayer: "Button",
-          value: [
-            {
-              type: "string",
-              key: "button_text",
-              displayer: "Button Text",
-              value: "Download Now",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Button Link",
-              value: "",
-            },
-            {
-              type: "icon",
-              key: "icon",
-              displayer: "Button Icon",
-              value: "IoIosArrowRoundForward",
-            },
-          ],
-        },
+        INPUTS.BUTTON("button", "Button", "Download Now", "", "", "", "Primary"),
       ],
     });
 
@@ -86,8 +63,7 @@ class Download6 extends BaseDownload {
           type: "image",
           key: "image",
           displayer: "Image",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66bdb43307399d002cb4160b?alt=media",
+          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66bdb43307399d002cb4160b?alt=media",
         },
       ],
     });
@@ -100,83 +76,61 @@ class Download6 extends BaseDownload {
   render() {
     const leftcolumn = this.castToObject<LeftCol>("left-column");
     const rightcolumn = this.castToObject<RightCol>("right-column");
-    const buttons = this.castToObject<Button[]>("buttons");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
-    const isLeftColumnVisible =
-      this.castToString(leftcolumn.title) ||
-      this.castToString(leftcolumn.description) ||
-      buttons?.length > 0;
-
+    const isLeftColumnVisible = this.castToString(leftcolumn.title) || this.castToString(leftcolumn.description) || buttons?.length > 0;
     const isRightColumnVisible = rightcolumn.image;
 
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           {isLeftColumnVisible && (
-            <div className={this.decorateCSS("left-column")}>
-              {this.castToString(leftcolumn.title) && (
-                <h1 className={this.decorateCSS("title")}>
-                  {leftcolumn.title}
-                </h1>
-              )}
-
-              {this.castToString(leftcolumn.description) && (
-                <h3 className={this.decorateCSS("description")}>
-                  {leftcolumn.description}
-                </h3>
-              )}
+            <Base.VerticalContent className={`${this.decorateCSS("left-column")} ${!isRightColumnVisible && this.decorateCSS("no-image")}`} >
+              {this.castToString(leftcolumn.title) && <Base.SectionTitle className={this.decorateCSS("title")}>{leftcolumn.title}</Base.SectionTitle>}
+              {this.castToString(leftcolumn.description) && <Base.SectionDescription className={this.decorateCSS("description")}>{leftcolumn.description}</Base.SectionDescription>}
 
               {buttons?.length > 0 && (
-                <div className={this.decorateCSS("buttons-container")}>
-                  {buttons.map((button: Button, index: number) => {
-                    const buttonTextExist = this.castToString(
-                      button.button_text,
+                <Base.Row className={this.decorateCSS("buttons-container")}>
+                  {buttons.map((item: INPUTS.CastedButton, index: number) => {
+                    const buttonTextExist = this.castToString(item?.text);
+                    return (
+                      (item.image || item.icon || buttonTextExist) && (
+                        <div className={this.decorateCSS("button-wrapper")}>
+                          <ComposerLink key={index} path={item.url}>
+                            {item.image ? (
+                              <img src={item.image} className={this.decorateCSS("button-image")} />
+                            ) : (
+                              (buttonTextExist || item.icon) && (
+                                <Base.Button buttonType={item.type} className={this.decorateCSS("button-element")}>
+                                  {item.icon && (
+                                    <ComposerIcon
+                                      name={item.icon}
+                                      propsIcon={{
+                                        className: this.decorateCSS("icon"),
+                                      }}
+                                    />
+                                  )}
+                                  {buttonTextExist && <div className={this.decorateCSS("button-text")}>{item.text}</div>}
+                                </Base.Button>
+                              )
+                            )}
+                          </ComposerLink>
+                        </div>
+                      )
                     );
-
-                    const buttonExist = button.icon || buttonTextExist;
-
-                    if (buttonExist)
-                      return (
-                        <ComposerLink
-                          key={index}
-                          path={button.link}
-                          isFullWidth={false}
-                        >
-                          <button className={this.decorateCSS("button")}>
-                            {buttonTextExist && (
-                              <div className={this.decorateCSS("button_text")}>
-                                {button.button_text}
-                              </div>
-                            )}
-                            {button.icon && (
-                              <ComposerIcon
-                                name={button.icon}
-                                propsIcon={{
-                                  className: this.decorateCSS("icon"),
-                                }}
-                              />
-                            )}
-                          </button>
-                        </ComposerLink>
-                      );
-                    return null;
                   })}
-                </div>
+                </Base.Row>
               )}
-            </div>
+            </Base.VerticalContent>
           )}
 
           {isRightColumnVisible && (
             <div className={this.decorateCSS("right-column")}>
-              <img
-                className={this.decorateCSS("image")}
-                src={rightcolumn.image}
-                alt={"download"}
-              />
+              <img className={this.decorateCSS("image")} src={rightcolumn.image} alt={"download"} />
             </div>
           )}
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

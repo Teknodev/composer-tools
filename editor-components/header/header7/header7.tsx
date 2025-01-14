@@ -2,6 +2,7 @@ import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header7.module.scss";
+import { Base } from "../../../composer-base-components/base/base";
 
 type ISliderData = {
   title: string;
@@ -182,34 +183,33 @@ class Header7 extends BaseHeader {
   }
   render() {
     const handleMouseOver = (image: string) => {
-      this.setComponentState("active_image", image)
+      this.setComponentState("active_image", image);
     };
 
+    const image = this.getComponentState("active_image");
+
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("container")}>
+      <Base.Container className={this.decorateCSS("container")} isFull={true}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <div className={`${this.decorateCSS("content")} ${!image && this.decorateCSS("without-image")}`}>
             <div className={this.decorateCSS("items")}>
-              {this.castToObject<ISliderData[]>("pages").map(
-                (item: ISliderData, index: number) => (
-
-                  <ComposerLink path={item.pagepath} key={index}>
-                    <h2 onMouseOver={() => handleMouseOver(item.image)} className={this.decorateCSS("text")}>
-                      {item.title}
-                    </h2>
-                  </ComposerLink>
-
-
-                )
-              )}
+              {this.castToObject<ISliderData[]>("pages").map((item: ISliderData, index: number) => (
+                <ComposerLink path={item.pagepath} key={index}>
+                  <h2
+                    onMouseOver={() => handleMouseOver(item.image)}
+                    className={this.decorateCSS("text")}
+                  >
+                    {item.title}
+                  </h2>
+                </ComposerLink>
+              ))}
             </div>
-            <img
-              src={this.getComponentState("active_image")}
-              className={`${this.decorateCSS("image")}`}
-            />
+            {image && (
+              <img src={image} className={this.decorateCSS("image")} alt="header-7" />
+            )}
           </div>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

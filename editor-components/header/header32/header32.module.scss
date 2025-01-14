@@ -1,3 +1,5 @@
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+
 @keyframes textBottomToUp {
   from {
     transform: translateY(80%);
@@ -5,7 +7,7 @@
   }
   to {
     transform: translateY(0);
-    opacity: 0.7;
+    opacity: 1;
   }
 }
 @keyframes slideDownUp {
@@ -25,17 +27,17 @@
 
 @keyframes imageTitleRight {
   from {
-    transform: translate(-40%, -50%);
+    transform: translate(-30%, -50%);
     opacity: 0;
   }
   to {
-    transform: translate(-50%,-50%);
-    opacity: 0.7;
+    transform: translate(-50%, -50%);
+    opacity: 1;
   }
 }
 
-@mixin blink-page{
-  >blinkpage {
+@mixin blink-page {
+  > blinkpage {
     display: -webkit-box !important;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
@@ -44,14 +46,23 @@
   }
 }
 
+@keyframes zoomOutToIn {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(2);
+    right: -200%;
+    bottom: -200%;
+  }
+}
+
 .container {
   width: 100%;
   position: relative;
   overflow: hidden;
   .max-content {
-    max-width: var(--composer-content-width);
-    width: 100%;
-    margin: auto;
     .wrapper {
       position: relative;
       .slider-parent {
@@ -61,20 +72,21 @@
           display: flex !important;
           flex-direction: row;
           rotate: 90deg;
-          gap: 12px;
+          gap: var(--composer-gap-sm);
           padding: 0;
           list-style-type: none;
           position: absolute;
-          bottom: 70px;
-          left: 50px;
+          bottom: var(--composer-gap-xl);
+          left: var(--composer-gap-xl);
           animation: ease-out;
           max-width: 70px;
+          margin: 0;
           li {
             .dot {
               display: inline-block;
               transition: 0.3s;
               width: 4px;
-              height: 4px ;
+              height: 4px;
               background: white;
               border: none;
               border: 1px solid white;
@@ -82,15 +94,25 @@
               border-radius: 100px;
               margin: 0;
               padding: 0;
+              &.colored{
+                background: var(--composer-font-color-primary);
+                background-color: var(--composer-font-color-primary);
+                border-color: var(--composer-font-color-primary);
+              }
             }
+
+           
             .dotIndex {
               display: none;
               color: white;
-              font-size: 1.1rem;
+              font-size: 1rem;
               margin-top: -30px;
               transform: translateY(-10%);
               rotate: 270deg;
-              padding-left: 3px;
+              padding-left: var(--composer-gap-xs);
+              &.colored{
+                color: var(--composer-font-color-primary);
+              }
             }
           }
         }
@@ -98,25 +120,40 @@
         .dots :global(li.slick-active) {
           .dot {
             padding: 0px 10px;
-            
           }
           .dotIndex {
             display: block;
           }
         }
 
+        :global(div.slick-active) {
+          z-index: 1;
+        }
+
         .carousel {
-          width: 100%;
           .slide-inner {
             height: 100vh;
             width: 100%;
             .content {
               height: 100%;
               width: 100%;
-              background-size: cover !important; 
+              background-size: cover !important;
               background-position: center !important;
               position: relative;
               object-fit: cover;
+              overflow: hidden;
+              .backgroundImage {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                object-fit: cover;
+                &.zoomInAnimation {
+                  transform: scale(2);
+                  animation: zoomOutToIn 25s;
+                }
+              }
               .content-inner {
                 position: absolute;
                 top: 50%;
@@ -126,26 +163,26 @@
                 color: white;
                 width: 100%;
                 height: 100%;
-                
+
                 &.background-overlay {
-                  background: rgba(0, 0, 0, 0.3);
+                  background: var(--composer-overlay-color);
                 }
-                
+
                 .slideShape {
                   position: absolute;
                   width: 30%;
                   height: 70%;
-                  margin-left: 250px;
-                  background: rgba(0, 0, 0, 0.5);
+                  left: 20%;
+                  background: var(--composer-overlay-color);
                 }
                 .shapeAnimate {
                   animation: slideDownUp 1s ease-out;
                 }
 
-                h2{
+                h2 {
                   @include blink-page;
                 }
-                p{
+                p {
                   @include blink-page;
                 }
 
@@ -157,9 +194,13 @@
                   left: 50%;
                   transform: translate(-50%, -50%);
                   z-index: 1;
-                  opacity: 0.7;
+                  opacity: 1;
+
+                  &.primaryColor{
+                    color: var(--composer-font-color-primary);
+                  }
                 }
-                .imageTitleAnimation{
+                .imageTitleAnimation {
                   animation: imageTitleRight 0.5s ease-in-out;
                 }
                 .image-details {
@@ -168,31 +209,36 @@
                   align-items: start;
                   width: 50%;
                   position: absolute;
-                  padding: 20px 10px;
-                  bottom: 0;
+                  padding: var(--composer-gap-md) var(--composer-gap-sm);
+                  bottom: -5px;
                   right: 0;
-                  background-color: var(--composer-html-background);
+                  background-color: color-mix(
+                    in srgb,
+                    var(--composer-html-background),
+                    var(--composer-font-color-primary) 5%
+                  );
                   color: var(--composer-font-color-primary);
-                  gap: 20px;
+                  gap: var(--composer-gap-md);
+                  min-height: calc(100px + (var(--composer-gap-md) * 2));
 
                   .description {
                     width: 100%;
-                    font-size: 1.4rem;
+                    font-size: 1rem;
                     text-align: start;
                     margin: 0;
                     line-height: 1.5;
-                    padding-left: 1rem;
-                    opacity: 0.7;
+                    padding-left: var(--composer-gap-md);
+                    opacity: 1;
                   }
                   .animate {
                     animation: textBottomToUp 0.5s ease-out;
                   }
-                  
+
                   .stick {
                     width: 0.5px;
                     background-color: var(--composer-font-color-primary);
-                    height: 100px; 
-                    opacity: 0.7;
+                    height: 100px;
+                    opacity: 0.2;
                     align-self: center;
                   }
 
@@ -200,20 +246,27 @@
                     width: 100%;
                     display: flex;
                     justify-content: center;
-                    >div {
+                    > div {
                       display: flex;
                       justify-content: center;
-                      width: 100% !important;
                     }
                     .urlTitles {
-                      font-size: 1.4rem;
+                      font-size: 1rem;
                       max-width: 50%;
                       text-align: center;
                       margin: 0;
-                      opacity: 0.7;
+                      opacity: 1;
                     }
-                    
-                    .urlTitleAnimation{
+
+                    &.withoutDescription {
+                      justify-content: unsafe;
+                      width: fit-content;
+                      .urlTitles {
+                        text-align: left !important;
+                      }
+                    }
+
+                    .urlTitleAnimation {
                       animation: textBottomToUp 0.5s ease-out;
                     }
                   }
@@ -221,10 +274,10 @@
 
                 .nav-buttons {
                   display: flex;
-                  gap: 20px;
+                  gap: var(--composer-gap-md);
                   flex-direction: column;
                   position: absolute;
-                  right: 100px;
+                  right: var(--composer-gap-xl);
                   top: 50%;
                   transform: translateY(-50%);
                   opacity: 0.7;
@@ -257,12 +310,26 @@
                       z-index: -1;
                     }
 
+                   
+
                     &:hover {
                       color: black;
 
                       &.enable-before::before {
                         left: 0;
                       }
+                    }
+                    &.primaryColor{
+                      border-color: var(--composer-font-color-primary);
+                      &:hover::before{
+                        background-color: var(--composer-font-color-primary);
+                        color: var(--composer-font-color-secondary);
+                      }
+
+                      &:hover{
+                        color: var(--composer-font-color-secondary);
+                      }
+                      
                     }
                   }
                 }
@@ -274,27 +341,19 @@
     }
   }
 }
-
-@media only screen and (min-width: 481px) and (max-width: 1024px) {
+@container (max-width: #{$composer-tablet-width-lg}) {
   .container .max-content .wrapper .slider-parent .dots {
     bottom: 60px;
     left: 30px;
   }
 
-  .container
-    .max-content
-    .wrapper
-    .slider-parent
-    .carousel
-    .slide-inner
-    .content
-    .content-inner {
-      background-size: cover !important; 
-      background-position: center !important;
+  .container .max-content .wrapper .slider-parent .carousel .slide-inner .content .content-inner {
+    background-size: cover !important;
+    background-position: center !important;
     .slideShape {
       width: 30%;
-      height: 75%;
-      margin-left: 150px;
+      height: 70%;
+      left: 20%;
     }
     .imageTitle {
       font-size: 4rem;
@@ -302,8 +361,7 @@
     .image-details {
       width: 70%;
       height: 15%;
-      .description{
-        padding-right: 1;
+      .description {
         font-size: 1rem;
       }
       .stick {
@@ -311,17 +369,15 @@
         min-height: 100%;
         margin-left: 2.5rem;
       }
-      .url-container{
-        .urlTitles{
+      .url-container {
+        .urlTitles {
           font-size: 1rem;
         }
-        
       }
     }
     .nav-buttons {
-      gap: 10px;
+      gap: var(--composer-gap-sm);
       .nav-button {
-        right: -80px;
         width: 60px;
         height: 60px;
       }
@@ -329,29 +385,20 @@
   }
 }
 
-
-
-@media only screen and (max-width: 480px) {
+@container (max-width: #{$composer-tablet-width-sm}) {
   .container .max-content .wrapper .slider-parent .dots {
     content-visibility: hidden;
   }
 
-  .container
-    .max-content
-    .wrapper
-    .slider-parent
-    .carousel
-    .slide-inner
-    .content
-    .content-inner {
-      background-size: cover !important; 
-      background-position: center !important;
+  .container .max-content .wrapper .slider-parent .carousel .slide-inner .content .content-inner {
+    background-size: cover !important;
+    background-position: center !important;
     .slideShape {
       display: none;
     }
 
     .imageTitle {
-      font-size: 2.2rem;
+      font-size: 3.5rem;
     }
 
     .image-details {
@@ -359,10 +406,10 @@
     }
 
     .nav-buttons {
-      gap: 5px;
+      gap: var(--composer-gap-xs);
       flex-direction: row;
       justify-content: center;
-      bottom: 2rem;
+      bottom: var(--composer-gap-lg);
       top: auto;
       left: 50%;
       transform: translateX(-50%);

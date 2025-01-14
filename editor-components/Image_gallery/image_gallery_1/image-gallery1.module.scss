@@ -1,98 +1,113 @@
-.container {
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-
-  .max-content {
-    align-self: center;
-
-    .content {
-      .border {
-        position: relative; 
-        width: 100%;
-        height: 50%;
-        border: 1px solid var(--composer-tertiary-color);
-        border-radius: 0px 0px 0px;
-
-        img {
-          max-height: 300px;
-          padding: 20px;
-        }
-
-      }
-
-      .button-css {
-        display: flex;
-        height: 60px;
-        gap: 15px;
-
-        .button {
-          color: var(--composer-primary-color);
-          background-color: var(--composer-secondary-color-primary);
-          width: 150px;
-          font-size: 18px;
-          border-width: 1px 1px 0px 1px;
-          border-color: var(--composer-tertiary-color);
+@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
+.container{
+  .max-content{
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-xl);
+    .section-title-container{
+      width: 100%;
+      display: flex;
+      gap: var(--composer-gap-xl);
+      flex-wrap: wrap;
+      .section-title{
+        text-align: start;
+        width: fit-content;
+        font-size: 1rem;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        opacity: 0.7;
+        transition: opacity 0.3s ease, border-bottom 0.1s ease;
+        color:var(--composer-font-color-primary);
+        &.active-section-title{
+          border-bottom: 2px solid var(--composer-font-color-primary);
+          opacity: 1;
+          font-weight: bold;
         }
       }
-
-      .image-css {
+    }
+    .card-container{
+      display: flex;
+      flex-direction: column;
+      gap: var(--composer-gap-md);    
+      .image-container{
+        flex-grow: 10;
+        overflow:hidden;  
+        border-radius: var(--composer-border-radius-md); 
+        min-height: 450px;    
+        max-height: 450px;      
+        .image{
+          border-radius: var(--composer-border-radius-md);
+          width: 100%;
+          transition: all 0.4s ease;
+          transform-origin: 50% 50%;
+          object-fit: cover;
+          overflow: hidden ;
+          height: 100%;
+        }
+      }
+      .text-container{
+        flex-grow: 1;
         display: flex;
-        justify-content: center;
+        gap: var(--composer-gap-md);
         align-items: center;
+        justify-content: center;
+        .title{
+          color :var(--composer-font-color-primary);
+          max-width: 40%;
+
+        }
+        .line{
+          width: 10px; 
+          height: 1px;
+          background-color:var(--composer-font-color-primary);
+          opacity: 0.2;
+  
+        }
+        .section{
+          color :var(--composer-tertiary-color);
+          max-width: 40%;
+        }
+      }
+      &:hover {
+        .image-container{
+          border-radius: var(--composer-border-radius-md); 
+          .image{
+            transform: scale(1.1);
+            border-radius: var(--composer-border-radius-md); 
+          }
+        }
+
+      }
+    }
+    .button-wrapper{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .button{
+        content: "";
       }
     }
   }
 }
 
-@media screen and (max-width: 1250px){
+@container (max-width: #{$composer-tablet-width}){
   .container{
     .max-content{
-      .content{
-        .button{
-          width: auto;
-        }
-        .border{
-          .image-css{
-            img{
-              width: 34%;
-              display: block;
-            }
-          }
+      .card-container{
+        .image-container{
+          max-height: 250px;
+          min-height: 250px;
         }
       }
     }
   }
 }
-
-@media screen and (max-width: 370px){
+@container (max-width: #{$composer-phone-width}){
   .container{
     .max-content{
-      .content{
-        .button-css{
-        .button{
-          max-width: 21%;
-          min-width: 21%;
-          font-size: 1rem;
-          border: 1px solid var(--composer-tertiary-color);
-          border-radius: 0px 0px 0px 0px;
-          height: 80%;
-          margin-top: 13px;
-        }
-      }
-        .border{
-          max-width: 88%;
-          min-width: 87%;
-          border-radius: 0px 0px 0px 0px;
-          .image-css{
-            display: block;
-            img{
-              width: 100%;
-              display: block;
-              margin: 0 auto;
-            }
-          }
-        }
+      .section-title-container{
+        flex-direction: column;
       }
     }
   }

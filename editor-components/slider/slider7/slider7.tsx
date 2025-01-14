@@ -5,65 +5,16 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
 
 type Card = {
   image: string;
-  
 };
-
-interface ArrowProps {
-  style?: React.CSSProperties;
-  onClick?: () => void;
-  iconName: string;
-  className : string;
-  sliderRef: React.RefObject<any>;
-}
-
-// Next Arrow Component
-const SampleNextArrow: React.FC<ArrowProps> = (props) => {
-  const { style, onClick, iconName, className, sliderRef } = props;
-
-  const handleClick = () => {
-    if (sliderRef.current) {
-      sliderRef.current.slickNext(); 
-    }
-    if (onClick) {
-      onClick(); 
-    }
-  };
-  return (
-    <div className={className} onClick={handleClick}>
-      <ComposerIcon name={iconName} />
-    </div>
-  );
-};
-
-// Prev Arrow Component
-const SamplePrevArrow: React.FC<ArrowProps> = (props) => {
-  const { style, onClick, iconName, className, sliderRef } = props;
-
-  const handleClick = () => {
-    if (sliderRef.current) {
-      sliderRef.current.slickPrev(); 
-    }
-    if (onClick) {
-      onClick(); 
-    }
-  };
-  return (
-    <div className={className} onClick={handleClick}>
-      <ComposerIcon name={iconName} />
-    </div>
-    );
-};
-
-
 
 class Slider7 extends BaseSlider {
-
   constructor(props?: any) {
     super(props, styles);
-    
+
     this.addProp({
       type: "array",
       key: "slider",
@@ -95,7 +46,7 @@ class Slider7 extends BaseSlider {
               value:
                 "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/michael-demarco-oB0r-2a1QfE-unsplash-scaled.jpg",
             },
-            
+
           ],
         },
         {
@@ -183,7 +134,7 @@ class Slider7 extends BaseSlider {
           ],
         },
       ],
-    }); 
+    });
 
     this.addProp({
       type: "icon",
@@ -198,111 +149,108 @@ class Slider7 extends BaseSlider {
       displayer: "Next Arrow Icon",
       value: "BsArrowRight"
     });
-    
+
     this.setComponentState("centerSlide", 0);
     this.setComponentState("slider-ref", React.createRef());
-    // window.addEventListener('keydown', this.handleKeyDown);
 
-    
   }
-
-  handleKeyDown = (event: KeyboardEvent) => {
-    const sliderRef = this.getComponentState("slider-ref"); 
-    if (sliderRef && sliderRef.current) { 
-      if (event.key === "ArrowLeft") {
-        sliderRef.current.slickPrev();
-      } else if (event.key === "ArrowRight") {
-        sliderRef.current.slickNext();
-      }
-    }
-  };
-
 
   getName(): string {
     return "Slider 7";
   }
-  
+
   render() {
-    
-    const items = this.castToObject<Card[]>("slider").filter(
+
+    let items = this.castToObject<Card[]>("slider").filter(
       (item: Card) => item.image
     );
     const isCardExist = items.length > 0;
     const nextArrow = this.getPropValue("nextArrow");
-    const isNextArrowExist = this.castToString(nextArrow);
     const previousArrow = this.getPropValue("previousArrow");
-    const isPreviousArrowExist = this.castToString(previousArrow);
-    const cardNumber = String(3);
-    const visibleItemCount = Math.min(items.length, 3);
     const sliderRef = this.getComponentState("slider-ref");
+    let slidesToShowNumber = 1;
 
-    
+    if (items.length === 2) {
+      items = [...items, ...items];
+      slidesToShowNumber = 3;
+    }
+
     const settings = {
       dots: false,
+      arrows: true,
       infinite: true,
       speed: 500,
       autoplay: true,
       centerMode: true,
       autoplaySpeed: 3000,
-      slidesToShow: visibleItemCount,
+      slidesToShow: slidesToShowNumber,
+      slidesToScroll: 1,
+      centerPadding: "0px",
+      variableWidth: true,
       responsive: [
         {
           breakpoint: 1024,
           settings: {
-            slidesToShow: Math.min(visibleItemCount, 3),
-            slidesToScroll: 3,
-            centerPadding: "60px",
-            infinite: true,
+            slidesToShow: 1,
           }
         },
         {
-          breakpoint: 768,
+          breakpoint: 640,
           settings: {
-            slidesToShow: Math.min(visibleItemCount, 1),
-            slidesToScroll: 2,
-            initialSlide: 2,
-            centerPadding: "180px",
-            infinite: true,
-          }
-        },
-        {
-          breakpoint: 480,
-          settings: {
-            slidesToShow: Math.min(visibleItemCount, 1),
-            slidesToScroll: 1,
-            infinite: true,
-            centerPadding: "0px",
+            dots: true,
+            arrows: false,
+            variableWidth: false,
+            slidesToShow: 1,
           }
         }
       ],
-      centerPadding: "240px",
-      slidesToScroll: 1,
-      swipe: true,
-      swipeToSlide: true,
-      arrows: true,
-      beforeChange: (current: number, next: number) => {
+
+      beforeChange: (_: number, next: number) => {
         this.setComponentState("centerSlide", next);
       },
     };
-    
-    const carouselClass = cardNumber === "1" ? "carousel--singleCard" : "carousel--multipleCards";
+
+
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-        <SampleNextArrow iconName={this.getPropValue("nextArrow") as string} className = {this.decorateCSS('nextArrow')} sliderRef={sliderRef}/>
-        <SamplePrevArrow iconName={this.getPropValue("previousArrow") as string} className={this.decorateCSS('prevArrow')} sliderRef={sliderRef} />
-          {isCardExist ? (
+      <Base.Container isFull={true} className={`${this.decorateCSS("container")}
+      ${items.length === 1 && this.decorateCSS("one-card")}`}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+
+          {previousArrow &&
+            <div className={this.decorateCSS("prevArrow")}>
+              <ComposerIcon
+                name={this.getPropValue("previousArrow")}
+                propsIcon={{
+                  onClick: () => {
+                    sliderRef.current.slickPrev();
+                  },
+                }}
+              />
+            </div>}
+
+          {nextArrow &&
+            <div className={this.decorateCSS("nextArrow")}>
+              <ComposerIcon
+                name={this.getPropValue("nextArrow")}
+                propsIcon={{
+                  onClick: () => {
+                    sliderRef.current.slickNext();
+                  },
+                }}
+              />
+            </div>}
+
+          {isCardExist && (
             <ComposerSlider
               {...settings}
-              className={`${this.decorateCSS("carousel")} ${this.decorateCSS(carouselClass)}`}
+              className={this.decorateCSS("carousel")}
               ref={sliderRef}
-            > 
+            >
               {items.map((item: Card, index: number) => (
-                <div 
-                  key={index} 
-                  className={`${this.decorateCSS("card")} ${
-                    this.getComponentState("centerSlide") === index && this.decorateCSS("centerSlide")
-                  }`}
+                <div
+                  key={index}
+                  className={`${this.decorateCSS("card")} ${this.getComponentState("centerSlide") === index && this.decorateCSS("centerSlide")
+                    }`}
                 >
                   <div className={this.decorateCSS("imgContainer")}>
                     <img
@@ -314,13 +262,11 @@ class Slider7 extends BaseSlider {
                 </div>
               ))}
             </ComposerSlider>
-          ) : undefined}
-        </div>
-      </div>
+          )}
+        </Base.MaxContent>
+      </Base.Container>
     );
-    
   }
-  
 }
 
 export default Slider7;

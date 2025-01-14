@@ -1,102 +1,128 @@
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 .container {
-  width: 100%;
-  padding: 100px 0 100px 0;
-
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding: var(--composer-gap-xl);
   .max-content {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    .testimonials1 {
-      width: 50%;
-
-     
-      .items {
-        display: flex !important;
-        flex-direction: column;
-        align-items: center;
-
-        
-          .icons {
-            font-size: 50px;
-            color: var(--composer-font-color-secondry);
-            border-radius: 50%; 
-            background-color: var(--composer-secondary-color); 
-            display: inline-block; 
-            padding: 10px; 
-          }     
-        
-
-        .longtext {
-          font-size: 20px;
-          text-align: center;
-          color: var(--composer-font-color-primary);
-          text-transform: uppercase;
-        }
-
-        .name {
-          font-size: 19px;
-          color: var(--composer-secondary-color);
-          text-align: center;
-        }
-      }
-
-      .images {
+    gap: var(--composer-gap-xl);
+    .wrapper {
+      width: 100%;
+      .content-wrapper {
+        width: 100%;
         display: flex;
         align-items: center;
-        gap: 18px;
-        margin: 0 auto;
-        width: fit-content;
- 
-        .image {
-          width: 100px;
-          height: 100px;
-          object-fit: cover;
-          border-radius: 100%;
-          transition: 0.3s;
+        justify-content: center;
+        .content {
+          display: flex;
+          flex-direction: column;
+          gap: var(--composer-gap-xl);
 
-          &.active {
-            transform: scale(1.1);
-          
+          &.content-no-image {
+            width: 100%;
           }
-         
+          > div {
+            > div {
+              > div {
+                display: flex;
+                align-items: stretch;
+                height: 100%;
+                > div {
+                  height: auto;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                }
+              }
+            }
+          }
+          .items {
+            display: flex !important;
+            flex-direction: column;
+            gap: var(--composer-gap-md);
+            align-items: center;
+            .icons {
+              font-size: 3rem;
+              border-radius: 50%;
+              display: inline-block;
+              padding: var(--composer-gap-sm);
+              background-color: #d39121;
+              color: white;
+
+              &.icons-no-image {
+                color: var(--composer-font-color-secondary);
+                background-color: var(--composer-primary-color);
+              }
+            }
+
+            .longtext {
+              font-size: 1.5rem;
+              text-align: center;
+              color: black;
+
+              &.longtext-no-image {
+                color: var(--composer-font-color-primary);
+              }
+            }
+
+            .name {
+              width: 100%;
+              font-size: 1.5rem;
+              text-align: center;
+              color: #d39121;
+
+              &.name-no-image {
+                color: var(--composer-primary-color);
+              }
+            }
+          }
+          .images {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: var(--composer-gap-md);
+            .image-container {
+              .image {
+                width: 50px;
+                height: 50px;
+                object-fit: cover;
+                border-radius: 50%;
+                transition: 0.3s;
+                filter: grayscale(100%);
+                &.active {
+                  transform: scale(1.1);
+                  filter: grayscale(0%);
+                }
+              }
+            }
+          }
+        }
+        .content {
+          width: 30%;
         }
       }
     }
   }
 }
 
-
-@media only screen and (max-width: 768px) {
+@container (max-width: #{$composer-tablet-width-lg}) {
   .container {
-
+    background-size: cover;
+    padding: var(--composer-gap-md) var(--composer-gap-lg) !important;
     .max-content {
-      display: flex;
-      justify-content: center;
-      flex-direction: row-reverse;
-      padding-top: 24px;
-
-      .left {
-        display: none;
-      }
-
-      .right {
-        display: none;
-      }
-
-      .testimonials1 {
-        text-align: center;
-
-        .images {
-          position: relative;
-
-          .image {
-            width: 80px;
-            height: 80px;
-
-            &.active {
-            
-              transform: scale(1.2);
+      .wrapper {
+        .content-wrapper {
+          .content {
+            width: 100%;
+            .images {
+              flex-direction: row;
+              .image-container {
+                .image {
+                  width: 80px;
+                  height: 80px;
+                }
+              }
             }
           }
         }
@@ -105,66 +131,26 @@
   }
 }
 
-@media only screen and (max-width: 400px) {
+@container (max-width: #{$composer-phone-width}) {
   .container {
-    background-color: var(--composer-html-background);
-
+    background-size: cover;
+    padding: var(--composer-gap-md) !important;
     .max-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
-      .left {
-        top: 0 !important;
-      }
-
-      .testimonials1 {
-        width: 100% !important;
-
-        .right {
-          position: relative;
-          top: 60px;
-        }
-
-        .images {
-          
-          .image {
-            width: 77px !important;
-            height: 77px !important;
-
-            &.active {
-              transform: scale(1.2);
-            }
-            
-          }
-        }
-
-        .items {
-          padding: 0px 20px 0px 20px;
-
-          .longtext {
-            font-size: 16px;
-
-          }
-        }
-
-        .images {
-
-          .image {
-
-            width: 80px;
-            height: 80px;
-
-            &.active {
-            
+      .wrapper {
+        .content-wrapper {
+          .content {
+            width: 100%;
+            .images {
+              .image-container {
+                .image {
+                  width: 70px;
+                  height: 70px;
+                }
+              }
             }
           }
-
         }
       }
     }
   }
-
-
-
 }

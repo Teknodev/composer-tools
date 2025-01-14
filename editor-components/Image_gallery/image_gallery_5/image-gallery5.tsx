@@ -1,9 +1,17 @@
+
 import * as React from "react";
 import { BaseImageGallery } from "../../EditorComponent";
 import styles from "./image-gallery5.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
-class ImageGalleryComponent5 extends BaseImageGallery {
+interface GalleryItem {
+  image: string;
+  caption: JSX.Element;
+}
+
+class ImageGallery5 extends BaseImageGallery {
   private imageGalleryRef: React.RefObject<HTMLDivElement>;
   constructor(props?: any) {
     super(props, styles);
@@ -18,19 +26,19 @@ class ImageGalleryComponent5 extends BaseImageGallery {
         {
           type: "object",
           key: "imageGallery",
-          displayer: "Image1",
+          displayer: "Image Gallery",
           value: [
             {
               type: "image",
-              key: "imageGallery",
-              displayer: "Image1",
+              key: "image",
+              displayer: "Image",
               value:
-              "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20b8c2f8a5b002ce65828?alt=media",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20b8c2f8a5b002ce65828?alt=media",
             },
             {
               type: "string",
-              key: "caption1",
-              displayer: "Caption 1",
+              key: "caption",
+              displayer: "Caption",
               value: "Gallery Image 1 Caption",
             },
           ],
@@ -38,19 +46,19 @@ class ImageGalleryComponent5 extends BaseImageGallery {
         {
           type: "object",
           key: "imageGallery",
-          displayer: "Image2",
+          displayer: "Image Gallery",
           value: [
             {
               type: "image",
-              key: "imageGallery",
-              displayer: "Image2",
+              key: "image",
+              displayer: "Image",
               value:
-              "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20c6a2f8a5b002ce65834?alt=media",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20c6a2f8a5b002ce65834?alt=media",
             },
             {
               type: "string",
-              key: "caption2",
-              displayer: "Caption 2",
+              key: "caption",
+              displayer: "Caption",
               value: "Gallery Image 2 Caption",
             },
           ],
@@ -58,19 +66,19 @@ class ImageGalleryComponent5 extends BaseImageGallery {
         {
           type: "object",
           key: "imageGallery",
-          displayer: "Image3",
+          displayer: "Image Gallery",
           value: [
             {
               type: "image",
-              key: "imageGallery",
-              displayer: "Image3",
+              key: "image",
+              displayer: "Image",
               value:
-              "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20c962f8a5b002ce65840?alt=media",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20c962f8a5b002ce65840?alt=media",
             },
             {
               type: "string",
-              key: "caption3",
-              displayer: "Caption 3",
+              key: "caption",
+              displayer: "Caption",
               value: "Gallery Image 3 Caption",
             },
           ],
@@ -78,19 +86,19 @@ class ImageGalleryComponent5 extends BaseImageGallery {
         {
           type: "object",
           key: "imageGallery",
-          displayer: "Image4",
+          displayer: "Image Gallery",
           value: [
             {
               type: "image",
-              key: "imageGallery",
-              displayer: "Image4",
+              key: "image",
+              displayer: "Image",
               value:
                 "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20cbc2f8a5b002ce6584c?alt=media",
             },
             {
               type: "string",
-              key: "caption4",
-              displayer: "Caption 4",
+              key: "caption",
+              displayer: "Caption",
               value: "Gallery Image 4 Caption",
             },
           ],
@@ -98,19 +106,19 @@ class ImageGalleryComponent5 extends BaseImageGallery {
         {
           type: "object",
           key: "imageGallery",
-          displayer: "Image5",
+          displayer: "Image Gallery",
           value: [
             {
               type: "image",
-              key: "imageGallery",
-              displayer: "Image5",
+              key: "image",
+              displayer: "Image",
               value:
-              "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20cd82f8a5b002ce65858?alt=media",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20cd82f8a5b002ce65858?alt=media",
             },
             {
               type: "string",
-              key: "caption5",
-              displayer: "Caption 5",
+              key: "caption",
+              displayer: "Caption",
               value: "Gallery Image 5 Caption",
             },
           ],
@@ -118,19 +126,19 @@ class ImageGalleryComponent5 extends BaseImageGallery {
         {
           type: "object",
           key: "imageGallery",
-          displayer: "Image6",
+          displayer: "Image Gallery",
           value: [
             {
               type: "image",
-              key: "imageGallery",
-              displayer: "Image6",
+              key: "image",
+              displayer: "Image",
               value:
-              "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20cee2f8a5b002ce6586d?alt=media",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a20cee2f8a5b002ce6586d?alt=media",
             },
             {
               type: "string",
-              key: "caption6",
-              displayer: "Caption 6",
+              key: "caption",
+              displayer: "Caption",
               value: "Gallery Image 6 Caption",
             },
           ],
@@ -143,7 +151,6 @@ class ImageGalleryComponent5 extends BaseImageGallery {
       key: "itemCount",
       displayer: "Item Count in a Row",
       value: 3,
-      max: 5,
     });
 
     this.addProp({
@@ -172,9 +179,23 @@ class ImageGalleryComponent5 extends BaseImageGallery {
       displayer: "Image Index Enabled",
       value: true,
     });
+    this.addProp({
+      type: "number",
+      key: "imageCountInitial",
+      displayer: "Image Count Initial",
+      value: 3
+    })
+    this.addProp({
+      type: "number",
+      key: "imageCount",
+      displayer: "More Image Count",
+      value: 3
+    })
+    this.addProp(INPUTS.BUTTON("button", "Button", "Load More", null, null, null, "Primary"));
 
     this.setComponentState("is_image_clicked", false);
     this.setComponentState("clicked_image_index", 0);
+    this.setComponentState("moreImages", 0);
   }
 
   getName(): string {
@@ -204,53 +225,72 @@ class ImageGalleryComponent5 extends BaseImageGallery {
     this.setComponentState("clicked_image_index", currentIndex);
   }
 
-  handleKeyPress(event: React.KeyboardEvent<HTMLDivElement>) {
-    if (event.key === "ArrowLeft") {
-      event.preventDefault();
-      this.handlePrevImage();
-    } else if (event.key === "ArrowRight") {
-      event.preventDefault();
-      this.handleNextImage();
+  handleKeyPress(event: KeyboardEvent) {
+    switch (event.key) {
+      case "ArrowLeft":
+        this.handlePrevImage();
+        break;
+      case "ArrowRight":
+        this.handleNextImage();
+        break;
+      case "Escape":
+        this.handleCloseClick();
+        break;
+      default:
+        break;
     }
   }
+  handleButtonClick = () => {
+    this.setComponentState("moreImages", this.getComponentState("moreImages") + this.getPropValue("imageCount"))
 
+  };
   render() {
-    const galleries = this.getPropValue("gallery");
+    const galleries = this.castToObject<GalleryItem[]>("gallery");
     const isImageClicked = this.getComponentState("is_image_clicked");
     const clickedImageIndex = this.getComponentState("clicked_image_index");
     const nextIcon = this.getPropValue("nextIcon");
     const prevIcon = this.getPropValue("prevIcon");
     const imageIndex = this.getPropValue("imageIndex");
     const closeIcon = this.getPropValue("closeIcon");
+    if (this.getComponentState("imageCount") != this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"))
+      this.setComponentState("imageCount", this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"));
+
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
     return (
-      <div
+      <Base.Container
         className={this.decorateCSS("container")}
         ref={this.imageGalleryRef}
         tabIndex={0}
         onKeyDown={this.handleKeyPress}
       >
-        <div className={this.decorateCSS("max-content")}>
-          <div
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <Base.ListGrid
             className={this.decorateCSS("images")}
-            style={{
-              gridTemplateColumns: `repeat(${this.getPropValue("itemCount")}, 1fr)`,
-            }}
+            gridCount={{ pc: this.getPropValue("itemCount") }}
           >
-            {galleries.map((galleryItem: any, index: number) => {
-              const image = galleryItem.value.find((item: any) => item.type === "image").value;
+            {galleries.slice(0, this.getComponentState("imageCount")).map((galleryItem: any, index: number) => {
               return (
-                <div className={this.decorateCSS("image-container")} key={index}>
-                  <img
-                    src={image}
-                    alt={`Gallery Image ${index + 1}`}
-                    className={this.decorateCSS("image")}
-                    onClick={() => this.handleImageClick(index)}
-                  />
+                <div className={this.decorateCSS("image-container")}>
+                  {galleryItem.image && (
+                    <img
+                      src={galleryItem.image}
+                      alt={galleryItem.image}
+                      className={this.decorateCSS("image")}
+                      onClick={() => this.handleImageClick(index)}
+                    />
+                  )}
                 </div>
               );
             })}
-          </div>
+          </Base.ListGrid>
+          {(galleries.length > this.getComponentState("imageCount")) && (
+            <div className={this.decorateCSS("button-wrapper")}>
+              <Base.Button className={this.decorateCSS("button")} buttonType={button.type} onClick={this.handleButtonClick} >
+                {button.text}
+              </Base.Button>
+            </div>
+          )}
           {isImageClicked && (
             <div
               className={this.decorateCSS("overlay")}
@@ -258,55 +298,66 @@ class ImageGalleryComponent5 extends BaseImageGallery {
             >
               <div className={this.decorateCSS("overlay-content")}>
                 <div className={this.decorateCSS("middle-content")}>
-                  <img
-                    src={galleries[clickedImageIndex].value.find((item: any) => item.type === "image").value}
-                    alt=""
-                    className={this.decorateCSS("large-image")}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      this.handleNextImage();
-                    }}
-                  />
-                  <button className={this.decorateCSS("image-close-button")}>
-                    <ComposerIcon name={closeIcon} />
-                  </button>
-                  <div className={this.decorateCSS("caption-container")}>
-                  {imageIndex && (
-                    <div className={this.decorateCSS("image-caption")}>
-                      {clickedImageIndex + 1} of {galleries.length}
-                    </div>
+                  {closeIcon && (
+                    <button className={this.decorateCSS("image-close-button")}>
+                      <ComposerIcon name={closeIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                    </button>
                   )}
-                  <div className={this.decorateCSS("gallery-image")}>
-                    {galleries[clickedImageIndex].value.find((item: any) => item.type === "string").value}
-                  </div>
+                  {galleries[clickedImageIndex].image && (
+                    <div className={this.decorateCSS("large-image-container")}>
+                      {prevIcon && (
+                        <button
+                          className={this.decorateCSS("prev-button")}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            this.handlePrevImage();
+                          }}
+                        >
+                          <ComposerIcon name={prevIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                        </button>
+                      )}
+                      <img
+                        src={galleries[clickedImageIndex].image}
+                        alt={galleries[clickedImageIndex].image}
+                        className={this.decorateCSS("large-image")}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          this.handleNextImage();
+                        }}
+                      />
+                      {nextIcon && (
+                        <button
+                          className={this.decorateCSS("next-button")}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            this.handleNextImage();
+                          }}
+                        >
+                          <ComposerIcon name={nextIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                        </button>
+                      )}
+                    </div>
+
+                  )}
+                  <div className={this.decorateCSS("caption-container")}>
+                    {imageIndex && (
+                      <div className={this.decorateCSS("image-caption")}>
+                        {clickedImageIndex + 1} of {galleries.length}
+                      </div>
+                    )}
+                    <div className={this.decorateCSS("gallery-image")}>
+                      {galleries[clickedImageIndex].caption}
+                    </div>
                   </div>
                 </div>
-                <button
-                  className={this.decorateCSS("prev-button")}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    this.handlePrevImage();
-                  }}
-                >
-                  <ComposerIcon name={prevIcon} />
-                </button>
-                <button
-                  className={this.decorateCSS("next-button")}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    this.handleNextImage();
-                  }}
-                >
-                  <ComposerIcon name={nextIcon} />
-                </button>
+
               </div>
             </div>
           )}
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
+  }
 }
 
-}
-
-export default ImageGalleryComponent5;
+export default ImageGallery5;

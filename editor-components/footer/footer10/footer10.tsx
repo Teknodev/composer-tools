@@ -2,39 +2,121 @@ import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseFooter } from "../../EditorComponent";
 import styles from "./footer10.module.scss";
+import { Base } from "../../../composer-base-components/base/base";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
+type icon = {
+  icon: string;
+  page: string;
+};
 
 class Footer10Page extends BaseFooter {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "image",
+      key: "logo",
+      displayer: "Logo",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676e80240655f8002cadb8be?alt=media",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "links",
+      displayer: "Footer Links",
+      value: [
+        {
+          type: "object",
+          key: "content",
+          displayer: "Content Elements",
+          value: [
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "About",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "content",
+          displayer: "Content Elements",
+          value: [
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "Company",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "content",
+          displayer: "Content Elements",
+          value: [
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "Services",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "content",
+          displayer: "Content Elements",
+          value: [
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "Testimonials",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: "",
+            },
+          ],
+        },
+      ],
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "line",
+      displayer: "Line",
+      value: true,
+    });
+
     this.addProp({
       type: "string",
-      key: "top-text",
-      displayer: "Top Text",
-      value: "© 2022 Dental Excellence Turkey | ",
-    });
-    this.addProp({
-        type: "page",
-        key: "ref-page",
-        displayer: "Referral Url",
-        value: "https://www.google.com/"
-    });
-    this.addProp({
-      type: "color",
-      key: "backgroundColor",
-      displayer: "Background Color of Footer",
-      value: "#212832",
-    });
-    this.addProp({
-        type: "string",
-        key: "ref-text",
-        displayer: "Referral Text",
-        value: "Privacy Policy"
-    });
-    this.addProp({
-      type: "string",
-      key: "description",
-      displayer: "Description",
-      value: "The information contained in the site is for providing support. It is not a substitute for the doctors to examine the patient for medical purposes, to make a diagnosis. This information should not be used in the diagnosis and treatment of disease.",
+      key: "footerText",
+      displayer: "Footer Text",
+      value: "All rights reserved by Blinkpage",
     });
 
     this.addProp({
@@ -48,17 +130,16 @@ class Footer10Page extends BaseFooter {
           displayer: "Item",
           value: [
             {
-              type: "image",
+              type: "icon",
               key: "icon",
-              value:
-                "https://totalpng.com//public/uploads/preview/facebook-grey-logo-png-hd-copy-11656657462jfylzawrgd.png",
+              value: "BiLogoFacebookCircle",
               displayer: "Icon",
             },
             {
               type: "page",
-              key: "link",
-              value: "https://www.google.com/",
-              displayer: "Navigate To",
+              key: "page",
+              displayer: "Page",
+              value: "",
             },
           ],
         },
@@ -70,15 +151,14 @@ class Footer10Page extends BaseFooter {
             {
               type: "image",
               key: "icon",
-              value:
-                "https://totalpng.com//public/uploads/preview/youtube-grey-logo-png-hd-copy-11656657528pafryryqkv.png",
+              value: "FaTwitter",
               displayer: "Icon",
             },
             {
               type: "page",
-              key: "link",
-              value: "https://www.google.com/",
-              displayer: "Navigate To",
+              key: "page",
+              displayer: "Page",
+              value: "",
             },
           ],
         },
@@ -90,15 +170,14 @@ class Footer10Page extends BaseFooter {
             {
               type: "image",
               key: "icon",
-              value:
-                "https://totalpng.com//public/uploads/preview/vimeo-grey-logo-png-hd-copy-11656657514xbjrlcikez.png",
+              value: "FaInstagram",
               displayer: "Icon",
             },
             {
               type: "page",
-              key: "link",
-              value: "https://www.google.com/",
-              displayer: "Navigate To",
+              key: "page",
+              displayer: "Page",
+              value: "",
             },
           ],
         },
@@ -110,15 +189,14 @@ class Footer10Page extends BaseFooter {
             {
               type: "image",
               key: "icon",
-              value:
-                "https://totalpng.com//public/uploads/preview/instagram-grey-logo-png-hd-copy-11656657483bsurpsft3i.png",
+              value: "FaLinkedin",
               displayer: "Icon",
             },
             {
               type: "page",
-              key: "link",
-              value: "https://www.google.com/",
-              displayer: "Navigate To",
+              key: "page",
+              displayer: "Page",
+              value: "",
             },
           ],
         },
@@ -129,40 +207,86 @@ class Footer10Page extends BaseFooter {
     return "Footer 10";
   }
   render() {
-    const styling = {
-      backgroundColor: this.getPropValue("backgroundColor")
-    }
+    const logo = this.getPropValue("logo");
+    const links = this.castToObject<any[]>("links");
+    const line = this.getPropValue("line");
+
+    const icons = this.castToObject<icon[]>("icons");
+
+    const upperExist = logo || links.length > 0;
+
+    const footerTextExist = this.castToString(this.getPropValue("footerText"));
+
+    const iconsExist = icons.length > 0;
+    const bottomExist = footerTextExist || iconsExist;
+
+    const alignment = Base.getContentAlignment();
+
     return (
-      <div className={this.decorateCSS("container")} style={styling}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("content")}>
-            <div className={this.decorateCSS("top-content")}>
-              <span className={this.decorateCSS("top-text")}>
-                {this.getPropValue("top-text")}
-                <a href={this.getPropValue("ref-page")}>{this.getPropValue("ref-text")}</a>
-              </span>
-              <div className={this.decorateCSS("icons-div")}>
-                {this.getPropValue("icons").map((icon: any, index: number) => {
-                  return (
-                    <ComposerLink path={icon.value[1].value}>
-                      <img
-                        src={icon.value[0].value}
-                        width={50}
-                        height={50}
-                        alt="icon-svg"
-                      />
-                    </ComposerLink>
-                  );
-                })}
+      <div className={this.decorateCSS("container")}>
+        {upperExist && (
+          <Base.Container className={this.decorateCSS("first-container")}>
+            <Base.MaxContent className={this.decorateCSS("first-max-content")}>
+              {upperExist && (
+                <div className={`${this.decorateCSS("upper")} ${alignment === "center" && this.decorateCSS("center")}`}>
+                  {logo && (
+                    <div className={this.decorateCSS("logo")}>
+                      <img src={logo} className={this.decorateCSS("image")} alt="" />
+                    </div>
+                  )}
+                  {links.length > 0 && (
+                    <div className={`${this.decorateCSS("links")} ${logo && this.decorateCSS("full-width")}`}>
+                      {links.map((item: any, index: number) => {
+                        const textExist = this.castToString(item.text);
+                        return (
+                          textExist && (
+                            <div className={`${this.decorateCSS("link-element")} ${item.url && this.decorateCSS("has-path")}`}>
+                              <ComposerLink key={index} path={item.url}>
+                                <Base.H3 className={this.decorateCSS("link-text")}>{item.text}</Base.H3>
+                              </ComposerLink>
+                            </div>
+                          )
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              )}
+            </Base.MaxContent>
+          </Base.Container>
+        )}
+
+        {line && <div className={this.decorateCSS("line")}></div>}
+
+        {bottomExist && (
+          <Base.Container>
+            <Base.MaxContent>
+              <div className={`${this.decorateCSS("bottom")} ${alignment === "center" && this.decorateCSS("center")}`}>
+                {footerTextExist && (
+                  <div className={iconsExist ? this.decorateCSS("left") : this.decorateCSS("left-full")}>
+                    <Base.P className={this.decorateCSS("text")}>{this.getPropValue("footerText")}</Base.P>
+                  </div>
+                )}
+                {icons.length > 0 && (
+                  <div className={this.decorateCSS("icons")}>
+                    {icons.length > 0 &&
+                      icons.map((item: icon, index: number) => {
+                        return (
+                          item.icon && (
+                            <ComposerLink path={item.page}>
+                              <div className={this.decorateCSS("icon-element")}>
+                                <ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                              </div>
+                            </ComposerLink>
+                          )
+                        );
+                      })}
+                  </div>
+                )}
               </div>
-            </div>
-            <div className={this.decorateCSS("mid-content")}>
-              <p className={this.decorateCSS("description")}>
-                {this.getPropValue("description")}
-              </p>
-            </div>
-          </div>
-        </div>
+            </Base.MaxContent>
+          </Base.Container>
+        )}
       </div>
     );
   }

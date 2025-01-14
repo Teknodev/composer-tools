@@ -1,0 +1,69 @@
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+
+.container {
+  .max-content {
+    .image-container {
+      .card {
+        width: 100%;
+        position: relative;
+        cursor: pointer;
+        border-radius: var(--composer-border-radius-sm);
+        overflow: hidden;
+
+        .image {
+          width: 100%;
+          aspect-ratio: 1;
+          display: flex;
+          justify-content: center;
+          position: relative;
+          object-fit: cover;
+          z-index: 1;
+        }
+
+        .category {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          opacity: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          transition: all 0.3s ease;
+          z-index: 2;
+          background-color: var(--composer-overlay-color);
+
+          &.text-visible {
+            opacity: 1;
+          }
+        }
+
+        .category .title {
+          color: white;
+          position: relative;
+          word-break: break-word;
+        }
+      }
+
+      .card:hover .category {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width-lg}) {
+  .container{
+    .max-content{
+      .image-container{
+        .card{
+          .category{
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}

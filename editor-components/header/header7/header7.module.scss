@@ -1,21 +1,29 @@
-.container {
-  width: 100%;
+ @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
-  background-color: transparent;
-  overflow: hidden;
-  position: relative;
+.container {
+  padding: 0 !important;
+  height: 100vh;
 
   .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
-    height: 100vh;
-    display: flex;
-    overflow: hidden;
-    .container {
+    height: 100%;
+    .content {
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
       position: relative;
+      height: 100%;
+
+      &.without-image {
+        .items {
+          .text {
+            color: var(--composer-font-color-primary);
+            &:hover {
+              background: var(--composer-font-color-primary);
+              color: var(--composer-font-color-secondary);
+            }
+          }
+        }
+      }
 
       .items {
         z-index: 1;
@@ -23,14 +31,15 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        padding: 0 30px;
-        .text{
+        padding: 0 10%;
+        .text {
           color: black;
           width: fit-content;
-          font-size: 2rem;
-          margin: 10px 0;
+          font-size: 2.5rem;
+          margin: var(--composer-gap-sm) 0;
+          cursor: pointer;
 
-          &:hover{
+          &:hover {
             background: black;
             color: white;
           }
@@ -47,5 +56,11 @@
         object-fit: cover;
       }
     }
+  }
+}
+
+@container (max-width : #{$composer-phone-width-sm}){
+  .text {
+    font-size: 1.5rem !important;
   }
 }

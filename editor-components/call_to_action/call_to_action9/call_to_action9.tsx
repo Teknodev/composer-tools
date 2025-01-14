@@ -2,6 +2,11 @@ import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action9.module.scss";
+import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+interface ImageItem {
+  image: string
+}
 
 class CallToAction9Page extends BaseCallToAction {
   constructor(props?: any) {
@@ -10,68 +15,109 @@ class CallToAction9Page extends BaseCallToAction {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Join Our Exclusive Club",
+      value: "98% designers love Shuffle. Not convinced you're one?",
     });
+
+    this.addProp(INPUTS.BUTTON("button", "Button", "Start 14 days free trail", "", null, null, "Primary"));
+
     this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
       value:
-        "Be the first to know about new products, receive exclusive discounts, and get access to VIP events by joining our club today.",
+        "Trusted by 100+ development team",
     });
     this.addProp({
-      type: "string",
-      key: "buttonText",
-      displayer: "Button Text",
-      value: "Sign Up Now",
+      type: "number",
+      key: "itemCount",
+      displayer: "Item Count in a Row",
+      value: 3,
     });
     this.addProp({
-      type: "page",
-      key: "link",
-      displayer: "Button Link",
-      value: "",
-    });
-    this.addProp({
-      type: "image",
-      key: "top-left",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436994368c3c2002cd2f369?alt=media&timestamp=1719584962572",
-      displayer: "Top Left",
-    });
-    this.addProp({
-      type: "image",
-      key: "top-center",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436994368c3c2002cd2f36a?alt=media&timestamp=1719584962572",
-      displayer: "Top Center",
-    });
-    this.addProp({
-      type: "image",
-      key: "top-right",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436994368c3c2002cd2f36b?alt=media&timestamp=1719584962572",
-      displayer: "Top Right",
-    });
-    this.addProp({
-      type: "image",
-      key: "bottom-left",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436994368c3c2002cd2f36c?alt=media&timestamp=1719584962572",
-      displayer: "Bottom Left",
-    });
-    this.addProp({
-      type: "image",
-      key: "bottom-center",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436994368c3c2002cd2f36d?alt=media&timestamp=1719584962572",
-      displayer: "Bottom Center",
-    });
-    this.addProp({
-      type: "image",
-      key: "bottom-right",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436994368c3c2002cd2f36e?alt=media&timestamp=1719584962572",
-      displayer: "Bottom Right",
-    });
+      type: "array",
+      key: "imageItems",
+      displayer: "Image Items",
+      value: [
+        {
+          type: "object",
+          key: "imageItem",
+          displayer: "Image Item",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1719584962573"
+            }
+          ]
+        },
+        {
+          type: "object",
+          key: "imageItem",
+          displayer: "Image Item",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaf003?alt=media&timestamp=1719584962573"
+            }
+          ]
+        },
+        {
+          type: "object",
+          key: "imageItem",
+          displayer: "Image Item",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf050?alt=media&timestamp=1719584962573"
+            }
+          ]
+        },
+        {
+          type: "object",
+          key: "imageItem",
+          displayer: "Image Item",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaf006?alt=media&timestamp=1719584962573"
+            }
+          ]
+        },
+        {
+          type: "object",
+          key: "imageItem",
+          displayer: "Image Item",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf055?alt=media&timestamp=1719584962573"
+            }
+          ]
+        },
+        {
+          type: "object",
+          key: "imageItem",
+          displayer: "Image Item",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf054?alt=media&timestamp=1719584962573"
+            }
+          ]
+        },
+      ]
+    })
   }
 
   getName(): string {
@@ -79,33 +125,40 @@ class CallToAction9Page extends BaseCallToAction {
   }
 
   render() {
-    return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("call-to-action9-page")}>
-            <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
-            <ComposerLink path={this.getPropValue("link")}>
-              <span className={this.decorateCSS("button")}>
-                {this.getPropValue("buttonText")}
-              </span>
-            </ComposerLink>
-            <h3 className={this.decorateCSS("description")}>{this.getPropValue("description")}</h3>
+    const images = this.castToObject<ImageItem[]>("imageItems");
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
-            <div className={this.decorateCSS("sponsor-container")}>
-              <div className={this.decorateCSS("sponsor")} >
-                <img src={this.getPropValue("top-left")} alt=""/>
-                <img src={this.getPropValue("top-center")} alt=""/>
-                <img src={this.getPropValue("top-right")} alt=""/>
-              </div>
-              <div className={this.decorateCSS("sponsor")}>
-                <img src={this.getPropValue("bottom-left")} alt=""/>
-                <img src={this.getPropValue("bottom-center")} alt=""/>
-                <img src={this.getPropValue("bottom-right")} alt=""/>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    return (
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <Base.VerticalContent className={this.decorateCSS("call-to-action9-page")}>
+            {this.castToString(this.getPropValue("title")) && (
+              <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
+            )}
+            {this.castToString(button.text) && (
+              <ComposerLink path={button.url}>
+                <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>
+                  {button.text}
+                </Base.Button>
+              </ComposerLink>
+            )}
+            {this.castToString(this.getPropValue("description")) && (
+              <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>
+            )}
+            {(images.length > 0) && (
+              <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("image-container")} >
+                {images.map((item: ImageItem, index: number) => (
+                  <div className={this.decorateCSS("image-wrapper")}>
+                    {item.image && (
+                      <img alt={item.image} src={item.image} className={this.decorateCSS("image")}></img>
+                    )}
+                  </div>
+                ))}
+              </Base.ListGrid>
+            )}
+          </Base.VerticalContent>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
