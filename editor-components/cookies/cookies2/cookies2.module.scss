@@ -1,0 +1,57 @@
+@import "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss";
+
+.container {
+  max-width: 700px;
+  max-height: 800px;
+  overflow: auto;
+  border-radius: var(--composer-border-radius-xl);
+  padding: 0;
+
+  .max-content {
+    .content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--composer-gap-md) var(--composer-gap-xl);
+      gap: var(--composer-gap-md);
+      .icon {
+        .icon {
+          font-size: 2rem;
+          color: var(--composer-font-color-primary);
+        }
+      }
+
+      .text {
+        font-size: 1.5rem;
+        color: var(--composer-font-color-primary);
+      }
+
+      .button-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: var(--composer-gap-md);
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+  max-width: 350px;
+  max-height: 700px;
+
+  .max-content {
+    .content {
+      display: flex;
+      flex-direction: column;
+      padding: var(--composer-gap-md);
+      gap: 0;
+
+      .text {
+        text-align: center;
+      }
+    }
+  }
+}
+}
