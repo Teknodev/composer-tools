@@ -44,6 +44,12 @@ class ImageGallery6 extends BaseImageGallery {
             value: 3
         })
         this.addProp(INPUTS.BUTTON("button", "Button", "Load More", null, null, null, "Primary"));
+        this.addProp({
+            type: "string",
+            key: "allText",
+            displayer: "All Button Text",
+            value: "All",
+        })
 
         this.addProp({
             type: "array",
@@ -467,7 +473,7 @@ class ImageGallery6 extends BaseImageGallery {
                 }
             ],
         });
-        this.setComponentState("selectedSection", "ALL");
+        this.setComponentState("selectedSection", this.castToString(this.getPropValue("allText")));
         this.setComponentState("moreImages", 0);
     }
 
@@ -478,7 +484,7 @@ class ImageGallery6 extends BaseImageGallery {
         const galleryCollection = this.castToObject<GalleryItem[]>("galleries");
         const selectedSection = this.getComponentState("selectedSection");
 
-        if (selectedSection === "ALL") {
+        if (selectedSection === this.castToString(this.getPropValue("allText"))) {
             return galleryCollection.flatMap(gallery => gallery.images);
         } else {
             const currentGallery = galleryCollection.find(
@@ -488,7 +494,7 @@ class ImageGallery6 extends BaseImageGallery {
         }
     }
     handleSectionClickAll(): void {
-        this.setComponentState("selectedSection", "ALL");
+        this.setComponentState("selectedSection", this.castToString(this.getPropValue("allText")));
         this.setComponentState("imageCount", this.getPropValue("imageCountInitial"));
         this.setComponentState("moreImages", 0);
     }
@@ -519,11 +525,11 @@ class ImageGallery6 extends BaseImageGallery {
                     <Base.VerticalContent className={this.decorateCSS("section-container")}>
                         {this.getPropValue("showAll") && (
                             <Base.H4
-                                className={`${this.decorateCSS("section-text")} ${(selectedSection === "ALL" || !selectedSection) ? this.decorateCSS("active") : ""
+                                className={`${this.decorateCSS("section-text")} ${(selectedSection === this.castToString(this.getPropValue("allText")) || !selectedSection) ? this.decorateCSS("active") : ""
                                     }`}
                                 onClick={() => this.handleSectionClickAll()}
                             >
-                                ALL
+                                {this.getPropValue("allText")}
                             </Base.H4>
                         )}
 

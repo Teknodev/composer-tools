@@ -42,7 +42,12 @@ class ImageGallery2 extends BaseImageGallery {
             displayer: "Item Count in a Row",
             value: 3,
         });
-
+        this.addProp({
+            type: "string",
+            key: "allText",
+            displayer: "All Button Text",
+            value: "All",
+        })
         this.addProp({
             type: "array",
             key: "gallery",
@@ -753,7 +758,7 @@ class ImageGallery2 extends BaseImageGallery {
                                         }`}
                                     onClick={() => this.handleSectionClick(-1)}
                                 >
-                                    All
+                                    {this.getPropValue("allText")}
                                 </div>
                             )}
                             {galleryCollection.map((element: any, index: number) => (

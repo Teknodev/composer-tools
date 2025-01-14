@@ -43,6 +43,12 @@ class ImageGallery1 extends BaseImageGallery {
       value: 3,
     })
     this.addProp({
+      type: "string",
+      key: "allText",
+      displayer: "All Button Text",
+      value: "All",
+    })
+    this.addProp({
       type: "array",
       key: "imageGalleries",
       displayer: "Image Galleries",
@@ -374,7 +380,7 @@ class ImageGallery1 extends BaseImageGallery {
 
     this.addProp(INPUTS.BUTTON("button", "Button", "Load More", null, null, null, "Primary"));
 
-    this.setComponentState("selectedSection", "All");
+    this.setComponentState("selectedSection", this.castToString(this.getPropValue("allText")));
     this.setComponentState("selectedIndex", -1);
     this.setComponentState("moreImages", 0);
   }
@@ -389,7 +395,7 @@ class ImageGallery1 extends BaseImageGallery {
     this.setComponentState("moreImages", 0);
   }
   handleSectionClickAll(): void {
-    this.setComponentState("selectedSection", "All");
+    this.setComponentState("selectedSection", this.castToString(this.getPropValue("allText")));
     this.setComponentState("selectedIndex", -1)
     this.setComponentState("imageCount", this.getPropValue("imageCountInitial"));
     this.setComponentState("moreImages", 0);
@@ -425,10 +431,10 @@ class ImageGallery1 extends BaseImageGallery {
           <div className={this.decorateCSS("section-title-container")}>
             {
               <button
-                className={`${this.decorateCSS("section-title")} ${selectedSection === "All" ? this.decorateCSS("active-section-title") : ""}`}
+                className={`${this.decorateCSS("section-title")} ${selectedSection === this.castToString(this.getPropValue("allText")) ? this.decorateCSS("active-section-title") : ""}`}
                 onClick={() => this.handleSectionClickAll()}
               >
-                All
+                {this.getPropValue("allText")}
               </button>
             }
             {
@@ -447,7 +453,7 @@ class ImageGallery1 extends BaseImageGallery {
             {imageGallery
               .filter(
                 (item: ImageGallery) =>
-                  selectedSection == "All" ||
+                  selectedSection == this.castToString(this.getPropValue("allText")) ||
                   (item.sectionTitle &&
                     selectedSection &&
                     this.castToString(item.sectionTitle) === selectedSection)
