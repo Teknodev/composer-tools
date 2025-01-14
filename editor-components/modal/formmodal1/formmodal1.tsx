@@ -362,13 +362,13 @@ class FormModal1 extends BaseModal {
       const key = `input_${index}`;
 
       if (inputType === "text") {
-        validationSchema[key] = Yup.string().required("This field is required.");
+        validationSchema[key] = Yup.string().required("Required.");
       } else if (inputType === "e-mail") {
-        validationSchema[key] = Yup.string().email("Invalid email address.").required("This field is required.");
+        validationSchema[key] = Yup.string().email("Invalid email address.").required("Required.");
       } else if (inputType === "number") {
         validationSchema[key] = Yup.number()
           .typeError("Must be a number.")
-          .required("This field is required.");
+          .required("Required.");
       }
     });
 

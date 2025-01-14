@@ -82,10 +82,7 @@
             }
           }
 
-          .button {
-            content: "";
-            max-width: 40%;
-          }
+         
 
           .error {
             position: absolute;
@@ -94,6 +91,11 @@
             color: var(--warning);
           }
         }
+
+         .button {
+            max-width: 40%;
+            justify-content: center;
+          }
       }
     }
   }
@@ -114,15 +116,17 @@
         }
 
         .form {
+          flex-direction: column;
           .input-container {
             .input {
               padding: var(--composer-gap-sm) var(--composer-gap-xs);
             }
-
-            .button {
-              max-width: 50%;
-            }
           }
+           .button {
+              justify-content: center;
+              text-align: center;
+              min-width: 100%;
+            }
         }
       }
     }

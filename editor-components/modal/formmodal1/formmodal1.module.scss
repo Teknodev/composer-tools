@@ -26,6 +26,7 @@
       z-index: 10;
       width: var(--composer-gap-md);
       height: var(--composer-gap-md);
+      cursor: pointer;
     }
 
     .left-page {
@@ -103,6 +104,7 @@
               content: "";
               margin-top: var(--composer-gap-sm);
               width: 100%;
+              justify-content: center;
             }
           }
         }
@@ -130,6 +132,11 @@
     .page {
       grid-template-columns: 1fr;
       gap: var(--composer-gap-md);
+
+        .exit-icon {
+          top: 2px;
+          right: 2px;
+        }
 
       .left-page {
         grid-row: 1;

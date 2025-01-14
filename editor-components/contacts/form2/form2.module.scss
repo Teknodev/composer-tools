@@ -39,8 +39,7 @@
         }
       }
 
-      .input-item,
-      .input-item-no-image {
+      .input-item {
         width: 100%;
         z-index: 1;
         max-width: 960px;
@@ -55,14 +54,21 @@
         gap: var(--composer-gap-md);
         border-radius: var(--composer-border-radius-md);
 
-        .title {
-          margin: 0;
-          color: white;
-          padding: 0 var(--composer-gap-xl);
+        background: rgba(0, 0, 0, 0.52);
+        backdrop-filter: blur(4.1px);
+        -webkit-backdrop-filter: blur(4.1px);
+
+        &.input-item-no-image {
+          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
         }
 
-        .title-no-image {
+        .title {
           margin: 0;
+          padding: 0 var(--composer-gap-xl);
+
+          &.title-with-image {
+            color: white;
+          }
         }
 
         .form {
@@ -80,8 +86,7 @@
               color: var(--danger-color);
             }
 
-            .placeholder,
-            .placeholder-no-image {
+            .placeholder {
               font-size: 0.75rem;
               position: absolute;
               top: var(--composer-gap-xs);
@@ -89,13 +94,13 @@
               transition: all 0.3s ease;
               pointer-events: none;
               color: white;
-            }
-            .placeholder-no-image {
-              color: var(--composer-font-color-primary);
+
+              &.placeholder-no-image {
+                color: var(--composer-font-color-primary);
+              }
             }
 
-            .input,
-            .input-no-image {
+            .input {
               width: 100%;
               min-height: var(--composer-gap-xl);
               border-radius: var(--composer-border-radius-md);
@@ -104,8 +109,13 @@
               background-color: rgba(255, 255, 255, 0);
               padding-left: var(--composer-gap-sm);
               outline: none;
-              color: var(--composer-font-color-primary);
-              border: 1px solid var(--composer-font-color-primary);
+              border: 1px solid gray;
+              color: white;
+
+              &.input-no-image {
+                color: var(--composer-font-color-primary);
+                border: 1px solid var(--composer-font-color-primary);
+              }
 
               &.textarea {
                 padding-top: var(--composer-gap-md);
@@ -114,11 +124,6 @@
                 max-height: 200px;
                 max-width: 100%;
               }
-            }
-
-            .input {
-              border: 1px solid gray;
-              color: white;
             }
           }
         }
@@ -136,16 +141,6 @@
           justify-content: center;
         }
       }
-
-      .input-item {
-        background: rgba(0, 0, 0, 0.52);
-        backdrop-filter: blur(4.1px);
-        -webkit-backdrop-filter: blur(4.1px);
-      }
-
-      .input-item-no-image {
-        background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-      }
     }
   }
 }
@@ -154,9 +149,9 @@
   .container {
     .max-content {
       .input-items {
-        .input-item,
-        .input-item-no-image {
+        .input-item {
           max-width: 700px;
+          max-height: 700px;
 
           .title {
             padding: 0 var(--composer-gap-lg);
@@ -175,8 +170,7 @@
   .container {
     .max-content {
       .input-items {
-        .input-item,
-        .input-item-no-image {
+        .input-item {
           max-width: 320px;
           padding: var(--composer-gap-md);
           gap: 0;

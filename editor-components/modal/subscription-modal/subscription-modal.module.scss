@@ -72,12 +72,16 @@
             .error {
               color: var(--danger-color);
               font-size: 1rem;
+              word-break: keep-all;
+              margin: var(--composer-gap-xs);
             }
           }
 
           .button {
             content: "";
             width: 100%;
+            justify-content: center;
+            text-align: center;
           }
         }
       }
@@ -101,7 +105,7 @@
   }
 }
 
-@container (max-width: #{$composer-phone-width-sm}) {
+@container (max-width: #{$composer-phone-width}) {
   .container {
     max-width: 300px;
     max-height: 650px;
@@ -109,6 +113,11 @@
     .max-content {
       .modal-content {
         flex-direction: column;
+
+        .close-icon-wrapper {
+          top: var(--composer-gap-sm);
+          right: var(--composer-gap-sm);
+        }
 
         .image {
           width: 100%;
