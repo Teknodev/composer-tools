@@ -23,7 +23,6 @@
             bottom: 35%;
             width: 1px;
             background-color: var(--composer-font-color-primary);
-            opacity: 0.5;
           }
         }
 
@@ -44,7 +43,6 @@
           left: 50%;
           top: 50%;
           transform: translate(-50%, -50%);
-          font-weight: bolder;
         }
       }
     }
@@ -57,25 +55,13 @@
       .bottom-child {
         .card {
           padding: 0 !important;
+          margin: 0px !important;
 
           &.stick {
-            &:not(:last-child)::after {
-              content: "" !important;
-              position: absolute !important;
-              right: 0 !important;
-              top: 35% !important;
-              bottom: 35% !important;
-              width: 1px !important;
-              background-color: var(--composer-font-color-primary) !important;
-              opacity: 0.5 !important;
-            }
-
             &:nth-child(2n)::after {
               display: none !important;
             }
           }
-
-          margin: 0px !important;
 
           .card-data-title {
             font-size: 5rem !important;
@@ -109,6 +95,7 @@
           .card-data-description {
             font-size: 1.5rem;
             width: 100%;
+            text-align: center;
           }
         }
       }

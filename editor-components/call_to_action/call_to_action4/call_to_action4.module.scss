@@ -1,87 +1,89 @@
-@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 .container {
-    .max-content {
-        .content {
-            display:flex;
+  .max-content {
+    .content {
+      display: flex;
+      gap: var(--composer-gap-md);
+      .left-page {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        gap: var(--composer-gap-lg);
+        .title {
+          margin: 0px;
+          text-align: left;
+        }
+        .list-container {
+          margin: 0px;
+          .list {
+            display: flex;
             gap: var(--composer-gap-md);
-            .left-page{
-                flex: 1;
-                gap: var(--composer-gap-lg);
-                .title {
-                    margin: 0px;
-                }
-                .list-container{
-                    margin: 0px;
-                    .list{
-                        display: flex;
-                        gap: var(--composer-gap-md);
-                        align-items: center;
-                        .description {
-                            display: flex;
-                            align-items: center;
-                            font-size: 1rem;
-                            color: var(--composer-font-color-primary);
-                            width: 100%;
-                        }
-                        .icon-container{
-                            background-color: var(--composer-primary-color);
-                            padding: var(--composer-gap-xs);
-                            border-radius: 50%;
-                            align-items: center;
-                            display: flex;
-                            height: fit-content;
-                            .icon{
-                                color: var(--composer-font-color-secondary);
-                                width: 10px;
-                                height: 10px;
-                            }
-                        }
-                    }
-
-                }
-
-                .buttons {
-                    display: flex;
-                    gap: var(--composer-gap-md);     
-                    .button{
-                        content:"";
-                    }             
-                }
-             
+            align-items: center;
+            .description {
+              display: flex;
+              align-items: center;
+              font-size: 1rem;
+              color: var(--composer-font-color-primary);
+              width: fit-content;
             }
-            .right-page{
-                flex: 1;
-                position: relative;
-                .image-container {
-                    position: absolute;
-                    top: 0px;
-                    right: 0px;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    height: 100%;
-                    width: 100%;
-                    .image{
-                        object-fit: cover;
-                        height: 100%;
-                        width: 100%;
-                        border-radius: var(--composer-border-radius-xs);
+            .icon-container {
+              background-color: var(--composer-primary-color);
+              padding: var(--composer-gap-xs);
+              border-radius: 50%;
+              align-items: center;
+              display: flex;
+              height: fit-content;
+              width: fit-content;
 
-                    }
-                }
+              .icon {
+                color: var(--composer-font-color-secondary);
+                width: 10px;
+                height: 10px;
+              }
             }
+          }
         }
+
+        .buttons {
+          display: flex;
+          gap: var(--composer-gap-md);
+          .button {
+            content: "";
+          }
+        }
+      }
+      .right-page {
+        flex: 1;
+        position: relative;
+        .image-container {
+          position: absolute;
+          top: 0px;
+          right: 0px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+          width: 100%;
+          .image {
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+            border-radius: var(--composer-border-radius-xs);
+          }
+        }
+      }
     }
+  }
 }
-@container (max-width: #{$composer-phone-width}){
-    .container{
-        .max-content{
-            .content{
-                flex-direction: column;
-                .right-page{
-                    min-height: 400px;
-                }
-            }
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .content {
+        flex-direction: column;
+        .right-page {
+          min-height: 400px;
         }
+      }
     }
+  }
 }

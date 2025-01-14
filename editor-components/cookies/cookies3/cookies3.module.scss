@@ -12,7 +12,6 @@
       position: relative;
       justify-content: center;
       align-items: center;
-      gap: var(--composer-gap-sm);
 
       .exit-icon-container {
         position: absolute;
@@ -104,8 +103,6 @@
 
     .max-content {
       .content {
-        padding: var(--composer-gap-md) var(--composer-gap-lg);
-        gap: var(--composer-gap-sm);
         .icon {
           .icon {
             font-size: 2rem;
@@ -131,11 +128,15 @@
 
     .max-content {
       .content {
-        padding: var(--composer-gap-md);
-        gap: var(--composer-gap-sm);
         .icon {
           .icon {
             font-size: 2rem;
+          }
+        }
+
+         .image-container {
+          .image {
+            height: 250px;
           }
         }
 
@@ -145,6 +146,10 @@
 
         .button-wrapper {
           gap: var(--composer-gap-md);
+          .first-button,
+          .second-button {
+            font-size: 1rem;
+          }
         }
       }
     }

@@ -205,7 +205,7 @@ class Header7 extends BaseHeader {
               ))}
             </div>
             {image && (
-              <img src={image} className={`${this.decorateCSS("image")}`} alt="header-7" />
+              <img src={image} className={this.decorateCSS("image")} alt="header-7" />
             )}
           </div>
         </Base.MaxContent>
