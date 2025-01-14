@@ -10,13 +10,16 @@
 
   .max-content {
     background-color: var(--composer-html-background);
-    .content,
-    .content-no-yeartext {
+    .content{
       padding: 0 var(--composer-gap-lg);
       padding-top: 70px;
       position: relative;
       z-index: 1;
       overflow: hidden;
+
+      &.content-no-yeartext {
+        padding-top: 0;
+      }
 
       .year-text {
         position: absolute;
@@ -29,21 +32,21 @@
       }
 
       .header {
-        text-align: left;
+        width: 100%;
         padding: var(--composer-gap-sm);
 
-        .header-text,
-        .header-text-no-image {
+        .header-text {
           margin: 0;
+          text-align: left;
           font-size: 5rem;
           white-space: wrap;
           width: 70%;
           line-height: 1;
           color: var(--composer-font-color-primary);
-        }
 
-        .header-text-no-image {
-          width: 100%;
+          &.header-text-no-image {
+            width: 100%;
+          }
         }
 
         .sketch-underline {
@@ -52,19 +55,20 @@
         }
       }
 
-      .exit-icon,
-      .exit-icon-no-image {
+      .exit-icon {
         width: var(--composer-gap-lg);
         height: var(--composer-gap-lg);
         position: absolute;
         right: var(--composer-gap-md);
         top: var(--composer-gap-md);
         color: white;
+
+        &.exit-icon-no-image {
+          color: var(--composer-font-color-primary);
+        }
       }
 
-      .exit-icon-no-image {
-        color: var(--composer-font-color-primary);
-      }
+      
 
       .background-image {
         max-width: 70%;
@@ -179,13 +183,10 @@
       }
     }
 
-    .content-no-yeartext {
-      padding-top: 0;
-    }
+    
     .line {
       height: 1px;
-      color: var(--composer-font-color-primary);
-      opacity: 0.5;
+      color: rgb(var(--composer-font-color-primary-rgb), 0.2);
       width: 100%;
     }
 

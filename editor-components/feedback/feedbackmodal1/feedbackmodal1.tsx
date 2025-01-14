@@ -6,6 +6,7 @@ import { ErrorMessage, Formik, Form } from "formik";
 import * as Yup from "yup";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerModalClose from "../../../composer-base-components/close/close";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Emoji = {
   value: string;
@@ -223,12 +224,7 @@ class FeedbackModal1 extends BaseModal {
       value: "Required",
     });
 
-    this.addProp({
-      type: "string",
-      key: "buttonText",
-      displayer: "Button Text",
-      value: "Submit Now",
-    });
+    this.addProp(INPUTS.BUTTON("button", "Button", "Submit Now", null, null, null, "Primary"));
 
     const emojis = this.castToObject<Emoji[]>("emojis");
     const middleIndex = emojis.length > 0 ? Math.floor(emojis.length / 2) : null;
@@ -262,7 +258,8 @@ class FeedbackModal1 extends BaseModal {
     const isDescriptionExist = this.castToString(this.getPropValue("description"));
     const isFeedbackIconExist = this.getPropValue("feedback_icon");
     const inputPlaceholder = this.castToString(this.getPropValue("input_text"));
-    const buttonval = this.castToString(this.getPropValue("buttonText"));
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const buttonval = this.castToString(button.text)
     const isDividerActive = this.getPropValue("divider");
     const emojis = this.castToObject<Emoji[]>("emojis");
 
@@ -371,8 +368,8 @@ class FeedbackModal1 extends BaseModal {
                     {inputPlaceholder && <textarea placeholder={inputPlaceholder} id="text" name="message" value={values.message} onChange={handleChange} className={this.decorateCSS("input")} rows={5} />}
                     {inputPlaceholder && <ErrorMessage className={this.decorateCSS("error-message")} name="message" component={"span"} />}
                     {buttonval && (
-                      <Base.Button className={this.decorateCSS("button")} type="submit">
-                        {this.getPropValue("buttonText")}
+                      <Base.Button buttonType={button.type} className={this.decorateCSS("button")} type="submit">
+                        {button.text}
                       </Base.Button>
                     )}
                   </Form>
