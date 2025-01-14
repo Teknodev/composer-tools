@@ -80,7 +80,7 @@
         transform: translate(0, -50%);
         transform-origin: center;
         cursor: pointer;
-        z-index: 100;
+        z-index: 10;
         -webkit-text-stroke: 1px background-color;
         color: white;
         font-size: 3rem;
@@ -143,7 +143,7 @@
         transform: translate(0, -50%);
         transform-origin: center;
         cursor: pointer;
-        z-index: 100;
+        z-index: 10;
         font-size: 3rem;
         color: white;
         -webkit-text-stroke: 1px background-color;

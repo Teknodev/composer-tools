@@ -3,14 +3,10 @@ import { BaseContacts, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./form2.module.scss";
 import { ErrorMessage, Form, Formik } from "formik";
 import * as Yup from "yup";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
-export type Button = {
-  buttonText?: string;
-};
-
-class Form2Page extends BaseContacts {
+class Form2 extends BaseContacts {
   constructor(props?: any) {
     super(props, styles);
 
@@ -43,6 +39,12 @@ class Form2Page extends BaseContacts {
           key: "input",
           displayer: "Input",
           value: [
+            {
+              type: "string",
+              key: "label",
+              displayer: "Label",
+              value: "Full Name",
+            },
             {
               type: "string",
               key: "placeholder",
@@ -85,6 +87,12 @@ class Form2Page extends BaseContacts {
           value: [
             {
               type: "string",
+              key: "label",
+              displayer: "Label",
+              value: "E-mail",
+            },
+            {
+              type: "string",
               key: "placeholder",
               displayer: "Placeholder",
               value: "E-mail",
@@ -111,7 +119,7 @@ class Form2Page extends BaseContacts {
               type: "select",
               key: "type",
               displayer: "Type",
-              value: "Text",
+              value: "E-mail",
               additionalParams: {
                 selectItems: ["Text", "E-mail", "Number", "Text Area"],
               },
@@ -123,6 +131,12 @@ class Form2Page extends BaseContacts {
           key: "input",
           displayer: "Input",
           value: [
+            {
+              type: "string",
+              key: "label",
+              displayer: "Label",
+              value: "Phone",
+            },
             {
               type: "string",
               key: "placeholder",
@@ -151,7 +165,7 @@ class Form2Page extends BaseContacts {
               type: "select",
               key: "type",
               displayer: "Type",
-              value: "Text",
+              value: "Number",
               additionalParams: {
                 selectItems: ["Text", "E-mail", "Number", "Text Area"],
               },
@@ -163,6 +177,12 @@ class Form2Page extends BaseContacts {
           key: "input",
           displayer: "Input",
           value: [
+            {
+              type: "string",
+              key: "label",
+              displayer: "Label",
+              value: "Message",
+            },
             {
               type: "string",
               key: "placeholder",
@@ -200,12 +220,8 @@ class Form2Page extends BaseContacts {
         },
       ],
     });
-    this.addProp({
-      type: "string",
-      key: "buttonText",
-      displayer: "Button Text",
-      value: "Contact Us",
-    });
+
+    this.addProp(INPUTS.BUTTON("button", "Button", "Contact Us", null, null, null, "Primary"));
   }
 
   getName(): string {
@@ -214,14 +230,17 @@ class Form2Page extends BaseContacts {
 
   render() {
     const inputs = this.getPropValue("inputs");
-    const initialValue = getInitialValue();
     const title = this.getPropValue("title");
-    const titleExist = !!this.getPropValue("title", { as_string: true });
-    const buttonText = this.getPropValue("buttonText");
-    const buttonTextExist = !!this.getPropValue("buttonText", { as_string: true });
+    const titleExist = this.castToString(this.getPropValue("title"));
+
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+
+    const buttonText = button.text;
+    const buttonTextExist = this.castToString(button.text);
 
     const imageExist = this.getPropValue("background-img");
     const overlay = this.getPropValue("overlay");
+
     function getInputType(type: string): string {
       switch (type) {
         case "Text Area":
@@ -236,18 +255,33 @@ class Form2Page extends BaseContacts {
           return "text";
       }
     }
-    function getInputName(indexOfInput: number): string {
-      const name = `input_${indexOfInput}`;
-      return name;
+
+    function toObjectKey(str: string) {
+      if (/^\d/.test(str)) {
+        str = "_" + str;
+      }
+      str = str.replace(/[^a-zA-Z0-9_]/g, "_").toLowerCase();
+      return str;
     }
+
+    const getInputName = (indexOfLabel: number, inputLabel: any): string => {
+      const labelText = inputLabel && this.castToString(inputLabel);
+
+      return toObjectKey(`${indexOfLabel} ${labelText}`);
+    };
+
     function getInitialValue() {
       let value: any = {};
       inputs.map((input: TypeUsableComponentProps, indexOfInput: number) => {
-        value[getInputName(indexOfInput)] = "";
+        const label = input.getPropValue("label");
+        value[getInputName(indexOfInput, label)] = "";
       });
 
       return value;
     }
+
+    const initialValue = getInitialValue();
+
     const getSchema = () => {
       let schema = Yup.object().shape({});
 
@@ -271,23 +305,28 @@ class Form2Page extends BaseContacts {
         }
 
         schema = schema.shape({
-          [getInputName(indexOfInput)]: fieldSchema,
+          [getInputName(indexOfInput, input.getPropValue("label"))]: fieldSchema,
         });
       });
 
       return schema;
     };
+
     function getFormDataWithConvertedKeys(obj: any) {
       const newObj: any = {};
       for (const key in obj) {
         if (Object.prototype.hasOwnProperty.call(obj, key)) {
           let adjustedKey = key.startsWith("_") ? key.slice(1) : key;
           const parts = adjustedKey.split("_");
-          let newKey = "";
-          for (let i = 1; i < parts.length - 1; i++) {
-            newKey += (i > 1 ? "_" : "") + parts[i];
+
+          if (parts.length === 2) {
+            newObj[parts[1]] = obj[key];
+          } else if (parts.length > 2) {
+            let newKey = parts.slice(1).join("_");
+            newObj[newKey] = obj[key];
+          } else {
+            newObj[adjustedKey] = obj[key];
           }
-          newObj[newKey] = obj[key];
         }
       }
       return newObj;
@@ -299,15 +338,15 @@ class Form2Page extends BaseContacts {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(inputs.length > 0 || (titleExist && buttonTextExist)) && (
             <div className={this.decorateCSS("input-items")}>
-              <div className={imageExist ? this.decorateCSS("input-item") : this.decorateCSS("input-item-no-image")}>
-                {titleExist && <Base.SectionTitle className={imageExist ? this.decorateCSS("title") : this.decorateCSS("title-no-image")}>{title}</Base.SectionTitle>}
+              <div className={`${this.decorateCSS("input-item")} ${!imageExist && this.decorateCSS("input-item-no-image")}`}>
+                {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${imageExist && this.decorateCSS("title-with-image")}`}>{title}</Base.SectionTitle>}
                 {(inputs.length > 0 || buttonTextExist) && (
                   <Formik
                     initialValues={initialValue}
                     validationSchema={getSchema()}
                     onSubmit={(data, { resetForm }) => {
                       const formData = getFormDataWithConvertedKeys(data);
-                      this.insertForm("Contact Me", formData);
+                      this.insertForm("Contact Us", formData);
                       resetForm();
                     }}
                   >
@@ -318,32 +357,32 @@ class Form2Page extends BaseContacts {
                             <div className={this.decorateCSS("input-container")}>
                               {input.getPropValue("type") == "Text Area" ? (
                                 <textarea
-                                  id={getInputName(index)}
-                                  value={values[getInputName(index)]}
+                                  id={getInputName(index, input.getPropValue("label"))}
+                                  value={values[getInputName(index, input.getPropValue("label"))]}
                                   placeholder=" "
-                                  className={`${imageExist ? this.decorateCSS("input") : this.decorateCSS("input-no-image")} ${this.decorateCSS("textarea")}`}
+                                  className={`${this.decorateCSS("input")} ${!imageExist && this.decorateCSS("input-no-image")} ${this.decorateCSS("textarea")}`}
                                   rows={12}
                                   onChange={handleChange}
                                 />
                               ) : (
                                 <input
-                                  id={getInputName(index)}
+                                  id={getInputName(index, input.getPropValue("label"))}
                                   placeholder=" "
                                   type={getInputType(input.getPropValue("type"))}
                                   onChange={handleChange}
-                                  value={values[getInputName(index)]}
-                                  name={getInputName(index)}
-                                  className={imageExist ? this.decorateCSS("input") : this.decorateCSS("input-no-image")}
+                                  value={values[getInputName(index, input.getPropValue("label"))]}
+                                  name={getInputName(index, input.getPropValue("label"))}
+                                  className={`${this.decorateCSS("input")} ${!imageExist && this.decorateCSS("input-no-image")} `}
                                 />
                               )}
-                              {input.getPropValue("placeholder", { as_string: true }) && <span className={imageExist ? this.decorateCSS("placeholder") : this.decorateCSS("placeholder-no-image")}>{input.getPropValue("placeholder")}</span>}
-                              <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(index)} component={"span"} />
+                              {this.castToString(input.getPropValue("placeholder")) && <span className={`${this.decorateCSS("placeholder")} ${!imageExist && this.decorateCSS("placeholder-no-image")}`}>{input.getPropValue("placeholder")}</span>}
+                              <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(index, input.getPropValue("label"))} component={"span"} />
                             </div>
                           </>
                         ))}
                         {buttonTextExist && (
                           <div className={this.decorateCSS("button-div")}>
-                            <Base.Button className={this.decorateCSS("submit-button")} type="submit">
+                            <Base.Button buttonType={button.type} className={this.decorateCSS("submit-button")} type="submit">
                               {buttonText}
                             </Base.Button>
                           </div>
@@ -361,4 +400,4 @@ class Form2Page extends BaseContacts {
   }
 }
 
-export default Form2Page;
+export default Form2;
