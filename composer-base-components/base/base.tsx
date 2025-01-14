@@ -352,6 +352,7 @@ export namespace Base {
         wrapper: isPlayground ? playground : window,
         scrollY: isPlayground ? playground.scrollTop : window.scrollY,
         style: isPlayground ? playground.style : document.documentElement.style,
+        innerWidth: isPlayground ? playground.clientWidth : window.innerWidth,
       };
     }
 
