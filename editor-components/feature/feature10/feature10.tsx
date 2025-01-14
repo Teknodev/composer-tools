@@ -5,18 +5,13 @@ import styles from "./feature10.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-import { Slideshow } from "@mui/icons-material";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
   image: string;
   title: JSX.Element;
   description: JSX.Element;
   url: string;
-};
-
-type Button = {
-  text: JSX.Element;
-  link: string;
 };
 
 class Feature10 extends BaseFeature {
@@ -242,25 +237,7 @@ class Feature10 extends BaseFeature {
         }
       ]
     });
-    this.addProp({
-      type: "object",
-      key: "button",
-      displayer: "Button",
-      value: [
-        {
-          type: "string",
-          key: "text",
-          displayer: "Text",
-          value: "View all case studies"
-        },
-        {
-          type: "page",
-          key: "link",
-          displayer: "Link",
-          value: ""
-        },
-      ]
-    });
+    this.addProp(INPUTS.BUTTON("button", "Button", "View our services", "", null, null, "Primary"));
     this.setComponentState("slider-ref", React.createRef());
     this.setComponentState("active", 0);
     this.setComponentState("activeSlideIndex", 0);
@@ -278,16 +255,16 @@ class Feature10 extends BaseFeature {
 
     const description = this.getPropValue("description");
 
-    const button = this.castToObject<Button>("button");
+    const button = this.castToObject<INPUTS.CastedButton>("button");
     const settings = {
       arrows: false,
       dots: false,
-      infinite: false,
       speed: 725,
-      autoplay: false,
-      autoplaySpeed: 3000,
-      slidesToShow: 3,
+      autoplay: true,
+      autoplaySpeed: 2000,
+      slidesToShow: cards.length > 2 ? 3 : cards.length,
       slidesToScroll: 1,
+      infinity: true,
 
       responsive: [
         {
@@ -308,7 +285,7 @@ class Feature10 extends BaseFeature {
           },
         },
       ],
-      beforeChange: (current: number, next: number) => {
+      beforeChange: (_: number, next: number) => {
         this.setComponentState("active", next);
         this.setComponentState("activeSlideIndex", next);
       },
@@ -357,8 +334,8 @@ class Feature10 extends BaseFeature {
                 <ComposerSlider
                   ref={sliderRef}
                   {...settings}
-                  className={(this.castToString(title) || this.castToString(description) || this.getPropValue("leftArrow") || this.getPropValue("rightArrow"))
-                    ? this.decorateCSS("carousel") : this.decorateCSS("carousel-no-padding")}
+                  className={`${this.decorateCSS("carousel")} 
+                    ${!(this.castToString(title) || this.castToString(description) || this.getPropValue("leftArrow") || this.getPropValue("rightArrow")) && this.decorateCSS("no-padding")}`}
                 >
 
                   {cards.map((item: Card, index: number) => {
@@ -371,10 +348,10 @@ class Feature10 extends BaseFeature {
                       <ComposerLink path={item.url}>
                         <div
                           key={index}
-                          className={(titleExist || descExist) ? this.decorateCSS("card-container") : this.decorateCSS("card-container-fit-content")}
+                          className={`${this.decorateCSS("card-container")} ${!(titleExist || descExist) && this.decorateCSS("fit-content")}`}
                         >
                           {item.image && (
-                            <img className={(titleExist || descExist) ? this.decorateCSS("image") : this.decorateCSS("image-border-radius")} src={item.image} alt={this.castToString(item.title)} />
+                            <img className={`${this.decorateCSS("image")} ${!(titleExist || descExist) && this.decorateCSS("border-radius")}`} src={item.image} alt={this.castToString(item.title)} />
                           )}
                           {(titleExist || descExist) && (
                             <div className={this.decorateCSS("bottom")}>
@@ -399,11 +376,11 @@ class Feature10 extends BaseFeature {
             </div>
             <div className={this.decorateCSS("button-wrapper")}>
               {!!this.castToString(button.text) && (
-                <Base.Button className={this.decorateCSS("button")}>
-                  <ComposerLink path={button.link}>
+                <ComposerLink path={button.url}>
+                  <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
                     {button.text}
-                  </ComposerLink>
-                </Base.Button>
+                  </Base.Button>
+                </ComposerLink>
               )}
             </div>
 

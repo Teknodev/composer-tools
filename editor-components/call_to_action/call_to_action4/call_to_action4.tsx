@@ -4,14 +4,13 @@ import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action4.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 interface ListItem {
-  description: JSX.Element
+  description: JSX.Element;
 }
-interface ButtonItem {
-  buttonText: JSX.Element,
-  buttonLink: string
-}
+
+type Button = INPUTS.CastedButton;
 
 class CallToAction4Page extends BaseCallToAction {
   constructor(props?: any) {
@@ -48,9 +47,9 @@ class CallToAction4Page extends BaseCallToAction {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Unlimited update and project"
+              value: "Unlimited update and project",
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -61,9 +60,9 @@ class CallToAction4Page extends BaseCallToAction {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "24+7 service"
+              value: "24+7 service",
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -74,9 +73,9 @@ class CallToAction4Page extends BaseCallToAction {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Chat support"
+              value: "Chat support",
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -87,9 +86,9 @@ class CallToAction4Page extends BaseCallToAction {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Analytic and chart"
+              value: "Analytic and chart",
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -100,9 +99,9 @@ class CallToAction4Page extends BaseCallToAction {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Darks light mode"
+              value: "Darks light mode",
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -113,9 +112,9 @@ class CallToAction4Page extends BaseCallToAction {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Library of our specialist"
+              value: "Library of our specialist",
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -126,9 +125,9 @@ class CallToAction4Page extends BaseCallToAction {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Own analytic platfrom"
+              value: "Own analytic platfrom",
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -139,65 +138,24 @@ class CallToAction4Page extends BaseCallToAction {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Unlimited advice"
+              value: "Unlimited advice",
             },
-          ]
-        }
-
-      ]
-    })
+          ],
+        },
+      ],
+    });
     this.addProp({
       type: "image",
       key: "image",
       displayer: "Image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6749a012506a40002c2f7882?alt=media",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6749a012506a40002c2f7882?alt=media",
     });
     this.addProp({
       type: "array",
-      key: "buttonItems",
-      displayer: "Button Items",
-      value: [
-        {
-          type: "object",
-          key: "buttonItem",
-          displayer: "Button Item",
-          value: [
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Learn More",
-            },
-            {
-              type: "page",
-              key: "buttonLink",
-              displayer: "Button Link",
-              value: "",
-            }
-          ]
-        },
-        {
-          type: "object",
-          key: "buttonItem",
-          displayer: "Button Item",
-          value: [
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Enroll Now",
-            },
-            {
-              type: "page",
-              key: "buttonLink",
-              displayer: "Button Link",
-              value: "",
-            }
-          ]
-        }
-      ]
-    })
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary"), INPUTS.BUTTON("button", "Button", "Enroll Now", "", null, null, "Primary")],
+    });
   }
 
   getName(): string {
@@ -206,17 +164,15 @@ class CallToAction4Page extends BaseCallToAction {
 
   render() {
     const listItems = this.castToObject<ListItem[]>("listItems");
-    const buttonItems = this.castToObject<ButtonItem[]>("buttonItems")
+    const buttons = this.castToObject<Button[]>("buttons");
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
-            {(this.castToString(this.getPropValue("title")) || (listItems.length > 0) || (buttonItems.length > 0)) && (
-              <Base.VerticalContent className={this.decorateCSS("left-page")}>
-                {this.castToString(this.getPropValue("title")) && (
-                  <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
-                )}
-                {(listItems.length > 0) && (
+            {(this.castToString(this.getPropValue("title")) || listItems.length > 0 || buttons.length > 0) && (
+              <div className={this.decorateCSS("left-page")}>
+                {this.castToString(this.getPropValue("title")) && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                {listItems.length > 0 && (
                   <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("list-container")}>
                     {listItems.map((item: ListItem, index: number) => (
                       <div className={this.decorateCSS("list")}>
@@ -225,31 +181,25 @@ class CallToAction4Page extends BaseCallToAction {
                             <ComposerIcon name={this.getPropValue("icon")} propsIcon={{ className: this.decorateCSS("icon") }} />
                           </div>
                         )}
-                        {this.castToString(item.description) && (
-                          <div className={this.decorateCSS("description")}>
-                            {item.description}
-                          </div>
-                        )}
+                        {this.castToString(item.description) && <div className={this.decorateCSS("description")}>{item.description}</div>}
                       </div>
                     ))}
                   </Base.ListGrid>
                 )}
-                {(buttonItems.length > 0) && (
+                {buttons.length > 0 && (
                   <div className={this.decorateCSS("buttons")}>
-                    {buttonItems.map((item: ButtonItem, index: number) => (
-                      <ComposerLink path={item.buttonLink}>
-                        {this.castToString(item.buttonText) && (
-                          <Base.Button
-                            className={this.decorateCSS("button")}
-                          >
-                            {item.buttonText}
+                    {buttons.map((button: Button, index: number) => (
+                      <ComposerLink path={button.url}>
+                        {this.castToString(button.text) && (
+                          <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                            {button.text}
                           </Base.Button>
                         )}
                       </ComposerLink>
                     ))}
                   </div>
                 )}
-              </Base.VerticalContent>
+              </div>
             )}
             {this.getPropValue("image") && (
               <div className={this.decorateCSS("right-page")}>

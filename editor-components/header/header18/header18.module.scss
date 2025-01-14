@@ -49,75 +49,68 @@
               flex-direction: column;
               gap: var(--composer-gap-md);
 
-              .subtitle,
-              .subtitle-no-image {
+              .subtitle {
                 margin: 0;
                 font-size: 1rem;
                 color: black;
+
+                &.subtitle-no-image {
+                  color: var(--composer-font-color-primary);
+                }
               }
 
-              .subtitle-no-image {
-                color: var(--composer-font-color-primary);
-              }
-
-              .title,
-              .title-no-image {
+              .title {
                 margin: 0;
                 font-size: 5rem;
                 color: black;
-
                 display: -webkit-box;
                 -webkit-line-clamp: 2;
                 line-clamp: 2;
                 -webkit-box-orient: vertical;
                 overflow: hidden;
-              }
 
-              .title-no-image {
-                color: var(--composer-font-color-primary);
+                &.title-no-image {
+                  color: var(--composer-font-color-primary);
+                }
               }
             }
 
-            .pagination,
-            .pagination-no-image {
+            .pagination {
               display: flex;
               place-items: center;
               gap: var(--composer-gap-sm);
               color: black;
 
-              .progress-bar,
-              .progress-bar-no-image {
+              &.pagination-no-image {
+                color: var(--composer-font-color-primary);
+              }
+
+              .progress-bar {
                 width: var(--composer-gap-xl);
                 height: 2px;
                 background-color: rgb(204, 191, 191);
                 position: relative;
 
-                .active,
-                .active-no-image {
+                &.progress-bar-no-image {
+                  background-color: var(--composer-tertiary-color);
+                }
+
+                .active {
                   height: 100%;
                   background-color: black;
                   position: absolute;
                   top: 0;
                   left: 0;
-                }
 
-                .active-no-image {
-                  color: var(--composer-font-color-primary);
+                  &.active-no-image {
+                    color: var(--composer-font-color-primary);
+                  }
                 }
               }
-
-              .progress-bar-no-image {
-                background-color: var(--composer-tertiary-color);
-              }
-            }
-
-            .pagination-no-image {
-              color: var(--composer-font-color-primary);
             }
           }
 
-          .description-div,
-          .description-div-no-image {
+          .description-div {
             display: flex;
             flex-direction: column;
             gap: var(--composer-gap-md);
@@ -128,6 +121,11 @@
             position: absolute;
             right: 25%;
             bottom: 15%;
+
+            &.description-div-no-image {
+              color: var(--composer-font-color-primary);
+              background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+            }
 
             .description-title {
               margin: 0;
@@ -150,11 +148,6 @@
               -webkit-box-orient: vertical;
               overflow: hidden;
             }
-          }
-
-          .description-div-no-image {
-            color: var(--composer-font-color-primary);
-            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
           }
         }
       }
@@ -179,35 +172,37 @@
         width: 85%;
         .name {
           color: black;
-        }
-        .name-no-image {
-          color: var(--composer-font-color-primary);
+
+          &.name-no-image {
+            color: var(--composer-font-color-primary);
+          }
         }
       }
 
-      .prev-icon,
-      .prev-icon-no-image {
+      .prev-icon {
         cursor: pointer;
         left: var(--composer-gap-xl);
         position: absolute;
         width: var(--composer-gap-lg);
         height: var(--composer-gap-lg);
         color: black;
+
+        &.prev-icon-no-image {
+          color: var(--composer-font-color-primary);
+        }
       }
 
-      .next-icon,
-      .next-icon-no-image {
+      .next-icon {
         cursor: pointer;
         right: var(--composer-gap-xl);
         position: absolute;
         width: var(--composer-gap-lg);
         height: var(--composer-gap-lg);
         color: black;
-      }
 
-      .next-icon-no-image,
-      .prev-icon-no-image {
-        color: var(--composer-font-color-primary);
+        &.next-icon-no-image {
+          color: var(--composer-font-color-primary);
+        }
       }
     }
   }

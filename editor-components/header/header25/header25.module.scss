@@ -52,7 +52,7 @@
       .arrows {
         display: flex;
         gap: var(--composer-gap-lg);
-        z-index: 99;
+        z-index: 15;
         position: absolute;
         left: calc(10% + var(--composer-gap-md));
         top: calc(35% + var(--composer-gap-md));
@@ -198,8 +198,7 @@
           text-align: center;
           word-spacing: 6px;
           letter-spacing: 4px;
-          color: var(--composer-font-color-primary);
-          opacity: 0.5;
+          color: var(--composer-tertiary-color);
 
           .side-text-content {
             display: flex;
@@ -302,10 +301,7 @@
             }
 
             .button {
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              gap: var(--composer-gap-sm);
+              content: "";
 
               .button-icon {
                 width: 20px;

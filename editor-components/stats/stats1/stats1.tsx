@@ -3,6 +3,7 @@ import { BaseStats } from "../../EditorComponent";
 import styles from "./stats1.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type CardData = {
   cardValue: JSX.Element;
@@ -33,12 +34,9 @@ class Stats1Page extends BaseStats {
       displayer: "Description",
       value: "Health and wellness are important aspects that many of us spend alot of time thinking about. Many people think of health and wellnessand think only of diet and exercise",
     });
-    this.addProp({
-      type: "string",
-      key: "buttonText",
-      displayer: "Button Text",
-      value: "Register Now!",
-    });
+
+    this.addProp(INPUTS.BUTTON("button", "Button", "Register Now", "", null, null, "Primary"));
+
     this.addProp({
       type: "array",
       key: "card-list",
@@ -124,7 +122,7 @@ class Stats1Page extends BaseStats {
   }
 
   init() {
-    this.castToObject<CardData[]>("card-list").map((statsData, index) => {
+    this.castToObject<CardData[]>("card-list").map((_, index) => {
       this.setComponentState(`number-${index}`, "");
       this.setComponentState(`numberForControl-${index}`, "");
     });
@@ -186,12 +184,9 @@ class Stats1Page extends BaseStats {
           let nextValue = Math.min(numericPart, currentNumber + Math.ceil(numericPart / Math.round(incrementValue / 30)));
 
           let formattedNextValue = nextValue ? nextValue.toString() : "";
-
           const formattedNextValueWithDots = this.formatNumberWithDots(formattedNextValue) === "0" ? "" : this.formatNumberWithDots(formattedNextValue);
-
-          var updatedValue = currentNumber > 0 ? newNonNumericPrefix + formattedNextValueWithDots + newNonNumericSuffix : newNonNumericPrefix + formattedNextValueWithDots;
-
-          var updatedValueForControl = currentNumber > 0 ? newNonNumericPrefix + formattedNextValue + newNonNumericSuffix : newNonNumericPrefix + formattedNextValue;
+          const updatedValue = currentNumber > 0 ? newNonNumericPrefix + formattedNextValueWithDots + newNonNumericSuffix : newNonNumericPrefix + formattedNextValueWithDots;
+          const updatedValueForControl = currentNumber > 0 ? newNonNumericPrefix + formattedNextValue + newNonNumericSuffix : newNonNumericPrefix + formattedNextValue;
 
           this.setComponentState(`number-${index}`, updatedValue);
 
@@ -212,9 +207,11 @@ class Stats1Page extends BaseStats {
     const isSubtitleExist = this.castToString(subtitle);
     const description = this.getPropValue("description");
     const isDescExist = this.castToString(description);
-    const buttonText = this.getPropValue("buttonText");
-    const isButtonTextExist = this.castToString(buttonText);
     const cardList = this.castToObject<CardData[]>("card-list");
+
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const buttonText = button.text;
+    const isButtonTextExist = this.castToString(buttonText);
 
     const badgeColors = ["var(--composer-primary-color)", "var(--composer-secondary-color)", "var(--composer-tertiary-color)"];
 
@@ -232,10 +229,10 @@ class Stats1Page extends BaseStats {
                 {isTitleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
                 {isDescExist && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
                 {isButtonTextExist && (
-                  <ComposerLink>
-                    <div className={this.decorateCSS("button-text-wrapper")}>
-                      <span className={this.decorateCSS("button-text")}>{buttonText}</span>
-                    </div>
+                  <ComposerLink path={button.url}>
+                    <Base.Button buttonType={button.type} className={this.decorateCSS("button-text-wrapper")}>
+                      {buttonText}
+                    </Base.Button>
                   </ComposerLink>
                 )}
               </Base.VerticalContent>
@@ -250,9 +247,9 @@ class Stats1Page extends BaseStats {
 
                   {cardList.map((cardData: CardData, indexCard: number) => {
                     const angle = (indexCard / cardList.length) * 360;
-                    const iscardLabelExist = this.castToString(cardData.cardLabel);
+                    const isCardLabelExist = this.castToString(cardData.cardLabel);
 
-                    if (this.getComponentState(`number-${indexCard}`) !== "0" || iscardLabelExist)
+                    if (this.getComponentState(`number-${indexCard}`) !== "0" || isCardLabelExist)
                       return (
                         <div key={indexCard} className={this.decorateCSS("card")} style={{ "--angle": `${angle}deg` } as Record<string, any>}>
                           {this.getComponentState(`number-${indexCard}`) !== "0" && (
@@ -265,7 +262,7 @@ class Stats1Page extends BaseStats {
                               {this.getComponentState(`number-${indexCard}`)}
                             </Base.H5>
                           )}
-                          {iscardLabelExist && <Base.P className={this.decorateCSS("counter-label")}>{cardData.cardLabel}</Base.P>}
+                          {isCardLabelExist && <Base.P className={this.decorateCSS("counter-label")}>{cardData.cardLabel}</Base.P>}
                         </div>
                       );
                   })}

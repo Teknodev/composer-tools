@@ -4,6 +4,7 @@ import styles from "./content13.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 class Content13 extends BaseContent {
   constructor(props?: any) {
@@ -30,20 +31,7 @@ class Content13 extends BaseContent {
       value:
         "A design-led approach guides the team, implementing practices, products and services that are thoughtful and environmentally sound. Family of professionals that creates intelligent designs that help the face of hospitality.",
     });
-
-    this.addProp({
-      type: "string",
-      key: "buttonText",
-      displayer: "Button Text",
-      value: "About resort",
-    });
-
-    this.addProp({
-      type: "page",
-      key: "buttonLink",
-      displayer: "Button Link",
-      value: "",
-    });
+    this.addProp(INPUTS.BUTTON("button", "Button", "About Resort", "", null, null, "Primary"));
 
     this.addProp({
       type: "string",
@@ -95,6 +83,8 @@ class Content13 extends BaseContent {
   }
 
   render() {
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+
     const isAboutTitleExist = this.castToString(
       this.getPropValue("aboutTitle")
     );
@@ -102,9 +92,7 @@ class Content13 extends BaseContent {
     const isDescriptionExist = this.castToString(
       this.getPropValue("description")
     );
-    const isButtonTextExist = this.castToString(
-      this.getPropValue("buttonText")
-    );
+    const isButtonTextExist = this.castToString(button.text);
     const isPhoneExist = this.castToString(this.getPropValue("phone"));
     const isRightWeakTextExist = this.castToString(
       this.getPropValue("rightWeakText")
@@ -155,10 +143,10 @@ class Content13 extends BaseContent {
 
               <div className={this.decorateCSS("button-icon")}>
                 {isButtonTextExist && (
-                  <ComposerLink path={this.getPropValue("buttonLink")}>
-                    <button className={this.decorateCSS("about-button")}>
-                      {this.getPropValue("buttonText")}
-                    </button>
+                  <ComposerLink path={button.url}>
+                    <Base.Button buttonType={button.type} className={this.decorateCSS("about-button")}>
+                      {button.text}
+                    </Base.Button>
                   </ComposerLink>
                 )}
 
@@ -180,7 +168,7 @@ class Content13 extends BaseContent {
           )}
 
           {showDiv && (
-            <div className={`${!showLeftDiv ? this.decorateCSS("no-content") : ""} ${this.decorateCSS("right-page")}`}>
+            <div className={`${this.decorateCSS("right-page")} ${!showLeftDiv ? this.decorateCSS("no-content") : ""}`}>
               <div className={this.decorateCSS("image-container")}>
                 <div className={this.decorateCSS("image-text")}>
                   {isRightWeakTextExist && (
@@ -198,9 +186,7 @@ class Content13 extends BaseContent {
                   <img
                     src={this.getPropValue("image1")}
                     alt="Image 1"
-                    className={`${
-                      !isImage2Exist ? this.decorateCSS("no-image") : ""
-                    } ${this.decorateCSS("image1")}`}
+                    className={`${this.decorateCSS("image1")} ${!isImage2Exist ? this.decorateCSS("no-image") : ""}`}
                   />
                 )}
 
@@ -208,9 +194,7 @@ class Content13 extends BaseContent {
                   <img
                     src={this.getPropValue("image2")}
                     alt="Image 2"
-                    className={`${
-                      !isImage1Exist ? this.decorateCSS("no-image") : ""
-                    } ${this.decorateCSS("image2")}`}
+                    className={`${this.decorateCSS("image2")} ${!isImage1Exist ? this.decorateCSS("no-image") : ""} `}
                   />
                 )}
               </div>

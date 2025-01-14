@@ -397,13 +397,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    z-index: 100;
 
     &.sticky,
     &.stickycolorful,
     &.stickytransparent {
         position: sticky;
         top: 0;
-        z-index: 100;
         box-shadow: 0px 2px 5px rgba(var(--composer-primary-color-rgb), 0.2);
     }
 
@@ -420,7 +420,7 @@
             position: absolute;
             top: 0;
             left: 0;
-            z-index: 2;
+            z-index: 100;
             background: transparent;
             color: white;
         }
@@ -435,11 +435,11 @@
     justify-content: space-between;
     align-items: center;
 
-    @media only screen and (max-width: $composer-tablet-width) {
+    @container (max-width: #{$composer-tablet-width-lg}) {
         padding: var(--composer-gap-md) var(--composer-gap-lg);
     }
 
-    @media only screen and (max-width: $composer-phone-width) {
+    @container (max-width: #{$composer-phone-width}) {
         padding: var(--composer-gap-md);
     }
 

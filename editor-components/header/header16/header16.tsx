@@ -5,15 +5,13 @@ import ComposerSlider from "../../../composer-base-components/slider/slider";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "composer-tools/composer-base-components/base/base";
 import { ComposerIcon } from "composer-tools/composer-base-components/icon/icon";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type ISliderData = {
   title: JSX.Element;
   image: string;
   subtitle: JSX.Element;
-  button: {
-    buttonText: JSX.Element;
-    buttonClick: string;
-  };
+  button: INPUTS.CastedButton;
 };
 class Header16 extends BaseHeader {
   constructor(props?: any) {
@@ -47,25 +45,7 @@ class Header16 extends BaseHeader {
               value: "We're getting married!",
               displayer: "Title",
             },
-            {
-              type: "object",
-              key: "button",
-              displayer: "Button",
-              value: [
-                {
-                  type: "string",
-                  key: "buttonText",
-                  displayer: "Button Text",
-                  value: "Discuss The Wedding",
-                },
-                {
-                  type: "page",
-                  key: "buttonClick",
-                  displayer: "Button Click",
-                  value: "",
-                },
-              ],
-            },
+            INPUTS.BUTTON("button", "Button", "Discuss The Wedding", "", null, null, "White"),
           ],
         },
         {
@@ -91,26 +71,7 @@ class Header16 extends BaseHeader {
               value: "Your special day",
               displayer: "Title",
             },
-
-            {
-              type: "object",
-              key: "button",
-              displayer: "Button",
-              value: [
-                {
-                  type: "string",
-                  key: "buttonText",
-                  displayer: "Button Text",
-                  value: "Online Request",
-                },
-                {
-                  type: "page",
-                  key: "buttonClick",
-                  displayer: "Button Click",
-                  value: "",
-                },
-              ],
-            },
+            INPUTS.BUTTON("button", "Button", "Online Request", "", null, null, "White"),
           ],
         },
         {
@@ -137,25 +98,7 @@ class Header16 extends BaseHeader {
               displayer: "Title",
             },
 
-            {
-              type: "object",
-              key: "button",
-              displayer: "Button",
-              value: [
-                {
-                  type: "string",
-                  key: "buttonText",
-                  displayer: "Button Text",
-                  value: "View Details",
-                },
-                {
-                  type: "page",
-                  key: "buttonClick",
-                  displayer: "Button Click",
-                  value: "",
-                },
-              ],
-            },
+            INPUTS.BUTTON("button", "Button", "View Details", "", null, null, "White"),
           ],
         },
       ],
@@ -190,7 +133,7 @@ class Header16 extends BaseHeader {
       infinite: true,
       fade: true,
       speed: 500,
-      autoplay: false,
+      autoplay: true,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -207,14 +150,14 @@ class Header16 extends BaseHeader {
     const nextIcon: string = this.getPropValue("next-button-icon");
 
     return (
-      <div className={this.decorateCSS("container")}>
+      <Base.Container className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           {prevIcon && slider.length > 1 && (
             <button
               onClick={() => {
                 sliderRef.current.slickPrev();
               }}
-              className={`${this.decorateCSS("slider-button-left")} ${!slider[activeSlideIndex].image ? this.decorateCSS("slider-button-no-image") : ""}`}
+              className={`${this.decorateCSS("slider-button-left")} ${!slider[activeSlideIndex].image && this.decorateCSS("slider-button-no-image")}`}
             >
               <ComposerIcon
                 propsIcon={{
@@ -229,7 +172,7 @@ class Header16 extends BaseHeader {
             {slider.map((item, index) => {
               const subtitleExist = this.castToString(item.subtitle);
               const titleExist = this.castToString(item.title);
-              const buttonTextExist = this.castToString(item.button.buttonText);
+              const buttonTextExist = this.castToString(item.button.text);
               const imageExist = item.image;
 
               const contentExist = subtitleExist || titleExist || buttonTextExist;
@@ -243,17 +186,18 @@ class Header16 extends BaseHeader {
                   )}
                   {contentExist && (
                     <Base.MaxContent
-                      className={`${imageExist ? this.decorateCSS("content") : this.decorateCSS("image-no-content")} 
-  ${activeSlideIndex === index ? (imageExist ? this.decorateCSS("active") : this.decorateCSS("active-no-image")) : ""}`}
+                      className={`${this.decorateCSS("content")} 
+              ${!imageExist && this.decorateCSS("image-no-content")} 
+              ${activeSlideIndex === index ? this.decorateCSS(imageExist ? "active" : "active-no-image") : ""}`}
                     >
-                      {subtitleExist && <Base.P className={imageExist ? this.decorateCSS("subtitle") : this.decorateCSS("subtitle-no-image")}>{item.subtitle}</Base.P>}
-                      {titleExist && <Base.P className={imageExist ? this.decorateCSS("title") : this.decorateCSS("title-no-image")}>{item.title}</Base.P>}
+                      {subtitleExist && <Base.P className={`${this.decorateCSS("subtitle")} ${!imageExist && this.decorateCSS("subtitle-no-image")}`}>{item.subtitle}</Base.P>}
+                      {titleExist && <Base.P className={`${this.decorateCSS("title")} ${!imageExist && this.decorateCSS("title-no-image")}`}>{item.title}</Base.P>}
                       {buttonTextExist && (
-                        <div>
-                          <ComposerLink href={item.button.buttonClick}>
-                            <Base.Button className={this.decorateCSS("button")}>{item.button.buttonText}</Base.Button>
-                          </ComposerLink>
-                        </div>
+                        <ComposerLink path={item.button.url}>
+                          <Base.Button buttonType={item.button.type} className={this.decorateCSS("button")}>
+                            {item.button.text}
+                          </Base.Button>
+                        </ComposerLink>
                       )}
                     </Base.MaxContent>
                   )}
@@ -267,8 +211,8 @@ class Header16 extends BaseHeader {
               const imageExist = !slider[activeSlideIndex].image;
 
               return (
-                <div key={index} className={`${imageExist ? this.decorateCSS("number-item") : this.decorateCSS("number-item-no-image")} ${activeSlideIndex === index ? this.decorateCSS("active") : ""}`}>
-                  <Base.H5 className={imageExist ? this.decorateCSS("number-no-image") : this.decorateCSS("number")}>{index + 1}</Base.H5>
+                <div key={index} className={`${`${this.decorateCSS("number-item")} ${!imageExist && this.decorateCSS("number-item-no-image")}`} ${activeSlideIndex === index ? this.decorateCSS("active") : ""}`}>
+                  <Base.H5 className={`${this.decorateCSS("number")} ${imageExist && this.decorateCSS("number-with-image")}`}>{index + 1}</Base.H5>
                 </div>
               );
             })}
@@ -279,7 +223,7 @@ class Header16 extends BaseHeader {
               onClick={() => {
                 sliderRef.current.slickNext();
               }}
-              className={`${this.decorateCSS("slider-button-right")} ${!slider[activeSlideIndex].image ? this.decorateCSS("slider-button-no-image") : ""}`}
+              className={`${this.decorateCSS("slider-button-right")} ${!slider[activeSlideIndex].image && this.decorateCSS("slider-button-no-image")}`}
             >
               <ComposerIcon
                 propsIcon={{
@@ -290,7 +234,7 @@ class Header16 extends BaseHeader {
             </button>
           )}
         </div>
-      </div>
+      </Base.Container>
     );
   }
 }

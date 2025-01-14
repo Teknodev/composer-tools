@@ -7,20 +7,18 @@ import ComposerSlider from "../../../composer-base-components/slider/slider";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type SliderObject = {
   title: JSX.Element;
   right_image: string;
   left_image: string;
-  button: ButtonObject[];
+  button: INPUTS.CastedButton[];
 };
 
-type ButtonObject = {
-  buttonText: JSX.Element;
-  link: string;
-};
 
-class HeaderComponent22 extends BaseHeader {
+
+class Header22 extends BaseHeader {
   private sliderRef: React.RefObject<any>;
 
   constructor(props?: any) {
@@ -46,41 +44,19 @@ class HeaderComponent22 extends BaseHeader {
               type: "image",
               key: "right_image",
               displayer: "Right Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619d5dbd2970002c62664e?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619d5dbd2970002c62664e?alt=media&timestamp=1719483639150",
             },
             {
               type: "image",
               key: "left_image",
               displayer: "Left Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619d5dbd2970002c62664d?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619d5dbd2970002c62664d?alt=media&timestamp=1719483639150",
             },
             {
               type: "array",
               key: "button",
               displayer: "Buttons",
-              value: [
-                {
-                  type: "object",
-                  key: "buttonObject",
-                  displayer: "Button",
-                  value: [
-                    {
-                      type: "string",
-                      key: "buttonText",
-                      displayer: "Button Text",
-                      value: "SHOP NOW",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Button Link",
-                      value: "",
-                    },
-                  ],
-                },
-              ],
+              value: [INPUTS.BUTTON("button", "Button", "SHOP NOW", "", null, null, "Link")],
             },
           ],
         },
@@ -111,27 +87,7 @@ class HeaderComponent22 extends BaseHeader {
               type: "array",
               key: "button",
               displayer: "Buttons",
-              value: [
-                {
-                  type: "object",
-                  key: "buttonObject",
-                  displayer: "Button",
-                  value: [
-                    {
-                      type: "string",
-                      key: "buttonText",
-                      displayer: "Button Text",
-                      value: "SHOP NOW",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Button Link",
-                      value: "",
-                    },
-                  ],
-                },
-              ],
+              value: [INPUTS.BUTTON("button", "Button", "SHOP NOW", "", null, null, "Link")],
             },
           ],
         },
@@ -162,27 +118,7 @@ class HeaderComponent22 extends BaseHeader {
               type: "array",
               key: "button",
               displayer: "Buttons",
-              value: [
-                {
-                  type: "object",
-                  key: "buttonObject",
-                  displayer: "Button",
-                  value: [
-                    {
-                      type: "string",
-                      key: "buttonText",
-                      displayer: "Button Text",
-                      value: "SHOP NOW",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Button Link",
-                      value: "",
-                    },
-                  ],
-                },
-              ],
+              value: [INPUTS.BUTTON("button", "Button", "SHOP NOW", "", null, null, "Link")],
             },
           ],
         },
@@ -257,7 +193,7 @@ class HeaderComponent22 extends BaseHeader {
       arrows: false,
       infinite: slider.length > 1,
       speed: 1500,
-      autoplay: false,
+      autoplay: true,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -267,86 +203,66 @@ class HeaderComponent22 extends BaseHeader {
         }
       },
     };
-    const elements = document.getElementsByClassName(
-      this.decorateCSS("sliders")
-    );
+    const elements = document.getElementsByClassName(this.decorateCSS("sliders"));
     const items = [];
 
     for (let index = 0; index < elements.length; index++) {
       items.push(elements.item(index));
-
     }
 
     const minHeight = items.sort((a, b) => {
       return b.clientHeight - a.clientHeight;
     })[0]?.clientHeight;
 
-    if (!isSliderExist) return <></>
+    if (!isSliderExist) return <></>;
     return (
       <>
         {isSliderExist && (
           <Base.Container className={this.decorateCSS("container")}>
             <div className={this.decorateCSS("max-content")}>
-              <div className={this.decorateCSS("slider-parent")} style={{ minHeight: minHeight + "px" }} >
-                <ComposerSlider
-                  {...settings}
-                  className={this.decorateCSS("carousel")}
-                  ref={this.getComponentState("slider-ref")}>
+              <div className={this.decorateCSS("slider-parent")} style={{ minHeight: minHeight + "px" }}>
+                <ComposerSlider {...settings} className={this.decorateCSS("carousel")} ref={this.getComponentState("slider-ref")}>
                   {slider.map((item: SliderObject, index: number) => {
                     const isActive = this.getComponentState("activeSlide") === index;
                     const leftImageExist = item.left_image;
                     const rightImageExist = item.right_image;
-                    const middleClass = leftImageExist ? "middle-content" : "middle-content2";
-                    const middleClassWithPadding = (!leftImageExist && !rightImageExist) || (!leftImageExist && !this.getPropValue("dots")) ? "middle-content3" : middleClass;
                     return (
-                      <div
-                        className={this.decorateCSS("sliders")}
-                        key={index}>
+                      <div className={this.decorateCSS("sliders")} key={index}>
                         <div className={this.decorateCSS("slider")}>
                           {leftImageExist && (
                             <div className={this.decorateCSS("left-content")}>
-                              <img
-                                className={`${this.decorateCSS("left-image")} ${(animation && isActive) ? this.decorateCSS("left-animation") : ""}  `}
-                                src={item.left_image}
-                                alt=""
-                              />
+                              <img className={`${this.decorateCSS("left-image")} ${animation && isActive ? this.decorateCSS("left-animation") : ""}  `} src={item.left_image} alt="" />
                             </div>
                           )}
 
                           <div
-                            className={`${this.decorateCSS(middleClassWithPadding)}
-                          } ${animation && isActive ? this.decorateCSS("mid-right-animation") : ""}  `}>
+                            className={`${this.decorateCSS("middle-content")} ${!leftImageExist && this.decorateCSS("middle-content2")} ${(!leftImageExist && !rightImageExist) || (!leftImageExist && !this.getPropValue("dots")) && this.decorateCSS("middle-content3")}  ${
+                              animation && isActive ? this.decorateCSS("mid-right-animation") : ""
+                            }  `}
+                          >
                             <Base.VerticalContent className={this.decorateCSS("text-wrapper")}>
                               {hasDivider && <div className={this.decorateCSS("divider")} />}
                               {this.castToString(item.title) && <Base.SectionTitle className={this.decorateCSS("title")}>{item.title}</Base.SectionTitle>}
 
                               {item.button.map((buttonItem: any, indexButton: number) => {
-                                const buttonText = this.castToString(buttonItem.buttonText);
+                                const buttonText = this.castToString(buttonItem.text);
                                 if (buttonText) {
                                   return (
                                     <div className={this.decorateCSS("link-button-container")}>
-                                      <ComposerLink
-                                        className={this.decorateCSS("link-button")}
-                                        key={`hdr-22-${indexButton}`}
-                                        path={buttonItem.link}>
-                                        <button className={this.decorateCSS("button")}>{buttonItem.buttonText}</button>
+                                      <ComposerLink className={this.decorateCSS("link-button")} key={`hdr-22-${indexButton}`} path={buttonItem.url}>
+                                        <Base.Button buttonType={buttonItem.type} className={this.decorateCSS("button")}>
+                                          {buttonItem.text}
+                                        </Base.Button>
                                       </ComposerLink>
                                     </div>
                                   );
                                 }
                               })}
                             </Base.VerticalContent>
-
                           </div>
                           {rightImageExist && (
-                            <div
-                              className={`${this.decorateCSS("right-content")} ${animation && isActive ? this.decorateCSS("mid-right-animation") : ""
-                                }  `}>
-                              <img
-                                className={this.decorateCSS("right-image")}
-                                src={item.right_image}
-                                alt=""
-                              />
+                            <div className={`${this.decorateCSS("right-content")} ${animation && isActive ? this.decorateCSS("mid-right-animation") : ""}  `}>
+                              <img className={this.decorateCSS("right-image")} src={item.right_image} alt="" />
                             </div>
                           )}
                         </div>
@@ -361,22 +277,18 @@ class HeaderComponent22 extends BaseHeader {
                     className={this.decorateCSS("nav-buttons")}
                     onClick={() => {
                       this.getComponentState("slider-ref").current.slickPrev();
-                    }}>
-                    <ComposerIcon
-                      name={this.getPropValue("prev-button-icon")}
-                      propsIcon={{ className: `${this.decorateCSS("icon")}` }}
-                    />
+                    }}
+                  >
+                    <ComposerIcon name={this.getPropValue("prev-button-icon")} propsIcon={{ className: `${this.decorateCSS("icon")}` }} />
                   </button>
 
                   <button
                     className={this.decorateCSS("nav-buttons")}
                     onClick={() => {
                       this.getComponentState("slider-ref").current.slickNext();
-                    }}>
-                    <ComposerIcon
-                      name={this.getPropValue("next-button-icon")}
-                      propsIcon={{ className: `${this.decorateCSS("icon")}` }}
-                    />
+                    }}
+                  >
+                    <ComposerIcon name={this.getPropValue("next-button-icon")} propsIcon={{ className: `${this.decorateCSS("icon")}` }} />
                   </button>
                 </div>
               )}
@@ -388,4 +300,4 @@ class HeaderComponent22 extends BaseHeader {
   }
 }
 
-export default HeaderComponent22;
+export default Header22;

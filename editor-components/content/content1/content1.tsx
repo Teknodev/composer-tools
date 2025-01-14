@@ -3,11 +3,7 @@ import { BaseContent } from "../../EditorComponent";
 import styles from "./content1.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
-
-type Button = {
-  text: JSX.Element;
-  link: string;
-};
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 class Content1 extends BaseContent {
   constructor(props?: any) {
     super(props, styles);
@@ -25,31 +21,12 @@ class Content1 extends BaseContent {
       value:
         "This statement is a call to action aimed at businesses or individuals looking to improve the effectiveness of their online advertising campaigns. ",
     });
-
     this.addProp({
       type: "array",
       key: "buttons",
       displayer: "Buttons",
       value: [
-        {
-          type: "object",
-          key: "button",
-          displayer: "Button",
-          value: [
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "Button Text",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Link",
-              value: "",
-            },
-          ],
-        },
+        INPUTS.BUTTON("button", "Button", "Button Text", "", null, null,"Primary")
       ],
     });
   }
@@ -57,7 +34,7 @@ class Content1 extends BaseContent {
     return "Content 1";
   }
   render() {
-    const buttons = this.castToObject<Button[]>("buttons");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -71,21 +48,20 @@ class Content1 extends BaseContent {
               {this.getPropValue("description")}
             </Base.SectionDescription>
           )}
-          {buttons?.length > 0 && (
-            <div className={this.decorateCSS("button-container")}>
-              {buttons.map((button: Button, index: number) => {
-                const buttonTextExist = this.castToString(button.text);
-                return (
-                  buttonTextExist && (
-                    <Base.Button key={index} className={this.decorateCSS("button")}>
-                      <ComposerLink path={button.link}>
-                        {button.text}
-                      </ComposerLink>
-                    </Base.Button>
-                  )
-                );
-              })}
-            </div>
+          {(buttons.length > 0) && (
+            buttons.map((item: INPUTS.CastedButton, index: number) => {
+              return (
+                <div className={this.decorateCSS("button-container")}>
+                  {this.castToString(item.text) && (
+                    <ComposerLink path={item.url}>
+                      <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                        {item.text}
+                      </Base.Button>
+                    </ComposerLink>
+                  )}
+                </div>
+              )
+            })
           )}
         </Base.MaxContent>
       </Base.Container>

@@ -2,16 +2,12 @@ import * as React from "react";
 import { BaseContent } from "../../EditorComponent";
 import styles from "./content7.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
-import { $flushMutations } from "lexical/LexicalUtils";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 interface Card {
   direction: boolean;
   title: JSX.Element;
-  button: {
-    buttonText: JSX.Element;
-    link: string;
-  };
+  button: INPUTS.CastedButton;
   leftImage: string;
   rightImage: string;
   description: JSX.Element;
@@ -66,25 +62,7 @@ class Content7 extends BaseContent {
               value:
                 "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
             },
-            {
-              type: "object",
-              key: "button",
-              displayer: "Button",
-              value: [
-                {
-                  type: "string",
-                  key: "buttonText",
-                  displayer: "Button Text",
-                  value: "VIEW DETAILS",
-                },
-                {
-                  type: "page",
-                  key: "link",
-                  displayer: "Link",
-                  value: "",
-                },
-              ],
-            },
+            INPUTS.BUTTON("button", "Button", "VIEW DETAILS", "", null, null, "Primary"),
             {
               type: "image",
               key: "leftImage",
@@ -147,11 +125,9 @@ class Content7 extends BaseContent {
           {this.castToString(this.getPropValue("title")) && (
             <Base.SectionTitle
               className={
-                this.decorateCSS("title") +
-                ` ${
-                  !this.getPropValue("cover-image")
-                    ? this.decorateCSS("no-image")
-                    : ""
+                `${this.decorateCSS("title")} ${!this.getPropValue("cover-image")
+                  ? this.decorateCSS("no-image")
+                  : ""
                 }`
               }
             >
@@ -162,41 +138,41 @@ class Content7 extends BaseContent {
             {this.castToObject<Card[]>("cards").map(
               (card: Card, indexCards: number) => {
                 return (
-                  <Base.ContainerGrid key={indexCards} className={this.decorateCSS("card") + ` ${card.direction ? styles["reverse"] : ""}`}>
+                  <Base.ContainerGrid key={indexCards} className={
+                    `${this.decorateCSS("card")} ${card.direction ? styles["reverse"] : ""
+                    }`
+                  }
+                  >
                     {(this.castToString(card.title) ||
                       this.castToString(card.description)) && (
-                      <Base.VerticalContent
-                        className={this.decorateCSS("left-card")}
-                      >
-                        {this.castToString(card.title) && (
-                          <Base.H2 className={this.decorateCSS("title")}>
-                            {card.title}
-                          </Base.H2>
-                        )}
-                        {this.castToString(card.description) && (
-                          <Base.P className={this.decorateCSS("description")}>
-                            {card.description}
-                          </Base.P>
-                        )}
-                        {this.castToString(card.button.buttonText) && (
-                          <ComposerLink path={card.button.link}>
-                            <Base.Button className={this.decorateCSS("button")}>
-                              {card.button.buttonText}
-                            </Base.Button>
-                          </ComposerLink>
-                        )}
-                      </Base.VerticalContent>
-                    )}
+                        <Base.VerticalContent
+                          className={this.decorateCSS("left-card")}
+                        >
+                          {this.castToString(card.title) && (
+                            <Base.H2 className={this.decorateCSS("title")}>
+                              {card.title}
+                            </Base.H2>
+                          )}
+                          {this.castToString(card.description) && (
+                            <Base.P className={this.decorateCSS("description")}>
+                              {card.description}
+                            </Base.P>
+                          )}
+                          {this.castToString(card.button.text) && (
+                            <ComposerLink path={card.button.url}>
+                              <Base.Button buttonType={card.button.type} className={this.decorateCSS("button")}>
+                                {card.button.text}
+                              </Base.Button>
+                            </ComposerLink>
+                          )}
+                        </Base.VerticalContent>
+                      )}
 
                     {(card.leftImage || card.rightImage) && (
                       <div className={this.decorateCSS("right-card")}>
                         <div
                           className={
-                            this.decorateCSS("image-container") +
-                            ` ${
-                              card.leftImage && card.rightImage
-                                ? styles["active"]
-                                : ""
+                            `${this.decorateCSS("image-container")} ${card.leftImage && card.rightImage ? styles["active"] : ""
                             }`
                           }
                         >

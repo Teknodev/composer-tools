@@ -1,127 +1,347 @@
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+
 .container {
-    width: 100%;
-    .max-content {
-        max-width: var(--composer-content-width);
-        margin: auto;
-        .content {
-            height: 66px;
-            padding: 50px 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            .content-left {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                gap: 30px;
-            }
-            a {
-                text-decoration: none;
-            }
-            .button {
-                width: 80%;
-                height: 40px;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                background-color: var(--composer-secondary-color);
-                border: 1px solid var(--composer-secondary-color);
-                color: white;
-                border-radius: 6px;
-                font-size: 1.4rem;
-                cursor: pointer;
-                padding: 20px 30px;
-                &:hover {
-                    color: var(--composer-primary-color);
-                    background: transparent;
-                    border: 1px solid var(--composer-primary-color);
-                }
-                &.primary {
-                    border: 1px solid var(--composer-primary-color);
-                    background-color: var(--composer-primary-color);
-                    color: white;
-                    &:hover {
-                        color: var(--composer-secondary-color);
-                        background: transparent;
-                        border: 1px solid var(--composer-secondary-color);
-                    }
-                }
-            }
-            @media screen and (max-width: 380px) {
-                .content-left {
-                    text-align: center;
-                    font-size: 12px;
-                    gap: 10px;
-                    width: 20%;
-                    margin-left: 0;
-                    margin-top: 5%;
-                }
-                .logo-image {
-                    margin-left: 7%;
-                    margin-right: 3%;
-                    img {
-                        width: 140px;
-                        height: 170px;
-                    }
-                }
-                .button {
-                    width: 25%;
-                    height: 25px;
-                    justify-content: center;
-                    align-items: center;
-                    background-color: var(--composer-secondary-color);
-                    border: 1px solid var(--composer-secondary-color);
-                    color: white;
-                    border-radius: 6px;
-                    font-size: 1.2rem;
-                    cursor: pointer;
-                    padding: 20px 30px;
-                    &:hover {
-                        color: var(--composer-primary-color);
-                        background: transparent;
-                        border: 1px solid var(--composer-primary-color);
-                    }
-                    &.primary {
-                        border: 1px solid var(--composer-primary-color);
-                        background-color: var(--composer-primary-color);
-                        color: white;
-                        &:hover {
-                            color: var(--composer-secondary-color);
-                            background: transparent;
-                            border: 1px solid var(--composer-secondary-color);
-                        }
-                    }
-                }
-            }
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.maxContent {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .socialMediaBox {
+    display: flex;
+    .social {
+      display: flex;
+      align-items: center;
+      gap: var(--composer-gap-sm);
+      .icon {
+        font-size: 1.5rem;
+        color: var(--composer-font-color-primary);
+        transition: color 0.3s;
+        cursor: pointer;
+
+        &:hover {
+          color: var(--composer-tertiary-color);
         }
-        .bottom-line {
-            border-bottom: 1px solid #a5a7aad7;
-            width: 95%;
-            align-items: center;
-            justify-content: center;
-            margin: auto;
-        }
-        .secondline-content {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 40px;
-            font-size: 16px;
-            font-weight: bold;
-            height: 66px;
-            padding: 30px 30px;
-            a {
-                text-decoration: none;
-                color: black;
-            }
-        }
-        @media screen and (max-width: 380px) {
-            .secondline-content {
-                gap: 20px;
-                font-size: 12px;
-            }
-        }
+      }
     }
+  }
+
+  .logo {
+    .logoImage {
+      width: 100%;
+      max-height: 60px;
+      object-fit: contain;
+    }
+  }
+
+  .navbar {
+    color: var(--composer-font-color-primary);
+    display: flex;
+    gap: var(--composer-gap-sm);
+    justify-content: end;
+    align-items: flex-end;
+    align-items: center;
+    height: fit-content;
+    z-index: 20;
+
+    .language {
+      color: var(--composer-font-color-primary);
+    }
+
+    .hamburgerIcon {
+      font-size: 2.5rem;
+      cursor: pointer;
+    }
+
+    .activeHamburgerIcon {
+      color: var(--composer-font-color-primary) !important;
+    }
+  }
+
+  .logo,
+  .socialMediaBox,
+  .navbar {
+    flex: 1 1;
+  }
+}
+
+.maxContent > :first-child {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.maxContent > :only-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+ .overlay {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: var(--composer-overlay-color);
+  }
+
+.dropdownMenu {
+  height: 0;
+  width: 100%;
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+  &.active {
+    height: 85vh;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    transition: all 0.3s ease;
+  }
+
+  .up {
+    display: flex;
+    align-items: center;
+    gap: var(--composer-gap-md);
+    justify-content: center;
+    margin: 0 calc(var(--composer-gap-xl) * 2);
+
+    .leftPage {
+      .title {
+        font-size: 7rem;
+        letter-spacing: var(--composer-gap-xs);
+        color: var(--composer-font-color-primary);
+      }
+    }
+
+    .rightPage {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      .items {
+        .item-title {
+          font-size: 2.5rem;
+          color: var(--composer-font-color-primary);
+          opacity: 0;
+          transform: translateY(-100px);
+          animation: fadeIn 1.5s ease forwards;
+          transition: color 0.3s;
+          cursor: pointer;
+
+          &:hover {
+            color: var(--composer-tertiary-color);
+          }
+        }
+      }
+    }
+
+    .leftPage,
+    .rightPage {
+      flex: 1 1;
+    }
+  }
+
+  .line {
+    border-bottom: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.5);
+  }
+
+  .down {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--composer-gap-md);
+
+    .text {
+      font-size: 1.5rem;
+      color: var(--composer-font-color-primary);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .divider {
+      flex-shrink: 0;
+      width: var(--composer-gap-xl);
+      height: 1px;
+      border-bottom: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.5);
+    }
+
+    .text,
+    .divider {
+      flex: 1 1;
+    }
+  }
+
+  .down > :first-child {
+    display: flex;
+    justify-content: start;
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-100px);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-100px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+.transparentBackground {
+  .socialMediaBox {
+    .social {
+      .icon {
+        color: white;
+      }
+    }
+  }
+  .navbar {
+    .hamburgerIcon {
+      color: white;
+    }
+    .localizationLabel{
+      color: white;
+    }
+    .languageIcon{
+      color: white;
+    }
+  }
+}
+
+.filledBackground{
+  background-color: var(--composer-html-background) !important;
+  transition: all 0.3s ease;
+}
+
+
+@container (max-width: #{$composer-tablet-width-lg}) {
+  .maxContent {
+    .socialMediaBox {
+      .social {
+        gap: var(--composer-gap-sm);
+        .icon {
+          font-size: 1.5rem;
+        }
+      }
+    }
+
+    .logo {
+      .logoImage {
+        width: 100%;
+        max-height: 50px;
+        object-fit: contain;
+      }
+    }
+
+    .navbar {
+      .hamburgerIcon {
+        font-size: 1.5rem;
+      }
+    }
+
+  }
+  .dropdownMenu {
+    justify-content: center;
+    .up {
+      gap: var(--composer-gap-xl);
+      margin: 0 var(--composer-gap-lg);
+
+      .rightPage {
+        width: 100%;
+        text-align: center;
+
+        .items {
+          .item-title {
+            font-size: 2.5rem;
+            text-align: center;
+          }
+        }
+      }
+    }
+    .down{
+      .text{
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .maxContent {
+    .socialMediaBox {
+      display: none;
+    }
+
+    .logo {
+      .logoImage {
+        width: auto;
+        max-height: 40px;
+        object-fit: contain;
+      }
+    }
+
+  }
+  .overlay {
+      &.overlayActive {
+        display: block;
+      }
+    }
+  .dropdownMenu {
+    &.active {
+      height: 75vh;
+    }
+
+    .up {
+      .leftPage {
+        display: none;
+      }
+
+      .rightPage {
+        .items {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: var(--composer-gap-lg);
+
+          .item-title {
+            margin: 0;
+            font-size: 1.5rem;
+          }
+        }
+      }
+    }
+
+    .line {
+      display: none;
+    }
+
+    .down {
+      display: none;
+    }
+  }
 }
