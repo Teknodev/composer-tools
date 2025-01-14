@@ -5,6 +5,7 @@ import styles from "./image-gallery6.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 interface GalleryItem {
     sectionTitle: JSX.Element,
     images: ImageItem[],
@@ -42,11 +43,12 @@ class ImageGallery6 extends BaseImageGallery {
             displayer: "More Image Count",
             value: 3
         })
+        this.addProp(INPUTS.BUTTON("button", "Button", "Load More", null, null, null, "Primary"));
         this.addProp({
             type: "string",
-            key: "buttonText",
-            displayer: "Button Text",
-            value: "Load More"
+            key: "allText",
+            displayer: "All Button Text",
+            value: "All",
         })
 
         this.addProp({
@@ -471,7 +473,7 @@ class ImageGallery6 extends BaseImageGallery {
                 }
             ],
         });
-        this.setComponentState("selectedSection", "ALL");
+        this.setComponentState("selectedSection", this.castToString(this.getPropValue("allText")));
         this.setComponentState("moreImages", 0);
     }
 
@@ -482,7 +484,7 @@ class ImageGallery6 extends BaseImageGallery {
         const galleryCollection = this.castToObject<GalleryItem[]>("galleries");
         const selectedSection = this.getComponentState("selectedSection");
 
-        if (selectedSection === "ALL") {
+        if (selectedSection === this.castToString(this.getPropValue("allText"))) {
             return galleryCollection.flatMap(gallery => gallery.images);
         } else {
             const currentGallery = galleryCollection.find(
@@ -492,7 +494,7 @@ class ImageGallery6 extends BaseImageGallery {
         }
     }
     handleSectionClickAll(): void {
-        this.setComponentState("selectedSection", "ALL");
+        this.setComponentState("selectedSection", this.castToString(this.getPropValue("allText")));
         this.setComponentState("imageCount", this.getPropValue("imageCountInitial"));
         this.setComponentState("moreImages", 0);
     }
@@ -513,6 +515,9 @@ class ImageGallery6 extends BaseImageGallery {
         const selectedSection = this.getComponentState("selectedSection");
         if (this.getComponentState("imageCount") != this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"))
             this.setComponentState("imageCount", this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"));
+
+        const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+
         return (
 
             <Base.Container className={this.decorateCSS("container")}>
@@ -520,11 +525,11 @@ class ImageGallery6 extends BaseImageGallery {
                     <Base.VerticalContent className={this.decorateCSS("section-container")}>
                         {this.getPropValue("showAll") && (
                             <Base.H4
-                                className={`${this.decorateCSS("section-text")} ${(selectedSection === "ALL" || !selectedSection) ? this.decorateCSS("active") : ""
+                                className={`${this.decorateCSS("section-text")} ${(selectedSection === this.castToString(this.getPropValue("allText")) || !selectedSection) ? this.decorateCSS("active") : ""
                                     }`}
                                 onClick={() => this.handleSectionClickAll()}
                             >
-                                ALL
+                                {this.getPropValue("allText")}
                             </Base.H4>
                         )}
 
@@ -670,8 +675,8 @@ class ImageGallery6 extends BaseImageGallery {
                     </div>
                     {(this.getComponentState("imageCount") < currentGallery.length) && (
                         <div className={this.decorateCSS("button-wrapper")}>
-                            <Base.Button className={this.decorateCSS("button")} onClick={this.handleButtonClick} >
-                                {this.getPropValue("buttonText")}
+                            <Base.Button className={this.decorateCSS("button")} buttonType={button.type} onClick={this.handleButtonClick} >
+                                {button.text}
                             </Base.Button>
                         </div>
                     )}

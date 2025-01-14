@@ -3,6 +3,7 @@ import { BaseImageGallery } from "../../EditorComponent";
 import styles from "./image-gallery4.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type NavItem = {
   title: JSX.Element;
@@ -387,12 +388,8 @@ class ImageGallery4 extends BaseImageGallery {
       value: 3
     })
 
-    this.addProp({
-      type: "string",
-      key: "buttonText",
-      displayer: "Button Text",
-      value: "Load More"
-    })
+    this.addProp(INPUTS.BUTTON("button", "Button", "Load More", null, null, null, "Primary"));
+
     this.addProp({
       type: "icon",
       key: "close-icon",
@@ -531,6 +528,8 @@ class ImageGallery4 extends BaseImageGallery {
     if (this.getComponentState("imageCount") != this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"))
       this.setComponentState("imageCount", this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"));
 
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -635,7 +634,11 @@ class ImageGallery4 extends BaseImageGallery {
             )}
             {(this.getComponentState("imageCount") < galleryItems.length) && (
               <div className={this.decorateCSS("button-wrapper")}>
-                <Base.Button className={this.decorateCSS("button")} onClick={this.handleButtonClick} >{this.getPropValue("buttonText")}</Base.Button>
+                <Base.Button className={this.decorateCSS("button")}
+                  buttonType={button.type}
+                  onClick={this.handleButtonClick}>
+                  {button.text}
+                </Base.Button>
               </div>
             )}
 

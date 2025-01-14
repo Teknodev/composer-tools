@@ -3,17 +3,16 @@ import { BaseImageGallery } from "../../EditorComponent";
 import styles from "./image-gallery1.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { TiHeadphones } from "react-icons/ti";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 interface ImageGallery {
   sectionTitle: JSX.Element;
   images: Image[];
-
 }
 interface Image {
   title: JSX.Element;
   cardImage: string;
   section: JSX.Element
-
 }
 
 class ImageGallery1 extends BaseImageGallery {
@@ -42,6 +41,12 @@ class ImageGallery1 extends BaseImageGallery {
       key: "itemCount",
       displayer: "Item Count in a Row",
       value: 3,
+    })
+    this.addProp({
+      type: "string",
+      key: "allText",
+      displayer: "All Button Text",
+      value: "All",
     })
     this.addProp({
       type: "array",
@@ -371,19 +376,14 @@ class ImageGallery1 extends BaseImageGallery {
           ]
         }
       ]
+    });
 
-    })
-    this.addProp({
-      type: "string",
-      key: "buttonText",
-      displayer: "Button Text",
-      value: "Load More"
-    })
-    this.setComponentState("selectedSection", "All");
+    this.addProp(INPUTS.BUTTON("button", "Button", "Load More", null, null, null, "Primary"));
+
+    this.setComponentState("selectedSection", this.castToString(this.getPropValue("allText")));
     this.setComponentState("selectedIndex", -1);
     this.setComponentState("moreImages", 0);
   }
-
 
   getName(): string {
     return "Image Gallery 1";
@@ -395,7 +395,7 @@ class ImageGallery1 extends BaseImageGallery {
     this.setComponentState("moreImages", 0);
   }
   handleSectionClickAll(): void {
-    this.setComponentState("selectedSection", "All");
+    this.setComponentState("selectedSection", this.castToString(this.getPropValue("allText")));
     this.setComponentState("selectedIndex", -1)
     this.setComponentState("imageCount", this.getPropValue("imageCountInitial"));
     this.setComponentState("moreImages", 0);
@@ -403,7 +403,6 @@ class ImageGallery1 extends BaseImageGallery {
 
   handleButtonClick = () => {
     this.setComponentState("moreImages", this.getComponentState("moreImages") + this.getPropValue("imageCount"))
-
   };
 
   render() {
@@ -411,7 +410,6 @@ class ImageGallery1 extends BaseImageGallery {
       this.setComponentState("imageCount", this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"));
     const imageGallery = this.castToObject<ImageGallery[]>("imageGalleries");
     const selectedSection = this.getComponentState("selectedSection");
-    const seenImages = new Set<string>();
     const allImages = imageGallery.reduce((acc: Image[], gallery: ImageGallery) => {
       gallery.images.forEach((image) => {
         if (!acc.some((img) => img.cardImage === image.cardImage)) {
@@ -424,16 +422,19 @@ class ImageGallery1 extends BaseImageGallery {
     const selectedImageGallery =
       this.getComponentState("selectedIndex") == -1 ? allImages
         : sectionImage;
+
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("section-title-container")}>
             {
               <button
-                className={`${this.decorateCSS("section-title")} ${selectedSection === "All" ? this.decorateCSS("active-section-title") : ""}`}
+                className={`${this.decorateCSS("section-title")} ${selectedSection === this.castToString(this.getPropValue("allText")) ? this.decorateCSS("active-section-title") : ""}`}
                 onClick={() => this.handleSectionClickAll()}
               >
-                All
+                {this.getPropValue("allText")}
               </button>
             }
             {
@@ -452,7 +453,7 @@ class ImageGallery1 extends BaseImageGallery {
             {imageGallery
               .filter(
                 (item: ImageGallery) =>
-                  selectedSection == "All" ||
+                  selectedSection == this.castToString(this.getPropValue("allText")) ||
                   (item.sectionTitle &&
                     selectedSection &&
                     this.castToString(item.sectionTitle) === selectedSection)
@@ -489,8 +490,8 @@ class ImageGallery1 extends BaseImageGallery {
           </Base.ListGrid>
           {(this.getComponentState("imageCount") < selectedImageGallery.length) && (
             <div className={this.decorateCSS("button-wrapper")}>
-              <Base.Button className={this.decorateCSS("button")} onClick={this.handleButtonClick} >
-                {this.getPropValue("buttonText")}
+              <Base.Button buttonType={button.type} className={this.decorateCSS("button")} onClick={this.handleButtonClick} >
+                {button.text}
               </Base.Button>
             </div>
           )}

@@ -3,6 +3,7 @@ import { BaseImageGallery } from "../../EditorComponent";
 import styles from "./image-gallery2.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type ImageType = {
     image: string;
@@ -41,7 +42,12 @@ class ImageGallery2 extends BaseImageGallery {
             displayer: "Item Count in a Row",
             value: 3,
         });
-
+        this.addProp({
+            type: "string",
+            key: "allText",
+            displayer: "All Button Text",
+            value: "All",
+        })
         this.addProp({
             type: "array",
             key: "gallery",
@@ -614,7 +620,7 @@ class ImageGallery2 extends BaseImageGallery {
             type: "icon",
             key: "icon",
             displayer: "Magnifier Icon",
-            value: "FaSearch",
+            value: "IoSearchOutline",
         });
 
         this.addProp({
@@ -644,12 +650,8 @@ class ImageGallery2 extends BaseImageGallery {
             displayer: "Image Page Number",
             value: true,
         });
-        this.addProp({
-            type: "string",
-            key: "buttonText",
-            displayer: "Button Text",
-            value: "Load More",
-        });
+
+        this.addProp(INPUTS.BUTTON("button", "Button", "Load More", null, null, null, "Primary"));
 
         document.addEventListener("keydown", this.handleKeyDown);
         this.setComponentState("default", 0);
@@ -743,6 +745,7 @@ class ImageGallery2 extends BaseImageGallery {
         const magnifierIcon = this.getPropValue("icon");
         const imgCount = `${currentImageIndex + 1} of ${currentGallery.length}`;
         const showAll = this.getPropValue("showAll");
+        const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
@@ -755,7 +758,7 @@ class ImageGallery2 extends BaseImageGallery {
                                         }`}
                                     onClick={() => this.handleSectionClick(-1)}
                                 >
-                                    All
+                                    {this.getPropValue("allText")}
                                 </div>
                             )}
                             {galleryCollection.map((element: any, index: number) => (
@@ -799,7 +802,9 @@ class ImageGallery2 extends BaseImageGallery {
                         </Base.ListGrid>
                         {(currentGallery.length > this.getComponentState("imageCount")) && (
                             <div className={this.decorateCSS("button-wrapper")}>
-                                <Base.Button className={this.decorateCSS("button")} onClick={this.handleLoadMoreButton}> {this.getPropValue("buttonText")}</Base.Button>
+                                <Base.Button className={this.decorateCSS("button")} buttonType={button.type} onClick={this.handleLoadMoreButton}>
+                                    {button.text}
+                                </Base.Button>
                             </div>
                         )}
 
