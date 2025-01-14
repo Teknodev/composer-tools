@@ -358,11 +358,8 @@ class Navbar8 extends BaseNavigator {
 
     const backgroundChange = this.getComponentState("backgroundChange");
 
-    const menuOpen = this.getComponentState("isMenuOpen");
     const isScrolled = this.getComponentState("isScrolled");
-    const isBigScreen = this.getComponentState("isBigScreen");
     const isStickyTransparent = position === "Sticky Transparent";
-    const isAbsolute = position === "Absolute";
     const transparentBackground = isStickyTransparent && !isScrolled;
     
     const currentLogo =
@@ -422,9 +419,9 @@ class Navbar8 extends BaseNavigator {
           {titleContainer && (
             <div className={this.decorateCSS("titleContainer")}>
               <div className={this.decorateCSS("titleContainerContent")}>
-                {title && <h1 className={this.decorateCSS("title")}>{title}</h1>}
+                {title && <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>}
                 {subtitle && (
-                  <h4 className={this.decorateCSS("subtitle")}>{subtitle}</h4>
+                  <h4 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h4>
                 )}
               </div>
             </div>
@@ -486,12 +483,12 @@ class Navbar8 extends BaseNavigator {
                 <div className={this.decorateCSS("dropdownRightSide")}>
                   {dropdownTitle && (
                     <h1 className={this.decorateCSS("dropdownTitle")}>
-                      {dropdownTitle}
+                      {this.getPropValue("dropdownTitle")}
                     </h1>
                   )}
                   {dropdownDescription && (
                     <p className={this.decorateCSS("dropdownDescription")}>
-                      {dropdownDescription}
+                      {this.getPropValue("dropdownDescription")}
                     </p>
                   )}
                 </div>
@@ -516,7 +513,7 @@ class Navbar8 extends BaseNavigator {
                   {socialMediaLinksCondition && (
                     <div className={this.decorateCSS("socialMediaLinks")}>
                       <h1 className={this.decorateCSS("socialMediaLinksTitle")}>
-                        {dropdownSocialMediaTitle}
+                        {this.getPropValue("dropdownSocialMediaTitle")}
                       </h1>
                       <div className={this.decorateCSS("socialMediaLinksList")}>
                         {socialMediaLinks.map((item: any, index: number) => (
