@@ -1,4 +1,5 @@
 @import "./utitilities/viewports.module.scss";
+@import "../../styles/mixins";
 
 @media only screen and (max-width: $composer-tablet-width-lg) {
     :root{
@@ -374,16 +375,8 @@
 }
 
 .overlay{
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 100;
-  width: 100vw;
-  height: 100vh;
+  @include modalOverlay;
   background-color: var(--composer-overlay-color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 
