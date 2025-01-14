@@ -65,8 +65,8 @@ const ComposerLanguage = (props: ComposerLanguageProps) => {
     return (
       <Dropdown
         buttonLabel={composerToolsCurrentLanguage[title]}
+        labelClassName={`${styles["label"]} ${dropdownLabelClassName}`}
         dropdownButtonClassName={dropdownButtonClassName}
-        labelClassName={dropdownLabelClassName}
         icon={icon}
         iconClassName={iconClassName}
         disabled={false}
