@@ -1,4 +1,3 @@
-import { ReactNode } from "react";
 import { BaseNavigator } from "../../EditorComponent";
 import React from "react";
 import styles from "./navbar7.module.scss";
@@ -1116,12 +1115,6 @@ class Navbar7 extends BaseNavigator {
         ? absoluteLogo
         : defaultLogo;
         
-      console.log("transparentBackground", transparentBackground);
-      console.log("changeBackground", changeBackground);
-      console.log("isBigScreen", isBigScreen);
-      console.log("isMobileMenuOpen", isMobileMenuOpen);
-      
-
     const icons = this.castToObject<Icon[]>("icons");
     const menuItems = this.castToObject<MenuItem[]>("menuItems");
 
