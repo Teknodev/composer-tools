@@ -188,23 +188,6 @@
       right: var(--composer-gap-xl);
     }
 
-    // .mobileMenuOverlay {
-    //   display: none;
-    //   position: absolute;
-    //   top: 0;
-    //   right: 0;
-    //   height: 100vh;
-    //   width: 100%;
-    //   background: var(--composer-overlay-color);
-    //   transform: translateX(100%);
-    //   transition: all 0.3s ease-in-out;
-    //   z-index: 100;
-
-
-    //   &.open {
-    //     transform: translateX(0);
-    //   }
-
       .mobileMenu {
              position: absolute;
              top: 0;
@@ -327,7 +310,6 @@
           }
         }
       }
-    // }
 
     .divider {
       width: 2px;
@@ -419,9 +401,6 @@
       .closeIcon {
         display: block;
       }
-      // .mobileMenuOverlay {
-      //   display: flex;
-      //   justify-content: flex-end;
         .mobileMenu {
           display: flex;
           flex-direction: column;
@@ -459,7 +438,6 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .maxContent {
-      // .mobileMenuOverlay {
         .mobileMenu {
           padding-left: var(--composer-gap-md);
           padding-right: var(--composer-gap-md);
@@ -477,7 +455,6 @@
             font-weight: bold;
           }
         }
-      // }
     
       .logo {
         .logoImg {
