@@ -7,6 +7,8 @@ import styles from "./subscription-modal.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import ButtonNavigator from "components/button-navigator/button-navigator";
 
 class SubscriptionModal extends BaseModal {
   constructor(props?: any) {
@@ -60,20 +62,7 @@ class SubscriptionModal extends BaseModal {
       displayer: "Invalid Email Message",
       value: "Invalid email",
     });
-
-    this.addProp({
-      type: "string",
-      key: "buttonText",
-      displayer: "Button Text",
-      value: "Subscribe",
-    });
-
-    this.addProp({
-      type: "page",
-      key: "buttonUrl",
-      displayer: "Button Link",
-      value: "",
-    });
+    this.addProp(INPUTS.BUTTON("button", "Button", "Subscribe", null, null, null, "Primary"));
   }
 
   getName(): string {
@@ -87,7 +76,8 @@ class SubscriptionModal extends BaseModal {
     const placeholder = this.castToString(this.getPropValue("placeholder"));
     const errorMessage = this.castToString(this.getPropValue("errorMessage"));
     const invalidEmail = this.castToString(this.getPropValue("invalidEmail"));
-    const buttonText = this.castToString(this.getPropValue("buttonText"));
+
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
     const SubscriptionSchema = Yup.object().shape({
       email: Yup.string().email(invalidEmail).required(errorMessage),
@@ -105,14 +95,15 @@ class SubscriptionModal extends BaseModal {
 
             {image && <img className={this.decorateCSS("image")} src={image} alt="" />}
 
-            {(title || description || placeholder || buttonText) && (
+            {(title || description || placeholder || this.castToString(button.text)) && (
               <Base.VerticalContent className={this.decorateCSS("right")}>
-                <Base.VerticalContent className={this.decorateCSS("header")}>
-                  {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-                  {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
-                </Base.VerticalContent>
+                {(title || description) &&
+                  <Base.VerticalContent className={this.decorateCSS("header")}>
+                    {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                    {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+                  </Base.VerticalContent>}
 
-                {(placeholder || buttonText) && (
+                {(placeholder && this.castToString(button.text)) && (
                   <Formik
                     initialValues={{ email: "" }}
                     validationSchema={SubscriptionSchema}
@@ -122,26 +113,19 @@ class SubscriptionModal extends BaseModal {
                     }}
                   >
                     {({ values, isSubmitting }) =>
-                      (placeholder || buttonText) && (
-                        <Form className={this.decorateCSS("form")}>
-                          {placeholder && (
-                            <Base.VerticalContent className={this.decorateCSS("form-group")}>
-                              <Field type="email" name="email" placeholder={placeholder} className={this.decorateCSS("input")} />
-                              {errorMessage && <ErrorMessage name="email" component="div" className={this.decorateCSS("error")} />}
-                            </Base.VerticalContent>
-                          )}
+                      <Form className={this.decorateCSS("form")}>
+                        {placeholder && (
+                          <Base.VerticalContent className={this.decorateCSS("form-group")}>
+                            <Field type="email" name="email" placeholder={placeholder} className={this.decorateCSS("input")} />
+                            {errorMessage && <ErrorMessage name="email" component="div" className={this.decorateCSS("error")} />}
+                          </Base.VerticalContent>
+                        )}
 
-                          {values.email ? (
-                            <Base.Button type="submit" className={this.decorateCSS("button")} disabled={isSubmitting}>
-                              {this.getPropValue("buttonText")}
-                            </Base.Button>
-                          ) : (
-                            <ComposerLink path={this.getPropValue("buttonUrl")}>
-                              <Base.Button className={this.decorateCSS("button")}>{this.getPropValue("buttonText")}</Base.Button>
-                            </ComposerLink>
-                          )}
-                        </Form>
-                      )
+                        <Base.Button buttonType={button.type} className={this.decorateCSS("button")}
+                          disabled={isSubmitting}>
+                          {button.text}
+                        </Base.Button>
+                      </Form>
                     }
                   </Formik>
                 )}
