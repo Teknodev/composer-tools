@@ -53,7 +53,7 @@ class HTTP_CODES2 extends BaseHTTPCodes {
     const home = this.castToString(this.getPropValue("home"));
 
     return (
-      <Base.Container className={this.decorateCSS("container")} style={{ backgroundImage: `url(${this.getPropValue("backgroundImage")})` }} >
+      <Base.Container className={this.decorateCSS("container")} style={{ backgroundImage: `url(${this.getPropValue("backgroundImage")})` }}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
             {(this.castToString(label_404) || this.castToString(title)) && (
@@ -61,14 +61,10 @@ class HTTP_CODES2 extends BaseHTTPCodes {
                 <div className={this.decorateCSS("left-text")}>
                   {this.castToString(label_404) && (
                     <div className={this.decorateCSS("error-message")}>
-                      <div className={this.decorateCSS("text")}>
-                        {label_404}
-                      </div>
+                      <div className={this.decorateCSS("text")}>{label_404}</div>
                     </div>
                   )}
-                  {this.castToString(title) && (
-                    <div className={this.decorateCSS("title")}>{title}</div>
-                  )}
+                  {this.castToString(title) && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
                 </div>
               </div>
             )}
@@ -85,7 +81,7 @@ class HTTP_CODES2 extends BaseHTTPCodes {
             )}
           </div>
         </Base.MaxContent>
-      </Base.Container >
+      </Base.Container>
     );
   }
 }

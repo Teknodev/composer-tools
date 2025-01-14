@@ -252,7 +252,7 @@ class Stats4Page extends BaseStats {
   }
 
   init() {
-    this.castToObject<Stat[]>("statItems").map((card, index) => {
+    this.castToObject<Stat[]>("statItems").map((_, index) => {
       this.setComponentState(`number-${index}`, 0);
       this.setComponentState(`numberForControl-${index}`, 0);
     });
@@ -343,8 +343,8 @@ class Stats4Page extends BaseStats {
   };
 
   render() {
-    const mainTitle = this.getPropValue("mainTitle", { as_string: true });
-    const mainDescription = this.getPropValue("mainDescription", { as_string: true });
+    const mainTitle = this.castToString(this.getPropValue("mainTitle"));
+    const mainDescription = this.castToString(this.getPropValue("mainDescription"));
     const faqs = this.castToObject<Faq[]>("faqItems");
     const statItems = this.castToObject<Stat[]>("statItems");
     const expandIcon = this.getPropValue("expandIcon");
@@ -378,7 +378,7 @@ class Stats4Page extends BaseStats {
                         <div className={this.decorateCSS("faq-item")} key={index}>
                           {(titleExist || item.icon) && (
                             <header className={this.decorateCSS("faq-item-header")}>
-                              {titleExist && <Base.P className={this.decorateCSS("faq-item-title")}>{item.title}</Base.P>}
+                              {titleExist && <Base.H5 className={this.decorateCSS("faq-item-title")}>{item.title}</Base.H5>}
                               <button
                                 className={this.decorateCSS("faq-item-button")}
                                 onClick={() => {
@@ -405,7 +405,7 @@ class Stats4Page extends BaseStats {
                           )}
                           {contentExist && (
                             <div className={`${this.decorateCSS("faq-item-content")}  ${this.getComponentState("selectedFaqIndex") === index ? this.decorateCSS("show-faq-item") : ""}`}>
-                              <Base.P>{item.content}</Base.P>
+                              <Base.P className={this.decorateCSS("faq-text")}>{item.content}</Base.P>
                             </div>
                           )}
                           <hr className={this.decorateCSS("bottom-line")} />

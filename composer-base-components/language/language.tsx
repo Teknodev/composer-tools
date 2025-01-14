@@ -28,6 +28,8 @@ interface AccordionProps extends ComposerLanguageCommonProps {
   languageAccordionClassName?: string;
   itemClassName?: string;
   openClassName?: string;
+  accordionIconClassName?: string;
+  titleClassName?: string;
 }
 
 type ComposerLanguageProps = DropdownProps | AccordionProps;
@@ -91,8 +93,10 @@ const ComposerLanguage = (props: ComposerLanguageProps) => {
       itemClassName,
       openClassName,
       languageAccordionClassName,
-      icon = <ArrowDropDown />,
+      icon = "MdArrowDropDown",
       title = "name",
+      accordionIconClassName,
+      titleClassName
     } = props;
     return (
       <Accordion
@@ -101,6 +105,8 @@ const ComposerLanguage = (props: ComposerLanguageProps) => {
         contentClassName={contentClassName}
         openClassName={openClassName}
         icon={icon}
+        accordionIconClassName={accordionIconClassName}
+        titleClassName={titleClassName}
       >
         <ul className={`${styles["accordionList"]} ${languageAccordionClassName}`}>
         {composerToolsLanguages.map((lang) => (

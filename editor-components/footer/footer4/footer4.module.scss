@@ -2,6 +2,7 @@
 
 .container {
   width: 100%;
+
   .max-content {
     .footer-page {
       display: flex;
@@ -33,12 +34,14 @@
             color: var(--composer-font-color-primary);
             font-size: 1rem;
           }
+
           .images {
             .image-container {
               display: flex;
               flex-wrap: wrap;
               align-items: center;
               gap: var(--composer-gap-md);
+
               .image {
                 width: var(--composer-gap-xl);
                 height: var(--composer-gap-xl);
@@ -57,12 +60,14 @@
             font-size: 1.5rem;
             color: var(--composer-font-color-primary);
           }
+
           .text {
             margin: 0;
             font-size: 1rem;
             color: var(--composer-font-color-primary);
           }
         }
+
         .right {
           display: flex;
           flex-direction: column;
@@ -70,14 +75,16 @@
 
           .form {
             display: flex;
-            align-items: center;
             justify-content: flex-end;
 
             .input-element {
+              position: relative;
               display: flex;
               width: 100%;
+              height: 100%;
               flex-direction: column;
               gap: var(--composer-gap-xs);
+
               .input {
                 width: 100%;
                 border: none;
@@ -92,6 +99,7 @@
                 padding: var(--composer-gap-sm);
                 font-size: 1rem;
               }
+
               .input:focus {
                 outline: none;
               }
@@ -101,15 +109,17 @@
               }
 
               .error {
+                position: absolute;
+                bottom: -20px;
+                left: 0;
                 color: var(--danger-color);
               }
             }
 
-            .button {
-              word-break: normal;
-              border-radius: 0;
-              border-top-right-radius: var(--composer-border-radius-sm);
-              border-bottom-right-radius: var(--composer-border-radius-sm);
+            .button{
+              content: "";
+              border-top-left-radius: 0;
+              border-bottom-left-radius: 0;
             }
           }
 
@@ -135,7 +145,6 @@
     .bottom {
       display: flex;
       justify-content: space-between;
-      align-items: center;
       gap: var(--composer-gap-md);
       width: 100%;
 
@@ -200,6 +209,7 @@
                 flex-wrap: wrap;
                 align-items: center;
                 gap: var(--composer-gap-md);
+
                 .image {
                   width: var(--composer-gap-lg);
                   height: var(--composer-gap-lg);
@@ -223,11 +233,10 @@
                   border-radius: var(--composer-border-radius-sm);
                   border: 1px solid var(--composer-tertiary-color);
                 }
-              }
 
-              .button {
-                width: 100%;
-                border-radius: var(--composer-border-radius-sm);
+                .error {
+                  position: unset;
+                }
               }
             }
           }
@@ -238,7 +247,6 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        align-items: baseline;
         gap: var(--composer-gap-xs);
         width: 100%;
 
@@ -254,9 +262,7 @@
           color: var(--composer-font-color-primary);
         }
 
-        .links {
-          justify-content: flex-start;
-        }
+        .links {}
       }
     }
   }
@@ -273,6 +279,16 @@
           .list-group,
           .right {
             max-width: 100%;
+          }
+        }
+      }
+
+      .bottom {
+        .links {
+          justify-content: start;
+
+          &.center {
+            justify-content: center;
           }
         }
       }

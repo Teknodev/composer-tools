@@ -16,62 +16,6 @@ interface IAnimationProps {
   startingAnimation: string;
 }
 
-function SampleNextArrow(props: any) {
-  const { className, style, onClick, customOnClick, disabled } = props;
-  return (
-    <div
-      className={`${className} ${styles["arrow-next"]}`}
-      onClick={() => {
-        if (!disabled) {
-          onClick();
-          customOnClick();
-        }
-      }}
-    ></div>
-  );
-}
-function SampleNextArrowNoImage(props: any) {
-  const { className, style, onClick, customOnClick, disabled } = props;
-  return (
-    <div
-      className={`${className} ${styles["arrow-next-no-image"]}`}
-      onClick={() => {
-        if (!disabled) {
-          onClick();
-          customOnClick();
-        }
-      }}
-    ></div>
-  );
-}
-function SamplePrevArrow(props: any) {
-  const { className, style, onClick, customOnClick, disabled } = props;
-  return (
-    <div
-      className={`${className} ${styles["arrow-prev"]}`}
-      onClick={() => {
-        if (!disabled) {
-          onClick();
-          customOnClick();
-        }
-      }}
-    ></div>
-  );
-}
-function SamplePrevArrowNoImage(props: any) {
-  const { className, style, onClick, customOnClick, disabled } = props;
-  return (
-    <div
-      className={`${className} ${styles["arrow-prev-no-image"]}`}
-      onClick={() => {
-        if (!disabled) {
-          onClick();
-          customOnClick();
-        }
-      }}
-    ></div>
-  );
-}
 class Header8 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
@@ -281,7 +225,6 @@ class Header8 extends BaseHeader {
   }
 
   render() {
-    let currentSlide = this.getComponentState("currentIndex");
     let slideCount = this.castToObject<ISliderData[]>("slider").length;
     let sliderEffect = this.getPropValue("slider_animation") ? true : false;
     const allSlidesWithoutImages = this.castToObject<ISliderData[]>("slider").every(
@@ -311,26 +254,15 @@ class Header8 extends BaseHeader {
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        <ComposerSlider {...settings} ref={sliderRef} className={allSlidesWithoutImages ? this.decorateCSS("carousel-no-image") : this.decorateCSS("carousel")}>
+        <ComposerSlider {...settings} ref={sliderRef} className={`${this.decorateCSS("carousel")} ${allSlidesWithoutImages && this.decorateCSS("no-image")}`}>
           {this.castToObject<ISliderData[]>("slider").map((item: ISliderData, index: number) => (
-            <div
-              className={item.image ? (
-                this.getPropValue("disabled")
-                  ? this.decorateCSS("slide-disabled-animate") : this.decorateCSS("slide") +
-                  " " +
-                  ((this.getComponentState("centerSlide")) == index + 1 && this.decorateCSS("disabled")
-                    ? this.decorateCSS("active-disabled")
-                    : this.decorateCSS("active"))
-              ) : (
-                this.getPropValue("disabled")
-                  ? this.decorateCSS("slide-disabled-animate") : this.decorateCSS("slide-no-image") +
-                  " " +
-                  ((this.getComponentState("centerSlide")) == index + 1 && this.decorateCSS("disabled")
-                    ? this.decorateCSS("active-disabled")
-                    : this.decorateCSS("active"))
-              )}
-            >
-              <div className={this.getPropValue("overlay") ? this.decorateCSS("image-wrapper-overlay") : this.decorateCSS("image-wrapper")}>
+            <div className={`
+              ${this.decorateCSS("slide")}
+              ${!this.getPropValue("slider_animation") ? this.decorateCSS("disabled-animate") : ""}
+              ${!item.image ? this.decorateCSS("slide-no-image") : ""}
+              ${(this.getComponentState("centerSlide") === index + 1) && this.decorateCSS("active")}
+            `}>
+              <div className={`${this.decorateCSS("image-wrapper")} ${this.getPropValue("overlay") && this.decorateCSS("overlay")}`}>
                 {item.image && (
                   <img src={item.image} alt={item.title} className={this.decorateCSS("image")} />
                 )}
@@ -338,48 +270,29 @@ class Header8 extends BaseHeader {
             </div>
           ))}
         </ComposerSlider>
-        <Base.Container className={allSlidesWithoutImages ? this.decorateCSS("max-content-no-image") : this.decorateCSS("max-content")}>
-          <Base.MaxContent className={this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("image") ? this.decorateCSS("info-box") : this.decorateCSS("info-box-no-image")}>
-            {this.castToString(this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("topWriting")) &&
+        <Base.Container className={`${this.decorateCSS("max-content")}`}>
+          {this.getPropValue("slider").length > 0 && (
+            <Base.MaxContent className={`${this.decorateCSS("info-box")} ${!this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("image") && this.decorateCSS("no-image")}`}>
+              {this.castToString(this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("topWriting")) &&
+                <div
+                  className={`${this.decorateCSS("tag")} ${this.getPropValue("text_animation")
+                    ? `animate__animated ${this.getComponentState("titleAnimationClass")}`
+                    : ""
+                    }`}
+                  onAnimationEnd={() => {
+                    if (this.getPropValue("text_animation")) {
+                      this.handleAnimationEnd({
+                        animationState: "titleAnimationClass",
+                        startingAnimation: "",
+                      });
+                    }
+                  }}
+                >
+                  {this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("topWriting")}
+                </div>
+              }
               <div
-                className={`${this.decorateCSS("tag")} ${this.getPropValue("text_animation")
-                  ? `animate__animated ${this.getComponentState("titleAnimationClass")}`
-                  : ""
-                  }`}
-                onAnimationEnd={() => {
-                  if (this.getPropValue("text_animation")) {
-                    this.handleAnimationEnd({
-                      animationState: "titleAnimationClass",
-                      startingAnimation: "",
-                    });
-                  }
-                }}
-              >
-                {this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("topWriting")}
-              </div>
-            }
-            <div
-              className={`${this.decorateCSS("title")} ${this.getPropValue("text_animation")
-                ? `animate__animated ${this.getComponentState("descriptionAnimationClass")}`
-                : ""
-                }`}
-              onAnimationEnd={() => {
-                if (this.getPropValue("text_animation")) {
-                  this.handleAnimationEnd({
-                    animationState: "descriptionAnimationClass",
-                    startingAnimation: "",
-                  });
-                }
-              }}
-            >
-              {this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("title")}
-            </div>
-
-
-            {this.getPropValue("line") ? <div className={this.decorateCSS("line")}></div> : <div></div>}
-            {this.castToString(this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("description")) &&
-              <div
-                className={`${this.decorateCSS("description")} ${this.getPropValue("text_animation")
+                className={`${this.decorateCSS("title")} ${this.getPropValue("text_animation")
                   ? `animate__animated ${this.getComponentState("descriptionAnimationClass")}`
                   : ""
                   }`}
@@ -392,38 +305,58 @@ class Header8 extends BaseHeader {
                   }
                 }}
               >
-                {this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("description")}
+                {this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("title")}
               </div>
-            }
-            <div className={this.decorateCSS("pagination")}>
-              <div className={this.decorateCSS("current-page")}>{(this.getComponentState("centerSlide") + 1)}</div>
-              <div className={this.decorateCSS("slash")}> / </div>
-              <div className={this.decorateCSS("total-page")}>{slideCount}</div>
-            </div>
-            <div className={this.decorateCSS("arrow-wrapper")}>
-              <div className={this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("image") ? this.decorateCSS("arrow-prev-wrapper") : this.decorateCSS("arrow-prev-wrapper-no-image")} onClick={() => {
-                sliderRef.current.slickPrev();
-              }}>
-                <div className={this.decorateCSS("arrow-prev")}>
-                  <ComposerIcon
-                    name={this.getPropValue("previousArrow")}
-                    propsIcon={{ className: this.decorateCSS("icon") }}
-                  />
-                </div>
-              </div>
-              <div className={this.getPropValue("slider")[this.getComponentState("centerSlide")].getPropValue("image") ? this.decorateCSS("arrow-next-wrapper") : this.decorateCSS("arrow-next-wrapper-no-image")} onClick={() => {
-                sliderRef.current.slickNext();
-              }}>
-                <div className={this.decorateCSS("arrow-next")}>
-                  <ComposerIcon
-                    name={this.getPropValue("nextArrow")}
-                    propsIcon={{ className: this.decorateCSS("icon") }}
-                  />
-                </div>
-              </div>
-            </div>
-          </Base.MaxContent>
 
+
+              {this.getPropValue("line") ? <div className={this.decorateCSS("line")}></div> : <div></div>}
+              {this.castToString(this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("description")) &&
+                <div
+                  className={`${this.decorateCSS("description")} ${this.getPropValue("text_animation")
+                    ? `animate__animated ${this.getComponentState("descriptionAnimationClass")}`
+                    : ""
+                    }`}
+                  onAnimationEnd={() => {
+                    if (this.getPropValue("text_animation")) {
+                      this.handleAnimationEnd({
+                        animationState: "descriptionAnimationClass",
+                        startingAnimation: "",
+                      });
+                    }
+                  }}
+                >
+                  {this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("description")}
+                </div>
+              }
+              <div className={this.decorateCSS("pagination")}>
+                <div className={this.decorateCSS("current-page")}>{(this.getComponentState("centerSlide") + 1)}</div>
+                <div className={this.decorateCSS("slash")}> / </div>
+                <div className={this.decorateCSS("total-page")}>{slideCount}</div>
+              </div>
+              <div className={this.decorateCSS("arrow-wrapper")}>
+                <div className={`${this.decorateCSS("arrow-prev-wrapper")} ${this.decorateCSS("prev")} ${!this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("image") && this.decorateCSS("no-image")}`} onClick={() => {
+                  sliderRef.current.slickPrev();
+                }}>
+                  <div className={this.decorateCSS("arrow-prev")}>
+                    <ComposerIcon
+                      name={this.getPropValue("previousArrow")}
+                      propsIcon={{ className: this.decorateCSS("icon") }}
+                    />
+                  </div>
+                </div>
+                <div className={`${this.decorateCSS("arrow-next-wrapper")} ${this.decorateCSS("next")} ${!this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("image") && this.decorateCSS("no-image")}`} onClick={() => {
+                  sliderRef.current.slickNext();
+                }}>
+                  <div className={this.decorateCSS("arrow-next")}>
+                    <ComposerIcon
+                      name={this.getPropValue("nextArrow")}
+                      propsIcon={{ className: this.decorateCSS("icon") }}
+                    />
+                  </div>
+                </div>
+              </div>
+            </Base.MaxContent>
+          )}
         </Base.Container>
       </Base.Container>
     );

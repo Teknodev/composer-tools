@@ -117,7 +117,7 @@
           align-items: center;
           font-size: 1rem;
           border-radius: 50px;
-          padding: 5px;
+          padding: var(--composer-gap-xs);
         }
       }
 
@@ -134,19 +134,17 @@
         transition: all 0.15s;
         cursor: pointer;
         z-index: 2;
-        margin-top: 50px;
+        margin-top: var(--composer-gap-xl);
 
         .title {
           color: var(--composer-font-color-primary);
           font-size: 6.5rem;
-          line-height: 1.2;
           margin: 0 0 var(--composer-gap-sm) 0;
         }
 
         .sub_title {
           font-size: 4rem;
           color: var(--composer-tertiary-color);
-          line-height: 1.2;
           margin: 0 0 var(--composer-gap-md) 0;
         }
 
@@ -155,7 +153,6 @@
           text-transform: uppercase;
           font-weight: 400;
           color: var(--composer-tertiary-color);
-          line-height: 1.2;
           margin: 0 0 var(--composer-gap-md) 0;
         }
 
@@ -164,7 +161,6 @@
           font-size: 1.5rem;
           font-weight: 700;
           display: inline-block;
-          line-height: 1.2;
           margin-bottom: var(--composer-gap-md);
         }
 
