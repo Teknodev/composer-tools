@@ -4,11 +4,11 @@ import { BaseHeader } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "composer-tools/composer-base-components/base/base";
 import { Form, Formik } from "formik";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 interface InputItem {
-  placeholder: JSX.Element,
+  placeholder: JSX.Element;
 }
-
 
 class Header15 extends BaseHeader {
   constructor(props?: any) {
@@ -18,15 +18,14 @@ class Header15 extends BaseHeader {
       type: "boolean",
       key: "overlay",
       displayer: "Overlay",
-      value: false,
+      value: true,
     });
 
     this.addProp({
       type: "image",
       key: "background-image",
       displayer: "Background Image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6765394d0655f8002ca9e088?alt=media",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6765394d0655f8002ca9e088?alt=media",
     });
 
     this.addProp({
@@ -40,8 +39,7 @@ class Header15 extends BaseHeader {
       type: "string",
       key: "description",
       displayer: "Description",
-      value:
-        "From local fare to restaurant favorites, our wide selection of food will definitely satisfy all your cravings.",
+      value: "From local fare to restaurant favorites, our wide selection of food will definitely satisfy all your cravings.",
     });
     this.addProp({
       type: "array",
@@ -62,7 +60,7 @@ class Header15 extends BaseHeader {
               displayer: "Placeholder",
               value: "Your Order",
             },
-          ]
+          ],
         },
         {
           type: "object",
@@ -75,23 +73,12 @@ class Header15 extends BaseHeader {
               displayer: "Placeholder",
               value: "Your Address",
             },
-          ]
-        }
-      ]
-    })
+          ],
+        },
+      ],
+    });
 
-    this.addProp({
-      type: "string",
-      key: "buttonText",
-      displayer: "Button Text",
-      value: "Make Order",
-    });
-    this.addProp({
-      type: "page",
-      key: "buttonLink",
-      displayer: "Button Link",
-      value: "",
-    });
+    this.addProp(INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "Primary"));
   }
 
   getName(): string {
@@ -99,7 +86,10 @@ class Header15 extends BaseHeader {
   }
 
   render() {
-    const inputs = this.castToObject<InputItem[]>("inputs")
+    const inputs = this.castToObject<InputItem[]>("inputs");
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+
+    const backgroundImageExist = this.getPropValue("background-image");
 
     function getInitialValue() {
       let value: any = {};
@@ -107,42 +97,38 @@ class Header15 extends BaseHeader {
       return value;
     }
     return (
-      <Base.Container className={this.decorateCSS("container")}
+      <Base.Container
+        className={this.decorateCSS("container")}
         style={{
           backgroundImage: `url(${this.getPropValue("background-image")})`,
-        }}>
-        {this.getPropValue("overlay") ? (<div className={this.decorateCSS("overlay")}></div>) : null}
+        }}
+      >
+        {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")}></div>}
         <div className={this.decorateCSS("max-content")}>
-          <Base.MaxContent
-            className={`${this.decorateCSS("wrapper")} ${this.getPropValue("true") && this.decorateCSS("wrapper-reverse")}`}>
-            <div className={this.getPropValue("background-image") ? this.decorateCSS("left") : this.decorateCSS("left-no-image")}>
+          <Base.MaxContent className={`${this.decorateCSS("wrapper")} ${this.getPropValue("true") && this.decorateCSS("wrapper-reverse")}`}>
+            <div className={`${this.decorateCSS("left")} ${!backgroundImageExist && this.decorateCSS("left-no-image")}`}>
               <div className={this.decorateCSS("content-wrapper")}>
-                <div className={this.decorateCSS("content")}>
-                  {this.castToString(this.getPropValue("title")) && (
-                    <div className={this.getPropValue("background-image") ? this.decorateCSS("title") : this.decorateCSS("title-no-image")}>
-                      {this.getPropValue("title")}
-                    </div>
-                  )}
+                <Base.VerticalContent className={this.decorateCSS("content")}>
+                  {this.castToString(this.getPropValue("title")) && <Base.SectionTitle className={`${this.decorateCSS("title")} ${backgroundImageExist && this.decorateCSS("title-with-image")}`}>{this.getPropValue("title")}</Base.SectionTitle>}
                   {this.castToString(this.getPropValue("description")) && (
-                    <div className={this.getPropValue("background-image") ? this.decorateCSS("description") : this.decorateCSS("description-no-image")}>
-                      {this.getPropValue("description")}
-                    </div>
+                    <Base.SectionDescription className={`${this.decorateCSS("description")} ${backgroundImageExist && this.decorateCSS("description-with-image")}`}>{this.getPropValue("description")}</Base.SectionDescription>
                   )}
-                  {((inputs.length > 0)) && (
-                    <div className={this.getPropValue("background-image") ? this.decorateCSS("form-display") : this.decorateCSS("form-display-no-image")}>
+                  {inputs.length > 0 && (
+                    <div className={`${this.decorateCSS("form-display")} ${!backgroundImageExist && this.decorateCSS("form-display-no-image")}`}>
                       <div className={this.decorateCSS("form-wrapper")}>
                         <Formik
                           initialValues={{ ...getInitialValue() }}
                           onSubmit={(data, { resetForm }) => {
-                            this.insertForm("Contact Us", data);
+                            this.insertForm("Make Order", data);
                             resetForm();
                           }}
                         >
                           {({ handleChange, values }) => (
                             <Form className={this.decorateCSS("form")}>
                               {inputs.map((input: InputItem, index: number) => {
-                                if (this.castToString(input.placeholder)) {
-                                  return (
+                                const placeholderExist = this.castToString(input.placeholder);
+                                return (
+                                  placeholderExist && (
                                     <div className={this.decorateCSS("input")}>
                                       <input
                                         placeholder={this.castToString(input.placeholder)}
@@ -150,19 +136,16 @@ class Header15 extends BaseHeader {
                                         onChange={handleChange}
                                         value={values["input_" + index]}
                                         name={"input_" + index}
-                                        className={this.decorateCSS("placeholder")}
+                                        className={`${this.decorateCSS("placeholder")} ${!backgroundImageExist && this.decorateCSS("placeholder-no-image")}`}
                                       />
                                     </div>
                                   )
-                                }
-                                else {
-                                  return "";
-                                }
+                                );
                               })}
-                              {this.castToString(this.getPropValue("buttonText")) && (
+                              {this.castToString(button.text) && (
                                 <div className={this.decorateCSS("button-box")}>
-                                  <Base.Button className={this.decorateCSS("button")} type="submit">
-                                    {this.getPropValue("buttonText")}
+                                  <Base.Button buttonType={button.type} className={this.decorateCSS("button")} type="submit">
+                                    {button.text}
                                   </Base.Button>
                                 </div>
                               )}
@@ -172,23 +155,21 @@ class Header15 extends BaseHeader {
                       </div>
                     </div>
                   )}
-                  {((inputs.length == 0) && this.castToString(this.getPropValue("buttonText"))) && (
+                  {inputs.length == 0 && this.castToString(button.text) && (
                     <div className={this.decorateCSS("button-box")}>
-                      <ComposerLink path={this.getPropValue("buttonLink")}>
-                        <Base.Button className={this.decorateCSS("button")}>
-                          {this.getPropValue("buttonText")}
+                      <ComposerLink path={button.url}>
+                        <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                          {button.text}
                         </Base.Button>
                       </ComposerLink>
-
                     </div>
                   )}
-
-                </div>
+                </Base.VerticalContent>
               </div>
             </div>
           </Base.MaxContent>
         </div>
-      </Base.Container >
+      </Base.Container>
     );
   }
 }

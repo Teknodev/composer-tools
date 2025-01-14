@@ -115,7 +115,7 @@
   pointer-events: auto;
 
   .max-content {
-    max-width: 100%;
+    width: 100%;
     margin: auto;
     display: flex;
     justify-content: center;
@@ -254,7 +254,6 @@
               z-index: 3;
 
               .background3 {
-
                 &.animate {
                   animation: moveRight 1s ease;
                 }
@@ -277,7 +276,6 @@
 
                 &.animate {
                   animation: moveLeft 1s ease;
-
                 }
               }
             }
@@ -376,12 +374,10 @@
   }
 }
 
-
-@container (max-width: #{$composer-tablet-width}) {
+@container (max-width: #{$composer-tablet-width-lg}) {
   .container {
     .max-content {
       .wrapper {
-
         .nextArrow,
         .prevArrow {
           width: 40px;
@@ -389,16 +385,16 @@
           display: none;
 
           &.nextArrow {
-            right: 40px;
+            right: var(--composer-gap-lg);
           }
 
           &.prevArrow {
-            left: 40px;
+            left: var(--composer-gap-lg);
           }
         }
 
         .dots {
-          bottom: 40px;
+          bottom: var(--composer-gap-lg);
           display: flex;
         }
 
@@ -457,27 +453,26 @@
   }
 }
 
-@container (max-width: #{$composer-phone-width-sm}) {
+@container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
       .wrapper {
-
         .nextArrow,
         .prevArrow {
           width: 35px;
           height: 35px;
 
           &.nextArrow {
-            right: 20px;
+            right: var(--composer-gap-md);
           }
 
           &.prevArrow {
-            left: 20px;
+            left: var(--composer-gap-md);
           }
         }
 
         .dots {
-          bottom: 20px;
+          bottom: var(--composer-gap-md);
         }
 
         .carousel {

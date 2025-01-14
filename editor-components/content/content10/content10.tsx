@@ -82,8 +82,8 @@ class Content10 extends BaseContent {
       },
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "Next", "", "Primary"),
-        INPUTS.BUTTON("button", "Button", "Back", "", "Primary")
+        INPUTS.BUTTON("button", "Button", "Next", "", null, null, "Primary"),
+        INPUTS.BUTTON("button", "Button", "Back", "", null, null, "Primary")
       ],
     });
 

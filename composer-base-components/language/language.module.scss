@@ -1,3 +1,6 @@
+.label{
+    color: var(--composer-font-color-primary);
+}
 
 .accordionList{
     display: flex;
@@ -6,6 +9,7 @@
     list-style-type: none;
     padding-left: var(--composer-gap-sm);
     margin: 0;
+    color: var(--composer-font-color-primary);
 
     .accordionLanguageOption{
         display: flex;   

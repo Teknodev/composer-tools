@@ -31,7 +31,7 @@ class Content13 extends BaseContent {
       value:
         "A design-led approach guides the team, implementing practices, products and services that are thoughtful and environmentally sound. Family of professionals that creates intelligent designs that help the face of hospitality.",
     });
-    this.addProp(INPUTS.BUTTON("button", "Button", "About Resort", "", "Primary"));
+    this.addProp(INPUTS.BUTTON("button", "Button", "About Resort", "", null, null, "Primary"));
 
     this.addProp({
       type: "string",

@@ -397,13 +397,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    z-index: 100;
 
     &.sticky,
     &.stickycolorful,
     &.stickytransparent {
         position: sticky;
         top: 0;
-        z-index: 100;
         box-shadow: 0px 2px 5px rgba(var(--composer-primary-color-rgb), 0.2);
     }
 
@@ -420,7 +420,7 @@
             position: absolute;
             top: 0;
             left: 0;
-            z-index: 2;
+            z-index: 100;
             background: transparent;
             color: white;
         }
@@ -448,5 +448,6 @@
 .scrolled{
     background: var(--composer-html-background) !important;
     color: var(--composer-font-color-primary) !important;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
 }
 

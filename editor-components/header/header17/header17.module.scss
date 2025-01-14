@@ -8,6 +8,9 @@
     width: 100%;
     display: flex;
     overflow: hidden;
+    > div {
+      width: 100% !important;
+    }
     .slider-content {
       position: relative;
       width: 100%;
@@ -48,7 +51,6 @@
             flex-direction: column;
             justify-content: center;
             gap: var(--composer-gap-sm);
-
             height: auto;
             min-height: 30%;
             .title {
@@ -56,7 +58,6 @@
               height: fit-content;
               margin: 0;
               color: var(--composer-tertiary-color);
-              white-space: normal;
             }
 
             .description {
@@ -114,10 +115,21 @@
       .slider-content {
         .sub-container {
           .sub-content {
+            bottom: var(--composer-gap-sm);
+
             .card {
               left: 0%;
+              width: 100%;
+              min-width: auto;
+
+              .description {
+                margin-bottom: var(--composer-gap-sm);
+              }
             }
-            bottom: var(--composer-gap-sm);
+            .button {
+              right: var(--composer-gap-sm);
+              bottom: var(--composer-gap-sm);
+            }
           }
         }
         .next-icon,

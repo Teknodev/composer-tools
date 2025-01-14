@@ -69,7 +69,6 @@
             flex-direction: column;
             gap: var(--composer-gap-md);
             &.no-bg {
-              .title,
               .description {
                 color: var(--composer-font-color-primary);
                 width: 100%;
@@ -79,7 +78,12 @@
             .title {
               font-size: 5rem;
               width: 50%;
+              margin: 0;
+
+              &.title-with-image{
               color: black;
+
+              }
             }
             .description {
               width:50%;

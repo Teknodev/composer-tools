@@ -4,6 +4,7 @@ import styles from "./header21.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type CardState = {
   subtitle: JSX.Element;
@@ -11,11 +12,7 @@ type CardState = {
   description: JSX.Element;
 };
 
-type Button = {
-  buttonText: JSX.Element;
-  buttonLink: string;
-  buttonIcon: string;
-};
+type Button = INPUTS.CastedButton;
 
 class Header21 extends BaseHeader {
   constructor(props?: any) {
@@ -51,33 +48,7 @@ class Header21 extends BaseHeader {
       type: "array",
       key: "buttons",
       displayer: "Buttons",
-      value: [
-        {
-          type: "object",
-          key: "button",
-          displayer: "Button",
-          value: [
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Start Shopping",
-            },
-            {
-              type: "page",
-              key: "buttonLink",
-              displayer: "Url",
-              value: "",
-            },
-            {
-              type: "icon",
-              key: "buttonIcon",
-              displayer: "Button Icon",
-              value: "IoIosArrowForward",
-            },
-          ],
-        },
-      ],
+      value: [INPUTS.BUTTON("button", "Button", "Start Shopping", "", "IoIosArrowForward", null, "Primary")],
     });
 
     this.addProp({
@@ -124,21 +95,21 @@ class Header21 extends BaseHeader {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
             {cardExist && (
-              <div className={image ? this.decorateCSS("card") : this.decorateCSS("card-no-image")}>
-                <Base.VerticalContent className={image ? this.decorateCSS("card-box") : this.decorateCSS("card-box-no-image")}>
+              <div className={`${this.decorateCSS("card")} ${!image && this.decorateCSS("card-no-image")}`}>
+                <Base.VerticalContent className={`${this.decorateCSS("card-box")} ${!image && this.decorateCSS("card-box-no-image")}`}>
                   {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("card-subtitle")}>{card.subtitle}</Base.SectionSubTitle>}
                   {titleExist && <Base.SectionTitle className={this.decorateCSS("card-title")}>{card.title}</Base.SectionTitle>}
                   {descExist && <Base.SectionDescription className={this.decorateCSS("card-description")}>{card.description}</Base.SectionDescription>}
                   {buttons.length > 0 && (
                     <div className={this.decorateCSS("buttons")}>
                       {buttons.map((button: Button, index: number) => {
-                        const buttonTextExist = this.castToString(button.buttonText);
+                        const buttonTextExist = this.castToString(button.text);
                         return (
-                          (buttonTextExist || button.buttonIcon) && (
-                            <ComposerLink path={button.buttonLink}>
-                              <Base.Button key={index} className={this.decorateCSS("card-button")}>
-                                {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{button.buttonText}</Base.P>}
-                                {button.buttonIcon && <ComposerIcon name={button.buttonIcon} propsIcon={{ className: this.decorateCSS("button-icon") }} />}
+                          (buttonTextExist || button.icon) && (
+                            <ComposerLink path={button.url}>
+                              <Base.Button buttonType={button.type} key={index} className={this.decorateCSS("card-button")}>
+                                {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
+                                {button.icon && <ComposerIcon name={button.icon} propsIcon={{ className: this.decorateCSS("button-icon") }} />}
                               </Base.Button>
                             </ComposerLink>
                           )
@@ -150,7 +121,7 @@ class Header21 extends BaseHeader {
               </div>
             )}
             {image && (
-              <div className={cardExist ? this.decorateCSS("image-box") : this.decorateCSS("image-box-full")}>
+              <div className={`${this.decorateCSS("image-box")} ${!cardExist && this.decorateCSS("image-box-full")}`}>
                 <button
                   className={this.decorateCSS("button")}
                   onClick={() => {
