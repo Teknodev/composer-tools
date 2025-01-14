@@ -1,8 +1,9 @@
-@import "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss";
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
 .container {
   display: flex;
   flex-direction: column;
+  transition: all 0.3s ease;
 }
 
 .maxContent {
@@ -85,26 +86,6 @@
   background-color: var(--composer-html-background);
 }
 
-.active {
-  background-color: var(--composer-html-background);
-  .max-content {
-    .bar {
-      .socialMediaBox {
-        .title,
-        .subtitle {
-          color: var(--composer-font-color-primary);
-        }
-      }
-    }
-    .navbar {
-      .hamburgerIcon {
-        z-index: 20;
-        color: var(--composer-font-color-primary);
-      }
-    }
-  }
-}
-
 .dropdownMenu {
   height: 0;
   width: 100%;
@@ -112,12 +93,12 @@
   transition: all 0.3s ease;
 
   &.active {
-    height: 83vh;
+    height: 85vh;
     overflow: visible;
-    transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    transition: all 0.3s ease;
   }
 
   .up {
@@ -235,9 +216,19 @@
     .hamburgerIcon {
       color: white;
     }
+    .localizationLabel{
+      color: white;
+    }
+    .languageIcon{
+      color: white;
+    }
   }
 }
 
+.filledBackground{
+  background-color: var(--composer-html-background) !important;
+  transition: all 0.3s ease;
+}
 @container (max-width: #{$composer-tablet-width-lg}) {
   .maxContent {
     .socialMediaBox {
@@ -257,35 +248,28 @@
       }
     }
 
-    .downPage {
-      justify-content: center;
-      .up {
-        gap: var(--composer-gap-md);
-        margin: 0 var(--composer-gap-xl);
+  }
+  .dropdownMenu {
+    justify-content: center;
+    .up {
+      gap: var(--composer-gap-xl);
+      margin: 0 var(--composer-gap-lg);
 
-        .leftPage {
-          display: none;
-        }
+      .rightPage {
+        width: 100%;
+        text-align: center;
 
-        .rightPage {
-          width: 100%;
-          text-align: center;
-
-          .items {
-            .item-title {
-              font-size: 2.5rem;
-              text-align: center;
-            }
+        .items {
+          .item-title {
+            font-size: 2.5rem;
+            text-align: center;
           }
         }
       }
-
-      .line {
-        display: none;
-      }
-
-      .down {
-        display: none;
+    }
+    .down{
+      .text{
+        font-size: 1rem;
       }
     }
   }
@@ -305,7 +289,7 @@
       }
     }
   }
-  .downPage {
+  .dropdownMenu {
     .up {
       .leftPage {
         display: none;

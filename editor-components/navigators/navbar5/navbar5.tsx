@@ -346,10 +346,20 @@ class Navbar5 extends BaseNavigator {
     });
 
     this.setComponentState("isScrolled", false);
+    this.setComponentState("isBigScreen", false);
     this.setComponentState("navActive", false);
-    this.setComponentState("dropdownMenuItemAnimationClass", "animate__fadeInUp");
-    this.setComponentState("footerLeftTextAnimationClass", "animate__slideInLeft");
-    this.setComponentState("footerRightTextAnimationClass", "animate__slideInRight");
+    this.setComponentState(
+      "dropdownMenuItemAnimationClass",
+      "animate__fadeInUp"
+    );
+    this.setComponentState(
+      "footerLeftTextAnimationClass",
+      "animate__slideInLeft"
+    );
+    this.setComponentState(
+      "footerRightTextAnimationClass",
+      "animate__slideInRight"
+    );
   }
 
   getName(): string {
@@ -357,35 +367,43 @@ class Navbar5 extends BaseNavigator {
   }
 
   openNav() {
+    Base.Navigator.changeScrollBehaviour("hidden");
     this.setComponentState("navActive", true);
-    this.setComponentState("dropdownMenuItemAnimationClass", "animate__fadeInDown");
-    this.setComponentState("footerLeftTextAnimationClass", "animate__slideInLeft");
-    this.setComponentState("footerRightTextAnimationClass", "animate__slideInRight");
+    this.setComponentState(
+      "dropdownMenuItemAnimationClass",
+      "animate__fadeInDown"
+    );
+    this.setComponentState(
+      "footerLeftTextAnimationClass",
+      "animate__slideInLeft"
+    );
+    this.setComponentState(
+      "footerRightTextAnimationClass",
+      "animate__slideInRight"
+    );
   }
 
-  closeNav(){
+  closeNav() {
+    Base.Navigator.changeScrollBehaviour("auto");
+    this.setComponentState(
+      "dropdownMenuItemAnimationClass",
+      "animate__fadeInUp"
+    );
+    this.setComponentState(
+      "footerLeftTextAnimationClass",
+      "animate__slideOutLeft"
+    );
+    this.setComponentState(
+      "footerRightTextAnimationClass",
+      "animate__slideOutRight"
+    );
     this.setComponentState("navActive", false);
-    this.setComponentState("dropdownMenuItemAnimationClass", "animate__fadeInUp");
-    this.setComponentState("footerLeftTextAnimationClass", "animate__slideOutLeft");
-    this.setComponentState("footerRightTextAnimationClass", "animate__slideOutRight");
   }
-
-  componentDidMount() {
-    window.addEventListener("scroll", this.handleScroll);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleScroll);
-  }
-
-  handleScroll = () => {
-    const isScrolled = window.scrollY > 50;
-    this.setComponentState("isScrolled", isScrolled);
-  };
 
   render() {
     const navbarElement = document.getElementById(`navbar5-height`);
     const isScrolled = this.getComponentState("isScrolled");
+    const isBigScreen = this.getComponentState("isBigScreen");
     const position = this.getPropValue("position");
 
     const navActive = this.getComponentState("navActive");
@@ -397,7 +415,8 @@ class Navbar5 extends BaseNavigator {
     const transparentBackground =
       (isStickyTransparent && !isScrolled) || isAbsolute;
 
-    const currentLogo = transparentBackground ? absoluteLogo : defaultLogo;
+    const currentLogo =
+      transparentBackground && !navActive ? absoluteLogo : defaultLogo;
 
     const social = this.castToObject<any[]>("social");
     const listItems = this.castToObject<any[]>("listItems");
@@ -421,70 +440,84 @@ class Navbar5 extends BaseNavigator {
 
     const iconsExist = hamburgerIcon || crossIcon;
 
-    const isClosing = this.getComponentState("isClosing");
-
     return (
+      <Base.Navigator.Container
+        id={"navbar5-height"}
+        position={position}
+        positionContainer={`${this.decorateCSS("container")} ${
+          navActive ? this.decorateCSS("filledBackground") : ""
+        }`}
+        hamburgerNavActive={navActive}
+        setIsBigScreen={(value: boolean) => {
+          this.setComponentState("isBigScreen", value);
+        }}
+        setIsScrolled={(value: boolean) => {
+          this.setComponentState("isScrolled", value);
+        }}
+      >
+        <Base.MaxContent
+          className={`${this.decorateCSS("maxContent")} ${
+            transparentBackground && !navActive
+              ? this.decorateCSS("transparentBackground")
+              : ""
+          }`}
+        >
+          {social.length > 0 && (
+            <div className={this.decorateCSS("socialMediaBox")}>
+              {social.length > 0 && (
+                <div className={this.decorateCSS("social")}>
+                  {social.map(
+                    (item: any, indexSocial: number) =>
+                      item.socialIcon && (
+                        <ComposerLink key={indexSocial} path={item.socialLink}>
+                          <ComposerIcon
+                            propsIcon={{
+                              className: this.decorateCSS("icon"),
+                            }}
+                            name={item.socialIcon}
+                          />
+                        </ComposerLink>
+                      )
+                  )}
+                </div>
+              )}
+            </div>
+          )}
 
-        <Base.Navigator.Container id={"navbar5-height"} position={position} positionContainer={this.decorateCSS("container")}>
-          <Base.MaxContent className={`${this.decorateCSS("maxContent")} ${transparentBackground ? this.decorateCSS("transparentBackground") : ""}`}>
-            {social.length > 0 && (
-              <div className={this.decorateCSS("socialMediaBox")}>
-                {social.length > 0 && (
-                  <div className={this.decorateCSS("social")}>
-                    {social.map(
-                      (item: any, indexSocial: number) =>
-                        item.socialIcon && (
-                          <ComposerLink
-                            key={indexSocial}
-                            path={item.socialLink}
-                          >
-                            <ComposerIcon
-                              propsIcon={{
-                                className: this.decorateCSS("icon"),
-                              }}
-                              name={item.socialIcon}
-                            />
-                          </ComposerLink>
-                        )
-                    )}
-                  </div>
-                )}
-              </div>
-            )}
+          {currentLogo.image && (
+            <div className={this.decorateCSS("logo")}>
+              <ComposerLink path={currentLogo.navigateTo}>
+                <img
+                  src={currentLogo.image}
+                  className={this.decorateCSS("logoImage")}
+                />
+              </ComposerLink>
+            </div>
+          )}
 
-            {currentLogo.image && (
-              <div className={this.decorateCSS("logo")}>
-                <ComposerLink path={currentLogo.navigateTo}>
-                  <img
-                    src={currentLogo.image}
-                    className={this.decorateCSS("logoImage")}
-                  />
-                </ComposerLink>
-              </div>
-            )}
-
-            {(language || iconsExist) && (
-              <div className={this.decorateCSS("navbar")}>
-                {language.showLanguage && (
-                  <ComposerLanguage
-                    type="dropdown"
-                    title={language.label}
-                    icon={language.icon}
-                    dropdownButtonClassName={`${this.decorateCSS(
-                      "localization"
-                    )}`}
-                    dropdownLabelClassName={`${this.decorateCSS(
-                      "localizationLabel"
-                    )}`}
-                    iconClassName={this.decorateCSS("languageIcon")}
-                    dropdownItemClassName={this.decorateCSS("localizationItem")}
-                    dropdownContentClassName={this.decorateCSS(
-                      "localizationContent"
-                    )}
-                    divider={language.showDivider}
-                  />
-                )}
-                {navActive ?   <ComposerIcon
+          {(language || iconsExist) && (
+            <div className={this.decorateCSS("navbar")}>
+              {language.showLanguage && (
+                <ComposerLanguage
+                  type="dropdown"
+                  title={language.label}
+                  icon={language.icon}
+                  dropdownButtonClassName={`${this.decorateCSS(
+                    "localization"
+                  )}`}
+                  dropdownLabelClassName={`${this.decorateCSS(
+                    "localizationLabel"
+                  )}`}
+                  iconClassName={this.decorateCSS("languageIcon")}
+                  dropdownItemClassName={this.decorateCSS("localizationItem")}
+                  dropdownContentClassName={this.decorateCSS(
+                    "localizationContent"
+                  )}
+                  divider={language.showDivider}
+                />
+              )}
+              {navActive ? (
+                <ComposerIcon
                   name={this.getPropValue("cross-icon")}
                   propsIcon={{
                     className: `${this.decorateCSS("hamburgerIcon")} ${
@@ -494,84 +527,103 @@ class Navbar5 extends BaseNavigator {
                       this.closeNav();
                     },
                   }}
-                /> :   <ComposerIcon
-                name={this.getPropValue("hamburger-icon")}
-                propsIcon={{
-                  className: `${this.decorateCSS("hamburgerIcon")} ${
-                    navActive && this.decorateCSS("activeHamburgerIcon")
-                  } `,
-                  onClick: () => {
-                    this.openNav();
-                  },
-                }}
-              />}
-              </div>
-            )}
-          </Base.MaxContent>
+                />
+              ) : (
+                <ComposerIcon
+                  name={this.getPropValue("hamburger-icon")}
+                  propsIcon={{
+                    className: `${this.decorateCSS("hamburgerIcon")} ${
+                      navActive && this.decorateCSS("activeHamburgerIcon")
+                    } `,
+                    onClick: () => {
+                      this.openNav();
+                    },
+                  }}
+                />
+              )}
+            </div>
+          )}
+        </Base.MaxContent>
 
-          <div className={`${this.decorateCSS("dropdownMenu")} ${
-              navActive ? this.decorateCSS("active") : ""
-            }`}>
-             {upExist && (
-                <div className={this.decorateCSS("up")}>
-                  {titleExist && (
-                    <div className={this.decorateCSS("leftPage")}>
-                      <Base.H1 className={`${this.decorateCSS("title")} animate__animated ${this.getComponentState("dropdownMenuItemAnimationClass")}`}>
-                        {this.getPropValue("title")}
-                      </Base.H1>
-                    </div>
-                  )}
-                  {listItems.length > 0 && (
-                    <div className={this.decorateCSS("rightPage")}>
-                        <div className={`${this.decorateCSS("items")} animate__animated ${this.getComponentState("dropdownMenuItemAnimationClass")}`}>
-                          {listItems.map((item: any, indexSocial: number) => {
-                            const itemTitleExist = this.castToString(
-                              item.itemTitle
-                            );
-                            return (
-                              itemTitleExist && (
-                                <ComposerLink
-                                  key={indexSocial}
-                                  path={item.pageLink}
-                                >
-                                  <Base.H5
-                                    className={this.decorateCSS("item-title")}
-                                  >
-                                    {item.itemTitle}
-                                  </Base.H5>
-                                </ComposerLink>
-                              )
-                            );
-                          })}
-                        </div>
-                    </div>
-                  )}
+        <div
+          className={`${this.decorateCSS("dropdownMenu")} ${
+            navActive ? this.decorateCSS("active") : ""
+          }`}
+        >
+          {upExist && (
+            <div className={this.decorateCSS("up")}>
+              {titleExist && (
+                <div className={this.decorateCSS("leftPage")}>
+                  <Base.H1
+                    className={`${this.decorateCSS(
+                      "title"
+                    )} animate__animated ${this.getComponentState(
+                      "dropdownMenuItemAnimationClass"
+                    )}`}
+                  >
+                    {this.getPropValue("title")}
+                  </Base.H1>
                 </div>
               )}
-
-              {line && <div className={this.decorateCSS("line")}></div>}
-
-              {(bottomTextExist || bottomText2Exist) && (
-                <div className={this.decorateCSS("down")}>
-                  {bottomTextExist && (
-                    <Base.P className={`${this.decorateCSS("text")} animate__animated ${this.getComponentState("footerLeftTextAnimationClass")}`}>
-                      {this.getPropValue("bottomText")}
-                    </Base.P>
-                  )}
-                  {divider && (
-                    <div className={this.decorateCSS("divider")}></div>
-                  )}
-                  {bottomText2Exist && (
-                    <Base.P className={`${this.decorateCSS("text")} animate__animated ${this.getComponentState("footerRightTextAnimationClass")}`}>
-                      {" "}
-                      {this.getPropValue("bottomText2")}
-                    </Base.P>
-                  )}
+              {listItems.length > 0 && (
+                <div className={this.decorateCSS("rightPage")}>
+                  <div
+                    className={`${this.decorateCSS(
+                      "items"
+                    )} animate__animated ${this.getComponentState(
+                      "dropdownMenuItemAnimationClass"
+                    )}`}
+                  >
+                    {listItems.map((item: any, indexSocial: number) => {
+                      const itemTitleExist = this.castToString(item.itemTitle);
+                      return (
+                        itemTitleExist && (
+                          <ComposerLink key={indexSocial} path={item.pageLink}>
+                            <Base.H5 className={this.decorateCSS("item-title")}>
+                              {item.itemTitle}
+                            </Base.H5>
+                          </ComposerLink>
+                        )
+                      );
+                    })}
+                  </div>
                 </div>
               )}
             </div>
-        </Base.Navigator.Container>
+          )}
 
+          {line && <div className={this.decorateCSS("line")}></div>}
+
+          {(bottomTextExist || bottomText2Exist) && (
+            <div className={this.decorateCSS("down")}>
+              {bottomTextExist && (
+                <Base.P
+                  className={`${this.decorateCSS(
+                    "text"
+                  )} animate__animated ${this.getComponentState(
+                    "footerLeftTextAnimationClass"
+                  )}`}
+                >
+                  {this.getPropValue("bottomText")}
+                </Base.P>
+              )}
+              {divider && <div className={this.decorateCSS("divider")}></div>}
+              {bottomText2Exist && (
+                <Base.P
+                  className={`${this.decorateCSS(
+                    "text"
+                  )} animate__animated ${this.getComponentState(
+                    "footerRightTextAnimationClass"
+                  )}`}
+                >
+                  {" "}
+                  {this.getPropValue("bottomText2")}
+                </Base.P>
+              )}
+            </div>
+          )}
+        </div>
+      </Base.Navigator.Container>
     );
   }
 }
