@@ -71,7 +71,7 @@
           min-width: 200px;
           background: var(--composer-html-background);
           border-radius: var(--composer-border-radius-sm);
-          box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+          box-shadow: var(--box-shadow-active);
           opacity: 0;
           visibility: hidden;
           transform: translateY(10px);
@@ -137,8 +137,8 @@
               left: calc(100% + 8px);
               min-width: 200px;
               background: var(--composer-html-background);
-              border-radius: var(--composer-border-radius-sm);
-              box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+              border-radius: var(--composer-border-radius-sm);  
+              box-shadow: var(--box-shadow-active);
               opacity: 0;
               visibility: hidden;
               padding: var(--composer-gap-xs);
@@ -189,13 +189,13 @@
     }
 
       .mobileMenu {
-             position: absolute;
-             top: 0;
-               right: 0;
-               height: 100vh;
-                     transform: translateX(100%);
-      transition: all 0.3s ease-in-out;
-      z-index: 100;
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        transform: translateX(100%);
+        transition: all 0.3s ease-in-out;
+        z-index: 100;
         background: var(--composer-html-background);
         width: 90%;
         box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
@@ -417,7 +417,7 @@
             font-weight: bold;
           }
           .languageAccordionIcon {
-            font-size: 1rem;
+            font-size: 1.5rem;
             color: var(--composer-font-color-primary);
             transition: transform 0.3s ease;
             font-weight: bold;

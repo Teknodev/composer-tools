@@ -133,7 +133,7 @@
         }
 
         .dropdownIcon {
-          font-size: 0.8rem;
+          font-size: 1rem;
           transition: all 0.3s ease;
           color: var(--composer-font-color-primary);
         }
@@ -157,7 +157,7 @@
           min-width: 200px;
           background: var(--composer-html-background);
           border-radius: var(--composer-border-radius-sm);
-          box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+          box-shadow: var(--box-shadow-active);
           opacity: 0;
           visibility: hidden;
           transform: translateY(10px);
@@ -229,7 +229,7 @@
               min-width: 200px;
               background: var(--composer-html-background);
               border-radius: var(--composer-border-radius-sm);
-              box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+              box-shadow: var(--box-shadow-active);
               opacity: 0;
               visibility: hidden;
               transform: translateX(10px);
@@ -250,7 +250,6 @@
                   content: "";
                   position: absolute;
                   bottom: 0;
-
                   width: 0;
                   height: 1px;
                   background-color: var(--composer-primary-color);

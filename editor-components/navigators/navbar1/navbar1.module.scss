@@ -75,7 +75,7 @@
           min-width: 200px;
           background: var(--composer-html-background);
           border-radius: var(--composer-border-radius-sm);
-          box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+          box-shadow: var(--box-shadow-active);
           opacity: 0;
           visibility: hidden;
           transform: translateY(10px);
@@ -142,7 +142,7 @@
               min-width: 200px;
               background: var(--composer-html-background);
               border-radius: var(--composer-border-radius-sm);
-              box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+              box-shadow: var(--box-shadow-active);
               opacity: 0;
               visibility: hidden;
               padding: var(--composer-gap-xs);
@@ -228,8 +228,7 @@
     width: 100%;
     background: var(--composer-html-background);
     max-height: 0;
-
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--box-shadow-active);
     z-index: 100;
     overflow: hidden;
     transition: all 0.3s linear;

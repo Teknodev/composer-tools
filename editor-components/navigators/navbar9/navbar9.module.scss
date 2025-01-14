@@ -57,7 +57,7 @@
           }
 
           .dropdownIcon {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             color: var(--composer-font-color-primary);
             transition: all 0.3s ease;
           }
@@ -81,7 +81,7 @@
             min-width: 200px;
             background: var(--composer-html-background);
             border-radius: var(--composer-border-radius-sm);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--box-shadow-active);
             opacity: 0;
             visibility: hidden;
             transform: translateY(10px);
@@ -148,7 +148,7 @@
                 min-width: 200px;
                 background: var(--composer-html-background);
                 border-radius: var(--composer-border-radius-sm);
-                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+                box-shadow: var(--box-shadow-active);
                 opacity: 0;
                 visibility: hidden;
                 padding: var(--composer-gap-xs);
