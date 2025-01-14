@@ -2,9 +2,9 @@
 
 .container {
   position: relative;
-  width: 100%;
   overflow: hidden;
   height: 100vh;
+  padding: 0;
 
   .max-content {
     position: relative;
@@ -33,13 +33,13 @@
           }
         }
 
-        .content,
-        .image-no-content {
+        .content {
           z-index: 5;
           position: absolute;
           width: 90%;
           display: flex;
           flex-direction: column;
+          align-items: center;
           top: 50%;
           left: 50%;
           opacity: 0;
@@ -48,41 +48,39 @@
           gap: var(--composer-gap-md);
           transition: transform 0.6s ease, opacity 0.6s ease;
           transform: translate(-50%, -50%) translateY(100px);
+
+          &.image-no-content {
+            transform: translate(-50%, 50vh) translateY(100px);
+          }
+
+          &.active {
+            opacity: 1;
+            transform: translate(-50%, -50%) translateY(0);
+
+            &.image-no-content {
+              transform: translate(-50%, 40vh) translateY(0);
+            }
+          }
         }
 
-        .image-no-content {
-          transform: translate(-50%, 50vh) translateY(100px);
-        }
-
-        .active {
-          opacity: 1;
-          transform: translate(-50%, -50%) translateY(0);
-        }
-        .active-no-image {
-          opacity: 1;
-          transform: translate(-50%, 40vh) translateY(0);
-        }
-
-        .subtitle,
-        .subtitle-no-image {
+        .subtitle {
           font-size: 1.5rem;
           margin: 0;
           color: white;
+
+          &.subtitle-no-image {
+            color: var(--composer-font-color-primary);
+          }
         }
 
-        .subtitle-no-image {
-          color: var(--composer-font-color-primary);
-        }
-
-        .title,
-        .title-no-image {
+        .title {
           font-size: 4rem;
           margin: 0;
           color: white;
-        }
 
-        .title-no-image {
-          color: var(--composer-font-color-primary);
+          &.title-no-image {
+            color: var(--composer-font-color-primary);
+          }
         }
 
         .button {
@@ -99,25 +97,31 @@
       bottom: var(--composer-gap-sm);
       left: 50%;
       transform: translateX(-50%);
-      z-index: 10;
+      z-index: 2;
       color: white;
       width: 100%;
       align-items: center;
       justify-content: center;
 
-      .number-item,
-      .number-item-no-image {
+      .number-item {
         display: flex;
         align-items: center;
         gap: var(--composer-gap-xs);
 
+        &.number-item-no-image {
+          &::after {
+            background-color: white;
+          }
+        }
+
         .number {
           font-size: 1.5rem;
           color: white;
-        }
-        .number-no-image {
-          font-size: 1.5rem;
-          color: var(--composer-font-color-primary);
+
+          &.number-with-image {
+            font-size: 1.5rem;
+            color: var(--composer-font-color-primary);
+          }
         }
 
         &::after {
@@ -131,12 +135,6 @@
 
         &.active::after {
           width: var(--composer-gap-lg);
-        }
-      }
-
-      .number-item-no-image {
-        &::after {
-          background-color: white;
         }
       }
     }
@@ -201,13 +199,11 @@
             transform: translate(-50%, 45vh) translateY(0);
           }
 
-          .subtitle,
-          .subtitle-no-image {
+          .subtitle {
             font-size: 1.5rem;
           }
 
-          .title,
-          .title-no-image {
+          .title {
             font-size: 2.5rem;
           }
         }
@@ -261,25 +257,23 @@
             transform: translate(-50%, 40vh) translateY(0);
           }
 
-          .subtitle,
-          .subtitle-no-image {
+          .subtitle {
             font-size: 1rem;
           }
 
-          .title,
-          .title-no-image {
+          .title {
             font-size: 1.5rem;
           }
         }
       }
 
-      .number-item,
-      .number-item-no-image {
+      .number-item {
         .number {
           font-size: 1rem !important;
-        }
-        .number-no-image {
-          font-size: 1rem !important;
+
+          &.number-no-image {
+            font-size: 1rem !important;
+          }
         }
 
         &::after {
