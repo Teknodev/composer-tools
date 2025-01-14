@@ -1214,7 +1214,6 @@ class Navbar3 extends BaseNavigator {
       (isStickyTransparent && !isScrolled) || isAbsolute;
 
     const changeBackground = this.getComponentState("changeBackground");
-    const isBigScreen = this.getComponentState("isBigScreen");
 
     const currentLogo =
       (transparentBackground && !changeBackground)
@@ -1683,7 +1682,6 @@ class Navbar3 extends BaseNavigator {
                             titleClassName={  
                               this.decorateCSS("localizationItemTitle")
                             }
-                            // icon={language.icon}
                             accordionIconClassName={this.decorateCSS("accordionIcon")}
                           />
                         )}
