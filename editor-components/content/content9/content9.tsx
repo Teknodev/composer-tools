@@ -99,7 +99,7 @@ class Content9 extends BaseContent {
         },
       ],
     });
-    this.addProp(INPUTS.BUTTON("button", "Button", "Get In Tocuh!", "", "Primary"));
+    this.addProp(INPUTS.BUTTON("button", "Button", "Get In Tocuh!", "", null, null, "Primary"));
   }
   getName(): string {
     return "Content 9";
