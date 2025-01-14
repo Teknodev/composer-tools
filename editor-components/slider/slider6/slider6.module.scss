@@ -1,209 +1,205 @@
 @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
 .container {
-    padding: var(--composer-gap-md) 0;
-    width: 100%;
-    background-color: var(--composer-html-background);
+  padding: var(--composer-gap-md) 0;
+  width: 100%;
+  background-color: var(--composer-html-background);
 
-    .max-content {
-        display: flex;
-        flex-direction: column;
-        flex-wrap: nowrap;
-        justify-content: center;
-        align-items: center;
-        margin: auto;
+  .max-content {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: 100%;
+
+    .header-container {
+      padding-top: 0;
+      padding-bottom: 0;
+
+      .header-max-content {
+        .header {
+          width: 100%;
+
+          .no-title {
+            margin-bottom: var(--composer-gap-md);
+          }
+        }
+      }
+    }
+
+    .slider-parent {
+      width: 100%;
+      margin: auto;
+      margin-bottom: var(--composer-gap-md);
+
+      .carousel {
         width: 100%;
 
-        .header-container {
-            padding-top: 0;
-            padding-bottom: 0;
+        > div {
+          > div {
+            display: flex;
+            align-items: stretch;
 
-            .header-max-content {
-                .header {
-                    width: 100%;
+            > div {
+              height: auto;
+              padding: 0 var(--composer-gap-md);
 
-                    .no-title {
-                        margin-bottom: var(--composer-gap-md);
-                    }
+              > div {
+                height: 100%;
+              }
 
-                }
+              @container (max-width: #{$composer-tablet-width-lg}) {
+                padding: 0 var(--composer-gap-md);
+              }
+
+              @container (max-width: #{$composer-phone-width}) {
+                padding: 0;
+              }
             }
+          }
         }
 
-        .slider-parent {
-            width: 100%;
-            margin: auto;
-            margin-bottom: var(--composer-gap-md);
+        .card {
+          width: 100%;
+          height: 100%;
 
-            .carousel {
-                width: 100%;
+          .content-div {
+            border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
+            transition: transform 0.3s, filter 0.3s;
+            min-height: 300px;
+            height: 100%;
+            gap: 0;
 
-                >div {
-                    >div {
-                        display: flex;
-                        align-items: stretch;
-
-                        >div {
-                            height: auto;
-                            padding: 0 var(--composer-gap-md);
-
-                            >div {
-                                height: 100%;
-                            }
-
-                            @container (max-width: #{$composer-tablet-width}) {
-                                padding: 0 var(--composer-gap-md);
-                            }
-
-                            @container (max-width: #{$composer-phone-width}) {
-                                padding: 0;
-                            }
-                        }
-                    }
-                }
-
-                .card {
-                    width: 100%;
-                    height: 100%;
-
-                    .content-div {
-                        border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
-                        transition: transform 0.3s, filter 0.3s;
-                        min-height: 300px;
-                        height: 100%;
-                        gap: 0;
-
-                        @container (max-width: #{$composer-phone-width}) {
-                            flex-direction: column;
-                        }
-
-                        .left-part {
-                            flex: 1;
-                            display: flex;
-                            flex-direction: row;
-                            flex-wrap: nowrap;
-                            width: 100%;
-                            align-items: stretch;
-                            align-items: center;
-                            justify-content: center;
-
-                            @container (max-width: #{$composer-phone-width}) {
-                                flex-direction: column;
-                                align-items: unset;
-                            }
-
-                            .vert-text {
-                                writing-mode: vertical-rl;
-                                text-orientation: mixed;
-                                transform: rotate(180deg);
-                                font-size: 1rem;
-                                color: var(--composer-font-color-primary);
-                                font-weight: 500;
-                                text-align: center;
-                                margin: var(--composer-gap-sm) var(--composer-gap-md);
-                                white-space: normal;
-                                overflow: hidden;
-                                text-overflow: ellipsis;
-                                display: block;
-
-                                @container (max-width: #{$composer-phone-width}) {
-                                    writing-mode: unset;
-                                    transform: unset;
-                                }
-                            }
-
-                            .image-wrapper {
-                                position: relative;
-                                min-height: 250px;
-                                flex: 1;
-                                height: 100%;
-
-                                @container (max-width: #{$composer-phone-width}) {
-                                    flex: unset;
-                                }
-
-                                .image {
-                                    position: absolute;
-                                    height: 100%;
-                                    width: 100%;
-                                    object-fit: cover;
-                                    object-position: center;
-                                }
-                            }
-                        }
-
-                        .no-img {
-                            flex: unset;
-                            width: auto;
-                        }
-
-                        .right-part {
-                            flex: 1;
-                            gap: var(--composer-gap-md);
-                            padding: var(--composer-gap-lg) var(--composer-gap-md);
-                            height: fit-content;
-
-                            @container (max-width: #{$composer-phone-width}) {
-                                padding: var(--composer-gap-md);
-                            }
-
-                            .first-header {
-                                margin: 0;
-                                color: var(--composer-tertiary-color);
-                            }
-
-                            .item-title {
-                                margin: 0;
-                                color: var(--composer-font-color-primary);
-                                font-weight: 700;
-                                font-size: 1.5rem;
-                            }
-
-                            .item-description {
-                                margin: 0;
-                                color: var(--composer-tertiary-color);
-                                font-size: 1.5rem;
-                            }
-
-                        }
-                    }
-
-                    &.nextSlide,
-                    &.prevSlide {
-                        filter: blur(5px);
-                    }
-                }
-
-                >ul {
-                    bottom: -30px;
-
-                    >li {
-                        height: 10px;
-
-                        >button {
-                            height: inherit;
-
-                            &::before {
-                                content: "";
-                                background-color: var(--composer-font-color-primary);
-                                height: 2px;
-                            }
-                        }
-                    }
-                }
+            @container (max-width: #{$composer-phone-width}) {
+              flex-direction: column;
             }
 
-            .no-header {
-                margin-bottom: 0;
+            .left-part {
+              flex: 1;
+              display: flex;
+              flex-direction: row;
+              flex-wrap: nowrap;
+              width: 100%;
+              align-items: stretch;
+              align-items: center;
+              justify-content: center;
+
+              @container (max-width: #{$composer-phone-width}) {
+                flex-direction: column;
+                align-items: unset;
+              }
+
+              .vert-text {
+                writing-mode: vertical-rl;
+                text-orientation: mixed;
+                transform: rotate(180deg);
+                font-size: 1rem;
+                color: var(--composer-font-color-primary);
+                text-align: center;
+                margin: var(--composer-gap-sm) var(--composer-gap-md);
+                white-space: normal;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: block;
+
+                @container (max-width: #{$composer-phone-width}) {
+                  writing-mode: unset;
+                  transform: unset;
+                }
+              }
+
+              .image-wrapper {
+                position: relative;
+                min-height: 250px;
+                flex: 1;
+                height: 100%;
+
+                @container (max-width: #{$composer-phone-width}) {
+                  flex: unset;
+                }
+
+                .image {
+                  position: absolute;
+                  height: 100%;
+                  width: 100%;
+                  object-fit: cover;
+                  object-position: center;
+                }
+              }
             }
 
-            .single-item {
-                >div {
-                    >div {
-                        margin-left: unset !important;
-                    }
-                }
+            .no-img {
+              flex: unset;
+              width: auto;
             }
+
+            .right-part {
+              flex: 1;
+              gap: var(--composer-gap-md);
+              padding: var(--composer-gap-lg) var(--composer-gap-md);
+              height: fit-content;
+
+              @container (max-width: #{$composer-phone-width}) {
+                padding: var(--composer-gap-md);
+              }
+
+              .first-header {
+                margin: 0;
+                color: var(--composer-tertiary-color);
+              }
+
+              .item-title {
+                margin: 0;
+                color: var(--composer-font-color-primary);
+                font-size: 1.5rem;
+              }
+
+              .item-description {
+                margin: 0;
+                color: var(--composer-tertiary-color);
+                font-size: 1.5rem;
+              }
+            }
+          }
+
+          &.nextSlide,
+          &.prevSlide {
+            filter: blur(var(--composer-gap-xs));
+          }
         }
+
+        > ul {
+          bottom: calc(var(--composer-gap-lg) * -1);
+
+          > li {
+            height: 10px;
+
+            > button {
+              height: inherit;
+
+              &::before {
+                content: "";
+                background-color: var(--composer-font-color-primary);
+                height: 2px;
+              }
+            }
+          }
+        }
+      }
+
+      .no-header {
+        margin-bottom: 0;
+      }
+
+      .single-item {
+        > div {
+          > div {
+            margin-left: unset !important;
+          }
+        }
+      }
     }
+  }
 }

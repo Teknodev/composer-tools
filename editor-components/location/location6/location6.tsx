@@ -36,7 +36,7 @@ type MarkerObject = {
   };
 };
 
-class LocationComponent6 extends Location {
+class Location6 extends Location {
   constructor(props?: Buttons) {
     super(props, styles);
 
@@ -58,7 +58,7 @@ class LocationComponent6 extends Location {
       type: "number",
       key: "centerZoom",
       displayer: "Center Zoom Value",
-      value: 3,
+      value: 2,
     });
 
     this.addProp({
@@ -217,7 +217,7 @@ class LocationComponent6 extends Location {
               key: "coordinate",
               value: {
                 lat: 36.8529,
-                lng: -55.978,
+                lng: -75.978,
               },
             },
             {
@@ -244,8 +244,8 @@ class LocationComponent6 extends Location {
               displayer: "Coordinate",
               key: "coordinate",
               value: {
-                lat: 31.8529,
-                lng: -24.978,
+                lat: 11.8529,
+                lng: 4.978,
               },
             },
             {
@@ -273,7 +273,7 @@ class LocationComponent6 extends Location {
               key: "coordinate",
               value: {
                 lat: 39.8529,
-                lng: -39.978,
+                lng: 2.978,
               },
             },
             {
@@ -301,7 +301,7 @@ class LocationComponent6 extends Location {
               key: "coordinate",
               value: {
                 lat: 13.8529,
-                lng: -14.978,
+                lng: -4.978,
               },
             },
             {
@@ -329,7 +329,7 @@ class LocationComponent6 extends Location {
               key: "coordinate",
               value: {
                 lat: 25.8529,
-                lng: -32.978,
+                lng: -2.978,
               },
             },
             {
@@ -473,4 +473,4 @@ class LocationComponent6 extends Location {
   }
 }
 
-export default LocationComponent6;
+export default Location6;

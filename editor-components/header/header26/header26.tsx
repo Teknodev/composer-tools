@@ -4,7 +4,6 @@ import { BaseHeader } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { Base } from "../../../composer-base-components/base/base";
 
 type Slide = {
   title: JSX.Element;
@@ -258,7 +257,7 @@ class Header26 extends BaseHeader {
                   >
                     <div className={this.decorateCSS("slider")}>
                       {(titleExist || subtitleExist) && (
-                        <div className={item.image ? this.decorateCSS("left-side") : this.decorateCSS("left-side-no-image")}>
+                        <div className={`${this.decorateCSS("left-side")} ${!item.image && this.decorateCSS("no-image")}`}>
                           <div
                             className={this.decorateCSS("left-side-content")}
                           >

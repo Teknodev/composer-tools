@@ -1,9 +1,11 @@
-@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
-.container{
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+
+.container {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   position: relative;
+
   &::before {
     position: absolute;
     top: 0;
@@ -14,19 +16,22 @@
     width: 100%;
     opacity: 0;
   }
+
   &.overlay-active::before {
     opacity: 1;
   }
+
   .max-content {
     position: relative;
     z-index: 1;
     height: 100%;
     width: 100%;
     padding: calc(var(--composer-gap-xl) * 2);
+
     &::before {
       top: 0px;
       left: 0px;
-      content : "";
+      content: "";
       position: absolute;
       width: 100%;
       height: 100%;
@@ -35,70 +40,98 @@
       z-index: -1;
       border-radius: var(--composer-border-radius-xs);
     }
-    .content{
+
+    .content {
       align-items: center;
       gap: var(--composer-gap-lg);
+
       .title {
         text-align: center;
       }
+
       .space-container {
         display: flex;
         width: 100%;
         justify-content: center;
-        .space{
-          content: " ";
+
+        .space {
+          content: "";
           height: 1px;
-          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+          background-color: rgb(var(--composer-font-color-primary-rgb), 0.2);
           width: 15%;
         }
       }
 
-      .placeholder{
+      .placeholder {
         min-width: 500px;
-        color: var(--composer-font-color-primary);
-        background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+        color: var(--composer-html-background);
         width: 30%;
         padding: var(--composer-gap-md);
         border-radius: var(--composer-border-radius-md);
-        border: 1px solid color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+        border: 1px solid var(--composer-font-color-primary);
+        background-color: var(--composer-font-color-primary);
+        outline: none;
+
         &::placeholder {
-          color: var(--composer-font-color-primary);
+          color: var(--composer-html-background);
         }
       }
-      .bottom-container{
+
+      .form {
         display: flex;
         flex-direction: column;
-        gap: var(--composer-gap-sm);
+        gap: var(--composer-gap-md);
+        width: 100%;
         align-items: center;
-        .comment{
-          font-size: 1rem;
-          color: var(--composer-font-color-primary);
-          text-align: center;
+
+        .input-container {
+          position: relative;
+
+          .input {
+            content: "";
+          }
+
+          .error {
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            color: var(--warning);
+          }
         }
-        .buttons {
+
+        .bottom-container {
           display: flex;
-          flex-direction: row;
-          flex-wrap: wrap;
-          gap: var(--composer-gap-md);
-          .button {            
+          flex-direction: column;
+          gap: var(--composer-gap-sm);
+          align-items: center;
+
+          .comment {
+            font-size: 1rem;
+            color: var(--composer-font-color-primary);
+            text-align: center;
+          }
+
+          .button {
+            content: "";
           }
         }
       }
     }
   }
 }
-@container (max-width: #{$composer-tablet-width}){
-  .container{
-    padding: 100px 40px;
-  }
-  .container{
-    .max-content{
-      .content{
+
+@container (max-width: #{$composer-tablet-width-lg}) {
+  .container {
+    padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-lg);
+
+    .max-content {
+      .content {
         .space-container {
-          .space{
+          .space {
             width: 50%;
           }
         }
+
         .placeholder {
           width: 75%;
         }
@@ -106,20 +139,24 @@
     }
   }
 }
-@container (max-width: #{$composer-phone-width}){
-  .container{
-    padding: 50px 20px;
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    padding: var(--composer-gap-xl) var(--composer-gap-md);
   }
-  .container{
-    .max-content{
+
+  .container {
+    .max-content {
       padding: var(--composer-gap-md);
-      .content{
+
+      .content {
         .space-container {
           .space {
             width: 100%;
           }
         }
-        .placeholder{
+
+        .placeholder {
           min-width: auto;
           width: 100%;
         }
