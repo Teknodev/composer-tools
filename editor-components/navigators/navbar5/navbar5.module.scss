@@ -229,6 +229,8 @@
   background-color: var(--composer-html-background) !important;
   transition: all 0.3s ease;
 }
+
+
 @container (max-width: #{$composer-tablet-width-lg}) {
   .maxContent {
     .socialMediaBox {
@@ -245,6 +247,12 @@
         width: 100%;
         max-height: 50px;
         object-fit: contain;
+      }
+    }
+
+    .navbar {
+      .hamburgerIcon {
+        font-size: 1.5rem;
       }
     }
 
@@ -288,8 +296,13 @@
         object-fit: contain;
       }
     }
+
   }
   .dropdownMenu {
+    &.active {
+      height: 75vh;
+    }
+
     .up {
       .leftPage {
         display: none;
@@ -305,6 +318,7 @@
 
           .item-title {
             margin: 0;
+            font-size: 1.5rem;
           }
         }
       }
