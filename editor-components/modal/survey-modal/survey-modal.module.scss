@@ -213,9 +213,15 @@
         .left {
           .title {
             font-size: 1.5rem;
+            text-align: center;
+          }
+          .rate-question{
+            text-align: center;
           }
           .rate-content {
-            gap: var(--composer-gap-sm);
+            width: 100%;
+            gap: var(--composer-gap-xs);
+            justify-content: center;
 
             .rateIconsWrapper {
               .icons {
@@ -233,10 +239,21 @@
               }
             }
           }
-
+          .error{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+          }
           .message-section {
+            display: flex;
             .input {
               padding: var(--composer-gap-xs);
+            }
+          }
+          .button-container{
+            .submit-button{
+              display: flex;
+              justify-content: center;
             }
           }
         }
