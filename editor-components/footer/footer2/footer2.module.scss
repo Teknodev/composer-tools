@@ -2,6 +2,7 @@
 
 .container {
   padding: 0;
+
   .max-content {
     .footer-page {
       width: 100%;
@@ -9,14 +10,15 @@
       background-position: center;
       background-repeat: no-repeat;
       position: relative;
-      .items,
-      .items-no-image {
+
+      .items {
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
         padding: var(--composer-gap-md) var(--composer-gap-xl);
         min-height: 300px;
         gap: var(--composer-gap-md);
+
         .list {
           display: flex;
           flex-direction: column;
@@ -35,9 +37,10 @@
             margin: 0;
           }
         }
-      }
-      .items-no-image {
-        min-height: auto;
+
+        &.no-image {
+          min-height: auto;
+        }
       }
 
       .overlay {
@@ -50,12 +53,14 @@
         background-color: rgb(var(--composer-html-background-rgb), 0.7);
       }
     }
+
     .footer-bottom {
       width: 100%;
       display: flex;
       justify-content: center;
       text-align: center;
       padding: var(--composer-gap-md) var(--composer-gap-xl);
+
       .footerDescription {
         color: var(--composer-font-color-primary);
         margin: 0;
@@ -67,19 +72,22 @@
 @container (max-width: #{$composer-tablet-width-lg}) {
   .container {
     padding: 0;
+
     .max-content {
       .footer-page {
-        .items,
-        .items-no-image {
+        .items {
           padding: var(--composer-gap-md) var(--composer-gap-lg);
-          min-height: 300px;
+          min-height: 170px;
           gap: var(--composer-gap-md);
+          align-items: baseline;
+
           .list {
             gap: var(--composer-gap-sm);
             min-width: 200px;
           }
         }
       }
+
       .footer-bottom {
         padding: var(--composer-gap-md) var(--composer-gap-lg);
       }
@@ -90,15 +98,16 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     padding: 0;
+
     .max-content {
       .footer-page {
-        .items,
-        .items-no-image {
+        .items {
           padding: var(--composer-gap-md);
           min-height: 300px;
           gap: var(--composer-gap-xl);
         }
       }
+
       .footer-bottom {
         padding: var(--composer-gap-md);
       }

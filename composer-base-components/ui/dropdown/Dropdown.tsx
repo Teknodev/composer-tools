@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styles from './Dropdown.module.scss';
 import { ComposerIcon } from '../../icon/icon';
+import { Base } from "composer-tools/composer-base-components/base/base";
+
 
 export interface DropDownItem {
   className?: string;
@@ -33,11 +35,12 @@ const Dropdown: React.FC<DropdownProps> = ({
   const [isOpen, setIsOpen] = useState(false);
   const [shouldOpenLeft, setShouldOpenLeft] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const getWrapperContainer = Base.Navigator.getWrapperContainer();
 
   useEffect(() => {
     if (isOpen && dropdownRef.current) {
       const rect = dropdownRef.current.getBoundingClientRect();
-      const viewportWidth = window.innerWidth;
+      const viewportWidth = getWrapperContainer.innerWidth;
       setShouldOpenLeft(rect.right > viewportWidth - 100); // 100px buffer
     }
   }, [isOpen]);

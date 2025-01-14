@@ -1,3 +1,4 @@
+@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
 .container{
     max-width: 400px;
     border-radius: var(--composer-border-radius-xl);
@@ -116,5 +117,17 @@
             }
         }
 
+    }
+}
+
+@container(max-width: #{$composer-phone-width}){
+    .container{
+        max-width: 300px;
+        .max-content{
+            gap: var(--composer-gap-sm);
+            .button-container{
+                flex-direction: column;
+            }
+        }
     }
 }

@@ -5,6 +5,7 @@ import ComposerSlider from "../../../composer-base-components/slider/slider";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type SliderItemType = {
   image: string;
@@ -13,9 +14,7 @@ type SliderItemType = {
   author: JSX.Element;
   date: JSX.Element;
   description: JSX.Element;
-  linkText: JSX.Element;
-  icon: string;
-  link: string;
+  button: INPUTS.CastedButton;
   dot: boolean;
 };
 
@@ -77,24 +76,7 @@ class Header2 extends BaseHeader {
                 "Aenean lacinia bibendum nulla sed consectetur. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Aenean lacinia bibendum nulla...",
               displayer: "Description",
             },
-            {
-              type: "string",
-              key: "linkText",
-              displayer: "Link Text",
-              value: "Read More",
-            },
-            {
-              type: "icon",
-              key: "icon",
-              value: "FaArrowRightLong",
-              displayer: "Icon",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "Read More", "", "FaArrowRightLong", null, "Link"),
           ],
         },
         {
@@ -146,24 +128,7 @@ class Header2 extends BaseHeader {
               value:
                 "Aenean lacinia bibendum nulla sed consectetur. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Aenean lacinia bibendum nulla...",
             },
-            {
-              type: "string",
-              key: "linkText",
-              displayer: "Link Text",
-              value: "Read More",
-            },
-            {
-              type: "icon",
-              key: "icon",
-              value: "FaArrowRightLong",
-              displayer: "Icon",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "Read More", "", "FaArrowRightLong", null, "Link"),
           ],
         },
         {
@@ -215,24 +180,7 @@ class Header2 extends BaseHeader {
                 "Aenean lacinia bibendum nulla sed consectetur. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Aenean lacinia bibendum nulla...",
               displayer: "Description",
             },
-            {
-              type: "string",
-              key: "linkText",
-              displayer: "Link Text",
-              value: "Read More",
-            },
-            {
-              type: "icon",
-              key: "icon",
-              value: "FaArrowRightLong",
-              displayer: "Icon",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "Read More", "", "FaArrowRightLong", null, "Link"),
           ],
         },
       ],
@@ -269,7 +217,7 @@ class Header2 extends BaseHeader {
                   const isAuthorExist = this.castToString(item.author);
                   const isDateExist = this.castToString(item.date);
                   const isDescExist = this.castToString(item.description);
-                  const isLinkTextExist = this.castToString(item.linkText);
+                  const isLinkTextExist = this.castToString(item.button.text);
 
                   const cardValues =
                     isLinkTextExist ||
@@ -318,16 +266,16 @@ class Header2 extends BaseHeader {
                               )}
                               {isLinkTextExist && (
                                 <div className={this.decorateCSS("link-container")}>
-                                  <ComposerLink path={item.link}>
-                                    <span className={this.decorateCSS("link-text")}>
-                                      {item.linkText}
-                                      {item.icon && (
+                                  <ComposerLink path={item.button.url}>
+                                    <Base.Button buttonType={item.button.type} className={this.decorateCSS("link-text")}>
+                                      {item.button.text}
+                                      {item.button.icon && (
                                         <ComposerIcon
-                                          name={item.icon}
+                                          name={item.button.icon}
                                           propsIcon={{ className: this.decorateCSS("icon") }}
                                         />
                                       )}
-                                    </span>
+                                    </Base.Button>
                                   </ComposerLink>
                                 </div>
                               )}
