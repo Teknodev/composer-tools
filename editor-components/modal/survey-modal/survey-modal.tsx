@@ -7,6 +7,7 @@ import styles from "./survey-modal.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 class SurveyModal extends BaseModal {
   constructor(props?: any) {
@@ -177,21 +178,7 @@ class SurveyModal extends BaseModal {
       displayer: "Placeholder Text",
       value: "Enter your message",
     });
-
-    this.addProp({
-      type: "string",
-      key: "buttonText",
-      displayer: "Button Text",
-      value: "Send",
-    });
-
-    this.addProp({
-      type: "page",
-      key: "buttonUrl",
-      displayer: "Button URL",
-      value: "",
-    });
-
+    this.addProp(INPUTS.BUTTON("button", "Button", "Send", "", null, null, "Primary"));
     this.addProp({
       type: "icon",
       key: "exitIcon",
@@ -225,7 +212,7 @@ class SurveyModal extends BaseModal {
     const radio = this.castToString(this.getPropValue("radio"));
     const radioError = this.castToString(this.getPropValue("radioError"));
     const message = this.castToString(this.getPropValue("message"));
-    const buttonText = this.castToString(this.getPropValue("buttonText"));
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
     const placeholder = this.castToString(this.getPropValue("placeholder"));
     const rateIcons = this.castToObject<any[]>("rateIcons");
 
@@ -310,15 +297,15 @@ class SurveyModal extends BaseModal {
                         </div>
                       )}
 
-                      {buttonText && (
+                      {this.castToString(button.text) && (
                         <div className={this.decorateCSS("button-container")}>
                           {placeholder ? (
-                            <Base.Button type="submit" className={this.decorateCSS("submit-button")}>
-                              {this.getPropValue("buttonText")}
+                            <Base.Button buttonType={button.type} type="submit" className={this.decorateCSS("submit-button")}>
+                              {button.text}
                             </Base.Button>
                           ) : (
-                            <ComposerLink page={this.getPropValue("buttonUrl")}>
-                              <Base.Button className={this.decorateCSS("submit-button")}>{this.getPropValue("buttonText")}</Base.Button>
+                            <ComposerLink page={button.url}>
+                              <Base.Button buttonType={button.type} className={this.decorateCSS("submit-button")}>{button.text}</Base.Button>
                             </ComposerLink>
                           )}
                         </div>

@@ -19,8 +19,7 @@
         position: relative;
         width: 100%;
         text-align: center;
-        .exit-icon,
-        .exit-icon-no-image {
+        .exit-icon{
           width: var(--composer-gap-md);
           height: var(--composer-gap-md);
           display: flex;
@@ -32,10 +31,9 @@
           margin-right: var(--composer-gap-xs);
           color: white;
           cursor: pointer;
-        }
-
-        .exit-icon-no-image {
-          color: var(--composer-font-color-primary);
+          &.no-image{
+            color: var(--composer-font-color-primary);
+          }
         }
         .wrapper {
           position: relative;
@@ -65,8 +63,7 @@
             z-index: 2;
           }
 
-          .first-header,
-          .first-header-no-image {
+          .first-header {
             text-align: center;
             margin: auto;
             color: white;
@@ -75,10 +72,9 @@
             word-break: break-word;
             position: relative;
             font-size: 2rem;
-          }
-
-          .first-header-no-image {
-            margin-top: var(--composer-gap-md);
+            &.no-image{
+              margin-top: var(--composer-gap-md);
+            }
           }
         }
         .without-image {
@@ -88,8 +84,7 @@
           height: auto;
           top: 0;
 
-          .first-header,
-          .first-header-no-image {
+          .first-header {
             text-align: center;
             margin: auto;
             color: var(--composer-primary-color);
@@ -98,10 +93,9 @@
             word-break: break-word;
             position: relative;
             font-size: 2rem;
-          }
-
-          .first-header-no-image {
-            margin-top: var(--composer-gap-lg);
+            &.no-image{
+              margin-top: var(--composer-gap-lg);
+            }
           }
         }
       }
@@ -129,14 +123,17 @@
       justify-content: center;
       align-items: center;
       gap: var(--composer-gap-sm);
+      .button{
+        content: "";
+      }
     }
   }
 }
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    min-width: 330px !important;
-    max-width: 330px !important;
+    min-width: 300px !important;
+    max-width: 300px !important;
     max-height: 550px !important;
 
     .max-content {

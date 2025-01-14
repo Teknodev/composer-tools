@@ -5,6 +5,7 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import ComposerModalClose from "../../../composer-base-components/close/close";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 class Notice extends BaseModal {
   constructor(props?: any) {
@@ -44,20 +45,7 @@ class Notice extends BaseModal {
       displayer: "Description",
       value: "We would like to inform you that our VPS Servers, are now available to purchase in New York, United States. Fully new datacenter is now available to purchase in our order process!",
     });
-
-    this.addProp({
-      type: "string",
-      key: "buttonText",
-      displayer: "Button Text",
-      value: "Get Started Now!",
-    });
-
-    this.addProp({
-      type: "page",
-      key: "buttonUrl",
-      displayer: "Button URL",
-      value: "",
-    });
+    this.addProp(INPUTS.BUTTON("button", "Button", "Get Started Now!", "", null, null, "Primary"));
   }
 
   getName(): string {
@@ -69,7 +57,7 @@ class Notice extends BaseModal {
     const title = this.castToString(this.getPropValue("title"));
     const subtitle = this.castToString(this.getPropValue("subtitle"));
     const description = this.castToString(this.getPropValue("description"));
-    const buttonText = this.castToString(this.getPropValue("buttonText"));
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
     return (
       <Base.Container isModal={true} className={this.decorateCSS("container")}>
@@ -92,10 +80,10 @@ class Notice extends BaseModal {
 
             {description && <Base.P className={this.decorateCSS("description")}>{description}</Base.P>}
 
-            {buttonText && (
+            {this.castToString(button.text) && (
               <div className={this.decorateCSS("button-container")}>
-                <ComposerLink path={this.getPropValue("buttonUrl")}>
-                  <Base.Button className={this.decorateCSS("button-element")}>{this.getPropValue("buttonText")}</Base.Button>
+                <ComposerLink path={button.url}>
+                  <Base.Button buttonType={button.type} className={this.decorateCSS("button-element")}>{button.text}</Base.Button>
                 </ComposerLink>
               </div>
             )}
