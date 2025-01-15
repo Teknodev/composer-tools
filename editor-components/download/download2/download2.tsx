@@ -145,7 +145,7 @@ class Download2 extends BaseDownload {
   }
 
   static getName(): string {
-    return "Download  2";
+    return "Download 2";
   }
 
   render() {

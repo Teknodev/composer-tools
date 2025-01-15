@@ -50,7 +50,7 @@ class Download5 extends BaseDownload {
   }
 
   static getName(): string {
-    return "Download  5";
+    return "Download 5";
   }
 
   render() {
