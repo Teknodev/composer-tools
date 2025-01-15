@@ -173,8 +173,8 @@ class Header24 extends BaseHeader {
     this.setComponentState("arrowDisabled", false);
     this.setComponentState("slider-ref", React.createRef());
   }
-  getName(): string {
-    return "Header-24";
+  static getName(): string {
+    return "Header 24";
   }
   changeCurrentSlide(slideIndex: number) {
     this.setComponentState("currentIndex", slideIndex);

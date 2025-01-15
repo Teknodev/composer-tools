@@ -290,7 +290,7 @@ class List2 extends BaseList {
     ;
   }
 
-  getName(): string {
+  static getName(): string {
     return "List 2";
   }
   handleButtonClick = () => {

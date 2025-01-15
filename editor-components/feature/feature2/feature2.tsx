@@ -146,7 +146,7 @@ class Feature2 extends BaseFeature {
     window.addEventListener('resize', () => {this.setComponentState("windowWidth", window.innerWidth)});
   }
 
-  getName(): string {
+  static getName(): string {
     return "Feature 2";
   }
 

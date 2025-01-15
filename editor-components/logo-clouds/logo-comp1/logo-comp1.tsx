@@ -53,7 +53,7 @@ class LogoComp1Page extends LogoClouds {
     });
   }
 
-  getName(): string {
+  static getName(): string {
     return "Logo Cloud 1";
   }
 

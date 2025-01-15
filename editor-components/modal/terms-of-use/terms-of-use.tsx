@@ -72,7 +72,7 @@ class TermsOfUseModal extends BaseModal {
     });
   }
 
-  getName(): string {
+  static getName(): string {
     return "Terms Of Use Modal";
   }
 

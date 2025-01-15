@@ -148,7 +148,7 @@ class Slider3 extends BaseSlider {
     this.setComponentState("slider-ref", React.createRef());
   }
 
-  getName(): string {
+  static getName(): string {
     return "Slider 3";
   }
   render() {

@@ -29,7 +29,7 @@ type SliderItemType = {
 };
 
 class Header27 extends BaseHeader {
-  getName(): string {
+  static getName(): string {
     return "Header 27";
   }
   constructor(props?: any) {

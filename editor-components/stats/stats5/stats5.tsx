@@ -126,7 +126,7 @@ class Stats5Page extends BaseStats {
     this.animate();
   }
 
-  getName(): string {
+  static getName(): string {
     return "Stats 5";
   }
 

@@ -32,7 +32,7 @@ class CallToAction1Page extends BaseCallToAction {
     this.addProp(INPUTS.BUTTON("button", "Button", "Create Account", "", null, null, "Primary"));
   }
 
-  getName(): string {
+  static getName(): string {
     return "Call To Action 1";
   }
   render() {

@@ -180,7 +180,7 @@ class Feature15 extends BaseFeature {
         this.setComponentState("is_video_visible", false);
     }
 
-    getName(): string {
+    static getName(): string {
         return "Feature 15";
     }
 

@@ -198,8 +198,8 @@ class Faq4 extends BaseFAQ {
     this.setComponentState("onclick", false);
   }
 
-  getName(): string {
-    return "FAQ-4";
+  static getName(): string {
+    return "FAQ 4";
   }
   sectionButton(index: number): void {
     this.setComponentState("cardIndex", -1);

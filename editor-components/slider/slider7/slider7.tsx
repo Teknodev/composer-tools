@@ -155,7 +155,7 @@ class Slider7 extends BaseSlider {
 
   }
 
-  getName(): string {
+  static getName(): string {
     return "Slider 7";
   }
 

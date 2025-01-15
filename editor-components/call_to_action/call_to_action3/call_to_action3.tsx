@@ -46,7 +46,7 @@ class CallToAction3Page extends BaseCallToAction {
       value: true,
     });
   }
-  getName(): string {
+  static getName(): string {
     return "Call To Action 3";
   }
 

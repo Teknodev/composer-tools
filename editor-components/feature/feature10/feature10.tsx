@@ -243,7 +243,7 @@ class Feature10 extends BaseFeature {
     this.setComponentState("activeSlideIndex", 0);
   }
 
-  getName(): string {
+  static getName(): string {
     return "Feature 10";
   }
 

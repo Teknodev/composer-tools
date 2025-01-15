@@ -109,7 +109,7 @@ class Footer11Page extends BaseFooter {
       ],
     });
   }
-  getName(): string {
+  static getName(): string {
     return "Footer 11";
   }
   render() {

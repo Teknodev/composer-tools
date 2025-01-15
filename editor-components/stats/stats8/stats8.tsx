@@ -264,7 +264,7 @@ class Stats8Page extends BaseStats {
     return prefix + formattedWithDots + suffix;
   }
 
-  getName(): string {
+  static getName(): string {
     return "Stats 8";
   }
 

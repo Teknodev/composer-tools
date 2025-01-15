@@ -67,7 +67,7 @@ class CallToAction5Page extends BaseCallToAction {
     email: Yup.string().email("Invalid email").required("Required"),
   });
 
-  getName(): string {
+  static getName(): string {
     return "Call To Action 5";
   }
 

@@ -572,8 +572,8 @@ class PricingTable1 extends BasePricingTable {
       ],
     });
   }
-  getName(): string {
-    return "Pricing Table 1";
+  static getName(): string {
+    return "Pricing 1";
   }
   render() {
     const subtitle = this.getPropValue("pricing-table-subtitle");

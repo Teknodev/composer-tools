@@ -101,7 +101,7 @@ class Content9 extends BaseContent {
     });
     this.addProp(INPUTS.BUTTON("button", "Button", "Get In Tocuh!", "", null, null, "Primary"));
   }
-  getName(): string {
+  static getName(): string {
     return "Content 9";
   }
 

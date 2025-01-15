@@ -100,8 +100,8 @@ class Faq1 extends BaseFAQ {
     this.setComponentState("selectCardIndex", null);
   }
 
-  getName(): string {
-    return "FAQ-1";
+  static getName(): string {
+    return "FAQ 1";
   }
 
   cardClicked(index: number) {

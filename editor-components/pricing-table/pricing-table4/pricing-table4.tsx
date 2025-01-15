@@ -503,7 +503,7 @@ class PricingMultiple extends BasePricingTable {
       ],
     });
   }
-  getName(): string {
+  static getName(): string {
     return "Pricing 4";
   }
   render() {

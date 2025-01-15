@@ -222,7 +222,7 @@ class Testimonials2Page extends Testimonials {
     });
   }
 
-  getName(): string {
+  static getName(): string {
     return "Testimonials 2";
   }
 

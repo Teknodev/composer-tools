@@ -200,7 +200,7 @@ class SurveyModal extends BaseModal {
     });
   }
 
-  getName(): string {
+  static getName(): string {
     return "Survey Modal";
   }
 

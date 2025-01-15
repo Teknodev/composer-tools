@@ -717,7 +717,7 @@ class ImageGallery2 extends BaseImageGallery {
         return galleryCollection[currentIndex]?.imageGallery || [];
     }
 
-    getName(): string {
+    static getName(): string {
         return "Image Gallery 2";
     }
     handleLoadMoreButton = () => {

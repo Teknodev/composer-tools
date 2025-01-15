@@ -317,8 +317,8 @@ class Header18 extends BaseHeader {
     this.setComponentState("active-index", 0);
   }
 
-  getName(): string {
-    return "Header-18";
+  static getName(): string {
+    return "Header 18";
   }
 
   render() {

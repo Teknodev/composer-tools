@@ -323,7 +323,7 @@ class Header9 extends BaseHeader {
     this.setComponentState("activeTab", index);
   }
 
-  getName(): string {
+  static getName(): string {
     return "Header 9";
   }
 

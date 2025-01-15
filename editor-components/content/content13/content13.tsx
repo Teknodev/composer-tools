@@ -78,7 +78,7 @@ class Content13 extends BaseContent {
     });
   }
 
-  getName(): string {
+  static getName(): string {
     return "Content 13";
   }
 

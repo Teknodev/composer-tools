@@ -90,7 +90,7 @@ class Content10 extends BaseContent {
     this.setComponentState("is_video_visible", false);
   }
 
-  getName(): string {
+  static getName(): string {
     return "Content 10";
   }
 

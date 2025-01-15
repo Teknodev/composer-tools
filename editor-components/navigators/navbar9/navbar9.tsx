@@ -1059,7 +1059,7 @@ class Navbar9 extends BaseNavigator {
     this.setComponentState("isBigScreen", false);
   }
 
-  getName(): string {
+  static getName(): string {
     return "Navbar 9";
   }
 

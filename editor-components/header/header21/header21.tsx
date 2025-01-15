@@ -74,7 +74,7 @@ class Header21 extends BaseHeader {
 
     this.setComponentState("is_video_visible", false);
   }
-  getName(): string {
+  static getName(): string {
     return "Header 21";
   }
   render() {

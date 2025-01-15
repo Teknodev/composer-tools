@@ -137,7 +137,7 @@ class Testimonials7Page extends Testimonials {
     this.setComponentState("activeSlideIndex", 0);
   }
 
-  getName(): string {
+  static getName(): string {
     return "Testimonials 7";
   }
 

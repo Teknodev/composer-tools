@@ -123,8 +123,8 @@ class Faq6 extends BaseFAQ {
 
 
   }
-  getName(): string {
-    return "FAQ-6";
+  static getName(): string {
+    return "FAQ 6";
   }
 
   onItemClick(index: number) {

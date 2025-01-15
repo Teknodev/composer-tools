@@ -289,8 +289,8 @@ class ImageGallery8 extends BaseImageGallery {
         });
     }
 
-    getName(): string {
-        return "ImageGallery 8";
+    static getName(): string {
+        return "Image Gallery 8";
     }
 
     render() {

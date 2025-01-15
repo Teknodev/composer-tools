@@ -178,7 +178,7 @@ class Header7 extends BaseHeader {
     });
     this.setComponentState("active_image", this.castToObject<ISliderData[]>("pages")[0].image);
   }
-  getName(): string {
+  static getName(): string {
     return "Header 7";
   }
   render() {

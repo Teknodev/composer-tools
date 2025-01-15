@@ -112,8 +112,8 @@ class Download8 extends BaseDownload {
     });
   }
 
-  getName(): string {
-    return "Download-8";
+  static getName(): string {
+    return "Download  8";
   }
 
   render() {

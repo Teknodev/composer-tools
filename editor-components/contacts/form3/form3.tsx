@@ -499,7 +499,7 @@ class Form3 extends BaseContacts {
     });
   }
 
-  getName(): string {
+  static getName(): string {
     return "Form 3";
   }
 

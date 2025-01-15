@@ -383,7 +383,7 @@ class Location2 extends Location {
     });
   }
 
-  getName(): string {
+  static getName(): string {
     return "Location 2";
   }
 

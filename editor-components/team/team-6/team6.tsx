@@ -496,7 +496,7 @@ class Team6 extends Team {
     this.setComponentState("activeIndex", null);
   }
 
-  getName(): string {
+  static getName(): string {
     return "Team 6";
   }
 

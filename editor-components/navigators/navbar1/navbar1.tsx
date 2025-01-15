@@ -1163,7 +1163,7 @@ class Navbar1 extends BaseNavigator {
 
   }
 
-  getName(): string {
+  static getName(): string {
     return "Navbar 1";
   }
 

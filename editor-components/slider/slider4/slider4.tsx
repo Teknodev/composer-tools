@@ -210,7 +210,7 @@ class Slider4 extends BaseSlider {
     this.setComponentState("slider-ref", React.createRef());
   }
 
-  getName(): string {
+  static getName(): string {
     return "Slider 4";
   }
   render() {

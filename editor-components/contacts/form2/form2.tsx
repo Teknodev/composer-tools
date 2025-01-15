@@ -224,7 +224,7 @@ class Form2 extends BaseContacts {
     this.addProp(INPUTS.BUTTON("button", "Button", "Contact Us", null, null, null, "Primary"));
   }
 
-  getName(): string {
+  static getName(): string {
     return "Form 2";
   }
 

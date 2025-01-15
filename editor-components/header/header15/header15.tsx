@@ -81,8 +81,8 @@ class Header15 extends BaseHeader {
     this.addProp(INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "Primary"));
   }
 
-  getName(): string {
-    return "Header-15";
+  static getName(): string {
+    return "Header 15";
   }
 
   render() {

@@ -330,7 +330,7 @@ class Form6 extends BaseContacts {
     this.addProp(INPUTS.BUTTON("button", "Button", "Submit Form", null, null, null, "Primary"));
   }
 
-  getName(): string {
+  static getName(): string {
     return "Form 6";
   }
 

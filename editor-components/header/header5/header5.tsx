@@ -68,7 +68,7 @@ class Header5 extends BaseHeader {
     });
   }
 
-  getName(): string {
+  static getName(): string {
     return "Header 5";
   }
 

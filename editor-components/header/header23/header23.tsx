@@ -257,8 +257,8 @@ class Header23 extends BaseHeader {
     applyTransform(transformWrapperTopImgElements, `translate(-50%, -50%) translate(${-xRatio * factorTopImg}px, ${-yRatio * factorTopImg}px)`);
   };
 
-  getName(): string {
-    return "Header-23";
+  static getName(): string {
+    return "Header 23";
   }
 
   render() {

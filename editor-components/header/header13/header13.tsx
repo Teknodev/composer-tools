@@ -246,8 +246,8 @@ class Header13 extends BaseHeader {
     });
   }
 
-  getName(): string {
-    return "Header-13";
+  static getName(): string {
+    return "Header 13";
   }
   render() {
     const settings = {

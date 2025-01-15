@@ -14,7 +14,7 @@ type listItem = {
 };
 
 class List8 extends BaseList {
-  getName(): string {
+  static getName(): string {
     return "List 8";
   }
 

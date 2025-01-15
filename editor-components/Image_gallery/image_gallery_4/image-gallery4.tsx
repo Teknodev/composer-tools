@@ -424,7 +424,7 @@ class ImageGallery4 extends BaseImageGallery {
     document.addEventListener("keydown", this.handleKeyDown);
   }
 
-  getName(): string {
+  static getName(): string {
     return "Image Gallery 4";
   }
   handleKeyDown = (event: KeyboardEvent) => {

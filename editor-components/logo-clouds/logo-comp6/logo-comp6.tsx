@@ -158,8 +158,8 @@ class LogoComp6Page extends LogoClouds {
       ],
     });
   }
-  getName(): string {
-    return "Logo Comp 6";
+  static getName(): string {
+    return "Logo Cloud 6";
   }
 
   render() {

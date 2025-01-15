@@ -183,8 +183,8 @@ class Faq7 extends BaseFAQ {
 
   }
 
-  getName(): string {
-    return "FAQ-7";
+  static getName(): string {
+    return "FAQ 7";
   }
   handleButton(index: number): void {
     if (this.getComponentState("activeIndex") === index) {

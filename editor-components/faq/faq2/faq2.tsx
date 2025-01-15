@@ -232,8 +232,8 @@ class Faq2 extends BaseFAQ {
     })
   }
 
-  getName(): string {
-    return "FAQ-02";
+  static getName(): string {
+    return "FAQ 2";
   }
 
   render() {

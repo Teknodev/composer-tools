@@ -343,7 +343,7 @@ class Form4 extends BaseContacts {
     this.addProp(INPUTS.BUTTON("button", "Button", "Send Email", null, null, null, "Primary"));
   }
 
-  getName(): string {
+  static getName(): string {
     return "Form 4";
   }
 

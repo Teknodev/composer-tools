@@ -231,7 +231,7 @@ class Feature3 extends BaseFeature {
     this.setComponentState('screenWidth', window.innerWidth);
   }
 
-  getName(): string {
+  static getName(): string {
     return "Feature 3";
   }
 

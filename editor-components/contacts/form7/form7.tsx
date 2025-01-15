@@ -214,7 +214,7 @@ class Form7 extends BaseContacts {
     });
   }
 
-  getName(): string {
+  static getName(): string {
     return "Form 7";
   }
 

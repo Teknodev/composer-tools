@@ -34,7 +34,7 @@ interface Language {
 }
 
 class Navbar4 extends BaseNavigator {
-  getName(): string {
+  static getName(): string {
     return "Navbar 4";
   }
 

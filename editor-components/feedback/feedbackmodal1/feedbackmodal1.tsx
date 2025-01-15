@@ -248,7 +248,7 @@ class FeedbackModal1 extends BaseModal {
     });
   }
 
-  getName(): string {
+  static getName(): string {
     return "Feedback Modal 1";
   }
 

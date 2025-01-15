@@ -66,7 +66,7 @@ class CallToAction7Page extends BaseCallToAction {
       .required("Required"),
   });
 
-  getName(): string {
+  static getName(): string {
     return "Call To Action 7";
   }
 

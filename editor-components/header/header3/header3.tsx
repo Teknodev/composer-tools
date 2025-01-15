@@ -144,7 +144,7 @@ class Header3 extends BaseHeader {
     this.setComponentState("activeSlide", 0);
   }
 
-  getName(): string {
+  static getName(): string {
     return "Header 3";
   }
 

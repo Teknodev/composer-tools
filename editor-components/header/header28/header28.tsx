@@ -175,7 +175,7 @@ class Header28 extends BaseHeader {
     this.setComponentState("active-index", 0);
     this.setComponentState("play-video", false);
   }
-  getName(): string {
+  static getName(): string {
     return "Header 28";
   }
 

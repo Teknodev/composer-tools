@@ -266,7 +266,7 @@ class Content5 extends BaseContent {
     }, 5);
   }
 
-  getName(): string {
+  static getName(): string {
     return "Content 5";
   }
   render() {

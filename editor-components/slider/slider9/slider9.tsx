@@ -231,7 +231,7 @@ class Slider9 extends BaseSlider {
     this.setComponentState("videoUrl", null);
   };
 
-  getName(): string {
+  static getName(): string {
     return "Slider 9";
   }
 

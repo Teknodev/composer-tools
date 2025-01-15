@@ -65,7 +65,7 @@ class SubscriptionModal extends BaseModal {
     this.addProp(INPUTS.BUTTON("button", "Button", "Subscribe", null, null, null, "Primary"));
   }
 
-  getName(): string {
+  static getName(): string {
     return "Subscription Modal";
   }
 

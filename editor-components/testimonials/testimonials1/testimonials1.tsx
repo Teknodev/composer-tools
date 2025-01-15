@@ -122,7 +122,7 @@ class Testimonials1Page extends Testimonials {
     this.setComponentState("slider-ref", React.createRef());
   }
 
-  getName(): string {
+  static getName(): string {
     return "Testimonials 1";
   }
 

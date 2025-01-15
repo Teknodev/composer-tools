@@ -95,7 +95,7 @@ class Content7 extends BaseContent {
     });
   }
 
-  getName(): string {
+  static getName(): string {
     return "Content 7";
   }
 

@@ -244,7 +244,7 @@ class Location3 extends Location {
     });
   }
 
-  getName(): string {
+  static getName(): string {
     return "Location 3";
   }
 

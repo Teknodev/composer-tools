@@ -86,7 +86,7 @@ class Footer5Page extends BaseFooter {
     });
   }
 
-  getName(): string {
+  static getName(): string {
     return "Footer 5";
   }
 

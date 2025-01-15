@@ -232,7 +232,7 @@ class Header1 extends BaseHeader {
     this.setComponentState("animationDuration", 20);
   }
 
-  getName(): string {
+  static getName(): string {
     return "Header 1";
   }
   setActiveTab(activeTabIndex: number) {

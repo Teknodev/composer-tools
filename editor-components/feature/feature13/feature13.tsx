@@ -295,7 +295,7 @@ class Feature13 extends BaseFeature {
     });
   }
 
-  getName(): string {
+  static getName(): string {
     return "Feature 13";
   }
 

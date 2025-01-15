@@ -279,7 +279,7 @@ class Content6 extends BaseContent {
     );
   }
 
-  getName(): string {
+  static getName(): string {
     return "Content 6";
   }
   renderDots() {

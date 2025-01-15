@@ -191,7 +191,7 @@ class Content11 extends BaseContent {
       ],
     });
   }
-  getName(): string {
+  static getName(): string {
     return "Content 11";
   }
   render() {

@@ -30,7 +30,7 @@ class Content1 extends BaseContent {
       ],
     });
   }
-  getName(): string {
+  static getName(): string {
     return "Content 1";
   }
   render() {

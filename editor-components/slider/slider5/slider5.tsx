@@ -74,7 +74,7 @@ class Slider5 extends BaseSlider {
       ],
     });
   }
-  getName(): string {
+  static getName(): string {
     return "Slider 5";
   }
   render() {

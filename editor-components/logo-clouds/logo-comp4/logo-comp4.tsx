@@ -64,8 +64,8 @@ class LogoComp4Page extends LogoClouds {
     });
   }
 
-  getName(): string {
-    return "Logo Comp 4";
+  static getName(): string {
+    return "Logo Cloud 4";
   }
 
   render() {

@@ -352,7 +352,7 @@ class Location6 extends Location {
     this.setComponentState("customSelectedMarker", null);
   }
 
-  getName(): string {
+  static getName(): string {
     return "Location 6";
   }
 

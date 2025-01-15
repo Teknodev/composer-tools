@@ -27,7 +27,7 @@ class CallToAction8Page extends BaseCallToAction {
     this.addProp(INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "Primary"));
   }
 
-  getName(): string {
+  static getName(): string {
     return "Call To Action 8";
   }
   render() {

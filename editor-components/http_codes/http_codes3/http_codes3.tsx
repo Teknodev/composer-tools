@@ -45,7 +45,7 @@ class HttpCodes3 extends BaseHTTPCodes {
     });
   }
 
-  getName(): string {
+  static getName(): string {
     return "HTTP Codes 3";
   }
 

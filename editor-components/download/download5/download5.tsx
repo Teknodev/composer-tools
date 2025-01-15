@@ -49,8 +49,8 @@ class Download5 extends BaseDownload {
     });
   }
 
-  getName(): string {
-    return "Download-5";
+  static getName(): string {
+    return "Download  5";
   }
 
   render() {

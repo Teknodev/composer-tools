@@ -356,7 +356,7 @@ class ImageGallery7 extends BaseImageGallery {
     }
 
 
-    getName(): string {
+    static getName(): string {
         return "Image Gallery 7";
     }
     private timeoutId: NodeJS.Timeout | null = null;

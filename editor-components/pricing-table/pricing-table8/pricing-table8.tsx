@@ -391,8 +391,8 @@ class PricingTable8 extends BasePricingTable {
     });
   }
 
-  getName(): string {
-    return "Pricing Table 8";
+  static getName(): string {
+    return "Pricing 8";
   }
 
   render() {

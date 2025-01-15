@@ -70,7 +70,7 @@ class Header4 extends BaseHeader {
     this.setComponentState("scrollY", scrollY);
   };
 
-  getName(): string {
+  static getName(): string {
     return "Header 4";
   }
 

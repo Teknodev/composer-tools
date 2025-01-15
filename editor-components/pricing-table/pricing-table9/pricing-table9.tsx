@@ -711,7 +711,7 @@ class PricingTable9 extends BasePricingTable {
     });
   }
 
-  getName(): string {
+  static getName(): string {
     return "Pricing 9";
   }
 

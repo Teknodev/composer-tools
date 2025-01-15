@@ -261,7 +261,7 @@ class Header12 extends BaseHeader {
 
   }
 
-  getName(): string {
+  static getName(): string {
     return "Header 12";
   }
 

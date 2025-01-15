@@ -61,7 +61,7 @@ class CallToAction2Page extends BaseCallToAction {
     this.setComponentState("isVideoVisible", false);
   }
 
-  getName(): string {
+  static getName(): string {
     return "Call To Action 2";
   }
 

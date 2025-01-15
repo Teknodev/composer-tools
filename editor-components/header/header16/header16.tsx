@@ -122,8 +122,8 @@ class Header16 extends BaseHeader {
     this.setComponentState("activeSlideIndex", 0);
   }
 
-  getName(): string {
-    return "Header-16";
+  static getName(): string {
+    return "Header 16";
   }
 
   render() {

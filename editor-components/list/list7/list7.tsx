@@ -9,7 +9,7 @@ type listItem = {
 }
 
 class List7 extends BaseList {
-  getName(): string {
+  static getName(): string {
     return "List 7";
   }
   constructor(props?: any) {

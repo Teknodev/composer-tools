@@ -323,7 +323,7 @@ class Navbar8 extends BaseNavigator {
     this.setComponentState("backgroundChange", false)
   }
 
-  getName(): string {
+  static getName(): string {
     return "Navbar 8";
   }
 

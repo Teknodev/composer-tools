@@ -12,7 +12,7 @@ type listItem = {
 };
 
 class List6 extends BaseList {
-  getName(): string {
+  static getName(): string {
     return "List 6";
   }
 

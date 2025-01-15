@@ -301,7 +301,7 @@ class Testimonials6Page extends Testimonials {
     });
   }
 
-  getName(): string {
+  static getName(): string {
     return "Testimonials 6";
   }
 

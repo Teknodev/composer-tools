@@ -385,7 +385,7 @@ class ImageGallery1 extends BaseImageGallery {
     this.setComponentState("moreImages", 0);
   }
 
-  getName(): string {
+  static getName(): string {
     return "Image Gallery 1";
   }
   handleSectionClick(sectionTitle: JSX.Element, index: number): void {

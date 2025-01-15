@@ -309,7 +309,7 @@ class Feature4 extends BaseFeature {
     });
   }
 
-  getName(): string {
+  static getName(): string {
     return "Feature 4";
   }
 

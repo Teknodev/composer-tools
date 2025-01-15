@@ -247,7 +247,7 @@ class List1 extends BaseList {
     this.setComponentState("active-index", 1);
   }
 
-  getName(): string {
+  static getName(): string {
     return "List 1";
   }
 

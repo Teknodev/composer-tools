@@ -163,7 +163,7 @@ class List9 extends BaseList {
         });
     }
 
-    getName(): string {
+    static getName(): string {
         return "List 9";
     }
 

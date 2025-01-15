@@ -165,7 +165,7 @@ class Team14 extends Team {
     });
   }
 
-  getName(): string {
+  static getName(): string {
     return "Team 14";
   }
   render() {

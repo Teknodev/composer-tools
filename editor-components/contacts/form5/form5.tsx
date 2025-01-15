@@ -371,7 +371,7 @@ class Form5 extends BaseContacts {
     });
   }
 
-  getName(): string {
+  static getName(): string {
     return "Form 5";
   }
 

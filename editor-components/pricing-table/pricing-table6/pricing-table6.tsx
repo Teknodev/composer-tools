@@ -1049,7 +1049,7 @@ class PricingMultipleTwo extends BasePricingTable {
   setActivePlan(activeTabIndex: number) {
     this.setComponentState("activePlan", activeTabIndex);
   }
-  getName(): string {
+  static getName(): string {
     return "Pricing 6";
   }
   render(): React.ReactNode {

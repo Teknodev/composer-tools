@@ -180,7 +180,7 @@ class Testimonials12Page extends Testimonials {
     this.setComponentState("slider-ref", React.createRef());
   }
 
-  getName(): string {
+  static getName(): string {
     return "Testimonials 12";
   }
   handleSlideChange(direction: "next" | "prev") {

@@ -1,30 +1,30 @@
 @import "./utitilities/viewports.module.scss";
 
-@media only screen and (max-width: $composer-tablet-width-lg) {
+@container (max-width: #{$composer-tablet-width}-lg) {
     :root{
         --project-font-size: 1.5vw;
     }
 }
 
-@media only screen and (max-width: $composer-tablet-width) {
+@container (max-width: #{$composer-tablet-width}) {
     :root{
         --project-font-size: 2.25vw;
     }
 }
 
-@media only screen and (max-width: $composer-tablet-width-sm) {
+@container (max-width: #{$composer-tablet-width}-sm) {
     :root{
         --project-font-size: 2.5vw;
     }
 }
 
-@media only screen and (max-width: $composer-phone-width) {
+@container (max-width: #{$composer-phone-width}) {
     :root{
         --project-font-size: 3vw;
     }
 }
 
-@media only screen and (max-width: $composer-phone-width-sm) {
+@container (max-width: #{$composer-phone-width}-sm) {
     :root{
         --project-font-size: 4vw;
     }
@@ -79,11 +79,11 @@
         }
     }
 
-    @media only screen and (max-width: $composer-tablet-width) {
+    @container (max-width: #{$composer-tablet-width}) {
         padding: 20px 40px;
     }
 
-    @media only screen and (max-width: $composer-phone-width) {
+    @container (max-width: #{$composer-phone-width}) {
         padding: 20px;
     }
 
@@ -249,10 +249,10 @@
     display: grid;
     grid-template-columns: repeat(var(--composer-grid-count), 1fr);
     gap: var(--composer-gap-md);
-    @media only screen and (max-width: $composer-tablet-width) {
+    @container (max-width: #{$composer-tablet-width}) {
         grid-template-columns: repeat(var(--composer-grid-count-tablet), 1fr);
     }
-    @media only screen and (max-width: $composer-phone-width) {
+    @container (max-width: #{$composer-phone-width}) {
         grid-template-columns: repeat(var(--composer-grid-count-phone), 1fr);
     }
 }
@@ -265,7 +265,7 @@
     .gridCell{
         padding: 0px;
     }
-    @media only screen and (max-width: $composer-tablet-width-sm) {
+    @container (max-width: $composer-tablet-width-sm) {
         flex-direction: column;
     }
 }
@@ -275,7 +275,7 @@
     flex-grow: 1;
     min-width: 0;
     padding: var(--composer-gap-md);
-    @media only screen and (max-width: $composer-tablet-width-sm) {
+    @container (max-width: $composer-tablet-width-sm) {
         width: 100%;
     } 
 }
@@ -398,6 +398,7 @@
     justify-content: space-between;
     align-items: center;
     z-index: 100;
+    background: var(--composer-html-background);
 
     &.sticky,
     &.stickycolorful,

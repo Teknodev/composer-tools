@@ -113,7 +113,7 @@ class Testimonials3Page extends Testimonials {
       ],
     });
   }
-  getName(): string {
+  static getName(): string {
     return "Testimonials 3";
   }
   render() {

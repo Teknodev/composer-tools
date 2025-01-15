@@ -116,7 +116,7 @@ class Stats7Page extends BaseStats {
     });
   }
 
-  getName(): string {
+  static getName(): string {
     return "Stats 7";
   }
 

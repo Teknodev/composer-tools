@@ -135,7 +135,7 @@ class Stats3Page extends BaseStats {
       value: true,
     });
   }
-  getName(): string {
+  static getName(): string {
     return "Stats 3";
   }
   render() {

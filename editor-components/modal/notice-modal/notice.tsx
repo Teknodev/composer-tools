@@ -48,7 +48,7 @@ class Notice extends BaseModal {
     this.addProp(INPUTS.BUTTON("button", "Button", "Get Started Now!", "", null, null, "Primary"));
   }
 
-  getName(): string {
+  static getName(): string {
     return "Notice Modal";
   }
 

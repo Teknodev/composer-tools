@@ -70,7 +70,7 @@ class NotificationModal1 extends BaseModal {
     });
   }
 
-  getName(): string {
+  static getName(): string {
     return "Notification Modal 1";
   }
 

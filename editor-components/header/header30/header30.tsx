@@ -55,8 +55,8 @@ class Header30 extends BaseHeader {
     });
   }
 
-  getName(): string {
-    return "Header-30";
+  static getName(): string {
+    return "Header 30";
   }
 
   render() {

@@ -1063,7 +1063,7 @@ class Navbar6 extends BaseNavigator {
     this.setComponentState("changeBackground", false);
   }
 
-  getName(): string {
+  static getName(): string {
     return "Navbar 6";
   }
 

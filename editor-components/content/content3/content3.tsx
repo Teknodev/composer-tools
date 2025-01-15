@@ -127,7 +127,7 @@ class Content3 extends BaseContent {
     }, 20);
   }
 
-  getName(): string {
+  static getName(): string {
     return "Content 3";
   }
   render() {

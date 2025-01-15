@@ -258,7 +258,7 @@ class Location1 extends Location {
     this.setComponentState("isCardVisible", true);
   }
 
-  getName(): string {
+  static getName(): string {
     return "Location 1";
   }
 

@@ -1156,7 +1156,7 @@ class Navbar3 extends BaseNavigator {
     this.setComponentState("isBigScreen", false);
   }
 
-  getName(): string {
+  static getName(): string {
     return "Navbar 3";
   }
 

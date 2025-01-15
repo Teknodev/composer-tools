@@ -192,7 +192,7 @@ class Testimonials5Page extends Testimonials {
     this.setComponentState("activeSlideIndex", 0);
   }
 
-  getName(): string {
+  static getName(): string {
     return "Testimonials 5";
   }
   handleSlideChange(direction: "next" | "prev") {

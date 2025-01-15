@@ -218,7 +218,7 @@ class Slider2 extends BaseSlider {
     this.setComponentState("text_visibility", true);
   }
 
-  getName(): string {
+  static getName(): string {
     return "Slider 2";
   }
 

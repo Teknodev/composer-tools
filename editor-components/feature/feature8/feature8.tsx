@@ -229,7 +229,7 @@ class Feature8 extends BaseFeature {
     this.setComponentState("cardsCount", cardElements.length);
   };
 
-  getName(): string {
+  static getName(): string {
     return "Feature 8";
   }
 

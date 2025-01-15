@@ -229,7 +229,7 @@ class Content2 extends BaseContent {
       ],
     });
   }
-  getName(): string {
+  static getName(): string {
     return "Content 2";
   }
 

@@ -289,7 +289,7 @@ class Testimonials9Page extends Testimonials {
     });
     this.setComponentState("active-index", 1);
   }
-  getName(): string {
+  static getName(): string {
     return "Testimonials 9";
   }
   render() {

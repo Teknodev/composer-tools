@@ -127,7 +127,7 @@ class CallToAction10Page extends BaseCallToAction {
 
   }
 
-  getName(): string {
+  static getName(): string {
     return "Call To Action 10";
   }
 

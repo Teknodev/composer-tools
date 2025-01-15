@@ -200,7 +200,7 @@ class Header8 extends BaseHeader {
     this.setComponentState("centerSlide", 0);
   }
 
-  getName(): string {
+  static getName(): string {
     return "Header 8";
   }
   handleAnimationEnd = ({

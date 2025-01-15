@@ -62,8 +62,8 @@ class Download9 extends BaseDownload {
     });
   }
 
-  getName(): string {
-    return "Download-9";
+  static getName(): string {
+    return "Download  9";
   }
 
   renderButtons() {

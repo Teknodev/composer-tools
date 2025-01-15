@@ -505,8 +505,8 @@ class Faq5 extends BaseFAQ {
     this.setComponentState("activeCard", -1);
   }
 
-  getName(): string {
-    return "FAQ-5";
+  static getName(): string {
+    return "FAQ 5";
   }
   handleSection(index: number): void {
     this.setComponentState("activeSection", index);

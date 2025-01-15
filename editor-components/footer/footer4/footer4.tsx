@@ -482,7 +482,7 @@ class Footer4Page extends BaseFooter {
       .required("Email is required"),
   });
 
-  getName(): string {
+  static getName(): string {
     return "Footer 4";
   }
 

@@ -147,8 +147,8 @@ class Header19 extends BaseHeader {
     this.addProp(INPUTS.BUTTON("button4", "Button", "", "", null, null, "Primary"));
   }
 
-  getName(): string {
-    return "Header-19";
+  static getName(): string {
+    return "Header 19";
   }
 
   render() {

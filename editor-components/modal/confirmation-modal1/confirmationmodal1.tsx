@@ -55,7 +55,7 @@ class ConfirmationModal1 extends BaseModal {
     });
   }
 
-  getName(): string {
+  static getName(): string {
     return "Confirmation Modal 1";
   }
 

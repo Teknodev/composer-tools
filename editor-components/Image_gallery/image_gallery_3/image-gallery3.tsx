@@ -64,7 +64,7 @@ class ImageGallery3 extends BaseImageGallery {
         });
     }
 
-    getName(): string {
+    static getName(): string {
         return "Image Gallery 3";
     }
 

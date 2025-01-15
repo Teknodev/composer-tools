@@ -670,8 +670,8 @@ class Header20 extends BaseHeader {
     this.setComponentState("commentSlider", 0);
   }
 
-  getName(): string {
-    return "Header-20";
+  static getName(): string {
+    return "Header 20";
   }
 
   goToSlide = (nextSlide: number) => {

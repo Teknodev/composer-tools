@@ -861,8 +861,8 @@ class PricingTable7 extends BasePricingTable {
     this.setComponentState("activeTab", activeTabIndex);
   }
 
-  getName(): string {
-    return "Pricing Table 7";
+  static getName(): string {
+    return "Pricing 7";
   }
 
   togglePlanType() {

@@ -158,7 +158,7 @@ class Location5 extends Location {
     });
   }
 
-  getName(): string {
+  static getName(): string {
     return "Location 5";
   }
 

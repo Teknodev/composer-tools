@@ -289,7 +289,7 @@ class Slider10 extends BaseSlider {
     this.setComponentState("active", 0);
   }
 
-  getName(): string {
+  static getName(): string {
     return "Slider 10";
   }
 

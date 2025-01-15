@@ -241,7 +241,7 @@ class Team12 extends Team {
       max: 6,
     });
   }
-  getName(): string {
+  static getName(): string {
     return "Team 12";
   }
   render() {

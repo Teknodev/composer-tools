@@ -183,8 +183,8 @@ class Header26 extends BaseHeader {
     this.setComponentState("next", null);
   }
 
-  getName(): string {
-    return "Header-26";
+  static getName(): string {
+    return "Header 26";
   }
 
   render() {

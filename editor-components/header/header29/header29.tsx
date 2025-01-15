@@ -135,7 +135,7 @@ class Header29 extends BaseHeader {
     phone: Yup.string().required("Required"),
   });
 
-  getName(): string {
+  static getName(): string {
     return "Header 29";
   }
 

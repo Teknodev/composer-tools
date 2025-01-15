@@ -116,7 +116,7 @@ class Location4 extends Location {
     });
   }
 
-  getName(): string {
+  static getName(): string {
     return "Location 4";
   }
 

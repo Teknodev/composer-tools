@@ -43,7 +43,7 @@ class HTTP_CODES2 extends BaseHTTPCodes {
     });
   }
 
-  getName(): string {
+  static getName(): string {
     return "HTTP Codes 2";
   }
 

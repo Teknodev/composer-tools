@@ -349,7 +349,7 @@ class FormModal1 extends BaseModal {
     });
   }
 
-  getName(): string {
+  static getName(): string {
     return "FormModal1";
   }
 

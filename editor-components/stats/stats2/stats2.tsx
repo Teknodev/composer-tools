@@ -181,7 +181,7 @@ class Stats2Page extends BaseStats {
     });
   }
 
-  getName(): string {
+  static getName(): string {
     return "Stats 2";
   }
 

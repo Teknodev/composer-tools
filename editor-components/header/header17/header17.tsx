@@ -123,8 +123,8 @@ class Header17 extends BaseHeader {
     this.setComponentState("slider-ref", React.createRef());
   }
 
-  getName(): string {
-    return "Header-17";
+  static getName(): string {
+    return "Header 17";
   }
 
   render() {

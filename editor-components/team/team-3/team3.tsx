@@ -302,7 +302,7 @@ class Team3 extends Team {
     });
   }
 
-  getName(): string {
+  static getName(): string {
     return "Team 3";
   }
 

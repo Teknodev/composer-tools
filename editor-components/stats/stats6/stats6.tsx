@@ -193,7 +193,7 @@ class Stats6Page extends BaseStats {
     }, animationDuration);
   }
 
-  getName(): string {
+  static getName(): string {
     return "Stats 6";
   }
 

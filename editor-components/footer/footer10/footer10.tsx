@@ -203,7 +203,7 @@ class Footer10Page extends BaseFooter {
       ],
     });
   }
-  getName(): string {
+  static getName(): string {
     return "Footer 10";
   }
   render() {

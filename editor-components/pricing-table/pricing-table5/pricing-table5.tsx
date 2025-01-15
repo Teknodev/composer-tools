@@ -156,8 +156,8 @@ class PricingTable5 extends BasePricingTable {
     });
   }
 
-  getName(): string {
-    return "Pricing List 5";
+  static getName(): string {
+    return "Pricing 5";
   }
 
   onPlanClicked(index: number) {

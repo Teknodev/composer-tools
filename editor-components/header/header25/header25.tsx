@@ -260,8 +260,8 @@ class Header25 extends BaseHeader {
     this.setComponentState("slider-ref", React.createRef());
   }
 
-  getName(): string {
-    return "Header-25";
+  static getName(): string {
+    return "Header 25";
   }
 
   handleAnimationEnd = ({

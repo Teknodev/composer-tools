@@ -198,7 +198,7 @@ class ImageGallery5 extends BaseImageGallery {
     this.setComponentState("moreImages", 0);
   }
 
-  getName(): string {
+  static getName(): string {
     return "Image Gallery 5";
   }
 

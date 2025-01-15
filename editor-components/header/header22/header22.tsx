@@ -159,8 +159,8 @@ class Header22 extends BaseHeader {
     this.setComponentState("activeSlide", 0);
   }
 
-  getName(): string {
-    return "Header-22";
+  static getName(): string {
+    return "Header 22";
   }
 
   handlePrevClick = () => {

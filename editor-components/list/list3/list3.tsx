@@ -14,7 +14,7 @@ type TextItem = {
 };
 
 class List3 extends BaseList {
-  getName(): string {
+  static getName(): string {
     return "List 3";
   }
   constructor(props?: any) {

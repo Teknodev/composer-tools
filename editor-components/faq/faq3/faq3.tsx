@@ -242,8 +242,8 @@ class Faq3 extends BaseFAQ {
     this.setComponentState("selectCardIndex", null);
   }
 
-  getName(): string {
-    return "FAQ-3";
+  static getName(): string {
+    return "FAQ 3";
   }
 
   lineClicked(index: number) {

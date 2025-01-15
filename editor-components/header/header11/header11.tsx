@@ -47,7 +47,7 @@ class Header11 extends BaseHeader {
     this.setComponentState("videoUrl", null);
   }
 
-  getName(): string {
+  static getName(): string {
     return "Header 11";
   }
 

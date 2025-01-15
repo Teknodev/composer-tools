@@ -1125,7 +1125,7 @@ class Navbar2 extends BaseNavigator {
     this.setComponentState("changeBackground", false);
     this.setComponentState("isBigScreen", false);
   }
-  getName(): string {
+  static getName(): string {
     return "Navbar 2";
   }
 

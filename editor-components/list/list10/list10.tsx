@@ -157,7 +157,7 @@ class List10 extends BaseList {
             max: 4,
         });
     }
-    getName(): string {
+    static getName(): string {
         return "List 10";
     }
 

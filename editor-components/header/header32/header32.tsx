@@ -220,8 +220,8 @@ class Header32 extends BaseHeader {
     this.setComponentState("slider-ref", React.createRef());
   }
 
-  getName(): string {
-    return "Header-32";
+  static getName(): string {
+    return "Header 32";
   }
 
   render() {

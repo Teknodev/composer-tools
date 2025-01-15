@@ -325,8 +325,8 @@ class PricingTable3 extends BasePricingTable {
     });
   }
 
-  getName(): string {
-    return "Pricing Table 3";
+  static getName(): string {
+    return "Pricing 3";
   }
 
   render() {

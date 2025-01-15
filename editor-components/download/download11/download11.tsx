@@ -111,8 +111,8 @@ class Download11 extends BaseDownload {
     this.addProp(INPUTS.BUTTON("buttonRightBottom", "Right Bottom Button", "More", "", "", "", "Primary"))
   }
 
-  getName(): string {
-    return "Download-11";
+  static getName(): string {
+    return "Download  11";
   }
 
   render() {

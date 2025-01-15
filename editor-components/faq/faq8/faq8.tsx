@@ -650,8 +650,8 @@ class Faq8 extends BaseFAQ {
     this.setComponentState("activeIndex2", -1);
   }
 
-  getName(): string {
-    return "FAQ-8";
+  static getName(): string {
+    return "FAQ 8";
   }
 
   handleButton(index: number) {
