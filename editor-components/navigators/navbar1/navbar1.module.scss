@@ -193,6 +193,11 @@
     justify-content: center;
     gap: var(--composer-gap-md);
 
+    .buttons{
+      display: flex;
+      gap: var(--composer-gap-sm);
+    }
+
     .icon-element {
       font-size: 1.5rem;
       display: flex;
