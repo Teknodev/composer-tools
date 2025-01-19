@@ -1,14 +1,10 @@
 import * as React from "react";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action6.module.scss";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
-
-type Button = {
-  text: JSX.Element;
-  link: string;
-  icon: string;
-};
+import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { Form, Formik } from "formik";
+import * as Yup from "yup";
 
 class CallToAction6Page extends BaseCallToAction {
   constructor(props?: any) {
@@ -16,7 +12,7 @@ class CallToAction6Page extends BaseCallToAction {
 
     this.addProp({
       type: "image",
-      key: "background_image",
+      key: "backgroundImage",
       displayer: "Background Image",
       value:
         "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66bdaa2707399d002cb4130f?alt=media",
@@ -38,43 +34,21 @@ class CallToAction6Page extends BaseCallToAction {
 
     this.addProp({
       type: "string",
+      key: "submitText",
+      displayer: "Submit Text",
+      value: "Form successfully submitted!",
+    });
+
+    this.addProp({
+      type: "string",
       key: "comment",
       displayer: "Comment",
       value: "* We promise we will never spam your account. *",
     });
 
-    this.addProp({
-      type: "array",
-      key: "buttons",
-      displayer: "Button Array",
-      value: [
-        {
-          type: "object",
-          key: "button",
-          displayer: "Button",
-          value: [
-            {
-              type: "string",
-              key: "text",
-              displayer: "Button Text",
-              value: "Subscribe",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Button Link",
-              value: "",
-            },
-            {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "IoIosArrowRoundForward",
-            },
-          ],
-        },
-      ],
-    });
+    this.addProp(INPUTS.BUTTON("button", "Button", "Subscribe", null, null, null, "Primary"));
+
+
 
     this.addProp({
       type: "boolean",
@@ -85,100 +59,137 @@ class CallToAction6Page extends BaseCallToAction {
 
     this.addProp({
       type: "boolean",
-      key: "removeBackgroundColor",
-      displayer: "Remove Background Color",
-      value: false,
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
     });
+
+    this.setComponentState(
+      "placeholderText",
+      this.castToString(this.getPropValue("placeholder"))
+    );
   }
 
-  getName(): string {
+  componentDidUpdate() {
+    const currentPlaceholder = this.castToString(this.getPropValue("placeholder"));
+    const prevPlaceholder = this.getComponentState("placeholderText");
+
+    if (currentPlaceholder !== prevPlaceholder) {
+      this.setComponentState("placeholderText", currentPlaceholder);
+    }
+  }
+
+  validationSchema = Yup.object().shape({
+    email: Yup.string()
+      .email("Invalid email")
+      .required("Required"),
+  });
+
+  static getName(): string {
     return "Call To Action 6";
   }
 
   render() {
     const spaceLineExist = this.getPropValue("spaceLine");
-    const removeBackground = this.getPropValue("removeBackgroundColor");
 
-    const titleExist = this.getPropValue("title", { as_string: true });
-    const placeholderExist = this.getPropValue("placeholder", {
-      as_string: true,
-    });
-    const commentExist = this.getPropValue("comment", { as_string: true });
+    const titleExist = this.castToString(this.getPropValue("title"));
+    const placeholderExist = this.castToString(this.getPropValue("placeholder"));
+    const commentExist = this.castToString(this.getPropValue("comment"));
 
-    const buttons = this.castToObject<Button[]>("buttons");
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+
+    const submitText = this.castToString(this.getPropValue("submitText"));
+
     return (
-      <div
-        className={this.decorateCSS("container")}
+      <Base.Container
+        className={`${this.decorateCSS("container")}
+        ${this.getPropValue("overlay") ? this.decorateCSS("overlay-active") : ""}`}
         style={{
-          backgroundImage: `url(${this.getPropValue("background_image")})`,
+          backgroundImage: `url(${this.getPropValue("backgroundImage")})`,
         }}
       >
-        <div className={this.decorateCSS("max-content")}>
-          <div
-            className={`
-            ${this.decorateCSS("call-to-action6-page")}
-            ${removeBackground ? this.decorateCSS("remove-background-color") : ""}
-            `}
-          >
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <Base.VerticalContent className={this.decorateCSS("content")}>
             {titleExist && (
-              <h1 className={this.decorateCSS("title")}>
+              <Base.SectionTitle className={this.decorateCSS("title")}>
                 {this.getPropValue("title")}
-              </h1>
+              </Base.SectionTitle>
             )}
 
             {spaceLineExist && (
               <div className={this.decorateCSS("space-container")}>
-                <hr className={this.decorateCSS("space")} />
+                <div className={this.decorateCSS("space")} />
               </div>
             )}
 
-            {placeholderExist && (
-              <input
-                type="text"
-                className={this.decorateCSS("placeholder")}
-                placeholder={placeholderExist}
-              />
-            )}
-
-            {commentExist && (
-              <h3 className={this.decorateCSS("comment")}>
-                {this.getPropValue("comment")}
-              </h3>
-            )}
-            {buttons?.length > 0 && (
-              <div className={this.decorateCSS("buttons")}>
-                {buttons.map((item: Button, index: number) => {
-                  const textExist = this.castToString(item.text);
-
-                  if (textExist || item.icon)
-                    return (
-                      <ComposerLink key={index} path={item.link}>
-                        <div className={this.decorateCSS("button")}>
-                          {textExist && (
-                            <div className={this.decorateCSS("button_text")}>
-                              {item.text}
-                            </div>
-                          )}
-                          {item.icon && (
-                            <div className={this.decorateCSS("icon-container")}>
-                              <ComposerIcon
-                                name={item.icon}
-                                propsIcon={{
-                                  className: this.decorateCSS("icon"),
-                                }}
-                              />
-                            </div>
-                          )}
-                        </div>
-                      </ComposerLink>
+            {(commentExist || this.castToString(button.text)) &&
+              <Formik
+                initialValues={{ email: "" }}
+                validationSchema={this.validationSchema}
+                onSubmit={(data, { resetForm }) => {
+                  this.setComponentState("placeholderText", submitText);
+                  this.insertForm("Call Me Back", data);
+                  setTimeout(() => {
+                    const defaultPlaceholder = this.castToString(this.getPropValue("placeholder"));
+                    this.setComponentState(
+                      "placeholderText",
+                      defaultPlaceholder
                     );
-                  return null;
-                })}
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
+                  }, 2000);
+                  resetForm();
+                }}
+              >
+                {({
+                  handleSubmit,
+                  handleChange,
+                  values,
+                  errors,
+                  touched,
+                }) => (
+                  <Form
+                    className={this.decorateCSS("form")}
+                    onSubmit={handleSubmit}
+                  >
+                    {this.castToString(button.text) &&
+                      <div className={this.decorateCSS("input-container")}>
+                        <input
+                          placeholder={
+                            this.getComponentState("placeholderText") ||
+                            placeholderExist
+                          }
+                          onChange={handleChange}
+                          className={this.decorateCSS("placeholder")}
+                          type="text"
+                          name="email"
+                          value={values.email}
+                        />
+                        {errors.email && touched.email && (
+                          <div className={this.decorateCSS("error")}>
+                            {errors.email}
+                          </div>
+                        )}
+                      </div>}
+
+                    {(commentExist || this.castToString(button.text)) && (
+                      <div className={this.decorateCSS("bottom-container")}>
+                        {commentExist && (
+                          <h4 className={this.decorateCSS("comment")}>
+                            {this.getPropValue("comment")}
+                          </h4>
+                        )}
+                        {this.castToString(button.text) && (
+                          <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                            {button.text}
+                          </Base.Button>
+                        )}
+                      </div>
+                    )}
+                  </Form>
+                )}
+              </Formik>}
+          </Base.VerticalContent>
+        </Base.MaxContent>
+      </Base.Container >
     );
   }
 }

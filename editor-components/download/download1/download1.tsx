@@ -3,39 +3,31 @@ import styles from "./download1.module.scss";
 import { BaseDownload } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
-
-type Button = {
-  buttonText: string;
-  url: string;
-  isPrimary: boolean;
-  buttonIcon: string;
-
-};
-class DownloadCard1 extends BaseDownload {
+import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+class Download1 extends BaseDownload {
   constructor(props?: any) {
     super(props, styles);
+
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "DON'T WASTE TIME,",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
       value: "Download Now!",
-
     });
-
 
     this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
       value: "Eleifend morbi velit porttitor sed ipsum imperdiet ac ullamcorper fusce.",
+    });
 
+    this.addProp({
+      type: "boolean",
+      key: "line",
+      displayer: "Enable Line",
+      value: true,
     });
 
     this.addProp({
@@ -43,134 +35,68 @@ class DownloadCard1 extends BaseDownload {
       key: "buttons",
       displayer: "Button ",
       value: [
-        {
-          type: "object",
-          key: "button",
-          displayer: "Button",
-          value: [
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "PLAYSTORE",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Button Link",
-              value: "",
-            },
-            {
-              type: "icon",
-              key: "buttonIcon",
-              displayer: "In Button Icon",
-              value: "ImAndroid",
-            }
-          ],
-        },
-        {
-          type: "object",
-          key: "button",
-          displayer: "Button",
-          value: [
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "APPSTORE",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Button Link",
-              value: "",
-            },
-            {
-              type: "icon",
-              key: "buttonIcon",
-              displayer: "In Button Icon",
-              value: "GrApple",
-            }
-          ],
-        },
-        {
-          type: "object",
-          key: "button",
-          displayer: "Button",
-          value: [
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "WINDOWS",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Button Link",
-              value: "",
-            },
-            {
-              type: "icon",
-              key: "buttonIcon",
-              displayer: "In Button Icon",
-              value: "FaWindows",
-            }
-          ],
-        },
+        INPUTS.BUTTON("button", "Button", "PLAYSTORE", "", "ImAndroid", "", "Primary"),
+        INPUTS.BUTTON("button", "Button", "APPSTORE", "", "GrApple", "", "Primary"),
+        INPUTS.BUTTON("button", "Button", "WINDOWS", "", "FaWindows", "", "Primary")
       ],
     });
-
   }
 
-  getName(): string {
-      return "Download-1";
-    }
+  static getName(): string {
+    return "Download 1";
+  }
 
   render() {
-    const title = this.getPropValue("title", {as_string: true});
-    const subtitle = this.getPropValue("subtitle", {as_string: true})
-    const description = this.getPropValue("description", {as_string: true})
-      return(
-      <div className = { this.decorateCSS("container") } >
-          <div className={this.decorateCSS("max-content")}>
-            {title && (
-            <p className={this.decorateCSS("title")}>{this.getPropValue("title")}</p>
-            )}
-            {subtitle && (
-            <h1 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h1>
-            )}
-            {subtitle && (
-            <div className={this.decorateCSS("line")}></div>
-            )}        
-            {description && (
-            <p className={this.decorateCSS("description")}>{this.getPropValue("description")} </p>
-            )}
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const title = this.getPropValue("title");
+    const description = this.getPropValue("description");
 
+    const titleExist = this.castToString(title);
+    const descriptionExist = this.castToString(description);
+    const line = this.getPropValue("line");
+
+    return (
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          {(titleExist || descriptionExist) && (
+            <Base.VerticalContent className={this.decorateCSS("header")}>
+              {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${line && this.decorateCSS("line")}`}>{this.getPropValue("title")}</Base.SectionTitle>}
+              {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")} </Base.SectionDescription>}
+            </Base.VerticalContent>
+          )}
+
+          {buttons.length > 0 && (
             <div className={this.decorateCSS("box")}>
-              {this.castToObject<Button[]>("buttons").map(
-                (item: Button, index: number) => {
-                  return (
-                    <ComposerLink key={`dw-1-btn-${index}`} path={item.url} >
-                      <button
-                        className={`${this.decorateCSS("button")} ${item.isPrimary && this.decorateCSS("button-color")
-                          }`}
-                      >
-                        <ComposerIcon name={item.buttonIcon} propsIcon={{
-                          className: this.decorateCSS("icon")
-                        }} />
-                        {item.buttonText}
-                      </button>
-                    </ComposerLink>
-                  );
-                }
-              )}
+              {buttons.map((item: INPUTS.CastedButton, index: number) => {
+                const buttonTitleExist = this.castToString(item.text);
+                const iconExist = item.icon;
+                const buttonExist = buttonTitleExist || iconExist;
+                return (
+                  buttonExist && (
+                    <div className={this.decorateCSS("button-wrapper")}>
+                      <ComposerLink key={`dw-1-btn-${index}`} path={item.url}>
+                        <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                          <div className={this.decorateCSS("button-text")}>
+                            {item.text}
+                          </div>
+                          <ComposerIcon
+                            name={item.icon}
+                            propsIcon={{
+                              className: this.decorateCSS("icon"),
+                            }}
+                          />
+                        </Base.Button>
+                      </ComposerLink>
+                    </div>
+                  )
+                );
+              })}
             </div>
-
-          </div>
-      </div>
+          )}
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
 
-export default DownloadCard1;
+export default Download1;

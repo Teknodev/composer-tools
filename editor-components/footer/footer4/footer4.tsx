@@ -2,37 +2,71 @@ import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseFooter } from "../../EditorComponent";
 import styles from "./footer4.module.scss";
+import { Base } from "../../../composer-base-components/base/base";
+
+import { Formik, Form } from "formik";
+import * as Yup from "yup";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type FooterValues = {
-  footerTitle: string;
+  footerTitle: JSX.Element;
   footerText: FooterTextValues[];
 };
 
 type FooterTextValues = {
-  footerText: string;
+  footerText: JSX.Element;
   path: string;
 };
 
 class Footer4Page extends BaseFooter {
   constructor(props?: any) {
     super(props, styles);
+
     this.addProp({
       type: "string",
-      key: "title",
-      displayer: "Title",
-      value: "About Us: Learn more about our company and our mission.",
+      key: "text",
+      displayer: "Text",
+      value: "We accept:",
     });
+
     this.addProp({
-      type: "string",
-      key: "buttonText",
-      displayer: "Button Text",
-      value: "Who Are We",
-    });
-    this.addProp({
-      type: "page",
-      key: "buttonLink",
-      displayer: "Button Link",
-      value: "",
+      type: "array",
+      key: "images",
+      displayer: "Images",
+      value: [
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item Elements",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66fa9094cf1798002cc71d01?alt=media",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item Elements",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66fa90c5cf1798002cc71d0e?alt=media",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: "",
+            },
+          ],
+        },
+      ],
     });
 
     this.addProp({
@@ -49,7 +83,7 @@ class Footer4Page extends BaseFooter {
               type: "string",
               key: "footerTitle",
               displayer: "Footer Title",
-              value: "Menu",
+              value: "Get Help",
             },
             {
               type: "array",
@@ -65,7 +99,7 @@ class Footer4Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: "Products",
+                      value: "Delivery Information",
                     },
                     {
                       type: "page",
@@ -84,7 +118,7 @@ class Footer4Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: "Create Website",
+                      value: "Sale Terms & Conditions",
                     },
                     {
                       type: "page",
@@ -103,7 +137,7 @@ class Footer4Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: "Secure Cloud Hosting",
+                      value: "Returns & Refunds",
                     },
                     {
                       type: "page",
@@ -122,7 +156,26 @@ class Footer4Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: "Engage Your Audince",
+                      value: "Privacy Notice",
+                    },
+                    {
+                      type: "page",
+                      key: "path",
+                      displayer: "Path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "Shopping FAQs",
                     },
                     {
                       type: "page",
@@ -145,7 +198,7 @@ class Footer4Page extends BaseFooter {
               type: "string",
               key: "footerTitle",
               displayer: "Footer Title",
-              value: "Company",
+              value: "Popular Categories",
             },
             {
               type: "array",
@@ -161,7 +214,7 @@ class Footer4Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: "About",
+                      value: "Accessories (0)",
                     },
                     {
                       type: "page",
@@ -180,7 +233,7 @@ class Footer4Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: "Careers",
+                      value: "Chairs (2)",
                     },
                     {
                       type: "page",
@@ -199,7 +252,7 @@ class Footer4Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: "Support",
+                      value: "Decoration (0)",
                     },
                     {
                       type: "page",
@@ -218,65 +271,7 @@ class Footer4Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: "Pricing",
-                    },
-                    {
-                      type: "page",
-                      key: "path",
-                      displayer: "Path",
-                      value: "",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "footer-title",
-          displayer: "Footer Column",
-          value: [
-            {
-              type: "string",
-              key: "footerTitle",
-              displayer: "Footer Title",
-              value: "Resources",
-            },
-            {
-              type: "array",
-              key: "footerText",
-              displayer: "Footer Text",
-              value: [
-                {
-                  type: "object",
-                  key: "footer-text",
-                  displayer: "Text Values",
-                  value: [
-                    {
-                      type: "string",
-                      key: "footerText",
-                      displayer: "Text",
-                      value: "Blog",
-                    },
-                    {
-                      type: "page",
-                      displayer: "Path",
-                      key: "path",
-                      value: "",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "footer-text",
-                  displayer: "Text Values",
-                  value: [
-                    {
-                      type: "string",
-                      key: "footerText",
-                      displayer: "Text",
-                      value: "Ebooks",
+                      value: "Kitchen (2)",
                     },
                     {
                       type: "page",
@@ -295,7 +290,7 @@ class Footer4Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: "Whitepapers",
+                      value: "Lightning (0)",
                     },
                     {
                       type: "page",
@@ -314,7 +309,45 @@ class Footer4Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: "Website Grader",
+                      value: "Livestyle (0)",
+                    },
+                    {
+                      type: "page",
+                      key: "path",
+                      displayer: "Path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "Stools (3)",
+                    },
+                    {
+                      type: "page",
+                      key: "path",
+                      displayer: "Path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "Uncategorized (0)",
                     },
                     {
                       type: "page",
@@ -330,42 +363,288 @@ class Footer4Page extends BaseFooter {
         },
       ],
     });
+
+    this.addProp({
+      type: "string",
+      key: "subscriptionPlaceholder",
+      displayer: "Subscription Placeholder",
+      value: "Type your e-mail",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "submitText",
+      displayer: "Submit Text",
+      value: "Form successfully submitted!",
+    });
+
+    this.addProp(INPUTS.BUTTON("button", "Button", "Subscribe", null, null, null, "Primary"));
+
+    this.addProp({
+      type: "string",
+      key: "rightTitle",
+      displayer: "Form Title",
+      value: "Let’s stay in touch",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "rightDescription",
+      displayer: "Form Description",
+      value: "Keep up to date with our latest news and special offers.",
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "line",
+      displayer: "Line",
+      value: true,
+    });
+
+    this.addProp({
+      type: "string",
+      key: "footerDescription",
+      displayer: "Footer Text",
+      value: "2024 © Made with by Blinkpage.",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "links",
+      displayer: "Footer Links",
+      value: [
+        {
+          type: "object",
+          key: "content",
+          displayer: "Content Elements",
+          value: [
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "Privacy Notice",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "content",
+          displayer: "",
+          value: [
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "Sale Terms & Conditions ",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "content",
+          displayer: "",
+          value: [
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "Returns & Refunds",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: "",
+            },
+          ],
+        },
+      ],
+    });
+
+    this.setComponentState("placeholderText", this.castToString(this.getPropValue("subscriptionPlaceholder")));
   }
 
-  getName(): string {
+  validationSchema = Yup.object().shape({
+    email: Yup.string()
+      .email("Invalid email format")
+      .required("Email is required"),
+  });
+
+  static getName(): string {
     return "Footer 4";
   }
 
   render() {
+    const images = this.castToObject<any[]>("images");
+
+    const textExist = this.castToString(this.getPropValue("text"));
+
+    const submitText = this.castToString(this.getPropValue("submitText"));
+
+    const leftExist = textExist || images.length > 0;
+
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+
+    const rightTitleExist = this.castToString(this.getPropValue("rightTitle"));
+    const rightDescExist = this.castToString(this.getPropValue("rightDescription"));
+    const buttonTextExist = this.castToString(button.text);
+    const placeHolderExist = this.castToString(this.getPropValue("subscriptionPlaceholder"));
+
+    const rightExist = rightTitleExist || rightDescExist || buttonTextExist || placeHolderExist;
+
+    const line = this.getPropValue("line");
+
+    const links = this.castToObject<any[]>("links");
+
+    const footerDescription = this.getPropValue("footerDescription");
+    const footerDescriptionExist = this.castToString(footerDescription);
+
+
+    const alignment = Base.getContentAlignment();
+
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("footer-page")}>
-            <div className={this.decorateCSS("subscribe")}>
-              <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
-              <ComposerLink path={this.getPropValue("buttonLink")}>
-                <button>{this.getPropValue("buttonText")}</button>
-              </ComposerLink>
-            </div>
-            <div className={this.decorateCSS("items")}>
-              {this.castToObject<any[]>("footer").map(
-                (item: FooterValues, indexFooter: number) => (
-                  <ul key={indexFooter} className={this.decorateCSS("list-group")}>
-                    <li className={this.decorateCSS("title")}>
-                      <h2 className={this.decorateCSS("item-footerTitle")}>{item.footerTitle}</h2>
-                    </li>
-                    {item.footerText.map(
-                      (v: FooterTextValues, indexFooterText: number) => (
-                        <ComposerLink key={indexFooterText} path={v.path}>
-                          <li className={this.decorateCSS("text")}>{v.footerText}</li>
-                        </ComposerLink>
-                      )
-                    )}
-                  </ul>
-                )
-              )}
-            </div>
-          </div>
+          <Base.Container>
+            <Base.MaxContent>
+              <div className={this.decorateCSS("footer-page")}>
+                <div className={this.decorateCSS("items")}>
+                  {leftExist && (
+                    <div className={this.decorateCSS("left")}>
+                      {textExist && <Base.P className={this.decorateCSS("text")}>{this.getPropValue("text")}</Base.P>}
+                      <div className={this.decorateCSS("images")}>
+                        {images.length > 0 && (
+                          <Base.Row className={this.decorateCSS("image-container")}>
+                            {images.map((item: any, index: number) => {
+                              return (
+                                item.image && (
+                                  <div className={this.decorateCSS("image-element")}>
+                                    <ComposerLink key={index} path={item.url}>
+                                      <img className={this.decorateCSS("image")} src={item.image} />
+                                    </ComposerLink>
+                                  </div>
+                                )
+                              );
+                            })}
+                          </Base.Row>
+                        )}
+                      </div>
+                    </div>
+                  )}
+
+                  {this.castToObject<any[]>("footer").length > 0 &&
+                    this.castToObject<any[]>("footer").map((item: FooterValues, indexFooter: number) => {
+                      const footerTitleExist = this.castToString(item.footerTitle);
+                      const footerExist = footerTitleExist || item.footerText.length > 0;
+                      return (
+                        footerExist && (
+                          <div key={indexFooter} className={this.decorateCSS("list-group")}>
+                            {footerTitleExist && <Base.H2 className={this.decorateCSS("title")}>{item.footerTitle}</Base.H2>}
+                            {item.footerText.map((item: FooterTextValues, indexFooterText: number) => {
+                              const footerTextExist = this.castToString(item.footerText);
+                              return (
+                                footerTextExist && (
+                                  <ComposerLink key={indexFooterText} path={item.path}>
+                                    <Base.P className={this.decorateCSS("text")}>{item.footerText}</Base.P>
+                                  </ComposerLink>
+                                )
+                              );
+                            })}
+                          </div>
+                        )
+                      );
+                    })}
+
+                  {rightExist && (
+                    <div className={this.decorateCSS("right")}>
+                      {rightTitleExist && <Base.H3 className={this.decorateCSS("title")}>{this.getPropValue("rightTitle")}</Base.H3>}
+                      <Formik
+                        initialValues={{ email: "" }}
+                        validationSchema={this.validationSchema}
+                        onSubmit={(data, { resetForm }) => {
+                          this.setComponentState("placeholderText", submitText);
+
+                          setTimeout(() => {
+                            const defaultPlaceholder = this.castToString(this.getPropValue("subscriptionPlaceholder"));
+                            this.setComponentState("placeholderText", defaultPlaceholder);
+                          }, 2000);
+
+                          this.insertForm("Subscribe", data);
+                          resetForm();
+                        }}
+                      >
+                        {({ handleSubmit, handleChange, values, errors, touched }) => (
+                          <Form className={this.decorateCSS("form")} onSubmit={handleSubmit}>
+                            {this.castToString(this.getPropValue("subscriptionPlaceholder")) && (
+                              <div className={this.decorateCSS("input-element")}>
+                                <input
+                                  className={this.decorateCSS("input")}
+                                  type="text"
+                                  placeholder={this.getComponentState("placeholderText") || this.castToString(this.getPropValue("subscriptionPlaceholder"))}
+                                  name="email"
+                                  value={values.email}
+                                  onChange={handleChange}
+                                />
+                                {errors.email && touched.email && <div className={this.decorateCSS("error")}>{errors.email}</div>}
+                              </div>
+                            )}
+
+                            {buttonTextExist && (
+                              <Base.Button buttonType={button.type}
+                                className={this.decorateCSS("button")}>
+                                {button.text}
+                              </Base.Button>
+                            )}
+                          </Form>
+                        )}
+                      </Formik>
+                      {rightDescExist && <Base.P className={this.decorateCSS("description")}>{this.getPropValue("rightDescription")}</Base.P>}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </Base.MaxContent>
+          </Base.Container>
+
+          {line && <div className={this.decorateCSS("line")}></div>}
+
+          <Base.Container>
+            <Base.MaxContent>
+              <Base.VerticalContent className={this.decorateCSS("bottom")}>
+                {footerDescriptionExist && <Base.P className={this.decorateCSS("footer-text")}>{this.getPropValue("footerDescription")}</Base.P>}
+
+                {links.length > 0 && (
+                  <Base.Row className={`${this.decorateCSS("links")}
+                  ${alignment === "center" && this.decorateCSS("center")}`}>
+                    {links.map((item: any, index: number) => {
+                      const textExist = this.castToString(item.text);
+                      return (
+                        textExist && (
+                          <div className={this.decorateCSS("link-element")}>
+                            <ComposerLink key={index} path={item.url}>
+                              <Base.P className={this.decorateCSS("link-text")}>{item.text}</Base.P>
+                            </ComposerLink>
+                          </div>
+                        )
+                      );
+                    })}
+                  </Base.Row>
+                )}
+              </Base.VerticalContent>
+            </Base.MaxContent>
+          </Base.Container>
         </div>
       </div>
     );

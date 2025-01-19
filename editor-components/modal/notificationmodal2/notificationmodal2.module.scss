@@ -1,171 +1,134 @@
+@import "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss";
+
 .container {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
+  width: auto;
+  max-width: 600px;
+  min-width: 500px;
+
+  max-height: 700px;
+  overflow: auto;
+  border-radius: var(--composer-border-radius-xl);
 
   .max-content {
-    width: 100%;
-    max-width: 420px;
-    min-width: 420px;
-    height: auto;
-    min-height: 100px;
-    border-radius: 30px;
-    background-color: var(--composer-html-background);
-    margin: auto;
-    padding: 20px;
     position: relative;
-    overflow: hidden;
+
+    .close-icon-wrapper {
+      position: absolute;
+      top: 0;
+      right: 0;
+      cursor: pointer;
+    }
 
     .exit-icon {
-      position: absolute;
-      padding-top: 15px;
-      right: 5px;
-      top: 5px;
-      background-color: transparent;
-      border: none;
-      font-size: 18px;
-      padding-right: 15px;
+      font-size: 1.5rem;
       color: var(--composer-font-color-primary);
 
+      &:hover {
+        color: var(--composer-primary-color);
+      }
     }
 
     .content {
-      position: relative;
-      margin: auto;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
-      display: flex;
-      flex-shrink: 1;
+      padding: var(--composer-gap-md);
+      gap: var(--composer-gap-sm);
       min-height: 100%;
-      gap: 20px;
 
       .icon {
-        color: var(--composer-font-color-primary);
+        color: var(--composer-primary-color);
         margin: 0;
-        font-size: 60px;
-        border-radius: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+
+        .icon-element {
+          font-size: 3rem;
+        }
       }
 
       .notification-title {
+        font-size: 2rem;
         margin: 0;
-        text-align: center;
-        align-items: center;
-        font-size: 20px;
-        display: flex;
-        color: var(--composer-font-color-primary);
       }
 
       .displayer-message {
-        margin: 0;
-        width: 100%;
-        height: fit-content;
-        font-size: 16px;
-        color: gray;
+        color: var(--composer-tertiary-color);
         text-align: center;
-        word-wrap: break-word;
-        align-items: center;
-        justify-content: center;
-        color: var(--composer-font-color-primary);
+        margin: 0;
       }
 
-      .send-mail {
-        margin: 0;
-        transition: 1s;
+      .form {
         display: flex;
+        gap: var(--composer-gap-sm);
         width: 100%;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        display: flex;
-        justify-content: center;
 
-        .input-group {
-          position: relative;
+        .input-container {
           width: 100%;
-          max-width: 360px;
+          position: relative;
+          align-items: stretch;
 
           .input {
-            width: 100%;
-            height: 45px;
-            padding: 16px 10px;
-            padding-right: 140px;
-            border-radius: 20px;
-            border: 0.5px solid rgba(var(--composer-font-color-primary-rgb), 0.3);
+            flex: 1;
+            padding: var(--composer-gap-sm);
+            border-radius: var(--composer-border-radius-sm);
+            border: none;
             background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
             color: var(--composer-font-color-primary);
+            width: 100%;
+            outline: none;
+            padding-left: var(--composer-gap-sm);
+            height: 100%;
 
-            .input-style {
-              background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-            }
-
-            &:focus {
-              outline-color: var(--composer-secondary-color);
+            &::placeholder {
+              color: var(--composer-tertiary-color);
             }
           }
 
-          .button {
+         
+
+          .error {
             position: absolute;
-            right: 5px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 100px;
-            height: calc(85%);
-            border-radius: 20px;
-            background-color: var(--composer-secondary-color);
-            border: none;
-            box-shadow: var(--composer-box-shadow);
-            color: (--composer-font-color-secondary);
-            cursor: pointer;
-            font-size: 14px;
-
-
-            &:hover {
-              color: white;
-              background-color: var(--composer-secondary-color);
-            }
+            bottom: -20px;
+            left: 0;
+            color: var(--warning);
           }
         }
+
+         .button {
+            max-width: 40%;
+            justify-content: center;
+          }
       }
     }
   }
 }
 
-@media only screen and (max-width: 450px) {
-
+@container (max-width: #{$composer-phone-width}) {
   .container {
+    max-width: 300px;
+    min-width: 200px;
+    max-height: 500px;
 
     .max-content {
-      width: 90%;
-      padding: 15px;
-    }
+      position: relative;
 
-    .icon {
-      font-size: 40px !important;
-    }
+      .content {
+        .notification-title {
+          font-size: 1.5rem;
+        }
 
-    .notification-title {
-      font-size: 18px !important;
-    }
-
-    .displayer-message {
-      font-size: 14px !important;
-    }
-
-    .input-group .input {
-      height: 40px !important;
-    }
-
-    .input-group .button {
-      font-size: 12px !important;
-      width: 90px !important;
-      height: calc(80%) !important;
+        .form {
+          flex-direction: column;
+          .input-container {
+            .input {
+              padding: var(--composer-gap-sm) var(--composer-gap-xs);
+            }
+          }
+           .button {
+              justify-content: center;
+              text-align: center;
+              min-width: 100%;
+            }
+        }
+      }
     }
   }
 }

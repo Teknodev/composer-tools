@@ -1,484 +1,451 @@
 import * as React from "react";
+import { BaseContent, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./content4.module.scss";
-import { BaseContent } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
+
+type ITabs = {
+  subTitle: JSX.Element;
+  title: JSX.Element;
+  description: JSX.Element;
+  tabText: JSX.Element;
+  icon: string;
+  image_container: {
+    image: string;
+    box1_text: JSX.Element;
+    box1_lowerText: JSX.Element;
+    box2_text: JSX.Element;
+    box2_icon: string;
+    link: string;
+  };
+  icons_container: Array<{ icon: string; text: JSX.Element }>;
+};
 
 class Content4 extends BaseContent {
   constructor(props?: any) {
     super(props, styles);
+
+    const dummyData = (
+      tabTitle: string,
+      image: string,
+      boxText: string,
+      box1_lowerText: string,
+      box2Text: string,
+      contentTitle: string,
+      contentSubtitle: string,
+      contentDescription: string,
+      icon1Text: string,
+      icon2Text: string,
+      icon3Text: string
+    ) => {
+      return {
+        type: "object",
+        key: "tab",
+        displayer: "Tab 1",
+        value: [
+          {
+            type: "string",
+            key: "tabText",
+            displayer: "Tab 1 Text",
+            value: tabTitle,
+          },
+          {
+            type: "string",
+            key: "subTitle",
+            displayer: "Subtitle",
+            value: contentSubtitle,
+          },
+          {
+            type: "string",
+            key: "title",
+            displayer: "Title",
+            value: contentTitle,
+          },
+          {
+            type: "string",
+            key: "description",
+            displayer: "Description",
+            value: contentDescription,
+          },
+          {
+            type: "icon",
+            key: "icon",
+            displayer: "Tab 1 Icon",
+            value: "GoArrowRight",
+          },
+          {
+            type: "object",
+            key: "image_container",
+            displayer: "Image Container",
+            value: [
+              {
+                type: "image",
+                key: "image",
+                displayer: "Image",
+                value: image,
+              },
+              {
+                type: "string",
+                key: "box1_text",
+                displayer: "Box1 Text",
+                value: boxText,
+              },
+              {
+                type: "string",
+                key: "box1_lowerText",
+                displayer: "Box1 Lower Text",
+                value: box1_lowerText,
+              },
+              {
+                type: "string",
+                key: "box2_text",
+                displayer: "Button Text",
+                value: box2Text,
+              },
+              {
+                type: "icon",
+                key: "box2_icon",
+                displayer: "Button Icon",
+                value: "GoArrowRight",
+              },
+              {
+                type: "page",
+                key: "link",
+                displayer: "Button Link",
+                value: "",
+              },
+            ],
+          },
+          {
+            type: "array",
+            key: "icons_container",
+            displayer: "Icons Container",
+            value: [
+              {
+                type: "object",
+                key: "icon_container",
+                displayer: "Icon 1 Container",
+                value: [
+                  {
+                    type: "icon",
+                    key: "icon",
+                    displayer: "Icon",
+                    value: "FaCarRear",
+                  },
+                  {
+                    type: "string",
+                    key: "text",
+                    displayer: "Text",
+                    value: icon1Text,
+                  },
+                ],
+              },
+              {
+                type: "object",
+                key: "icon_container",
+                displayer: "Icon 2 Container",
+                value: [
+                  {
+                    type: "icon",
+                    key: "icon",
+                    displayer: "Icon",
+                    value: "FaCarRear",
+                  },
+                  {
+                    type: "string",
+                    key: "text",
+                    displayer: "Text",
+                    value: icon2Text,
+                  },
+                ],
+              },
+              {
+                type: "object",
+                key: "icon_container",
+                displayer: "Icon 3 Container",
+                value: [
+                  {
+                    type: "icon",
+                    key: "icon",
+                    displayer: "Icon",
+                    value: "FaCarRear",
+                  },
+                  {
+                    type: "string",
+                    key: "text",
+                    displayer: "Text",
+                    value: icon3Text,
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      } as TypeUsableComponentProps;
+    };
+
     this.addProp({
-      type: "object",
-      key: "item-left",
-      displayer: "Item Left",
+      type: "array",
+      key: "tabs",
+      displayer: "Tabs",
       value: [
-        {
-          type: "boolean",
-          key: "Visibility",
-          displayer: "visibility",
-          value: true,
-        },
-        {
-          type: "page",
-          key: "url",
-          displayer: "Url",
-          value: "",
-        },
-        {
-          type: "string",
-          key: "title",
-          displayer: "Title",
-          value: "",
-        },
-        {
-          type: "icon",
-          key: "icon",
-          displayer: "Icon",
-          value: "",
-        },
-        {
-          type: "icon",
-          key: "icon2",
-          displayer: "Icon2",
-          value: "",
-        },
-        {
-          type: "image",
-          key: "image",
-          displayer: "Image",
-          value:
-            "https://halstein.qodeinteractive.com/wp-content/uploads/2021/10/h1-img-01.jpg",
-        },
+        dummyData(
+          "01 Premium cottage",
+          "https://craftohtml.themezaa.com/images/demo-hotel-and-resort-14.jpg",
+          "Starting from",
+          "$50.00",
+          "BOOK NOW",
+          "Phenomenal view",
+          "Premium cottage",
+          "Discover a private home in the orchard three bedrooms and baths with a private plunge pool and service and a three sided view from the king size bed.",
+          "BREAKFAST INCLUDED",
+          "LAUNDRY FACILITY",
+          "PICKUP AND DROP"
+        ),
+        dummyData(
+          "02 Studios with terrace",
+          "https://craftohtml.themezaa.com/images/demo-hotel-and-resort-16.jpg",
+          "Starting from",
+          "$50.00",
+          "BOOK NOW",
+          "Garden view",
+          "Studios with terrace",
+          "Discover a private home in the orchard three bedrooms and baths with a private plunge pool and service and a three sided view from the king size bed.",
+          "BREAKFAST INCLUDED",
+          "LAUNDRY FACILITY",
+          "PICKUP AND DROP"
+        ),
+        dummyData(
+          "03 Premium pavilions",
+          "https://craftohtml.themezaa.com/images/demo-hotel-and-resort-17.jpg",
+          "Starting from",
+          "$50.00",
+          "BOOK NOW",
+          "Phenomenal view",
+          "Premium pavilions",
+          "Discover a private home in the orchard three bedrooms and baths with a private plunge pool and service and a three sided view from the king size bed.",
+          "BREAKFAST INCLUDED",
+          "LAUNDRY FACILITY",
+          "PICKUP AND DROP"
+        ),
+        dummyData(
+          "04 The luxury villa",
+          "https://craftohtml.themezaa.com/images/demo-hotel-and-resort-18.jpg",
+          "Starting from",
+          "$50.00",
+          "BOOK NOW",
+          "Phenomenal view",
+          "Premium pavilions",
+          "Discover a private home in the orchard three bedrooms and baths with a private plunge pool and service and a three sided view from the king size bed.",
+          "BREAKFAST INCLUDED",
+          "LAUNDRY FACILITY",
+          "PICKUP AND DROP"
+        ),
+        dummyData(
+          "05 Grand deluxe room",
+          "https://craftohtml.themezaa.com/images/demo-hotel-and-resort-19.jpg",
+          "Starting from",
+          "$50.00",
+          "BOOK NOW",
+          "Phenomenal view",
+          "Premium pavilions",
+          "Discover a private home in the orchard three bedrooms and baths with a private plunge pool and service and a three sided view from the king size bed.",
+          "BREAKFAST INCLUDED",
+          "LAUNDRY FACILITY",
+          "PICKUP AND DROP"
+        ),
       ],
     });
-    this.addProp({
-      type: "object",
-      displayer: "Item Right Top Left",
-      key: "item-right-top-left",
-      value: [
-        {
-          type: "boolean",
-          key: "Visibility",
-          displayer: "visibility",
-          value: true,
-        },
-        {
-          type: "page",
-          key: "url",
-          displayer: "Url",
-          value: "",
-        },
-        {
-          type: "string",
-          key: "title",
-          displayer: "Title",
-          value: "",
-        },
-        {
-          type: "icon",
-          key: "icon",
-          displayer: "Icon",
-          value: "",
-        },
-        {
-          type: "icon",
-          key: "icon2",
-          displayer: "Icon2",
-          value: "",
-        },
-        {
-          type: "image",
-          key: "image",
-          displayer: "Image",
-          value:
-            "https://halstein.qodeinteractive.com/wp-content/uploads/2021/10/h1-img-03.jpg",
-        },
-      ],
-    });
-    this.addProp({
-      type: "object",
-      displayer: "Item Right Top Right",
-      key: "item-right-top-right",
-      value: [
-        {
-          type: "boolean",
-          key: "Visibility",
-          displayer: "visibility",
-          value: true,
-        },
-        {
-          type: "page",
-          key: "url",
-          displayer: "Url",
-          value: "",
-        },
-        {
-          type: "string",
-          key: "title",
-          displayer: "Title",
-          value: "Start business with mentors",
-        },
-        {
-          type: "icon",
-          key: "icon",
-          displayer: "Icon",
-          value: "RxDividerVertical",
-        },
-        {
-          type: "icon",
-          key: "icon2",
-          displayer: "Icon2",
-          value: "LuChevronRight",
-        },
-        {
-          type: "image",
-          key: "image",
-          displayer: "Image",
-          value:
-            "https://halstein.qodeinteractive.com/wp-content/uploads/2021/10/h1-img-02.jpg",
-        },
-      ],
-    });
-    this.addProp({
-      type: "object",
-      displayer: "Item Right Bottom Left",
-      key: "item-right-bottom-left",
-      value: [
-        {
-          type: "boolean",
-          key: "Visibility",
-          displayer: "visibility",
-          value: true,
-        },
-        {
-          type: "page",
-          key: "url",
-          displayer: "Url",
-          value: "",
-        },
-        {
-          type: "string",
-          key: "title",
-          displayer: "Title",
-          value: "Achieve goals & coach fast",
-        },
-        {
-          type: "icon",
-          key: "icon",
-          displayer: "Icon",
-          value: "RxDividerVertical",
-        },
-        {
-          type: "icon",
-          key: "icon2",
-          displayer: "Icon2",
-          value: "LuChevronRight",
-        },
-        {
-          type: "image",
-          key: "image",
-          displayer: "Image",
-          value:
-            "https://halstein.qodeinteractive.com/wp-content/uploads/2021/10/h1-img-04.jpg",
-        },
-      ],
-    });
-    this.addProp({
-      type: "object",
-      displayer: "Item Right Bottom Right",
-      key: "item-right-bottom-right",
-      value: [
-        {
-          type: "boolean",
-          key: "Visibility",
-          displayer: "visibility",
-          value: true,
-        },
-        {
-          type: "page",
-          key: "url",
-          displayer: "Url",
-          value: "",
-        },
-        {
-          type: "string",
-          key: "title",
-          displayer: "Title",
-          value: "",
-        },
-        {
-          type: "icon",
-          key: "icon",
-          displayer: "Icon",
-          value: "",
-        },
-        {
-          type: "icon",
-          key: "icon2",
-          displayer: "Icon2",
-          value: "",
-        },
-        {
-          type: "image",
-          key: "image",
-          displayer: "Image",
-          value:
-            "https://halstein.qodeinteractive.com/wp-content/uploads/2021/10/h1-img-05.jpg",
-        },
-      ],
-    });
+    this.setActiveTab(0);
   }
-  getName(): string {
-    return "Content-4";
+
+  setActiveTab(activeTabIndex: number) {
+    this.setComponentState("activeTab", activeTabIndex);
+    setTimeout(() => {
+      this.setComponentState("startedIndex", activeTabIndex);
+    }, 50);
+  }
+
+  static getName(): string {
+    return "Content 4";
   }
 
   render() {
-    const itemLeft = this.castToObject<any>("item-left");
-    const itemTopRight = this.castToObject<any>("item-right-top-left");
-    const itemTopLeft = this.castToObject<any>("item-right-top-right");
-    const itemBottomLeft = this.castToObject<any>("item-right-bottom-left");
-    const itemBottomRight = this.castToObject<any>("item-right-bottom-right");
-
-    const renderRight =
-      itemTopLeft.Visibility ||
-      itemTopRight.Visibility ||
-      itemBottomLeft.Visibility ||
-      itemBottomRight.Visibility;
-
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          {itemLeft.Visibility && itemLeft.image ? (
-            <div className={this.decorateCSS("left")}>
-              <ComposerLink path={itemLeft.url} isFullWidth={true}>
-                <div className={this.decorateCSS("item")}>
-                  {itemLeft.image &&
-                    <div className={this.decorateCSS("background-image")}>
-                      <img
-                        src={itemLeft.image}
-                        alt="content"
-                        className={this.decorateCSS("image")}
-                      />
-                    </div>
-                  }
-                  {(itemLeft.title || itemLeft.icon || itemLeft.icon2) && (
-                    <div className={this.decorateCSS("content")}>
-                      {itemLeft.title && (
-                        <h2 className={this.decorateCSS("title")}>
-                          {itemLeft.title}
-                        </h2>
+      <Base.Container isFull={true} className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <div className={this.decorateCSS("tab-buttons")}>
+            {this.castToObject<ITabs[]>("tabs").map(
+              (tab: ITabs, index: number) => {
+                const isTabTextVisible = this.castToString(tab.tabText);
+                const isTabIconVisible = tab.icon;
+                const isTabVisible = isTabTextVisible || isTabIconVisible;
+                return (
+                  isTabVisible && (
+                    <div
+                      className={
+                        `${this.decorateCSS("tab-button")} ${this.getComponentState("activeTab") === index
+                          ? this.decorateCSS("active")
+                          : ""
+                        }`
+                      }
+                      onClick={() => this.setActiveTab(index)}
+                    >
+                      {isTabTextVisible && (
+                        <div className={this.decorateCSS("tabText")}>
+                          {tab.tabText}
+                        </div>
                       )}
-                      <div className={this.decorateCSS("icons")}>
-                        {itemLeft.icon && (
-                          <ComposerIcon
-                            name={itemLeft.icon}
-                            propsIcon={{ className: this.decorateCSS("icon1") }}
-                          />
-                        )}
-                        {itemLeft.icon2 && (
-                          <ComposerIcon
-                            name={itemLeft.icon2}
-                            propsIcon={{ className: this.decorateCSS("icon2") }}
-                          />
-                        )}
-                      </div>
+                      {isTabIconVisible && (
+                        <ComposerIcon
+                          name={tab.icon}
+                          propsIcon={{
+                            className: this.decorateCSS("icon"),
+                          }}
+                        />
+                      )}
                     </div>
-                  )}
-                </div>
-              </ComposerLink>
-            </div>
-          ) : null}
+                  )
+                );
+              }
+            )}
+          </div>
+          {this.castToObject<ITabs[]>("tabs").map(
+            (tab: ITabs, index: number) => {
+              const isBox1Visible =
+                this.castToString(tab.image_container.box1_text) ||
+                this.castToString(tab.image_container.box1_lowerText);
+              const isBox2Visible =
+                this.castToString(tab.image_container.box2_text) ||
+                tab.image_container.box2_icon;
+              const isBoxContainerVisible = isBox1Visible || isBox2Visible;
+              const isImageContainerVisible = tab.image_container.image;
 
-          {renderRight && (
-            <div className={this.decorateCSS("right")}>
-              {itemTopLeft.Visibility || itemTopRight.Visibility ? (
-                <div className={this.decorateCSS("top")}>
-                  {itemTopRight.Visibility ? (
-                    <ComposerLink path={itemTopRight.url} isFullWidth={true}>
-                      <div className={this.decorateCSS("item")}>
-                        {itemTopRight.image && (
-                          <div className={this.decorateCSS("background-image")}>
-                            <img
-                              src={itemTopRight.image}
-                              alt="content"
-                              className={this.decorateCSS("image")}
-                            />
+              const isIconContainerVisible = tab.icons_container.length > 0;
+
+              const isContentContainerVisible =
+                this.castToString(tab.subTitle) ||
+                this.castToString(tab.title) ||
+                this.castToString(tab.description) ||
+                isIconContainerVisible;
+
+              return (
+                <div
+                  className={
+                    `${this.decorateCSS("tab")} ${this.getComponentState("activeTab") === index
+                      ? this.decorateCSS("active")
+                      : ""
+                    } ${this.getComponentState("startedIndex") === index
+                      ? this.decorateCSS("start")
+                      : ""
+                    }`
+                  }
+                >
+                  <div className={this.decorateCSS("content")}>
+                    {isImageContainerVisible && (
+                      <div className={this.decorateCSS("image-container")}>
+                        <img
+                          className={this.decorateCSS("image")}
+                          src={tab.image_container.image}
+                        />
+                        {isBoxContainerVisible && (
+                          <div className={this.decorateCSS("box-container")}>
+                            {isBox1Visible && (
+                              <div className={this.decorateCSS("box1")}>
+                                <div className={this.decorateCSS("box1-text")}>
+                                  {tab.image_container.box1_text}
+                                </div>
+                                <div className={this.decorateCSS("box1-lower-text")}>
+                                  {tab.image_container.box1_lowerText}
+                                </div>
+                              </div>
+                            )}
+                            {isBox2Visible && (
+                              <ComposerLink page={tab.image_container.link}>
+                                <div className={this.decorateCSS("box2")}>
+                                  <div
+                                    className={this.decorateCSS("box2-text")}
+                                  >
+                                    {tab.image_container.box2_text}
+                                  </div>
+                                  <ComposerIcon
+                                    name={tab.image_container.box2_icon}
+                                    propsIcon={{
+                                      className: this.decorateCSS("box2-icon"),
+                                    }}
+                                  />
+                                </div>
+                              </ComposerLink>
+                            )}
                           </div>
                         )}
-                        {(itemTopRight.title ||
-                          itemTopRight.icon ||
-                          itemTopRight.icon2) && (
-                            <div className={this.decorateCSS("content")}>
-                              {itemTopRight.title && (
-                                <h2 className={this.decorateCSS("title")}>
-                                  {itemTopRight.title}
-                                </h2>
-                              )}
-                              <div className={this.decorateCSS("icons")}>
-                                {itemTopRight.icon && (
-                                  <ComposerIcon
-                                    name={itemTopRight.icon}
-                                    propsIcon={{
-                                      className: this.decorateCSS("icon1"),
-                                    }}
-                                  />
-                                )}
-                                {itemTopRight.icon2 && (
-                                  <ComposerIcon
-                                    name={itemTopRight.icon2}
-                                    propsIcon={{
-                                      className: this.decorateCSS("icon2"),
-                                    }}
-                                  />
-                                )}
-                              </div>
-                            </div>
-                          )}
                       </div>
-                    </ComposerLink>
-                  ) : null}
-                  {itemTopLeft.Visibility ? (
-                    <ComposerLink path={itemTopLeft.url} isFullWidth={true}>
-                      <div className={this.decorateCSS("item")}>
-                        {itemTopLeft.image && (
-                          <div className={this.decorateCSS("background-image")}>
-                            <img
-                              src={itemTopLeft.image}
-                              alt="content"
-                              className={this.decorateCSS("image")}
-                            />
+                    )}
+                    {isContentContainerVisible && (
+                      <Base.VerticalContent
+                        className={this.decorateCSS("content-container")}
+                      >
+                        {this.castToString(tab.subTitle) && (
+                          <Base.SectionSubTitle
+                            className={this.decorateCSS("subtitle")}
+                          >
+                            {tab.subTitle}
+                          </Base.SectionSubTitle>
+                        )}
+                        {this.castToString(tab.title) && (
+                          <Base.SectionTitle
+                            className={this.decorateCSS("title")}
+                          >
+                            {tab.title}
+                          </Base.SectionTitle>
+                        )}
+                        {this.castToString(tab.description) && (
+                          <Base.SectionDescription
+                            className={this.decorateCSS("description")}
+                          >
+                            {tab.description}
+                          </Base.SectionDescription>
+                        )}
+                        {isIconContainerVisible && (
+                          <div className={this.decorateCSS("icons-container")}>
+                            {tab.icons_container.map((iconContainer) => {
+                              const isTextVisible = this.castToString(
+                                iconContainer.text
+                              );
+                              const isIconContainerVisible =
+                                iconContainer.icon || isTextVisible;
+                              return (
+                                isIconContainerVisible && (
+                                  <div className={this.decorateCSS("icon-container")}>
+                                    {iconContainer.icon && (
+                                      <ComposerIcon
+                                        name={iconContainer.icon}
+                                        propsIcon={{
+                                          className: this.decorateCSS("icon"),
+                                        }}
+                                      />
+                                    )}
+                                    {isTextVisible && (
+                                      <div className={this.decorateCSS("text")}>
+                                        {iconContainer.text}
+                                      </div>
+                                    )}
+                                  </div>
+                                )
+                              );
+                            })}
                           </div>
                         )}
-                        {(itemTopLeft.title ||
-                          itemTopLeft.icon ||
-                          itemTopLeft.icon2) && (
-                            <div className={this.decorateCSS("content")}>
-                              {itemTopLeft.title && (
-                                <h2 className={this.decorateCSS("title")}>
-                                  {itemTopLeft.title}
-                                </h2>
-                              )}
-                              <div className={this.decorateCSS("icons")}>
-                                {itemTopLeft.icon && (
-                                  <ComposerIcon
-                                    name={itemTopLeft.icon}
-                                    propsIcon={{
-                                      className: this.decorateCSS("icon1"),
-                                    }}
-                                  />
-                                )}
-                                {itemTopLeft.icon2 && (
-                                  <ComposerIcon
-                                    name={itemTopLeft.icon2}
-                                    propsIcon={{
-                                      className: this.decorateCSS("icon2"),
-                                    }}
-                                  />
-                                )}
-                              </div>
-                            </div>
-                          )}
-                      </div>
-                    </ComposerLink>
-                  ) : null}
+                      </Base.VerticalContent>
+                    )}
+                  </div>
                 </div>
-              ) : null}
-              {itemBottomLeft.Visibility || itemBottomRight.Visibility ? (
-                <div className={this.decorateCSS("bottom")}>
-                  {itemBottomLeft.Visibility ? (
-                    <ComposerLink path={itemBottomLeft.url} isFullWidth={true}>
-                      <div className={this.decorateCSS("item")}>
-                        {itemBottomLeft.image &&
-                          <div className={this.decorateCSS("background-image")}>
-                            <img
-                              src={itemBottomLeft.image}
-                              alt="content"
-                              className={this.decorateCSS("image")}
-                            />
-                          </div>
-                        }
-                        {(itemBottomLeft.title ||
-                          itemBottomLeft.icon ||
-                          itemBottomLeft.icon2) && (
-                            <div className={this.decorateCSS("content")}>
-                              {itemBottomLeft.title && (
-                                <h2 className={this.decorateCSS("title")}>
-                                  {itemBottomLeft.title}
-                                </h2>
-                              )}
-                              <div className={this.decorateCSS("icons")}>
-                                {itemBottomLeft.icon && (
-                                  <ComposerIcon
-                                    name={itemBottomLeft.icon}
-                                    propsIcon={{
-                                      className: this.decorateCSS("icon1"),
-                                    }}
-                                  />
-                                )}
-                                {itemBottomLeft.icon2 && (
-                                  <ComposerIcon
-                                    name={itemBottomLeft.icon2}
-                                    propsIcon={{
-                                      className: this.decorateCSS("icon2"),
-                                    }}
-                                  />
-                                )}
-                              </div>
-                            </div>
-                          )}
-                      </div>
-                    </ComposerLink>
-                  ) : null}
-                  {itemBottomRight.Visibility ? (
-                    <ComposerLink path={itemBottomRight.url} isFullWidth={true}>
-                      <div className={this.decorateCSS("item")}>
-                        {itemBottomRight.image &&
-                          <div className={this.decorateCSS("background-image")}>
-                            <img
-                              src={itemBottomRight.image}
-                              alt="content"
-                              className={this.decorateCSS("image")}
-                            />
-                          </div>
-                        }
-                        {(itemBottomRight.title ||
-                          itemBottomRight.icon ||
-                          itemBottomRight.icon2) && (
-                            <div className={this.decorateCSS("content")}>
-                              {itemBottomRight.title && (
-                                <h2 className={this.decorateCSS("title")}>
-                                  {itemBottomRight.title}
-                                </h2>
-                              )}
-                              <div className={this.decorateCSS("icons")}>
-                                {itemBottomRight.icon && (
-                                  <ComposerIcon
-                                    name={itemBottomRight.icon}
-                                    propsIcon={{
-                                      className: this.decorateCSS("icon1"),
-                                    }}
-                                  />
-                                )}
-                                {itemBottomRight.icon2 && (
-                                  <ComposerIcon
-                                    name={itemBottomRight.icon2}
-                                    propsIcon={{
-                                      className: this.decorateCSS("icon2"),
-                                    }}
-                                  />
-                                )}
-                              </div>
-                            </div>
-                          )}
-                      </div>
-                    </ComposerLink>
-                  ) : null}
-                </div>
-              ) : null}
-            </div>
+              );
+            }
           )}
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

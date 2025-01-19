@@ -4,6 +4,8 @@ import styles from "./header10.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type SliderObject = {
   title: JSX.Element;
@@ -12,19 +14,14 @@ type SliderObject = {
   image: string;
   subtitle: JSX.Element;
   description1: JSX.Element;
-  icons: { icon: string, url: string }[];
-  button: Array<ButtonObject>;
-}
-
-type ButtonObject = {
-  buttonText: JSX.Element;
-  buttonLink: JSX.Element;
-}
+  icons: { icon: string; url: string }[];
+  button: INPUTS.CastedButton[];
+};
 
 class Header10 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
- 
+
     let twitter: TypeUsableComponentProps = {
       type: "object",
       key: "twitter",
@@ -34,18 +31,16 @@ class Header10 extends BaseHeader {
           type: "icon",
           key: "icon",
           displayer: "Platform Icon",
-          value: "FaTwitter"
+          value: "FaTwitter",
         },
         {
           type: "page",
           key: "url",
           displayer: "Url",
-          value: ""
-        }
-      ]
+          value: "",
+        },
+      ],
     };
-
-
 
     let facebook: TypeUsableComponentProps = {
       type: "object",
@@ -56,18 +51,16 @@ class Header10 extends BaseHeader {
           type: "icon",
           key: "icon",
           displayer: "Platform Icon",
-          value: "FaFacebookF"
+          value: "FaFacebookF",
         },
         {
           type: "page",
           key: "url",
           displayer: "Url",
-          value: ""
-        }
-      ]
+          value: "",
+        },
+      ],
     };
-
-
 
     let instagram: TypeUsableComponentProps = {
       type: "object",
@@ -78,37 +71,48 @@ class Header10 extends BaseHeader {
           type: "icon",
           key: "icon",
           displayer: "Platform Icon",
-          value: "FaInstagram"
+          value: "FaInstagram",
         },
         {
           type: "page",
           key: "url",
           displayer: "Url",
-          value: ""
-        }
-      ]
+          value: "",
+        },
+      ],
     };
 
     this.addProp({
       type: "icon",
       key: "nextIcon",
       displayer: "Next icon",
-      value: "IoCaretForwardCircleSharp",
+      value: "MdArrowRight",
     });
     this.addProp({
       type: "icon",
       key: "prevIcon",
       displayer: "Prev icon",
-      value: "IoCaretBackCircleSharp",
+      value: "MdArrowLeft",
     });
     this.addProp({
       type: "icon",
       key: "ampersandIcon",
-      displayer: "Ampersand icon",
-      value: "TbAmpersand",
+      displayer: "Ampersand Icon",
+      value: "LuAmpersand",
     });
 
-
+    this.addProp({
+      type: "boolean",
+      key: 'index',
+      displayer: "Index Active",
+      value: true
+    })
+    this.addProp({
+      type: "boolean",
+      key: 'lineActive',
+      displayer: "Line Active",
+      value: true
+    })
 
 
     this.addProp({
@@ -121,7 +125,6 @@ class Header10 extends BaseHeader {
           key: "sliderObject",
           displayer: "Slider Object",
           value: [
-
             {
               type: "string",
               key: "title",
@@ -132,7 +135,8 @@ class Header10 extends BaseHeader {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "We make structures, dams, bridges, scyscrapers and much more. Resistance, design, flexibility and usability are the main factors that we keep in mind in every project.",
+              value:
+                "We make structures, dams, bridges, scyscrapers and much more. Resistance, design, flexibility and usability are the main factors that we keep in mind in every project.",
             },
             {
               type: "string",
@@ -144,7 +148,8 @@ class Header10 extends BaseHeader {
               type: "image",
               key: "image",
               displayer: " Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a754582f8a5b002ce6cce6?alt=media",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a754582f8a5b002ce6cce6?alt=media",
             },
             {
               type: "string",
@@ -156,32 +161,15 @@ class Header10 extends BaseHeader {
               type: "string",
               key: "description1",
               displayer: "Description 1",
-              value: "We are 24/7 available through our social media. Follow us to stay up to date",
+              value:
+                "We are 24/7 available through our social media. Follow us to stay up to date",
             },
             {
               type: "array",
               key: "button",
               displayer: "Buttons",
               value: [
-                {
-                  type: "object",
-                  key: "buttonObject",
-                  displayer: "Button",
-                  value: [
-                    {
-                      type: "string",
-                      key: "buttonText",
-                      displayer: "Button Text",
-                      value: "Get a quote",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Button Link",
-                      value: "",
-                    },
-                  ],
-                },
+                INPUTS.BUTTON("button", "Button", "Get a quote", "", null, null, "Link")
               ],
             },
             {
@@ -192,8 +180,8 @@ class Header10 extends BaseHeader {
                 JSON.parse(JSON.stringify(twitter)),
                 JSON.parse(JSON.stringify(facebook)),
                 JSON.parse(JSON.stringify(instagram)),
-              ]
-            }
+              ],
+            },
           ],
         },
         {
@@ -201,7 +189,6 @@ class Header10 extends BaseHeader {
           key: "sliderObject",
           displayer: "Slider Object",
           value: [
-
             {
               type: "string",
               key: "title",
@@ -212,7 +199,8 @@ class Header10 extends BaseHeader {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "We make structures, dams, bridges, scyscrapers and much more. Resistance, design, flexibility and usability are the main factors that we keep in mind in every project.",
+              value:
+                "We make structures, dams, bridges, scyscrapers and much more. Resistance, design, flexibility and usability are the main factors that we keep in mind in every project.",
             },
             {
               type: "string",
@@ -224,7 +212,8 @@ class Header10 extends BaseHeader {
               type: "image",
               key: "image",
               displayer: " Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a754bb2f8a5b002ce6cd14?alt=media",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a754bb2f8a5b002ce6cd14?alt=media",
             },
             {
               type: "string",
@@ -236,32 +225,15 @@ class Header10 extends BaseHeader {
               type: "string",
               key: "description1",
               displayer: "Description 1",
-              value: "We are 24/7 available through our social media. Follow us to stay up to date",
+              value:
+                "We are 24/7 available through our social media. Follow us to stay up to date",
             },
             {
               type: "array",
               key: "button",
               displayer: "Buttons",
               value: [
-                {
-                  type: "object",
-                  key: "buttonObject",
-                  displayer: "Button",
-                  value: [
-                    {
-                      type: "string",
-                      key: "buttonText",
-                      displayer: "Button Text",
-                      value: "Get a quote",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Button Link",
-                      value: "",
-                    },
-                  ],
-                },
+                INPUTS.BUTTON("button", "Button", "Get a quote", "", null, null, "Link")
               ],
             },
             {
@@ -272,18 +244,16 @@ class Header10 extends BaseHeader {
                 JSON.parse(JSON.stringify(twitter)),
                 JSON.parse(JSON.stringify(facebook)),
                 JSON.parse(JSON.stringify(instagram)),
-              ]
-            }
+              ],
+            },
           ],
-        }
-      ]
+        },
+      ],
     });
     this.setComponentState("slider-ref", React.createRef());
   }
 
-
-
-  getName(): string {
+  static getName(): string {
     return "Header 10";
   }
 
@@ -291,21 +261,22 @@ class Header10 extends BaseHeader {
     const settings = {
       dots: false,
       infinite: true,
-      speed: 3000,
+      speed: 2500,
       autoplay: false,
-      autoplaySpeed: 3000,
+      autoplaySpeed: 2500,
       slidesToShow: 1,
       slidesToScroll: 1,
-    };    
+    };
 
     const slider = this.castToObject<SliderObject[]>("slider");
     const nextIcon = this.getPropValue("nextIcon");
-    const prevIcon = this.getPropValue("prevIcon")
+    const prevIcon = this.getPropValue("prevIcon");
     const ampersandIcon = this.getPropValue("ampersandIcon");
+    const index = this.getPropValue("index");
 
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           <ComposerSlider
             {...settings}
             ref={this.getComponentState("slider-ref")}
@@ -318,67 +289,134 @@ class Header10 extends BaseHeader {
               const image = item.image;
               const subtitle = this.castToString(item.subtitle);
               const description1 = this.castToString(item.description1);
-              const leftPage = title || description;
+              const leftPage =
+                title ||
+                description ||
+                item.button.length ||
+                nextIcon ||
+                prevIcon;
+              const rightPage = !!(
+                subtitle ||
+                description1 ||
+                item.icons.length > 0 ||
+                ampersandIcon
+              );
 
               return (
-                <div className={this.decorateCSS("content")} key={indexSlider}>
+                <div
+                  className={
+                    this.decorateCSS("content") +
+                    " " +
+                    (!image ? this.decorateCSS("column-content") : "")
+                  }
+                  key={indexSlider}
+                >
                   {leftPage && (
                     <div className={this.decorateCSS("left")}>
-                      <div className={this.decorateCSS("left-page-content")}>
-                        {title && (
-                          <h1 className={this.decorateCSS("title")}>{title}</h1>
+                      <div
+                        className={
+                          this.decorateCSS("left-page-content") +
+                          " " +
+                          (!image
+                            ? this.decorateCSS("column-left-page-content")
+                            : "")
+                        }
+                      >
+                        {(title && image) && (
+                          <h1 className={this.decorateCSS("title")}>
+                            {item.title}
+                          </h1>
+                        )}
+                        {(!image && (title || imageTitle)) && (
+                          <div className={this.decorateCSS("title-wrapper")}>
+                            {title && (<div className={this.decorateCSS("title")}>{item.title}</div>)}
+                            {imageTitle && (<div className={this.decorateCSS("image-title")}>{item.imageTitle}</div>)}
+                          </div>
                         )}
                         {description && (
                           <p className={this.decorateCSS("description")}>
-                            {description}
+                            {item.description}
                           </p>
                         )}
-                        <div className={this.decorateCSS("nav-buttons")}>
-                          {(prevIcon || nextIcon) && (
-                            <div className={this.decorateCSS("slide_number")}>
-                            {String(indexSlider + 1).padStart(2, "0")}
-                            </div>
-                          )}
-                            <ComposerIcon
-                              name={this.getPropValue("prevIcon")}
-                              propsIcon={{
-                                className: `${this.decorateCSS("prev_icon")}`,
-                                size: 45,
-                                onClick: () => {
-                                  this.getComponentState("slider-ref").current.slickPrev();
-                                },
-                              }}
-                            />
-                            <ComposerIcon
-                              name={this.getPropValue("nextIcon")}
-                              propsIcon={{
-                                className: `${this.decorateCSS("next_icon")}`,
-                                size: 45,
-                                onClick: () => {
-                                  this.getComponentState("slider-ref").current.slickNext();
-                                },
-                              }}
-                            />
-                        </div>
-                          {item.button.map((buttonItem: any, indexButton: number) => {
-                            const buttonText = this.castToString(buttonItem.buttonText);
+                        {slider.length > 1 && (
+                          <div className={this.decorateCSS("nav-buttons")}>
+                            {index &&
+                              (<div className={this.decorateCSS("slide_number")}>
+                                {String(indexSlider + 1).padStart(2, "0")}
+                              </div>)
+                            }
+                            {(this.getPropValue("prevIcon") || this.getPropValue("nextIcon")) && (
+                              <div className={this.decorateCSS("iconsSection")}>
+                                {this.getPropValue("prevIcon") && (
+                                  <div className={this.decorateCSS("prev_icon_wrapper")}>
+                                    <ComposerIcon
+                                      name={this.getPropValue("prevIcon")}
+                                      propsIcon={{
+                                        className: `${this.decorateCSS("prev_icon")}`,
+                                        onClick: () => {
+                                          this.getComponentState(
+                                            "slider-ref"
+                                          ).current.slickPrev();
+                                        },
+                                      }}
+                                    />
+                                  </div>
+                                )}
+                                {this.getPropValue("nextIcon") && (
+                                  <div className={this.decorateCSS("next_icon_wrapper")}>
+                                    <ComposerIcon
+                                      name={this.getPropValue("nextIcon")}
+                                      propsIcon={{
+                                        className: `${this.decorateCSS("next_icon")}`,
+                                        onClick: () => {
+                                          this.getComponentState(
+                                            "slider-ref"
+                                          ).current.slickNext();
+                                        },
+                                      }}
+                                    />
+                                  </div>
+                                )}
+                              </div>
+                            )}
+                          </div>
+                        )}
+                        {item.button.map(
+                          (buttonItem: INPUTS.CastedButton, indexButton: number) => {
+                            const buttonText = this.castToString(
+                              buttonItem.text
+                            );
                             if (buttonText)
                               return (
-                                <ComposerLink key={`hdr-10-${indexButton}`} path={buttonItem.buttonLink}>
-                                  <button className={this.decorateCSS("button")}>
-                                    {buttonText}
-                                  </button>
-                                </ComposerLink>
+                                <div
+                                  className={this.decorateCSS(
+                                    "button-section"
+                                  )}
+                                >
+                                  {this.getPropValue("lineActive") && (
+                                    <div
+                                      className={this.decorateCSS("line")}
+                                    />
+                                  )}
+                                  <ComposerLink path={buttonItem.url}>
+                                    <Base.Button buttonType={buttonItem.type}
+                                      className={this.decorateCSS("button")}
+                                    >
+                                      {buttonItem.text}
+                                    </Base.Button>
+                                  </ComposerLink>
+                                </div>
                               );
-                          })}
+                          }
+                        )}
                       </div>
                     </div>
                   )}
-                  {(image || imageTitle) && (
+                  {image && (
                     <div className={this.decorateCSS("middle")}>
                       {imageTitle && (
                         <h1 className={this.decorateCSS("imagetitle")}>
-                          {imageTitle}
+                          {item.imageTitle}
                         </h1>
                       )}
                       {image && (
@@ -390,39 +428,62 @@ class Header10 extends BaseHeader {
                       )}
                     </div>
                   )}
-                  
-                  {(subtitle || description1 || item.icons.length > 0 || ampersandIcon) && (
+                  {rightPage && (
                     <div className={this.decorateCSS("right")}>
+                      {
                         <div className={this.decorateCSS("icon")}>
-                          <ComposerIcon name={this.getPropValue("ampersandIcon")} />
+                          <ComposerIcon
+                            name={this.getPropValue("ampersandIcon")}
+                            propsIcon={{
+                              className: `${this.decorateCSS(
+                                "ampersand-icon"
+                              )}`,
+                            }}
+                          />
                         </div>
-                      <div className={this.decorateCSS("right-page-content")}>
-                        {subtitle && (
-                          <h2 className={this.decorateCSS("subtitle")}>
-                            {subtitle}
-                          </h2>
-                        )}
-                        {description1 && (
-                          <p className={this.decorateCSS("description1")}>
-                            {description1}
-                          </p>
-                        )}
-                      </div>
-                      <div className={this.decorateCSS("icon-group")}>
-                          {item.icons.map((item: any, indexSlider: number) => (
-                            <ComposerLink path={item.getPropValue("url")}>
-                              <ComposerIcon name={item.getPropValue("icon")}/>
-                            </ComposerLink>
-                          ))}
+                      }
+
+                      {(subtitle || description1 || item.icons.length > 0) && (
+                        <div
+                          className={
+                            this.decorateCSS("right-page-content") +
+                            " " +
+                            (!image
+                              ? this.decorateCSS("column-right-page-content")
+                              : "")
+                          }
+                        >
+                          {subtitle && (
+                            <h2 className={this.decorateCSS("subtitle")}>
+                              {item.subtitle}
+                            </h2>
+                          )}
+                          {description1 && (
+                            <p className={this.decorateCSS("description1")}>
+                              {item.description1}
+                            </p>
+                          )}
+                          <div className={this.decorateCSS("icon-group")}>
+                            {item.icons.map(
+                              (item: any, indexSlider: number) => (
+                                <ComposerLink path={item.getPropValue("url")}>
+                                  <ComposerIcon
+                                    name={item.getPropValue("icon")}
+                                  />
+                                </ComposerLink>
+                              )
+                            )}
+                          </div>
                         </div>
+                      )}
                     </div>
                   )}
                 </div>
               );
             })}
           </ComposerSlider>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

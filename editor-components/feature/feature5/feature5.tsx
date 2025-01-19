@@ -2,6 +2,8 @@ import * as React from "react";
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature5.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 class Feature5 extends BaseFeature {
   constructor(props?: any) {
@@ -35,7 +37,7 @@ class Feature5 extends BaseFeature {
         {
           type: "page",
           key: "link",
-          displayer: "link",
+          displayer: "URL",
           value: "",
         },
       ],
@@ -58,18 +60,7 @@ class Feature5 extends BaseFeature {
               value:
                 "Newspaper is not only convenient to use, but it also uses very low resources and loads extremely fast. Welcome to the future!",
             },
-            {
-              type: "string",
-              displayer: "Button Text",
-              key: "button_text",
-              value: "EXPLORE",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Link",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "EXPLORE", "", null, null, "Link")
           ],
         },
         {
@@ -86,7 +77,7 @@ class Feature5 extends BaseFeature {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "URL",
               value: "",
             },
           ],
@@ -106,7 +97,7 @@ class Feature5 extends BaseFeature {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "URL",
               value: "",
             },
           ],
@@ -134,13 +125,13 @@ class Feature5 extends BaseFeature {
             {
               type: "string",
               key: "sub_title",
-              displayer: "Sub-Title",
+              displayer: "Subtitle",
               value: "Girl's Guide: Tricks to Save Time in the Morning",
             },
             {
               type: "page",
               key: "link",
-              displayer: "link",
+              displayer: "URL",
               value: "",
             },
           ],
@@ -160,13 +151,13 @@ class Feature5 extends BaseFeature {
             {
               type: "string",
               key: "sub_title",
-              displayer: "Sub-Title",
+              displayer: "Subtitle",
               value: "Motivation Monday: Only 3 Days Left of Summer",
             },
             {
               type: "page",
               key: "link",
-              displayer: "link",
+              displayer: "URL",
               value: "",
             },
           ],
@@ -186,13 +177,13 @@ class Feature5 extends BaseFeature {
             {
               type: "string",
               key: "sub_title",
-              displayer: "Sub-Title",
+              displayer: "Subtitle",
               value: "Five Rules For a Long, Healthy and Happy Life",
             },
             {
               type: "page",
               key: "link",
-              displayer: "link",
+              displayer: "URL",
               value: "",
             },
           ],
@@ -201,7 +192,7 @@ class Feature5 extends BaseFeature {
     });
   }
 
-  getName(): string {
+  static getName(): string {
     return "Feature 5";
   }
 
@@ -215,8 +206,7 @@ class Feature5 extends BaseFeature {
     const row2 = this.castToObject<{
       first_item: {
         description: JSX.Element;
-        button_text: JSX.Element;
-        link: string;
+        button: INPUTS.CastedButton;
       };
       second_item: {
         text: JSX.Element;
@@ -250,8 +240,8 @@ class Feature5 extends BaseFeature {
 
     const isFirstColumnVisible =
       this.castToString(row2.first_item.description) ||
-      this.castToString(row2.first_item.button_text) ||
-      row2.first_item.link;
+      this.castToString(row2.first_item.button.text) ||
+      row2.first_item.button.url;
     const isSecondColumnVisible = this.castToString(row2.second_item.text);
     const isThirdColumnVisible = row2.third_item.image;
 
@@ -290,22 +280,22 @@ class Feature5 extends BaseFeature {
       row3.image_and_subtitle_3.sub_title
     );
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           {title && (
-            <h1 className={this.decorateCSS("title")}>
+            <Base.SectionTitle className={this.decorateCSS("section-title")}>
               {this.getPropValue("title")}
-            </h1>
+            </Base.SectionTitle>
           )}
           {isRow1Visible && (
             <ComposerLink path={row1.link} isFullWidth={true}>
               <div className={this.decorateCSS("row1")}>
                 {row1.left_image && (
                   <div
-                    className={`${this.decorateCSS("image-wrapper")} ${
-                      !this.castToString(row1.title) &&
-                      this.decorateCSS("row1-image-only")
-                    }`}
+                    className={`
+                      ${this.decorateCSS("image-wrapper")}
+                      ${!this.castToString(row1.title) ? this.decorateCSS("row1-image-only") : ""}
+                    `}
                   >
                     <img
                       className={this.decorateCSS("left-image")}
@@ -314,14 +304,14 @@ class Feature5 extends BaseFeature {
                   </div>
                 )}
                 {this.castToString(row1.title) && (
-                  <h1
-                    className={`${this.decorateCSS("title")} ${
-                      !row1.left_image && this.decorateCSS("row1-title-only")
-                    } 
-                        }`}
+                  <Base.H2
+                    className={`
+                      ${this.decorateCSS("title")}
+                      ${!row1.left_image ? this.decorateCSS("row1-title-only") : ""} 
+                    `}
                   >
                     {row1.title}
-                  </h1>
+                  </Base.H2>
                 )}
               </div>
             </ComposerLink>
@@ -331,33 +321,35 @@ class Feature5 extends BaseFeature {
             <div className={this.decorateCSS("row2")}>
               {isFirstColumnVisible && (
                 <div className={this.decorateCSS("first")}>
-                  {(this.castToString(row2.first_item.description) ||
-                    this.castToString(row2.first_item.button_text)) && (
-                    <div className={this.decorateCSS("first-items-wrapper")}>
-                      {this.castToString(row2.first_item.description) && (
-                        <span className={this.decorateCSS("description")}>
-                          {row2.first_item.description}
-                        </span>
-                      )}
-                      {this.castToString(row2.first_item.button_text) && (
-                        <span className={this.decorateCSS("button-text")}>
-                          <ComposerLink path={row2.first_item.link}>
-                            {this.castToString(row2.first_item.button_text)}
-                          </ComposerLink>
-                        </span>
-                      )}
-                    </div>
-                  )}
+                  {(!!this.castToString(row2.first_item.description) ||
+                    !!this.castToString(row2.first_item.button.text)) && (
+                      <div className={this.decorateCSS("first-items-wrapper")}>
+                        {!!this.castToString(row2.first_item.description) && (
+                          <Base.P className={this.decorateCSS("description")}>
+                            {row2.first_item.description}
+                          </Base.P>
+                        )}
+                        {!!this.castToString(row2.first_item.button.text) && (
+                          <Base.Row className={this.decorateCSS("button-text-container")}>
+                            <ComposerLink path={row2.first_item.button.url}>
+                              <Base.Button buttonType={row2.first_item.button.type} className={this.decorateCSS("button-text")}>
+                                {row2.first_item.button.text}
+                              </Base.Button>
+                            </ComposerLink>
+                          </Base.Row>
+                        )}
+                      </div>
+                    )}
                 </div>
               )}
               {isSecondColumnVisible && (
                 <div className={this.decorateCSS("second")}>
-                  {this.castToString(row2.second_item.text) && (
-                    <span className={this.decorateCSS("text")}>
+                  {!!this.castToString(row2.second_item.text) && (
+                    <Base.H2 className={this.decorateCSS("text")}>
                       <ComposerLink path={row2.second_item.link}>
-                        {this.castToString(row2.second_item.text)}
+                        {row2.second_item.text}
                       </ComposerLink>
-                    </span>
+                    </Base.H2>
                   )}
                 </div>
               )}
@@ -384,13 +376,14 @@ class Feature5 extends BaseFeature {
           )}
           {isRow3Visible && (
             <div
-              className={`${this.decorateCSS("row3")} ${
-                !row3.image_and_subtitle_1.image &&
-                !row3.image_and_subtitle_2.image &&
-                !row3.image_and_subtitle_3.image
+              className={`
+                  ${this.decorateCSS("row3")} 
+                  ${!row3.image_and_subtitle_1.image &&
+                  !row3.image_and_subtitle_2.image &&
+                  !row3.image_and_subtitle_3.image
                   ? this.decorateCSS("row3-no-image")
                   : ""
-              }`}
+                }`}
             >
               {imageOrSubtitleExist1 && (
                 <ComposerLink
@@ -400,21 +393,19 @@ class Feature5 extends BaseFeature {
                   <div className={this.decorateCSS("image_and_subtitle_1")}>
                     {row3.image_and_subtitle_1.image && (
                       <img
-                        className={`${this.decorateCSS("image")} 
-                      ${row3Status && this.decorateCSS("row3-images-less")} 
-                      ${
-                        noSubtitleFirstImage &&
-                        this.decorateCSS("row3-no-subtitle")
-                      }
-                      `}
+                        className={`
+                          ${this.decorateCSS("image")} 
+                          ${row3Status ? this.decorateCSS("row3-images-less") : ""} 
+                          ${noSubtitleFirstImage ? this.decorateCSS("row3-no-subtitle") : ""}
+                        `}
                         src={row3.image_and_subtitle_1.image}
                       />
                     )}
 
-                    {this.castToString(row3.image_and_subtitle_1.sub_title) && (
-                      <span className={this.decorateCSS("subtitle")}>
+                    {!!this.castToString(row3.image_and_subtitle_1.sub_title) && (
+                      <Base.H3 className={this.decorateCSS("subtitle")}>
                         {row3.image_and_subtitle_1.sub_title}
-                      </span>
+                      </Base.H3>
                     )}
                   </div>
                 </ComposerLink>
@@ -427,20 +418,18 @@ class Feature5 extends BaseFeature {
                   <div className={this.decorateCSS("image_and_subtitle_2")}>
                     {row3.image_and_subtitle_2.image && (
                       <img
-                        className={`${this.decorateCSS("image")} 
-                      ${row3Status && this.decorateCSS("row3-images-less")}
-                      ${
-                        noSubtitleSecondImage &&
-                        this.decorateCSS("row3-no-subtitle")
-                      }
-                      `}
+                        className={`
+                          ${this.decorateCSS("image")} 
+                          ${row3Status ? this.decorateCSS("row3-images-less") : ""}
+                          ${noSubtitleSecondImage ? this.decorateCSS("row3-no-subtitle") : ""}
+                        `}
                         src={row3.image_and_subtitle_2.image}
                       />
                     )}
-                    {this.castToString(row3.image_and_subtitle_2.sub_title) && (
-                      <span className={this.decorateCSS("subtitle")}>
+                    {!!this.castToString(row3.image_and_subtitle_2.sub_title) && (
+                      <Base.H3 className={this.decorateCSS("subtitle")}>
                         {row3.image_and_subtitle_2.sub_title}
-                      </span>
+                      </Base.H3>
                     )}
                   </div>
                 </ComposerLink>
@@ -451,30 +440,28 @@ class Feature5 extends BaseFeature {
                   isFullWidth={true}
                 >
                   <div className={this.decorateCSS("image_and_subtitle_3")}>
-                    {row3.image_and_subtitle_3.image && (
+                    {!!row3.image_and_subtitle_3.image && (
                       <img
-                        className={`${this.decorateCSS("image")} 
-                      ${row3Status && this.decorateCSS("row3-images-less")}
-                      ${
-                        noSubtitleThirdImage &&
-                        this.decorateCSS("row3-no-subtitle")
-                      }
-                      `}
+                        className={`
+                          ${this.decorateCSS("image")} 
+                          ${row3Status ? this.decorateCSS("row3-images-less") : ""}
+                          ${noSubtitleThirdImage ? this.decorateCSS("row3-no-subtitle") : ""}
+                        `}
                         src={row3.image_and_subtitle_3.image}
                       />
                     )}
-                    {this.castToString(row3.image_and_subtitle_3.sub_title) && (
-                      <span className={this.decorateCSS("subtitle")}>
+                    {!!this.castToString(row3.image_and_subtitle_3.sub_title) && (
+                      <Base.H3 className={this.decorateCSS("subtitle")}>
                         {row3.image_and_subtitle_3.sub_title}
-                      </span>
+                      </Base.H3>
                     )}
                   </div>
                 </ComposerLink>
               )}
             </div>
           )}
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container >
     );
   }
 }

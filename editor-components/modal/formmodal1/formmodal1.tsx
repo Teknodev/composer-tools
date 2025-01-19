@@ -1,9 +1,12 @@
 import * as React from "react";
 import styles from "./formmodal1.module.scss";
-import { BaseModal, TypeUsableComponentProps } from "../../EditorComponent";
+import { BaseModal } from "../../EditorComponent";
 import { Formik, Form } from "formik";
 import ComposerModalClose from "../../../composer-base-components/close/close";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import * as Yup from "yup";
 
 type InputItems = {
   label: string;
@@ -15,7 +18,6 @@ type Inputs = {
   type: string;
 };
 
-
 class FormModal1 extends BaseModal {
   constructor(props?: any) {
     super(props, styles);
@@ -24,18 +26,18 @@ class FormModal1 extends BaseModal {
       type: "image",
       key: "image",
       displayer: "Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a2698b2f8a5b002ce67e10?alt=media",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675207f7506a40002c31e64a?alt=media",
     });
     this.addProp({
       type: "string",
       key: "header",
-      displayer: "Header",
+      displayer: "Title",
       value: "Talk to us",
     });
     this.addProp({
       type: "string",
       key: "context",
-      displayer: "Context",
+      displayer: "Description",
       value: "Need a demo? or help with anything? Get in touch with our amazing team of experts at your service.",
     });
     this.addProp({
@@ -43,7 +45,6 @@ class FormModal1 extends BaseModal {
       key: "inputItems",
       displayer: "Input Items",
       value: [
-
         {
           type: "object",
           key: "input",
@@ -80,7 +81,6 @@ class FormModal1 extends BaseModal {
                   key: "countryOption",
                   displayer: "Country Option",
                   value: [
-
                     {
                       type: "string",
                       key: "label",
@@ -100,7 +100,6 @@ class FormModal1 extends BaseModal {
                   key: "countryOption",
                   displayer: "Country Option",
                   value: [
-
                     {
                       type: "string",
                       key: "label",
@@ -120,7 +119,6 @@ class FormModal1 extends BaseModal {
           ],
         },
         {
-
           type: "object",
           key: "input",
           displayer: "Input",
@@ -156,7 +154,6 @@ class FormModal1 extends BaseModal {
                   key: "countryOption",
                   displayer: "Country Option",
                   value: [
-
                     {
                       type: "string",
                       key: "label",
@@ -176,7 +173,6 @@ class FormModal1 extends BaseModal {
                   key: "countryOption",
                   displayer: "Country Option",
                   value: [
-
                     {
                       type: "string",
                       key: "label",
@@ -231,7 +227,6 @@ class FormModal1 extends BaseModal {
                   key: "countryOption",
                   displayer: "Country Option",
                   value: [
-
                     {
                       type: "string",
                       key: "label",
@@ -290,7 +285,6 @@ class FormModal1 extends BaseModal {
                   key: "countryOption",
                   displayer: "Country Option",
                   value: [
-
                     {
                       type: "string",
                       key: "label",
@@ -310,7 +304,6 @@ class FormModal1 extends BaseModal {
                   key: "countryOption",
                   displayer: "Country Option",
                   value: [
-
                     {
                       type: "string",
                       key: "label",
@@ -341,40 +334,60 @@ class FormModal1 extends BaseModal {
               key: "countrySelection",
               displayer: "Country Selection",
               value: true,
-            }
+            },
           ],
         },
       ],
     });
 
-    this.addProp({
-      type: "string",
-      key: "buttonText",
-      displayer: "Button Text",
-      value: "Get in touch",
-    });
+    this.addProp(INPUTS.BUTTON("button", "Button", "Get in touch", null, null, null, "Primary"));
     this.addProp({
       type: "icon",
       key: "exitIcon",
       displayer: "ExitIcon",
       value: "IoCloseSharp",
     });
-
   }
 
-  getName(): string {
+  static getName(): string {
     return "FormModal1";
+  }
+
+  getValidationSchema() {
+    const inputItems = this.castToObject<any[]>("inputItems") || [];
+    let validationSchema: any = {};
+
+    inputItems.forEach((inputItem: any, index: number) => {
+      const inputType = inputItem.getPropValue("type").toLowerCase();
+      const key = `input_${index}`;
+
+      if (inputType === "text") {
+        validationSchema[key] = Yup.string().required("Required.");
+      } else if (inputType === "e-mail") {
+        validationSchema[key] = Yup.string().email("Invalid email address.").required("Required.");
+      } else if (inputType === "number") {
+        validationSchema[key] = Yup.number()
+          .typeError("Must be a number.")
+          .required("Required.");
+      }
+    });
+
+    return Yup.object().shape(validationSchema);
   }
 
 
   render() {
-    const header = this.getPropValue("header", { as_string: true });
-    const context = this.getPropValue("context", { as_string: true });
+    const header = this.getPropValue("header");
+    const context = this.getPropValue("context");
     const inputItems = this.getPropValue("inputItems")!;
     const imageVal = this.getPropValue("image");
-    const buttonVal = this.getPropValue("buttonText", { as_string: true });
-    const hasRightPageProps = header || context || inputItems.length > 0 || buttonVal;
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
+    const headerExist = this.castToString(header);
+    const contextExist = this.castToString(context);
+    const buttonTextExist = this.castToString(button.text);
+
+    const hasRightPageProps = headerExist || contextExist || inputItems.length > 0 || buttonTextExist;
 
     function getInputType(type: string): string {
       switch (type) {
@@ -394,14 +407,11 @@ class FormModal1 extends BaseModal {
 
     function getInitialValue() {
       let value: any = {};
-      inputItems.map((_: any, indexOfItem: number) => value["input_" + indexOfItem] = "");
+      inputItems.map((_: any, indexOfItem: number) => (value["input_" + indexOfItem] = ""));
       return value;
     }
 
-    function handleInputChange(
-      e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
-      handleChange: any,
-    ) {
+    function handleInputChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>, handleChange: any) {
       handleChange(e);
     }
 
@@ -411,131 +421,141 @@ class FormModal1 extends BaseModal {
       const selectedItemPlaceholder = this.getComponentState(stateKey);
 
       if (!selectedItemPlaceholder) {
-        const placeholder = selectOptions[0]?.getPropValue("placeholder", { as_string: true }) || "";
+        const placeholder = this.castToString(selectOptions[0]?.getPropValue("placeholder")) || "";
         this.setComponentState(stateKey, placeholder);
-      };
+      }
 
       return selectedItemPlaceholder;
-    }
+    };
 
     const handleSelectChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>, index: number) => {
       const selectOptions = inputItems[index].getPropValue("countryOptions");
-      const selectedOption = selectOptions.find((option: any) => option.getPropValue("label", { as_string: true }) == event.target.value);
+      const selectedOption = selectOptions.find((option: any) => this.castToString(option.getPropValue("label")) == event.target.value);
       const stateKey = "input_placeholder_" + index;
-      const placeholder = selectedOption.getPropValue("placeholder", { as_string: true }) || "";
+      const placeholder = this.castToString(selectedOption.getPropValue("placeholder")) || "";
       this.setComponentState(stateKey, placeholder);
-    }
-
+    };
 
     return (
+      <Base.Container isModal="true" className={this.decorateCSS("container")}>
+        <Base.MaxContent className={`${this.decorateCSS("page")} ${!imageVal && this.decorateCSS("single-page")} ${!hasRightPageProps && this.decorateCSS("single-image")}`}>
+          <div className={this.decorateCSS("exit-icon")}>
+            <ComposerModalClose>
+              <ComposerIcon propsIcon={{ className: this.decorateCSS("exit-icon") }} name={this.getPropValue("exitIcon")} />
+            </ComposerModalClose>
+          </div>
 
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={`${this.decorateCSS("page")} ${!imageVal && this.decorateCSS("single-page")}`}>
-            <div className={this.decorateCSS("exit-icon")}>
-              <ComposerModalClose>
-                <ComposerIcon
-                  propsIcon={{ className: this.decorateCSS("exit-icon") }}
-                  name={this.getPropValue("exitIcon")}
-                />
-              </ComposerModalClose>
+          {imageVal && (
+            <div className={this.decorateCSS("left-page")}>
+              <img className={this.decorateCSS("image")} src={this.getPropValue("image")} alt="" />
             </div>
+          )}
 
+          {hasRightPageProps && (
+            <div className={this.decorateCSS("right-page")}>
+              <div className={this.decorateCSS("right-page-content")}>
+                {(headerExist || contextExist) &&
+                  <Base.VerticalContent className={this.decorateCSS("title")}>
+                    {headerExist && <Base.SectionTitle className={this.decorateCSS("header")}>{this.getPropValue("header")}</Base.SectionTitle>}
+                    {contextExist && <Base.SectionDescription className={this.decorateCSS("context")}>{this.getPropValue("context")}</Base.SectionDescription>}
+                  </Base.VerticalContent>}
+                <div className={this.decorateCSS("form-content")}>
+                  <Formik
+                    initialValues={{ ...getInitialValue() }}
+                    validationSchema={this.getValidationSchema()}
+                    onSubmit={(data, { resetForm }) => {
+                      this.insertForm("Contact Us", data);
+                      resetForm();
+                    }}
+                  >
+                    {({ handleChange,
+                      values,
+                      errors,
+                      touched, }) => (
+                      <Form className={this.decorateCSS("form")}>
+                        {this.castToObject<InputItems[]>("inputItems").map((inputItem: any, inputItemIndex: number) => {
+                          const nameKey = "input_" + inputItemIndex;
 
-            {imageVal && (
-              <div className={this.decorateCSS("left-page")}>
-                <img
-                  className={this.decorateCSS("image")}
-                  src={this.getPropValue("image")}
-                  alt=""
-                />
-              </div>
-            )}
+                          const hasCountrySelection =
+                            inputItem.getPropValue("countryOptions") &&
+                            inputItem.getPropValue("countryOptions").length > 0 &&
+                            inputItem.getPropValue("countrySelection") == true;
 
-
-
-            {hasRightPageProps && (
-              <div className={this.decorateCSS("right-page")}>
-                <div className={this.decorateCSS("right-page-content")}>
-                  <div className={this.decorateCSS("title")}>
-                    <h1 className={this.decorateCSS("header")}>{header && this.getPropValue("header")}</h1>
-                    <p className={this.decorateCSS("context")}>{context && this.getPropValue("context")}</p>
-                  </div>
-                  <div className={this.decorateCSS("form-content")}>
-                    <Formik
-                      initialValues={{ ...getInitialValue() }}
-                      onSubmit={(data, { resetForm }) => {
-                        this.insertForm("Contact Us", data);
-                        resetForm();
-                      }}
-                    >
-                      {({ handleChange, values }) => (
-                        <Form className={this.decorateCSS("form")}>
-                          {this.castToObject<InputItems[]>("inputItems").map((inputItem: any, inputItemIndex: number) =>
-                            inputItem.getPropValue("countryOptions") && inputItem.getPropValue("countryOptions").length > 0 &&
-                              inputItem.getPropValue("countrySelection") == true ? (
-                              <div className={this.decorateCSS("phone-input-container")} key={`${inputItemIndex}-${inputItemIndex}`}>
-                                <select
-                                  className={this.decorateCSS("country-dropdown")}
-                                  onChange={(e) =>
-                                    handleSelectChange(e, inputItemIndex)
+                          return hasCountrySelection ? (
+                            <div
+                              className={this.decorateCSS("phone-input-container")}
+                              key={`${inputItemIndex}-${inputItemIndex}`}
+                            >
+                              <select
+                                className={this.decorateCSS("country-dropdown")}
+                                onChange={(e) => handleSelectChange(e, inputItemIndex)}
+                              >
+                                {inputItem.getPropValue("countryOptions").map(
+                                  (option: any, idx: number) => {
+                                    const label = this.castToString(option.getPropValue("label"));
+                                    return (
+                                      <option key={idx} value={label}>
+                                        {label}
+                                      </option>
+                                    );
                                   }
-                                >
+                                )}
+                              </select>
 
-                                  {inputItem.getPropValue("countryOptions").map(
-                                    (option: any, idx: number) => {
-                                      const label = option.getPropValue("label", { as_string: true });
-                                      return (
-                                        <option key={idx} value={label}>
-                                          {label}
-                                        </option>
-                                      );
-                                    }
-                                  )}
-                                </select>
+                              <input
+                                placeholder={getSelectedItemPlaceholder(inputItem, inputItemIndex)}
+                                type={getInputType(inputItem.type)}
+                                onChange={(e) => handleInputChange(e, handleChange)}
+                                value={values[nameKey]}
+                                name={nameKey}
+                                className={this.decorateCSS("form-input")}
+                              />
 
-                                <input
-                                  placeholder={getSelectedItemPlaceholder(inputItem, inputItemIndex)}
-                                  type={getInputType(inputItem.type)}
-                                  onChange={(e) =>
-                                    handleInputChange(e, handleChange)
-                                  }
-                                  value={values["input_" + inputItemIndex]}
-                                  name={"input_" + inputItemIndex}
-                                  className={this.decorateCSS("form-input")}
-                                />
-                              </div>
-                            ) : (
-                              <div className={this.decorateCSS("input-box")} key={`${inputItemIndex}-${inputItemIndex}`}>
-                                <input
-                                  placeholder={inputItem.getPropValue("placeholder", { as_string: true })}
-                                  type={getInputType(inputItem.type)}
-                                  onChange={(e) =>
-                                    handleInputChange(e, handleChange)
-                                  }
-                                  value={values["input_" + inputItemIndex]}
-                                  name={"input_" + inputItemIndex}
-                                  className={this.decorateCSS("form-input")}
-                                />
-                              </div>
-                            )
-                          )
-                          }
-                          {buttonVal && (
-                            <button className={this.decorateCSS("form-button")} type="submit">
-                              {this.getPropValue("buttonText")}
-                            </button>
-                          )}
-                        </Form>
-                      )}
-                    </Formik>
-                  </div>
+                              {errors[nameKey] && touched[nameKey] && (
+                                <div className={this.decorateCSS("error")}>
+                                  {errors[nameKey] as string}
+                                </div>
+                              )}
+                            </div>
+                          ) : (
+                            <div
+                              className={this.decorateCSS("input-box")}
+                              key={`${inputItemIndex}-${inputItemIndex}`}
+                            >
+                              <input
+                                placeholder={this.castToString(
+                                  inputItem.getPropValue("placeholder")
+                                )}
+                                type={getInputType(inputItem.type)}
+                                onChange={(e) => handleInputChange(e, handleChange)}
+                                value={values[nameKey]}
+                                name={nameKey}
+                                className={this.decorateCSS("form-input")}
+                              />
+
+                              {errors[nameKey] && touched[nameKey] && (
+                                <div className={this.decorateCSS("error")}>
+                                  {errors[nameKey] as string}
+                                </div>
+                              )}
+                            </div>
+                          );
+                        }
+                        )}
+                        {buttonTextExist && (
+                          <Base.Button className={this.decorateCSS("form-button")} buttonType={button.type}>
+                            {button.text}
+                          </Base.Button>
+                        )}
+                      </Form>
+                    )}
+                  </Formik>
                 </div>
               </div>
-            )}
-          </div>
-        </div>
-      </div>
+            </div>
+          )}
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

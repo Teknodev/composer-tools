@@ -1,123 +1,119 @@
+@import "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss";
+
 .container {
-  width: 100%;
-  padding: 20px 0;
-  background-color: var(--composer--html-background);
-
   .max-content {
-    max-width: var(--composer-content-width);
-    padding: 20px;
-    margin: 0 auto;
-    height: 100%;
+    .wrapper {
+      width: 100%;
+      background-size: cover;
+      background-position: center;
+      border-radius: var(--composer-border-radius-xl);
+      position: relative;
+
+      .overlay {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--composer-overlay-color);
+        border-radius: var(--composer-border-radius-xl);
+        z-index: 1;
+      }
+
+      .content-container{
+        height: 100%;
+        justify-content: center;
+        position: relative;
+        z-index: 2;
+        &.image{
+          min-height: 600px;
+          padding: var(--composer-gap-md) var(--composer-gap-xl);
+          align-items: center;
+          text-align: center;
+        }
+        .title {
+          font-size: 1.5rem;
+          content: "";
+          &.image{
+            color: white;
+          }
+        }
+
+        .description {
+          font-size: 2rem;
+          &.image{
+            color: white;
+          }
+        }
+
+        .buttons-container {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          gap: var(--composer-gap-md);
+          .button-wrapper {
+            .button-image {
+              width: 170px;
+              height:50px;
+              border-radius: var(--composer-border-radius-sm);
+              object-fit: cover;
+            }
+            .button-element {
+              .icon {
+                content: "";
+              }
+              .button-text {
+                content: "";
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
 
-.wrapper {
-  width: 100%;
-  margin: 0 auto;
-  background-size: cover;
-  background-position: center;
-  border-radius: 20px;
-  overflow: hidden;
-  height: 100%;
-}
-
-.content-container {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 50px;
-  gap: 40px;
-  min-height: 600px;
-}
-
-.title {
-  color: var(--composer-font-color-primary);
-  font-size: 2rem;
-  text-align: center;
-}
-.description {
-  color: var(--composer-font-color-primary);
-  text-align: center;
-  font-size: 4rem;
-}
-
-.buttons-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  width: 100%;
-}
-
-.button {
-  border: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  background-color: var(--composer-font-color-primary);
-  color: var(--composer-font-color-secondary);
-  padding: 0.7em 1.4em;
-  border-radius: 8px;
-  font-size: 1.3rem;
-  transition: 300ms;
-
-  &:hover {
-    scale: 1.05;
-  }
-
-  .button-icon {
-    width: 25px;
-    height: 25px;
-  }
-}
-
-@media only screen and (max-width: 768px) {
+@container (max-width: #{$composer-tablet-width-lg}) {
   .container {
-    height: auto !important;
-  }
-  .wrapper {
-    width: 100%;
-    max-width: unset;
-  }
-
-  .content-container {
-    padding: 50px 10px;
-    gap: 20px;
-    min-height: unset !important;
-  }
-
-  .title {
-    font-size: 1.5rem;
-  }
-
-  .description {
-    font-size: 3rem;
-  }
-
-  .buttons-container {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-
-    > div {
-      width: 100% !important;
-      display: flex;
-      justify-content: center;
-    }
-
-    .button {
-      min-width: 250px;
-      font-size: 1.2rem;
+    .max-content {
+      .wrapper {
+        .content-container {
+          min-height: 600px;
+          padding: var(--composer-gap-sm) var(--composer-gap-md);
+          .title {
+            font-size: 1rem;
+          }
+          .description {
+            font-size: 1.5rem;
+          }
+        }
+      }
     }
   }
 }
 
-@media only screen and (max-width: 500px) {
-  .description {
-    font-size: 1.9rem;
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .wrapper {
+        .content-container {
+          min-height: 600px;
+          padding: var(--composer-gap-sm) var(--composer-gap-md);
+          .description{
+            text-align: center;
+          }
+          .buttons-container{
+            justify-content: center;
+            flex-direction: column;
+            .button-wrapper{
+              .button-image{
+                width: 120px;
+                height: 40px;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }

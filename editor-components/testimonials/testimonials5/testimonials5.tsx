@@ -2,217 +2,316 @@ import * as React from "react";
 import { Testimonials } from "../../EditorComponent";
 import styles from "./testimonials5.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
+import ComposerSlider from "../../../composer-base-components/slider/slider";
 
-type Item = {
+interface LeftItem {
+  subtitle: JSX.Element;
+  title: JSX.Element;
+  prevIcon: string;
+  nextIcon: string;
+}
+
+interface SliderItem {
   image: string;
-};
-type ISection = {
-  section: Item[];
-};
+  sliderTitle: JSX.Element;
+  description: JSX.Element;
+  nextIcon: string;
+  star: number;
+  starIcon: string;
+}
+
 class Testimonials5Page extends Testimonials {
   constructor(props?: any) {
     super(props, styles);
+
     this.addProp({
-      type: "icon",
-      key: "star_icon",
-      displayer: "Star Icon",
-      value: "FaStar"
-    })
+      type: "image",
+      key: "background-image",
+      displayer: "Background Image",
+      value: "https://craftohtml.themezaa.com/images/demo-travel-agency-home-bg-03.jpg",
+    });
     this.addProp({
-      type: "string",
-      key: "title",
-      value: "Testimonials",
-      displayer: "title",
+      type: "boolean",
+      key: "lineIsActive",
+      displayer: "Line Active",
+      value: true,
+    });
+
+    this.addProp({
+      type: "object",
+      key: "leftItem",
+      displayer: "Left Item",
+      value: [
+        {
+          type: "string",
+          key: "subtitle",
+          displayer: "Subtitle",
+          value: "TESTIMONIALS",
+        },
+        {
+          type: "string",
+          key: "title",
+          displayer: "Title",
+          value: "Our happy traveller.",
+        },
+        {
+          type: "icon",
+          key: "prevIcon",
+          displayer: "PrevIcon",
+          value: "GrLinkPrevious",
+        },
+        {
+          type: "icon",
+          key: "nextIcon",
+          displayer: "NextIcon",
+          value: "GrLinkNext",
+        },
+      ],
     });
     this.addProp({
       type: "array",
-      key: "card-items",
-      displayer: "Card Items",
+      key: "sliders",
+      displayer: "Sliders",
       value: [
         {
           type: "object",
-          key: "section",
-          displayer: "Section",
+          key: "slider",
+          displayer: "Slider",
           value: [
             {
-              type: "array",
-              key: "items",
-              displayer: "Items",
-              value: [
-                {
-                  type: "object",
-                  key: "card",
-                  displayer: "Card",
-                  value: [
-                    {
-                      type: "number",
-                      key: "start",
-                      value: 5,
-                      displayer: "Star",
-                    },
-                    {
-                      type: "string",
-                      key: "subtitle",
-                      value: "''DESIGN''",
-                      displayer: "Subtitle",
-                    },
-                    {
-                      type: "string",
-                      key: "text",
-                      value:
-                        "Their communication skills were top-notch, and they made sure to keep us informed throughout the entire process.",
-                      displayer: "text",
-                    },
-                    {
-                      type: "string",
-                      key: "author",
-                      value: "Derren Avalon",
-                      displayer: "Author",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "card",
-                  displayer: "Card",
-                  value: [
-                    {
-                      type: "number",
-                      key: "start",
-                      value: 5,
-                      displayer: "Star",
-                    },
-                    {
-                      type: "string",
-                      key: "subtitle",
-                      value: "''LEARNING PLATFORM''",
-                      displayer: "Subtitle",
-                    },
-                    {
-                      type: "string",
-                      key: "text",
-                      value:
-                        "An online learning platform can provide access to educational content from anywhere with an internet connection.",
-                      displayer: "text",
-                    },
-                    {
-                      type: "string",
-                      key: "author",
-                      value: "Jaylyn Kaleigh",
-                      displayer: "Author",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "card",
-                  displayer: "Card",
-                  value: [
-                    {
-                      type: "number",
-                      key: "start",
-                      value: 5,
-                      displayer: "Star",
-                    },
-                    {
-                      type: "string",
-                      key: "subtitle",
-                      value: "''FINANCE WEBSITE''",
-                      displayer: "Subtitle",
-                    },
-                    {
-                      type: "string",
-                      key: "text",
-                      value:
-                        "A personal finance website can be incredibly helpful for people looking to improve their financial literacy and manage their money better.",
-                      displayer: "text",
-                    },
-                    {
-                      type: "string",
-                      key: "author",
-                      value: "Candyce Jeannine",
-                      displayer: "Author",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "card",
-                  displayer: "Card",
-                  value: [
-                    {
-                      type: "number",
-                      key: "start",
-                      value: 5,
-                      displayer: "Star",
-                    },
-                    {
-                      type: "string",
-                      key: "subtitle",
-                      value: "''E-COMMERCE''",
-                      displayer: "Subtitle",
-                    },
-                    {
-                      type: "string",
-                      key: "text",
-                      value:
-                        "An e-commerce website can provide a platform for businesses to sell their products online.",
-                      displayer: "text",
-                    },
-                    {
-                      type: "string",
-                      key: "author",
-                      value: "Kasey Kim",
-                      displayer: "Author",
-                    },
-                  ],
-                },
-              ],
+              type: "image",
+              key: "image",
+              displayer: "Author Image",
+              value: "https://craftohtml.themezaa.com/images/demo-travel-agency-home-18.png",
+            },
+            {
+              type: "string",
+              key: "sliderTitle",
+              displayer: "Author Name",
+              value: "Alexender Moore",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Review Text",
+              value: "This is itinerary was a perfect combination of city sights, history and culture together with the peace of the amazon rainforest and the adventure.",
+            },
+            {
+              type: "number",
+              key: "star",
+              displayer: "Icon Number",
+              value: 5,
+            },
+            {
+              type: "icon",
+              key: "starIcon",
+              displayer: "Icon",
+              value: "FaStar",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "slider",
+          displayer: "Slider",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Author Image",
+              value: "https://craftohtml.themezaa.com/images/demo-travel-agency-home-17.png",
+            },
+            {
+              type: "string",
+              key: "sliderTitle",
+              displayer: "Author Name",
+              value: "Alexender Moore",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Review Text",
+              value: "This is itinerary was a perfect combination of city sights, history and culture together with the peace of the amazon rainforest and the adventure.",
+            },
+            {
+              type: "number",
+              key: "star",
+              displayer: "Icon Number",
+              value: 5,
+            },
+            {
+              type: "icon",
+              key: "starIcon",
+              displayer: "Icon",
+              value: "FaStar",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "slider",
+          displayer: "Slider",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Author Image",
+              value: "https://craftohtml.themezaa.com/images/demo-travel-agency-home-15.png",
+            },
+            {
+              type: "string",
+              key: "sliderTitle",
+              displayer: "Author Name",
+              value: "Alexender Moore",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Review Text",
+              value: "This is itinerary was a perfect combination of city sights, history and culture together with the peace of the amazon rainforest and the adventure.",
+            },
+            {
+              type: "number",
+              key: "star",
+              displayer: "Icon Number",
+              value: 5,
+            },
+            {
+              type: "icon",
+              key: "starIcon",
+              displayer: "Icon",
+              value: "FaStar",
             },
           ],
         },
       ],
     });
+    this.setComponentState("slider-ref", React.createRef());
+    this.setComponentState("active", 0);
+    this.setComponentState("activeSlideIndex", 0);
   }
 
-  getName(): string {
+  static getName(): string {
     return "Testimonials 5";
   }
+  handleSlideChange(direction: "next" | "prev") {
+    const currentIndex = this.getComponentState("activeSlideIndex");
+    const lastIndex = this.getPropValue("sliders").length - 1;
 
+    if (direction === "next") {
+      if (currentIndex === lastIndex) {
+        this.setComponentState("activeSlideIndex", 0);
+        this.getComponentState("slider-ref").current.slickGoTo(0);
+      } else {
+        this.setComponentState("activeSlideIndex", currentIndex + 1);
+        this.getComponentState("slider-ref").current.slickNext();
+      }
+    } else if (direction === "prev") {
+      if (currentIndex === 0) {
+        this.setComponentState("activeSlideIndex", lastIndex);
+        this.getComponentState("slider-ref").current.slickGoTo(lastIndex);
+      } else {
+        this.setComponentState("activeSlideIndex", currentIndex - 1);
+        this.getComponentState("slider-ref").current.slickPrev();
+      }
+    }
+  }
   render() {
+    const leftItem = this.castToObject<LeftItem>("leftItem");
+    const sliderItem = this.castToObject<SliderItem[]>("sliders");
+    const sliderRef = this.getComponentState("slider-ref");
+    const hasLeftContent = Boolean(this.castToString(leftItem.subtitle) || this.castToString(leftItem.title) || leftItem.nextIcon || leftItem.prevIcon);
+
+    const backgroundImageExist = this.getPropValue("background-image");
+    const subtitleType = Base.getSectionSubTitleType();
+
+    var settings = {
+      dots: false,
+      autoplay: true,
+      infinite: false,
+      arrows: false,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      beforeChange: (current: number, next: number) => {
+        this.setComponentState("active", next);
+        this.setComponentState("activeSlideIndex", next);
+      },
+    };
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("testimonials5")}>
-            <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
-            {this.castToObject<ISection[]>("card-items").map(
-              (section: any, index: number) => (
-                <div
-                  key={`testimonials5-${index}`}
-                  className={this.decorateCSS("card-child")}
-                >
-                  {section.items.map((item: any, indexCard: number) => (
-                    <div
-                      key={`testimonials5-card-${indexCard}`}
-                      className={this.decorateCSS("card")}
+      <Base.Container
+        className={this.decorateCSS("container")}
+        style={{
+          backgroundImage: `url(${this.getPropValue("background-image")})`,
+        }}
+      >
+        <Base.MaxContent className={this.decorateCSS("maxContent")}>
+          <div className={this.decorateCSS("containerGrid")}>
+            {hasLeftContent && (
+              <div className={this.decorateCSS("leftContainer")}>
+                <Base.VerticalContent className={this.decorateCSS("leftContainerText")}>
+                  {this.castToString(leftItem.subtitle) && (
+                    <Base.SectionSubTitle
+                      className={`
+  ${this.decorateCSS("subtitle")} 
+  ${backgroundImageExist ? (subtitleType === "badge" ? this.decorateCSS("badge-with-image") : this.decorateCSS("subtitle-with-image")) : ""}
+`}
                     >
-                      <div className={styles["stars"]}>
-                        {[...Array(Number(item.value[0].value))].map(
-                          (item: any, index: number) => (
-                            <ComposerIcon name={this.getPropValue("star_icon")} propsIcon={{ className: this.decorateCSS("star") }} />
-                          ))}
-                      </div>
-                      <span className={this.decorateCSS("item-value1")}>{item.value[1].value}</span>
-                      <h5 className={this.decorateCSS("item-value2")}>{item.value[2].value}</h5>
-                      <span className={this.decorateCSS("item-value3")}>{item.value[3].value}</span>
+                      {leftItem.subtitle}
+                    </Base.SectionSubTitle>
+                  )}
+                  {this.castToString(leftItem.title) && <Base.SectionTitle className={`${this.decorateCSS("title")} ${backgroundImageExist && this.decorateCSS("title-with-image")}`}>{leftItem.title}</Base.SectionTitle>}
+                </Base.VerticalContent>
+
+                <Base.Row>
+                  {(leftItem.nextIcon || leftItem.prevIcon) && sliderItem.length > 1 && (
+                    <div className={this.decorateCSS("arrow")}>
+                      {leftItem.prevIcon && (
+                        <button onClick={() => this.handleSlideChange("next")} className={`${this.decorateCSS("prevArrow")} ${!this.getPropValue("background-image") && this.decorateCSS("prevArrowPrimary")}`}>
+                          <ComposerIcon name={leftItem.prevIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                        </button>
+                      )}
+                      {leftItem.nextIcon && (
+                        <button onClick={() => this.handleSlideChange("next")} className={`${this.decorateCSS("nextArrow")} ${!this.getPropValue("background-image") && this.decorateCSS("nextArrowPrimary")}`}>
+                          <ComposerIcon name={leftItem.nextIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                        </button>
+                      )}
                     </div>
-                  ))}
-                </div>
-              )
+                  )}
+                </Base.Row>
+              </div>
             )}
+
+            <ComposerSlider {...settings} ref={sliderRef} className={`${this.decorateCSS("slider")} ${!hasLeftContent && this.decorateCSS("fullSlider")}`}>
+              {sliderItem.map((item: SliderItem, index: number) => (
+                <div>
+                  {item.image && <img src={item.image} alt={item.image} className={this.decorateCSS("image")} />}
+
+                  <div className={this.decorateCSS("rightWrapper")}>
+                    {this.castToString(item.sliderTitle) && <Base.H3 className={`${this.decorateCSS("sliderTitle")} ${!this.getPropValue("background-image") && this.decorateCSS("sliderTitlePrimary")}`}>{item.sliderTitle}</Base.H3>}
+                    {this.getPropValue("lineIsActive") && (
+                      <div className={this.decorateCSS("lineContainer")}>
+                        <div className={`${this.decorateCSS("line")} ${!this.getPropValue("background-image") && this.decorateCSS("linePrimary")}`}></div>
+                      </div>
+                    )}
+                    <Base.VerticalContent className={this.decorateCSS("rightContainer")}>
+                      {this.castToString(item.description) && <Base.P className={`${this.decorateCSS("description")} ${!this.getPropValue("background-image") && this.decorateCSS("descriptionPrimary")}`}>{item.description}</Base.P>}
+                      {item.starIcon && item.star > 0 && (
+                        <div className={`${this.decorateCSS("stars")} ${!this.getPropValue("background-image") && this.decorateCSS("starsPrimary")}`}>
+                          {[...Array(Number(item.star))].map((_: any, index: number) => (
+                            <ComposerIcon name={item.starIcon} propsIcon={{ className: this.decorateCSS("star") }} />
+                          ))}
+                        </div>
+                      )}
+                    </Base.VerticalContent>
+                  </div>
+                </div>
+              ))}
+            </ComposerSlider>
           </div>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

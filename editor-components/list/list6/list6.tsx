@@ -2,15 +2,17 @@ import { BaseList } from "../../EditorComponent";
 import React from "react";
 import styles from "./list6.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
 
 type listItem = {
+  itemIndex: JSX.Element;
   itemTitle: JSX.Element;
   itemIcon: string;
   itemText: JSX.Element;
 };
 
 class List6 extends BaseList {
-  getName(): string {
+  static getName(): string {
     return "List 6";
   }
 
@@ -29,6 +31,12 @@ class List6 extends BaseList {
       displayer: "Description Animation",
       value: true,
     });
+    this.addProp({
+      type: "boolean",
+      key: "lineActive",
+      displayer: "Line Active",
+      value: true,
+    });
 
     this.addProp({
       type: "array",
@@ -40,6 +48,12 @@ class List6 extends BaseList {
           key: "listItem",
           displayer: "List Item",
           value: [
+            {
+              type: "string",
+              key: "itemIndex",
+              displayer: "Item Index",
+              value: "01",
+            },
             {
               type: "string",
               key: "itemTitle",
@@ -68,6 +82,12 @@ class List6 extends BaseList {
           value: [
             {
               type: "string",
+              key: "itemIndex",
+              displayer: "Item Index",
+              value: "02",
+            },
+            {
+              type: "string",
               key: "itemTitle",
               displayer: "Item Title",
               value: "Development",
@@ -94,6 +114,12 @@ class List6 extends BaseList {
           value: [
             {
               type: "string",
+              key: "itemIndex",
+              displayer: "Item Index",
+              value: "03",
+            },
+            {
+              type: "string",
               key: "itemTitle",
               displayer: "Item Title",
               value: "Marketing",
@@ -118,6 +144,12 @@ class List6 extends BaseList {
           key: "listItem",
           displayer: "List Item",
           value: [
+            {
+              type: "string",
+              key: "itemIndex",
+              displayer: "Item Index",
+              value: "04",
+            },
             {
               type: "string",
               key: "itemTitle",
@@ -148,63 +180,54 @@ class List6 extends BaseList {
     const description = this.castToString(this.getPropValue("description"));
 
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           {description && (
-            <div
-              className={this.decorateCSS(
-                this.getPropValue("descriptionAnimation")
-                  ? "description1"
-                  : "description2",
-              )}
+            <Base.SectionTitle
+              className={`${this.decorateCSS("sectionTitle")} ${this.getPropValue("descriptionAnimation") && this.decorateCSS("animation")}`}
             >
               {this.getPropValue("description")}
-            </div>
+            </Base.SectionTitle>
           )}
-          <ul className={this.decorateCSS("list-item")}>
+          <div className={this.decorateCSS("list-item")}>
             {listItems.map((listItem: listItem, index: number) => (
-              <li
-                key={index}
-                className={this.decorateCSS("item-container")}
-                style={{
-                  borderTop: !description ? "none" : "",
-                }}
-              >
-                <h3 className={this.decorateCSS("index")}>
-                  {index < 9 ? `0${index + 1}` : index + 1}
-                </h3>
+              <div className={`${this.decorateCSS("item-container")} ${this.getPropValue("lineActive") && this.decorateCSS("line")}`}>
+                {this.castToString(listItem.itemIndex) && (
+                  <div className={this.decorateCSS("index")}>
+                    {listItem.itemIndex}
+                  </div>
+                )}
                 <div className={this.decorateCSS("cards")}>
                   {(listItem.itemIcon ||
                     this.castToString(listItem.itemTitle)) && (
-                    <div className={this.decorateCSS("icon-title-container")}>
-                      {listItem.itemIcon && (
-                        <ComposerIcon
-                          name={listItem.itemIcon}
-                          propsIcon={{
-                            className: this.decorateCSS("icon"),
-                            size: 40,
-                          }}
-                        />
-                      )}
-                      {this.castToString(listItem.itemTitle) && (
-                        <h1 className={this.decorateCSS("list-item-h1")}>
-                          {listItem.itemTitle}
-                        </h1>
-                      )}
-                    </div>
-                  )}
+                      <div className={this.decorateCSS("icon-title-container")}>
+                        {listItem.itemIcon && (
+                          <ComposerIcon
+                            name={listItem.itemIcon}
+                            propsIcon={{
+                              className: this.decorateCSS("icon")
+                            }}
+                          />
+                        )}
+                        {this.castToString(listItem.itemTitle) && (
+                          <div className={this.decorateCSS("title")}>
+                            {listItem.itemTitle}
+                          </div>
+                        )}
+                      </div>
+                    )}
 
                   {this.castToString(listItem.itemText) && (
-                    <p className={this.decorateCSS("list-item-p")}>
+                    <div className={this.decorateCSS("description")}>
                       {listItem.itemText}
-                    </p>
+                    </div>
                   )}
                 </div>
-              </li>
+              </div>
             ))}
-          </ul>
-        </div>
-      </div>
+          </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

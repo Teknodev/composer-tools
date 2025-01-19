@@ -1,12 +1,13 @@
 import * as React from "react";
 import { LogoClouds } from "../../EditorComponent";
 import styles from "./logo-comp1.module.scss";
+import { Base } from "../../../composer-base-components/base/base";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
-type Item = {
+type TImage = {
   image: string;
-};
-type ISection = {
-  section: Item[];
+  imageLink: string;
 };
 class LogoComp1Page extends LogoClouds {
   constructor(props?: any) {
@@ -15,130 +16,104 @@ class LogoComp1Page extends LogoClouds {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Logo Clouds",
+      value: "We Partnered With Global Brands",
+    });
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Our Partners",
+    });
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    });
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item count in a row",
+      value: 6,
+      max: 12,
     });
     this.addProp({
       type: "array",
       key: "image-items",
       displayer: "Images",
       value: [
-        {
-          type: "object",
-          key: "section",
-          displayer: "Section",
-          value: [
-            {
-              type: "array",
-              key: "items",
-              displayer: "Items",
-              value: [
-                {
-                  type: "image",
-                  key: "image",
-                  value:
-                    "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1719584962573",
-                  displayer: "Image",
-                },
-                {
-                  type: "image",
-                  key: "image",
-                  value:
-                    "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaf000?alt=media&timestamp=1719584962573",
-                  displayer: "Image",
-                },
-                {
-                  type: "image",
-                  key: "image",
-                  value:
-                    "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaf001?alt=media&timestamp=1719584962573",
-                  displayer: "Image",
-                },
-                {
-                  type: "image",
-                  key: "image",
-                  value:
-                    "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaf002?alt=media&timestamp=1719584962573",
-                  displayer: "Image",
-                },
-              ],
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "section",
-          displayer: "Section",
-          value: [
-            {
-              type: "array",
-              key: "items",
-              displayer: "Items",
-              value: [
-                {
-                  type: "image",
-                  key: "image",
-                  value:
-                    "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaf003?alt=media&timestamp=1719584962573",
-                  displayer: "Image",
-                },
-                {
-                  type: "image",
-                  key: "image",
-                  value:
-                    "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaf004?alt=media&timestamp=1719584962573",
-                  displayer: "Image",
-                },
-                {
-                  type: "image",
-                  key: "image",
-                  value:
-                    "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaf005?alt=media&timestamp=1719584962573",
-                  displayer: "Image",
-                },
-                {
-                  type: "image",
-                  key: "image",
-                  value:
-                    "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaf006?alt=media&timestamp=1719584962573",
-                  displayer: "Image",
-                },
-              ],
-            },
-          ],
-        },
+        INPUTS.LOGO("section", "Section"),
+        INPUTS.LOGO("section", "Section"),
+        INPUTS.LOGO("section", "Section"),
+        INPUTS.LOGO("section", "Section"),
+        INPUTS.LOGO("section", "Section"),
+        INPUTS.LOGO("section", "Section"),
       ],
     });
   }
 
-  getName(): string {
-    return "Logo Comp 1";
+  static getName(): string {
+    return "Logo Cloud 1";
   }
 
   render() {
+    const isSubtitleExists = this.castToString(this.getPropValue("subtitle"));
+    const isTitleExists = this.castToString(this.getPropValue("title"));
+    const isDescriptionExists = this.castToString(
+      this.getPropValue("description")
+    );
+    const images = this.castToObject<TImage[]>("image-items");
     return (
-      <div
-        className={this.decorateCSS("container")}
-        
-      >
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("logo-comp1-page")}>
-            <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
-            <section>
-              <center>
-                {this.castToObject<ISection[]>("image-items").map(
-                  (section: any, index: number) => (
-                    <div key={index} className={this.decorateCSS("image-child")}>
-                      {section.items.map((item: any, index: number) => (
-                        <img className={this.decorateCSS("image")} key={index} width={180} height={90} src={item.value} alt=""/>
-                      ))}
-                    </div>
-                  )
-                )}
-              </center>
-            </section>
-          </div>
-        </div>
-      </div>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          {(isSubtitleExists || isTitleExists || isDescriptionExists) && (
+            <Base.VerticalContent className={this.decorateCSS("heading")}>
+              {isSubtitleExists && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {this.getPropValue("subtitle")}
+                </Base.SectionSubTitle>
+              )}
+              {isTitleExists && (
+                <Base.SectionTitle className={this.decorateCSS("title")}>
+                  {this.getPropValue("title")}
+                </Base.SectionTitle>
+              )}
+              {isDescriptionExists && (
+                <Base.SectionDescription
+                  className={this.decorateCSS("description")}
+                >
+                  {this.getPropValue("description")}
+                </Base.SectionDescription>
+              )}
+            </Base.VerticalContent>
+          )}
+
+          {images.length > 0 && (
+            <Base.ListGrid
+              gridCount={{
+                pc: this.getPropValue("itemCount"),
+                tablet: 3,
+                phone: 2,
+              }}
+              className={this.decorateCSS("images-container")}
+            >
+              {images.map((image: any, index: number) => (
+                <ComposerLink path={image.imageLink}>
+                  <div key={index} className={this.decorateCSS("image-item")}>
+                    <img
+                      className={this.decorateCSS("image")}
+                      key={index}
+                      src={image.image}
+                      alt={image.imageLink || ""}
+                    />
+                  </div>
+                </ComposerLink>
+              ))}
+            </Base.ListGrid>
+          )}
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

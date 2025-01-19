@@ -1,146 +1,220 @@
 import * as React from "react";
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature2.module.scss";
+import { Base } from "../../../composer-base-components/base/base";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
-type IIconBoxes = {
-  title: string;
-  description: string;
-  image: string;
+type Box = {
+  title: JSX.Element;
+  description: JSX.Element;
+  icon: string;
 };
+
 class Feature2 extends BaseFeature {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
       type: "array",
-      key: "icon-boxes-content",
-      displayer: "Icon Boxes Content",
+      key: "items",
+      displayer: "List Items",
       value: [
         {
           type: "object",
-          key: "icon-boxes",
-          displayer: "Icon Boxes",
+          key: "item",
+          displayer: "List Item",
           value: [
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: " Bill Gates",
+              value: "Consultation and initial meeting",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
-              value:"Bill Gates is a prominent American entrepreneur and philanthropist who co-founded Microsoft Corporation, one of the world's largest software companies. He is also known for his significant contributions to the development of computers."
+              value: "The architecture company meets with the client to discuss their needs, budget, and timeline. They may also visit the site to get a better understanding of the project."
             },
             {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value:
-                "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Question_mark_white_icon.svg/1200px-Question_mark_white_icon.svg.png",
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaGlobe",
             },
           ],
         },
         {
           type: "object",
-          key: "icon-boxes",
-          displayer: "Icon Boxes",
+          key: "item",
+          displayer: "List Item",
           value: [
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Walt Disney",
+              value: "Concept design",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
-              value:"Walt Disney (1901-1966) was an American entrepreneur, animator, voice actor, and film producer. He was the co-founder of The Walt Disney Company, which has become one of the world's largest and most influential entertainment conglomerates.  "
+              value: "Based on the client's requirements, the architecture company creates a concept design that outlines the overall vision for the project. This may include sketches, 3D models, or computer-generated renderings."
             },
             {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value:
-                "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Question_mark_white_icon.svg/1200px-Question_mark_white_icon.svg.png",
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "SiAltiumdesigner",
             },
           ],
         },
         {
           type: "object",
-          key: "icon-boxes",
-          displayer: "Icon Boxes",
+          key: "item",
+          displayer: "List Item",
           value: [
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Steve Jobs",
+              value: "Design development",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Steve Jobs (1955-2011) was a famous American entrepreneur and business magnate, who is best known for co-founding Apple Inc. and playing a key role in the development of personal computing and mobile devices."
+              value: "Once the client approves the concept design, the architecture company begins to develop detailed drawings and plans. This may involve collaborating with engineers, contractors, and other specialists to ensure that the design is feasible."
             },
             {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value:
-                "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Question_mark_white_icon.svg/1200px-Question_mark_white_icon.svg.png",
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "CgIfDesign",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "List Item",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Permitting and approvals",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Before construction can begin, the architecture company must obtain the necessary permits and approvals from local authorities. This may involve submitting plans and documents for review and responding to any questions or co"
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaRegNewspaper",
             },
           ],
         }
       ],
     });
+
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item count in a row",
-      value: 3,
+      displayer: "Item Count in a Row",
+      value: 4,
+      max: 4
     });
+
+    this.addProp({
+      type: "boolean",
+      key: "showBadge",
+      displayer: "Show Badge",
+      value: true
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "showLine",
+      displayer: "Show Line",
+      value: true,
+    });
+
+    window.addEventListener('resize', () => {this.setComponentState("windowWidth", window.innerWidth)});
   }
 
-  getName(): string {
+  static getName(): string {
     return "Feature 2";
   }
 
+  getItemCount(): number {
+    if (this.getComponentState("windowWidth") <= 1024) return 2;
+    else if (this.getComponentState("windowWidth") <= 896) return 1;
+
+    return this.getPropValue("itemCount");
+  }
+
   render() {
+    const items = this.castToObject<Box[]>("items");
+    const itemCount: number = this.getItemCount();
+    const showBadge = !!this.getPropValue("showBadge");
+    const showLine = !!this.getPropValue("showLine");
+
     return (
-      <div
-        className={this.decorateCSS("container")}
-      >
-        <div className={this.decorateCSS("max-content")}>
-          {this.castToObject<IIconBoxes[]>("icon-boxes-content").map(
-            (iconbox: any, index: number) => (
-              <div className={this.decorateCSS("card-item-count")} style={{
-                width: 90 / this.getPropValue("itemCount") + "%",
-              }}>
-              <div
-                className={this.decorateCSS("icon-boxes")}
-                key={index}
-                >
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <Base.ListGrid gridCount={{ pc: itemCount }} className={this.decorateCSS("wrapper")}>
+            {items.map((item: Box, index: number) => {
+              const titleExist = !!this.castToString(item.title);
+              const descExist = !!this.castToString(item.description);
+              const iconExist = !!item.icon;
+              const shouldRender = titleExist || descExist || iconExist;
+
+              if (!shouldRender) return null;
+
+              return (
                 <div
-                  className={this.decorateCSS("image-background")}
+                  key={index}
+                  className={`
+                      ${this.decorateCSS("item")}
+                      ${!showLine ?
+                      this.decorateCSS("remove-line")
+                      : (((index + 1) % itemCount === 0) ||
+                        (items[index + 1] && !items[index + 1]?.icon))
+                        ? this.decorateCSS("remove-line")
+                        : ""}
+                    `}
                 >
-                  <img className={this.decorateCSS("image")} src={iconbox.image} alt=""></img>
+                  {iconExist && (
+                    <>
+                      {showBadge && (
+                        <span className={this.decorateCSS("item-index")}>{index + 1}</span>
+                      )}
+                      <ComposerIcon
+                        name={item.icon}
+                        propsIcon={{ className: this.decorateCSS("icon") }}
+                      />
+                    </>
+                  )}
+                  {titleExist && (
+                    <Base.H2 className={this.decorateCSS("title")}>
+                      {item.title}
+                    </Base.H2>
+                  )}
+                  {descExist && (
+                    <Base.P className={this.decorateCSS("description")}>
+                      {item.description}
+                    </Base.P>
+                  )}
                 </div>
-                <h3 className={this.decorateCSS("title")}>
-                  {iconbox.title}
-                </h3>
-                <p
-                  className={this.decorateCSS("long-text")}
-                  >
-                  {iconbox.description}
-                </p>
-              </div>
-              </div>
-            )
-          )}
-        </div>
-      </div>
+              );
+            })}
+          </Base.ListGrid>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

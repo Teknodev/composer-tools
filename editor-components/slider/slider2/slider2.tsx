@@ -3,15 +3,16 @@ import { BaseSlider } from "../../EditorComponent";
 import styles from "./slider2.module.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
+import { Base } from "../../../composer-base-components/base/base";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type Card = {
   image: string;
-  text: string;
-  button: string;
+  text: JSX.Element;
+  button: JSX.Element;
   url: string;
-  number: string;
+  number: JSX.Element;
 };
 
 class Slider2 extends BaseSlider {
@@ -26,13 +27,19 @@ class Slider2 extends BaseSlider {
         {
           type: "object",
           key: "items1",
-          displayer: "Items 0",
+          displayer: "Items 2",
           value: [
             {
               type: "string",
               key: "button",
-              displayer: "Button",
-              value: "Shoes",
+              displayer: "Title",
+              value: "Sonya",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Title Link",
+              value: "",
             },
             {
               type: "string",
@@ -44,7 +51,81 @@ class Slider2 extends BaseSlider {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661ca8fbd2970002c6294dd?alt=media&timestamp=1719584962578",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67518d0c506a40002c318e40?alt=media",
+            },
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "Assumenda voluptatum eveniet possimus modi illo.",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "items1",
+          displayer: "Items 0",
+          value: [
+            {
+              type: "string",
+              key: "button",
+              displayer: "Title",
+              value: "Baseball",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Title Link",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "number",
+              displayer: "Number",
+              value: "02",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67518d3f506a40002c318e73?alt=media",
+            },
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "Commodi necessitatibus perspiciatis quae labore!",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "items1",
+          displayer: "Items 0",
+          value: [
+            {
+              type: "string",
+              key: "button",
+              displayer: "Title",
+              value: "Kitchen",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Title Link",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "number",
+              displayer: "Number",
+              value: "03",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675193c7506a40002c3192ef?alt=media",
             },
             {
               type: "string",
@@ -62,14 +143,20 @@ class Slider2 extends BaseSlider {
             {
               type: "string",
               key: "button",
-              displayer: "Button",
+              displayer: "Title",
               value: "biker",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Title Link",
+              value: "",
             },
             {
               type: "string",
               key: "number",
               displayer: "Number",
-              value: "02",
+              value: "04",
             },
             {
               type: "image",
@@ -85,37 +172,7 @@ class Slider2 extends BaseSlider {
             },
           ],
         },
-        {
-          type: "object",
-          key: "items1",
-          displayer: "Items 2",
-          value: [
-            {
-              type: "string",
-              key: "button",
-              displayer: "Button",
-              value: "gold man",
-            },
-            {
-              type: "string",
-              key: "number",
-              displayer: "Number",
-              value: "03",
-            },
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661ca8fbd2970002c6294de?alt=media&timestamp=1719584962578",
-            },
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "Assumenda voluptatum eveniet possimus modi illo.",
-            },
-          ],
-        },
+
         {
           type: "object",
           key: "items1",
@@ -124,20 +181,26 @@ class Slider2 extends BaseSlider {
             {
               type: "string",
               key: "button",
-              displayer: "Button",
-              value: "baseball",
+              displayer: "Title",
+              value: "Born Wild",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Title Link",
+              value: "",
             },
             {
               type: "string",
               key: "number",
               displayer: "Number",
-              value: "04",
+              value: "05",
             },
             {
               type: "image",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661ca8fbd2970002c6294df?alt=media&timestamp=1719584962578",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/677297550655f8002caea7ff?alt=media",
             },
             {
               type: "string",
@@ -150,75 +213,119 @@ class Slider2 extends BaseSlider {
       ],
     });
 
-    this.setComponentState("active_image", this.castToObject<Card[]>("slider")[0].image)
-    this.setComponentState("text", this.castToObject<Card[]>("slider")[0].text)
-    this.setComponentState("text_visibility", true)
+    this.setComponentState("active_index", 0);
+    this.setComponentState("text", this.castToObject<Card[]>("slider")[0].text);
+    this.setComponentState("text_visibility", true);
   }
 
-  getName(): string {
+  static getName(): string {
     return "Slider 2";
   }
 
-
-
   render() {
-
+    const slider = this.castToObject<Card[]>("slider");
     const settings = {
+      arrows: false,
+      autoplay: true,
       dots: false,
-      infinite: true,
+      infinite: slider.length > 2,
       speed: 1000,
-      slidesToShow: window.innerWidth < 400 ? 1.2 : 3,
+      variableWidth: true,
+      slidesToShow: 2.5,
+      slidesToScroll: 1,
+      centerMode: false,
+      initialSlide: 0,
+      responsive: [
+        {
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 2.2,
+            slidesToScroll: 1,
+          },
+        },
+        {
+          breakpoint: 640,
+          settings: {
+            slidesToShow: 1.5,
+            slidesToScroll: 1,
+          },
+        },
+      ],
+      beforeChange: (_: number, nextSlide: number) => {
+        const sliderData = this.castToObject<Card[]>("slider");
+        const nextSlideData = sliderData[nextSlide];
+
+        this.setComponentState("active_index", nextSlide);
+        this.setComponentState("text_visibility", false);
+        setTimeout(() => {
+          this.setComponentState("text_visibility", true);
+          this.setComponentState("text", nextSlideData?.text);
+        }, 200);
+      },
     };
+
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("image-box")}>
             <div className={this.decorateCSS("overlay")}>
               {this.castToObject<Card[]>("slider").map((slide, index) => {
-                const isActive = this.getComponentState("active_image") == slide.image;
-                return <img key={index} src={slide.image} className={
-                  `
-                ${this.decorateCSS("image")} 
-                ${isActive && this.decorateCSS("active")}
-              `
-                } />
-              }
-              )}
+                const isActive = this.getComponentState("active_index") === index;
+                return (
+                  slide.image && (
+                    <img
+                      key={index}
+                      src={slide.image}
+                      className={`
+                      ${this.decorateCSS("image")} 
+                      ${isActive && this.decorateCSS("active")}`}
+                    />
+                  )
+                );
+              })}
             </div>
           </div>
-          <div className={this.decorateCSS("text-box")}>
-            <span className={`${this.decorateCSS("text")} ${this.getComponentState("text_visibility") && this.decorateCSS("visible")}`}>{this.getComponentState("text")}</span>
-          </div>
-          <ComposerSlider
-            {...settings}
-            className={this.decorateCSS("carousel")}>
-            {this.castToObject<Card[]>("slider").map(
-              (item: Card, indexSlider: number) => {
-                const isActive = this.getComponentState("active_image") == item.image;
+          {this.getComponentState("text") && (
+            <div className={this.decorateCSS("text-box")}>
+              <Base.P
+                className={`${this.decorateCSS("text")} 
+              ${this.getComponentState("text_visibility") && this.decorateCSS("visible")}`}
+              >
+                {this.getComponentState("text")}
+              </Base.P>
+            </div>
+          )}
+          <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
+            {this.castToObject<Card[]>("slider").map((item: Card, indexSlider: number) => {
+              const isActive = this.getComponentState("active_index") === indexSlider;
 
-                return <div key={indexSlider} className={this.decorateCSS("card")}>
-                  <button className={this.decorateCSS("button")} onMouseOver={() => {
-                    const isImageValueSame = this.getComponentState("active_image") == item.image;
-                    if (isImageValueSame) return;
+              return (
+                <div key={indexSlider} className={this.decorateCSS("card")}>
+                  <button
+                    className={this.decorateCSS("button")}
+                    onMouseOver={() => {
+                      const isIndexSame = this.getComponentState("active_index") === indexSlider;
+                      if (isIndexSame) return;
 
-                    this.setComponentState("active_image", item.image);
-                    this.setComponentState("text_visibility", false);
-                    setTimeout(() => {
-                      this.setComponentState("text_visibility", true);
-                      this.setComponentState("text", item.text);
-                    }, 200)
-                  }}>
-                    <p className={this.decorateCSS("number")}>{item.number}</p>
-                    <span className={`${this.decorateCSS("text")} ${isActive && this.decorateCSS("active")}`}>{item.button}</span>
+                      this.setComponentState("active_index", indexSlider);
+                      this.setComponentState("text_visibility", false);
+                      setTimeout(() => {
+                        this.setComponentState("text_visibility", true);
+                        this.setComponentState("text", item.text);
+                      }, 200);
+                    }}
+                  >
+                    <ComposerLink key={indexSlider} path={item.url}>
+                      {this.castToString(item.number) && <p className={this.decorateCSS("number")}>{item.number}</p>}
+                      {this.castToString(item.button) && <span className={`${this.decorateCSS("text")} ${isActive && this.decorateCSS("active")}`}>{item.button}</span>}
+                    </ComposerLink>
                   </button>
-
                 </div>
-              }
-            )}
+              );
+            })}
           </ComposerSlider>
-
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

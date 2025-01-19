@@ -2,8 +2,9 @@ import * as React from "react";
 import styles from "./faq6.module.scss";
 import { BaseFAQ } from "../../EditorComponent";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
 
-class FaqPost extends BaseFAQ {
+class Faq6 extends BaseFAQ {
   constructor(props?: any) {
     super(props, styles);
 
@@ -29,10 +30,10 @@ class FaqPost extends BaseFAQ {
 
     this.addProp({
       type: "string",
+      key: "title",
       displayer: "Title",
-      value: "FAQ",
-      key: "title"
-    })
+      value: "Frequently Asked Questions"
+    },)
 
     this.addProp({
       type: "array",
@@ -122,8 +123,8 @@ class FaqPost extends BaseFAQ {
 
 
   }
-  getName(): string {
-    return "FAQ-6";
+  static getName(): string {
+    return "FAQ 6";
   }
 
   onItemClick(index: number) {
@@ -137,39 +138,61 @@ class FaqPost extends BaseFAQ {
   }
 
   render() {
-
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("items")}>
-            {this.getPropValue("list_items").map((item: any, index: number) => {
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <div className={this.decorateCSS("wrapper")}>
+            <div className={this.decorateCSS("content")}>
+              {(this.castToString(this.getPropValue("title")) || (this.getPropValue("list_items").length > 0)) && (
+                <div className={this.decorateCSS("items-wrapper")}>
+                  {this.castToString(this.getPropValue("title")) && (
+                    <Base.VerticalContent className={this.decorateCSS("title-wrapper")}>
+                      <Base.SectionTitle className={this.decorateCSS("title")}>
+                        {this.getPropValue("title")}
+                      </Base.SectionTitle>
+                    </Base.VerticalContent>
+                  )}
+                  {(this.getPropValue("list_items").length > 0) && (
+                    <div className={this.decorateCSS("items")}>
+                      {this.getPropValue("list_items").map((item: any, index: number) => {
+                        const is_active = this.getComponentState("active_index") == index;
 
-              const is_active = this.getComponentState("active_index") == index;
-
-              return <div key={index} className={this.decorateCSS("item")} onClick={() => this.onItemClick(index)}>
-                <div className={this.decorateCSS("title-box")}>
-                  <span className={this.decorateCSS("title-text")}>{item.getPropValue("title")}</span>
-                  <ComposerIcon
-                    propsIcon={{
-                      className: this.decorateCSS("icon")
-                    }}
-                    name={is_active ? this.getPropValue("inactive_icon") : this.getPropValue("active_icon")}
-                  />
+                        return <div key={index} className={this.decorateCSS("item")} onClick={() => this.onItemClick(index)}>
+                          {(this.castToString(item.getPropValue("title")) || this.getPropValue("inactive_icon") || this.getPropValue("active_icon")) && (
+                            <div className={this.decorateCSS("title-box")}>
+                              {this.castToString(item.getPropValue("title")) && (
+                                <div className={this.decorateCSS("title-text")}>{item.getPropValue("title")}</div>
+                              )}
+                              {(this.getPropValue("inactive_icon") || this.getPropValue("active_icon")) && (
+                                <ComposerIcon
+                                  propsIcon={{ className: `${this.decorateCSS("icon")} ${is_active ? this.decorateCSS("active") : ""}` }}
+                                  name={is_active ? this.getPropValue("inactive_icon") : this.getPropValue("active_icon")}
+                                />
+                              )}
+                            </div>
+                          )}
+                          {this.castToString(item.getPropValue("description")) && (
+                            <div className={`${this.decorateCSS("description-box")} ${is_active && this.decorateCSS("active")}`}>
+                              <div className={this.decorateCSS("description-text")}>{item.getPropValue("description")}</div>
+                            </div>
+                          )}
+                        </div>
+                      })}
+                    </div>
+                  )}
                 </div>
-                <div className={`${this.decorateCSS("description-box")} ${is_active && this.decorateCSS("active")}`}>
-                  <p className={this.decorateCSS("description-text")}>{item.getPropValue("description")}</p>
+              )}
+              {this.getPropValue("image") && (
+                <div className={this.decorateCSS("image-box")}>
+                  <img className={this.decorateCSS("image")} src={this.getPropValue("image")} alt={this.getPropValue("image")} />
                 </div>
-              </div>
-            })}
+              )}
+            </div>
           </div>
-          <div className={this.decorateCSS("image-box")}>
-            <img className={this.decorateCSS("image")} src={this.getPropValue("image")} alt="faq image" />
-            <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
-          </div>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
 
-export default FaqPost;
+export default Faq6;

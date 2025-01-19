@@ -2,6 +2,15 @@ import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action4.module.scss";
+import { Base } from "../../../composer-base-components/base/base";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+
+interface ListItem {
+  description: JSX.Element;
+}
+
+type Button = INPUTS.CastedButton;
 
 class CallToAction4Page extends BaseCallToAction {
   constructor(props?: any) {
@@ -13,77 +22,195 @@ class CallToAction4Page extends BaseCallToAction {
       displayer: "Title",
     });
     this.addProp({
-      type: "string",
-      key: "description",
-      value: "Our online courses are designed to help you learn new skills and advance your career. Enroll today and join a community of learners who are making a difference in their lives.",
-      displayer: "Description",
+      type: "icon",
+      key: "icon",
+      displayer: "Icon",
+      value: "FaCheck",
+    });
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item Count in a Row",
+      value: 2,
+    });
+    this.addProp({
+      type: "array",
+      key: "listItems",
+      displayer: "List Items",
+      value: [
+        {
+          type: "object",
+          key: "listItem",
+          displayer: "List Item",
+          value: [
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Unlimited update and project",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "listItem",
+          displayer: "List Item",
+          value: [
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "24+7 service",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "listItem",
+          displayer: "List Item",
+          value: [
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Chat support",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "listItem",
+          displayer: "List Item",
+          value: [
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Analytic and chart",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "listItem",
+          displayer: "List Item",
+          value: [
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Darks light mode",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "listItem",
+          displayer: "List Item",
+          value: [
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Library of our specialist",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "listItem",
+          displayer: "List Item",
+          value: [
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Own analytic platfrom",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "listItem",
+          displayer: "List Item",
+          value: [
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Unlimited advice",
+            },
+          ],
+        },
+      ],
     });
     this.addProp({
       type: "image",
       key: "image",
       displayer: "Image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436958968c3c2002cd2f2d8?alt=media&timestamp=1719584962572",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6749a012506a40002c2f7882?alt=media",
     });
     this.addProp({
-      type: "string",
-      key: "firstButtonText",
-      value: "Enroll Now",
-      displayer: "Button Text",
-    });
-    this.addProp({
-      type: "page",
-      key: "firstButtonLink",
-      displayer: "First Button Link",
-      value: "",
-    });
-    this.addProp({
-      type: "string",
-      key: "secondButtonText",
-      value: "Learn More",
-      displayer: "Button Text",
-    });
-    this.addProp({
-      type: "page",
-      key: "secondButtonLink",
-      displayer: "Second Button Link",
-      value: "",
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary"), INPUTS.BUTTON("button", "Button", "Enroll Now", "", null, null, "Primary")],
     });
   }
 
-  getName(): string {
+  static getName(): string {
     return "Call To Action 4";
   }
 
   render() {
+    const listItems = this.castToObject<ListItem[]>("listItems");
+    const buttons = this.castToObject<Button[]>("buttons");
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("call-to-action4-page")}>
-            <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>
-            <h2 className={this.decorateCSS("description")}>{this.getPropValue("description")}</h2>
-            <div className={this.decorateCSS("buttons")}>
-              <ComposerLink path={this.getPropValue("firstButtonLink")}>
-                <span
-                  className={this.decorateCSS("button")}
-                >
-                  {this.getPropValue("firstButtonText")}
-                </span>
-              </ComposerLink>
-              <ComposerLink path={this.getPropValue("secondButtonLink")}>
-                <span
-                  className={this.decorateCSS("button2")}
-                >
-                  {this.getPropValue("secondButtonText")}
-                </span>
-              </ComposerLink>
-            </div>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <div className={this.decorateCSS("content")}>
+            {(this.castToString(this.getPropValue("title")) || listItems.length > 0 || buttons.length > 0) && (
+              <div className={this.decorateCSS("left-page")}>
+                {this.castToString(this.getPropValue("title")) && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                {listItems.length > 0 && (
+                  <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("list-container")}>
+                    {listItems.map((item: ListItem, index: number) => (
+                      <div className={this.decorateCSS("list")}>
+                        {this.getPropValue("icon") && (
+                          <div className={this.decorateCSS("icon-container")}>
+                            <ComposerIcon name={this.getPropValue("icon")} propsIcon={{ className: this.decorateCSS("icon") }} />
+                          </div>
+                        )}
+                        {this.castToString(item.description) && <div className={this.decorateCSS("description")}>{item.description}</div>}
+                      </div>
+                    ))}
+                  </Base.ListGrid>
+                )}
+                {buttons.length > 0 && (
+                  <div className={this.decorateCSS("buttons")}>
+                    {buttons.map((button: Button, index: number) => (
+                      <ComposerLink path={button.url}>
+                        {this.castToString(button.text) && (
+                          <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                            {button.text}
+                          </Base.Button>
+                        )}
+                      </ComposerLink>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+            {this.getPropValue("image") && (
+              <div className={this.decorateCSS("right-page")}>
+                <div className={this.decorateCSS("image-container")}>
+                  <img src={this.getPropValue("image")} alt={this.getPropValue("image")} className={this.decorateCSS("image")} />
+                </div>
+              </div>
+            )}
           </div>
-          <div className={this.decorateCSS("image-container")}>
-            <img src={this.getPropValue("image")} alt="" />
-          </div>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

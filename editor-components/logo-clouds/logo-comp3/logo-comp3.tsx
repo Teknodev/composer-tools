@@ -1,7 +1,14 @@
 import * as React from "react";
 import { LogoClouds } from "../../EditorComponent";
 import styles from "./logo-comp3.module.scss";
+import { Base } from "../../../composer-base-components/base/base";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
+type TImage = {
+  imageLink: string,
+  image: string
+}
 class LogoComp3Page extends LogoClouds {
   constructor(props?: any) {
     super(props, styles);
@@ -18,8 +25,14 @@ class LogoComp3Page extends LogoClouds {
       value: "Brands Available",
     });
     this.addProp({
+      type: "boolean",
+      key: "toggleDividerLine",
+      displayer: "Toggle Title Divider Line",
+      value: true,
+    });
+    this.addProp({
       type: "number",
-      key: "itemCountInRow",
+      key: "itemCount",
       displayer: "Item Count in a Row",
       value: 4,
       max: 6,
@@ -36,135 +49,84 @@ class LogoComp3Page extends LogoClouds {
       key: "items",
       displayer: "Items",
       value: [
-        {
-          type: "image",
-          key: "image",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64551869f72de2002caaf0d1?alt=media&timestamp=1719584962573",
-          displayer: "Image",
-        },
-        {
-          type: "image",
-          key: "image",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64551869f72de2002caaf0d4?alt=media&timestamp=1719584962573",
-          displayer: "Image",
-        },
-        {
-          type: "image",
-          key: "image",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64551869f72de2002caaf0d2?alt=media&timestamp=1719584962573",
-          displayer: "Image",
-        },
-        {
-          type: "image",
-          key: "image",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64551869f72de2002caaf0d3?alt=media&timestamp=1719584962573",
-          displayer: "Image",
-        },
-        {
-          type: "image",
-          key: "image",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64551869f72de2002caaf0d3?alt=media&timestamp=1719584962573",
-          displayer: "Image",
-        },
-        {
-          type: "image",
-          key: "image",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64551869f72de2002caaf0d3?alt=media&timestamp=1719584962573",
-          displayer: "Image",
-        },
-        {
-          type: "image",
-          key: "image",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64551869f72de2002caaf0d3?alt=media&timestamp=1719584962573",
-          displayer: "Image",
-        },
-        {
-          type: "image",
-          key: "image",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/64551869f72de2002caaf0d1?alt=media&timestamp=1719584962573",
-          displayer: "Image",
-        },
+        INPUTS.LOGO("section", "Section"),
+        INPUTS.LOGO("section", "Section"),
+        INPUTS.LOGO("section", "Section"),
+        INPUTS.LOGO("section", "Section"),
+        INPUTS.LOGO("section", "Section"),
+        INPUTS.LOGO("section", "Section"),
+        INPUTS.LOGO("section", "Section"),
+        INPUTS.LOGO("section", "Section"),
       ],
     });
   }
 
-  getName(): string {
-    return "Logo Comp 3";
+  static getName(): string {
+    return "Logo Cloud 3";
   }
 
   render() {
-    const items = this.getPropValue("items");
+    const items = this.castToObject<TImage[]>("items");
 
-    const itemCountInRow: number = this.getPropValue("itemCountInRow");
-    const itemCount: number = items.length;
-    const toggleLines: boolean = this.getPropValue("toggleLines");
 
-    const titleExist = this.getPropValue("title", { as_string: true });
-    const subtitleExist = this.getPropValue("subtitle", { as_string: true });
+    const emptyGridCount = !!(items.length % this.getPropValue("itemCount")) ? (this.getPropValue("itemCount") - (items.length % this.getPropValue("itemCount"))) : 0;
+    const emptyGrids = new Array(emptyGridCount).fill(true);
+
+    const titleExist = this.castToString(this.getPropValue("title"));
+    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
 
     return (
-      <div className={`${this.decorateCSS("container")}`}>
-        <div className={`${this.decorateCSS("max-content")}`}>
-          <div className={`${this.decorateCSS("wrapper")}`}>
-            {(titleExist || subtitleExist) && (
-              <div className={`${this.decorateCSS("titles")} `}>
-                {titleExist && (
-                  <h1 className={this.decorateCSS("title")}>
-                    {this.getPropValue("title")}
-                  </h1>
-                )}
-                {titleExist && subtitleExist && (
-                  <div className={this.decorateCSS("title-line")}></div>
-                )}
-                {subtitleExist && (
-                  <h1 className={this.decorateCSS("subtitle")}>
-                    {this.getPropValue("subtitle")}
-                  </h1>
-                )}
-              </div>
-            )}
-            {items?.length > 0 && (
-              <main className={this.decorateCSS("items-container")}>
-                <section
-                  className={this.decorateCSS("items")}
-                  style={{
-                    gridTemplateColumns: `repeat(${itemCountInRow}, 1fr)`,
-                  }}
-                >
-                  {items.map((item: any, index: number) => {
-                    if (item.value)
-                      return (
-                        <div
-                          className={`
-                          ${this.decorateCSS("item-container")}
-                          ${toggleLines && this.decorateCSS(index % itemCountInRow !== itemCountInRow - 1 ? "insert-line-right" : "")}
-                          ${toggleLines && this.decorateCSS(index < itemCount - itemCountInRow ? "insert-line-bottom" : "")}
-                        `}
-                          key={index}
-                        >
-                          <img
-                            className={this.decorateCSS("image")}
-                            src={item.value}
-                            alt="logo"
-                          />
-                        </div>
-                      );
-                    return null;
-                  })}
-                </section>
-              </main>
-            )}
-          </div>
-        </div>
-      </div>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          {(titleExist || subtitleExist) && (
+            <Base.VerticalContent className={this.decorateCSS("titles")}>
+              {titleExist && (
+                <Base.H1 className={this.decorateCSS("title")}>
+                  {this.getPropValue("title")}
+                </Base.H1>
+              )}
+              {titleExist && subtitleExist && this.getPropValue("toggleDividerLine") && (
+                <div className={this.decorateCSS("title-line")}></div>
+              )}
+              {subtitleExist && (
+                <div className={this.decorateCSS("subtitle")}>
+                  {this.getPropValue("subtitle")}
+                </div>
+              )}
+            </Base.VerticalContent>
+          )}
+          {items?.length > 0 && (
+            <Base.ListGrid
+              gridCount={{
+                pc: this.getPropValue("itemCount"),
+                tablet: this.getPropValue("itemCount"),
+                phone: 1,
+              }}
+              className={`${this.decorateCSS("images-container")} ${this.getPropValue("toggleLines") ? this.decorateCSS("lines-active") : ""} `}
+            >
+              {items.map((item: TImage, index: number) => {
+                return (
+                  <ComposerLink path={item.imageLink}>
+                    <div className={this.decorateCSS("image-item")} key={index}>
+                      <img
+                        className={this.decorateCSS("image")}
+                        src={item.image}
+                        alt="logo"
+                      />
+                    </div>
+                  </ComposerLink>
+                );
+              })}
+              {emptyGrids.map((item: TImage, index: number) => {
+                return (
+                  <div className={this.decorateCSS("image-item")} key={index}>
+                  </div>
+                );
+              })}
+            </Base.ListGrid>
+          )}
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

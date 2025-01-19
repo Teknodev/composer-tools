@@ -3,9 +3,19 @@ import { BaseList } from "../../EditorComponent";
 import React from "react";
 import styles from "./list5.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+
+type ListItem = {
+  title: JSX.Element;
+  uppericon: JSX.Element;
+  text: string;
+  lowericon: JSX.Element;
+  url: string;
+}
 
 class List5 extends BaseList {
-  getName(): string {
+  static getName(): string {
     return "List 5";
   }
   constructor(props?: any) {
@@ -15,6 +25,13 @@ class List5 extends BaseList {
       key: "header",
       displayer: "Header",
       value: "Bringing Your Vision to Life - AI Image Generation Service",
+    });
+    this.addProp({
+      type: "image",
+      key: "image",
+      displayer: "Background Image",
+      value:
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67484143506a40002c2f0020?alt=media",
     });
     this.addProp({
       type: "array",
@@ -28,22 +45,33 @@ class List5 extends BaseList {
           value: [
             {
               type: "string",
-              key: "item-title",
-              displayer: "Item Title",
-              value: "Production",
+              key: "title",
+              displayer: "Title",
+              value: "Customize & Refine",
             },
             {
               type: "icon",
-              key: "item-icon",
-              displayer: "Item Icon",
-              value: "GrFormNext",
+              key: "uppericon",
+              displayer: "Upper Icon",
+              value: "VscSettings",
             },
             {
               type: "string",
-              key: "item-text",
-              displayer: "Item Text",
-              value:
-                "its are produced and crafted by hand with love. Any product is unique on its own. We care about the quality of every piece.",
+              key: "text",
+              displayer: "Text",
+              value: "There are many variations passages Lorem Ipsum available the majority have suffered.",
+            },
+            {
+              type: "icon",
+              key: "lowericon",
+              displayer: "Lower Icon",
+              value: "FaLongArrowAltRight",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: "",
             },
           ],
         },
@@ -54,22 +82,33 @@ class List5 extends BaseList {
           value: [
             {
               type: "string",
-              key: "item-title",
-              displayer: "Item Title",
-              value: "Shipment",
+              key: "title",
+              displayer: "Title",
+              value: "Lower Cost",
             },
             {
               type: "icon",
-              key: "item-icon",
-              displayer: "Item Icon",
-              value: "GrFormNext",
+              key: "uppericon",
+              displayer: "Upper Icon",
+              value: "RiMoneyDollarCircleLine",
             },
             {
               type: "string",
-              key: "item-text",
-              displayer: "Item Text",
-              value:
-                "We deliver our items all over the world. The delivery is free in Vancouver, $10 within Canada, and international shipping is calculated individually.",
+              key: "text",
+              displayer: "Text",
+              value: "There are many variations passages Lorem Ipsum available the majority have suffered.",
+            },
+            {
+              type: "icon",
+              key: "lowericon",
+              displayer: "Lower Icon",
+              value: "FaLongArrowAltRight",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: "",
             },
           ],
         },
@@ -80,22 +119,33 @@ class List5 extends BaseList {
           value: [
             {
               type: "string",
-              key: "item-title",
-              displayer: "Item Title",
-              value: "Marketing",
+              key: "title",
+              displayer: "Title",
+              value: "Speed & Efficiency",
             },
             {
               type: "icon",
-              key: "item-icon",
-              displayer: "Item Icon",
-              value: "GrFormNext",
+              key: "uppericon",
+              displayer: "Upper Icon",
+              value: "RiSpeedUpFill",
             },
             {
               type: "string",
-              key: "item-text",
-              displayer: "Item Text",
-              value:
-                "We sell our products on printing markets such as SANAR, in Vans stores and showrooms, and you can also read our featured stories in the online magazine.",
+              key: "text",
+              displayer: "Text",
+              value: "There are many variations passages Lorem Ipsum available the majority have suffered.",
+            },
+            {
+              type: "icon",
+              key: "lowericon",
+              displayer: "LowerIcon",
+              value: "FaLongArrowAltRight",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: "",
             },
           ],
         },
@@ -106,22 +156,33 @@ class List5 extends BaseList {
           value: [
             {
               type: "string",
-              key: "item-title",
-              displayer: "Item Title",
-              value: "Marketing",
+              key: "title",
+              displayer: "Title",
+              value: "Quality & Realism",
             },
             {
               type: "icon",
-              key: "item-icon",
-              displayer: "Item Icon",
-              value: "GrFormNext",
+              key: "uppericon",
+              displayer: "Upper Icon",
+              value: "FaRegImages",
             },
             {
               type: "string",
-              key: "item-text",
-              displayer: "Item Text",
-              value:
-                "We sell our products on printing markets such as SANAR, in Vans stores and showrooms, and you can also read our featured stories in the online magazine.",
+              key: "text",
+              displayer: "Text",
+              value: "There are many variations passages Lorem Ipsum available the majority have suffered.",
+            },
+            {
+              type: "icon",
+              key: "lowericon",
+              displayer: "Lower Icon",
+              value: "FaLongArrowAltRight",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: "",
             },
           ],
         },
@@ -131,59 +192,104 @@ class List5 extends BaseList {
       type: "number",
       key: "itemCount",
       displayer: "Item Count in a Row",
-      value: 4,
-      max: 4,
+      value: 4
+    });
+    this.addProp({
+      type: "boolean",
+      key: "showIndex",
+      displayer: "Show Index",
+      value: true
     });
   }
   render(): ReactNode {
+    const ListItems = this.castToObject<ListItem[]>("list-items");
+
     return (
       <>
-        <div className={this.decorateCSS("header")}>
-          <h1>{this.getPropValue("header")}</h1>
-        </div>
-        <div className={this.decorateCSS("container")}>
-          <div className={this.decorateCSS("max-content")}>
-            <div className={this.decorateCSS("list-item")} style={{
-              display: "grid",
-              gridTemplateColumns: `repeat(${this.getPropValue("itemCount")}, 1fr)`
-            }}>
-              {this.getPropValue("list-items").map(
-                (listItem: any, index: number) => {
-                  return (
-                    <div
-                      key={index}
-                      className={this.decorateCSS("item-container")}
-                    >
-                      <div className={this.decorateCSS("header-line")}>
-                        <div className={this.decorateCSS("icon")}>
-                          <ComposerIcon
-                            name={listItem.value[1].value}
-                            propsIcon={{
-                              className: this.decorateCSS("icon"),
-                              size: 60,
-                            }}
-                          />
-                        </div>
-                        <div className={this.decorateCSS("item-index")}>
-                          {(index + 1).toLocaleString("en-US", {
-                            minimumIntegerDigits: 2,
-                            useGrouping: false,
-                          })}
-                        </div>
+        <Base.Container className={this.decorateCSS("container")}
+          style={{
+            backgroundImage: `url(${this.getPropValue("image")})`,
+            backgroundSize: "cover"
+          }}
+        >
+          <Base.MaxContent className={this.decorateCSS("max-content")}>
+            {this.castToString(this.getPropValue("header")) && (
+              <Base.VerticalContent className={this.decorateCSS("header")}>
+                <Base.SectionTitle className={`${this.decorateCSS("header-title")} ${this.getPropValue("image") && this.decorateCSS("dark")}`}>
+                  {this.getPropValue("header")}
+                </Base.SectionTitle>
+              </Base.VerticalContent>
+            )}
+            {(ListItems.length > 0) && (
+              <Base.ListGrid
+                className={this.decorateCSS("grid")}
+                gridCount={{ pc: this.getPropValue("itemCount") }}
+              >
+                {ListItems.map(
+                  (listItem: any, index: number) => {
+                    return (
+                      <div className={this.decorateCSS("item-box")}>
+                        <ComposerLink path={listItem.url}>
+                          <div
+                            key={index}
+                            className={this.decorateCSS("item-container")}
+                          >
+                            {(listItem.uppericon || this.getPropValue("showIndex")) && (
+                              <div className={this.decorateCSS("header-line")}>
+                                {listItem.uppericon && (
+                                  <div className={this.decorateCSS("left")}>
+                                    <div className={this.decorateCSS("out-icon")}>
+                                      <div className={this.decorateCSS("icon-wrapper")}>
+                                        <ComposerIcon
+                                          name={listItem.uppericon}
+                                          propsIcon={{
+                                            className: this.decorateCSS("icon"),
+                                          }}
+                                        />
+                                      </div>
+                                    </div>
+                                  </div>
+                                )}
+                                {this.getPropValue("showIndex") && (
+                                  <div className={this.decorateCSS("right")}>
+                                    <div className={this.decorateCSS("item-index")}>
+                                      {(index + 1).toLocaleString("en-US", {
+                                        minimumIntegerDigits: 2,
+                                        useGrouping: false,
+                                      })}
+                                    </div>
+                                  </div>
+                                )}
+                              </div>
+                            )}
+                            {this.castToString(listItem.title) && (
+                              <div className={this.decorateCSS("list-item-value-h1")}>
+                                {listItem.title}
+                              </div>
+                            )}
+                            {this.castToString(listItem.text) && (
+                              <div className={this.decorateCSS("list-item-value-p")}>
+                                {listItem.text}
+                              </div>
+                            )}
+                            {listItem.lowericon && (
+                              <ComposerIcon
+                                name={listItem.lowericon}
+                                propsIcon={{
+                                  className: this.decorateCSS("lower-icon"),
+                                }}
+                              />
+                            )}
+                          </div>
+                        </ComposerLink>
                       </div>
-                      <h1 className={this.decorateCSS("list-item-value-h1")}>
-                        {listItem.value[0].value}
-                      </h1>
-                      <p className={this.decorateCSS("list-item-value-p")}>
-                        {listItem.value[2].value}
-                      </p>
-                    </div>
-                  );
-                }
-              )}
-            </div>
-          </div>
-        </div>
+                    );
+                  }
+                )}
+              </Base.ListGrid>
+            )}
+          </Base.MaxContent>
+        </Base.Container>
       </>
     );
   }

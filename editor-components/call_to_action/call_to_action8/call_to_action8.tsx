@@ -2,6 +2,8 @@ import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action8.module.scss";
+import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 class CallToAction8Page extends BaseCallToAction {
   constructor(props?: any) {
@@ -15,56 +17,65 @@ class CallToAction8Page extends BaseCallToAction {
     });
 
     this.addProp({
-      type: "string",
-      key: "button-text",
-      displayer: "Button",
-      value: "Get Started",
-    });
-    this.addProp({
-      type:"page",
-      key:"button_url",
-      displayer:"Button Url",
-      value:""
-    })
-
-    this.addProp({
       type: "image",
       key: "image",
       displayer: "Image",
       value:
         "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6683ec390181a1002c338033?alt=media&timestamp=1719921738698",
     });
+
+    this.addProp(INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "Primary"));
   }
 
-  getName(): string {
+  static getName(): string {
     return "Call To Action 8";
   }
   render() {
-    const image = this.getPropValue("image")
+
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const buttonText = this.castToString(button.text);
+    const title = this.castToString(this.getPropValue("title"));
+
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS(`content`)}>
-            <div className={this.decorateCSS("title-box")}>
-              <div className={this.decorateCSS("title")}>
-              <h1 className={this.decorateCSS("text")}>{this.getPropValue("title")}</h1>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <div className={this.decorateCSS("content")}>
+            {(title || buttonText) && (
+              <div className={this.decorateCSS("title-box")}>
+                {title && (
+                  <Base.VerticalContent className={this.decorateCSS("title")}>
+                    <Base.SectionTitle className={this.decorateCSS("text")}>
+                      {this.getPropValue("title")}
+                    </Base.SectionTitle>
+                  </Base.VerticalContent>
+                )}
+                {buttonText && (
+                  <Base.Row className={this.decorateCSS("button")}>
+                    <ComposerLink path={button.url}>
+                      <Base.Button
+                        buttonType={button.type}
+                        className={this.decorateCSS("button-element")}
+                      >
+                        {button.text}
+                      </Base.Button>
+                    </ComposerLink>
+                  </Base.Row>
+                )}
               </div>
-              <ComposerLink path={this.getPropValue("button_url")}>
-                <div className={this.decorateCSS("button")}>
-                <button className={this.decorateCSS("button-element")}>
-              {this.getPropValue("button-text")}
-              </button>
-                </div>
-            </ComposerLink>
-            </div>
-          {image &&<div className={this.decorateCSS("image-box")}>
-              <img
-                className={this.decorateCSS("image")} 
-                src={this.getPropValue("image")} alt="" />
-            </div>}
+            )}
+            {this.getPropValue("image") && (
+              <div
+                className={this.decorateCSS("image-box")}>
+                <img
+                  className={this.decorateCSS("image")}
+                  src={this.getPropValue("image")}
+                  alt={this.getPropValue("image")}
+                />
+              </div>
+            )}
           </div>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

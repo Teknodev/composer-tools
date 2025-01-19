@@ -1,97 +1,204 @@
+@import "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss";
+
 .container {
-    width: 100%;
-    padding: 50px 0;
-    .max-content {
-        max-width: var(--composer-content-width);
-        margin: auto;
-        .wrapper {
-            display: flex;
-            gap: 20px;
-            flex-direction: column;
-            text-align: center;
-            .boxes-title {
-                display: flex;
-                justify-content: center;
-                .title {
-                    font-size: 2.5rem;
-                    margin: 0;
-                    color: var(--composer-primary-color);
-                }
-            }
-            .boxes-description {
-                display: flex;
-                justify-content: center;
-                .description {
-                    font-size: 1.3rem;
-                    margin: 0;
-                    color: var(--composer-font-color-primary);
-                }
-            }
-            .box-child {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-direction: row;
-                .box {
-                    display: flex;
-                    .button-group {
-                        .button {
-                            padding: 20px 20px;
-                            background-color: var(--composer-secondary-color);
-                            border: none;
-                            border-radius: 6px;
-                            border: 1px solid transparent;
-                            display: flex;
-                            align-items: center;
-                            font-size: 1.3rem;
-                            cursor: pointer;
-                            min-width: 250px;
-                            color: #fff;
-                            gap: 7px;
-                            &:hover {
-                                color: var(--composer-secondary-color);
-                                background-color: transparent;
-                                border: 1px solid var(--composer-secondary-color);
-                            }
-                            .button-icon {
-                                width: 30px;
-                                height: 30px;
-                            }
-                        }
-                    }
-                }
-                .logoimage {
-                    width: 200px;
-                    height: 100px;
-                }
-                .img-right {
-                    transform: rotate(180deg);
-                }
-            }
+  .max-content {
+    .cards {
+      display: flex;
+      gap: var(--composer-gap-md);
+      min-height: 100%;
+
+      .left-card{
+        &.no-full{
+          width: 35%;
+          display: flex;
+          flex-direction: column;
         }
+        &.full{
+          width: 100%;
+        }  
+        .card {
+          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+          border-radius: var(--composer-border-radius-xl);
+          height: 100%;
+          justify-content: center;
+          padding: var(--composer-gap-md);
+          box-shadow: var(--box-shadow-active);
+          display: flex;
+          flex-direction: column;
+          .image {
+            width: 100%;
+            height: 400px;
+            margin: 0 auto;
+            object-fit: cover;
+            border-radius: var(--composer-border-radius-xl);
+            &.no-full{
+              margin-bottom: var(--composer-gap-lg);
+            }
+            &.full{
+              height: 100%;
+            }
+          }
+          .button-wrapper {
+            .button-image {
+              min-width: 170px;
+              height: 50px;
+              border-radius: var(--composer-border-radius-sm);
+              object-fit: cover;
+            }
+            .button-element {
+              .icon {
+                font-size: 1.5rem;
+              }
+              .button-text {
+                font-size: 1.5rem;
+              }
+            }
+          }
+        }
+      }
+      .right-cards {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-md);
+        flex: 1;
+
+        .upper-card {
+          width: 100%;
+          flex: 1;
+          display: flex;
+
+          .card {
+            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+            border-radius: var(--composer-border-radius-xl);
+            padding: var(--composer-gap-md);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--composer-gap-xl);
+            box-shadow: var(--box-shadow-active);
+            width: 100%;
+
+            .left {
+              .button-wrapper {
+                .button-image {
+                  min-width: 200px;
+                  height: var(--composer-gap-xl);
+                  border-radius: var(--composer-border-radius-sm);
+                  object-fit: cover;
+                }
+                .button-element {
+                  .icon {
+                    font-size: 1.5rem;
+                  }
+                  .button-text {
+                    font-size: 1.5rem;
+                  }
+                }
+              }
+            }
+            .image {
+              width: 40%;
+              min-height: 400px;
+              object-fit: cover;
+              border-radius: var(--composer-border-radius-xl);
+              &.full {
+                width: 100%;
+                height: 300px;
+              }
+            }
+          }
+        }
+
+        .buttom-card {
+          flex: 1;
+          display: flex;
+
+          .card {
+            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+            border-radius: var(--composer-border-radius-xl);
+            padding: var(--composer-gap-md);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--box-shadow-active);
+            width: 100%;
+            .button-wrapper {
+              .button-image {
+                min-width: 200px;
+                height: var(--composer-gap-xl);
+                border-radius: var(--composer-border-radius-sm);
+                object-fit: cover;
+              }
+              .button-element {
+                .icon {
+                  content: "";
+                }
+                .button-text {
+                  content: "";
+                }
+              }
+            }
+
+            .title {
+              width: fit-content;
+            }
+            &.center {
+              flex-direction: column;
+              justify-content: center;
+              gap: var(--composer-gap-md);
+  
+              .title {
+                margin: 0;
+                width: fit-content;
+              }
+            }
+          }
+        }
+      }
     }
+  }
 }
 
-@media only screen and (max-width: 768px) {
-    .container {
-        padding: 50px 20px;
-        .max-content {
-            .wrapper {
-                .box-child {
-                    display: flex;
-                    flex-direction: column;
-                    .box {
-                        display: flex;
-                        flex-direction: row;
-                    }
-                    .img-left {
-                        display: none;
-                    }
-                    .img-right {
-                        display: none;
-                    }
-                }
+@container (max-width: #{$composer-tablet-width-lg}) {
+  .container{
+    .max-content{
+      .cards{
+        flex-direction: column;
+        gap: var(--composer-gap-md);
+        .left-card{
+          width: 100%;
+          &.no-full{
+            width: 100%;
+          }
+          .image{
+            &.full {
+              height: 200px;
             }
+          }
         }
+        .right-cards{
+          .upper-card{
+            .card{
+              flex-direction: column;
+              gap: var(--composer-gap-md);
+              .image{
+                width: 100%;
+                height: 200px;
+              }
+            }
+          }
+          .buttom-card{
+            .card{
+              flex-direction: column;
+              gap: var(--composer-gap-md);
+              .title{
+                margin: 0;
+              }
+            }
+          }
+        }
+      }
     }
+  }
 }

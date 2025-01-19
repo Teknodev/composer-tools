@@ -3,6 +3,8 @@ import { BasePricingTable } from "../../EditorComponent";
 import styles from "./pricing-table7.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type PricingItem = {
   itemText: string;
@@ -15,8 +17,7 @@ type MonthlyPlan = {
   duration: string;
   promoText: string;
   description: string;
-  buttonText: string;
-  link: string;
+  buttonType: INPUTS.CastedButton;
   item: PricingItem[];
   isActive: boolean;
   popular_settings: any;
@@ -44,20 +45,30 @@ class PricingTable7 extends BasePricingTable {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "TAILORED PRICING"
+      value: "TAILORED PRICING",
     });
+
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "FLEXIBLE PRICING OPTIONS"
+      value: "FLEXIBLE PRICING OPTIONS",
     });
+
     this.addProp({
       type: "string",
       key: "description",
       displayer: "Description ",
-      value: "Whether you're a startup,a growing business,or an enterprise,our pricing plans are designed to accommodate various requirements."
+      value: "Whether you're a startup,a growing business,or an enterprise,our pricing plans are designed to accommodate various requirements.",
     });
+
+    this.addProp({
+      type: "boolean",
+      key: "line",
+      displayer: "Line",
+      value: true,
+    });
+
     this.addProp({
       type: "string",
       key: "text",
@@ -74,7 +85,7 @@ class PricingTable7 extends BasePricingTable {
       type: "icon",
       key: "icon",
       displayer: "Plan's Icon",
-      value: "HiArrowDownLeft"
+      value: "BsArrowReturnLeft",
     });
     this.addProp({
       type: "string",
@@ -89,829 +100,759 @@ class PricingTable7 extends BasePricingTable {
       value: true,
     });
 
-    this.addProp(
-      {
-        type: "array",
-        key: "monthly_plans",
-        displayer: "Monthly Plans",
-        value: [
-          {
-            type: "object",
-            key: "pricing",
-            displayer: "Pricing",
-            value: [
-              {
-                type: "object",
-                key: "popular_settings",
-                displayer: "Popular Settings",
-                value: [
-                  {
-                    type: "string",
-                    key: "text",
-                    displayer: "Title",
-                    value: "Most Popular"
-                  },
-                ]
-              },
-              {
-                type: "boolean",
-                key: "isActive",
-                displayer: "Is Active?",
-                value: false,
-              },
-              {
-                type: "string",
-                key: "badge",
-                displayer: "Badge",
-                value: "Basic",
-              },
-              {
-                type: "string",
-                key: "price",
-                displayer: "Price",
-                value: "$25",
-              },
-              {
-                type: "string",
-                key: "duration",
-                displayer: "Duration",
-                value: "/mo",
-              },
-              {
-                type: "string",
-                key: "promoText",
-                displayer: "Promo Text",
-                value: "Get your 14 day free trial."
-              },
-              {
-                type: "string",
-                key: "description",
-                displayer: "Description",
-                value: "Our Basic Plan is the perfect entry point for those seeking essential features to get started."
-              },
-              {
-                type: "string",
-                key: "buttonText",
-                displayer: "Button Text",
-                value: "Purchase Now",
-              },
-              {
-                type: "page",
-                key: "link",
-                displayer: "Button Link",
-                value: "",
-              },
+    this.addProp({
+      type: "array",
+      key: "monthly_plans",
+      displayer: "Monthly Plans",
+      value: [
+        {
+          type: "object",
+          key: "pricing",
+          displayer: "Pricing",
+          value: [
+            {
+              type: "object",
+              key: "popular_settings",
+              displayer: "Popular Settings",
+              value: [
+                {
+                  type: "string",
+                  key: "text",
+                  displayer: "Title",
+                  value: "Most Popular",
+                },
+              ],
+            },
+            {
+              type: "boolean",
+              key: "isActive",
+              displayer: "Is Active?",
+              value: false,
+            },
+            {
+              type: "string",
+              key: "badge",
+              displayer: "Badge",
+              value: "Basic",
+            },
+            {
+              type: "string",
+              key: "price",
+              displayer: "Price",
+              value: "$25",
+            },
+            {
+              type: "string",
+              key: "duration",
+              displayer: "Duration",
+              value: "/mo",
+            },
+            {
+              type: "string",
+              key: "promoText",
+              displayer: "Promo Text",
+              value: "Get your 14 day free trial.",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Our Basic Plan is the perfect entry point for those seeking essential features to get started.",
+            },
+            INPUTS.BUTTON("button", "Button", "Join this plan", "", null, null, "Primary"),
+            {
+              type: "array",
+              key: "item",
+              displayer: "Feature List",
+              value: [
+                {
+                  type: "object",
+                  key: "item-list",
+                  displayer: "Custom Fields",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "FcApproval",
+                    },
+                    {
+                      type: "string",
+                      key: "itemText",
+                      displayer: "Text",
+                      value: "Case Management",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "item-list",
+                  displayer: "Custom Fields",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "FcApproval",
+                    },
+                    {
+                      type: "string",
+                      key: "itemText",
+                      displayer: "Text",
+                      value: "Task Management",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "pricing",
+          displayer: "Pricing",
+          value: [
+            {
+              type: "object",
+              key: "popular_settings",
+              displayer: "Popular Settings",
+              value: [
+                {
+                  type: "string",
+                  key: "text",
+                  displayer: "Title",
+                  value: "Most Popular",
+                },
+              ],
+            },
+            {
+              type: "boolean",
+              key: "isActive",
+              displayer: "Is Active?",
+              value: true,
+            },
+            {
+              type: "string",
+              key: "badge",
+              displayer: "Badge",
+              value: "Pro",
+            },
+            {
+              type: "string",
+              key: "price",
+              displayer: "Price",
+              value: "$50",
+            },
+            {
+              type: "string",
+              key: "duration",
+              displayer: "Duration",
+              value: "/mo",
+            },
+            {
+              type: "string",
+              key: "promoText",
+              displayer: "Promo Text",
+              value: "Billed $276 per website annually.",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Step up your game with our Pro Plan designed for those who demand more from their experience.",
+            },
+            INPUTS.BUTTON("button", "Button", "Join this plan", "", null, null, "Primary"),
 
-              {
-                type: "array",
-                key: "item",
-                displayer: "Feature List",
-                value: [
-                  {
-                    type: "object",
-                    key: "item-list",
-                    displayer: "Custom Fields",
-                    value: [
-                      {
-                        type: "icon",
-                        key: "icon",
-                        displayer: "Icon",
-                        value: "CiCircleCheck"
-                      },
-                      {
-                        type: "string",
-                        key: "itemText",
-                        displayer: "Text",
-                        value: "Case Management",
-                      },
-                    ],
-                  },
-                  {
-                    type: "object",
-                    key: "item-list",
-                    displayer: "Custom Fields",
-                    value: [
-                      {
-                        type: "icon",
-                        key: "icon",
-                        displayer: "Icon",
-                        value: "CiCircleCheck"
-                      },
-                      {
-                        type: "string",
-                        key: "itemText",
-                        displayer: "Text",
-                        value: "Task Management",
-                      },
-                    ],
-                  },
-                ],
-              },
+            {
+              type: "array",
+              key: "item",
+              displayer: "Feature List",
+              value: [
+                {
+                  type: "object",
+                  key: "item-list",
+                  displayer: "Custom Fields",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "FcApproval",
+                    },
+                    {
+                      type: "string",
+                      key: "itemText",
+                      displayer: "Text",
+                      value: "Unlimited eSignature",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "item-list",
+                  displayer: "Custom Fields",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "FcApproval",
+                    },
+                    {
+                      type: "string",
+                      key: "itemText",
+                      displayer: "Text",
+                      value: "Custom Fields",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "item-list",
+                  displayer: "Custom Fields",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "FcApproval",
+                    },
+                    {
+                      type: "string",
+                      key: "itemText",
+                      displayer: "Text",
+                      value: "Client Intake Management",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "pricing",
+          displayer: "Pricing",
+          value: [
+            {
+              type: "object",
+              key: "popular_settings",
+              displayer: "Popular Settings",
+              value: [
+                {
+                  type: "string",
+                  key: "text",
+                  displayer: "Title",
+                  value: "Most Popular",
+                },
+              ],
+            },
+            {
+              type: "boolean",
+              key: "isActive",
+              displayer: "Is Active?",
+              value: false,
+            },
+            {
+              type: "string",
+              key: "badge",
+              displayer: "Badge",
+              value: "Advanced",
+            },
+            {
+              type: "string",
+              key: "price",
+              displayer: "Price",
+              value: "$89",
+            },
+            {
+              type: "string",
+              key: "duration",
+              displayer: "Duration",
+              value: "/mo",
+            },
+            {
+              type: "string",
+              key: "promoText",
+              displayer: "Promo Text",
+              value: "Billed $276 per website annually.",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "The Advanced Plan is the pinnacle of our offerings,meticulously curated for those who demand excellence in every aspect.",
+            },
+            INPUTS.BUTTON("button", "Button", "Join this plan", "", null, null, "Primary"),
 
-            ],
-          },
-          {
-            type: "object",
-            key: "pricing",
-            displayer: "Pricing",
-            value: [
-              {
-                type: "object",
-                key: "popular_settings",
-                displayer: "Popular Settings",
-                value: [
+            {
+              type: "array",
+              key: "item",
+              displayer: "Feature List",
+              value: [
+                {
+                  type: "object",
+                  key: "item-list",
+                  displayer: "Custom Fields",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "FcApproval",
+                    },
+                    {
+                      type: "string",
+                      key: "itemText",
+                      displayer: "Text",
+                      value: "Everything in Basic & Pro",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "item-list",
+                  displayer: "Custom Fields",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "FcApproval",
+                    },
+                    {
+                      type: "string",
+                      key: "itemText",
+                      displayer: "Text",
+                      value: "MyCase Drive",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "item-list",
+                  displayer: "Custom Fields",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "FcApproval",
+                    },
+                    {
+                      type: "string",
+                      key: "itemText",
+                      displayer: "Text",
+                      value: "Advanced Document",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "item-list",
+                  displayer: "Custom Fields",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "FcApproval",
+                    },
+                    {
+                      type: "string",
+                      key: "itemText",
+                      displayer: "Text",
+                      value: "Full Text Search",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    });
 
+    this.addProp({
+      type: "array",
+      key: "yearly_plans",
+      displayer: "Yearly Plans",
+      value: [
+        {
+          type: "object",
+          key: "pricing",
+          displayer: "Pricing",
+          value: [
+            {
+              type: "object",
+              key: "popular_settings",
+              displayer: "Popular Settings",
+              value: [
+                {
+                  type: "string",
+                  key: "text",
+                  displayer: "Title",
+                  value: "Most Popular",
+                },
+              ],
+            },
+            {
+              type: "boolean",
+              key: "isActive",
+              displayer: "Is Active?",
+              value: false,
+            },
+            {
+              type: "string",
+              key: "badge",
+              displayer: "Badge",
+              value: "Basic",
+            },
+            {
+              type: "string",
+              key: "price",
+              displayer: "Price",
+              value: "$250",
+            },
+            {
+              type: "string",
+              key: "duration",
+              displayer: "Duration",
+              value: "/ year",
+            },
+            {
+              type: "string",
+              key: "promoText",
+              displayer: "Promo Text",
+              value: "Get your 14 day free trial.",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Our Basic Plan is the perfect entry point for those seeking essential features to get started.",
+            },
+            INPUTS.BUTTON("button", "Button", "Join this plan", "", null, null, "Primary"),
 
-                  {
-                    type: "string",
-                    key: "text",
-                    displayer: "Title",
-                    value: "Most Popular"
-                  },
+            {
+              type: "array",
+              key: "item",
+              displayer: "Feature List",
+              value: [
+                {
+                  type: "object",
+                  key: "item-list",
+                  displayer: "Custom Fields",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "FcApproval",
+                    },
+                    {
+                      type: "string",
+                      key: "itemText",
+                      displayer: "Text",
+                      value: "Case Management",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "item-list",
+                  displayer: "Custom Fields",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "FcApproval",
+                    },
+                    {
+                      type: "string",
+                      key: "itemText",
+                      displayer: "Text",
+                      value: "Task Management",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "pricing",
+          displayer: "Pricing",
+          value: [
+            {
+              type: "object",
+              key: "popular_settings",
+              displayer: "Popular Settings",
+              value: [
+                {
+                  type: "string",
+                  key: "text",
+                  displayer: "Title",
+                  value: "Most Popular",
+                },
+              ],
+            },
+            {
+              type: "boolean",
+              key: "isActive",
+              displayer: "Is Active?",
+              value: true,
+            },
+            {
+              type: "string",
+              key: "badge",
+              displayer: "Badge",
+              value: "Pro",
+            },
+            {
+              type: "string",
+              key: "price",
+              displayer: "Price",
+              value: "$500",
+            },
+            {
+              type: "string",
+              key: "duration",
+              displayer: "Duration",
+              value: "/ year",
+            },
+            {
+              type: "string",
+              key: "promoText",
+              displayer: "Promo Text",
+              value: "Billed $276 per website annually.",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Step up your game with our Pro Plan designed for those who demand more from their experience.",
+            },
+            INPUTS.BUTTON("button", "Button", "Join this plan", "", null, null, "Primary"),
 
-                ]
-              },
-              {
-                type: "boolean",
-                key: "isActive",
-                displayer: "Is Active?",
-                value: true,
-              },
-              {
-                type: "string",
-                key: "badge",
-                displayer: "Badge",
-                value: "Pro",
-              },
-              {
-                type: "string",
-                key: "price",
-                displayer: "Price",
-                value: "$50",
-              },
-              {
-                type: "string",
-                key: "duration",
-                displayer: "Duration",
-                value: "/mo",
-              },
-              {
-                type: "string",
-                key: "promoText",
-                displayer: "Promo Text",
-                value: "Billed $276 per website annually."
-              },
-              {
-                type: "string",
-                key: "description",
-                displayer: "Description",
-                value: "Step up your game with our Pro Plan designed for those who demand more from their experience."
-              },
-              {
-                type: "string",
-                key: "buttonText",
-                displayer: "Button Text",
-                value: "Purchase Now",
-              },
-              {
-                type: "page",
-                key: "link",
-                displayer: "Button Link",
-                value: "",
-              },
-              {
-                type: "array",
-                key: "item",
-                displayer: "Feature List",
-                value: [
-                  {
-                    type: "object",
-                    key: "item-list",
-                    displayer: "Custom Fields",
-                    value: [
-                      {
-                        type: "icon",
-                        key: "icon",
-                        displayer: "Icon",
-                        value: "CiCircleCheck"
-                      },
-                      {
-                        type: "string",
-                        key: "itemText",
-                        displayer: "Text",
-                        value: "Unlimited eSignature",
-                      },
-                    ],
-                  },
-                  {
-                    type: "object",
-                    key: "item-list",
-                    displayer: "Custom Fields",
-                    value: [
-                      {
-                        type: "icon",
-                        key: "icon",
-                        displayer: "Icon",
-                        value: "CiCircleCheck"
-                      },
-                      {
-                        type: "string",
-                        key: "itemText",
-                        displayer: "Text",
-                        value: "Custom Fields",
-                      },
-                    ],
-                  },
-                  {
-                    type: "object",
-                    key: "item-list",
-                    displayer: "Custom Fields",
-                    value: [
-                      {
-                        type: "icon",
-                        key: "icon",
-                        displayer: "Icon",
-                        value: "CiCircleCheck"
-                      },
-                      {
-                        type: "string",
-                        key: "itemText",
-                        displayer: "Text",
-                        value: "Client Intake Management",
-                      },
-                    ],
-                  },
-                ],
-              },
+            {
+              type: "array",
+              key: "item",
+              displayer: "Feature List",
+              value: [
+                {
+                  type: "object",
+                  key: "item-list",
+                  displayer: "Custom Fields",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "FcApproval",
+                    },
+                    {
+                      type: "string",
+                      key: "itemText",
+                      displayer: "Text",
+                      value: "Unlimited eSignature",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "item-list",
+                  displayer: "Custom Fields",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "FcApproval",
+                    },
+                    {
+                      type: "string",
+                      key: "itemText",
+                      displayer: "Text",
+                      value: "Custom Fields",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "item-list",
+                  displayer: "Custom Fields",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "FcApproval",
+                    },
+                    {
+                      type: "string",
+                      key: "itemText",
+                      displayer: "Text",
+                      value: "Client Intake Management",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "pricing",
+          displayer: "Pricing",
+          value: [
+            {
+              type: "object",
+              key: "popular_settings",
+              displayer: "Popular Settings",
+              value: [
+                {
+                  type: "string",
+                  key: "text",
+                  displayer: "Title",
+                  value: "Most Popular",
+                },
+              ],
+            },
+            {
+              type: "boolean",
+              key: "isActive",
+              displayer: "Is Active?",
+              value: false,
+            },
+            {
+              type: "string",
+              key: "badge",
+              displayer: "Badge",
+              value: "Advanced",
+            },
+            {
+              type: "string",
+              key: "price",
+              displayer: "Price",
+              value: "$890",
+            },
+            {
+              type: "string",
+              key: "duration",
+              displayer: "Duration",
+              value: "/ year",
+            },
+            {
+              type: "string",
+              key: "promoText",
+              displayer: "Promo Text",
+              value: "Billed $276 per website annually.",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "The Advanced Plan is the pinnacle of our offerings,meticulously curated for those who demand excellence in every aspect.",
+            },
+            INPUTS.BUTTON("button", "Button", "Join this plan", "", null, null, "Primary"),
 
-            ],
-          },
-          {
-            type: "object",
-            key: "pricing",
-            displayer: "Pricing",
-            value: [
-              {
-                type: "object",
-                key: "popular_settings",
-                displayer: "Popular Settings",
-                value: [
-                  {
-                    type: "string",
-                    key: "text",
-                    displayer: "Title",
-                    value: "Most Popular"
-                  },
+            {
+              type: "array",
+              key: "item",
+              displayer: "Feature List",
+              value: [
+                {
+                  type: "object",
+                  key: "item-list",
+                  displayer: "Custom Fields",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "FcApproval",
+                    },
+                    {
+                      type: "string",
+                      key: "itemText",
+                      displayer: "Text",
+                      value: "Everything in Basic & Pro",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "item-list",
+                  displayer: "Custom Fields",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "FcApproval",
+                    },
+                    {
+                      type: "string",
+                      key: "itemText",
+                      displayer: "Text",
+                      value: "MyCase Drive",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "item-list",
+                  displayer: "Custom Fields",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "FcApproval",
+                    },
+                    {
+                      type: "string",
+                      key: "itemText",
+                      displayer: "Text",
+                      value: "Advanced Document",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "item-list",
+                  displayer: "Custom Fields",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "FcApproval",
+                    },
+                    {
+                      type: "string",
+                      key: "itemText",
+                      displayer: "Text",
+                      value: "Full Text Search",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    });
 
-                ]
-              },
-              {
-                type: "boolean",
-                key: "isActive",
-                displayer: "Is Active?",
-                value: false,
-              },
-              {
-                type: "string",
-                key: "badge",
-                displayer: "Badge",
-                value: "Advanced",
-              },
-              {
-                type: "string",
-                key: "price",
-                displayer: "Price",
-                value: "$89",
-              },
-              {
-                type: "string",
-                key: "duration",
-                displayer: "Duration",
-                value: "/mo",
-              },
-              {
-                type: "string",
-                key: "promoText",
-                displayer: "Promo Text",
-                value: "Billed $276 per website annually."
-              },
-              {
-                type: "string",
-                key: "description",
-                displayer: "Description",
-                value: "The Advanced Plan is the pinnacle of our offerings,meticulously curated for those who demand excellence in every aspect."
-              },
-              {
-                type: "string",
-                key: "buttonText",
-                displayer: "Button Text",
-                value: "Purchase Now",
-              },
-              {
-                type: "page",
-                key: "link",
-                displayer: "Button Link",
-                value: "",
-              },
-              {
-                type: "array",
-                key: "item",
-                displayer: "Feature List",
-                value: [
-                  {
-                    type: "object",
-                    key: "item-list",
-                    displayer: "Custom Fields",
-                    value: [
-                      {
-                        type: "icon",
-                        key: "icon",
-                        displayer: "Icon",
-                        value: "CiCircleCheck"
-                      },
-                      {
-                        type: "string",
-                        key: "itemText",
-                        displayer: "Text",
-                        value: "Everything in Basic & Pro",
-                      },
-                    ],
-                  },
-                  {
-                    type: "object",
-                    key: "item-list",
-                    displayer: "Custom Fields",
-                    value: [
-                      {
-                        type: "icon",
-                        key: "icon",
-                        displayer: "Icon",
-                        value: "CiCircleCheck"
-                      },
-                      {
-                        type: "string",
-                        key: "itemText",
-                        displayer: "Text",
-                        value: "MyCase Drive",
-                      },
-                    ],
-                  },
-                  {
-                    type: "object",
-                    key: "item-list",
-                    displayer: "Custom Fields",
-                    value: [
-                      {
-                        type: "icon",
-                        key: "icon",
-                        displayer: "Icon",
-                        value: "CiCircleCheck"
-                      },
-                      {
-                        type: "string",
-                        key: "itemText",
-                        displayer: "Text",
-                        value: "Advanced Document",
-                      },
-                    ],
-                  },
-                  {
-                    type: "object",
-                    key: "item-list",
-                    displayer: "Custom Fields",
-                    value: [
-                      {
-                        type: "icon",
-                        key: "icon",
-                        displayer: "Icon",
-                        value: "CiCircleCheck"
-                      },
-                      {
-                        type: "string",
-                        key: "itemText",
-                        displayer: "Text",
-                        value: "Full Text Search",
-                      },
-                    ],
-                  },
-                ],
-              },
-            ],
-          },
-        ]
-      },
-    );
-    this.addProp(
-      {
-        type: "array",
-        key: "yearly_plans",
-        displayer: "Yearly Plans",
-        value: [
-          {
-            type: "object",
-            key: "pricing",
-            displayer: "Pricing",
-            value: [
-              {
-                type: "object",
-                key: "popular_settings",
-                displayer: "Popular Settings",
-                value: [
-                  {
-                    type: "string",
-                    key: "text",
-                    displayer: "Title",
-                    value: "Most Popular"
-                  },
-
-                ]
-              },
-              {
-                type: "boolean",
-                key: "isActive",
-                displayer: "Is Active?",
-                value: false,
-              },
-              {
-                type: "string",
-                key: "badge",
-                displayer: "Badge",
-                value: "Basic",
-              },
-              {
-                type: "string",
-                key: "price",
-                displayer: "Price",
-                value: "$250",
-              },
-              {
-                type: "string",
-                key: "duration",
-                displayer: "Duration",
-                value: "/ year",
-              },
-              {
-                type: "string",
-                key: "promoText",
-                displayer: "Promo Text",
-                value: "Get your 14 day free trial."
-              },
-              {
-                type: "string",
-                key: "description",
-                displayer: "Description",
-                value: "Our Basic Plan is the perfect entry point for those seeking essential features to get started."
-              },
-              {
-                type: "string",
-                key: "buttonText",
-                displayer: "Button Text",
-                value: "Purchase Now",
-              },
-              {
-                type: "page",
-                key: "link",
-                displayer: "Button Link",
-                value: "",
-              },
-              {
-                type: "array",
-                key: "item",
-                displayer: "Feature List",
-                value: [
-                  {
-                    type: "object",
-                    key: "item-list",
-                    displayer: "Custom Fields",
-                    value: [
-                      {
-                        type: "icon",
-                        key: "icon",
-                        displayer: "Icon",
-                        value: "CiCircleCheck"
-                      },
-                      {
-                        type: "string",
-                        key: "itemText",
-                        displayer: "Text",
-                        value: "Case Management",
-                      },
-                    ],
-                  },
-                  {
-                    type: "object",
-                    key: "item-list",
-                    displayer: "Custom Fields",
-                    value: [
-                      {
-                        type: "icon",
-                        key: "icon",
-                        displayer: "Icon",
-                        value: "CiCircleCheck"
-                      },
-                      {
-                        type: "string",
-                        key: "itemText",
-                        displayer: "Text",
-                        value: "Task Management",
-                      },
-                    ],
-                  },
-                ],
-              },
-            ],
-          },
-          {
-            type: "object",
-            key: "pricing",
-            displayer: "Pricing",
-            value: [
-              {
-                type: "object",
-                key: "popular_settings",
-                displayer: "Popular Settings",
-                value: [
-                  {
-                    type: "string",
-                    key: "text",
-                    displayer: "Title",
-                    value: "Most Popular"
-                  },
-                ]
-              },
-              {
-                type: "boolean",
-                key: "isActive",
-                displayer: "Is Active?",
-                value: true,
-              },
-              {
-                type: "string",
-                key: "badge",
-                displayer: "Badge",
-                value: "Pro",
-              },
-              {
-                type: "string",
-                key: "price",
-                displayer: "Price",
-                value: "$500",
-              },
-              {
-                type: "string",
-                key: "duration",
-                displayer: "Duration",
-                value: "/ year",
-              },
-              {
-                type: "string",
-                key: "promoText",
-                displayer: "Promo Text",
-                value: "Billed $276 per website annually."
-              },
-              {
-                type: "string",
-                key: "description",
-                displayer: "Description",
-                value: "Step up your game with our Pro Plan designed for those who demand more from their experience."
-              },
-              {
-                type: "string",
-                key: "buttonText",
-                displayer: "Button Text",
-                value: "Purchase Now",
-              },
-              {
-                type: "page",
-                key: "link",
-                displayer: "Button Link",
-                value: "",
-              },
-              {
-                type: "array",
-                key: "item",
-                displayer: "Feature List",
-                value: [
-                  {
-                    type: "object",
-                    key: "item-list",
-                    displayer: "Custom Fields",
-                    value: [
-                      {
-                        type: "icon",
-                        key: "icon",
-                        displayer: "Icon",
-                        value: "CiCircleCheck"
-                      },
-                      {
-                        type: "string",
-                        key: "itemText",
-                        displayer: "Text",
-                        value: "Unlimited eSignature",
-                      },
-                    ],
-                  },
-                  {
-                    type: "object",
-                    key: "item-list",
-                    displayer: "Custom Fields",
-                    value: [
-                      {
-                        type: "icon",
-                        key: "icon",
-                        displayer: "Icon",
-                        value: "CiCircleCheck"
-                      },
-                      {
-                        type: "string",
-                        key: "itemText",
-                        displayer: "Text",
-                        value: "Custom Fields",
-                      },
-                    ],
-                  },
-                  {
-                    type: "object",
-                    key: "item-list",
-                    displayer: "Custom Fields",
-                    value: [
-                      {
-                        type: "icon",
-                        key: "icon",
-                        displayer: "Icon",
-                        value: "CiCircleCheck"
-                      },
-                      {
-                        type: "string",
-                        key: "itemText",
-                        displayer: "Text",
-                        value: "Client Intake Management",
-                      },
-                    ],
-                  },
-                ],
-              },
-            ],
-          },
-          {
-            type: "object",
-            key: "pricing",
-            displayer: "Pricing",
-            value: [
-              {
-                type: "object",
-                key: "popular_settings",
-                displayer: "Popular Settings",
-                value: [
-                  {
-                    type: "string",
-                    key: "text",
-                    displayer: "Title",
-                    value: "Most Popular"
-                  },
-                ]
-              },
-              {
-                type: "boolean",
-                key: "isActive",
-                displayer: "Is Active?",
-                value: false,
-              },
-              {
-                type: "string",
-                key: "badge",
-                displayer: "Badge",
-                value: "Advanced",
-              },
-              {
-                type: "string",
-                key: "price",
-                displayer: "Price",
-                value: "$890",
-              },
-              {
-                type: "string",
-                key: "duration",
-                displayer: "Duration",
-                value: "/ year",
-              },
-              {
-                type: "string",
-                key: "promoText",
-                displayer: "Promo Text",
-                value: "Billed $276 per website annually."
-              },
-              {
-                type: "string",
-                key: "description",
-                displayer: "Description",
-                value: "The Advanced Plan is the pinnacle of our offerings,meticulously curated for those who demand excellence in every aspect."
-              },
-              {
-                type: "string",
-                key: "buttonText",
-                displayer: "Button Text",
-                value: "Purchase Now",
-              },
-              {
-                type: "page",
-                key: "link",
-                displayer: "Button Link",
-                value: "",
-              },
-              {
-                type: "array",
-                key: "item",
-                displayer: "Feature List",
-                value: [
-                  {
-                    type: "object",
-                    key: "item-list",
-                    displayer: "Custom Fields",
-                    value: [
-                      {
-                        type: "icon",
-                        key: "icon",
-                        displayer: "Icon",
-                        value: "CiCircleCheck"
-                      },
-                      {
-                        type: "string",
-                        key: "itemText",
-                        displayer: "Text",
-                        value: "Everything in Basic & Pro",
-                      },
-                    ],
-                  },
-                  {
-                    type: "object",
-                    key: "item-list",
-                    displayer: "Custom Fields",
-                    value: [
-                      {
-                        type: "icon",
-                        key: "icon",
-                        displayer: "Icon",
-                        value: "CiCircleCheck"
-                      },
-                      {
-                        type: "string",
-                        key: "itemText",
-                        displayer: "Text",
-                        value: "MyCase Drive",
-                      },
-                    ],
-                  },
-                  {
-                    type: "object",
-                    key: "item-list",
-                    displayer: "Custom Fields",
-                    value: [
-                      {
-                        type: "icon",
-                        key: "icon",
-                        displayer: "Icon",
-                        value: "CiCircleCheck"
-                      },
-                      {
-                        type: "string",
-                        key: "itemText",
-                        displayer: "Text",
-                        value: "Advanced Document",
-                      },
-                    ],
-                  },
-                  {
-                    type: "object",
-                    key: "item-list",
-                    displayer: "Custom Fields",
-                    value: [
-                      {
-                        type: "icon",
-                        key: "icon",
-                        displayer: "Icon",
-                        value: "CiCircleCheck"
-                      },
-                      {
-                        type: "string",
-                        key: "itemText",
-                        displayer: "Text",
-                        value: "Full Text Search",
-                      },
-                    ],
-                  },
-                ],
-              },
-            ],
-          },
-        ]
-      })
     this.addProp({
       type: "number",
       key: "itemCount",
       displayer: "Items per Row",
       value: 3,
-      max: 3
+      max: 3,
     });
 
     this.setComponentState("plan_type", "monthly-plans");
@@ -920,10 +861,9 @@ class PricingTable7 extends BasePricingTable {
     this.setComponentState("activeTab", activeTabIndex);
   }
 
-  getName(): string {
-    return "Pricing Table 7";
+  static getName(): string {
+    return "Pricing 7";
   }
-
 
   togglePlanType() {
     const currentPlanType = this.getComponentState("plan_type");
@@ -933,122 +873,115 @@ class PricingTable7 extends BasePricingTable {
 
   renderDurationItems() {
     const planType = this.getComponentState("plan_type");
-    const monthlyText = this.getPropValue("text", { as_string: true });
-    const yearlyText = this.getPropValue("text1", { as_string: true });
     const durationIcon = this.getPropValue("icon");
     const plansDiscountText = this.getPropValue("text2");
 
     return (
       <div className={this.decorateCSS("duration-items")}>
-        <span className={this.decorateCSS("text")}>{monthlyText}</span>
+        <Base.P className={`${this.decorateCSS("text")} ${planType === "monthly-plans" ? this.decorateCSS("active") : ""}`}>{this.getPropValue("text")}</Base.P>
         <div className={this.decorateCSS("switch")} onClick={this.togglePlanType.bind(this)}>
           <input className={this.decorateCSS("input")} type="checkbox" checked={planType === "yearly-plans"} />
           <span className={`${this.decorateCSS("slider")} ${this.decorateCSS("round")}`}></span>
         </div>
-        <span className={this.decorateCSS("text1")}>{yearlyText}</span>
+        <Base.P className={`${this.decorateCSS("yearlyText")} ${planType === "yearly-plans" ? this.decorateCSS("active") : ""}`}>{ this.getPropValue("text1")}</Base.P>
         <ComposerIcon name={durationIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
-        <span className={this.decorateCSS("text2")}>{plansDiscountText}</span>
+        <Base.P className={this.decorateCSS("planDiscount")}>{plansDiscountText}</Base.P>
       </div>
     );
   }
-
 
   render() {
     const planType = this.getComponentState("plan_type");
     const monthly_plans = this.castToObject<MonthlyPlan[]>("monthly_plans");
     const yearly_plans = this.castToObject<YearlyPlan[]>("yearly_plans");
-    const monthlyText = this.getPropValue("text", { as_string: true });
-    const yearlyText = this.getPropValue("text1", { as_string: true });
-    const subtitle = this.getPropValue("subtitle", { as_string: true });
-    const title = this.getPropValue("title", { as_string: true });
-    const description = this.getPropValue("description", { as_string: true });
-    const isHoverActive = this.getPropValue("isHoverActive", { as_string: true });
+    const monthlyText = this.castToString(this.getPropValue("text"));
+    const yearlyText = this.castToString(this.getPropValue("text1"));
+    const subtitle = this.castToString(this.getPropValue("subtitle"));
+    const title = this.castToString(this.getPropValue("title"));
+    const description = this.castToString(this.getPropValue("description"));
+    const isHoverActive = this.getPropValue("isHoverActive");
 
-    const badgeColors = [
-      'var(--composer-primary-color)',
-      'var(--composer-secondary-color)',
-      'var(--composer-tertiary-color)',
-    ];
+    const line = this.getPropValue("line");
+
+    const badgeColors = ["var(--composer-primary-color)", "var(--composer-secondary-color)", "var(--composer-tertiary-color)"];
 
     const shouldRenderIconAndDiscount = monthlyText && yearlyText;
 
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("up-text")}>
-            {subtitle && <span className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</span>}
-            {title && <span className={this.decorateCSS("title")}>{this.getPropValue("title")}</span>}
-            {description && <div className={this.decorateCSS("description")}>{this.getPropValue("description")}</div>}
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <Base.VerticalContent className={this.decorateCSS("up-text")}>
+            {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+            {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+            {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
             {shouldRenderIconAndDiscount && this.renderDurationItems()}
-          </div>
-          <div className={this.decorateCSS("card")}>
+          </Base.VerticalContent>
+          <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 1, phone: 1 }} className={this.decorateCSS("card")}>
             {(planType === "monthly-plans" ? monthly_plans : yearly_plans).map((pricing: any, index: number) => {
               return (
-
-                <div className={this.decorateCSS("card-item-count")} style={{
-                  width: `calc((100% / ${this.getPropValue("itemCount")}) - 20px)`,
-                }}>
-
-                  <div key={index} className={`${this.decorateCSS("price")} ${pricing.isActive && this.decorateCSS("active")} && 
+                <div className={this.decorateCSS("card-item-count")}>
+                  <Base.VerticalContent
+                    key={index}
+                    className={`${this.decorateCSS("price")} ${pricing.isActive && this.decorateCSS("active")} && 
                   ${isHoverActive ? this.decorateCSS("price-hover") : ""}
-                  }`}>
-
+                  }`}
+                  >
                     {this.castToString(pricing.popular_settings.text) && pricing.isActive && (
                       <div className={`${this.decorateCSS("popular-box")} ${this.decorateCSS("active")}`}>
                         <span className={this.decorateCSS("popular-text")}>{pricing.popular_settings.text}</span>
                       </div>
                     )}
                     {this.castToString(pricing.badge) && (
-                      <div className={`${this.decorateCSS("badge")}`}
+                      <Base.H2
+                        className={`${this.decorateCSS("badge")}`}
                         style={{
                           backgroundColor: badgeColors[index % badgeColors.length],
                           borderColor: badgeColors[index % badgeColors.length],
                         }}
-                      >{pricing.badge}
-                      </div>
+                      >
+                        {pricing.badge}
+                      </Base.H2>
                     )}
                     {[pricing.price, pricing.duration].some(this.castToString) && (
                       <div className={this.decorateCSS("price-text")}>
-                        <h1 className={this.decorateCSS("price-title")}>{pricing.price}</h1>
-                        <p className={this.decorateCSS("duration-text")}>{pricing.duration}</p>
+                        <Base.H1 className={this.decorateCSS("price-title")}>{pricing.price}</Base.H1>
+                        <Base.H3 className={this.decorateCSS("duration-text")}>{pricing.duration}</Base.H3>
                       </div>
                     )}
-                    {this.castToString(pricing.promoText) && <span className={this.decorateCSS("promoText")}>{pricing.promoText}</span>}
-                    {[pricing.promoText, pricing.price, pricing.duration].some(this.castToString) && (
+                    {this.castToString(pricing.promoText) && <Base.P className={this.decorateCSS("promoText")}>{pricing.promoText}</Base.P>}
+                    {[pricing.promoText, pricing.price, pricing.duration].some(this.castToString) && line && (
                       <>
                         <hr className={this.decorateCSS("divider")} />
                       </>
                     )}
 
-                    {this.castToString(pricing.description) &&
-                      <p className={this.decorateCSS("description")}>{pricing.description}</p>
-                    }
+                    {this.castToString(pricing.description) && <Base.P className={this.decorateCSS("description")}>{pricing.description}</Base.P>}
 
-                    {pricing.item.length > 0 && <ul className={this.decorateCSS("features")}>
-                      {pricing.item.map((data: any, index: number) => (
-                        <li key={`price7-list-${index}`}>
-                          <ComposerIcon name={data.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
-                          {data.itemText}
-                        </li>
-                      ))}
-                    </ul>}
+                    {pricing.item.length > 0 && (
+                      <Base.VerticalContent className={this.decorateCSS("features")}>
+                        {pricing.item.map((data: any, index: number) => (
+                          <Base.H5 className={this.decorateCSS("features-element")} key={`price7-list-${index}`}>
+                            <ComposerIcon name={data.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                            {data.itemText}
+                          </Base.H5>
+                        ))}
+                      </Base.VerticalContent>
+                    )}
 
-                    {this.castToString(pricing.buttonText) &&
-                      <ComposerLink path={pricing.link}>
-                        <span
-                          className={`${this.decorateCSS("button")} ${pricing.isActive ? this.decorateCSS("button-active") : ""}`}
-                        >
-                          {this.castToString(pricing.buttonText)}
-                        </span>
+                    {this.castToString(pricing.button.text) && (
+                      <ComposerLink path={pricing.button.url}>
+                        <Base.Button buttonType={pricing.button.type} className={`${this.decorateCSS("button")} ${pricing.isActive && this.decorateCSS("button-active")}`}>
+                          {pricing.button.text}
+                        </Base.Button>
                       </ComposerLink>
-                    }
-                  </div>
+                    )}
+                  </Base.VerticalContent>
                 </div>
-              )
+              );
             })}
-          </div>
-        </div>
-      </div>
+          </Base.ListGrid>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

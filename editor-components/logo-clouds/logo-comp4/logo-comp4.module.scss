@@ -1,44 +1,42 @@
 .container {
-    width: 100%;
-    .max-content {
-        display: inline-block;
-        width: 100%;
-        .logo-comp4-page {
-            display: block;
+    &.image-active{
+        background-size: cover;
+        padding-top: calc(var(--composer-gap-xl) * 3);
+        padding-bottom: calc(var(--composer-gap-xl) * 3);
+    }
+    &.overlay-active{
+        position: relative;
+        &::before{
+            background-color: var(--composer-overlay-color);
+            position: absolute;
+            top: 0px;
+            left: 0px;
             width: 100%;
-            color: white;
-            .title {
-                margin: 50px 0;
-                padding-top: 20px;
-                text-align: center;
-                font-size: 3rem;
-                text-transform: uppercase;
-                color: var(--composer-primary-color);
-            }
-            .description {
-                width: 100%;
-                margin: 0;
-                text-align: center;
-                font-weight: 400;
-                margin-bottom: 200px;
-                text-transform: uppercase;
-                color: var(--composer-font-color-primary);
-            }
-            .subtitle {
-                @extend .description;
-                margin-bottom: 20px;
-                font-size: 1.5rem;
-                color: var(--composer-font-color-primary);
-            }
-            .image-child {
+            height: 100%;
+            content: "";
+        }
+    }
+    .max-content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-xl);
+        .heading {
+            position: relative;
+            .title {content: ""}
+            .description {content: ""}
+            .subtitle {content: ""}
+        }
+
+        .images-container {
+            position: relative;
+            .image-item{
                 display: flex;
+                align-items: center;
                 justify-content: center;
-                width: 100%;
-                flex-wrap: wrap;
-                gap: 20px;
                 .image {
-                    height: calc(100% + 100px);
-                    margin-bottom: 50px;
+                    object-fit: contain;
+                    height: 90px;
+                    width: 100%;
                 }
             }
         }

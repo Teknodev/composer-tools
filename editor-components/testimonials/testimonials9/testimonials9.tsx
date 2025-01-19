@@ -3,11 +3,12 @@ import { Testimonials } from "../../EditorComponent";
 import styles from "./testimonials9.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
 type Card = {
   image: string;
-  title: string;
-  subtitle: string;
-  description: string;
+  title: JSX.Element;
+  subtitle: JSX.Element;
+  description: JSX.Element;
 };
 class Testimonials9Page extends Testimonials {
   constructor(props?: any) {
@@ -20,23 +21,17 @@ class Testimonials9Page extends Testimonials {
       value: "Testimonials",
     });
     this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "Testimonials"
-    })
-    this.addProp({
       type: "icon",
       key: "left_icon",
       displayer: "Left İcon",
-      value: "RiDoubleQuotesL"
+      value: "RiDoubleQuotesL",
     });
     this.addProp({
       type: "icon",
       key: "right_icon",
       displayer: "Right İcon",
-      value: "RiDoubleQuotesR"
-    })
+      value: "RiDoubleQuotesR",
+    });
     this.addProp({
       type: "array",
       key: "slider",
@@ -50,27 +45,26 @@ class Testimonials9Page extends Testimonials {
             {
               type: "image",
               key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b38?alt=media&timestamp=1719483639150",
+              displayer: "Author Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b38?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
               key: "title",
               value: "Thein N.",
-              displayer: "Title",
+              displayer: "Author Name",
             },
             {
               type: "string",
               key: "subtitle",
               value: "18th December 2022",
-              displayer: "subtitle",
+              displayer: "Subtitle",
             },
             {
               type: "string",
               key: "description",
               value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquet velit id nunc posuere, et fringilla leo convallis. Nam ullamcorper, arcu id ullamcorper congue, turpis urna interdum ligula, id congue purus nunc ac sem.",
-              displayer: "Descripiton",
+              displayer: "Review Text",
             },
           ],
         },
@@ -82,15 +76,14 @@ class Testimonials9Page extends Testimonials {
             {
               type: "image",
               key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b33?alt=media&timestamp=1719483639150",
+              displayer: "Author Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b33?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
               key: "title",
               value: "Bailey H.",
-              displayer: "Title",
+              displayer: "Author Name",
             },
             {
               type: "string",
@@ -102,7 +95,7 @@ class Testimonials9Page extends Testimonials {
               type: "string",
               key: "description",
               value: "Nulla facilisi. Fusce et justo eget tortor consectetur facilisis vel id turpis. Nam ullamcorper, arcu id ullamcorper congue, turpis urna interdum ligula, id congue purus nunc ac sem.",
-              displayer: "Descripiton",
+              displayer: "Review Text",
             },
           ],
         },
@@ -114,15 +107,14 @@ class Testimonials9Page extends Testimonials {
             {
               type: "image",
               key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b34?alt=media&timestamp=1719483639150",
+              displayer: "Author Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b34?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
               key: "title",
               value: "Ashley S.",
-              displayer: "Title",
+              displayer: "Author Name",
             },
             {
               type: "string",
@@ -134,7 +126,7 @@ class Testimonials9Page extends Testimonials {
               type: "string",
               key: "description",
               value: "Duis blandit est eu magna tristique, ut vestibulum orci feugiat. Integer nec semper neque. Nam ullamcorper, arcu id ullamcorper congue, turpis urna interdum ligula, id congue purus nunc ac sem.",
-              displayer: "Descripiton",
+              displayer: "Review Text",
             },
           ],
         },
@@ -146,15 +138,14 @@ class Testimonials9Page extends Testimonials {
             {
               type: "image",
               key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b37?alt=media&timestamp=1719483639150",
+              displayer: "Author Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b37?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
               key: "title",
               value: "Tom H.",
-              displayer: "Title",
+              displayer: "Author Name",
             },
             {
               type: "string",
@@ -166,7 +157,7 @@ class Testimonials9Page extends Testimonials {
               type: "string",
               key: "description",
               value: "Quisque sodales justo nec ante vestibulum, ut dictum justo facilisis. Nam ullamcorper, arcu id ullamcorper congue, turpis urna interdum ligula, id congue purus nunc ac sem.",
-              displayer: "Descripiton",
+              displayer: "Review Text",
             },
           ],
         },
@@ -178,15 +169,14 @@ class Testimonials9Page extends Testimonials {
             {
               type: "image",
               key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b36?alt=media&timestamp=1719483639150",
+              displayer: "Author Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b36?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
               key: "title",
               value: "Ronald R.",
-              displayer: "Title",
+              displayer: "Author Name",
             },
             {
               type: "string",
@@ -198,7 +188,7 @@ class Testimonials9Page extends Testimonials {
               type: "string",
               key: "description",
               value: "Sed id condimentum mi. Aliquam cursus scelerisque elit ut facilisis. Nam ullamcorper, arcu id ullamcorper congue, turpis urna interdum ligula, id congue purus nunc ac sem.",
-              displayer: "Descripiton",
+              displayer: "Review Text",
             },
           ],
         },
@@ -210,15 +200,14 @@ class Testimonials9Page extends Testimonials {
             {
               type: "image",
               key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b35?alt=media&timestamp=1719483639150",
+              displayer: "Author Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b35?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
               key: "title",
               value: "Olivia D.",
-              displayer: "Title",
+              displayer: "Author Name",
             },
             {
               type: "string",
@@ -230,7 +219,7 @@ class Testimonials9Page extends Testimonials {
               type: "string",
               key: "description",
               value: "Vivamus nec sem quis enim iaculis gravida. Donec volutpat fermentum erat, sit amet cursus risus tincidunt quis. Nam ullamcorper, arcu id ullamcorper congue, turpis urna interdum ligula, id congue purus nunc ac sem.",
-              displayer: "Descripiton",
+              displayer: "Review Text",
             },
           ],
         },
@@ -242,15 +231,14 @@ class Testimonials9Page extends Testimonials {
             {
               type: "image",
               key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617728bd2970002c623bd5?alt=media&timestamp=1719483639150",
+              displayer: "Author Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617728bd2970002c623bd5?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
               key: "title",
               value: "Sarah B.",
-              displayer: "Title",
+              displayer: "Author Name",
             },
             {
               type: "string",
@@ -262,7 +250,7 @@ class Testimonials9Page extends Testimonials {
               type: "string",
               key: "description",
               value: "Aenean euismod, velit a lacinia fringilla, urna libero ultrices lectus, non interdum quam nunc eu elit. Ut non lobortis purus. Nam ullamcorper, id congue purus nunc ac sem.",
-              displayer: "Descripiton",
+              displayer: "Review Text",
             },
           ],
         },
@@ -274,15 +262,14 @@ class Testimonials9Page extends Testimonials {
             {
               type: "image",
               key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b37?alt=media&timestamp=1719483639150",
+              displayer: "Author Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b37?alt=media&timestamp=1719483639150",
             },
             {
               type: "string",
               key: "title",
               value: "Mary J.",
-              displayer: "Title",
+              displayer: "Author Name",
             },
             {
               type: "string",
@@ -294,7 +281,7 @@ class Testimonials9Page extends Testimonials {
               type: "string",
               key: "description",
               value: "Curabitur a sapien ut neque eleifend vehicula id a sem. Phasellus sodales, ex sit amet eleifend consectetur, erat magna dictum elit, eu interdum nisi lacus id nunc.",
-              displayer: "Descripiton",
+              displayer: "Review Text",
             },
           ],
         },
@@ -302,78 +289,82 @@ class Testimonials9Page extends Testimonials {
     });
     this.setComponentState("active-index", 1);
   }
-  getName(): string {
+  static getName(): string {
     return "Testimonials 9";
   }
-
   render() {
+    const slider = this.getPropValue("slider");
     const settings = {
       dots: false,
       infinite: true,
       speed: 500,
       autoplay: true,
       autoplaySpeed: 2500,
-      slidesToShow: 4,
+      slidesToShow: Math.min(Math.max(slider.length, 1), 4),
       slidesToScroll: 1,
       vertical: true,
-      verticalSwiping: true,
+      verticalSwiping: slider.length > 1,
       arrows: false,
 
-      beforeChange: (oldIndex: number, newIndex: number) => {
+      beforeChange: (newIndex: number) => {
         let adjustedIndex = (newIndex + 1) % this.castToObject<Card[]>("slider").length;
-        if (oldIndex !== adjustedIndex) {
-          this.setComponentState("active-index", adjustedIndex);
-        }
-      }
+        this.setComponentState("active-index", adjustedIndex);
+      },
     };
     const activeIndex = this.getComponentState("active-index");
-    const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("up-page")}>
-            {subtitle && <span className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</span>}
-            {title && <span className={this.decorateCSS("title")}>{this.getPropValue("title")}</span>}
-          </div>
-          <div className={this.decorateCSS("down-page")}>
-            <div className={this.decorateCSS("carousel")}>
-              <ComposerSlider {...settings} >
-                {this.castToObject<Card[]>("slider").map(
-                  (item: Card, index: number) => (
-                    <div className={`${this.decorateCSS("card-inner")} ${activeIndex === index ? this.decorateCSS("active") : ""}`}
-                      key={index}
-                    >
-                      {item.image && (
-                      <img alt="" src={item.image} className={this.decorateCSS("img")} />
-                      )}
-                      <div className={this.decorateCSS("text")}>
-                        <span className={this.decorateCSS("title")}>{item.title}</span>
-                        <span className={this.decorateCSS("subtitle")}>{item.subtitle}</span>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <div className={this.decorateCSS("wrapper")}>
+            {this.castToString(title) && (
+              <div className={this.decorateCSS("up-page")}>
+                <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>
+              </div>
+            )}
+            <Base.ContainerGrid className={this.decorateCSS("down-page")}>
+              <Base.GridCell className={this.decorateCSS("carousel")}>
+                <ComposerSlider {...settings}>
+                  {this.castToObject<Card[]>("slider").map((item: Card, index: number) => {
+                    return (
+                      <div className={`${this.decorateCSS("card-inner")} ${activeIndex === index ? this.decorateCSS("active") : ""}`}>
+                        {item.image && <img alt="" src={item.image} className={this.decorateCSS("img")} />}
+                        {(this.castToString(item.title) || this.castToString(item.subtitle)) && (
+                          <Base.VerticalContent className={this.decorateCSS("text")}>
+                            {this.castToString(item.title) && <Base.H4 className={this.decorateCSS("title")}>{item.title}</Base.H4>}
+                            {this.castToString(item.subtitle) && <Base.H5 className={this.decorateCSS("subtitle")}>{item.subtitle}</Base.H5>}
+                          </Base.VerticalContent>
+                        )}
                       </div>
-                    </div>
-                  )
+                    );
+                  })}
+                </ComposerSlider>
+              </Base.GridCell>
+              <Base.GridCell className={this.decorateCSS("right-page")}>
+                {this.getPropValue("left_icon") && (
+                  <ComposerIcon
+                    name={this.getPropValue("left_icon")}
+                    propsIcon={{
+                      className: this.decorateCSS("left-icon"),
+                    }}
+                  />
                 )}
-              </ComposerSlider>
-            </div>
-            <div className={this.decorateCSS("right-page")}>
-              <ComposerIcon name={this.getPropValue("left_icon")} propsIcon={{
-                className: this.decorateCSS("left_icon")
-              }} />
-              {this.castToObject<Card[]>("slider").map((item: Card, index: number) => (
-                <div className={this.decorateCSS("text-container")} key={index}>
-                  {index === activeIndex && (
-                    <div className={this.decorateCSS("description")}>{item.description}</div>
-                  )}
-                </div>
-              ))}
-              <ComposerIcon name={this.getPropValue("right_icon")} propsIcon={{
-                className: this.decorateCSS("right_icon")
-              }} />
-            </div>
+                {this.castToObject<Card[]>("slider").map((item: Card, index: number) => (
+                  <div className={this.decorateCSS("text")}>{index === activeIndex && this.castToString(item.description) && <Base.H3 className={this.decorateCSS("description")}>{item.description}</Base.H3>}</div>
+                ))}
+                {this.getPropValue("right_icon") && (
+                  <ComposerIcon
+                    name={this.getPropValue("right_icon")}
+                    propsIcon={{
+                      className: this.decorateCSS("right-icon"),
+                    }}
+                  />
+                )}
+              </Base.GridCell>
+            </Base.ContainerGrid>
           </div>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

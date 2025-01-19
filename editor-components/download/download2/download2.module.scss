@@ -1,115 +1,118 @@
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 .container {
-    width: 100%;
-    padding: 50px 0;
-    display: flex;
-    justify-content: center;
-    .max-content {
-        max-width: var(--composer-content-width);
-        .cards-container {
-            width: 100%;
-            .cards {
-                display: flex;
-                align-items: center;
-                justify-content: space-around;
-                padding: 0 20px;
-                flex-wrap: wrap;
-                .card {
-                    position: relative;
-                    display: flex;
-                    flex-direction: column;
-                    border: 1px solid rgb(224, 224, 224);
-                    margin: 20px 40px;
-                    .card-background {
-                        width: 100%;
-                        img {
-                            width: 100%;
-                            height: 120px;
-                            object-fit: cover;
-                        }
-                    }
-                    .card-logo {
-                        position: absolute;
-                        padding: 30px;
-                        border-radius: 50%;
-                        background-color: white;
-                        right: 50%;
-                        transform: translateX(50%);
-                        top: 65px;
-                        img {
-                            width: 50px;
-                            height: 100%;
-                        }
-                    }
-                    .card-title {
-                        width: 100%;
-                        margin-top: 40px;
-                        padding: 20px 0;
-                        color: var(--composer-primary-color);
-                        .card-title1 {
-                            text-align: center;
-                            font-weight: 300;
-                            opacity: 0.6;
-                        }
-                    }
-                    .card-button {
-                        width: 100%;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        button {
-                            padding: 10px 30px;
-                            border: 1px solid var(--composer-secondary-color);
-                            border-radius: 5px;
-                            color: white;
-                            font-weight: 600;
-                            background-color: var(--composer-secondary-color);
-                            cursor: pointer;
-                            transition: 0.3s;
-                            &:hover {
-                                background-color: transparent;
-                                border: 1px solid var(--composer-secondary-color);
-                                color: var(--composer-secondary-color);
-                            }
-                        }
-                    }
-                    .card-information {
-                        .card-information-p {
-                            text-align: center;
-                            opacity: 0.6;
-                            margin-top: 20px;
-                            padding: 20px;
-                            color: var(--composer-font-color-primary);
-                        }
-                    }
-                }
-            }
-        }
+  .max-content {
+    .header {
+      .title {
+        content: "";
+      }
+      .description {
+        color: var(--composer-font-color-primary);
+      }
     }
+    .cards-container {
+      .cards {
+        .card {
+          display: flex;
+          flex-direction: column;
+          gap: var(--composer-gap-md);
+          padding: var(--composer-gap-md);
+          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+          border-radius: var(--composer-border-radius-xl);
+          transition: 0.5s;
+
+          .icon-container {
+            padding: var(--composer-gap-sm);
+            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 15%);
+            border-radius: 50%;
+            margin-bottom: var(--composer-gap-md);
+            transition: 0.5s;
+            width: fit-content;
+
+            .icon {
+              font-size: 2rem;
+              color: var(--composer-font-color-primary);
+            }
+          }
+
+          .device {
+            font-size: 1rem;
+            color: var(--composer-font-color-primary);
+            margin: 0;
+          }
+
+          .platform {
+            font-size: 2rem;
+            color: var(--composer-font-color-primary);
+            margin: 0;
+          }
+
+          .description {
+            font-size: 1rem;
+            color: var(--composer-font-color-primary);
+            margin: 0;
+          }
+
+          .button-container {
+            .button-element {
+              .button {
+                .button-icon {
+                  content: "";
+                }
+                .button-text {
+                  content: "";
+                }
+                .image {
+                  width: 170px;
+                  height: 50px;
+                  object-fit: cover;
+                  border-radius: var(--composer-border-radius-sm);
+                }
+              }
+            }
+          }
+
+          &:hover {
+            background-color: var(--composer-font-color-primary);
+
+            .icon-container {
+              background-color: var(--composer-html-background);
+
+              .icon {
+                color: var(--composer-font-color-primary);
+              }
+            }
+
+            .device,
+            .platform,
+            .description {
+              color: var(--composer-html-background);
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
-@media only screen and (max-width: 768px) {
-    .container {
-        .max-content {
-            .cards-container {
-                .cards {
-                    flex-direction: column;
-                    .card-item-count {
-                        justify-content: center;
-                        min-width: 70%;
-                        .card {
-                            margin: 20px 0;
-                            width: 100%;
-                            .card-logo {
-                                padding: 10px;
-                                margin: 20px 0;
-                                img {
-                                    width: 40px;
-                                }
-                            }
-                        }
-                    }
+@container(max-width: #{$composer-phone-width}){
+  .container{
+    .max-content{
+      .cards-container{
+        .cards{
+          .card{
+            .button-container {
+              .button-element {
+                .button {
+                  .image {
+                    width: 120px;
+                    height: 100%;
+                  }
                 }
+              }
             }
+          }
         }
+      }
     }
+  }
 }

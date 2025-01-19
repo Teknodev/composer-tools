@@ -3,6 +3,8 @@ import styles from "./pricing-table6.module.scss";
 import { BasePricingTable } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Pricing = {
   title: JSX.Element;
@@ -22,18 +24,15 @@ type Pricing = {
       circle_icon: string;
     }[];
     right_items: {
+      enable: boolean;
+      text: JSX.Element;
       badge: JSX.Element;
       title: JSX.Element;
       list: {
         property: string;
         dash_icon: string;
       }[];
-      buttons: {
-        buttonTitle: JSX.Element;
-        url: string;
-        buttonText: JSX.Element;
-        disabled: boolean;
-      }[];
+      buttons: INPUTS.CastedButton[];
     };
   }>;
 };
@@ -64,7 +63,7 @@ class PricingMultipleTwo extends BasePricingTable {
         {
           type: "object",
           key: "plan-title",
-          displayer: "Monthly Plans",
+          displayer: "Plans",
           value: [
             {
               type: "string",
@@ -98,166 +97,7 @@ class PricingMultipleTwo extends BasePricingTable {
                       type: "string",
                       key: "plan",
                       displayer: "Plan",
-                      value: "Product 1",
-                    },
-                    {
-                      type: "string",
-                      key: "tag",
-                      displayer: "Tag",
-                      value: "SAVE 10%",
-                    },
-                    {
-                      type: "string",
-                      key: "price",
-                      displayer: "Price",
-                      value: "3000$",
-                    },
-                    {
-                      type: "string",
-                      key: "per",
-                      displayer: "Per",
-                      value: "Per month",
-                    },
-                    {
-                      type: "object",
-                      key: "right_items",
-                      displayer: "Right Items",
-                      value: [
-                        {
-                          type: "string",
-                          key: "badge",
-                          displayer: "Badge",
-                          value: "Product 1",
-                        },
-                        {
-                          type: "string",
-                          key: "title",
-                          displayer: "Title",
-                          value: "60 hour package per month",
-                        },
-                        {
-                          type: "array",
-                          key: "list",
-                          displayer: "List Items",
-                          value: [
-                            {
-                              type: "object",
-                              key: "list_item",
-                              displayer: "List Item",
-                              value: [
-                                {
-                                  type: "string",
-                                  key: "property",
-                                  displayer: "Property",
-                                  value:
-                                    "3 hours of training (VR therapy + platform use)",
-                                },
-                                {
-                                  type: "icon",
-                                  key: "dash_icon",
-                                  displayer: "Dash Icon",
-                                  value: "GoDash",
-                                },
-                              ],
-                            },
-                            {
-                              type: "object",
-                              key: "list_item",
-                              displayer: "List Item",
-                              value: [
-                                {
-                                  type: "string",
-                                  key: "property",
-                                  displayer: "Property",
-                                  value: "Unlimited technical support",
-                                },
-                                {
-                                  type: "icon",
-                                  key: "dash_icon",
-                                  displayer: "Dash Icon",
-                                  value: "GoDash",
-                                },
-                              ],
-                            },
-                            {
-                              type: "object",
-                              key: "list_item",
-                              displayer: "List Item",
-                              value: [
-                                {
-                                  type: "string",
-                                  key: "property",
-                                  displayer: "Property",
-                                  value: "Hours of supervision per month",
-                                },
-                                {
-                                  type: "icon",
-                                  key: "dash_icon",
-                                  displayer: "Dash Icon",
-                                  value: "GoDash",
-                                },
-                              ],
-                            },
-                          ],
-                        },
-                        {
-                          type: "array",
-                          key: "buttons",
-                          displayer: "Buttons",
-                          value: [
-                            {
-                              type: "object",
-                              key: "button",
-                              displayer: "Button",
-                              value: [
-                                {
-                                  type: "string",
-                                  key: "buttonText",
-                                  displayer: "Button Text",
-                                  value: "Join this plan",
-                                },
-                                {
-                                  type: "page",
-                                  key: "url",
-                                  displayer: "Link",
-                                  value: "",
-                                },
-                                {
-                                  type: "boolean",
-                                  key: "disabled",
-                                  displayer: "Animation Enabled",
-                                  value: true,
-                                },
-                              ],
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "listArray",
-                  displayer: "Left Items",
-                  value: [
-                    {
-                      type: "icon",
-                      key: "circle_icon",
-                      displayer: "Circle Icon",
-                      value: "GoCircle",
-                    },
-                    {
-                      type: "icon",
-                      key: "check_icon",
-                      displayer: "Check Icon",
-                      value: "CiCircleCheck",
-                    },
-                    {
-                      type: "string",
-                      key: "plan",
-                      displayer: "Plan",
-                      value: "Product 2",
+                      value: "Primary",
                     },
                     {
                       type: "string",
@@ -269,12 +109,12 @@ class PricingMultipleTwo extends BasePricingTable {
                       type: "string",
                       key: "price",
                       displayer: "Price",
-                      value: "5000$",
+                      value: "10$",
                     },
                     {
                       type: "string",
                       key: "per",
-                      displayer: "Per",
+                      displayer: "Info",
                       value: "Per month",
                     },
                     {
@@ -286,13 +126,19 @@ class PricingMultipleTwo extends BasePricingTable {
                           type: "string",
                           key: "badge",
                           displayer: "Badge",
-                          value: "Product 1",
+                          value: "PRIMARY",
                         },
                         {
                           type: "string",
                           key: "title",
                           displayer: "Title",
                           value: "60 hour package per month",
+                        },
+                        {
+                          type: "string",
+                          key: "text",
+                          displayer: "Text",
+                          value: "Offer save 20%",
                         },
                         {
                           type: "array",
@@ -305,17 +151,22 @@ class PricingMultipleTwo extends BasePricingTable {
                               displayer: "List Item",
                               value: [
                                 {
+                                  type: "boolean",
+                                  key: "enable",
+                                  displayer: "Active",
+                                  value: true,
+                                },
+                                {
                                   type: "string",
                                   key: "property",
                                   displayer: "Property",
-                                  value:
-                                    "3 hours of training (VR therapy + platform use)",
+                                  value: "3 hours of training (VR therapy + platform use)",
                                 },
                                 {
                                   type: "icon",
                                   key: "dash_icon",
                                   displayer: "Dash Icon",
-                                  value: "GoDash",
+                                  value: "FcCheckmark",
                                 },
                               ],
                             },
@@ -324,6 +175,12 @@ class PricingMultipleTwo extends BasePricingTable {
                               key: "list_item",
                               displayer: "List Item",
                               value: [
+                                {
+                                  type: "boolean",
+                                  key: "enable",
+                                  displayer: "Active",
+                                  value: true,
+                                },
                                 {
                                   type: "string",
                                   key: "property",
@@ -334,7 +191,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                   type: "icon",
                                   key: "dash_icon",
                                   displayer: "Dash Icon",
-                                  value: "GoDash",
+                                  value: "FcCancel",
                                 },
                               ],
                             },
@@ -343,6 +200,12 @@ class PricingMultipleTwo extends BasePricingTable {
                               key: "list_item",
                               displayer: "List Item",
                               value: [
+                                {
+                                  type: "boolean",
+                                  key: "enable",
+                                  displayer: "Active",
+                                  value: true,
+                                },
                                 {
                                   type: "string",
                                   key: "property",
@@ -353,7 +216,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                   type: "icon",
                                   key: "dash_icon",
                                   displayer: "Dash Icon",
-                                  value: "GoDash",
+                                  value: "FcCancel",
                                 },
                               ],
                             },
@@ -363,33 +226,7 @@ class PricingMultipleTwo extends BasePricingTable {
                           type: "array",
                           key: "buttons",
                           displayer: "Buttons",
-                          value: [
-                            {
-                              type: "object",
-                              key: "button",
-                              displayer: "Button",
-                              value: [
-                                {
-                                  type: "string",
-                                  key: "buttonText",
-                                  displayer: "Button Text",
-                                  value: "Join this plan",
-                                },
-                                {
-                                  type: "page",
-                                  key: "url",
-                                  displayer: "Link",
-                                  value: "",
-                                },
-                                {
-                                  type: "boolean",
-                                  key: "disabled",
-                                  displayer: "Animation Enabled",
-                                  value: true,
-                                },
-                              ],
-                            },
-                          ],
+                          value: [INPUTS.BUTTON("button", "Button", "Join this plan", "", null, null, "Primary")],
                         },
                       ],
                     },
@@ -416,7 +253,7 @@ class PricingMultipleTwo extends BasePricingTable {
                       type: "string",
                       key: "plan",
                       displayer: "Plan",
-                      value: "Product 3",
+                      value: "Popular",
                     },
                     {
                       type: "string",
@@ -428,12 +265,12 @@ class PricingMultipleTwo extends BasePricingTable {
                       type: "string",
                       key: "price",
                       displayer: "Price",
-                      value: "6000$",
+                      value: "19$",
                     },
                     {
                       type: "string",
                       key: "per",
-                      displayer: "Per",
+                      displayer: "Info",
                       value: "Per month",
                     },
                     {
@@ -445,13 +282,19 @@ class PricingMultipleTwo extends BasePricingTable {
                           type: "string",
                           key: "badge",
                           displayer: "Badge",
-                          value: "Product 1",
+                          value: "POPULAR",
                         },
                         {
                           type: "string",
                           key: "title",
                           displayer: "Title",
                           value: "60 hour package per month",
+                        },
+                        {
+                          type: "string",
+                          key: "text",
+                          displayer: "Text",
+                          value: "Offer save 30%",
                         },
                         {
                           type: "array",
@@ -464,17 +307,22 @@ class PricingMultipleTwo extends BasePricingTable {
                               displayer: "List Item",
                               value: [
                                 {
+                                  type: "boolean",
+                                  key: "enable",
+                                  displayer: "Active",
+                                  value: true,
+                                },
+                                {
                                   type: "string",
                                   key: "property",
                                   displayer: "Property",
-                                  value:
-                                    "3 hours of training (VR therapy + platform use)",
+                                  value: "3 hours of training (VR therapy + platform use)",
                                 },
                                 {
                                   type: "icon",
                                   key: "dash_icon",
                                   displayer: "Dash Icon",
-                                  value: "GoDash",
+                                  value: "FcCheckmark",
                                 },
                               ],
                             },
@@ -483,6 +331,12 @@ class PricingMultipleTwo extends BasePricingTable {
                               key: "list_item",
                               displayer: "List Item",
                               value: [
+                                {
+                                  type: "boolean",
+                                  key: "enable",
+                                  displayer: "Active",
+                                  value: true,
+                                },
                                 {
                                   type: "string",
                                   key: "property",
@@ -493,7 +347,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                   type: "icon",
                                   key: "dash_icon",
                                   displayer: "Dash Icon",
-                                  value: "GoDash",
+                                  value: "FcCancel",
                                 },
                               ],
                             },
@@ -502,6 +356,12 @@ class PricingMultipleTwo extends BasePricingTable {
                               key: "list_item",
                               displayer: "List Item",
                               value: [
+                                {
+                                  type: "boolean",
+                                  key: "enable",
+                                  displayer: "Active",
+                                  value: true,
+                                },
                                 {
                                   type: "string",
                                   key: "property",
@@ -512,7 +372,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                   type: "icon",
                                   key: "dash_icon",
                                   displayer: "Dash Icon",
-                                  value: "GoDash",
+                                  value: "FcCancel",
                                 },
                               ],
                             },
@@ -522,33 +382,7 @@ class PricingMultipleTwo extends BasePricingTable {
                           type: "array",
                           key: "buttons",
                           displayer: "Buttons",
-                          value: [
-                            {
-                              type: "object",
-                              key: "button",
-                              displayer: "Button",
-                              value: [
-                                {
-                                  type: "string",
-                                  key: "buttonText",
-                                  displayer: "Button Text",
-                                  value: "Join this plan",
-                                },
-                                {
-                                  type: "page",
-                                  key: "url",
-                                  displayer: "Link",
-                                  value: "",
-                                },
-                                {
-                                  type: "boolean",
-                                  key: "disabled",
-                                  displayer: "Animation Enabled",
-                                  value: true,
-                                },
-                              ],
-                            },
-                          ],
+                          value: [INPUTS.BUTTON("button", "Button", "Join this plan", "", null, null, "Primary")],
                         },
                       ],
                     },
@@ -575,24 +409,24 @@ class PricingMultipleTwo extends BasePricingTable {
                       type: "string",
                       key: "plan",
                       displayer: "Plan",
-                      value: "Product 4",
+                      value: "Premium",
                     },
                     {
                       type: "string",
                       key: "tag",
                       displayer: "Tag",
-                      value: "SAVE 40%",
+                      value: "SAVE 35%",
                     },
                     {
                       type: "string",
                       key: "price",
                       displayer: "Price",
-                      value: "20000$",
+                      value: "28$",
                     },
                     {
                       type: "string",
                       key: "per",
-                      displayer: "Per",
+                      displayer: "Info",
                       value: "Per month",
                     },
                     {
@@ -604,13 +438,19 @@ class PricingMultipleTwo extends BasePricingTable {
                           type: "string",
                           key: "badge",
                           displayer: "Badge",
-                          value: "Product 1",
+                          value: "PREMIUM",
                         },
                         {
                           type: "string",
                           key: "title",
                           displayer: "Title",
                           value: "60 hour package per month",
+                        },
+                        {
+                          type: "string",
+                          key: "text",
+                          displayer: "Text",
+                          value: "Offer save 35%",
                         },
                         {
                           type: "array",
@@ -623,17 +463,22 @@ class PricingMultipleTwo extends BasePricingTable {
                               displayer: "List Item",
                               value: [
                                 {
+                                  type: "boolean",
+                                  key: "enable",
+                                  displayer: "Active",
+                                  value: true,
+                                },
+                                {
                                   type: "string",
                                   key: "property",
                                   displayer: "Property",
-                                  value:
-                                    "3 hours of training (VR therapy + platform use)",
+                                  value: "3 hours of training (VR therapy + platform use)",
                                 },
                                 {
                                   type: "icon",
                                   key: "dash_icon",
                                   displayer: "Dash Icon",
-                                  value: "GoDash",
+                                  value: "FcCheckmark",
                                 },
                               ],
                             },
@@ -642,6 +487,12 @@ class PricingMultipleTwo extends BasePricingTable {
                               key: "list_item",
                               displayer: "List Item",
                               value: [
+                                {
+                                  type: "boolean",
+                                  key: "enable",
+                                  displayer: "Active",
+                                  value: true,
+                                },
                                 {
                                   type: "string",
                                   key: "property",
@@ -652,7 +503,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                   type: "icon",
                                   key: "dash_icon",
                                   displayer: "Dash Icon",
-                                  value: "GoDash",
+                                  value: "FcCheckmark",
                                 },
                               ],
                             },
@@ -661,6 +512,12 @@ class PricingMultipleTwo extends BasePricingTable {
                               key: "list_item",
                               displayer: "List Item",
                               value: [
+                                {
+                                  type: "boolean",
+                                  key: "enable",
+                                  displayer: "Active",
+                                  value: true,
+                                },
                                 {
                                   type: "string",
                                   key: "property",
@@ -671,7 +528,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                   type: "icon",
                                   key: "dash_icon",
                                   displayer: "Dash Icon",
-                                  value: "GoDash",
+                                  value: "FcCheckmark",
                                 },
                               ],
                             },
@@ -681,33 +538,7 @@ class PricingMultipleTwo extends BasePricingTable {
                           type: "array",
                           key: "buttons",
                           displayer: "Buttons",
-                          value: [
-                            {
-                              type: "object",
-                              key: "button",
-                              displayer: "Button",
-                              value: [
-                                {
-                                  type: "string",
-                                  key: "buttonText",
-                                  displayer: "Button Text",
-                                  value: "Join this plan",
-                                },
-                                {
-                                  type: "page",
-                                  key: "url",
-                                  displayer: "Link",
-                                  value: "",
-                                },
-                                {
-                                  type: "boolean",
-                                  key: "disabled",
-                                  displayer: "Animation Enabled",
-                                  value: true,
-                                },
-                              ],
-                            },
-                          ],
+                          value: [INPUTS.BUTTON("button", "Button", "Join this plan", "", null, null, "Primary")],
                         },
                       ],
                     },
@@ -720,7 +551,7 @@ class PricingMultipleTwo extends BasePricingTable {
         {
           type: "object",
           key: "plan-title",
-          displayer: "Yearly Plans",
+          displayer: "Plans",
           value: [
             {
               type: "string",
@@ -754,166 +585,7 @@ class PricingMultipleTwo extends BasePricingTable {
                       type: "string",
                       key: "plan",
                       displayer: "Plan",
-                      value: "Product 1",
-                    },
-                    {
-                      type: "string",
-                      key: "tag",
-                      displayer: "Tag",
-                      value: "SAVE 10%",
-                    },
-                    {
-                      type: "string",
-                      key: "price",
-                      displayer: "Price",
-                      value: "30000$",
-                    },
-                    {
-                      type: "string",
-                      key: "per",
-                      displayer: "Per",
-                      value: "Per year",
-                    },
-                    {
-                      type: "object",
-                      key: "right_items",
-                      displayer: "Right Items",
-                      value: [
-                        {
-                          type: "string",
-                          key: "badge",
-                          displayer: "Badge",
-                          value: "Product 1",
-                        },
-                        {
-                          type: "string",
-                          key: "title",
-                          displayer: "Title",
-                          value: "60 hour package per month",
-                        },
-                        {
-                          type: "array",
-                          key: "list",
-                          displayer: "List Items",
-                          value: [
-                            {
-                              type: "object",
-                              key: "list_item",
-                              displayer: "List Item",
-                              value: [
-                                {
-                                  type: "string",
-                                  key: "property",
-                                  displayer: "Property",
-                                  value:
-                                    "3 hours of training (VR therapy + platform use)",
-                                },
-                                {
-                                  type: "icon",
-                                  key: "dash_icon",
-                                  displayer: "Dash Icon",
-                                  value: "GoDash",
-                                },
-                              ],
-                            },
-                            {
-                              type: "object",
-                              key: "list_item",
-                              displayer: "List Item",
-                              value: [
-                                {
-                                  type: "string",
-                                  key: "property",
-                                  displayer: "Property",
-                                  value: "Unlimited technical support",
-                                },
-                                {
-                                  type: "icon",
-                                  key: "dash_icon",
-                                  displayer: "Dash Icon",
-                                  value: "GoDash",
-                                },
-                              ],
-                            },
-                            {
-                              type: "object",
-                              key: "list_item",
-                              displayer: "List Item",
-                              value: [
-                                {
-                                  type: "string",
-                                  key: "property",
-                                  displayer: "Property",
-                                  value: "Hours of supervision per month",
-                                },
-                                {
-                                  type: "icon",
-                                  key: "dash_icon",
-                                  displayer: "Dash Icon",
-                                  value: "GoDash",
-                                },
-                              ],
-                            },
-                          ],
-                        },
-                        {
-                          type: "array",
-                          key: "buttons",
-                          displayer: "Buttons",
-                          value: [
-                            {
-                              type: "object",
-                              key: "button",
-                              displayer: "Button",
-                              value: [
-                                {
-                                  type: "string",
-                                  key: "buttonText",
-                                  displayer: "Button Text",
-                                  value: "Join this plan",
-                                },
-                                {
-                                  type: "page",
-                                  key: "url",
-                                  displayer: "Link",
-                                  value: "",
-                                },
-                                {
-                                  type: "boolean",
-                                  key: "disabled",
-                                  displayer: "Animation Enabled",
-                                  value: true,
-                                },
-                              ],
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "listArray",
-                  displayer: "Left Items",
-                  value: [
-                    {
-                      type: "icon",
-                      key: "circle_icon",
-                      displayer: "Circle Icon",
-                      value: "GoCircle",
-                    },
-                    {
-                      type: "icon",
-                      key: "check_icon",
-                      displayer: "Check Icon",
-                      value: "CiCircleCheck",
-                    },
-                    {
-                      type: "string",
-                      key: "plan",
-                      displayer: "Plan",
-                      value: "Product 2",
+                      value: "Primary",
                     },
                     {
                       type: "string",
@@ -925,13 +597,12 @@ class PricingMultipleTwo extends BasePricingTable {
                       type: "string",
                       key: "price",
                       displayer: "Price",
-                      value: "50000$",
+                      value: "5$",
                     },
-
                     {
                       type: "string",
                       key: "per",
-                      displayer: "Per",
+                      displayer: "Info",
                       value: "Per year",
                     },
                     {
@@ -943,13 +614,19 @@ class PricingMultipleTwo extends BasePricingTable {
                           type: "string",
                           key: "badge",
                           displayer: "Badge",
-                          value: "Product 1",
+                          value: "PRIMARY",
                         },
                         {
                           type: "string",
                           key: "title",
                           displayer: "Title",
                           value: "60 hour package per month",
+                        },
+                        {
+                          type: "string",
+                          key: "text",
+                          displayer: "Text",
+                          value: "Offer save 20%",
                         },
                         {
                           type: "array",
@@ -962,17 +639,22 @@ class PricingMultipleTwo extends BasePricingTable {
                               displayer: "List Item",
                               value: [
                                 {
+                                  type: "boolean",
+                                  key: "enable",
+                                  displayer: "Active",
+                                  value: true,
+                                },
+                                {
                                   type: "string",
                                   key: "property",
                                   displayer: "Property",
-                                  value:
-                                    "3 hours of training (VR therapy + platform use)",
+                                  value: "3 hours of training (VR therapy + platform use)",
                                 },
                                 {
                                   type: "icon",
                                   key: "dash_icon",
                                   displayer: "Dash Icon",
-                                  value: "GoDash",
+                                  value: "FcCheckmark",
                                 },
                               ],
                             },
@@ -981,6 +663,12 @@ class PricingMultipleTwo extends BasePricingTable {
                               key: "list_item",
                               displayer: "List Item",
                               value: [
+                                {
+                                  type: "boolean",
+                                  key: "enable",
+                                  displayer: "Active",
+                                  value: true,
+                                },
                                 {
                                   type: "string",
                                   key: "property",
@@ -991,7 +679,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                   type: "icon",
                                   key: "dash_icon",
                                   displayer: "Dash Icon",
-                                  value: "GoDash",
+                                  value: "FcCancel",
                                 },
                               ],
                             },
@@ -1000,6 +688,12 @@ class PricingMultipleTwo extends BasePricingTable {
                               key: "list_item",
                               displayer: "List Item",
                               value: [
+                                {
+                                  type: "boolean",
+                                  key: "enable",
+                                  displayer: "Active",
+                                  value: true,
+                                },
                                 {
                                   type: "string",
                                   key: "property",
@@ -1010,7 +704,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                   type: "icon",
                                   key: "dash_icon",
                                   displayer: "Dash Icon",
-                                  value: "GoDash",
+                                  value: "FcCancel",
                                 },
                               ],
                             },
@@ -1020,33 +714,7 @@ class PricingMultipleTwo extends BasePricingTable {
                           type: "array",
                           key: "buttons",
                           displayer: "Buttons",
-                          value: [
-                            {
-                              type: "object",
-                              key: "button",
-                              displayer: "Button",
-                              value: [
-                                {
-                                  type: "string",
-                                  key: "buttonText",
-                                  displayer: "Button Text",
-                                  value: "Join this plan",
-                                },
-                                {
-                                  type: "page",
-                                  key: "url",
-                                  displayer: "Link",
-                                  value: "",
-                                },
-                                {
-                                  type: "boolean",
-                                  key: "disabled",
-                                  displayer: "Animation Enabled",
-                                  value: true,
-                                },
-                              ],
-                            },
-                          ],
+                          value: [INPUTS.BUTTON("button", "Button", "Join this plan", "", null, null, "Primary")],
                         },
                       ],
                     },
@@ -1073,7 +741,7 @@ class PricingMultipleTwo extends BasePricingTable {
                       type: "string",
                       key: "plan",
                       displayer: "Plan",
-                      value: "Product 3",
+                      value: "Popular",
                     },
                     {
                       type: "string",
@@ -1085,12 +753,13 @@ class PricingMultipleTwo extends BasePricingTable {
                       type: "string",
                       key: "price",
                       displayer: "Price",
-                      value: "60000$",
+                      value: "10$",
                     },
+
                     {
                       type: "string",
                       key: "per",
-                      displayer: "Per",
+                      displayer: "Info",
                       value: "Per year",
                     },
                     {
@@ -1102,13 +771,19 @@ class PricingMultipleTwo extends BasePricingTable {
                           type: "string",
                           key: "badge",
                           displayer: "Badge",
-                          value: "Product 1",
+                          value: "POPULAR",
                         },
                         {
                           type: "string",
                           key: "title",
                           displayer: "Title",
                           value: "60 hour package per month",
+                        },
+                        {
+                          type: "string",
+                          key: "text",
+                          displayer: "Text",
+                          value: "Offer save 30%",
                         },
                         {
                           type: "array",
@@ -1121,17 +796,22 @@ class PricingMultipleTwo extends BasePricingTable {
                               displayer: "List Item",
                               value: [
                                 {
+                                  type: "boolean",
+                                  key: "enable",
+                                  displayer: "Active",
+                                  value: true,
+                                },
+                                {
                                   type: "string",
                                   key: "property",
                                   displayer: "Property",
-                                  value:
-                                    "3 hours of training (VR therapy + platform use)",
+                                  value: "3 hours of training (VR therapy + platform use)",
                                 },
                                 {
                                   type: "icon",
                                   key: "dash_icon",
                                   displayer: "Dash Icon",
-                                  value: "GoDash",
+                                  value: "FcCheckmark",
                                 },
                               ],
                             },
@@ -1140,6 +820,12 @@ class PricingMultipleTwo extends BasePricingTable {
                               key: "list_item",
                               displayer: "List Item",
                               value: [
+                                {
+                                  type: "boolean",
+                                  key: "enable",
+                                  displayer: "Active",
+                                  value: true,
+                                },
                                 {
                                   type: "string",
                                   key: "property",
@@ -1150,7 +836,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                   type: "icon",
                                   key: "dash_icon",
                                   displayer: "Dash Icon",
-                                  value: "GoDash",
+                                  value: "FcCancel",
                                 },
                               ],
                             },
@@ -1159,6 +845,12 @@ class PricingMultipleTwo extends BasePricingTable {
                               key: "list_item",
                               displayer: "List Item",
                               value: [
+                                {
+                                  type: "boolean",
+                                  key: "enable",
+                                  displayer: "Active",
+                                  value: true,
+                                },
                                 {
                                   type: "string",
                                   key: "property",
@@ -1169,7 +861,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                   type: "icon",
                                   key: "dash_icon",
                                   displayer: "Dash Icon",
-                                  value: "GoDash",
+                                  value: "FcCancel",
                                 },
                               ],
                             },
@@ -1179,33 +871,7 @@ class PricingMultipleTwo extends BasePricingTable {
                           type: "array",
                           key: "buttons",
                           displayer: "Buttons",
-                          value: [
-                            {
-                              type: "object",
-                              key: "button",
-                              displayer: "Button",
-                              value: [
-                                {
-                                  type: "string",
-                                  key: "buttonText",
-                                  displayer: "Button Text",
-                                  value: "Join this plan",
-                                },
-                                {
-                                  type: "page",
-                                  key: "url",
-                                  displayer: "Link",
-                                  value: "",
-                                },
-                                {
-                                  type: "boolean",
-                                  key: "disabled",
-                                  displayer: "Animation Enabled",
-                                  value: true,
-                                },
-                              ],
-                            },
-                          ],
+                          value: [INPUTS.BUTTON("button", "Button", "Join this plan", "", null, null, "Primary")],
                         },
                       ],
                     },
@@ -1232,24 +898,24 @@ class PricingMultipleTwo extends BasePricingTable {
                       type: "string",
                       key: "plan",
                       displayer: "Plan",
-                      value: "Product 4",
+                      value: "Premium",
                     },
                     {
                       type: "string",
                       key: "tag",
                       displayer: "Tag",
-                      value: "SAVE 40%",
+                      value: "SAVE 35%",
                     },
                     {
                       type: "string",
                       key: "price",
                       displayer: "Price",
-                      value: "80000$",
+                      value: "15$",
                     },
                     {
                       type: "string",
                       key: "per",
-                      displayer: "Per",
+                      displayer: "Info",
                       value: "Per year",
                     },
                     {
@@ -1261,13 +927,19 @@ class PricingMultipleTwo extends BasePricingTable {
                           type: "string",
                           key: "badge",
                           displayer: "Badge",
-                          value: "Product 1",
+                          value: "PREMIUM",
                         },
                         {
                           type: "string",
                           key: "title",
                           displayer: "Title",
                           value: "60 hour package per month",
+                        },
+                        {
+                          type: "string",
+                          key: "text",
+                          displayer: "Text",
+                          value: "Offer save 35%",
                         },
                         {
                           type: "array",
@@ -1280,17 +952,22 @@ class PricingMultipleTwo extends BasePricingTable {
                               displayer: "List Item",
                               value: [
                                 {
+                                  type: "boolean",
+                                  key: "enable",
+                                  displayer: "Active",
+                                  value: true,
+                                },
+                                {
                                   type: "string",
                                   key: "property",
                                   displayer: "Property",
-                                  value:
-                                    "3 hours of training (VR therapy + platform use)",
+                                  value: "3 hours of training (VR therapy + platform use)",
                                 },
                                 {
                                   type: "icon",
                                   key: "dash_icon",
                                   displayer: "Dash Icon",
-                                  value: "GoDash",
+                                  value: "FcCheckmark",
                                 },
                               ],
                             },
@@ -1299,6 +976,12 @@ class PricingMultipleTwo extends BasePricingTable {
                               key: "list_item",
                               displayer: "List Item",
                               value: [
+                                {
+                                  type: "boolean",
+                                  key: "enable",
+                                  displayer: "Active",
+                                  value: true,
+                                },
                                 {
                                   type: "string",
                                   key: "property",
@@ -1309,7 +992,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                   type: "icon",
                                   key: "dash_icon",
                                   displayer: "Dash Icon",
-                                  value: "GoDash",
+                                  value: "FcCheckmark",
                                 },
                               ],
                             },
@@ -1318,6 +1001,12 @@ class PricingMultipleTwo extends BasePricingTable {
                               key: "list_item",
                               displayer: "List Item",
                               value: [
+                                {
+                                  type: "boolean",
+                                  key: "enable",
+                                  displayer: "Active",
+                                  value: true,
+                                },
                                 {
                                   type: "string",
                                   key: "property",
@@ -1328,7 +1017,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                   type: "icon",
                                   key: "dash_icon",
                                   displayer: "Dash Icon",
-                                  value: "GoDash",
+                                  value: "FcCheckmark",
                                 },
                               ],
                             },
@@ -1338,33 +1027,7 @@ class PricingMultipleTwo extends BasePricingTable {
                           type: "array",
                           key: "buttons",
                           displayer: "Buttons",
-                          value: [
-                            {
-                              type: "object",
-                              key: "button",
-                              displayer: "Button",
-                              value: [
-                                {
-                                  type: "string",
-                                  key: "buttonText",
-                                  displayer: "Button Text",
-                                  value: "Join this plan",
-                                },
-                                {
-                                  type: "page",
-                                  key: "url",
-                                  displayer: "Link",
-                                  value: "",
-                                },
-                                {
-                                  type: "boolean",
-                                  key: "disabled",
-                                  displayer: "Animation Enabled",
-                                  value: true,
-                                },
-                              ],
-                            },
-                          ],
+                          value: [INPUTS.BUTTON("button", "Button", "Join this plan", "", null, null, "Primary")],
                         },
                       ],
                     },
@@ -1386,53 +1049,37 @@ class PricingMultipleTwo extends BasePricingTable {
   setActivePlan(activeTabIndex: number) {
     this.setComponentState("activePlan", activeTabIndex);
   }
-  getName(): string {
+  static getName(): string {
     return "Pricing 6";
   }
   render(): React.ReactNode {
     const plans = this.castToObject<Pricing[]>("plans");
     const activeTab = this.getComponentState("activeTab");
-    const hasPlans =
-      Array.isArray(plans) &&
-      plans.length > 0 &&
-      activeTab !== undefined &&
-      plans[activeTab];
+    const hasPlans = Array.isArray(plans) && plans.length > 0 && activeTab !== undefined && plans[activeTab];
     const plan = hasPlans ? plans[activeTab].product : [];
     const planIndex = this.getComponentState("activePlan");
 
+    const rightItemExist = plan[planIndex]?.right_items?.list.length > 0;
+
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("page")}>
-            <div className={this.decorateCSS("up-page")}>
-              {this.castToString(this.getPropValue("badge")) && (
-                <div className={this.decorateCSS("badge")}>
-                  {this.getPropValue("badge")}
-                </div>
-              )}
-              {this.castToString(this.getPropValue("title")) && (
-                <h1 className={this.decorateCSS("title")}>
-                  {this.getPropValue("title")}
-                </h1>
-              )}
-            </div>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <Base.VerticalContent className={this.decorateCSS("page")}>
+            <Base.VerticalContent className={this.decorateCSS("up-page")}>
+              {this.castToString(this.getPropValue("badge")) && <Base.SectionSubTitle className={this.decorateCSS("badge")}>{this.getPropValue("badge")}</Base.SectionSubTitle>}
+              {this.castToString(this.getPropValue("title")) && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+            </Base.VerticalContent>
             {hasPlans && (
               <div className={this.decorateCSS("plan-items")}>
                 {plans.map((plan: any, index: number) => {
                   const title2 = this.castToString(plan.getPropValue("title"));
-                  return title2 ? (
-                    <div
-                      className={
-                        this.decorateCSS("plan-title") +
-                        " " +
-                        (this.getComponentState("activeTab") === index &&
-                          this.decorateCSS("activeTab"))
-                      }
-                      onClick={() => this.setActiveTab(index)}
-                    >
-                      {title2}
-                    </div>
-                  ) : null;
+                  return (
+                    title2 && (
+                      <Base.P className={this.decorateCSS("plan-title") + " " + (this.getComponentState("activeTab") === index && this.decorateCSS("activeTab"))} onClick={() => this.setActiveTab(index)}>
+                        {plan.getPropValue("title")}
+                      </Base.P>
+                    )
+                  );
                 })}
               </div>
             )}
@@ -1442,131 +1089,79 @@ class PricingMultipleTwo extends BasePricingTable {
                   <>
                     <div className={this.decorateCSS("left-page")}>
                       {plan.map((tab: any, index: number) => (
-                        <div
-                          className={
-                            this.decorateCSS("listArray") +
-                            " " +
-                            (this.getComponentState("activePlan") == index &&
-                              this.decorateCSS("active"))
-                          }
-                          onClick={() => this.setActivePlan(index)}
-                          key={index}
-                        >
+                        <div className={this.decorateCSS("listArray") + " " + (this.getComponentState("activePlan") == index && this.decorateCSS("active"))} onClick={() => this.setActivePlan(index)} key={index}>
                           <div className={this.decorateCSS("plan-icons")}>
-                            <div className={this.decorateCSS("icons")}>
-                              <ComposerIcon
-                                name={
-                                  planIndex == index
-                                    ? tab.check_icon
-                                    : tab.circle_icon
-                                }
-                              ></ComposerIcon>
-                            </div>
-                            <div className={this.decorateCSS("plan")}>
-                              {" "}
-                              {tab.plan}
-                            </div>
+                            <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={planIndex == index ? tab.check_icon : tab.circle_icon}></ComposerIcon>
+                            <Base.P className={this.decorateCSS("plan")}> {tab.plan}</Base.P>
                           </div>
-                          {this.castToString(tab.tag) && (
-                            <div className={this.decorateCSS("tag")}>
-                              {" "}
-                              {tab.tag}
-                            </div>
-                          )}
+                          {this.castToString(tab.tag) && <Base.P className={this.decorateCSS("tag")}> {tab.tag}</Base.P>}
                           <div className={this.decorateCSS("item-price")}>
-                            <h5 className={this.decorateCSS("price")}>
-                              {tab.price}
-                            </h5>
-                            <h5 className={this.decorateCSS("per")}>
-                              {" "}
-                              {tab.per}
-                            </h5>
+                            <Base.H5 className={this.decorateCSS("price")}>{tab.price}</Base.H5>
+                            <Base.H5 className={this.decorateCSS("per")}> {tab.per}</Base.H5>
                           </div>
                         </div>
                       ))}
                     </div>
-                    <div className={this.decorateCSS("right-page")}>
-                      <div className={this.decorateCSS("content")}>
-                        {plan[planIndex].right_items.badge &&
-                          this.castToString(
-                            plan[planIndex].right_items.badge
-                          ) && (
-                            <span className={this.decorateCSS("badge")}>
-                              {plan[planIndex].right_items.badge}
-                            </span>
-                          )}
-                        {this.castToString(
-                          plan[planIndex].right_items.title
-                        ) && (
-                          <h1 className={this.decorateCSS("title")}>
-                            {plan[planIndex].right_items.title}
-                          </h1>
-                        )}
+                    {rightItemExist && (
+                      <div className={this.decorateCSS("right-page")}>
+                        <Base.VerticalContent className={this.decorateCSS("content")}>
+                          {plan[planIndex].right_items.badge && this.castToString(plan[planIndex].right_items.badge) && <Base.H5 className={this.decorateCSS("badge")}>{plan[planIndex].right_items.badge}</Base.H5>}
+                          {this.castToString(plan[planIndex].right_items.title) && <Base.H2 className={this.decorateCSS("title")}>{plan[planIndex].right_items.title}</Base.H2>}
 
-                        <div className={this.decorateCSS("list-body")}>
-                          {plan[planIndex]?.right_items?.list?.map(
-                            (listItem: any, listItemIndex: number) => (
-                              <div
-                                key={listItemIndex}
-                                className={this.decorateCSS("list-item")}
-                              >
-                                <ComposerIcon
-                                  propsIcon={{
-                                    className: this.decorateCSS("dash_icon"),
-                                  }}
-                                  name={
-                                    listItem.value.find(
-                                      (item: any) => item.key === "dash_icon"
-                                    ).value
-                                  }
-                                />
-                                <div className={this.decorateCSS("property")}>
-                                  {
-                                    listItem.value.find(
-                                      (item: any) => item.key === "property"
-                                    ).value
-                                  }
-                                </div>
-                              </div>
-                            )
-                          )}
-                        </div>
-                        {plan[planIndex]?.right_items?.buttons.length > 0 && (
-                          <div className={this.decorateCSS("body-bottom")}>
-                            <div className={this.decorateCSS("buttons")}>
-                              {plan[planIndex]?.right_items?.buttons.map(
-                                (button: any, buttonIndex: number) => {
-                                  const buttonText = this.castToString(button.getPropValue("buttonText"));
-                                  const buttonUrl = button.getPropValue("url");
-                                  const isDisabled = button.getPropValue("disabled");
+                          <div className={this.decorateCSS("list-body")}>
+                            {plan[planIndex]?.right_items?.list?.map((listItem: any, listItemIndex: number) => {
+                              const property = listItem.getPropValue("property");
+                              const iconValue = listItem.getPropValue("dash_icon");
+                              const enableValue = listItem.getPropValue("enable");
+
+                              const listValue = this.castToString(property);
+
+                              return (
+                                (listValue || iconValue) && (
+                                  <div key={listItemIndex} className={`${this.decorateCSS("list-item")} ${!enableValue && this.decorateCSS("list-item-disabled")}`}>
+                                    <ComposerIcon
+                                      propsIcon={{
+                                        className: this.decorateCSS("dash_icon"),
+                                      }}
+                                      name={iconValue}
+                                    />
+                                    <Base.P className={this.decorateCSS("property")}>{property}</Base.P>
+                                  </div>
+                                )
+                              );
+                            })}
+                          </div>
+
+                          {plan[planIndex]?.right_items?.buttons.length > 0 && (
+                            <div className={this.decorateCSS("body-bottom")}>
+                              <div className={this.decorateCSS("buttons")}>
+                                {plan[planIndex]?.right_items?.buttons.map((button: any, buttonIndex: number) => {
+                                  const buttonText = this.castToString(button.getPropValue("text"));
 
                                   return (
                                     buttonText && (
-                                      <ComposerLink key={buttonIndex} path={buttonUrl}>
-                                        <button
-                                          className={`${this.decorateCSS("button")} ${
-                                            !isDisabled ? this.decorateCSS("disabled") : ""
-                                          }`}
-                                        >
-                                          {buttonText}
-                                        </button>
+                                      <ComposerLink key={buttonIndex} path={button.getPropValue("url")}>
+                                        <Base.Button buttonType={button.getPropValue("type")} className={this.decorateCSS("button")}>
+                                          {button.getPropValue("text")}
+                                        </Base.Button>
                                       </ComposerLink>
                                     )
                                   );
-                                }
-                              )}
+                                })}
+                              </div>
+                              {plan[planIndex].right_items.text && <span className={this.decorateCSS("bottom-text")}>{plan[planIndex].right_items.text}</span>}
                             </div>
-                          </div>
-                        )}
+                          )}
+                        </Base.VerticalContent>
                       </div>
-                    </div>
+                    )}
                   </>
                 )}
               </div>
             )}
-          </div>
-        </div>
-      </div>
+          </Base.VerticalContent>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

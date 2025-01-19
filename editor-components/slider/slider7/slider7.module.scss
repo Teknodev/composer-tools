@@ -1,31 +1,67 @@
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+
 .container {
-  width: 100%;
-  position: relative;
-  overflow: hidden;
+  &.one-card {
+    padding: var(--composer-gap-md) var(--composer-gap-xl) !important;
+  }
   .max-content {
-    max-width: var(--composer-content-width);
-    margin: auto;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     position: relative;
+
+    .nextArrow,
+    .prevArrow {
+      display: block;
+      position: absolute;
+      cursor: pointer;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      color: var(--composer-font-color-primary);
+      padding: var(--composer-gap-md) var(--composer-gap-xl);
+      font-size: 2.5rem;
+
+      @container (max-width: #{$composer-tablet-width}) {
+        padding: var(--composer-gap-md) var(--composer-gap-lg);
+        font-size: 1.5rem;
+      }
+
+      @container (max-width: #{$composer-phone-width}) {
+        display: none;
+      }
+    }
+
+    .prevArrow {
+      left: 0;
+    }
+
+    .nextArrow {
+      right: 0;
+    }
+
     .carousel {
-      width: 100%; 
-      .centerSlide {
-        transform: scale(1.0) !important;
-        transition: transform 0.3s ease !important;
-        z-index: 2 !important;
+      width: 100%;
+
+      :global(.slick-center) {
+        > div {
+          .centerSlide {
+            transform: scale(1);
+            transition: transform 0.3s ease;
+          }
+        }
       }
-      .carousel--singleCard {
-        width: 100%; 
-      }
-      .carousel--multipleCards {
-        width: auto; 
+
+      > ul {
+        bottom: -19px;
+
+        > li {
+          > button {
+            &:before {
+              color: var(--composer-font-color-primary);
+            }
+          }
+        }
       }
 
       .card {
-        width: 90%;
         height: 360px;
         overflow: hidden;
         display: flex;
@@ -34,28 +70,32 @@
         align-items: center;
         transition: transform 0.3s;
         transform: scale(0.8);
-        position: relative;
         z-index: 1;
+        border-radius: var(--composer-border-radius-xs);
 
         .imgContainer {
-          width: 100%;
+          position: relative;
+          width: 470px;
           height: 100%;
           overflow: hidden;
-          position: relative;
           z-index: 1;
 
+          @container (max-width: #{$composer-phone-width}) {
+            width: 100%;
+          }
+
           .img {
+            position: absolute;
             width: 100%;
             height: 100%;
             object-fit: cover;
             transform: scale(1.1);
             transform-origin: center;
-            position: relative;
             z-index: 1;
             transition: transform 0.5s ease, filter 0.5s ease;
 
             &:hover {
-              transform: scale(1.0);
+              transform: scale(1);
               filter: brightness(80%);
             }
 
@@ -70,90 +110,25 @@
   }
 }
 
-@media only screen and (min-width: 1024px) {
-  .container{
-    .max-content{
-      .carousel{
-        .card {
-          width: 100% !important;
-          background-size: cover;
-        }
-      }
-    }
-  }
-}
-
-@media only screen and (max-width: 800px) {
+@container (max-width: #{$composer-tablet-width-lg}) {
   .container {
     .max-content {
       .carousel {
-        width: 100%; 
         .card {
           width: 100%;
           height: 352px;
-          background-size: cover;
-        }
-        .img {
-          height: 100px;
-          border-radius: 6px;
         }
       }
     }
   }
-}
 
-@media only screen and (max-width: 400px) {
-  .container {
-    .max-content {
-      .carousel {
-        width: 100%;
-        .card {
-          width: 100%;
-          height: 352px;
-          background-size: cover;
-        }
-        .img {
-          height: 100% !important;
-          border-radius: 6px;
-        }
-      }
-    }
-  }
-}
-@mixin arrow {
-  display: block;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-  color: var(--composer-font-color-primary);
-}
-.nextArrow {
-  @include arrow;
-  right: 0;
-  padding: 20px 50px;
-
-  @media (max-width: 768px) {
-    font-size: 24px;
-    padding: 20px 30px;
-  }
-
-  @media (min-width: 769px) {
-    font-size: 42px;
-  }
-}
-.prevArrow {
-  @include arrow;
-  left: 0;
-  padding: 20px 50px;
-
-  @media (max-width: 768px) {
-    font-size: 24px;
-    padding: 20px 30px;
-  }
-
-  @media (min-width: 769px) {
-    font-size: 42px;
+  .one-card {
+    padding: var(--composer-gap-md) var(--composer-gap-lg) !important;
   }
 }
 
+@container (max-width: #{$composer-phone-width}) {
+  .one-card {
+    padding: var(--composer-gap-md) 0 !important;
+  }
+}

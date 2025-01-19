@@ -1,196 +1,129 @@
+@import "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss";
+
 $min-height: 500px;
 
 .container {
-  padding: 20px;
-  background-color: var(--composer-html-background);
-  font-weight: bold;
   background-size: cover;
   background-position: center;
-  min-height: $min-height;
-  width: 100%;
   position: relative;
-}
-
-.max-content {
-  max-width: var(--composer-content-width);
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
   min-height: $min-height;
-  position: relative; // for z-index to make it work
-  z-index: 2;
-}
 
-.page-1 {
-  margin: 40px;
-  display: flex;
-  flex-direction: column;
-  margin-bottom: -30px;
-  gap: 15px;
-}
+  .max-content {
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    min-height: $min-height;
 
-.box {
-  display: flex;
-  flex-wrap: wrap;
-  word-break: normal;
-}
+    .page {
+      display: flex;
+      flex-direction: column;
+      gap: var(--composer-gap-md);
+      width: 58%;
+      &.no-image{
+        width: 100%;
+      }
 
-.title1 {
-  font-size: 44px;
-  font-weight: bold;
-  color: var(--composer-font-color-primary);
-}
+      .header {
+        .title,
+        .description {
+          content: "";
+        }
+      }
 
-.text1 {
-  font-size: 20px;
-  color: var(--composer-font-color-primary);
-}
+      .buttons-container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: var(--composer-gap-sm);
+        .button-wrapper {
+          width: 170px;
+          height: 50px;
+          >div, >a{
+            width: 100% !important;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+          .button-image {
+            height: 100%;
+            width: 100%;
+            cursor: pointer;
+            border-radius: var(--composer-border-radius-sm);
+            object-fit: cover;
+          }
+        }
+          .button-element {
+            .icon {
+              content: "";
+            }
+            .button-text {
+              content: "";
+            }
+          }
+    
+        &.center {
+          justify-content: center;
+        }
+      }
 
-.button {
-  min-height: 68px;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  justify-content: center;
-  padding: 10px 10px;
-  border: 2px solid var(--composer-secondary-color);
-  font-size: 15px;
-  font-weight: bold;
-  border-radius: var(--composer-border-radius);
-  column-gap: 1rem;
-  background-color: var(--composer-secondary-color);
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  width: 240px;
-  color: var(--composer-font-color-primary);
-}
-
-.button:hover {
-  transform: scale(1.05);
-  background: transparent;
-  border: 1px solid var(--composer-secondary-color);
-  color: var(--composer-font-color-primary);
-
-  .up-text,
-  .down-text,
-  .icon {
-    color: var(--composer-font-color-primary);
-  }
-}
-
-.button-texts {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.up-text {
-  font-size: 0.8rem;
-  color: var(--composer-font-color-secondary);
-  opacity: 0.8;
-}
-
-.down-text {
-  font-size: 1.8rem;
-  color: var(--composer-font-color-secondary);
-  letter-spacing: 1px;
-}
-
-.icon {
-  width: 40px;
-  height: 40px;
-  color: var(--composer-font-color-secondary);
-}
-
-.buttons-box {
-  display: flex;
-  gap: 15px;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.overlay {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  background-color: rgba(0, 0, 0, 0.3);
-}
-
-@media (max-width: 1000px) {
-  .title1 {
-    font-size: 32px;
+    }
   }
 
-  .text1 {
-    font-size: 16px;
+  .overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: var(--composer-overlay-color);
   }
-
-  .button {
-    font-size: 14px;
-    column-gap: 8px;
-    width: 200px;
-    padding: 10px 8px;
-    min-height: auto;
+  &.single{
+    height: auto;
+    .max-content{
+      height: auto;
+    }
   }
+}
+@container (max-width: #{$composer-tablet-width-lg}) {
+  .container {
+    .max-content {
+      .page {
+        width: 55% !important;
 
-  .icon {
-    width: 30px;
-    height: 30px;
-  }
+        .buttons-container{
+          .button-wrapper {
+            .button-image {
+              width: 100%;
+            }
+          }
+        }
+      }
+      .page-no-image {
+        width: 100%;
+      }
+    }
 
-  .button-texts {
-    gap: 0;
-  }
-
-  .up-text {
-    font-size: 0.8em;
-  }
-
-  .down-text {
-    font-size: 1.2em;
+    .overlay {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      background-color: var(--composer-overlay-color);
+    }
   }
 }
 
-@media (max-width: 600px) {
-  .page-1 {
-    margin: 10px;
-  }
-
-  .title1 {
-    font-size: 20px;
-  }
-
-  .text1 {
-    font-size: 14px;
-  }
-
-  .buttons-box {
-    gap: 8px;
-  }
-
-  .button {
-    font-size: 12px;
-    padding: 8px 5px;
-    width: 180px;
-    column-gap: 5px;
-  }
-
-  .icon {
-    width: 24px;
-    height: 24px;
-  }
-
-  .button-texts {
-    gap: 0;
-  }
-
-  .up-text {
-    font-size: 0.8em;
-  }
-
-  .down-text {
-    font-size: 1.2em;
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .page {
+        width: 100% !important;
+      }
+    }
   }
 }

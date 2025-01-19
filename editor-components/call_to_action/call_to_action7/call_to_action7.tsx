@@ -2,16 +2,14 @@ import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action7.module.scss";
-
-type ButtonType = {
-  buttonText: JSX.Element;
-  link: string;
-}
+import { Base } from "../../../composer-base-components/base/base";
+import { Form, Formik } from "formik";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import * as Yup from "yup";
 
 class CallToAction7Page extends BaseCallToAction {
   constructor(props?: any) {
     super(props, styles);
-
     this.addProp({
       type: "string",
       key: "title",
@@ -22,118 +20,143 @@ class CallToAction7Page extends BaseCallToAction {
       type: "image",
       key: "image",
       displayer: "Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687a7beba6bbe002b63bb11?alt=media",
+      value: "https://vault.uicore.co/e-book/wp-content/uploads/sites/51/2022/08/E-Book-Book.webp",
     });
-    this.addProp({
-      type: "array",
-      key: "arrayItem",
-      displayer: "Button",
-      value: [
-        {
-          type: "object",
-          key: "button",
-          displayer: "Button",
-          value: [
-            {
-              type: "string",
-              key: "buttonText",
-              displayer: "Button Text",
-              value: "Get your FREE copy",
-            },
-            {
-              type: "page",
-              key: "link",
-              displayer: "Link",
-              value: "",
-            },
-          ],
-        },
-      ],
-    });
+
+    this.addProp(INPUTS.BUTTON("button", "Button", "Get your FREE copy", null, null, null, "Primary"));
+
     this.addProp({
       type: "string",
       key: "placeholder",
       displayer: "Placeholder",
-      value: "Email *",
-    },
-    );
+      value: "Email",
+    });
+    this.addProp({
+      type: "string",
+      key: "submitText",
+      displayer: "Submit Text",
+      value: "Form successfully submitted!",
+    });
+
     this.addProp({
       type: "boolean",
       key: "disableAnimation",
       displayer: "Disable Animation",
       value: false,
     });
+
+    this.setComponentState(
+      "placeholderText",
+      this.castToString(this.getPropValue("placeholder"))
+    );
   }
 
-  getName(): string {
+  componentDidUpdate() {
+    const currentPlaceholder = this.castToString(this.getPropValue("placeholder"));
+    const prevPlaceholder = this.getComponentState("placeholderText");
+
+    if (currentPlaceholder !== prevPlaceholder) {
+      this.setComponentState("placeholderText", currentPlaceholder);
+    }
+  }
+
+  validationSchema = Yup.object().shape({
+    email: Yup.string()
+      .email("Invalid email")
+      .required("Required"),
+  });
+
+  static getName(): string {
     return "Call To Action 7";
   }
 
   render() {
-    const title = this.getPropValue("title");
-    const image = this.getPropValue("image");
-    const arrayItem = this.castToObject<ButtonType[]>("arrayItem");
-    const input = this.castToString(this.getPropValue("placeholder"));
+    const title = this.castToString(this.getPropValue("title"));
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const placeholder = this.castToString(this.getPropValue("placeholder"));
     const disableAnimation = this.getPropValue("disableAnimation");
-    const isTitleText = this.castToString(title);
-    const isCallToActionExist = arrayItem || image || isTitleText;
-    const noRightsideItems = !arrayItem.length && !input && !(this.castToString(title));
 
+    const submitText = this.castToString(this.getPropValue("submitText"));
 
     return (
-      <div className={`${this.decorateCSS("container")}
-      ${!image && this.decorateCSS("no-transparent-bg")}
-      `}>
-        <div className={this.decorateCSS("max-content")}>
-          {isCallToActionExist && (
-            <section className={`${this.decorateCSS("call-to-action7-container")} ${disableAnimation ? this.decorateCSS("no-animation") : ""} ${!image && this.decorateCSS("no-image")}`}>
-              {image &&
-                (<div className={`${this.decorateCSS("image-wrapper")} ${noRightsideItems && this.decorateCSS("no-rightside-items")}`}>
-                  <img className={`${this.decorateCSS("image")} ${noRightsideItems && this.decorateCSS("no-rightside-items")}`} src={image} alt="" />
-                </div>)
-              }
-
-              {(arrayItem.length || input || this.castToString(title)) &&
-                (<div className={`${this.decorateCSS("call-to-action7")} ${!image && this.decorateCSS("no-image")}`}>
-                  {this.castToString(title) && <h1 className={this.decorateCSS("title")}>{title}</h1>}
-                  {(arrayItem.length > 0 || input) &&
-                    <div className={`${this.decorateCSS("input-button-wrapper")}
-                    ${!image && this.decorateCSS("ibw-no-image")}`}>
-                      {input && arrayItem.length <= 1 &&
-                        <div
-                          className={this.decorateCSS("input-div")}>
-                          <div className={this.decorateCSS("inputs")}>
-                            {input && (
+      <Base.Container className={`${this.decorateCSS("container")} ${!this.getPropValue("image") && this.decorateCSS("no-image")}`}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <Base.ContainerGrid className={this.decorateCSS("wrapper")}>
+            {this.getPropValue("image") &&
+              (<Base.GridCell className={this.decorateCSS("left-page")}>
+                <img className={`${this.decorateCSS("image")} ${disableAnimation && this.decorateCSS("no-animation")}`}
+                  src={this.getPropValue("image")} alt={this.getPropValue("image")} />
+              </Base.GridCell>)
+            }
+            {(placeholder || title) &&
+              (<Base.GridCell className={this.decorateCSS("right-page")}>
+                <Base.VerticalContent className={this.decorateCSS("right-content")}>
+                  {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                  {placeholder &&
+                    <div className={this.decorateCSS("input-button-wrapper")}>
+                      <Formik
+                        initialValues={{ email: "" }}
+                        validationSchema={this.validationSchema}
+                        onSubmit={(data, { resetForm }) => {
+                          this.setComponentState("placeholderText", submitText);
+                          this.insertForm("Call Me Back", data);
+                          setTimeout(() => {
+                            const defaultPlaceholder = this.castToString(this.getPropValue("placeholder"));
+                            this.setComponentState(
+                              "placeholderText",
+                              defaultPlaceholder
+                            );
+                          }, 2000);
+                          resetForm();
+                        }}
+                      >
+                        {({ handleSubmit,
+                          handleChange,
+                          values,
+                          errors,
+                          touched, }) => (
+                          <Form className={this.decorateCSS("input-div")}
+                            onSubmit={handleSubmit}>
+                            {placeholder && (
                               <input
-                                className={this.decorateCSS("input")}
-                                type={"text"}
-                                id="email"
+                                placeholder={
+                                  this.getComponentState("placeholderText") ||
+                                  placeholder
+                                }
+                                type="text"
+                                onChange={handleChange}
+                                value={values.email}
                                 name="email"
-                                placeholder={input}
-                              />)}
-                          </div>
-                        </div>}
-
-                      {arrayItem.length && (
-                        <div className={`${this.decorateCSS("button-container")}
-                        ${!image && this.decorateCSS("bc-no-image")}
-                        `}>
-                          {arrayItem.map((item: ButtonType, index: number) => (
-                            <ComposerLink isFullWidth={true} path={item.link}>
-                              {this.castToString(item.buttonText) && (
-                                <div key={index} className={this.decorateCSS("button")}>
-                                  <p className={this.decorateCSS("buttonText")}>{item.buttonText}</p>
-                                </div>)}
-                            </ComposerLink>
-                          ))}
-                        </div>
-                      )}
-                    </div>}
-                </div>)}
-            </section>
-          )}
-        </div>
-      </div>
+                                className={this.decorateCSS("input")}
+                              />
+                            )}
+                            {errors.email && touched.email && (
+                              <div className={this.decorateCSS("error")}>
+                                {errors.email}
+                              </div>
+                            )}
+                            {this.castToString(button.text) && (
+                              <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                                {button.text}
+                              </Base.Button>
+                            )}
+                          </Form>
+                        )}
+                      </Formik>
+                    </div>
+                  }
+                  {(!placeholder && this.castToString(button.text) && (
+                    <ComposerLink path={button.url}>
+                      <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>
+                        {button.text}
+                      </Base.Button>
+                    </ComposerLink>
+                  ))}
+                </Base.VerticalContent>
+              </Base.GridCell>)}
+          </Base.ContainerGrid>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

@@ -1,272 +1,136 @@
-@mixin text-style($font-size, $color: var(--composer-font-color-primary), $width: 100%) {
-    font-size: $font-size;
-    width: $width;
-    color: $color;
-    word-break: break-word;
-    height: auto;
-  }
-  
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+
 .container {
-    width: 100%;
-    height: 100%;
     .max-content {
-        padding: 20px 50px;
-        align-items: center;
-        width: 100%;
         display: flex;
-        .wrapper{
-            display: flex;
-            gap:20px;
-            max-width: var(--composer-content-width);
-            margin: 0 auto;
-            width: 100%;
-            .title-container {
-                flex-grow: 1;
+        gap: var(--composer-gap-md);
+        .title-container {
+            flex: 1;
+            justify-content: center;
+            .about-title {
+                content: "";
+            }
+
+            .maintitle {
+                content: "";
+            }
+
+            .description {
+                content: "";
+            }
+
+            .button-icon {
                 display: flex;
-                flex-direction: column;
-                width: 100%;
-                height: auto;
-                word-break: break-word;
-                gap:20px;
+                gap: var(--composer-gap-md);
+                align-items: center;
 
-                .about-title {
-                    @include text-style(2rem);
+                .about-button {
+                    content: "";
                 }
 
-                .maintitle {
-                    @include text-style(4rem);
-                }
-
-                .description {
-                    @include text-style(1.8rem);
-                }
-
-                .button-icon {
-                    width: 100%;
+                .phone-icon {
                     display: flex;
-                    margin-top: 30px;
-                    gap: 30px;
+                    gap: var(--composer-gap-sm);
                     align-items: center;
-                    .about-button {
-                        max-width: 50%;
-                        flex-grow: 1;
-                        align-items: center;
-                        background-color:  var(--composer-secondary-color);
+                    flex-grow: 1;
+                    min-width: 150px;
+
+                    .icon,
+                    .phone {
+                        font-size: 1.5rem;
                         color: var(--composer-font-color-primary);
-                        border: none;
-                        border-radius: 5px;
-                        width: 50%;
-                        cursor: pointer;
-                        .buttonText{
-                            color: var(--composer-font-color-secondary);
-                            word-break: break-word;
-                            width: auto;
-                            font-size: 2rem;
-                            margin:20px;
-                            text-align: center;
-                        }
-                    }
-                    .phone-icon {
-                        width: 100%;
-                        flex-grow: 1;
-                        color: var(--composer-font-color-primary);
-                        display: flex;
-                        gap:20px;
-                        align-items: center;
-                        .icon {
-                            text-align: center;
-                            font-size: 1.5rem;
-                            align-items: center;
-                        }
-                        .phone {
-                            text-align: center;
-                            align-items: center;
-                            font-size: 1.5rem;
-                            color: var(--composer-font-color-primary);
-                            max-width: 80%;
-                        }
+                        text-align: center;
                     }
                 }
             }
-            .right-page {
+        }
+
+        .right-page {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            &.no-content{
+                display: unset;
+                .image-container{
+                    max-height: calc(100vh - 100px);
+                    .image2{
+                        max-height: calc(100vh - 300px)
+                    }
+                }
+            }
+            .image-container {
+                position: relative;
                 display: flex;
-                flex-direction: column;
-                height: auto;
-                max-height: 500px;
-                width: 100%;
-                .image-container {
-                    position: relative;
-                    height: 100%;
-                    min-height: 300px;
-                  .image-text {
+                justify-content: flex-end;
+                .image-text {
                     position: absolute;
                     z-index: 10;
-                    top:10px;
-                    left:22rem;
-                    .text {
+                    top: 10px;
+                    left: 25%;
+                    top: 90px;
+                    transform: translateX(-60%);
+                    max-width: 200px;
+
+                    .weak-text {
+                        margin: 0px;
                         text-transform: uppercase;
-                        font-size: 1.5rem;
-                        word-break: break-word;
                         color: var(--composer-font-color-primary);
                     }
-                    .year{
-                        font-size: 5.6rem;
-                        word-break: break-word;
+
+                    .bold-text {
+                        margin: 0px;
+                        font-size: 4rem;
                         color: var(--composer-font-color-primary);
                     }
-                  }
-              
-                  .image1{
-                    position: absolute;
-                    right: 0;
-                    width: 60%;
-                    max-height: 100%;
-                    object-fit: cover; 
-                    padding-bottom: 40px; 
-                    min-height: 80%; 
-                  }
-                  .without-image2{
-                    padding-bottom: 0px !important;
-                    } 
-                  .image2{
-                    position: absolute;
-                    left:10rem;
-                    bottom: 0px;
-                    max-height: 70%;
-                    width: 50%;
+                }
+
+                .image1,
+                .image2 {
                     object-fit: cover;
-                    min-height: 50%; 
-                  }
-
+                    border-radius: var(--composer-border-radius-sm);
+                    &.no-image{
+                        position: relative;
+                        width: 75%;
+                    }
                 }
-              }
-              
-              
+
+                .image1 {
+                    width: 75%;
+                    margin-bottom: var(--composer-gap-xl);
+                }
+
+                .image2 {
+                    position: absolute;
+                    left: 0px;
+                    bottom: 0px;
+                    width: 60%;
+                }
+            }
         }
     }
 }
-@media only screen and (max-width: 1024px)  {
+
+@container (max-width: #{$composer-tablet-width-lg}) {
     .container {
+
         .max-content {
-            padding: 20px 30px;
-            .wrapper{
-                display: flex;
-                flex-direction: column;
-                gap:50px;
-                .title-container {
-                    .about-title {
-                        font-size: 1.8rem;
-                    }
-                    .maintitle {
-                        font-size: 3.5rem;
-                    }
-                    .description {
-                        font-size: 1.8rem;
-                    }
-    
-                    .button-icon {
-                        .about-button {
-                            width: 30%;
-                            max-width: 100%;
-                            .buttonText{
-                                padding: 5px;
-                                font-size: 1.5rem;
-                                margin: 15px;
-                                color: var(--composer-font-color-secondary)
-                            }
-                        }
-                        .phone-icon {
-                            .icon {
-                                text-align: center;
-                                font-size: 1.5rem;
-                            }
-                            .phone {
-                                font-size: 1.5rem;
-                            }
-                        }
+            flex-direction: column;
+            .title-container{
+                .button-icon{
+                    width: 100%;
+                    flex-direction: column;
+                    .phone{
+                        margin-top: 0px;
+                        margin-bottom: 0px;
                     }
                 }
-                .right-page {
-                    height: 100%;
-                    .image-container {
-                        min-height:400px;
-                        .image-text {
-                            top:10px;
-                            left:15rem;
-                            .text {
-                                font-size: 1.3rem;
-                            }
-                            .year{
-                                font-size: 4.5rem;
-                            }
-                        }
-                        .image1{
-                             padding-bottom: 40px;
-                             width: 70%;   
-                        }
-                        .image2 {
-                            bottom:0px;
-                            width: 50%;
-                            left: 0px;
-                        }
-                    }
+            }
+            .right-page{
+                .image-container{
+                    width: 100%;
                 }
             }
         }
     }
-    
 }
-@media only screen and (max-width: 480px)  {
-    .about-title{
-        font-size: 1.5rem !important;
-    }
-    .maintitle{
-        font-size: 3rem !important;
-    } 
-    .description{
-        font-size:1.5rem !important;
-    }
-    .about-button{
-        width: 90% !important;
-    }
-    .buttonText{
-        font-size: 1.3rem !important;
-        word-break: break-word !important;
-        margin:10px !important;
-    }
-    .button-icon{
-        gap:10px !important;
-    }
-    .phone{
-        font-size: 1.5rem !important;
-    }
-    .phone-icon{
-        gap: 3px !important;
-    }
-
-    .image-container{
-        min-height: 300px !important;
-        .image-text{
-            left:1rem !important;
-            .text{
-                font-size: 1.1rem !important;
-            }
-            .year{
-                font-size: 3.5rem !important;
-            }
-        }
-        .image1{
-            width: 80% !important;
-            object-fit: cover !important;
-            min-height: 80%;
-        }
-        .image2{
-            left: 0rem !important;
-            width: 60% !important;
-            object-fit: cover !important;
-            min-height: 80%;
-        }
-    }
-}
-
-

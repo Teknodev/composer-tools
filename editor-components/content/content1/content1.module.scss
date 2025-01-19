@@ -1,83 +1,38 @@
+@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
 .container {
-    width: 100%;
-    padding: 150px 0;
     .max-content {
-        max-width: var(--composer-content-width);
-        margin: auto;
-        .heading-page {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-md);
+        .title {
+            margin: 0px;
+            text-align: center;
+        }
+        .description {
+            margin: 0px;
+            text-align: center;
+        }
+        .button-container {
             display: flex;
-            flex-direction: column;
-            gap: 20px;
-            width: 100%;
-            .heading {
-                text-align: center;
-                font-size: 2rem;
-                font-weight: 100;
-                margin: 0;
-                color: var(--composer-font-color-primary);
-            }
-            .heading-h1 {
-                text-align: center;
-                margin: 0;
-                font-size: 3rem;
-                color: var(--composer-primary-color);
-            }
-            .button-wrapper {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 10px;
-                margin-top: 30px;
-                .button {
-                    text-align: center;
-                    cursor: pointer;
-                    transition: 0.3s;
-                    color: white;
-                    background-color: var(--composer-secondary-color);
-                    padding: 15px 30px;
-                    border-radius: 6px;
-                    border: 1px solid transparent;
-                    font-size: 1.5rem;
-                    width: 150px;
-                    &:hover {
-                        color: var(--composer-secondary-color);
-                        background-color: transparent;
-                        border: 1px solid var(--composer-secondary-color);
-                    }
-                }
-                .button-reverse {
-                    text-align: center;
-                    cursor: pointer;
-                    padding: 15px 30px;
-                    transition: 0.3s;
-                    width: 150px;
-                    border-radius: 6px;
-                    color: var(--composer-secondary-color);
-                    background-color: transparent;
-                    border: 1px solid var(--composer-secondary-color);
-                    &:hover {
-                        color: white;
-                        background-color: var(--composer-secondary-color);
-                    }
-                }
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: var(--composer-gap-sm);
+            .button{
+                content: "";
             }
         }
     }
 }
 
-@media only screen and (max-width: 768px) {
+@container (max-width: #{$composer-tablet-width-lg}) {
     .container {
-        padding: 50px 20px;
         .max-content {
             .heading-page {
                 .heading {
                     min-width: auto !important;
                 }
-                .button-wrapper {
-                    .button {
-                        width: 100%;
-                    }
-                    .button-reverse {
+                .button-container {
+                    .button, .button-reverse {
                         width: 100%;
                     }
                 }

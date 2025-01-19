@@ -1,84 +1,197 @@
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 .container {
-  width: 100%;
-  padding: 150px 0;
-  background-color: var(--composer-html-background);
-
-  .max-content {
+  .maxContent {
     display: flex;
-    justify-content: center;
-    max-width: var(--composer-content-width);
-    margin: auto;
-    
-    .testimonials2 {
+    .testimonials8 {
       width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: var(--composer-gap-xl);
       .title {
-        text-align: center;
-        font-size: 3rem;
-        margin: 0 0 80px 0;
-        color: var(--composer-primary-color);
+        width: 100%;
+        margin: 0px;
       }
-      section {
+      .content {
+        width: 100%;
         display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 20px;
-        
-        .card {
-          padding: 20px;
-          min-width: 250px;
-          border-radius: 6px;
-          border: 1px;
-          border: var(--composer-testiary-color);
-
-          .item-time {
-            opacity: 0.8;
-            font-weight: 200;
-            font-size: 1rem;
-            margin-bottom: 0;
-            margin-left: 0;
-            margin-right: 0;
-            color: var(--composer-primary-color);
-
+        position: relative;
+        > div {
+          > div {
+            > div {
+              display: flex;
+              height: 100%;
+              align-items: stretch;
+              > div {
+                padding: 0px var(--composer-gap-xs);
+                height: auto;
+                > div {
+                  height: 100%;
+                }
+              }
+            }
           }
-          .profile {
+        }
+
+        .prevArrow,
+        .nextArrow {
+          position: absolute;
+          top: calc(50% - var(--composer-gap-md));
+          transform: translateY(-50%);
+          display: flex;
+          align-items: center;
+          z-index: 1;
+          background-color: transparent;
+          border: none;
+          width: var(--composer-gap-lg);
+          height: var(--composer-gap-lg);
+          border: 1px solid var(--composer-font-color-primary);
+          border-radius: 50%;
+          justify-content: center;
+          color: var(--composer-font-color-primary);
+        }
+        .prevArrow {
+          left: 0;
+        }
+        .nextArrow {
+          right: 0;
+        }
+        > div {
+          width: 100%;
+          > div {
+            padding-bottom: var(--composer-gap-lg);
+          }
+          > ul {
+            left: 0px;
+            bottom: 0px;
+            > li {
+              > button {
+                &::before {
+                  color: var(--composer-font-color-primary);
+                }
+              }
+            }
+          }
+        }
+        .card {
+          background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+          border-radius: var(--composer-border-radius-md);
+          padding: var(--composer-gap-xl);
+          display: flex;
+          flex-direction: column;
+          gap: var(--composer-gap-md);
+          margin-bottom: var(--composer-gap-md);
+          height: 100%;
+          .topContainer {
             display: flex;
-            margin-bottom: 20px;
-            img {
-              border-radius: 100%;
+            gap: var(--composer-gap-sm);
+            align-items: center;
+            .image {
+              width: var(--composer-gap-xl);
+              height: var(--composer-gap-xl);
+              border-radius: 50%;
               object-fit: cover;
             }
-            .profile-text {
-              margin-left: 20px;
+            .personal {
               display: flex;
               flex-direction: column;
-              justify-content: center;
-
-              .item-name {
-                margin: 0;
-                color: var(--composer-primary-color);
+              gap: var(--composer-gap-sm);
+              .name {
+                color: var(--composer-font-color-primary);
               }
-              .item-name-id {
-                margin: 5px 0 !important;
-                text-transform: uppercase;
-                font-size: 14px;
-                color: var(--composer-primary-color);
-
+              .personTitle {
+                color: var(--composer-tertiary-color);
               }
             }
           }
-          .item-description{
-            font-size: 1.4rem;
-            color: var(--composer-primary-color);
+          .description {
+            color: var(--composer-font-color-primary);
+          }
+          .bottomContainer {
+            display: flex;
+            gap: var(--composer-gap-sm);
+            .star {
+              display: flex;
+              gap: var(--composer-gap-xs);
+
+              .icon {
+                color: var(--composer-primary-color);
+                font-size: 1rem;
+              }
+            }
+            .line {
+              width: 1px;
+              background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
+            }
+            .starNumber {
+              color: var(--composer-secondary-color);
+              display: flex;
+              align-items: center;
+            }
+          }
+        }
+      }
+      .contentPaddingLeft {
+        padding-left: calc(var(--composer-gap-xl) * 3);
+      }
+
+      .contentPaddingRight {
+        padding-right: calc(var(--composer-gap-xl) * 3);
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width-lg}) {
+  .container {
+    .maxContent {
+      .testimonials8 {
+        gap: var(--composer-gap-md);
+        .content {
+          padding: 0px;
+          .prevArrow,
+          .nextArrow {
+            display: none;
+          }
+          > div {
+            padding: 0px;
+            > div {
+              padding-bottom: var(--composer-gap-sm);
+              > div {
+                > div {
+                  padding: var(--composer-gap-sm);
+                }
+              }
+            }
+          }
+          .card {
+            padding: var(--composer-gap-lg);
           }
         }
       }
     }
   }
 }
-
-@media only screen and (max-width: 768px) {
+@container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: 50px 20px;
-    background-color: var(--composer-html-background);
+    .maxContent {
+      .testimonials8 {
+        .content {
+          .prevArrow,
+          .nextArrow {
+            width: 30px;
+            height: 30px;
+          }
+          .card {
+            padding: var(--composer-gap-sm);
+            .topContainer {
+              .image {
+                width: var(--composer-gap-lg);
+                height: var(--composer-gap-lg);
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }

@@ -3,13 +3,8 @@ import styles from "./download5.module.scss";
 import { BaseDownload } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
-
-type Button = {
-  buttonText1: JSX.Element;
-  buttonText2: JSX.Element;
-  url: string;
-  icon: string;
-};
+import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 class Download5 extends BaseDownload {
   constructor(props?: any) {
@@ -40,83 +35,22 @@ class Download5 extends BaseDownload {
       type: "boolean",
       key: "overlay",
       displayer: "Overlay",
-      value: false
+      value: false,
     });
 
     this.addProp({
       type: "array",
       key: "buttons",
       displayer: "Button",
-
       value: [
-        {
-          type: "object",
-          key: "button",
-          displayer: "Button",
-          value: [
-            {
-              type: "string",
-              key: "buttonText1",
-              displayer: "Button Text 1",
-              value: "Download on the",
-            },
-            {
-              type: "string",
-              key: "buttonText2",
-              displayer: "Button Text 2",
-              value: "Google Play",
-            },
-            {
-              type: "icon",
-              key: "icon",
-              displayer: "Button Icon",
-              value: "BsGooglePlay",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Button Link",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "button",
-          displayer: "Button",
-          value: [
-            {
-              type: "string",
-              key: "buttonText1",
-              displayer: "Button Text 1",
-              value: "Download on the",
-            },
-            {
-              type: "string",
-              key: "buttonText2",
-              displayer: "Button Text 2",
-              value: "App Store",
-            },
-            {
-              type: "icon",
-              key: "icon",
-              displayer: "Button Icon",
-              value: "BsApple",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Button Link",
-              value: "",
-            },
-          ],
-        },
+        INPUTS.BUTTON("button", "Button", "Google Play", "", "BsGooglePlay", "", "Primary"),
+        INPUTS.BUTTON("button", "Button", "App Store", "", "BsApple", "", "Primary"),
       ],
     });
   }
 
-  getName(): string {
-    return "Download-5";
+  static getName(): string {
+    return "Download 5";
   }
 
   render() {
@@ -124,86 +58,62 @@ class Download5 extends BaseDownload {
     const overlay = this.getPropValue("overlay");
 
     const title = this.getPropValue("title");
-    const titleExist = this.getPropValue("title", { as_string: true });
+    const titleExist = this.castToString(title);
 
     const desc = this.getPropValue("description");
-    const descExist = this.getPropValue("description", { as_string: true });
+    const descExist = this.castToString(desc);
 
-    const buttons = this.castToObject<Button[]>("buttons");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
-    const widenContent = backgroundImage ? { width: "60%" } : {};
+    const alignmentValue = Base.getContentAlignment();
 
     return (
-      <div
-        className={this.decorateCSS("container")}
-        style={{ backgroundImage: `url(${backgroundImage})` }}
-      >
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("page-1")} style={widenContent}>
-            {titleExist && (
-              <div className={this.decorateCSS("box")}>
-                <h1 className={this.decorateCSS("title1")}>
-                  {title}
-                </h1>
-              </div>
-            )}
-            {descExist && (
-              <div className={this.decorateCSS("box")}>
-                <p className={this.decorateCSS("text1")}>
-                  {desc}
-                </p>
-              </div>
-            )}
+      <Base.Container className={`${this.decorateCSS("container")} ${!backgroundImage && this.decorateCSS("single")}`} style={{ backgroundImage: backgroundImage ? `url(${backgroundImage})` : "none" }}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <div className={`${this.decorateCSS("page")} ${!backgroundImage && this.decorateCSS("no-image")}`}>
+            <Base.VerticalContent className={this.decorateCSS("header")}>
+              {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
+              {descExist && <Base.SectionDescription className={this.decorateCSS("description")}>{desc}</Base.SectionDescription>}
+            </Base.VerticalContent>
 
-            {buttons.length > 0 &&
-              <div className={this.decorateCSS("buttons-box")}>
-                {buttons.map(
-                  (item: Button, index: number) => {
-                    const text1Exist = this.castToString(item.buttonText1);
-                    const text2Exist = this.castToString(item.buttonText2);
-
-                    if (text1Exist || text2Exist || item.icon)
-                      return (
+            {buttons.length > 0 && (
+              <div className={`${this.decorateCSS("buttons-container")} ${alignmentValue === "center" && this.decorateCSS("center")}`}>
+                {buttons.map((item: INPUTS.CastedButton, index: number) => {
+                  const buttonTextExist = this.castToString(item?.text);
+                  return (
+                    (item.image || item.icon || buttonTextExist) && (
+                      <div className={this.decorateCSS("button-wrapper")}>
                         <ComposerLink key={index} path={item.url}>
-                          <div className={this.decorateCSS("button")}>
-                            {item.icon && (
-                              <div className={this.decorateCSS("icon-div")}>
-                                <ComposerIcon
-                                  name={item.icon}
-                                  propsIcon={{
-                                    className: this.decorateCSS("icon"),
-                                  }}
-                                />
-                              </div>
-                            )}
-                            {(text1Exist || text2Exist) && (
-                              <div className={this.decorateCSS("button-texts")}>
-                                {text1Exist && (
-                                  <p className={this.decorateCSS("up-text")}>
-                                    {item.buttonText1}
-                                  </p>
+                          {item.image ? (
+
+                            <img src={item.image} className={this.decorateCSS("button-image")} />
+
+                          ) : (
+                            (buttonTextExist || item.icon) && (
+                              <Base.Button buttonType={item.type} className={this.decorateCSS("button-element")}>
+                                {item.icon && (
+                                  <ComposerIcon
+                                    name={item.icon}
+                                    propsIcon={{
+                                      className: this.decorateCSS("icon"),
+                                    }}
+                                  />
                                 )}
-                                {text2Exist && (
-                                  <h1 className={this.decorateCSS("down-text")}>
-                                    {item.buttonText2}
-                                  </h1>
-                                )}
-                              </div>
-                            )}
-                          </div>
+                                {buttonTextExist && <div className={this.decorateCSS("button-text")}>{item.text}</div>}
+                              </Base.Button>
+                            )
+                          )}
                         </ComposerLink>
-                      );
-                    return null;
-                  },
-                )}
+                      </div>
+                    )
+                  );
+                })}
               </div>
-            }
+            )}
           </div>
-        </div>
-        {overlay &&
-          <div className={this.decorateCSS("overlay")} />
-        }
-      </div>
+        </Base.MaxContent>
+        {overlay && <div className={this.decorateCSS("overlay")} />}
+      </Base.Container>
     );
   }
 }

@@ -3,23 +3,13 @@ import { BaseHeader } from "../../EditorComponent";
 import styles from "./header28.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-class HeaderComponent28 extends BaseHeader {
+class Header28 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
 
-    this.addProp({
-      type: "icon",
-      key: "prev_icon",
-      displayer: "Prev icon",
-      value: "GrFormPrevious",
-    });
-    this.addProp({
-      type: "icon",
-      key: "next_icon",
-      displayer: "Next icon",
-      value: "GrFormNext",
-    });
     this.addProp({
       type: "icon",
       key: "play_icon",
@@ -183,60 +173,46 @@ class HeaderComponent28 extends BaseHeader {
 
     this.setComponentState("animation-active", false);
     this.setComponentState("active-index", 0);
-    this.setComponentState("display-none", true);
-    this.setComponentState("slider-ref", React.createRef());
-    this.setComponentState("video-player-ref", React.createRef());
     this.setComponentState("play-video", false);
   }
-  getName(): string {
+  static getName(): string {
     return "Header 28";
   }
 
-  componentDidMount() {
-    super.componentDidMount();
-    document.addEventListener("click", this.handleDocumentClick, true); // Using capture phase for broader catching
-  }
-
-  componentWillUnmount() {
-    super.componentWillUnmount();
-    document.removeEventListener("click", this.handleDocumentClick, true);
-  }
-
-  handleDocumentClick = (event: any) => {
-    if (
-      this.getComponentState("video-player-ref").current &&
-      !this.getComponentState("video-player-ref").current.contains(event.target)
-    ) {
-      this.setComponentState("play-video", false);
-    }
-  };
-
   render() {
+    const slides = this.getPropValue("slider");
+
     const settings = {
       arrows: false,
       dots: true,
       infinite: true,
       accessibility: true,
-      speed: 1000,
+      speed: 800,
       autoplay: true,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       draggable: false,
       dotsClass: `slick-dots ${this.decorateCSS("customDots")}`,
       fade: true,
+      customPaging: (i: any) => (
+        <div
+          className={`${this.decorateCSS("dot")} ${this.getComponentState("active-index") == i &&
+            this.decorateCSS("activeDot")
+            } ${slides[this.getComponentState("active-index")].getPropValue("image") && this.decorateCSS("withImageDot")}`}
+        />
+      ),
       afterChange: (index: number) => {
-        this.setComponentState("animation-active", false);
-        this.setComponentState("display-none", false);
         this.setComponentState("play-video", false);
       },
       beforeChange: (oldIndex: number, newIndex: number) => {
         if (oldIndex === newIndex) return;
         if (this.getPropValue("textAnimation"))
           this.setComponentState("animation-active", true);
+        setTimeout(() => {
+          this.setComponentState("animation-active", false);
+        }, 400)
         this.setComponentState("play-video", false);
         this.setComponentState("from", oldIndex > newIndex ? "left" : "right");
-
-        this.setComponentState("display-none", true);
 
         this.setComponentState("active-index", newIndex);
       },
@@ -246,10 +222,9 @@ class HeaderComponent28 extends BaseHeader {
       <div className={this.decorateCSS("container")}>
         <ComposerSlider
           {...settings}
-          ref={this.getComponentState("slider-ref")}
           className={this.decorateCSS("carousel")}
         >
-          {this.getPropValue("slider").map((item: any, indexSlider: number) => (
+          {slides.map((item: any, indexSlider: number) => (
             <div className={this.decorateCSS("content")} key={indexSlider}>
               {item.getPropValue("image") && (
                 <div className={this.decorateCSS("image-box")}>
@@ -263,10 +238,9 @@ class HeaderComponent28 extends BaseHeader {
 
               {item.getPropValue("video") && (
                 <div
-                  className={`${this.decorateCSS("video-player-container")} ${
-                    this.getComponentState("play-video") &&
+                  className={`${this.decorateCSS("video-player-container")} ${this.getComponentState("play-video") &&
                     this.decorateCSS("video-player")
-                  }`}
+                    }`}
                   onClick={() => {
                     this.setComponentState("play-video", false);
                   }}
@@ -302,11 +276,12 @@ class HeaderComponent28 extends BaseHeader {
               )}
               {this.getPropValue("play_icon") && (
                 <div
-                  className={this.decorateCSS("play-button")}
+                  className={`${this.decorateCSS("play-button")} ${item.getPropValue("image") && this.decorateCSS("withImage")
+                    }`}
                   onClick={
                     item.getPropValue("video")
                       ? () => this.setComponentState("play-video", true)
-                      : () => {}
+                      : () => { }
                   }
                 >
                   <ComposerIcon name={this.getPropValue("play_icon")} />
@@ -314,64 +289,52 @@ class HeaderComponent28 extends BaseHeader {
               )}
               <div
                 className={`${this.decorateCSS("slide-content")}
-                ${
-                  !this.getComponentState("animation-active") &&
+                ${!this.getComponentState("animation-active") &&
                   this.decorateCSS("visible")
-                }`}
+                  }`}
                 onClick={
                   item.getPropValue("video")
                     ? () => this.setComponentState("play-video", true)
-                    : () => {}
+                    : () => { }
                 }
               >
                 {this.castToString(item.getPropValue("tag")) && (
-                  <span className={this.decorateCSS("tag")}>
+                  <span
+                    className={`${this.decorateCSS("tag")} ${item.getPropValue("image") &&
+                      this.decorateCSS("withImage")
+                      }`}
+                  >
                     {item.getPropValue("tag")}
                   </span>
                 )}
                 {this.castToString(item.getPropValue("title")) && (
-                  <h1 className={this.decorateCSS("title")}>
+                  <h1
+                    className={`${this.decorateCSS("title")} ${item.getPropValue("image") &&
+                      this.decorateCSS("withImage")
+                      }`}
+                  >
                     {item.getPropValue("title")}
                   </h1>
                 )}
                 {this.castToString(item.getPropValue("sub_title")) && (
-                  <h3 className={this.decorateCSS("sub_title")}>
+                  <h3
+                    className={`${this.decorateCSS("sub_title")} ${item.getPropValue("image") &&
+                      this.decorateCSS("withImage")
+                      }`}
+                  >
                     {item.getPropValue("sub_title")}
                   </h3>
                 )}
                 {this.castToString(item.getPropValue("description")) && (
-                  <p className={this.decorateCSS("description")}>
+                  <p
+                    className={`${this.decorateCSS("description")} ${item.getPropValue("image") &&
+                      this.decorateCSS("withImage")
+                      }`}
+                  >
                     {item.getPropValue("description")}
                   </p>
                 )}
               </div>
-              <ComposerIcon
-                name={this.getPropValue("next_icon")}
-                propsIcon={{
-                  className: `${this.decorateCSS("next-icon")} ${this.decorateCSS(
-                    "arrow",
-                  )} ${
-                    !this.getComponentState("display-none") &&
-                    this.decorateCSS("un-visible")
-                  }`,
-                  size: 40,
-                  onClick: () => {
-                    this.getComponentState("slider-ref").current.slickNext();
-                  },
-                }}
-              />
-              <ComposerIcon
-                name={this.getPropValue("prev_icon")}
-                propsIcon={{
-                  className: `${this.decorateCSS("prev-icon")} ${this.decorateCSS(
-                    "arrow",
-                  )}`,
-                  size: 40,
-                  onClick: () => {
-                    this.getComponentState("slider-ref").current.slickPrev();
-                  },
-                }}
-              />
             </div>
           ))}
         </ComposerSlider>
@@ -380,4 +343,4 @@ class HeaderComponent28 extends BaseHeader {
   }
 }
 
-export default HeaderComponent28;
+export default Header28;

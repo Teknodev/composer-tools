@@ -1,161 +1,70 @@
+@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
 .container {
-    display: flex;
-    width: 100%;
-    padding: 50px 0;
-    text-align: center;
-
     .max-content {
-        width: 100%;
-        max-width: var(--composer-content-width);
-        margin: auto;
-        background-color: var(--composer--html-background);
-
         .call-to-action10-page {
-            display: flex;
-            width: 100%;
-            justify-content: center;
             align-items: center;
-            margin: 50px 0;
-
+            gap: var(--composer-gap-md);
             .title {
-                text-align: center;
-                font-size: 5rem;
-                margin: 0;
-                color: var(--composer-primary-color);
                 position: relative;
-
+                margin: 0px;
+                padding-bottom: var(--composer-gap-lg);
                 .icon {
                     position: absolute;
-                    bottom: -30px;
+                    bottom: 0rem;
                     right: 0;
                     font-size: 3rem;
                 }
             }
+            .description {
+                margin: 0px;
+            }
 
             .button {
-                margin: 0 auto;
-                margin-top: 40px;
-                text-align: center;
-                font-size: 3rem;
-                font-weight: bold;
-                background-color: transparent;
-                cursor: pointer;
-                color: var(--composer-font-color-primary);
-                width: 550px;
-                height: 70px;
-                border-radius: 50px;
-                padding: 10px;
-                border: 1px solid var(--composer-secondary-color);
-                display: block;
-                text-align: center;
+                content: "";
+            }
+            .card-container{
+                width: 100%;
+                .card{
+                    display: flex;
+                    flex-direction: column;
+                    background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);                    border-radius: var(--composer-border-radius-sm);
+                    padding: var(--composer-gap-lg);
+                    gap: var(--composer-gap-lg);
+                    .icon-wrapper{
+                        background-color: var(--composer-primary-color);
+                        border-radius: 50%;
+                        padding: var(--composer-gap-md);
+                        width: fit-content;
+                        .icon{
+                            color: var(--composer-font-color-secondary);
+                            width: 25px;
+                            height: 25px;
 
-                &:hover {
-                    background-color: var(--composer-secondary-color);
-                    color: var(--composer-font-color-secondary);
+                        }
+                    }
+                    .card-title{
+                        color: var(--composer-font-color-primary);
+                        margin:0px;
+                    }
+                    .card-description{
+                        margin: 0px;
+                        color: var(--composer-font-color-primary);
+                    }
                 }
             }
 
-            .description {
-                padding-top: 20px;
-                font-size: 2.5rem;
-                color: var(--composer-font-color-primary);
-            }
         }
     }
 }
-
-@media only screen and (min-width: 769px) {
-    .container {
-        .max-content {
-            max-width: var(--composer-content-width);
-
-            .call-to-action10-page {
-                display: flex;
-                width: 100%;
-                flex-direction: column;
-
-                .button {
-                    width: 350px;
-                    height: 50px;
-                    font-size: 20px;
-                }
-
-                .image {
-                    margin-right: -870px;
-                }
-
-                .description {
-                    font-size: 20px;
-                }
-            }
-        }
-    }
-}
-
-@media only screen and (max-width: 768px) {
-    .container {
-        padding: 16px 0px;
-
-        .max-content {
-            max-width: var(--composer-content-width);
-
-            .call-to-action10-page {
-                display: block;
-                width: 100%;
-                flex-direction: column;
-
-                .title {
-                    font-size: 48px;
-                }
-
-                .button {
-                    width: 340px;
-                    height: 50px;
-                    font-size: 20px;
-                }
-
-                .image {
-                    margin-right: -650px;
-                    width: 40px;
-                    height: 48px;
-                }
-
-                .description {
-                    font-size: 20px;
-                }
-            }
-        }
-    }
-}
-
-@media only screen and (max-width: 360px) {
-    .container {
-        padding: 0px 24px;
-
-        .max-content {
-            max-width: var(--composer-content-width);
-
-            .call-to-action10-page {
-                display: block;
-                width: 100%;
-                flex-direction: column;
-
-                .button {
-                    width: 260px;
-                    height: 50px;
-                    font-size: 16px;
-                    padding: 14px;
-                }
-
-                .image {
-                    margin-right: -170px;
-                    width: 30px;
-                    height: 30px;
-                }
-
-                .description {
-                    font-size: 15px;
-                    margin: 12px 0px;
+@container (max-width: #{$composer-phone-width}){
+    .container{
+        .max-content{
+            .call-to-action10-page{
+                .title{
+                    padding-bottom: var(--composer-gap-md);
+                    .icon {
+                        font-size: 2rem;
+                    }
                 }
             }
         }

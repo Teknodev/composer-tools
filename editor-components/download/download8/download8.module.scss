@@ -1,178 +1,254 @@
+@import "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss";
+
 .container {
-    width: 100%;
-    overflow: hidden;
+  padding: 0;
+  .page {
+    width: 100vw;
+    display: flex;
+    align-items: center;
     position: relative;
-    padding: 50px 0;
-    .max-content {
-        max-width: var(--composer-content-width);
-        margin: auto;
-        .page {
+    overflow: hidden;
+    height: auto;
+
+    .image-child {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      position: absolute;
+      .background-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .overlay {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        background-color: var(--composer-overlay-color);
+      }
+    }
+    .max-content{
+      display: flex;
+      overflow: hidden;
+      position: relative;
+      height: auto;
+      .left-content {
+        &.center{
+          align-items: center;
+          text-align: center;
+        }
+        width: 100%;
+        justify-content: center;
+        bottom: 0;
+        opacity: 1;
+        transition: opacity 0.5s, height 0.5s;
+        padding: var(--composer-gap-md) var(--composer-gap-xl);
+        overflow: auto;
+        z-index: 3;
+        min-height: 100%;
+        height: auto;
+        position: relative;
+
+        .title {
+          &.image{
+            color: white;
+          }
+        }
+        .description {
+          &.image{
+            color: white;
+          } 
+        }
+      }
+      &.image {
+        min-height: 350px;
+      }
+  
+      &.no-image {
+        min-height: 250px;
+      }
+    }
+
+
+
+    .right-content {
+      width: fit-content;
+      opacity: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transform: translateX(100%);
+      right: 0;
+      transition: all 0.5s;
+      overflow: auto;
+      height: auto;
+      width: 50vw;
+      min-width: 50vw;
+      position: absolute;
+      padding: var(--composer-gap-xl) 0;
+
+      .card {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        border-top-left-radius: var(--composer-border-radius-md);
+        border-bottom-left-radius: var(--composer-border-radius-md);
+        background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+
+        .card-up {
+          width: 100%;
+          height: 90%;
+          display: flex;
+          flex-direction: column;
+          overflow: hidden;
+          margin: 0px;
+          .cardTitle {
+            color: var(--composer-font-color-primary);
+            padding: var(--composer-gap-md);
+            margin: 0;
+            border-bottom: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.5);
+          }
+          .list-group {
             width: 100%;
             display: flex;
-            align-items: center;
-            .image-child {
-                width: 100%;
-                overflow: hidden;
-                filter: brightness(0.5);
-                .background-image {
-                    width: 100%;
-                    height: 500px;
-                    object-fit: cover;
-                    filter: blur(2px);
-                }
+            flex-direction: column;
+            gap: var(--composer-gap-xs);
+            padding: 0 var(--composer-gap-md);
+
+            .list-element {
+              display: flex;
+              align-items: center;
+              gap: var(--composer-gap-sm);
+              margin: 0px;
+
+              .icon {
+                color: var(--composer-font-color-primary);
+                width: var(--composer-gap-md);
+                height: var(--composer-gap-md);
+                flex-shrink: 0;
+              }
+              .text {
+                color: var(--composer-font-color-primary);
+              }
             }
-            .left-content {
+          }
+        }
+
+        .card-down {
+          width: 100%;
+          height: 20%;
+          display: flex;
+          align-items: center;
+          border-top: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.5);
+          .buttons-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--composer-gap-sm);
+            margin: var(--composer-gap-sm);
+
+            .image-container {
+              width: 170px;
+              height: var(--composer-gap-xl);
+              border-radius: var(--composer-border-radius-sm);
+
+              .image {
                 width: 100%;
                 height: 100%;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                position: absolute;
-                bottom: 0;
-                transition: height 0.5s;
-                white-space: pre-line;
-                word-break: break-all;
-                overflow: hidden;
-                padding: 25px;
-                text-align: center;
-                .leftContentTitle {
-                    color: #fff;
-                    font-size: 3rem;
-                    opacity: 1;
-                    transition: opacity 0.5s;
-                }
-                .description {
-                    color: #fff;
-                    font-size: 2rem;
-                    opacity: 0.8;
-                    transition: opacity 0.5s;
-                }
+                cursor: pointer;
+                object-fit: cover;
+                border-radius: var(--composer-border-radius-sm);
+              }
             }
-            .right-content {
-                width: 100%;
-                opacity: 0;
-                justify-content: center;
-                align-items: center;
-                position: absolute;
-                right: calc(-100vw - 100px);
-                transition: all 0.5s;
-                .card {
-                    width: 50%;
-                    height: 80%;
-                    display: flex;
-                    flex-direction: column;
-                    border-radius: 6px;
-                    background-color: #ffffffef;
-                    overflow: hidden;
-                    .card-up {
-                        width: 100%;
-                        height: 90%;
-                        display: flex;
-                        flex-direction: column;
-                        padding: 20px;
-                        overflow: hidden;
-                        .cardTitle {
-                            white-space: nowrap;
-                            overflow: hidden;
-                            text-overflow: ellipsis;
-                            border-bottom: 1px solid rgb(172, 172, 172);
-                            padding: 5px 0;
-                            margin-bottom: 5px;
-                        }
-                        .list-group {
-                            width: 100%;
-                            display: flex;
-                            flex-direction: column;
-                            gap: 15px;
-                            margin-top: 10px;
-                            .list-item {
-                                width: 100%;
-                                display: flex;
-                                justify-content: flex-start;
-                                align-items: center;
-                                gap: 10px;
-                                font-size: 1.5rem;
-                                white-space: nowrap;
-                                overflow: hidden;
-                                text-overflow: ellipsis;
-                                .li-icon {
-                                    width: 18px;
-                                    height: 18px;
-                                    object-fit: cover;
-                                }
-                            }
-                        }
-                    }
-                    .card-down {
-                        width: 100%;
-                        height: 20%;
-                        display: flex;
-                        align-items: center;
-                        border-top: 1px solid rgb(172, 172, 172);
-                        .button-group {
-                            width: 100%;
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            gap: 10px;
-                            opacity: 0;
-                            transition: opacity 0.5s;
-                            .button {
-                                margin: 20px 0;
-                                display: inline-block;
-                                padding: 10px 10px;
-                                color: #fff;
-                                font-size: 1.5rem;
-                                background-color: var(--composer-secondary-color);
-                                border: 1px solid transparent;
-                                border-radius: 6px;
-                                cursor: pointer;
-                                &:hover {
-                                    background: transparent;
-                                    border: 1px solid var(--composer-secondary-color);
-                                    color: var(--composer-secondary-color);
-                                }
-                            }
-                        }
-                    }
-                }
+
+            .button {
+              .icon{
+                content: "";
+              }
+              .text{
+                content: "";
+              }
             }
-            &:hover {
-                .left-content {
-                    height: 0;
-                    .leftContentTitle {
-                        opacity: 0;
-                    }
-                    .description {
-                        opacity: 0;
-                    }
-                }
-                .right-content {
-                    right: calc(-50% + 100px);
-                    opacity: 1;
-                    .card-down {
-                        .button-group {
-                            opacity: 1;
-                        }
-                    }
-                }
-            }
+          }
         }
+      }
     }
+
+    &:hover {
+      .left-content,
+      .left-content-no-image {
+        opacity: 0;
+
+        .title {
+          opacity: 0;
+        }
+        .description {
+          opacity: 0;
+        }
+      }
+
+      .right-content {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+  }
 }
 
-@media only screen and (max-width: 768px) {
-    .container {
-        padding: 20px 0;
-        .max-content {
-            .page {
-                .right-content {
-                    .card {
-                        width: 80%;
-                    }
-                }
-            }
-        }
+@container (max-width: #{$composer-tablet-width-lg}) {
+  .container .page {
+    .max-content {
+      .left-content {
+        padding: var(--composer-gap-md) var(--composer-gap-lg);
+      }
     }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .page {
+      .max-content{
+        .left-content{
+          padding: var(--composer-gap-md) !important;
+        }
+      }
+      .right-content {
+        .card {
+          width: 50vw;
+          height: 100%;
+
+          .card-up {
+            .list-group {
+              .list-element {
+                .icon {
+                  width: var(--composer-gap-md);
+                  height: var(--composer-gap-md);
+                }
+                .text {
+                  font-size: 1rem;
+                }
+              }
+            }
+          }
+          .card-down {
+            .buttons-container {
+              align-items: baseline;
+              .image-container {
+                width: 120px;
+                height: 35px;
+                .image {
+                  width: 100%;
+                  height: 100%;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }

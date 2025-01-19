@@ -2,6 +2,9 @@ import * as React from "react";
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature12.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
   title: JSX.Element;
@@ -11,7 +14,6 @@ type Card = {
 
 type FirstItem = {
   title: JSX.Element;
-  button: JSX.Element;
   backgroundImage: string;
   overlay: boolean;
 };
@@ -23,19 +25,13 @@ class Feature12 extends BaseFeature {
       type: "string",
       key: "upperTitle",
       displayer: "Upper Title",
-      value: "BEST FEATURES",
+      value: "Best Features",
     });
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "SERVICES",
-    });
-    this.addProp({
-      type: "string",
-      key: "behindTitle",
-      displayer: "Behind the Title",
-      value: "services",
+      value: "Services",
     });
     this.addProp({
       type: "object",
@@ -47,12 +43,6 @@ class Feature12 extends BaseFeature {
           key: "title",
           displayer: "Title",
           value: "Best Of Our Features",
-        },
-        {
-          type: "string",
-          key: "button",
-          displayer: "Button",
-          value: "SEE ALL SERVICES",
         },
         {
           type: "image",
@@ -69,6 +59,7 @@ class Feature12 extends BaseFeature {
         },
       ],
     });
+    this.addProp(INPUTS.BUTTON("button", "Button", "SEE ALL SERVICES", "", null, null, "Primary"));
     this.addProp({
       type: "array",
       key: "cards",
@@ -95,7 +86,7 @@ class Feature12 extends BaseFeature {
               type: "icon",
               key: "icon",
               displayer: "Icon",
-              value: "PiPaintBucketFill",
+              value: "FiBook",
             },
           ],
         },
@@ -161,7 +152,7 @@ class Feature12 extends BaseFeature {
     });
   }
 
-  getName(): string {
+  static getName(): string {
     return "Feature 12";
   }
 
@@ -170,13 +161,9 @@ class Feature12 extends BaseFeature {
       as_string: true,
     });
     const titleExist = this.getPropValue("title", { as_string: true });
-    const behindTitleTextExist = this.getPropValue("behindTitle", {
-      as_string: true,
-    });
 
     const upperTitle = this.getPropValue("upperTitle");
     const title = this.getPropValue("title");
-    const behindtitleText = this.getPropValue("behindTitle");
 
     const itemCount = this.getPropValue("itemCount");
 
@@ -184,75 +171,63 @@ class Feature12 extends BaseFeature {
     const firstItem = this.castToObject<FirstItem>("firstItem");
 
     const firstCardTitleExist = this.castToString(firstItem.title);
-    const buttonTextExist = this.castToString(firstItem.button);
 
     const firstItemBackgroundImage = firstItem.backgroundImage;
     const firstItemOverlay = firstItem.overlay;
 
+    const button = this.castToObject<INPUTS.CastedButton>("button");
+
+    const buttonTextExist = this.castToString(button.text)
+
     const renderFirstItem =
       firstCardTitleExist || buttonTextExist || firstItemBackgroundImage;
-    const renderHeader = upperTitleExist || behindTitleTextExist || titleExist;
-
-    const setMinHeight =
-      titleExist || !behindTitleTextExist
-        ? this.decorateCSS("min-height-unset")
-        : "";
-
+    const renderHeader = upperTitleExist || titleExist;
     return (
-      <div className={this.decorateCSS("container")}>
-        {renderHeader && (
-          <header
-            className={`
-              ${this.decorateCSS("header")}
-              ${setMinHeight}
-            `}
-          >
-            {upperTitleExist && (
-              <div className={this.decorateCSS("upper-title")}>
-                {upperTitle}
-              </div>
-            )}
-            {behindTitleTextExist && (
-              <div className={this.decorateCSS("shadow-header-title")}>
-                {behindtitleText}
-              </div>
-            )}
-            {titleExist && (
-              <div className={this.decorateCSS("header-title")}>{title}</div>
-            )}
-          </header>
-        )}
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("content")}>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          {renderHeader && (
+            <Base.VerticalContent className={this.decorateCSS("header")}>
+              {upperTitleExist && (
+                <Base.SectionSubTitle className={this.decorateCSS("upper-title")}>
+                  {upperTitle}
+                </Base.SectionSubTitle>
+              )}
+              {titleExist && (
+                <Base.SectionTitle className={this.decorateCSS("header-title")}>{title}</Base.SectionTitle>
+              )}
+            </Base.VerticalContent>
+          )}
+          <Base.ListGrid gridCount={{ pc: itemCount }} className={this.decorateCSS("wrapper")}>
             {renderFirstItem && (
               <div
                 className={this.decorateCSS("card-item-first")}
                 style={{
-                  width: `${100 / itemCount}%`,
-                  backgroundImage: `${
-                    firstItemOverlay
-                      ? "linear-gradient(color-mix(in srgb, rgba(var(--composer-html-background-rgb), 0.7), rgba(var(--composer-font-color-primary-rgb), 0.8) 5%), color-mix(in srgb, rgba(var(--composer-html-background-rgb), 0.7), rgba(var(--composer-font-color-primary-rgb), 0.8) 5%)),"
-                      : ""
-                  } url(${firstItemBackgroundImage})`,
+                  backgroundImage: `${firstItemOverlay
+                    ? "linear-gradient(color-mix(in srgb, rgba(var(--composer-html-background-rgb), 0.7), rgba(var(--composer-font-color-primary-rgb), 0.8) 5%), color-mix(in srgb, rgba(var(--composer-html-background-rgb), 0.7), rgba(var(--composer-font-color-primary-rgb), 0.8) 5%)),"
+                    : ""
+                    } url(${firstItemBackgroundImage})`,
+
                 }}
               >
                 {firstCardTitleExist && (
-                  <h3 className={this.decorateCSS("title")}>
+                  <Base.H3 className={this.decorateCSS("title")}>
                     {firstItem.title}
-                  </h3>
+                  </Base.H3>
                 )}
                 {buttonTextExist && (
-                  <button className={this.decorateCSS("button")}>
-                    {firstItem.button}
-                  </button>
+                  <ComposerLink path={button.url}>
+                    <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                      {button.text}
+                    </Base.Button>
+                  </ComposerLink>
                 )}
               </div>
             )}
 
             {cards?.length > 0 &&
-              cards.map((message: Card, index: number) => {
-                const descExist = this.castToString(message.description);
-                const titleExist = this.castToString(message.title);
+              cards.map((card: Card, index: number) => {
+                const descExist = !!this.castToString(card.description);
+                const titleExist = !!this.castToString(card.title);
 
                 const shouldRender = descExist || titleExist;
 
@@ -260,51 +235,46 @@ class Feature12 extends BaseFeature {
                 else
                   return (
                     <div
-                      className={`
-                        ${this.decorateCSS("card-item-count")}
-                        ${this.decorateCSS(itemCount >= 4 ? "border-top" : "")}
-                      `}
+                      className={this.decorateCSS("card-item-count")}
                       style={{
-                        width: `${100 / itemCount}%`,
                         backgroundColor: `
-                          color-mix(
-                          in srgb,
-                          var(--composer-html-background),
-                          var(--composer-font-color-primary) ${5 + ((index + 1) % 4) * 5}%
-                        )`,
+                        color-mix(
+                        in srgb,
+                        var(--composer-html-background),
+                        var(--composer-font-color-primary) ${5 + ((index + 1) % 4) * 5}%
+                      )`,
+                        animationDelay: `${index * 0.3}s`,
                       }}
                       key={index}
                     >
-                      {(message.icon || titleExist || descExist) && (
+                      {(card.icon || titleExist || descExist) && (
                         <div className={this.decorateCSS("message")}>
-                          {message.icon && (
-                            <div className={this.decorateCSS("Icon")}>
+                          {card.icon && (
+                            <div className={this.decorateCSS("icon-container")}>
                               <ComposerIcon
-                                propsIcon={{
-                                  className: this.decorateCSS("Icon"),
-                                }}
-                                name={message.icon}
+                                name={card.icon}
+                                propsIcon={{ className: this.decorateCSS("icon") }}
                               />
                             </div>
                           )}
                           {titleExist && (
-                            <h3 className={this.decorateCSS("title")}>
-                              {message.title}
-                            </h3>
+                            <div className={this.decorateCSS("title")}>
+                              {card.title}
+                            </div>
                           )}
                           {descExist && (
-                            <p className={this.decorateCSS("long-text")}>
-                              {message.description}
-                            </p>
+                            <div className={this.decorateCSS("long-text")}>
+                              {card.description}
+                            </div>
                           )}
                         </div>
                       )}
                     </div>
                   );
               })}
-          </div>
-        </div>
-      </div>
+          </Base.ListGrid>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
