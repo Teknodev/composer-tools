@@ -307,9 +307,7 @@ class Form7 extends BaseContacts {
                     onSubmit={(data, { resetForm }) => {
                       const formData = data;
                       this.insertForm("CONTACT US", formData);
-                      resetForm({
-                        values: getInitialValue() 
-                      });
+                      resetForm();
                     }}
                   >
                     {({ handleChange, values }) => (
