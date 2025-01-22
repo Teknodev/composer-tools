@@ -6,6 +6,11 @@ import sanitizeHtml from "sanitize-html";
 import { renderToString } from "react-dom/server";
 import { THEMES, TTheme } from "./location/themes";
 import InlineEditor from "../../custom-hooks/UseInlineEditor";
+import { v4 as uuidv4 } from 'uuid';
+
+export function generateComponentId(){
+  return uuidv4();
+}
 
 type PreSufFix = {
   label: string;
@@ -111,7 +116,7 @@ export abstract class Component
   constructor(props: any, styles: any) {
     super(props);
     this.styles = styles;
-    this.id = props?.id || Math.random().toString();
+    this.id = props?.id || generateComponentId();
 
     let sectionsKeyValue: any = {};
     Object.keys(this.styles).forEach((key, index) => {
