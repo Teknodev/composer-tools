@@ -12,7 +12,7 @@ export type TypeButton =
   | "White"
   | "Black";
 export namespace Base {
-  const rootStyles = getComputedStyle(document.documentElement);
+  const rootStyles = (typeof window !== 'undefined') ? getComputedStyle(document.documentElement) : {getPropertyValue: () => ""};
 
   function getStyleValue(cssVariable: string) {
     return rootStyles.getPropertyValue(cssVariable).trim();

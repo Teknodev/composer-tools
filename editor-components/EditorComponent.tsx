@@ -150,6 +150,11 @@ export abstract class Component
     return (this.constructor as typeof Component).getName();
   }
 
+  static getInstanceName(): string {
+    // console.error("Static Method Not Implemented", this.name);
+    return this.name;
+  }
+
   getInstanceName(): string {
     return (this.constructor as typeof Component).name;
   }
