@@ -338,7 +338,7 @@ class Footer12Page extends BaseFooter {
       type: "string",
       key: "footerText",
       displayer: "Footer Text",
-      value: "Copyright © 2023 Teknodev LTD.All rights reserved.",
+      value: "Copyright © 2023 Blinkpage LTD.All rights reserved.",
     });
 
     this.addProp({
