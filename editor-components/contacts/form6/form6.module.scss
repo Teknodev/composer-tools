@@ -101,6 +101,12 @@
             }
           }
 
+          .button-div{
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-sm);
+          }
+
           .error-message {
             color: red;
             margin-top: 3px;

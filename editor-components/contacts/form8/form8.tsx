@@ -5,6 +5,7 @@ import styles from "./form8.module.scss";
 import { ErrorMessage, Formik, Form } from "formik";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import ReCAPTCHA from "react-google-recaptcha";
 
 type ContactItem = {
   text: JSX.Element;
@@ -287,6 +288,8 @@ class Form8 extends BaseContacts {
     });
 
     this.addProp(INPUTS.BUTTON("button", "Button", "Send", null, null, "Primary"));
+    this.setComponentState("recaptchaResponse", false);
+
   }
 
   static getName(): string {
@@ -398,6 +401,11 @@ class Form8 extends BaseContacts {
       return newObj;
     }
 
+    const handleRecaptchaChange = (value: string | null) => {
+      this.setComponentState("recaptchaResponse", value); 
+      this.setComponentState("recaptchaRef", React.createRef());
+    };
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -431,9 +439,29 @@ class Form8 extends BaseContacts {
                 initialValues={getInitialValue()}
                 validationSchema={getSchema()}
                 onSubmit={(data, { resetForm }) => {
+                  const recaptchaResponse = this.getComponentState("recaptchaResponse");
+                
+                  if (!recaptchaResponse) {
+                    alert("reCAPTCHA doğrulaması yapılmadı.");
+                    return;
+                  }
+                
                   const formData = getFormDataWithConvertedKeys(data);
-                  this.insertForm("Contact Me", formData);
+                
+                  this.insertForm("Contact Us", formData, recaptchaResponse)
+                    .then(response => {
+                      console.log(response);
+                      resetForm();
+                    })
+                    .catch(error => {
+                      console.error(error);
+                    });
+                
                   resetForm();
+                  this.setComponentState("recaptchaResponse", null);
+                  if (this.getComponentState("recaptchaRef").current) {
+                    this.getComponentState("recaptchaRef").current.reset();
+                  }
                 }}
               >
                 {({ handleChange, values }) => (
@@ -470,6 +498,13 @@ class Form8 extends BaseContacts {
                     <Base.Button buttonType={button.type} type="submit" className={this.decorateCSS("form-button")}>
                       {button.text}
                     </Base.Button>
+                    <ReCAPTCHA
+                    theme="dark"
+                      size="normal"
+                      sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+                      onChange={handleRecaptchaChange}
+                      ref={this.getComponentState("recaptchaRef")}
+                    />
                   </Form>
                 )}
               </Formik>

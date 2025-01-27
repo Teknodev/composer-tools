@@ -303,6 +303,7 @@
           .buttonSide {
             align-self: center;
             display: flex;
+            flex-direction: column;
             gap: var(--composer-gap-sm);
             justify-content: center;
             align-items: center;

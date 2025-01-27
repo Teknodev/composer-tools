@@ -5,6 +5,8 @@ import { ErrorMessage, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import ReCAPTCHA from "react-google-recaptcha";
+
 
 class Form2 extends BaseContacts {
   constructor(props?: any) {
@@ -222,6 +224,7 @@ class Form2 extends BaseContacts {
     });
 
     this.addProp(INPUTS.BUTTON("button", "Button", "Contact Us", null, null, null, "Primary"));
+    this.setComponentState("recaptchaResponse", false);
   }
 
   static getName(): string {
@@ -332,70 +335,101 @@ class Form2 extends BaseContacts {
       return newObj;
     }
 
+    const handleRecaptchaChange = (value: string | null) => {
+      this.setComponentState("recaptchaResponse", value); 
+      this.setComponentState("recaptchaRef", React.createRef());
+    };
+    
+
     return (
       <Base.Container style={{ backgroundImage: `url(${this.getPropValue("background-img")})` }} className={this.decorateCSS("container")}>
-        {overlay && imageExist && <div className={this.decorateCSS("overlay")}></div>}
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(inputs.length > 0 || (titleExist && buttonTextExist)) && (
-            <div className={this.decorateCSS("input-items")}>
-              <div className={`${this.decorateCSS("input-item")} ${!imageExist && this.decorateCSS("input-item-no-image")}`}>
-                {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${imageExist && this.decorateCSS("title-with-image")}`}>{title}</Base.SectionTitle>}
-                {(inputs.length > 0 || buttonTextExist) && (
-                  <Formik
-                    initialValues={initialValue}
-                    validationSchema={getSchema()}
-                    onSubmit={(data, { resetForm }) => {
-                      const formData = getFormDataWithConvertedKeys(data);
-                      this.insertForm("Contact Us", formData);
-                      resetForm();
-                    }}
-                  >
-                    {({ handleChange, values }) => (
-                      <Form className={this.decorateCSS("form")}>
-                        {this.getPropValue("inputs").map((input: any, index: number) => (
-                          <>
-                            <div className={this.decorateCSS("input-container")}>
-                              {input.getPropValue("type") == "Text Area" ? (
-                                <textarea
-                                  id={getInputName(index, input.getPropValue("label"))}
-                                  value={values[getInputName(index, input.getPropValue("label"))]}
-                                  placeholder=" "
-                                  className={`${this.decorateCSS("input")} ${!imageExist && this.decorateCSS("input-no-image")} ${this.decorateCSS("textarea")}`}
-                                  rows={12}
-                                  onChange={handleChange}
-                                />
-                              ) : (
-                                <input
-                                  id={getInputName(index, input.getPropValue("label"))}
-                                  placeholder=" "
-                                  type={getInputType(input.getPropValue("type"))}
-                                  onChange={handleChange}
-                                  value={values[getInputName(index, input.getPropValue("label"))]}
-                                  name={getInputName(index, input.getPropValue("label"))}
-                                  className={`${this.decorateCSS("input")} ${!imageExist && this.decorateCSS("input-no-image")} `}
-                                />
-                              )}
-                              {this.castToString(input.getPropValue("placeholder")) && <span className={`${this.decorateCSS("placeholder")} ${!imageExist && this.decorateCSS("placeholder-no-image")}`}>{input.getPropValue("placeholder")}</span>}
-                              <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(index, input.getPropValue("label"))} component={"span"} />
-                            </div>
-                          </>
-                        ))}
-                        {buttonTextExist && (
-                          <div className={this.decorateCSS("button-div")}>
-                            <Base.Button buttonType={button.type} className={this.decorateCSS("submit-button")} type="submit">
-                              {buttonText}
-                            </Base.Button>
-                          </div>
-                        )}
-                      </Form>
-                    )}
-                  </Formik>
-                )}
-              </div>
+      {overlay && imageExist && <div className={this.decorateCSS("overlay")}></div>}
+      <Base.MaxContent className={this.decorateCSS("max-content")}>
+        {(inputs.length > 0 || (titleExist && buttonTextExist)) && (
+          <div className={this.decorateCSS("input-items")}>
+            <div className={`${this.decorateCSS("input-item")} ${!imageExist && this.decorateCSS("input-item-no-image")}`}>
+              {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${imageExist && this.decorateCSS("title-with-image")}`}>{title}</Base.SectionTitle>}
+              {(inputs.length > 0 || buttonTextExist) && (
+                <Formik
+                  initialValues={initialValue}
+                  validationSchema={getSchema()}
+                  onSubmit={(data, { resetForm }) => {
+                    const recaptchaResponse = this.getComponentState("recaptchaResponse");
+                  
+                    if (!recaptchaResponse) {
+                      alert("reCAPTCHA doğrulaması yapılmadı.");
+                      return;
+                    }
+                  
+                    const formData = getFormDataWithConvertedKeys(data);
+                  
+                    this.insertForm("Contact Us", formData, recaptchaResponse)
+                      .then(response => {
+                        console.log(response);
+                        resetForm();
+                      })
+                      .catch(error => {
+                        console.error(error);
+                      });
+                  
+                    resetForm();
+                    this.setComponentState("recaptchaResponse", null);
+                    if (this.getComponentState("recaptchaRef").current) {
+                      this.getComponentState("recaptchaRef").current.reset();
+                    }
+                  }}
+                  
+                >
+                  {({ handleChange, values }) => (
+                    <Form className={this.decorateCSS("form")}>
+                      {this.getPropValue("inputs").map((input: any, index: number) => (
+                        <div className={this.decorateCSS("input-container")}>
+                          {input.getPropValue("type") == "Text Area" ? (
+                            <textarea
+                              id={getInputName(index, input.getPropValue("label"))}
+                              value={values[getInputName(index, input.getPropValue("label"))]}
+                              placeholder=" "
+                              className={`${this.decorateCSS("input")} ${!imageExist && this.decorateCSS("input-no-image")} ${this.decorateCSS("textarea")}`}
+                              rows={12}
+                              onChange={handleChange}
+                            />
+                          ) : (
+                            <input
+                              id={getInputName(index, input.getPropValue("label"))}
+                              placeholder=" "
+                              type={getInputType(input.getPropValue("type"))}
+                              onChange={handleChange}
+                              value={values[getInputName(index, input.getPropValue("label"))]}
+                              name={getInputName(index, input.getPropValue("label"))}
+                              className={`${this.decorateCSS("input")} ${!imageExist && this.decorateCSS("input-no-image")} `}
+                            />
+                          )}
+                          {this.castToString(input.getPropValue("placeholder")) && <span className={`${this.decorateCSS("placeholder")} ${!imageExist && this.decorateCSS("placeholder-no-image")}`}>{input.getPropValue("placeholder")}</span>}
+                          <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(index, input.getPropValue("label"))} component={"span"} />
+                        </div>
+                      ))}
+                      {buttonTextExist && (
+                        <div className={this.decorateCSS("button-div")}>
+                          <Base.Button buttonType={button.type} className={this.decorateCSS("submit-button")} type="submit">
+                            {buttonText}
+                          </Base.Button>
+                        </div>
+                      )}
+                      <ReCAPTCHA
+                        sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+                        theme="dark"
+                        onChange={handleRecaptchaChange}
+                        ref={this.getComponentState("recaptchaRef")}
+                      />
+                    </Form>
+                  )}
+                </Formik>
+              )}
             </div>
-          )}
-        </Base.MaxContent>
-      </Base.Container>
+          </div>
+        )}
+      </Base.MaxContent>
+    </Base.Container>
     );
   }
 }

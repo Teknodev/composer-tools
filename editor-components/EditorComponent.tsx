@@ -444,16 +444,20 @@ export abstract class Component
     return casted;
   }
 
-  insertForm(name: string, data: Object) {
+  insertForm(name: string, data: Object, recaptchaResponse?: string) {
     const project = getProjectHook()._id;
     const apiUrl = process.env.REACT_APP_API_URL || process.env.NEXT_PUBLIC_PUBLIC_URL;
-
+  
     const inputData: { [key: string]: any } = {};
     const entries = Object.entries(data);
     entries.forEach(([_, value], index) => {
       inputData[`input_${index}`] = value;
     });
-
+  
+    if (recaptchaResponse) {
+      inputData['recaptchaResponse'] = recaptchaResponse;
+    }
+  
     const config = {
       method: "post",
       url: `${apiUrl}/fn-execute/project/form`,
