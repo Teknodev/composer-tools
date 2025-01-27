@@ -103,7 +103,7 @@ class Header21 extends BaseHeader {
                   {buttons.length > 0 && (
                     <div className={this.decorateCSS("buttons")}>
                       {buttons.map((button: Button, index: number) => {
-                        const buttonTextExist = this.castToString(button.text);
+                        const buttonTextExist = this.castToString(button.text);                        
                         return (
                           (buttonTextExist || button.icon) && (
                             <ComposerLink path={button.url}>
@@ -122,14 +122,14 @@ class Header21 extends BaseHeader {
             )}
             {image && (
               <div className={`${this.decorateCSS("image-box")} ${!cardExist && this.decorateCSS("image-box-full")}`}>
-                <button
+                {this.getPropValue("icon") && <button
                   className={this.decorateCSS("button")}
                   onClick={() => {
                     this.setComponentState("is_video_visible", true);
                   }}
                 >
                   <ComposerIcon name={this.getPropValue("icon")} propsIcon={{ className: this.decorateCSS("btn-icon") }} />
-                </button>
+                </button>}
                 {image && <img className={this.decorateCSS("image")} src={this.getPropValue("image")} alt="" />}
                 {this.getComponentState("is_video_visible") && video && image && (
                   <div className={this.decorateCSS("video")} onClick={() => this.setComponentState("is_video_visible", false)}>
