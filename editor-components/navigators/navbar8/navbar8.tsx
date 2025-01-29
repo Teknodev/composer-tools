@@ -338,7 +338,6 @@ class Navbar8 extends BaseNavigator {
   handleCloseMenu = () => {
     Base.Navigator.changeScrollBehaviour("auto");
     this.setComponentState("isMenuOpen", false);
-    this.getComponentState("isMenuOpen");
     setTimeout(() => {
       this.setComponentState("backgroundChange", false);
     }, 200);
