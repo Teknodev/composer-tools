@@ -1458,6 +1458,7 @@ class Navbar1 extends BaseNavigator {
                       >
                         <ComposerLink path={item.navigate_to}>
                           <span
+                            onClick={() => this.setComponentState("hamburgerNavActive", false)}
                             className={`${this.decorateCSS(
                               "hamburgerMenuItemTitle"
                             )}`}
