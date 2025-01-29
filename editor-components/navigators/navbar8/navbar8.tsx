@@ -437,8 +437,8 @@ class Navbar8 extends BaseNavigator {
                 title={language.label}
                 icon={language.icon}
                 dropdownButtonClassName={`${this.decorateCSS("localization")}`}
-                dropdownLabelClassName={`${this.decorateCSS("localizationLabel")} ${backgroundChange && this.decorateCSS("openedLocalizationLabel")}`}
-                iconClassName={`${this.decorateCSS("localizationIcon")}`}
+                dropdownLabelClassName={`${this.decorateCSS("localizationLabel")} ${backgroundChange && this.decorateCSS("openedLabel")}`}
+                iconClassName={`${this.decorateCSS("localizationIcon")} ${backgroundChange && this.decorateCSS("openedIcon")}`}
                 dropdownItemClassName={this.decorateCSS("localizationItem")}
                 dropdownContentClassName={this.decorateCSS(
                   "localizationContent"

@@ -97,6 +97,22 @@
       color: var(--composer-font-color-primary);
     }
 
+    .localizationLabel{
+      color: white;
+
+      &.openedLabel{
+        content: "";
+      }
+    }
+
+    .localizationIcon{
+      color: white;
+
+      &.openedIcon{
+        content: "";
+      }
+    }
+
     .closeIcon,
     .menuIcon {
       font-size: 1.5rem;
