@@ -37,7 +37,7 @@ class Content8 extends BaseContent {
 
     });
     this.addProp({
-      type: "page",
+      type: "video",
       displayer: "Video",
       key: "video",
       value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e75d50181a1002c334f4f?alt=media&timestamp=1719563750188"
