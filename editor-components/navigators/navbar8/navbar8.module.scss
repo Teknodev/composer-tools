@@ -35,7 +35,13 @@
       width: unset;
       max-height: 60px;
       object-fit: cover;
+
+      &.openedLogoImage{
+        content: "";
+      }
     }
+
+    
   }
 
   .titleContainer {
@@ -61,13 +67,21 @@
       font-size: 2.5rem;
       font-weight: 700;
       color: var(--composer-font-color-primary);
-    }
 
+      &.openedTitle{
+        content: "";
+      }
+    }
+    
     .subtitle {
       font-size: 1rem;
       font-weight: 400;
       color: var(--composer-font-color-primary);
       text-align: center;
+
+      &.openedSubtitle{
+        content: "";
+      }
     }
   }
 
@@ -88,8 +102,18 @@
       font-size: 1.5rem;
       color: var(--composer-font-color-primary);
     }
+    
+
+    .openedCloseIcon,
+    .openedMenuIcon{
+      content: "";
+    }
   }
 
+}
+
+.openedMaxContent{
+  content: "";
 }
 
 
@@ -225,7 +249,7 @@
   }
 }
 
-.fillBackground{
+.openedContainer{
    background: var(--composer-html-background) !important;
    transition: all 0.3s ease;
 }

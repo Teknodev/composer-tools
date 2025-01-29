@@ -360,10 +360,13 @@ class Navbar8 extends BaseNavigator {
 
     const isScrolled = this.getComponentState("isScrolled");
     const isStickyTransparent = position === "Sticky Transparent";
-    const transparentBackground = isStickyTransparent && !isScrolled;
-    
+    const isStickyColorful = position === "Sticky Colorful"
+    const isDefault = position === "Default"
+    const isAbsolute = position === "Absolute";
+    const transparentBackground = isAbsolute || (isStickyTransparent && !isScrolled);
+    const colorfullBackground = isStickyColorful || isDefault;
     const currentLogo =
-      (transparentBackground && !backgroundChange)
+      ((colorfullBackground && backgroundChange) || (transparentBackground && !backgroundChange))
         ? absoluteLogo
         : defaultLogo;
 
@@ -395,7 +398,7 @@ class Navbar8 extends BaseNavigator {
       socialMediaLinks.length > 0 || dropdownSocialMediaTitle;
 
     return (
-      <Base.Navigator.Container position={position} positionContainer={`${this.decorateCSS("container")} ${backgroundChange ? this.decorateCSS("fillBackground") : ""}`} 
+      <Base.Navigator.Container position={position} positionContainer={`${this.decorateCSS("container")} ${backgroundChange ? this.decorateCSS("openedContainer") : ""}`} 
       hamburgerNavActive={isMenuOpen}
       setIsScrolled={(value: boolean) => this.setComponentState("isScrolled", value)}
       >
@@ -404,14 +407,14 @@ class Navbar8 extends BaseNavigator {
             transparentBackground && !backgroundChange
               ? this.decorateCSS("transparentBackground")
               : ""
-          }`}
+            } ${backgroundChange ? this.decorateCSS("openedMaxContent") : ""}`}
         >
           {currentLogo.image && (
             <div className={this.decorateCSS("logo")}>
-              <ComposerLink href={currentLogo.navigateTo}>
+              <ComposerLink onClick={() => console.log("basıldııı")} path={currentLogo.navigateTo}>
                 <img
                   src={currentLogo.image}
-                  className={this.decorateCSS("logoImage")}
+                  className={`${this.decorateCSS("logoImage")} ${backgroundChange ? this.decorateCSS("openedLogoImage") : ""}`}
                 />
               </ComposerLink>
             </div>
@@ -419,9 +422,9 @@ class Navbar8 extends BaseNavigator {
           {titleContainer && (
             <div className={this.decorateCSS("titleContainer")}>
               <div className={this.decorateCSS("titleContainerContent")}>
-                {title && <h1 className={this.decorateCSS("title")}>{this.getPropValue("title")}</h1>}
+                {title && <h1 className={`${this.decorateCSS("title")} ${backgroundChange ? this.decorateCSS("openedTitle") : ""}`}>{this.getPropValue("title")}</h1>}
                 {subtitle && (
-                  <h4 className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</h4>
+                  <h4 className={`${this.decorateCSS("subtitle")} ${backgroundChange ? this.decorateCSS("openedSubtitle") : ""}`}>{this.getPropValue("subtitle")}</h4>
                 )}
               </div>
             </div>
@@ -437,7 +440,7 @@ class Navbar8 extends BaseNavigator {
                 dropdownLabelClassName={`${this.decorateCSS(
                   "localizationLabel"
                 )}`}
-                iconClassName={this.decorateCSS("languageIcon")}
+                iconClassName={`${this.decorateCSS("localizationIcon")}}`}
                 dropdownItemClassName={this.decorateCSS("localizationItem")}
                 dropdownContentClassName={this.decorateCSS(
                   "localizationContent"
@@ -450,7 +453,7 @@ class Navbar8 extends BaseNavigator {
                 <ComposerIcon
                   name={this.getPropValue("closeIcon")}
                   propsIcon={{
-                    className: this.decorateCSS("closeIcon"), onClick: this.handleCloseMenu
+                    className: `${this.decorateCSS("closeIcon")} ${backgroundChange && this.decorateCSS("openedCloseIcon")}`, onClick: this.handleCloseMenu
                   }}
                 />
             ) : (
@@ -458,7 +461,7 @@ class Navbar8 extends BaseNavigator {
                 <ComposerIcon
                   name={this.getPropValue("hamburgerIcon")}
                   propsIcon={{
-                    className: this.decorateCSS("menuIcon"), onClick: this.handleMenuClick
+                    className: `${this.decorateCSS("menuIcon")} ${backgroundChange && this.decorateCSS("openedMenuIcon")}`, onClick: this.handleMenuClick
                   }}
                 />
             )}
@@ -498,18 +501,21 @@ class Navbar8 extends BaseNavigator {
               )}
               {leftSide && (
                 <div className={this.decorateCSS("dropdownItemList")}>
-                  {itemList.map((item: MenuItems, index: number) => this.castToString(item.title) && (
-                    <div
-                      className={this.decorateCSS("dropdownItem")}
-                      key={index}
-                    >
-                      <ComposerLink href={item.url}>
-                        <p className={this.decorateCSS("dropdownItem")}>
-                          {item.title}
-                        </p>
-                      </ComposerLink>
-                    </div>
-                  ))}
+                  {itemList.map((item: MenuItems, index: number) =>  {
+                    return this.castToString(item.title) && (
+                      <div
+                          className={this.decorateCSS("dropdownItem")}
+                          key={index}
+                        >
+                      <ComposerLink  path={item.url}>
+                            <p className={this.decorateCSS("dropdownItem")}>
+                              {item.title}
+                            </p>
+                        </ComposerLink>
+                       </div>
+                    )
+                  }
+                  )}
                   {socialMediaLinksCondition && (
                     <div className={this.decorateCSS("socialMediaLinks")}>
                       <h1 className={this.decorateCSS("socialMediaLinksTitle")}>
@@ -521,7 +527,7 @@ class Navbar8 extends BaseNavigator {
                             className={this.decorateCSS("socialMediaLink")}
                             key={index}
                           >
-                            <ComposerLink href={item.url}>
+                            <ComposerLink path={item.url}>
                               <ComposerIcon
                                 name={item.icon}
                                 propsIcon={{
