@@ -208,6 +208,7 @@ class Content8 extends BaseContent {
     const itemsLength = this.getPropValue("items").length;
     const image1 = this.getPropValue("image1");
     const image2 = this.getPropValue("image2");
+    const videoLinkExist = this.getPropValue("video");
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -233,23 +234,23 @@ class Content8 extends BaseContent {
                     <div className={this.decorateCSS("player-container")} onClick={() => {
                       this.setComponentState("is_video_visible", true)
                     }}>
-                      <div className={this.decorateCSS("icon-container")}>
+                     {videoLinkExist && <div className={this.decorateCSS("icon-container")}>
                         <ComposerIcon name={this.getPropValue("playIcon")} propsIcon={{ className: this.decorateCSS("icon") }} />
-                      </div>
+                      </div>}
                     </div>
                     {this.getComponentState("is_video_visible") && (
                       <div
                         className={this.decorateCSS("image")}
                         onClick={() => this.setComponentState("is_video_visible", false)}
                       >
-                        <div className={this.decorateCSS("player")}>
+                        {videoLinkExist && <div className={this.decorateCSS("player")}>
                           <video
                             onClick={(event) => event.stopPropagation()}
                             controls
                             className={this.decorateCSS("image2")}
                             src={this.getPropValue("video")}
                           ></video>
-                        </div>
+                        </div>}
 
                       </div>
                     )}
@@ -289,7 +290,7 @@ class Content8 extends BaseContent {
                               <div
                                 className={this.decorateCSS("progress-title-icon")}
                               >
-                                <ComposerIcon
+                               <ComposerIcon
                                   name={item.icon}
                                   propsIcon={{ className: this.decorateCSS("icon") }}
                                 />
