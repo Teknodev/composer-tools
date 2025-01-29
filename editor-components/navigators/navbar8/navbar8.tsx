@@ -335,10 +335,10 @@ class Navbar8 extends BaseNavigator {
     this.setComponentState("isMenuOpen", true);
     }, 100);
   };
-
   handleCloseMenu = () => {
     Base.Navigator.changeScrollBehaviour("auto");
     this.setComponentState("isMenuOpen", false);
+    this.getComponentState("isMenuOpen");
     setTimeout(() => {
       this.setComponentState("backgroundChange", false);
     }, 200);
@@ -410,8 +410,8 @@ class Navbar8 extends BaseNavigator {
             } ${backgroundChange ? this.decorateCSS("openedMaxContent") : ""}`}
         >
           {currentLogo.image && (
-            <div className={this.decorateCSS("logo")}>
-              <ComposerLink onClick={() => console.log("basıldııı")} path={currentLogo.navigateTo}>
+            <div onClick={() => this.setComponentState("isMenuOpen", false)} className={this.decorateCSS("logo")}>
+              <ComposerLink path={currentLogo.navigateTo}>
                 <img
                   src={currentLogo.image}
                   className={`${this.decorateCSS("logoImage")} ${backgroundChange ? this.decorateCSS("openedLogoImage") : ""}`}
@@ -504,8 +504,9 @@ class Navbar8 extends BaseNavigator {
                       <div
                           className={this.decorateCSS("dropdownItem")}
                           key={index}
+                          onClick={() => this.setComponentState("isMenuOpen", false)}
                         >
-                      <ComposerLink  path={item.url}>
+                      <ComposerLink path={item.url}>
                             <p className={this.decorateCSS("dropdownItem")}>
                               {item.title}
                             </p>
@@ -524,6 +525,7 @@ class Navbar8 extends BaseNavigator {
                           <div
                             className={this.decorateCSS("socialMediaLink")}
                             key={index}
+                            onClick={() => this.setComponentState("isMenuOpen", false)}
                           >
                             <ComposerLink path={item.url}>
                               <ComposerIcon
