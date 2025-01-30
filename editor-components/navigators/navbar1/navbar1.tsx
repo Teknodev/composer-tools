@@ -1183,7 +1183,6 @@ class Navbar1 extends BaseNavigator {
       this.setComponentState("changeBackground", false);
     }, 200);
   };
-
   navClick(index: number) {
     const isActive = this.getComponentState("subNavActiveIndex") === index;
     this.setComponentState("navActive", !isActive);
@@ -1208,6 +1207,7 @@ class Navbar1 extends BaseNavigator {
     const hamburgerNavActive = this.getComponentState("hamburgerNavActive");
     const isScrolled = this.getComponentState("isScrolled");
     const isBigScreen = this.getComponentState("isBigScreen");
+    
     const isStickyTransparent = position === "Sticky Transparent";
     const isAbsolute = position === "Absolute";
     const transparentBackground =
@@ -1242,7 +1242,7 @@ class Navbar1 extends BaseNavigator {
           }`}
         >
           {currentLogo && (
-            <div className={this.decorateCSS("logo")}>
+            <div onClick={() => this.setComponentState("hamburgerNavActive", false)} className={this.decorateCSS("logo")}>
               <ComposerLink path={currentLogo.navigateTo}>
                 <img
                   src={currentLogo.image}
@@ -1288,6 +1288,7 @@ class Navbar1 extends BaseNavigator {
                                     )}
                                   >
                                     <div
+                                    onClick={() => this.setComponentState("hamburgerNavActive", false)}
                                       className={this.decorateCSS(
                                         "dropdownItem"
                                       )}
@@ -1341,6 +1342,7 @@ class Navbar1 extends BaseNavigator {
                                                 className={this.decorateCSS(
                                                   "subdropdownItem"
                                                 )}
+                                                onClick={() => this.setComponentState("hamburgerNavActive", false)}
                                               >
                                                 <ComposerLink
                                                   path={subSubItem.navigate_to}
@@ -1456,6 +1458,7 @@ class Navbar1 extends BaseNavigator {
                       >
                         <ComposerLink path={item.navigate_to}>
                           <span
+                            onClick={() => this.setComponentState("hamburgerNavActive", false)}
                             className={`${this.decorateCSS(
                               "hamburgerMenuItemTitle"
                             )}`}
@@ -1479,6 +1482,7 @@ class Navbar1 extends BaseNavigator {
                       </div>
                       {item.menuType === "Dropdown" && (
                         <div
+                          onClick={() => this.setComponentState("hamburgerNavActive", false)}
                           className={`${this.decorateCSS("hamburgerSubmenu")} ${
                             this.getComponentState("subNavActiveIndex") ===
                             index
