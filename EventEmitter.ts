@@ -8,7 +8,8 @@ export enum EVENTS {
   REQUEST_TO_VERIFY_EMAIL = "requestToVerifyEmail",
   MODAL_COMPONENT = "modalComponent",
   CLEAR_CHANGES = "clearChanges",
-  COMPONENT_ADDED = "componentAdded"
+  COMPONENT_ADDED = "componentAdded",
+  INSERT_FORM = "insertForm"
 }
 
 class EventQ {
