@@ -304,7 +304,9 @@ export abstract class Component
       .indexOf(key);
 
     const prop: TypeUsableComponentProps = this.state.componentProps.props[i];
-
+    if (!prop) {
+      return;  
+    }
     const isInvalidIndex = i === -1;
     const isMatchingSimpleValue =
       prop.type !== "array" && prop.type !== "object" && prop.value === value;
