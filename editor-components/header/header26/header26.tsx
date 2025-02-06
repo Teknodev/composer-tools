@@ -6,8 +6,8 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type Slide = {
-  title: JSX.Element;
-  subtitle: JSX.Element;
+  title: React.ReactNode;
+  subtitle: React.ReactNode;
   url: string;
   image: string;
 };
@@ -218,7 +218,7 @@ class Header26 extends BaseHeader {
         this.setComponentState("old", current);
         this.setComponentState("next", next);
       },
-      afterChange: (current: number, next: number) => {
+      afterChange: (current: number) => {
         this.setComponentState("old", null);
         this.setComponentState("next", null);
       },
