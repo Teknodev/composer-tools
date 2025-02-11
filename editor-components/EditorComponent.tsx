@@ -452,7 +452,6 @@ export abstract class Component
     entries.forEach(([_, value], index) => {
       inputData[`input_${index}`] = value;
     });
-    
     EventEmitter.emit(EVENTS.INSERT_FORM, { name, data: inputData, project });
   }
 }
