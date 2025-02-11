@@ -200,14 +200,14 @@ class Header24 extends BaseHeader {
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
-      adaptiveHeight: 1,
+      adaptiveHeight: true,
       arrow: false,
       beforeChange: (previous: number, current: number) => {
         this.setComponentState("previousChange", previous);
         this.setComponentState("currentChange", current);
         this.setComponentState("currentIndex", current);
       },
-      afterChange: (previous: number, current: number) => {
+      afterChange: (current: number) => {
         setTimeout(() => {
           this.setComponentState("previousChange", -1);
           this.setComponentState("currentChange", -1);

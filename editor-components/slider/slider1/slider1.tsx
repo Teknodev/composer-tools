@@ -165,7 +165,7 @@ class Slider1 extends BaseSlider {
       slidesToShow: 1,
       slidesToScroll: 1,
       adaptiveHeight: false,
-      afterChange: (current: number, next: number) => {
+      afterChange: (current: number) => {
         if (this.getComponentState("activeSlide") !== current) {
           this.setComponentState("activeSlide", current);
         }
