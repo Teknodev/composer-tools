@@ -55,10 +55,7 @@
           .button-container {
             .button-element {
               .button {
-                .button-icon {
-                  content: "";
-                }
-                .button-text {
+                .button-icon, .button-text {
                   content: "";
                 }
                 .image {

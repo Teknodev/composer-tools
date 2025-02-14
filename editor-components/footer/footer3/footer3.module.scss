@@ -195,7 +195,9 @@
             align-items: center;
           }
 
-          .links {}
+          .links {
+            content: "";
+          }
         }
       }
     }
@@ -221,7 +223,9 @@
 
           .list-group {
             .text-container {
-              .element {}
+              .element {
+                content: "";
+              }
             }
           }
         }
