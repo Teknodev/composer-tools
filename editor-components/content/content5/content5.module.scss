@@ -108,17 +108,9 @@
     
                     }
 
-                    .title {
+                    .title, .description, .button {
                         content: "";
-                    }
-
-                    .description {
-                        content: "";
-                    }
-
-                    .button {
-                        content: "";
-                    }
+                     }
                 }
             }
         }

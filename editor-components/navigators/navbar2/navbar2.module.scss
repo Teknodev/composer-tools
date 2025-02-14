@@ -360,11 +360,14 @@
         background-color: white;
       }
       .localization {
+        .localizationLabel {
+          color: white;
+        }
         .languageIcon {
           color: white;
         }
-        .localizationLabel {
-          color: white;
+        .localizationItem, .localizationContent {
+          content: "";
         }
       }
     }

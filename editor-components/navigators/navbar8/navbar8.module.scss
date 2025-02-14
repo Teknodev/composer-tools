@@ -97,6 +97,10 @@
       color: var(--composer-font-color-primary);
     }
 
+    .localization, .localizationItem {
+      content: "";
+    }
+
     .localizationLabel{
       color: white;
 

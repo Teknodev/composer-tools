@@ -212,18 +212,23 @@
       }
     }
 
+   
+    .divider {
+      width: 1px; 
+      min-height: 20px;
+      background-color: var(--composer-font-color-primary);
+      margin: 0 var(--composer-gap-sm);
+    }
+    .localization, .localizationItem, .localizationContent{
+      content: "";
+    }
+
     .localizationLabel {
       color: var(--composer-font-color-primary);
       gap: var(--composer-gap-xs);
       font-weight: bold;
     }
 
-    .divider {
-      width: 1px;
-      min-height: 20px;
-      background-color: var(--composer-font-color-primary);
-      margin: 0 var(--composer-gap-sm);
-    }
   }
 
   .pcNavbarContainer > :first-child {

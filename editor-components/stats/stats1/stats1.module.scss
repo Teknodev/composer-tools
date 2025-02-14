@@ -12,14 +12,8 @@
       flex: 1 1;
       .left-container {
         max-width: 100%;
-        .subtitle {
-          content: "";
-        }
-        .description {
-          content: "";
-        }
-
-        .button-text-wrapper {
+        
+        .subtitle,  .description,  .button-text-wrapper {
           content: "";
         }
       }

@@ -5,11 +5,8 @@
         flex-direction: column;
         gap: var(--composer-gap-lg);
         .title-container{
-            .subtitle{
+            .subtitle, .title {
                 content: "";
-            }
-            .title{
-                content: ""
             }
         }
         .page {
