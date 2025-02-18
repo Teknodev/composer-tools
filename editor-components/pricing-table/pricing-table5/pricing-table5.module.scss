@@ -91,6 +91,7 @@
 
               .icon-box {
                 .icon {
+                  content: "";
                 }
               }
             }
@@ -126,6 +127,7 @@
               background-color: var(--composer-font-color-secondary);
               color: var(--composer-primary-color);
               .icon {
+                content: "";
               }
             }
           }
