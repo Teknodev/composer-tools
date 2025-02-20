@@ -29,6 +29,7 @@ type GetPropValueProperties = {
   prefix?: PreSufFix;
 };
 type TypeCSSProp = { [key: string]: { id: string; class: string }[] };
+type TypeInteractionProp = { [key: string]: {}[] };
 export interface iComponent {
   render(): any;
   getInstanceName(): string;
@@ -40,9 +41,11 @@ export interface iComponent {
   ): TypeUsableComponentProps;
   getExportedCSSClasses(): { [key: string]: string };
   getCSSClasses(sectionName?: string | null): any;
+  getInteractions(sectionName?: string | null): any;
   addProp(prop: TypeUsableComponentProps): void;
   setProp(key: string, value: any): void;
   setCSSClasses(key: string, value: { id: string; class: string }[]): void;
+  setInteraction(key: string, value: {}[]): void;
   decorateCSS(cssValue: string): string;
   getCategory(): CATEGORIES;
   id: string;
@@ -65,6 +68,7 @@ export type TypeReactComponent = {
   type: string;
   props?: TypeUsableComponentProps[];
   cssClasses?: TypeCSSProp;
+  interactions?: TypeInteractionProp;
   id?: string;
 };
 export type TypeUsableComponentProps = {
@@ -128,6 +132,7 @@ export abstract class Component
       componentProps: {
         props: props?.props || [],
         cssClasses: props?.cssClasses || sectionsKeyValue,
+        interactions: props?.interactions || sectionsKeyValue
       },
     };
 
@@ -278,6 +283,11 @@ export abstract class Component
       ? this.state.componentProps.cssClasses[sectionName]
       : this.state.componentProps.cssClasses;
   }
+  getInteractions(sectionName: string | null = null): string {
+    return sectionName
+      ? this.state.componentProps.interactions[sectionName]
+      : this.state.componentProps.interactions;
+  }
   addProp(prop: TypeUsableComponentProps) {
     this.shadowProps.push(JSON.parse(JSON.stringify(prop)));
     if (this.getProp(prop.key)) return;
@@ -335,6 +345,10 @@ export abstract class Component
 
   setCSSClasses(key: string, value: { id: string; class: string }[]) {
     this.state.componentProps.cssClasses[key] = value;
+    this.setState({ componentProps: this.state.componentProps });
+  }
+  setInteraction(key: string, value: {}[]) {
+    this.state.componentProps.interactions[key] = value;
     this.setState({ componentProps: this.state.componentProps });
   }
 
