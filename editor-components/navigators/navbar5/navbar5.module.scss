@@ -50,8 +50,16 @@
     height: fit-content;
     z-index: 20;
 
+    .localization, .localizationLabel, .localizationItem, .localizationContent {
+      content: "";
+    }
+
     .language {
       color: var(--composer-font-color-primary);
+    }
+    
+    .languageIcon{
+      content: "";
     }
 
     .hamburgerIcon {

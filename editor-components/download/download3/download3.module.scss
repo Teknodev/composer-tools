@@ -92,10 +92,7 @@
             }
 
             .button-element {
-              .button-text {
-              content: "";
-              }
-              .button-icon {
+              .button-text, .button-icon {
                 content: "";
               }
             }

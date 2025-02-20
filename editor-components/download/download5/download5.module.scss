@@ -55,10 +55,7 @@ $min-height: 500px;
           }
         }
           .button-element {
-            .icon {
-              content: "";
-            }
-            .button-text {
+            .icon, .button-text {
               content: "";
             }
           }

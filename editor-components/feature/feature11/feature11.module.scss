@@ -6,15 +6,10 @@
             gap: var(--composer-gap-xl);
             .left {
                 flex: 1;
-                .section-subtitle {content :""}
-
-                .section-title {content :""}
-
-                .section-description {content :""}
-
-                .button {
-                    content: "";
-                }
+                .section-subtitle {content :"" }
+                .section-title {content :"" }
+                .section-description {content :"" }
+                .button {  content: "" }
             }
 
             .right {

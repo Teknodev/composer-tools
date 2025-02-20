@@ -7,15 +7,7 @@
         gap: var(--composer-gap-md);
 
         .heading {
-            .subtitle {
-                content: ""
-            }
-
-            .title {
-                content: ""
-            }
-
-            .description {
+            .subtitle, .title, .description {
                 content: ""
             }
         }

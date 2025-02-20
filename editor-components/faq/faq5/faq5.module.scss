@@ -6,11 +6,8 @@
       gap: var(--composer-gap-xl);
       .left-page {
         flex: 1;
-        .badge {
-        }
-        .subtitle {
-        }
-        .title-p {
+        .badge, .subtitle, .title-p {
+          content: "";
         }
       }
       .right{

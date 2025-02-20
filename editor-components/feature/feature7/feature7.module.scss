@@ -30,13 +30,7 @@
           padding-left: 50px;
         }    
         .title-wrapper{
-          .title{
-            content: ""
-          }
-          .mainTitle{
-            content: ""
-          }
-          .description{
+          .title,  .mainTitle, .description {
             content: ""
           }
           .featuresList {

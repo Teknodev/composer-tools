@@ -13,11 +13,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
         overflow: hidden;
         color: var(--composer-font-color-primary);
 
-        .title {
-          content: "";
-        }
-
-        .subtitle {
+        .title, .subtitle {
           content: "";
         }
 

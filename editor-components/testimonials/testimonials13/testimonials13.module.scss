@@ -8,11 +8,8 @@
       .grid-cell {
         .flexItem1 {
           height: 100%;
-          .subtitle {
-          }
-          .title {
-          }
-          .description {
+          .subtitle, .title, .description {
+            content: "";
           }
           .carousel {
             width: 100%;

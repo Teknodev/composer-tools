@@ -262,7 +262,9 @@
           color: var(--composer-font-color-primary);
         }
 
-        .links {}
+        .links {
+          content: "";
+        }
       }
     }
   }
