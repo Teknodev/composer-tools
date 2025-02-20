@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Language } from "@mui/icons-material";
 import { ArrowDropDown } from "@mui/icons-material";
 import Dropdown, { DropDownItem } from "../ui/dropdown/Dropdown";
@@ -45,10 +45,42 @@ const ComposerLanguage = (props: ComposerLanguageProps) => {
     composerToolsCurrentLanguage.code || "en"
   );
 
+  useEffect(() => {
+    const currentPath = window.location.pathname;
+  
+    const languageSlug = currentPath.split('/')[1];
+  
+    const availableLanguages = composerToolsLanguages.map(lang => lang.code);
+    if (availableLanguages.includes(languageSlug)) {
+      const selectedLanguage = composerToolsLanguages.find(lang => lang.code === languageSlug);
+      setLanguage(selectedLanguage?.code || 'en');
+      setComposerToolsCurrentLanguage(selectedLanguage || { code: 'en', name: 'English' });
+    }
+  }, []); 
+
   const handleLanguageChange = async (lang: { code: string; name: string }) => {
     setLanguage(lang.code);
     setComposerToolsCurrentLanguage(lang);
+  
+    let currentPath = window.location.pathname;
+  
+    const normalizedPath = currentPath.replace(/\/$/, "");
+  
+    const pathParts = normalizedPath.split('/');
+  
+    if (pathParts[1] !== lang.code) {
+      pathParts[1] = lang.code;
+    }
+  
+    let newUrl = pathParts.join('/');
+  
+    if (newUrl.split('/').length === 2 && !newUrl.endsWith('/')) {
+      newUrl += '/';
+    }
+  
+    window.history.pushState(null, '', newUrl);
   };
+  
 
   if (props.type === "dropdown") {
     const {
@@ -119,7 +151,6 @@ const ComposerLanguage = (props: ComposerLanguageProps) => {
           </li>
         ))}
         </ul>
-       
       </Accordion>
     );
   }
