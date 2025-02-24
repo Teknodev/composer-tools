@@ -348,11 +348,13 @@ export abstract class Component
       this.state.componentProps.props[i]
     );
     this.setState({ componentProps: { ...this.state.componentProps } });
+    EventEmitter.emit(EVENTS.SET_COMPONENT_STATE, { data: this });
   }
 
   setComponentState(key: string, value: any): void {
     this.state.states[key] = value;
     this.setState({ ...this.state });
+    EventEmitter.emit(EVENTS.SET_COMPONENT_STATE, { data: this });
   }
 
   getComponentState(key: string): any {
