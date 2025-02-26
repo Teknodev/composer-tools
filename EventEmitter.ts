@@ -11,6 +11,7 @@ export enum EVENTS {
   COMPONENT_ADDED = "componentAdded",
   INSERT_FORM = "insertForm",
   SET_COMPONENT_STATE = "setComponentState",
+  RENDER_CONTENT_TAB = "renderContentTab",
 }
 
 class EventQ {
