@@ -74,11 +74,11 @@ export type TypeUsableComponentProps = {
   additionalParams?: { selectItems?: string[]; maxElementCount?: number };
   max?: number;
 } & AvailablePropTypes & {
-    getPropValue?: (
-      propName: string,
-      properties?: GetPropValueProperties
-    ) => any;
-  };
+  getPropValue?: (
+    propName: string,
+    properties?: GetPropValueProperties
+  ) => any;
+};
 
 export enum CATEGORIES {
   NAVIGATOR = "navigator",
@@ -101,6 +101,7 @@ export enum CATEGORIES {
   IMAGEGALLERY = "imageGallery",
   LOCATION = "Location",
   HTTP_CODES = "HTTPCodes",
+  BANNER = "banner",
 }
 
 //@ts-ignore
@@ -178,11 +179,11 @@ export abstract class Component
   private getFilteredProp(key: string, props: TypeUsableComponentProps[]): TypeUsableComponentProps | null {
     return props.find((prop: TypeUsableComponentProps) => prop.key === key) || null;
   }
-  
+
   getShadowProp(key: string): TypeUsableComponentProps | null {
     return this.getFilteredProp(key, this.shadowProps);
   }
-  
+
   getProp(key: string): TypeUsableComponentProps | null {
     return this.getFilteredProp(key, this.state.componentProps.props);
   }
@@ -266,7 +267,7 @@ export abstract class Component
 
       return <InlineEditor id={prop.id} value={prop.value as string} props={this.getProps()} sanitizedHtml={sanitizedHtml} />
     };
-    
+
     return <SanitizeHTML html={prop?.value}></SanitizeHTML>;
   }
 
@@ -446,13 +447,13 @@ export abstract class Component
 
   insertForm(name: string, data: Object) {
     const project = getProjectHook()._id;
-  
+
     const inputData: { [key: string]: any } = {};
     const entries = Object.entries(data);
     entries.forEach(([_, value], index) => {
       inputData[`input_${index}`] = value;
     });
-    
+
     EventEmitter.emit(EVENTS.INSERT_FORM, { name, data: inputData, project });
   }
 }
@@ -471,6 +472,10 @@ export abstract class BaseList extends Component {
 
 export abstract class BaseHeader extends Component {
   static category = CATEGORIES.HEADER;
+}
+
+export abstract class BaseBanner extends Component {
+  static category = CATEGORIES.BANNER;
 }
 
 export abstract class BasePricingTable extends Component {
