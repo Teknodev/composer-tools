@@ -59,7 +59,8 @@ type AvailablePropTypes =
   | { type: "select"; value: string }
   | { type: "color"; value: string }
   | { type: "icon"; value: string }
-  | { type: "location"; value: TypeLocation };
+  | { type: "location"; value: TypeLocation }
+  | { type: "phone"; value: string };
 
 export type TypeReactComponent = {
   type: string;
