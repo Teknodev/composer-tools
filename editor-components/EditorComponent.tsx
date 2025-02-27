@@ -80,6 +80,11 @@ export type TypeUsableComponentProps = {
     ) => any;
   };
 
+type MemorizedElement = {
+  jsxElement?: React.JSX.Element,
+  value?: string;
+};
+
 export enum CATEGORIES {
   NAVIGATOR = "navigator",
   TESTIMONIALS = "testimonials",
@@ -112,6 +117,7 @@ export abstract class Component
   private styles: any;
   public id: string;
   static category: CATEGORIES;
+  private memorizedElements: {[id: string]: MemorizedElement} = {};
 
   constructor(props: any, styles: any) {
     super(props);
@@ -263,11 +269,31 @@ export abstract class Component
         html.substring(firstTagEndIndex);
 
       const sanitizedHtml = sanitize(htmlWithPrefixAndSuffix, options);
-
-      return <InlineEditor id={prop.id} value={prop.value as string} props={this.getProps()} sanitizedHtml={sanitizedHtml} />
+      
+      return (
+        <InlineEditor
+          id={prop.id}
+          value={prop.value as string}
+          props={this.getProps()}
+          sanitizedHtml={sanitizedHtml}
+        />
+      );
     };
     
-    return <SanitizeHTML html={prop?.value}></SanitizeHTML>;
+
+    if(!this.memorizedElements[prop.id]) {
+      this.memorizedElements[prop.id] = {};
+    }
+
+    const memorizedElement: MemorizedElement  = this.memorizedElements[prop.id];
+    const isValueChanged = memorizedElement?.value && prop.value != memorizedElement?.value;
+    
+    if(!memorizedElement.jsxElement || isValueChanged){
+      memorizedElement["jsxElement"] = <SanitizeHTML html={prop?.value}></SanitizeHTML>;
+      memorizedElement["value"] = prop.value as string;
+    }
+        
+    return memorizedElement.jsxElement;
   }
 
   getExportedCSSClasses() {
@@ -322,11 +348,13 @@ export abstract class Component
       this.state.componentProps.props[i]
     );
     this.setState({ componentProps: { ...this.state.componentProps } });
+    EventEmitter.emit(EVENTS.SET_COMPONENT_STATE, { data: this });
   }
 
   setComponentState(key: string, value: any): void {
     this.state.states[key] = value;
     this.setState({ ...this.state });
+    EventEmitter.emit(EVENTS.SET_COMPONENT_STATE, { data: this });
   }
 
   getComponentState(key: string): any {
