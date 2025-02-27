@@ -28,6 +28,15 @@ class Form2 extends BaseContacts {
       displayer: "Title",
       value: "Contact Us",
     });
+    this.addProp({
+      type: "multiSelect",
+      key: "deneme",
+      displayer: "Deneme",
+      value: ["E-mail"],
+      additionalParams: {
+        selectItems: ["Text", "E-mail", "Number", "Text Area"],
+      },
+    },);
 
     this.addProp({
       type: "array",
@@ -231,8 +240,10 @@ class Form2 extends BaseContacts {
   render() {
     const inputs = this.getPropValue("inputs");
     const title = this.getPropValue("title");
+    const deneme = this.getPropValue("deneme");
     const titleExist = this.castToString(this.getPropValue("title"));
 
+    console.log("deneme",deneme)
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
     const buttonText = button.text;
@@ -340,6 +351,13 @@ class Form2 extends BaseContacts {
             <div className={this.decorateCSS("input-items")}>
               <div className={`${this.decorateCSS("input-item")} ${!imageExist && this.decorateCSS("input-item-no-image")}`}>
                 {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${imageExist && this.decorateCSS("title-with-image")}`}>{title}</Base.SectionTitle>}
+                <div className={this.decorateCSS("denemeContainer")}>
+                {deneme.map((item:any)=>(
+                    <div className={this.decorateCSS("deneme")}> {item}</div>
+                  ))}
+                </div>
+
+        
                 {(inputs.length > 0 || buttonTextExist) && (
                   <Formik
                     initialValues={initialValue}

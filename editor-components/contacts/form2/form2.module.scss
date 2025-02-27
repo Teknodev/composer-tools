@@ -70,6 +70,14 @@
             color: white;
           }
         }
+        .denemeContainer{
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          .deneme{
+            color: white;
+          }
+        }
 
         .form {
           display: flex;
