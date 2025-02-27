@@ -28,6 +28,12 @@ type GetPropValueProperties = {
   suffix?: PreSufFix;
   prefix?: PreSufFix;
 };
+type RangeInputAdditionalParams = { 
+  maxRange?: number; 
+  minRange?: number; 
+  step?: number;
+};
+
 type TypeCSSProp = { [key: string]: { id: string; class: string }[] };
 export interface iComponent {
   render(): any;
@@ -59,7 +65,8 @@ type AvailablePropTypes =
   | { type: "select"; value: string }
   | { type: "color"; value: string }
   | { type: "icon"; value: string }
-  | { type: "location"; value: TypeLocation };
+  | { type: "location"; value: TypeLocation }
+  | { type: "range"; value: string; additionalParams?: RangeInputAdditionalParams};
 
 export type TypeReactComponent = {
   type: string;
@@ -71,7 +78,7 @@ export type TypeUsableComponentProps = {
   id?: string;
   key: string;
   displayer: string;
-  additionalParams?: { selectItems?: string[]; maxElementCount?: number };
+  additionalParams?: { selectItems?: string[]; maxElementCount?: number};
   max?: number;
 } & AvailablePropTypes & {
     getPropValue?: (
