@@ -1,6 +1,4 @@
-import React, { useState } from "react";
-import { Language } from "@mui/icons-material";
-import { ArrowDropDown } from "@mui/icons-material";
+import React, { useState, useEffect } from "react";
 import Dropdown, { DropDownItem } from "../ui/dropdown/Dropdown";
 import styles from "./language.module.scss";
 import { useComposerToolsData } from "../../context/DataContext";
@@ -41,14 +39,53 @@ const ComposerLanguage = (props: ComposerLanguageProps) => {
     setComposerToolsCurrentLanguage,
   } = useComposerToolsData();
 
-  const [language, setLanguage] = useState<string>(
-    composerToolsCurrentLanguage.code || "en"
+  const [initialized, setInitialized] = useState(false);
+
+useEffect(() => {
+  if (initialized) return;
+
+  const currentPath = window.location.pathname.replace(/\/$/, "");    
+  let pathParts = currentPath.split("/");
+
+  let languageSlug = pathParts[1];
+
+  if (!composerToolsLanguages.some((lang) => lang.code === languageSlug)) {
+    languageSlug = "en";
+    pathParts[1] = "en";  
+    const newUrl = pathParts.join("/");
+
+    if (currentPath !== newUrl) {
+      window.history.replaceState(null, "", newUrl); 
+    }
+  }
+
+  const selectedLanguage = composerToolsLanguages.find(
+    (lang) => lang.code === languageSlug
+  );
+  setComposerToolsCurrentLanguage(
+    selectedLanguage || { code: "en", name: "English" }
   );
 
-  const handleLanguageChange = async (lang: { code: string; name: string }) => {
-    setLanguage(lang.code);
-    setComposerToolsCurrentLanguage(lang);
-  };
+  setInitialized(true);
+}, [composerToolsLanguages]);
+
+const handleLanguageChange = async (lang: { code: string; name: string }) => {
+  setComposerToolsCurrentLanguage(lang);
+  
+  let currentPath = window.location.pathname;
+  const normalizedPath = currentPath.replace(/\/$/, "");
+  const pathParts = normalizedPath.split("/");
+
+  if (pathParts[1] !== lang.code) {
+    pathParts[1] = lang.code;
+  }
+
+  let newUrl = pathParts.join("/");
+
+  if (!newUrl.endsWith("/")) {
+    window.history.pushState(null, "", newUrl);
+  }
+};
 
   if (props.type === "dropdown") {
     const {
@@ -79,7 +116,9 @@ const ComposerLanguage = (props: ComposerLanguageProps) => {
             onClick={() => handleLanguageChange(lang)}
             divider={divider && index < composerToolsLanguages.length - 1}
           >
-            <span className={dropdownItemClassName}>{lang[title].toUpperCase()}</span>
+            <span className={dropdownItemClassName}>
+              {lang[title].toUpperCase()}
+            </span>
           </DropDownItem>
         ))}
       </Dropdown>
@@ -96,7 +135,7 @@ const ComposerLanguage = (props: ComposerLanguageProps) => {
       icon = "MdArrowDropDown",
       title = "name",
       accordionIconClassName,
-      titleClassName
+      titleClassName,
     } = props;
     return (
       <Accordion
@@ -108,18 +147,19 @@ const ComposerLanguage = (props: ComposerLanguageProps) => {
         accordionIconClassName={accordionIconClassName}
         titleClassName={titleClassName}
       >
-        <ul className={`${styles["accordionList"]} ${languageAccordionClassName}`}>
-        {composerToolsLanguages.map((lang) => (
-          <li
-            key={lang.code}
-            className={`${styles["accordionItem"]} ${itemClassName}`}
-            onClick={() => handleLanguageChange(lang)}
-          >
-            {lang.name}
-          </li>
-        ))}
+        <ul
+          className={`${styles["accordionList"]} ${languageAccordionClassName}`}
+        >
+          {composerToolsLanguages.map((lang) => (
+            <li
+              key={lang.code}
+              className={`${styles["accordionItem"]} ${itemClassName}`}
+              onClick={() => handleLanguageChange(lang)}
+            >
+              {lang.name}
+            </li>
+          ))}
         </ul>
-       
       </Accordion>
     );
   }
