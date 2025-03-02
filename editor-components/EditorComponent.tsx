@@ -59,6 +59,7 @@ type AvailablePropTypes =
   | { type: "select"; value: string }
   | { type: "color"; value: string }
   | { type: "icon"; value: string }
+  | { type: "currency"; value: number }
   | { type: "location"; value: TypeLocation };
 
 export type TypeReactComponent = {
@@ -108,7 +109,6 @@ export enum CATEGORIES {
   HTTP_CODES = "HTTPCodes",
 }
 
-//@ts-ignore
 export abstract class Component
   extends React.Component<{}, { states: any; componentProps: any }>
   implements iComponent
