@@ -1358,6 +1358,7 @@ class Navbar2 extends BaseNavigator {
                           >
                             <ComposerLink path={item.navigate_to}>
                               <span
+                              onClick={()=>{this.toggleMobileMenu()}}
                                 className={this.decorateCSS(
                                   "hamburgerMenuItemTitle"
                                 )}
@@ -1411,6 +1412,7 @@ class Navbar2 extends BaseNavigator {
                                     >
                                       <ComposerLink path={subItem.navigate_to}>
                                         <span
+                                        onClick={()=>{this.toggleMobileMenu()}}
                                           className={this.decorateCSS(
                                             "hamburgerMenuItemTitle"
                                           )}
@@ -1470,6 +1472,7 @@ class Navbar2 extends BaseNavigator {
                                                   path={subSubItem.navigate_to}
                                                 >
                                                   <span
+                                                    onClick={()=>{this.toggleMobileMenu()}}
                                                     className={this.decorateCSS(
                                                       "hamburgerSubSubmenuItemTitle"
                                                     )}

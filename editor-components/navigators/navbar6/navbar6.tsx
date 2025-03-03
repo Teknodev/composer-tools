@@ -1366,6 +1366,7 @@ class Navbar6 extends BaseNavigator {
                       >
                         <ComposerLink path={item.navigate_to}>
                           <span
+                            onClick={()=>this.handleCloseMenu()}
                             className={this.decorateCSS(
                               "hamburgerMenuItemTitle"
                             )}
@@ -1414,6 +1415,7 @@ class Navbar6 extends BaseNavigator {
                                 >
                                   <ComposerLink path={subItem.navigate_to}>
                                     <span
+                                      onClick={()=>this.handleCloseMenu()}
                                       className={this.decorateCSS(
                                         "hamburgerMenuItemTitle"
                                       )}
@@ -1471,6 +1473,7 @@ class Navbar6 extends BaseNavigator {
                                               path={subSubItem.navigate_to}
                                             >
                                               <span
+                                                onClick={()=>this.handleCloseMenu()}
                                                 className={this.decorateCSS(
                                                   "hamburgerSubSubmenuItemTitle"
                                                 )}
@@ -1503,10 +1506,13 @@ class Navbar6 extends BaseNavigator {
                   <div className={this.decorateCSS("iconsContainer")}>
                     {icons.map((icon: Icon, index: number) => (
                       <ComposerLink path={icon.page}>
+                        <div className={this.decorateCSS("icons")} onClick={()=>this.handleCloseMenu()}>
                         <ComposerIcon
                           name={icon.icon}
                           propsIcon={{ className: this.decorateCSS("icon") }}
                         />
+                        </div>
+
                       </ComposerLink>
                     ))}
                   </div>

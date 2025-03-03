@@ -1342,6 +1342,7 @@ class Navbar9 extends BaseNavigator {
                         >
                           <ComposerLink path={item.navigate_to}>
                             <span
+                              onClick={()=>(this.handleCloseMenu())}
                               className={this.decorateCSS(
                                 "hamburgerMenuItemTitle"
                               )}
@@ -1395,6 +1396,7 @@ class Navbar9 extends BaseNavigator {
                                   >
                                     <ComposerLink path={subItem.navigate_to}>
                                       <span
+                                        onClick={()=>(this.handleCloseMenu())}
                                         className={this.decorateCSS(
                                           "hamburgerDropdownItemTitle"
                                         )}
@@ -1452,6 +1454,7 @@ class Navbar9 extends BaseNavigator {
                                                 path={subSubItem.navigate_to}
                                               >
                                                 <span
+                                                  onClick={()=>(this.handleCloseMenu())}
                                                   className={this.decorateCSS(
                                                     "hamburgerSubSubmenuItemTitle"
                                                   )}
@@ -1493,7 +1496,9 @@ class Navbar9 extends BaseNavigator {
                   <div className={this.decorateCSS("icons")}>
                     {icons.map((icon: Icons, index: number) => (
                       <ComposerLink key={index} path={icon.page}>
-                        <ComposerIcon name={icon.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                        <div onClick={()=>(this.handleCloseMenu())}>
+                            <ComposerIcon name={icon.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                        </div>
                       </ComposerLink>
                     ))}
                   </div>

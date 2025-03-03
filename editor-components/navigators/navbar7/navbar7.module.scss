@@ -205,15 +205,15 @@
   align-items: center;
   justify-content: flex-end;
   gap: var(--composer-gap-sm);
-
-  .icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5rem;
-    color: var(--composer-font-color-primary);
+  .icons{
+    .icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+      color: var(--composer-font-color-primary);
+    }
   }
-
   .localization, .localizationItem, .localizationContent {
     content: "";
   }
@@ -247,7 +247,12 @@
 
   }
   .iconsContainer {
-    .icon, .localizationLabel, .languageIcon  {
+    .icons{
+      .icon{
+        color: white;
+      }
+    }
+    .localizationLabel, .languageIcon  {
       color: white;
     }
   }
@@ -439,9 +444,10 @@
             justify-content: center;
             gap: var(--composer-gap-sm);
             padding: var(--composer-gap-md) 0;
-
-            .icon {
-              color: var(--composer-font-color-primary);
+            .icons{
+              .icon {
+                color: var(--composer-font-color-primary);
+              }
             }
           }
         }

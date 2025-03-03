@@ -1266,10 +1266,12 @@ class Navbar7 extends BaseNavigator {
               <div className={this.decorateCSS("iconsContainer")}>
                 {icons.map((icon: Icon, index: number) => (
                   <ComposerLink path={icon.page}>
-                    <ComposerIcon
-                      name={icon.icon}
-                      propsIcon={{ className: this.decorateCSS("icon") }}
-                    />
+                    <div className={this.decorateCSS("icons")}>
+                      <ComposerIcon
+                        name={icon.icon}
+                        propsIcon={{ className: this.decorateCSS("icon") }}
+                      />
+                    </div>
                   </ComposerLink>
                 ))}
                 {language.showLanguage && (
@@ -1363,6 +1365,7 @@ class Navbar7 extends BaseNavigator {
                       >
                         <ComposerLink path={item.navigate_to}>
                           <span
+                            onClick={() => this.handleCloseMenu()}
                             className={this.decorateCSS(
                               "hamburgerMenuItemTitle"
                             )}
@@ -1411,6 +1414,7 @@ class Navbar7 extends BaseNavigator {
                                 >
                                   <ComposerLink path={subItem.navigate_to}>
                                     <span
+                                      onClick={() => this.handleCloseMenu()}
                                       className={this.decorateCSS(
                                         "hamburgerMenuItemTitle"
                                       )}
@@ -1468,6 +1472,7 @@ class Navbar7 extends BaseNavigator {
                                               path={subSubItem.navigate_to}
                                             >
                                               <span
+                                                onClick={() => this.handleCloseMenu()}
                                                 className={this.decorateCSS(
                                                   "hamburgerSubSubmenuItemTitle"
                                                 )}
@@ -1499,12 +1504,14 @@ class Navbar7 extends BaseNavigator {
               {icons.length > 0 && (
                 <div className={this.decorateCSS("iconsContainer")}>
                   {icons.map((icon: Icon, index: number) => (
-                    <ComposerLink path={icon.page}>
-                      <ComposerIcon
-                        name={icon.icon}
-                        propsIcon={{ className: this.decorateCSS("icon") }}
-                      />
-                    </ComposerLink>
+                      <ComposerLink path={icon.page}>
+                        <div className={this.decorateCSS("icons")} onClick={() => this.handleCloseMenu()}>
+                          <ComposerIcon
+                            name={icon.icon}
+                            propsIcon={{ className: this.decorateCSS("icon") }}
+                          />
+                        </div>
+                      </ComposerLink>
                   ))}
                 </div>
               )}

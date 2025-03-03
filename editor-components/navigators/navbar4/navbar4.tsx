@@ -1597,6 +1597,7 @@ class Navbar4 extends BaseNavigator {
                       >
                         <ComposerLink path={item.navigate_to}>
                           <span
+                            onClick={()=> this.handleCloseMenu()}
                             className={`${this.decorateCSS(
                               "hamburgerMenuItemTitle"
                             )}`}
@@ -1646,6 +1647,7 @@ class Navbar4 extends BaseNavigator {
                                   >
                                     <ComposerLink path={subItem.navigate_to}>
                                       <span
+                                        onClick={()=> this.handleCloseMenu()}
                                         className={this.decorateCSS(
                                           "hamburgerDropdownItemTitle"
                                         )}
@@ -1703,6 +1705,7 @@ class Navbar4 extends BaseNavigator {
                                                 path={subSubItem.navigate_to}
                                               >
                                                 <span
+                                                  onClick={()=> this.handleCloseMenu()}
                                                   className={this.decorateCSS(
                                                     "hamburgerSubSubmenuItemTitle"
                                                   )}
