@@ -59,7 +59,7 @@ type AvailablePropTypes =
   | { type: "select"; value: string }
   | { type: "color"; value: string }
   | { type: "icon"; value: string }
-  | { type: "currency"; value: number }
+  | { type: "currency"; value: { value: number; currency: string }; additionalParams?: currencyAdditionalParams}
   | { type: "location"; value: TypeLocation };
 
 export type TypeReactComponent = {
@@ -85,6 +85,11 @@ type MemorizedElement = {
   jsxElement?: React.JSX.Element,
   value?: string;
 };
+
+type currencyAdditionalParams ={
+  showCode?: boolean;
+  showSymbol?:boolean;
+}
 
 export enum CATEGORIES {
   NAVIGATOR = "navigator",
