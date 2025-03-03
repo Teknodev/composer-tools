@@ -23,11 +23,12 @@ class Form2 extends BaseContacts {
       value: true,
     });
     this.addProp({
-      type: "string",
+      type: "currency",
       key: "title",
       displayer: "Title",
-      value: "Contact Us",
+      value: 100,
     });
+    
 
     this.addProp({
       type: "array",
@@ -231,7 +232,7 @@ class Form2 extends BaseContacts {
   render() {
     const inputs = this.getPropValue("inputs");
     const title = this.getPropValue("title");
-    const titleExist = this.castToString(this.getPropValue("title"));
+    const titleExist =this.getPropValue("title");
 
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 

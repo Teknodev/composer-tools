@@ -18,11 +18,14 @@ class List2 extends BaseList {
     super(props, styles);
 
     this.addProp({
-      type: "string",
+      type: "currency",
       key: "title",
       displayer: "Title",
-      value: "Most Popular Cities/Towns",
+      value: { value: 100, currency: "₺" },
+
+
     });
+    
 
     this.addProp({
       type: "string",
@@ -304,17 +307,17 @@ class List2 extends BaseList {
     const cards = this.castToObject<CardItem[]>("cards");
     const buttonType: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
+    console.log("title",this.getPropValue("title"))
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             {(this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("description"))) && (
               <Base.VerticalContent className={this.decorateCSS("up-container")}>
-                {this.castToString(this.getPropValue("title")) && (
                   <Base.SectionTitle className={this.decorateCSS("title")}>
-                    {this.getPropValue("title")}
+                    {this.getPropValue("title").value}
+                    {this.getPropValue("title").currency}
                   </Base.SectionTitle>
-                )}
                 {this.castToString(this.getPropValue("description")) && (
                   <Base.SectionDescription className={this.decorateCSS("description")} >
                     {this.getPropValue("description")}
