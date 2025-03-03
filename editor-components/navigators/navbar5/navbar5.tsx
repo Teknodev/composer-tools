@@ -478,6 +478,7 @@ class Navbar5 extends BaseNavigator {
             <div className={this.decorateCSS("logo")}>
               <ComposerLink path={currentLogo.navigateTo}>
                 <img
+                  onClick={()=>this.closeNav()}
                   src={currentLogo.image}
                   className={this.decorateCSS("logoImage")}
                 />

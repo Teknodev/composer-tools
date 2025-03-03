@@ -412,6 +412,7 @@ class Navbar8 extends BaseNavigator {
             <div onClick={() => this.setComponentState("isMenuOpen", false)} className={this.decorateCSS("logo")}>
               <ComposerLink path={currentLogo.navigateTo}>
                 <img
+                  onClick={()=>this.handleCloseMenu()}
                   src={currentLogo.image}
                   className={`${this.decorateCSS("logoImage")} ${backgroundChange ? this.decorateCSS("openedLogoImage") : ""}`}
                 />

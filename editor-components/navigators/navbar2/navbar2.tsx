@@ -1186,6 +1186,7 @@ class Navbar2 extends BaseNavigator {
             <ComposerLink path={currentLogo.navigateTo}>
               <div className={this.decorateCSS("logo")}>
                 <img
+                  onClick={()=>{this.toggleMobileMenu()}}
                   src={currentLogo.image}
                   className={this.decorateCSS("logoImg")}
                 />

@@ -9,7 +9,7 @@ import ComposerLanguage from "composer-tools/composer-base-components/language/l
 
 interface Logo {
   image: string;
-  imageLink: string;
+  navigateTo: string;
 }
 
 interface Icon {
@@ -1138,8 +1138,9 @@ class Navbar7 extends BaseNavigator {
           >
             {currentLogo.image && (
               <div className={this.decorateCSS("logo")}>
-                <ComposerLink path={currentLogo.imageLink}>
+                <ComposerLink path={currentLogo.navigateTo}>
                   <img
+                    onClick={()=>this.handleCloseMenu()}
                     src={currentLogo.image}
                     className={this.decorateCSS("logoImage")}
                   />
@@ -1319,8 +1320,9 @@ class Navbar7 extends BaseNavigator {
           >
             {currentLogo.image && (
               <div className={this.decorateCSS("logo")}>
-                <ComposerLink path={currentLogo.imageLink}>
+                <ComposerLink path={currentLogo.navigateTo}>
                   <img
+                    onClick={()=>this.handleCloseMenu()}
                     src={currentLogo.image}
                     className={this.decorateCSS("logoImage")}
                   />

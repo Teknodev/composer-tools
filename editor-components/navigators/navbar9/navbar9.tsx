@@ -9,7 +9,7 @@ import ComposerLanguage from "composer-tools/composer-base-components/language/l
 
 interface Logo {
   image: string;
-  imageLink: string;
+  navigateTo: string;
 }
 
 interface MenuItems {
@@ -1136,14 +1136,15 @@ class Navbar9 extends BaseNavigator {
         >
           <Base.MaxContent className={`${this.decorateCSS("maxContent")} ${transparentBackground ? this.decorateCSS("transparentBackground") : ""}`}>
             {currentLogo.image && (
-              <ComposerLink link={currentLogo.imageLink}>
                 <div className={this.decorateCSS("logo")}>
-                  <img
+                   <ComposerLink path={currentLogo.navigateTo}>
+                   <img
+                    onClick={()=>{this.handleCloseMenu()}}
                     src={currentLogo.image}
                     className={this.decorateCSS("logoImage")}
                   />
+                   </ComposerLink>
                 </div>
-              </ComposerLink>
             )}
 
             <div className={this.decorateCSS("pcNavbarContainer")}>
