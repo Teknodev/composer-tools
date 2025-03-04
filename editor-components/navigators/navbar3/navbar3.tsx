@@ -1289,6 +1289,7 @@ class Navbar3 extends BaseNavigator {
               <div className={this.decorateCSS("logo")}>
                 <ComposerLink path={currentLogo.navigateTo}>
                   <img
+                    onClick={()=>this.handleCloseMenu()}
                     src={currentLogo.image}
                     className={this.decorateCSS("logoImage")}
                   />
@@ -1520,6 +1521,7 @@ class Navbar3 extends BaseNavigator {
                               >
                                 <ComposerLink path={item.navigate_to}>
                                   <span
+                                  onClick={()=>this.handleCloseMenu()}
                                     className={`${this.decorateCSS(
                                       "hamburgerMenuItemTitle"
                                     )}`}
@@ -1575,10 +1577,11 @@ class Navbar3 extends BaseNavigator {
                                               )
                                             }
                                           >
-                                            <ComposerLink
+                                            <ComposerLink                                            
                                               path={subItem.navigate_to}
                                             >
                                               <span
+                                                onClick={()=>this.handleCloseMenu()}
                                                 className={this.decorateCSS(
                                                   "hamburgerDropdownItemTitle"
                                                 )}
@@ -1648,6 +1651,7 @@ class Navbar3 extends BaseNavigator {
                                                           }
                                                         >
                                                           <span
+                                                            onClick={()=>this.handleCloseMenu()}
                                                             className={this.decorateCSS(
                                                               "hamburgerSubSubmenuItemTitle"
                                                             )}

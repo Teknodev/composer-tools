@@ -1245,6 +1245,7 @@ class Navbar1 extends BaseNavigator {
             <div onClick={() => this.setComponentState("hamburgerNavActive", false)} className={this.decorateCSS("logo")}>
               <ComposerLink path={currentLogo.navigateTo}>
                 <img
+                  onClick={()=>this.handleCloseMenu()}
                   src={currentLogo.image}
                   className={this.decorateCSS("logoImage")}
                 />
@@ -1458,7 +1459,10 @@ class Navbar1 extends BaseNavigator {
                       >
                         <ComposerLink path={item.navigate_to}>
                           <span
-                            onClick={() => this.setComponentState("hamburgerNavActive", false)}
+                            onClick={() => 
+                            {
+                              this.handleCloseMenu()
+                              this.setComponentState("hamburgerNavActive", false)}}
                             className={`${this.decorateCSS(
                               "hamburgerMenuItemTitle"
                             )}`}
@@ -1509,6 +1513,7 @@ class Navbar1 extends BaseNavigator {
                                   >
                                     <ComposerLink path={subItem.navigate_to}>
                                       <span
+                                        onClick={() => this.handleCloseMenu()}
                                         className={this.decorateCSS(
                                           "hamburgerDropdownItemTitle"
                                         )}
@@ -1566,6 +1571,7 @@ class Navbar1 extends BaseNavigator {
                                                 path={subSubItem.navigate_to}
                                               >
                                                 <span
+                                                  onClick={() => this.handleCloseMenu()}
                                                   className={this.decorateCSS(
                                                     "hamburgerSubSubmenuItemTitle"
                                                   )}

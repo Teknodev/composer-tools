@@ -412,6 +412,7 @@ class Navbar8 extends BaseNavigator {
             <div onClick={() => this.setComponentState("isMenuOpen", false)} className={this.decorateCSS("logo")}>
               <ComposerLink path={currentLogo.navigateTo}>
                 <img
+                  onClick={()=>this.handleCloseMenu()}
                   src={currentLogo.image}
                   className={`${this.decorateCSS("logoImage")} ${backgroundChange ? this.decorateCSS("openedLogoImage") : ""}`}
                 />
@@ -506,7 +507,9 @@ class Navbar8 extends BaseNavigator {
                           onClick={() => this.setComponentState("isMenuOpen", false)}
                         >
                       <ComposerLink path={item.url}>
-                            <p className={this.decorateCSS("dropdownItem")}>
+                            <p 
+                            onClick={()=>{this.handleCloseMenu()}}
+                            className={this.decorateCSS("dropdownItem")}>
                               {item.title}
                             </p>
                         </ComposerLink>
@@ -524,17 +527,19 @@ class Navbar8 extends BaseNavigator {
                           <div
                             className={this.decorateCSS("socialMediaLink")}
                             key={index}
-                            onClick={() => this.setComponentState("isMenuOpen", false)}
+                            onClick={() => {
+                              this.handleCloseMenu()
+                              this.setComponentState("isMenuOpen", false)}}
                           >
-                            <ComposerLink path={item.url}>
-                              <ComposerIcon
-                                name={item.icon}
-                                propsIcon={{
-                                  className:
-                                    this.decorateCSS("socialMediaIcon"),
-                                }}
-                              />
-                            </ComposerLink>
+                              <ComposerLink path={item.url}>
+                                <ComposerIcon
+                                  name={item.icon}
+                                  propsIcon={{
+                                    className:
+                                      this.decorateCSS("socialMediaIcon"),
+                                  }}
+                                />
+                              </ComposerLink>
                           </div>
                         ))}
                       </div>

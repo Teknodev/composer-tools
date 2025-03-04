@@ -9,7 +9,7 @@ import ComposerLanguage from "composer-tools/composer-base-components/language/l
 
 interface Logo {
   image: string;
-  imageLink: string;
+  navigateTo: string;
 }
 
 interface MenuItems {
@@ -1136,14 +1136,15 @@ class Navbar9 extends BaseNavigator {
         >
           <Base.MaxContent className={`${this.decorateCSS("maxContent")} ${transparentBackground ? this.decorateCSS("transparentBackground") : ""}`}>
             {currentLogo.image && (
-              <ComposerLink link={currentLogo.imageLink}>
                 <div className={this.decorateCSS("logo")}>
-                  <img
+                   <ComposerLink path={currentLogo.navigateTo}>
+                   <img
+                    onClick={()=>{this.handleCloseMenu()}}
                     src={currentLogo.image}
                     className={this.decorateCSS("logoImage")}
                   />
+                   </ComposerLink>
                 </div>
-              </ComposerLink>
             )}
 
             <div className={this.decorateCSS("pcNavbarContainer")}>
@@ -1342,6 +1343,7 @@ class Navbar9 extends BaseNavigator {
                         >
                           <ComposerLink path={item.navigate_to}>
                             <span
+                              onClick={()=>(this.handleCloseMenu())}
                               className={this.decorateCSS(
                                 "hamburgerMenuItemTitle"
                               )}
@@ -1395,6 +1397,7 @@ class Navbar9 extends BaseNavigator {
                                   >
                                     <ComposerLink path={subItem.navigate_to}>
                                       <span
+                                        onClick={()=>(this.handleCloseMenu())}
                                         className={this.decorateCSS(
                                           "hamburgerDropdownItemTitle"
                                         )}
@@ -1452,6 +1455,7 @@ class Navbar9 extends BaseNavigator {
                                                 path={subSubItem.navigate_to}
                                               >
                                                 <span
+                                                  onClick={()=>(this.handleCloseMenu())}
                                                   className={this.decorateCSS(
                                                     "hamburgerSubSubmenuItemTitle"
                                                   )}
@@ -1493,7 +1497,9 @@ class Navbar9 extends BaseNavigator {
                   <div className={this.decorateCSS("icons")}>
                     {icons.map((icon: Icons, index: number) => (
                       <ComposerLink key={index} path={icon.page}>
-                        <ComposerIcon name={icon.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                        <div onClick={()=>(this.handleCloseMenu())}>
+                            <ComposerIcon name={icon.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                        </div>
                       </ComposerLink>
                     ))}
                   </div>
