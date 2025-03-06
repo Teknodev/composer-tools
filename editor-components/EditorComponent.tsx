@@ -59,7 +59,8 @@ type AvailablePropTypes =
   | { type: "select"; value: string }
   | { type: "color"; value: string }
   | { type: "icon"; value: string }
-  | { type: "location"; value: TypeLocation };
+  | { type: "location"; value: TypeLocation }
+  | { type: "dateTime"; value: string ; additionalParams? : {mode?:string, timeInterval?:number, yearRange? : number, yearStart?: number}}
 
 export type TypeReactComponent = {
   type: string;
