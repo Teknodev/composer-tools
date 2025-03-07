@@ -59,6 +59,7 @@ type AvailablePropTypes =
   | { type: "select"; value: string }
   | { type: "color"; value: string }
   | { type: "icon"; value: string }
+  | { type: "tag"; value: string[]}
   | { type: "location"; value: TypeLocation };
 
 export type TypeReactComponent = {
@@ -356,28 +357,32 @@ export abstract class Component
 
   private attachValueGetter(propValue: TypeUsableComponentProps) {
     if (Array.isArray(propValue.value)) {
+      if (propValue.type === "tag") {
+        propValue.value = propValue.value.filter((value) => typeof value === "string") as string[];
+        return propValue;
+      }
       propValue.value = propValue.value.filter((value) => value != null);
-      propValue.value = propValue.value.map(
-        (propValueItem: TypeUsableComponentProps) => {
-          if (Array.isArray(propValueItem.value)) {
-            propValueItem = this.attachValueGetter(propValueItem);
-            propValueItem["getPropValue"] = (
-              propName: string,
-              properties?: GetPropValueProperties
-            ) => {
-              if (!properties) properties = {};
-              properties.parent_object =
-                propValueItem.value as TypeUsableComponentProps[];
-              return this.getPropValue(propName, properties);
-            };
-          }
 
-          return propValueItem;
+      propValue.value = propValue.value.map((propValueItem: any) => {
+        if (Array.isArray(propValueItem.value)) {
+          propValueItem = this.attachValueGetter(propValueItem);
+          propValueItem["getPropValue"] = (
+            propName: string,
+            properties?: GetPropValueProperties
+          ) => {
+            if (!properties) properties = {};
+            properties.parent_object =
+              propValueItem.value as TypeUsableComponentProps[];
+            return this.getPropValue(propName, properties);
+          };
         }
-      );
+        return propValueItem;
+      });
     }
     return propValue;
   }
+  
+  
 
   castToObject<Type>(propName: string): Type {
     let i = this.state.componentProps.props
