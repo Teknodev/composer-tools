@@ -1,0 +1,39 @@
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 500px;
+
+  .max-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    .navigation-crumber {
+      display: flex;
+      order: -1;
+
+      .crumber-content {
+        display: flex;
+        gap: var(--gap-xs);
+        font-size: 1rem;
+        color: var(--composer-font-color-primary);
+        margin-top: -5rem;
+
+        .current-page {
+          text-decoration: none;
+          font-weight: bold;
+        }
+
+        .current-page,
+        .home-page {
+          &:hover {
+            color: var(--color-primary);
+          }
+        }
+      }
+    }
+  }
+}
