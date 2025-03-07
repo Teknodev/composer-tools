@@ -1,4 +1,3 @@
-import axios from "axios";
 import * as React from "react";
 import { getProjectHook } from "../custom-hooks/project";
 import { EventEmitter, EVENTS } from "../EventEmitter";
@@ -7,6 +6,18 @@ import { renderToString } from "react-dom/server";
 import { THEMES, TTheme } from "./location/themes";
 import InlineEditor from "../../custom-hooks/UseInlineEditor";
 import { v4 as uuidv4 } from 'uuid';
+
+export function attachPropId(_prop: TypeUsableComponentProps){  
+  if (_prop.type == "array" || _prop.type == "object") {
+    _prop.value = (_prop.value as TypeUsableComponentProps[]).map(
+      (v: TypeUsableComponentProps) => attachPropId(v)
+    );
+  } else {
+    _prop.id =
+      _prop.key + "-" + Math.round(Math.random() * 1000000000).toString();
+  }
+  return _prop;
+};
 
 export function generateComponentId(){
   return uuidv4();
@@ -308,20 +319,12 @@ export abstract class Component
       ? this.state.componentProps.cssClasses[sectionName]
       : this.state.componentProps.cssClasses;
   }
+
+
   addProp(prop: TypeUsableComponentProps) {
     this.shadowProps.push(JSON.parse(JSON.stringify(prop)));
     if (this.getProp(prop.key)) return;
-    const attachPropId = (_prop: TypeUsableComponentProps) => {
-      if (_prop.type == "array" || _prop.type == "object") {
-        _prop.value = (_prop.value as TypeUsableComponentProps[]).map(
-          (v: TypeUsableComponentProps) => attachPropId(v)
-        );
-      } else {
-        _prop.id =
-          _prop.key + "-" + Math.round(Math.random() * 1000000000).toString();
-      }
-      return _prop;
-    };
+    
     prop = attachPropId(prop);
     prop = this.attachValueGetter(prop);
 
