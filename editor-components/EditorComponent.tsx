@@ -59,7 +59,8 @@ type AvailablePropTypes =
   | { type: "select"; value: string }
   | { type: "color"; value: string }
   | { type: "icon"; value: string }
-  | { type: "location"; value: TypeLocation };
+  | { type: "location"; value: TypeLocation }
+  | { type: "dateTime"; value: string ; additionalParams? : {mode?:string, timeInterval?:number, yearRange? : number, yearStart?: number}}
 
 export type TypeReactComponent = {
   type: string;
@@ -118,6 +119,10 @@ export abstract class Component
   public id: string;
   static category: CATEGORIES;
   private memorizedElements: {[id: string]: MemorizedElement} = {};
+
+  componentDidUpdate(prevProps: Readonly<{}>, prevState: Readonly<{ states: any; componentProps: any; }>, snapshot?: any): void {
+    EventEmitter.emit(EVENTS.COMPONENT_DID_UPDATE, { data: this });
+  }
 
   constructor(props: any, styles: any) {
     super(props);
@@ -348,13 +353,11 @@ export abstract class Component
       this.state.componentProps.props[i]
     );
     this.setState({ componentProps: { ...this.state.componentProps } });
-    EventEmitter.emit(EVENTS.SET_COMPONENT_STATE, { data: this });
   }
 
   setComponentState(key: string, value: any): void {
     this.state.states[key] = value;
     this.setState({ ...this.state });
-    EventEmitter.emit(EVENTS.SET_COMPONENT_STATE, { data: this });
   }
 
   getComponentState(key: string): any {
