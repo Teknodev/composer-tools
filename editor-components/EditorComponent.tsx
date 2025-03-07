@@ -59,7 +59,8 @@ type AvailablePropTypes =
   | { type: "select"; value: string }
   | { type: "color"; value: string }
   | { type: "icon"; value: string }
-  | { type: "location"; value: TypeLocation };
+  | { type: "location"; value: TypeLocation }
+  | { type: "multiSelect"; value: string[] };
 
 export type TypeReactComponent = {
   type: string;
@@ -356,6 +357,10 @@ export abstract class Component
 
   private attachValueGetter(propValue: TypeUsableComponentProps) {
     if (Array.isArray(propValue.value)) {
+      if (propValue.type === "multiSelect") {
+        propValue.value = propValue.value.filter((value) => typeof value === "string") as string[];
+        return propValue;
+      }
       propValue.value = propValue.value.filter((value) => value != null);
       propValue.value = propValue.value.map(
         (propValueItem: TypeUsableComponentProps) => {
