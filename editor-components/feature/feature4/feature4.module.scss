@@ -16,25 +16,26 @@
         .section-subtitle {
           margin-top: 0;
           margin-bottom: 0;
+        }
 
-          &.black {
-            color: black;
-            &::before{
-              background-color: black;
-            }
+        .black {
+          color: black;
+          &::before{
+            background-color: black;
           }
         }
 
         .section-title {
           margin-top: 0;
           margin-bottom: 0;
-
-          &.black {
-            color: black;
-          }
         }
         .card-link-container{
           .featured-card-link {
+            content: "";
+          }
+
+          .featured-card-link-with-image {
+            color: black;
             content: "";
           }
         }
