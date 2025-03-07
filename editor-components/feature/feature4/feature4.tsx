@@ -100,7 +100,7 @@ class Feature4 extends BaseFeature {
               key: "buttons",
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON("button", "Button", "More Info", "", null, null, "White")
+                INPUTS.BUTTON("button", "Button", "More Info", "", null, null, "Primary")
               ],
             },
           ],
@@ -150,7 +150,7 @@ class Feature4 extends BaseFeature {
               },
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON("button", "Button", "More Info", "", null, null, "White")
+                INPUTS.BUTTON("button", "Button", "More Info", "", null, null, "Primary")
               ],
             },
           ],
@@ -200,7 +200,7 @@ class Feature4 extends BaseFeature {
               },
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON("button", "Button", "More Info", "", null, null, "White")
+                INPUTS.BUTTON("button", "Button", "More Info", "", null, null, "Primary")
               ],
             },
           ],
@@ -250,7 +250,7 @@ class Feature4 extends BaseFeature {
               },
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON("button", "Button", "More Info", "", null, null, "White")
+                INPUTS.BUTTON("button", "Button", "More Info", "", null, null, "Primary")
               ],
             },
           ],
@@ -300,7 +300,7 @@ class Feature4 extends BaseFeature {
               },
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON("button", "Button", "More Info", "", null, null, "White")
+                INPUTS.BUTTON("button", "Button", "More Info", "", null, null, "Primary")
               ],
             },
           ],
@@ -337,20 +337,23 @@ class Feature4 extends BaseFeature {
                 {subtitleExist && (
                   <Base.SectionSubTitle className={`
                     ${this.decorateCSS("section-subtitle")}
-                    ${!!this.getPropValue("backgroundImage") ? this.decorateCSS("black") : ""}
+                    ${this.getPropValue("backgroundImage") ? this.decorateCSS("black") : ""}
                   `}>
                     {this.getPropValue("subtitle")}
                   </Base.SectionSubTitle>
                 )}
                 {titleExist && (
-                  <Base.SectionTitle className={this.decorateCSS("section-title")}>
+                  <Base.SectionTitle className={`
+                    ${this.decorateCSS("section-title")}
+                    ${this.getPropValue("backgroundImage") ? this.decorateCSS("black") : ""}
+                  `}>
                     {this.getPropValue("title")}
                   </Base.SectionTitle>
                 )}
                 {linkTextExist && (
                   <Base.Row className={this.decorateCSS("card-link-container")} >
                     <ComposerLink path={linkButton.url}>
-                      <Base.Button buttonType={linkButton.type} className={this.decorateCSS("featured-card-link")}>
+                      <Base.Button buttonType={linkButton.type} className={`${this.getPropValue("backgroundImage") ? this.decorateCSS("featured-card-link-with-image") : this.decorateCSS("featured-card-link")}`}>
                         {linkButton.text}
                       </Base.Button>
                     </ComposerLink>
@@ -426,7 +429,7 @@ class Feature4 extends BaseFeature {
 
                                   return (
                                     <Base.Button
-                                      buttonType={item.type}
+                                      buttonType={imageExist ? "Tertiary" : item.type}
                                       key={index}
                                       className={`
                                         ${this.decorateCSS("overlay-link")}
