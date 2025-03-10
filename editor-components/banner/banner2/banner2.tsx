@@ -5,58 +5,32 @@ import { BaseBanner } from "../../EditorComponent";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
-type bannerItem = {
-  title: React.ReactNode;
-  image: string;
-  description: string;
-};
-
-type crumberItems = {
-  homepage: string;
-  currentpage: string;
-  navigateTo: string;
-};
-
 class Banner2 extends BaseBanner {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-      type: "object",
-      key: "banner",
-      displayer: "Banner Items",
-      value: [
-        {
-          type: "string",
-          key: "title",
-          displayer: "Title",
-          value: "The Best Time to Celebrate",
-        },
-      ],
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "The Best Time to Celebrate",
     });
     this.addProp({
-      type: "object",
-      key: "crumber",
-      displayer: "Crumber Items",
-      value: [
-        {
-          type: "string",
-          key: "homepage",
-          displayer: "Home Page",
-          value: "Home Page",
-        },
-        {
-          type: "page",
-          key: "navigateTo",
-          displayer: "Navigate To",
-          value: "",
-        },
-        {
-          type: "string",
-          key: "currentpage",
-          displayer: "Current Page",
-          value: "Current Page",
-        },
-      ],
+      type: "string",
+      key: "homepage",
+      displayer: "Home Page",
+      value: "Home Page",
+    });
+    this.addProp({
+      type: "page",
+      key: "navigateTo",
+      displayer: "Navigate To",
+      value: "",
+    });
+    this.addProp({
+      type: "string",
+      key: "currentpage",
+      displayer: "Current Page",
+      value: "Current Page",
     });
     this.addProp({
       type: "boolean",
@@ -77,35 +51,24 @@ class Banner2 extends BaseBanner {
   }
 
   render() {
-    const banner = this.castToObject<bannerItem>("banner");
-    const isTitleExist = this.castToString(banner.title);
-    const crumber = this.castToObject<crumberItems>("crumber");
-    const homepage = this.castToString(crumber.homepage);
-    const currentpage = this.castToString(crumber.currentpage);
-    const navigateToFromCrumber = crumber.navigateTo;
-    const navigateToFromProp = this.getPropValue("strip.navigateTo");
-    const navigateToUrl = navigateToFromCrumber || navigateToFromProp || "";
+    const isTitleExist = this.getPropValue("title");
+    const homepage = this.getPropValue("homepage");
+    const currentpage = this.getPropValue("currentpage");
+    const navigateToFromCrumber = this.getPropValue("navigateTo");
+    const navigateToUrl = navigateToFromCrumber || "";
     const showGradient = this.getPropValue("showGradient");
+    const isCrumberVisible = homepage && currentpage;
 
     return (
       <Base.Container
-        className={this.decorateCSS("container")}
-        style={{
-          background: showGradient
-            ? `radial-gradient(
-                at bottom left,
-                var(--composer-html-background) 70%,
-                var(--composer-primary-color) 100%)`
-            : "none",
-        }}
+        className={`${this.decorateCSS("container")} ${
+          showGradient
+            ? this.decorateCSS("gradientBackground")
+            : this.decorateCSS("noGradient")
+        }`}
       >
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {isTitleExist && (
-            <Base.SectionTitle className={this.decorateCSS("title")}>
-              {banner.title}
-            </Base.SectionTitle>
-          )}
-          <div className={this.decorateCSS("navigation-crumber")}>
+        {isCrumberVisible && (
+          <Base.MaxContent className={this.decorateCSS("max-content")}>
             <div className={this.decorateCSS("crumber-content")}>
               <ComposerLink
                 path={navigateToUrl}
@@ -125,8 +88,15 @@ class Banner2 extends BaseBanner {
                 {currentpage}
               </span>
             </div>
-          </div>
-        </Base.MaxContent>
+          </Base.MaxContent>
+        )}
+        {isTitleExist && (
+          <Base.MaxContent>
+            <Base.SectionTitle className={this.decorateCSS("title")}>
+              {this.getPropValue("title")}
+            </Base.SectionTitle>
+          </Base.MaxContent>
+        )}
       </Base.Container>
     );
   }
