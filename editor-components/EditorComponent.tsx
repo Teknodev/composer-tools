@@ -61,6 +61,7 @@ type AvailablePropTypes =
   | { type: "icon"; value: string }
   | { type: "location"; value: TypeLocation }
   | { type: "dateTime"; value: string ; additionalParams? : {mode?:string, timeInterval?:number, yearRange? : number, yearStart?: number}}
+  | { type: "file"; value: string }
 
 export type TypeReactComponent = {
   type: string;
