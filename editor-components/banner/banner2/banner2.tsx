@@ -51,9 +51,9 @@ class Banner2 extends BaseBanner {
   }
 
   render() {
-    const isTitleExist = this.getPropValue("title");
-    const homepage = this.getPropValue("homepage");
-    const currentpage = this.getPropValue("currentpage");
+    const isTitleExist = this.castToString(this.getPropValue("title"));
+    const homepage = this.castToString(this.getPropValue("homepage"));
+    const currentpage = this.castToString(this.getPropValue("currentpage"));
     const navigateToFromCrumber = this.getPropValue("navigateTo");
     const navigateToUrl = navigateToFromCrumber || "";
     const showGradient = this.getPropValue("showGradient");
