@@ -98,10 +98,11 @@
                 padding: var(--composer-gap-xs) var(--composer-gap-xs);
                 border-radius: var(--radius-medium);
                 transition: 0.3s;
-                .second-text{
+                .second-text, .second-count{
                   color: var(--composer-font-color-secondary);
                   font-size: 1rem;
                 }
+              
               }
             }
           }

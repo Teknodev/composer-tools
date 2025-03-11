@@ -137,11 +137,11 @@ class list4 extends BaseList {
     return (
       <Base.Container className={this.decorateCSS("container")} >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent>
-            <Base.SectionSubTitle>
+          <Base.VerticalContent className={this.decorateCSS("header")}>
+            <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
               {this.getPropValue("subtitle")}
             </Base.SectionSubTitle>
-            <Base.SectionTitle>
+            <Base.SectionTitle className={this.decorateCSS("title")}>
               {this.getPropValue("title")}
             </Base.SectionTitle>
           </Base.VerticalContent>

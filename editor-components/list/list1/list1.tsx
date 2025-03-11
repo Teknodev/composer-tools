@@ -243,6 +243,15 @@ class List1 extends BaseList {
       displayer: "Colored Area",
       value: true,
     });
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2"]
+      }
+    });
 
     this.setComponentState("active-index", 1);
   }
@@ -259,7 +268,7 @@ class List1 extends BaseList {
     const settings = {
       dots: true,
       infinite: sliderItems.length > 1,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 3000,
       slidesToShow: Math.min(3, sliderItems.length),
       slidesToScroll: 1,
@@ -327,18 +336,19 @@ class List1 extends BaseList {
                           className={this.decorateCSS("img")}
                           src={item.image}
                           alt={item.image}
+                          data-animation={this.getPropValue("hoverAnimation").join(" ")}
                         />
                       </Base.Row>
                     )}
                     {(this.castToString(item.title) || this.castToString(item.subtitle)) && (
-                      <Base.VerticalContent className={this.decorateCSS("card-titles")}>
+                      <Base.VerticalContent className={this.decorateCSS("titles")}>
                         {this.castToString(item.title) && (
-                          <Base.H1 className={this.decorateCSS("title")}>
+                          <Base.H1 className={this.decorateCSS("card-title")}>
                             {item.title}
                           </Base.H1 >
                         )}
                         {this.castToString(item.subtitle) && (
-                          <Base.H2 className={this.decorateCSS("subtitle")}>
+                          <Base.H2 className={this.decorateCSS("card-subtitle")}>
                             {item.subtitle}
                           </Base.H2>
                         )}

@@ -356,7 +356,7 @@ class List2 extends BaseList {
                                   </div>
                                 )}
                                 {this.castToString(item.count_text) && (
-                                  <div className={this.decorateCSS("second-text")}>
+                                  <div className={this.decorateCSS("second-count")}>
                                     {item.count_text}
                                   </div>
                                 )}

@@ -20,6 +20,11 @@
         align-items: center;
         padding: var(--composer-gap-lg) 0px;
         position: relative;
+        transition: transform 0.3s ease;
+        
+        &:hover {
+          transform: scale(1.02);
+        }
        
         .index {
           flex: 1;

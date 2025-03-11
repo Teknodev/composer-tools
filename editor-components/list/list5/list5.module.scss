@@ -18,39 +18,54 @@
           margin-top: var(--composer-gap-xl);
         }
         .item-container{
+          position: relative;
           display: flex;
           flex-direction: column;
           border-radius: var(--composer-border-radius-lg);
           background-color: var(--composer-html-background);
           padding: var(--composer-gap-xl) var(--composer-gap-lg);
           gap: var(--composer-gap-md);
-          &:hover {
+          transition: all 0.3s ease;
+          &[data-animation~="animate1"]:hover {
             background-color: var(--composer-primary-color);
             .header-line {
               .item-index {
-                color: var(--composer-font-color-secondary) ;
+                color: var(--composer-font-color-secondary);
+                transition: color 0.3s ease;
               }
               .out-icon {
                 .icon-wrapper {
-                  background-color: var(--composer-font-color-secondary) ;
+                  background-color: var(--composer-font-color-primary);
+                  transition: background-color 0.3s ease;
                   .icon{
-                    color: var(--composer-font-color-primary);
+                    color: var(--composer-html-background);
+                    transition: color 0.3s ease;
                   }
                 }
                 &::after {
-                  border-right:2px solid var(--composer-font-color-secondary);
+                  border-right: 2px solid var(--composer-font-color-secondary);
+                  transition: border-color 0.3s ease;
                 }
               }
             }
-            .list-item-value-h1 {
+            .list-item-title, .list-item-text {
               color: var(--composer-font-color-secondary);
-            }
-            .list-item-value-p {
-              color: var(--composer-font-color-secondary);
+              transition: color 0.3s ease;
             }
             .lower-icon {
+              width: 100%;
               color: var(--composer-font-color-secondary);
+              transform: translateX(calc(50% - var(--composer-gap-md)));
+              transition: all 0.3s ease;
             }
+          }
+          &[data-animation~="animate2"]:hover {
+            transform: translateY(calc(var(--composer-gap-md) * -1));
+            box-shadow: var(--box-shadow-active);
+          }
+          
+          &[data-animation~="animate3"]:hover {
+            transform: scale(1.03);
           }
           .header-line {
             display: flex;
@@ -95,11 +110,11 @@
             }
           }
         
-          .list-item-value-h1 {
+          .list-item-title {
             font-size: 1.5rem;
             color: var(--composer-font-color-primary);
           }
-          .list-item-value-p {
+          .list-item-text {
             font-size: 1.5rem;
             color: var(--composer-font-color-primary);
           }
@@ -107,6 +122,8 @@
             width: 20px;
             height: 20px;
             color: var(--composer-font-color-primary);
+            transition: all 0.3s ease;
+            margin-left: 0;
           }
         }
       }
