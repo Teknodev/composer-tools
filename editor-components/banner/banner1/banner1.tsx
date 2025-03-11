@@ -35,7 +35,7 @@ class Banner1 extends BaseBanner {
           key: "image",
           displayer: "Background Image",
           value:
-            "https://unsplash.com/photos/Y3AqmbmtLQI/download?ixid=M3w0NDkyMzd8MHwxfHNlYXJjaHw0fHxjb2ZmZWV8ZW58MHx8fHwxNzQwNjQzNzQxfDA",
+            "https://cafert.templatekit.co/wp-content/uploads/sites/10/2021/10/flat-lay-food.jpg",
         },
       ],
     });
@@ -84,62 +84,68 @@ class Banner1 extends BaseBanner {
 
   render() {
     const banner = this.castToObject<bannerItem>("banner");
-    const isTitleExist = this.castToString(banner.title);
     const strip = this.castToObject<stripItem>("strip");
+    const isTitleExist = this.castToString(banner.title);
     const homepage = this.castToString(strip.homepage);
     const currentpage = this.castToString(strip.currentpage);
-    const navigateToFromStrip = strip.navigateTo;
-    const navigateToFromProp = this.getPropValue("strip.navigateTo");
-    const navigateToUrl = navigateToFromStrip || navigateToFromProp || "";
+    const navigateToUrl = strip.navigateTo || "";
     const showStrip = this.getPropValue("showStrip");
-    const bgImage = banner.image && banner.image.trim() !== "";
+    const bgImage = banner.image?.trim();
     const shouldShowTitle = isTitleExist && (bgImage || showStrip);
+    const alignmentValue = Base.getContentAlignment();
 
     return (
-      <Base.Container
-        className={this.decorateCSS("container")}
-        style={{
-          backgroundImage: `url(${banner.image})`,
-          backgroundSize: "cover",
-        }}
-      >
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
+      <>
+        <Base.Container
+          className={this.decorateCSS("container")}
+          style={{
+            backgroundImage: `url(${banner.image})`,
+          }}
+        >
           {shouldShowTitle && (
-            <Base.VerticalContent className={this.decorateCSS("title")}>
+            <Base.MaxContent className={this.decorateCSS("max-content")}>
               <Base.SectionTitle
-                className={`${this.decorateCSS("title-main")}  ${
+                className={`${this.decorateCSS("title-main")} ${
                   banner.image && this.decorateCSS("title-with-bg")
-                }`}
+                } }`}
               >
                 {banner.title}
               </Base.SectionTitle>
-            </Base.VerticalContent>
+            </Base.MaxContent>
           )}
-        </Base.MaxContent>
+        </Base.Container>
         {showStrip && (
-          <div className={this.decorateCSS("navigation-strip")}>
-            <div className={this.decorateCSS("strip-content")}>
-              <ComposerLink
-                path={navigateToUrl}
-                className={this.decorateCSS("home-link")}
+          <Base.Container className={this.decorateCSS("strip-container")}>
+            <Base.MaxContent className={this.decorateCSS("strip-max-content")}>
+              <div
+                className={`${this.decorateCSS("strip-content")} ${
+                  alignmentValue === "center"
+                    ? this.decorateCSS("center")
+                    : this.decorateCSS("left")
+                }`}
               >
-                <span className={this.decorateCSS("home-page")}>
-                  {homepage}
+                <ComposerLink
+                  path={navigateToUrl}
+                  className={this.decorateCSS("home-link")}
+                >
+                  <span className={this.decorateCSS("home-page")}>
+                    {homepage}
+                  </span>
+                </ComposerLink>
+                <ComposerIcon
+                  name={this.getPropValue("stripIcon")}
+                  propsIcon={{
+                    className: this.decorateCSS("stripIcon"),
+                  }}
+                />
+                <span className={this.decorateCSS("current-page")}>
+                  {currentpage}
                 </span>
-              </ComposerLink>
-              <ComposerIcon
-                name={this.getPropValue("stripIcon")}
-                propsIcon={{
-                  className: this.decorateCSS("stripIcon"),
-                }}
-              />
-              <span className={this.decorateCSS("current-page")}>
-                {currentpage}
-              </span>
-            </div>
-          </div>
+              </div>
+            </Base.MaxContent>
+          </Base.Container>
         )}
-      </Base.Container>
+      </>
     );
   }
 }
