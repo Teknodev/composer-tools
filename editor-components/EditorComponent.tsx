@@ -292,8 +292,8 @@ export abstract class Component
 
     const memorizedElement: MemorizedElement = this.memorizedElements[prop.id];
     const isValueChanged = memorizedElement?.value && prop.value != memorizedElement?.value;
-
-    if (!memorizedElement.jsxElement || isValueChanged) {
+    
+    if(!memorizedElement.jsxElement || isValueChanged){
       memorizedElement["jsxElement"] = <SanitizeHTML html={prop?.value}></SanitizeHTML>;
       memorizedElement["value"] = prop.value as string;
     }
