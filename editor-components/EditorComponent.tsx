@@ -61,6 +61,7 @@ type AvailablePropTypes =
   | { type: "icon"; value: string }
   | { type: "location"; value: TypeLocation }
   | { type: "dateTime"; value: string ; additionalParams? : {mode?:string, timeInterval?:number, yearRange? : number, yearStart?: number}}
+  | { type: "multiSelect"; value: string[] }
 
 export type TypeReactComponent = {
   type: string;
@@ -388,6 +389,10 @@ export abstract class Component
 
   private attachValueGetter(propValue: TypeUsableComponentProps) {
     if (Array.isArray(propValue.value)) {
+      if (propValue.type === "multiSelect") {
+        propValue.value = propValue.value.filter((value) => typeof value === "string") as string[];
+        return propValue;
+      }
       propValue.value = propValue.value.filter((value) => value != null);
       propValue.value = propValue.value.map(
         (propValueItem: TypeUsableComponentProps) => {
