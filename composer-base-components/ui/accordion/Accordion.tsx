@@ -28,7 +28,9 @@ const Accordion = ({
     const handleToggle = () => {
         setIsOpen(!isOpen);
     }
-
+    const handleClose = () => {
+        setIsOpen(false);
+    };
     return (
         <div className={styles["accordion"]}>
             <div className={`${styles["accordionHeader"]} ${headerClassName || ''}`} onClick={handleToggle}>
@@ -36,7 +38,11 @@ const Accordion = ({
                 {icon && <ComposerIcon name={icon} propsIcon={{className: `${styles["accordionIcon"]} ${isOpen ? styles["open"] : ''} ${accordionIconClassName || ''}`}}/>}
             </div>
             <div className={`${styles["accordionContent"]} ${isOpen ? styles[openClassName] : ''} ${contentClassName || ''}`}>
-                    {children}
+                {React.Children.map(children, (child) =>
+                    React.isValidElement(child)
+                        ? React.cloneElement(child as React.ReactElement<any>, { onClick: handleClose })
+                        : child
+                )}
             </div>
         </div>
     )
