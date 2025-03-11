@@ -75,7 +75,7 @@ class Banner2 extends BaseBanner {
                 className={this.decorateCSS("home-link")}
               >
                 <span className={this.decorateCSS("home-page")}>
-                  {homepage}
+                  {this.getPropValue("homepage")}
                 </span>
               </ComposerLink>
               <ComposerIcon
@@ -85,7 +85,7 @@ class Banner2 extends BaseBanner {
                 }}
               />
               <span className={this.decorateCSS("current-page")}>
-                {currentpage}
+                {this.getPropValue("currentpage")}
               </span>
             </div>
           </Base.MaxContent>
