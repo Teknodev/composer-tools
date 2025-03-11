@@ -105,7 +105,7 @@ export enum CATEGORIES {
   STATS = "stats",
   FEATURE = "feature",
   IMAGEGALLERY = "imageGallery",
-  LOCATION = "Location",
+  LOCATION = "location",
   HTTP_CODES = "HTTPCodes",
 }
 
