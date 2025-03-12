@@ -326,17 +326,15 @@ class List1 extends BaseList {
                         this.getComponentState("active-index") === indexSlider
                         ? this.decorateCSS("active")
                         : ""
-                      }
-                   `}
+                      }`}
+                    data-animation={this.getPropValue("hoverAnimation").join(" ")}
                   >
-
                     {item.image && (
                       <Base.Row className={this.decorateCSS("img-div")}>
                         <img
                           className={this.decorateCSS("img")}
                           src={item.image}
                           alt={item.image}
-                          data-animation={this.getPropValue("hoverAnimation").join(" ")}
                         />
                       </Base.Row>
                     )}

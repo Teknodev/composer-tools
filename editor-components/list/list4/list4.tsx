@@ -127,6 +127,15 @@ class list4 extends BaseList {
       value: true,
     });
 
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2"]
+      }
+    });
   }
 
   static getName(): string {
@@ -168,7 +177,10 @@ class list4 extends BaseList {
                     key={`cnt-4-card-${index}`}
                     className={this.decorateCSS("card")}
                   >
-                    <Base.VerticalContent className={this.decorateCSS("color-box")}>
+                    <Base.VerticalContent 
+                      className={this.decorateCSS("color-box")}
+                      data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                    >
                       {card.icon && (
                         <ComposerIcon
                           name={card.icon}
@@ -180,7 +192,9 @@ class list4 extends BaseList {
 
                       <Base.VerticalContent className={this.decorateCSS("card-title-wrapper")}>
                         {this.castToString(card.title) && (
-                          <Base.H3 className={this.decorateCSS("card-subtitle")}>
+                          <Base.H3 
+                            className={this.decorateCSS("card-subtitle")}
+                          >
                             {card.title}
                           </Base.H3>
                         )}

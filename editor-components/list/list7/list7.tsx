@@ -102,7 +102,7 @@ class List7 extends BaseList {
       type: "select",
       key: "hoverAnimation",
       displayer: "Hover Animation Style",
-      value: "animate3",
+      value: "animate1",
       additionalParams: {
         selectItems: ["animate1", "animate2","animate3"]
       }

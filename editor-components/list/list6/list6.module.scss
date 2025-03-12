@@ -20,10 +20,71 @@
         align-items: center;
         padding: var(--composer-gap-lg) 0px;
         position: relative;
-        transition: transform 0.3s ease;
+        transition: all 0.4s ease;
         
-        &:hover {
+        &[data-animation~="animate1"]:hover {
           transform: scale(1.02);
+        }
+       
+        &[data-animation~="animate2"] {
+          .index {
+            transition: all 0.4s ease;
+          }
+
+          .cards {
+            .icon-title-container {
+              .icon {
+                transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+              }
+              .title {
+                transition: all 0.4s ease;
+                position: relative;
+                
+                &::after {
+                  content: '';
+                  position: absolute;
+                  bottom: -5px;
+                  left: 0;
+                  width: 0;
+                  height: 2px;
+                  background-color: var(--composer-primary-color);
+                  transition: width 0.4s ease;
+                }
+              }
+            }
+            .description {
+              transition: all 0.4s ease;
+            }
+          }
+
+          &:hover {
+            padding-left: var(--composer-gap-lg);
+            background: color-mix(in srgb, var(--composer-primary-color) 5%, transparent);
+            border-radius: var(--composer-border-radius-sm);
+
+            .index {
+              color: var(--composer-primary-color);
+              transform: scale(1.1);
+            }
+
+            .cards {
+              .icon-title-container {
+                .icon {
+                  transform: rotate(360deg);
+                }
+                .title {
+                  color: var(--composer-primary-color);
+                  
+                  &::after {
+                    width: 100%;
+                  }
+                }
+              }
+              .description {
+                padding-left: var(--composer-gap-sm);
+              }
+            }
+          }
         }
        
         .index {
