@@ -25,6 +25,13 @@ class Footer12Page extends BaseFooter {
     });
 
     this.addProp({
+      type: "page",
+      key: "logoUrl",
+      displayer: "Logo Url",
+      value:""
+    });
+
+    this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
@@ -399,6 +406,16 @@ class Footer12Page extends BaseFooter {
         },
       ],
     });
+
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1"]
+      }
+    });
   }
 
   static getName(): string {
@@ -410,6 +427,7 @@ class Footer12Page extends BaseFooter {
     const images = this.castToObject<any[]>("images");
 
     const logo = this.getPropValue("logo");
+    const logoUrl = this.getPropValue("logoUrl");
     const line = this.getPropValue("line");
     const descriptionExist = this.castToString(this.getPropValue("description"));
 
@@ -433,9 +451,11 @@ class Footer12Page extends BaseFooter {
               {headerExist && (
                 <Base.VerticalContent className={this.decorateCSS("left")}>
                   {image && (
-                    <div className={this.decorateCSS("logo")}>
-                      <img src={logo} className={this.decorateCSS("image")} alt="" />
-                    </div>
+                    <ComposerLink path={logoUrl}>
+                      <div className={this.decorateCSS("logo")}>
+                        <img src={logo} className={this.decorateCSS("image")} alt="" />
+                      </div>
+                    </ComposerLink>
                   )}
                   {descriptionExist && <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>}
                 </Base.VerticalContent>
@@ -454,7 +474,12 @@ class Footer12Page extends BaseFooter {
                           return (
                             footerTextExist && (
                               <ComposerLink key={indexFooterText} path={item.path}>
-                                <Base.P className={this.decorateCSS("text")}>{item.footerText}</Base.P>
+                                <Base.P 
+                                  className={this.decorateCSS("text")}
+                                  data-animation={item.path ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                                >
+                                  {item.footerText}
+                                </Base.P>
                               </ComposerLink>
                             )
                           );

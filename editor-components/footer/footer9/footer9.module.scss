@@ -49,6 +49,13 @@
       .text {
         font-size: 1rem;
         color: var(--composer-font-color-primary);
+        transition: transform 0.8s ease;
+        
+        &[data-animation="animate1"] {
+          &:hover {
+            transform: scale(1.1);
+          }
+        }
       }
     }
 
@@ -62,8 +69,26 @@
         display: flex;
         align-items: center;
         gap: var(--composer-gap-sm);
+        position: relative;
+        
+        &[data-animation="animate1"] {
+          &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--composer-primary-color);
+            transition: width 0.8s ease;
+          }
+          
+          &:hover::after {
+            width: 100%;
+          }
+        }
 
-        .text,
+        .icon-text,
         .icon {
           font-size: 1rem;
           color: var(--composer-font-color-primary);
@@ -74,7 +99,7 @@
     .bottom {
       display: flex;
       justify-content: space-between;
-      .text {
+      .bottom-text {
         max-width: 50%;
         font-size: 1rem;
         color: var(--composer-tertiary-color);
@@ -89,6 +114,13 @@
         .item {
           font-size: 1rem;
           color: var(--composer-tertiary-color);
+          transition: transform 0.8s ease;
+          
+          &[data-animation="animate1"] {
+            &:hover {
+              transform: scale(1.1);
+            }
+          }
         }
       }
     }
@@ -145,7 +177,7 @@
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
-        .text {
+        .bottom-text {
           max-width: 100%;
           font-size: 1rem;
           color: var(--composer-font-color-primary);

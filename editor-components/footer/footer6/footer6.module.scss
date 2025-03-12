@@ -32,7 +32,7 @@
           max-width: 290px;
           text-align: center;
 
-          .title {
+          .list-title {
             font-size: 1.5rem;
             color: var(--composer-font-color-primary);
           }
@@ -40,6 +40,30 @@
           .text {
             font-size: 1rem;
             color: var(--composer-font-color-primary);
+            position: relative;
+            transition: transform 0.3s ease;
+            width: fit-content;
+            
+            &[data-animation="animate1"] {
+              &::after {
+                content: '';
+                position: absolute;
+                bottom: -2px;
+                left: 0;
+                width: 0;
+                height: 1px;
+                background-color: var(--composer-primary-color);
+                transition: width 0.3s ease;
+              }
+              
+              &:hover {
+                transform: scale(1.1);
+                
+                &::after {
+                  width: 100%;
+                }
+              }
+            }
           }
         }
       }

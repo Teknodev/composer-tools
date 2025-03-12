@@ -16,6 +16,13 @@ class Footer7Page extends BaseFooter {
     });
 
     this.addProp({
+      type: "page",
+      key: "logoUrl",
+      displayer: "Logo Url",
+      value:""
+    });
+
+    this.addProp({
       type: "array",
       key: "links",
       displayer: "Footer Links",
@@ -86,6 +93,16 @@ class Footer7Page extends BaseFooter {
       displayer: "Footer Text",
       value: "Composer by Blinkpage. All rights reserved",
     });
+
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1"]
+      }
+    });
   }
 
   static getName(): string {
@@ -94,6 +111,7 @@ class Footer7Page extends BaseFooter {
 
   render() {
     const logo = this.getPropValue("logo");
+    const logoUrl = this.getPropValue("logoUrl");
     const links = this.castToObject<any[]>("links");
 
     const footerTextExist = this.castToString(this.getPropValue("footerText"));
@@ -106,9 +124,11 @@ class Footer7Page extends BaseFooter {
           <div className={`${this.decorateCSS("footer-page")}
           ${alignment === "center" && this.decorateCSS("center")}`}>
             {logo && (
-              <div className={this.decorateCSS("left")}>
+             <ComposerLink path={logoUrl}>
+               <div className={this.decorateCSS("left")}>
                 <img src={logo} className={this.decorateCSS("image")} alt="" />
               </div>
+             </ComposerLink>
             )}
 
             <div
@@ -120,7 +140,8 @@ class Footer7Page extends BaseFooter {
                     return (
                       textExist && (
                         <div
-                          className={`${this.decorateCSS("link-element")} ${item.url && this.decorateCSS("has-path")}`}>
+                          className={`${this.decorateCSS("link-element")} ${item.url && this.decorateCSS("has-path")}`}
+                          data-animation={item.url ? this.getPropValue("hoverAnimation").join(" ") : ""}>
                           <ComposerLink key={index} path={item.url}>
                             <Base.P className={this.decorateCSS("link-text")}>{item.text}</Base.P>
                           </ComposerLink>

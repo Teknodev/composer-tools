@@ -44,6 +44,11 @@
         .text {
           font-size: 1rem;
           color: var(--composer-font-color-primary);
+          transition: color 0.3s ease;
+
+          &[data-animation~="animate1"]:hover {
+            color: var(--composer-primary-color);
+          }
         }
       }
     }

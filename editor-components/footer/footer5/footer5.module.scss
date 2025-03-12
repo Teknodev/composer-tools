@@ -16,6 +16,12 @@
         gap: var(--composer-gap-md);
 
         .left {
+          .title{
+            content: "";
+          }
+          .subtitle{
+            content: "";
+          }
           &.left-full {
             width: 100%;
           }
@@ -75,6 +81,21 @@
 
         .footer-text {
           justify-content: flex-end;
+        }
+
+        .links {
+          .link-element {
+            .link-text {
+              transition: transform 0.3s ease, color 0.3s ease;
+              
+              &[data-animation="animate1"] {
+                &:hover {
+                  transform: scale(1.1);
+                  color: var(--composer-primary-color);
+                }
+              }
+            }
+          }
         }
       }
     }

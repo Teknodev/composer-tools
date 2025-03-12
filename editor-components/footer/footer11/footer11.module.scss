@@ -27,6 +27,16 @@
           font-size: 1.5rem;
           color: var(--composer-font-color-primary);
         }
+
+        .icon {
+          transition: color 0.3s ease;
+        }
+
+        &[data-animation~="animate1"]:hover {
+          .icon {
+            color: var(--composer-primary-color);
+          }
+        }
       }
     }
 

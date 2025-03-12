@@ -26,11 +26,16 @@
             .link-text {
               font-size: 1rem;
               color: var(--composer-font-color-primary);
-              transition: color 0.3s ease;
+              transition: all 0.3s ease;
             }
 
-            &.has-path .link-text:hover {
-              color: var(--composer-primary-color);
+            &.has-path[data-animation~="animate1"] {
+              &:hover {
+                .link-text {
+                  color: var(--composer-primary-color);
+                  transform: scale(1.1);
+                }
+              }
             }
           }
 
@@ -79,6 +84,7 @@
         border-radius: 50%;
         display: inline-block;
         position: relative;
+        transition: all 0.3s ease;
 
         .icon {
           position: absolute;
@@ -89,6 +95,17 @@
           width: var(--composer-gap-md);
           height: var(--composer-gap-md);
           color: var(--composer-font-color-primary);
+          transition: all 0.3s ease;
+        }
+
+        &[data-animation~="animate1"] {
+          &:hover {
+            transform: scale(1.1);
+            
+            .icon {
+              color: var(--composer-primary-color);
+            }
+          }
         }
       }
     }

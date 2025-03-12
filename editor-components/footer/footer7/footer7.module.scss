@@ -36,8 +36,10 @@
               transition: color 0.3s ease;
             }
 
-            &.has-path .link-text:hover {
-              color: var(--composer-primary-color);
+            &.has-path[data-animation~="animate1"] {
+              .link-text:hover {
+                color: var(--composer-primary-color);
+              }
             }
           }
         }
