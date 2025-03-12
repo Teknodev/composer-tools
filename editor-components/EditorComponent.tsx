@@ -136,13 +136,13 @@ export abstract class Component
     Object.keys(this.styles).forEach((key, index) => {
       sectionsKeyValue[key] = [];
     });
-
+    
     this.state = {
       states: {},
       componentProps: {
         props: props?.props || [],
-        cssClasses: props?.cssClasses || sectionsKeyValue,
-        interactions: props?.interactions || sectionsKeyValue
+        cssClasses: props?.cssClasses || {...sectionsKeyValue},
+        interactions: props?.interactions || {...sectionsKeyValue}
       },
     };
 
