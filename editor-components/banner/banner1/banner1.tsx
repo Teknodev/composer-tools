@@ -5,12 +5,7 @@ import { BaseBanner } from "../../EditorComponent";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
-type bannerItem = {
-  title: React.ReactNode;
-  image: string;
-};
-
-type stripItem = {
+type StripItem = {
   homepage: string;
   currentpage: string;
   navigateTo: string;
@@ -20,24 +15,17 @@ class Banner1 extends BaseBanner {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-      type: "object",
-      key: "banner",
-      displayer: "Banner Items",
-      value: [
-        {
-          type: "string",
-          key: "title",
-          displayer: "Title",
-          value: "Home",
-        },
-        {
-          type: "image",
-          key: "image",
-          displayer: "Background Image",
-          value:
-            "https://cafert.templatekit.co/wp-content/uploads/sites/10/2021/10/flat-lay-food.jpg",
-        },
-      ],
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "Home",
+    });
+    this.addProp({
+      type: "image",
+      key: "image",
+      displayer: "Background Image",
+      value:
+        "https://cafert.templatekit.co/wp-content/uploads/sites/10/2021/10/flat-lay-food.jpg",
     });
     this.addProp({
       type: "object",
@@ -83,14 +71,13 @@ class Banner1 extends BaseBanner {
   }
 
   render() {
-    const banner = this.castToObject<bannerItem>("banner");
-    const strip = this.castToObject<stripItem>("strip");
-    const isTitleExist = this.castToString(banner.title);
-    const homepage = this.castToString(strip.homepage);
-    const currentpage = this.castToString(strip.currentpage);
+    const strip = this.castToObject<StripItem>("strip");
+    const isTitleExist = this.castToString(this.getPropValue("title"));
+    const homepage = this.castToString(strip.homepage || "");
+    const currentpage = this.castToString(strip.currentpage || "");
     const navigateToUrl = strip.navigateTo || "";
     const showStrip = this.getPropValue("showStrip");
-    const bgImage = banner.image?.trim();
+    const bgImage = this.getPropValue("image")?.trim();
     const shouldShowTitle = isTitleExist && (bgImage || showStrip);
     const alignmentValue = Base.getContentAlignment();
 
@@ -99,20 +86,20 @@ class Banner1 extends BaseBanner {
         <Base.Container
           className={this.decorateCSS("container")}
           style={{
-            backgroundImage: `url(${banner.image})`,
+            backgroundImage: `url(${this.getPropValue("image")})`,
           }}
         >
-          {shouldShowTitle && (
-            <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <Base.MaxContent className={this.decorateCSS("max-content")}>
+            {shouldShowTitle && (
               <Base.SectionTitle
                 className={`${this.decorateCSS("title-main")} ${
-                  banner.image && this.decorateCSS("title-with-bg")
+                  bgImage && this.decorateCSS("title-with-bg")
                 } }`}
               >
-                {banner.title}
+                {this.getPropValue("title")}
               </Base.SectionTitle>
-            </Base.MaxContent>
-          )}
+            )}
+          </Base.MaxContent>
         </Base.Container>
         {showStrip && (
           <Base.Container className={this.decorateCSS("strip-container")}>
