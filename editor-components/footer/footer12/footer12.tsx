@@ -413,7 +413,7 @@ class Footer12Page extends BaseFooter {
       displayer: "Hover Animation Style",
       value: ["animate1"],
       additionalParams: {
-        selectItems: ["animate1"]
+        selectItems: ["animate1", "animate2", "animate3", "animate4", "animate5"]
       }
     });
   }

@@ -282,9 +282,9 @@ class Footer6Page extends BaseFooter {
       type: "multiSelect",
       key: "hoverAnimation",
       displayer: "Hover Animation Style",
-      value: ["animate1"],
+      value: ["animate2"],
       additionalParams: {
-        selectItems: ["animate1"]
+        selectItems: ["animate1", "animate2", "animate3"]
       }
     });
   }

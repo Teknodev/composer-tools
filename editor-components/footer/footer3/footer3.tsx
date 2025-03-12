@@ -591,7 +591,7 @@ class Footer3Page extends BaseFooter {
       displayer: "Hover Animation Style",
       value: ["animate1"],
       additionalParams: {
-        selectItems: ["animate1"]
+        selectItems: ["animate1", "animate2", "animate3"]
       }
     });
   }
@@ -639,15 +639,18 @@ class Footer3Page extends BaseFooter {
                             {socials.map((item: any, index: number) => {
                               return (
                                 item.icon && (
-                                  <div className={this.decorateCSS("socials-element")}>
-                                    <ComposerLink key={index} path={item.url}>
+                                  <ComposerLink key={index} path={item.url}>
+                                    <div 
+                                      className={this.decorateCSS("socials-element")}
+                                      data-animation={item.url ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                                      data-has-link={Boolean(item.url)}
+                                    >
                                       <ComposerIcon 
-                                        propsIcon={{ 
-                                          className: this.decorateCSS("icon")}} 
+                                        propsIcon={{ className: this.decorateCSS("icon") }} 
                                         name={item.icon} 
                                       />
-                                    </ComposerLink>
-                                  </div>
+                                    </div>
+                                  </ComposerLink>
                                 )
                               );
                             })}

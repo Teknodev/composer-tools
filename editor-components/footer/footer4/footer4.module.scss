@@ -65,6 +65,25 @@
             margin: 0;
             font-size: 1rem;
             color: var(--composer-font-color-primary);
+            transition: all 0.3s ease;
+            
+            &[data-has-link="true"] {
+              cursor: pointer;
+
+              &[data-animation~="animate1"]:hover {
+                color: var(--composer-primary-color);
+              }
+
+              &[data-animation~="animate2"]:hover {
+                transform: translateY(-3px);
+                color: var(--composer-primary-color);
+              }
+
+              &[data-animation~="animate3"]:hover {
+                transform: scale(1.1);
+                color: var(--composer-primary-color);
+              }
+            }
           }
         }
 
@@ -184,6 +203,33 @@
 
       .link-element:last-child::after {
         content: none;
+      }
+
+      .link-element {
+        .link-text {
+          transition: all 0.3s ease;
+          
+          &[data-has-link="true"] {
+            cursor: pointer;
+
+            // Sadece renk değişimi
+            &[data-animation~="animate1"]:hover {
+              color: var(--composer-primary-color);
+            }
+
+            // Yukarı kalkma + renk değişimi
+            &[data-animation~="animate2"]:hover {
+              transform: translateY(-3px);
+              color: var(--composer-primary-color);
+            }
+
+            // Scale + renk değişimi
+            &[data-animation~="animate3"]:hover {
+              transform: scale(1.1);
+              color: var(--composer-primary-color);
+            }
+          }
+        }
       }
     }
   }

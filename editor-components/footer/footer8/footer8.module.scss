@@ -61,6 +61,7 @@
               gap: var(--composer-gap-sm);
 
               .text {
+                position: relative;
                 color: var(--composer-font-color-primary);
                 font-size: 1rem;
                 margin: 0;
@@ -68,10 +69,54 @@
               }
 
               &.has-path[data-animation~="animate1"] {
-                &:hover {
-                  .text {
+                .text {
+                  &::after {
+                    content: '';
+                    position: absolute;
+                    bottom: -2px;
+                    left: 0;
+                    width: 0;
+                    height: 2px;
+                    background-color: var(--composer-primary-color);
+                    transition: width 0.3s ease;
+                  }
+                  
+                  &:hover {
                     color: var(--composer-primary-color);
-                    transform: scale(1.1);
+                    
+                    &::after {
+                      width: 100%;
+                    }
+                  }
+                }
+              }
+
+              &.has-path[data-animation~="animate2"] {
+                .text {
+                  &:hover {
+                    color: var(--composer-primary-color);
+                    transform: translateX(var(--composer-gap-xs));
+                  }
+                }
+              }
+
+              &.has-path[data-animation~="animate3"] {
+                .text {
+                  &:hover {
+                    color: var(--composer-primary-color);
+                    transform: translateY(calc(var(--composer-gap-xs) * -1));
+                  }
+                }
+              }
+
+              &.has-path[data-animation~="animate4"] {
+                .text {
+                  border-radius: var(--composer-border-radius-sm);
+                  
+                  &:hover {
+                    padding: 0 var(--composer-gap-sm);
+                    color: var(--composer-primary-color);
+                    background-color: rgba(var(--composer-primary-color-rgb), 0.1);
                   }
                 }
               }
@@ -104,16 +149,61 @@
 
           .link-element {
             .link-text {
+              position: relative;
               font-size: 1rem;
               color: var(--composer-font-color-primary);
               transition: all 0.3s ease;
             }
 
             &.has-path[data-animation~="animate1"] {
-              &:hover {
-                .link-text {
+              .link-text {
+                &::after {
+                  content: '';
+                  position: absolute;
+                  bottom: -2px;
+                  left: 0;
+                  width: 0;
+                  height: 2px;
+                  background-color: var(--composer-primary-color);
+                  transition: width 0.3s ease;
+                }
+                
+                &:hover {
                   color: var(--composer-primary-color);
-                  transform: scale(1.1);
+                  
+                  &::after {
+                    width: 100%;
+                  }
+                }
+              }
+            }
+
+            &.has-path[data-animation~="animate2"] {
+              .link-text {
+                &:hover {
+                  color: var(--composer-primary-color);
+                  transform: translateX(var(--composer-gap-xs));
+                }
+              }
+            }
+
+            &.has-path[data-animation~="animate3"] {
+              .link-text {
+                &:hover {
+                  color: var(--composer-primary-color);
+                  transform: translateY(calc(var(--composer-gap-xs) * -1));
+                }
+              }
+            }
+
+            &.has-path[data-animation~="animate4"] {
+              .link-text {
+                border-radius: var(--composer-border-radius-sm);
+                
+                &:hover {
+                  padding: 0 var(--composer-gap-sm);
+                  color: var(--composer-primary-color);
+                  background-color: rgba(var(--composer-primary-color-rgb), 0.1);
                 }
               }
             }
@@ -137,10 +227,42 @@
               color: var(--composer-font-color-primary);
             }
 
-            &[data-animation~="animate1"]:hover {
-              .icon, .socials-text {
-                color: var(--composer-primary-color);
-                transform: scale(1.1);
+            &[data-animation~="animate1"] {
+              &:hover {
+                .icon, .socials-text {
+                  color: var(--composer-primary-color);
+                  transform: scale(1.1);
+                }
+              }
+            }
+
+            &[data-animation~="animate2"] {
+              &:hover {
+                .icon, .socials-text {
+                  color: var(--composer-primary-color);
+                  transform: translateX(var(--composer-gap-xs));
+                }
+              }
+            }
+
+            &[data-animation~="animate3"] {
+              &:hover {
+                .icon, .socials-text {
+                  color: var(--composer-primary-color);
+                  transform: translateY(calc(var(--composer-gap-xs) * -1));
+                }
+              }
+            }
+
+            &[data-animation~="animate4"] {
+              &:hover {
+                .icon {
+                  color: var(--composer-primary-color);
+                  transform: rotate(15deg);
+                }
+                .socials-text {
+                  color: var(--composer-primary-color);
+                }
               }
             }
           }

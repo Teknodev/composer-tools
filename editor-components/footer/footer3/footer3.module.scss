@@ -49,14 +49,39 @@
             gap: var(--composer-gap-sm);
 
             .socials-element {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              transition: all 0.3s ease;
+
               .icon {
                 width: var(--composer-gap-md);
                 height: var(--composer-gap-md);
                 color: var(--composer-font-color-primary);
-                transition: color 0.3s ease;
+                transition: all 0.3s ease;
+              }
+
+              &[data-has-link="true"] {
+                cursor: pointer;
 
                 &[data-animation~="animate1"]:hover {
-                  color: var(--composer-primary-color);
+                  .icon {
+                    color: var(--composer-primary-color);
+                  }
+                }
+
+                &[data-animation~="animate2"]:hover {
+                  transform: translateY(-3px);
+                  .icon {
+                    color: var(--composer-primary-color);
+                  }
+                }
+
+                &[data-animation~="animate3"]:hover {
+                  transform: scale(1.2);
+                  .icon {
+                    color: var(--composer-primary-color);
+                  }
                 }
               }
             }
@@ -85,7 +110,7 @@
               display: flex;
               align-items: center;
               gap: var(--composer-gap-sm);
-              transition: color 0.3s ease;
+              transition: all 0.3s ease;
 
               .text {
                 color: var(--composer-font-color-primary);
@@ -100,10 +125,24 @@
 
               &.has-path {
                 .text, .element-icon {
-                  transition: color 0.3s ease;
+                  transition: all 0.3s ease;
                 }
                 
                 &[data-animation~="animate1"]:hover {
+                  .text, .element-icon {
+                    color: var(--composer-primary-color);
+                  }
+                }
+
+                &[data-animation~="animate2"]:hover {
+                  transform: translateY(-3px);
+                  .text, .element-icon {
+                    color: var(--composer-primary-color);
+                  }
+                }
+
+                &[data-animation~="animate3"]:hover {
+                  transform: scale(1.05);
                   .text, .element-icon {
                     color: var(--composer-primary-color);
                   }
@@ -141,18 +180,34 @@
           gap: var(--composer-gap-md);
 
           .link-element {
+            transition: all 0.3s ease;
+
             .link-text {
               font-size: 1rem;
               color: var(--composer-font-color-primary);
-              transition: color 0.3s ease;
+              transition: all 0.3s ease;
             }
 
             &.has-path {
               .link-text {
-                transition: color 0.3s ease;
+                transition: all 0.3s ease;
               }
               
               &[data-animation~="animate1"]:hover {
+                .link-text {
+                  color: var(--composer-primary-color);
+                }
+              }
+
+              &[data-animation~="animate2"]:hover {
+                transform: translateY(calc(var(--composer-gap-xs) * -1));
+                .link-text {
+                  color: var(--composer-primary-color);
+                }
+              }
+
+              &[data-animation~="animate3"]:hover {
+                transform: scale(1.05);
                 .link-text {
                   color: var(--composer-primary-color);
                 }

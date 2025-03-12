@@ -24,16 +24,84 @@
 
           .link-element {
             .link-text {
+              position: relative;
               font-size: 1rem;
               color: var(--composer-font-color-primary);
               transition: all 0.3s ease;
             }
 
             &.has-path[data-animation~="animate1"] {
-              &:hover {
-                .link-text {
+              .link-text {
+                &:hover {
                   color: var(--composer-primary-color);
                   transform: scale(1.1);
+                }
+              }
+            }
+
+            &.has-path[data-animation~="animate2"] {
+              .link-text {
+                &::after {
+                  content: '';
+                  position: absolute;
+                  left: 0;
+                  bottom: -2px;
+                  width: 0;
+                  height: 2px;
+                  background-color: var(--composer-primary-color);
+                  transition: width 0.3s ease;
+                }
+                
+                &:hover {
+                  color: var(--composer-primary-color);
+                  
+                  &::after {
+                    width: 100%;
+                  }
+                }
+              }
+            }
+
+            &.has-path[data-animation~="animate3"] {
+              .link-text {
+                border-radius: var(--composer-border-radius-sm);
+                
+                &:hover {
+                  padding: 0 var(--composer-gap-sm);
+                  color: var(--composer-primary-color);
+                  background-color: rgba(var(--composer-primary-color-rgb), 0.1);
+                }
+              }
+            }
+
+            &.has-path[data-animation~="animate4"] {
+              .link-text {
+                &:hover {
+                  color: var(--composer-primary-color);
+                  transform: translateY(calc(var(--composer-gap-xs) * -1));
+                }
+              }
+            }
+
+            &.has-path[data-animation~="animate5"] {
+              .link-text {
+                &::before {
+                  content: '→';
+                  position: absolute;
+                  left: -20px;
+                  opacity: 0;
+                  transition: all 0.3s ease;
+                  color: var(--composer-primary-color);
+                }
+                
+                &:hover {
+                  color: var(--composer-primary-color);
+                  padding-left: 20px;
+                  
+                  &::before {
+                    opacity: 1;
+                    left: 0;
+                  }
                 }
               }
             }
@@ -101,9 +169,93 @@
         &[data-animation~="animate1"] {
           &:hover {
             transform: scale(1.1);
+            background-color: var(--composer-primary-color);
             
             .icon {
-              color: var(--composer-primary-color);
+              color: var(--composer-html-background);
+            }
+          }
+        }
+
+        &[data-animation~="animate2"] {
+          &:hover {
+            transform: rotate(360deg);
+            background-color: var(--composer-primary-color);
+            
+            .icon {
+              color: var(--composer-html-background);
+            }
+          }
+        }
+
+        &[data-animation~="animate3"] {
+          overflow: hidden;
+          
+          &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+              120deg,
+              transparent,
+              rgba(var(--composer-primary-color-rgb), 0.4),
+              transparent
+            );
+            transition: 0.5s;
+          }
+          
+          &:hover {
+            background-color: var(--composer-primary-color);
+            
+            &::after {
+              left: 100%;
+            }
+            
+            .icon {
+              color: var(--composer-html-background);
+            }
+          }
+        }
+
+        &[data-animation~="animate4"] {
+          &:hover {
+            transform: translateY(calc(var(--composer-gap-xs) * -1));
+            box-shadow: var(--box-shadow-active);
+            background-color: var(--composer-primary-color);
+            
+            .icon {
+              color: var(--composer-html-background);
+            }
+          }
+        }
+
+        &[data-animation~="animate5"] {
+          &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--composer-primary-color);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            transform: scale(0);
+            opacity: 0;
+          }
+          
+          &:hover {
+            &::before {
+              transform: scale(1);
+              opacity: 1;
+            }
+            
+            .icon {
+              color: var(--composer-html-background);
+              z-index: 1;
             }
           }
         }

@@ -21,7 +21,7 @@ class Footer1Page extends BaseFooter {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Vela Newsletter",
+      value: "Blinkpage Newsletter",
     });
 
     this.addProp({
@@ -241,6 +241,16 @@ class Footer1Page extends BaseFooter {
       ],
     });
 
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2", "animate3", "animate4", "animate5"]
+      }
+    });
+
     this.setComponentState("placeholderText", this.castToString(this.getPropValue("subscriptionPlaceholder")));
   }
 
@@ -355,7 +365,15 @@ class Footer1Page extends BaseFooter {
                         (item: IconsValues, indexSocial: number) =>
                           item.socialIcon && (
                             <ComposerLink key={indexSocial} path={item.socialLink}>
-                              <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={item.socialIcon} />
+                              <div 
+                                className={this.decorateCSS("icon-wrapper")}
+                                data-animation={item.socialLink ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                              >
+                                <ComposerIcon 
+                                  propsIcon={{ className: this.decorateCSS("icon") }} 
+                                  name={item.socialIcon} 
+                                />
+                              </div>
                             </ComposerLink>
                           )
                       )}
@@ -368,7 +386,12 @@ class Footer1Page extends BaseFooter {
                         return (
                           pageTitleExist && (
                             <ComposerLink key={indexSocial} path={item.pageLink}>
-                              <Base.P className={this.decorateCSS("text")}>{item.pageTitle}</Base.P>
+                              <Base.P 
+                                className={this.decorateCSS("text")}
+                                data-animation={item.pageLink ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                              >
+                                {item.pageTitle}
+                              </Base.P>
                             </ComposerLink>
                           )
                         );

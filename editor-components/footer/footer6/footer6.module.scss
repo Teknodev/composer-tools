@@ -41,10 +41,10 @@
             font-size: 1rem;
             color: var(--composer-font-color-primary);
             position: relative;
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
             width: fit-content;
             
-            &[data-animation="animate1"] {
+            &[data-animation~="animate1"] {
               &::after {
                 content: '';
                 position: absolute;
@@ -57,11 +57,25 @@
               }
               
               &:hover {
-                transform: scale(1.1);
+                color: var(--composer-primary-color);
                 
                 &::after {
                   width: 100%;
                 }
+              }
+            }
+
+            &[data-animation~="animate2"] {
+              &:hover {
+                transform: translateX(var(--composer-gap-sm));
+                color: var(--composer-primary-color);
+              }
+            }
+
+            &[data-animation~="animate3"] {
+              &:hover {
+                transform: scale(1.1);
+                color: var(--composer-primary-color);
               }
             }
           }
