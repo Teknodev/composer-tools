@@ -13,33 +13,123 @@
                 transition: transform 0.5s;
                 transform: translateY(0px) scale(1);
                 overflow: hidden;
-                &:hover {
-                    transform: translateY(-6px) scale(1.05);
-                    z-index: 5;
-    
-                    .little-container {    
-                        bottom: 0;
-                        .title{
+
+                &[data-animation=""]:hover {
+                    .little-container {  
+                        bottom: 0;  
+                        background: rgba(var(--composer-primary-color-rgb), 0.95);
+                        
+                        .title, .description {
                             color: var(--composer-font-color-secondary);
                         }
-                        .icon{
+                        .icon {
                             color: var(--composer-font-color-secondary);
                         }
                         .description {
-                            color: var(--composer-font-color-secondary);
                             max-height: 300px;
                             opacity: 1;
                         }
                     }
+                    
                     .image-container {
-                        height: 100%;
-    
                         .image {
-                            transform: scale(1.05);
+                            transform: scale(1.1);
                         }
+                    }
+                }
+
+                &[data-animation~="animate1"] {
+                    &:hover {
+                        transform: translateY(calc(-1* var(--composer-gap-xs))) scale(1.05);
+                        z-index: 5;
+        
+                        .little-container {  
+                            bottom: 0;
+                            .title{
+                                color: var(--composer-font-color-secondary);
+                            }
+                            .icon{
+                                color: var(--composer-font-color-secondary);
+                            }
+                            .description {
+                                color: var(--composer-font-color-secondary);
+                                max-height: 300px;
+                                opacity: 1;
+                            }
+                        }
+                        .image-container {
+                            height: 100%;
+        
+                            .image {
+                                transform: scale(1.05);
+                            }
+                            &:after {
+                                opacity: 1;
+                                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+                            }
+                        }
+                    }
+                }
+    
+                &[data-animation~="animate2"] {
+                    &:hover {
+                        
+                        .little-container {    
+                            transform: translateX(0);
+                            background: rgba(var(--composer-primary-color-rgb), 0.95);
+                            
+                            .title {
+                                transform: translateX(0);
+                                opacity: 1;
+                                color: var(--composer-font-color-secondary);
+                            }
+                            .icon {
+                                transform: rotate(360deg);
+                                color: var(--composer-font-color-secondary);
+                            }
+                            .description {
+                                transform: translateX(0);
+                                opacity: 1;
+                                color: var(--composer-font-color-secondary);
+                            }
+                        }
+                        
+                        .image-container {
+                            .image {
+                                transform: scale(1.1) rotate(-3deg);
+                            }
+                        }
+                    }
+
+                    .little-container {
+                        bottom: 0;
+                        transform: translateX(-100%);
+                        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+                        background: transparent;
+                        
+                        .title {
+                            opacity: 0;
+                            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                        }
+                        
+                        .icon {
+                            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+                        }
+                        
+                        .description {
+                            opacity: 0;
+                            max-height: 300px;
+                            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                        }
+                    }
+
+                    .image-container {
                         &:after {
-                            opacity: 1;
-                            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+                            display: none;
+                        }
+                        
+                        .image {
+                            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
                         }
                     }
                 }
@@ -100,7 +190,6 @@
                     .description {
                         transition: all 0.3s ease;
                         max-height: 0;
-                        transition: opacity 0.3s, max-height 0.3s;
                         opacity: 0;
                         width: 100%;
                         color: white;
@@ -117,13 +206,12 @@
     .container {
         .max-content {
             .grid-container{
-                .card {
+                .card[data-animation~="animate1"] {
                     .little-container {
                         .icon {
                             width: 30px;
                             height: 30px;
                             color: var(--composer-font-color-secondary);
-    
                         }
                         .title{
                             color: var(--composer-font-color-secondary);
@@ -136,7 +224,7 @@
                     }
                     .image-container {
                         height: 100%;
-    
+        
                         .image {
                             transform: scale(1.05);
                         }

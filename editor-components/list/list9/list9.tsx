@@ -161,6 +161,16 @@ class List9 extends BaseList {
             value: 4,
             max: 4,
         });
+
+        this.addProp({
+            type: "multiSelect",
+            key: "hoverAnimation",
+            displayer: "Hover Animation Style",
+            value: ["animate1"],
+            additionalParams: {
+                selectItems: ["animate1", "animate2"]
+            }
+        });
     }
 
     static getName(): string {
@@ -177,7 +187,11 @@ class List9 extends BaseList {
                     >
                         {this.castToObject<Card[]>("cards").map(
                             (card: Card, indexCard: number) => (
-                                <div key={indexCard} className={this.decorateCSS("card")}>
+                                <div 
+                                    key={indexCard} 
+                                    className={this.decorateCSS("card")}
+                                    data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                                >
                                     <div className={this.decorateCSS("image-container")}>
                                         {card.image && (
                                             <img
