@@ -1,0 +1,56 @@
+.container-main{
+    width: 100%;
+    .section {
+        height: 450px;
+        object-fit: contain;
+        overflow: hidden;
+        background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+
+        .container {
+            background-color: transparent !important;
+            .max-content {
+                .items {
+                    .title {
+                        content: "";
+                    }
+
+                    .image {
+                        color: black !important;
+                    }
+
+                    .pages {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: center;
+                        align-items: center;
+
+                        .link {
+                            content: "";
+                        }
+
+                        .homepage {
+                            font-size: 1rem !important;
+
+                            &:hover {
+                                color: var(--composer-primary-color);
+                            }
+                        }
+
+                        .crumberIcon {
+                            content: "";
+                        }
+
+                        .currentPage {
+                            font-size: 1rem !important;
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
