@@ -4,6 +4,7 @@
   width: 100%;
 
   .first-container {
+    padding: var(--composer-gap-md) var(--composer-gap-xl);
     .first-max-content {
       display: flex;
       flex-wrap: wrap;
@@ -146,6 +147,7 @@
   }
 
   .second-container {
+    padding: var(--composer-gap-md) var(--composer-gap-xl);
     .second-max-content {
       .footer-bottom {
         display: flex;
@@ -187,11 +189,24 @@
   }
 }
 
+@container (max-width: #{$composer-tablet-width-lg}) {
+  .container {
+    .first-container {
+      padding: var(--composer-gap-md) var(--composer-gap-lg);
+    }
+
+    .second-container {
+      padding: var(--composer-gap-md) var(--composer-gap-lg);
+    }
+  }
+}
+
 @container (max-width: #{$composer-phone-width}) {
   .container {
     width: 100%;
 
     .first-container {
+      padding: var(--composer-gap-md);
       .first-max-content {
         gap: var(--composer-gap-sm);
         flex-direction: column;
@@ -207,6 +222,7 @@
     }
 
     .second-container {
+      padding: var(--composer-gap-md);
       .second-max-content {
         .footer-bottom {
           flex-direction: column;

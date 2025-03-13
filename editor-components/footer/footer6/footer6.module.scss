@@ -1,6 +1,7 @@
 @import "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss";
 
 .container {
+  padding: var(--composer-gap-md) var(--composer-gap-xl);
   .max-content {
     .footer-page {
       justify-content: center;
@@ -97,6 +98,7 @@
 
 @container (max-width: #{$composer-tablet-width-lg}) {
   .container {
+    padding: var(--composer-gap-md) var(--composer-gap-lg);
     .max-content {
       .footer-page {
         gap: var(--composer-gap-md);
@@ -116,6 +118,7 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
+    padding: var(--composer-gap-md);
     .max-content {
       .footer-page {
         justify-content: center;

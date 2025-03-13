@@ -1,4 +1,7 @@
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+
 .container {
+  padding: var(--composer-gap-md) var(--composer-gap-xl);
   .max-content {
     display: flex;
     flex-direction: column;
@@ -97,6 +100,19 @@
     }
   }
 }
+
+@container (max-width: #{$composer-tablet-width-lg}) {
+  .container {
+    padding: var(--composer-gap-md) var(--composer-gap-lg);
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    padding: var(--composer-gap-md);
+  }
+}
+
 
 @keyframes bounce {
   from {

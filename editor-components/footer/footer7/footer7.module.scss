@@ -1,6 +1,7 @@
 @import "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss";
 
 .container {
+  padding: var(--composer-gap-md) var(--composer-gap-xl);
   .max-content {
     .footer-page {
       display: flex;
@@ -124,6 +125,7 @@
 
 @container (max-width: #{$composer-tablet-width-lg}) {
   .container {
+    padding: var(--composer-gap-md) var(--composer-gap-lg);
     .max-content {
       .footer-page {
         .left {
@@ -140,6 +142,7 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
+    padding: var(--composer-gap-md);
     .max-content {
       .footer-page {
         flex-direction: column;

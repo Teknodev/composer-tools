@@ -283,8 +283,8 @@ class Footer10Page extends BaseFooter {
         {line && <div className={this.decorateCSS("line")}></div>}
 
         {bottomExist && (
-          <Base.Container>
-            <Base.MaxContent>
+          <Base.Container className={this.decorateCSS("second-container")}>
+            <Base.MaxContent className={this.decorateCSS("second-max-content")}>
               <div className={`${this.decorateCSS("bottom")} ${alignment === "center" && this.decorateCSS("center")}`}>
                 {footerTextExist && (
                   <div className={iconsExist ? this.decorateCSS("left") : this.decorateCSS("left-full")}>

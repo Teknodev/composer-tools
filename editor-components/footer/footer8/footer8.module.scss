@@ -2,6 +2,7 @@
 
 .container {
   width: 100%;
+  padding: var(--composer-gap-md) var(--composer-gap-xl);
 
   .max-content {
     .footer-page {
@@ -287,6 +288,7 @@
 @container (max-width: #{$composer-tablet-width-lg}) {
   .container {
     width: 100%;
+    padding: var(--composer-gap-md) var(--composer-gap-lg);
 
     .max-content {
       .footer-page {
@@ -349,6 +351,7 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     width: 100%;
+    padding: var(--composer-gap-md);
 
     .max-content {
       .footer-page {

@@ -620,8 +620,8 @@ class Footer3Page extends BaseFooter {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("footer-page")}>
-            <Base.Container>
-              <Base.MaxContent>
+            <Base.Container className={this.decorateCSS("first-container")}>
+              <Base.MaxContent className={this.decorateCSS("first-max-content")}>
                 {
                   <div className={this.decorateCSS("items")}>
                     {headerExist && (
@@ -709,8 +709,8 @@ class Footer3Page extends BaseFooter {
 
             {line && <div className={this.decorateCSS("line")}></div>}
 
-            <Base.Container>
-              <Base.MaxContent>
+            <Base.Container className={this.decorateCSS("second-container")}>
+              <Base.MaxContent className={this.decorateCSS("second-max-content")}>
                 {(bottomTextExist || links.length > 0) && (
                   <div className={`${this.decorateCSS("footer-bottom")} 
                   ${alignment === "center" && this.decorateCSS("center")}`}>
