@@ -61,6 +61,7 @@ type AvailablePropTypes =
   | { type: "icon"; value: string }
   | { type: "location"; value: TypeLocation }
   | { type: "dateTime"; value: string ; additionalParams? : {mode?:string, timeInterval?:number, yearRange? : number, yearStart?: number}}
+  | { type: "multiSelect"; value: string[] }
 
 export type TypeReactComponent = {
   type: string;
@@ -75,11 +76,11 @@ export type TypeUsableComponentProps = {
   additionalParams?: { selectItems?: string[]; maxElementCount?: number };
   max?: number;
 } & AvailablePropTypes & {
-    getPropValue?: (
-      propName: string,
-      properties?: GetPropValueProperties
-    ) => any;
-  };
+  getPropValue?: (
+    propName: string,
+    properties?: GetPropValueProperties
+  ) => any;
+};
 
 type MemorizedElement = {
   jsxElement?: React.JSX.Element,
@@ -105,8 +106,9 @@ export enum CATEGORIES {
   STATS = "stats",
   FEATURE = "feature",
   IMAGEGALLERY = "imageGallery",
-  LOCATION = "Location",
+  LOCATION = "location",
   HTTP_CODES = "HTTPCodes",
+  BANNER = "banner",
 }
 
 //@ts-ignore
@@ -189,11 +191,11 @@ export abstract class Component
   private getFilteredProp(key: string, props: TypeUsableComponentProps[]): TypeUsableComponentProps | null {
     return props.find((prop: TypeUsableComponentProps) => prop.key === key) || null;
   }
-  
+
   getShadowProp(key: string): TypeUsableComponentProps | null {
     return this.getFilteredProp(key, this.shadowProps);
   }
-  
+
   getProp(key: string): TypeUsableComponentProps | null {
     return this.getFilteredProp(key, this.state.componentProps.props);
   }
@@ -274,7 +276,7 @@ export abstract class Component
         html.substring(firstTagEndIndex);
 
       const sanitizedHtml = sanitize(htmlWithPrefixAndSuffix, options);
-      
+
       return (
         <InlineEditor
           id={prop.id}
@@ -284,7 +286,7 @@ export abstract class Component
         />
       );
     };
-    
+
 
     if(!this.memorizedElements[prop.id]) {
       this.memorizedElements[prop.id] = {};
@@ -292,12 +294,12 @@ export abstract class Component
 
     const memorizedElement: MemorizedElement  = this.memorizedElements[prop.id];
     const isValueChanged = memorizedElement?.value && prop.value != memorizedElement?.value;
-    
+
     if(!memorizedElement.jsxElement || isValueChanged){
       memorizedElement["jsxElement"] = <SanitizeHTML html={prop?.value}></SanitizeHTML>;
       memorizedElement["value"] = prop.value as string;
     }
-        
+
     return memorizedElement.jsxElement;
   }
 
@@ -387,6 +389,10 @@ export abstract class Component
 
   private attachValueGetter(propValue: TypeUsableComponentProps) {
     if (Array.isArray(propValue.value)) {
+      if (propValue.type === "multiSelect") {
+        propValue.value = propValue.value.filter((value) => typeof value === "string") as string[];
+        return propValue;
+      }
       propValue.value = propValue.value.filter((value) => value != null);
       propValue.value = propValue.value.map(
         (propValueItem: TypeUsableComponentProps) => {
@@ -477,13 +483,13 @@ export abstract class Component
 
   insertForm(name: string, data: Object) {
     const project = getProjectHook()._id;
-  
+
     const inputData: { [key: string]: any } = {};
     const entries = Object.entries(data);
     entries.forEach(([_, value], index) => {
       inputData[`input_${index}`] = value;
     });
-    
+
     EventEmitter.emit(EVENTS.INSERT_FORM, { name, data: inputData, project });
   }
 }
@@ -550,6 +556,10 @@ export abstract class BaseModal extends Component {
 
 export abstract class LogoClouds extends Component {
   static category = CATEGORIES.LOGOCLOUDS;
+}
+
+export abstract class BaseBanner extends Component {
+  static category = CATEGORIES.BANNER;
 }
 
 export abstract class Location extends Component {
