@@ -43,21 +43,19 @@
           flex: 1;
           border-radius: var(--composer-border-radius-md);
           overflow: hidden;
-          &:hover{
-            .card-bottom, .cardsubtitle{
+          &.animation1:hover {
+            .card-bottom, .cardsubtitle {
               transform: scale(1.1);
-              transition-duration: 0.8s;
             }
-            .card-list{
-              .card-list-item{
+            .card-list {
+              .card-list-item {
                 &::before {
                   width: 100%;
                 }
-              }  
+              }
             }
-          
           }
-
+          
           &.active {
             box-shadow: var(--composer-box-shadow);
           }
@@ -85,6 +83,7 @@
             padding: var(--composer-gap-xs) var(--composer-gap-md);
             border-radius: var(--composer-border-radius-xl);
             font-size: 1rem;
+            transition-duration: 0.8s;
           }
 
           .card-title {
@@ -137,6 +136,7 @@
             width: 100%;
             font-size: 1rem;
             color: var(--composer-font-color-primary);
+            transition-duration: 0.8s;
             &.active {
               background: var(--composer-primary-color);
               color: var(--composer-font-color-secondary);
