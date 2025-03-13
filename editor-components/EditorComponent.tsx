@@ -65,6 +65,7 @@ export type TypeReactComponent = {
   type: string;
   props?: TypeUsableComponentProps[];
   cssClasses?: TypeCSSProp;
+  children?: TypeReactComponent[];
   id?: string;
 };
 export type TypeUsableComponentProps = {
@@ -81,6 +82,7 @@ export type TypeUsableComponentProps = {
   };
 
 export enum CATEGORIES {
+  BASIC = "Basic",
   NAVIGATOR = "navigator",
   TESTIMONIALS = "testimonials",
   LIST = "list",
@@ -519,6 +521,10 @@ export abstract class BaseModal extends Component {
 
 export abstract class LogoClouds extends Component {
   static category = CATEGORIES.LOGOCLOUDS;
+}
+
+export abstract class BaseBasic extends Component {
+  static category = CATEGORIES.BASIC;
 }
 
 export abstract class Location extends Component {
