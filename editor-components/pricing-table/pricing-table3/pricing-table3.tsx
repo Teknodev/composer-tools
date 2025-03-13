@@ -365,7 +365,7 @@ class PricingTable3 extends BasePricingTable {
                     <div key={idx} className={`${this.decorateCSS("card-container")} ${showTag && this.decorateCSS("active")}`}>
                       <Base.VerticalContent className={this.decorateCSS("card")}>
                         {showTag && this.castToString(card.tagSettings.tag) && <div className={this.decorateCSS("tag")}>{card.tagSettings.tag}</div>}
-
+                        <Base.VerticalContent className={this.decorateCSS("card-content")}>
                         <Base.VerticalContent className={this.decorateCSS("header")}>
                           {card.icon && (
                             <ComposerIcon
@@ -404,6 +404,7 @@ class PricingTable3 extends BasePricingTable {
                             </ComposerLink>
                           </div>
                         )}
+                        </Base.VerticalContent>
                       </Base.VerticalContent>
                     </div>
                   );

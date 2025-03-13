@@ -43,6 +43,20 @@
           flex: 1;
           border-radius: var(--composer-border-radius-md);
           overflow: hidden;
+          &:hover{
+            .card-bottom, .cardsubtitle{
+              transform: scale(1.1);
+              transition-duration: 0.8s;
+            }
+            .card-list{
+              .card-list-item{
+                &::before {
+                  width: 100%;
+                }
+              }  
+            }
+          
+          }
 
           &.active {
             box-shadow: var(--composer-box-shadow);
@@ -91,7 +105,18 @@
               color: var(--composer-font-color-primary);
               font-size: 1rem;
               width: 100%;
-
+              position: relative;
+              margin-bottom: var(--composer-gap);
+              &::before {
+                content: "";
+                position: absolute;
+                top: -1px;
+                left: 0;
+                width: 0;
+                height: 1px;
+                background: var(--composer-primary-color);
+                transition: width 0.8s ease-in-out;
+              }
               .icon {
                 min-width: var(--composer-gap-sm);
                 color: var(--composer-font-color-primary);
@@ -120,7 +145,6 @@
                 color: var(--composer-primary-color);
               }
             }
-
             .card-price {
               display: flex;
               align-items: center;

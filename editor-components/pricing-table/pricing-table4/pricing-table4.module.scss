@@ -7,7 +7,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
     .page {
       width: 100%;
       padding-bottom: var(--composer-gap-md);
-
+      gap: var(--composer-gap-md);
       .page-up {
         width: 100%;
         overflow: hidden;
@@ -35,10 +35,17 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             box-shadow: var(--box-shadow-active);
             overflow: hidden;
             background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+            
+            &:hover {
+              transition: 0.8s;
+              transform: translateY(calc(-1 * var(--composer-gap-sm)));
+            }
 
             &.focused {
               scale: 1.06;
               background: var(--composer-html-background);
+              z-index: 2;
+              position: relative;
             }
 
             .card-up {
