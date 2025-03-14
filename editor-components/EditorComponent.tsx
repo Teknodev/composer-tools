@@ -60,6 +60,7 @@ type AvailablePropTypes =
   | { type: "color"; value: string }
   | { type: "icon"; value: string }
   | { type: "location"; value: TypeLocation }
+  | { type: "phone"; value: string }
   | { type: "dateTime"; value: string ; additionalParams? : {mode?:string, timeInterval?:number, yearRange? : number, yearStart?: number}}
   | { type: "multiSelect"; value: string[] }
 

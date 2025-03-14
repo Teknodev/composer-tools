@@ -304,7 +304,7 @@ class SurveyModal extends BaseModal {
                               {button.text}
                             </Base.Button>
                           ) : (
-                            <ComposerLink path={button.url}>
+                            <ComposerLink page={button.url}>
                               <Base.Button buttonType={button.type} className={this.decorateCSS("submit-button")}>{button.text}</Base.Button>
                             </ComposerLink>
                           )}
