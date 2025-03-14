@@ -30,10 +30,12 @@
             .position {
               color: var(--composer-primary-color);
               word-break: break-all;
+              transition: transform 0.3s ease;
             }
             .card-name {
               color: var(--composer-font-color-primary);
               word-break: break-all;
+              transition: transform 0.3s ease;
             }
             .image {
               width: 100px;
@@ -52,6 +54,29 @@
             .icon {
               color: var(--composer-tertiary-color);
               font-size: 1.5rem;
+              transform: color 0.3s ease;
+            }
+
+            &[data-animation~="animate2"] {
+              .icon {
+                &:hover {
+                  color: var(--composer-primary-color) !important;
+                  transform: color 0.3s ease;
+                }
+              }
+            }
+          }
+        }
+        &[data-animation~="animate1"] {
+          &:hover {
+            .card {
+              .top {
+                .position,
+                .card-name {
+                  transform: scale(125%);
+                  transition: transform 0.3s ease;
+                }
+              }
             }
           }
         }

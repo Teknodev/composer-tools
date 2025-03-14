@@ -26,6 +26,15 @@
             &.card-image {
               margin-left: var(--composer-gap-lg);
             }
+
+            &[data-animation~="animate1"] {
+              transition: border 0.3s ease;
+    
+              &:hover {
+                border-left: solid 1px white !important;
+                transition: border 0.3s ease;
+              }
+            }
           }
 
           .card-items {

@@ -29,13 +29,26 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 color: var(--composer-tertiary-color);
               }
 
-              .image {
-                width: 100%;
-                height: 550px;
-                object-fit: cover;
+              .image-container {
+                overflow: hidden;
                 border-radius: var(--composer-border-radius-lg);
-                margin-bottom: var(--composer-gap-sm);
-                transition: $transition;
+                height: 550px;
+                
+                .image {
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  margin-bottom: var(--composer-gap-sm);
+                  transition: $transition;
+  
+                  &[data-animation~="animate1"] {
+                    transition: transform 0.3s ease;
+                    &:hover { 
+                      transition: transform 0.3s ease;
+                      transform: scale(1.1);
+                    }
+                  }
+                }  
               }
 
               .image.shrink {
@@ -69,6 +82,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
             .card-name {
               color: var(--composer-font-color-primary);
+              margin-top: var(--composer-gap-sm);
             }
 
             .position {
