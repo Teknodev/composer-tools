@@ -7,6 +7,7 @@ import { renderToString } from "react-dom/server";
 import { THEMES, TTheme } from "./location/themes";
 import InlineEditor from "../../custom-hooks/UseInlineEditor";
 import { v4 as uuidv4 } from 'uuid';
+import { CurrencyCode} from "../../components/setting-input/inputs/currency";
 
 export function generateComponentId(){
   return uuidv4();
@@ -28,6 +29,7 @@ type GetPropValueProperties = {
   suffix?: PreSufFix;
   prefix?: PreSufFix;
 };
+
 type TypeCSSProp = { [key: string]: { id: string; class: string }[] };
 export interface iComponent {
   render(): any;
@@ -59,7 +61,7 @@ type AvailablePropTypes =
   | { type: "select"; value: string }
   | { type: "color"; value: string }
   | { type: "icon"; value: string }
-  | { type: "currency"; value: { value: string; currency: string }; additionalParams?: currencyAdditionalParams}
+  | { type: "currency"; value: { value: string; currency?: CurrencyCode }; additionalParams?: currencyAdditionalParams}
   | { type: "location"; value: TypeLocation };
 
 export type TypeReactComponent = {
