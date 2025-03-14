@@ -423,6 +423,15 @@ class Team5 extends Team {
       value: 4,
       max: 5,
     });
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1"]
+      }
+    });
   }
 
   static getName(): string {
@@ -450,8 +459,8 @@ class Team5 extends Team {
                 hasItem && (
                   <Base.VerticalContent key={index} className={this.decorateCSS("egg-item")}>
                     <div className={this.decorateCSS("image-container")}>
-                      {item.background && <img className={this.decorateCSS("background-image")} src={item.background} alt="" />}
-                      {item.picture && <img className={this.decorateCSS("member-image")} src={item.picture} alt="" />}
+                      {item.background && <img className={this.decorateCSS("background-image")} src={item.background} alt="" data-animation={this.getPropValue("hoverAnimation").join(" ")} />}
+                      {item.picture && <img className={this.decorateCSS("member-image")} src={item.picture} alt="" data-animation={this.getPropValue("hoverAnimation").join(" ")} />}
                     </div>
                     <Base.Row className={this.decorateCSS("icon-container")}>
                       {item.socials.map((value, i) => (

@@ -163,6 +163,15 @@ class Team14 extends Team {
       value: 4,
       max: 5,
     });
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1"]
+      }
+    });
   }
 
   static getName(): string {
@@ -202,9 +211,9 @@ class Team14 extends Team {
                   return (
                     <div className={this.decorateCSS("card")}>
                       <div className={this.decorateCSS("portfolio")}>
-                        {image && <img className={this.decorateCSS("image")} src={image} alt={name} key={index} />}
+                        {image && <img className={this.decorateCSS("image")} src={image} alt={name} key={index} data-animation={this.getPropValue("hoverAnimation").join(" ")} />}
                         {(name || position || description) && (
-                          <Base.VerticalContent className={this.decorateCSS("info")}>
+                          <Base.VerticalContent className={this.decorateCSS("info")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                             {name && <Base.H3 className={this.decorateCSS("name")}>{teamItem.name}</Base.H3>}
                             {position && <Base.H4 className={this.decorateCSS("position")}>{teamItem.position}</Base.H4>}
                             {description && <Base.P className={this.decorateCSS("description")}>{teamItem.description}</Base.P>}

@@ -113,6 +113,7 @@
           .title {
             font-size: 3rem;
             color: var(--composer-primary-color);
+            transition: opacity 0.3s ease;
           }
 
           .meta-info {
@@ -162,15 +163,29 @@
             width: 100%;
             background-color: var(--composer-overlay-color);
             transition: opacity 0.5s ease;
-            &:hover {
-              opacity: 1;
-            }
           }
-
         }
 
         &:nth-child(2n) {
           flex-direction: column-reverse;
+        }
+
+        &:hover {
+          .info {
+            .title {
+              &[data-animation~="animate1"] { 
+                opacity: 0.5;
+              }
+            }
+          }
+
+          .image-container {
+            .image-overlay {
+              &[data-animation~="animate1"] { 
+                opacity: 1;
+              }
+            }
+          }
         }
       }
     }
