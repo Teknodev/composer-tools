@@ -149,31 +149,38 @@ this.addProp({
 #### Array
 
 ```javascript
-{
+this.addProp({
   type: "array",
   key: "items",
   displayer: "Items",
   value: [
     {
-      type: "string",
+      type: "object",
       key: "item",
       displayer: "Item",
-      value: "Bow"
-    },
-    {
-      type: "string",
-      key: "item",
-      displayer: "Item",
-      value: "Arrow"
-    },
-    {
-      type: "string",
-      key: "item",
-      displayer: "Item",
-      value: "Sword"
-    },
+      value: [
+        {
+          type: "string",
+          key: "item",
+          displayer: "Item",
+          value: "Bow"
+        },
+        {
+          type: "string",
+          key: "item",
+          displayer: "Item",
+          value: "Arrow"
+        },
+        {
+          type: "string",
+          key: "item",
+          displayer: "Item",
+          value: "Sword"
+        },
+      ]
+    }
   ]
-},
+})
 ```
 
 ## How to Approach Props?
@@ -346,6 +353,23 @@ Then we are finally ready to map our array.
   ))
 ```
 
-If you have questions, or you think there is something missing in this documentation, please tell.
+## Why all tags must have className?
 
-author: [@dogusmiuw](https://github.com/dogusmiuw)
+Users may want to customize the component to suit their preferences. To facilitate this, the system displays a tree structure that allows for easy customization.
+This tree is generated based on the class names of elements in the DOM, ensuring proper organization. Therefore, every tag must have a class name. 
+If a conditional class name is applied, at least one primary class must always be present.
+
+FOR EXAMPLE:
+```javascript
+  <div
+    className={`${this.decorateCSS("title")} ${
+      condition && this.decorateCSS("active")
+    }`}
+  />
+```
+
+## Why shouldn't ID be given to tags when making components??
+
+In the system, users can customize the class names of components. However, there may be cases where styling a specific element rather than an entire class is necessary or preferred.
+To accommodate this, the system automatically assigns an ID to every element. 
+As a result, any manually assigned IDs will be overridden, meaning you won't have access to the custom ID you specify.
