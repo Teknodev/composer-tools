@@ -266,6 +266,16 @@ class Content6 extends BaseContent {
       value: 3,
     });
 
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2"]
+      }
+    });
+
     this.setComponentState(
       "prevSlide",
       this.castToObject<CardType[]>("items").length - 1
@@ -428,14 +438,17 @@ class Content6 extends BaseContent {
                     >
                       {items.map((item: CardType, index: number) => (
                         <article
-                          className={`${this.decorateCSS("slider-inner-div")} ${this.getComponentState("prevSlide") === index
+                          className={`${this.decorateCSS("slider-inner-div")} ${
+                            this.getComponentState("prevSlide") === index
                             ? this.decorateCSS("prevSlide")
                             : ""
-                            } ${this.getComponentState("nextSlide") === index
-                              ? this.decorateCSS("nextSlide")
-                              : ""
-                            }`}
+                          } ${
+                            this.getComponentState("nextSlide") === index
+                            ? this.decorateCSS("nextSlide")
+                            : ""
+                          }`}
                           key={index}
+                          data-animation={this.getPropValue("hoverAnimation").join(" ")}
                         >
                           <div className={this.decorateCSS("content-div")}>
                             {item.image && (
