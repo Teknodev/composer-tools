@@ -2,8 +2,22 @@ import React, { forwardRef, useEffect, useRef, useState } from "react";
 import Slider, { Settings } from "react-slick";
 
 const ComposerSlider = forwardRef<Slider, Settings>((props, ref) => {
-  const [slidesSettings, setSliderSettings] = useState(props);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [sliderSettings, setSliderSettings] = useState<Settings>(props);
+  const sliderRef = useRef<Slider>(null);
+
+  // Combine the forwarded ref with our local ref
+  const setRef = (slider: Slider) => {
+    sliderRef.current = slider;
+
+    // Handle the forwarded ref
+    if (ref) {
+      if (typeof ref === "function") {
+        ref(slider);
+      } else {
+        ref.current = slider;
+      }
+    }
+  };
 
   useEffect(() => {
     if (!props.responsive) return;
@@ -14,32 +28,39 @@ const ComposerSlider = forwardRef<Slider, Settings>((props, ref) => {
       const matchedBreakpoint = sortedBreakpoints.find(({ breakpoint }) => width <= breakpoint);
 
       if (matchedBreakpoint?.settings) {
-        setSliderSettings((prev) => {
-          return { ...prev, ...(matchedBreakpoint?.settings as Settings) };
-        });
+        setSliderSettings((prev) => ({
+          ...prev,
+          ...(matchedBreakpoint.settings as Settings),
+        }));
       } else {
         setSliderSettings(props);
       }
     };
 
-    const observer = new ResizeObserver(([entry]) => {
-      updateSlidesToShow(entry.contentRect.width);
-    });
+    const handleResize = (entries: ResizeObserverEntry[]) => {
+      if (entries.length > 0) {
+        updateSlidesToShow(entries[0].contentRect.width);
+      }
+    };
 
-    const container = containerRef.current;
-    if (container) observer.observe(container);
+    const observer = new ResizeObserver(handleResize);
+
+    // Observer on the slider element directly
+    const sliderElement = sliderRef.current && sliderRef.current.innerSlider?.list;
+
+    if (sliderElement) {
+      observer.observe(sliderElement);
+    }
 
     return () => {
-      if (container) observer.unobserve(container);
+      observer.disconnect();
     };
-  }, [props.responsive, props.slidesToShow]);
+  }, [props, props.responsive]);
 
   return (
-    <div ref={containerRef}>
-      <Slider ref={ref} {...slidesSettings}>
-        {props.children}
-      </Slider>
-    </div>
+    <Slider ref={setRef} {...sliderSettings}>
+      {props.children}
+    </Slider>
   );
 });
 
