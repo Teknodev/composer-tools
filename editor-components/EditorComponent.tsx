@@ -29,7 +29,13 @@ type GetPropValueProperties = {
   prefix?: PreSufFix;
 };
 type TypeCSSProp = { [key: string]: { id: string; class: string }[] };
-type TypeInteractionProp = { [key: string]: {}[] };
+export type TypeInteractionProp = { [key: string]: {
+  type: "",
+  modal: "",
+  "trigger-action": "",
+  "visible-on": "",
+  "show-once": false,
+}[] };
 export interface iComponent {
   render(): any;
   getInstanceName(): string;
