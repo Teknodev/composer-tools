@@ -55,7 +55,7 @@ const ComposerSlider = forwardRef<Slider, Settings>((props, ref) => {
     return () => {
       observer.disconnect();
     };
-  }, [props, props.responsive]);
+  }, [props.slidesToShow, props.responsive]);
 
   return (
     <Slider ref={setRef} {...sliderSettings}>
