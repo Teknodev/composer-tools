@@ -44,7 +44,7 @@ export interface iComponent {
   setCSSClasses(key: string, value: { id: string; class: string }[]): void;
   decorateCSS(cssValue: string): string;
   getCategory(): CATEGORIES;
-  initializeProps(): void;
+  initializeProp(prop: TypeUsableComponentProps): void;
   id: string;
 }
 type AvailablePropTypes =
@@ -325,10 +325,7 @@ export abstract class Component
   addProp(prop: TypeUsableComponentProps) {
     this.shadowProps.push(JSON.parse(JSON.stringify(prop)));
     if (this.getProp(prop.key)) return;
-
-    prop = this.attachPropId(prop);
-    prop = this.attachValueGetter(prop);
-
+    this.initializeProp(prop);
     this.state.componentProps.props.push(prop);
   }
 
@@ -491,15 +488,13 @@ export abstract class Component
   }
 
   /**
-   * Enhances the component's properties by assigning unique IDs to each one and integrating a value retrieval method.
-   * This process ensures the uniqueness of each property and updates the `getPropValue` method to access the current value,
-   * rather than relying on outdated cloned properties.
+   * Assigns a unique ID to the given property and integrates a method for retrieving its current value.
+   * This ensures each property is distinct and always reflects the latest state.
+   * The function directly modifies the prop object in place so it's not necessary to return it.
    */
-  initializeProps() {
-    this.getProps().forEach((prop) => {
-      this.attachPropId(prop);
-      this.attachValueGetter(prop);
-    })
+  initializeProp(prop: TypeUsableComponentProps) {
+    this.attachPropId(prop);
+    this.attachValueGetter(prop);
   }
 }
 
