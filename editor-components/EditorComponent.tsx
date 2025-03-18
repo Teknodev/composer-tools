@@ -7,6 +7,7 @@ import { renderToString } from "react-dom/server";
 import { THEMES, TTheme } from "./location/themes";
 import InlineEditor from "../../custom-hooks/UseInlineEditor";
 import { v4 as uuidv4 } from 'uuid';
+import { TypePageInteractions } from "classes/Page";
 
 export function generateComponentId(){
   return uuidv4();
@@ -31,12 +32,13 @@ type GetPropValueProperties = {
   prefix?: PreSufFix;
 };
 type TypeCSSProp = { [key: string]: { id: string; class: string }[] };
+
 export type TypeInteractionProp = {
   type: string,
   modal: string,
-  "trigger-action":string,
-  "visible-on": string,
-  "show-once": boolean,
+  "trigger_action":string,
+  "visible_on": string,
+  "show_once": boolean,
 };
 export interface iComponent {
   render(): any;
@@ -53,7 +55,7 @@ export interface iComponent {
   addProp(prop: TypeUsableComponentProps): void;
   setProp(key: string, value: any): void;
   setCSSClasses(key: string, value: { id: string; class: string }[]): void;
-  setInteraction(key: string, value: {}[]): void;
+  setInteraction(key: string, value: InteractionType): void;
   decorateCSS(cssValue: string): string;
   getCategory(): CATEGORIES;
   id: string;
@@ -385,7 +387,7 @@ export abstract class Component
     this.state.componentProps.cssClasses[key] = value;
     this.setState({ componentProps: this.state.componentProps });
   }
-  setInteraction(key: string, value: {}[]) {
+  setInteraction(key: string, value: InteractionType) {
     this.state.componentProps.interactions[key] = value;
     this.setState({ componentProps: this.state.componentProps });
   }
