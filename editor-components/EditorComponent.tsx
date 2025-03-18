@@ -17,6 +17,8 @@ type PreSufFix = {
   className: string;
 };
 
+export type InteractionType = {[key: string]: TypeInteractionProp[]} ;
+
 export type TypeLocation = {
   lng: number;
   lat: number;
@@ -29,13 +31,13 @@ type GetPropValueProperties = {
   prefix?: PreSufFix;
 };
 type TypeCSSProp = { [key: string]: { id: string; class: string }[] };
-export type TypeInteractionProp = { [key: string]: {
-  type: "",
-  modal: "",
-  "trigger-action": "",
-  "visible-on": "",
-  "show-once": false,
-}[] };
+export type TypeInteractionProp = {
+  type: string,
+  modal: string,
+  "trigger-action":string,
+  "visible-on": string,
+  "show-once": boolean,
+};
 export interface iComponent {
   render(): any;
   getInstanceName(): string;
@@ -74,7 +76,7 @@ export type TypeReactComponent = {
   type: string;
   props?: TypeUsableComponentProps[];
   cssClasses?: TypeCSSProp;
-  interactions?: TypeInteractionProp;
+  interactions?: InteractionType;
   id?: string;
 };
 export type TypeUsableComponentProps = {
