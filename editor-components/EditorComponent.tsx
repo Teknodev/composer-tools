@@ -6,7 +6,8 @@ import { renderToString } from "react-dom/server";
 import { THEMES, TTheme } from "./location/themes";
 import InlineEditor from "../../custom-hooks/UseInlineEditor";
 import { v4 as uuidv4 } from 'uuid';
-import { TypePageInteractions } from "classes/Page";
+import { Pages } from "classes/bucket";
+
 
 export function generateComponentId(){
   return uuidv4();
@@ -17,7 +18,7 @@ type PreSufFix = {
   className: string;
 };
 
-export type InteractionType = {[key: string]: TypeInteractionProp[]} ;
+export type InteractionType = Pages["page_interactions"] ;
 
 export type TypeLocation = {
   lng: number;
@@ -32,13 +33,6 @@ type GetPropValueProperties = {
 };
 type TypeCSSProp = { [key: string]: { id: string; class: string }[] };
 
-export type TypeInteractionProp = {
-  type: string,
-  modal: string,
-  "trigger_action":string,
-  "visible_on": string,
-  "show_once": boolean,
-};
 export interface iComponent {
   render(): any;
   getInstanceName(): string;
