@@ -44,15 +44,17 @@
           border-radius: var(--composer-border-radius-md);
           overflow: hidden;
           &.animation1:hover {
-            .card-bottom, .cardsubtitle {
-              transform: scale(1.1);
-            }
             .card-list {
               .card-list-item {
                 &::before {
                   width: 100%;
                 }
               }
+            }
+          }
+          &.animation2:hover{
+            .card-bottom, .cardsubtitle {
+              transform: scale(1.1);
             }
           }
           

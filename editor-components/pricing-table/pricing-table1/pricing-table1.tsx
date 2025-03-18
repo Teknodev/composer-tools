@@ -575,9 +575,9 @@ class PricingTable1 extends BasePricingTable {
       type:"multiSelect",
       key: "animations",
       displayer: "Animations",
-      value: ["animation1"],
+      value: ["animation1", "animation2"],
       additionalParams:{
-        selectItems:["animation1"]
+        selectItems:["animation1", "animation2"]
       }
     })
   }
@@ -590,6 +590,8 @@ class PricingTable1 extends BasePricingTable {
 
     const subtitleExist = this.castToString(subtitle);
     const titleExist = this.castToString(title);
+
+    console.log("aniamition", this.getPropValue("animations"))
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
