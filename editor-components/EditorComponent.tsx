@@ -334,11 +334,6 @@ export abstract class Component
     return _prop;
   }
 
-  getInteractions(sectionName: string | null = null): string {
-    return sectionName
-      ? this.state.componentProps.interactions[sectionName]
-      : this.state.componentProps.interactions;
-  }
   addProp(prop: TypeUsableComponentProps) {
     this.shadowProps.push(JSON.parse(JSON.stringify(prop)));
     if (this.getProp(prop.key)) return;
@@ -389,7 +384,11 @@ export abstract class Component
     this.state.componentProps.interactions[key] = value;
     this.setState({ componentProps: this.state.componentProps });
   }
-
+  getInteractions(sectionName: string | null = null): string {
+    return sectionName
+      ? this.state.componentProps.interactions[sectionName]
+      : this.state.componentProps.interactions;
+  }
   decorateCSS(cssValue: string) {
     let cssClass = [this.styles[cssValue]];
     let cssManuplations = Object.entries(this.getCSSClasses()).filter(
