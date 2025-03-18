@@ -36,7 +36,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             overflow: hidden;
             background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
             
-            &:hover {
+            &.animation1:hover {
               transition: 0.8s;
               transform: translateY(calc(-1 * var(--composer-gap-sm)));
             }

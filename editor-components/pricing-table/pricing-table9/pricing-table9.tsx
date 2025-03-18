@@ -709,6 +709,15 @@ class PricingTable9 extends BasePricingTable {
         },
       ],
     });
+    this.addProp({
+      type:"multiSelect",
+      key: "animations",
+      displayer: "Animations",
+      value: ["animation1"],
+      additionalParams:{
+        selectItems:["animation1"]
+      }
+    })
   }
 
   static getName(): string {
@@ -767,7 +776,7 @@ class PricingTable9 extends BasePricingTable {
                 const buttonTextExist = this.castToString(column?.buttonType.text);
                 const titleExist = this.castToString(column?.title);
                 return (
-                  <div key={`column-${index}`} className={this.decorateCSS("column-item")}>
+                  <div key={`column-${index}`} className={`${this.decorateCSS("column-item")} ${this.getPropValue("animations") && this.decorateCSS(this.getPropValue("animations"))}`}>
                     <div className={this.decorateCSS("title-container")}>{titleExist && <Base.H3 className={this.decorateCSS("column-title")}>{column?.title}</Base.H3>}</div>
                     <div className={this.decorateCSS("column-contents")}>
                       {column?.contents.map((content: any, contentIndex: any) => (

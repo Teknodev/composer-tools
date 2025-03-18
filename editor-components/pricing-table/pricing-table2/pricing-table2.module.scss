@@ -14,9 +14,9 @@
 
       .item-div {
         .card-item-count {
-          &:hover{
+          transition-duration: 0.8s;
+          &.animation1:hover{
             transform: scale(1.1);
-            transition-duration: 0.8s;
           }
           .item-card {
             width: 100%;

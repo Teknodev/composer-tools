@@ -27,11 +27,11 @@
         .card-item-count {
           width: 27%;
           height: 100% !important;
-          &:hover {
-            transition: 0.8s;
+          transition: 0.8s;
+          &.animation1:hover {
             transform: translateY(calc(-1 * var(--composer-gap-sm)));
+            transition: 0.8s;
             &.middle-card{
-              transition: 0.8s;
               transform: scale(1.1) translateY(calc(-1 * var(--composer-gap-sm))); 
             }
           }

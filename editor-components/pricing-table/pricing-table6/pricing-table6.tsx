@@ -1039,6 +1039,16 @@ class PricingMultipleTwo extends BasePricingTable {
         },
       ],
     });
+    this.addProp({
+      type:"multiSelect",
+      key: "animations",
+      displayer: "Animations",
+      value: ["animation1"],
+      additionalParams:{
+        selectItems:["animation1"]
+      }
+    })
+
     this.setActiveTab(0);
     this.setActivePlan(0);
   }
@@ -1089,7 +1099,8 @@ class PricingMultipleTwo extends BasePricingTable {
                   <>
                     <div className={this.decorateCSS("left-page")}>
                       {plan.map((tab: any, index: number) => (
-                        <div className={this.decorateCSS("listArray") + " " + (this.getComponentState("activePlan") == index && this.decorateCSS("active"))} onClick={() => this.setActivePlan(index)} key={index}>
+                        <div className={`${this.decorateCSS("listArray") + " " + (this.getComponentState("activePlan") == index && this.decorateCSS("active"))} 
+                        ${this.getPropValue("animations") && this.decorateCSS(this.getPropValue("animations"))}`} onClick={() => this.setActivePlan(index)} key={index}>
                           <div className={this.decorateCSS("plan-icons")}>
                             <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={planIndex == index ? tab.check_icon : tab.circle_icon}></ComposerIcon>
                             <Base.P className={this.decorateCSS("plan")}> {tab.plan}</Base.P>

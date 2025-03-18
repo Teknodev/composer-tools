@@ -21,7 +21,6 @@ type MonthlyPlan = {
   item: PricingItem[];
   isActive: boolean;
   popular_settings: any;
-  isHoverActive: boolean;
 }[];
 type YearlyPlan = {
   badge: string;
@@ -34,7 +33,6 @@ type YearlyPlan = {
   item: PricingItem[];
   isActive: boolean;
   popular_settings: any;
-  isHoverActive: boolean;
 }[];
 
 class PricingTable7 extends BasePricingTable {
@@ -92,12 +90,6 @@ class PricingTable7 extends BasePricingTable {
       key: "text2",
       displayer: "Plan's Discount",
       value: "(Save 20%)",
-    });
-    this.addProp({
-      type: "boolean",
-      key: "isHoverActive",
-      displayer: "Hover Activation",
-      value: true,
     });
 
     this.addProp({
@@ -854,6 +846,15 @@ class PricingTable7 extends BasePricingTable {
       value: 3,
       max: 3,
     });
+    this.addProp({
+      type:"multiSelect",
+      key: "animations",
+      displayer: "Animations",
+      value: ["animation1"],
+      additionalParams:{
+        selectItems:["animation1"]
+      }
+    })
 
     this.setComponentState("plan_type", "monthly-plans");
   }
@@ -899,7 +900,6 @@ class PricingTable7 extends BasePricingTable {
     const subtitle = this.castToString(this.getPropValue("subtitle"));
     const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
-    const isHoverActive = this.getPropValue("isHoverActive");
 
     const line = this.getPropValue("line");
 
@@ -919,12 +919,10 @@ class PricingTable7 extends BasePricingTable {
           <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 1, phone: 1 }} className={this.decorateCSS("card")}>
             {(planType === "monthly-plans" ? monthly_plans : yearly_plans).map((pricing: any, index: number) => {
               return (
-                <div className={this.decorateCSS("card-item-count")}>
+                <div className={`${this.decorateCSS("card-item-count")} ${this.getPropValue("animations") && this.decorateCSS(this.getPropValue("animations"))}`}>
                   <Base.VerticalContent
                     key={index}
-                    className={`${this.decorateCSS("price")} ${pricing.isActive && this.decorateCSS("active")} && 
-                  ${isHoverActive ? this.decorateCSS("price-hover") : ""}
-                  }`}
+                    className={`${this.decorateCSS("price")} ${pricing.isActive && this.decorateCSS("active")}`}
                   >
                     {this.castToString(pricing.popular_settings.text) && pricing.isActive && (
                       <div className={`${this.decorateCSS("popular-box")} ${this.decorateCSS("active")}`}>

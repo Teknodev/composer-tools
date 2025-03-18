@@ -71,7 +71,7 @@
             transition: width 0.8s ease-in-out;
            
           }
-          &:hover{
+          &.animation1:hover{
             &::before{
               width: 100%;
             }
