@@ -1,4 +1,3 @@
-import axios from "axios";
 import * as React from "react";
 import { getProjectHook } from "../custom-hooks/project";
 import { EventEmitter, EVENTS } from "../EventEmitter";
@@ -45,6 +44,7 @@ export interface iComponent {
   setCSSClasses(key: string, value: { id: string; class: string }[]): void;
   decorateCSS(cssValue: string): string;
   getCategory(): CATEGORIES;
+  initializeProps(): void;
   id: string;
 }
 type AvailablePropTypes =
@@ -308,21 +308,25 @@ export abstract class Component
       ? this.state.componentProps.cssClasses[sectionName]
       : this.state.componentProps.cssClasses;
   }
+
+  private attachPropId(_prop: TypeUsableComponentProps) {
+    if (_prop.type == "array" || _prop.type == "object") {
+      (_prop.value as TypeUsableComponentProps[]).forEach(
+        (v: TypeUsableComponentProps) => this.attachPropId(v)
+      );
+    } else {
+      _prop.id =
+        _prop.key + "-" + Math.round(Math.random() * 1000000000).toString();
+    }
+
+    return _prop;
+  }
+
   addProp(prop: TypeUsableComponentProps) {
     this.shadowProps.push(JSON.parse(JSON.stringify(prop)));
     if (this.getProp(prop.key)) return;
-    const attachPropId = (_prop: TypeUsableComponentProps) => {
-      if (_prop.type == "array" || _prop.type == "object") {
-        _prop.value = (_prop.value as TypeUsableComponentProps[]).map(
-          (v: TypeUsableComponentProps) => attachPropId(v)
-        );
-      } else {
-        _prop.id =
-          _prop.key + "-" + Math.round(Math.random() * 1000000000).toString();
-      }
-      return _prop;
-    };
-    prop = attachPropId(prop);
+
+    prop = this.attachPropId(prop);
     prop = this.attachValueGetter(prop);
 
     this.state.componentProps.props.push(prop);
@@ -484,6 +488,18 @@ export abstract class Component
     });
     
     EventEmitter.emit(EVENTS.INSERT_FORM, { name, data: inputData, project });
+  }
+
+  /**
+   * Enhances the component's properties by assigning unique IDs to each one and integrating a value retrieval method.
+   * This process ensures the uniqueness of each property and updates the `getPropValue` method to access the current value,
+   * rather than relying on outdated cloned properties.
+   */
+  initializeProps() {
+    this.getProps().forEach((prop) => {
+      this.attachPropId(prop);
+      this.attachValueGetter(prop);
+    })
   }
 }
 
