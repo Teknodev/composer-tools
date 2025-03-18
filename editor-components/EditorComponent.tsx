@@ -1,4 +1,3 @@
-import axios from "axios";
 import * as React from "react";
 import { getProjectHook } from "../custom-hooks/project";
 import { EventEmitter, EVENTS } from "../EventEmitter";
@@ -45,6 +44,7 @@ export interface iComponent {
   setCSSClasses(key: string, value: { id: string; class: string }[]): void;
   decorateCSS(cssValue: string): string;
   getCategory(): CATEGORIES;
+  initializeProp(prop: TypeUsableComponentProps): void;
   id: string;
 }
 type AvailablePropTypes =
@@ -311,23 +311,24 @@ export abstract class Component
       ? this.state.componentProps.cssClasses[sectionName]
       : this.state.componentProps.cssClasses;
   }
+
+  private attachPropId(_prop: TypeUsableComponentProps) {
+    if (_prop.type == "array" || _prop.type == "object") {
+      (_prop.value as TypeUsableComponentProps[]).forEach(
+        (v: TypeUsableComponentProps) => this.attachPropId(v)
+      );
+    } else {
+      _prop.id =
+        _prop.key + "-" + Math.round(Math.random() * 1000000000).toString();
+    }
+
+    return _prop;
+  }
+
   addProp(prop: TypeUsableComponentProps) {
     this.shadowProps.push(JSON.parse(JSON.stringify(prop)));
     if (this.getProp(prop.key)) return;
-    const attachPropId = (_prop: TypeUsableComponentProps) => {
-      if (_prop.type == "array" || _prop.type == "object") {
-        _prop.value = (_prop.value as TypeUsableComponentProps[]).map(
-          (v: TypeUsableComponentProps) => attachPropId(v)
-        );
-      } else {
-        _prop.id =
-          _prop.key + "-" + Math.round(Math.random() * 1000000000).toString();
-      }
-      return _prop;
-    };
-    prop = attachPropId(prop);
-    prop = this.attachValueGetter(prop);
-
+    this.initializeProp(prop);
     this.state.componentProps.props.push(prop);
   }
 
@@ -491,6 +492,16 @@ export abstract class Component
     });
 
     EventEmitter.emit(EVENTS.INSERT_FORM, { name, data: inputData, project });
+  }
+
+  /**
+   * Assigns a unique ID to the given property and integrates a method for retrieving its current value.
+   * This ensures each property is distinct and always reflects the latest state.
+   * The function directly modifies the prop object in place so it's not necessary to return it.
+   */
+  initializeProp(prop: TypeUsableComponentProps) {
+    this.attachPropId(prop);
+    this.attachValueGetter(prop);
   }
 }
 
