@@ -27,6 +27,14 @@
         .card-item-count {
           width: 27%;
           height: 100% !important;
+          transition: 0.8s;
+          &.animation1:hover {
+            transform: translateY(calc(-1 * var(--composer-gap-sm)));
+            transition: 0.8s;
+            &.middle-card{
+              transform: scale(1.1) translateY(calc(-1 * var(--composer-gap-sm))); 
+            }
+          }
 
           cursor: pointer;
           .pricing {
@@ -92,12 +100,12 @@
               border: 2px solid var(--composer-secondary-color);
             }
           }
+          &.middle-card {
+            transform: scale(1.1);
+            z-index: 1;
+          }
         }
 
-        .middle-card {
-          transform: scale(1.1);
-          z-index: 1;
-        }
       }
 
       .lower-container {

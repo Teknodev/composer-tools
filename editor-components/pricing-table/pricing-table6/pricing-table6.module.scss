@@ -95,29 +95,31 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 }
               }
             }
-            &:not(.active):hover {
-              background-color: var(--composer-primary-color);
-              .plan-icons,
-              .tag,
-              .item-price {
-                color: var(--composer-font-color-secondary);
-              }
-
-              .tag {
-                border: 1px solid var(--composer-font-color-secondary);
-              }
-
-              .per {
-                color: var(--composer-font-color-secondary);
-              }
-
-              .plan-icons .plan,
-              .item-price .price {
-                color: var(--composer-font-color-secondary);
-              }
-
-              .plan-icons .icon {
-                color: var(--composer-font-color-secondary);
+            &.animation1:hover{
+              &:not(.active):hover {
+                background-color: var(--composer-primary-color);
+                .plan-icons,
+                .tag,
+                .item-price {
+                  color: var(--composer-font-color-secondary);
+                }
+  
+                .tag {
+                  border: 1px solid var(--composer-font-color-secondary);
+                }
+  
+                .per {
+                  color: var(--composer-font-color-secondary);
+                }
+  
+                .plan-icons .plan,
+                .item-price .price {
+                  color: var(--composer-font-color-secondary);
+                }
+  
+                .plan-icons .icon {
+                  color: var(--composer-font-color-secondary);
+                }
               }
             }
 

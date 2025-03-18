@@ -593,6 +593,15 @@ class PricingTable2 extends BasePricingTable {
         },
       ],
     });
+    this.addProp({
+      type:"multiSelect",
+      key: "animations",
+      displayer: "Animations",
+      value: ["animation1"],
+      additionalParams:{
+        selectItems:["animation1"]
+      }
+    })
   }
 
   static getName(): string {
@@ -629,7 +638,7 @@ class PricingTable2 extends BasePricingTable {
                 const cardDuration = this.castToString(table.cardDuration);
 
                 return (
-                  <Base.VerticalContent className={this.decorateCSS("card-item-count")}>
+                  <Base.VerticalContent className={`${this.decorateCSS("card-item-count")} ${this.getPropValue("animations") && this.decorateCSS(this.getPropValue("animations"))}`}>
                     <div key={index} className={this.decorateCSS("item-card")}>
                       <Base.VerticalContent className={`${this.decorateCSS("card-upper")} ${cardTitle || cardPrice || cardDuration ? "" : this.decorateCSS("hidden")}`}>
                         {cardTitle && <Base.H2 className={this.decorateCSS("card-title")}>{table.cardTitle}</Base.H2>}

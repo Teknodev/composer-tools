@@ -154,6 +154,15 @@ class PricingTable5 extends BasePricingTable {
         },
       ],
     });
+    this.addProp({
+      type:"multiSelect",
+      key: "animations",
+      displayer: "Animations",
+      value: ["animation1"],
+      additionalParams:{
+        selectItems:["animation1"]
+      }
+    })
   }
 
   static getName(): string {
@@ -215,7 +224,8 @@ class PricingTable5 extends BasePricingTable {
                   const planButtonExist = this.castToString(plan.button.text);
 
                   return (
-                    <div className={`${this.decorateCSS("plan")} ${isActive && this.decorateCSS("active")}`} onClick={() => this.onPlanClicked(index)}>
+                    <div className={`${this.decorateCSS("plan")} ${isActive && this.decorateCSS("active")} 
+                    ${this.getPropValue("animations") && this.decorateCSS(this.getPropValue("animations"))}`} onClick={() => this.onPlanClicked(index)}>
                       <div className={this.decorateCSS("plan-upper")}>
                         {planTitleExist && <Base.H5 className={this.decorateCSS("plan-title")}>{plan.getPropValue("planTitle")}</Base.H5>}
                         <div className={isActive ? this.decorateCSS("icon-box-active") : this.decorateCSS("icon-box")}>

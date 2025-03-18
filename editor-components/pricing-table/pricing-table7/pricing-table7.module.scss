@@ -113,14 +113,13 @@
         height: 100%;
         display: flex;
         justify-content: center;
-
-        .price-hover:hover {
+        transition: 0.5s;
+        &.animation1:hover {
           box-shadow: var(--box-shadow-active);
           transform: translateY(calc(-1 * var(--composer-gap-sm)));
         }
 
         .price {
-          transition: 0.5s;
           box-shadow: var(--box-shadow-active);
           border-radius: var(--composer-border-radius-xl);
           height: max-content;

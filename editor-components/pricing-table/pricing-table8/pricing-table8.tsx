@@ -389,6 +389,15 @@ class PricingTable8 extends BasePricingTable {
       displayer: "Next icon",
       value: "IoMdArrowDropright",
     });
+    this.addProp({
+      type:"multiSelect",
+      key: "animations",
+      displayer: "Animations",
+      value: ["animation1"],
+      additionalParams:{
+        selectItems:["animation1"]
+      }
+    })
   }
 
   static getName(): string {
@@ -487,7 +496,8 @@ class PricingTable8 extends BasePricingTable {
                 const cardPriceBigExist = this.castToString(card.priceBig);
                 const cardPlanExist = this.castToString(card.plan);
                 return (
-                  <div className={`${this.decorateCSS("card-item-count")} ${index === Math.floor(cards.length / 2) ? this.decorateCSS("middle-card") : ""}`} key={index} onClick={() => handleCardClick(index)}>
+                  <div className={`${this.decorateCSS("card-item-count")} ${index === Math.floor(cards.length / 2) ? this.decorateCSS("middle-card") : ""}
+                  ${this.getPropValue("animations") && this.decorateCSS(this.getPropValue("animations"))}`} key={index} onClick={() => handleCardClick(index)}>
                     <Base.VerticalContent className={this.decorateCSS("pricing")}>
                       {cardTitleExist && <Base.H3 className={this.decorateCSS("title")}>{card.title}</Base.H3>}
                       {cardPriceBigExist && <Base.H1 className={this.decorateCSS("price-big")}>{card.priceBig}</Base.H1>}
