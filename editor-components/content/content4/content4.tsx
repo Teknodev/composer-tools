@@ -362,7 +362,7 @@ class Content4 extends BaseContent {
                               </div>
                             )}
                             {isBox2Visible && (
-                              <ComposerLink page={tab.image_container.link}>
+                              <ComposerLink path={tab.image_container.link}>
                                 <div className={this.decorateCSS("box2")}>
                                   <div
                                     className={this.decorateCSS("box2-text")}
