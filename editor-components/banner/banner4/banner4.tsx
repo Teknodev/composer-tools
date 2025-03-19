@@ -78,7 +78,7 @@ class Banner4 extends BaseBanner {
       type: "icon",
       key: "crumberIcon",
       displayer: "Icon",
-      value: "RxSlash",
+      value: "MdKeyboardArrowRight",
     });
   } 
 

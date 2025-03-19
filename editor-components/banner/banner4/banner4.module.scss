@@ -1,8 +1,9 @@
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+
 .container-main{
     width: 100%;
     position: relative;
     background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-    background: grai;
 
     .vector1 {
         position: absolute;
@@ -57,7 +58,7 @@
         }
     }
     .section {
-        height: 450px;
+        min-height: 450px;
         object-fit: contain;
         overflow: hidden;
         background-size: cover;
@@ -67,6 +68,7 @@
 
         .container {
             background-color: transparent !important;
+
             .max-content {
                 .items {
                     .title {
@@ -80,6 +82,7 @@
                     .pages {
                         display: flex;
                         flex-direction: row;
+                        flex-wrap: wrap;
                         justify-content: center;
                         align-items: center;
 
@@ -96,7 +99,8 @@
                         }
 
                         .crumberIcon {
-                            content: "";
+                            flex: 1;
+                            font-size: 1.5rem !important;
                         }
 
                         .currentPage {
@@ -109,3 +113,46 @@
         }
     }
 }
+
+@media (min-height: 450px) { 
+    .container-main {
+        .section {
+            .container {
+                .max-content {
+                    .items {
+                        .title {
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2; /* Maksimum 2 satır */
+                            -webkit-box-orient: vertical;
+                            overflow: hidden !important;
+                            text-overflow: ellipsis !important;
+                        }
+                        .pages {
+                            .homepage {
+                                display: -webkit-box;
+                                -webkit-line-clamp: 2; /* Maksimum 2 satır */
+                                -webkit-box-orient: vertical;
+                                overflow: hidden !important;
+                                text-overflow: ellipsis !important;
+                            }
+                            .currentPage {
+                                display: -webkit-box;
+                                -webkit-line-clamp: 2; /* Maksimum 2 satır */
+                                -webkit-box-orient: vertical;
+                                overflow: hidden !important;
+                                text-overflow: ellipsis !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width : #{$composer-phone-width}) {
+    .vector1, .vector2, .vector3 {
+        display: none !important;
+    }
+}
+
