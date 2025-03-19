@@ -1,0 +1,97 @@
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+
+.container {
+    position: relative;
+    min-height: 400px;
+    overflow: hidden;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.4);
+        z-index: 1;
+    }
+
+    >* {
+        position: relative;
+        z-index: 2;
+    }
+
+    .breadcrumb-wrapper {
+        position: absolute;
+        left: 10%;
+        bottom: 0;
+
+        .crumber-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: var(--gap-md);
+            padding: 40px 50px 60px;
+            background: var(--composer-html-background);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+            color: var(--composer-font-color-primary);
+            width: 400px;
+
+            .title {
+                font-size: 4rem;
+                font-family: var(--composer-font-family);
+                font-weight: bold;
+                color: var(--composer-font-color-primary);
+                word-break: break-word;
+            }
+
+            .home-link {
+                content: "";
+            }
+
+            .home-page {
+                &:hover {
+                    color: var(--composer-primary-color);
+                }
+            }
+
+            .crumberIcon {
+                width: 16px;
+                height: 16px;
+                color: var(--composer-font-color-primary);
+            }
+
+            .about-page {
+                color: var(--composer-font-color-primary);
+                font-weight: bold;
+                word-break: break-word;
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container {
+        .breadcrumb-wrapper {
+            .crumber-content {
+                width: 45%;
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        .breadcrumb-wrapper {
+            .crumber-content {
+                width: 70%;
+                font-size: 14px;
+
+                .title {
+                    font-size: 3rem;
+                }
+            }
+        }
+    }
+}
