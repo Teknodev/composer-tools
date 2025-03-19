@@ -18,7 +18,7 @@
                 .homeIcon {
                     color: var(--composer-font-color-primary) !important;
                     font-size: 1rem !important;
-                    margin: var(--composer-gap-xs);
+                    margin: var(--composer-gap-sm);
     
                     &:hover {
                         color: var(--composer-primary-color) !important;
@@ -40,7 +40,7 @@
             .currentPage {
                 color: var(--composer-font-color-primary);
                 font-size: 1rem;
-                margin: var(--composer-gap-xs);
+                margin: var(--composer-gap-sm);
             }
         }
     }
