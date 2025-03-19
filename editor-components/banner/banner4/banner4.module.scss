@@ -1,0 +1,158 @@
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+
+.container-main{
+    width: 100%;
+    position: relative;
+    background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+
+    .vector1 {
+        position: absolute;
+        left: 550px;
+        top: 100px;
+
+        &.animated {
+            animation: animation1 1s infinite alternate;
+        }
+    }
+    .vector2 {
+        position: absolute;
+        left: 30px;
+        bottom: 45px;
+
+        &.animated {
+            animation: animation1 1.3s infinite alternate;
+        }
+    }
+    .vector3 {
+        position: absolute;
+        right: 50px;
+        bottom: 20px;
+
+        &.animated {
+            animation: animation2 1s infinite alternate;
+        }
+    }
+
+    @keyframes animation1 {
+        0% {
+            --webkit-transform: translateY(0px);
+            transform: translateY(0px);
+        }
+        100% {
+            --webkit-transform: translateY(17px);
+            transform: translateY(17px);     
+        }
+    }
+    @keyframes animation2 {
+        0% {
+            --webkit-transform: scale(1);
+            transform: scale(1)
+        }
+        50% {
+            --webkit-transform: scale(1.1);
+            transform: scale(1.1)
+        }
+        100% {
+            --webkit-transform: scale(1);
+            transform: scale(1);     
+        }
+    }
+    .section {
+        min-height: 450px;
+        object-fit: contain;
+        overflow: hidden;
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+
+        .container {
+            background-color: transparent !important;
+
+            .max-content {
+                .items {
+                    .title {
+                        font-size: 4rem;
+                    }
+
+                    .image {
+                        color: black !important;
+                    }
+
+                    .pages {
+                        display: flex;
+                        flex-direction: row;
+                        flex-wrap: wrap;
+                        justify-content: center;
+                        align-items: center;
+
+                        .link {
+                            content: "";
+                        }
+
+                        .homepage {
+                            font-size: 1rem !important;
+
+                            &:hover {
+                                color: var(--composer-primary-color);
+                            }
+                        }
+
+                        .crumberIcon {
+                            flex: 1;
+                            font-size: 1.5rem !important;
+                        }
+
+                        .currentPage {
+                            font-size: 1rem !important;
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-height: 450px) { 
+    .container-main {
+        .section {
+            .container {
+                .max-content {
+                    .items {
+                        .title {
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2; /* Maksimum 2 satır */
+                            -webkit-box-orient: vertical;
+                            overflow: hidden !important;
+                            text-overflow: ellipsis !important;
+                        }
+                        .pages {
+                            .homepage {
+                                display: -webkit-box;
+                                -webkit-line-clamp: 2; /* Maksimum 2 satır */
+                                -webkit-box-orient: vertical;
+                                overflow: hidden !important;
+                                text-overflow: ellipsis !important;
+                            }
+                            .currentPage {
+                                display: -webkit-box;
+                                -webkit-line-clamp: 2; /* Maksimum 2 satır */
+                                -webkit-box-orient: vertical;
+                                overflow: hidden !important;
+                                text-overflow: ellipsis !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width : #{$composer-phone-width}) {
+    .vector1, .vector2, .vector3 {
+        display: none !important;
+    }
+}
+
