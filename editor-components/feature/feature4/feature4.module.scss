@@ -90,7 +90,7 @@
           gap: var(--composer-gap-sm);
 
           &.apply-overlay {
-            background-color: var(--composer-overlay-color) !important;
+            background-color: var(--composer-overlay-color);
           }
 
           .long-text {
