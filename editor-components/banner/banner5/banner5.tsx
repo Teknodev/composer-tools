@@ -21,6 +21,18 @@ class Banner5 extends BaseBanner {
       value: "",
     })
     this.addProp({
+      type: "icon",
+      key: "icon",
+      displayer: "Icon",
+      value: "RxDividerVertical",
+    });
+    this.addProp({
+      type: "boolean",
+      key: "check",
+      displayer: "Show Icon",
+      value: true,
+    });
+    this.addProp({
       type: "string",
       key: "currentPage",
       displayer: "Current Page",
@@ -34,6 +46,8 @@ class Banner5 extends BaseBanner {
 
   render() {
     const currentPage = this.getPropValue("currentPage");
+    const icon = this.getPropValue("icon");
+    const check = this.getPropValue("check");
     const aligment = Base.getContentAlignment();
 
     return (
@@ -43,6 +57,11 @@ class Banner5 extends BaseBanner {
             <ComposerLink path={this.getPropValue("homePage")} className={this.decorateCSS("link")}>
               <ComposerIcon name={this.getPropValue("homeIcon")} propsIcon={{ className: this.decorateCSS("homeIcon") }} />
             </ComposerLink>
+            {check && (
+              <div className={this.decorateCSS("item")}>
+                <ComposerIcon name={icon} propsIcon={{ className: this.decorateCSS("icon") }}/>
+              </div>
+            )}
             <span className={this.decorateCSS("currentPage")}>{currentPage}</span>
           </div>
         </Base.MaxContent>

@@ -1,12 +1,13 @@
 .container {
     background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-    padding-top: var(--composer-gap-md);
-    padding-bottom: var(--composer-gap-md);
+    padding-top: var(--composer-gap-sm);
+    padding-bottom: var(--composer-gap-sm);
 
     .max-content {
         .section {
             display: flex;
             flex-direction: row;
+            align-items: center;
 
             .link {
                 content: "";
@@ -21,14 +22,16 @@
                 }
             }
 
+            .item {
+                .icon {
+                    color: var(--composer-font-color-primary);
+                    font-size: 1.5rem;
+                }
+            }
+
             .currentPage {
                 color: var(--composer-font-color-primary);
                 font-size: 1rem;
-
-                &::before {
-                    content: "|";
-                    padding: 0 var(--composer-gap-sm);
-                }
             }
         }
         .left {
