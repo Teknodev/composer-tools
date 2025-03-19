@@ -1,161 +1,76 @@
 @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
 .container {
-    //background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-    background: radial-gradient(
-      at bottom left,
-      var(--composer-html-background) 70%,
-      var(--composer-primary-color) 100%
-    );
-    //min-height: 100vh;
-    height: auto;
-
+    background-color: var(--composer-html-background);
+    padding: calc(var(--composer-gap-xl) * 2.5) var(--composer-gap-xl) !important;
+    position: relative;
+    overflow: hidden;
+    .vector1 {
+        position: absolute;
+        top: -30px;
+        left: 600px;
+    }
+    .vector2 {
+        position: absolute;
+        right: 200px;
+    }
     .max-content {
         .section {
-            .slider-wrapper {
-                .carousel {
-                    .carousel-item {
-                        padding: 2px;
-                        .carousel-wrapper {
-                            display: flex;
-                            overflow: hidden;
-                            .left-content {
-                                display: flex;
-                                align-items: center;
-                                flex: 1;
-                                .content {
-                                    .subtitle-content {
-                                        display: flex;
-                                        align-items: center;
-                                        .subtitle {
-                                            font-size: 2rem;
-                                            font-weight: 900;
-                                            color: var(--composer-primary-color) !important;
-                                            &::before {
-                                                background: var(--composer-primary-color) !important;
-                                            }
-                                        }
-                                        .icon {
-                                            font-size: 2.5rem;
-                                            margin-left: var(--composer-gap-xl);
-                                            color: var(--composer-primary-color) !important;
-                                        }
-                                    }
-                                    .title {
-                                        font-size: 5rem;
-                                    }
-                                    .description {
-                                        font-size: 1.5rem;
-                                        opacity: 0.5;
-                                    }
-                                    .button {
-                                        .button-link {
-                                            content: "";
-                                        }
-                                    }
-                                }
-                            }
-                            .right-content {
-                                display: flex;
-                                justify-content: flex-end;
-                                align-items: center;
-                                flex: 1;
-                                overflow: hidden;
-                                .image {
-                                    max-width: 100%;
-                                }
-                            }
-                        }
+            .title {
+                max-width: 70%;
+            }
+            .description {
+                opacity: 0.7;
+                max-width: 70%;
+            }
+            .breadcrumb {
+                display: flex;
+                .home {
+                    color: var(--composer-font-color-primary);
+                    margin-right: var(--composer-gap-md);
+                    &:hover {
+                        transition: color 0.3 ease;
+                        color: var(--composer-primary-color);
                     }
-                    .dots {
-                        list-style: none;
-                        height: 100%;
-                        display: flex !important;
-                        justify-content: center;
-                        align-items: center;
-                        flex-direction: row;
-
-                        > li {
-                            > button {
-                                position: relative;
-                                color: transparent;
-                                //padding: 15px;
-                                background: none;
-                                border: none;
-                                margin: var(--composer-gap-sm);
-                                padding: var(--composer-gap-sm);
-                                width: 42px;
-                                height: 42px;
-
-                                &::before {
-                                    position: absolute;
-                                    top: 1px;
-                                    left: 0px;
-                                    content: "•";
-                                    color: var(--composer-primary-color);
-                                    transition: 0.3s;
-                                    font-size: 3rem;
-                                    width: 100%;
-                                    height: 100%;
-                                    display: flex;
-                                    justify-content: center;
-                                    align-items: center;
-                                    opacity: 0.5;
-                                }
-                            }
-                        }
-                        :global(li.slick-active) button{
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            padding: 8px;
-                            border-radius: 50%;
-                            border: 1px solid var(--composer-primary-color); 
-                            
-                            > button {
-                                opacity: 1 !important;
-                            }
-                        }
+                }
+                .item {
+                    position: relative;
+                    color: var(--composer-font-color-primary);
+                    margin-right: var(--composer-gap-md);
+                    &::before {
+                        position: absolute;
+                        top: 17px;
+                        left: -3px;
+                        content: "~";
                     }
+                }
+                .current {
+                    color: var(--composer-primary-color);
                 }
             }
         }
     }
 }
 
-@container (max-width : #{$composer-phone-width}) {
+@container (max-width : #{$composer-tablet-width-lg}) {
     .container {
-        .max-content {
-            .section {
-                .slider-wrapper {
-                    .carousel {
-                        .carousel-item {
-                            .carousel-wrapper {
-                                .left-content {
-                                    .content {
-                                        .subtitle-content {
-                                            .subtitle {
-                                                font-size: 1.5rem !important;
-                                            }
-                                            .icon {
-                                                font-size: 1.5rem !important;
-                                            }
-                                        }
-                                        .title {
-                                            font-size: 3.5rem !important;
-                                        }
-                                        .description {
-                                            font-size: 1rem !important;
-                                        }
-                                    }
-                                }
-                                .right-content {
-                                    display: none !important;
-                                }
-                            }
-                        }
-                    }
-                }
+        .vector1 {
+            left: 300px !important;
+        }
+        .vector2 {
+            right: 100px;
+        }
+    }
+}
+
+@container (max-width : #{$composer-phone-width-lg}) { 
+    .container {
+        .vector1, .vector2 {
+            display: none;
+        }
+        .section {
+            .title, .description {
+                max-width: 100% !important;
             }
         }
     }
