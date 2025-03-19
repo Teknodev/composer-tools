@@ -73,12 +73,11 @@ class Banner1 extends BaseBanner {
   render() {
     const strip = this.castToObject<StripItem>("strip");
     const isTitleExist = this.castToString(this.getPropValue("title"));
-    const homepage = this.castToString(strip.homepage || "");
-    const currentpage = this.castToString(strip.currentpage || "");
+    const homepage = strip.homepage || "";
+    const currentpage = strip.currentpage || "";
     const navigateToUrl = strip.navigateTo || "";
     const showStrip = this.getPropValue("showStrip");
     const bgImage = this.getPropValue("image")?.trim();
-    // const shouldShowTitle = isTitleExist;
     const alignmentValue = Base.getContentAlignment();
 
     return (
