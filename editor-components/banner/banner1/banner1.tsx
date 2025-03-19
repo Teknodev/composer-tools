@@ -5,7 +5,12 @@ import { BaseBanner } from "../../EditorComponent";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
-type StripItem = {
+type bannerItem = {
+  title: React.ReactNode;
+  image: string;
+};
+
+type stripItem = {
   homepage: string;
   currentpage: string;
   navigateTo: string;
@@ -15,17 +20,24 @@ class Banner1 extends BaseBanner {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-      type: "string",
-      key: "title",
-      displayer: "Title",
-      value: "Home",
-    });
-    this.addProp({
-      type: "image",
-      key: "image",
-      displayer: "Background Image",
-      value:
-        "https://cafert.templatekit.co/wp-content/uploads/sites/10/2021/10/flat-lay-food.jpg",
+      type: "object",
+      key: "banner",
+      displayer: "Banner Items",
+      value: [
+        {
+          type: "string",
+          key: "title",
+          displayer: "Title",
+          value: "Home",
+        },
+        {
+          type: "image",
+          key: "image",
+          displayer: "Background Image",
+          value:
+            "https://cafert.templatekit.co/wp-content/uploads/sites/10/2021/10/flat-lay-food.jpg",
+        },
+      ],
     });
     this.addProp({
       type: "object",
