@@ -222,6 +222,7 @@ import Location5 from "./location/location5/location5";
 import Location6 from "./location/location6/location6";
 import ConfirmationModal2 from "./modal/confirmation-modal-2/confirmation-modal-2";
 import BannerComponent2 from "../editor-components/banner/banner2/banner2";
+import BannerComponent1 from "../editor-components/banner/banner1/banner1";
 
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
@@ -446,6 +447,7 @@ function Registerables(composer: ComponentsRegistery) {
     HttpCodes4,
     ConfirmationModal2,
     BannerComponent2,
+    BannerComponent1,
   ]);
 }
 
