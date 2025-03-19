@@ -23,7 +23,7 @@ class Form2 extends BaseContacts {
       value: true,
     });
     this.addProp({
-      type: "string",
+      type: "video",
       key: "title",
       displayer: "Title",
       value: "Contact Us",
