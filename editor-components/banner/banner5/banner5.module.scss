@@ -1,24 +1,32 @@
 .container {
     background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-    padding-top: var(--composer-gap-sm);
-    padding-bottom: var(--composer-gap-sm);
+    padding-top: var(--composer-gap-md);
+    padding-bottom: var(--composer-gap-md);
 
     .max-content {
         .section {
             display: flex;
             flex-direction: row;
+            justify-content: center;
             align-items: center;
 
             .link {
-                content: "";
-            }
+                display: flex;
+                justify-content: center;
+                align-items: center;
 
-            .homeIcon {
-                color: var(--composer-font-color-primary) !important;
-                font-size: 1rem !important;
-
-                &:hover {
-                    color: var(--composer-primary-color) !important;
+                .homeIcon {
+                    color: var(--composer-font-color-primary) !important;
+                    font-size: 1rem !important;
+                    margin: var(--composer-gap-xs);
+    
+                    &:hover {
+                        color: var(--composer-primary-color) !important;
+                    }
+                }
+    
+                .home-title {
+                    color: var(--composer-font-color-primary);
                 }
             }
 
@@ -32,14 +40,8 @@
             .currentPage {
                 color: var(--composer-font-color-primary);
                 font-size: 1rem;
+                margin: var(--composer-gap-xs);
             }
-        }
-        .left {
-            justify-content: flex-start;
-        }
-
-        .center {
-            justify-content: center;
         }
     }
 }

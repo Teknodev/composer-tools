@@ -15,22 +15,22 @@ class Banner5 extends BaseBanner {
       value: "FaHome",
     })
     this.addProp({
+      type: "string",
+      key: "homeTitle",
+      displayer: "Home Title",
+      value: "",
+    });
+    this.addProp({
       type: "page",
       key: "homePage",
       displayer: "Home Link",
       value: "",
-    })
+    });
     this.addProp({
       type: "icon",
       key: "icon",
       displayer: "Icon",
       value: "RxDividerVertical",
-    });
-    this.addProp({
-      type: "boolean",
-      key: "check",
-      displayer: "Show Icon",
-      value: true,
     });
     this.addProp({
       type: "string",
@@ -45,19 +45,25 @@ class Banner5 extends BaseBanner {
   }
 
   render() {
+    const homeTitle = this.getPropValue("homeTitle");
     const currentPage = this.getPropValue("currentPage");
     const icon = this.getPropValue("icon");
-    const check = this.getPropValue("check");
-    const aligment = Base.getContentAlignment();
+
+    const titleExist = this.castToString(homeTitle);
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={`${this.decorateCSS("section")} ${this.decorateCSS(aligment)}`}>
-            <ComposerLink path={this.getPropValue("homePage")} className={this.decorateCSS("link")}>
-              <ComposerIcon name={this.getPropValue("homeIcon")} propsIcon={{ className: this.decorateCSS("homeIcon") }} />
-            </ComposerLink>
-            {check && (
+          <div className={this.decorateCSS("section")}>
+            <div className={this.decorateCSS("link")}>
+              <ComposerLink path={this.getPropValue("homePage")}>
+                <ComposerIcon name={this.getPropValue("homeIcon")} propsIcon={{ className: this.decorateCSS("homeIcon") }} />
+              </ComposerLink>
+              {titleExist && (
+                <span className={this.decorateCSS("home-title")}>{homeTitle}</span>
+              )}
+            </div>
+            {icon && (
               <div className={this.decorateCSS("item")}>
                 <ComposerIcon name={icon} propsIcon={{ className: this.decorateCSS("icon") }}/>
               </div>
