@@ -160,7 +160,7 @@ class PricingTable5 extends BasePricingTable {
       displayer: "Animations",
       value: ["animation1"],
       additionalParams:{
-        selectItems:["animation1"]
+        selectItems:["animation1", "animation2"]
       }
     })
   }
@@ -225,7 +225,8 @@ class PricingTable5 extends BasePricingTable {
 
                   return (
                     <div className={`${this.decorateCSS("plan")} ${isActive && this.decorateCSS("active")} 
-                    ${this.getPropValue("animations") && this.decorateCSS(this.getPropValue("animations"))}`} onClick={() => this.onPlanClicked(index)}>
+                    ${this.getPropValue("animations") && this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ")} `} 
+                    onClick={() => this.onPlanClicked(index)}>
                       <div className={this.decorateCSS("plan-upper")}>
                         {planTitleExist && <Base.H5 className={this.decorateCSS("plan-title")}>{plan.getPropValue("planTitle")}</Base.H5>}
                         <div className={isActive ? this.decorateCSS("icon-box-active") : this.decorateCSS("icon-box")}>
@@ -242,14 +243,14 @@ class PricingTable5 extends BasePricingTable {
                             {planDescription && <Base.P className={this.decorateCSS("price-description")}>{plan.getPropValue("priceDescription")}</Base.P>}
                           </div>
                         )}
-
-                        <ComposerLink path={plan.button.url}>
                           {planButtonExist && (
                             <Base.Button buttonType={plan.button.type} className={this.decorateCSS("plan-button")}>
+                              <ComposerLink path={plan.button.url}>
                               {plan.button.text}
+                              </ComposerLink>
+                         
                             </Base.Button>
                           )}
-                        </ComposerLink>
                       </div>
                     </div>
                   );

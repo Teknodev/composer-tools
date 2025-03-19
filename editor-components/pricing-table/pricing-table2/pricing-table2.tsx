@@ -681,11 +681,11 @@ class PricingTable2 extends BasePricingTable {
                           </Base.VerticalContent>
                         )}
                         {this.castToString(table.button.text) && (
-                          <ComposerLink path={table.button.url}>
                             <Base.Button buttonType={table.button.type} className={this.decorateCSS("card-button")}>
-                              {table.button.text}
+                               <ComposerLink path={table.button.url}>
+                                 {table.button.text}
+                               </ComposerLink>
                             </Base.Button>
-                          </ComposerLink>
                         )}
                       </Base.VerticalContent>
                     </div>

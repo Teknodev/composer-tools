@@ -395,7 +395,7 @@ class PricingTable8 extends BasePricingTable {
       displayer: "Animations",
       value: ["animation1"],
       additionalParams:{
-        selectItems:["animation1"]
+        selectItems:["animation1", "animation2"]
       }
     })
   }
@@ -497,7 +497,7 @@ class PricingTable8 extends BasePricingTable {
                 const cardPlanExist = this.castToString(card.plan);
                 return (
                   <div className={`${this.decorateCSS("card-item-count")} ${index === Math.floor(cards.length / 2) ? this.decorateCSS("middle-card") : ""}
-                  ${this.getPropValue("animations") && this.decorateCSS(this.getPropValue("animations"))}`} key={index} onClick={() => handleCardClick(index)}>
+                  ${this.getPropValue("animations")  && this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ")}`} key={index} onClick={() => handleCardClick(index)}>
                     <Base.VerticalContent className={this.decorateCSS("pricing")}>
                       {cardTitleExist && <Base.H3 className={this.decorateCSS("title")}>{card.title}</Base.H3>}
                       {cardPriceBigExist && <Base.H1 className={this.decorateCSS("price-big")}>{card.priceBig}</Base.H1>}

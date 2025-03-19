@@ -46,6 +46,14 @@
                 }
             }
           }
+          &.animation2:hover{
+            .title-container{
+              .column-title {
+              color:  var(--composer-primary-color);
+              background-color: var(--composer-font-color-secondary);
+              }
+            }
+          }
           .title-container {
             margin: 0;
             height: var(--composer-gap-xl);
@@ -66,6 +74,7 @@
               text-align: center;
               height: var(--composer-gap-xl);
               overflow: hidden;
+              transition: 0.8s;
             }
           }
 

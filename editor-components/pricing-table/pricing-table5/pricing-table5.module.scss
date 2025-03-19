@@ -1,4 +1,9 @@
 @import "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss";
+@keyframes bounceText {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+  100% { transform: translateY(0); }
+}
 
 .container {
   .max-content {
@@ -74,6 +79,16 @@
           &.animation1:hover{
             &::before{
               width: 100%;
+            }
+          }
+          &.animation2:hover{
+            .plan-price-box{
+              .labels{
+                animation: bounceText 0.8s ease-in-out infinite;
+              }
+              .plan-button{
+                content: "";
+              }
             }
           }
 

@@ -852,7 +852,7 @@ class PricingTable7 extends BasePricingTable {
       displayer: "Animations",
       value: ["animation1"],
       additionalParams:{
-        selectItems:["animation1"]
+        selectItems:["animation1", "animation2", "animation3"]
       }
     })
 
@@ -919,7 +919,7 @@ class PricingTable7 extends BasePricingTable {
           <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 1, phone: 1 }} className={this.decorateCSS("card")}>
             {(planType === "monthly-plans" ? monthly_plans : yearly_plans).map((pricing: any, index: number) => {
               return (
-                <div className={`${this.decorateCSS("card-item-count")} ${this.getPropValue("animations") && this.decorateCSS(this.getPropValue("animations"))}`}>
+                <div className={`${this.decorateCSS("card-item-count")} ${this.getPropValue("animations")  && this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ")} `}>
                   <Base.VerticalContent
                     key={index}
                     className={`${this.decorateCSS("price")} ${pricing.isActive && this.decorateCSS("active")}`}
@@ -960,7 +960,7 @@ class PricingTable7 extends BasePricingTable {
                         {pricing.item.map((data: any, index: number) => (
                           <Base.H5 className={this.decorateCSS("features-element")} key={`price7-list-${index}`}>
                             <ComposerIcon name={data.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
-                            {data.itemText}
+                            <div className={this.decorateCSS("features-element-text")}> {data.itemText}</div>
                           </Base.H5>
                         ))}
                       </Base.VerticalContent>

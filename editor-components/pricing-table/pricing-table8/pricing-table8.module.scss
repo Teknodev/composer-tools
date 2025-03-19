@@ -35,6 +35,19 @@
               transform: scale(1.1) translateY(calc(-1 * var(--composer-gap-sm))); 
             }
           }
+          &.animation2:hover {
+            .pricing{
+              .price-big{
+                transform: translateY(calc(-1 * var(--composer-gap-md)));
+                color: var(--composer-font-color-primary);
+              }
+              .pricing-container{
+                .price{
+                  color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+                }
+              }
+            }
+          }
 
           cursor: pointer;
           .pricing {
@@ -67,6 +80,7 @@
                 text-align: center;
                 margin: var(--composer-gap-md);
                 margin: 0;
+                transition: 0.8s;
               }
 
               .plan {
@@ -81,12 +95,12 @@
 
             .price-big {
               position: absolute;
-              color: var(--composer-font-color-primary);
               font-size: 10rem;
               font-weight: bold;
               color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
               top: 15%;
               margin: var(--composer-gap-lg);
+              transition: 0.8s;
             }
 
             .icon {

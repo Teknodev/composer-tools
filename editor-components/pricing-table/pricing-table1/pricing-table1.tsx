@@ -647,17 +647,17 @@ class PricingTable1 extends BasePricingTable {
                     </div>
 
                     <div className={`${this.decorateCSS("card-bottom")}  ${table.isActive && this.decorateCSS("active")}`}>
-                      <div className={`${this.decorateCSS("card-price")}  ${table.isActive && this.decorateCSS("active")}`}>
-                        {cardPriceExist && <span className={this.decorateCSS("price")}>{table.cardPrice}</span>}
-                        {durationExist ||
-                          (duration1Exist && (
-                            <div className={this.decorateCSS("card-duration")}>
-                              {durationExist && <span className={this.decorateCSS("Duration")}>{table.cardDuration}</span>}
-                              {duration1Exist && <span className={this.decorateCSS("Duration1")}>{table.cardDuration1}</span>}
-                            </div>
-                          ))}
-                      </div>
-
+                      <div className={`${this.decorateCSS("card-bottom-content")} `}>
+                        <div className={`${this.decorateCSS("card-price")}  ${table.isActive && this.decorateCSS("active")}`}>
+                          {cardPriceExist && <span className={this.decorateCSS("price")}>{table.cardPrice}</span>}
+                          {(durationExist || duration1Exist) && (
+                              <div className={this.decorateCSS("card-duration")}>
+                                {durationExist && <span className={this.decorateCSS("duration")}>{table.cardDuration}</span>}
+                                {duration1Exist && <span className={this.decorateCSS("duration1")}>{table.cardDuration1}</span>}
+                              </div>
+                            )}
+                        </div>
+                     
                       {cardButtonTextExist && (
                         <Base.Button buttonType={table.buttonType.type} className={this.decorateCSS("card-button")}>
                           <ComposerLink path={table.buttonType.url}>{table.buttonType.text}</ComposerLink>
@@ -665,6 +665,7 @@ class PricingTable1 extends BasePricingTable {
                       )}
 
                       {cardpricingTableTitleExist && <span className={this.decorateCSS("pricingTitle")}>{table.pricingTableTitle}</span>}
+                    </div>
                     </div>
                   </div>
                 );
