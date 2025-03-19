@@ -36,7 +36,7 @@
 
           .featured-card-link-with-image {
             color: black;
-            content: "";
+            border-bottom-color: black !important;
           }
         }
       }
@@ -90,7 +90,7 @@
           gap: var(--composer-gap-sm);
 
           &.apply-overlay {
-            background-color: var(--composer-overlay-color);
+            background-color: var(--composer-overlay-color) !important;
           }
 
           .long-text {
