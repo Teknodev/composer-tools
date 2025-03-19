@@ -599,7 +599,7 @@ class PricingTable2 extends BasePricingTable {
       displayer: "Animations",
       value: ["animation1"],
       additionalParams:{
-        selectItems:["animation1"]
+        selectItems:["animation1", "animation2"]
       }
     })
   }
@@ -638,7 +638,8 @@ class PricingTable2 extends BasePricingTable {
                 const cardDuration = this.castToString(table.cardDuration);
 
                 return (
-                  <Base.VerticalContent className={`${this.decorateCSS("card-item-count")} ${this.getPropValue("animations") && this.decorateCSS(this.getPropValue("animations"))}`}>
+                  <Base.VerticalContent className={`${this.decorateCSS("card-item-count")} ${this.getPropValue("animations") &&
+                   this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ")}`}>
                     <div key={index} className={this.decorateCSS("item-card")}>
                       <Base.VerticalContent className={`${this.decorateCSS("card-upper")} ${cardTitle || cardPrice || cardDuration ? "" : this.decorateCSS("hidden")}`}>
                         {cardTitle && <Base.H2 className={this.decorateCSS("card-title")}>{table.cardTitle}</Base.H2>}

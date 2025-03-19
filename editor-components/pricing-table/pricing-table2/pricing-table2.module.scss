@@ -18,6 +18,9 @@
           &.animation1:hover{
             transform: scale(1.1);
           }
+          &.animation2:hover{
+            transform: translateY(calc(-1 * var(--composer-gap-sm)));
+          }
           .item-card {
             width: 100%;
 

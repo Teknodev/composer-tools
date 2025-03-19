@@ -591,8 +591,6 @@ class PricingTable1 extends BasePricingTable {
     const subtitleExist = this.castToString(subtitle);
     const titleExist = this.castToString(title);
 
-    console.log("aniamition", this.getPropValue("animations"))
-
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -617,7 +615,9 @@ class PricingTable1 extends BasePricingTable {
                 const cardpricingTableTitleExist = this.castToString(table.pricingTableTitle);
 
                 return (
-                  <div key={index} className={`${this.decorateCSS("item-card")} ${this.getPropValue("animations") && this.decorateCSS(this.getPropValue("animations"))} ${table.isActive && this.decorateCSS("active")} `}>
+                  <div key={index} className={`${this.decorateCSS("item-card")} ${this.getPropValue("animations") 
+                  && this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ")} 
+                  ${table.isActive && this.decorateCSS("active")} `}>
                     {popularText && (
                       <div className={`${this.decorateCSS("popular-box")} ${table.popular_settings.is_popular && this.decorateCSS("active")}`}>
                         <Base.P className={this.decorateCSS("popular-text")}>{table.popular_settings.text}</Base.P>
