@@ -3,6 +3,7 @@ import styles from "./banner6.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { BaseBanner } from "../../EditorComponent";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
+import { ComposerIcon } from "composer-tools/composer-base-components/icon/icon";
 
 class banner6 extends BaseBanner {
   constructor(props: any) {
@@ -18,6 +19,12 @@ class banner6 extends BaseBanner {
       key: "vector2",
       displayer: "Vector 2",
       value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67da788bfb049c002cc22f19?alt=media",
+    });
+    this.addProp({
+      type: "image",
+      key: "backgroundImage",
+      displayer: "Background Image",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67dab8f1fb049c002cc2523f?alt=media",
     });
     this.addProp({
       type: "string",
@@ -44,6 +51,12 @@ class banner6 extends BaseBanner {
       value: "",
     });
     this.addProp({
+      type: "icon",
+      key: "icon",
+      displayer: "Icon",
+      value: "AiOutlineLine",
+    });
+    this.addProp({
       type: "string",
       key: "current",
       displayer: "Current Page",
@@ -58,10 +71,12 @@ class banner6 extends BaseBanner {
   render() {
     const vector1 = this.getPropValue("vector1");
     const vector2 = this.getPropValue("vector2");
+    const backgroundImage = this.getPropValue("backgroundImage");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
     const home = this.getPropValue("home");
     const homePage = this.getPropValue("homePage");
+    const icon = this.getPropValue("icon");
     const current = this.getPropValue("current");
 
     const titleExist = this.castToString(title);
@@ -70,7 +85,7 @@ class banner6 extends BaseBanner {
     const currentExist = this.castToString(current);
 
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container className={this.decorateCSS("container")} style={{backgroundImage: `url(${backgroundImage})` }}>
         {vector1 && (
           <img src={vector1} className={this.decorateCSS("vector1")} />
         )}
@@ -78,7 +93,7 @@ class banner6 extends BaseBanner {
           <img src={vector2} className={this.decorateCSS("vector2")} />
         )}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={this.decorateCSS("section")}>
+          <Base.VerticalContent className={`${this.decorateCSS("section")} ${ backgroundImage && this.decorateCSS("with-image")}`}>
             {titleExist && (
               <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>
             )}
@@ -91,7 +106,9 @@ class banner6 extends BaseBanner {
                   <Base.P className={this.decorateCSS("home")}>{home}</Base.P>
                 </ComposerLink>
               )}
-              <div className={this.decorateCSS("item")}></div>
+              {icon && (
+                <ComposerIcon name={icon} propsIcon={{ className: this.decorateCSS("icon")}} />
+              )}
               {currentExist && (
                 <Base.P className={this.decorateCSS("current")}>{current}</Base.P>
               )}
