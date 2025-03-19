@@ -73,6 +73,11 @@
                 .items {
                     .title {
                         font-size: 4rem;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 5;
+                        -webkit-box-orient: vertical;
+                        overflow: hidden !important;
+                        text-overflow: ellipsis !important;
                     }
 
                     .image {
@@ -82,66 +87,31 @@
                     .pages {
                         display: flex;
                         flex-direction: row;
-                        flex-wrap: wrap;
                         justify-content: center;
                         align-items: center;
 
                         .link {
-                            content: "";
-                        }
+                            //flex: 1;
 
-                        .homepage {
-                            font-size: 1rem !important;
-
-                            &:hover {
-                                color: var(--composer-primary-color);
+                            .homepage {
+                                font-size: 1rem !important;
+    
+                                &:hover {
+                                    color: var(--composer-primary-color);
+                                }
                             }
                         }
 
                         .crumberIcon {
-                            flex: 1;
                             font-size: 1.5rem !important;
+                            min-width: 24px;
+                            flex-shrink: 0;
                         }
 
                         .currentPage {
+                            //flex: 1;
                             font-size: 1rem !important;
                             font-weight: bold;
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-@media (min-height: 450px) { 
-    .container-main {
-        .section {
-            .container {
-                .max-content {
-                    .items {
-                        .title {
-                            display: -webkit-box;
-                            -webkit-line-clamp: 2; /* Maksimum 2 satır */
-                            -webkit-box-orient: vertical;
-                            overflow: hidden !important;
-                            text-overflow: ellipsis !important;
-                        }
-                        .pages {
-                            .homepage {
-                                display: -webkit-box;
-                                -webkit-line-clamp: 2; /* Maksimum 2 satır */
-                                -webkit-box-orient: vertical;
-                                overflow: hidden !important;
-                                text-overflow: ellipsis !important;
-                            }
-                            .currentPage {
-                                display: -webkit-box;
-                                -webkit-line-clamp: 2; /* Maksimum 2 satır */
-                                -webkit-box-orient: vertical;
-                                overflow: hidden !important;
-                                text-overflow: ellipsis !important;
-                            }
                         }
                     }
                 }

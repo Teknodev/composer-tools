@@ -125,9 +125,11 @@ class Banner4 extends BaseBanner {
                 )}
                 <div className={this.decorateCSS("pages")}>
                   {homepageExist && (
-                    <ComposerLink path={page} className={this.decorateCSS("link")}>
-                      <span className={this.decorateCSS("homepage")}>{homepage}</span>
-                    </ComposerLink>
+                    <div className={this.decorateCSS("link")}>
+                      <ComposerLink path={page}>
+                        <span className={this.decorateCSS("homepage")}>{homepage}</span>
+                      </ComposerLink>
+                    </div>
                   )}
                   {icon && (
                     <ComposerIcon
