@@ -13,9 +13,10 @@ const ComposerSlider = forwardRef<Slider, Settings>((props, ref) => {
     if (ref) {
       if (typeof ref === "function") {
         ref(slider);
-      } else {
-        ref.current = slider;
+        return;
       }
+
+      ref.current = slider;
     }
   };
 
@@ -32,9 +33,10 @@ const ComposerSlider = forwardRef<Slider, Settings>((props, ref) => {
           ...prev,
           ...(matchedBreakpoint.settings as Settings),
         }));
-      } else {
-        setSliderSettings(props);
+        return;
       }
+
+      setSliderSettings(props);
     };
 
     const handleResize = (entries: ResizeObserverEntry[]) => {
