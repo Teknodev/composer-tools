@@ -10,14 +10,14 @@ const ComposerSlider = forwardRef<Slider, Settings>((props, ref) => {
     sliderRef.current = slider;
 
     // Handle the forwarded ref
-    if (ref) {
-      if (typeof ref === "function") {
-        ref(slider);
+    if (!ref) return;
+
+    if (typeof ref === "function") {
+      ref(slider);
         return;
       }
 
-      ref.current = slider;
-    }
+    ref.current = slider;
   };
 
   useEffect(() => {
