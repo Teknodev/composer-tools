@@ -39,36 +39,6 @@ const ComposerLanguage = (props: ComposerLanguageProps) => {
     setComposerToolsCurrentLanguage,
   } = useComposerToolsData();
 
-  const [initialized, setInitialized] = useState(false);
-
-useEffect(() => {
-  if (initialized) return;
-
-  const currentPath = window.location.pathname.replace(/\/$/, "");    
-  let pathParts = currentPath.split("/");
-
-  let languageSlug = pathParts[1];
-
-  if (!composerToolsLanguages.some((lang) => lang.code === languageSlug)) {
-    languageSlug = "en";
-    pathParts[1] = "en";  
-    const newUrl = pathParts.join("/");
-
-    if (currentPath !== newUrl) {
-      window.history.replaceState(null, "", newUrl); 
-    }
-  }
-
-  const selectedLanguage = composerToolsLanguages.find(
-    (lang) => lang.code === languageSlug
-  );
-  setComposerToolsCurrentLanguage(
-    selectedLanguage || { code: "en", name: "English" }
-  );
-
-  setInitialized(true);
-}, [composerToolsLanguages]);
-
 const handleLanguageChange = async (lang: { code: string; name: string }) => {
   setComposerToolsCurrentLanguage(lang);
   
