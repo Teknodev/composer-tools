@@ -1160,6 +1160,7 @@ class Navbar1 extends BaseNavigator {
     this.setComponentState("subNavActive", null);
     this.setComponentState("changeBackground", false);
     this.setComponentState("isBigScreen", false);
+    this.setComponentState("isPC", false);
 
   }
 
@@ -1223,9 +1224,15 @@ class Navbar1 extends BaseNavigator {
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const divider = this.getPropValue("divider");
     const language = this.castToObject<Language>("language");
-    
+  
+    const isVisible = (hamburgerNavActive && !isBigScreen);
+    // console.log("isVisible", isVisible);
+    // console.log("hamburgerNavActive",  hamburgerNavActive)   
+
+console.log("isBigScreen",  isBigScreen)    
     return (
       <Base.Navigator.Container
+        id = "container"
         position={position}
         hamburgerNavActive={hamburgerNavActive}
         positionContainer={`${this.decorateCSS("navbarContainer")} ${
@@ -1235,6 +1242,7 @@ class Navbar1 extends BaseNavigator {
         setIsBigScreen={(value: boolean) => this.setComponentState("isBigScreen", value)}
       >
         <Base.MaxContent
+        id="max-content"
           className={`${this.decorateCSS("maxContent")} ${
             transparentBackground
               ? this.decorateCSS("transparentBackground")
@@ -1430,10 +1438,9 @@ class Navbar1 extends BaseNavigator {
         </Base.MaxContent>
 
         <Base.Overlay
-          className={`${this.decorateCSS("overlay")} ${
-            hamburgerNavActive ? this.decorateCSS("overlayActive") : ""
-          }`}
+          className={this.decorateCSS("overlay")}
           onClick={() => this.handleCloseMenu()}
+          isVisible = {isVisible}
         />
 
         <div
@@ -1459,9 +1466,7 @@ class Navbar1 extends BaseNavigator {
                         <ComposerLink path={item.navigate_to}>
                           <span
                             onClick={() => this.setComponentState("hamburgerNavActive", false)}
-                            className={`${this.decorateCSS(
-                              "hamburgerMenuItemTitle"
-                            )}`}
+                            className={`${this.decorateCSS("hamburgerMenuItemTitle")}`}
                           >
                             {item.title}
                           </span>

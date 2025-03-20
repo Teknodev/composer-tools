@@ -224,14 +224,38 @@ export namespace Base {
     return <div className={`${styles.row} ${className}`} {...props}></div>;
   }
 
-  export function Overlay({ className, ...props }: any) {
+  export function Overlay({ className, isVisible, ...props}: any) {
+
+    const [width, setWidth] = useState(0);
+    const [height, setHeight] = useState(0);
+    const [x, setX] = useState(0);
+    const [y, setY] = useState(0);
+
     useEffect(() => {
       document.documentElement.style.overflow = "hidden";
+      let playgroundEl = document.getElementById("playground");
+
+      let resizeObserver = new ResizeObserver(() => { 
+        const boundingClient = playgroundEl.getBoundingClientRect();
+        setWidth(boundingClient.width);
+        setHeight(boundingClient.height);
+        setX(boundingClient.x);
+        setY(boundingClient.y);
+      }); 
+      resizeObserver.observe(playgroundEl); 
+      if(!isVisible){
+        resizeObserver.disconnect();
+      }
+
       return () => {
         document.documentElement.style.overflow = "";
+        resizeObserver.disconnect();
       };
-    }, []);
-    return <div className={`${styles.overlay} ${className}`} {...props}></div>;
+    }, [isVisible]);
+    if(isVisible) {
+      return <div style={{width, height, left: x, top: y}} className={`${styles.overlay} ${className}`} {...props}></div>;
+    }
+    
   }
 
   export namespace Navigator {
@@ -242,6 +266,7 @@ export namespace Base {
       hamburgerNavActive = false,
       setIsScrolled = (scrolled: boolean) => {},
       setIsBigScreen = (bigScreen: boolean) => {},
+      setIsPC = (pc: boolean) => {},
       ...props
     }: {
       className?: string;
@@ -251,6 +276,7 @@ export namespace Base {
       setIsScrolled?: (scrolled: boolean) => void;
       setIsBigScreen?: (bigScreen: boolean) => void;
       [key: string]: any;
+      setIsPC?: (pc: boolean) => void;
     }) {
       const positionClass = position
         ?.split(" ")
@@ -291,16 +317,25 @@ export namespace Base {
         }
 
         const handleResize = () => {
+          console.log("resize");
+          
           const wrapperContainer = getWrapperContainer();
+          console.log("wrapperContainer", wrapperContainer);
+          
           const matchedMedia =
             wrapperContainer.wrapper === window
               ? window.matchMedia(`(min-width: ${mediaSize}px)`).matches
               : (wrapperContainer.wrapper as HTMLElement).clientWidth >=
                 mediaSize;
-          if (!hamburgerNavActive && matchedMedia) {
+
+          // console.log("hamburgerNavActive2", hamburgerNavActive)
+          // console.log("matchedMedia", matchedMedia)
+          if (matchedMedia) {
+            // console.log("auto")
             Base.Navigator.changeScrollBehaviour("auto");
             setIsBigScreen && setIsBigScreen(true);
-          } else if (hamburgerNavActive && !matchedMedia) {
+          } else if (hamburgerNavActive) {
+            // console.log("hidden")
             Base.Navigator.changeScrollBehaviour("hidden");
             setIsBigScreen && setIsBigScreen(false);
           }
@@ -312,10 +347,10 @@ export namespace Base {
             window.addEventListener("resize", handleResize);
             return;
           }
-          resizeObserverRef.current = new ResizeObserver(handleResize);
-          resizeObserverRef.current.observe(
-            wrapperContainer.wrapper as HTMLElement
-          );
+          if (!resizeObserverRef.current) {
+            resizeObserverRef.current = new ResizeObserver(handleResize);
+            resizeObserverRef.current.observe(wrapperContainer.wrapper as HTMLElement);
+          }
         };
 
         wrapperContainer.wrapper.addEventListener("scroll", handleScroll);
