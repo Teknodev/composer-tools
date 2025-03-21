@@ -69,6 +69,7 @@ type AvailablePropTypes =
   | { type: "location"; value: TypeLocation }
   | { type: "dateTime"; value: string ; additionalParams? : {mode?:string, timeInterval?:number, yearRange? : number, yearStart?: number}}
   | { type: "multiSelect"; value: string[] }
+  | { type: "file"; value: string }
 
 export type TypeReactComponent = {
   type: string;
