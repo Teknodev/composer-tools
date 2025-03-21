@@ -8,6 +8,7 @@ import InlineEditor from "../../custom-hooks/UseInlineEditor";
 import { v4 as uuidv4 } from 'uuid';
 import { Pages } from "classes/bucket";
 
+import { CurrencyCode} from "../../components/setting-input/inputs/currency";
 
 export function generateComponentId(){
   return uuidv4();
@@ -31,6 +32,7 @@ type GetPropValueProperties = {
   suffix?: PreSufFix;
   prefix?: PreSufFix;
 };
+
 type TypeCSSProp = { [key: string]: { id: string; class: string }[] };
 
 export interface iComponent {
@@ -66,6 +68,7 @@ type AvailablePropTypes =
   | { type: "select"; value: string }
   | { type: "color"; value: string }
   | { type: "icon"; value: string }
+  | { type: "currency"; value: { value: string; currency?: CurrencyCode }; additionalParams?: currencyAdditionalParams}
   | { type: "location"; value: TypeLocation }
   | { type: "dateTime"; value: string ; additionalParams? : {mode?:string, timeInterval?:number, yearRange? : number, yearStart?: number}}
   | { type: "multiSelect"; value: string[] }
@@ -96,6 +99,11 @@ type MemorizedElement = {
   value?: string;
 };
 
+type currencyAdditionalParams ={
+  showCode?: boolean;
+  showSymbol?:boolean;
+}
+
 export enum CATEGORIES {
   NAVIGATOR = "navigator",
   TESTIMONIALS = "testimonials",
@@ -120,7 +128,6 @@ export enum CATEGORIES {
   BANNER = "banner",
 }
 
-//@ts-ignore
 export abstract class Component
   extends React.Component<{}, { states: any; componentProps: any }>
   implements iComponent
