@@ -2,7 +2,6 @@ import * as React from "react";
 import styles from "./banner3.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { BaseBanner } from "../../EditorComponent";
-import "animate.css";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 
