@@ -297,10 +297,10 @@ export namespace Base {
               ? window.matchMedia(`(min-width: ${mediaSize}px)`).matches
               : (wrapperContainer.wrapper as HTMLElement).clientWidth >=
                 mediaSize;
-          if (matchedMedia) {
+          if (!hamburgerNavActive && matchedMedia) {
             Base.Navigator.changeScrollBehaviour("auto");
             setIsBigScreen && setIsBigScreen(true);
-          } else if (hamburgerNavActive) {
+          } else if (hamburgerNavActive && !matchedMedia) {
             Base.Navigator.changeScrollBehaviour("hidden");
             setIsBigScreen && setIsBigScreen(false);
           }

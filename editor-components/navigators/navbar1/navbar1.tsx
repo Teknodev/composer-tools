@@ -1223,7 +1223,7 @@ class Navbar1 extends BaseNavigator {
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const divider = this.getPropValue("divider");
     const language = this.castToObject<Language>("language");
-
+    
     return (
       <Base.Navigator.Container
         position={position}
@@ -1429,7 +1429,7 @@ class Navbar1 extends BaseNavigator {
           </div>
         </Base.MaxContent>
 
-        <div
+        <Base.Overlay
           className={`${this.decorateCSS("overlay")} ${
             hamburgerNavActive ? this.decorateCSS("overlayActive") : ""
           }`}
