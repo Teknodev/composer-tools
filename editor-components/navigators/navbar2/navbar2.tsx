@@ -1132,7 +1132,6 @@ class Navbar2 extends BaseNavigator {
   toggleMobileMenu = () => {
     const isMobileMenuOpen = this.getComponentState("isMobileMenuOpen");
     this.setComponentState("isMobileMenuOpen", !isMobileMenuOpen);
-    Base.Navigator.changeScrollBehaviour(!isMobileMenuOpen ? "hidden" : "auto");
   };
 
   navClick(index: number) {
@@ -1168,8 +1167,18 @@ class Navbar2 extends BaseNavigator {
     const divider = this.getPropValue("divider");
     const language = this.castToObject<Language>("language");
 
+    let containerEl = document.getElementById("container");
+    let isPC ;
+    if (containerEl) {
+        let width = containerEl.getBoundingClientRect().width;
+        isPC = width > 1020;
+    } 
+
+    let isoverlay = (!isPC && isMobileMenuOpen)
+    
     return (
       <Base.Navigator.Container
+        id="container"
         position={position}
         positionContainer={this.decorateCSS("container")}
         setIsBigScreen={(value) => this.setComponentState("isBigScreen", value)}
@@ -1502,11 +1511,9 @@ class Navbar2 extends BaseNavigator {
               )}
             </div>
         </Base.MaxContent>
-        <div
-          className={`${this.decorateCSS("overlay")} ${
-            isMobileMenuOpen ? this.decorateCSS("overlayActive") : ""
-          }`}
-          onClick={() => this.toggleMobileMenu()}
+        <Base.Overlay
+          className={this.decorateCSS("overlay")}
+          isVisible ={isMobileMenuOpen}
         />
       </Base.Navigator.Container>
     );

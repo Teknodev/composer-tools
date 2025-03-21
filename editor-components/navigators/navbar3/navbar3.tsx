@@ -1226,6 +1226,10 @@ class Navbar3 extends BaseNavigator {
       this.castToString(lane.contact) ||
       this.castToString(lane.news) ||
       language.showLanguage;
+    const isBigScreen = this.getComponentState("isBigScreen");
+
+      console.log("isBigScreen",  isBigScreen)    
+
 
     return (
       <>
@@ -1271,7 +1275,10 @@ class Navbar3 extends BaseNavigator {
           className={this.decorateCSS("pcNavbarContainer")}
           positionContainer={this.decorateCSS("pcNavbarPositionContainer")}
           setIsBigScreen={(value: boolean) =>
-            this.setComponentState("isBigScreen", value)
+          { 
+            console.log("setisBigscreen", value);
+            
+            this.setComponentState("isBigScreen", value)}
           }
           setIsScrolled={(value: boolean) =>
             this.setComponentState("isScrolled", value)
