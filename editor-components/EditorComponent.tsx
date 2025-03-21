@@ -6,6 +6,8 @@ import { renderToString } from "react-dom/server";
 import { THEMES, TTheme } from "./location/themes";
 import InlineEditor from "../../custom-hooks/UseInlineEditor";
 import { v4 as uuidv4 } from 'uuid';
+import { Pages } from "classes/bucket";
+
 
 export function generateComponentId(){
   return uuidv4();
@@ -15,6 +17,8 @@ type PreSufFix = {
   label: string;
   className: string;
 };
+
+export type InteractionType = Pages["page_interactions"] ;
 
 export type TypeLocation = {
   lng: number;
@@ -28,6 +32,7 @@ type GetPropValueProperties = {
   prefix?: PreSufFix;
 };
 type TypeCSSProp = { [key: string]: { id: string; class: string }[] };
+
 export interface iComponent {
   render(): any;
   getInstanceName(): string;
@@ -39,9 +44,11 @@ export interface iComponent {
   ): TypeUsableComponentProps;
   getExportedCSSClasses(): { [key: string]: string };
   getCSSClasses(sectionName?: string | null): any;
+  getInteractions(sectionName?: string | null): any;
   addProp(prop: TypeUsableComponentProps): void;
   setProp(key: string, value: any): void;
   setCSSClasses(key: string, value: { id: string; class: string }[]): void;
+  setInteraction(key: string, value: InteractionType): void;
   decorateCSS(cssValue: string): string;
   getCategory(): CATEGORIES;
   initializeProp(prop: TypeUsableComponentProps): void;
@@ -62,11 +69,13 @@ type AvailablePropTypes =
   | { type: "location"; value: TypeLocation }
   | { type: "dateTime"; value: string ; additionalParams? : {mode?:string, timeInterval?:number, yearRange? : number, yearStart?: number}}
   | { type: "multiSelect"; value: string[] }
+  | { type: "file"; value: string }
 
 export type TypeReactComponent = {
   type: string;
   props?: TypeUsableComponentProps[];
   cssClasses?: TypeCSSProp;
+  interactions?: InteractionType;
   id?: string;
 };
 export type TypeUsableComponentProps = {
@@ -135,12 +144,13 @@ export abstract class Component
     Object.keys(this.styles).forEach((key, index) => {
       sectionsKeyValue[key] = [];
     });
-
+    
     this.state = {
       states: {},
       componentProps: {
         props: props?.props || [],
-        cssClasses: props?.cssClasses || sectionsKeyValue,
+        cssClasses: props?.cssClasses || {...sectionsKeyValue},
+        interactions: props?.interactions || {...sectionsKeyValue}
       },
     };
 
@@ -371,7 +381,15 @@ export abstract class Component
     this.state.componentProps.cssClasses[key] = value;
     this.setState({ componentProps: this.state.componentProps });
   }
-
+  setInteraction(key: string, value: InteractionType) {
+    this.state.componentProps.interactions[key] = value;
+    this.setState({ componentProps: this.state.componentProps });
+  }
+  getInteractions(sectionName: string | null = null): string {
+    return sectionName
+      ? this.state.componentProps.interactions[sectionName]
+      : this.state.componentProps.interactions;
+  }
   decorateCSS(cssValue: string) {
     let cssClass = [this.styles[cssValue]];
     let cssManuplations = Object.entries(this.getCSSClasses()).filter(
