@@ -109,6 +109,9 @@ export enum CATEGORIES {
   HTTP_CODES = "HTTPCodes",
 }
 
+export function generateId(key: string): string {
+  return key + "-" + Math.round(Math.random() * 1000000000).toString();
+}
 //@ts-ignore
 export abstract class Component
   extends React.Component<{}, { states: any; componentProps: any }>
@@ -319,8 +322,7 @@ export abstract class Component
           (v: TypeUsableComponentProps) => attachPropId(v)
         );
       } else {
-        _prop.id =
-          _prop.key + "-" + Math.round(Math.random() * 1000000000).toString();
+        _prop.id = generateId(_prop.key)
       }
       return _prop;
     };
