@@ -29,19 +29,19 @@ class ImageGallery9 extends BaseImageGallery {
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669dfff22f8a5b002ce60115?alt=media",
+                "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-16.jpg",
             },
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Dubai",
+              value: "Drawing",
             },
             {
               type: "string",
               key: "subtitle",
               displayer: "Subtitle",
-              value: "Mankua Honey",
+              value: "Moilee Corporal",
             },
             {
               type: "page",
@@ -61,19 +61,19 @@ class ImageGallery9 extends BaseImageGallery {
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e003a2f8a5b002ce6012d?alt=media",
+                "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-17.jpg",
             },
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Ron Mcclenny",
+              value: "Graphics",
             },
             {
               type: "string",
               key: "subtitle",
               displayer: "Subtitle",
-              value: "Architecture, Interior",
+              value: "DITNB Dectruit",
             },
             {
               type: "page",
@@ -93,19 +93,19 @@ class ImageGallery9 extends BaseImageGallery {
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e005b2f8a5b002ce60139?alt=media",
+                "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-21.jpg",
             },
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Curitiba Brasil",
+              value: "Drawing",
             },
             {
               type: "string",
               key: "subtitle",
               displayer: "Subtitle",
-              value: "Kemia Industrial Factory",
+              value: "Design Videveste",
             },
             {
               type: "page",
@@ -125,19 +125,19 @@ class ImageGallery9 extends BaseImageGallery {
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00772f8a5b002ce60145?alt=media",
+                "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-19.jpg",
             },
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Architecture",
+              value: "Sports",
             },
             {
               type: "string",
               key: "subtitle",
               displayer: "Subtitle",
-              value: "Red Sculpture",
+              value: "Man Shoes",
             },
             {
               type: "page",
@@ -157,19 +157,19 @@ class ImageGallery9 extends BaseImageGallery {
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c243bd2970002c628c71?alt=media&timestamp=1719564433797",
+                "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-20.jpg",
             },
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Creme",
+              value: "Graphics",
             },
             {
               type: "string",
               key: "subtitle",
               displayer: "Subtitle",
-              value: "Women Bag",
+              value: "Your Best Skin",
             },
             {
               type: "page",
@@ -189,19 +189,19 @@ class ImageGallery9 extends BaseImageGallery {
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00ba2f8a5b002ce6015d?alt=media",
+                "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-24.jpg",
             },
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Dublin",
+              value: "Graphics",
             },
             {
               type: "string",
               key: "subtitle",
               displayer: "Subtitle",
-              value: "Astronaut, Portraits",
+              value: "Japan Letter",
             },
             {
               type: "page",
@@ -221,19 +221,19 @@ class ImageGallery9 extends BaseImageGallery {
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00d52f8a5b002ce60169?alt=media",
+                "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-22.jpg",
             },
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Annie",
+              value: "GraphicsSports",
             },
             {
               type: "string",
               key: "subtitle",
               displayer: "Subtitle",
-              value: "Portraits, Giraffe",
+              value: "Yellow Architecture",
             },
             {
               type: "page",
@@ -253,19 +253,19 @@ class ImageGallery9 extends BaseImageGallery {
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00f72f8a5b002ce60175?alt=media",
+                "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-23.jpg",
             },
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Ulitsa",
+              value: "Iconography",
             },
             {
               type: "string",
               key: "subtitle",
               displayer: "Subtitle",
-              value: "Mirror, Portraits",
+              value: "Model Arbus Goldin",
             },
             {
               type: "page",
@@ -285,50 +285,19 @@ class ImageGallery9 extends BaseImageGallery {
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e01132f8a5b002ce60181?alt=media",
+                "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-18.jpg",
             },
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Brabant",
+              value: "Iconography",
             },
             {
               type: "string",
               key: "subtitle",
               displayer: "Subtitle",
-              value: "By The Cover",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Link",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "card",
-          displayer: "Card",
-          value: [
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://ruizarch-react.vercel.app/img/covers/5.jpg",
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Interior",
-            },
-            {
-              type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
-              value: "Smart House By Molekule",
+              value: "Intro to Data",
             },
             {
               type: "page",
@@ -348,19 +317,19 @@ class ImageGallery9 extends BaseImageGallery {
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e00122f8a5b002ce60121?alt=media",
+                "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-25.jpg",
             },
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Snowy Swiss",
+              value: "Iconography",
             },
             {
               type: "string",
               key: "subtitle",
               displayer: "Subtitle",
-              value: "Interior Design Studio",
+              value: "Upp Design",
             },
             {
               type: "page",
@@ -380,19 +349,51 @@ class ImageGallery9 extends BaseImageGallery {
               key: "image",
               displayer: "Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/669e01732f8a5b002ce6018d?alt=media",
+                "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-26.jpg",
             },
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Design",
+              value: "GraphicsSports",
             },
             {
               type: "string",
               key: "subtitle",
               displayer: "Subtitle",
-              value: "Green, Portraits",
+              value: "Sample Box",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Link",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value:
+                "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-27.jpg",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Drawing",
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "Concrete Remedy",
             },
             {
               type: "page",
@@ -404,6 +405,15 @@ class ImageGallery9 extends BaseImageGallery {
         },
       ],
     });
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["underline", "slideUp"],
+      additionalParams: {
+        selectItems: ["underline", "slideUp"],
+      },
+    });
   }
 
   static getName(): string {
@@ -411,6 +421,7 @@ class ImageGallery9 extends BaseImageGallery {
   }
 
   render() {
+    const imageExist = this.getPropValue("image");
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -433,8 +444,15 @@ class ImageGallery9 extends BaseImageGallery {
                     className={`${this.decorateCSS("card")} ${
                       isLarge ? this.decorateCSS("large") : ""
                     }`}
+                    data-animation={this.getPropValue("hoverAnimation").join(
+                      " "
+                    )}
                   >
-                    <div className={this.decorateCSS("image")}>
+                    <div
+                      className={`${this.decorateCSS("image")} ${
+                        !imageExist && this.decorateCSS("noImage")
+                      }`}
+                    >
                       {(this.castToString(item.title) ||
                         this.castToString(item.subtitle) ||
                         item.image) && (
