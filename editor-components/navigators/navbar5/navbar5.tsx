@@ -437,8 +437,11 @@ class Navbar5 extends BaseNavigator {
     const crossIcon = this.getPropValue("cross-icon");
 
     const iconsExist = hamburgerIcon || crossIcon;
+    
+    const isVisible = navActive
 
     return (
+      <>
       <Base.Navigator.Container
         id={"navbar5-height"}
         position={position}
@@ -450,6 +453,7 @@ class Navbar5 extends BaseNavigator {
         setIsScrolled={(value: boolean) => {
           this.setComponentState("isScrolled", value);
         }}
+        className={this.decorateCSS("container")}
       >
         <Base.MaxContent className={`${this.decorateCSS("maxContent")} ${transparentBackground && !navActive ? this.decorateCSS("transparentBackground") : ""}`}>
           {social.length > 0 && (
@@ -525,8 +529,6 @@ class Navbar5 extends BaseNavigator {
           )}
         </Base.MaxContent>
 
-        <div className={`${this.decorateCSS("overlay")} ${navActive ? this.decorateCSS("overlayActive") : ""}`} onClick={() => this.closeNav()} />
-
         <div className={`${this.decorateCSS("dropdownMenu")} ${navActive ? this.decorateCSS("active") : ""}`}>
           {upExist && (
             <div className={this.decorateCSS("up")}>
@@ -565,6 +567,11 @@ class Navbar5 extends BaseNavigator {
           )}
         </div>
       </Base.Navigator.Container>
+      <Base.Overlay className={this.decorateCSS("overlay")} 
+        onClick={() => this.closeNav()} 
+        isVisible={isVisible}
+      />
+      </>
     );
   }
 }

@@ -1122,6 +1122,8 @@ class Navbar9 extends BaseNavigator {
     const language = this.castToObject<Language>("language");
     const icons = this.castToObject<Icons[]>("icons");
 
+    const isVisible= !isBigScreen && hamburgerNavActive
+
     return (
       <>
         <Base.Navigator.Container
@@ -1502,11 +1504,10 @@ class Navbar9 extends BaseNavigator {
             </Base.Container>
           </div>
         </Base.Navigator.Container>
-        <div
-          className={`${this.decorateCSS("hamburgerOverlay")} ${
-            hamburgerNavActive ? this.decorateCSS("overlayActive") : ""
-          }`}
+        <Base.Overlay
+          className={this.decorateCSS("hamburgerOverlay")}
           onClick={() => this.handleCloseMenu()}
+          isVisible={isVisible}
         />
       </>
     );

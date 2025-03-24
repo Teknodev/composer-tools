@@ -1113,15 +1113,14 @@ class Navbar6 extends BaseNavigator {
       (isStickyTransparent && !isScrolled) || isAbsolute;
     const hamburgerNavActive = this.getComponentState("hamburgerNavActive");
     const changeBackground = this.getComponentState("changeBackground");
-
     const currentLogo =
       transparentBackground && !changeBackground ? absoluteLogo : defaultLogo;
     const icons = this.castToObject<Icon[]>("icons");
     const menuItems = this.castToObject<MenuItem[]>("menuItems");
-
     const divider = this.getPropValue("divider");
-
     const language = this.castToObject<Language>("language");
+    const isBigScreen = this.getComponentState("isBigScreen");
+    const isVisible = hamburgerNavActive && !isBigScreen
 
     return (
       <>
@@ -1137,6 +1136,7 @@ class Navbar6 extends BaseNavigator {
           setIsBigScreen={(value: boolean)=>{
             this.setComponentState("isBigScreen", value);
           }}
+          className={this.decorateCSS("container")}
         >
           <Base.MaxContent
             className={`${this.decorateCSS("maxContent")} ${
@@ -1514,14 +1514,12 @@ class Navbar6 extends BaseNavigator {
               </div>
 
           </Base.MaxContent>
-
-          <div
-          className={`${this.decorateCSS("overlay")} ${
-            hamburgerNavActive ? this.decorateCSS("overlayActive") : ""
-          }`}
-          onClick={() => this.handleCloseMenu()}
-        />
         </Base.Navigator.Container>
+        <Base.Overlay
+          className={this.decorateCSS("overlay")}
+          onClick={() => this.handleCloseMenu()}
+          isVisible={isVisible}
+        />
       </>
     );
   }

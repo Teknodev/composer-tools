@@ -5,6 +5,7 @@
   flex-direction: column;
   transition: all 0.3s ease;
   position: relative;
+  z-index: 101;
 }
 
 .maxContent {
@@ -92,13 +93,7 @@
 }
 
  .overlay {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background: var(--composer-overlay-color);
+  content: "";
   }
 
 .dropdownMenu {
@@ -313,11 +308,11 @@
     }
 
   }
-  .overlay {
-      &.overlayActive {
-        display: block;
-      }
-    }
+  // .overlay {
+  //     &.overlayActive {
+  //       display: block;
+  //     }
+  //   }
   .dropdownMenu {
     &.active {
       height: 75vh;

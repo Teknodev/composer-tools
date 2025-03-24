@@ -1,6 +1,7 @@
 @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
 .container {
+  z-index: 101;
   &.filledBackground {
     background: transparent !important;
     transition: all 0.3s ease;

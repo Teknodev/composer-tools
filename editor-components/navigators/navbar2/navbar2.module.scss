@@ -3,6 +3,7 @@
 .container {
   padding-top: var(--composer-gap-sm);
   padding-bottom: var(--composer-gap-sm);
+  z-index: 101;
 
   .maxContent {
     display: flex;

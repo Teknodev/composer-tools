@@ -50,6 +50,9 @@ const Dropdown: React.FC<DropdownProps> = ({
       setIsOpen(!isOpen);
     }
   };
+  const handleClose = () => {
+    setIsOpen(false);
+};
 
   return (
     <div className={`${styles.dropdownContainer} ${dropdownButtonClassName || ''}`} ref={dropdownRef}>
@@ -62,7 +65,7 @@ const Dropdown: React.FC<DropdownProps> = ({
         {icon && <ComposerIcon name={icon} propsIcon={{className: `${styles.icon} ${iconClassName || ''}`}}/>}
       </button>
       {isOpen && (
-        <div className={`${styles.dropdownContent} ${dropdownContentClassName || ''} ${shouldOpenLeft ? styles.openLeft : ''}`}>
+        <div className={`${styles.dropdownContent} ${dropdownContentClassName || ''} ${shouldOpenLeft ? styles.openLeft : ''}`} onClick= {handleClose}>
           {children}
         </div>
       )}

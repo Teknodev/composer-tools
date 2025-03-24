@@ -1119,6 +1119,8 @@ class Navbar7 extends BaseNavigator {
     const menuItems = this.castToObject<MenuItem[]>("menuItems");
 
     const language = this.castToObject<Language>("language");
+
+    const isVisible = (isMobileMenuOpen && !isBigScreen)
     
     return (
       <>
@@ -1127,7 +1129,7 @@ class Navbar7 extends BaseNavigator {
           positionContainer={`${this.decorateCSS("pcNavbarContainer")}`}
           setIsScrolled={(value: boolean) => this.setComponentState("isScrolled", value)}
           setIsBigScreen={(value: boolean) => this.setComponentState("isBigScreen", value)}
-
+          className={this.decorateCSS("pcNavbarContainer")}
         >
           <Base.MaxContent
             className={`${this.decorateCSS("maxContent")} ${
@@ -1306,7 +1308,7 @@ class Navbar7 extends BaseNavigator {
           hamburgerNavActive={isMobileMenuOpen}
           setIsScrolled={(value: boolean) => this.setComponentState("isScrolled", value)}
           setIsBigScreen={(value: boolean) => this.setComponentState("isBigScreen", value)}
-
+          className={this.decorateCSS("smallDeviceNavbar")}
         >
           <Base.MaxContent
             className={`${this.decorateCSS("maxContent")} ${
@@ -1513,6 +1515,12 @@ class Navbar7 extends BaseNavigator {
             </div>
           </Base.MaxContent>
         </Base.Navigator.Container>
+
+        <Base.Overlay
+          className={this.decorateCSS("overlay")}
+          onClick={() => this.handleCloseMenu()}
+          isVisible={isVisible}
+        />
       </>
     );
   }

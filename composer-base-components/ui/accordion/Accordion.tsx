@@ -28,6 +28,9 @@ const Accordion = ({
     const handleToggle = () => {
         setIsOpen(!isOpen);
     }
+    const handleClose = () => {
+        setIsOpen(false);
+    };
 
     return (
         <div className={styles["accordion"]}>
@@ -35,7 +38,7 @@ const Accordion = ({
                 <h3 className={`${styles["accordionTitle"]} ${titleClassName || ''}`}>{title}</h3>
                 {icon && <ComposerIcon name={icon} propsIcon={{className: `${styles["accordionIcon"]} ${isOpen ? styles["open"] : ''} ${accordionIconClassName || ''}`}}/>}
             </div>
-            <div className={`${styles["accordionContent"]} ${isOpen ? styles[openClassName] : ''} ${contentClassName || ''}`}>
+            <div className={`${styles["accordionContent"]} ${isOpen ? styles[openClassName] : ''} ${contentClassName || ''}`} onClick= {handleClose}>
                     {children}
             </div>
         </div>

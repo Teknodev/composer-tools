@@ -1,6 +1,7 @@
 @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
 .pcNavbarContainer {
+  z-index: 101;
   .maxContent {
     display: flex;
     justify-content: space-between;
@@ -259,7 +260,7 @@
 
 .smallDeviceNavbar {
   display: none;
-  z-index: 100;
+  z-index: 101;
 
   .maxContent {
     display: flex;
@@ -294,10 +295,7 @@
       height: 0;
       width: 100%;
       overflow: hidden;
-      background: var(--composer-overlay-color);
       transition: height 0.3s ease;
-      z-index: 100;
-
       &.open {
         height: 100vh;
         transition: height 0.3s ease;
@@ -403,6 +401,9 @@
       }
     }
   }
+}
+.overlay{
+  content: "";
 }
 
 

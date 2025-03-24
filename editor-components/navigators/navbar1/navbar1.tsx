@@ -1224,8 +1224,11 @@ class Navbar1 extends BaseNavigator {
     const divider = this.getPropValue("divider");
     const language = this.castToObject<Language>("language");
 
+    const isVisible = hamburgerNavActive && !isBigScreen
+
     return (
-      <Base.Navigator.Container
+      <>
+       <Base.Navigator.Container
         position={position}
         hamburgerNavActive={hamburgerNavActive}
         positionContainer={`${this.decorateCSS("navbarContainer")} ${
@@ -1233,6 +1236,7 @@ class Navbar1 extends BaseNavigator {
         }`}
         setIsScrolled={(value: boolean) => this.setComponentState("isScrolled", value)}
         setIsBigScreen={(value: boolean) => this.setComponentState("isBigScreen", value)}
+        className={this.decorateCSS("filledBackground")}
       >
         <Base.MaxContent
           className={`${this.decorateCSS("maxContent")} ${
@@ -1430,13 +1434,6 @@ class Navbar1 extends BaseNavigator {
         </Base.MaxContent>
 
         <div
-          className={`${this.decorateCSS("overlay")} ${
-            hamburgerNavActive ? this.decorateCSS("overlayActive") : ""
-          }`}
-          onClick={() => this.handleCloseMenu()}
-        />
-
-        <div
           className={`${this.decorateCSS("hamburgerNav")} ${
             hamburgerNavActive ? this.decorateCSS("active") : ""
           }`}
@@ -1605,7 +1602,15 @@ class Navbar1 extends BaseNavigator {
             </Base.MaxContent>
           </Base.Container>
         </div>
+
       </Base.Navigator.Container>
+      <Base.Overlay
+          className={this.decorateCSS("overlay")}
+          isVisible={isVisible}
+          onClick={() => this.handleCloseMenu()}
+        />
+      </>
+
     );
   }
 }

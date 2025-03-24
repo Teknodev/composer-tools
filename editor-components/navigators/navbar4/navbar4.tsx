@@ -1316,7 +1316,9 @@ class Navbar4 extends BaseNavigator {
     const isAbsolute = position === "Absolute";
     const isStickyTranparentAndScrolled = isStickyTransparent && !isScrolled;
 
-
+    const isBigScreen = this.getComponentState("isBigScreen")
+    
+    const isVisible = isHamburgerActive && !isBigScreen
 
     return (
       <>
@@ -1742,14 +1744,14 @@ class Navbar4 extends BaseNavigator {
               )}
             </div>
           </Base.MaxContent>
-
-          <div
+        </Base.Navigator.Container>
+        <Base.Overlay
           className={`${this.decorateCSS("overlay")} ${
-            isHamburgerActive ? this.decorateCSS("overlayActive") : ""
+            isHamburgerActive ? this.decorateCSS("active") : ""
           }`}
           onClick={() => this.handleCloseMenu()}
+          isVisible = {isVisible}
         />
-        </Base.Navigator.Container>
       </>
     );
   }

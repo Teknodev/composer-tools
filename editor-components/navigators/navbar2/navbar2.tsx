@@ -1167,13 +1167,19 @@ class Navbar2 extends BaseNavigator {
     const menuItems = this.castToObject<Item[]>("menuItems");
     const divider = this.getPropValue("divider");
     const language = this.castToObject<Language>("language");
+    const isBigScreen = this.getComponentState("isBigScreen");
+  
+
+    const isVisible = isMobileMenuOpen && !isBigScreen
 
     return (
-      <Base.Navigator.Container
+      <>
+       <Base.Navigator.Container
         position={position}
         positionContainer={this.decorateCSS("container")}
         setIsBigScreen={(value) => this.setComponentState("isBigScreen", value)}
         setIsScrolled={(value) => this.setComponentState("isScrolled", value)}
+        className={this.decorateCSS("container")}
       >
         <Base.MaxContent
           className={`${this.decorateCSS("maxContent")} ${
@@ -1502,13 +1508,14 @@ class Navbar2 extends BaseNavigator {
               )}
             </div>
         </Base.MaxContent>
-        <div
-          className={`${this.decorateCSS("overlay")} ${
-            isMobileMenuOpen ? this.decorateCSS("overlayActive") : ""
-          }`}
-          onClick={() => this.toggleMobileMenu()}
-        />
+
       </Base.Navigator.Container>
+      <Base.Overlay
+          className={this.decorateCSS("overlay")}
+          onClick={() => this.toggleMobileMenu()}
+          isVisible= {isVisible}
+        />
+      </>
     );
   }
 }

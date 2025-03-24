@@ -216,13 +216,7 @@
   }
 
   .overlay {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background: var(--composer-overlay-color);
+    content: "";
   }
 
   .hamburgerNav {
@@ -359,6 +353,7 @@
 
 .filledBackground {
   background: transparent;
+  z-index: 101;
 }
 
 .transparentBackground {
@@ -417,12 +412,6 @@
         .logoImage {
           max-height: 50px;
         }
-      }
-    }
-
-    .overlay {
-      &.overlayActive {
-        display: block;
       }
     }
     .hamburgerIcon,

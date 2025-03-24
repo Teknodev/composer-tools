@@ -1227,6 +1227,8 @@ class Navbar3 extends BaseNavigator {
       this.castToString(lane.news) ||
       language.showLanguage;
 
+    const isBigScreen = this.getComponentState("isBigScreen");
+    const isVisible = (!isBigScreen && hamburgerNavActive)
     return (
       <>
         {laneContainer && (
@@ -1445,7 +1447,7 @@ class Navbar3 extends BaseNavigator {
 
         <Base.Navigator.Container
           position={position}
-          positionContainer={`${this.decorateCSS(
+          className={`${this.decorateCSS(
             "smallDeviceNavbarContainer"
           )} ${changeBackground ? this.decorateCSS("filledBackground") : ""}`}
           hamburgerNavActive={hamburgerNavActive}
@@ -1694,10 +1696,9 @@ class Navbar3 extends BaseNavigator {
           </Base.MaxContent>
         </Base.Navigator.Container>
 
-        <div
-          className={`${this.decorateCSS("overlay")} ${
-            hamburgerNavActive ? this.decorateCSS("overlayActive") : ""
-          }`}
+        <Base.Overlay
+          clasName = {this.decorateCSS("overlay")}
+          isVisible = {isVisible}
           onClick={() => this.handleCloseMenu()}
         />
       </>
