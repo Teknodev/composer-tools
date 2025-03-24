@@ -77,23 +77,25 @@ class Banner7 extends BaseBanner {
                   {this.getPropValue("title")}
                 </Base.MaxContent>
               )}
-              <ComposerLink
-                path={navigateToUrl}
-                className={this.decorateCSS("home-link")}
-              >
-                <span className={this.decorateCSS("home-page")}>
-                  {this.getPropValue("homepage")}
+              <div className={this.decorateCSS("breadcrumb-items")}>
+                <ComposerLink
+                  path={navigateToUrl}
+                  className={this.decorateCSS("home-link")}
+                >
+                  <span className={this.decorateCSS("home-page")}>
+                    {this.getPropValue("homepage")}
+                  </span>
+                </ComposerLink>
+                <ComposerIcon
+                  name={this.getPropValue("crumberIcon")}
+                  propsIcon={{
+                    className: this.decorateCSS("crumberIcon"),
+                  }}
+                />
+                <span className={this.decorateCSS("about-page")}>
+                  {this.getPropValue("about")}
                 </span>
-              </ComposerLink>
-              <ComposerIcon
-                name={this.getPropValue("crumberIcon")}
-                propsIcon={{
-                  className: this.decorateCSS("crumberIcon"),
-                }}
-              />
-              <span className={this.decorateCSS("about-page")}>
-                {this.getPropValue("about")}
-              </span>
+              </div>
             </div>
           </Base.MaxContent>
         )}
