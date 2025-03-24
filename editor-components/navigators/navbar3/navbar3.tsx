@@ -1466,7 +1466,7 @@ class Navbar3 extends BaseNavigator {
             }`}
           >
             {currentLogo.image && (
-              <div className={this.decorateCSS("logo")}>
+              <div className={this.decorateCSS("logo")} onClick={() => this.handleCloseMenu()}>
                 <ComposerLink path={currentLogo.navigateTo}>
                   <img
                     src={currentLogo.image}
@@ -1525,6 +1525,7 @@ class Navbar3 extends BaseNavigator {
                                     className={`${this.decorateCSS(
                                       "hamburgerMenuItemTitle"
                                     )}`}
+                                    onClick={() => this.handleCloseMenu()}
                                   >
                                     {item.title}
                                   </span>
@@ -1584,6 +1585,7 @@ class Navbar3 extends BaseNavigator {
                                                 className={this.decorateCSS(
                                                   "hamburgerDropdownItemTitle"
                                                 )}
+                                                onClick={() => this.handleCloseMenu()}
                                               >
                                                 {subItem.title}
                                               </span>
@@ -1653,6 +1655,7 @@ class Navbar3 extends BaseNavigator {
                                                             className={this.decorateCSS(
                                                               "hamburgerSubSubmenuItemTitle"
                                                             )}
+                                                            onClick={() => this.handleCloseMenu()}
                                                           >
                                                             {subSubItem.title}
                                                           </span>

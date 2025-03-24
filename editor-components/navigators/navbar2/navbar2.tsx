@@ -1194,6 +1194,7 @@ class Navbar2 extends BaseNavigator {
                 <img
                   src={currentLogo.image}
                   className={this.decorateCSS("logoImg")}
+                  onClick={()=> this.toggleMobileMenu()}
                 />
               </div>
             </ComposerLink>
@@ -1367,6 +1368,7 @@ class Navbar2 extends BaseNavigator {
                                 className={this.decorateCSS(
                                   "hamburgerMenuItemTitle"
                                 )}
+                                onClick={()=> this.toggleMobileMenu()}
                               >
                                 {item.title}
                               </span>
@@ -1420,6 +1422,7 @@ class Navbar2 extends BaseNavigator {
                                           className={this.decorateCSS(
                                             "hamburgerMenuItemTitle"
                                           )}
+                                          onClick={()=> this.toggleMobileMenu()}
                                         >
                                           {subItem.title}
                                         </span>
@@ -1479,6 +1482,7 @@ class Navbar2 extends BaseNavigator {
                                                     className={this.decorateCSS(
                                                       "hamburgerSubSubmenuItemTitle"
                                                     )}
+                                                    onClick={()=> this.toggleMobileMenu()}
                                                   >
                                                     {subSubItem.title}
                                                   </span>

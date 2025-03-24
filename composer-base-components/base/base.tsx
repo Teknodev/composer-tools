@@ -231,8 +231,6 @@ export namespace Base {
     useEffect(() => {
       document.documentElement.style.overflow = "hidden";
       let playgroundEl = document.getElementById("playground");
-      console.log("playgroundEl", playgroundEl)
-      console.log("isVisible",isVisible)
 
       let resizeObserver = new ResizeObserver(() => { 
         const boundingClient = playgroundEl.getBoundingClientRect();
@@ -265,6 +263,7 @@ export namespace Base {
       hamburgerNavActive = false,
       setIsScrolled = (scrolled: boolean) => { },
       setIsBigScreen = (bigScreen: boolean) => { },
+      screenSize,
       ...props
     }: {
       className?: string;
@@ -274,6 +273,7 @@ export namespace Base {
       setIsScrolled?: (scrolled: boolean) => void;
       setIsBigScreen?: (bigScreen: boolean) => void;
       [key: string]: any;
+      screenSize?: number
     }) {
       const positionClass = position
         ?.split(" ")
@@ -281,11 +281,8 @@ export namespace Base {
         .join("");
 
       const resizeObserverRef = useRef<ResizeObserver | null>(null);
-      const mediaSize = 1025;
-
+      const mediaSize = screenSize ? screenSize : 1025;
       useEffect(() => {
-        console.log("useeffect");
-
         const wrapperContainer = getWrapperContainer();
         const handleScroll = () => {
           const wrapperContainer = getWrapperContainer();
@@ -321,7 +318,6 @@ export namespace Base {
               wrapperContainer.wrapper === window
                 ? window.matchMedia(`(min-width: ${mediaSize}px)`).matches
                 : (wrapperContainer.wrapper as HTMLElement).clientWidth >= mediaSize;
-
             if (matchedMedia) {
               Base.Navigator.changeScrollBehaviour("auto");
               setIsBigScreen && setIsBigScreen(true);
@@ -394,7 +390,7 @@ export namespace Base {
     export function changeScrollBehaviour(behaviour: "hidden" | "auto") {
       const wrapperContainer = getWrapperContainer();
       if (!wrapperContainer) return;
-      wrapperContainer.style.overflow = behaviour;
+      wrapperContainer.style.overflowY = behaviour;
     }
   }
 }

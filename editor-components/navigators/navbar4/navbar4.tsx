@@ -10,7 +10,7 @@ import ComposerLanguage from "composer-tools/composer-base-components/language/l
 
 interface Logo {
   image: string;
-  imageLink: string;
+  navigateTo: string;
 }
 
 interface Information {
@@ -1366,7 +1366,7 @@ class Navbar4 extends BaseNavigator {
 
                 {defaultLogo.image && (
                   <div className={this.decorateCSS("logo")}>
-                    <ComposerLink path={defaultLogo.imageLink}>
+                    <ComposerLink path={defaultLogo.navigateTo}>
                       {defaultLogo.image && (
                         <img
                           src={defaultLogo.image}
@@ -1393,11 +1393,12 @@ class Navbar4 extends BaseNavigator {
           </Base.Container>
         )}
         <div className={this.decorateCSS("smallDevicelogo")}>
-          <ComposerLink path={defaultLogo.imageLink}>
+          <ComposerLink path={defaultLogo.navigateTo}>
             <img
               src={defaultLogo.image}
               alt=""
               className={this.decorateCSS("smallDeviceLogoImg")}
+              onClick={()=> this.handleCloseMenu()}
             />
           </ComposerLink>
         </div>
@@ -1410,6 +1411,7 @@ class Navbar4 extends BaseNavigator {
           hamburgerNavActive={isHamburgerActive}
           setIsBigScreen={(value: boolean) => this.setComponentState("isBigScreen", value)}
           setIsScrolled={(value: boolean) => this.setComponentState("isScrolled", value)}
+          screenSize={960}
         >
           <Base.MaxContent
             className={`${this.decorateCSS("maxContent")} ${
@@ -1602,6 +1604,7 @@ class Navbar4 extends BaseNavigator {
                             className={`${this.decorateCSS(
                               "hamburgerMenuItemTitle"
                             )}`}
+                            onClick={()=> this.handleCloseMenu()}
                           >
                             {item.title}
                           </span>
@@ -1651,6 +1654,7 @@ class Navbar4 extends BaseNavigator {
                                         className={this.decorateCSS(
                                           "hamburgerDropdownItemTitle"
                                         )}
+                                        onClick={()=> this.handleCloseMenu()}
                                       >
                                         {subItem.title}
                                       </span>
@@ -1708,6 +1712,7 @@ class Navbar4 extends BaseNavigator {
                                                   className={this.decorateCSS(
                                                     "hamburgerSubSubmenuItemTitle"
                                                   )}
+                                                  onClick={()=> this.handleCloseMenu()}
                                                 >
                                                   {subSubItem.title}
                                                 </span>

@@ -350,7 +350,7 @@
 
   &.active {
     max-height: 70vh;
-    overflow: scroll;
+    overflow-y: scroll;
     transition: all 0.3s linear;
   }
 
@@ -375,7 +375,7 @@
 
           .hamburgerSubmenu {
             max-height: 0;
-            overflow: scroll;
+            overflow-y: scroll;
             padding-left: var(--composer-gap-md);
             transition: all 0.3s ease;
 
@@ -411,7 +411,7 @@
 
               .hamburgerSubSubmenu {
                 max-height: 0;
-                overflow: scroll;
+                overflow-y: scroll;
                 padding-left: var(--composer-gap-md);
                 transition: all 0.3s linear;
                 &.active {

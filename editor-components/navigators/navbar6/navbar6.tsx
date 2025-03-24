@@ -10,7 +10,7 @@ import ComposerLanguage from "composer-tools/composer-base-components/language/l
 
 interface Logo {
   image: string;
-  imageLink: string;
+  navigateTo: string;
 }
 
 interface Icon {
@@ -1278,10 +1278,11 @@ class Navbar6 extends BaseNavigator {
 
               {currentLogo.image && (
                 <div className={this.decorateCSS("logo")}>
-                  <ComposerLink path={currentLogo.imageLink}>
+                  <ComposerLink path={currentLogo.navigateTo}>
                     <img
                       src={currentLogo.image}
                       className={this.decorateCSS("logoImage")}
+                      onClick={()=> this.handleCloseMenu()}
                     />
                   </ComposerLink>
                 </div>
@@ -1369,6 +1370,7 @@ class Navbar6 extends BaseNavigator {
                             className={this.decorateCSS(
                               "hamburgerMenuItemTitle"
                             )}
+                            onClick={()=> this.handleCloseMenu()}
                           >
                             {item.title}
                           </span>
@@ -1417,6 +1419,7 @@ class Navbar6 extends BaseNavigator {
                                       className={this.decorateCSS(
                                         "hamburgerMenuItemTitle"
                                       )}
+                                      onClick={()=> this.handleCloseMenu()}
                                     >
                                       {subItem.title}
                                     </span>
@@ -1474,6 +1477,7 @@ class Navbar6 extends BaseNavigator {
                                                 className={this.decorateCSS(
                                                   "hamburgerSubSubmenuItemTitle"
                                                 )}
+                                                onClick={()=> this.handleCloseMenu()}
                                               >
                                                 {subSubItem.title}
                                               </span>
@@ -1503,10 +1507,12 @@ class Navbar6 extends BaseNavigator {
                   <div className={this.decorateCSS("iconsContainer")}>
                     {icons.map((icon: Icon, index: number) => (
                       <ComposerLink path={icon.page}>
+                        <div className={this.decorateCSS("icons")} onClick={()=> this.handleCloseMenu()}>
                         <ComposerIcon
                           name={icon.icon}
                           propsIcon={{ className: this.decorateCSS("icon") }}
                         />
+                        </div>
                       </ComposerLink>
                     ))}
                   </div>

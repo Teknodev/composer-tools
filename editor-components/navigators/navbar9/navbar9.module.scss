@@ -242,7 +242,7 @@
     &.active {
       max-height: 50vh;
       opacity: 1;
-      overflow: scroll;
+      overflow-y: scroll;
       visibility: visible;
       transition: all 0.3s ease-out;
     }
@@ -368,10 +368,11 @@
     align-items: center;
     gap: var(--composer-gap-md);
     margin-top: var(--composer-gap-sm);
-
-    .icon {
-      font-size: 1.5rem;
-      color: var(--composer-font-color-primary);
+    .icon-container{
+      .icon {
+        font-size: 1.5rem;
+        color: var(--composer-font-color-primary);
+      }
     }
   }
 }
@@ -412,8 +413,10 @@
   }
 
   .icons{
-    .icon{
-      color: white;
+    .icon-container{
+      .icon{
+        color: white;
+      }
     }
   }
 }

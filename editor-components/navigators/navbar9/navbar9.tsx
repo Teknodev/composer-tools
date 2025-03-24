@@ -9,7 +9,7 @@ import ComposerLanguage from "composer-tools/composer-base-components/language/l
 
 interface Logo {
   image: string;
-  imageLink: string;
+  navigateTo: string;
 }
 
 interface MenuItems {
@@ -1138,11 +1138,12 @@ class Navbar9 extends BaseNavigator {
         >
           <Base.MaxContent className={`${this.decorateCSS("maxContent")} ${transparentBackground ? this.decorateCSS("transparentBackground") : ""}`}>
             {currentLogo.image && (
-              <ComposerLink path={currentLogo.imageLink}>
+              <ComposerLink path={currentLogo.navigateTo}>
                 <div className={this.decorateCSS("logo")}>
                   <img
                     src={currentLogo.image}
                     className={this.decorateCSS("logoImage")}
+                    onClick={()=> this.handleCloseMenu()}
                   />
                 </div>
               </ComposerLink>
@@ -1288,10 +1289,12 @@ class Navbar9 extends BaseNavigator {
                 <div className={this.decorateCSS("icons")}>
                   {icons.map((icon: Icons, index: number) => (
                     <ComposerLink key={index} path={icon.page}>
-                      <ComposerIcon
-                        name={icon.icon}
-                        propsIcon={{ className: this.decorateCSS("icon") }}
-                      />
+                      <div className={this.decorateCSS("icon-container")}  onClick={()=> this.handleCloseMenu()}>
+                        <ComposerIcon
+                          name={icon.icon}
+                          propsIcon={{ className: this.decorateCSS("icon") }}
+                        />
+                      </div>
                     </ComposerLink>
                   ))}
                 </div>
@@ -1347,6 +1350,7 @@ class Navbar9 extends BaseNavigator {
                               className={this.decorateCSS(
                                 "hamburgerMenuItemTitle"
                               )}
+                              onClick={()=> this.handleCloseMenu()}
                             >
                               {item.title}
                             </span>
@@ -1400,6 +1404,7 @@ class Navbar9 extends BaseNavigator {
                                         className={this.decorateCSS(
                                           "hamburgerDropdownItemTitle"
                                         )}
+                                        onClick={()=>this.handleCloseMenu()}
                                       >
                                         {subItem.title}
                                       </span>
@@ -1457,6 +1462,7 @@ class Navbar9 extends BaseNavigator {
                                                   className={this.decorateCSS(
                                                     "hamburgerSubSubmenuItemTitle"
                                                   )}
+                                                  onClick={()=> this.handleCloseMenu()}
                                                 >
                                                   {subSubItem.title}
                                                 </span>
@@ -1495,7 +1501,9 @@ class Navbar9 extends BaseNavigator {
                   <div className={this.decorateCSS("icons")}>
                     {icons.map((icon: Icons, index: number) => (
                       <ComposerLink key={index} path={icon.page}>
-                        <ComposerIcon name={icon.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                        <div className={this.decorateCSS("icon-container")} onClick={()=> this.handleCloseMenu()}>
+                          <ComposerIcon name={icon.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                        </div>
                       </ComposerLink>
                     ))}
                   </div>
