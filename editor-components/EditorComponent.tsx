@@ -31,7 +31,13 @@ type GetPropValueProperties = {
   suffix?: PreSufFix;
   prefix?: PreSufFix;
 };
-type TypeCSSProp = { [key: string]: { id: string; class: string }[] };
+
+export type CSSClass = {
+  id: string;
+  class: string;
+}
+
+export type TypeCSSProp = { [key: string]: CSSClass[] };
 
 export interface iComponent {
   render(): any;
@@ -43,7 +49,7 @@ export interface iComponent {
     properties?: GetPropValueProperties
   ): TypeUsableComponentProps;
   getExportedCSSClasses(): { [key: string]: string };
-  getCSSClasses(sectionName?: string | null): any;
+  getCSSClasses(sectionName?: string | null): TypeCSSProp | CSSClass[];
   getInteractions(sectionName?: string | null): any;
   addProp(prop: TypeUsableComponentProps): void;
   setProp(key: string, value: any): void;
@@ -316,10 +322,12 @@ export abstract class Component
   getExportedCSSClasses() {
     return this.styles;
   }
-  getCSSClasses(sectionName: string | null = null): string {
-    return sectionName
-      ? this.state.componentProps.cssClasses[sectionName]
-      : this.state.componentProps.cssClasses;
+  getCSSClasses(sectionName: string | null = null): TypeCSSProp | CSSClass[] {
+    const { cssClasses } = this.state.componentProps;
+    
+    return sectionName 
+      ? cssClasses[sectionName]
+      : cssClasses;
   }
 
   private attachPropId(_prop: TypeUsableComponentProps) {
