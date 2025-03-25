@@ -39,23 +39,28 @@ const ComposerLanguage = (props: ComposerLanguageProps) => {
     setComposerToolsCurrentLanguage,
   } = useComposerToolsData();
 
-const handleLanguageChange = async (lang: { code: string; name: string }) => {
-  setComposerToolsCurrentLanguage(lang);
+  const handleLanguageChange = async (lang: { code: string; name: string }) => {
+    setComposerToolsCurrentLanguage(lang);
   
-  let currentPath = window.location.pathname;
-  const normalizedPath = currentPath.replace(/\/$/, "");
-  const pathParts = normalizedPath.split("/");
-
-  if (pathParts[1] !== lang.code) {
-    pathParts[1] = lang.code;
-  }
-
-  let newUrl = pathParts.join("/");
-
-  if (!newUrl.endsWith("/")) {
-    window.history.pushState(null, "", newUrl);
-  }
-};
+    let currentPath = window.location.pathname;
+    const normalizedPath = currentPath.replace(/\/$/, "");
+    const pathParts = normalizedPath.split("/");
+  
+    // Ensure we have at least a base path structure
+    if (pathParts.length < 2 || !pathParts[1].match(/^[a-z]{2}$/i)) {
+      pathParts.splice(1, 0, lang.code); // Insert language code at the start
+    } else {
+      pathParts[1] = lang.code; // Replace existing language code
+    }
+  
+    let newUrl = pathParts.join("/") + window.location.search + window.location.hash;
+  
+    // Avoid unnecessary history updates
+    if (newUrl !== window.location.pathname + window.location.search + window.location.hash) {
+      window.history.pushState(null, "", newUrl);
+      window.dispatchEvent(new Event("popstate")); // Ensure page reacts properly
+    }
+  };  
 
   if (props.type === "dropdown") {
     const {
