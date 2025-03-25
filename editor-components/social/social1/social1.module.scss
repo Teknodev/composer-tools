@@ -2,9 +2,7 @@
 .cards{
     display: flex;
     .cards-wrapper {    
-        min-width: 100%; 
         display: flex;
-      
         .card-container{
             border: 1px solid var(--composer-tertiary-color);
             background-color: color-mix(in srgb,
@@ -14,7 +12,6 @@
             padding: var(--composer-gap-md);
             display: flex;
             flex-direction: column;
-            
             .card-upper{
                 display: flex;
                 position: relative;
@@ -49,15 +46,17 @@
     }
 }
 
+
 .loop-slide {
     overflow: hidden;
 }
 .loop-slide > div {
     display: flex;
-    animation: slide-to-left 10s linear infinite;
+    // animation: slide-to-left 10s linear infinite;
 }
 .loop-slide > div > * {
-    min-width: calc(100% / 4);
+    display: flex;
+    min-width: calc(100%);
 }
 @keyframes slide-to-left {
     100% { transform: translateX(-100%) }

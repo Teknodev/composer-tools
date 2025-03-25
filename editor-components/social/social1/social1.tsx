@@ -74,21 +74,7 @@ class Social1 extends BaseSocial {
                                         value:"Using supabase I'm really pleased on the power of postgres (and sql in general). Despite being a bit dubious about the whole backend as a service thing I have to say I really don't miss anything. The whole experience feel very robust and secure." 
                                     },
                                 ]                                
-                            }
-                        ]
-                    }
-                ]            
-            },
-            {
-                type:"object",
-                key: "card",
-                displayer:"Card",
-                value:[
-                    {
-                        type:"array",
-                        key:"items",
-                        displayer:"Items",
-                        value:[
+                            },
                             {
                                 type: "object",
                                 key: "item",
@@ -110,7 +96,7 @@ class Social1 extends BaseSocial {
                                         type:"string",
                                         key:"name",
                                         displayer:"Name",
-                                        value:"Name1"  
+                                        value:"Name7"  
                                     },
                                     {
                                         type:"string",
@@ -155,7 +141,7 @@ class Social1 extends BaseSocial {
                                         type:"string",
                                         key:"name",
                                         displayer:"Name",
-                                        value:"Name1"  
+                                        value:"Name2"  
                                     },
                                     {
                                         type:"string",
@@ -200,7 +186,7 @@ class Social1 extends BaseSocial {
                                         type:"string",
                                         key:"name",
                                         displayer:"Name",
-                                        value:"Name1"  
+                                        value:"Name3"  
                                     },
                                     {
                                         type:"string",
@@ -245,7 +231,7 @@ class Social1 extends BaseSocial {
                                         type:"string",
                                         key:"name",
                                         displayer:"Name",
-                                        value:"Name1"  
+                                        value:"Name4"  
                                     },
                                     {
                                         type:"string",
@@ -290,7 +276,52 @@ class Social1 extends BaseSocial {
                                         type:"string",
                                         key:"name",
                                         displayer:"Name",
-                                        value:"Name1"  
+                                        value:"Name5"  
+                                    },
+                                    {
+                                        type:"string",
+                                        key:"comment",
+                                        displayer:"Comment",
+                                        value:"Using supabase I'm really pleased on the power of postgres (and sql in general). Despite being a bit dubious about the whole backend as a service thing I have to say I really don't miss anything. The whole experience feel very robust and secure." 
+                                    },
+                                ]                                
+                            }
+                        ]
+                    }
+                ]            
+            },
+            {
+                type:"object",
+                key: "card",
+                displayer:"Card",
+                value:[
+                    {
+                        type:"array",
+                        key:"items",
+                        displayer:"Items",
+                        value:[
+                            {
+                                type: "object",
+                                key: "item",
+                                displayer:"Item",
+                                value: [
+                                    {
+                                        type:"image",
+                                        key:"image",
+                                        displayer:"Image",
+                                        value:"https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b1d26803b007002cc7aa71?alt=media"
+                                    },
+                                    {
+                                        type:"icon",
+                                        key:"icon",
+                                        displayer:"Icon",
+                                        value:"MdNavigateNext"
+                                    },
+                                    {
+                                        type:"string",
+                                        key:"name",
+                                        displayer:"Name",
+                                        value:"Name6"  
                                     },
                                     {
                                         type:"string",
@@ -321,9 +352,7 @@ class Social1 extends BaseSocial {
     const description = this.getPropValue("description");
     const isDescription = this.castToString(description);
     const cardItems = this.castToObject<CardItem[]>("cards");
-    console.log("cardItems", cardItems)
-    const items = this.castToObject<ItemType[]>("items");
-    console.log("items", items)
+    const maxLength = cardItems.length 
 
     return (
         <Base.Container>
@@ -342,58 +371,43 @@ class Social1 extends BaseSocial {
                     }
                 </Base.VerticalContent>
             }
-
-{/* <div className={this.decorateCSS("loop-slide")}>
-    <div className={this.decorateCSS("cards")}>
-    <div className={this.decorateCSS("cards-wrapper")}>
-  {cardItems.map((item: any, index: number) => (
-    <div key={`card-${index}`} className={this.decorateCSS("card-container")}>
-      <div className={this.decorateCSS("card-upper")}>
-        <ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
-        <img className={this.decorateCSS("image")} src={item.image} />
-        <div className={this.decorateCSS("name")}>{item.name}</div>
-      </div>
-      <div className={this.decorateCSS("comment")}>{item.comment}</div>
-    </div>
-  ))}
-
-</div>
-<div className={this.decorateCSS("cards-wrapper")}>
-{cardItems.map((item: any, index: number) => (
-    <div key={`clone-card-${index}`} className={`${this.decorateCSS("card-container")}`}>
-      <div className={this.decorateCSS("card-upper")}>
-        <ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
-        <img className={this.decorateCSS("image")} src={item.image} />
-        <div className={this.decorateCSS("name")}>{item.name}</div>
-      </div>
-      <div className={this.decorateCSS("comment")}>{item.comment}</div>
-    </div>
-  ))}
-</div>
-    </div>
-
-</div>  
-
-<div className={this.decorateCSS("loop-slide")}>
-    <div>
-        <div>DENEME1</div>
-        <div>DENEME2</div>
-        <div>DENEME3</div>
-        <div>DENEME4</div>
-        <div>DENEME5</div>
-        <div>DENEME6</div>
-        <div>DENEME1</div>
-        <div>DENEME2</div>
-        <div>DENEME3</div>
-        <div>DENEME4</div>
-       <div>DENEME5</div>
-        <div>DENEME6</div>
-    </div>
-
-</div> */}
-
-           
-
+            <div className={this.decorateCSS("loop-slide")}>
+                {cardItems.map((item: any, index: number)=>{    
+                    const maxLength = Math.max(...cardItems.map((item: any) => item.items.length));               
+                    return (
+                    <div className={this.decorateCSS("cards")} >
+                        <div className={this.decorateCSS("cards-wrapper")}>
+                            {item.items.map((item: ItemType, index: number)=>{
+                                return(
+                                    <div className={this.decorateCSS("card-container")} style={{ width: `calc(100% / ${maxLength})` }}>
+                                        <div className={this.decorateCSS("card-upper")}>
+                                            <ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }}/>
+                                            <img src={item.image} className={this.decorateCSS("image")}/>
+                                            <div className={this.decorateCSS("name")}>{item.name}</div>
+                                        </div>
+                                        <div className={this.decorateCSS("comment")}>{item.comment}</div>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                        <div className={this.decorateCSS("cards-wrapper")}>
+                            {item.items.map((item: ItemType, index: number)=>{
+                                return(
+                                    <div className={this.decorateCSS("card-container")}>
+                                        <div className={this.decorateCSS("card-upper")}>
+                                            <ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }}/>
+                                            <img src={item.image} className={this.decorateCSS("image")}/>
+                                            <div className={this.decorateCSS("name")}>{item.name}</div>
+                                        </div>
+                                        <div className={this.decorateCSS("comment")}>{item.comment}</div>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    </div>
+                    )
+                })}
+            </div>
             </Base.MaxContent>
         </Base.Container>
     )
