@@ -636,5 +636,5 @@ export abstract class BaseFeature extends Component {
 }
 
 export abstract class BaseSocial extends Component {
-  static social = CATEGORIES.SOCIAL;
+  static category = CATEGORIES.SOCIAL;
 }

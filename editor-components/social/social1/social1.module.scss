@@ -1,0 +1,64 @@
+
+.cards{
+    display: flex;
+    .cards-wrapper {    
+        min-width: 100%; 
+        display: flex;
+      
+        .card-container{
+            border: 1px solid var(--composer-tertiary-color);
+            background-color: color-mix(in srgb,
+            var(--composer-html-background),
+            var(--composer-font-color-primary) 5%);
+            border-radius: var(--composer-border-radius-md);
+            padding: var(--composer-gap-md);
+            display: flex;
+            flex-direction: column;
+            
+            .card-upper{
+                display: flex;
+                position: relative;
+                gap: var(--composer-gap-md);
+                .icon{
+                    position: absolute;
+                    color: var(--composer-html-background);
+                    width: 20px;
+                    height: 20px;
+                    left: -5px;
+                    top: -5px;
+                    background-color: var(--composer-font-color-primary);
+                    border-radius: var(--composer-border-radius-md);
+                }
+                .image{
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                }
+                .name{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    color: var(--composer-font-color-primary);
+                } 
+            }
+        
+            .comment{
+                color: var(--composer-font-color-primary);
+            }
+        }
+    }
+}
+
+.loop-slide {
+    overflow: hidden;
+}
+.loop-slide > div {
+    display: flex;
+    animation: slide-to-left 10s linear infinite;
+}
+.loop-slide > div > * {
+    min-width: calc(100% / 4);
+}
+@keyframes slide-to-left {
+    100% { transform: translateX(-100%) }
+}
