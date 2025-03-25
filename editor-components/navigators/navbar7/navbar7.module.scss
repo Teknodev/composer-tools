@@ -214,6 +214,10 @@
     color: var(--composer-font-color-primary);
   }
 
+  .localization, .localizationItem, .localizationContent {
+    content: "";
+  }
+
   .localizationLabel {
     color: var(--composer-font-color-primary);
     gap: var(--composer-gap-xs);

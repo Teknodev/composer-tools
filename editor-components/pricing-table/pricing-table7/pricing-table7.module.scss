@@ -103,15 +103,7 @@
           display: flex;
         }
       }
-      .subtitle {
-        content: "";
-      }
-
-      .title {
-        content: "";
-      }
-
-      .description {
+      .subtitle, .title,  .description {
         content: "";
       }
     }
@@ -190,6 +182,9 @@
             border-radius: var(--composer-border-radius-md);
             width: 100%;
             margin: 0;
+            .divider{
+              content: "";
+            }
           }
 
           .description {
@@ -212,6 +207,9 @@
               }
             }
           }
+        }
+        .button, .button-active {
+          content: "";
         }
       }
     }

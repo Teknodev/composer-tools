@@ -28,6 +28,7 @@ $content-background-color: color-mix(in srgb, var(--composer-html-background), v
             color: var(--composer-font-color-primary);
             gap: var(--composer-gap-sm);
             .contact-title {
+              content: "";
             }
           }
         }

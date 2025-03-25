@@ -5,10 +5,7 @@
     gap: var(--composer-gap-md);
 
     .up-content {
-      .title{
-        content: "";
-      }
-      .description {
+      .title .description {
         content: "";
       }
     }

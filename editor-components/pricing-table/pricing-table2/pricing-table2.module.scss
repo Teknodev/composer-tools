@@ -4,13 +4,7 @@
   .max-content {
     .table {
       .up-content {
-        .title {
-          content: "";
-        }
-        .subtitle {
-          content: "";
-        }
-        .description {
+        .title, .subtitle, .description {
           content: "";
         }
       }

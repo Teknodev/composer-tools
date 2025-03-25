@@ -52,11 +52,7 @@
         .titles {
           flex: 1;
 
-          .subtitle {
-            content: "";
-          }
-
-          .title {
+          .subtitle, .title {
             content: "";
           }
         }

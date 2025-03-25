@@ -33,6 +33,9 @@
     .laneContact, .laneNews, .loacalizationContainer{
       flex:1;
     }
+    .localizationLabel, .languageIcon, .localizationItem, .localizationContent{
+      content: "";
+    }
   }
   .lane > :first-child{
     display: flex;

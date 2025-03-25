@@ -7,15 +7,7 @@
         .title-container {
             flex: 1;
             justify-content: center;
-            .about-title {
-                content: "";
-            }
-
-            .maintitle {
-                content: "";
-            }
-
-            .description {
+            .about-title, .maintitle,  .description {
                 content: "";
             }
 

@@ -9,9 +9,8 @@
         display: flex;
         .top-content-text {
           width: 100%;
-          .title {
-          }
-          .subtitle {
+          .title, .subtitle {
+            content: "";
           }
         }
         .arrows {

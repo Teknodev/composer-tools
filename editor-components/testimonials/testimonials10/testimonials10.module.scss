@@ -25,18 +25,16 @@
             display: flex;
             gap: var(--composer-gap-sm);
             flex-direction: column;
-            .subtitle {
+            .subtitle, .title, .description {
+              content: "";
             }
-            .title {
-            }
-
-            .description {
-            }
+            
             .button-group {
               display: flex;
               flex-direction: row;
               gap: var(--composer-gap-md);
               .button {
+                content: "";
               }
             }
           }

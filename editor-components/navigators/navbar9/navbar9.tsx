@@ -1136,7 +1136,7 @@ class Navbar9 extends BaseNavigator {
         >
           <Base.MaxContent className={`${this.decorateCSS("maxContent")} ${transparentBackground ? this.decorateCSS("transparentBackground") : ""}`}>
             {currentLogo.image && (
-              <ComposerLink link={currentLogo.imageLink}>
+              <ComposerLink path={currentLogo.imageLink}>
                 <div className={this.decorateCSS("logo")}>
                   <img
                     src={currentLogo.image}

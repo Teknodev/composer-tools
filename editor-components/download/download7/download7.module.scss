@@ -59,10 +59,7 @@
               object-fit: cover;
             }
             .button-element {
-              .icon {
-                content: "";
-              }
-              .button-text {
+              .icon, .button-text {
                 content: "";
               }
             }
