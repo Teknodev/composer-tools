@@ -126,6 +126,9 @@ export enum CATEGORIES {
   BANNER = "banner",
 }
 
+export function generateId(key: string): string {
+  return key + "-" + Math.round(Math.random() * 1000000000).toString();
+}
 //@ts-ignore
 export abstract class Component
   extends React.Component<{}, { states: any; componentProps: any }>
@@ -309,7 +312,8 @@ export abstract class Component
     }
 
     const memorizedElement: MemorizedElement  = this.memorizedElements[prop.id];
-    const isValueChanged = memorizedElement?.value && prop.value != memorizedElement?.value;
+    const isValueChanged = (!!memorizedElement?.value || memorizedElement?.value == "") 
+    && prop.value != memorizedElement?.value;
 
     if(!memorizedElement.jsxElement || isValueChanged){
       memorizedElement["jsxElement"] = <SanitizeHTML html={prop?.value}></SanitizeHTML>;
@@ -336,8 +340,7 @@ export abstract class Component
         (v: TypeUsableComponentProps) => this.attachPropId(v)
       );
     } else {
-      _prop.id =
-        _prop.key + "-" + Math.round(Math.random() * 1000000000).toString();
+      _prop.id = generateId(_prop.key)
     }
 
     return _prop;
