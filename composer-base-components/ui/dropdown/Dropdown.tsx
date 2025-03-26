@@ -54,7 +54,6 @@ const Dropdown: React.FC<DropdownProps> = ({
     }
   };
   const closeDropdown = () => {
-    console.log("closeDropdown")
     setIsOpen(false);
     onClose?.();
   };
