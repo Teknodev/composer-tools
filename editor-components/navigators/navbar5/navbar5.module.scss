@@ -106,11 +106,13 @@
 
   &.active {
     height: 85vh;
-    overflow: visible;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     transition: all 0.3s ease;
+  }
+  &.overflowShow{
+    overflow-y: auto;
   }
 
   .up {

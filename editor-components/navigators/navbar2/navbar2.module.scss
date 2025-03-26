@@ -205,6 +205,9 @@
         &.open {
           transform: translateX(0);
         }
+        &.overflowShow{
+          overflow-y: auto;
+        }
 
         .mobileCloseButton {
           position: absolute;

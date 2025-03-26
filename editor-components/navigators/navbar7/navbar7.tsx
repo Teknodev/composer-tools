@@ -1054,6 +1054,7 @@ class Navbar7 extends BaseNavigator {
     this.setComponentState("subNavActiveIndex", null);
     this.setComponentState("subNavActive", null);
     this.setComponentState("changeBackground", false);
+    this.setComponentState("navbarOverflowShow", false);
 
   }
 
@@ -1068,13 +1069,16 @@ class Navbar7 extends BaseNavigator {
 
     setTimeout(() => {
       this.setComponentState("isMobileMenuOpen", true);
+      setTimeout(() => {
+        this.setComponentState("navbarOverflowShow", true);
+      }, 300)
     }, 50);
   };
 
   handleCloseMenu = () => {
     Base.Navigator.changeScrollBehaviour("auto");
     this.setComponentState("isMobileMenuOpen", false);
-
+    this.setComponentState("navbarOverflowShow", false);
     setTimeout(() => {
       this.setComponentState("changeBackground", false);
     }, 100);
@@ -1350,7 +1354,7 @@ class Navbar7 extends BaseNavigator {
             <div
               className={`${this.decorateCSS("mobileMenu")} ${
                 isMobileMenuOpen ? this.decorateCSS("open") : ""
-              }`}
+              } ${this.getComponentState("navbarOverflowShow") ? this.decorateCSS("overflowShow") : ""}`}
             >
               <div className={this.decorateCSS("mobileMenuContent")}>
               {menuItems.length > 0 && (

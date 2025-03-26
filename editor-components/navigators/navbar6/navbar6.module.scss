@@ -271,8 +271,10 @@
   
       &.open {
         max-height: 65vh;
-        overflow-y: scroll;
         transition: all 0.3s linear;
+      }
+      &.overflowShow{
+        overflow-y: auto;
       }
   
       .mobileCloseButton {

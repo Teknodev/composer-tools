@@ -229,13 +229,15 @@
     max-height: 0;
     box-shadow: var(--box-shadow-active);
     z-index: 100;
-    overflow: hidden;
+    overflow-y: hidden;
     transition: all 0.3s linear;
 
     &.active {
       max-height: 70vh;
-      overflow-y: scroll;
-      transition: all 0.3s linear;
+    }
+
+    &.overflowShow{
+      overflow-y: auto;
     }
 
     .hamburgerNavContainer {
@@ -259,7 +261,7 @@
 
             .hamburgerSubmenu {
               max-height: 0;
-              overflow-y: scroll;
+              overflow-y: hidden;
               padding-left: var(--composer-gap-md);
               transition: all 0.3s ease;
 
@@ -295,7 +297,7 @@
 
                 .hamburgerSubSubmenu {
                   max-height: 0;
-                  overflow-y: scroll;
+                  overflow-y: hidden;
                   padding-left: var(--composer-gap-md);
                   transition: all 0.3s linear;
                   &.active {

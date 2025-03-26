@@ -348,6 +348,7 @@ class Navbar5 extends BaseNavigator {
     this.setComponentState("isScrolled", false);
     this.setComponentState("isBigScreen", false);
     this.setComponentState("navActive", false);
+    this.setComponentState("navbarOverflowShow", false);
     this.setComponentState(
       "dropdownMenuItemAnimationClass",
       "animate__fadeInUp"
@@ -369,6 +370,9 @@ class Navbar5 extends BaseNavigator {
   openNav() {
     Base.Navigator.changeScrollBehaviour("hidden");
     this.setComponentState("navActive", true);
+    setTimeout(() => {
+      this.setComponentState("navbarOverflowShow", true);
+    }, 300)
     this.setComponentState(
       "dropdownMenuItemAnimationClass",
       "animate__fadeInDown"
@@ -385,6 +389,7 @@ class Navbar5 extends BaseNavigator {
 
   closeNav() {
     Base.Navigator.changeScrollBehaviour("auto");
+    this.setComponentState("navbarOverflowShow", false);
     this.setComponentState(
       "dropdownMenuItemAnimationClass",
       "animate__fadeInUp"
@@ -533,7 +538,7 @@ class Navbar5 extends BaseNavigator {
           )}
         </Base.MaxContent>
 
-        <div className={`${this.decorateCSS("dropdownMenu")} ${navActive ? this.decorateCSS("active") : ""}`}>
+        <div className={`${this.decorateCSS("dropdownMenu")} ${navActive ? this.decorateCSS("active") : ""} ${this.getComponentState("navbarOverflowShow") ? this.decorateCSS("overflowShow") : ""}`}>
           {upExist && (
             <div className={this.decorateCSS("up")}>
               {titleExist && (

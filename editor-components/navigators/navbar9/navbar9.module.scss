@@ -233,19 +233,19 @@
     width: 100%;
     background: var(--composer-html-background);
     max-height: 0;
-    visibility: hidden;
     z-index: 100;
     overflow: hidden;
-
     transition: all 0.3s ease;
 
     &.active {
       max-height: 50vh;
       opacity: 1;
-      overflow-y: scroll;
-      visibility: visible;
       transition: all 0.3s ease-out;
     }
+    &.overflowShow{
+      overflow-y: auto;
+    }
+
 
     .hamburgerMenu {
 

@@ -1251,6 +1251,7 @@ class Navbar4 extends BaseNavigator {
     this.setComponentState("subNavActive", null);
     this.setComponentState("changeBackground", false);
     this.setComponentState("isBigScreen", false);
+    this.setComponentState("navbarOverflowShow", false);
   }
 
   hamburgerNavClick() {
@@ -1264,13 +1265,16 @@ class Navbar4 extends BaseNavigator {
     this.setComponentState("backgroundChange", wrapper.scrollY === 0);
     setTimeout(() => {
       this.setComponentState("hamburgerNavActive", true);
+      setTimeout(() => {
+        this.setComponentState("navbarOverflowShow", true);
+      }, 300)
     }, 100);
   };
 
   handleCloseMenu = () => {
     Base.Navigator.changeScrollBehaviour("auto");
-
     this.setComponentState("hamburgerNavActive", false);
+    this.setComponentState("navbarOverflowShow", false);
     setTimeout(() => {
       this.setComponentState("backgroundChange", false);
     }, 200);
@@ -1586,7 +1590,7 @@ class Navbar4 extends BaseNavigator {
                 isHamburgerActive
                   ? this.decorateCSS("active")
                   : ""
-              }`}
+              } ${this.getComponentState("navbarOverflowShow") ? this.decorateCSS("overflowShow") : ""}`}
             >
               {menuItems.length > 0 && (
                 <nav className={this.decorateCSS("hamburgerMenu")}>

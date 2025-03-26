@@ -1124,6 +1124,7 @@ class Navbar2 extends BaseNavigator {
     this.setComponentState("subNavActive", null);
     this.setComponentState("changeBackground", false);
     this.setComponentState("isBigScreen", false);
+    this.setComponentState("navbarOverflowShow", false);
   }
   static getName(): string {
     return "Navbar 2";
@@ -1133,6 +1134,9 @@ class Navbar2 extends BaseNavigator {
     const isMobileMenuOpen = this.getComponentState("isMobileMenuOpen");
     this.setComponentState("isMobileMenuOpen", !isMobileMenuOpen);
     Base.Navigator.changeScrollBehaviour(!isMobileMenuOpen ? "hidden" : "auto");
+    setTimeout(() => {
+      this.setComponentState("navbarOverflowShow", true);
+    }, 300)
   };
 
   navClick(index: number) {
@@ -1140,6 +1144,7 @@ class Navbar2 extends BaseNavigator {
     this.setComponentState("navActive", !isActive);
     this.setComponentState("subNavActiveIndex", isActive ? null : index);
     this.setComponentState("subNavActive", null);
+
   }
 
   subNavClick(index: any) {
@@ -1339,7 +1344,8 @@ class Navbar2 extends BaseNavigator {
               onClick: this.toggleMobileMenu,
             }}
           />
-            <div className={`${this.decorateCSS("mobileMenu")} ${isMobileMenuOpen ? this.decorateCSS("open") : ""}`}>
+            <div className={`${this.decorateCSS("mobileMenu")} ${isMobileMenuOpen ? this.decorateCSS("open") : ""}
+            ${this.getComponentState("navbarOverflowShow") ? this.decorateCSS("overflowShow") : ""}`}>
               <ComposerIcon
                 name={this.getPropValue("closeIcon")}
                 propsIcon={{

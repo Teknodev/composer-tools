@@ -1151,9 +1151,9 @@ class Navbar3 extends BaseNavigator {
     this.setComponentState("subNavActiveIndex", null);
     this.setComponentState("subNavActive", null);
     this.setComponentState("changeBackground", false);
-
     this.setComponentState("slider-ref", React.createRef());
     this.setComponentState("isBigScreen", false);
+    this.setComponentState("navbarOverflowShow", false);
   }
 
   static getName(): string {
@@ -1168,13 +1168,16 @@ class Navbar3 extends BaseNavigator {
     }
     setTimeout(() => {
       this.setComponentState("hamburgerNavActive", true);
+      setTimeout(() => {
+        this.setComponentState("navbarOverflowShow", true);
+      }, 300)
     }, 100);
   };
 
   handleCloseMenu = () => {
     Base.Navigator.changeScrollBehaviour("auto");
     this.setComponentState("hamburgerNavActive", false);
-
+    this.setComponentState("navbarOverflowShow", false);
     setTimeout(() => {
       this.setComponentState("changeBackground", false);
     }, 200);
@@ -1497,7 +1500,7 @@ class Navbar3 extends BaseNavigator {
             <div
               className={`${this.decorateCSS("hamburgerNav")} ${
                 hamburgerNavActive ? this.decorateCSS("active") : ""
-              }`}
+              } ${this.getComponentState("navbarOverflowShow") ? this.decorateCSS("overflowShow") : ""}`}
             >
               <Base.Container
                 className={this.decorateCSS("hamburgerNavContainer")}

@@ -1061,6 +1061,7 @@ class Navbar6 extends BaseNavigator {
     this.setComponentState("subNavActiveIndex", null);
     this.setComponentState("subNavActive", null);
     this.setComponentState("changeBackground", false);
+    this.setComponentState("navbarOverflowShow", false);
   }
 
   static getName(): string {
@@ -1074,13 +1075,16 @@ class Navbar6 extends BaseNavigator {
     this.setComponentState("changeBackground", wrapperContainer.scrollY === 0);
     setTimeout(() => {
       this.setComponentState("hamburgerNavActive", true);
+      setTimeout(() => {
+        this.setComponentState("navbarOverflowShow", true);
+      }, 300)
     }, 100);
   };
 
   handleCloseMenu = () => {
     Base.Navigator.changeScrollBehaviour("auto");
     this.setComponentState("hamburgerNavActive", false);
-
+    this.setComponentState("navbarOverflowShow", false);
     setTimeout(() => {
       this.setComponentState("changeBackground", false);
     }, 200);
@@ -1352,7 +1356,7 @@ class Navbar6 extends BaseNavigator {
               <div
                 className={`${this.decorateCSS("mobileMenu")} ${
                   hamburgerNavActive ? this.decorateCSS("open") : ""
-                }`}
+                } ${this.getComponentState("navbarOverflowShow") ? this.decorateCSS("overflowShow") : ""}`}
                 onClick={(e) => e.stopPropagation()}
               >
                 <nav className={this.decorateCSS("hamburgerMenu")}>

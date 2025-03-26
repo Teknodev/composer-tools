@@ -299,9 +299,11 @@
         height: 100vh;
         transition: height 0.3s ease;
       }
+      &.overflowShow{
+        overflow-y: auto;
+      }
 
       .mobileMenuContent {
-        overflow-y: scroll;
         background-color: var(--composer-html-background);
         padding: 0 var(--composer-gap-md);
 
