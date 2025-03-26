@@ -46,21 +46,24 @@ const ComposerLanguage = (props: ComposerLanguageProps) => {
     const normalizedPath = currentPath.replace(/\/$/, "");
     const pathParts = normalizedPath.split("/");
   
-    // Ensure we have at least a base path structure
-    if (pathParts.length < 2 || !pathParts[1].match(/^[a-z]{2}$/i)) {
-      pathParts.splice(1, 0, lang.code); // Insert language code at the start
+    const isLanguageSlugMissing = pathParts.length < 2;
+    const isFirstSegmentNotALanguageCode = !pathParts[1].match(/^[a-z]{2}$/i);
+  
+    if (isLanguageSlugMissing || isFirstSegmentNotALanguageCode) {
+      pathParts.splice(1, 0, lang.code);
     } else {
-      pathParts[1] = lang.code; // Replace existing language code
+      pathParts[1] = lang.code;
     }
   
     let newUrl = pathParts.join("/") + window.location.search + window.location.hash;
+    const isUrlChanged = newUrl !== window.location.pathname + window.location.search + window.location.hash;
   
-    // Avoid unnecessary history updates
-    if (newUrl !== window.location.pathname + window.location.search + window.location.hash) {
+    if (isUrlChanged) {
       window.history.pushState(null, "", newUrl);
-      window.dispatchEvent(new Event("popstate")); // Ensure page reacts properly
+      window.dispatchEvent(new Event("popstate"));
     }
-  };  
+  };
+   
 
   if (props.type === "dropdown") {
     const {
