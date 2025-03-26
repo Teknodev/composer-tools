@@ -401,19 +401,25 @@ export abstract class Component
       ? this.state.componentProps.interactions[sectionName]
       : this.state.componentProps.interactions;
   }
-  decorateCSS(cssValue: string) {
-    let cssClass = [this.styles[cssValue]];
+  decorateCSS(section: string) {
+    let cssClass = [this.styles[section]];
+    
     let cssManuplations = Object.entries(this.getCSSClasses()).filter(
       ([p, v]) => v.length > 0
     );
 
     cssManuplations.forEach(([key, value]: any) => {
-      if (key === cssValue) {
+      if (key === section) {
         value.forEach((el: any) => {
           cssClass.push(el.class);
         });
       }
     });
+
+    cssClass.push(
+      generateAutoClassName(this.id, section)
+    );
+    
     return cssClass.join(" ");
   }
 
@@ -644,3 +650,7 @@ export abstract class BaseContacts extends Component {
 export abstract class BaseFeature extends Component {
   static category = CATEGORIES.FEATURE;
 }
+
+export function generateAutoClassName(componentId: string, section: string){
+  return `auto-generate-${componentId}-${section}`;
+};
