@@ -15,32 +15,31 @@
                 justify-content: center;
                 align-items: center;
 
-                .homeIcon {
+                .pageIcon {
                     color: var(--composer-font-color-primary) !important;
                     font-size: 1rem !important;
-                    margin: var(--composer-gap-sm);
+                    min-width: 1rem;
+                    margin: var(--composer-gap-xs);
     
                     &:hover {
                         color: var(--composer-primary-color) !important;
                     }
                 }
     
-                .home-title {
+                .page-title {
                     color: var(--composer-font-color-primary);
+                    margin: var(--composer-gap-xs);
+                    font-size: 1rem;
                 }
             }
 
             .item {
+                display: flex;
+                align-items: center;
                 .icon {
                     color: var(--composer-font-color-primary);
                     font-size: 1.5rem;
                 }
-            }
-
-            .currentPage {
-                color: var(--composer-font-color-primary);
-                font-size: 1rem;
-                margin: var(--composer-gap-sm);
             }
         }
     }

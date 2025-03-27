@@ -33,11 +33,23 @@ class Banner5 extends BaseBanner {
       value: "RxDividerVertical",
     });
     this.addProp({
+      type: "icon",
+      key: "currentIcon",
+      displayer: "Current Icon",
+      value: "",
+    });
+    this.addProp({
       type: "string",
-      key: "currentPage",
+      key: "currentTitle",
       displayer: "Current Page",
       value: "Current Page",
-    })
+    });
+    this.addProp({
+      type: "page",
+      key: "currentPage",
+      displayer: "Current Link",
+      value: "",
+    });
   }
 
   static getName() : string {
@@ -46,10 +58,11 @@ class Banner5 extends BaseBanner {
 
   render() {
     const homeTitle = this.getPropValue("homeTitle");
-    const currentPage = this.getPropValue("currentPage");
+    const currentPage = this.getPropValue("currentTitle");
     const icon = this.getPropValue("icon");
 
     const titleExist = this.castToString(homeTitle);
+    const currentExist = this.castToString(currentPage);
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -57,10 +70,10 @@ class Banner5 extends BaseBanner {
           <div className={this.decorateCSS("section")}>
             <div className={this.decorateCSS("link")}>
               <ComposerLink path={this.getPropValue("homePage")}>
-                <ComposerIcon name={this.getPropValue("homeIcon")} propsIcon={{ className: this.decorateCSS("homeIcon") }} />
+                <ComposerIcon name={this.getPropValue("homeIcon")} propsIcon={{ className: this.decorateCSS("pageIcon") }} />
               </ComposerLink>
               {titleExist && (
-                <span className={this.decorateCSS("home-title")}>{homeTitle}</span>
+                <span className={this.decorateCSS("page-title")}>{homeTitle}</span>
               )}
             </div>
             {icon && (
@@ -68,7 +81,14 @@ class Banner5 extends BaseBanner {
                 <ComposerIcon name={icon} propsIcon={{ className: this.decorateCSS("icon") }}/>
               </div>
             )}
-            <span className={this.decorateCSS("currentPage")}>{currentPage}</span>
+            <div className={this.decorateCSS("link")}>
+              <ComposerLink path={this.getPropValue("currentPage")}>
+                <ComposerIcon name={this.getPropValue("currentIcon")} propsIcon={{ className: this.decorateCSS("pageIcon") }} />
+              </ComposerLink>
+              {currentExist && (
+                <span className={this.decorateCSS("page-title")}>{currentPage}</span>
+              )}
+            </div>
           </div>
         </Base.MaxContent>
       </Base.Container>
