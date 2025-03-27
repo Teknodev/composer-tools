@@ -2,6 +2,7 @@
 
 .container {
     width: 100%;
+    padding: var(--composer-gap-lg) 0;
     .container-top {
         padding-top: 0 !important;
         padding-bottom: 0 !important;
@@ -11,7 +12,7 @@
                 flex-wrap: wrap;
                 .tab {
                     padding: var(--composer-gap-md) var(--composer-gap-lg);
-                    border: solid 1px rgba(var(--composer-font-color-primary-rgb), 0.5);
+                    border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
                     border-bottom: none !important;
                     .title {
                         font-size: 1rem;
@@ -21,7 +22,11 @@
         
                     &.active {
                         border: none !important;
-                        background-color: var(--composer-overlay-color);
+                        background-color: var(--composer-font-color-primary);
+
+                        .title {
+                            color: var(--composer-html-background) !important;
+                        }
                     }
                 }
             }
@@ -29,9 +34,9 @@
     }
     
     .container-bottom {
-        border-top: solid 1px rgba(var(--composer-font-color-primary-rgb), 0.5);
-        border-bottom: solid 1px rgba(var(--composer-font-color-primary-rgb), 0.5);
-        background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+        border-top: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
+        border-bottom: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
+        background-color: var(--composer-html-background);
 
         .max-content {
             .section {

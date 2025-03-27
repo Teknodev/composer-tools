@@ -9,15 +9,11 @@ type Tab = {
   weight: number,
   unit: string,
   dimensions: string,
-  colors: Color[],
-  materials: Material[],
+  properties: Properties[];
 }
 
-type Color = {
-  name: string,
-}
-
-type Material = {
+type Properties = {
+  type: "color" | "material",
   name: string,
 }
 
@@ -38,7 +34,7 @@ class ECommerce3 extends BaseECommerce {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Additional information",
+              value: "ADDITIONAL INFORMATION",
             },
             {
               type: "string",
@@ -69,70 +65,99 @@ class ECommerce3 extends BaseECommerce {
             },
             {
               type: "array",
-              key: "colors",
-              displayer: "Colors",
+              key: "properties",
+              displayer: "Properties",
               value: [
                 {
                   type: "object",
-                  key: "color",
-                  displayer: "Color",
+                  key: "property",
+                  displayer: "Property",
                   value: [
+                    {
+                      type: "select",
+                      key: "type",
+                      displayer: "Type",
+                      value: "color",
+                      additionalParams: {
+                        selectItems: ["color","material"],
+                      }
+                    },
                     {
                       type: "string",
                       key: "name",
                       displayer: "Name",
                       value: "Beige",
-                    },
+                    }
                   ]
                 },
                 {
-                    type: "object",
-                    key: "color",
-                    displayer: "Color",
-                    value: [
-                      {
-                        type: "string",
-                        key: "name",
-                        displayer: "Name",
-                        value: "Black",
-                      },
-                    ]
-                  }
-              ]
-            },
-            {
-              type: "array",
-              key: "materials",
-              displayer: "Materials",
-              value: [
+                  type: "object",
+                  key: "property",
+                  displayer: "Property",
+                  value: [
+                    {
+                      type: "select",
+                      key: "type",
+                      displayer: "Type",
+                      value: "color",
+                      additionalParams: {
+                        selectItems: ["color","material"],
+                      }
+                    },
+                    {
+                      type: "string",
+                      key: "name",
+                      displayer: "Name",
+                      value: "Black",
+                    }
+                  ]
+                },
                 {
                   type: "object",
-                  key: "material",
-                  displayer: "Materials",
+                  key: "property",
+                  displayer: "Property",
                   value: [
+                    {
+                      type: "select",
+                      key: "type",
+                      displayer: "Type",
+                      value: "material",
+                      additionalParams: {
+                        selectItems: ["color","material"],
+                      }
+                    },
                     {
                       type: "string",
                       key: "name",
                       displayer: "Name",
                       value: "Metal",
-                    },
+                    }
                   ]
                 },
                 {
                   type: "object",
-                  key: "material",
-                  displayer: "Material",
+                  key: "property",
+                  displayer: "Property",
                   value: [
+                    {
+                      type: "select",
+                      key: "type",
+                      displayer: "Type",
+                      value: "material",
+                      additionalParams: {
+                        selectItems: ["color","material"],
+                      }
+                    },
                     {
                       type: "string",
                       key: "name",
                       displayer: "Name",
                       value: "Wood",
-                    },
+                    }
                   ]
-                }
+                },
               ]
-            }
+            },
           ]
         },
         {
@@ -144,7 +169,7 @@ class ECommerce3 extends BaseECommerce {
                 type: "string",
                 key: "title",
                 displayer: "Title",
-                value: "Description",
+                value: "DESCRIPTION",
               },
               {
                 type: "string",
@@ -175,44 +200,33 @@ class ECommerce3 extends BaseECommerce {
               },
               {
                 type: "array",
-                key: "colors",
-                displayer: "Colors",
+                key: "properties",
+                displayer: "Properties",
                 value: [
                   {
                     type: "object",
-                    key: "color",
-                    displayer: "Color",
+                    key: "property",
+                    displayer: "Property",
                     value: [
+                      {
+                        type: "select",
+                        key: "type",
+                        displayer: "Type",
+                        value: "",
+                        additionalParams: {
+                          selectItems: ["color","material"],
+                        }
+                      },
                       {
                         type: "string",
                         key: "name",
                         displayer: "Name",
                         value: "",
-                      },
+                      }
                     ]
                   },
                 ]
               },
-              {
-                type: "array",
-                key: "materials",
-                displayer: "Materials",
-                value: [
-                  {
-                    type: "object",
-                    key: "material",
-                    displayer: "Materials",
-                    value: [
-                      {
-                        type: "string",
-                        key: "name",
-                        displayer: "Name",
-                        value: "",
-                      },
-                    ]
-                  },
-                ]
-              }
             ]
           }
       ]
@@ -261,26 +275,26 @@ class ECommerce3 extends BaseECommerce {
                           <div className={this.decorateCSS("left")}>
                             {item.weight && <span className={this.decorateCSS("item")}>Weight</span>}
                             {this.castToString(item.dimensions) && <span className={this.decorateCSS("item")}>Dimensions</span>}
-                            {item.colors.length > 0 && this.castToString(item.colors[0].name) ? <span className={this.decorateCSS("item")}>Color</span> : ""}
-                            {item.materials.length > 0 && this.castToString(item.materials[0].name) ? <span className={this.decorateCSS("item")}>Material</span> : ""}
+                            {item.properties.filter((_) => _.type === "color").length > 0 && this.castToString(item.properties.filter((_) => _.type === "color")[0].name) ? <span className={this.decorateCSS("item")}>Color</span> : ""}
+                            {item.properties.filter((_) => _.type === "material").length > 0 && this.castToString(item.properties.filter((_) => _.type === "material")[0].name) ? <span className={this.decorateCSS("item")}>Material</span> : ""}
                           </div>
                           <div className={this.decorateCSS("right")}>
                             {item.weight && <span className={this.decorateCSS("item")}>{item.weight + " " + item.unit}</span>}
                             {this.castToString(item.dimensions)  && <span className={this.decorateCSS("item")}>{item.dimensions}</span>}
-                            {item.colors.length > 0 && (
+                            {item.properties.filter((_) => _.type === "color").length > 0 && (
                               <div className={this.decorateCSS("box")}>
-                                {item.colors.map((value: Color, index: number) => {
-                                  const lenght = item.colors.length;
+                                {item.properties.filter((_) => _.type === "color").map((value: Properties, index: number) => {
+                                  const lenght = item.properties.filter((_) => _.type === "color").length
                                   return (
                                     <span className={this.decorateCSS("item")}>{value.name}{index+1 !== lenght && ", "}</span>
                                   )
                                 })}
                               </div>
                             )}
-                            {item.materials.length > 0 && (
+                            {item.properties.filter((_) => _.type === "material").length > 0 && (
                               <div className={this.decorateCSS("box")}>
-                                {item.materials.map((value: Material, index: number) => {
-                                  const lenght = item.materials.length;
+                                {item.properties.filter((_) => _.type === "material").map((value: Properties, index: number) => {
+                                  const lenght = item.properties.filter((_) => _.type === "material").length;
                                   return (
                                     <span className={this.decorateCSS("item")}>{value.name}{index+1 !== lenght && ", "}</span>
                                   )
