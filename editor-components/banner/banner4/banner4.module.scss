@@ -124,5 +124,9 @@
     .vector1, .vector2, .vector3 {
         display: none !important;
     }
+
+    .section {
+        min-height: unset !important;
+    }
 }
 
