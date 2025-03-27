@@ -63,13 +63,15 @@
                     }
 
                     &[data-animation~="animate1"] {
+                        .tab-text {
+                            transition: all 0.5s ease;
+                        }
+                        
                         &:hover {
                             .tab-text {
                                 color: var(--composer-font-color-secondary);
                                 font-weight: bold;
                                 transform: scale(1.1);
-                                transition: all 0.5s ease;
-
                             }
 
                             .square {
