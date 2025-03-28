@@ -1405,15 +1405,11 @@ class Navbar1 extends BaseNavigator {
                   type="dropdown"
                   title={language.label}
                   icon={language.icon}
-                  dropdownButtonClassName={`${this.decorateCSS("localization")}`}
-                  dropdownLabelClassName={`${this.decorateCSS(
-                    "localizationLabel"
-                  )}`}
-                  iconClassName={this.decorateCSS("languageIcon")}
+                  dropdownButtonClassName={this.decorateCSS("localization")}
+                  dropdownLabelClassName={`${this.decorateCSS("localizationLabel")}  ${animations}`}
+                  iconClassName={`${this.decorateCSS("languageIcon")} ${animations}`}
                   dropdownItemClassName={this.decorateCSS("localizationItem")}
-                  dropdownContentClassName={this.decorateCSS(
-                    "localizationContent"
-                  )}
+                  dropdownContentClassName={`${this.decorateCSS("localizationContent")} ${animations}`}
                   divider={language.showDivider}
                 />
               )}
@@ -1581,9 +1577,8 @@ class Navbar1 extends BaseNavigator {
                           type="accordion"
                           title={language.label}
                           headerClassName={`${this.decorateCSS("localization")}`}
-                          itemClassName={`${this.decorateCSS(
-                            "localizationItem"
-                          )}`}
+                          itemClassName={`${this.decorateCSS("localizationItem")} ${animations}`}
+                          titleClassName={`${this.decorateCSS("localizationTitle")} ${animations}`}
                         />
                       )}
                     </div>

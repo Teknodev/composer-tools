@@ -33,8 +33,17 @@
     .laneContact, .laneNews, .loacalizationContainer{
       flex:1;
     }
-    .localizationLabel, .languageIcon, .localizationItem, .localizationContent{
+    .languageIcon, .localizationItem{
       content: "";
+    }
+    .localizationLabel, .localizationContent{
+      font-weight: normal;
+      transition: all 0.3s ease;
+      &.animation1{
+        &:hover{
+          font-weight: bold;
+        }
+      }
     }
   }
   .lane > :first-child{
@@ -84,14 +93,28 @@
           padding: var(--composer-gap-sm) 0;
           .localizationItemTitle{
             color: var(--composer-font-color-primary);
-            font-weight: normal;
             margin: 0;
+            font-weight: normal;
+            transition: all 0.3s ease;
+            &.animation1{
+              &:hover{
+                font-weight: bold;
+              }
+            }
           }
           .accordionIcon{
             color: var(--composer-font-color-primary);
           }
-
          }
+         .localizationItem{
+          font-weight: normal;
+          transition: all 0.3s ease;
+          &.animation1{
+            &:hover{
+              font-weight: bold;
+            }
+          }
+        }
 
   }
 }

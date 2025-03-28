@@ -297,22 +297,26 @@
   .localizationContainer {
     position: absolute;
     right: 0;
-
-    .localizationDropdown {
-      color: var(--composer-font-color-primary);
-    }
-  }
-
-
-    .localization{
-      .localizationTitle{
-        font-weight: normal;
-        color: var(--composer-font-color-primary);
+    .localizationLabel, .localizationContent{
+      font-weight: normal;
+      transition: all 0.3s ease;
+      &.animation1{
+        &:hover{
+          font-weight: bold;          
+        }
       }
     }
- 
-
-
+  }
+  .localizationTitle, .localizationItem{
+    font-weight: normal;
+    color: var(--composer-font-color-primary);
+    transition: all 0.3s ease;
+    &.animation1{
+      &:hover{
+        font-weight: bold;
+      }
+    }
+  }
 
   .hamburgerNav {
     display: none;

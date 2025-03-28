@@ -201,6 +201,25 @@
           }
         }
       }
+      .localization{
+        transition: all 0.3s ease;
+        .localizationLabel{
+          font-weight: normal;
+          &.animation1{
+            &:hover{
+              font-weight: bold;
+            }
+          }
+        }
+        .localizationContent{
+          font-weight: normal;
+          &.animation1{
+            &:hover{
+              font-weight: bold;
+            }
+          }
+        }
+      }
     }
 
     .menuIcon,
@@ -365,16 +384,10 @@
       min-height: 20px;
     }
 
-    .languageDropdownLabel {
-      color: var(--composer-font-color-primary);
-      font-size: 1rem;
-    }
-
     .languageAccordion,
     .languageAccordionItem {
       color: var(--composer-font-color-primary);
       text-transform: uppercase;
-      font-weight: bold;
     }
 
     .languageAccordionTitle {
@@ -461,11 +474,23 @@
           }
           .languageAccordionTitle {
             font-size: 1.5rem;
-            font-weight: bold;
+            font-weight: normal;
+            transition: all 0.3s ease;
+            &.animation1{
+              &:hover{
+                font-weight:bold
+              }
+            }
           }
           .languageAccordionItem{
             font-size: 1rem;
-            font-weight: bold;
+            font-weight: normal;
+            transition: all 0.3s ease;
+            &.animation1{
+              &:hover{
+                font-weight:bold
+              }
+            }
           }
           .languageAccordionIcon {
             font-size: 1.5rem;
@@ -503,7 +528,6 @@
           }
           .languageAccordionTitle {
             font-size: 1rem;
-            font-weight: bold;
           }
         }
     

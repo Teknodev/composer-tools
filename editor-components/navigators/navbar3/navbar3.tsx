@@ -1264,17 +1264,11 @@ class Navbar3 extends BaseNavigator {
                     type="dropdown"
                     title={language.label}
                     icon={language.icon}
-                    dropdownButtonClassName={`${this.decorateCSS(
-                      "localization"
-                    )}`}
-                    dropdownLabelClassName={`${this.decorateCSS(
-                      "localizationLabel"
-                    )}`}
+                    dropdownButtonClassName={`${this.decorateCSS("localization")}`}
+                    dropdownLabelClassName={`${this.decorateCSS("localizationLabel")} ${animations}`}
                     iconClassName={this.decorateCSS("languageIcon")}
                     dropdownItemClassName={this.decorateCSS("localizationItem")}
-                    dropdownContentClassName={this.decorateCSS(
-                      "localizationContent"
-                    )}
+                    dropdownContentClassName={`${this.decorateCSS("localizationContent")} ${animations}`}
                     divider={language.showDivider}
                   />
                 </div>
@@ -1682,15 +1676,9 @@ class Navbar3 extends BaseNavigator {
                           <ComposerLanguage
                             type="accordion"
                             title={language.label}
-                            headerClassName={`${this.decorateCSS(
-                              "localization"
-                            )}`}
-                            itemClassName={`${this.decorateCSS(
-                              "localizationItem"
-                            )}`}
-                            titleClassName={  
-                              this.decorateCSS("localizationItemTitle")
-                            }
+                            headerClassName={`${this.decorateCSS("localization")}`}
+                            itemClassName={`${this.decorateCSS("localizationItem")} ${animations}`}
+                            titleClassName={`${this.decorateCSS("localizationItemTitle")} ${animations}`}
                             accordionIconClassName={this.decorateCSS("accordionIcon")}
                           />
                         )}
