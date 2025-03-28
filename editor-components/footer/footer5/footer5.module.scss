@@ -7,6 +7,7 @@
   gap: var(--composer-gap-md);
 
   .first-container {
+    padding: var(--composer-gap-md) var(--composer-gap-xl);
     .first-max-content {
       .header {
         display: flex;
@@ -16,6 +17,12 @@
         gap: var(--composer-gap-md);
 
         .left {
+          .title{
+            content: "";
+          }
+          .subtitle{
+            content: "";
+          }
           &.left-full {
             width: 100%;
           }
@@ -53,6 +60,7 @@
   }
 
   .second-container {
+    padding: var(--composer-gap-md) var(--composer-gap-xl);
     .second-max-content {
       .bottom {
         display: flex;
@@ -76,6 +84,28 @@
         .footer-text {
           justify-content: flex-end;
         }
+
+        .links {
+          .link-element {
+            .link-text {
+              transition: all 0.3s ease;
+              
+              &[data-animation~="animate1"]:hover {
+                color: var(--composer-primary-color);
+              }
+
+              &[data-animation~="animate2"]:hover {
+                transform: translateY(-3px);
+                color: var(--composer-primary-color);
+              }
+
+              &[data-animation~="animate3"]:hover {
+                transform: scale(1.1);
+                color: var(--composer-primary-color);
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -84,6 +114,7 @@
 @container (max-width: #{$composer-tablet-width-lg}) {
   .container {
     .first-container {
+      padding: var(--composer-gap-sm) var(--composer-gap-lg);
       .first-max-content {
         .header {
           .left {
@@ -106,6 +137,7 @@
     }
 
     .second-container {
+      padding: var(--composer-gap-sm) var(--composer-gap-lg);
       .second-max-content {
         .bottom {
           display: flex;
@@ -150,6 +182,7 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .first-container {
+      padding: var(--composer-gap-md);
       .first-max-content {
         .header {
           flex-direction: column;
@@ -167,6 +200,7 @@
     }
 
     .second-container {
+      padding: var(--composer-gap-md);
       .second-max-content {
         .bottom {
 
