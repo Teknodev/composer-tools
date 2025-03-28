@@ -1052,6 +1052,15 @@ class Navbar9 extends BaseNavigator {
       displayer: "Close Icon",
       value: "IoMdClose",
     });
+    this.addProp({
+      type:"multiSelect",
+      key: "animations",
+      displayer: "Animations",
+      value: ["animation1","animation2", "animation3"],
+      additionalParams:{
+        selectItems:["animation1", "animation2", "animation3"]
+      }
+    });
 
     this.setComponentState("isScrolled", false);
     this.setComponentState("hamburgerNavActive", false);
@@ -1126,7 +1135,9 @@ class Navbar9 extends BaseNavigator {
     const language = this.castToObject<Language>("language");
     const icons = this.castToObject<Icons[]>("icons");
 
-    const isVisible= !isBigScreen && hamburgerNavActive
+    const isVisible= !isBigScreen && hamburgerNavActive;
+
+    const animations = this.getPropValue("animations") && this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ")
 
     return (
       <>
@@ -1179,10 +1190,7 @@ class Navbar9 extends BaseNavigator {
               {menuItems.length > 0 && (
                 <nav className={this.decorateCSS("pcNavbar")}>
                   {menuItems.map((item: any, index: any) => (
-                    <div
-                      key={index}
-                      className={this.decorateCSS("menuItemContainer")}
-                    >
+                    <div key={index} className={`${this.decorateCSS("menuItemContainer")} ${animations}`}>
                       <ComposerLink path={item.navigate_to}>
                         <div className={this.decorateCSS("menuItem")}>
                           <span
@@ -1208,12 +1216,10 @@ class Navbar9 extends BaseNavigator {
                             (subItem: any, subIndex: number) => (
                               <div
                                 key={subIndex}
-                                className={this.decorateCSS(
-                                  "dropdownItemContainer"
-                                )}
+                                className={`${this.decorateCSS("dropdownItemContainer")} ${animations}`}
                               >
                                 <div
-                                  className={this.decorateCSS("dropdownItem")}
+                                  className={`${this.decorateCSS("dropdownItem")} ${animations}`}
                                 >
                                   <ComposerLink path={subItem.navigate_to}>
                                     <div
@@ -1259,9 +1265,7 @@ class Navbar9 extends BaseNavigator {
                                         ) => (
                                           <div
                                             key={subSubIndex}
-                                            className={this.decorateCSS(
-                                              "subdropdownItem"
-                                            )}
+                                            className={`${this.decorateCSS("subdropdownItem")} ${animations}`}
                                           >
                                             <ComposerLink
                                               path={subSubItem.navigate_to}
@@ -1293,7 +1297,7 @@ class Navbar9 extends BaseNavigator {
                 <div className={this.decorateCSS("icons")}>
                   {icons.map((icon: Icons, index: number) => (
                     <ComposerLink key={index} path={icon.page}>
-                      <div className={this.decorateCSS("icon-container")}  onClick={()=> this.handleCloseMenu()}>
+                      <div className={`${this.decorateCSS("icon-container")} ${animations}`}  onClick={()=> this.handleCloseMenu()}>
                         <ComposerIcon
                           name={icon.icon}
                           propsIcon={{ className: this.decorateCSS("icon") }}
@@ -1505,7 +1509,7 @@ class Navbar9 extends BaseNavigator {
                   <div className={this.decorateCSS("icons")}>
                     {icons.map((icon: Icons, index: number) => (
                       <ComposerLink key={index} path={icon.page}>
-                        <div className={this.decorateCSS("icon-container")} onClick={()=> this.handleCloseMenu()}>
+                        <div className={`${this.decorateCSS("icon-container")} ${animations}`} onClick={()=> this.handleCloseMenu()}>
                           <ComposerIcon name={icon.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
                         </div>
                       </ComposerLink>

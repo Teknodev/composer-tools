@@ -145,9 +145,10 @@
           animation: fadeIn 1.5s ease forwards;
           transition: color 0.3s;
           cursor: pointer;
-
-          &:hover {
-            color: var(--composer-tertiary-color);
+          &.animation1{
+            &:hover {
+              color: var(--composer-tertiary-color);
+            }
           }
         }
       }

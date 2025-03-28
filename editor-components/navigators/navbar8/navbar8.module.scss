@@ -81,8 +81,6 @@
         content: "";
       }
     }
-
-   
   }
 
   .icons {
@@ -196,6 +194,13 @@
         font-size: 2rem;
         text-align: center;
         color: var(--composer-font-color-primary);
+        font-weight: normal;
+        transition: all 0.3s ease;
+        &.animation1{
+          &:hover{
+            font-weight: bold;
+          }
+        }
       }
 
       .socialMediaLinks {
@@ -216,9 +221,17 @@
           justify-content: center;
           gap: var(--composer-gap-xs);
           .socialMediaIconContainer{
+            transition: all 0.3s ease;
             .socialMediaIcon {
               font-size: 2rem;
               color: var(--composer-font-color-primary);
+            }
+            &.animation2{
+              &:hover{
+                .socialMediaIcon{
+                  color: var(--composer-primary-color);
+                }
+              }
             }
           }
         }

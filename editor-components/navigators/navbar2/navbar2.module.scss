@@ -42,9 +42,14 @@
 
         .menuItemTitle {
           font-size: 1rem;
-          font-weight: 500;
+          font-weight: normal;
           transition: all 0.3s ease;
           color: var(--composer-font-color-primary);
+          &.animation1{
+            &:hover{
+              font-weight: bold;
+            }
+          }
         }
 
         .dropdownIcon {
@@ -97,13 +102,17 @@
 
                 .dropdownItemTitle {
                   font-size: 1rem;
-                  font-weight: 400;
+                  font-weight: normal;
                   color: var(--composer-font-color-primary);
                   transition: color 0.3s ease;
+                  &.animation1{
+                    &:hover{
+                      font-weight: bold;
+                    }
+                  }
                 }
               }
             }
-
             &::after {
               content: "";
               position: absolute;
@@ -113,12 +122,20 @@
               background-color: var(--composer-primary-color);
               transition: width 0.3s ease;
             }
-
-            &:hover {
-              &::after {
-                width: calc(100% - (var(--composer-gap-md) * 2));
+            &.animation2{
+              &:hover{
+                &::after {
+                  width: calc(100% - (var(--composer-gap-md) * 2));
+                }
+  
+                .subdropdown {
+                  opacity: 1;
+                  visibility: visible;
+                  transform: translateX(0);
+                }
               }
-
+            }
+            &:hover{
               .subdropdown {
                 opacity: 1;
                 visibility: visible;
@@ -153,7 +170,16 @@
                 border-radius: var(--composer-border-radius-sm);
                 position: relative;
                 color: var(--composer-font-color-primary);
-
+                .dropdownItemTitle{
+                  color: var(--composer-font-color-primary);
+                  font-weight: normal;
+                  transition: all 0.3s ease;
+                  &.animation1{
+                    &:hover{
+                      font-weight: bold;
+                    }
+                  }
+                }
                 &::after {
                   content: "";
                   position: absolute;
@@ -163,10 +189,11 @@
                   background-color: var(--composer-primary-color);
                   transition: width 0.3s ease;
                 }
-
-                &:hover {
-                  &::after {
-                    width: calc(100% - (var(--composer-gap-md) * 2));
+                &.animation2{
+                  &:hover {
+                    &::after {
+                      width: calc(100% - (var(--composer-gap-md) * 2));
+                    }
                   }
                 }
               }
@@ -241,7 +268,13 @@
               .hamburgerMenuItemTitle {
                 color: var(--composer-font-color-primary);
                 font-size: 1.5rem;
-                font-weight: bold;
+                font-weight: normal;
+                transition: all 0.8s ease;
+                &.animation1{
+                  &:hover{
+                    font-weight: bold;
+                  }
+                }
               }
 
               .dropdownIcon {
@@ -276,7 +309,13 @@
                   .hamburgerMenuItemTitle {
                     color: var(--composer-font-color-primary);
                     font-size: 1rem;
-                    font-weight: 400;
+                    font-weight: normal;
+                    transition: all 0.8s ease;
+                    &.animation1{
+                      &:hover{
+                        font-weight: bold;
+                      }
+                    }
                   }
 
                   .dropdownIcon {
@@ -305,7 +344,12 @@
                     .hamburgerSubSubmenuItemTitle {
                       color: var(--composer-font-color-primary);
                       font-size: 1rem;
-                      font-weight: 400;
+                      font-weight: normal;
+                      &.animation1{
+                        &:hover{
+                          font-weight: bold;
+                        }
+                      }
                     }
                   }
                 }

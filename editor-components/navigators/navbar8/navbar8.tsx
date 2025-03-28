@@ -317,6 +317,15 @@ class Navbar8 extends BaseNavigator {
       ],
     });
 
+    this.addProp({
+      type:"multiSelect",
+      key: "animations",
+      displayer: "Animations",
+      value: ["animation1","animation2"],
+      additionalParams:{
+        selectItems:["animation1", "animation2"]
+      }
+    });
     this.setComponentState("isScrolled", false);
 
     this.setComponentState("isMenuOpen", false);
@@ -395,6 +404,8 @@ class Navbar8 extends BaseNavigator {
 
     const socialMediaLinksCondition =
       socialMediaLinks.length > 0 || dropdownSocialMediaTitle;
+
+    const animations = this.getPropValue("animations") && this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ")
 
     return (
       <Base.Navigator.Container screenSize={1960} position={position} positionContainer={`${this.decorateCSS("container")} ${backgroundChange ? this.decorateCSS("openedContainer") : ""}`} 
@@ -502,12 +513,12 @@ class Navbar8 extends BaseNavigator {
                   {itemList.map((item: MenuItems, index: number) =>  {
                     return this.castToString(item.title) && ( 
                       <div
-                          className={this.decorateCSS("dropdownItem")}
+                          className={`${this.decorateCSS("dropdownItem")}`}
                           key={index}
                           onClick={() => this.setComponentState("isMenuOpen", false)}
                         >
                       <ComposerLink path={item.url}>
-                            <p className={this.decorateCSS("dropdownItem")} 
+                            <p className={`${this.decorateCSS("dropdownItem")} ${animations}`} 
                             onClick={()=> this.handleCloseMenu()}
                             >
                               {item.title}
@@ -530,7 +541,7 @@ class Navbar8 extends BaseNavigator {
                             onClick={() => this.setComponentState("isMenuOpen", false)}
                           >
                             <ComposerLink path={item.url}>
-                              <div className={this.decorateCSS("socialMediaIconContainer")} onClick={()=> this.handleCloseMenu()}>
+                              <div className={`${this.decorateCSS("socialMediaIconContainer")} ${animations}`} onClick={()=> this.handleCloseMenu()}>
                               <ComposerIcon
                                 name={item.icon}
                                 propsIcon={{

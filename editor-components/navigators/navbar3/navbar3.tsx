@@ -1144,6 +1144,15 @@ class Navbar3 extends BaseNavigator {
       displayer: "Close Icon",
       value: "RxCross2",
     });
+    this.addProp({
+      type:"multiSelect",
+      key: "animations",
+      displayer: "Animations",
+      value: ["animation1","animation2"],
+      additionalParams:{
+        selectItems:["animation1", "animation2"]
+      }
+    });
 
     this.setComponentState("isScrolled", false);
     this.setComponentState("hamburgerNavActive", false);
@@ -1231,7 +1240,10 @@ class Navbar3 extends BaseNavigator {
       language.showLanguage;
 
     const isBigScreen = this.getComponentState("isBigScreen");
-    const isVisible = (!isBigScreen && hamburgerNavActive)
+    const isVisible = (!isBigScreen && hamburgerNavActive);
+
+    const animations = this.getPropValue("animations") && this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ")
+
     return (
       <>
         {laneContainer && (
@@ -1311,7 +1323,7 @@ class Navbar3 extends BaseNavigator {
                       >
                         <ComposerLink path={item.navigate_to}>
                           <div className={this.decorateCSS("menuItem")}>
-                            <span className={this.decorateCSS("menuItemTitle")}>
+                            <span className={`${this.decorateCSS("menuItemTitle")} ${animations}`}>
                               {item.title}
                             </span>
                             {item.menuType === "Dropdown" && (
@@ -1332,9 +1344,7 @@ class Navbar3 extends BaseNavigator {
                                   this.castToString(subItem.title) && (
                                     <div
                                       key={subIndex}
-                                      className={this.decorateCSS(
-                                        "dropdownItemContainer"
-                                      )}
+                                      className={`${this.decorateCSS("dropdownItemContainer")} ${animations}`}
                                     >
                                       <div
                                         className={this.decorateCSS(
@@ -1349,11 +1359,7 @@ class Navbar3 extends BaseNavigator {
                                               "dropdownItemContent"
                                             )}
                                           >
-                                            <span
-                                              className={this.decorateCSS(
-                                                "dropdownItemTitle"
-                                              )}
-                                            >
+                                            <span className={`${this.decorateCSS("dropdownItemTitle")} ${animations}`}>
                                               {subItem.title}
                                             </span>
                                           </div>
@@ -1390,12 +1396,7 @@ class Navbar3 extends BaseNavigator {
                                                 this.castToString(
                                                   subSubItem.title
                                                 ) && (
-                                                  <div
-                                                    key={subSubIndex}
-                                                    className={this.decorateCSS(
-                                                      "subdropdownItem"
-                                                    )}
-                                                  >
+                                                  <div key={subSubIndex} className={`${this.decorateCSS("subdropdownItem")} ${animations}`}>
                                                     <ComposerLink
                                                       path={
                                                         subSubItem.navigate_to
