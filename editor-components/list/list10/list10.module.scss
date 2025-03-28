@@ -53,7 +53,6 @@
         border-radius: var(--composer-border-radius-md);
         background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
 
-        // Varsayılan hover (hiçbir animate seçili değilken) - sadece renk değişimi
         &[data-animation=""]:hover {
           .description,
           .badge,
@@ -66,7 +65,6 @@
           }
         }
 
-        // Animate1 (tüm efektlerle)
         &[data-animation~="animate1"] {
           &:hover {
             .description,
