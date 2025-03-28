@@ -12,6 +12,7 @@
         justify-content: center;
         flex-direction: column;
         gap: var(--composer-gap-sm);
+        padding-bottom: var(--composer-gap-lg);
 
         .section-subtitle {
           margin-top: 0;
@@ -81,10 +82,7 @@
         .overlay-content {
           width: 100%;
           height: 100%;
-          display: flex;
-          flex-direction: column;
           justify-content: center;
-          align-items: center;
           padding: var(--composer-gap-md);
           color: var(--composer-font-color-secondary);
           gap: var(--composer-gap-sm);
@@ -94,7 +92,7 @@
           }
 
           .long-text {
-            font-size: 1rem;
+            font-size: 1.5rem;
             color: var(--composer-font-color-primary);
 
             &.image-or-overlay-exist {
@@ -115,15 +113,11 @@
         }
 
         .vertical {
-          display: flex;
-          justify-content: center;
-          align-items: center;
           min-height: 250px;
           height: 100%;
           padding: var(--composer-gap-lg) var(--composer-gap-xl);
           transition: opacity 0.6s ease;
           gap: var(--composer-gap-sm);
-          flex-direction: column;
 
           .icon-container {
             background-color: var(--composer-primary-color);
@@ -159,7 +153,7 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width}) {
+@container (max-width: #{$composer-tablet-width-lg}) {
   .container {
     .max-content {
       .content {
@@ -168,7 +162,7 @@
         .card-item-count {
           .vertical {
             padding: var(--composer-gap-md);
-            align-items: center;
+            justify-content: center;
 
             .title {
               font-size: 1rem;
