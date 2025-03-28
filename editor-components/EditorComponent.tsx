@@ -44,6 +44,7 @@ export interface iComponent {
   getInstanceName(): string;
   getName(): string;
   getProps(): TypeUsableComponentProps[];
+  getShadowProps(): TypeUsableComponentProps[];
   getPropValue(
     propName: string,
     properties?: GetPropValueProperties
