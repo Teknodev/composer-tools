@@ -518,10 +518,10 @@ class Navbar5 extends BaseNavigator {
                   title={language.label}
                   icon={language.icon}
                   dropdownButtonClassName={`${this.decorateCSS("localization")}`}
-                  dropdownLabelClassName={`${this.decorateCSS("localizationLabel")}`}
+                  dropdownLabelClassName={`${this.decorateCSS("localizationLabel")} ${animations}`}
                   iconClassName={this.decorateCSS("languageIcon")}
                   dropdownItemClassName={this.decorateCSS("localizationItem")}
-                  dropdownContentClassName={this.decorateCSS("localizationContent")}
+                  dropdownContentClassName={`${this.decorateCSS("localizationContent")} ${animations}`}
                   divider={language.showDivider}
                 />
               )}

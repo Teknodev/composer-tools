@@ -243,13 +243,32 @@
     .localization, .localizationItem, .localizationContent{
       content: "";
     }
-
-    .localizationLabel {
-      color: var(--composer-font-color-primary);
-      gap: var(--composer-gap-xs);
-      font-weight: bold;
+    .localization{
+      .localizationLabel {
+        color: var(--composer-font-color-primary);
+        gap: var(--composer-gap-xs);
+        font-weight: normal;
+        transition: all 0.3s ease;
+        &.animation1{
+          &:hover{
+            font-weight: bold;
+          }
+        }
+      }
+      .localizationContent{
+        .localizationItem{
+          font-weight: normal;
+          transition: all 0.3s ease;
+        }
+        &.animation1{
+          &:hover{
+            .localizationItem{
+              font-weight: bold;
+            }
+          }
+        }
+      }
     }
-
   }
 
   .pcNavbarContainer > :first-child {
@@ -399,16 +418,22 @@
         }
       }
     }
-
-
- 
-
+    .accordion{
+      gap: var(--composer-gap-md);
+    }
   .languageAccordion {
     color: var(--composer-font-color-primary);
 
-    languageAccordionTitle {
+    .languageAccordionTitle {
       margin: 0;
       font-size: 1rem;
+      font-weight: normal;
+      transition: all 0.3s ease;
+      &.animation1{
+        &:hover{
+          font-weight: bold;
+        }
+      }
     }
   }
   .languageAccordionItem {

@@ -101,9 +101,28 @@
 
     .localizationLabel{
       color: white;
-
+      font-weight: normal;
+      transition: all 0.3s ease;
+      &.animation1{
+        &:hover{
+          font-weight: bold;
+        }
+      }
       &.openedLabel{
         content: "";
+      }
+    }
+    .localizationContent{
+      .localizationItem{
+        font-weight: normal;
+        transition: all 0.3s ease;
+      }
+      &.animation1{
+        &:hover{
+          .localizationItem{
+            font-weight: bold;
+          }
+        }
       }
     }
 

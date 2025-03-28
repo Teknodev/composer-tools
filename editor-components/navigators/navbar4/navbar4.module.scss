@@ -297,12 +297,25 @@
   .localizationContainer {
     position: absolute;
     right: 0;
-    .localizationLabel, .localizationContent{
+    .localizationLabel{
       font-weight: normal;
       transition: all 0.3s ease;
       &.animation1{
         &:hover{
           font-weight: bold;          
+        }
+      }
+    }
+    .localizationContent{
+      .localizationItem{
+        font-weight: normal;
+        transition: all 0.3s ease;
+      }
+      &.animation1{
+        &:hover{
+          .localizationItem{
+            font-weight: bold; 
+          }         
         }
       }
     }

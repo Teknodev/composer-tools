@@ -1311,19 +1311,11 @@ class Navbar6 extends BaseNavigator {
                       type="dropdown"
                       title={language.label}
                       icon={language.icon}
-                      dropdownButtonClassName={`${this.decorateCSS(
-                        "localization"
-                      )}`}
-                      dropdownLabelClassName={`${this.decorateCSS(
-                        "localizationLabel"
-                      )}`}
+                      dropdownButtonClassName={`${this.decorateCSS("localization")}`}
+                      dropdownLabelClassName={`${this.decorateCSS("localizationLabel")} ${animations}`}
                       iconClassName={this.decorateCSS("languageIcon")}
-                      dropdownItemClassName={this.decorateCSS(
-                        "localizationItem"
-                      )}
-                      dropdownContentClassName={this.decorateCSS(
-                        "localizationContent"
-                      )}
+                      dropdownItemClassName={this.decorateCSS("localizationItem")}
+                      dropdownContentClassName={`${this.decorateCSS("localizationContent")} ${animations}`}
                       divider={language.showDivider}
                     />
                   )}
@@ -1500,7 +1492,7 @@ class Navbar6 extends BaseNavigator {
                     title="name"
                     headerClassName={this.decorateCSS("languageAccordion")}
                     itemClassName={this.decorateCSS("languageAccordionItem")}
-                    titleClassName={this.decorateCSS("languageAccordionTitle")}
+                    titleClassName={`${this.decorateCSS("languageAccordionTitle")} ${animations}`}
                   />
                 </nav>
 

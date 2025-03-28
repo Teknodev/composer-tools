@@ -25,7 +25,28 @@
       .icons {
         flex: 1 1;
       }
-
+      .localizationLabel{
+        font-weight: normal;
+        transition: all 0.3s ease;
+        &.animation1{
+          &:hover{
+            font-weight: bold;
+          }
+        }
+      }
+      .localizationContent{
+        .localizationItem{
+          font-weight: normal;
+          transition: all 0.3s ease;
+        }
+        &.animation1{
+          &:hover{
+            .localizationItem{
+              font-weight: bold;
+            }
+          }
+        }
+      }
       .localization, .localizationItem{
         content: "";
       }
