@@ -76,8 +76,6 @@ type AvailablePropTypes =
   | { type: "phone"; value: string }
   | { type: "dateTime"; value: string ; additionalParams? : {mode?:string, timeInterval?:number, yearRange? : number, yearStart?: number}}
   | { type: "multiSelect"; value: string[] }
-  | { type: "email"; value: string }
-  | { type: "tag"; value: string[] }
   | { type: "file"; value: string }
 
 export type TypeReactComponent = {
