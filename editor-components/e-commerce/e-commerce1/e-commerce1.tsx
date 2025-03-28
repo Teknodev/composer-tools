@@ -275,7 +275,7 @@ class ECommerce1 extends BaseECommerce {
     const moveLeft = () => {
       let index = this.getComponentState("activeImage");
       if (index === 0) {
-        this.setComponentState("activeImage", images.length + 1);
+        this.setComponentState("activeImage", images.length-1);
       }
       else {
         this.setComponentState("activeImage", index-1);
@@ -286,11 +286,9 @@ class ECommerce1 extends BaseECommerce {
       let index = this.getComponentState("activeImage");
       if (index+1 === images.length) {
         this.setComponentState("activeImage", 0);
-        console.log("0");
       }
       else {
         this.setComponentState("activeImage", index+1);
-        console.log(index+1);
       }
     }
 
@@ -364,12 +362,12 @@ class ECommerce1 extends BaseECommerce {
                     <input type= "string" value={count} className={this.decorateCSS("input")} /> 
                     <ComposerIcon name={rightIcon} propsIcon={{className: this.decorateCSS("right-icon"), onClick: handleRightClick}}/>
                   </div>
-                  <Base.Button buttonType="Black">ADD TO CART</Base.Button>
+                  <Base.Button className={this.decorateCSS("button")}  buttonType="Black">ADD TO CART</Base.Button>
                 </div>
                 <ComposerLink path={cart}>
                   <div className={this.decorateCSS("wishlist")}>
                     <ComposerIcon name={heartIcon} propsIcon={{className: this.decorateCSS("heart-icon")}}/>
-                    <span className={this.decorateCSS("cart-title")}>BROWSE WISHLIST</span>
+                    <span className={this.decorateCSS("cart-title")}>ADD TO WISHLIST</span>
                   </div>
                 </ComposerLink>
                 <div className={this.decorateCSS("bottom")}>
@@ -383,7 +381,7 @@ class ECommerce1 extends BaseECommerce {
                     <span className={this.decorateCSS("categoryLabel")}>Categories:</span>
                     {categories.map((item: Category, index: number) => {
                       return (
-                        <Base.P className={this.decorateCSS("category")}>{item.category}</Base.P>
+                        <span className={this.decorateCSS("category")}>{item.category}</span>
                       )
                     })}
                   </div>
@@ -391,7 +389,7 @@ class ECommerce1 extends BaseECommerce {
                     <span className={this.decorateCSS("tagLabel")}>Tags:</span>
                     {tags.map((item: Tag, index: number) => {
                       return (
-                        <Base.P className={this.decorateCSS("tag")}>{item.tag}</Base.P>
+                        <span className={this.decorateCSS("tag")}>{item.tag}</span>
                       )
                     })}
                   </div>
