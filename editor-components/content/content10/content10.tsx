@@ -87,6 +87,16 @@ class Content10 extends BaseContent {
       ],
     });
 
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2"]
+      }
+    });
+
     this.setComponentState("is_video_visible", false);
   }
 
@@ -120,7 +130,10 @@ class Content10 extends BaseContent {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ContainerGrid className={this.decorateCSS("content")}>
             {videoImage && (
-              <div className={this.decorateCSS("video-part")}>
+              <div 
+                className={this.decorateCSS("video-part")}
+                data-animation={this.getPropValue("hoverAnimation").join(" ")}
+              >
                 <img
                   alt="video image"
                   src={videoImage}

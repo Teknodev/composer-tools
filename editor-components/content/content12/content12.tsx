@@ -30,6 +30,16 @@ class Content12 extends BaseContent {
       value: "RxCross2",
     });
 
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2"]
+      }
+    });
+
     this.setComponentState("is_video_visible", false);
   }
 
@@ -47,6 +57,7 @@ class Content12 extends BaseContent {
         style={{
           backgroundImage: `url(${this.getPropValue("cover-image")})`,
         }}
+        data-animation={this.getPropValue("hoverAnimation").join(" ")}
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div

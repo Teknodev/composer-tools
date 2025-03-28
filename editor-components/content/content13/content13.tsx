@@ -76,6 +76,16 @@ class Content13 extends BaseContent {
       value:
         "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a39f1b2f8a5b002ce6b716?alt=media",
     });
+
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2"]
+      }
+    });
   }
 
   static getName(): string {
@@ -169,7 +179,10 @@ class Content13 extends BaseContent {
 
           {showDiv && (
             <div className={`${this.decorateCSS("right-page")} ${!showLeftDiv ? this.decorateCSS("no-content") : ""}`}>
-              <div className={this.decorateCSS("image-container")}>
+              <div 
+                className={this.decorateCSS("image-container")}
+                data-animation={this.getPropValue("hoverAnimation").join(" ")}
+              >
                 <div className={this.decorateCSS("image-text")}>
                   {isRightWeakTextExist && (
                     <Base.P className={this.decorateCSS("weak-text")}>
