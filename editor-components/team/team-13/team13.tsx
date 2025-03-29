@@ -165,6 +165,15 @@ class Team13 extends Team {
         },
       ],
     });
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1"]
+      }
+    });
   }
 
   static getName(): string {
@@ -225,7 +234,11 @@ class Team13 extends Team {
               const jobExist = this.castToString(card.job);
               return (
                 <Base.VerticalContent className={this.decorateCSS("team-card")}>
-                  {card.image && <img className={this.decorateCSS("image")} src={card.image} />}
+                  {card.image && (
+                    <div className={this.decorateCSS("img-wrapper")}>
+                      <img className={this.decorateCSS("image")} src={card.image} data-animation={this.getPropValue("hoverAnimation").join(" ")} />
+                    </div>
+                  )}
                   {nameExist && <Base.H4 className={this.decorateCSS("name")}>{card.name}</Base.H4>}
                   {jobExist && <Base.H5 className={this.decorateCSS("job")}>{card.job}</Base.H5>}
                 </Base.VerticalContent>

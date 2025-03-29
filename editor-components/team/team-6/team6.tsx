@@ -493,6 +493,15 @@ class Team6 extends Team {
       value: 4,
       max: 5,
     });
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1"]
+      }
+    });
     this.setComponentState("activeIndex", null);
   }
 
@@ -544,7 +553,9 @@ class Team6 extends Team {
                                 ) : (
                                   <ComposerIcon name={this.getPropValue("openingIcon")} propsIcon={{ className: this.decorateCSS("image-icon") }} />
                                 ))}
-                              <img className={`${this.decorateCSS("image")} ${this.getComponentState("activeIndex") === indexItems && card.features.length > 0 ? this.decorateCSS("shrink") : ""}`} src={card.image} alt={this.castToString(card.name)} />
+                              <div className={this.decorateCSS("image-container")}>
+                                <img className={`${this.decorateCSS("image")} ${this.getComponentState("activeIndex") === indexItems && card.features.length > 0 ? this.decorateCSS("shrink") : ""}`} src={card.image} alt={this.castToString(card.name)} data-animation={this.getPropValue("hoverAnimation").join(" ")} />
+                              </div>
                               <Base.VerticalContent className={this.decorateCSS("overlay-bar")}>
                                 {cardNameExist && <Base.H2 className={this.decorateCSS("card-name")}>{card.name}</Base.H2>}
                                 {cardPositionExist && <Base.H4 className={this.decorateCSS("position")}>{card.position}</Base.H4>}
