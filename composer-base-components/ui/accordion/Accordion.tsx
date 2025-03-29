@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react'
 import styles from "./Accordion.module.scss";
 import { ComposerIcon } from 'composer-tools/composer-base-components/icon/icon';
@@ -28,15 +29,17 @@ const Accordion = ({
     const handleToggle = () => {
         setIsOpen(!isOpen);
     }
-
+    const handleClose = () => {
+        setIsOpen(false);
+    };
     return (
         <div className={styles["accordion"]}>
             <div className={`${styles["accordionHeader"]} ${headerClassName || ''}`} onClick={handleToggle}>
                 <h3 className={`${styles["accordionTitle"]} ${titleClassName || ''}`}>{title}</h3>
                 {icon && <ComposerIcon name={icon} propsIcon={{className: `${styles["accordionIcon"]} ${isOpen ? styles["open"] : ''} ${accordionIconClassName || ''}`}}/>}
             </div>
-            <div className={`${styles["accordionContent"]} ${isOpen ? styles[openClassName] : ''} ${contentClassName || ''}`}>
-                    {children}
+            <div className={`${styles["accordionContent"]} ${isOpen ? styles[openClassName] : ''} ${contentClassName || ''}`} onClick={handleClose}>
+                {children}
             </div>
         </div>
     )

@@ -257,6 +257,16 @@ class Content4 extends BaseContent {
         ),
       ],
     });
+
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1"]
+      }
+    });
     this.setActiveTab(0);
   }
 
@@ -291,6 +301,7 @@ class Content4 extends BaseContent {
                         }`
                       }
                       onClick={() => this.setActiveTab(index)}
+                      data-animation={this.getPropValue("hoverAnimation").join(" ")}
                     >
                       {isTabTextVisible && (
                         <div className={this.decorateCSS("tabText")}>
@@ -348,6 +359,7 @@ class Content4 extends BaseContent {
                         <img
                           className={this.decorateCSS("image")}
                           src={tab.image_container.image}
+                          data-animation={this.getPropValue("hoverAnimation").join(" ")}
                         />
                         {isBoxContainerVisible && (
                           <div className={this.decorateCSS("box-container")}>
@@ -362,8 +374,11 @@ class Content4 extends BaseContent {
                               </div>
                             )}
                             {isBox2Visible && (
-                              <ComposerLink page={tab.image_container.link}>
-                                <div className={this.decorateCSS("box2")}>
+                              <ComposerLink path={tab.image_container.link}>
+                                <div 
+                                  className={this.decorateCSS("box2")}
+                                  data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                                >
                                   <div
                                     className={this.decorateCSS("box2-text")}
                                   >

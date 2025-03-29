@@ -257,6 +257,16 @@ class Content5 extends BaseContent {
       ],
     });
     this.setActiveTab(0);
+
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1"]
+      }
+    });
   }
 
   setActiveTab(activeTabIndex: number) {
@@ -284,16 +294,19 @@ class Content5 extends BaseContent {
                         : ""
                       }`
                     }
+                    data-animation={this.getPropValue("hoverAnimation").join(" ")}
                     onClick={() => this.setActiveTab(index)}
                   >
                     <ComposerIcon
                       name={tab.icon}
                       propsIcon={{
-                        className: this.decorateCSS("icon"),
+                        className: this.decorateCSS("tab-icon"),
                       }}
                     />
                     <div className={this.decorateCSS("square")}></div>
-                    {tab.tabText}
+                    <div className={this.decorateCSS("tab-text")}>
+                      {tab.tabText}
+                    </div>
                   </div>
                 )
               )}
