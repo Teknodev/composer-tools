@@ -335,7 +335,7 @@ class Navbar5 extends BaseNavigator {
       type: "string",
       key: "bottomText2",
       displayer: "Bottom Text 2",
-      value: "hellocrafto@gmail.com",
+      value: "support@blinkpage.app",
     });
 
     this.addProp({
@@ -343,6 +343,16 @@ class Navbar5 extends BaseNavigator {
       key: "divider",
       displayer: "Divider",
       value: true,
+    });
+
+    this.addProp({
+      type:"multiSelect",
+      key: "animations",
+      displayer: "Animations",
+      value: ["animation1"],
+      additionalParams:{
+        selectItems:["animation1"]
+      }
     });
 
     this.setComponentState("isScrolled", false);
@@ -443,7 +453,9 @@ class Navbar5 extends BaseNavigator {
 
     const iconsExist = hamburgerIcon || crossIcon;
     
-    const isVisible = navActive
+    const isVisible = navActive;
+
+    const animations = this.getPropValue("animations") && this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ")
 
     return (
       <>
@@ -506,10 +518,10 @@ class Navbar5 extends BaseNavigator {
                   title={language.label}
                   icon={language.icon}
                   dropdownButtonClassName={`${this.decorateCSS("localization")}`}
-                  dropdownLabelClassName={`${this.decorateCSS("localizationLabel")}`}
+                  dropdownLabelClassName={`${this.decorateCSS("localizationLabel")} ${animations}`}
                   iconClassName={this.decorateCSS("languageIcon")}
                   dropdownItemClassName={this.decorateCSS("localizationItem")}
-                  dropdownContentClassName={this.decorateCSS("localizationContent")}
+                  dropdownContentClassName={`${this.decorateCSS("localizationContent")} ${animations}`}
                   divider={language.showDivider}
                 />
               )}
@@ -554,7 +566,7 @@ class Navbar5 extends BaseNavigator {
                       return (
                         itemTitleExist && (
                           <ComposerLink key={indexSocial} path={item.itemLink}>                         
-                            <Base.H5 className={this.decorateCSS("item-title")}
+                            <Base.H5 className={`${this.decorateCSS("item-title")} ${animations}`}
                             onClick={()=> this.closeNav()}
                             >
                               {item.itemTitle}
