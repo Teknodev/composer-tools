@@ -13,7 +13,7 @@ class Content10 extends BaseContent {
       type: "video",
       displayer: "Video Link",
       key: "video",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b9f4473292c6002b23c4b0?alt=media",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e77bd0181a1002c334f66?alt=media&timestamp=1719564238038",
     });
     this.addProp({
       type: "image",
@@ -234,6 +234,7 @@ class Content10 extends BaseContent {
         {this.getComponentState("is_video_visible") && (
           <Base.Overlay
             onClick={() => this.setComponentState("is_video_visible", false)} className={this.decorateCSS("overlay")}
+            isVisible={true}
           >
             <div className={this.decorateCSS("video-container")}>
               <div
