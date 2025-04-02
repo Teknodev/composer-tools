@@ -253,6 +253,7 @@ class Feature15 extends BaseFeature {
                         <Base.Overlay
                             onClick={() => this.setComponentState("is_video_visible", false)}
                             className={this.decorateCSS("overlay")}
+                            isVisible={true}
                         >
                             <div className={this.decorateCSS("video-container")}>
                                 <div
