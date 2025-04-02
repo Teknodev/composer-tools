@@ -10,10 +10,12 @@
     var(--composer-html-background),
     var(--composer-font-color-primary) 5%);
     .container{
-        padding: 80px 50px var(--composer-gap-md) 50px;
         background-color: color-mix(in srgb,
         var(--composer-html-background),
         var(--composer-font-color-primary) 5%);
+        &.container-with-cards{
+            padding: 80px 50px var(--composer-gap-md) 50px;
+        }
         .max-content{
             display: flex;
             flex-direction: column;
@@ -51,15 +53,18 @@
         .slide-content, .slide-content-mobile{
             display: flex;
             min-width: 100%;
-            padding: var(--composer-gap-md) var(--composer-gap-md) 80px 0px;
-            gap: var(--composer-gap-md);
+            padding: 80px var(--composer-gap-sm) 80px 0px;
+            gap: var(--composer-gap-sm);
             animation: slide-to-left 20s linear infinite;
+            &.slide-content-with-upper{
+                padding: var(--composer-gap-md) var(--composer-gap-sm) 80px 0px;
+            }
             .cards{
                 display: flex;
                 .cards-wrapper {    
                     display: flex;
                     flex-direction: column;
-                    gap: var(--composer-gap-md);
+                    gap: var(--composer-gap-sm);
                     .card-container{
                         border: 1px solid var(--composer-tertiary-color);
                         background-color: var(--composer-html-background);
@@ -83,7 +88,7 @@
                                 left: -5px;
                                 top: -5px;
                                 background-color: var(--composer-font-color-primary);
-                                border-radius: var(--composer-border-radius-md);
+                                border-radius: 50%;
                             }
                             .image{
                                 width: 50px;
@@ -126,12 +131,16 @@
 @container (max-width: #{$composer-tablet-width-lg}) {
     .wrapper{
         .container{
-            padding: 80px 40px var(--composer-gap-sm) 40px;
+            &.container-with-cards{
+                padding: 80px 40px var(--composer-gap-sm) 40px;
+            }
         }
         .loop-slide{
             .slide-content{
-                gap: var(--composer-gap-sm);    
-                padding: var(--composer-gap-sm) var(--composer-gap-sm) 80px 0px;
+                padding: 80px var(--composer-gap-sm) 80px 0px;
+                &.slide-content-with-upper{
+                    padding: var(--composer-gap-sm) var(--composer-gap-sm) 80px 0px;
+                }
                 .cards{
                     .cards-wrapper{
                         gap: var(--composer-gap-sm);  
@@ -143,8 +152,11 @@
 }
 @container (max-width: #{$composer-phone-width}) {
     .wrapper{
-        .container{
-            padding: 50px 20px var(--composer-gap-md) 20px;
+        .container{            
+            padding: 50px 20px 50px 20px;
+            &.container-with-cards{
+                padding: 50px 20px var(--composer-gap-md) 20px;
+            }
             .max-content{
                 gap: var(--composer-gap-sm)
             }        
@@ -156,9 +168,15 @@
             .slide-content-mobile{
                 display: block;
                 animation: none;
-                padding: 0px 0px 50px 0px;
+                padding: 50px 0px 50px 0px;
+                &.with-upper{
+                    padding: 0px 0px 50px 0px;
+                }
                 .cards{
                     padding: 0px 20px;
+                    .cards-wrapper{
+                        flex-direction: row;
+                    }
                 }
             }
         }

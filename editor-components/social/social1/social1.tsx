@@ -78,13 +78,13 @@ class Social1 extends BaseSocial {
                                             type:"string",
                                             key:"name",
                                             displayer:"Name",
-                                            value:"Name1"  
+                                            value:"Clover Ruth"  
                                         },
                                         {
                                             type:"string",
                                             key:"comment",
                                             displayer:"Comment",
-                                            value:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fermentum, justo non volutpat cursus, velit ipsum cursus lorem, ut scelerisque arcu lacus id odio. Cras eget urna a libero aliquam varius. Nulla facilisi. Aenean consequat tellus et neque sodales, ac interdum ex tincidunt." 
+                                            value:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fermentum, justo non volutpat cursus, velit ipsum cursus lorem, ut scelerisque arcu lacus id odio. Cras eget urna a libero aliquam varius. Nulla facilisi. Aenean consequat tellus et neque sodales, ac interdum ex tincidunt.Cras eget urna a libero aliquam varius. Nulla facilisi. Aenean consequat tellus et neque sodales, ac interdum ex tincidunt.justo non volutpat cursus, velit ipsum cursus lorem, ut scelerisque arcu lacus id odio. Cras eget urna a libero aliquam varius. Nulla facilisi. Aenean consequat tellus et neque sodales, ac interdum ex tincidunt.Cras eget urna a libero aliquam varius. Nulla facilisi. Aenean consequat" 
                                         },
                                         {
                                             type:"page",
@@ -115,13 +115,13 @@ class Social1 extends BaseSocial {
                                             type:"string",
                                             key:"name",
                                             displayer:"Name",
-                                            value:"Name7"  
+                                            value:"Sarah Brown"  
                                         },
                                         {
                                             type:"string",
                                             key:"comment",
                                             displayer:"Comment",
-                                            value:"Proin ut orci non urna pulvinar facilisis. In faucibus dolor eu sapien vehicula malesuada. Vestibulum rhoncus, odio vel suscipit tristique, libero ex efficitur neque, vitae tempor enim augue sit amet velit." 
+                                            value:"Proin ut orci non urna pulvinar facilisis. In faucibus dolor eu sapien vehicula malesuada. Vestibulum rhoncus, odio vel suscipit tristique, libero ex efficitur neque, vitae tempor enim augue sit amet velit. In faucibus dolor eu sapien vehicula malesuada. Vestibulum rhoncus, odio vel suscipit tristique, libero ex efficitur neque, vitae tempor enim augue sit amet velit." 
                                         },
                                         {
                                             type:"page",
@@ -166,13 +166,13 @@ class Social1 extends BaseSocial {
                                             type:"string",
                                             key:"name",
                                             displayer:"Name",
-                                            value:"Name2"  
+                                            value:"Jacklyn Mia"  
                                         },
                                         {
                                             type:"string",
                                             key:"comment",
                                             displayer:"Comment",
-                                            value:"Morbi pharetra ante eget nunc posuere, nec tempus nunc malesuada. Ut vel massa sed libero consequat convallis. Mauris elementum massa nec mauris faucibus, ut convallis felis fermentum." 
+                                            value:"Proin ut orci non urna pulvinar facilisis. In faucibus dolor eu sapien vehicula malesuada. Vestibulum rhoncus, odio vel suscipit tristique, libero ex efficitur neque, vitae tempor enim augue sit amet velit. In faucibus dolor eu sapien vehicula malesuada. Vestibulum rhoncus, odio vel suscipit tristique, libero ex efficitur neque, vitae tempor enim augue sit amet velit." 
                                         },
                                         {
                                             type:"page",
@@ -181,7 +181,44 @@ class Social1 extends BaseSocial {
                                             value:"" 
                                         },
                                     ]                                
-                                }
+                                },
+                                {
+                                    type: "object",
+                                    key: "item",
+                                    displayer:"Item",
+                                    value: [
+                                        {
+                                            type:"image",
+                                            key:"image",
+                                            displayer:"Image",
+                                            value:"https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e6c8a3fb049c002cc4b4a4?alt=media"
+                                        },
+                                        {
+                                            type:"icon",
+                                            key:"icon",
+                                            displayer:"Icon",
+                                            value:"MdNavigateNext"
+                                        },
+                                        {
+                                            type:"string",
+                                            key:"name",
+                                            displayer:"Name",
+                                            value:"Lachlan Linnette"  
+                                        },
+                                        {
+                                            type:"string",
+                                            key:"comment",
+                                            displayer:"Comment",
+                                            value:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fermentum, justo non volutpat cursus, velit ipsum cursus lorem, ut scelerisque arcu lacus id odio. Cras eget urna a libero aliquam varius. Nulla facilisi. Aenean consequat tellus et neque sodales, ac interdum ex tincidunt.Cras eget urna a libero aliquam varius. Nulla facilisi. Aenean consequat tellus et neque sodales, ac interdum ex tincidunt.justo non volutpat cursus, velit ipsum cursus lorem, ut scelerisque arcu lacus id odio. Cras eget urna a libero aliquam varius. Nulla facilisi. Aenean consequat tellus et neque sodales, ac interdum ex tincidunt.Cras eget urna a libero aliquam varius. Nulla facilisi. Aenean consequat" 
+                                        },
+                                        {
+                                            type:"page",
+                                            key:"cardLink",
+                                            displayer:"Card Link",
+                                            value:"" 
+                                        },
+                                    ]                                
+                                },
                             ]
                         }
                     ]            
@@ -217,13 +254,13 @@ class Social1 extends BaseSocial {
                                             type:"string",
                                             key:"name",
                                             displayer:"Name",
-                                            value:"Name3"  
+                                            value:"Jaykyn Kaleigh"  
                                         },
                                         {
                                             type:"string",
                                             key:"comment",
                                             displayer:"Comment",
-                                            value:"Praesent eget lacus sed sapien eleifend cursus. Suspendisse id ligula quis augue fermentum fringilla. Phasellus et arcu at velit sollicitudin convallis. Ut nec lacus quis magna malesuada cursus." 
+                                            value:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fermentum, justo non volutpat cursus, velit ipsum cursus lorem, ut scelerisque arcu lacus id odio. Cras eget urna a libero aliquam varius. Nulla facilisi. Aenean consequat tellus et neque sodales, ac interdum ex tincidunt.Cras eget urna a libero aliquam varius. Nulla facilisi. Aenean consequat tellus et neque sodales, ac interdum ex tincidunt.justo non volutpat cursus, velit ipsum cursus lorem, ut scelerisque arcu lacus id odio. Cras eget urna a libero aliquam varius. Nulla facilisi. Aenean consequat tellus et neque sodales, ac interdum ex tincidunt.Cras eget urna a libero aliquam varius. Nulla facilisi. Aenean consequat" 
                                         },
                                         {
                                             type:"page",
@@ -254,13 +291,13 @@ class Social1 extends BaseSocial {
                                             type:"string",
                                             key:"name",
                                             displayer:"Name",
-                                            value:"Name6"  
+                                            value:"Mary Johnson"  
                                         },
                                         {
                                             type:"string",
                                             key:"comment",
                                             displayer:"Comment",
-                                            value:" Duis at lectus vitae lorem condimentum maximus. Nam vel purus sed est tincidunt facilisis. Curabitur sit amet orci non magna tristique tincidunt a vitae odio. Nulla facilisi. " 
+                                            value:"Proin ut orci non urna pulvinar facilisis. In faucibus dolor eu sapien vehicula malesuada. Vestibulum rhoncus, odio vel suscipit tristique, libero ex efficitur neque, vitae tempor enim augue sit amet velit. In faucibus dolor eu sapien vehicula malesuada. Vestibulum rhoncus, odio vel suscipit tristique, libero ex efficitur neque, vitae tempor enim augue sit amet velit." 
                                         },
                                         {
                                             type:"page",
@@ -305,13 +342,50 @@ class Social1 extends BaseSocial {
                                             type:"string",
                                             key:"name",
                                             displayer:"Name",
-                                            value:"Name4"  
+                                            value:"Kristen Gertie"  
                                         },
                                         {
                                             type:"string",
                                             key:"comment",
                                             displayer:"Comment",
-                                            value:"Cras laoreet quam ut libero tempor, non aliquet lectus condimentum. Curabitur sit amet vestibulum urna. Vivamus tincidunt feugiat lorem, et vulputate metus volutpat id. Nullam aliquam tellus in sapien dictum auctor. Integer sagittis suscipit odio non consectetur. " 
+                                            value:"Proin ut orci non urna pulvinar facilisis. In faucibus dolor eu sapien vehicula malesuada. Vestibulum rhoncus, odio vel suscipit tristique, libero ex efficitur neque, vitae tempor enim augue sit amet velit. In faucibus dolor eu sapien vehicula malesuada. Vestibulum rhoncus, odio vel suscipit tristique, libero ex efficitur neque, vitae tempor enim augue sit amet velit." 
+                                        },
+                                        {
+                                            type:"page",
+                                            key:"cardLink",
+                                            displayer:"Card Link",
+                                            value:"" 
+                                        },
+                                    ]                                
+                                },
+                                {
+                                    type: "object",
+                                    key: "item",
+                                    displayer:"Item",
+                                    value: [
+                                        {
+                                            type:"image",
+                                            key:"image",
+                                            displayer:"Image",
+                                            value:"https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e6c925fb049c002cc4b4cb?alt=media"
+                                        },
+                                        {
+                                            type:"icon",
+                                            key:"icon",
+                                            displayer:"Icon",
+                                            value:"MdNavigateNext"
+                                        },
+                                        {
+                                            type:"string",
+                                            key:"name",
+                                            displayer:"Name",
+                                            value:"McKinney"  
+                                        },
+                                        {
+                                            type:"string",
+                                            key:"comment",
+                                            displayer:"Comment",
+                                            value:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fermentum, justo non volutpat cursus, velit ipsum cursus lorem, ut scelerisque arcu lacus id odio. Cras eget urna a libero aliquam varius. Nulla facilisi. Aenean consequat tellus et neque sodales, ac interdum ex tincidunt.Cras eget urna a libero aliquam varius. Nulla facilisi. Aenean consequat tellus et neque sodales, ac interdum ex tincidunt.justo non volutpat cursus, velit ipsum cursus lorem, ut scelerisque arcu lacus id odio. Cras eget urna a libero aliquam varius. Nulla facilisi. Aenean consequat tellus et neque sodales, ac interdum ex tincidunt.Cras eget urna a libero aliquam varius. Nulla facilisi. Aenean consequat" 
                                         },
                                         {
                                             type:"page",
@@ -356,13 +430,50 @@ class Social1 extends BaseSocial {
                                             type:"string",
                                             key:"name",
                                             displayer:"Name",
-                                            value:"Name5"  
+                                            value:"James Pearce"  
                                         },
                                         {
                                             type:"string",
                                             key:"comment",
                                             displayer:"Comment",
-                                            value:"Vestibulum posuere dapibus malesuada. Aenean congue eros ac enim vehicula, a sagittis libero sollicitudin. Mauris ut purus sed erat ullamcorper mattis ac a libero. Sed vestibulum, lorem eget feugiat eleifend." 
+                                            value:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fermentum, justo non volutpat cursus, velit ipsum cursus lorem, ut scelerisque arcu lacus id odio. Cras eget urna a libero aliquam varius. Nulla facilisi. Aenean consequat tellus et neque sodales, ac interdum ex tincidunt.Cras eget urna a libero aliquam varius. Nulla facilisi. Aenean consequat tellus et neque sodales, ac interdum ex tincidunt.justo non volutpat cursus, velit ipsum cursus lorem, ut scelerisque arcu lacus id odio. Cras eget urna a libero aliquam varius. Nulla facilisi. Aenean consequat tellus et neque sodales, ac interdum ex tincidunt.Cras eget urna a libero aliquam varius. Nulla facilisi. Aenean consequat" 
+                                        },
+                                        {
+                                            type:"page",
+                                            key:"cardLink",
+                                            displayer:"Card Link",
+                                            value:"" 
+                                        },
+                                    ]                                
+                                },
+                                {
+                                    type: "object",
+                                    key: "item",
+                                    displayer:"Item",
+                                    value: [
+                                        {
+                                            type:"image",
+                                            key:"image",
+                                            displayer:"Image",
+                                            value:"https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67e6c969fb049c002cc4b4d7?alt=media"
+                                        },
+                                        {
+                                            type:"icon",
+                                            key:"icon",
+                                            displayer:"Icon",
+                                            value:"MdNavigateNext"
+                                        },
+                                        {
+                                            type:"string",
+                                            key:"name",
+                                            displayer:"Name",
+                                            value:"Olivia Davis"  
+                                        },
+                                        {
+                                            type:"string",
+                                            key:"comment",
+                                            displayer:"Comment",
+                                            value:"Proin ut orci non urna pulvinar facilisis. In faucibus dolor eu sapien vehicula malesuada. Vestibulum rhoncus, odio vel suscipit tristique, libero ex efficitur neque, vitae tempor enim augue sit amet velit. In faucibus dolor eu sapien vehicula malesuada. Vestibulum rhoncus, odio vel suscipit tristique, libero ex efficitur neque, vitae tempor enim augue sit amet velit." 
                                         },
                                         {
                                             type:"page",
@@ -389,7 +500,7 @@ class Social1 extends BaseSocial {
     }
 
     static getName(): string {
-        return "Socail 1";
+        return "Social 1";
     }
     
     handleMouseEnter=()=>{
@@ -404,7 +515,7 @@ class Social1 extends BaseSocial {
         dots: false,
         infinite: true,
         speed: 500,
-        autoplay: false,
+        autoplay: true,
         autoplaySpeed: 2000,
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -417,11 +528,12 @@ class Social1 extends BaseSocial {
     const cardItems = this.castToObject<CardItem[]>("cards");
     const maxLength = cardItems.length 
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const allItems = cardItems.flatMap((card: any) => card.items);
 
     return (
         <div className={this.decorateCSS("wrapper")}>
         {(isTitle || isDescription || (buttons.length>0 )) && 
-            <Base.Container className={this.decorateCSS("container")}>
+            <Base.Container className={`${this.decorateCSS("container")} ${(cardItems.length > 0) && this.decorateCSS("container-with-cards")}`}>
             <Base.MaxContent className={this.decorateCSS("max-content")}>
             {(isTitle || isDescription ) &&
                 <Base.VerticalContent className={this.decorateCSS("upper-content")}>
@@ -470,7 +582,7 @@ class Social1 extends BaseSocial {
         }
         {(cardItems.length > 0) && (
          <div className={this.decorateCSS("loop-slide")}>
-            <div className={this.decorateCSS("slide-content")} id={"slide-content"} style={{ animationPlayState: this.getComponentState("isPaused") ? "paused" : "running" }}>
+            <div className={`${this.decorateCSS("slide-content")} ${(buttons.length > 0 && isDescription && isTitle) && this.decorateCSS("slide-content-with-upper")}`}style={{ animationPlayState: this.getComponentState("isPaused") ? "paused" : "running" }}>
                 {cardItems.map((item: any, index: number)=>{                 
                     return (
                         <div className={this.decorateCSS("cards")} style={{ width: `calc(100% / ${maxLength})` }}>
@@ -509,7 +621,7 @@ class Social1 extends BaseSocial {
                         )
                     })}
             </div>
-            <div className={this.decorateCSS("slide-content")} id={"slide-content"} style={{ animationPlayState: this.getComponentState("isPaused") ? "paused" : "running" }}>
+            <div className={`${this.decorateCSS("slide-content")} ${(buttons.length > 0 && isDescription && isTitle) && this.decorateCSS("slide-content-with-upper")}`} style={{ animationPlayState: this.getComponentState("isPaused") ? "paused" : "running" }}>
                     {cardItems.map((item: any, index: number)=>{                 
                         return (
                         <div className={this.decorateCSS("cards")} style={{ width: `calc(100% / ${maxLength})` }}>
@@ -553,24 +665,23 @@ class Social1 extends BaseSocial {
         )}
         {(cardItems.length > 0) && (
             <div className={this.decorateCSS("loop-slide")}>
-                <ComposerSlider {...settings} className={this.decorateCSS("slide-content-mobile")} >
-                    {cardItems.map((item: any, index: number) => (
-                        <div className={this.decorateCSS("cards")} key={index}>
-                            <div className={this.decorateCSS("cards-wrapper")}>
-                                {item.items.map((item: ItemType, index: number) => (
-                                    <ComposerLink path={item.cardLink} key={index}>
-                                        <div className={this.decorateCSS("card-container")}>
-                                            <div className={this.decorateCSS("card-upper")}>
-                                                <ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }}/>
-                                                <img src={item.image} className={this.decorateCSS("image")}/>
-                                                <div className={this.decorateCSS("name")}>{item.name}</div>
-                                            </div>
-                                            <div className={this.decorateCSS("comment")}>{item.comment}</div>
+                <ComposerSlider {...settings} className={`${this.decorateCSS("slide-content-mobile")} ${(buttons.length > 0 && isDescription && isTitle) && this.decorateCSS("with-upper")}`}>
+                    {allItems.map((item: any, index: number) => (
+                        <ComposerLink path={item.cardLink} key={index}>
+                            <div className={this.decorateCSS("cards")}>
+                                <div className={this.decorateCSS("cards-wrapper")}>
+                                    <div className={this.decorateCSS("card-container")}>
+                                        <div className={this.decorateCSS("card-upper")}>
+                                            <ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }}/>
+                                            <img src={item.image} className={this.decorateCSS("image")}/>
+                                            <div className={this.decorateCSS("name")}>{item.name}</div>
                                         </div>
-                                    </ComposerLink>
-                                ))}
+                                        <div className={this.decorateCSS("comment")}>{item.comment}</div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+
+                        </ComposerLink>
                     ))}
                 </ComposerSlider>
             </div>
