@@ -303,6 +303,7 @@ export abstract class Component
           value={prop.value as string}
           props={this.getProps()}
           sanitizedHtml={sanitizedHtml}
+          componentId={this.id}
         />
       );
     };
