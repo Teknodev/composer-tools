@@ -23,15 +23,10 @@ class Form2 extends BaseContacts {
       value: true,
     });
     this.addProp({
-      type: "range",
+      type: "string",
       key: "title",
       displayer: "Title",
-      value: "30-400",
-      additionalParams:{
-        minRange:10,
-        maxRange:700  
-      }
-      
+      value: "Contact Us",
     });
 
     this.addProp({
@@ -236,7 +231,7 @@ class Form2 extends BaseContacts {
   render() {
     const inputs = this.getPropValue("inputs");
     const title = this.getPropValue("title");
-    const titleExist = this.getPropValue("title");
+    const titleExist = this.castToString(this.getPropValue("title"));
 
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
