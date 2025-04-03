@@ -19,8 +19,6 @@ type PreSufFix = {
   className: string;
 };
 
-// export type InteractionType = Pages["page_interactions"] ;
-
 export type TypeLocation = {
   lng: number;
   lat: number;
