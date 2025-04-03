@@ -97,11 +97,69 @@
                     }
                     .share-container{
                         color: var(--composer-font-color-primary);
-                        display: flex;
-                        gap: var(--composer-gap-sm);
-                        .title{font-size: 1rem}
-                        .share-icon{font-size: 1rem}
+                        position: relative;
+                        &:hover{
+                            .socials{
+                                display: flex;
+                            }
+                            .share-wrapper{
+                                opacity: 1;
+                                .title{
+                                    &::after{
+                                        width: 100%;
+                                    }
+                                }
+                            }
+                        }
+                        .share-wrapper{
+                            display: flex;
+                            gap: var(--composer-gap-sm);
+                            align-items: center;
+                            justify-content: center;
+                            opacity: 0.5;
+                            .share-icon{
+                                font-size: 2rem;
+                            }
+                            .title{
+                                font-size: 1.5rem;
+                                position: relative;
+                                &::after{
+                                    content: "";
+                                    background-color: var(--composer-primary-color);
+                                    height: 1px;
+                                    width: 0;
+                                    position: absolute;
+                                    bottom: 0px;
+                                    left: 0px;
+                                }
+                            }
+                        }
+
+                        .socials{
+                            display: none;
+                            flex-direction: column;
+                            gap: var(--composer-gap-md);
+                            border: 1px solid var(--composer-font-color-primary);
+                            padding: var(--composer-gap-sm);
+                            position: absolute;
+                            top: 2.5rem;
+                            right: 0px;
+                            background-color: var(--composer-html-background);
+                            .social{
+                                display: flex;
+                                gap: var(--composer-gap-sm);
+                                .social-icon{
+                                    font-size: 1rem;
+                                    color: var(--composer-font-color-primary);
+                                }
+                                .social-text{
+                                    font-size: 1rem;
+                                    color: var(--composer-font-color-primary);
+                                }
+                            }
+                        }
                     }
+
                 }
                 .cost{
                     font-size: 2rem;
@@ -175,6 +233,29 @@
                     .button{
                         width: 100%;
                     } 
+                }
+            }
+            .delivery-types{
+                display: flex;
+                flex-direction: column;
+                gap: var(--composer-gap-sm);
+                .delivery-type{
+                    display: flex;
+                    align-items: center;
+                    gap: var(--composer-gap-sm);
+                    .radio-button{
+                        width: 10px;
+                        height: 10px;
+                        border: 1px solid var(--composer-font-color-primary);
+                        border-radius: 50%;
+                        &.active{
+                            background-color: var(--composer-primary-color);
+                        }
+                    }
+                    .delivery{
+                        color: var(--composer-font-color-primary);
+                        font-size: 1rem
+                    }
                 }
             }
             .item-detail-container{

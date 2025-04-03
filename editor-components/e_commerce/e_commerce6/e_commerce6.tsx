@@ -6,6 +6,7 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import { dividerClasses } from "@mui/material";
 import { ComposerIcon } from "composer-tools/composer-base-components/icon/icon";
 import { FaSlideshare } from "react-icons/fa";
+import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 
 type Images ={
   item: string;
@@ -19,6 +20,7 @@ type ShareSection ={
 type SizeSections ={
   size: number;
   type: string;
+  cost: string;
 }
 
 type CountSections ={
@@ -31,6 +33,17 @@ type ItemDetails ={
   title: string;
   description: string;
 }
+
+type DeliveryType ={
+  description: string;
+  isRadioButtonActive: boolean
+}
+type Socials ={
+  icon: string;
+  text: string;
+  link: string;
+}
+
 
 class ECommerce6 extends BaseECommerce {
   constructor(props?: any) {
@@ -120,6 +133,113 @@ class ECommerce6 extends BaseECommerce {
     ]
     })
     this.addProp({
+      type: "array",
+      key: "socials",
+      displayer: "Socials",
+      value:[
+        {
+          type: "object",
+          key: "social",
+          displayer: "Social",
+          value:[
+          {
+            type: "icon",
+            key: "icon",
+            displayer: "Icon",
+            value: "MdOutlineFacebook"
+          },
+          {
+            type: "string",
+            key: "text",
+            displayer: "Text",
+            value: "Facebook"
+          },
+          {
+            type: "page",
+            key: "link",
+            displayer: "Link",
+            value: ""
+          },
+        ]
+        },
+        {
+          type: "object",
+          key: "socailIcon",
+          displayer: "Socail Icon",
+          value:[
+          {
+            type: "icon",
+            key: "icon",
+            displayer: "Icon",
+            value: "FaXTwitter"
+          },
+          {
+            type: "string",
+            key: "text",
+            displayer: "Text",
+            value: "Twitter"
+          },
+          {
+            type: "page",
+            key: "link",
+            displayer: "Link",
+            value: ""
+          },
+        ]
+        },
+        {
+          type: "object",
+          key: "socailIcon",
+          displayer: "Socail Icon",
+          value:[
+          {
+            type: "icon",
+            key: "icon",
+            displayer: "Icon",
+            value: "FaPinterest"
+          },
+          {
+            type: "string",
+            key: "text",
+            displayer: "Text",
+            value: "Pinterest"
+          },
+          {
+            type: "page",
+            key: "link",
+            displayer: "Link",
+            value: ""
+          },
+        ]
+        },
+        {
+          type: "object",
+          key: "socailIcon",
+          displayer: "Socail Icon",
+          value:[
+          {
+            type: "icon",
+            key: "icon",
+            displayer: "Icon",
+            value: "AiOutlinePaperClip"
+          },
+          {
+            type: "string",
+            key: "text",
+            displayer: "Text",
+            value: "Copy Link"
+          },
+          {
+            type: "page",
+            key: "link",
+            displayer: "Link",
+            value: ""
+          },
+        ]
+        },
+    ]
+    })
+    this.addProp({
       type:"string",
       key: "sizeLabel",
       displayer: "Size Label",
@@ -146,7 +266,13 @@ class ECommerce6 extends BaseECommerce {
           key:"type",
           displayer: "Type",
           value: "BAGS",
-        }
+        },
+        {
+          type:"string",
+          key:"cost",
+          displayer: "Cost",
+          value: "$25",
+        },
       ]},
       {
         type: "object",
@@ -164,7 +290,13 @@ class ECommerce6 extends BaseECommerce {
           key:"type",
           displayer: "Type",
           value: "BAGS",
-        }
+        },
+        {
+          type:"string",
+          key:"cost",
+          displayer: "Cost",
+          value: "$75",
+        },
       ]},
       {
         type: "object",
@@ -182,7 +314,13 @@ class ECommerce6 extends BaseECommerce {
           key:"type",
           displayer: "Type",
           value: "BAGS",
-        }
+        },
+        {
+          type:"string",
+          key:"cost",
+          displayer: "Cost",
+          value: "$110",
+        },
       ]}
     ]
     })
@@ -210,6 +348,86 @@ class ECommerce6 extends BaseECommerce {
         value: "IoAddOutline"
       },
     ]
+    })
+    this.addProp({
+      type: "array",
+      key: "deliveryTypes",
+      displayer: "Delivery Types",
+      value:[
+      {
+        type: "object",
+        key: "deliveryType",
+        displayer: "Delivery Type",
+        value:[
+        {
+          type: "string",
+          key: "description",
+          displayer:"Description",
+          value:"One-time purchase"
+        },
+        {
+          type: "boolean",
+          key: "isRadioButtonActive",
+          displayer:"Radio Button Active",
+          value:true
+        },
+
+      ]},
+      {
+        type: "object",
+        key: "deliveryType",
+        displayer: "Delivery Type",
+        value:[
+        {
+          type: "string",
+          key: "description",
+          displayer:"Description",
+          value:"Subscribe and Save"
+        },
+        {
+          type: "boolean",
+          key: "isRadioButtonActive",
+          displayer:"Radio Button Active",
+          value:false
+        },
+      ]},
+      {
+        type: "object",
+        key: "deliveryType",
+        displayer: "Delivery Type",
+        value:[
+        {
+          type: "string",
+          key: "description",
+          displayer:"Description",
+          value:"Delivery every 3 months, 10% off"
+        },
+        {
+          type: "boolean",
+          key: "isRadioButtonActive",
+          displayer:"Radio Button Active",
+          value:true
+        },
+      ]},
+      {
+        type: "object",
+        key: "deliveryType",
+        displayer: "Delivery Type",
+        value:[
+        {
+          type: "string",
+          key: "description",
+          displayer:"Description",
+          value:"Delivery every 6 months, 10% off"
+        },
+        {
+          type: "boolean",
+          key: "isRadioButtonActive",
+          displayer:"Radio Button Active",
+          value:true
+        },
+      ]},
+    ]      
     })
     this.addProp({
       type: "array",
@@ -298,7 +516,8 @@ class ECommerce6 extends BaseECommerce {
     this.setComponentState("openIndex", null);
     this.setComponentState("selectedImage", 0);
     this.setComponentState("itemCount", this.castToObject<CountSections>("countSection").count);
-    this.setComponentState("selectedSizeSection", 0)
+    this.setComponentState("selectedSizeSection", 0);
+    this.setComponentState("selectedRadioButton", null)
     this.setComponentState("zoomImage", false)
   }
 
@@ -353,6 +572,9 @@ class ECommerce6 extends BaseECommerce {
   handleClickClose = () =>{
     this.setComponentState("zoomImage", false);
   }
+  handleRadioButton =(index: number) => {
+    this.setComponentState("selectedRadioButton", index)
+  }
   render() {
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
     const shareSection  = this.castToObject<ShareSection>("share");
@@ -360,6 +582,8 @@ class ECommerce6 extends BaseECommerce {
     const countSection = this.castToObject<CountSections>("countSection");
     const itemDetails = this.castToObject<ItemDetails[]>("itemDetails");
     const images = this.castToObject<Images[]>("images");
+    const deliveryType = this.castToObject<DeliveryType[]>("deliveryTypes");
+    const socials = this.castToObject<Socials[]>("socials");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -390,11 +614,24 @@ class ECommerce6 extends BaseECommerce {
             <div className={this.decorateCSS("title-with-share")}>
               <div className={this.decorateCSS("title")}>{this.getPropValue("title")}</div>
               <div className={this.decorateCSS("share-container")}>
-                <div className={this.decorateCSS("title")}>{shareSection.title}</div>
-                <ComposerIcon name={shareSection.shareIcon} propsIcon={{className: this.decorateCSS("share-icon")}}/>
+                <div className={this.decorateCSS("share-wrapper")}>
+                  <ComposerIcon name={shareSection.shareIcon} propsIcon={{className: this.decorateCSS("share-icon")}}/>
+                  <div className={this.decorateCSS("title")}>{shareSection.title}</div>
+                  <div className={this.decorateCSS("socials")}>
+                  {socials.map((item:Socials, index: number)=> {
+                    return(
+                      <div className={this.decorateCSS("social")}>
+                        <ComposerIcon name={item.icon} propsIcon={{className: this.decorateCSS("social-icon")}}/>
+                        <ComposerLink path={item.link} ><div className={this.decorateCSS("social-text")}>{item.text}</div></ComposerLink>
+                      </div>
+                    )
+                  })}
+                </div>
               </div>
+              </div>
+
             </div>
-            <div className={this.decorateCSS("cost")}>$25 AUD</div>
+            <div className={this.decorateCSS("cost")}>{sizeSections[this.getComponentState("selectedSizeSection")].cost}</div>
           </Base.VerticalContent>
           <div className={this.decorateCSS("divider")}></div>
           <div className={this.decorateCSS("size-container")}>
@@ -402,7 +639,8 @@ class ECommerce6 extends BaseECommerce {
             <div className={this.decorateCSS("size-selects")}>
               {sizeSections.map((item:SizeSections, index: number)=>{
                 return(
-                  <div className={`${this.decorateCSS("size-select")} ${this.getComponentState("selectedSizeSection") === index && this.decorateCSS("active")}`} onClick={() => this.toggleSize(index)}>
+                  <div className={`${this.decorateCSS("size-select")} ${this.getComponentState("selectedSizeSection") === index && this.decorateCSS("active")}`} 
+                  onClick={() => this.toggleSize(index)}>
                   <div className={this.decorateCSS("size")}>{item.size}</div>
                   <div className={this.decorateCSS("type")}>{item.type}</div>
                   </div>
@@ -428,6 +666,23 @@ class ECommerce6 extends BaseECommerce {
               </Base.Button>
             </div>
 
+          </div>
+          <div className={this.decorateCSS("delivery-types")}>
+            {deliveryType.map((item: DeliveryType , index: number) => {
+              return(
+                <div className={this.decorateCSS("delivery-type")}>
+                  {item.isRadioButtonActive &&
+                    <div onClick={() => this.handleRadioButton(index)} className={`${this.decorateCSS("radio-button")}
+                     ${(this.getComponentState("selectedRadioButton") === index) && this.decorateCSS("active")}`}></div>
+                  }
+                  <div className={this.decorateCSS("delivery")}>{item.description}</div>
+                </div>
+
+              )
+             
+            })
+              
+            }
           </div>
           <div className={this.decorateCSS("item-detail-container")}>
             <div className={this.decorateCSS("sections")}>
