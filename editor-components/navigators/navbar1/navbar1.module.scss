@@ -354,7 +354,7 @@
 }
 
 .filledBackground {
-  background: transparent;
+  background: var(--composer-html-background);
   z-index: 101;
 }
 

@@ -377,6 +377,7 @@ export namespace Base {
     }
 
     export function getWrapperContainer() {
+      if(typeof window === 'undefined') return;
       const playground = document.getElementById("playground") as HTMLElement;
       const isPlayground = !!playground;
       return {

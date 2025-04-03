@@ -50,6 +50,7 @@ export interface iComponent {
   getInstanceName(): string;
   getName(): string;
   getProps(): TypeUsableComponentProps[];
+  getShadowProps(): TypeUsableComponentProps[];
   getPropValue(
     propName: string,
     properties?: GetPropValueProperties
@@ -132,6 +133,9 @@ export enum CATEGORIES {
   BANNER = "banner",
 }
 
+export function generateId(key: string): string {
+  return key + "-" + Math.round(Math.random() * 1000000000).toString();
+}
 //@ts-ignore
 export abstract class Component
   extends React.Component<{}, { states: any; componentProps: any }>
@@ -315,7 +319,8 @@ export abstract class Component
     }
 
     const memorizedElement: MemorizedElement  = this.memorizedElements[prop.id];
-    const isValueChanged = memorizedElement?.value && prop.value != memorizedElement?.value;
+    const isValueChanged = (!!memorizedElement?.value || memorizedElement?.value == "") 
+    && prop.value != memorizedElement?.value;
 
     if(!memorizedElement.jsxElement || isValueChanged){
       memorizedElement["jsxElement"] = <SanitizeHTML html={prop?.value}></SanitizeHTML>;
@@ -342,8 +347,7 @@ export abstract class Component
         (v: TypeUsableComponentProps) => this.attachPropId(v)
       );
     } else {
-      _prop.id =
-        _prop.key + "-" + Math.round(Math.random() * 1000000000).toString();
+      _prop.id = generateId(_prop.key)
     }
 
     return _prop;
@@ -404,19 +408,25 @@ export abstract class Component
       ? this.state.componentProps.interactions[sectionName]
       : this.state.componentProps.interactions;
   }
-  decorateCSS(cssValue: string) {
-    let cssClass = [this.styles[cssValue]];
+  decorateCSS(section: string) {
+    let cssClass = [this.styles[section]];
+    
     let cssManuplations = Object.entries(this.getCSSClasses()).filter(
       ([p, v]) => v.length > 0
     );
 
     cssManuplations.forEach(([key, value]: any) => {
-      if (key === cssValue) {
+      if (key === section) {
         value.forEach((el: any) => {
           cssClass.push(el.class);
         });
       }
     });
+
+    cssClass.push(
+      generateAutoClassName(this.id, section)
+    );
+    
     return cssClass.join(" ");
   }
 
@@ -647,3 +657,7 @@ export abstract class BaseContacts extends Component {
 export abstract class BaseFeature extends Component {
   static category = CATEGORIES.FEATURE;
 }
+
+export function generateAutoClassName(componentId: string, section: string){
+  return `auto-generate-${componentId}-${section}`;
+};
