@@ -129,6 +129,7 @@
 
                   .input::placeholder {
                     color: var(--composer-font-color-primary);
+                    opacity: 0.5;
                   }
 
                   .error {
@@ -421,6 +422,22 @@
               .list-group,
               .right {
                 max-width: 100%;
+                align-items: center;
+              }
+              .list-group{
+                .title, .text{
+                  text-align: center;
+                }
+              }
+              .right{
+                .title, .description{
+                  text-align: center;
+                }
+                .form{
+                  .button{
+                    justify-content: center;
+                  }
+                }
               }
             }
           }
@@ -432,8 +449,17 @@
 
         .second-max-content {
           .bottom {
+            align-items: center;
+            .footer-text{
+              text-align: center;
+            }
             .links {
-              justify-content: start;
+              justify-content: center;
+              .link-element{
+                .link-text{
+                  text-align: center;
+                }
+              }
 
               &.center {
                 justify-content: center;

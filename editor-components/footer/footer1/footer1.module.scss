@@ -2,6 +2,7 @@
 
 .container {
   width: 100%;
+  background-color: var(--composer-html-background);
 
   .max-content {
     .first-container {
@@ -80,6 +81,15 @@
           border-top: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.2);
           margin-top: var(--composer-gap-md);
         }
+      }
+    }
+    .line{
+      height: 1px;
+      width: 100%;
+      background-color: rgb(var(--composer-font-color-primary-rgb), 0.2);
+      margin-top: var(--composer-gap-xl);
+      .without-padding{
+        margin-top: 0px
       }
     }
 
@@ -378,6 +388,9 @@
       .first-container {
         padding: var(--composer-gap-md);
       }
+      .line{
+        margin-top: 0px;
+      }
 
       .second-container {
         padding: var(--composer-gap-md);
@@ -396,6 +409,7 @@
         .header {
           flex: 1;
           width: 100%;
+          align-items: center;
 
           .title {
             font-size: 1.5rem;

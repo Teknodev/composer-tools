@@ -1,12 +1,12 @@
 @import '../../../composer-base-components/base/utitilities/viewports.module.scss';
 .container {
     background-size: cover;
-    background-position: center center;
-    aspect-ratio: 25 / 9;
+    background-position: center center;    
     display: flex;
     align-items: center;
     position: relative;
     overflow: hidden;
+    min-height: 700px;
 
     &[data-animation~="animate1"] {
         &::before {
@@ -105,13 +105,13 @@
 
 @container (max-width: #{$composer-tablet-width-lg}) {
     .container {
-        aspect-ratio: 9 / 3;
+        min-height: 600px;
     }
 }
 
 @container (max-width: #{$composer-phone-width}) {
     .container {
-        aspect-ratio: 3 / 1;
+        min-height: 500px;
         .max-content {
             .title-wrapper{
                 .title, .title-no-image {

@@ -27,6 +27,9 @@
           .description {
             width: 100%;
             margin: 0px 0px 0px var(--composer-gap-md);
+            &.without-line{
+              margin: 0px;
+            }
           }
         }
 
