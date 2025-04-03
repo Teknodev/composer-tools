@@ -9,12 +9,12 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
-  subtitle: JSX.Element;
-  title: JSX.Element;
-  vertText: JSX.Element;
-  image_subtitle: JSX.Element;
-  image_title: JSX.Element;
-  image_description: JSX.Element;
+  subtitle: React.JSX.Element;
+  title: React.JSX.Element;
+  vertText: React.JSX.Element;
+  image_subtitle: React.JSX.Element;
+  image_title: React.JSX.Element;
+  image_description: React.JSX.Element;
   image: string;
   button: INPUTS.CastedButton;
   link: string;

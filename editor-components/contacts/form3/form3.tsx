@@ -12,7 +12,7 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 type Left = {
   contactName: string;
   contactIcon: string;
-  image: JSX.Element;
+  image: React.JSX.Element;
 };
 
 type Social = {

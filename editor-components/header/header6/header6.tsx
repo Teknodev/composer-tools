@@ -6,15 +6,15 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 interface TitleItem {
-  title: JSX.Element;
+  title: React.JSX.Element;
   titleAnimation: boolean;
 }
 interface Title2Item {
-  title2: JSX.Element;
+  title2: React.JSX.Element;
   title2Animation: boolean;
 }
 interface DescriptionItem {
-  description: JSX.Element;
+  description: React.JSX.Element;
   descriptionAnimation: boolean;
 }
 interface Image2Item {
@@ -22,7 +22,7 @@ interface Image2Item {
   image2Animation: boolean;
 }
 interface ButtonItem {
-  buttonText: JSX.Element;
+  buttonText: React.JSX.Element;
   url: string;
   buttonAnimation: boolean;
 }

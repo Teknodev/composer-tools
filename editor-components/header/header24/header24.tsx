@@ -8,8 +8,8 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type ISliderData = {
-  title: JSX.Element;
-  description: JSX.Element;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
   image: string;
   flower_image: string;
   background_image: string;

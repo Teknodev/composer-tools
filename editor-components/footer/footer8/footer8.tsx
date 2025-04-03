@@ -7,13 +7,13 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type FooterValues = {
   icon: string;
-  footerTitle: JSX.Element;
+  footerTitle: React.JSX.Element;
   footerText: FooterTextValues[];
 };
 
 type FooterTextValues = {
   footerIcon: string;
-  footerText: JSX.Element;
+  footerText: React.JSX.Element;
   path: string;
 };
 

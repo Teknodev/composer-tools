@@ -15,12 +15,12 @@ interface Logo {
 
 interface Information {
   image: string;
-  title: JSX.Element;
-  description: JSX.Element;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
 }
 
 interface MenuItems {
-  title: JSX.Element;
+  title: React.JSX.Element;
   navigate_to: string;
   menuType: string;
   sub_items: MenuItems[];

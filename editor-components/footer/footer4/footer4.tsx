@@ -9,12 +9,12 @@ import * as Yup from "yup";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type FooterValues = {
-  footerTitle: JSX.Element;
+  footerTitle: React.JSX.Element;
   footerText: FooterTextValues[];
 };
 
 type FooterTextValues = {
-  footerText: JSX.Element;
+  footerText: React.JSX.Element;
   path: string;
 };
 

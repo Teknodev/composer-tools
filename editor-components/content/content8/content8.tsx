@@ -7,7 +7,7 @@ import { Base } from "composer-tools/composer-base-components/base/base";
 type ProgressItem = {
   progressTitle: string;
   progress: number;
-  progressText: JSX.Element;
+  progressText: React.JSX.Element;
   icon: string;
 };
 

@@ -466,7 +466,7 @@ export abstract class Component
     return castedObject;
   }
 
-  castToString(elem: JSX.Element): string {
+  castToString(elem: React.JSX.Element): string {
     return elem.props?.html?.replace(/<\/?[^>]+(>|$)/g, "");
   }
 

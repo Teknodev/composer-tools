@@ -5,12 +5,12 @@ import styles from "./footer2.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
 type FooterValues = {
-  footerTitle: JSX.Element;
+  footerTitle: React.JSX.Element;
   footerText: FooterTextValues[];
 };
 
 type FooterTextValues = {
-  footerText: JSX.Element;
+  footerText: React.JSX.Element;
   path: string;
 };
 

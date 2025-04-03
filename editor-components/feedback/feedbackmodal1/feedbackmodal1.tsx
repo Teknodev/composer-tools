@@ -10,7 +10,7 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Emoji = {
   value: string;
-  label: JSX.Element;
+  label: React.JSX.Element;
   image?: string;
   emoji?: string;
 };

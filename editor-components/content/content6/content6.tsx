@@ -9,12 +9,12 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { Base } from "../../../composer-base-components/base/base";
 
 type CardType = {
-  title: JSX.Element;
-  subtitle: JSX.Element;
-  description: JSX.Element;
-  imageSubtitle: JSX.Element;
-  imageTitle: JSX.Element;
-  imageDescription: JSX.Element;
+  title: React.JSX.Element;
+  subtitle: React.JSX.Element;
+  description: React.JSX.Element;
+  imageSubtitle: React.JSX.Element;
+  imageTitle: React.JSX.Element;
+  imageDescription: React.JSX.Element;
   image: string;
   url: string;
 };
