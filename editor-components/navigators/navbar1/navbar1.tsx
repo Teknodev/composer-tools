@@ -1205,6 +1205,10 @@ class Navbar1 extends BaseNavigator {
     }
   }
 
+  componentWillUnmount(): void {
+    this.handleCloseMenu();
+  }
+
   render() {
     const defaultLogo = this.castToObject<Logo>("defaultLogo");
     const absoluteLogo = this.castToObject<Logo>("absoluteLogo");
