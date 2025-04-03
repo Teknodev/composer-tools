@@ -7,6 +7,7 @@ import { dividerClasses } from "@mui/material";
 import { ComposerIcon } from "composer-tools/composer-base-components/icon/icon";
 import { FaSlideshare } from "react-icons/fa";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
+import ComposerSlider from "composer-tools/composer-base-components/slider/slider";
 
 type Images ={
   item: string;
@@ -430,6 +431,12 @@ class ECommerce6 extends BaseECommerce {
     ]      
     })
     this.addProp({
+      type:"string",
+      key: "itemDetailTitle",
+      displayer: "Item Detail Title",
+      value:"Auto-renews, skip or cancel anytime."
+    })
+    this.addProp({
       type: "array",
       key: "itemDetails",
       displayer: "Item Details",
@@ -517,8 +524,9 @@ class ECommerce6 extends BaseECommerce {
     this.setComponentState("selectedImage", 0);
     this.setComponentState("itemCount", this.castToObject<CountSections>("countSection").count);
     this.setComponentState("selectedSizeSection", 0);
-    this.setComponentState("selectedRadioButton", null)
-    this.setComponentState("zoomImage", false)
+    this.setComponentState("selectedRadioButton", null);
+    this.setComponentState("zoomImage", false);
+    this.setComponentState("slider-ref", React.createRef());
   }
 
   static getName(): string {
@@ -585,6 +593,19 @@ class ECommerce6 extends BaseECommerce {
     const deliveryType = this.castToObject<DeliveryType[]>("deliveryTypes");
     const socials = this.castToObject<Socials[]>("socials");
 
+
+    const settings = {
+      dots: false,
+      button: false,
+      infinite: true,
+      autoplay: false,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      centerMode: false,
+      adaptiveHeight: true,
+      
+    };
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -599,15 +620,22 @@ class ECommerce6 extends BaseECommerce {
               )
             })}
           </div>
-          <div className={this.decorateCSS("big-image-container")} onClick={()=> this.toggleZoomImage()}>
-            <div className={this.decorateCSS("image-icon-left")} onClick={() => this.handleClickLeft()}>
+          <ComposerSlider {...settings} className={this.decorateCSS("big-image-container")} onClick={()=> this.toggleZoomImage()}>
+          {images.map((item: Images, index: number)=>{
+              return(
+                <div onClick={()=>this.toggleImage(index)} className={this.decorateCSS("small-image")}>
+                  <img src={item.item} className={this.decorateCSS("big-image")}></img>
+                </div>
+              )
+            })}
+            {/* <div className={this.decorateCSS("image-icon-left")} onClick={() => this.handleClickLeft()}>
               <ComposerIcon name={this.getPropValue("leftArrow")} propsIcon={{className: this.decorateCSS("icon")}}/>
             </div>
           <img src={images[this.getComponentState("selectedImage")].item} className={this.decorateCSS("big-image")}></img>
           <div className={this.decorateCSS("image-icon-right")} onClick={() => this.handleClickRight()}>
             <ComposerIcon name={this.getPropValue("rightArrow")}propsIcon={{className: this.decorateCSS("icon")}}/>
-          </div>
-          </div>
+          </div> */}
+          </ComposerSlider>
         </div>
         <div className={this.decorateCSS("right-container")}>
           <Base.VerticalContent className={this.decorateCSS("upper-container")}>
@@ -684,29 +712,29 @@ class ECommerce6 extends BaseECommerce {
               
             }
           </div>
-          <div className={this.decorateCSS("item-detail-container")}>
-            <div className={this.decorateCSS("sections")}>
-              {itemDetails.map((item: ItemDetails , index: number)=>{
-                return(
-                  <div className={this.decorateCSS("section")}>
-                    <div className={this.decorateCSS("title-container")}>
-                    <div className={this.decorateCSS("title")} onClick={() => this.toggleDescription(index)}>{item.title}</div>
-                    <ComposerIcon name={this.getComponentState("openIndex") === index ? this.getPropValue("upArrowIcon") :this.getPropValue("downArrowIcon")} 
-                    propsIcon={{className: this.decorateCSS("icon")}}/>
-                    </div>
-
-                    {this.getComponentState("openIndex") === index && (
-                      <div className={this.decorateCSS("description")}>
-                        {item.description}
+          <div className={this.decorateCSS("item-detail-wrapper")}>
+            <div className={this.decorateCSS("item-detail-title")}>{this.getPropValue("itemDetailTitle")}</div>
+            <div className={this.decorateCSS("item-detail-container")}>
+                <div className={this.decorateCSS("sections")}>
+                  {itemDetails.map((item: ItemDetails , index: number)=>{
+                    return(
+                      <div className={this.decorateCSS("section")}>
+                        <div className={this.decorateCSS("title-container")}>
+                        <div className={this.decorateCSS("title")} onClick={() => this.toggleDescription(index)}>{item.title}</div>
+                        <ComposerIcon name={this.getComponentState("openIndex") === index ? this.getPropValue("upArrowIcon") :this.getPropValue("downArrowIcon")} 
+                        propsIcon={{className: this.decorateCSS("icon")}}/>
+                        </div>
+                        <div className={`${this.decorateCSS("description")} ${(this.getComponentState("openIndex") === index) && this.decorateCSS("active")}`}>
+                          <div className={this.decorateCSS("text")}>
+                          {item.description}
+                          </div>
+                          </div>
                       </div>
-                    )}
-                  </div>
-                )
-              })}
+                    )
+                  })}
+                </div>
             </div>
-
           </div>
-
         </div>
         </Base.MaxContent>
         <Base.Overlay className={this.decorateCSS("zoom-image")} isVisible={this.getComponentState("zoomImage")}>
