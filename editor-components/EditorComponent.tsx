@@ -7,6 +7,7 @@ import { THEMES, TTheme } from "./location/themes";
 import InlineEditor from "../../custom-hooks/UseInlineEditor";
 import { v4 as uuidv4 } from 'uuid';
 import { Pages } from "classes/bucket";
+import { TypePageInteractions } from "classes/Page";
 
 
 export function generateComponentId(){
@@ -18,7 +19,7 @@ type PreSufFix = {
   className: string;
 };
 
-export type InteractionType = Pages["page_interactions"] ;
+// export type InteractionType = Pages["page_interactions"] ;
 
 export type TypeLocation = {
   lng: number;
@@ -55,7 +56,7 @@ export interface iComponent {
   addProp(prop: TypeUsableComponentProps): void;
   setProp(key: string, value: any): void;
   setCSSClasses(key: string, value: { id: string; class: string }[]): void;
-  setInteraction(key: string, value: InteractionType): void;
+  setInteraction(key: string, value: TypePageInteractions): void;
   decorateCSS(cssValue: string): string;
   getCategory(): CATEGORIES;
   initializeProp(prop: TypeUsableComponentProps): void;
@@ -82,7 +83,7 @@ export type TypeReactComponent = {
   type: string;
   props?: TypeUsableComponentProps[];
   cssClasses?: TypeCSSProp;
-  interactions?: InteractionType;
+  interactions?: TypePageInteractions;
   id?: string;
 };
 export type TypeUsableComponentProps = {
@@ -393,7 +394,7 @@ export abstract class Component
     this.state.componentProps.cssClasses[key] = value;
     this.setState({ componentProps: this.state.componentProps });
   }
-  setInteraction(key: string, value: InteractionType) {
+  setInteraction(key: string, value: TypePageInteractions) {
     this.state.componentProps.interactions[key] = value;
     this.setState({ componentProps: this.state.componentProps });
   }
