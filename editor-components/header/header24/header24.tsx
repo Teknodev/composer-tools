@@ -269,7 +269,7 @@ class Header24 extends BaseHeader {
                               {item.buttons.map((item: IButton, index: number) => (
                                 <div className={this.decorateCSS("button-wrapper")}>
                                   {this.castToString(item.text) && (
-                                    <ComposerLink path={item.url} className={this.decorateCSS("composer-link")}>
+                                    <ComposerLink path={item.url}>
                                       <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
                                         {item.text}
                                       </Base.Button>
