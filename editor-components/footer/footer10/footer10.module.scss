@@ -311,7 +311,7 @@
         .upper {
           display: flex;
           flex-direction: column;
-          align-items: baseline;
+          align-items: center;
           justify-content: space-between;
 
           &.center {
@@ -330,6 +330,11 @@
             flex-wrap: wrap;
             gap: var(--composer-gap-md);
             max-width: 100%;
+            .link-element{
+              .link-text{
+                text-align: center;
+              }
+            }
           }
         }
       }
@@ -341,7 +346,7 @@
       .bottom {
         display: flex;
         flex-direction: column;
-        align-items: baseline;
+        align-items: center;
         justify-content: space-between;
   
         &.center {
@@ -350,6 +355,9 @@
   
         .left {
           max-width: 100%;
+          .text{
+            text-align: center;
+          }
         }
   
         .icons {

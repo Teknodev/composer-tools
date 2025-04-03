@@ -126,6 +126,12 @@
           padding: var(--composer-gap-md);
           min-height: 300px;
           gap: var(--composer-gap-xl);
+          .list{
+            align-items: center;
+            .title,.text{
+              text-align: center;
+            }
+          }
         }
       }
 

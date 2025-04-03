@@ -121,8 +121,7 @@ class Footer7Page extends BaseFooter {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={`${this.decorateCSS("footer-page")}
-          ${alignment === "center" && this.decorateCSS("center")}`}>
+          <div className={this.decorateCSS("footer-page")}>
             {logo && (
              <ComposerLink path={logoUrl}>
                <div className={this.decorateCSS("left")}>

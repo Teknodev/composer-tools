@@ -314,12 +314,29 @@
                 min-width: unset;
                 max-width: unset;
                 width: 100%;
+                align-items: center;
+                .description{
+                  text-align: center;
+                }
               }
 
               .list-group {
                 .text-container {
                   .element {
                     content: "";
+                  }
+                }
+              }
+              .list-group{
+                .title{
+                  text-align: center;
+                }
+                .text-container{
+                  align-items: center;
+                  .element{
+                    .text{
+                      text-align: center;
+                    }
                   }
                 }
               }
@@ -333,9 +350,13 @@
           .second-max-content {
             .footer-bottom {
               gap: var(--composer-gap-md);
-
+              align-items: center;
+              .bottom-text{
+                text-align: center;
+              }
               .text {
                 margin: 0;
+                
               }
 
               .links {

@@ -348,7 +348,7 @@ class Footer1Page extends BaseFooter {
               )}
             </Base.MaxContent>
           </Base.Container>
-          {line && <div className={this.decorateCSS("line")} />}
+          {line && <div className={`${this.decorateCSS("line")} ${!upperExist && this.decorateCSS("without-padding") }`} />}
 
           <Base.Container className={this.decorateCSS("second-container")}>
             <Base.MaxContent className={this.decorateCSS("second-max-content")} >

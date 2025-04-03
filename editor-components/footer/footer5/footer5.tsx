@@ -135,7 +135,7 @@ class Footer5Page extends BaseFooter {
                 {textsExist && (
                   <Base.VerticalContent
                     className={`${this.decorateCSS("left")} ${!this.castToString(button.text) && this.decorateCSS("left-full")}`}>
-                    {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+                    {subtitleExist && <div className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</div>}
                     {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                   </Base.VerticalContent>
                 )}

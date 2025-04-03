@@ -374,10 +374,16 @@
 
             .title {
               width: auto;
+              text-align: center;
             }
 
             .text-container {
               align-items: center;
+              .element{
+                .text{
+                  text-align: center;
+                }
+              }
             }
           }
         }

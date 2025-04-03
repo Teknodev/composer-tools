@@ -5,6 +5,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--composer-gap-md);
+  background-color: var(--composer-html-background);
 
   .first-container {
     padding: var(--composer-gap-md) var(--composer-gap-xl);
@@ -21,7 +22,8 @@
             content: "";
           }
           .subtitle{
-            content: "";
+            color: var(--composer-font-color-primary);
+            font-size: 1.5rem;
           }
           &.left-full {
             width: 100%;
@@ -187,12 +189,17 @@
         .header {
           flex-direction: column;
           gap: var(--composer-gap-sm);
-
+          align-items: center;
           .left {
             width: 100%;
+            align-items: center;
+            .subtitle{
+              text-align: center;
+            }
 
             .title {
               font-size: 2rem;
+              text-align: center;
             }
           }
         }
@@ -203,13 +210,21 @@
       padding: var(--composer-gap-md);
       .second-max-content {
         .bottom {
-
+          align-items: center;
           .links {
-            justify-content: start;
+            justify-content: center;
+            .link-element{
+              .link-text{
+                text-align: center;
+              }
+            }
 
             &.center {
               justify-content: center;
             }
+          }
+          .footer-text{
+            text-align: center;
           }
 
         }

@@ -167,13 +167,13 @@ class Content10 extends BaseContent {
                 {this.castToString(titleText) && (
                   <Base.SectionTitle className={this.decorateCSS("title-text")}>{titleText}</Base.SectionTitle>
                 )}
-                {this.castToString(description) && (
+                {(this.castToString(description) || line) && (
                   <div className={this.decorateCSS("description-div")}>
-                    {this.castToString(description) && line && (
+                    {line && (
                       <hr className={this.decorateCSS("line")} />
                     )}
                     {this.castToString(description) && (
-                      <Base.SectionDescription className={this.decorateCSS("description")}>
+                      <Base.SectionDescription className={`${this.decorateCSS("description")} ${!line && this.decorateCSS("without-line")}`}>
                         {description}
                       </Base.SectionDescription>
                     )}
