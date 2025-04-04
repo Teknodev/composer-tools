@@ -18,11 +18,13 @@ type PreSufFix = {
 };
 
 export type InteractionType ={
-  "type": string,
-  "modal": string,
-  "trigger-action": string,
-  "visible-on": string,
-  "show-once": false,
+  type?: string,
+  modal?: string,
+  trigger_action?: string,
+  visible_on?: string,
+  show_once?: false,
+  scroll_depth?: number;
+  delay_time?: number;
 };
 
 export type TypeLocation = {
@@ -87,7 +89,7 @@ export type TypeReactComponent = {
   type: string;
   props?: TypeUsableComponentProps[];
   cssClasses?: TypeCSSProp;
-  interactions?: InteractionType[];
+  interactions?: Record<string, InteractionType[]>;
   id?: string;
 };
 export type TypeUsableComponentProps = {
