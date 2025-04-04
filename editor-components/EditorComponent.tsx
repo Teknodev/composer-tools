@@ -6,7 +6,6 @@ import { renderToString } from "react-dom/server";
 import { THEMES, TTheme } from "./location/themes";
 import InlineEditor from "../../custom-hooks/UseInlineEditor";
 import { v4 as uuidv4 } from 'uuid';
-import { Interactions } from "prefabs/component-settings/tabs/interaction/interaction";
 
 
 export function generateComponentId(){
@@ -88,7 +87,7 @@ export type TypeReactComponent = {
   type: string;
   props?: TypeUsableComponentProps[];
   cssClasses?: TypeCSSProp;
-  interactions?: Interactions;
+  interactions?: InteractionType[];
   id?: string;
 };
 export type TypeUsableComponentProps = {
