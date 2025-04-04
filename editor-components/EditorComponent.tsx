@@ -64,6 +64,8 @@ export interface iComponent {
     properties?: GetPropValueProperties
   ): TypeUsableComponentProps;
   getExportedCSSClasses(): { [key: string]: string };
+  getCSSClasses(): TypeCSSProp;
+  getCSSClasses(sectionName: string | null): CSSClass[];
   getCSSClasses(sectionName?: string | null): TypeCSSProp | CSSClass[];
   getInteractions(sectionName?: string | null): any;
   addProp(prop: TypeUsableComponentProps): void;
@@ -341,6 +343,8 @@ export abstract class Component
   getExportedCSSClasses() {
     return this.styles;
   }
+  getCSSClasses(): TypeCSSProp;
+  getCSSClasses(sectionName: string | null): CSSClass[];
   getCSSClasses(sectionName: string | null = null): TypeCSSProp | CSSClass[] {
     const { cssClasses } = this.state.componentProps;
     
@@ -476,7 +480,7 @@ export abstract class Component
     return castedObject;
   }
 
-  castToString(elem: JSX.Element): string {
+  castToString(elem: React.JSX.Element): string {
     return elem.props?.html?.replace(/<\/?[^>]+(>|$)/g, "");
   }
 

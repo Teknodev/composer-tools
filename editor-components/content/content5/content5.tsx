@@ -7,9 +7,9 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type ITabs = {
-  tabText: JSX.Element;
-  title: JSX.Element;
-  description: JSX.Element;
+  tabText: React.JSX.Element;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
   button: INPUTS.CastedButton;
   icon: string;
 };

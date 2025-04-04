@@ -6,8 +6,8 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type Card = {
   icon: string;
-  title: JSX.Element;
-  description: JSX.Element;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
 };
 
 class Feature8 extends BaseFeature {

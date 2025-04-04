@@ -6,10 +6,10 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Heading = {
-  titleColored: JSX.Element;
-  title: JSX.Element;
-  description: JSX.Element;
-  buttonText: JSX.Element;
+  titleColored: React.JSX.Element;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
+  buttonText: React.JSX.Element;
   link: string;
   overlay: boolean;
   backgroundImage: string;

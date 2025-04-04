@@ -12,8 +12,8 @@ type Icons = {
 
 interface Card {
   image: string;
-  name: JSX.Element;
-  position: JSX.Element;
+  name: React.JSX.Element;
+  position: React.JSX.Element;
   icons: { icon: string; url: string }[];
 }
 

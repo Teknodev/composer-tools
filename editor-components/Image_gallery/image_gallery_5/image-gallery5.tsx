@@ -8,7 +8,7 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 interface GalleryItem {
   image: string;
-  caption: JSX.Element;
+  caption: React.JSX.Element;
 }
 
 class ImageGallery5 extends BaseImageGallery {
