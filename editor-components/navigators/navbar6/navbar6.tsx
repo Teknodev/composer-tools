@@ -19,7 +19,7 @@ interface Icon {
 }
 
 interface MenuItem {
-  title: JSX.Element;
+  title: React.JSX.Element;
   navigate_to: string;
   menuType: string;
   sub_items: MenuItem[];

@@ -9,9 +9,9 @@ import "slick-carousel/slick/slick-theme.css";
 
 type Card = {
   backgroundImage: string;
-  imageTitle: JSX.Element;
-  imageDescription: JSX.Element;
-  urlTitle: JSX.Element;
+  imageTitle: React.JSX.Element;
+  imageDescription: React.JSX.Element;
+  urlTitle: React.JSX.Element;
   url: string;
 };
 class Header32 extends BaseHeader {

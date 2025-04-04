@@ -8,15 +8,15 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type IIconBoxes = {
-  planTitle: JSX.Element;
+  planTitle: React.JSX.Element;
   bars: any;
   description: any;
   list: any;
-  title: JSX.Element;
+  title: React.JSX.Element;
   image: string;
-  price: JSX.Element;
-  priceBig: JSX.Element;
-  plan: JSX.Element;
+  price: React.JSX.Element;
+  priceBig: React.JSX.Element;
+  plan: React.JSX.Element;
   link: string;
   iconsButton: Button;
 };

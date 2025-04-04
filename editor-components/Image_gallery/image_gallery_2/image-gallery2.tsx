@@ -7,7 +7,7 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type ImageType = {
     image: string;
-    imageTitle: JSX.Element;
+    imageTitle: React.JSX.Element;
 };
 
 type sectionType = {

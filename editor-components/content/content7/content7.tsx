@@ -6,11 +6,11 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 interface Card {
   direction: boolean;
-  title: JSX.Element;
+  title: React.JSX.Element;
   button: INPUTS.CastedButton;
   leftImage: string;
   rightImage: string;
-  description: JSX.Element;
+  description: React.JSX.Element;
   leftText: string;
   rightText: string;
 }
