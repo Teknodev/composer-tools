@@ -371,6 +371,7 @@
     align-items: center;
     z-index: 100;
     background: var(--composer-html-background);
+    container-type: inline-size;
 
     &.sticky,
     &.stickycolorful,
