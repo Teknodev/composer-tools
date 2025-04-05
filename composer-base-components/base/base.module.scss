@@ -41,6 +41,7 @@
     width: 100%;
     padding: 80px 50px;
     background-color: var(--composer-html-background);
+    container-type: inline-size;
 
     &.full {
         padding: 80px 0px;
