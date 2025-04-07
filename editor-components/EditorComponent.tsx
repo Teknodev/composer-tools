@@ -124,6 +124,7 @@ export enum CATEGORIES {
   LOCATION = "location",
   HTTP_CODES = "HTTPCodes",
   BANNER = "banner",
+  ECOMMERCE = "ecommerce",
 }
 
 export function generateId(key: string): string {
@@ -606,6 +607,10 @@ export abstract class LogoClouds extends Component {
 
 export abstract class BaseBanner extends Component {
   static category = CATEGORIES.BANNER;
+}
+
+export abstract class BaseECommerce extends Component {
+  static category = CATEGORIES.ECOMMERCE;
 }
 
 export abstract class Location extends Component {
