@@ -1,8 +1,7 @@
 import * as React from "react";
-import styles from "./banner3.module.scss";
+import styles from "./image-gallery10.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { BaseBanner } from "../../EditorComponent";
-import "animate.css";
+import { BaseImageGallery } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 
@@ -18,7 +17,7 @@ const stripHtml = (html: string): string => {
     return tmp.textContent || tmp.innerText || "";
 };
 
-class Banner3 extends BaseBanner {
+class ImageGallery10 extends BaseImageGallery {
     private intervalId: number | null = null;
     constructor(props?: any) {
         super(props, styles);
@@ -374,7 +373,7 @@ class Banner3 extends BaseBanner {
     }
 
     static getName(): string {
-        return "Banner 3";
+        return "Image Gallery 10";
     }
 
     render() {
@@ -396,16 +395,18 @@ class Banner3 extends BaseBanner {
                                 : this.decorateCSS("left")
                                 }`}
                         >
-                            {this.getPropValue("header")}{" "}
-                            {currentText && showAnimateText && (
-                                <span
-                                    className={this.decorateCSS("animated-text")}
-                                    key={currentText}
-                                >
-                                    {currentText}
-                                </span>
-                            )}
-
+                            <span className={this.decorateCSS("header-content")}>
+                                {/* {this.castToString(this.getPropValue("header"))} */}
+                                {this.getPropValue("header")}
+                                {currentText && showAnimateText && (
+                                    <span
+                                        className={this.decorateCSS("animated-text")}
+                                        key={currentText}
+                                    >
+                                        {" " + currentText}
+                                    </span>
+                                )}
+                            </span>
                         </Base.SectionTitle>
                     )
                     }
@@ -459,5 +460,5 @@ class Banner3 extends BaseBanner {
     }
 }
 
-export default Banner3;
+export default ImageGallery10;
 

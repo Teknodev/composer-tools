@@ -34,7 +34,7 @@
     justify-content: center;
 
     .header-title {
-      display: flex;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: var(--composer-gap-sm);
@@ -47,8 +47,9 @@
     }
 
     .animated-text {
-      animation: fadeInUpAndDisappear 3s ease infinite;
+      animation: fadeInUpAndDisappear 5s ease infinite;
       display: inline-block;
+      margin-left: 5px;
     }
 
     .grid {
@@ -82,7 +83,9 @@
             position: relative;
             border-radius: var(--border-radius-sm);
             transition: background-color 0.2s ease-in;
-
+            .home-link {
+              content: "";
+            }
             .card-item-value-h1,
             .card-item-value-p {
               visibility: hidden;
@@ -94,6 +97,7 @@
               .card-item-value-h1,
               .card-item-value-p {
                 visibility: visible;
+                color: var(--composer-font-color-primary);
               }
             }
           }

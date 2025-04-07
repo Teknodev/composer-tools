@@ -205,6 +205,7 @@ import ImageGalleryCompanent5 from "./Image_gallery/image_gallery_5/image-galler
 import ImageGalleryCompanent6 from "./Image_gallery/image_gallery_6/image-gallery6";
 import ImageGalleryCompanent7 from "./Image_gallery/image_gallery_7/image-gallery7";
 import ImageGalleryCompanent8 from "./Image_gallery/image_gallery_8/image-gallery8";
+import ImageGalleryComponent10 from "./Image_gallery/image_gallery_10/image-gallery10"
 import NotificationModal1 from "./modal/notification-modal1/notificationmodal1";
 import ConfirmationModal1 from "./modal/confirmation-modal1/confirmationmodal1";
 import TermsOfUseModal from "./modal/terms-of-use/terms-of-use";
@@ -222,7 +223,6 @@ import Location5 from "./location/location5/location5";
 import Location6 from "./location/location6/location6";
 import ConfirmationModal2 from "./modal/confirmation-modal-2/confirmation-modal-2";
 import BannerComponent2 from "../editor-components/banner/banner2/banner2";
-import BannerComponent3 from "../editor-components/banner/banner3/banner3";
 
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
@@ -356,6 +356,7 @@ function Registerables(composer: ComponentsRegistery) {
     ImageGalleryCompanent6,
     ImageGalleryCompanent7,
     ImageGalleryCompanent8,
+    ImageGalleryComponent10,
     FeatureComponent1,
     FeatureComponent2,
     FeatureComponent3,
@@ -447,7 +448,6 @@ function Registerables(composer: ComponentsRegistery) {
     HttpCodes4,
     ConfirmationModal2,
     BannerComponent2,
-    BannerComponent3,
   ]);
 }
 
