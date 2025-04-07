@@ -620,22 +620,18 @@ class ECommerce6 extends BaseECommerce {
               )
             })}
           </div>
-          <ComposerSlider {...settings} className={this.decorateCSS("big-image-container")} onClick={()=> this.toggleZoomImage()}>
-          {images.map((item: Images, index: number)=>{
-              return(
-                <div onClick={()=>this.toggleImage(index)} className={this.decorateCSS("small-image")}>
-                  <img src={item.item} className={this.decorateCSS("big-image")}></img>
-                </div>
-              )
-            })}
-            {/* <div className={this.decorateCSS("image-icon-left")} onClick={() => this.handleClickLeft()}>
-              <ComposerIcon name={this.getPropValue("leftArrow")} propsIcon={{className: this.decorateCSS("icon")}}/>
-            </div>
-          <img src={images[this.getComponentState("selectedImage")].item} className={this.decorateCSS("big-image")}></img>
-          <div className={this.decorateCSS("image-icon-right")} onClick={() => this.handleClickRight()}>
-            <ComposerIcon name={this.getPropValue("rightArrow")}propsIcon={{className: this.decorateCSS("icon")}}/>
-          </div> */}
-          </ComposerSlider>
+          <div className={this.decorateCSS("slider-parent")}>
+            <ComposerSlider {...settings} className={this.decorateCSS("slider")}>
+              {images.map((item: Images, index: number)=>{
+                  return(
+                    <div onClick={()=>this.toggleImage(index)} className={this.decorateCSS("big-image-container")}>
+                      <img src={item.item} className={this.decorateCSS("big-image")}></img>
+                    </div>
+                  )
+              })}
+            </ComposerSlider>
+          </div>
+
         </div>
         <div className={this.decorateCSS("right-container")}>
           <Base.VerticalContent className={this.decorateCSS("upper-container")}>
