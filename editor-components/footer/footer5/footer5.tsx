@@ -84,6 +84,16 @@ class Footer5Page extends BaseFooter {
       displayer: "Footer Text",
       value: "2024 © Made with by Blinkpage.",
     });
+
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2", "animate3"]
+      }
+    });
   }
 
   static getName(): string {
@@ -125,7 +135,7 @@ class Footer5Page extends BaseFooter {
                 {textsExist && (
                   <Base.VerticalContent
                     className={`${this.decorateCSS("left")} ${!this.castToString(button.text) && this.decorateCSS("left-full")}`}>
-                    {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+                    {subtitleExist && <div className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</div>}
                     {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                   </Base.VerticalContent>
                 )}
@@ -159,7 +169,12 @@ class Footer5Page extends BaseFooter {
                           <div
                             className={`${this.decorateCSS("link-element")} ${item.url && this.decorateCSS("has-path")}`}>
                             <ComposerLink key={index} path={item.url}>
-                              <Base.P className={this.decorateCSS("link-text")}>{item.text}</Base.P>
+                              <Base.P 
+                                className={this.decorateCSS("link-text")}
+                                data-animation={item.url ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                              >
+                                {item.text}
+                              </Base.P>
                             </ComposerLink>
                           </div>
                         )

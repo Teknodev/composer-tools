@@ -29,6 +29,15 @@ class Content1 extends BaseContent {
         INPUTS.BUTTON("button", "Button", "Button Text", "", null, null,"Primary")
       ],
     });
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2", "animate3"]
+      }
+    });
   }
   static getName(): string {
     return "Content 1";
@@ -37,7 +46,10 @@ class Content1 extends BaseContent {
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
+        <Base.MaxContent 
+          className={this.decorateCSS("max-content")}
+          data-animation={this.getPropValue("hoverAnimation").join(" ")}
+        >
           {this.castToString(this.getPropValue("title")) && (
             <Base.SectionTitle className={this.decorateCSS("title")}>
               {this.getPropValue("title")}
