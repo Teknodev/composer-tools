@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseECommerce } from "../../EditorComponent";
+import { BaseECommerce, CurrencyCode } from "../../EditorComponent";
 import styles from "./e_commerce6.module.scss";
 import { Base } from "composer-tools/composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
@@ -8,6 +8,7 @@ import { ComposerIcon } from "composer-tools/composer-base-components/icon/icon"
 import { FaSlideshare } from "react-icons/fa";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 import ComposerSlider from "composer-tools/composer-base-components/slider/slider";
+import { getCurrencyInfo } from "components/setting-input/inputs/currency";
 
 type Images ={
   item: string;
@@ -21,7 +22,7 @@ type ShareSection ={
 type SizeSections ={
   size: number;
   type: string;
-  cost: string;
+  cost: {value: string, currency: CurrencyCode};
 }
 
 type CountSections ={
@@ -269,10 +270,10 @@ class ECommerce6 extends BaseECommerce {
           value: "BAGS",
         },
         {
-          type:"string",
+          type:"currency",
           key:"cost",
           displayer: "Cost",
-          value: "$25",
+          value: {value: "25" ,currency: "USD"},
         },
       ]},
       {
@@ -293,10 +294,10 @@ class ECommerce6 extends BaseECommerce {
           value: "BAGS",
         },
         {
-          type:"string",
+          type:"currency",
           key:"cost",
           displayer: "Cost",
-          value: "$75",
+          value: {value: "75" ,currency: "USD"},
         },
       ]},
       {
@@ -317,10 +318,10 @@ class ECommerce6 extends BaseECommerce {
           value: "BAGS",
         },
         {
-          type:"string",
+          type:"currency",
           key:"cost",
           displayer: "Cost",
-          value: "$110",
+          value: {value: "110" ,currency: "USD"},
         },
       ]}
     ]
@@ -518,6 +519,13 @@ class ECommerce6 extends BaseECommerce {
       displayer: "Close Icon",
       value: "IoMdClose"
     })
+    this.addProp({
+      type: "icon",
+      key: "sliderDotIcon",
+      displayer: "Slider Dot Icon",
+      value: "GoDotFill"
+    })
+    
 
     this.addProp(INPUTS.BUTTON("button", "Button", "ADD TO CART", "", null, null, "Primary"));
     this.setComponentState("openIndex", null);
@@ -526,6 +534,7 @@ class ECommerce6 extends BaseECommerce {
     this.setComponentState("selectedSizeSection", 0);
     this.setComponentState("selectedRadioButton", null);
     this.setComponentState("zoomImage", false);
+    this.setComponentState("overlayZoomImage", false);
     this.setComponentState("slider-ref", React.createRef());
   }
 
@@ -539,15 +548,15 @@ class ECommerce6 extends BaseECommerce {
       this.setComponentState("openIndex", index);
     }
   };
-  toggleImage = (index: number) => {
-    this.setComponentState("selectedImage", index);
-  };
   toggleSize = (index: number) => {
     this.setComponentState("selectedSizeSection", index);
   };  
   toggleZoomImage = () => {
     this.setComponentState("zoomImage", true);
-  };  
+  }; 
+  toggleZoomOverlayImage = () => {
+    this.setComponentState("overlayZoomImage", !this.getComponentState("overlayZoomImage"));
+  } 
   handleClickLeft = () =>{
     let index = this.getComponentState("selectedImage");
     let newIndex = index - 1;
@@ -603,7 +612,9 @@ class ECommerce6 extends BaseECommerce {
       slidesToScroll: 1,
       centerMode: false,
       adaptiveHeight: true,
-      
+      afterChange: (currentIndex: number) => {
+        this.setComponentState("selectedImage", currentIndex);
+      },
     };
 
     return (
@@ -613,7 +624,7 @@ class ECommerce6 extends BaseECommerce {
           <div className={this.decorateCSS("small-images-container")}>
             {images.map((item: Images, index: number)=>{
               return(
-                <div onClick={()=>this.toggleImage(index)} className={this.decorateCSS("small-image")}>
+                <div className={this.decorateCSS("small-image")}>
                   <img src={item.item} className={this.decorateCSS("image")}></img>
                   <div className={`${this.decorateCSS("overlay")} ${this.getComponentState("selectedImage") === index && this.decorateCSS("selected-image")}`}></div>
                 </div>
@@ -621,15 +632,32 @@ class ECommerce6 extends BaseECommerce {
             })}
           </div>
           <div className={this.decorateCSS("slider-parent")}>
-            <ComposerSlider {...settings} className={this.decorateCSS("slider")}>
+            <div className={this.decorateCSS("image-icon-left")}>
+              <ComposerIcon name={this.getPropValue("leftArrow")} 
+              propsIcon={{className: this.decorateCSS("icon"),
+              onClick: () => {
+              const sliderRef = this.getComponentState("slider-ref");
+              sliderRef.current.slickPrev();
+              }}}/>
+            </div>
+            <ComposerSlider {...settings} className={this.decorateCSS("slider-container")} ref={this.getComponentState("slider-ref")}>
               {images.map((item: Images, index: number)=>{
                   return(
-                    <div onClick={()=>this.toggleImage(index)} className={this.decorateCSS("big-image-container")}>
-                      <img src={item.item} className={this.decorateCSS("big-image")}></img>
+                  <div className={this.decorateCSS("slider")}>
+                    <div className={this.decorateCSS("big-image-container")}>
+                      <img src={item.item} onClick={()=> this.toggleZoomImage()} className={this.decorateCSS("big-image")}></img>
                     </div>
-                  )
+                  </div>
+                )
               })}
             </ComposerSlider>
+            <div className={this.decorateCSS("image-icon-right")}>
+              <ComposerIcon name={this.getPropValue("rightArrow")} propsIcon={{className: this.decorateCSS("icon"),
+              onClick: () => {
+              const sliderRef = this.getComponentState("slider-ref");
+              sliderRef.current.slickNext();
+              }}}/>
+            </div> 
           </div>
 
         </div>
@@ -655,7 +683,14 @@ class ECommerce6 extends BaseECommerce {
               </div>
 
             </div>
-            <div className={this.decorateCSS("cost")}>{sizeSections[this.getComponentState("selectedSizeSection")].cost}</div>
+            <div className={this.decorateCSS("cost")}>
+              <div className={this.decorateCSS("value")}>
+              {sizeSections[this.getComponentState("selectedSizeSection")].cost.value}
+              </div>
+              <div className={this.decorateCSS("currency-code")}>
+              {getCurrencyInfo(sizeSections[this.getComponentState("selectedSizeSection")].cost.currency).symbol}
+              </div>
+            </div>
           </Base.VerticalContent>
           <div className={this.decorateCSS("divider")}></div>
           <div className={this.decorateCSS("size-container")}>
@@ -743,7 +778,17 @@ class ECommerce6 extends BaseECommerce {
             <div className={this.decorateCSS("right-icon")} onClick={() => this.handleClickRight()}>
               <ComposerIcon name={this.getPropValue("rightArrow")} propsIcon={{className: this.decorateCSS("icon")}}/>
             </div>
-            <img src={images[this.getComponentState("selectedImage")].item} className={this.decorateCSS("image")}></img>
+            <img src={images[this.getComponentState("selectedImage")].item} onClick={()=> this.toggleZoomOverlayImage()} className={`${this.decorateCSS("image")} ${this.getComponentState("overlayZoomImage") && this.decorateCSS("zoom")}`}></img>
+            <div className={this.decorateCSS("dots")}>
+              {images.map((item:any, index:number) =>{
+                return(
+                  <div className={this.decorateCSS("dot")}>
+                    <ComposerIcon name={this.getPropValue("sliderDotIcon")} propsIcon={{className: `${this.decorateCSS("icon")} ${(this.getComponentState("selectedImage")=== index) && this.decorateCSS("active")}`}}/>
+                  </div>
+                )
+              })}
+            
+            </div>
         </Base.Overlay>
       </Base.Container>
     );
