@@ -136,6 +136,12 @@ type GetPropValueProperties = {
   prefix?: PreSufFix;
 };
 
+type RangeInputAdditionalParams = { 
+  maxRange?: number; 
+  minRange?: number; 
+  step?: number;
+};
+
 export type CSSClass = {
   id: string;
   class: string;
@@ -179,6 +185,7 @@ type AvailablePropTypes =
   | { type: "select"; value: string }
   | { type: "color"; value: string }
   | { type: "icon"; value: string }
+  | { type: "range"; value: string; additionalParams?: RangeInputAdditionalParams}
   | { type: "currency"; value: { value: string; currency?: CurrencyCode }; additionalParams?: currencyAdditionalParams}
   | { type: "location"; value: TypeLocation }
   | { type: "dateTime"; value: string ; additionalParams? : {mode?:string, timeInterval?:number, yearRange? : number, yearStart?: number}}
@@ -196,7 +203,7 @@ export type TypeUsableComponentProps = {
   id?: string;
   key: string;
   displayer: string;
-  additionalParams?: { selectItems?: string[]; maxElementCount?: number };
+  additionalParams?: { selectItems?: string[]; maxElementCount?: number};
   max?: number;
 } & AvailablePropTypes & {
   getPropValue?: (
