@@ -7,7 +7,7 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Feature = {
-  title: JSX.Element;
+  title: React.JSX.Element;
   iconFeature: string;
 };
 

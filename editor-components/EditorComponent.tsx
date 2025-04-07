@@ -6,7 +6,6 @@ import { renderToString } from "react-dom/server";
 import { THEMES, TTheme } from "./location/themes";
 import InlineEditor from "../../custom-hooks/UseInlineEditor";
 import { v4 as uuidv4 } from 'uuid';
-import { Pages } from "classes/bucket";
 
 export const currencies = [
   { code: "AFN", symbol: "؋", name: "Afghan Afghani" },
@@ -103,7 +102,22 @@ type PreSufFix = {
   className: string;
 };
 
-export type InteractionType = Pages["page_interactions"] ;
+export type InteractionType ={
+  type?: string,
+  modal?: string,
+  trigger_action?: string,
+  visible_on?: string,
+  show_once?: false,
+};
+export type PageInteractionType ={
+  type?: string;
+  modal?: string;
+  scroll_depth?: number;
+  delay_time?: number;
+  visible_on?: string;
+  show_once?: boolean;
+  trigger_action?: string;
+};
 
 export type TypeLocation = {
   lng: number;
@@ -122,24 +136,32 @@ type GetPropValueProperties = {
   prefix?: PreSufFix;
 };
 
-type TypeCSSProp = { [key: string]: { id: string; class: string }[] };
+export type CSSClass = {
+  id: string;
+  class: string;
+}
+
+export type TypeCSSProp = { [key: string]: CSSClass[] };
 
 export interface iComponent {
   render(): any;
   getInstanceName(): string;
   getName(): string;
   getProps(): TypeUsableComponentProps[];
+  getShadowProps(): TypeUsableComponentProps[];
   getPropValue(
     propName: string,
     properties?: GetPropValueProperties
   ): TypeUsableComponentProps;
   getExportedCSSClasses(): { [key: string]: string };
-  getCSSClasses(sectionName?: string | null): any;
+  getCSSClasses(): TypeCSSProp;
+  getCSSClasses(sectionName: string | null): CSSClass[];
+  getCSSClasses(sectionName?: string | null): TypeCSSProp | CSSClass[];
   getInteractions(sectionName?: string | null): any;
   addProp(prop: TypeUsableComponentProps): void;
   setProp(key: string, value: any): void;
   setCSSClasses(key: string, value: { id: string; class: string }[]): void;
-  setInteraction(key: string, value: InteractionType): void;
+  setInteraction(key: string, value: InteractionType[]): void;
   decorateCSS(cssValue: string): string;
   getCategory(): CATEGORIES;
   initializeProp(prop: TypeUsableComponentProps): void;
@@ -167,7 +189,7 @@ export type TypeReactComponent = {
   type: string;
   props?: TypeUsableComponentProps[];
   cssClasses?: TypeCSSProp;
-  interactions?: InteractionType;
+  interactions?: Record<string, InteractionType[]>;
   id?: string;
 };
 export type TypeUsableComponentProps = {
@@ -212,6 +234,10 @@ export enum CATEGORIES {
   BANNER = "banner",
 }
 
+export function generateId(key: string): string {
+  return key + "-" + Math.round(Math.random() * 1000000000).toString();
+}
+//@ts-ignore
 export abstract class Component
   extends React.Component<{}, { states: any; componentProps: any }>
   implements iComponent
@@ -394,7 +420,8 @@ export abstract class Component
     }
 
     const memorizedElement: MemorizedElement  = this.memorizedElements[prop.id];
-    const isValueChanged = memorizedElement?.value && prop.value != memorizedElement?.value;
+    const isValueChanged = (!!memorizedElement?.value || memorizedElement?.value == "") 
+    && prop.value != memorizedElement?.value;
 
     if(!memorizedElement.jsxElement || isValueChanged){
       memorizedElement["jsxElement"] = <SanitizeHTML html={prop?.value}></SanitizeHTML>;
@@ -407,10 +434,14 @@ export abstract class Component
   getExportedCSSClasses() {
     return this.styles;
   }
-  getCSSClasses(sectionName: string | null = null): string {
-    return sectionName
-      ? this.state.componentProps.cssClasses[sectionName]
-      : this.state.componentProps.cssClasses;
+  getCSSClasses(): TypeCSSProp;
+  getCSSClasses(sectionName: string | null): CSSClass[];
+  getCSSClasses(sectionName: string | null = null): TypeCSSProp | CSSClass[] {
+    const { cssClasses } = this.state.componentProps;
+    
+    return sectionName 
+      ? cssClasses[sectionName]
+      : cssClasses;
   }
 
   private attachPropId(_prop: TypeUsableComponentProps) {
@@ -419,8 +450,7 @@ export abstract class Component
         (v: TypeUsableComponentProps) => this.attachPropId(v)
       );
     } else {
-      _prop.id =
-        _prop.key + "-" + Math.round(Math.random() * 1000000000).toString();
+      _prop.id = generateId(_prop.key)
     }
 
     return _prop;
@@ -472,7 +502,7 @@ export abstract class Component
     this.state.componentProps.cssClasses[key] = value;
     this.setState({ componentProps: this.state.componentProps });
   }
-  setInteraction(key: string, value: InteractionType) {
+  setInteraction(key: string, value: InteractionType[]) {
     this.state.componentProps.interactions[key] = value;
     this.setState({ componentProps: this.state.componentProps });
   }
@@ -481,19 +511,25 @@ export abstract class Component
       ? this.state.componentProps.interactions[sectionName]
       : this.state.componentProps.interactions;
   }
-  decorateCSS(cssValue: string) {
-    let cssClass = [this.styles[cssValue]];
+  decorateCSS(section: string) {
+    let cssClass = [this.styles[section]];
+    
     let cssManuplations = Object.entries(this.getCSSClasses()).filter(
       ([p, v]) => v.length > 0
     );
 
     cssManuplations.forEach(([key, value]: any) => {
-      if (key === cssValue) {
+      if (key === section) {
         value.forEach((el: any) => {
           cssClass.push(el.class);
         });
       }
     });
+
+    cssClass.push(
+      generateAutoClassName(this.id, section)
+    );
+    
     return cssClass.join(" ");
   }
 
@@ -535,7 +571,7 @@ export abstract class Component
     return castedObject;
   }
 
-  castToString(elem: JSX.Element): string {
+  castToString(elem: React.JSX.Element): string {
     return elem.props?.html?.replace(/<\/?[^>]+(>|$)/g, "");
   }
 
@@ -724,3 +760,7 @@ export abstract class BaseContacts extends Component {
 export abstract class BaseFeature extends Component {
   static category = CATEGORIES.FEATURE;
 }
+
+export function generateAutoClassName(componentId: string, section: string){
+  return `auto-generate-${componentId}-${section}`;
+};
