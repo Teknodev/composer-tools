@@ -334,6 +334,10 @@
   }
 
   .accordionLocalization {
+    display: none;
+    &.active{
+      display: flex;
+    }
     .localization {
       color: var(--composer-font-color-primary);
       h3 {
@@ -407,6 +411,9 @@
       .rightSide {
         .localization {
           display: none;
+          &.active{
+            display: flex;
+          }
         }
       }
 

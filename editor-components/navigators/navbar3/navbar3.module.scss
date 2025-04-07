@@ -461,6 +461,13 @@
 
   .smallDeviceNavbarContainer{
     display: block;
+    .maxContent{
+      .mobileRight{
+        display: flex;
+        align-items: center;
+        gap: var(--composer-gap-sm);
+      }
+    }
 
     &.filledBackground {
       background: var(--composer-html-background) !important;

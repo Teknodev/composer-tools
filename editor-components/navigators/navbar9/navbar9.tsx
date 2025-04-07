@@ -22,6 +22,7 @@ interface Language {
   label: "code" | "name";
   icon: string;
   showLanguage: boolean;
+  showLocalizationAlways: boolean;
   showDivider: boolean;
 }
 
@@ -97,6 +98,12 @@ class Navbar9 extends BaseNavigator {
           key: "icon",
           displayer: "Icon",
           value: "GrLanguage",
+        },
+        {
+          type: "boolean",
+          key: "showLocalizationAlways",
+          displayer: "Show Localization Always",
+          value: true,
         },
         {
           type: "boolean",
@@ -1304,7 +1311,7 @@ class Navbar9 extends BaseNavigator {
                 </div>
               )}
             </div>
-
+            <div className={this.decorateCSS("mobileRight")}>
             {hamburgerNavActive ? (
               <ComposerIcon
                 name={this.getPropValue("closeIcon")}
@@ -1324,6 +1331,29 @@ class Navbar9 extends BaseNavigator {
                 }}
               />
             )}
+              {(language.showLanguage && language.showLocalizationAlways) && (
+                <div className={this.decorateCSS("localizationContainer")}>
+                  <ComposerLanguage
+                    type="dropdown"
+                    title={language.label}
+                    icon={language.icon}
+                    dropdownButtonClassName={`${this.decorateCSS(
+                      "localization"
+                    )}`}
+                    dropdownLabelClassName={`${this.decorateCSS(
+                      "localizationLabel"
+                    )}`}
+                    iconClassName={this.decorateCSS("languageIcon")}
+                    dropdownItemClassName={this.decorateCSS("localizationItem")}
+                    dropdownContentClassName={this.decorateCSS(
+                      "localizationContent"
+                    )}
+                    divider={language.showDivider}
+                  />
+                </div>
+              )}
+            </div>
+
           </Base.MaxContent>
           <div
             className={`${this.decorateCSS("hamburgerNav")} ${
@@ -1485,7 +1515,7 @@ class Navbar9 extends BaseNavigator {
                     ))}
 
 
-                      {language.showLanguage && (
+                      {(language.showLanguage && !language.showLocalizationAlways) && (
                         <ComposerLanguage
                           type="accordion"
                           title={language.label}
