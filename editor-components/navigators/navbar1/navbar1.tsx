@@ -6,7 +6,6 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLanguage from "composer-tools/composer-base-components/language/language";
 import { Base } from "composer-tools/composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import { bool } from "yup";
 
 interface MenuItems {
   title: React.JSX.Element;
