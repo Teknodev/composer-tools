@@ -5,7 +5,7 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
 
 type Category = {
-  categoryName: JSX.Element;
+  categoryName: React.JSX.Element;
   questions: Array<any>;
 };
 

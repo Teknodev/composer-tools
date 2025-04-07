@@ -85,7 +85,7 @@
               }
 
               .input.error {
-                border-bottom-color: var(--danger-color);
+                border-bottom-color: var(--composer-danger-color);
               }
 
               .icon {
@@ -106,7 +106,7 @@
         }
 
         .error-message {
-          color: var(--danger-color);
+          color: var(--composer-danger-color);
           font-size: 1rem;
           margin-top: var(--composer-gap-xs);
         }
