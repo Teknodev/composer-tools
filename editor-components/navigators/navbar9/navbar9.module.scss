@@ -421,7 +421,7 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .navbarContainer {
     &.filledBackground {
       background: var(--composer-html-background) !important;

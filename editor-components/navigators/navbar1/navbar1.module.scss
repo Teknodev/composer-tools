@@ -397,7 +397,7 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .navbarContainer {
     .maxContent {
       z-index: 101;
