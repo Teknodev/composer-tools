@@ -187,6 +187,7 @@ type AvailablePropTypes =
   | { type: "icon"; value: string }
   | { type: "range"; value: string; additionalParams?: RangeInputAdditionalParams}
   | { type: "currency"; value: { value: string; currency?: CurrencyCode }; additionalParams?: currencyAdditionalParams}
+  | { type: "tag"; value: string[]}
   | { type: "location"; value: TypeLocation }
   | { type: "phone"; value: string }
   | { type: "dateTime"; value: string ; additionalParams? : {mode?:string, timeInterval?:number, yearRange? : number, yearStart?: number}}
@@ -569,6 +570,7 @@ export abstract class Component
     }
     return propValue;
   }
+  
 
   castToObject<Type>(propName: string): Type {
     let i = this.state.componentProps.props
