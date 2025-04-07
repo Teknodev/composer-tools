@@ -5,15 +5,15 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
 
 type Feature = {
-  feature: JSX.Element;
+  feature: React.JSX.Element;
   icon: string;
 };
 
 type Card = {
   image: string;
-  name: JSX.Element;
-  position: JSX.Element;
-  description: JSX.Element;
+  name: React.JSX.Element;
+  position: React.JSX.Element;
+  description: React.JSX.Element;
   features: Feature[];
 };
 

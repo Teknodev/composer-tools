@@ -9,14 +9,14 @@ import styles from "./slider10.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
 type SliderItem = {
-  title: JSX.Element;
+  title: React.JSX.Element;
   image: string;
   index: number;
 };
 
 type FeaturedItem = {
-  title: JSX.Element;
-  subtitle: JSX.Element;
+  title: React.JSX.Element;
+  subtitle: React.JSX.Element;
   image: string;
   link: string;
 };

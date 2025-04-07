@@ -5,12 +5,12 @@ import styles from "./footer2.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
 type FooterValues = {
-  footerTitle: JSX.Element;
+  footerTitle: React.JSX.Element;
   footerText: FooterTextValues[];
 };
 
 type FooterTextValues = {
-  footerText: JSX.Element;
+  footerText: React.JSX.Element;
   path: string;
 };
 
@@ -277,6 +277,16 @@ class Footer2Page extends BaseFooter {
       displayer: "Footer Text",
       value: "©2023 Blinkpage Inc. - SF",
     });
+
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2", "animate3"]
+      }
+    });
   }
 
   static getName(): string {
@@ -307,7 +317,13 @@ class Footer2Page extends BaseFooter {
                         return (
                           textExist && (
                             <ComposerLink key={indexFooterText} path={v.path}>
-                              <Base.SectionDescription className={this.decorateCSS("text")}>{v.footerText}</Base.SectionDescription>
+                              <Base.SectionDescription 
+                                className={this.decorateCSS("text")}
+                                data-animation={v.path ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                                data-has-link={Boolean(v.path)}
+                              >
+                                {v.footerText}
+                              </Base.SectionDescription>
                             </ComposerLink>
                           )
                         );

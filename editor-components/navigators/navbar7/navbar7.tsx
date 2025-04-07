@@ -9,7 +9,7 @@ import ComposerLanguage from "composer-tools/composer-base-components/language/l
 
 interface Logo {
   image: string;
-  imageLink: string;
+  navigateTo: string;
 }
 
 interface Icon {
@@ -18,7 +18,7 @@ interface Icon {
 }
 
 interface MenuItem {
-  title: JSX.Element;
+  title: React.JSX.Element;
   navigate_to: string;
   menuType: string;
   sub_items: MenuItem[];
@@ -1054,6 +1054,7 @@ class Navbar7 extends BaseNavigator {
     this.setComponentState("subNavActiveIndex", null);
     this.setComponentState("subNavActive", null);
     this.setComponentState("changeBackground", false);
+    this.setComponentState("navbarOverflowShow", false);
 
   }
 
@@ -1068,13 +1069,16 @@ class Navbar7 extends BaseNavigator {
 
     setTimeout(() => {
       this.setComponentState("isMobileMenuOpen", true);
+      setTimeout(() => {
+        this.setComponentState("navbarOverflowShow", true);
+      }, 300)
     }, 50);
   };
 
   handleCloseMenu = () => {
     Base.Navigator.changeScrollBehaviour("auto");
     this.setComponentState("isMobileMenuOpen", false);
-
+    this.setComponentState("navbarOverflowShow", false);
     setTimeout(() => {
       this.setComponentState("changeBackground", false);
     }, 100);
@@ -1119,6 +1123,8 @@ class Navbar7 extends BaseNavigator {
     const menuItems = this.castToObject<MenuItem[]>("menuItems");
 
     const language = this.castToObject<Language>("language");
+
+    const isVisible = (isMobileMenuOpen && !isBigScreen)
     
     return (
       <>
@@ -1127,7 +1133,7 @@ class Navbar7 extends BaseNavigator {
           positionContainer={`${this.decorateCSS("pcNavbarContainer")}`}
           setIsScrolled={(value: boolean) => this.setComponentState("isScrolled", value)}
           setIsBigScreen={(value: boolean) => this.setComponentState("isBigScreen", value)}
-
+          className={this.decorateCSS("pcNavbarContainer")}
         >
           <Base.MaxContent
             className={`${this.decorateCSS("maxContent")} ${
@@ -1138,7 +1144,7 @@ class Navbar7 extends BaseNavigator {
           >
             {currentLogo.image && (
               <div className={this.decorateCSS("logo")}>
-                <ComposerLink path={currentLogo.imageLink}>
+                <ComposerLink path={currentLogo.navigateTo}>
                   <img
                     src={currentLogo.image}
                     className={this.decorateCSS("logoImage")}
@@ -1306,7 +1312,7 @@ class Navbar7 extends BaseNavigator {
           hamburgerNavActive={isMobileMenuOpen}
           setIsScrolled={(value: boolean) => this.setComponentState("isScrolled", value)}
           setIsBigScreen={(value: boolean) => this.setComponentState("isBigScreen", value)}
-
+          className={this.decorateCSS("smallDeviceNavbar")}
         >
           <Base.MaxContent
             className={`${this.decorateCSS("maxContent")} ${
@@ -1317,10 +1323,11 @@ class Navbar7 extends BaseNavigator {
           >
             {currentLogo.image && (
               <div className={this.decorateCSS("logo")}>
-                <ComposerLink path={currentLogo.imageLink}>
+                <ComposerLink path={currentLogo.navigateTo}>
                   <img
                     src={currentLogo.image}
                     className={this.decorateCSS("logoImage")}
+                    onClick={()=> this.handleCloseMenu()}
                   />
                 </ComposerLink>
               </div>
@@ -1347,7 +1354,7 @@ class Navbar7 extends BaseNavigator {
             <div
               className={`${this.decorateCSS("mobileMenu")} ${
                 isMobileMenuOpen ? this.decorateCSS("open") : ""
-              }`}
+              } ${this.getComponentState("navbarOverflowShow") ? this.decorateCSS("overflowShow") : ""}`}
             >
               <div className={this.decorateCSS("mobileMenuContent")}>
               {menuItems.length > 0 && (
@@ -1366,6 +1373,7 @@ class Navbar7 extends BaseNavigator {
                             className={this.decorateCSS(
                               "hamburgerMenuItemTitle"
                             )}
+                            onClick={()=> this.handleCloseMenu()}
                           >
                             {item.title}
                           </span>
@@ -1414,6 +1422,7 @@ class Navbar7 extends BaseNavigator {
                                       className={this.decorateCSS(
                                         "hamburgerMenuItemTitle"
                                       )}
+                                      onClick={()=> this.handleCloseMenu()}
                                     >
                                       {subItem.title}
                                     </span>
@@ -1471,6 +1480,7 @@ class Navbar7 extends BaseNavigator {
                                                 className={this.decorateCSS(
                                                   "hamburgerSubSubmenuItemTitle"
                                                 )}
+                                                onClick={()=> this.handleCloseMenu()}
                                               >
                                                 {subSubItem.title}
                                               </span>
@@ -1499,12 +1509,14 @@ class Navbar7 extends BaseNavigator {
               {icons.length > 0 && (
                 <div className={this.decorateCSS("iconsContainer")}>
                   {icons.map((icon: Icon, index: number) => (
+                    <div className={this.decorateCSS("icons")} onClick={()=> this.handleCloseMenu()}>
                     <ComposerLink path={icon.page}>
-                      <ComposerIcon
-                        name={icon.icon}
-                        propsIcon={{ className: this.decorateCSS("icon") }}
-                      />
+                        <ComposerIcon
+                          name={icon.icon}
+                          propsIcon={{ className: this.decorateCSS("icon") }}
+                        />
                     </ComposerLink>
+                    </div>
                   ))}
                 </div>
               )}
@@ -1513,6 +1525,12 @@ class Navbar7 extends BaseNavigator {
             </div>
           </Base.MaxContent>
         </Base.Navigator.Container>
+
+        <Base.Overlay
+          className={this.decorateCSS("overlay")}
+          onClick={() => this.handleCloseMenu()}
+          isVisible={isVisible}
+        />
       </>
     );
   }

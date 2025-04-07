@@ -26,11 +26,6 @@
       gap: var(--gap-xs);
       font-size: 1rem;
       color: var(--composer-font-color-primary);
-
-      .home-link {
-        content: "";
-      }
-
       .home-page {
         &:hover {
           color: var(--composer-primary-color);

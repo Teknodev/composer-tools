@@ -7,15 +7,15 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Pricing = {
-  cardTitle: JSX.Element;
-  cardsubtitle: JSX.Element;
-  cardPrice: JSX.Element;
-  cardButtonText: JSX.Element;
+  cardTitle: React.JSX.Element;
+  cardsubtitle: React.JSX.Element;
+  cardPrice: React.JSX.Element;
+  cardButtonText: React.JSX.Element;
   cardButtonLink: string;
-  cardDuration: JSX.Element;
-  cardDuration1: JSX.Element;
+  cardDuration: React.JSX.Element;
+  cardDuration1: React.JSX.Element;
   cardList: string[];
-  pricingTableTitle: JSX.Element;
+  pricingTableTitle: React.JSX.Element;
   isActive: boolean;
   popular_settings: any;
   text3: string;

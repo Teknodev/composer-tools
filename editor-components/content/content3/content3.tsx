@@ -6,9 +6,9 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type ITabs = {
-  tabText: JSX.Element;
-  title: JSX.Element;
-  description: JSX.Element;
+  tabText: React.JSX.Element;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
   button: INPUTS.CastedButton;
   image: string;
 };
@@ -117,6 +117,17 @@ class Content3 extends BaseContent {
         },
       ],
     });
+
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2"]
+      }
+    });
+    
     this.setActiveTab(0);
   }
 
@@ -164,7 +175,10 @@ class Content3 extends BaseContent {
               </Base.VerticalContent>
             )}
 
-          <div className={this.decorateCSS("tabs")}>
+          <div 
+            className={this.decorateCSS("tabs")}
+            data-animation={this.getPropValue("hoverAnimation").join(" ")}
+          >
             <div className={this.decorateCSS("tab-buttons")}>
               {this.castToObject<ITabs[]>("tabs").map(
                 (tab: ITabs, index: number) => (
@@ -199,12 +213,12 @@ class Content3 extends BaseContent {
                         className={this.decorateCSS("content")}
                       >
                         {this.castToString(tab.title) && (
-                          <Base.H2 className={this.decorateCSS("title")}>
+                          <Base.H2 className={this.decorateCSS("content-title")}>
                             {tab.title}
                           </Base.H2>
                         )}
                         {this.castToString(tab.description) && (
-                          <Base.P className={this.decorateCSS("description")}>
+                          <Base.P className={this.decorateCSS("content-description")}>
                             {tab.description}
                           </Base.P>
                         )}
@@ -225,6 +239,7 @@ class Content3 extends BaseContent {
                       <img
                         className={this.decorateCSS("image")}
                         src={tab.image}
+                        data-animation={this.getPropValue("hoverAnimation").join(" ")}
                       />
                     </div>
                   )}

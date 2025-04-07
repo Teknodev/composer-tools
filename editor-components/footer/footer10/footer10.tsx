@@ -22,6 +22,14 @@ class Footer10Page extends BaseFooter {
     });
 
     this.addProp({
+      type: "page",
+      key: "logoUrl",
+      displayer: "Logo Url",
+      value:""
+    });
+
+
+    this.addProp({
       type: "array",
       key: "links",
       displayer: "Footer Links",
@@ -202,12 +210,23 @@ class Footer10Page extends BaseFooter {
         },
       ],
     });
+
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2", "animate3", "animate4", "animate5"]
+      }
+    });
   }
   static getName(): string {
     return "Footer 10";
   }
   render() {
     const logo = this.getPropValue("logo");
+    const logoUrl = this.getPropValue("logoUrl");
     const links = this.castToObject<any[]>("links");
     const line = this.getPropValue("line");
 
@@ -230,9 +249,11 @@ class Footer10Page extends BaseFooter {
               {upperExist && (
                 <div className={`${this.decorateCSS("upper")} ${alignment === "center" && this.decorateCSS("center")}`}>
                   {logo && (
-                    <div className={this.decorateCSS("logo")}>
-                      <img src={logo} className={this.decorateCSS("image")} alt="" />
-                    </div>
+                    <ComposerLink path={logoUrl}>
+                      <div className={this.decorateCSS("logo")}>
+                        <img src={logo} className={this.decorateCSS("image")} alt="" />
+                      </div>
+                    </ComposerLink>
                   )}
                   {links.length > 0 && (
                     <div className={`${this.decorateCSS("links")} ${logo && this.decorateCSS("full-width")}`}>
@@ -240,7 +261,10 @@ class Footer10Page extends BaseFooter {
                         const textExist = this.castToString(item.text);
                         return (
                           textExist && (
-                            <div className={`${this.decorateCSS("link-element")} ${item.url && this.decorateCSS("has-path")}`}>
+                            <div 
+                              className={`${this.decorateCSS("link-element")} ${item.url && this.decorateCSS("has-path")}`}
+                              data-animation={item.url ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                            >
                               <ComposerLink key={index} path={item.url}>
                                 <Base.H3 className={this.decorateCSS("link-text")}>{item.text}</Base.H3>
                               </ComposerLink>
@@ -259,8 +283,8 @@ class Footer10Page extends BaseFooter {
         {line && <div className={this.decorateCSS("line")}></div>}
 
         {bottomExist && (
-          <Base.Container>
-            <Base.MaxContent>
+          <Base.Container className={this.decorateCSS("second-container")}>
+            <Base.MaxContent className={this.decorateCSS("second-max-content")}>
               <div className={`${this.decorateCSS("bottom")} ${alignment === "center" && this.decorateCSS("center")}`}>
                 {footerTextExist && (
                   <div className={iconsExist ? this.decorateCSS("left") : this.decorateCSS("left-full")}>
@@ -273,11 +297,14 @@ class Footer10Page extends BaseFooter {
                       icons.map((item: icon, index: number) => {
                         return (
                           item.icon && (
-                            <ComposerLink path={item.page}>
-                              <div className={this.decorateCSS("icon-element")}>
+                            <div 
+                              className={this.decorateCSS("icon-element")}
+                              data-animation={item.page ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                            >
+                              <ComposerLink path={item.page}>
                                 <ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
-                              </div>
-                            </ComposerLink>
+                              </ComposerLink>
+                            </div>
                           )
                         );
                       })}
