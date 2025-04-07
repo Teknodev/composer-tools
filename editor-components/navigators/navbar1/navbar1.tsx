@@ -6,6 +6,7 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLanguage from "composer-tools/composer-base-components/language/language";
 import { Base } from "composer-tools/composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { bool } from "yup";
 
 interface MenuItems {
   title: React.JSX.Element;
@@ -23,6 +24,7 @@ interface Language {
   label: "code" | "name";
   icon: string;
   showLanguage: boolean;
+  showLocalizationAlways: boolean;
   showDivider: boolean;
 }
 
@@ -1103,14 +1105,12 @@ class Navbar1 extends BaseNavigator {
       displayer: "Dropdown Icon",
       value: "MdArrowDropDown",
     });
-
     this.addProp({
       type: "icon",
       key: "rightIcon",
       displayer: "Right Arrow Icon",
       value: "MdKeyboardArrowRight",
     });
-
     this.addProp({
       type: "object",
       key: "language",
@@ -1136,6 +1136,12 @@ class Navbar1 extends BaseNavigator {
           key: "showLanguage",
           displayer: "Show Language",
           value: true,
+        },
+        {
+          type: "boolean",
+          key: "showLocalizationAlways",
+          displayer: "Show Localization Always",
+          value:true      
         },
         {
           type: "boolean",
@@ -1411,7 +1417,7 @@ class Navbar1 extends BaseNavigator {
                   type="dropdown"
                   title={language.label}
                   icon={language.icon}
-                  dropdownButtonClassName={`${this.decorateCSS("localization")}`}
+                  dropdownButtonClassName={`${this.decorateCSS("localization")} ${language.showLocalizationAlways && this.decorateCSS("active")}`}
                   dropdownLabelClassName={`${this.decorateCSS(
                     "localizationLabel"
                   )}`}
@@ -1588,10 +1594,10 @@ class Navbar1 extends BaseNavigator {
                         )}
                       </div>
                     ))}
-                    {divider && language.showLanguage && (
+                    {divider && language.showLanguage && !language.showLocalizationAlways && (
                       <div className={this.decorateCSS("divider")}></div>
                     )}
-                    <div className={this.decorateCSS("accordionLocalization")}>
+                    <div className={`${this.decorateCSS("accordionLocalization")} ${!language.showLocalizationAlways && this.decorateCSS("active")}`}>
                       {language.showLanguage && (
                         <ComposerLanguage
                           type="accordion"

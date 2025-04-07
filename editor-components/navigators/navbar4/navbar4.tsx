@@ -30,6 +30,7 @@ interface Language {
   label: "code" | "name";
   icon: string;
   showLanguage: boolean;
+  showLocalizationAlways: boolean;
   showDivider: boolean;
 }
 
@@ -1197,6 +1198,12 @@ class Navbar4 extends BaseNavigator {
         },
         {
           type: "boolean",
+          key: "showLocalizationAlways",
+          displayer: "Show Localization Always",
+          value: true,
+        },
+        {
+          type: "boolean",
           key: "showLanguage",
           displayer: "Show Language",
           value: true,
@@ -1584,6 +1591,27 @@ class Navbar4 extends BaseNavigator {
                 {hamburgerMenuTitle}
               </span>
             </div>
+            <div className={this.decorateCSS("localizationContainer")}>
+              {language.showLanguage && (
+                <ComposerLanguage
+                  type="dropdown"
+                  title={language.label}
+                  icon={language.icon}
+                  dropdownButtonClassName={`${this.decorateCSS(
+                    "localization"
+                  )}`}
+                  dropdownLabelClassName={`${this.decorateCSS(
+                    "localizationLabel"
+                  )}`}
+                  iconClassName={this.decorateCSS("languageIcon")}
+                  dropdownItemClassName={this.decorateCSS("localizationItem")}
+                  dropdownContentClassName={this.decorateCSS(
+                    "localizationContent"
+                  )}
+                  divider={language.showDivider}
+                />
+              )}
+            </div>
 
             <div
               className={`${this.decorateCSS("hamburgerNav")} ${
@@ -1734,7 +1762,7 @@ class Navbar4 extends BaseNavigator {
                     </div>
                   ))}
 
-                    {language.showLanguage && (
+                    {(language.showLanguage && !language.showLocalizationAlways) && (
                       <ComposerLanguage
                         type="accordion"
                         title={language.label}
