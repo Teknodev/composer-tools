@@ -6,8 +6,8 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type SliderItem = {
   topImage: string;
-  upperText: JSX.Element;
-  bottomText: JSX.Element;
+  upperText: React.JSX.Element;
+  bottomText: React.JSX.Element;
   background1: string;
   background2: string;
   background3: string;

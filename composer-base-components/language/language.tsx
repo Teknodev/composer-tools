@@ -47,7 +47,7 @@ const ComposerLanguage = (props: ComposerLanguageProps) => {
     const pathParts = normalizedPath.split("/");
   
     const isLanguageSlugMissing = pathParts.length < 2;
-    const isFirstSegmentNotALanguageCode = !pathParts[1].match(/^[a-z]{2}$/i);
+    const isFirstSegmentNotALanguageCode = !pathParts[1]?.match(/^[a-z]{2}$/i);
   
     if (isLanguageSlugMissing || isFirstSegmentNotALanguageCode) {
       pathParts.splice(1, 0, lang.code);

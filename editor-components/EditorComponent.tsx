@@ -6,7 +6,6 @@ import { renderToString } from "react-dom/server";
 import { THEMES, TTheme } from "./location/themes";
 import InlineEditor from "../../custom-hooks/UseInlineEditor";
 import { v4 as uuidv4 } from 'uuid';
-import { Pages } from "classes/bucket";
 
 
 export function generateComponentId(){
@@ -18,7 +17,22 @@ type PreSufFix = {
   className: string;
 };
 
-export type InteractionType = Pages["page_interactions"] ;
+export type InteractionType ={
+  type?: string,
+  modal?: string,
+  trigger_action?: string,
+  visible_on?: string,
+  show_once?: false,
+};
+export type PageInteractionType ={
+  type?: string;
+  modal?: string;
+  scroll_depth?: number;
+  delay_time?: number;
+  visible_on?: string;
+  show_once?: boolean;
+  trigger_action?: string;
+};
 
 export type TypeLocation = {
   lng: number;
@@ -44,17 +58,20 @@ export interface iComponent {
   getInstanceName(): string;
   getName(): string;
   getProps(): TypeUsableComponentProps[];
+  getShadowProps(): TypeUsableComponentProps[];
   getPropValue(
     propName: string,
     properties?: GetPropValueProperties
   ): TypeUsableComponentProps;
   getExportedCSSClasses(): { [key: string]: string };
+  getCSSClasses(): TypeCSSProp;
+  getCSSClasses(sectionName: string | null): CSSClass[];
   getCSSClasses(sectionName?: string | null): TypeCSSProp | CSSClass[];
   getInteractions(sectionName?: string | null): any;
   addProp(prop: TypeUsableComponentProps): void;
   setProp(key: string, value: any): void;
   setCSSClasses(key: string, value: { id: string; class: string }[]): void;
-  setInteraction(key: string, value: InteractionType): void;
+  setInteraction(key: string, value: InteractionType[]): void;
   decorateCSS(cssValue: string): string;
   getCategory(): CATEGORIES;
   initializeProp(prop: TypeUsableComponentProps): void;
@@ -81,7 +98,7 @@ export type TypeReactComponent = {
   type: string;
   props?: TypeUsableComponentProps[];
   cssClasses?: TypeCSSProp;
-  interactions?: InteractionType;
+  interactions?: Record<string, InteractionType[]>;
   id?: string;
 };
 export type TypeUsableComponentProps = {
@@ -327,6 +344,8 @@ export abstract class Component
   getExportedCSSClasses() {
     return this.styles;
   }
+  getCSSClasses(): TypeCSSProp;
+  getCSSClasses(sectionName: string | null): CSSClass[];
   getCSSClasses(sectionName: string | null = null): TypeCSSProp | CSSClass[] {
     const { cssClasses } = this.state.componentProps;
     
@@ -393,7 +412,7 @@ export abstract class Component
     this.state.componentProps.cssClasses[key] = value;
     this.setState({ componentProps: this.state.componentProps });
   }
-  setInteraction(key: string, value: InteractionType) {
+  setInteraction(key: string, value: InteractionType[]) {
     this.state.componentProps.interactions[key] = value;
     this.setState({ componentProps: this.state.componentProps });
   }
@@ -462,7 +481,7 @@ export abstract class Component
     return castedObject;
   }
 
-  castToString(elem: JSX.Element): string {
+  castToString(elem: React.JSX.Element): string {
     return elem.props?.html?.replace(/<\/?[^>]+(>|$)/g, "");
   }
 

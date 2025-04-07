@@ -7,8 +7,8 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type Card = {
   icon: string;
-  header: JSX.Element;
-  content: JSX.Element;
+  header: React.JSX.Element;
+  content: React.JSX.Element;
 };
 class Slider4 extends BaseSlider {
   constructor(props?: any) {
