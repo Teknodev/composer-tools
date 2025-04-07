@@ -8,9 +8,9 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Slides = {
-  title: JSX.Element;
-  subtitle: JSX.Element;
-  description: JSX.Element;
+  title: React.JSX.Element;
+  subtitle: React.JSX.Element;
+  description: React.JSX.Element;
   image: string;
   buttons: Array<Buttons>;
 };

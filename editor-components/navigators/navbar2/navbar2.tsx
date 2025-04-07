@@ -8,7 +8,7 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLanguage from "composer-tools/composer-base-components/language/language";
 
 type Item = {
-  title: JSX.Element;
+  title: React.JSX.Element;
   navigate_to: string;
 };
 
@@ -1124,6 +1124,7 @@ class Navbar2 extends BaseNavigator {
     this.setComponentState("subNavActive", null);
     this.setComponentState("changeBackground", false);
     this.setComponentState("isBigScreen", false);
+    this.setComponentState("navbarOverflowShow", false);
   }
   static getName(): string {
     return "Navbar 2";
@@ -1133,6 +1134,9 @@ class Navbar2 extends BaseNavigator {
     const isMobileMenuOpen = this.getComponentState("isMobileMenuOpen");
     this.setComponentState("isMobileMenuOpen", !isMobileMenuOpen);
     Base.Navigator.changeScrollBehaviour(!isMobileMenuOpen ? "hidden" : "auto");
+    setTimeout(() => {
+      this.setComponentState("navbarOverflowShow", true);
+    }, 300)
   };
 
   navClick(index: number) {
@@ -1140,6 +1144,7 @@ class Navbar2 extends BaseNavigator {
     this.setComponentState("navActive", !isActive);
     this.setComponentState("subNavActiveIndex", isActive ? null : index);
     this.setComponentState("subNavActive", null);
+
   }
 
   subNavClick(index: any) {
@@ -1167,13 +1172,19 @@ class Navbar2 extends BaseNavigator {
     const menuItems = this.castToObject<Item[]>("menuItems");
     const divider = this.getPropValue("divider");
     const language = this.castToObject<Language>("language");
+    const isBigScreen = this.getComponentState("isBigScreen");
+  
+
+    const isVisible = isMobileMenuOpen && !isBigScreen
 
     return (
-      <Base.Navigator.Container
+      <>
+       <Base.Navigator.Container
         position={position}
         positionContainer={this.decorateCSS("container")}
         setIsBigScreen={(value) => this.setComponentState("isBigScreen", value)}
         setIsScrolled={(value) => this.setComponentState("isScrolled", value)}
+        className={this.decorateCSS("container")}
       >
         <Base.MaxContent
           className={`${this.decorateCSS("maxContent")} ${
@@ -1188,6 +1199,7 @@ class Navbar2 extends BaseNavigator {
                 <img
                   src={currentLogo.image}
                   className={this.decorateCSS("logoImg")}
+                  onClick={()=> this.toggleMobileMenu()}
                 />
               </div>
             </ComposerLink>
@@ -1332,7 +1344,8 @@ class Navbar2 extends BaseNavigator {
               onClick: this.toggleMobileMenu,
             }}
           />
-            <div className={`${this.decorateCSS("mobileMenu")} ${isMobileMenuOpen ? this.decorateCSS("open") : ""}`}>
+            <div className={`${this.decorateCSS("mobileMenu")} ${isMobileMenuOpen ? this.decorateCSS("open") : ""}
+            ${this.getComponentState("navbarOverflowShow") ? this.decorateCSS("overflowShow") : ""}`}>
               <ComposerIcon
                 name={this.getPropValue("closeIcon")}
                 propsIcon={{
@@ -1361,6 +1374,7 @@ class Navbar2 extends BaseNavigator {
                                 className={this.decorateCSS(
                                   "hamburgerMenuItemTitle"
                                 )}
+                                onClick={()=> this.toggleMobileMenu()}
                               >
                                 {item.title}
                               </span>
@@ -1414,6 +1428,7 @@ class Navbar2 extends BaseNavigator {
                                           className={this.decorateCSS(
                                             "hamburgerMenuItemTitle"
                                           )}
+                                          onClick={()=> this.toggleMobileMenu()}
                                         >
                                           {subItem.title}
                                         </span>
@@ -1473,6 +1488,7 @@ class Navbar2 extends BaseNavigator {
                                                     className={this.decorateCSS(
                                                       "hamburgerSubSubmenuItemTitle"
                                                     )}
+                                                    onClick={()=> this.toggleMobileMenu()}
                                                   >
                                                     {subSubItem.title}
                                                   </span>
@@ -1502,13 +1518,14 @@ class Navbar2 extends BaseNavigator {
               )}
             </div>
         </Base.MaxContent>
-        <div
-          className={`${this.decorateCSS("overlay")} ${
-            isMobileMenuOpen ? this.decorateCSS("overlayActive") : ""
-          }`}
-          onClick={() => this.toggleMobileMenu()}
-        />
+
       </Base.Navigator.Container>
+      <Base.Overlay
+          className={this.decorateCSS("overlay")}
+          onClick={() => this.toggleMobileMenu()}
+          isVisible= {isVisible}
+        />
+      </>
     );
   }
 }

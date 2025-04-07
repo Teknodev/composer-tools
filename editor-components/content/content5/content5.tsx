@@ -7,9 +7,9 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type ITabs = {
-  tabText: JSX.Element;
-  title: JSX.Element;
-  description: JSX.Element;
+  tabText: React.JSX.Element;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
   button: INPUTS.CastedButton;
   icon: string;
 };
@@ -257,6 +257,16 @@ class Content5 extends BaseContent {
       ],
     });
     this.setActiveTab(0);
+
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1"]
+      }
+    });
   }
 
   setActiveTab(activeTabIndex: number) {
@@ -284,16 +294,19 @@ class Content5 extends BaseContent {
                         : ""
                       }`
                     }
+                    data-animation={this.getPropValue("hoverAnimation").join(" ")}
                     onClick={() => this.setActiveTab(index)}
                   >
                     <ComposerIcon
                       name={tab.icon}
                       propsIcon={{
-                        className: this.decorateCSS("icon"),
+                        className: this.decorateCSS("tab-icon"),
                       }}
                     />
                     <div className={this.decorateCSS("square")}></div>
-                    {tab.tabText}
+                    <div className={this.decorateCSS("tab-text")}>
+                      {tab.tabText}
+                    </div>
                   </div>
                 )
               )}
