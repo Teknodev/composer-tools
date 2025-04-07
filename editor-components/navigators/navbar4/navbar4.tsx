@@ -1569,6 +1569,7 @@ class Navbar4 extends BaseNavigator {
                 />
               )}
             </div>
+            <div className={this.decorateCSS("mobileRight")}>
             <div className={this.decorateCSS("hamburgerIconContainer")}>
               {isHamburgerActive ? (
                 <ComposerIcon
@@ -1590,8 +1591,8 @@ class Navbar4 extends BaseNavigator {
               <span className={this.decorateCSS("hamburgerMenuTitle")}>
                 {hamburgerMenuTitle}
               </span>
-            </div>
-            <div className={this.decorateCSS("localizationContainer")}>
+            </div> 
+            <div className={this.decorateCSS("mobileLocalizationContainer")}>
               {language.showLanguage && (
                 <ComposerLanguage
                   type="dropdown"
@@ -1612,6 +1613,8 @@ class Navbar4 extends BaseNavigator {
                 />
               )}
             </div>
+            </div>
+
 
             <div
               className={`${this.decorateCSS("hamburgerNav")} ${
