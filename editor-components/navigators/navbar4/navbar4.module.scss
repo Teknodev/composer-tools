@@ -591,6 +591,8 @@
 @container (max-width: #{$composer-phone-width}) {
   .mobileRight{
     display: flex;
+    width: 100%;
+    position: relative;
     .mobileLocalizationContainer{
       top: 50%;
       transform: translateY(-50%);

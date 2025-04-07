@@ -1593,7 +1593,7 @@ class Navbar4 extends BaseNavigator {
               </span>
             </div> 
             <div className={this.decorateCSS("mobileLocalizationContainer")}>
-              {language.showLanguage && (
+              {(language.showLanguage && language.showLocalizationAlways) && (
                 <ComposerLanguage
                   type="dropdown"
                   title={language.label}

@@ -278,7 +278,9 @@
         justify-content: flex-start;
       }
     }
-
+    .mobileRight{
+        display: none;
+    }
     .mobileMenuButton,
     .mobileCloseButton {
       cursor: pointer;
@@ -448,6 +450,11 @@
             }
           }
         }
+      }
+      .mobileRight{
+        display: flex;
+        gap: var(--composer-gap-sm);
+        align-items: center;
       }
 
       .logo {
