@@ -425,7 +425,6 @@ class ImageGallery10 extends BaseImageGallery {
                                             <div className={this.decorateCSS("overlay-content")}>
                                                 <ComposerLink
                                                     path={cardItem.link}
-                                                    className={this.decorateCSS("home-link")}
                                                 >
                                                     {this.castToString(cardItem.title) && (
                                                         <div
@@ -437,7 +436,6 @@ class ImageGallery10 extends BaseImageGallery {
                                                 </ComposerLink>
                                                 <ComposerLink
                                                     path={cardItem.link2}
-                                                    className={this.decorateCSS("home-link")}
                                                 >
                                                     {this.castToString(cardItem.text) && (
                                                         <div
