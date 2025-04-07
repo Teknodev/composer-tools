@@ -548,26 +548,28 @@ export abstract class Component
         propValue.value = propValue.value.filter((value) => typeof value === "string") as string[];
         return propValue;
       }
+      propValue.value = propValue.value.filter((value) => value != null);
+      propValue.value = propValue.value.map(
+        (propValueItem: TypeUsableComponentProps) => {
+          if (Array.isArray(propValueItem.value)) {
+            propValueItem = this.attachValueGetter(propValueItem);
+            propValueItem["getPropValue"] = (
+              propName: string,
+              properties?: GetPropValueProperties
+            ) => {
+              if (!properties) properties = {};
+              properties.parent_object =
+                propValueItem.value as TypeUsableComponentProps[];
+              return this.getPropValue(propName, properties);
+            };
+          }
 
-      propValue.value = propValue.value.map((propValueItem: any) => {
-        if (Array.isArray(propValueItem.value)) {
-          propValueItem = this.attachValueGetter(propValueItem);
-          propValueItem["getPropValue"] = (
-            propName: string,
-            properties?: GetPropValueProperties
-          ) => {
-            if (!properties) properties = {};
-            properties.parent_object =
-              propValueItem.value as TypeUsableComponentProps[];
-            return this.getPropValue(propName, properties);
-          };
+          return propValueItem;
         }
-        return propValueItem;
-      });
+      );
     }
     return propValue;
   }
-  
   
 
   castToObject<Type>(propName: string): Type {
