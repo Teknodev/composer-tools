@@ -185,10 +185,11 @@ type AvailablePropTypes =
   | { type: "select"; value: string }
   | { type: "color"; value: string }
   | { type: "icon"; value: string }
+  | { type: "email"; value: string }
+  | { type: "location"; value: TypeLocation }
   | { type: "range"; value: string; additionalParams?: RangeInputAdditionalParams}
   | { type: "currency"; value: { value: string; currency?: CurrencyCode }; additionalParams?: currencyAdditionalParams}
   | { type: "tag"; value: string[]}
-  | { type: "location"; value: TypeLocation }
   | { type: "phone"; value: string }
   | { type: "dateTime"; value: string ; additionalParams? : {mode?:string, timeInterval?:number, yearRange? : number, yearStart?: number}}
   | { type: "multiSelect"; value: string[] }
