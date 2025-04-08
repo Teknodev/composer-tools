@@ -3,10 +3,10 @@
     position: relative;
     .max-content{
         display: flex;
-        gap: var(--composer-gap-lg);        
+        gap: calc(var(--composer-gap-lg) * 2);        
         .left-container{
             display: flex;
-            gap: var(--composer-gap-sm);
+            gap: calc(var(--composer-gap-xl) * 2);
             flex-direction: row;
             width: 50%;
             flex: 1;
@@ -16,8 +16,8 @@
                 flex-direction: column;
                 gap: var(--composer-gap-md);
                 .small-image{
-                    width: 75px;
-                    height: 75px;
+                    width: 100px;
+                    height: 100px;
                     position: relative;
                     .image{
                         width: 100%;
@@ -67,7 +67,9 @@
                 .image-icon-left, .image-icon-right{
                     position: absolute;
                     top: 50%;
+                    transform: translateY(-50%);
                     z-index: 2;
+                    cursor: pointer;
                     .icon{
                         font-size: 3rem;
                         color: var(--composer-html-background);
@@ -109,7 +111,7 @@
             .divider{
                 width: 100%;
                 height: 1px;
-                background-color: var(--composer-font-color-primary);
+                background-color: var(--composer-tertiary-color);
             }
             .upper-container{
                 .title-with-share{
@@ -159,6 +161,7 @@
                                     position: absolute;
                                     bottom: 0px;
                                     left: 0px;
+                                    transition: all 0.5s ease;
                                 }
                             }
                         }
@@ -168,11 +171,12 @@
                             flex-direction: column;
                             gap: var(--composer-gap-md);
                             border: 1px solid var(--composer-font-color-primary);
-                            padding: var(--composer-gap-sm);
+                            padding: var(--composer-gap-md) var(--composer-gap-lg);
                             position: absolute;
                             top: 2rem;
                             right: 0px;
                             background-color: var(--composer-html-background);
+                            z-index: 2;
                             margin: var(--composer-gap-xs) 0px;
                             opacity: 0;
                             transition: all 0.5s ease;
@@ -188,6 +192,7 @@
                                     font-size: 1rem;
                                     color: var(--composer-font-color-primary);
                                     position: relative;
+                                    cursor: pointer;
                                     &::after{
                                         content: "";
                                         background-color: var(--composer-primary-color);
@@ -224,7 +229,7 @@
                 flex-direction: column;
                 gap: var(--composer-gap-md);
                 .label{
-                    font-size: 2rem;
+                    font-size: 1rem;
                     color: var(--composer-font-color-primary);
                 }
                 .size-selects{
@@ -235,6 +240,7 @@
                         color: var(--composer-font-color-primary);
                         gap: var(--composer-gap-xs);
                         position: relative;
+                        cursor: pointer;
                         &::after{
                             content: "";
                             position: absolute;
@@ -281,10 +287,10 @@
                         }
                     }
                     .minus-icon{
-                        left: var(--composer-gap-xs);
+                        left: var(--composer-gap-sm);
                     }
                     .add-icon{
-                        right: var(--composer-gap-xs);
+                        right: var(--composer-gap-sm);
                     }
                     .number{
                         font-size: 1rem;
@@ -294,6 +300,7 @@
                     flex: 3;
                     .button{
                         width: 100%;
+                        justify-content: center;
                     } 
                 }
             }
@@ -328,12 +335,18 @@
                     padding: var(--composer-gap-md) 0px;
                     &::after{
                         content: "";
+                        display: none;
                         position: absolute;
                         bottom: 0;
                         left: 0;
                         width: 100%;
                         height: 1px;
-                        background-color: var(--composer-font-color-primary);
+                        background-color: var(--composer-tertiary-color);
+                    }
+                    &.title-divider{
+                        &::after{
+                            display: flex;
+                        }
                     }
                 }
                 .item-detail-container{
@@ -378,7 +391,13 @@
                                 left: 0;
                                 width: 100%;
                                 height: 1px;
-                                background-color: var(--composer-font-color-primary);
+                                background-color: var(--composer-tertiary-color);
+                                display: none;
+                            }
+                            &.active{
+                                &::after{
+                                    display: flex;
+                                }
                             }
                         }
                     }
@@ -389,6 +408,7 @@
     }
     .zoom-image{
         background-color: var(--composer-font-color-primary);
+        overflow: hidden;
         .close-icon{
             position: absolute;
             top: var(--composer-gap-md);
@@ -399,27 +419,35 @@
                 }
               }
             .icon{
-                font-size: 2rem;
+                font-size: 3rem;
                 transition: transform 0.5s ease; 
             }
         }
         .left-icon, .right-icon{
             position: absolute;
             top: 50%;
-            transform: translateY(-50%);
+            transform: translateY(-50%);   
             .icon{
-                font-size: 2rem;
+                font-size: 3rem;
             }
         }
         .left-icon{
             left:var(--composer-gap-md);
+            transition: all 0.5s ease;
+            &:hover{
+                left: var(--composer-gap-sm);
+            }
         }
         .right-icon{
             right: var(--composer-gap-md);
+            transition: all 0.5s ease;
+            &:hover{
+                right: var(--composer-gap-sm);
+            }
         }
         .dots{
             display: flex;
-            bottom: 0px;
+            bottom: var(--composer-gap-md);
             right: var(--composer-gap-md);
             position: absolute;
             .dot{
@@ -429,9 +457,15 @@
                 .icon{
                     font-size: 1.5rem;
                     margin: var(--composer-gap-sm);
+                    transition: all 0.5s ease;
                     &.active{
                         border-radius: 50%;
                         background-color: var(--composer-tertiary-color);
+                    }
+                }
+                &:hover{
+                    .icon{
+                        opacity: 0.5;
                     }
                 }
             }
@@ -444,6 +478,27 @@
                 transform: scale(1.5);  
             }
         }
+    }
+}
+@container (max-width: #{$composer-tablet-width-lg}) {
+    .container {
+      .max-content {
+        gap: var(--composer-gap-xl);
+        .left-container{
+            flex-direction: column-reverse;
+            gap: var(--composer-gap-md);
+            .small-images-container{
+                flex-direction: row;
+            }
+        }
+        .right-container{
+            .count-container{
+                .add-button{
+                    flex: 2;
+                }
+            }
+        }
+      }
     }
 }
 
@@ -464,4 +519,4 @@
         }
       }
     }
-  }
+}

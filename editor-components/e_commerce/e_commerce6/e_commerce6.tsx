@@ -3,9 +3,7 @@ import { BaseECommerce, CurrencyCode } from "../../EditorComponent";
 import styles from "./e_commerce6.module.scss";
 import { Base } from "composer-tools/composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import { dividerClasses } from "@mui/material";
 import { ComposerIcon } from "composer-tools/composer-base-components/icon/icon";
-import { FaSlideshare } from "react-icons/fa";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 import ComposerSlider from "composer-tools/composer-base-components/slider/slider";
 import { getCurrencyInfo } from "components/setting-input/inputs/currency";
@@ -15,14 +13,14 @@ type Images ={
 }
 
 type ShareSection ={
-  title: string;
+  title: React.JSX.Element;
   shareIcon: string;
 }
 
 type SizeSections ={
   size: number;
-  type: string;
-  cost: {value: string, currency: CurrencyCode};
+  type: React.JSX.Element;
+  cost: {value: React.JSX.Element, currency: CurrencyCode};
 }
 
 type CountSections ={
@@ -32,17 +30,17 @@ type CountSections ={
 }
 
 type ItemDetails ={
-  title: string;
-  description: string;
+  title:  React.JSX.Element;
+  description:  React.JSX.Element;
 }
 
 type DeliveryType ={
-  description: string;
+  description:  React.JSX.Element;
   isRadioButtonActive: boolean
 }
 type Socials ={
   icon: string;
-  text: string;
+  text:  React.JSX.Element;
   link: string;
 }
 
@@ -98,6 +96,12 @@ class ECommerce6 extends BaseECommerce {
       ],
     });
     this.addProp({
+      type: "boolean",
+      key: "smallImageOverlay",
+      displayer: "Small Image Overlay",
+      value: true
+    })
+    this.addProp({
       type: "icon",
       key: "leftArrow",
       displayer: "Left Arrow",
@@ -109,6 +113,12 @@ class ECommerce6 extends BaseECommerce {
       displayer: "Right Arrow",
       value:"MdKeyboardArrowRight"
     });
+    this.addProp({
+      type:"boolean",
+      key: "dividerActive",
+      displayer: "Divider Active",
+      value: true    
+    })
     this.addProp({
       type: "string",
       key: "title",
@@ -438,6 +448,18 @@ class ECommerce6 extends BaseECommerce {
       value:"Auto-renews, skip or cancel anytime."
     })
     this.addProp({
+      type:"boolean",
+      key: "itemDetailTitleDivider",
+      displayer: "Item Detail Title Divider",
+      value:true
+    })
+    this.addProp({
+      type:"boolean",
+      key: "itemDetailDivider",
+      displayer: "Item Detail Divider",
+      value:true
+    })
+    this.addProp({
       type: "array",
       key: "itemDetails",
       displayer: "Item Details",
@@ -530,12 +552,14 @@ class ECommerce6 extends BaseECommerce {
     this.addProp(INPUTS.BUTTON("button", "Button", "ADD TO CART", "", null, null, "Primary"));
     this.setComponentState("openIndex", null);
     this.setComponentState("selectedImage", 0);
-    this.setComponentState("itemCount", this.castToObject<CountSections>("countSection").count);
+    const countValue = this.castToObject<CountSections>("countSection")?.count 
+    this.setComponentState("itemCount", countValue);
     this.setComponentState("selectedSizeSection", 0);
     this.setComponentState("selectedRadioButton", null);
     this.setComponentState("zoomImage", false);
     this.setComponentState("overlayZoomImage", false);
     this.setComponentState("slider-ref", React.createRef());
+    this.setComponentState("lastPropCount", countValue);
   }
 
   static getName(): string {
@@ -573,36 +597,36 @@ class ECommerce6 extends BaseECommerce {
     }
     this.setComponentState("selectedImage", newIndex)
   }
-  handleAdd = () =>{
-    let count = this.getComponentState("itemCount");
-    let newCount = count + 1    
-    this.setComponentState("itemCount", newCount)
-  }
-  handleMinus = () =>{
-    let count = this.getComponentState("itemCount");
-    let newCount = count - 1  
-    if(newCount < 1){
-      newCount = count
-    }  
-    this.setComponentState("itemCount", newCount)
-  }
+    handleAdd = () =>{
+      let count = this.getComponentState("itemCount");
+      let newCount = count + 1 ;
+      console.log("newCount", newCount)  
+      this.setComponentState("itemCount", newCount)
+    }
+    handleMinus = () =>{
+      let count = this.getComponentState("itemCount");
+      let newCount = count - 1  
+      if(newCount < 1){
+        newCount = count
+      }  
+      this.setComponentState("itemCount", newCount)
+    }
   handleClickClose = () =>{
     this.setComponentState("zoomImage", false);
   }
   handleRadioButton =(index: number) => {
     this.setComponentState("selectedRadioButton", index)
   }
+  componentDidUpdate() {
+    const currentPropCount = this.castToObject<CountSections>("countSection")?.count;
+    const lastPropCount = this.getComponentState("lastPropCount");
+  
+    if (currentPropCount !== lastPropCount) {
+      this.setComponentState("itemCount", currentPropCount);
+      this.setComponentState("lastPropCount", currentPropCount);
+    }
+  }
   render() {
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
-    const shareSection  = this.castToObject<ShareSection>("share");
-    const sizeSections = this.castToObject<SizeSections[]>("sizeSections");
-    const countSection = this.castToObject<CountSections>("countSection");
-    const itemDetails = this.castToObject<ItemDetails[]>("itemDetails");
-    const images = this.castToObject<Images[]>("images");
-    const deliveryType = this.castToObject<DeliveryType[]>("deliveryTypes");
-    const socials = this.castToObject<Socials[]>("socials");
-
-
     const settings = {
       dots: false,
       button: false,
@@ -616,22 +640,49 @@ class ECommerce6 extends BaseECommerce {
         this.setComponentState("selectedImage", currentIndex);
       },
     };
+    
+
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const shareSection  = this.castToObject<ShareSection>("share");
+    const sizeSections = this.castToObject<SizeSections[]>("sizeSections");
+    const countSection = this.castToObject<CountSections>("countSection");
+    const itemDetails = this.castToObject<ItemDetails[]>("itemDetails");
+    const images = this.castToObject<Images[]>("images");
+    const deliveryType = this.castToObject<DeliveryType[]>("deliveryTypes");
+    const socials = this.castToObject<Socials[]>("socials");
+    const currencySymbol = getCurrencyInfo(sizeSections[this.getComponentState("selectedSizeSection")]?.cost?.currency)?.symbol;
+    const currencyValue = sizeSections[this.getComponentState("selectedSizeSection")]?.cost?.value || ""
+    const isTitle = this.castToString(this.getPropValue("title"));
+    const isShareIcon =shareSection.shareIcon;
+    const isSahreTitle = this.castToString(shareSection.title);
+    const isSizeLabel = this.castToString(this.getPropValue("sizeLabel"));
+    const isItemDetailTitle =this.castToString(this.getPropValue("itemDetailTitle"));
+    const isLeftContainer = images.length > 0 || this.getPropValue("leftArrow") || this.getPropValue("rightArrow");
+    const isRightContainer = isTitle || isShareIcon || isSahreTitle || socials.length > 0 || sizeSections.length > 0 || 
+    isSizeLabel || countSection.addIcon || countSection.minusIcon || countSection.count || this.castToString(button.text) || deliveryType.length > 0 
+    || isItemDetailTitle || itemDetails.length>0 || this.getPropValue("upArrowIcon") || this.getPropValue("downArrowIcon") || countSection.count;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
+        {isLeftContainer && 
         <div className={this.decorateCSS("left-container")}> 
-          <div className={this.decorateCSS("small-images-container")}>
+          {images.length > 0 && (
+            <div className={this.decorateCSS("small-images-container")}>
             {images.map((item: Images, index: number)=>{
               return(
                 <div className={this.decorateCSS("small-image")}>
                   <img src={item.item} className={this.decorateCSS("image")}></img>
-                  <div className={`${this.decorateCSS("overlay")} ${this.getComponentState("selectedImage") === index && this.decorateCSS("selected-image")}`}></div>
+                  {this.getPropValue("smallImageOverlay") && (
+                    <div className={`${this.decorateCSS("overlay")} ${this.getComponentState("selectedImage") === index && this.decorateCSS("selected-image")}`}></div>
+                  )}
                 </div>
               )
             })}
-          </div>
-          <div className={this.decorateCSS("slider-parent")}>
+            </div>
+          )}
+          {(images.length > 0 || this.getPropValue("leftArrow") || this.getPropValue("rightArrow")) && (
+            <div className={this.decorateCSS("slider-parent")}>
             <div className={this.decorateCSS("image-icon-left")}>
               <ComposerIcon name={this.getPropValue("leftArrow")} 
               propsIcon={{className: this.decorateCSS("icon"),
@@ -658,137 +709,175 @@ class ECommerce6 extends BaseECommerce {
               sliderRef.current.slickNext();
               }}}/>
             </div> 
+            </div>
+          )}
           </div>
-
-        </div>
-        <div className={this.decorateCSS("right-container")}>
-          <Base.VerticalContent className={this.decorateCSS("upper-container")}>
-            <div className={this.decorateCSS("title-with-share")}>
-              <div className={this.decorateCSS("title")}>{this.getPropValue("title")}</div>
+        }
+        {isRightContainer &&
+          <div className={this.decorateCSS("right-container")}>
+          {(isTitle || isShareIcon || isSahreTitle || socials.length > 0 || currencyValue || currencySymbol) && (
+            <Base.VerticalContent className={this.decorateCSS("upper-container")}>
+            {(isTitle || isShareIcon || isSahreTitle || socials.length > 0) && (
+              <div className={this.decorateCSS("title-with-share")}>
+              {isTitle && (<div className={this.decorateCSS("title")}>{this.getPropValue("title")}</div>)}
+              {(isShareIcon || isSahreTitle || socials.length > 0) && (
               <div className={this.decorateCSS("share-container")}>
                 <div className={this.decorateCSS("share-wrapper")}>
-                  <ComposerIcon name={shareSection.shareIcon} propsIcon={{className: this.decorateCSS("share-icon")}}/>
-                  <div className={this.decorateCSS("title")}>{shareSection.title}</div>
-                  <div className={this.decorateCSS("socials")}>
-                  {socials.map((item:Socials, index: number)=> {
-                    return(
-                      <div className={this.decorateCSS("social")}>
-                        <ComposerIcon name={item.icon} propsIcon={{className: this.decorateCSS("social-icon")}}/>
-                        <ComposerLink path={item.link} ><div className={this.decorateCSS("social-text")}>{item.text}</div></ComposerLink>
-                      </div>
-                    )
-                  })}
+                  {isShareIcon && (<ComposerIcon name={shareSection.shareIcon} propsIcon={{className: this.decorateCSS("share-icon")}}/>)}
+                  {isSahreTitle && (<div className={this.decorateCSS("title")}>{shareSection.title}</div>)}
+                  {socials.length > 0 && (
+                    <div className={this.decorateCSS("socials")}>
+                    {socials.map((item:Socials, index: number)=> {
+                      return(
+                        <div className={this.decorateCSS("social")}>
+                          <ComposerIcon name={item.icon} propsIcon={{className: this.decorateCSS("social-icon")}}/>
+                          <ComposerLink path={item.link} ><div className={this.decorateCSS("social-text")}>{item.text}</div></ComposerLink>
+                        </div>
+                      )
+                    })}
+                    </div>
+                  )} 
                 </div>
               </div>
-              </div>
-
+              )}
             </div>
-            <div className={this.decorateCSS("cost")}>
-              <div className={this.decorateCSS("value")}>
-              {sizeSections[this.getComponentState("selectedSizeSection")].cost.value}
+            )}
+            {(currencyValue || currencySymbol )&& (
+              <div className={this.decorateCSS("cost")}>
+                {currencyValue &&<div className={this.decorateCSS("value")}>{currencyValue}</div>}
+                {currencySymbol && (<div className={this.decorateCSS("currency-code")}>{currencySymbol}</div>)}
               </div>
-              <div className={this.decorateCSS("currency-code")}>
-              {getCurrencyInfo(sizeSections[this.getComponentState("selectedSizeSection")].cost.currency).symbol}
-              </div>
-            </div>
-          </Base.VerticalContent>
-          <div className={this.decorateCSS("divider")}></div>
-          <div className={this.decorateCSS("size-container")}>
-            <div className={this.decorateCSS("label")}>{this.getPropValue("sizeLabel")}</div>
-            <div className={this.decorateCSS("size-selects")}>
+            )}
+            </Base.VerticalContent>
+          )}
+          {this.getPropValue("dividerActive") && (<div className={this.decorateCSS("divider")}></div>)}
+          
+          {(isSizeLabel || sizeSections.length>0) && (
+            <div className={this.decorateCSS("size-container")}>
+            {isSizeLabel && <div className={this.decorateCSS("label")}>{this.getPropValue("sizeLabel")}</div>}
+            {sizeSections.length>0 && (
+              <div className={this.decorateCSS("size-selects")}>
               {sizeSections.map((item:SizeSections, index: number)=>{
                 return(
                   <div className={`${this.decorateCSS("size-select")} ${this.getComponentState("selectedSizeSection") === index && this.decorateCSS("active")}`} 
                   onClick={() => this.toggleSize(index)}>
-                  <div className={this.decorateCSS("size")}>{item.size}</div>
-                  <div className={this.decorateCSS("type")}>{item.type}</div>
+                  {item.size && <div className={this.decorateCSS("size")}>{item.size}</div>}
+                  {this.castToString(item.type) && <div className={this.decorateCSS("type")}>{item.type}</div>}                
                   </div>
                 )
               })}
-            </div>
-
-          </div>
-          <div className={this.decorateCSS("divider")}></div>
-          <div className={this.decorateCSS("count-container")}>
-            <div className={this.decorateCSS("count")}>
-              <div className={this.decorateCSS("minus-icon")} onClick={() => this.handleMinus()}>
-                <ComposerIcon name={countSection.minusIcon} propsIcon={{className: this.decorateCSS("icon")}}/>
               </div>
-              <div className={this.decorateCSS("number")}>{this.getComponentState("itemCount")}</div>
-              <div className={this.decorateCSS("add-icon")} onClick={() => this.handleAdd()}>
-                <ComposerIcon name={countSection.addIcon} propsIcon={{className: this.decorateCSS("icon")}}/>
-              </div>
+            )}
             </div>
-            <div className={this.decorateCSS("add-button")}>
-              <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                  {button.text}
-              </Base.Button>
-            </div>
+          )}
+          
+          {this.getPropValue("dividerActive") && (<div className={this.decorateCSS("divider")}></div>)}
 
-          </div>
-          <div className={this.decorateCSS("delivery-types")}>
+          {(countSection.minusIcon || countSection.count || countSection.addIcon || this.castToString(button.text)) && (
+            <div className={this.decorateCSS("count-container")}>
+              {(countSection.minusIcon || countSection.count || countSection.addIcon) && (
+                <div className={this.decorateCSS("count")}>
+                {countSection.minusIcon && (
+                  <div className={this.decorateCSS("minus-icon")} onClick={() => this.handleMinus()}>
+                    <ComposerIcon name={countSection.minusIcon} propsIcon={{className: this.decorateCSS("icon")}}/>
+                  </div>
+                )}
+                {countSection.count && (<div className={this.decorateCSS("number")}>{this.getComponentState("itemCount")}</div>)}
+                {countSection.addIcon && (
+                  <div className={this.decorateCSS("add-icon")} onClick={() => this.handleAdd()}>
+                    <ComposerIcon name={countSection.addIcon} propsIcon={{className: this.decorateCSS("icon")}}/>
+                  </div>
+                )}
+                </div>
+              )}
+              {this.castToString(button.text) && (
+              <div className={this.decorateCSS("add-button")}>
+                <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                    {button.text}
+                </Base.Button>
+              </div>
+              )}
+            </div>
+          )}
+          {(deliveryType.length > 0) && (
+            <div className={this.decorateCSS("delivery-types")}>
             {deliveryType.map((item: DeliveryType , index: number) => {
               return(
                 <div className={this.decorateCSS("delivery-type")}>
                   {item.isRadioButtonActive &&
                     <div onClick={() => this.handleRadioButton(index)} className={`${this.decorateCSS("radio-button")}
-                     ${(this.getComponentState("selectedRadioButton") === index) && this.decorateCSS("active")}`}></div>
+                    ${(this.getComponentState("selectedRadioButton") === index) && this.decorateCSS("active")}`}></div>
                   }
-                  <div className={this.decorateCSS("delivery")}>{item.description}</div>
+                  {this.castToString(item.description) && (<div className={this.decorateCSS("delivery")}>{item.description}</div>)}                
                 </div>
-
               )
-             
-            })
-              
-            }
-          </div>
-          <div className={this.decorateCSS("item-detail-wrapper")}>
-            <div className={this.decorateCSS("item-detail-title")}>{this.getPropValue("itemDetailTitle")}</div>
-            <div className={this.decorateCSS("item-detail-container")}>
-                <div className={this.decorateCSS("sections")}>
-                  {itemDetails.map((item: ItemDetails , index: number)=>{
-                    return(
-                      <div className={this.decorateCSS("section")}>
-                        <div className={this.decorateCSS("title-container")}>
-                        <div className={this.decorateCSS("title")} onClick={() => this.toggleDescription(index)}>{item.title}</div>
-                        <ComposerIcon name={this.getComponentState("openIndex") === index ? this.getPropValue("upArrowIcon") :this.getPropValue("downArrowIcon")} 
-                        propsIcon={{className: this.decorateCSS("icon")}}/>
-                        </div>
-                        <div className={`${this.decorateCSS("description")} ${(this.getComponentState("openIndex") === index) && this.decorateCSS("active")}`}>
-                          <div className={this.decorateCSS("text")}>
-                          {item.description}
-                          </div>
-                          </div>
-                      </div>
-                    )
-                  })}
-                </div>
+            })}
             </div>
+          )}
+          {(isItemDetailTitle || itemDetails.length>0) && (
+            <div className={this.decorateCSS("item-detail-wrapper")}>
+            {isItemDetailTitle && (<div className={`${this.decorateCSS("item-detail-title")} ${this.getPropValue("itemDetailTitleDivider") && this.decorateCSS("title-divider")}`}>{this.getPropValue("itemDetailTitle")}</div>)}
+            {itemDetails.length>0 && (
+            <div className={this.decorateCSS("item-detail-container")}>
+              <div className={this.decorateCSS("sections")}>
+                {itemDetails.map((item: ItemDetails , index: number)=>{
+                  return(
+                    <div className={`${this.decorateCSS("section")} ${this.getPropValue("itemDetailDivider") && this.decorateCSS("active")}`}>
+                      {(this.castToString(item.title) || this.getPropValue("upArrowIcon") || this.getPropValue("downArrowIcon")) && (
+                        <div className={this.decorateCSS("title-container")}>
+                          {this.castToString(item.title) && <div className={this.decorateCSS("title")} onClick={() => this.toggleDescription(index)}>{item.title}</div>}
+                          {(this.getPropValue("upArrowIcon") || this.getPropValue("downArrowIcon")) && (
+                            <ComposerIcon name={this.getComponentState("openIndex") === index ? this.getPropValue("upArrowIcon") :this.getPropValue("downArrowIcon")} 
+                            propsIcon={{className: this.decorateCSS("icon")}}/>
+                          )}
+                        </div>
+                      )}
+                      {this.castToString(item.description) && (
+                        <div className={`${this.decorateCSS("description")} ${(this.getComponentState("openIndex") === index) && this.decorateCSS("active")}`}>
+                          <div className={this.decorateCSS("text")}>{item.description}</div>
+                        </div>
+                      )}
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+            )}
+            </div>
+          )}
           </div>
-        </div>
+        }
         </Base.MaxContent>
         <Base.Overlay className={this.decorateCSS("zoom-image")} isVisible={this.getComponentState("zoomImage")}>
-            <div className={this.decorateCSS("close-icon")} onClick={() => this.handleClickClose()}>
-              <ComposerIcon name={this.getPropValue("closeIcon")} propsIcon={{className: this.decorateCSS("icon")}}/>
-            </div>
-            <div className={this.decorateCSS("left-icon")} onClick={() => this.handleClickLeft()}>
-              <ComposerIcon name={this.getPropValue("leftArrow")} propsIcon={{className: this.decorateCSS("icon")}}/>
-            </div>
-            <div className={this.decorateCSS("right-icon")} onClick={() => this.handleClickRight()}>
-              <ComposerIcon name={this.getPropValue("rightArrow")} propsIcon={{className: this.decorateCSS("icon")}}/>
-            </div>
-            <img src={images[this.getComponentState("selectedImage")].item} onClick={()=> this.toggleZoomOverlayImage()} className={`${this.decorateCSS("image")} ${this.getComponentState("overlayZoomImage") && this.decorateCSS("zoom")}`}></img>
-            <div className={this.decorateCSS("dots")}>
-              {images.map((item:any, index:number) =>{
-                return(
-                  <div className={this.decorateCSS("dot")}>
-                    <ComposerIcon name={this.getPropValue("sliderDotIcon")} propsIcon={{className: `${this.decorateCSS("icon")} ${(this.getComponentState("selectedImage")=== index) && this.decorateCSS("active")}`}}/>
-                  </div>
-                )
-              })}
-            
-            </div>
+            {this.getPropValue("closeIcon") && (
+              <div className={this.decorateCSS("close-icon")} onClick={() => this.handleClickClose()}>
+                <ComposerIcon name={this.getPropValue("closeIcon")} propsIcon={{className: this.decorateCSS("icon")}}/>
+              </div>
+            )}
+            {this.getPropValue("leftArrow") && (
+              <div className={this.decorateCSS("left-icon")} onClick={() => this.handleClickLeft()}>
+                <ComposerIcon name={this.getPropValue("leftArrow")} propsIcon={{className: this.decorateCSS("icon")}}/>
+              </div>
+            )}
+            {this.decorateCSS("right-icon") && (
+              <div className={this.decorateCSS("right-icon")} onClick={() => this.handleClickRight()}>
+                <ComposerIcon name={this.getPropValue("rightArrow")} propsIcon={{className: this.decorateCSS("icon")}}/>
+              </div>
+            )}
+            {images[this.getComponentState("selectedImage")]?.item && (
+              <img src={images[this.getComponentState("selectedImage")].item} onClick={()=> this.toggleZoomOverlayImage()} className={`${this.decorateCSS("image")} ${this.getComponentState("overlayZoomImage") && this.decorateCSS("zoom")}`}></img>
+            )}
+            {images.length > 0 && this.getPropValue("sliderDotIcon") && (
+              <div className={this.decorateCSS("dots")}>
+                {images.map((item:any, index:number) =>{
+                  return(
+                    <div className={this.decorateCSS("dot")}>
+                      <ComposerIcon name={this.getPropValue("sliderDotIcon")} propsIcon={{className: `${this.decorateCSS("icon")} ${(this.getComponentState("selectedImage")=== index) && this.decorateCSS("active")}`}}/>
+                    </div>
+                  )
+                })}
+              </div>
+            )}
         </Base.Overlay>
       </Base.Container>
     );
