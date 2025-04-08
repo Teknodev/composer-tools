@@ -470,13 +470,9 @@
                 padding: 0;
 
                 .icon-container {
-                  .icon-element {
-                    display: block;
-
-                    .icon {
-                      width: var(--composer-gap-md);
-                      height: var(--composer-gap-md);
-                    }
+                  .icon {
+                    width: var(--composer-gap-md);
+                    height: var(--composer-gap-md);
                   }
                 }
               }

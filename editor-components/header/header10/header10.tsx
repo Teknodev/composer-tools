@@ -8,12 +8,12 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type SliderObject = {
-  title: JSX.Element;
-  description: JSX.Element;
-  imageTitle: JSX.Element;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
+  imageTitle: React.JSX.Element;
   image: string;
-  subtitle: JSX.Element;
-  description1: JSX.Element;
+  subtitle: React.JSX.Element;
+  description1: React.JSX.Element;
   icons: { icon: string; url: string }[];
   button: INPUTS.CastedButton[];
 };

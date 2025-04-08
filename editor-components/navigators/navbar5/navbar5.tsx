@@ -348,6 +348,7 @@ class Navbar5 extends BaseNavigator {
     this.setComponentState("isScrolled", false);
     this.setComponentState("isBigScreen", false);
     this.setComponentState("navActive", false);
+    this.setComponentState("navbarOverflowShow", false);
     this.setComponentState(
       "dropdownMenuItemAnimationClass",
       "animate__fadeInUp"
@@ -369,6 +370,9 @@ class Navbar5 extends BaseNavigator {
   openNav() {
     Base.Navigator.changeScrollBehaviour("hidden");
     this.setComponentState("navActive", true);
+    setTimeout(() => {
+      this.setComponentState("navbarOverflowShow", true);
+    }, 300)
     this.setComponentState(
       "dropdownMenuItemAnimationClass",
       "animate__fadeInDown"
@@ -385,6 +389,7 @@ class Navbar5 extends BaseNavigator {
 
   closeNav() {
     Base.Navigator.changeScrollBehaviour("auto");
+    this.setComponentState("navbarOverflowShow", false);
     this.setComponentState(
       "dropdownMenuItemAnimationClass",
       "animate__fadeInUp"
@@ -437,8 +442,11 @@ class Navbar5 extends BaseNavigator {
     const crossIcon = this.getPropValue("cross-icon");
 
     const iconsExist = hamburgerIcon || crossIcon;
+    
+    const isVisible = navActive
 
     return (
+      <>
       <Base.Navigator.Container
         id={"navbar5-height"}
         position={position}
@@ -450,6 +458,8 @@ class Navbar5 extends BaseNavigator {
         setIsScrolled={(value: boolean) => {
           this.setComponentState("isScrolled", value);
         }}
+        screenSize={1960}
+        className={this.decorateCSS("container")}
       >
         <Base.MaxContent className={`${this.decorateCSS("maxContent")} ${transparentBackground && !navActive ? this.decorateCSS("transparentBackground") : ""}`}>
           {social.length > 0 && (
@@ -460,12 +470,14 @@ class Navbar5 extends BaseNavigator {
                     (item: any, indexSocial: number) =>
                       item.socialIcon && (
                         <ComposerLink key={indexSocial} path={item.socialLink}>
-                          <ComposerIcon
-                            propsIcon={{
-                              className: this.decorateCSS("icon"),
-                            }}
-                            name={item.socialIcon}
-                          />
+                          <div onClick={()=> this.closeNav()} className={this.decorateCSS("icon-container")}>
+                            <ComposerIcon
+                              propsIcon={{
+                                className: this.decorateCSS("icon"),
+                              }}
+                              name={item.socialIcon}
+                            />
+                          </div>
                         </ComposerLink>
                       )
                   )}
@@ -480,6 +492,7 @@ class Navbar5 extends BaseNavigator {
                 <img
                   src={currentLogo.image}
                   className={this.decorateCSS("logoImage")}
+                  onClick={()=> this.closeNav()}
                 />
               </ComposerLink>
             </div>
@@ -525,9 +538,7 @@ class Navbar5 extends BaseNavigator {
           )}
         </Base.MaxContent>
 
-        <div className={`${this.decorateCSS("overlay")} ${navActive ? this.decorateCSS("overlayActive") : ""}`} onClick={() => this.closeNav()} />
-
-        <div className={`${this.decorateCSS("dropdownMenu")} ${navActive ? this.decorateCSS("active") : ""}`}>
+        <div className={`${this.decorateCSS("dropdownMenu")} ${navActive ? this.decorateCSS("active") : ""} ${this.getComponentState("navbarOverflowShow") ? this.decorateCSS("overflowShow") : ""}`}>
           {upExist && (
             <div className={this.decorateCSS("up")}>
               {titleExist && (
@@ -542,8 +553,12 @@ class Navbar5 extends BaseNavigator {
                       const itemTitleExist = this.castToString(item.itemTitle);
                       return (
                         itemTitleExist && (
-                          <ComposerLink key={indexSocial} path={item.pageLink}>
-                            <Base.H5 className={this.decorateCSS("item-title")}>{item.itemTitle}</Base.H5>
+                          <ComposerLink key={indexSocial} path={item.itemLink}>                         
+                            <Base.H5 className={this.decorateCSS("item-title")}
+                            onClick={()=> this.closeNav()}
+                            >
+                              {item.itemTitle}
+                            </Base.H5>
                           </ComposerLink>
                         )
                       );
@@ -565,6 +580,11 @@ class Navbar5 extends BaseNavigator {
           )}
         </div>
       </Base.Navigator.Container>
+      <Base.Overlay className={this.decorateCSS("overlay")} 
+        onClick={() => this.closeNav()} 
+        isVisible={isVisible}
+      />
+      </>
     );
   }
 }

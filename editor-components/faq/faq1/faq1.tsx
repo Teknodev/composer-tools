@@ -5,8 +5,8 @@ import { Base } from "../../../composer-base-components/base/base";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type FAQ = {
-  subtitle: JSX.Element;
-  text: JSX.Element;
+  subtitle: React.JSX.Element;
+  text: React.JSX.Element;
   image: string;
 };
 

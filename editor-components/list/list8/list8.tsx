@@ -8,9 +8,9 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type listItem = {
   number: number;
-  icon: JSX.Element;
-  title: JSX.Element;
-  text: JSX.Element;
+  icon: React.JSX.Element;
+  title: React.JSX.Element;
+  text: React.JSX.Element;
 };
 
 class List8 extends BaseList {

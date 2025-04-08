@@ -7,12 +7,12 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type LeftCol = {
-  title: JSX.Element;
-  description: JSX.Element;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
 };
 
 type Button = {
-  button_text: JSX.Element;
+  button_text: React.JSX.Element;
   link: string;
   icon: string;
 };

@@ -5,9 +5,9 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
 interface Card {
     icon: string;
-    title: JSX.Element;
-    subtitle: JSX.Element;
-    description: JSX.Element;
+    title: React.JSX.Element;
+    subtitle: React.JSX.Element;
+    description: React.JSX.Element;
 }
 class Feature15 extends BaseFeature {
     constructor(props?: any) {
@@ -253,6 +253,7 @@ class Feature15 extends BaseFeature {
                         <Base.Overlay
                             onClick={() => this.setComponentState("is_video_visible", false)}
                             className={this.decorateCSS("overlay")}
+                            isVisible={true}
                         >
                             <div className={this.decorateCSS("video-container")}>
                                 <div

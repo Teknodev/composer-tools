@@ -215,10 +215,11 @@
           align-items: center;
           justify-content: center;
           gap: var(--composer-gap-xs);
-
-          .socialMediaIcon {
-            font-size: 2rem;
-            color: var(--composer-font-color-primary);
+          .socialMediaIconContainer{
+            .socialMediaIcon {
+              font-size: 2rem;
+              color: var(--composer-font-color-primary);
+            }
           }
         }
       }

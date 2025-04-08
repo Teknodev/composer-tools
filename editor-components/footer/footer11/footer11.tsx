@@ -108,6 +108,16 @@ class Footer11Page extends BaseFooter {
         },
       ],
     });
+
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2", "animate3", "animate4", "animate5"]
+      }
+    });
   }
   static getName(): string {
     return "Footer 11";
@@ -127,7 +137,10 @@ class Footer11Page extends BaseFooter {
                 return (
                   item.icon && (
                     <ComposerLink key={index} path={item.url}>
-                      <div className={this.decorateCSS("socials-element")}>
+                      <div 
+                        className={this.decorateCSS("socials-element")}
+                        data-animation={item.url ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                      >
                         <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={item.icon} />
                       </div>
                     </ComposerLink>

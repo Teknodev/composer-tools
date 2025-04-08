@@ -9,8 +9,8 @@ type eggs = {
   background: string;
   picture: string;
   socials: Array<{ icon: string; url: string }>;
-  name: JSX.Element;
-  occupation: JSX.Element;
+  name: React.JSX.Element;
+  occupation: React.JSX.Element;
 };
 
 class Team5 extends Team {

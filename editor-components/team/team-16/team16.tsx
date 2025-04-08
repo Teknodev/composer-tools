@@ -7,9 +7,9 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
   image: string;
-  name: JSX.Element;
-  job: JSX.Element;
-  description: JSX.Element;
+  name: React.JSX.Element;
+  job: React.JSX.Element;
+  description: React.JSX.Element;
 };
 
 class Team16 extends Team {

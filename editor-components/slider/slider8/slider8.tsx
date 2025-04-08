@@ -12,7 +12,7 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 type Card = {
   image: string;
   backgroundImage: string;
-  imageTitle: JSX.Element;
+  imageTitle: React.JSX.Element;
   button: INPUTS.CastedButton;
 };
 

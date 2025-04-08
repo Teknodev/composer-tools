@@ -7,10 +7,10 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
 
 type Slide = {
-  title: JSX.Element;
-  subtitle: JSX.Element;
-  description: JSX.Element;
-  description_title: JSX.Element;
+  title: React.JSX.Element;
+  subtitle: React.JSX.Element;
+  description: React.JSX.Element;
+  description_title: React.JSX.Element;
   image: string;
 };
 

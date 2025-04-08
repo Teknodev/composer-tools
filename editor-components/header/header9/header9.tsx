@@ -6,13 +6,13 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type ITab = {
-  tabText: JSX.Element;
+  tabText: React.JSX.Element;
   image: string;
   tabUrl: string;
 };
 
 type ISocial = {
-  socialLinkText: JSX.Element;
+  socialLinkText: React.JSX.Element;
   socialUrl: string;
 };
 

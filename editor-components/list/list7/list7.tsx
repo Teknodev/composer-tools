@@ -4,8 +4,8 @@ import styles from "./list7.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
 type listItem = {
-  text: JSX.Element;
-  title: JSX.Element;
+  text: React.JSX.Element;
+  title: React.JSX.Element;
 }
 
 class List7 extends BaseList {
