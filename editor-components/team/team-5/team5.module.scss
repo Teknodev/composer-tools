@@ -86,6 +86,25 @@
             color: var(--composer-tertiary-color);
           }
         }
+
+        &:hover {
+          .image-container {
+            .background-image {
+              transition: transform 0.3 ease;
+              &[data-animation~="animate1"] {
+                transition: transform 0.3 ease;
+                transform: scale(1.1);
+              }
+            }
+            .member-image {
+              transition: transform 0.3 ease;
+              &[data-animation~="animate1"] {
+                transition: transform 0.3 ease;
+                transform: scale(1.1);
+              }
+            }
+          }
+        }
       }
     }
   }

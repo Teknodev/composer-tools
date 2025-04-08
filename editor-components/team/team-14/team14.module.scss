@@ -33,15 +33,21 @@
           transition: width 0.4s ease;
 
           &:hover {
-            width: 100%;
+            &[data-animation~="animate1"] {
+              width: 100%;
+            }
 
             .info {
-              transform: translateY(-15%);
-              opacity: 1;
+              &[data-animation~="animate1"] {
+                transform: translateY(-15%);
+                opacity: 1;
+              }
             }
 
             .image {
-              filter: grayscale(0%);
+              &[data-animation~="animate1"] {
+                filter: grayscale(0%);
+              }
             }
           }
 

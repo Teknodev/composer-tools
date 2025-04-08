@@ -61,6 +61,25 @@
           font-size: 1.5rem;
           color: var(--composer-tertiary-color);
         }
+
+        &[data-animation~="animate2"] {
+          .icon {
+            transition: color 0.3s ease;
+  
+            &:hover {
+              transition: color 0.3s ease;
+              color: var(--composer-primary-color);
+            }
+          }
+        }
+      }
+
+      &[data-animation~="animate1"] {
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          transition: background-color 0.3s ease;
+        }
       }
     }
   }
