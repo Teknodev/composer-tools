@@ -8,12 +8,12 @@ import ComposerLanguage from "composer-tools/composer-base-components/language/l
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 interface Lane {
-  contact: JSX.Element;
-  news: JSX.Element;
+  contact: React.JSX.Element;
+  news: React.JSX.Element;
 }
 
 type Item = {
-  title: JSX.Element;
+  title: React.JSX.Element;
   navigate_to: string;
   menuType: string;
   sub_items: Item[];

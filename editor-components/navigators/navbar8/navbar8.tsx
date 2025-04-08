@@ -13,7 +13,7 @@ type Icon = {
 };
 
 type MenuItems = {
-  title: JSX.Element;
+  title: React.JSX.Element;
   url: string;
 };
 

@@ -5,12 +5,12 @@ import styles from "./footer6.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
 type FooterValues = {
-  footerTitle: JSX.Element;
+  footerTitle: React.JSX.Element;
   footerText: FooterTextValues[];
 };
 
 type FooterTextValues = {
-  footerText: JSX.Element;
+  footerText: React.JSX.Element;
   path: string;
 };
 
@@ -277,6 +277,16 @@ class Footer6Page extends BaseFooter {
       displayer: "Footer Text",
       value: "2024 © Made with by Blinkpage.",
     });
+
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate2"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2", "animate3"]
+      }
+    });
   }
 
   static getName(): string {
@@ -314,14 +324,19 @@ class Footer6Page extends BaseFooter {
                   return (
                     footerExist && (
                       <div key={indexFooter} className={this.decorateCSS("list-group")}>
-                        {footerTitleExist && <Base.H2 className={this.decorateCSS("title")}>{item.footerTitle}</Base.H2>}
+                        {footerTitleExist && <Base.H2 className={this.decorateCSS("list-title")}>{item.footerTitle}</Base.H2>}
                         {item.footerText.length > 0 &&
                           item.footerText.map((item: FooterTextValues, indexFooterText: number) => {
                             const footerTextExist = this.castToString(item.footerText);
                             return (
                               footerTextExist && (
                                 <ComposerLink key={indexFooterText} path={item.path}>
-                                  <Base.P className={this.decorateCSS("text")}>{item.footerText}</Base.P>
+                                  <Base.P 
+                                    className={this.decorateCSS("text")}
+                                    data-animation={item.path ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                                  >
+                                    {item.footerText}
+                                  </Base.P>
                                 </ComposerLink>
                               )
                             );
