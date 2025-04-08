@@ -12,10 +12,10 @@ type CardItem={
 }
 type ItemType={
     image: string,
-    name: JSX.Element,
-    comment: JSX.Element
+    name: React.JSX.Element,
+    comment: React.JSX.Element
     icon: string,
-    cardLink: JSX.Element,
+    cardLink: string,
 }
 
 class Social1 extends BaseSocial {
@@ -515,12 +515,28 @@ class Social1 extends BaseSocial {
         dots: false,
         infinite: true,
         speed: 500,
-        autoplay: true,
+        autoplay: false,
         autoplaySpeed: 2000,
         slidesToShow: 1,
         slidesToScroll: 1,
         adaptiveHeight: false,
-      };
+        responsive: [
+            {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 3,
+                slidesToScroll: 1,
+              },
+            },
+            {
+              breakpoint: 640,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+              },
+            },
+          ],
+    };
     const title = this.getPropValue("title");
     const isTitle = this.castToString(title)
     const description = this.getPropValue("description");
@@ -595,12 +611,16 @@ class Social1 extends BaseSocial {
                                             <div className={this.decorateCSS("card-container")} onMouseMove={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
                                                 {(item.icon || item.image || this.castToString(item.name) ) && (
                                                 <div className={this.decorateCSS("card-upper")}>
-                                                    {item.icon && (
-                                                        <ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }}/>
-                                                    )}
-                                                    {item.image && (
-                                                        <img src={item.image} className={this.decorateCSS("image")}/>
-                                                    )}
+                                                    {(item.icon || item.image) && (
+                                                        <div className={this.decorateCSS("image-icon-container")}>
+                                                        {item.icon && (
+                                                            <ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }}/>
+                                                        )}
+                                                        {item.image && (
+                                                            <img src={item.image} className={this.decorateCSS("image")}/>
+                                                        )}
+                                                        </div>
+                                                    )}        
                                                     {item.name && (
                                                         <div className={this.decorateCSS("name")}>{item.name}</div>
                                                     )}
@@ -634,12 +654,16 @@ class Social1 extends BaseSocial {
                                             <div className={this.decorateCSS("card-container")} onMouseMove={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
                                                 {(item.icon || item.image || this.castToString(item.name) ) && (
                                                 <div className={this.decorateCSS("card-upper")}>
-                                                    {item.icon && (
-                                                        <ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }}/>
-                                                    )}
-                                                    {item.image && (
-                                                        <img src={item.image} className={this.decorateCSS("image")}/>
-                                                    )}
+                                                    {(item.icon || item.image) && (
+                                                        <div className={this.decorateCSS("image-icon-container")}>
+                                                        {item.icon && (
+                                                            <ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }}/>
+                                                        )}
+                                                        {item.image && (
+                                                            <img src={item.image} className={this.decorateCSS("image")}/>
+                                                        )}
+                                                        </div>
+                                                    )} 
                                                     {item.name && (
                                                         <div className={this.decorateCSS("name")}>{item.name}</div>
                                                     )}
@@ -660,27 +684,32 @@ class Social1 extends BaseSocial {
                         )
                     })}
             </div>
- 
          </div>           
         )}
+        
         {(cardItems.length > 0) && (
             <div className={this.decorateCSS("loop-slide")}>
                 <ComposerSlider {...settings} className={`${this.decorateCSS("slide-content-mobile")} ${(buttons.length > 0 && isDescription && isTitle) && this.decorateCSS("with-upper")}`}>
-                    {allItems.map((item: any, index: number) => (
+                    {allItems.map((item: ItemType, index: number) => (
                         <ComposerLink path={item.cardLink} key={index}>
                             <div className={this.decorateCSS("cards")}>
                                 <div className={this.decorateCSS("cards-wrapper")}>
                                     <div className={this.decorateCSS("card-container")}>
+                                        {(item.icon || item.image || item.name) && (
                                         <div className={this.decorateCSS("card-upper")}>
-                                            <ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }}/>
-                                            <img src={item.image} className={this.decorateCSS("image")}/>
-                                            <div className={this.decorateCSS("name")}>{item.name}</div>
+                                            {(item.icon || item.image) && (
+                                                <div className={this.decorateCSS("image-icon-container")}>
+                                                    {item.icon && (<ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }}/>)}
+                                                    {item.image && (<img src={item.image} className={this.decorateCSS("image")}/>)}
+                                                </div>
+                                            )}
+                                            {this.castToString(item.name) && (<div className={this.decorateCSS("name")}>{item.name}</div>)}
                                         </div>
-                                        <div className={this.decorateCSS("comment")}>{item.comment}</div>
+                                        )}
+                                        {this.castToString(item.comment) && <div className={this.decorateCSS("comment")}>{item.comment}</div>}
                                     </div>
                                 </div>
                             </div>
-
                         </ComposerLink>
                     ))}
                 </ComposerSlider>
