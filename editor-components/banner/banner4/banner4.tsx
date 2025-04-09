@@ -127,7 +127,7 @@ class Banner4 extends BaseBanner {
                   {homepageExist && (
                     <div className={this.decorateCSS("link")}>
                       <ComposerLink path={page}>
-                        <span className={this.decorateCSS("homepage")}>{homepage}</span>
+                        <span className={`${this.decorateCSS("homepage")} ${!backgroundImage && this.decorateCSS("image")}`}>{homepage}</span>
                       </ComposerLink>
                     </div>
                   )}
@@ -135,12 +135,12 @@ class Banner4 extends BaseBanner {
                     <ComposerIcon
                       name={icon}
                       propsIcon={{
-                        className: this.decorateCSS("crumberIcon"),
+                        className: `${this.decorateCSS("crumberIcon")} ${!backgroundImage && this.decorateCSS("image")}`,
                       }}
                     />
                   )}
                   {currentpageExist && (
-                    <span className={this.decorateCSS("currentPage")}>{currentpage}</span>
+                    <span className={`${this.decorateCSS("currentPage")} ${!backgroundImage && this.decorateCSS("image")}`}>{currentpage}</span>
                   )}
                 </div>
               </Base.VerticalContent>

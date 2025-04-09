@@ -78,10 +78,10 @@
                         -webkit-box-orient: vertical;
                         overflow: hidden !important;
                         text-overflow: ellipsis !important;
-                    }
 
-                    .image {
-                        color: black !important;
+                        &.image {
+                            color: black !important;
+                        }
                     }
 
                     .pages {
@@ -95,6 +95,9 @@
 
                             .homepage {
                                 font-size: 1rem !important;
+                                &.image {
+                                    color: var(--composer-font-color-primary) !important;
+                                }
     
                                 &:hover {
                                     color: var(--composer-primary-color);
@@ -106,12 +109,18 @@
                             font-size: 1.5rem !important;
                             min-width: 24px;
                             flex-shrink: 0;
+                            &.image {
+                                color: var(--composer-font-color-primary) !important;
+                            }
                         }
 
                         .currentPage {
                             //flex: 1;
                             font-size: 1rem !important;
                             font-weight: bold;
+                            &.image {
+                                color: var(--composer-font-color-primary) !important;
+                            }
                         }
                     }
                 }
