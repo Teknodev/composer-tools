@@ -8,9 +8,9 @@ import { Base } from "composer-tools/composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type ISliderData = {
-  title: JSX.Element;
+  title: React.JSX.Element;
   image: string;
-  description: JSX.Element;
+  description: React.JSX.Element;
   button: INPUTS.CastedButton;
 };
 

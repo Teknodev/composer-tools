@@ -5,9 +5,9 @@ import { Base } from "../../../composer-base-components/base/base";
 
 type Card = {
   image: string;
-  name: JSX.Element;
-  position: JSX.Element;
-  description: JSX.Element;
+  name: React.JSX.Element;
+  position: React.JSX.Element;
+  description: React.JSX.Element;
 };
 
 class Team14 extends Team {

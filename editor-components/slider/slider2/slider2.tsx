@@ -9,10 +9,10 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 
 type Card = {
   image: string;
-  text: JSX.Element;
-  button: JSX.Element;
+  text: React.JSX.Element;
+  button: React.JSX.Element;
   url: string;
-  number: JSX.Element;
+  number: React.JSX.Element;
 };
 
 class Slider2 extends BaseSlider {

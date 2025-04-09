@@ -6,11 +6,11 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Item = {
-  itemTitle: JSX.Element;
+  itemTitle: React.JSX.Element;
   texts: TextItem[];
 };
 type TextItem = {
-  itemText: JSX.Element;
+  itemText: React.JSX.Element;
 };
 
 class List3 extends BaseList {

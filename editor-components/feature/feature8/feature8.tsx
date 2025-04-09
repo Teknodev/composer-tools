@@ -6,8 +6,8 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type Card = {
   icon: string;
-  title: JSX.Element;
-  description: JSX.Element;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
 };
 
 class Feature8 extends BaseFeature {
@@ -218,15 +218,15 @@ class Feature8 extends BaseFeature {
   };
 
   setupObserver = () => {
-    const cardElements = document.querySelectorAll("." + this.decorateCSS("card"));
+    // const cardElements = document.querySelectorAll("." + this.decorateCSS("card"));
 
-    this.observer = new IntersectionObserver(this.callback, this.options);
+    // this.observer = new IntersectionObserver(this.callback, this.options);
 
-    cardElements.forEach((card) => {
-      this.observer.observe(card);
-    });
+    // cardElements.forEach((card) => {
+    //   this.observer.observe(card);
+    // });
 
-    this.setComponentState("cardsCount", cardElements.length);
+    // this.setComponentState("cardsCount", cardElements.length);
   };
 
   static getName(): string {

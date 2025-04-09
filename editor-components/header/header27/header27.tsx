@@ -11,19 +11,19 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type SliderItemType = {
   background: string;
-  upTitle: JSX.Element;
-  downTitle: JSX.Element;
+  upTitle: React.JSX.Element;
+  downTitle: React.JSX.Element;
   upImage: string;
   imageArray: {
     downImage: string;
   }[];
-  leftDescription: JSX.Element;
-  itemNo: JSX.Element;
-  itemDesc: JSX.Element;
-  customerNo: JSX.Element;
+  leftDescription: React.JSX.Element;
+  itemNo: React.JSX.Element;
+  itemDesc: React.JSX.Element;
+  customerNo: React.JSX.Element;
   statsLine: Boolean;
-  customerDesc: JSX.Element;
-  rightDescription: JSX.Element;
+  customerDesc: React.JSX.Element;
+  rightDescription: React.JSX.Element;
   button: INPUTS.CastedButton;
   pageNumberPart: boolean;
 };

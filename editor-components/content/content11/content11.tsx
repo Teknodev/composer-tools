@@ -190,6 +190,16 @@ class Content11 extends BaseContent {
         },
       ],
     });
+
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2"]
+      }
+    });
   }
   static getName(): string {
     return "Content 11";
@@ -221,7 +231,10 @@ class Content11 extends BaseContent {
           )}
           <Base.ContainerGrid className={this.decorateCSS("content")}>
             {image && (
-              <Base.GridCell className={`${this.decorateCSS("image-box")} ${!textContent.length ? this.decorateCSS("no-content") : ""}`}>
+              <Base.GridCell 
+                className={`${this.decorateCSS("image-box")} ${!textContent.length ? this.decorateCSS("no-content") : ""}`}
+                data-animation={this.getPropValue("hoverAnimation").join(" ")}
+              >
                 <img
                   className={this.decorateCSS("image")}
                   src={image}
