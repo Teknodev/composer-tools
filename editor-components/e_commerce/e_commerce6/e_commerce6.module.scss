@@ -6,56 +6,108 @@
         gap: calc(var(--composer-gap-lg) * 2);        
         .left-container{
             display: flex;
-            gap: calc(var(--composer-gap-xl) * 2);
+            gap: calc(var(--composer-gap-lg) * 2);
             flex-direction: row;
             width: 50%;
             flex: 1;
             height: 100%;
-            .small-images-container{
-                display: flex;
-                flex-direction: column;
-                gap: var(--composer-gap-md);
-                .small-image{
-                    width: 100px;
-                    height: 100px;
-                    position: relative;
-                    .image{
-                        width: 100%;
+            height: 600px;
+            .small-image-slider{
+                width: 15%;
+                .small-images-container, .small-images-container-mobile{
+                    height: 100%;
+                    > div {
+                        > div {
+                          > div {
+                            padding-bottom: var(--composer-gap-sm);
+                            height: 150px;
+                            > div {
+                              height: 100%;
+                            }
+                          }
+                        }
+                      }
+          
+                    .small-image{
+                        position: relative;
+                        overflow: hidden;
                         height: 100%;
-                        object-fit: cover;
-                        border-radius: var(--composer-border-radius-xs);
+                        outline: none;
+                        .image{
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            border-radius: var(--composer-border-radius-xs);
+                        }
+                        .overlay{
+                            position: absolute;
+                            background-color: var(--composer-font-color-secondary);
+                            opacity: 0.5;
+                            top: 0px;
+                            left: 0px;
+                            width: 100%;
+                            height: 100%;
+                            border-radius: var(--composer-border-radius-xs);
+                            &.selected-image{
+                                background-color: transparent;
+                            }
+                        }
                     }
-                    .overlay{
-                        position: absolute;
-                        background-color: var(--composer-font-color-secondary);
-                        opacity: 0.5;
-                        top: 0px;
-                        left: 0px;
-                        width: 100%;
-                        height: 100%;
-                        &.selected-image{
-                            background-color: transparent;
+    
+                }
+                .small-images-container-mobile{
+                    display: none;
+                }
+                .arrow-buttons{
+                    display: flex;
+                    gap: var(--composer-gap-md);
+                    .image-down-arrow, .image-up-arrow{
+                        flex: 1;
+                        border: 1px solid var(--composer-font-color-primary);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        cursor: pointer;
+                        .icon{
+                            font-size: 2rem;
+                            color: var(--composer-font-color-primary);
+                        }
+                    }
+                    .image-down-arrow, .image-up-arrow{
+                        .icon{
+                            transform: rotate(90deg);
                         }
                     }
                 }
-
             }
+
             .slider-parent{
                 flex: 1;
                 position: relative;
                 cursor:zoom-in;
-                max-height: 700px;
                 overflow: hidden;
                 .slider-container{
                     width: 100%;
                     height: 100%;
+                    >div{
+                        height: 100% !important;
+                        >div{
+                            height: 100%;
+                            >div{
+                                >div{
+                                    height: 100%;
+                                }
+                            }
+                        }
+                    }
                     .slider{
+                        height: 100%;
                         .big-image-container{
                             width: 100%;
                             height: 100%;
                             .big-image{
-                                width: 100%;
                                 height: 100%;
+                                width: 100%;
                                 object-fit: cover;
                                 border-radius: var(--composer-border-radius-xs);
                             }
@@ -333,21 +385,6 @@
                     color: var(--composer-font-color-primary);
                     position: relative;
                     padding: var(--composer-gap-md) 0px;
-                    &::after{
-                        content: "";
-                        display: none;
-                        position: absolute;
-                        bottom: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 1px;
-                        background-color: var(--composer-tertiary-color);
-                    }
-                    &.title-divider{
-                        &::after{
-                            display: flex;
-                        }
-                    }
                 }
                 .item-detail-container{
                     .sections{
@@ -361,6 +398,7 @@
                             flex-direction: column;
                             .title-container{
                                 display: flex;
+                                gap: var(--composer-gap-sm);
                                 .title{
                                     flex: 1;
                                     font-size: 1rem;
@@ -374,14 +412,14 @@
                                 max-height: 0px;
                                 overflow: hidden;
                                 padding-top:0;
-                                transition: all 0.5s ease;
+                                transition: all 0.8s ease;
                                 .text{
                                     font-size: 1rem;
                                     margin-top: var(--composer-gap-sm);
                                 }
                                 &.active{
-                                    max-height: 200px;
-                                    overflow-y: scroll;
+                                    max-height: 50px;
+                                    overflow: auto;
                                 }
                             }
                             &::after{
@@ -474,6 +512,7 @@
             height: 100%;
             cursor:zoom-in;
             overflow: hidden;
+            object-fit: cover;
             &.zoom{
                 transform: scale(1.5);  
             }
@@ -487,9 +526,51 @@
         .left-container{
             flex-direction: column-reverse;
             gap: var(--composer-gap-md);
-            .small-images-container{
-                flex-direction: row;
+            .small-image-slider{
+                width: 100%;
+                position: relative;
+                display: flex;
+                justify-content: center;
+                .small-images-container{
+                    display: none;
+                }
+                .small-images-container-mobile{
+                    display: flex;
+                    width: 85%;
+                    margin-left: calc(-1 * var(--composer-gap-md));
+                    > div {
+                        > div {
+                          > div {
+                            padding-bottom: 0px;
+                            padding-left: var(--composer-gap-md);
+                          }
+                        }
+                    }
+                }
+                .arrow-buttons{
+                    .image-up-arrow{
+                        position: absolute;
+                        right: -10px;
+                        top: 50%;
+                        transform: translateX(-50%);
+                        .icon{
+                            font-size: 1.5rem;
+                            transform: rotate(0deg);
+                        }
+                    }
+                    .image-down-arrow{
+                        position: absolute;
+                        left: 11px;
+                        top: 50%;
+                        transform: translateX(-50%);
+                        .icon{
+                            font-size: 1.5rem;
+                            transform: rotate(0deg);
+                        }
+                    }
+                }
             }
+ 
         }
         .right-container{
             .count-container{
@@ -507,12 +588,27 @@
       .max-content {
         flex-direction: column;
         .left-container{
-            flex-direction: column-reverse;
             width: 100%;
-            .small-images-container{
-                flex-direction: row;
+            height: 500px;
+            flex: auto;
+            .small-image-slider{
+                .small-images-container-mobile{
+                    display: flex;
+                    width: 100%;
+                    margin-left: calc(-1 * var(--composer-gap-xs));
+                    > div {
+                        > div {
+                          > div {
+                            padding-left: var(--composer-gap-xs);
+                            height: 100px;
+                          }
+                        }
+                    }
+                }
+                .arrow-buttons{
+                    display: none;
+                }
             }
-
         }
         .right-container{
             width: 100%;
