@@ -8,7 +8,7 @@ import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 import ComposerSlider from "composer-tools/composer-base-components/slider/slider";
 
 type CardItem={
-    item: ItemType
+    items: ItemType[]
 }
 type ItemType={
     image: string,
@@ -573,7 +573,7 @@ class Social1 extends BaseSocial {
                 const buttonExist = buttonTitleExist || iconExist;
                 return (
                 buttonExist && (
-                    <div className={this.decorateCSS("button-wrapper")}>
+                    <div className={this.decorateCSS("button-wrapper")} key={index}>
                     <ComposerLink path={item.url}>
                         <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
                         <div className={this.decorateCSS("button-text")}>
@@ -599,7 +599,7 @@ class Social1 extends BaseSocial {
         {(cardItems.length > 0) && (
          <div className={this.decorateCSS("loop-slide")}>
             <div className={`${this.decorateCSS("slide-content")} ${(buttons.length > 0 && isDescription && isTitle) && this.decorateCSS("slide-content-with-upper")}`}style={{ animationPlayState: this.getComponentState("isPaused") ? "paused" : "running" }}>
-                {cardItems.map((item: any, index: number)=>{                 
+                {cardItems.map((item, index: number)=>{               
                     return (
                         <div className={this.decorateCSS("cards")} style={{ width: `calc(100% / ${maxLength})` }}>
                             <div className={this.decorateCSS("cards-wrapper")}>
@@ -642,7 +642,7 @@ class Social1 extends BaseSocial {
                     })}
             </div>
             <div className={`${this.decorateCSS("slide-content")} ${(buttons.length > 0 && isDescription && isTitle) && this.decorateCSS("slide-content-with-upper")}`} style={{ animationPlayState: this.getComponentState("isPaused") ? "paused" : "running" }}>
-                    {cardItems.map((item: any, index: number)=>{                 
+                    {cardItems.map((item, index: number)=>{                 
                         return (
                         <div className={this.decorateCSS("cards")} style={{ width: `calc(100% / ${maxLength})` }}>
                             <div className={this.decorateCSS("cards-wrapper")}>

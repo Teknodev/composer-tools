@@ -1,4 +1,4 @@
-@import "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss";
+@use "../../../../composer-tools/composer-base-components/base//utitilities/viewports.module.scss" as *;
 
 @keyframes slide-to-left {
     100% { transform: translateX(-100%) }
@@ -134,7 +134,7 @@
     }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
     .wrapper{
         .container{            
             padding: 50px 20px 50px 20px;
