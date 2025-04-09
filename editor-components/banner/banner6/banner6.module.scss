@@ -38,7 +38,9 @@
             }
             .breadcrumb {
                 display: flex;
+                flex-wrap: wrap;
                 align-items: center;
+                max-width: 100%;
 
                 * {
                     overflow: hidden;
@@ -57,7 +59,6 @@
                     }
                 }
                 .icon {
-                    flex: 1;
                     color: var(--composer-font-color-primary);
                     margin-right: var(--composer-gap-sm);
                     min-width: 1rem;
