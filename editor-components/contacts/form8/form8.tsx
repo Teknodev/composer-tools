@@ -7,8 +7,8 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type ContactItem = {
-  text: JSX.Element;
-  title: JSX.Element;
+  text: React.JSX.Element;
+  title: React.JSX.Element;
 };
 
 class Form8 extends BaseContacts {

@@ -11,12 +11,12 @@ type SliderItem = {
   image: string;
   link: string;
   buttomRow: {
-    comment: JSX.Element;
+    comment: React.JSX.Element;
   };
 };
 
 type SocialIcon = {
-  icon_text: JSX.Element;
+  icon_text: React.JSX.Element;
   link: string;
 };
 

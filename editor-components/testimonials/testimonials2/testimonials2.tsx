@@ -6,9 +6,9 @@ import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
 
 type Item = {
-  name: JSX.Element;
-  description: JSX.Element;
-  subtitle: JSX.Element;
+  name: React.JSX.Element;
+  description: React.JSX.Element;
+  subtitle: React.JSX.Element;
   icon: string;
   star: number;
 };

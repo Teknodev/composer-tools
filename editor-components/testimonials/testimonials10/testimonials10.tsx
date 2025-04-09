@@ -9,9 +9,9 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Item = {
   image: string;
-  text: JSX.Element;
-  author: JSX.Element;
-  position: JSX.Element;
+  text: React.JSX.Element;
+  author: React.JSX.Element;
+  position: React.JSX.Element;
 };
 
 type Button = {

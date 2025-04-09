@@ -4,9 +4,9 @@ import styles from "./stats7.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
 type Item = {
-  title: JSX.Element;
+  title: React.JSX.Element;
   progress: number;
-  progressText: JSX.Element;
+  progressText: React.JSX.Element;
 };
 
 class Stats7Page extends BaseStats {

@@ -70,10 +70,7 @@ class Banner2 extends BaseBanner {
         {isCrumberVisible && (
           <Base.MaxContent className={this.decorateCSS("max-content")}>
             <div className={this.decorateCSS("crumber-content")}>
-              <ComposerLink
-                path={navigateToUrl}
-                className={this.decorateCSS("home-link")}
-              >
+              <ComposerLink path={navigateToUrl}>
                 <span className={this.decorateCSS("home-page")}>
                   {this.getPropValue("homepage")}
                 </span>

@@ -6,11 +6,11 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 interface Card {
   direction: boolean;
-  title: JSX.Element;
+  title: React.JSX.Element;
   button: INPUTS.CastedButton;
   leftImage: string;
   rightImage: string;
-  description: JSX.Element;
+  description: React.JSX.Element;
   leftText: string;
   rightText: string;
 }
@@ -93,6 +93,19 @@ class Content7 extends BaseContent {
         },
       ],
     });
+    
+    this.setComponentState("foregroundImageRef", React.createRef());
+    this.setComponentState("sliderButtonRef", React.createRef());
+
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2"]
+      }
+    });
   }
 
   static getName(): string {
@@ -100,16 +113,16 @@ class Content7 extends BaseContent {
   }
 
   handleSliderChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-    index: number
+    event: React.ChangeEvent<HTMLInputElement>
   ) => {
     const slider = event.target as HTMLInputElement;
-    const foregroundImage = document.getElementById(`foregroundImage-${index}`);
-    const sliderButton = document.getElementById(`slider-button-${index}`);
+    const foregroundImage = this.getComponentState("foregroundImageRef").current;
+    const sliderButton = this.getComponentState("sliderButtonRef").current;
+    
     if (foregroundImage && sliderButton) {
       const sliderValue = Number(slider.value);
       foregroundImage.style.clipPath = `inset(0% 0% 0% ${sliderValue}%)`;
-      sliderButton.style.left = `${slider.value}%`;
+      sliderButton.style.left = `${sliderValue}%`;
     }
   };
 
@@ -149,7 +162,7 @@ class Content7 extends BaseContent {
                           className={this.decorateCSS("left-card")}
                         >
                           {this.castToString(card.title) && (
-                            <Base.H2 className={this.decorateCSS("title")}>
+                            <Base.H2 className={this.decorateCSS("card-title")}>
                               {card.title}
                             </Base.H2>
                           )}
@@ -171,26 +184,23 @@ class Content7 extends BaseContent {
                     {(card.leftImage || card.rightImage) && (
                       <div className={this.decorateCSS("right-card")}>
                         <div
-                          className={
-                            `${this.decorateCSS("image-container")} ${card.leftImage && card.rightImage ? styles["active"] : ""
-                            }`
-                          }
+                          className={`${this.decorateCSS("image-container")} ${card.leftImage && card.rightImage ? styles["active"] : ""}`}
+                          data-animation={this.getPropValue("hoverAnimation").join(" ")}
                         >
                           {card.leftImage && (
                             <img
                               src={card.leftImage}
                               alt=""
                               className={this.decorateCSS("background-image")}
-                              id={`background-${indexCards}`}
                             />
                           )}
 
                           {card.rightImage && (
                             <img
+                              ref={this.getComponentState("foregroundImageRef")}
                               src={card.rightImage}
                               alt=""
                               className={this.decorateCSS("foreground-image")}
-                              id={`foregroundImage-${indexCards}`}
                             />
                           )}
 
@@ -203,9 +213,7 @@ class Content7 extends BaseContent {
                                 defaultValue="50"
                                 className={this.decorateCSS("slider")}
                                 id={`slider-${indexCards}`}
-                                onChange={(e) =>
-                                  this.handleSliderChange(e, indexCards)
-                                }
+                                onChange={this.handleSliderChange}
                               />
                               <div className={this.decorateCSS("text")}>
                                 <div
@@ -218,8 +226,8 @@ class Content7 extends BaseContent {
                                 </div>
                               </div>
                               <div
+                                ref={this.getComponentState("sliderButtonRef")}
                                 className={this.decorateCSS("slider-button")}
-                                id={`slider-button-${indexCards}`}
                               ></div>
                             </div>
                           )}

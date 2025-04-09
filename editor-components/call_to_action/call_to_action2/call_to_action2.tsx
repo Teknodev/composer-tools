@@ -148,6 +148,7 @@ class CallToAction2Page extends BaseCallToAction {
               <Base.Overlay
                 onClick={this.hideVideo}
                 className={this.decorateCSS("overlay")}
+                isVisible={true}
               >
                 <div className={this.decorateCSS("video-container")}>
                   <div

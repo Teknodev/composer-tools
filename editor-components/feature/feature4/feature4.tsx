@@ -7,10 +7,10 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
-  title: JSX.Element;
-  subtitle: JSX.Element;
+  title: React.JSX.Element;
+  subtitle: React.JSX.Element;
   icon: string;
-  description: JSX.Element;
+  description: React.JSX.Element;
   image: string;
   buttons: INPUTS.CastedButton[];
 };

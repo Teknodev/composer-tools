@@ -7,7 +7,7 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 interface ListItem {
-  description: JSX.Element;
+  description: React.JSX.Element;
 }
 
 type Button = INPUTS.CastedButton;

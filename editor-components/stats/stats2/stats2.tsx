@@ -8,7 +8,7 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
   amount: number;
-  text: JSX.Element;
+  text: React.JSX.Element;
   icon?: string;
   secondIcon?: string;
 };
