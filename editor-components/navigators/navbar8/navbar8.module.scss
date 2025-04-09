@@ -275,7 +275,7 @@
    transition: all 0.3s ease;
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
 
   .maxContent{
     .logo{

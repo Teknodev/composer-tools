@@ -59,7 +59,7 @@
   }
 }
 
-@container (max-width : #{$composer-phone-width-sm}){
+@container (max-width : #{$composer-phone-width}){
   .text {
     font-size: 1.5rem !important;
   }
