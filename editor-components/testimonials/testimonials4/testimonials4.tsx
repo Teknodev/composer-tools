@@ -7,9 +7,9 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 interface SliderItem {
   icon: string;
-  description: JSX.Element;
-  title: JSX.Element;
-  subtitle: JSX.Element;
+  description: React.JSX.Element;
+  title: React.JSX.Element;
+  subtitle: React.JSX.Element;
   image: string;
 }
 interface ArrowItem {

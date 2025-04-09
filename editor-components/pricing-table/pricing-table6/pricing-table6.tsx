@@ -7,27 +7,27 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Pricing = {
-  title: JSX.Element;
+  title: React.JSX.Element;
   product: Array<{
     cardTitle1: string;
     description: string;
-    badge: JSX.Element;
+    badge: React.JSX.Element;
     property: string;
-    title: JSX.Element;
+    title: React.JSX.Element;
     subtitle: string;
     product: {
       per: string;
       price: string;
       plan: string;
-      tag: JSX.Element;
+      tag: React.JSX.Element;
       check_icon: string;
       circle_icon: string;
     }[];
     right_items: {
       enable: boolean;
-      text: JSX.Element;
-      badge: JSX.Element;
-      title: JSX.Element;
+      text: React.JSX.Element;
+      badge: React.JSX.Element;
+      title: React.JSX.Element;
       list: {
         property: string;
         dash_icon: string;
