@@ -1,4 +1,4 @@
-@use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *; 
+@import '../../../composer-base-components/base/utitilities/viewports.module.scss'; 
 .container {
     .max-content {
         display: flex;

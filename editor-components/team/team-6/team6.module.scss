@@ -1,4 +1,4 @@
-@use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss" as *;
+@import "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss";
 $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
 .container {

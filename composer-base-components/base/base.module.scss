@@ -1,4 +1,4 @@
-@use "./utitilities/viewports.module.scss" as *;
+@import "./utitilities/viewports.module.scss";
 
 .h1{
      font-size: calc(2.8 * var(--project-font-size));
