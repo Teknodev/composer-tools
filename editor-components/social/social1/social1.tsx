@@ -512,7 +512,7 @@ class Social1 extends BaseSocial {
   
   render() {
     const settings = {
-        dots: false,
+        dots: true,
         infinite: true,
         speed: 500,
         autoplay: true,

@@ -146,6 +146,7 @@
             }        
         }
         .loop-slide{
+            padding-bottom: 50px;
             .slide-content{
                 display: none;                
             }
@@ -153,6 +154,16 @@
                 display: block;
                 animation: none;
                 padding: 50px 0px 50px 0px;
+                >ul{
+                    bottom: 0px;
+                    >li{
+                        >button{
+                            &::before{
+                                color: var(--composer-font-color-primary);
+                            }
+                        }
+                    }
+                }
                 >div{
                     >div{
                         >div{
