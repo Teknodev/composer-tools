@@ -8,20 +8,20 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Speaker = {
-  name: JSX.Element;
-  title: JSX.Element;
+  name: React.JSX.Element;
+  title: React.JSX.Element;
   image: string;
 };
 
 type ContactInfo = {
   icon: string;
-  text: JSX.Element;
+  text: React.JSX.Element;
 };
 
 type EventDetail = {
-  eventDateFirstPart: JSX.Element;
+  eventDateFirstPart: React.JSX.Element;
   eventDateDivider: boolean;
-  eventDateSecondPart: JSX.Element;
+  eventDateSecondPart: React.JSX.Element;
 };
 
 class ConfirmationModal2 extends BaseModal {

@@ -7,10 +7,10 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Pricing = {
-  title1: JSX.Element;
+  title1: React.JSX.Element;
   list: TypeUsableComponentProps[];
-  title2: JSX.Element;
-  pricing: JSX.Element;
+  title2: React.JSX.Element;
+  pricing: React.JSX.Element;
   buttons: Array<Button>;
   isFocus: boolean;
   icons: string;
@@ -18,7 +18,7 @@ type Pricing = {
 
 type Button = {
   url: string;
-  buttonText: JSX.Element;
+  buttonText: React.JSX.Element;
   isPrimary: boolean;
 };
 
