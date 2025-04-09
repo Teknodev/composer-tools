@@ -7,10 +7,10 @@ import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type ListItem = {
-  title: JSX.Element;
-  uppericon: JSX.Element;
+  title: React.JSX.Element;
+  uppericon: React.JSX.Element;
   text: string;
-  lowericon: JSX.Element;
+  lowericon: React.JSX.Element;
   url: string;
 }
 

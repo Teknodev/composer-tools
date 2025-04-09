@@ -6,7 +6,7 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type Card = {
   description: string;
-  icon: JSX.Element;
+  icon: React.JSX.Element;
   title: string;
 };
 

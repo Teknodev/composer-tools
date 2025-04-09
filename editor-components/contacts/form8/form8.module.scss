@@ -82,7 +82,7 @@ $content-background-color: color-mix(in srgb, var(--composer-html-background), v
 .error-container {
   transform: translateY(var(--composer-gap-xs));
   .error-message {
-    color: var(--danger-color);
+    color: var(--composer-danger-color);
   }
 }
 

@@ -5,9 +5,9 @@ import { Base } from "../../../composer-base-components/base/base";
 
 interface CardItem {
   image: string;
-  title: JSX.Element;
-  subtitle: JSX.Element;
-  description: JSX.Element;
+  title: React.JSX.Element;
+  subtitle: React.JSX.Element;
+  description: React.JSX.Element;
 }
 
 class Testimonials11Page extends Testimonials {

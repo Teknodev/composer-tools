@@ -9,9 +9,9 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
   image: string;
-  title: JSX.Element;
-  subtitle: JSX.Element;
-  text: JSX.Element;
+  title: React.JSX.Element;
+  subtitle: React.JSX.Element;
+  text: React.JSX.Element;
   url: string;
   icon: string;
   button: INPUTS.CastedButton;

@@ -11,7 +11,7 @@ type Logo = {
 };
 
 type Card = {
-  title: JSX.Element;
+  title: React.JSX.Element;
   icon: string;
 };
 

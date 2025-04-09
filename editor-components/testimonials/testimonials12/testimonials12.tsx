@@ -6,10 +6,10 @@ import { Base } from "../../../composer-base-components/base/base";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 interface CardItem {
-  description: JSX.Element;
+  description: React.JSX.Element;
   image: string;
-  name: JSX.Element;
-  position: JSX.Element;
+  name: React.JSX.Element;
+  position: React.JSX.Element;
 }
 
 class Testimonials12Page extends Testimonials {

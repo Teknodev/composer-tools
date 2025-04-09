@@ -6,13 +6,13 @@ import { TiHeadphones } from "react-icons/ti";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 interface ImageGallery {
-  sectionTitle: JSX.Element;
+  sectionTitle: React.JSX.Element;
   images: Image[];
 }
 interface Image {
-  title: JSX.Element;
+  title: React.JSX.Element;
   cardImage: string;
-  section: JSX.Element
+  section: React.JSX.Element
 }
 
 class ImageGallery1 extends BaseImageGallery {
@@ -388,7 +388,7 @@ class ImageGallery1 extends BaseImageGallery {
   static getName(): string {
     return "Image Gallery 1";
   }
-  handleSectionClick(sectionTitle: JSX.Element, index: number): void {
+  handleSectionClick(sectionTitle: React.JSX.Element, index: number): void {
     this.setComponentState("selectedSection", this.castToString(sectionTitle));
     this.setComponentState("selectedIndex", index)
     this.setComponentState("imageCount", this.getPropValue("imageCountInitial"));

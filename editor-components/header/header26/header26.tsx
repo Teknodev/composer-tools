@@ -6,8 +6,8 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type Slide = {
-  title: React.ReactNode;
-  subtitle: React.ReactNode;
+  title: React.JSX.Element;
+  subtitle: React.JSX.Element;
   url: string;
   image: string;
 };

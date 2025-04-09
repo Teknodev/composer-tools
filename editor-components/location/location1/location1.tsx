@@ -31,8 +31,8 @@ type MarkerObject = {
 };
 
 type ButtomType = {
-  description: JSX.Element;
-  phoneNumber: JSX.Element;
+  description: React.JSX.Element;
+  phoneNumber: React.JSX.Element;
   phoneUrl: string;
 };
 

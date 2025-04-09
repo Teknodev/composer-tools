@@ -6,9 +6,9 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 interface CardItem {
   star: number;
-  description: JSX.Element;
+  description: React.JSX.Element;
   profileImage: string;
-  name: JSX.Element;
+  name: React.JSX.Element;
   personTitle: string;
   line: boolean;
 }
