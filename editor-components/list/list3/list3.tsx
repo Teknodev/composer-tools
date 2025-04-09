@@ -231,6 +231,15 @@ class List3 extends BaseList {
       displayer: "Show Card Number",
       value: true,
     });
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2"]
+      }
+    });
   }
 
   render() {
@@ -271,7 +280,11 @@ class List3 extends BaseList {
             )}
             {listItems.map((listItem: Item, index: number) => {
               return (
-                <div key={index} className={this.decorateCSS("card")}>
+                <div 
+                  key={index} 
+                  className={this.decorateCSS("card")}
+                  data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                >
                   <Base.VerticalContent className={this.decorateCSS("card-content")}>
                     {this.castToString(listItem.itemTitle) && (
                       <div className={this.decorateCSS("itemTitle")}>

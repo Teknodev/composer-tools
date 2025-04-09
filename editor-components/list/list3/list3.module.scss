@@ -26,10 +26,10 @@
         padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-xl);
         position: relative;
         overflow: hidden;
-        transition: background-color 0.3s ease;
+        transition: all 0.4s ease;
         border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
 
-        &:not(.first):hover {
+        &[data-animation~="animate1"]:hover {
           background-color: var(--composer-primary-color);
           color: var(--composer-font-color-secondary);
   
@@ -49,6 +49,61 @@
             color: var(--composer-font-color-secondary);
           }
         }
+
+        &[data-animation~="animate2"] {
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          
+          .card-content {
+            position: relative;
+            z-index: 2;
+            transition: transform 0.4s ease;
+          }
+          
+          .index {
+            transition: all 0.4s ease;
+          }
+
+          &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--composer-primary-color);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s ease;
+            z-index: 1;
+          }
+
+          &:hover {
+            &::before {
+              transform: scaleX(1);
+              transform-origin: left;
+            }
+
+            .card-content {
+              transform: translateX(var(--composer-gap-sm));
+              
+              .itemTitle, .itemText {
+                color: var(--composer-font-color-secondary);
+              }
+              
+              .spanItem {
+                background-color: var(--composer-font-color-secondary);
+              }
+            }
+
+            .index {
+              color: var(--composer-font-color-primary);
+              z-index: 2;
+              -webkit-text-stroke-color: var(--composer-font-color-secondary);
+              transform: scale(1.1) translateX(var(--composer-gap-md));
+            }
+          }
+        }
+
         .card-content{
           display: flex;
           flex-direction: column;
