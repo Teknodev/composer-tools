@@ -1,6 +1,7 @@
 @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
 .container {
+    background-color: var(--composer-html-background);
     width: 100%;
     padding: var(--composer-gap-lg) 0;
     .container-top {
@@ -72,6 +73,7 @@
                                     .item {
                                         color: var(--composer-font-color-primary);
                                         font-size: 1rem;
+                                        padding-right: var(--composer-gap-sm);
                                     }
                                 }
                             }
