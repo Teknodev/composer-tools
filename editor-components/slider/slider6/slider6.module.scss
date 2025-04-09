@@ -50,7 +50,7 @@
                 height: 100%;
               }
 
-              @container (max-width: #{$composer-tablet-width-lg}) {
+              @container (max-width: #{$composer-tablet-width}) {
                 padding: 0 var(--composer-gap-md);
               }
 

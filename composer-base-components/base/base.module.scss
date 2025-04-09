@@ -409,7 +409,7 @@
     justify-content: space-between;
     align-items: center;
 
-    @container (max-width: #{$composer-tablet-width-lg}) {
+    @container (max-width: #{$composer-tablet-width}) {
         padding: var(--composer-gap-md) var(--composer-gap-lg);
     }
 

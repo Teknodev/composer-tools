@@ -252,7 +252,7 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .container {
     padding: 0 var(--composer-gap-lg) var(--composer-gap-md) 0;
     .max-content {
