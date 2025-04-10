@@ -136,6 +136,12 @@ type GetPropValueProperties = {
   prefix?: PreSufFix;
 };
 
+type RangeInputAdditionalParams = { 
+  maxRange?: number; 
+  minRange?: number; 
+  step?: number;
+};
+
 export type CSSClass = {
   id: string;
   class: string;
@@ -179,8 +185,12 @@ type AvailablePropTypes =
   | { type: "select"; value: string }
   | { type: "color"; value: string }
   | { type: "icon"; value: string }
-  | { type: "currency"; value: { value: string; currency?: CurrencyCode }; additionalParams?: currencyAdditionalParams}
+  | { type: "email"; value: string }
   | { type: "location"; value: TypeLocation }
+  | { type: "range"; value: string; additionalParams?: RangeInputAdditionalParams}
+  | { type: "currency"; value: { value: string; currency?: CurrencyCode }; additionalParams?: currencyAdditionalParams}
+  | { type: "tag"; value: string[]}
+  | { type: "phone"; value: string }
   | { type: "dateTime"; value: string ; additionalParams? : {mode?:string, timeInterval?:number, yearRange? : number, yearStart?: number}}
   | { type: "multiSelect"; value: string[] }
   | { type: "file"; value: string }
@@ -196,7 +206,7 @@ export type TypeUsableComponentProps = {
   id?: string;
   key: string;
   displayer: string;
-  additionalParams?: { selectItems?: string[]; maxElementCount?: number };
+  additionalParams?: { selectItems?: string[]; maxElementCount?: number};
   max?: number;
 } & AvailablePropTypes & {
   getPropValue?: (
@@ -562,6 +572,7 @@ export abstract class Component
     }
     return propValue;
   }
+  
 
   castToObject<Type>(propName: string): Type {
     let i = this.state.componentProps.props

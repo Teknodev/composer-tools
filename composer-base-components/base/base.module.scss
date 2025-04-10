@@ -1,4 +1,4 @@
-@import "./utitilities/viewports.module.scss";
+@use "./utitilities/viewports.module.scss" as *;
 
 .h1{
      font-size: calc(2.8 * var(--project-font-size));
@@ -409,7 +409,7 @@
     justify-content: space-between;
     align-items: center;
 
-    @container (max-width: #{$composer-tablet-width-lg}) {
+    @container (max-width: #{$composer-tablet-width}) {
         padding: var(--composer-gap-md) var(--composer-gap-lg);
     }
 

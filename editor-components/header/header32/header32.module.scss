@@ -1,4 +1,4 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 @keyframes textBottomToUp {
   from {
@@ -341,7 +341,7 @@
     }
   }
 }
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .container .max-content .wrapper .slider-parent .dots {
     bottom: 60px;
     left: 30px;
@@ -385,7 +385,7 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width-sm}) {
+@container (max-width: #{$composer-tablet-width}) {
   .container .max-content .wrapper .slider-parent .dots {
     content-visibility: hidden;
   }
