@@ -470,12 +470,6 @@ class ECommerce6 extends BaseECommerce {
       value:"Auto-renews, skip or cancel anytime."
     })
     this.addProp({
-      type:"boolean",
-      key: "itemDetailDivider",
-      displayer: "Item Detail Divider",
-      value:true
-    })
-    this.addProp({
       type: "array",
       key: "itemDetails",
       displayer: "Item Details",
@@ -600,8 +594,18 @@ class ECommerce6 extends BaseECommerce {
     this.setComponentState("overlayZoomImage", !this.getComponentState("overlayZoomImage"));
   } 
   handleClickLeft = () =>{
-    const sliderRef = this.getComponentState("slider-ref");
-    sliderRef.current.slickPrev();
+    const sliderRefMobile = this.getComponentState("slider-ref-small-image-mobile");
+    sliderRefMobile.current.slickPrev();
+    const sliderRefSmall = this.getComponentState("slider-ref-small-image");
+    sliderRefSmall.current.slickPrev();
+  }
+  handleClickRight = () =>{
+    const sliderRefMobile = this.getComponentState("slider-ref-small-image-mobile");
+    sliderRefMobile.current.slickNext();
+    const sliderRefSmall = this.getComponentState("slider-ref-small-image");
+    sliderRefSmall.current.slickNext();
+  }
+  handleClickPrevOverlay=() =>{
     let index = this.getComponentState("selectedImage");
     let newIndex = index - 1;
     if(index === 0){
@@ -609,9 +613,7 @@ class ECommerce6 extends BaseECommerce {
     }
     this.setComponentState("selectedImage", newIndex)
   }
-  handleClickRight = () =>{
-    const sliderRef = this.getComponentState("slider-ref");
-    sliderRef.current.slickNext();
+  handleClickNextOverlay=() =>{
     let index = this.getComponentState("selectedImage");
     let newIndex = index + 1;
     if(index === (this.getPropValue("images").length - 1)){
@@ -690,7 +692,7 @@ class ECommerce6 extends BaseECommerce {
     const settingsSmallImage = {
       arrows: false,
       dots: false,
-      infinite: false,
+      infinite: true,
       speed: 500,
       autoplay: false,
       slidesToShow:4,
@@ -701,7 +703,7 @@ class ECommerce6 extends BaseECommerce {
     const settingsSmallImageMobile = {
       arrows: false,
       dots: false,
-      infinite: false,
+      infinite: true,
       speed: 500,
       autoplay: false,
       slidesToShow: 3,
@@ -747,23 +749,11 @@ class ECommerce6 extends BaseECommerce {
               <div className={this.decorateCSS("arrow-buttons")}>
                 <div className={this.decorateCSS("image-down-arrow")}>
                   <ComposerIcon name={this.getPropValue("leftArrow")} propsIcon = {{className: this.decorateCSS("icon"),
-                    onClick: () => {
-                    console.log("deneme1")
-                    const sliderRef = this.getComponentState("slider-ref-small-image");
-                    const sliderRefMobile = this.getComponentState("slider-ref-small-image-mobile");
-                    sliderRef.current.slickPrev();
-                    sliderRefMobile.current.slickPrev();
-                  }}}/>
+                    onClick: () => {this.handleClickLeft()}}}/>
                 </div>
                 <div className={this.decorateCSS("image-up-arrow")}>
                   <ComposerIcon name={this.getPropValue("rightArrow")} propsIcon = {{className: this.decorateCSS("icon"),
-                    onClick: () => {
-                    console.log("deneme2")
-                    const sliderRef = this.getComponentState("slider-ref-small-image");
-                    const sliderRefMobile = this.getComponentState("slider-ref-small-image-mobile");
-                    sliderRef.current.slickNext();
-                    sliderRefMobile.current.slickNext();
-                  }}}/>
+                    onClick: () => {this.handleClickRight()}}}/>
                 </div>
               </div>
               )}              
@@ -910,7 +900,7 @@ class ECommerce6 extends BaseECommerce {
               <div className={this.decorateCSS("sections")}>
                 {itemDetails.map((item: ItemDetails , index: number)=>{
                   return(
-                    <div className={`${this.decorateCSS("section")} ${this.getPropValue("itemDetailDivider") && this.decorateCSS("active")}`}>
+                    <div className={this.decorateCSS("section")}>
                       {(this.castToString(item.title) || this.getPropValue("upArrowIcon") || this.getPropValue("downArrowIcon")) && (
                         <div className={this.decorateCSS("title-container")}>
                           {this.castToString(item.title) && <div className={this.decorateCSS("title")} onClick={() => this.toggleDescription(index)}>{item.title}</div>}
@@ -943,12 +933,12 @@ class ECommerce6 extends BaseECommerce {
               </div>
             )}
             {this.getPropValue("leftArrow") && (
-              <div className={this.decorateCSS("left-icon")} onClick={() => this.handleClickLeft()}>
+              <div className={this.decorateCSS("left-icon")} onClick={() => this.handleClickPrevOverlay()}>
                 <ComposerIcon name={this.getPropValue("leftArrow")} propsIcon={{className: this.decorateCSS("icon")}}/>
               </div>
             )}
             {this.decorateCSS("right-icon") && (
-              <div className={this.decorateCSS("right-icon")} onClick={() => this.handleClickRight()}>
+              <div className={this.decorateCSS("right-icon")} onClick={() => this.handleClickNextOverlay()}>
                 <ComposerIcon name={this.getPropValue("rightArrow")} propsIcon={{className: this.decorateCSS("icon")}}/>
               </div>
             )}
