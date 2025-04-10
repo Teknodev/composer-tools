@@ -1,4 +1,4 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
   height: 100%;
@@ -21,7 +21,7 @@
             > div {
               padding: 0 var(--composer-gap-xl);
 
-              @container (max-width: #{$composer-tablet-width-lg}) {
+              @container (max-width: #{$composer-tablet-width}) {
                 padding: 0 var(--composer-gap-lg);
               }
 
@@ -62,7 +62,7 @@
             -webkit-text-stroke: 1px white;
           }
 
-          @container (max-width: #{$composer-tablet-width-lg}) {
+          @container (max-width: #{$composer-tablet-width}) {
             font-size: 3rem;
           }
 
@@ -152,7 +152,7 @@
       height: calc(37vh - var(--composer-gap-md));
       z-index: 5;
 
-      @container (max-width: #{$composer-tablet-width-lg}) {
+      @container (max-width: #{$composer-tablet-width}) {
         top: 58%;
         height: calc(42vh - var(--composer-gap-md));
       }
@@ -171,7 +171,7 @@
         top: -15px;
         left: var(--composer-gap-xl);
 
-        @container (max-width: #{$composer-tablet-width-lg}) {
+        @container (max-width: #{$composer-tablet-width}) {
           left: var(--composer-gap-lg);
         }
 
@@ -194,7 +194,7 @@
         margin: 0;
         text-align: left;
 
-        @container (max-width: #{$composer-tablet-width-lg}) {
+        @container (max-width: #{$composer-tablet-width}) {
           padding: 0 var(--composer-gap-lg);
           max-width: 100%;
         }

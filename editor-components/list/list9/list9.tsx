@@ -7,8 +7,8 @@ import { Base } from "../../../composer-base-components/base/base";
 type Card = {
     icon: string;
     image: string;
-    title: JSX.Element;
-    description: JSX.Element;
+    title: React.JSX.Element;
+    description: React.JSX.Element;
 };
 
 class List9 extends BaseList {

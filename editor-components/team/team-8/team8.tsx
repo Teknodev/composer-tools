@@ -7,11 +7,11 @@ import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
 
 type Card = {
-  title: JSX.Element;
-  description: JSX.Element;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
   image: string;
-  imagesubtitle: JSX.Element;
-  imagetitle: JSX.Element;
+  imagesubtitle: React.JSX.Element;
+  imagetitle: React.JSX.Element;
 };
 
 class Team8 extends Team {

@@ -1,4 +1,4 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 @mixin textEllipsis($line, $important: "") {
   display: -webkit-box;
@@ -151,7 +151,7 @@
   max-width: 100%;
   word-break: break-word;
 }
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .container{
     padding: 0px 40px 20px 40px;
     .max-content {
@@ -162,7 +162,7 @@
         justify-content: space-between;
         align-items: flex-start;
         position: relative;
-        flex-direction: column;
+        flex-direction: row;
         .left-content {
           align-self: flex-start;
           max-width: 100%;
@@ -205,7 +205,7 @@
   }
 }
 
-@container (max-width: #{$composer-phone-width-sm}) {
+@container (max-width: #{$composer-phone-width}) {
   .container {
     padding: 0px 20px 20px 20px;
     .max-content {
@@ -213,6 +213,7 @@
       height: 100%;
       .child-container {
         display: flex;
+        flex-direction: column;
         flex-wrap: wrap;
         gap: var(--composer-gap-md);
 

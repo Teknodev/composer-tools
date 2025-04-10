@@ -1,4 +1,7 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
 .container {
+  padding: var(--composer-gap-md) var(--composer-gap-xl);
   .max-content {
     display: flex;
     flex-direction: column;
@@ -22,10 +25,64 @@
         display: flex;
         align-items: center;
         gap: var(--composer-gap-sm);
-        .icon,
-        .text {
+        position: relative;
+        
+        .icon {
           font-size: 1.5rem;
           color: var(--composer-font-color-primary);
+          transition: all 0.3s ease;
+        }
+
+        &[data-animation~="animate1"] {
+          &:hover {
+            .icon {
+              color: var(--composer-primary-color);
+              transform: scale(1.2);
+            }
+          }
+        }
+
+        &[data-animation~="animate2"] {
+          perspective: 1000px;
+          
+          .icon {
+            transform-style: preserve-3d;
+          }
+          
+          &:hover {
+            .icon {
+              color: var(--composer-primary-color);
+              transform: rotateY(180deg);
+            }
+          }
+        }
+
+        &[data-animation~="animate3"] {
+          &:hover {
+            .icon {
+              color: var(--composer-primary-color);
+              animation: bounce 0.5s cubic-bezier(0.36, 0, 0.66, -0.56) alternate infinite;
+            }
+          }
+        }
+
+        &[data-animation~="animate4"] {
+          &:hover {
+            .icon {
+              color: var(--composer-primary-color);
+              filter: drop-shadow(0 0 8px var(--composer-primary-color));
+              transform: scale(1.1);
+            }
+          }
+        }
+
+        &[data-animation~="animate5"] {
+          &:hover {
+            .icon {
+              color: var(--composer-primary-color);
+              animation: shake 0.5s ease infinite;
+            }
+          }
         }
       }
     }
@@ -41,5 +98,39 @@
     &:not(:has(.socials-container)):has(.links) .text {
       justify-content: flex-end;
     }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    padding: var(--composer-gap-md) var(--composer-gap-lg);
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    padding: var(--composer-gap-md);
+  }
+}
+
+
+@keyframes bounce {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-10deg);
+  }
+  75% {
+    transform: rotate(10deg);
   }
 }
