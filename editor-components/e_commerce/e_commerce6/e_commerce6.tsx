@@ -624,7 +624,6 @@ class ECommerce6 extends BaseECommerce {
   handleAdd = () =>{
       let count = this.getComponentState("itemCount");
       let newCount = count + 1 ;
-      console.log("newCount", newCount)  
       this.setComponentState("itemCount", newCount)
   }
   handleMinus = () =>{
@@ -680,7 +679,7 @@ class ECommerce6 extends BaseECommerce {
       dots: false,
       button: false,
       infinite: true,
-      autoplay: false,
+      autoplay: true,
       slidesToShow: 1,
       slidesToScroll: 1,
       centerMode: false,
@@ -694,7 +693,7 @@ class ECommerce6 extends BaseECommerce {
       dots: false,
       infinite: true,
       speed: 500,
-      autoplay: false,
+      autoplay: true,
       slidesToShow:4,
       slidesToScroll: 1,
       vertical: true,
@@ -705,7 +704,7 @@ class ECommerce6 extends BaseECommerce {
       dots: false,
       infinite: true,
       speed: 500,
-      autoplay: false,
+      autoplay: true,
       slidesToShow: 3,
       slidesToScroll: 1,
     };
