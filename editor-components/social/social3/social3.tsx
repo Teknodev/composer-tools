@@ -223,7 +223,6 @@ class Social3 extends BaseSocial {
     const commentInteraction = this.castToObject<Interaction>("commentInteraction");
     const shareInteraction = this.castToObject<Interaction>("shareInteraction");
     const socials = this.castToObject<Social[]>("socials");
-    console.log("deneme", this.getPropValue("date"))
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
