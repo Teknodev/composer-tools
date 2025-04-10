@@ -1,12 +1,112 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 .container{
     .max-content{
+        .upper-container{
+            .title{
+                content: "";
+            }
+        }
+    
         .slider-container{
             width: 100%;
-            .slider-item{
+            position: relative;
+            .slider{
                 width: 100%;
-                height: 600px;
-                .video{
-                    height: 100%;
+                >button{
+                    display:none !important;
+                }
+                >div{
+                    >div{
+                        display: flex;
+                        gap: var(--composer-gap-md);
+                    }
+                }
+                .slider-item {
+                    aspect-ratio: 9 / 16;
+                    width: 100%;
+                    overflow: hidden;
+                    position: relative;
+                    .video {
+                      width: 100%;
+                      height: 100%;
+                      object-fit: cover;
+                      border-radius: var(--composer-border-radius-xs);
+                    }
+                    .icon-container{
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%);
+                        padding: var(--composer-gap-sm);
+                        border: 1px solid var(--composer-font-color-primary);
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        transition: all 0.5s ease;
+                        .icon{
+                            font-size: 2rem;
+                            color:var(--composer-font-color-primary);
+                        }
+                        &:hover{
+                            padding: calc(var(--composer-gap-sm) + 5px);
+                        }
+                    }
+                }
+            }
+            .arrows{
+                .next-arrow,.prev-arrow{
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    color: var(--composer-font-color-primary);
+                    font-size: 1.5rem;
+                }
+                .next-arrow{
+                    right: calc(-1 * var(--composer-gap-md));
+                }
+                .prev-arrow{
+                    left: calc(-1 * var(--composer-gap-md));
+                }
+            }
+        }
+    }
+}
+.overlay{
+    display: flex;
+    &.active{
+        display: flex;
+    }
+    .video-container{
+        position: relative;
+        height: 100%;
+        width: 100%;
+        .selectedVideo{
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .icon-container{
+        .closeIcon{
+            position: absolute;
+            top: var(--composer-gap-md);
+            right: var(--composer-gap-md);
+            font-size: 2rem;
+            color: white;
+        }
+    }
+
+}
+@container (max-width: #{$composer-tablet-width}) {
+    .container{
+        .max-content{
+            .slider-container{
+                .slider{
+                    .slider-item {
+                        aspect-ratio: 1 / 1.2;
+                    }
                 }
             }
         }
