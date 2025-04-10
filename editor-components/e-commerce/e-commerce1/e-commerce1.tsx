@@ -1,4 +1,3 @@
-import * as React from "react";
 import { BaseECommerce } from "composer-tools/editor-components/EditorComponent";
 import styles from "./ecommerce1.module.scss";
 import { Base } from "composer-tools/composer-base-components/base/base";
@@ -122,9 +121,6 @@ class ECommerce1 extends BaseECommerce {
           ]
         }
       ],
-      additionalParams: {
-        maxElementCount: 5,
-      }
     });
     this.addProp({
       type: "string",
@@ -357,12 +353,12 @@ class ECommerce1 extends BaseECommerce {
                 {descriptionExist && (<Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>)}
                 <div className={this.decorateCSS("inputs")}>
                   <div className={this.decorateCSS("count-input")}>
-                    <label className={this.decorateCSS("label")}>Quantily</label>
-                    <ComposerIcon name={leftIcon} propsIcon={{className: this.decorateCSS("left-icon"), onClick: handleLeftClick}}/>
-                    <input type= "string" value={count} className={this.decorateCSS("input")} /> 
+                    <label className={this.decorateCSS("label")}>Quantity</label>
+                    <ComposerIcon name={leftIcon} propsIcon={{className: this.decorateCSS("left-icon"), onClick: handleLeftClick }}/>
+                    <input type="number" value={count} className={this.decorateCSS("input")} min="0" readOnly />
                     <ComposerIcon name={rightIcon} propsIcon={{className: this.decorateCSS("right-icon"), onClick: handleRightClick}}/>
                   </div>
-                  <Base.Button className={this.decorateCSS("button")}  buttonType="Black">ADD TO CART</Base.Button>
+                  <Base.Button className={this.decorateCSS("button")} buttonType="Black">ADD TO CART</Base.Button>
                 </div>
                 <ComposerLink path={cart}>
                   <div className={this.decorateCSS("wishlist")}>
@@ -379,7 +375,7 @@ class ECommerce1 extends BaseECommerce {
                   )}
                   <div className={this.decorateCSS("categories")}>
                     <span className={this.decorateCSS("categoryLabel")}>Categories:</span>
-                    {categories.map((item: Category, index: number) => {
+                    {categories.map((item: Category) => {
                       return (
                         <span className={this.decorateCSS("category")}>{item.category}</span>
                       )
@@ -387,7 +383,7 @@ class ECommerce1 extends BaseECommerce {
                   </div>
                   <div className={this.decorateCSS("tags")}>
                     <span className={this.decorateCSS("tagLabel")}>Tags:</span>
-                    {tags.map((item: Tag, index: number) => {
+                    {tags.map((item: Tag) => {
                       return (
                         <span className={this.decorateCSS("tag")}>{item.tag}</span>
                       )
@@ -398,8 +394,7 @@ class ECommerce1 extends BaseECommerce {
             </div>
           </div>
           {isActive && (
-            <div className={this.decorateCSS("image-popup")}>
-              <div className={this.decorateCSS("overlay")} onClick={handleClose} ></div>
+            <div className={this.decorateCSS("image-popup")} onClick={handleClose}>
               <div className={this.decorateCSS("popup-content")}>
                 <img src={images[activeImage]?.popup} className={this.decorateCSS("popup-image")}/>
                 <div className={this.decorateCSS("items")}>
