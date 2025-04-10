@@ -5,8 +5,8 @@ import { Base } from "../../../composer-base-components/base/base";
 
 type TeamMember = {
   image: string;
-  name: JSX.Element;
-  position: JSX.Element;
+  name: React.JSX.Element;
+  position: React.JSX.Element;
   platforms: { icon: string; url: string }[];
 };
 class Team4 extends Team {

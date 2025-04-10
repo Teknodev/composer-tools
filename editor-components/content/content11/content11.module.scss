@@ -1,4 +1,4 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
     .max-content {
@@ -30,9 +30,71 @@
             .image-box {
                 position: relative;
                 min-height: 200px;
-                &.no-content{
+                overflow: hidden;
+                border-radius: var(--composer-border-radius-md);
+
+                &.no-content {
                     aspect-ratio: 2;
                 }
+
+                &[data-animation~="animate1"] {
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        inset: 0;
+                        background: var(--composer-overlay-color);
+                        opacity: 0;
+                        transition: opacity 0.4s ease;
+                        z-index: 1;
+                    }
+
+                    .image {
+                        transition: transform 0.4s ease;
+                    }
+
+                    &:hover {
+                        &::before {
+                            opacity: 1;
+                        }
+
+                        .image {
+                            transform: scale(1.1);
+                        }
+                    }
+                }
+
+                &[data-animation~="animate2"] {
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        inset: 0;
+                        background: linear-gradient(
+                            to top,
+                            var(--composer-primary-color) 0%,
+                            transparent 100%
+                        );
+                        opacity: 0;
+                        transform: translateY(100%);
+                        transition: all 0.4s ease;
+                        z-index: 1;
+                    }
+
+                    &:hover {
+                        &::before {
+                            opacity: 0.7;
+                            transform: translateY(0);
+                        }
+
+                        .image {
+                            filter: contrast(1.1);
+                        }
+                    }
+
+                    .image {
+                        transition: filter 0.4s ease;
+                    }
+                }
+
                 .image {
                     position: absolute;
                     top: 0px;
@@ -41,7 +103,6 @@
                     height: 100%;
                     object-fit: cover;
                     border-radius: var(--composer-border-radius-md);
-                    
                 }
             }
 
@@ -74,7 +135,7 @@
 }
 
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
     .container{
         .max-content{
             .content{

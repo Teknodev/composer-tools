@@ -1,4 +1,4 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 @mixin textEllipsis($line, $important: "") {
   * {
@@ -252,7 +252,7 @@
             transform: translateY(-50%);
             text-align: center;
             font-weight: 400;
-            font-size: calc(9rem + 3vh);
+            font-size: calc(8rem + 3vh);
             color: white;
             z-index: 10;
             opacity: 0;
@@ -384,7 +384,7 @@
   }
 }
 
-@container (max-width : #{$composer-phone-width-sm}) {
+@container (max-width : #{$composer-phone-width}) {
   @include titleSize(4rem);
 
   .image-container-2 {
@@ -447,7 +447,7 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   @include titleSize(6rem !important);
 
   .container {

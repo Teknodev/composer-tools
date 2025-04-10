@@ -6,14 +6,14 @@ import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 type Card = {
   image: string;
-  text: JSX.Element;
-  author: JSX.Element;
-  subtitle: JSX.Element;
+  text: React.JSX.Element;
+  author: React.JSX.Element;
+  subtitle: React.JSX.Element;
 };
 type Box = {
-  topText: JSX.Element;
+  topText: React.JSX.Element;
   number: number;
-  bottomText: JSX.Element;
+  bottomText: React.JSX.Element;
 };
 
 class Testimonials13Page extends Testimonials {
