@@ -6,6 +6,7 @@
         .upper-section{
             display: flex;
             gap: var(--composer-gap-md);
+            align-items: stretch;
             .profile-image{
                 width: 50px;
                 height: 50px;
@@ -18,10 +19,12 @@
                 flex-direction: column;
                 gap: var(--composer-gap-xs);
                 .user-name{
+                    height: 100%;
                     color: var(--composer-font-color-primary);
-                    font-size: 1.5rem;
+                    font-size: 2rem;
                 }
                 .date-container{
+                    height: 100%;
                     display: flex;
                     gap: var(--composer-gap-sm);
                     align-items: center;
@@ -41,7 +44,7 @@
             flex-direction: column;
             gap: var(--composer-gap-md);
             .post-title{
-                font-size: 1rem;
+                font-size: 1.5rem;
                 color: var(--composer-font-color-primary);
             }
             .post-description{
@@ -77,6 +80,7 @@
                         border: 1px solid var(--composer-tertiary-color);
                         border-radius: var(--composer-border-radius-md);
                         padding: var(--composer-gap-md);
+                        background-color: var(--composer-html-background);
                         z-index: 2;
                         .social{
                             display: flex;
