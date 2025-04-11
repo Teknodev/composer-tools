@@ -32,7 +32,7 @@ class Social2 extends BaseSocial {
                 type: "video",
                 key: "videoUrl",
                 displayer: "Video Url",
-                value:"https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b9f4473292c6002b23c4b0?alt=media"
+                value:"https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67f8f6d9fb049c002cc73345?alt=media&timestamp=1744369370862"
             }],
         },
         {
@@ -44,7 +44,7 @@ class Social2 extends BaseSocial {
                 type: "video",
                 key: "videoUrl",
                 displayer: "Video Url",
-                value:"https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b9f4473292c6002b23c4b0?alt=media"
+                value:"https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67f8f6f7fb049c002cc73356?alt=media&timestamp=1744369401737"
             }],
         },
         {
@@ -56,7 +56,7 @@ class Social2 extends BaseSocial {
                 type: "video",
                 key: "videoUrl",
                 displayer: "Video Url",
-                value:"https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b9f4473292c6002b23c4b0?alt=media"
+                value:"https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67f8f716fb049c002cc7338c?alt=media&timestamp=1744369432612"
             }],
         },
         {
@@ -68,7 +68,7 @@ class Social2 extends BaseSocial {
                 type: "video",
                 key: "videoUrl",
                 displayer: "Video Url",
-                value:"https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b9f4473292c6002b23c4b0?alt=media"
+                value:"https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67f8f737fb049c002cc733e0?alt=media&timestamp=1744369466179"
             }],
         },
         {
@@ -80,19 +80,7 @@ class Social2 extends BaseSocial {
                 type: "video",
                 key: "videoUrl",
                 displayer: "Video Url",
-                value:"https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b9f4473292c6002b23c4b0?alt=media"
-            }],
-        },
-        {
-            type:"object",
-            key: "sliderItem",
-            displayer: "sliderItem",
-            value: 
-            [{
-                type: "video",
-                key: "videoUrl",
-                displayer: "Video Url",
-                value:"https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b9f4473292c6002b23c4b0?alt=media"
+                value:"https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67f8f762fb049c002cc73423?alt=media&timestamp=1744369509310"
             }],
         },
         {
@@ -183,7 +171,7 @@ class Social2 extends BaseSocial {
         button: false,
         infinite: true,
         speed: 500,
-        autoplay: true,
+        autoplay: false,
         autoplaySpeed: 8000,
         slidesToShow: 5.1,
         slidesToScroll: 1,
