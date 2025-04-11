@@ -4,21 +4,16 @@ import { Base } from "../../../composer-base-components/base/base";
 import { BaseImageGallery } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
-
 type CardType = {
     title: React.ReactNode;
     image: string;
     text: string;
 };
 
-const stripHtml = (html: string): string => {
-    const tmp = document.createElement("div");
-    tmp.innerHTML = html;
-    return tmp.textContent || tmp.innerText || "";
-};
-
 class ImageGallery10 extends BaseImageGallery {
+
     private intervalId: number | null = null;
+
     constructor(props?: any) {
         super(props, styles);
         this.addProp({
@@ -314,13 +309,12 @@ class ImageGallery10 extends BaseImageGallery {
         });
 
         const animateTexts = this.getPropValue("animate-texts");
-        const texts = animateTexts.map((item: any) => stripHtml(item.value[0].value as string));
+        const texts = animateTexts.map((item: any) => (item.value[0].value as string));
 
         this.setComponentState("texts", texts.length > 0 ? texts : null);
         this.setComponentState("currentIndex", 0);
         this.setComponentState("currentText", texts.length > 0 ? texts[0] : "");
     }
-
 
     startAnimationInterval() {
         const texts = this.state.states.texts as string[];
@@ -329,28 +323,34 @@ class ImageGallery10 extends BaseImageGallery {
         this.intervalId = window.setInterval(() => {
             const currentIndex = this.state.states.currentIndex as number;
             const nextIndex = (currentIndex + 1) % texts.length;
+
             this.setComponentState("currentIndex", nextIndex);
-            this.setComponentState("currentText", texts[nextIndex]);
+            this.setComponentState("currentText", texts[0]);
+
         }, 2000);
     }
 
     componentDidMount() {
         const animateTexts = this.getPropValue("animate-texts");
-        const texts = animateTexts?.map((item: any) => stripHtml(item.value[0].value as string)) || [];
+        const texts = animateTexts?.map((item: any) => (item.value[0].value as string)) || [];
+        const firstText = texts.length > 0 ? texts[0] : "";
+
         this.setComponentState("texts", texts.length > 0 ? texts : null);
         this.setComponentState("currentIndex", 0);
-        this.setComponentState("currentText", texts.length > 0 ? texts[0] : "");
+        this.setComponentState("currentText", firstText);
         this.startAnimationInterval();
+
     }
 
     componentDidUpdate() {
         const animateTexts = this.getPropValue("animate-texts");
         const currentTexts = this.state.states.texts as string[] || [];
-        const newTexts = animateTexts?.map((item: any) => stripHtml(item.value[0].value as string)) || [];
+        const newTexts = animateTexts?.map((item: any) => (item.value[0].value as string)) || [];
         const textsChanged = JSON.stringify(newTexts) !== JSON.stringify(currentTexts);
 
         if (textsChanged) {
             const updatedTexts = newTexts.length > 0 ? newTexts : null;
+
             this.setComponentState("texts", updatedTexts);
             this.setComponentState("currentIndex", 0);
             this.setComponentState("currentText", newTexts.length > 0 ? newTexts[0] : "");
@@ -381,7 +381,6 @@ class ImageGallery10 extends BaseImageGallery {
         const header = this.castToString(this.getPropValue("header"));
         const currentText = this.state.states.currentText as string;
         const showAnimateText = this.getPropValue("showAnimateText");
-        const alignmentValue = Base.getContentAlignment();
 
         return (
             <Base.Container
@@ -389,27 +388,21 @@ class ImageGallery10 extends BaseImageGallery {
             >
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     {header && (
-                        <Base.SectionTitle
-                            className={`${this.decorateCSS("header-title")} ${alignmentValue === "center"
-                                ? this.decorateCSS("center")
-                                : this.decorateCSS("left")
-                                }`}
-                        >
-                            <span className={this.decorateCSS("header-content")}>
-                                {/* {this.castToString(this.getPropValue("header"))} */}
-                                {this.getPropValue("header")}
-                                {currentText && showAnimateText && (
-                                    <span
-                                        className={this.decorateCSS("animated-text")}
-                                        key={currentText}
-                                    >
-                                        {" " + currentText}
-                                    </span>
-                                )}
-                            </span>
-                        </Base.SectionTitle>
-                    )
-                    }
+                        <div className={this.decorateCSS("header-wrapper")}>
+                            <Base.SectionTitle
+                                className={this.decorateCSS("header-title")}
+                            >
+                                <div className={this.decorateCSS("title-content")}>
+                                    {this.getPropValue("header")}
+                                    {showAnimateText && currentText && (
+                                        <span className={this.decorateCSS("animated-text")}>
+                                            {" " + currentText}
+                                        </span>
+                                    )}
+                                </div>
+                            </Base.SectionTitle>
+                        </div>
+                    )}
                     {
                         cardList.length > 0 && (
                             <Base.ListGrid
