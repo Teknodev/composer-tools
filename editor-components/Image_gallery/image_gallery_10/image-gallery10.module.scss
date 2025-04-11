@@ -90,7 +90,9 @@
             position: relative;
             border-radius: var(--border-radius-sm);
             transition: background-color 0.2s ease-in;
-
+            .home-link {
+              content: "";
+            }
             .card-item-value-h1,
             .card-item-value-p {
               visibility: hidden;
