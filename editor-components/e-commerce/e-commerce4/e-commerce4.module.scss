@@ -1,0 +1,260 @@
+.container {
+  .max-content {
+    .grid {
+      gap: var(--composer-gap-lg);
+      .card-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: var(--composer-gap-md);
+        padding: var(--padding-sm);
+        position: relative;
+        overflow: hidden;
+        &:hover {
+          .image-container .image-bottom-size {
+            display: flex;
+          }
+        }
+        .image-container {
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+          position: relative;
+          aspect-ratio: 0.65 / 1;
+          border-radius: var(--composer-border-radius-lg);
+          background: color-mix(
+            in srgb,
+            var(--composer-html-background),
+            var(--composer-font-color-primary) 5%
+          );
+          &:hover {
+            .image-1-container {
+              opacity: 0;
+            }
+            .image-2-container {
+              opacity: 1;
+              transform: scale(1.05);
+            }
+            .image-right-side {
+              display: flex;
+            }
+          }
+          .image {
+            display: block;
+            object-fit: cover;
+            object-position: center;
+            transition: all 0.4s ease;
+          }
+          .image-bottom {
+            display: none;
+            z-index: 1;
+            color: var(--composer-html-background);
+            text-transform: uppercase;
+            font-size: 1rem;
+            animation-duration: 0.5s;
+            .image-bottom-text {
+              content: "";
+            }
+          }
+          .image-sold-out {
+            opacity: 0.2 !important;
+            transform: none !important;
+          }
+          .image-1-container,
+          .image-2-container {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+            border-radius: var(--composer-border-radius-sm);
+            background: color-mix(
+              in srgb,
+              var(--composer-html-background),
+              var(--composer-font-color-primary) 5%
+            );
+          }
+          .image-1-container {
+            opacity: 1;
+          }
+          .image-2-container {
+            opacity: 0;
+          }
+
+          .sold-out {
+            position: absolute;
+            inset: 0;
+            margin: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: 6rem;
+            height: 6rem;
+            font-size: 1rem;
+            background-color: var(--composer-font-color-primary);
+            color: var(--composer-html-background);
+            border-radius: 50%;
+            padding: var(--padding-md);
+            white-space: nowrap;
+          }
+          .image-bottom-size-sold-out {
+            display: none;
+          }
+          .image-bottom-size {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 3rem;
+            position: absolute;
+            bottom: 0;
+            background-color: var(--composer-font-color-primary);
+            color: var(--composer-html-background);
+            transition: display 0.3 ease;
+          }
+          .image-text-left {
+            position: absolute;
+            top: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--padding-md);
+            .cardLeftText {
+              color: var(--composer-html-background);
+              padding: var(--padding-xs) var(--padding-md);
+              font-size: 1rem;
+              background-color: var(--composer-secondary-color);
+              border-radius: var(--composer-border-radius-lg);
+            }
+          }
+          .image-right-side-sold-out {
+            display: none;
+          }
+          .image-right-side {
+            display: none;
+            flex-direction: column;
+            gap: var(--composer-gap-md);
+            position: absolute;
+            top: 5%;
+            right: 2%;
+            padding: var(--padding-md);
+            .right-side-items-1,
+            .right-side-items-2,
+            .right-side-items-3,
+            .right-side-items-4 {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              gap: var(--composer-gap-xs);
+              .card-right-text-container-1,
+              .card-right-text-container-2,
+              .card-right-text-container-3,
+              .card-right-text-container-4 {
+                display: none;
+                position: absolute;
+                right: 90%;
+                align-items: center;
+                justify-content: center;
+                width: 9rem;
+                height: 1.5rem;
+                background-color: var(--composer-font-color-primary);
+                color: var(--composer-html-background);
+                padding: var(--padding-md) var(--padding-sm);
+                border-radius: var(--border-radius-sm);
+                .card-right-text {
+                  font-size: 1rem;
+                }
+              }
+              .image-icon-container {
+                display: flex;
+                width: 3rem;
+                height: 3rem;
+                background-color: var(--composer-font-color-primary);
+                color: var(--composer-html-background);
+                border-radius: 50%;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                padding: var(--padding-sm);
+                &:hover {
+                  background-color: var(--composer-font-color-primary);
+                  color: var(--composer-html-background);
+                }
+                &.image-right-icon {
+                  content: "";
+                }
+              }
+            }
+            .right-side-items-1:hover {
+              .card-right-text-container-1 {
+                display: flex;
+              }
+            }
+            .right-side-items-2:hover {
+              .card-right-text-container-2 {
+                display: flex;
+              }
+            }
+            .right-side-items-3:hover {
+              .card-right-text-container-3 {
+                display: flex;
+              }
+            }
+            .right-side-items-4:hover {
+              .card-right-text-container-4 {
+                display: flex;
+              }
+            }
+          }
+        }
+        .text-container {
+          display: flex;
+          flex-grow: 1;
+          flex-direction: column;
+          gap: var(--gap-sm);
+          font-size: 1rem;
+          color: var(--composer-font-color-primary);
+          &.text-sold-out {
+            opacity: 0.5;
+          }
+          .title {
+            font-weight: bold;
+          }
+          .price {
+            content: "";
+          }
+        }
+        .section-color-container {
+          display: flex;
+          gap: var(--composer-gap-sm);
+          .section-color {
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border: none;
+            &.active-section-color {
+              box-shadow: 0 0 0 2px var(--color-white),
+                0 0 0 3px var(--composer-font-color-primary);
+            }
+          }
+        }
+      }
+    }
+    .button-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 20px;
+
+      .button {
+        content: "";
+      }
+    }
+  }
+}
