@@ -1,0 +1,131 @@
+.container{
+    .max-content{
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-md);
+        .upper-section{
+            display: flex;
+            gap: var(--composer-gap-md);
+            align-items: stretch;
+            .profile-image{
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+            .right-container{
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                gap: var(--composer-gap-xs);
+                .user-name{
+                    height: 100%;
+                    color: var(--composer-font-color-primary);
+                    font-size: 2rem;
+                }
+                .date-container{
+                    height: 100%;
+                    display: flex;
+                    gap: var(--composer-gap-sm);
+                    align-items: center;
+                    .date{
+                        font-size: 1rem;
+                        color: var(--composer-font-color-primary);
+                    }
+                    .date-icon{
+                        font-size: 1rem;
+                        color: var(--composer-font-color-primary);
+                    }
+                }
+            }
+        }
+        .post-container{
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-md);
+            .post-title{
+                font-size: 1.5rem;
+                color: var(--composer-font-color-primary);
+            }
+            .post-description{
+                font-size: 1rem;
+                color: var(--composer-font-color-primary);
+                opacity: 0.5;
+            }
+            .post-image{
+                width: 100%;
+                height: 500px;
+                object-fit: cover;
+                border-radius: var(--composer-border-radius-xs);
+            }
+        }
+        .interactions-container{
+            display: flex;
+            gap: var(--composer-gap-md);
+            .interaction{
+                display: flex;
+                gap: var(--composer-gap-xs);
+                color: var(--composer-font-color-primary);
+                align-items: center;
+                position: relative;
+                padding-top: var(--composer-gap-xs);
+                &.share{
+                    .socials{
+                        position: absolute;
+                        display: none;
+                        bottom: var(--composer-gap-md);
+                        left: 0px; 
+                        flex-direction: column;
+                        gap: var(--composer-gap-md);
+                        border: 1px solid var(--composer-tertiary-color);
+                        border-radius: var(--composer-border-radius-md);
+                        padding: var(--composer-gap-md);
+                        background-color: var(--composer-html-background);
+                        z-index: 2;
+                        .social{
+                            display: flex;
+                            gap: var(--composer-gap-sm);
+                            color: var(--composer-font-color-primary);
+                            font-size: 1rem;
+                            .social-text{
+                                position: relative;
+                                &::after{
+                                    content: "";
+                                    position: absolute;
+                                    height: 1px;
+                                    width: 0px;
+                                    bottom: 0px;
+                                    left: 0px;
+                                    background-color: var(--composer-tertiary-color);
+                                    transition: all 0.5s ease;
+                                }
+                                &:hover{
+                                    &::after{
+                                        width: 100%;
+                                    }
+                                }
+                            }
+                            .social-icon{content: "";}
+                        }
+                        &:hover{
+                            display: flex;
+                        }
+                    }
+                    &:hover{
+                        .socials{
+                            display: flex;
+                        }
+                    }
+                }
+                .icon{
+                    width: 15px;
+                    height: 15px;
+                    &.liked{
+                        fill: var(--composer-primary-color);
+                    }
+                }
+                .text{font-size: 1rem;}
+            }
+        }
+    }
+}
