@@ -18,13 +18,13 @@ class Banner7 extends BaseBanner {
     this.addProp({
       type: "string",
       key: "title",
-      displayer: "About",
+      displayer: "Title",
       value: "About",
     });
     this.addProp({
       type: "string",
       key: "homepage",
-      displayer: "Home",
+      displayer: "Current Page",
       value: "Home",
     });
     this.addProp({
@@ -36,7 +36,7 @@ class Banner7 extends BaseBanner {
     this.addProp({
       type: "string",
       key: "about",
-      displayer: "About",
+      displayer: "About Page",
       value: "About",
     });
     this.addProp({

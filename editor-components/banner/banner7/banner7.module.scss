@@ -1,4 +1,12 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+@mixin textEllipsis($lines: 2, $important: false) {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $lines#{if($important, " !important", "")};
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
 .container {
     position: relative;
@@ -45,37 +53,32 @@
                 font-family: var(--composer-font-family);
                 font-weight: bold;
                 color: var(--composer-font-color-primary);
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                max-width: 100%;
+                @include textEllipsis(2);
             }
 
             .breadcrumb-items {
                 display: flex;
-                flex-wrap: wrap;
-                align-items: center;
-                gap: 4px;
+                flex-wrap: nowrap;
+                align-items: flex-start;
+                gap: 8px;
+                row-gap: 4px;
 
-                .home-link {
-                    content: "";
+                .home-page,
+                .about-page {
+                    flex: 0 0 calc(50% - 4px);
+                    min-width: 0;
+                    max-width: 100%;
+                    @include textEllipsis(2);
                 }
 
-                .home-page {
-                    &:hover {
-                        color: var(--composer-primary-color);
-                    }
-                }
-
-                .crumberIcon {
-                    width: 16px;
-                    height: 16px;
+                .home-page:hover {
                     color: var(--composer-primary-color);
                 }
 
-                .about-page {
-                    color: var(--composer-font-color-primary);
-                    font-weight: bold;
+                .crumberIcon {
+                    width: 40px;
+                    height: 20px;
+                    color: var(--composer-primary-color);
                 }
             }
         }
