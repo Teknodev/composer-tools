@@ -1,4 +1,4 @@
- @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+ @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
   padding: 0 !important;
@@ -59,7 +59,7 @@
   }
 }
 
-@container (max-width : #{$composer-phone-width-sm}){
+@container (max-width : #{$composer-phone-width}){
   .text {
     font-size: 1.5rem !important;
   }

@@ -1,9 +1,11 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .laneContainer {
   padding-top: calc(var(--composer-gap-md) * 1.5);
   padding-bottom: calc(var(--composer-gap-md) * 1.5);
   border-bottom: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.2);
+  position: relative;
+  z-index: 101;
   .laneContent {
     display: flex;
     align-items: center;
@@ -271,7 +273,7 @@
     }
   }
 
-  .localizationContainer {
+  .localizationContainer, .mobileLocalizationContainer {
     position: absolute;
     right: 0;
 
@@ -301,8 +303,10 @@
   
     &.active {
       max-height: 70vh;
-      overflow: scroll;
       transition: all 0.3s linear;
+    }
+    &.overflowShow{
+      overflow-y: auto;
     }
   
 
@@ -325,7 +329,7 @@
   
             .hamburgerSubmenu {
               max-height: 0;
-              overflow: scroll;
+              overflow-y: hidden;
               padding-left: var(--composer-gap-md);
               transition: all 0.3s ease;
   
@@ -361,7 +365,7 @@
   
                 .hamburgerSubSubmenu {
                   max-height: 0;
-                  overflow: scroll;
+                  overflow-y: hidden;
                   padding-left: var(--composer-gap-md);
                   transition: all 0.3s linear;
                   &.active {
@@ -400,13 +404,7 @@
 }
 
 .overlay {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: var(--composer-overlay-color);
+  display:none;
 }
 
 .smallDevicelogo {
@@ -414,8 +412,17 @@
   width: 100%;
   align-items: center;
   justify-content: center;
+  position: relative;
+  z-index: 101;
+  background-color: color-mix(
+    in srgb,
+    var(--composer-html-background),
+    var(--composer-font-color-primary) 5%
+  );
 }
-
+.mobileRight{
+  display: none;
+}
 .hamburgerIconContainer {
   display: none;
   cursor: pointer;
@@ -515,6 +522,7 @@
 
   .pcNavbarContainer {
     border: none;
+    z-index: 101;
 
     .pcNavbarPosition {
       flex-direction: column;
@@ -540,17 +548,6 @@
       }
       .localizationContainer {
         display: none;
-      }
-      .mobilelocalizationContainer {
-        .localizationHeader {
-          color: var(--composer-font-color-primary);
-        }
-      }
-    }
-
-    .overlay {
-      &.overlayActive {
-        display: block;
       }
     }
 
@@ -578,7 +575,7 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .maxContent {
     .pcNavbar {
       flex: 1;
@@ -588,6 +585,23 @@
     }
     .localizationContainer {
       flex: unset;
+    }
+  }
+}
+@container (max-width: #{$composer-phone-width}) {
+  .mobileRight{
+    display: flex;
+    width: 100%;
+    position: relative;
+    .mobileLocalizationContainer{
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  .overlay{
+    &.active{
+      display: block;
     }
   }
 }

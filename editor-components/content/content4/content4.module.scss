@@ -1,4 +1,4 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
     background-color: color-mix(
@@ -59,7 +59,6 @@
                     width: 0;
                     height: 100%;
                     background: var(--composer-primary-color);
-                    transition: all 0.5s ease-in-out;
                 }
 
                 &.active {
@@ -76,17 +75,24 @@
                     }
                 }
 
-                &:hover {
-                    color: var(--composer-font-color-secondary);
+                &[data-animation~="animate1"] {
 
                     &::before {
-                        width: 100%;
-                        z-index: 3;
+                        transition: width 0.5s ease-in-out;
                     }
 
-                    .icon {
-                        display: block;
-                        animation: show-icon 0.3s 0.5s forwards;
+                    &:hover {
+                        color: var(--composer-font-color-secondary);
+
+                        &::before {
+                            width: 100%;
+                            z-index: 3;
+                        }
+
+                        .icon {
+                            display: block;
+                            animation: show-icon 0.3s 0.5s forwards;
+                        }
                     }
                 }
 
@@ -129,6 +135,7 @@
                     position: relative;
                     flex-grow: 1;
                     flex-basis: 50%;
+                    overflow: hidden;
 
                     .image {
                         top: 0px;
@@ -137,6 +144,14 @@
                         height: 100%;
                         object-fit: cover;
                         position: absolute;
+
+                        &[data-animation~="animate1"] {
+                            transition: transform 0.4s ease;
+                            
+                            &:hover {
+                                transform: scale(1.1);
+                            }
+                        }
                     }
         
                     .box-container {
@@ -175,6 +190,56 @@
                             color: var(--composer-html-background);
                             height: 100%;
                             gap: var(--composer-gap-sm);
+            
+                            &[data-animation~="animate1"] {
+                                transition: all 0.3s ease;
+                                overflow: hidden;
+
+                                &:hover {
+                                    transform: scale(1.05);
+
+                                    .box2-text {
+                                        transform: scale(1.05);
+                                    }
+
+                                    .box2-icon {
+                                        transform: scale(1.05);
+                                        background-color: color-mix(
+                                            in srgb,
+                                            var(--composer-html-background),
+                                            var(--composer-font-color-primary) 15%
+                                        );
+                                    }
+                                }
+
+                                .box2-text {
+                                    transition: transform 0.3s ease;
+                                }
+
+                                .box2-icon {
+                                    transition: all 0.3s ease;
+                                    position: relative;
+
+                                    &::before {
+                                        content: "";
+                                        position: absolute;
+                                        inset: 0;
+                                        background: inherit;
+                                        border-radius: inherit;
+                                        transition: transform 0.3s ease;
+                                    }
+
+                                    svg {
+                                        position: relative;
+                                        z-index: 1;
+                                        transition: transform 0.5s ease;
+                                    }
+
+                                    &:hover svg {
+                                        animation: slideArrow 1.2s infinite;
+                                    }
+                                }
+                            }
             
                             .box2-text {
                                 font-size: 1.5rem;
@@ -257,7 +322,7 @@
 }
 
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
     .container{
         .max-content{
             flex-direction: column;
@@ -337,5 +402,26 @@
 
     to {
         opacity: 1;
+    }
+}
+
+@keyframes slideArrow {
+    0% {
+        transform: translateX(0);
+    }
+    40% {
+        transform: translateX(150%);
+        opacity: 0;
+    }
+    41% {
+        transform: translateX(-150%);
+        opacity: 0;
+    }
+    42% {
+        transform: translateX(-150%);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(0);
     }
 }

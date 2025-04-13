@@ -100,6 +100,15 @@ class Content9 extends BaseContent {
       ],
     });
     this.addProp(INPUTS.BUTTON("button", "Button", "Get In Tocuh!", "", null, null, "Primary"));
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2"]
+      }
+    });
   }
   static getName(): string {
     return "Content 9";
@@ -191,7 +200,10 @@ class Content9 extends BaseContent {
             </Base.VerticalContent>
           )}
           {this.getPropValue("image") && (
-            <div className={`${this.decorateCSS("right-image")} ${!isAnyContentExists ? this.decorateCSS("no-content") : ""}`}>
+            <div 
+              className={`${this.decorateCSS("right-image")} ${!isAnyContentExists ? this.decorateCSS("no-content") : ""}`}
+              data-animation={this.getPropValue("hoverAnimation").join(" ")}
+            >
               <img
                 src={this.getPropValue("image")}
                 alt="blockPhoto"

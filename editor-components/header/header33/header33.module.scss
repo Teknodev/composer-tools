@@ -1,4 +1,4 @@
-@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
+@use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
 
 .dotContainer {
   position: absolute;
@@ -160,7 +160,7 @@
             font-weight: bold;
             width: calc(100% - var(--composer-gap-lg));
             margin: 0;
-            word-break: break-all;
+            word-break: unset;
 
             &.blackColor {
               color: black;
@@ -231,7 +231,7 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}){
+@container (max-width: #{$composer-tablet-width}){
   .content {
     padding: 0 var(--composer-gap-md) !important;
   }
@@ -266,7 +266,7 @@
   }
 }
 
-@container (max-width: #{$composer-phone-width-sm}){
+@container (max-width: #{$composer-phone-width}){
 
   .dotContainer {
     right: var(--composer-gap-sm);
@@ -282,7 +282,7 @@
 
     .carousel-content {
       .content-title {
-        font-size: 2rem !important;
+        font-size: 3rem !important;
       }
 
       .buttons-div {
