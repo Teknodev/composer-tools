@@ -7,13 +7,13 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
-  cardTitle: JSX.Element;
-  description: JSX.Element;
+  cardTitle: React.JSX.Element;
+  description: React.JSX.Element;
   cardIcon: string;
 };
 type BottomItem = {
-  title: JSX.Element;
-  description: JSX.Element;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
 }
 
 class Faq2 extends BaseFAQ {

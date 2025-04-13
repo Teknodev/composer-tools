@@ -1,7 +1,8 @@
-@import "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss";
+@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
   width: 100%;
+  padding: var(--composer-gap-md) var(--composer-gap-xl);
 
   .max-content {
     .footer-page {
@@ -61,15 +62,63 @@
               gap: var(--composer-gap-sm);
 
               .text {
+                position: relative;
                 color: var(--composer-font-color-primary);
                 font-size: 1rem;
                 margin: 0;
-                transition: color 0.3s ease;
+                transition: all 0.3s ease;
               }
 
-              &.has-path {
-                .text:hover {
-                  color: var(--composer-primary-color);
+              &.has-path[data-animation~="animate1"] {
+                .text {
+                  &::after {
+                    content: '';
+                    position: absolute;
+                    bottom: -2px;
+                    left: 0;
+                    width: 0;
+                    height: 2px;
+                    background-color: var(--composer-primary-color);
+                    transition: width 0.3s ease;
+                  }
+                  
+                  &:hover {
+                    color: var(--composer-primary-color);
+                    
+                    &::after {
+                      width: 100%;
+                    }
+                  }
+                }
+              }
+
+              &.has-path[data-animation~="animate2"] {
+                .text {
+                  &:hover {
+                    color: var(--composer-primary-color);
+                    transform: translateX(var(--composer-gap-xs));
+                  }
+                }
+              }
+
+              &.has-path[data-animation~="animate3"] {
+                .text {
+                  &:hover {
+                    color: var(--composer-primary-color);
+                    transform: translateY(calc(var(--composer-gap-xs) * -1));
+                  }
+                }
+              }
+
+              &.has-path[data-animation~="animate4"] {
+                .text {
+                  border-radius: var(--composer-border-radius-sm);
+                  
+                  &:hover {
+                    padding: 0 var(--composer-gap-sm);
+                    color: var(--composer-primary-color);
+                    background-color: rgba(var(--composer-primary-color-rgb), 0.1);
+                  }
                 }
               }
             }
@@ -82,13 +131,13 @@
         justify-content: space-between;
         align-items: center;
 
-        .text,
+        .bottom-text,
         .links,
         .socials-container {
           flex: 1;
         }
 
-        .text {
+        .bottom-text {
           display: flex;
           justify-content: center;
           font-size: 1rem;
@@ -101,13 +150,63 @@
 
           .link-element {
             .link-text {
+              position: relative;
               font-size: 1rem;
               color: var(--composer-font-color-primary);
-              transition: color 0.3s ease;
+              transition: all 0.3s ease;
             }
 
-            &.has-path .link-text:hover {
-              color: var(--composer-primary-color);
+            &.has-path[data-animation~="animate1"] {
+              .link-text {
+                &::after {
+                  content: '';
+                  position: absolute;
+                  bottom: -2px;
+                  left: 0;
+                  width: 0;
+                  height: 2px;
+                  background-color: var(--composer-primary-color);
+                  transition: width 0.3s ease;
+                }
+                
+                &:hover {
+                  color: var(--composer-primary-color);
+                  
+                  &::after {
+                    width: 100%;
+                  }
+                }
+              }
+            }
+
+            &.has-path[data-animation~="animate2"] {
+              .link-text {
+                &:hover {
+                  color: var(--composer-primary-color);
+                  transform: translateX(var(--composer-gap-xs));
+                }
+              }
+            }
+
+            &.has-path[data-animation~="animate3"] {
+              .link-text {
+                &:hover {
+                  color: var(--composer-primary-color);
+                  transform: translateY(calc(var(--composer-gap-xs) * -1));
+                }
+              }
+            }
+
+            &.has-path[data-animation~="animate4"] {
+              .link-text {
+                border-radius: var(--composer-border-radius-sm);
+                
+                &:hover {
+                  padding: 0 var(--composer-gap-sm);
+                  color: var(--composer-primary-color);
+                  background-color: rgba(var(--composer-primary-color-rgb), 0.1);
+                }
+              }
             }
           }
         }
@@ -123,23 +222,62 @@
             align-items: center;
             gap: var(--composer-gap-sm);
 
-            .icon,
-            .text {
+            .icon, .socials-text {
+              transition: all 0.3s ease;
               font-size: 1rem;
               color: var(--composer-font-color-primary);
+            }
+
+            &[data-animation~="animate1"] {
+              &:hover {
+                .icon, .socials-text {
+                  color: var(--composer-primary-color);
+                  transform: scale(1.1);
+                }
+              }
+            }
+
+            &[data-animation~="animate2"] {
+              &:hover {
+                .icon, .socials-text {
+                  color: var(--composer-primary-color);
+                  transform: translateX(var(--composer-gap-xs));
+                }
+              }
+            }
+
+            &[data-animation~="animate3"] {
+              &:hover {
+                .icon, .socials-text {
+                  color: var(--composer-primary-color);
+                  transform: translateY(calc(var(--composer-gap-xs) * -1));
+                }
+              }
+            }
+
+            &[data-animation~="animate4"] {
+              &:hover {
+                .icon {
+                  color: var(--composer-primary-color);
+                  transform: rotate(15deg);
+                }
+                .socials-text {
+                  color: var(--composer-primary-color);
+                }
+              }
             }
           }
         }
 
-        &:not(:has(.links)):not(:has(.socials-container)) .text {
+        &:not(:has(.links)):not(:has(.socials-container)) .socials-text {
           justify-content: center;
         }
 
-        &:not(:has(.links)):has(.socials-container) .text {
+        &:not(:has(.links)):has(.socials-container) .socials-text {
           justify-content: flex-start;
         }
 
-        &:not(:has(.socials-container)):has(.links) .text {
+        &:not(:has(.socials-container)):has(.links) .socials-text {
           justify-content: flex-end;
         }
       }
@@ -147,9 +285,10 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .container {
     width: 100%;
+    padding: var(--composer-gap-md) var(--composer-gap-lg);
 
     .max-content {
       .footer-page {
@@ -188,7 +327,7 @@
           justify-content: space-between;
           flex-direction: column;
 
-          .text {
+          .bottom-text {
             text-align: center;
           }
 
@@ -212,6 +351,7 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     width: 100%;
+    padding: var(--composer-gap-md);
 
     .max-content {
       .footer-page {
@@ -234,10 +374,16 @@
 
             .title {
               width: auto;
+              text-align: center;
             }
 
             .text-container {
               align-items: center;
+              .element{
+                .text{
+                  text-align: center;
+                }
+              }
             }
           }
         }

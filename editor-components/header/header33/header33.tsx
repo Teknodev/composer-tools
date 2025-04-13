@@ -8,14 +8,14 @@ type Slide = {
   centered: boolean;
   backgroundImage: string;
   image: string;
-  title: JSX.Element;
+  title: React.JSX.Element;
   rotate_icon: string;
-  rotate_text: JSX.Element;
+  rotate_text: React.JSX.Element;
   buttons: Button[];
 };
 
 type Button = {
-  button_text: JSX.Element;
+  button_text: React.JSX.Element;
   button_link: string;
 };
 

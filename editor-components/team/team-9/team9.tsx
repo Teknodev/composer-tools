@@ -13,7 +13,7 @@ type Icon = {
 
 interface Card {
   image: string;
-  name: JSX.Element;
+  name: React.JSX.Element;
   icons: Icon[];
 }
 

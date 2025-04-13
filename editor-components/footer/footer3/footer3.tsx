@@ -7,13 +7,13 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type FooterValues = {
   icon: string;
-  footerTitle: JSX.Element;
+  footerTitle: React.JSX.Element;
   footerText: FooterTextValues[];
 };
 
 type FooterTextValues = {
   footerIcon: string;
-  footerText: JSX.Element;
+  footerText: React.JSX.Element;
   path: string;
 };
 
@@ -25,6 +25,13 @@ class Footer3Page extends BaseFooter {
       key: "logo",
       displayer: "Logo",
       value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676e80240655f8002cadb8be?alt=media",
+    });
+
+    this.addProp({
+      type: "page",
+      key: "logoUrl",
+      displayer: "Logo Url",
+      value:""
     });
 
     this.addProp({
@@ -577,6 +584,16 @@ class Footer3Page extends BaseFooter {
         },
       ],
     });
+
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2", "animate3"]
+      }
+    });
   }
 
   static getName(): string {
@@ -589,6 +606,7 @@ class Footer3Page extends BaseFooter {
     const footer = this.castToObject<any[]>("footer");
 
     const logo = this.getPropValue("logo");
+    const logoUrl = this.getPropValue("logoUrl");
     const line = this.getPropValue("line");
 
     const bottomTextExist = this.castToString(this.getPropValue("bottomText"));
@@ -602,16 +620,18 @@ class Footer3Page extends BaseFooter {
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("footer-page")}>
-            <Base.Container>
-              <Base.MaxContent>
+            <Base.Container className={this.decorateCSS("first-container")}>
+              <Base.MaxContent className={this.decorateCSS("first-max-content")}>
                 {
                   <div className={this.decorateCSS("items")}>
                     {headerExist && (
                       <Base.VerticalContent className={this.decorateCSS("header")}>
                         {logo && (
-                          <div className={this.decorateCSS("logo")}>
-                            <img src={logo} className={this.decorateCSS("image")} alt="" />
-                          </div>
+                          <ComposerLink path={logoUrl}>
+                            <div className={this.decorateCSS("logo")}>
+                              <img src={logo} className={this.decorateCSS("image")} alt="" />
+                            </div>
+                          </ComposerLink>
                         )}
                         {descriptionExist && <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>}
                         {socials.length > 0 && (
@@ -619,11 +639,18 @@ class Footer3Page extends BaseFooter {
                             {socials.map((item: any, index: number) => {
                               return (
                                 item.icon && (
-                                  <div className={this.decorateCSS("socials-element")}>
-                                    <ComposerLink key={index} path={item.url}>
-                                      <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={item.icon} />
-                                    </ComposerLink>
-                                  </div>
+                                  <ComposerLink key={index} path={item.url}>
+                                    <div 
+                                      className={this.decorateCSS("socials-element")}
+                                      data-animation={item.url ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                                      data-has-link={Boolean(item.url)}
+                                    >
+                                      <ComposerIcon 
+                                        propsIcon={{ className: this.decorateCSS("icon") }} 
+                                        name={item.icon} 
+                                      />
+                                    </div>
+                                  </ComposerLink>
                                 )
                               );
                             })}
@@ -648,13 +675,24 @@ class Footer3Page extends BaseFooter {
                                     const elementExist = footerTextExist || v.footerIcon;
                                     return (
                                       elementExist && (
-                                        <ComposerLink key={indexFooterText} path={v.path}>
-                                          <div
-                                            className={`${this.decorateCSS("element")} ${v.path && this.decorateCSS("has-path")}`}>
-                                            {v.footerIcon && <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={v.footerIcon} />}
-                                            {footerTextExist && <Base.P className={this.decorateCSS("text")}>{v.footerText}</Base.P>}
-                                          </div>
-                                        </ComposerLink>
+                                        <div 
+                                          className={`${this.decorateCSS("element")} ${v.path && this.decorateCSS("has-path")}`}
+                                          data-animation={v.path ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                                        >
+                                          {v.footerIcon && (
+                                            <ComposerIcon 
+                                              propsIcon={{ 
+                                                className: this.decorateCSS("element-icon")
+                                              }} 
+                                              name={v.footerIcon} 
+                                            />
+                                          )}
+                                          {footerTextExist && (
+                                            <Base.P className={this.decorateCSS("text")}>
+                                              {v.footerText}
+                                            </Base.P>
+                                          )}
+                                        </div>
                                       )
                                     );
                                   })}
@@ -671,12 +709,12 @@ class Footer3Page extends BaseFooter {
 
             {line && <div className={this.decorateCSS("line")}></div>}
 
-            <Base.Container>
-              <Base.MaxContent>
+            <Base.Container className={this.decorateCSS("second-container")}>
+              <Base.MaxContent className={this.decorateCSS("second-max-content")}>
                 {(bottomTextExist || links.length > 0) && (
                   <div className={`${this.decorateCSS("footer-bottom")} 
                   ${alignment === "center" && this.decorateCSS("center")}`}>
-                    {bottomTextExist && <Base.P className={this.decorateCSS("text")}>{this.getPropValue("bottomText")}</Base.P>}
+                    {bottomTextExist && <Base.P className={this.decorateCSS("bottom-text")}>{this.getPropValue("bottomText")}</Base.P>}
                     {links.length > 0 && (
                       <Base.Row className={this.decorateCSS("links")}>
                         {links.map((item: any, index: number) => {
@@ -684,7 +722,8 @@ class Footer3Page extends BaseFooter {
                           return (
                             textExist && (
                               <div
-                                className={`${this.decorateCSS("link-element")} ${item.url && this.decorateCSS("has-path")}`}>
+                                className={`${this.decorateCSS("link-element")} ${item.url && this.decorateCSS("has-path")}`}
+                                data-animation={item.url ? this.getPropValue("hoverAnimation").join(" ") : ""}>
                                 <ComposerLink key={index} path={item.url}>
                                   <Base.P className={this.decorateCSS("link-text")}>{item.text}</Base.P>
                                 </ComposerLink>

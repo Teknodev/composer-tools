@@ -6,20 +6,20 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
 
 type ITabs = {
-  subTitle: JSX.Element;
-  title: JSX.Element;
-  description: JSX.Element;
-  tabText: JSX.Element;
+  subTitle: React.JSX.Element;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
+  tabText: React.JSX.Element;
   icon: string;
   image_container: {
     image: string;
-    box1_text: JSX.Element;
-    box1_lowerText: JSX.Element;
-    box2_text: JSX.Element;
+    box1_text: React.JSX.Element;
+    box1_lowerText: React.JSX.Element;
+    box2_text: React.JSX.Element;
     box2_icon: string;
     link: string;
   };
-  icons_container: Array<{ icon: string; text: JSX.Element }>;
+  icons_container: Array<{ icon: string; text: React.JSX.Element }>;
 };
 
 class Content4 extends BaseContent {
@@ -257,6 +257,16 @@ class Content4 extends BaseContent {
         ),
       ],
     });
+
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1"]
+      }
+    });
     this.setActiveTab(0);
   }
 
@@ -291,6 +301,7 @@ class Content4 extends BaseContent {
                         }`
                       }
                       onClick={() => this.setActiveTab(index)}
+                      data-animation={this.getPropValue("hoverAnimation").join(" ")}
                     >
                       {isTabTextVisible && (
                         <div className={this.decorateCSS("tabText")}>
@@ -348,6 +359,7 @@ class Content4 extends BaseContent {
                         <img
                           className={this.decorateCSS("image")}
                           src={tab.image_container.image}
+                          data-animation={this.getPropValue("hoverAnimation").join(" ")}
                         />
                         {isBoxContainerVisible && (
                           <div className={this.decorateCSS("box-container")}>
@@ -363,7 +375,10 @@ class Content4 extends BaseContent {
                             )}
                             {isBox2Visible && (
                               <ComposerLink path={tab.image_container.link}>
-                                <div className={this.decorateCSS("box2")}>
+                                <div 
+                                  className={this.decorateCSS("box2")}
+                                  data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                                >
                                   <div
                                     className={this.decorateCSS("box2-text")}
                                   >

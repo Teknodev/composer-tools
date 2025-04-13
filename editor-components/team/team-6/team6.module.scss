@@ -1,4 +1,4 @@
-@import "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss";
+@use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss" as *;
 $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
 .container {
@@ -95,7 +95,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
   }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .container {
     .page {
       gap: var(--composer-gap-xs) !important;

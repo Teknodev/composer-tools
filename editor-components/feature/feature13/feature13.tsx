@@ -5,14 +5,14 @@ import styles from "./feature13.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
 type Tab = {
-  title: JSX.Element;
-  content: JSX.Element;
+  title: React.JSX.Element;
+  content: React.JSX.Element;
 };
 
 type Progress = {
-  title: JSX.Element;
+  title: React.JSX.Element;
   percentage: number;
-  utility: JSX.Element;
+  utility: React.JSX.Element;
 };
 
 type SliderImage = {
