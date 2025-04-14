@@ -248,6 +248,39 @@ export enum CATEGORIES {
 export function generateId(key: string): string {
   return key + "-" + Math.round(Math.random() * 1000000000).toString();
 }
+
+function handlePropSync(
+  currentProps: TypeUsableComponentProps[],
+  shadowProps: TypeUsableComponentProps[],
+  component: Component
+) {
+  
+  shadowProps.forEach((shadowProp) => {
+    const existingIndex = currentProps.findIndex((prop) => prop.key === shadowProp.key);
+    const shadowPropCopy = structuredClone(shadowProp);
+
+    if (existingIndex === -1) {
+      if (shadowPropCopy.type === "string") {
+        shadowPropCopy.value = "";
+      }
+      component.addProp(shadowPropCopy);
+      return;
+    }
+
+    const existingProp = currentProps[existingIndex];
+    const typeChanged = existingProp.type !== shadowProp.type;
+
+    if (typeChanged) {
+      currentProps[existingIndex].type = shadowPropCopy.type;
+      currentProps[existingIndex].value = shadowPropCopy.value;
+    }
+  });
+
+  component.setState(
+    JSON.parse(JSON.stringify(component.state))
+  );
+}
+
 //@ts-ignore
 export abstract class Component
   extends React.Component<{}, { states: any; componentProps: any }>
@@ -289,6 +322,9 @@ export abstract class Component
     }
 
     EventEmitter.emit(EVENTS.COMPONENT_ADDED, { data: this });
+    setTimeout(() => {
+      handlePropSync(props.props, this.shadowProps, this);
+    }, 0);
   }
 
   static getName(): string {
@@ -584,8 +620,9 @@ export abstract class Component
     return castedObject;
   }
 
-  castToString(elem: React.JSX.Element): string {
-    return elem.props?.html?.replace(/<\/?[^>]+(>|$)/g, "");
+  castToString(elem: React.JSX.Element): string | React.JSX.Element {
+    const isValid = React.isValidElement(elem);    
+    return isValid ? elem.props?.html?.replace(/<\/?[^>]+(>|$)/g, ""): elem;
   }
 
   private castingProcess(object: any) {
