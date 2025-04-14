@@ -1,3 +1,29 @@
+@use '../../composer-base-components/base/utitilities/viewports.module.scss' as *;
+
+@keyframes fadeSlideOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+@keyframes fadeSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .container {
     padding: 30px 0;
     background-color: var(--composer-html-background);
@@ -18,6 +44,7 @@
             .title {
                 color: var(--composer-font-color-primary);
                 font-size: 36px;
+                text-align: center;
                 margin: 0;
             }
 
@@ -35,6 +62,7 @@
                     cursor: pointer;
                     transition: color 0.3s ease;
                     padding: 4px;
+                    text-align: center;
 
                     &::after {
                         content: '';
@@ -83,8 +111,15 @@
         .wrapper {
             padding: 20px 0;
 
-            .slider-parent {
+            .fade-slide-out {
+                animation: fadeSlideOut 0.5s forwards;
+            }
 
+            .fade-slide-in {
+                animation: fadeSlideIn 0.5s forwards;
+            }
+
+            .slider-parent {
                 .carousel {
                     .slider-inner-div {
                         display: flex !important;
@@ -105,8 +140,8 @@
                             justify-content: center;
 
                             .image-wrapper {
-                                width: 160px;
-                                height: 160px;
+                                width: 178px;
+                                height: 178px;
                                 border-radius: 50%;
                                 overflow: hidden;
                                 display: flex;
@@ -125,6 +160,7 @@
 
                         .collection {
                             font-size: 16px;
+                            text-align: center;
                             color: var(--composer-font-color-primary);
                             transition: color 0.3s ease-in-out;
 
@@ -185,6 +221,27 @@
 
                 &::after {
                     background-color: var(--composer-primary-color);
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        .max-content {
+            .wrapper {
+                .slider-parent {
+                    .carousel {
+                        .slider-inner-div {
+                            .image-box {
+                                .image-wrapper {
+                                    width: 150px;
+                                    height: 150px;
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

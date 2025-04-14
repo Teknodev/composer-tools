@@ -50,7 +50,7 @@ class ECommerce5 extends BaseECommerce {
                 {
                   type: "object",
                   key: "card",
-                  displayer: "categoryCard",
+                  displayer: "Category Card",
                   value: [
                     {
                       type: "image",
@@ -70,7 +70,7 @@ class ECommerce5 extends BaseECommerce {
                 {
                   type: "object",
                   key: "card",
-                  displayer: "categoryCard",
+                  displayer: "Category Card",
                   value: [
                     {
                       type: "image",
@@ -90,7 +90,7 @@ class ECommerce5 extends BaseECommerce {
                 {
                   type: "object",
                   key: "card",
-                  displayer: "categoryCard",
+                  displayer: "Category Card",
                   value: [
                     {
                       type: "image",
@@ -110,7 +110,7 @@ class ECommerce5 extends BaseECommerce {
                 {
                   type: "object",
                   key: "card",
-                  displayer: "categoryCard",
+                  displayer: "Category Card",
                   value: [
                     {
                       type: "image",
@@ -130,7 +130,7 @@ class ECommerce5 extends BaseECommerce {
                 {
                   type: "object",
                   key: "card",
-                  displayer: "categoryCard",
+                  displayer: "Category Card",
                   value: [
                     {
                       type: "image",
@@ -150,7 +150,7 @@ class ECommerce5 extends BaseECommerce {
                 {
                   type: "object",
                   key: "card",
-                  displayer: "categoryCard",
+                  displayer: "Category Card",
                   value: [
                     {
                       type: "image",
@@ -190,7 +190,7 @@ class ECommerce5 extends BaseECommerce {
                 {
                   type: "object",
                   key: "card",
-                  displayer: "categoryCard",
+                  displayer: "Category Card",
                   value: [
                     {
                       type: "image",
@@ -210,7 +210,7 @@ class ECommerce5 extends BaseECommerce {
                 {
                   type: "object",
                   key: "card",
-                  displayer: "categoryCard",
+                  displayer: "Category Card",
                   value: [
                     {
                       type: "image",
@@ -230,7 +230,7 @@ class ECommerce5 extends BaseECommerce {
                 {
                   type: "object",
                   key: "card",
-                  displayer: "categoryCard",
+                  displayer: "Category Card",
                   value: [
                     {
                       type: "image",
@@ -250,7 +250,7 @@ class ECommerce5 extends BaseECommerce {
                 {
                   type: "object",
                   key: "card",
-                  displayer: "categoryCard",
+                  displayer: "Category Card",
                   value: [
                     {
                       type: "image",
@@ -270,7 +270,7 @@ class ECommerce5 extends BaseECommerce {
                 {
                   type: "object",
                   key: "card",
-                  displayer: "categoryCard",
+                  displayer: "Category Card",
                   value: [
                     {
                       type: "image",
@@ -290,7 +290,7 @@ class ECommerce5 extends BaseECommerce {
                 {
                   type: "object",
                   key: "card",
-                  displayer: "categoryCard",
+                  displayer: "Category Card",
                   value: [
                     {
                       type: "image",
@@ -383,8 +383,9 @@ class ECommerce5 extends BaseECommerce {
         },
       ],
     };
+    const title = this.getPropValue("title");
 
-    const titleExist = this.getPropValue("title", { as_string: true });
+    const titleExist = this.castToString(title);
 
     return (
       <div className={this.decorateCSS("container")}>
@@ -397,22 +398,46 @@ class ECommerce5 extends BaseECommerce {
             )}
 
             <div className={this.decorateCSS("section-title-container")}>
-              {slides.map((item: ImageGallery, index: number) => (
-                <div
-                  key={index}
-                  className={
-                    activeGenderIndex === index
-                      ? this.decorateCSS("section-active")
-                      : this.decorateCSS("section")
-                  }
-                  onClick={() => this.setComponentState("sectionTitle", index)}
-                >
-                  {item.sectionTitle}
-                </div>
-              ))}
+              {slides.map((item: ImageGallery, index: number) => {
+                return (
+                  item.sectionTitle && (
+                    <div
+                      key={index}
+                      className={
+                        activeGenderIndex === index
+                          ? this.decorateCSS("section-active")
+                          : this.decorateCSS("section")
+                      }
+                      // onClick={() =>
+                      //   this.setComponentState("sectionTitle", index)
+                      // }
+                      onClick={() => {
+                        const currentIndex =
+                          this.getComponentState("sectionTitle");
+                        if (currentIndex !== index) {
+                          this.setComponentState("animate", true);
+
+                          setTimeout(() => {
+                            this.setComponentState("sectionTitle", index);
+                            this.setComponentState("animate", false);
+                          }, 5000);
+                        }
+                      }}
+                    >
+                      {item.sectionTitle}
+                    </div>
+                  )
+                );
+              })}
             </div>
           </div>
-          <div className={this.decorateCSS("wrapper")}>
+          <div
+            className={`${this.decorateCSS("wrapper")} ${
+              this.getComponentState("animate")
+                ? this.decorateCSS("fade-slide-out")
+                : this.decorateCSS("fade-slide-in")
+            }`}
+          >
             <div className={this.decorateCSS("slider-parent")}>
               <ComposerSlider
                 {...settings}
