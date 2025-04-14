@@ -34,12 +34,12 @@
     justify-content: center;
 
     .header-wrapper {
-      display: inline-flex;
       width: 100%;
     }
 
     .header-title {
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
@@ -48,15 +48,13 @@
       gap: var(--composer-gap-sm);
 
       .title-content {
-        display: inline;
+        display: flex;
       }
     }
 
     .animated-text {
       animation: fadeInUpAndDisappear 5s ease infinite;
-      margin-top: 1rem;
-      margin-left: 1rem;
-      display: inline-block;
+      margin-top: 0.5rem;
     }
 
     .grid {
@@ -89,22 +87,25 @@
             justify-content: center;
             position: relative;
             border-radius: var(--border-radius-sm);
-            transition: background-color 0.2s ease-in;
+            transition: background-color 0.2s ease-in-out;
+            color: var(--composer-font-color-primary);
             .home-link {
               content: "";
             }
             .card-item-value-h1,
             .card-item-value-p {
-              visibility: hidden;
+              opacity: 0;
+              transform: translateY(20px);
+              transition: opacity 0.2s ease, transform 0.3s ease;
             }
 
             &:hover {
               background-color: var(--composer-html-background);
-
               .card-item-value-h1,
               .card-item-value-p {
-                visibility: visible;
+                opacity: 1;
                 color: var(--composer-font-color-primary);
+                transform: translateY(0);
               }
             }
           }

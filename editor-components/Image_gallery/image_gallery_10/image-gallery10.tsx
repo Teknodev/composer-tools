@@ -394,12 +394,12 @@ class ImageGallery10 extends BaseImageGallery {
                             >
                                 <div className={this.decorateCSS("title-content")}>
                                     {this.getPropValue("header")}
-                                    {showAnimateText && currentText && (
-                                        <span className={this.decorateCSS("animated-text")}>
-                                            {" " + currentText}
-                                        </span>
-                                    )}
                                 </div>
+                                {showAnimateText && currentText && (
+                                    <div className={this.decorateCSS("animated-text")}>
+                                        {currentText}
+                                    </div>
+                                )}
                             </Base.SectionTitle>
                         </div>
                     )}
