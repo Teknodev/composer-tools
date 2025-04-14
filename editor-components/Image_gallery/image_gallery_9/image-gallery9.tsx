@@ -423,7 +423,7 @@ class ImageGallery9 extends BaseImageGallery {
   render() {
     const imageExist = this.getPropValue("image");
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container className={this.decorateCSS("container")} isFull="true">
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("image-container")}>
             {this.castToObject<Card[]>("cards").map(

@@ -1,4 +1,4 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 @keyframes upAnimate {
     from {
@@ -25,7 +25,7 @@
 }
 
 .container {
-    padding: 0;
+    padding: 0 !important;
 
     .max-content {
         .image-container {
@@ -77,24 +77,24 @@
                     background-color: var(--composer-html-background);
 
                     .title {
-                        color: var(--composer-font-color-primary);
                         font-size: 1rem;
-                        white-space: nowrap;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                        width: 100%;
-                        text-align: center;
                     }
 
                     .subtitle {
                         position: relative;
                         font-size: 1.5rem;
-                        color: var(--composer-font-color-primary);
-                        white-space: nowrap;
+                    }
+
+                    .title,
+                    .subtitle {
+                        display: -webkit-box;
+                        -webkit-line-clamp: 5;
+                        -webkit-box-orient: vertical;
                         overflow: hidden;
                         text-overflow: ellipsis;
                         width: 100%;
                         text-align: center;
+                        color: var(--composer-font-color-primary);
                     }
                 }
 
@@ -150,7 +150,7 @@
     }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
     .container {
         .max-content {
             .image-container {
