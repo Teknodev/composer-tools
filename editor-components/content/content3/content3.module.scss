@@ -1,4 +1,4 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
     .max-content {
@@ -44,11 +44,55 @@
                     white-space: nowrap;
                     position: relative;
                     display: flex;
+                    cursor: pointer;
 
                     &.active {
-                        border-bottom: 2px solid var(--composer-primary-color);
                         color: var(--composer-font-color-primary);
-                        font-weight: bold;
+                        border-bottom: 2px solid var(--composer-primary-color);
+                    }
+                }
+            }
+
+            &[data-animation~="animate1"] {
+                .tab-buttons {
+                    .tab-button {
+                        transition: color 0.3s ease;
+                        border-bottom: none;
+                        width: fit-content;
+
+                        &::after {
+                            content: '';
+                            position: absolute;
+                            bottom: 0;
+                            left: 0;
+                            width: 0;
+                            height: 2px;
+                            background-color: var(--composer-primary-color);
+                            transition: all 0.3s ease;
+                            transform-origin: left;
+                        }
+
+                        &:hover {
+                            color: var(--composer-font-color-primary);
+
+                            &::after {
+                                width: 100%;
+                            }
+                        }
+
+                        &.active {
+                            border-bottom: none;
+                            
+                            &::after {
+                                width: 100%;
+                            }
+                        }
+
+                        &:not(:hover)::after {
+                            width: 0;
+                            transition: all 0.3s ease;
+                            transform-origin: right;
+                        }
                     }
                 }
             }
@@ -85,13 +129,13 @@
                     justify-content: center;
                     gap: var(--composer-gap-lg);
 
-                    .title {
+                    .content-title {
                         font-size: 2.5rem;
                         color: var(--composer-font-color-primary);
                         margin: 0;
                     }
 
-                    .description {
+                    .content-description {
                         font-size: 1.5rem;
                         color: var(--composer-tertiary-color);
                         margin: 0;
@@ -104,12 +148,47 @@
                 .image-container {
                     flex: 1;
                     display: flex;
+                    overflow: hidden;
+                    border-radius: var(--composer-border-radius-md);
 
                     .image {
                         width: 100%;
                         aspect-ratio: 4/3;
                         object-fit: cover;
                         border-radius: var(--composer-border-radius-md);
+                        
+                        &:hover {
+                            transform: none;
+                        }
+                    }
+                }
+            }
+
+            &[data-animation~="animate1"] {
+                .tab {
+                    .image-container {
+                        .image {
+                            transition: transform 0.4s ease;
+                            
+                            &:hover {
+                                transform: scale(1.1);
+                            }
+                        }
+                    }
+                }
+            }
+
+            &[data-animation~="animate2"] {
+                .tab {
+                    .image-container {
+                        .image {
+                            transition: all 0.4s ease;
+                            filter: saturate(1);
+                            
+                            &:hover {
+                                filter: saturate(1.5) brightness(1.1);
+                            }
+                        }
                     }
                 }
             }
@@ -117,7 +196,7 @@
     }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
     .container {
         .max-content {
             .tabs {
@@ -149,5 +228,14 @@
                 }
             }
         }
+    }
+}
+
+@keyframes rotatingBorder {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 300% 0%;
     }
 }

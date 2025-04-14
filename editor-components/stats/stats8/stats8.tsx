@@ -4,8 +4,8 @@ import styles from "./stats8.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
 type CardData = {
-  counter: JSX.Element;
-  description: JSX.Element;
+  counter: React.JSX.Element;
+  description: React.JSX.Element;
 };
 
 class Stats8Page extends BaseStats {

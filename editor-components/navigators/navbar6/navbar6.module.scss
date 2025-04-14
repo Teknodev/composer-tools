@@ -1,4 +1,4 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
   z-index: 101;
@@ -12,8 +12,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-
 
   .pcNavbarContainer {
     display: flex;
@@ -194,7 +192,9 @@
       }
     }
   }
-
+  .mobileRight{
+    display: none;
+  }
   .iconsContainer {
     display: flex;
     align-items: center;
@@ -446,7 +446,7 @@
 }
 
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .maxContent {
     .closeIcon {
       display: flex;
@@ -467,6 +467,11 @@
       .iconsContainer {
         display: none;
       }
+    }
+    .mobileRight{
+      display: flex;
+      align-items: center;
+      gap: var(--composer-gap-sm);
     }
 
       .mobileMenu {

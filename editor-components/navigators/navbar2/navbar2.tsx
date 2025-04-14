@@ -8,7 +8,7 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLanguage from "composer-tools/composer-base-components/language/language";
 
 type Item = {
-  title: JSX.Element;
+  title: React.JSX.Element;
   navigate_to: string;
 };
 
@@ -21,6 +21,7 @@ interface Language {
   label: "code" | "name";
   icon: string;
   showLanguage: boolean;
+  showLocalizationAlways: boolean;
   showDivider: boolean;
 }
 
@@ -1105,6 +1106,12 @@ class Navbar2 extends BaseNavigator {
         },
         {
           type: "boolean",
+          key: "showLocalizationAlways",
+          displayer: "Show Localization Always",
+          value: true,
+        },
+        {
+          type: "boolean",
           key: "showLanguage",
           displayer: "Show Language",
           value: true,
@@ -1336,7 +1343,7 @@ class Navbar2 extends BaseNavigator {
               )}
             </nav>
           )}
-
+          <div className={this.decorateCSS("mobileRight")}>
           <ComposerIcon
             name={this.getPropValue("menuIcon")}
             propsIcon={{
@@ -1344,6 +1351,27 @@ class Navbar2 extends BaseNavigator {
               onClick: this.toggleMobileMenu,
             }}
           />
+           {language.showLanguage && language.showLocalizationAlways &&(
+                <ComposerLanguage
+                  type="dropdown"
+                  title={language.label}
+                  icon={language.icon}
+                  dropdownButtonClassName={`${this.decorateCSS(
+                    "localizationMobile"
+                  )}`}
+                  dropdownLabelClassName={`${this.decorateCSS(
+                    "localizationLabel"
+                  )}`}
+                  iconClassName={this.decorateCSS("languageIcon")}
+                  dropdownItemClassName={this.decorateCSS("localizationItem")}
+                  dropdownContentClassName={this.decorateCSS(
+                    "localizationContent"
+                  )}
+                  divider={language.showDivider}
+                />
+              )}
+          </div>
+
             <div className={`${this.decorateCSS("mobileMenu")} ${isMobileMenuOpen ? this.decorateCSS("open") : ""}
             ${this.getComponentState("navbarOverflowShow") ? this.decorateCSS("overflowShow") : ""}`}>
               <ComposerIcon
@@ -1353,6 +1381,7 @@ class Navbar2 extends BaseNavigator {
                   onClick: this.toggleMobileMenu,
                 }}
               />
+
 
               {menuItems.length > 0 && (
                 <nav className={this.decorateCSS("hamburgerMenu")}>
@@ -1506,14 +1535,16 @@ class Navbar2 extends BaseNavigator {
                         </div>
                       )
                   )}
-                  <ComposerLanguage
+                  {(!language.showLocalizationAlways && language.showLanguage) &&
+                    <ComposerLanguage
                     type="accordion"
                     title="name"
                     headerClassName={this.decorateCSS("languageAccordion")}
                     itemClassName={this.decorateCSS("languageAccordionItem")}
                     titleClassName={this.decorateCSS("languageAccordionTitle")}
                     accordionIconClassName={this.decorateCSS("languageAccordionIcon")}
-                  />
+                  /> 
+                  }
                 </nav>
               )}
             </div>

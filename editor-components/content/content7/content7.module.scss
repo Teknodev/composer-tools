@@ -1,6 +1,4 @@
-
-
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
   background-size: cover;
@@ -39,7 +37,7 @@
           justify-content: center;
           background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
 
-          .title {
+          .card-title {
             color: var(--composer-font-color-primary);
           }
 
@@ -67,10 +65,40 @@
             &.active{
               .foreground-image{
                 clip-path: inset(0% 0% 0% 50%);
-                overflow: hidden;
               }
-              .background-image{
-                overflow: hidden;
+
+              .foreground-image,
+              .background-image {
+                transition: transform 0.3s ease;
+              }
+            }
+
+            &.active[data-animation~="animate1"] {
+              &:hover {
+                .foreground-image {
+                  transform: scale(1.02);
+                  clip-path: inset(0% 0% 0% 50%);
+                }
+                .background-image {
+                  transform: scale(1.02);
+                }
+              }
+            }
+
+            &.active[data-animation~="animate2"] {
+              .foreground-image,
+              .background-image {
+                transition: all 0.3s ease;
+              }
+
+              &:hover {
+                .foreground-image {
+                  filter: brightness(1.1) contrast(1.1);
+                  clip-path: inset(0% 0% 0% 50%);
+                }
+                .background-image {
+                  filter: brightness(1.1) contrast(1.1);
+                }
               }
             }
 
@@ -130,7 +158,6 @@
               }
 
               &:hover {
-                background: var(--composer-overlay-color);
 
                 .text {
                   opacity: 1;
@@ -210,7 +237,7 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
       .down-page {

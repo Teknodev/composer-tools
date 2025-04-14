@@ -1,4 +1,4 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .pcNavbarContainer {
   z-index: 101;
@@ -278,7 +278,9 @@
         justify-content: flex-start;
       }
     }
-
+    .mobileRight{
+        display: none;
+    }
     .mobileMenuButton,
     .mobileCloseButton {
       cursor: pointer;
@@ -408,7 +410,7 @@
 }
 
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .pcNavbarContainer {
     display: none;
   }
@@ -448,6 +450,11 @@
             }
           }
         }
+      }
+      .mobileRight{
+        display: flex;
+        gap: var(--composer-gap-sm);
+        align-items: center;
       }
 
       .logo {

@@ -8,12 +8,12 @@ import ComposerLanguage from "composer-tools/composer-base-components/language/l
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 interface Lane {
-  contact: JSX.Element;
-  news: JSX.Element;
+  contact: React.JSX.Element;
+  news: React.JSX.Element;
 }
 
 type Item = {
-  title: JSX.Element;
+  title: React.JSX.Element;
   navigate_to: string;
   menuType: string;
   sub_items: Item[];
@@ -28,6 +28,7 @@ interface Language {
   label: "code" | "name";
   icon: string;
   showLanguage: boolean;
+  showLocalizationAlways: boolean;
   showDivider: boolean;
 }
 
@@ -79,10 +80,16 @@ class Navbar3 extends BaseNavigator {
         },
         {
           type: "boolean",
+          key: "showLocalizationAlways",
+          displayer: "Show Localization Always",
+          value: true,
+        },
+        {
+          type: "boolean",
           key: "showLanguage",
           displayer: "Show Language",
           value: true,
-        },
+        },  
         {
           type: "boolean",
           key: "showDivider",
@@ -1478,7 +1485,7 @@ class Navbar3 extends BaseNavigator {
                 </ComposerLink>
               </div>
             )}
-
+            <div className={this.decorateCSS("mobileRight")}>
             {hamburgerNavActive ? (
               <ComposerIcon
                 name={this.getPropValue("closeIcon")}
@@ -1496,6 +1503,29 @@ class Navbar3 extends BaseNavigator {
                 }}
               />
             )}
+            {(language.showLocalizationAlways && language.showLanguage) && 
+              <div className={this.decorateCSS("loacalizationContainer")}>
+                <ComposerLanguage
+                  type="dropdown"
+                  title={language.label}
+                  icon={language.icon}
+                  dropdownButtonClassName={`${this.decorateCSS(
+                    "localization"
+                  )}`}
+                  dropdownLabelClassName={`${this.decorateCSS(
+                    "localizationLabel"
+                  )}`}
+                  iconClassName={this.decorateCSS("languageIcon")}
+                  dropdownItemClassName={this.decorateCSS("localizationItem")}
+                  dropdownContentClassName={this.decorateCSS(
+                    "localizationContent"
+                  )}
+                  divider={language.showDivider}
+                />
+              </div>            
+            }            
+            </div>
+
 
             <div
               className={`${this.decorateCSS("hamburgerNav")} ${
@@ -1677,7 +1707,7 @@ class Navbar3 extends BaseNavigator {
                           )
                       )}
 
-                        {language.showLanguage && (
+                        {(language.showLanguage && !language.showLocalizationAlways) && (
                           <ComposerLanguage
                             type="accordion"
                             title={language.label}

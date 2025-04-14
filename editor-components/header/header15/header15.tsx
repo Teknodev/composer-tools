@@ -7,7 +7,7 @@ import { Form, Formik } from "formik";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 interface InputItem {
-  placeholder: JSX.Element;
+  placeholder: React.JSX.Element;
 }
 
 class Header15 extends BaseHeader {
