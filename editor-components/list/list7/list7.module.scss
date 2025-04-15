@@ -1,104 +1,111 @@
 .container {
-    .max-content {
-        display: flex;
-        .card{
-            .all-card {
-                height: 100%;
-                .item-content {
-                    height: 100%;
-                    border: 1px solid var(--composer-primary-color);
-                    border-radius: var(--composer-border-radius-md);
-                    padding: var(--composer-gap-lg);
-                    display: flex;
-                    flex-direction: column;
-                    gap: var(--composer-gap-md);
-                    transition: all 0.3s ease;
-                    position: relative;
+  .max-content {
+    display: flex;
+    .card {
+      .all-card {
+        height: 100%;
+        .item-content {
+          height: 100%;
+          border: 1px solid var(--composer-primary-color);
+          border-radius: var(--composer-border-radius-md);
+          padding: var(--composer-gap-lg);
+          display: flex;
+          flex-direction: column;
+          gap: var(--composer-gap-md);
+          transition: all 0.3s ease;
+          position: relative;
 
-                    &[data-animation="animate1"]:hover {
-                        border-color: transparent;
+          &[data-animation="animate1"]:hover {
+            border-color: transparent;
 
-                        &::before, &::after {
-                            content: "";
-                            position: absolute;
-                            inset: -2px;
-                            border-radius: var(--composer-border-radius-md);
-                            padding: 2px;
-                            background: linear-gradient(45deg, 
-                                transparent 0%, 
-                                transparent 40%, 
-                                var(--composer-primary-color) 45%, 
-                                var(--composer-primary-color) 55%, 
-                                transparent 60%, 
-                                transparent 100%
-                            );
-                            background-size: 300% 300%;
-                            animation: rotatingBorder 3s linear infinite;
-                            -webkit-mask: 
-                                linear-gradient(var(--color-white) 0 0) content-box, 
-                                linear-gradient(var(--color-white) 0 0);
-                            -webkit-mask-composite: xor;
-                            mask-composite: exclude;
-                        }
-                    }
-
-                    &[data-animation="animate2"]:hover {
-                        box-shadow: var(--box-shadow-active);
-                    }
-
-
-                    &[data-animation="animate3"] {
-                        &:hover {
-                            border-image: conic-gradient(
-                                from var(--angle),
-                                var(--composer-primary-color) 0deg 90deg,
-                                var(--composer-secondary-color) 90deg 180deg,
-                                var(--composer-primary-color) 180deg 270deg,
-                                var(--composer-secondary-color) 270deg 360deg
-                            ) 1 stretch;
-                            animation: rotate 3s linear infinite;
-                        }
-                    }
-                    .index {
-                        font-size: 2.5rem;
-                        color: var(--composer-primary-color);
-                        margin: 0px;
-                    }
-                    .title {
-                        font-size: 1.5rem;
-                        color: var(--composer-font-color-primary);
-                        margin: 0px;
-                    }
-                    .description {
-                        font-size: 1rem;
-                        color: var(--composer-font-color-primary);
-                        margin: 0px;
-                    }
-                }
+            &::before,
+            &::after {
+              content: "";
+              position: absolute;
+              inset: -2px;
+              border-radius: var(--composer-border-radius-md);
+              padding: 2px;
+              background: linear-gradient(
+                45deg,
+                transparent 0%,
+                transparent 40%,
+                var(--composer-primary-color) 45%,
+                var(--composer-primary-color) 55%,
+                transparent 60%,
+                transparent 100%
+              );
+              background-size: 300% 300%;
+              animation: rotatingBorder 2s linear 1 forwards;
+              -webkit-mask: linear-gradient(var(--color-white) 0 0) content-box,
+                linear-gradient(var(--color-white) 0 0);
+              -webkit-mask-composite: xor;
+              mask-composite: exclude;
             }
+          }
+
+          &[data-animation="animate2"]:hover {
+            box-shadow: var(--box-shadow-active);
+          }
+
+          &[data-animation="animate3"] {
+            &:hover {
+              border-image: conic-gradient(
+                  from var(--angle),
+                  rgba(var(--composer-primary-color-rgb), 1) 0deg 90deg,
+                  rgba(var(--composer-primary-color-rgb), 0.3) 90deg 180deg,
+                  rgba(var(--composer-primary-color-rgb), 1) 180deg 270deg,
+                  rgba(var(--composer-primary-color-rgb), 0.3) 270deg 360deg
+                )
+                1 stretch;
+              animation: rotate 3s linear infinite;
+            }
+          }
+
+          &[data-animation="animate4"]:hover {
+            .index {
+              transform: rotate(360deg);
+              transition: transform 0.3s;
+            }
+          }
+
+          .index {
+            font-size: 2.5rem;
+            color: var(--composer-primary-color);
+            margin: 0px;
+          }
+          .title {
+            font-size: 1.5rem;
+            color: var(--composer-font-color-primary);
+            margin: 0px;
+          }
+          .description {
+            font-size: 1rem;
+            color: var(--composer-font-color-primary);
+            margin: 0px;
+          }
         }
- 
+      }
     }
+  }
 }
 
 @keyframes rotatingBorder {
-    0% {
-        background-position: 0% 0%;
-    }
-    100% {
-        background-position: 300% 0%;
-    }
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 0%;
+  }
 }
 
-
 @property --angle {
-    syntax: "<angle>";
-    initial-value: 0deg;
-    inherits: false;
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
 }
 
 @keyframes rotate {
-    to {
-        --angle: 360deg;
-    }
+  to {
+    --angle: 360deg;
+  }
 }

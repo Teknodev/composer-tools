@@ -133,7 +133,7 @@ class list4 extends BaseList {
       displayer: "Hover Animation Style",
       value: ["animate1"],
       additionalParams: {
-        selectItems: ["animate1", "animate2"]
+        selectItems: ["animate1", "animate2", "animate3"]
       }
     });
   }
@@ -177,7 +177,7 @@ class list4 extends BaseList {
                     key={`cnt-4-card-${index}`}
                     className={this.decorateCSS("card")}
                   >
-                    <Base.VerticalContent 
+                    <Base.VerticalContent
                       className={this.decorateCSS("color-box")}
                       data-animation={this.getPropValue("hoverAnimation").join(" ")}
                     >
@@ -192,7 +192,7 @@ class list4 extends BaseList {
 
                       <Base.VerticalContent className={this.decorateCSS("card-title-wrapper")}>
                         {this.castToString(card.title) && (
-                          <Base.H3 
+                          <Base.H3
                             className={this.decorateCSS("card-subtitle")}
                           >
                             {card.title}

@@ -162,7 +162,7 @@ class List10 extends BaseList {
             displayer: "Hover Animation Style",
             value: ["animate1"],
             additionalParams: {
-                selectItems: ["animate1", "animate2"]
+                selectItems: ["animate1", "animate2", "animate3", "animate4"]
             }
         });
     }
@@ -203,7 +203,7 @@ class List10 extends BaseList {
 
                             return (
                                 <ComposerLink key={index} path={card.url}>
-                                    <div 
+                                    <div
                                         className={this.decorateCSS("card")}
                                         data-animation={this.getPropValue("hoverAnimation").join(" ")}
                                     >

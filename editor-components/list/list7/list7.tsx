@@ -99,12 +99,12 @@ class List7 extends BaseList {
       value: true,
     });
     this.addProp({
-      type: "select",
+      type: "multiSelect",
       key: "hoverAnimation",
       displayer: "Hover Animation Style",
-      value: "animate1",
+      value: ["animate1"],
       additionalParams: {
-        selectItems: ["animate1", "animate2","animate3"]
+        selectItems: ["animate1", "animate2", "animate3", "animate4"]
       }
     });
   }
@@ -122,7 +122,7 @@ class List7 extends BaseList {
                   className={this.decorateCSS("all-card")}
                 >
                   {(this.getPropValue("showIndex") || this.castToString(item.title) || this.castToString(item.text)) && (
-                    <Base.VerticalContent 
+                    <Base.VerticalContent
                       className={this.decorateCSS("item-content")}
                       data-animation={this.getPropValue("hoverAnimation")}
                     >

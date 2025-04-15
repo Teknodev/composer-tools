@@ -1,4 +1,5 @@
-@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
+  as *;
 
 .container {
   .max-content {
@@ -7,19 +8,19 @@
       align-items: center;
       gap: var(--composer-gap-lg);
 
-      &.center{
+      &.center {
         flex-direction: column;
         gap: 0px;
         .title,
-        .subtitle{
+        .subtitle {
           text-align: center;
           margin-bottom: var(--composer-gap-md);
         }
       }
 
-      &.monochrome{
+      &.monochrome {
         .subtitle,
-        .title{
+        .title {
           color: var(--composer-font-color-primary);
         }
       }
@@ -51,7 +52,11 @@
         opacity: 1;
         padding: var(--composer-gap-lg);
         border-radius: var(--composer-border-radius-md);
-        background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+        background: color-mix(
+          in srgb,
+          var(--composer-html-background),
+          var(--composer-font-color-primary) 5%
+        );
 
         &[data-animation=""]:hover {
           .description,
@@ -106,6 +111,7 @@
 
           &:hover {
             transform: perspective(1000px) rotateX(8deg);
+            box-shadow: var(--box-shadow-active);
 
             .description,
             .badge,
@@ -131,7 +137,7 @@
           }
 
           &::before {
-            content: '';
+            content: "";
             position: absolute;
             inset: 0;
             background: var(--composer-primary-color);
@@ -139,22 +145,35 @@
             transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
           }
 
-          .badge, .description, .bottom-text {
+          .badge,
+          .description,
+          .bottom-text {
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             transform-style: preserve-3d;
           }
 
-          .image-div{
+          .image-div {
             transform: translateZ(var(--composer-gap-md));
             z-index: 2;
           }
+        }
+
+        &[data-animation="animate3"]:hover {
+          .description {
+            animation: breathing 2s ease-out infinite normal;
+          }
+        }
+
+        &[data-animation="animate4"]:hover {
+          transform: translateY(-10px);
+          transition: transform 0.5s;
         }
 
         .badge {
           color: var(--composer-font-color-primary);
           font-weight: 400;
           height: 1em;
-          *{
+          * {
             max-width: 200px;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -180,9 +199,8 @@
             width: 100%;
             object-fit: cover;
           }
-
         }
-        .gap{
+        .gap {
           padding-top: 280px;
         }
         .description {
@@ -194,7 +212,7 @@
           transition: all 0.3s ease;
           color: var(--composer-font-color-primary);
         }
-        .bottom-text{
+        .bottom-text {
           transition: all 0.3s ease;
           margin: auto 0px 0px;
           color: var(--composer-font-color-primary);
@@ -204,24 +222,24 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width}){
-  .container{
-    .max-content{
-      .up-page{
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .up-page {
         flex-direction: column;
         justify-content: center;
-        align-items: flex-start; 
+        align-items: flex-start;
         gap: var(--composer-gap-xs);
         .title,
-        .subtitle{
+        .subtitle {
           text-align: center;
         }
       }
-      .cards-box{
-          margin-top: var(--composer-gap-md);
-          .card {
-            width: 100% !important;
-          } 
+      .cards-box {
+        margin-top: var(--composer-gap-md);
+        .card {
+          width: 100% !important;
+        }
       }
     }
   }
@@ -235,6 +253,32 @@
     transform: scale(1.02);
   }
   100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes breathing {
+  0% {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
+
+  25% {
+    -webkit-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    transform: scale(1.05);
+  }
+
+  60% {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
+
+  100% {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
     transform: scale(1);
   }
 }

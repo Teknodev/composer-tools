@@ -43,7 +43,7 @@ class List6 extends BaseList {
       displayer: "Hover Animation Style",
       value: ["animate1"],
       additionalParams: {
-        selectItems: ["animate1", "animate2"]
+        selectItems: ["animate1", "animate2", "animate3", "animate4"]
       }
     });
 
@@ -200,7 +200,7 @@ class List6 extends BaseList {
           )}
           <div className={this.decorateCSS("list-item")}>
             {listItems.map((listItem: listItem, index: number) => (
-              <div 
+              <div
                 className={`${this.decorateCSS("item-container")} ${this.getPropValue("lineActive") && this.decorateCSS("line")}`}
                 data-animation={this.getPropValue("hoverAnimation").join(" ")}
               >

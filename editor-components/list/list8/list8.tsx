@@ -149,54 +149,10 @@ class List8 extends BaseList {
       displayer: "Hover Animation Style",
       value: ["animate1"],
       additionalParams: {
-        selectItems: ["animate1", "animate2"]
+        selectItems: ["animate1", "animate2", "animate3", "animate4"]
       }
     });
   }
-
-  handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const card = e.currentTarget;
-    const animations = this.getPropValue("hoverAnimation");
-    
-    if (animations.includes("animate1")) {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left; 
-      const y = e.clientY - rect.top; 
-      
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      
-      const rotateY = ((x - centerX) / centerX) * 15;
-      const rotateX = -((y - centerY) / centerY) * 15;
-      
-      if (animations.includes("animate2")) {
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-      } else {
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
-      }
-    }
-  };
-
-  handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
-    const card = e.currentTarget;
-    const animations = this.getPropValue("hoverAnimation");
-
-    if (animations.includes("animate2")) {
-      card.classList.add("animate__animated", "animate__swing");
-    }
-  };
-
-  handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
-    const card = e.currentTarget;
-    const animations = this.getPropValue("hoverAnimation");
-
-    if (animations.includes("animate1")) {
-      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
-    }
-    if (animations.includes("animate2")) {
-      card.classList.remove("animate__animated", "animate__swing");
-    }
-  };
 
   render() {
     const listItems = this.castToObject<listItem[]>("list-items");
@@ -228,13 +184,10 @@ class List8 extends BaseList {
                 gridCount={{ pc: this.getPropValue("itemCount") }}
               >
                 {listItems.map((item: any, index: number) => (
-                  <div 
-                    key={index} 
+                  <div
+                    key={index}
                     className={this.decorateCSS("boxlower")}
                     data-animation={this.getPropValue("hoverAnimation")}
-                    onMouseMove={this.handleMouseMove}
-                    onMouseEnter={this.handleMouseEnter}
-                    onMouseLeave={this.handleMouseLeave}
                   >
                     {item.getPropValue("number") && (
                       <div className={this.decorateCSS("circle")}>

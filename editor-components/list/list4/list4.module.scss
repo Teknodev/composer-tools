@@ -1,59 +1,62 @@
-@use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
+  as *;
 .container {
-  .max-content {   
+  .max-content {
+    .header {
+      .subtitle {
+        content: "";
+      }
+      .title {
+        content: "";
+      }
+    }
 
-    .header{
-      .subtitle{
-        content: "";
-      }
-      .title{
-        content: "";
-      }
-    } 
-    
-    .card-title{
+    .card-title {
       position: relative;
       margin: var(--composer-gap-xs) 0px 0px var(--composer-gap-md);
       color: var(--composer-primary-color);
       font-size: 0rem;
       padding-bottom: var(--composer-gap-xl);
-      &.index{
+      &.index {
         font-size: 2rem;
         padding-bottom: var(--composer-gap-md);
+        &:hover {
+          animation: bounce 1s ease-in-out;
+        }
       }
     }
 
     .card-child {
       margin-bottom: var(--composer-gap-md);
       gap: var(--composer-gap-lg);
-      
-      .card-item-count{
+
+      .card-item-count {
         position: relative;
         padding: var(--composer-gap-lg);
-        .line-box{
+        .line-box {
           position: absolute;
           width: calc(100% - 80px);
           height: calc(100% - 80px);
-        
-          .line-1{
-            position:absolute;
+
+          .line-1 {
+            position: absolute;
             top: -10px;
             left: 0px;
             height: calc(100% + 30px);
             width: 1px;
             background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
           }
-    
-          .line-2{
-            position:absolute;
+
+          .line-2 {
+            position: absolute;
             top: 50px;
             left: -30px;
             height: 1px;
             width: calc(100% + 60px);
             background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
-            &:after{
+            &:after {
               content: "";
-              position:absolute;
+              position: absolute;
               left: 90px;
               top: 0px;
               background-color: var(--composer-font-color-primary);
@@ -62,8 +65,8 @@
             }
           }
 
-          .line-3{
-            position:absolute;
+          .line-3 {
+            position: absolute;
             top: 0px;
             right: 0px;
             height: calc(100% + 20px);
@@ -71,44 +74,50 @@
             background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
           }
 
-          .line-4{
-            position:absolute;
+          .line-4 {
+            position: absolute;
             bottom: 0px;
             left: -30px;
             height: 1px;
             width: calc(100% + 60px);
             background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
-            
           }
         }
         .card {
           position: relative;
-          padding: var(--composer-gap-md) ;
+          padding: var(--composer-gap-md);
 
-          .color-box{
+          .color-box {
             padding: var(--composer-gap-md);
-            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+            background-color: color-mix(
+              in srgb,
+              var(--composer-html-background),
+              var(--composer-font-color-primary) 5%
+            );
             transition: background-color 0.5s ease;
 
             &[data-animation~="animate1"] {
               .card-subtitle {
                 position: relative;
-                
+
                 &::after {
-                  content: '';
+                  content: "";
                   position: absolute;
                   bottom: 0;
-                  left: 0;
+                  right: 0;
                   width: 0;
                   height: 2px;
                   background-color: var(--composer-primary-color);
-                  transition: width 0.3s ease-in-out;
+                  transition: width 0.5s;
+                  border-radius: var(--composer-border-radius-xs);
                 }
               }
-              
+
               &:hover {
                 .card-subtitle::after {
                   width: 100%;
+                  left: 0;
+                  right: unset;
                 }
               }
             }
@@ -119,6 +128,8 @@
 
                 .icon {
                   color: var(--composer-html-background);
+                  transform: rotate(360deg);
+                  transition: transform 0.3s;
                 }
 
                 .card-title-wrapper {
@@ -134,21 +145,21 @@
             }
 
             .icon {
-                font-size: 2.5rem;
-                color: var(--composer-primary-color);
-                margin: var(--composer-gap-md) 0;
+              font-size: 2.5rem;
+              color: var(--composer-primary-color);
+              margin: var(--composer-gap-md) 0;
             }
 
-            .card-number{
-                position: absolute;
-                font-size: 3rem;
-                color: var(--composer-font-color-primary);
+            .card-number {
+              position: absolute;
+              font-size: 3rem;
+              color: var(--composer-font-color-primary);
             }
-            .card-title-wrapper{
+            .card-title-wrapper {
               display: flex;
               flex-direction: column;
               gap: var(--composer-gap-md);
-              .card-subtitle{
+              .card-subtitle {
                 font-size: 1.5rem;
                 color: var(--composer-font-color-primary);
                 overflow: hidden;
@@ -156,26 +167,26 @@
                 position: relative;
                 display: inline-block;
               }
-  
+
               .card-description {
                 margin: 0px;
                 font-size: 1.5rem;
                 color: var(--composer-tertiary-color);
               }
             }
-          }          
-        }  
-        &:nth-child(3n + 2){
+          }
+        }
+        &:nth-child(3n + 2) {
           transform: translateY(40px);
-        }    
+        }
       }
     }
   }
 }
 
-@container (max-width: #{$composer-tablet-width}){
-  .container{
-    .max-content{
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
       .card-child {
         gap: var(--composer-gap-xs);
       }
@@ -183,28 +194,40 @@
   }
 }
 
-@container (max-width: #{$composer-phone-width}){
-  .container{
-    .max-content{
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
       .card-child {
-        .card-item-count{
+        .card-item-count {
           padding: 0px;
-          .line-box{
+          .line-box {
             width: 100%;
             height: 100%;
-            .line-1{
+            .line-1 {
               top: 10px;
               height: calc(100% + 20px);
             }
-            .line-3{
+            .line-3 {
               top: 10px;
             }
           }
-          &:nth-child(3n + 2){
-          transform: none
-          }    
+          &:nth-child(3n + 2) {
+            transform: none;
+          }
         }
       }
     }
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+    animation-timing-function: ease-in-out;
+  }
+  50% {
+    transform: translateY(-5px);
+    animation-timing-function: ease-in-out;
   }
 }

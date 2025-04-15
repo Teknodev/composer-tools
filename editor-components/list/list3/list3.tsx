@@ -4,6 +4,7 @@ import styles from "./list3.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { ComposerIcon } from "composer-tools/composer-base-components/icon/icon";
 
 type Item = {
   itemTitle: React.JSX.Element;
@@ -237,7 +238,7 @@ class List3 extends BaseList {
       displayer: "Hover Animation Style",
       value: ["animate1"],
       additionalParams: {
-        selectItems: ["animate1", "animate2"]
+        selectItems: ["animate1", "animate2", "animate3", "animate4"]
       }
     });
   }
@@ -272,7 +273,15 @@ class List3 extends BaseList {
                 {this.castToString(buttonType.text) && (
                   <ComposerLink path={buttonType.url}>
                     <Base.Button buttonType={buttonType.type} className={this.decorateCSS("button")}>
-                      {buttonType.text}
+                      <div className={this.decorateCSS("button-text")}>
+                        {buttonType.text}
+                      </div>
+                      <ComposerIcon
+                        name={"FaArrowRight"}
+                        propsIcon={{
+                          className: this.decorateCSS("button-icon"),
+                        }}
+                      />
                     </Base.Button>
                   </ComposerLink>
                 )}
@@ -280,8 +289,8 @@ class List3 extends BaseList {
             )}
             {listItems.map((listItem: Item, index: number) => {
               return (
-                <div 
-                  key={index} 
+                <div
+                  key={index}
                   className={this.decorateCSS("card")}
                   data-animation={this.getPropValue("hoverAnimation").join(" ")}
                 >

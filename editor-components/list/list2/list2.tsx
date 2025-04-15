@@ -292,7 +292,7 @@ class List2 extends BaseList {
       displayer: "Hover Animation Style",
       value: ["animate1"],
       additionalParams: {
-        selectItems: ["animate1", "animate2"]
+        selectItems: ["animate1", "animate2", "animate3"]
       }
     });
     this.setComponentState("moreImages", 0);
@@ -342,8 +342,8 @@ class List2 extends BaseList {
               >
                 {cards.slice(0, this.getComponentState("imageCount")).map((item: CardItem, index: number) => (
                   <ComposerLink key={index} path={item.page}>
-                    <div 
-                      className={this.decorateCSS("card")} 
+                    <div
+                      className={this.decorateCSS("card")}
                       data-animation={this.getPropValue("hoverAnimation").join(" ")}
                     >
                       {item.image && (

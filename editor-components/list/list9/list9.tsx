@@ -61,7 +61,7 @@ class List9 extends BaseList {
                             type: "icon",
                             key: "icon",
                             displayer: "Icon",
-                            value: "LiaBicycleSolid",
+                            value: "FaDog",
                         },
                         {
                             type: "string",
@@ -94,7 +94,7 @@ class List9 extends BaseList {
                             type: "icon",
                             key: "icon",
                             displayer: "Icon",
-                            value: "LiaBicycleSolid",
+                            value: "FaHtml5",
                         },
                         {
                             type: "string",
@@ -127,7 +127,7 @@ class List9 extends BaseList {
                             type: "icon",
                             key: "icon",
                             displayer: "Icon",
-                            value: "LiaBicycleSolid",
+                            value: "RiPaintBrushFill",
                         },
                         {
                             type: "string",
@@ -168,7 +168,7 @@ class List9 extends BaseList {
             displayer: "Hover Animation Style",
             value: ["animate1"],
             additionalParams: {
-                selectItems: ["animate1", "animate2"]
+                selectItems: ["animate1", "animate2", "animate3"]
             }
         });
     }
@@ -187,8 +187,8 @@ class List9 extends BaseList {
                     >
                         {this.castToObject<Card[]>("cards").map(
                             (card: Card, indexCard: number) => (
-                                <div 
-                                    key={indexCard} 
+                                <div
+                                    key={indexCard}
                                     className={this.decorateCSS("card")}
                                     data-animation={this.getPropValue("hoverAnimation").join(" ")}
                                 >
