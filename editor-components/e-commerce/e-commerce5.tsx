@@ -408,9 +408,6 @@ class ECommerce5 extends BaseECommerce {
                           ? this.decorateCSS("section-active")
                           : this.decorateCSS("section")
                       }
-                      // onClick={() =>
-                      //   this.setComponentState("sectionTitle", index)
-                      // }
                       onClick={() => {
                         const currentIndex =
                           this.getComponentState("sectionTitle");
@@ -420,7 +417,7 @@ class ECommerce5 extends BaseECommerce {
                           setTimeout(() => {
                             this.setComponentState("sectionTitle", index);
                             this.setComponentState("animate", false);
-                          }, 5000);
+                          }, 300);
                         }
                       }}
                     >

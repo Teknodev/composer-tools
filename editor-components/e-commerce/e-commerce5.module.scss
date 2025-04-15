@@ -24,6 +24,14 @@
     }
 }
 
+.fade-slide-out {
+    animation: fadeSlideOut 0.3s forwards;
+}
+
+.fade-slide-in {
+    animation: fadeSlideIn 0.3s forwards;
+}
+
 .container {
     padding: 30px 0;
     background-color: var(--composer-html-background);
@@ -110,14 +118,6 @@
 
         .wrapper {
             padding: 20px 0;
-
-            .fade-slide-out {
-                animation: fadeSlideOut 0.5s forwards;
-            }
-
-            .fade-slide-in {
-                animation: fadeSlideIn 0.5s forwards;
-            }
 
             .slider-parent {
                 .carousel {
