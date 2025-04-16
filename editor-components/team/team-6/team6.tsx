@@ -499,7 +499,7 @@ class Team6 extends Team {
       displayer: "Hover Animation Style",
       value: ["animate1"],
       additionalParams: {
-        selectItems: ["animate1"]
+        selectItems: ["animate1", "animate2"]
       }
     });
     this.setComponentState("activeIndex", null);
@@ -542,7 +542,7 @@ class Team6 extends Team {
 
                 return (
                   hasCard && (
-                    <div key={indexItems} className={this.decorateCSS("all-card")}>
+                    <div key={indexItems} className={this.decorateCSS("all-card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                       <div className={this.decorateCSS("top")}>
                         <div className={this.decorateCSS("image-wrapper")}>
                           {card.image ? (
@@ -553,29 +553,29 @@ class Team6 extends Team {
                                 ) : (
                                   <ComposerIcon name={this.getPropValue("openingIcon")} propsIcon={{ className: this.decorateCSS("image-icon") }} />
                                 ))}
-                              <div className={this.decorateCSS("image-container")}>
+                              <div className={this.decorateCSS("image-container")} style={this.getComponentState("activeIndex") === indexItems && card.features.length > 0 ? {height: "100%"} : undefined} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                                 <img className={`${this.decorateCSS("image")} ${this.getComponentState("activeIndex") === indexItems && card.features.length > 0 ? this.decorateCSS("shrink") : ""}`} src={card.image} alt={this.castToString(card.name)} data-animation={this.getPropValue("hoverAnimation").join(" ")} />
-                              </div>
-                              <Base.VerticalContent className={this.decorateCSS("overlay-bar")}>
-                                {cardNameExist && <Base.H2 className={this.decorateCSS("card-name")}>{card.name}</Base.H2>}
-                                {cardPositionExist && <Base.H4 className={this.decorateCSS("position")}>{card.position}</Base.H4>}
+                                <Base.VerticalContent className={this.decorateCSS("overlay-bar")}>
+                                  {cardNameExist && <Base.H2 className={this.decorateCSS("card-name")}>{card.name}</Base.H2>}
+                                  {cardPositionExist && <Base.H4 className={this.decorateCSS("position")}>{card.position}</Base.H4>}
 
-                                {this.getComponentState("activeIndex") === indexItems && card.features.length > 0 && (
-                                  <Base.VerticalContent className={this.decorateCSS("features")}>
-                                    {card.features.map((feature: Feature, idx: number) => (
-                                      <div key={idx} className={this.decorateCSS("feature")}>
-                                        <ComposerIcon
-                                          name={feature.icon}
-                                          propsIcon={{
-                                            className: this.decorateCSS("icon"),
-                                          }}
-                                        />
-                                        <Base.P className={this.decorateCSS("feature-element")}>{feature.feature}</Base.P>
-                                      </div>
-                                    ))}
-                                  </Base.VerticalContent>
-                                )}
-                              </Base.VerticalContent>
+                                  {this.getComponentState("activeIndex") === indexItems && card.features.length > 0 && (
+                                    <Base.VerticalContent className={this.decorateCSS("features")}>
+                                      {card.features.map((feature: Feature, idx: number) => (
+                                        <div key={idx} className={this.decorateCSS("feature")}>
+                                          <ComposerIcon
+                                            name={feature.icon}
+                                            propsIcon={{
+                                              className: this.decorateCSS("icon"),
+                                            }}
+                                          />
+                                          <Base.P className={this.decorateCSS("feature-element")}>{feature.feature}</Base.P>
+                                        </div>
+                                      ))}
+                                    </Base.VerticalContent>
+                                  )}
+                                </Base.VerticalContent>
+                              </div>
                             </div>
                           ) : (
                             <Base.VerticalContent className={`${this.decorateCSS("overlay-bar")} ${this.decorateCSS("overlay-visible")}`}>

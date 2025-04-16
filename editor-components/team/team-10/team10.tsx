@@ -416,7 +416,7 @@ class Team10 extends Team {
       displayer: "Hover Animation Style",
       value: ["animate1"],
       additionalParams: {
-        selectItems: ["animate1"]
+        selectItems: ["animate1", "animate2"]
       }
     });
   }
@@ -457,7 +457,7 @@ class Team10 extends Team {
                         const iconExist = icon.icon;
                         return (
                           iconExist && (
-                            <div key={indexIcons} className={this.decorateCSS("icon-item")}>
+                            <div key={indexIcons} className={this.decorateCSS("icon-item")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                               <ComposerLink path={icon.url}>
                                 <ComposerIcon name={icon.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
                               </ComposerLink>

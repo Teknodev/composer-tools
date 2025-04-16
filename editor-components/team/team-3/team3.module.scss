@@ -28,11 +28,24 @@
             }
 
             &[data-animation~="animate1"] {
-              transition: border 0.3s ease;
-    
+              &::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 1px;
+                background-color: var(--composer-primary-color);
+                transform: scaleY(0);
+                transform-origin: top;
+                transition: transform 0.3s ease;
+                z-index: 1;
+              }
               &:hover {
-                border-left: solid 1px white !important;
-                transition: border 0.3s ease;
+                &::after {
+                  transform: scaleY(1);
+                  transition: transform 0.3s ease;
+                }
               }
             }
           }
@@ -53,11 +66,13 @@
             height: 100%;
 
             .profile-image {
+              position: relative;
               width: 100%;
               max-width: 300px;
               min-height: 200px;
               height: 100%;
               object-fit: cover;
+              z-index: 100;
             }
           }
           .box-text {
@@ -90,9 +105,24 @@
               margin: var(--composer-gap-sm);
               color: var(--composer-font-color-primary);
               transition: 0.3s;
+            }
 
-              &:hover {
-                color: var(--composer-primary-color);
+            &[data-animation~="animate2"] { 
+              .icons {
+                transition: transform 0.3s ease;
+    
+                &:hover {
+                  transform: scale(125%);
+                }
+              }
+            }
+            &[data-animation~="animate3"] { 
+              .icons {
+                transition: color 0.3s ease;
+    
+                &:hover {
+                  color: var(--composer-primary-color);
+                }
               }
             }
           }

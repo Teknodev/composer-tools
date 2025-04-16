@@ -171,7 +171,7 @@ class Team13 extends Team {
       displayer: "Hover Animation Style",
       value: ["animate1"],
       additionalParams: {
-        selectItems: ["animate1"]
+        selectItems: ["animate1", "animate2", "animate3", "animate4"]
       }
     });
   }
@@ -212,7 +212,7 @@ class Team13 extends Team {
                   <Base.Row className={this.decorateCSS("icon-container")}>
                     {icons.map((icon: any, indexIcons: number) => {
                       return (
-                        <div key={indexIcons} className={this.decorateCSS("icon-item")}>
+                        <div key={indexIcons} className={this.decorateCSS("icon-item")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                           <ComposerLink path={icon.url}>
                             <ComposerIcon
                               name={icon.name}
@@ -235,7 +235,7 @@ class Team13 extends Team {
               return (
                 <Base.VerticalContent className={this.decorateCSS("team-card")}>
                   {card.image && (
-                    <div className={this.decorateCSS("img-wrapper")}>
+                    <div className={this.decorateCSS("img-wrapper")} data-animation={this.getPropValue("hoverAnimation").join(" ")} >
                       <img className={this.decorateCSS("image")} src={card.image} data-animation={this.getPropValue("hoverAnimation").join(" ")} />
                     </div>
                   )}

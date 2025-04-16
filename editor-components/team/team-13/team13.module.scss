@@ -13,9 +13,11 @@
         justify-content: space-between;
         .title {
           font-size: 5rem;
+          width: 85%;
         }
 
         .label {
+          width: 70%;
           .description {
             color: var(--composer-tertiary-color);
             width: 100%;
@@ -24,6 +26,7 @@
           .button-container {
             display: flex;
             width: 100%;
+            justify-content: space-between;
             align-items: center;
             gap: var(--composer-gap-xl);
             .button {
@@ -43,6 +46,26 @@
           display: flex;
           gap: var(--composer-gap-md);
           font-size: 1.5rem;
+
+          .icon-item {
+            &[data-animation~="animate4"] { 
+              .icon {
+                @keyframes pulseScale {
+                  0%, 100% {
+                    transform: scale(1.1);
+                  }
+                  50% {
+                    transform: scale(1);
+                  }
+                }
+
+                &:hover {
+                  transition: all 0.3s ease;
+                  animation: pulseScale 2s ease-in-out infinite;
+                }
+              }
+            }
+          }
         }
       }
 
@@ -64,12 +87,40 @@
             object-fit: cover;
   
             &[data-animation~="animate1"] { 
-              transition: transform 0.3s ease;
+              transition: transform 0.7s ease;
               &:hover {
-                transform: scale(1.1);
+                transform: scale(1.2);
+              }
+            }
+
+            &[data-animation~="animate3"] { 
+              filter: grayscale(100%);
+              transition: filter 0.3s ease;
+
+              &:hover {
+                filter: grayscale(0%);
+                transition: filter 0.3s ease;
               }
             }
           }
+
+          &[data-animation~="animate2"] {
+            @keyframes pulseShadow {
+              0%, 100% {
+                box-shadow: 0 0 0 var(--composer-primary-color); 
+              }
+              50% {
+                box-shadow: 0 0 20px 5px var(--composer-primary-color);
+              }
+            }
+
+            transition: box-shadow 0.5s ease-in-out;
+
+            &:hover {
+              animation: pulseShadow 2s ease-in-out infinite;
+              transition: box-shadow 0.5s ease-in-out;
+            }
+          } 
         }
 
         .name {
@@ -93,6 +144,7 @@
           min-height: auto ;
           .title {
             font-size: 4rem ;
+            width: 100%;
           }
 
           .label {

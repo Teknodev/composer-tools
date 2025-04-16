@@ -307,7 +307,7 @@ class Team3 extends Team {
       displayer: "Hover Animation Style",
       value: ["animate1"],
       additionalParams: {
-        selectItems: ["animate1"]
+        selectItems: ["animate1", "animate2", "animate3"]
       }
     });
   }
@@ -346,7 +346,7 @@ class Team3 extends Team {
                           <Base.VerticalContent className={item.profile ? this.decorateCSS("box-text") : this.decorateCSS("no-image-box-text")}>
                             <Base.H2 className={this.decorateCSS("item-name")}>{item.name}</Base.H2>
                             <Base.P className={this.decorateCSS("item-position")}>{item.position}</Base.P>
-                            <div className={this.decorateCSS("icon-group")}>
+                            <div className={this.decorateCSS("icon-group")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                               {item.icons &&
                                 item.icons.map((card: Icons, indexIcons: number) => (
                                   <ComposerLink key={indexIcons} path={card.url}>

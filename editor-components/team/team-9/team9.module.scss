@@ -23,11 +23,6 @@
             border-radius: var(--composer-border-radius-sm);
           }
 
-          .person-image:hover {
-            border-radius: 45%;
-            transition: 0.4s;
-          }
-
           .person-info {
             width: 95%;
             height: auto;
@@ -43,6 +38,7 @@
                 font-size: 1.5rem;
                 font-weight: bold;
                 margin: var(--composer-gap-sm);
+                transition: color 0.3s ease;
               }
             }
 
@@ -63,9 +59,6 @@
                 transform: translateY(20px);
                 transition: color 300ms;
                 cursor: pointer;
-                &:hover {
-                  color: var(--composer-primary-color);
-                }
               }
             }
           }
@@ -77,6 +70,33 @@
           }
           &:hover .icons-bar .icon {
             animation: icon-fade-in 0.8s ease forwards;
+          }
+
+          &[data-animation~="animate1"] { 
+            &:hover {
+              .person-image:hover {
+                border-radius: 45%;
+                transition: 0.4s;
+              }
+            }
+          }
+
+          &[data-animation~="animate2"] { 
+            &:hover {
+              .icon:hover {
+                &:hover {
+                  color: var(--composer-primary-color);
+                }
+              }
+            }
+          }
+
+          &[data-animation~="animate3"] { 
+            &:hover {
+              .item-name {
+                color: var(--composer-primary-color);
+              }
+            }
           }
         }
 

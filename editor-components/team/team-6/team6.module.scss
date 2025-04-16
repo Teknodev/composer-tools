@@ -48,35 +48,57 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                       transform: scale(1.1);
                     }
                   }
-                }  
+                }
+                
+                .overlay-bar {
+                  .features {
+                    width: 100%;
+  
+                    .feature {
+                      display: flex;
+                      align-items: center;
+                      color: var(--composer-tertiary-color);
+                      margin: 0;
+                      gap: var(--composer-gap-md);
+  
+                      .icon {
+                        font-size: 2rem;
+                      }
+  
+                      .feature-element {
+                        width: 100%;
+                        text-align: left;
+                      }
+                    }
+                  }
+                }
+
+                &[data-animation~="animate2"] { 
+                  display: inline-block;
+                  position: relative;
+
+                  &::after {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    height: 4px;
+                    width: 0%;
+                    background-color: var(--composer-primary-color);
+                    transition: width 0.3s ease-in-out;
+                  }
+
+                  &:hover {
+                    &::after {
+                      width: 100%;
+                    }
+                  }
+                }
               }
 
               .image.shrink {
                 height: 200px;
                 margin-bottom: var(--composer-gap-md);
-              }
-
-              .overlay-bar {
-                .features {
-                  width: 100%;
-
-                  .feature {
-                    display: flex;
-                    align-items: center;
-                    color: var(--composer-tertiary-color);
-                    margin: 0;
-                    gap: var(--composer-gap-md);
-
-                    .icon {
-                      font-size: 2rem;
-                    }
-
-                    .feature-element {
-                      width: 100%;
-                      text-align: left;
-                    }
-                  }
-                }
               }
             }
 

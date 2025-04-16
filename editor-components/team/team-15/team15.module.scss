@@ -31,13 +31,6 @@
             object-fit: cover;
             transition: 1s;
           }
-
-          &:hover {
-            .image {
-              transform: scale(1.1);
-            }
-          }
-
           .overlay,
           .overlay2 {
             position: absolute;
@@ -77,9 +70,7 @@
               width: 100%;
               margin: var(--composer-gap-sm);
               color: white;
-              &:hover {
-                color: var(--composer-primary-color);
-              }
+              transition: letter-spacing 0.4s ease-in-out;
             }
             .labels {
               position: relative;
@@ -160,6 +151,24 @@
                   &:hover {
                     color: var(--composer-primary-color);
                   }
+                }
+              }
+            }
+          }
+
+          &[data-animation~="animate1"] { 
+            &:hover {
+              .image {
+                transform: scale(1.1);
+              }
+            }
+          }
+
+          &[data-animation~="animate2"] {
+            &:hover {
+              .card-content {
+                .title {
+                  letter-spacing: 4px;
                 }
               }
             }

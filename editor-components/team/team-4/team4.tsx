@@ -145,7 +145,7 @@ class Team4 extends Team {
       displayer: "Hover Animation Style",
       value: ["animate1"],
       additionalParams: {
-        selectItems: ["animate1"]
+        selectItems: ["animate1", "animate2", "animate3"]
       }
     });
   }
@@ -175,7 +175,7 @@ class Team4 extends Team {
               return (
                 (teamMemberName || teamMemberPosition || teamMember.image) && (
                   <Base.VerticalContent key={indexTeamMembers} className={this.decorateCSS("team-member")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                    {teamMember.image && <img className={this.decorateCSS("member-image")} src={teamMember.image} alt={teamMemberName} />}
+                    {teamMember.image && <img className={this.decorateCSS("member-image")} src={teamMember.image} alt={teamMemberName} data-animation={this.getPropValue("hoverAnimation").join(" ")} />}
                     <Base.VerticalContent className={this.decorateCSS("name-and-position")}>
                       {teamMemberName && <Base.H2 className={this.decorateCSS("team-member-name")}>{teamMember.name}</Base.H2>}
                       {teamMemberPosition && <Base.P className={this.decorateCSS("team-member-position")}>{teamMember.position}</Base.P>}

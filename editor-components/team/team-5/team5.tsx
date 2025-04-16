@@ -429,7 +429,7 @@ class Team5 extends Team {
       displayer: "Hover Animation Style",
       value: ["animate1"],
       additionalParams: {
-        selectItems: ["animate1"]
+        selectItems: ["animate1", "animate2", "animate3", "animate4"]
       }
     });
   }
@@ -457,15 +457,15 @@ class Team5 extends Team {
 
               return (
                 hasItem && (
-                  <Base.VerticalContent key={index} className={this.decorateCSS("egg-item")}>
-                    <div className={this.decorateCSS("image-container")}>
-                      {item.background && <img className={this.decorateCSS("background-image")} src={item.background} alt="" data-animation={this.getPropValue("hoverAnimation").join(" ")} />}
-                      {item.picture && <img className={this.decorateCSS("member-image")} src={item.picture} alt="" data-animation={this.getPropValue("hoverAnimation").join(" ")} />}
+                  <Base.VerticalContent key={index} className={this.decorateCSS("egg-item")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                    <div className={this.decorateCSS("image-container")} data-animation={this.getPropValue("hoverAnimation").join(" ")} >
+                      {item.background && <img className={this.decorateCSS("background-image")} src={item.background} alt="" />}
+                      {item.picture && <img className={this.decorateCSS("member-image")} src={item.picture} alt="" />}
                     </div>
-                    <Base.Row className={this.decorateCSS("icon-container")}>
+                    <Base.Row className={this.decorateCSS("icon-container")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                       {item.socials.map((value, i) => (
                         <ComposerLink key={i} path={value.url}>
-                          <ComposerIcon name={value.icon} />
+                          <ComposerIcon name={value.icon} propsIcon={{className: this.decorateCSS("icon")}} />
                         </ComposerLink>
                       ))}
                     </Base.Row>

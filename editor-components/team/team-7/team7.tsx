@@ -243,6 +243,15 @@ class Team7 extends Team {
       value: 4,
       max: 5,
     });
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2", "animate3"]
+      }
+    });
   }
 
   static getName(): string {
@@ -286,10 +295,10 @@ class Team7 extends Team {
                 const hasItem = itemName || itemPosition || item.image || item.icons.length > 0;
                 return (
                   hasItem && (
-                    <div key={indexCard} className={this.decorateCSS("card")}>
+                    <div key={indexCard} className={this.decorateCSS("card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                       <div className={this.decorateCSS("image-container")}>
                         {item.image && (
-                          <div className={this.decorateCSS("image-wrapper")}>
+                          <div className={this.decorateCSS("image-wrapper")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                             <img className={this.decorateCSS("person-image")} src={item.image} alt="" />
                           </div>
                         )}
