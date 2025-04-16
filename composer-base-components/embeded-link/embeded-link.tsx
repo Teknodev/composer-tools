@@ -15,7 +15,6 @@ export function ComposerEmbededLink({ path, className }: ComposerEmbededLinkProp
     container.innerHTML = "";
 
     const temp = document.createElement("div");
-    console.log("temp", temp)
     temp.innerHTML = path;
 
     Array.from(temp.childNodes).forEach((node) => {
