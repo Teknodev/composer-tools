@@ -359,6 +359,7 @@
       .wrapper {
         .carousel {
           .item {
+            height: fit-content;
             .main-content {
               .left {
                 padding: var(--composer-gap-md);
@@ -371,10 +372,6 @@
                   .description {
                     font-size: 1rem;
                     width: 100%;
-                  }
-                  .buttons {
-                    .button {
-                    }
                   }
                 }
               }
