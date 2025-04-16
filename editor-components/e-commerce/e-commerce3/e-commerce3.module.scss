@@ -1,4 +1,4 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
     background-color: var(--composer-html-background);
@@ -85,7 +85,7 @@
     }
 }
 
-@container (max-width: #{$composer-phone-width-lg}) { 
+@container (max-width: #{$composer-phone-width}) { 
     .tab-buttons {
         flex-direction: column;
     }
