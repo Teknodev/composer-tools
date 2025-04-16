@@ -219,10 +219,11 @@ class Header24 extends BaseHeader {
       },
     };
     const sliderRef = this.getComponentState("slider-ref");
+    const currentBackgroundImage =this.getPropValue("slider")[this.getComponentState("currentIndex")]?.getPropValue("background_image");
 
     return (
       <>
-      <Base.Container className={`${this.decorateCSS("container")} ${!this.getPropValue("slider")[this.getComponentState("currentIndex")]?.getPropValue("background_image") && this.decorateCSS("no-image")}`}>
+      <Base.Container className={`${this.decorateCSS("container")} ${!currentBackgroundImage && this.decorateCSS("no-image")}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             {slider.length > 0 && (
@@ -292,7 +293,7 @@ class Header24 extends BaseHeader {
                     {slider.length > 1 && (
                       <div className={this.decorateCSS("arrow-wrapper")}>
                         <div
-                          className={this.getPropValue("slider")[this.getComponentState("currentIndex")].getPropValue("background_image") ? this.decorateCSS("arrow-prev-wrapper") : this.decorateCSS("arrow-prev-wrapper-no-image")}
+                          className={currentBackgroundImage ? this.decorateCSS("arrow-prev-wrapper") : this.decorateCSS("arrow-prev-wrapper-no-image")}
                           onClick={() => {
                             sliderRef.current.slickPrev();
                           }}
@@ -302,7 +303,7 @@ class Header24 extends BaseHeader {
                           </div>
                         </div>
                         <div
-                          className={this.getPropValue("slider")[this.getComponentState("currentIndex")].getPropValue("background_image") ? this.decorateCSS("arrow-next-wrapper") : this.decorateCSS("arrow-next-wrapper-no-image")}
+                          className={currentBackgroundImage ? this.decorateCSS("arrow-next-wrapper") : this.decorateCSS("arrow-next-wrapper-no-image")}
                           onClick={() => {
                             sliderRef.current.slickNext();
                           }}
@@ -321,9 +322,9 @@ class Header24 extends BaseHeader {
           <div className={this.decorateCSS("dots-container")}>
           {slider.map((item,index:number)=>{
             return(
-              <div className={this.decorateCSS("dots")} onClick={()=>this.handleClickDot(index)}>
-              <div className={`${this.decorateCSS("number")} ${!this.getPropValue("slider")[this.getComponentState("currentIndex")]?.getPropValue("background_image") && this.decorateCSS("no-image")}`}>{(index + 1)}</div>
-              <div className={`${this.decorateCSS("line")} ${this.getComponentState("currentIndex") == index && this.decorateCSS("active")} ${!this.getPropValue("slider")[this.getComponentState("currentIndex")]?.getPropValue("background_image") && this.decorateCSS("no-image")}`}></div>
+            <div className={this.decorateCSS("dots")} onClick={()=>this.handleClickDot(index)}>
+              <div className={`${this.decorateCSS("number")} ${!currentBackgroundImage && this.decorateCSS("no-image")}`}>{(index + 1)}</div>
+              <div className={`${this.decorateCSS("line")} ${this.getComponentState("currentIndex") == index && this.decorateCSS("active")} ${!currentBackgroundImage && this.decorateCSS("no-image")}`}></div>
             </div>
             )
           })}
@@ -332,9 +333,9 @@ class Header24 extends BaseHeader {
         </Base.MaxContent>
         <div className={this.decorateCSS("background-wrapper")}>
         <div className={this.decorateCSS("background-container")} >
-            { this.getPropValue("slider")[this.getComponentState("currentIndex")]?.getPropValue("background_image") && (
+            {currentBackgroundImage && (
               <div className={this.decorateCSS("background-image-container")}>
-                <img src={this.getPropValue("slider")[this.getComponentState("currentIndex")].getPropValue("background_image")} alt={this.getPropValue("slider")[this.getComponentState("currentIndex")].getPropValue("background_image")} className={this.decorateCSS("background-image")} />
+                <img src={currentBackgroundImage} alt={currentBackgroundImage} className={this.decorateCSS("background-image")} />
               </div>
             )}
         </div> 
