@@ -10,8 +10,8 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 
 type Card = {
   image: string;
-  header: JSX.Element;
-  description: JSX.Element;
+  header: React.JSX.Element;
+  description: React.JSX.Element;
   link: string;
 };
 

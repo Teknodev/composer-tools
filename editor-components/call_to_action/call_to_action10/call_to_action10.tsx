@@ -7,8 +7,8 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 interface CardItem {
   cardIcon: string,
-  cardTitle: JSX.Element,
-  cardDescription: JSX.Element
+  cardTitle: React.JSX.Element,
+  cardDescription: React.JSX.Element
 }
 
 class CallToAction10Page extends BaseCallToAction {

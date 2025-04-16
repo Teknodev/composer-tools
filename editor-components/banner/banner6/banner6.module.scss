@@ -77,7 +77,7 @@
     }
 }
 
-@container (max-width : #{$composer-tablet-width-lg}) {
+@container (max-width : #{$composer-tablet-width}) {
     .container {
         .vector1 {
             left: 300px !important;
@@ -88,7 +88,7 @@
     }
 }
 
-@container (max-width : #{$composer-phone-width-lg}) { 
+@container (max-width : #{$composer-phone-width}) { 
     .container {
         .vector1, .vector2 {
             display: none;

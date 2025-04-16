@@ -8,12 +8,12 @@ import ComposerLanguage from "composer-tools/composer-base-components/language/l
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 interface Lane {
-  contact: JSX.Element;
-  news: JSX.Element;
+  contact: React.JSX.Element;
+  news: React.JSX.Element;
 }
 
 type Item = {
-  title: JSX.Element;
+  title: React.JSX.Element;
   navigate_to: string;
   menuType: string;
   sub_items: Item[];
@@ -28,6 +28,7 @@ interface Language {
   label: "code" | "name";
   icon: string;
   showLanguage: boolean;
+  showLocalizationAlways: boolean;
   showDivider: boolean;
 }
 
@@ -79,10 +80,16 @@ class Navbar3 extends BaseNavigator {
         },
         {
           type: "boolean",
+          key: "showLocalizationAlways",
+          displayer: "Show Localization Always",
+          value: true,
+        },
+        {
+          type: "boolean",
           key: "showLanguage",
           displayer: "Show Language",
           value: true,
-        },
+        },  
         {
           type: "boolean",
           key: "showDivider",
@@ -1151,9 +1158,9 @@ class Navbar3 extends BaseNavigator {
     this.setComponentState("subNavActiveIndex", null);
     this.setComponentState("subNavActive", null);
     this.setComponentState("changeBackground", false);
-
     this.setComponentState("slider-ref", React.createRef());
     this.setComponentState("isBigScreen", false);
+    this.setComponentState("navbarOverflowShow", false);
   }
 
   static getName(): string {
@@ -1168,13 +1175,16 @@ class Navbar3 extends BaseNavigator {
     }
     setTimeout(() => {
       this.setComponentState("hamburgerNavActive", true);
+      setTimeout(() => {
+        this.setComponentState("navbarOverflowShow", true);
+      }, 300)
     }, 100);
   };
 
   handleCloseMenu = () => {
     Base.Navigator.changeScrollBehaviour("auto");
     this.setComponentState("hamburgerNavActive", false);
-
+    this.setComponentState("navbarOverflowShow", false);
     setTimeout(() => {
       this.setComponentState("changeBackground", false);
     }, 200);
@@ -1227,6 +1237,8 @@ class Navbar3 extends BaseNavigator {
       this.castToString(lane.news) ||
       language.showLanguage;
 
+    const isBigScreen = this.getComponentState("isBigScreen");
+    const isVisible = (!isBigScreen && hamburgerNavActive)
     return (
       <>
         {laneContainer && (
@@ -1445,7 +1457,7 @@ class Navbar3 extends BaseNavigator {
 
         <Base.Navigator.Container
           position={position}
-          positionContainer={`${this.decorateCSS(
+          className={`${this.decorateCSS(
             "smallDeviceNavbarContainer"
           )} ${changeBackground ? this.decorateCSS("filledBackground") : ""}`}
           hamburgerNavActive={hamburgerNavActive}
@@ -1464,7 +1476,7 @@ class Navbar3 extends BaseNavigator {
             }`}
           >
             {currentLogo.image && (
-              <div className={this.decorateCSS("logo")}>
+              <div className={this.decorateCSS("logo")} onClick={() => this.handleCloseMenu()}>
                 <ComposerLink path={currentLogo.navigateTo}>
                   <img
                     src={currentLogo.image}
@@ -1473,7 +1485,7 @@ class Navbar3 extends BaseNavigator {
                 </ComposerLink>
               </div>
             )}
-
+            <div className={this.decorateCSS("mobileRight")}>
             {hamburgerNavActive ? (
               <ComposerIcon
                 name={this.getPropValue("closeIcon")}
@@ -1491,11 +1503,34 @@ class Navbar3 extends BaseNavigator {
                 }}
               />
             )}
+            {(language.showLocalizationAlways && language.showLanguage) && 
+              <div className={this.decorateCSS("loacalizationContainer")}>
+                <ComposerLanguage
+                  type="dropdown"
+                  title={language.label}
+                  icon={language.icon}
+                  dropdownButtonClassName={`${this.decorateCSS(
+                    "localization"
+                  )}`}
+                  dropdownLabelClassName={`${this.decorateCSS(
+                    "localizationLabel"
+                  )}`}
+                  iconClassName={this.decorateCSS("languageIcon")}
+                  dropdownItemClassName={this.decorateCSS("localizationItem")}
+                  dropdownContentClassName={this.decorateCSS(
+                    "localizationContent"
+                  )}
+                  divider={language.showDivider}
+                />
+              </div>            
+            }            
+            </div>
+
 
             <div
               className={`${this.decorateCSS("hamburgerNav")} ${
                 hamburgerNavActive ? this.decorateCSS("active") : ""
-              }`}
+              } ${this.getComponentState("navbarOverflowShow") ? this.decorateCSS("overflowShow") : ""}`}
             >
               <Base.Container
                 className={this.decorateCSS("hamburgerNavContainer")}
@@ -1523,6 +1558,7 @@ class Navbar3 extends BaseNavigator {
                                     className={`${this.decorateCSS(
                                       "hamburgerMenuItemTitle"
                                     )}`}
+                                    onClick={() => this.handleCloseMenu()}
                                   >
                                     {item.title}
                                   </span>
@@ -1582,6 +1618,7 @@ class Navbar3 extends BaseNavigator {
                                                 className={this.decorateCSS(
                                                   "hamburgerDropdownItemTitle"
                                                 )}
+                                                onClick={() => this.handleCloseMenu()}
                                               >
                                                 {subItem.title}
                                               </span>
@@ -1651,6 +1688,7 @@ class Navbar3 extends BaseNavigator {
                                                             className={this.decorateCSS(
                                                               "hamburgerSubSubmenuItemTitle"
                                                             )}
+                                                            onClick={() => this.handleCloseMenu()}
                                                           >
                                                             {subSubItem.title}
                                                           </span>
@@ -1669,7 +1707,7 @@ class Navbar3 extends BaseNavigator {
                           )
                       )}
 
-                        {language.showLanguage && (
+                        {(language.showLanguage && !language.showLocalizationAlways) && (
                           <ComposerLanguage
                             type="accordion"
                             title={language.label}
@@ -1694,10 +1732,9 @@ class Navbar3 extends BaseNavigator {
           </Base.MaxContent>
         </Base.Navigator.Container>
 
-        <div
-          className={`${this.decorateCSS("overlay")} ${
-            hamburgerNavActive ? this.decorateCSS("overlayActive") : ""
-          }`}
+        <Base.Overlay
+          clasName = {this.decorateCSS("overlay")}
+          isVisible = {isVisible}
           onClick={() => this.handleCloseMenu()}
         />
       </>

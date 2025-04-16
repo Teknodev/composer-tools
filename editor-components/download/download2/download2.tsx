@@ -8,9 +8,9 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
   icon: string;
-  device: JSX.Element;
-  platform: JSX.Element;
-  description: JSX.Element;
+  device: React.JSX.Element;
+  platform: React.JSX.Element;
+  description: React.JSX.Element;
   button: INPUTS.CastedButton;
 };
 

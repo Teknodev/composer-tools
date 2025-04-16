@@ -14,14 +14,14 @@ interface IAnimationProps {
 }
 
 interface SliderItem {
-  title: JSX.Element;
-  description: JSX.Element;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
   image: string;
   button: INPUTS.CastedButton;
 };
 
 interface TopContentItem {
-  background_text: JSX.Element;
+  background_text: React.JSX.Element;
   page_show: boolean;
 }
 

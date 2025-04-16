@@ -200,16 +200,16 @@ class Feature5 extends BaseFeature {
     const title = this.getPropValue("title", { as_string: true });
     const row1 = this.castToObject<{
       left_image: string;
-      title: JSX.Element;
+      title: React.JSX.Element;
       link: string;
     }>("row1");
     const row2 = this.castToObject<{
       first_item: {
-        description: JSX.Element;
+        description: React.JSX.Element;
         button: INPUTS.CastedButton;
       };
       second_item: {
-        text: JSX.Element;
+        text: React.JSX.Element;
         link: string;
       };
       third_item: {
@@ -221,17 +221,17 @@ class Feature5 extends BaseFeature {
     const row3 = this.castToObject<{
       image_and_subtitle_1: {
         image: string;
-        sub_title: JSX.Element;
+        sub_title: React.JSX.Element;
         link: string;
       };
       image_and_subtitle_2: {
         image: string;
-        sub_title: JSX.Element;
+        sub_title: React.JSX.Element;
         link: string;
       };
       image_and_subtitle_3: {
         image: string;
-        sub_title: JSX.Element;
+        sub_title: React.JSX.Element;
         link: string;
       };
     }>("row3");

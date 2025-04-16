@@ -5,12 +5,12 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
 
 type Card = {
-  sectionTitle: JSX.Element;
+  sectionTitle: React.JSX.Element;
   items: Item[];
 };
 type Item = {
-  title: JSX.Element;
-  description: JSX.Element;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
 };
 
 class Faq4 extends BaseFAQ {
