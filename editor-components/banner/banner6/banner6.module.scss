@@ -1,11 +1,10 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
     background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
     padding: calc(var(--composer-gap-xl) * 2.5) var(--composer-gap-xl) !important;
     position: relative;
     overflow: hidden;
-    //max-height: 65vh;
     .vector1 {
         position: absolute;
         top: -30px;
