@@ -1,4 +1,4 @@
-@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
+@use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
 .container {
   .max-content {    
     .card-title{
@@ -118,7 +118,7 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}){
+@container (max-width: #{$composer-tablet-width}){
   .container{
     .max-content{
       .card-child {

@@ -1,4 +1,4 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 @mixin flexCenter {
   display: flex;
@@ -83,7 +83,7 @@
                   letter-spacing: 10px;
                   overflow: hidden;
 
-                  > {
+                  > * {
                     height: 100%;
                     width: auto;
                     margin: 0;
@@ -302,7 +302,7 @@
   }
 }
 
-@container (max-width : #{$composer-desktop-width-sm}) {
+@container (max-width : #{$composer-tablet-width}) {
 
   .container {
     .content {

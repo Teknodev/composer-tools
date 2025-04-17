@@ -1,4 +1,4 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
   padding: var(--composer-gap-md) 0;
@@ -50,7 +50,7 @@
                 height: 100%;
               }
 
-              @container (max-width: #{$composer-tablet-width-lg}) {
+              @container (max-width: #{$composer-tablet-width}) {
                 padding: 0 var(--composer-gap-md);
               }
 

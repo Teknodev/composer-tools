@@ -1,4 +1,4 @@
-@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
+@use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
 
 .container {
     .max-content {
@@ -44,22 +44,6 @@
 
                 .description {
                     font-size: 1.5rem;
-                }
-            }
-        }
-    }
-}
-
-@container (max-width : #{$composer-tablet-width}) {
-    .container {
-        .max-content {
-            .content {
-                .title {
-                    font-size: 2rem;
-                }
-
-                .description {
-                    font-size: 1rem;
                 }
             }
         }

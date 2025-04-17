@@ -1,8 +1,8 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 $space: calc(var(--composer-gap-xl) * 2 + var(--composer-gap-md));
 $cardsmargintop: -300px;
-$logosmargintop: -$cardsmargintop / 2;
+$logosmargintop: calc(-1 * $cardsmargintop / 2);
 $circlepaddingbottom: calc(-1 * $cardsmargintop + var(--composer-gap-xl));
 
 .container {
@@ -173,7 +173,7 @@ $circlepaddingbottom: calc(-1 * $cardsmargintop + var(--composer-gap-xl));
 @container (max-width: #{$composer-tablet-width}) {
     $space : var(--composer-gap-xl);
     $cardsmargintop : -220px;
-    $logosmargintop : -$cardsmargintop / 3;
+    $logosmargintop : calc(-1 * $cardsmargintop / 3);
 
     .container {
         .max-content {
