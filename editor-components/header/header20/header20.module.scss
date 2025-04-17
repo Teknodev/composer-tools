@@ -1,8 +1,9 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
 @mixin smooth-transition($property: all, $duration: 0.3s, $timing-function: cubic-bezier(0.215, 0.61, 0.355, 1), $delay: 0s) {
   transition: $property $duration $timing-function $delay;
 }
 
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
 .container {
   position: relative;
@@ -307,7 +308,7 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
       .item {

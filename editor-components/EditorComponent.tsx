@@ -194,6 +194,7 @@ type AvailablePropTypes =
   | { type: "dateTime"; value: string ; additionalParams? : {mode?:string, timeInterval?:number, yearRange? : number, yearStart?: number}}
   | { type: "multiSelect"; value: string[] }
   | { type: "file"; value: string }
+  | { type: "embededLink"; value: string }
 
 export type TypeReactComponent = {
   type: string;
@@ -243,6 +244,7 @@ export enum CATEGORIES {
   HTTP_CODES = "HTTPCodes",
   BANNER = "banner",
   ECOMMERCE = "ecommerce",
+  SOCIAL = "social"
 }
 
 export function generateId(key: string): string {
@@ -421,6 +423,7 @@ export abstract class Component
           value={prop.value as string}
           props={this.getProps()}
           sanitizedHtml={sanitizedHtml}
+          componentId={this.id}
         />
       );
     };
@@ -776,6 +779,10 @@ export abstract class BaseFeature extends Component {
 export abstract class BaseECommerce extends Component {
   static category = CATEGORIES.ECOMMERCE;
 }
+export abstract class BaseSocial extends Component {
+  static category = CATEGORIES.SOCIAL;
+}
+
 export function generateAutoClassName(componentId: string, section: string){
   return `auto-generate-${componentId}-${section}`;
 };

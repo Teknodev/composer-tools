@@ -1,5 +1,7 @@
-@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
+@use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
 .container {
+  font-size: 5em;
+
   .max-content {
     display: flex;
     flex-direction: column;
@@ -120,6 +122,7 @@
 }
 @container (max-width: #{$composer-phone-width}){
   .container{
+    font-size: 1em;
     .max-content{
       .wrapper{
         .cards-box {

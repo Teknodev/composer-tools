@@ -1,4 +1,4 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 $content-background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
 
@@ -86,7 +86,7 @@ $content-background-color: color-mix(in srgb, var(--composer-html-background), v
   }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
       .page-content {
