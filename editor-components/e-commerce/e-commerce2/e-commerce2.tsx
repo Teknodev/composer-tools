@@ -1215,3 +1215,6 @@ class ECommerce2 extends BaseECommerce {
         );
     }
 }
+
+
+export default ECommerce2;
