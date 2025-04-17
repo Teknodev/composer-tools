@@ -12,8 +12,13 @@ type Card = {
   icon: string;
   description: React.JSX.Element;
   image: string;
-  buttons: INPUTS.CastedButton[];
+  buttons: Button[];
 };
+
+type Button = {
+  text: React.JSX.Element,
+  page: string,
+}
 
 class Feature4 extends BaseFeature {
   constructor(props?: any) {
@@ -100,7 +105,25 @@ class Feature4 extends BaseFeature {
               key: "buttons",
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON("button", "Button", "More Info", "", null, null, "White")
+                {
+                  type: "object",
+                  key: "button",
+                  displayer: "Button",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Text",
+                      value: "More Info",
+                    },
+                    {
+                      type: "page",
+                      key: "page",
+                      displayer: "URL",
+                      value: ""
+                    }
+                  ]
+                }
               ],
             },
           ],
@@ -150,7 +173,25 @@ class Feature4 extends BaseFeature {
               },
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON("button", "Button", "More Info", "", null, null, "White")
+                {
+                  type: "object",
+                  key: "button",
+                  displayer: "Button",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Text",
+                      value: "More Info",
+                    },
+                    {
+                      type: "page",
+                      key: "page",
+                      displayer: "URL",
+                      value: ""
+                    }
+                  ]
+                }
               ],
             },
           ],
@@ -200,7 +241,25 @@ class Feature4 extends BaseFeature {
               },
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON("button", "Button", "More Info", "", null, null, "White")
+                {
+                  type: "object",
+                  key: "button",
+                  displayer: "Button",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Text",
+                      value: "More Info",
+                    },
+                    {
+                      type: "page",
+                      key: "page",
+                      displayer: "URL",
+                      value: ""
+                    }
+                  ]
+                }
               ],
             },
           ],
@@ -250,7 +309,25 @@ class Feature4 extends BaseFeature {
               },
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON("button", "Button", "More Info", "", null, null, "White")
+                {
+                  type: "object",
+                  key: "button",
+                  displayer: "Button",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Text",
+                      value: "More Info",
+                    },
+                    {
+                      type: "page",
+                      key: "page",
+                      displayer: "URL",
+                      value: ""
+                    }
+                  ]
+                }
               ],
             },
           ],
@@ -300,7 +377,25 @@ class Feature4 extends BaseFeature {
               },
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON("button", "Button", "More Info", "", null, null, "White")
+                {
+                  type: "object",
+                  key: "button",
+                  displayer: "Button",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Text",
+                      value: "More Info",
+                    },
+                    {
+                      type: "page",
+                      key: "page",
+                      displayer: "URL",
+                      value: ""
+                    }
+                  ]
+                }
               ],
             },
           ],
@@ -337,20 +432,23 @@ class Feature4 extends BaseFeature {
                 {subtitleExist && (
                   <Base.SectionSubTitle className={`
                     ${this.decorateCSS("section-subtitle")}
-                    ${!!this.getPropValue("backgroundImage") ? this.decorateCSS("black") : ""}
+                    ${this.getPropValue("backgroundImage") ? this.decorateCSS("black") : ""}
                   `}>
                     {this.getPropValue("subtitle")}
                   </Base.SectionSubTitle>
                 )}
                 {titleExist && (
-                  <Base.SectionTitle className={this.decorateCSS("section-title")}>
+                  <Base.SectionTitle className={`
+                    ${this.decorateCSS("section-title")}
+                    ${this.getPropValue("backgroundImage") ? this.decorateCSS("black") : ""}
+                  `}>
                     {this.getPropValue("title")}
                   </Base.SectionTitle>
                 )}
                 {linkTextExist && (
                   <Base.Row className={this.decorateCSS("card-link-container")} >
                     <ComposerLink path={linkButton.url}>
-                      <Base.Button buttonType={linkButton.type} className={this.decorateCSS("featured-card-link")}>
+                      <Base.Button buttonType={linkButton.type} className={`${this.getPropValue("backgroundImage") ? this.decorateCSS("featured-card-link-with-image") : this.decorateCSS("featured-card-link")}`}>
                         {linkButton.text}
                       </Base.Button>
                     </ComposerLink>
@@ -375,7 +473,7 @@ class Feature4 extends BaseFeature {
                     key={index}
                     className={this.decorateCSS("card-item-count")}
                   >
-                    <div className={this.decorateCSS("vertical")}>
+                    <Base.VerticalContent className={this.decorateCSS("vertical")}>
                       {!!card.icon && (
                         <div className={this.decorateCSS("icon-container")}>
                           <ComposerIcon
@@ -394,14 +492,14 @@ class Feature4 extends BaseFeature {
                           {card.subtitle}
                         </Base.P>
                       )}
-                    </div>
+                    </Base.VerticalContent>
 
                     {(descExist || card?.buttons?.length > 0) && (
                       <div
                         className={this.decorateCSS("overlay")}
                         style={{ backgroundImage: `url(${card.image})` }}
                       >
-                        <div
+                        <Base.VerticalContent
                           className={`
                             ${this.decorateCSS("overlay-content")}
                             ${imageOverlay ? this.decorateCSS("apply-overlay") : ""}
@@ -421,19 +519,19 @@ class Feature4 extends BaseFeature {
                           {card?.buttons?.length > 0 && (
                             <div className={this.decorateCSS("overlay-links-container")}>
                               {card?.buttons.map(
-                                (item: INPUTS.CastedButton, index: number) => {
+                                (item: Button, index: number) => {
                                   if (!this.castToString(item.text)) return null;
 
                                   return (
                                     <Base.Button
-                                      buttonType={item.type}
+                                      buttonType={"Tertiary"}
                                       key={index}
                                       className={`
                                         ${this.decorateCSS("overlay-link")}
                                         ${card.image || imageOverlay ? this.decorateCSS("image-or-overlay-exist") : ""}
                                       `}
                                     >
-                                      <ComposerLink path={item.url}>
+                                      <ComposerLink path={item.page}>
                                         {item.text}
                                       </ComposerLink>
                                     </Base.Button>
@@ -442,7 +540,7 @@ class Feature4 extends BaseFeature {
                               )}
                             </div>
                           )}
-                        </div>
+                        </Base.VerticalContent>
                       </div>
                     )}
                   </div>
