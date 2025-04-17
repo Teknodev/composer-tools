@@ -1,62 +1,80 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
 .container {
-  width: 100%;
-  padding: 50px 0 50px 0;
   .max-content {
-    display: flex;
-    justify-content: space-around;
-    width: var(--composer-content-width);
-    margin: auto;
+    padding-bottom: 1.5rem;
     .stats1-page {
-      display: block;
       width: 100%;
-      padding: 20px 100px;
-      h1 {
-        text-align: center;
-        width: 100%;
-        font-weight: 800;
-        font-size: 30px;
-        line-height: 1.4;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: calc(5 * var(--composer-gap-xl));
+      flex: 1 1;
+      .left-container {
+        max-width: 100%;
+        
+        .subtitle,  .description,  .button-text-wrapper, .title {
+          content: "";
+        }
       }
-      h3 {
-        margin: 0 auto 0 auto;
-        text-align: center;
-        width: 45%;
-        font-weight: 100;
-        font-size: 18px;
-        line-height: 1.4;
-        margin-bottom: 80px;
-      }
-      .bottom-child {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 50px;
-        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-        width: 900px;
-        margin: 0 auto 0 auto;
-        border-radius: 20px;
-        padding: 40px;
-        .card {
-          width: 400px;
-          h4 {
-            text-align: center;
-            font-weight: 800;
-            font-size: 35px;
-            line-height: 1.4;
-            margin: 0;
+
+      .right-container {
+        margin-right: 1%;
+        padding: var(--composer-gap-xl);
+        margin: var(--composer-gap-xs) 0;
+
+        .content-div {
+          position: relative;
+          width: 500px;
+          height: 500px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 50%;
+
+          .content-item {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
+            border-radius: 50%;
           }
-          h5 {
+
+          .card {
+            position: absolute;
+            width: 100%;
+            max-width: 150px;
+            min-width: 100px;
+            aspect-ratio: 1;
+            max-height: 150px;
+            min-height: 100px;
+            overflow: hidden;
+            padding: var(--composer-gap-md);
+            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-primary-color) 5%);
+            border-radius: 50%;
+            box-shadow: var(--box-shadow-active);
+            display: flex;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            font-weight: 800;
-            font-size: 17px;
-            line-height: 1.4;
-            color: var(--composer-primary-color);
-            margin: 0 0 10px 0;
-          }
-          p {
-            text-align: center;
-            font-weight: 500;
-            font-size: 17px;
-            line-height: 1.4;
+            flex-direction: column;
+            transform: rotate(var(--angle)) translate(250px) rotate(calc(-1 * var(--angle)));
+
+            .counter-value {
+              font-size: 2rem;
+              margin: 0;
+              word-break: break-all;
+            }
+
+            .counter-label {
+              margin: 0;
+              color: var(--composer-font-color-primary);
+            }
           }
         }
       }
@@ -64,23 +82,68 @@
   }
 }
 
-@media only screen and (max-width: 1200px) {
+@container (max-width: #{$composer-tablet-width}) {
   .container {
-    flex-direction: column;
-    gap: 20px;
     .max-content {
-      width: var(--composer-content-width);
       .stats1-page {
-        text-align: center;
-        margin: 0;
-        padding: 0;
-        .bottom-child {
-          width: 100%;
-          display: block;
-          .card {
-            width: 100%;
-            h5 {
-              margin-top: 20px;
+        flex-direction: column;
+        gap: var(--composer-gap-lg);
+
+        .left-container {
+          max-width: 100%;
+        }
+
+        .right-container {
+          padding: 0;
+          margin: var(--composer-gap-lg) 0;
+
+          .content-div {
+            width: 500px !important;
+            height: 500px !important;
+
+            .card {
+              max-width: 130px;
+              min-width: 100px;
+              max-height: 130px;
+              min-height: 100px;
+              transform: rotate(var(--angle)) translate(250px) rotate(calc(-1 * var(--angle)));
+
+              .counter-value {
+                margin: 0;
+                font-size: 1rem !important;
+                text-align: center;
+              }
+
+              .counter-label {
+                margin: 0;
+                font-size: 1rem !important;
+                text-align: center;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .stats1-page {
+        .right-container {
+          margin-right: 5% !important;
+          margin: var(--composer-gap-sm) 0;
+          .content-div {
+            width: 250px !important;
+            height: 250px !important;
+
+            .card {
+              max-width: 100px;
+              min-width: 60px;
+              max-height: 100px;
+              min-height: 60px;
+              transform: rotate(var(--angle)) translate(120px) rotate(calc(-1 * var(--angle)));
             }
           }
         }

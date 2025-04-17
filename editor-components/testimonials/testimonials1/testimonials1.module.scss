@@ -1,162 +1,156 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 .container {
-  width: 100%;
-
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding: var(--composer-gap-xl);
   .max-content {
-    width: var(--composer-content-width);
-    margin: auto;
+    display: flex;
+    gap: var(--composer-gap-xl);
     .wrapper {
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      padding: 5%;
       width: 100%;
-      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-      .page{
-        max-width: 1200px;
+      .content-wrapper {
         width: 100%;
         display: flex;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
-        .card {
-          position: relative;
-          height: 200px;
-          width: 280px;
-          margin: 50px 30px;
-          .comment {
-            position: absolute;
-            z-index: 20;
-            color: white;
-            overflow: hidden;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 3;
-            text-transform: uppercase;
-            font-style: italic;
-            color: var(--composer-secondary-color);
-            top: 33px;
-            font-size: 16px;
-            width: 199px;
-            max-width: 285px;
-            left: 39px;
-          }
-          .comment-owner {
-            position: absolute;
-            z-index: 15;
-            font-style: italic;
-            color: var(--composer-secondary-color);
-            top: 120px;
-            left: 26%;
-            width: 164px;
-            font-size: 16px;
-            text-transform: uppercase;
-            font-weight: bolder;
-          }
-          .ballon-yellow-bottom1 {
+        align-items: center;
+        justify-content: center;
+        .content {
+          display: flex;
+          flex-direction: column;
+          gap: var(--composer-gap-xl);
+
+          &.content-no-image {
             width: 100%;
-            height: 62%;
-            position: absolute;
-            left: calc(100% - 16px);
-            top: calc(100% - 78px);
-            &:before {
-              width: 100%;
-              height: 100%;
-              -webkit-mask-repeat: no-repeat;
-              content: "";
-              display: block;
-              filter: hue-rotate(-24deg);
-              background-color: var(--composer-primary-color);
-              -webkit-mask-image: url(./feedback_ballon_yellow.svg);
-              -webkit-mask-size: contain;
+          }
+          > div {
+            > div {
+              > div {
+                display: flex;
+                align-items: stretch;
+                height: 100%;
+                > div {
+                  height: auto;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                }
+              }
             }
           }
-          .card-front1 {
-            z-index: 1;
-            width: 280px;
-            height: 177px;
-            left: 0;
-            top: 0;
-            &:before {
+          .items {
+            display: flex !important;
+            flex-direction: column;
+            gap: var(--composer-gap-md);
+            align-items: center;
+            .icons {
+              font-size: 3rem;
+              border-radius: 50%;
+              display: inline-block;
+              padding: var(--composer-gap-sm);
+              background-color: #d39121;
+              color: white;
+
+              &.icons-no-image {
+                color: var(--composer-font-color-secondary);
+                background-color: var(--composer-primary-color);
+              }
+            }
+
+            .longtext {
+              font-size: 1.5rem;
+              text-align: center;
+              color: black;
+
+              &.longtext-no-image {
+                color: var(--composer-font-color-primary);
+              }
+            }
+
+            .name {
               width: 100%;
-              height: 100%;
-              content: "";
-              display: block;
-              -webkit-mask-image: url(./feedback.svg);
-              -webkit-mask-size: cover;
-    
-              background-color: var(--composer-primary-color);
+              font-size: 1.5rem;
+              text-align: center;
+              color: #d39121;
+
+              &.name-no-image {
+                color: var(--composer-primary-color);
+              }
             }
           }
-          .card-back1 {
-            position: absolute;
-            left: -5%;
-            top: 5%;
+          .images {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: var(--composer-gap-md);
+            .image-container {
+              .image {
+                width: 50px;
+                height: 50px;
+                object-fit: cover;
+                border-radius: 50%;
+                transition: 0.3s;
+                filter: grayscale(100%);
+                &.active {
+                  transform: scale(1.1);
+                  filter: grayscale(0%);
+                }
+              }
+            }
+          }
+        }
+        .content {
+          width: 30%;
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    background-size: cover;
+    padding: var(--composer-gap-md) var(--composer-gap-lg) !important;
+    .max-content {
+      .wrapper {
+        .content-wrapper {
+          .content {
             width: 100%;
-            height: 100%;
-            z-index: -2;
-            &:before {
-              content: "";
-              display: block;
-              width: 100%;
-              height: 100%;
-              filter: hue-rotate(-19deg);
-              -webkit-mask-repeat: no-repeat;
-              background-color: var(--composer-primary-color);
-              -webkit-mask-image: url(./Feedback_1.svg);
-              -webkit-mask-size: contain;
+            .images {
+              flex-direction: row;
+              .image-container {
+                .image {
+                  width: 80px;
+                  height: 80px;
+                }
+              }
             }
-          }
-          .ballon-yellow-top1 {
-            width: 100%;
-            height: 42%;
-            position: absolute;
-            top: calc(0% - 59px);
-            z-index: -1;
-            &:before {
-              width: 100%;
-              height: 100%;
-              content: "";
-              mask-repeat: no-repeat;
-              display: block;
-              filter: hue-rotate(-24deg);
-              background-color: var(--composer-primary-color);
-              -webkit-mask-image: url(./Feedback_ballons2.svg);
-              -webkit-mask-size: contain;
-            }
-          }
-          .ballon-purple1 {
-            width: 100%;
-            height: 22%;
-            position: absolute;
-            left: calc(100% - 62px);
-            top: calc(100% - 18px);
-    
-            &:before {
-              width: 100%;
-              height: 100%;
-              mask-repeat: no-repeat;
-              content: "";
-              display: block;
-              background-color: var(--composer-secondary-color);
-              -webkit-mask-image: url(./Feedback_balloon_purple.svg);
-              -webkit-mask-size: contain;
-            }
-          }
-          .card-profile {
-            width: 73px;
-            position: absolute;
-            top: calc(0% - 16px);
-            left: calc(0% - 34px);
-            z-index: 99;
-            border-radius: 50%;
-            -webkit-box-shadow: 20px 18px 0px -8px RGBA(0, 0, 0, 0.19);
-            -moz-box-shadow: 20px 18px 0px -8px RGBA(0, 0, 0, 0.19);
-            box-shadow: 6px 5px 0px 0px RGBA(0 0 0 / 19%);
           }
         }
       }
     }
-    
   }
 }
 
-
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    background-size: cover;
+    padding: var(--composer-gap-md) !important;
+    .max-content {
+      .wrapper {
+        .content-wrapper {
+          .content {
+            width: 100%;
+            .images {
+              .image-container {
+                .image {
+                  width: 70px;
+                  height: 70px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

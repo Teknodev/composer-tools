@@ -1,95 +1,136 @@
+@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
 .container {
-  width: 100%;
-  padding: 20px 0 20px 0;
+  background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
   .max-content {
-    width: var(--composer-content-width);
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    margin: auto;
-
-    .feature-accordion {
       display: flex;
       flex-direction: column;
-      box-shadow: var(--composer-box-shadow);
-      border-top: 5px solid var(--composer-primary-color);
-      border-radius: 5px;
-      height: max-content;
-      padding: 0 20px;
-      min-width: 300px;
-      margin: 15px 0 15px 0;
-      .title {
-        display: block;
-        font-weight: bold;
-        max-width: 150px;
-        padding: 0;
-        margin-bottom: 5px;
-      }
-      hr {
-        display: block;
-        width: 25%;
-        margin: 0 30px 20px 0;
-        border: 1px solid var(--composer-primary-color);
-        padding: 0;
-      }
-      .accordion-wrapper {
-        border-radius: 8px;
+      gap: var(--composer-gap-md);
+      .carousel {
         overflow: hidden;
-        width: 600px;
-        margin: 0 auto;
-        padding-bottom: 50px;
-        .accordion {
-          width: 100%;
-          color: white;
-          overflow: hidden;
-          &:last-child {
-            margin-bottom: 0;
-          }
-          .accordion-label {
+        >div{
+          >div{
             display: flex;
-            -webkit-box-pack: justify;
-            justify-content: space-between;
-            font-weight: 600;
-            padding: 16px;
-            color: rgba(0, 0, 0, 0.85);
-            border-bottom: 1px rgba(0, 0, 0, 0.15) solid;
-            cursor: pointer;
-          }
-          .accordion-content {
-            max-height: 0;
-            padding: 0 16px;
-            background: white;
-            -webkit-transition: all 0.3s;
-            transition: all 0.3s;
-            p {
-              margin: 0;
-              color: var(--composer-primary-color);
-              font-size: 18px;
+            align-items: stretch;
+            >div{
+              height: auto;
+              margin-bottom: calc(2 * var(--composer-gap-md));
+              >div{
+                height: 100%;
+              }
             }
           }
-          input:checked + .accordion-label::after {
-            -webkit-transform: rotate(90deg);
-            transform: rotate(90deg);
+        }
+
+        .dots {
+          display: flex !important;
+          width: 100%;
+          gap: var(--composer-gap-sm);
+          list-style-type: none;
+          padding: 0;
+          bottom: 0px;
+          position: absolute;
+          justify-content: center;
+          li {
+            button {
+              border: none;
+              transition: 0.3s;
+              content-visibility: hidden;
+              background-color: var(--composer-html-background);
+              width: 10px;
+              height: 10px;
+              border-radius: var(--composer-border-radius-xl);
+              cursor: pointer;
+            }
           }
-          input:checked ~ .accordion-content {
-            max-height: 100vh;
-            padding: 16px;
+        }
+        .dots :global(li.slick-active) button {
+          padding: 0 var(--composer-gap-md);
+        }
+        .card {
+          height: 100%;
+          margin: 0px var(--composer-gap-md); 
+          position: relative;
+          display: flex !important;
+          flex-direction: column;
+          padding: var(--composer-gap-lg);
+          background-color: var(--composer-html-background);
+          border-radius: var(--composer-border-radius-xs);
+          gap: var(--composer-gap-md);
+          height: 100%;
+          .img-div {
+            margin: 0px;
+            .img {
+              border-radius: 50%;
+              width: 100%;
+              height: 100%;
+              max-width: 200px;
+              max-height: 200px;
+            }
           }
-          input[type="radio"] {
-            visibility: hidden;
+
+          .card-titles {
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-md);
+            margin: 0px;
+            .title {
+              font-size: 1rem;
+              color: var(--composer-font-color-primary);
+            }
+            .subtitle {
+              font-size: 1rem;
+              color: var(--composer-font-color-primary);
+            }
+          }
+          .link {
+            display: flex;
+            align-items: center;
+            gap: var(--composer-gap-xs);
+            cursor: pointer;
+
+            .icon {
+              font-size: 1rem;
+              min-width: fit-content;
+            }
+            .text {
+              font-size: 1rem;
+            }
+            &:hover {
+              color: var(--composer-primary-color);
+              transition: 1s;
+            }
+          }
+
+          &.active {
+            &::after {
+              content: "";
+              position: absolute;
+              width: calc(100% + var(--composer-gap-md) * 4);
+              height: 85%;
+              bottom: calc(-2 * var(--composer-gap-md));
+              left: calc(0px - 2 * var(--composer-gap-md));
+              background-color: var(--composer-primary-color);
+              z-index: -1;
+              opacity: 1;
+              border-radius: var(--composer-border-radius-xs);
+            }
           }
         }
       }
-    }
   }
 }
 
-@media only screen and (max-width: 800px) {
+@container (max-width: #{$composer-tablet-width}) {
   .container {
-    flex-direction: column;
-    gap: 20px;
     .max-content {
-      .feature-accordion {
+      .carousel {
+        .card {
+          &.active {
+            &::after {
+              visibility: hidden;
+            }
+          }
+        }
       }
     }
   }

@@ -1,0 +1,246 @@
+@use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss" as *;
+
+.container {
+  .max-content {
+    .content {
+      display: flex;
+      gap: calc(3 * var(--composer-gap-xl));
+      width: 100%;
+
+      .left-content {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+
+        &.left-content-single {
+          width: 100%;
+          gap: var(--composer-gap-md);
+        }
+
+        .subtitle, .title {
+          content: "";
+        }
+
+        .description {
+          color: var(--composer-font-color-primary);
+        }
+        .buttons {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          gap: var(--composer-gap-sm);
+
+          .button-box {
+            display: flex;
+          }
+        }
+      }
+
+      .right-content {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: var(--composer-gap-md);
+
+        &.right-content-single {
+          width: 100%;
+        }
+
+        .plan {
+          width: 100%;
+          background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+          padding: var(--composer-gap-sm) var(--composer-gap-md);
+          border-radius: var(--composer-gap-xs) !important;
+          display: flex;
+          flex-direction: column;
+          transition: all 0.5s ease;
+          box-shadow: var(--box-shadow-active);
+          color: var(--composer-font-color-primary);
+          cursor: pointer;
+
+          &.active {
+            background: var(--composer-primary-color);
+            gap: var(--composer-gap-sm);
+
+            .plan-price-box,
+            .plan-description {
+              max-height: 250px;
+              overflow: auto;
+              padding: var(--composer-gap-md) 0;
+              opacity: 1;
+            }
+
+            .plan-description,
+            .price-description {
+              color: var(--composer-font-color-secondary);
+              text-align: left;
+            }
+
+            .plan-title,
+            .price {
+              color: var(--composer-font-color-secondary);
+              transition: color 0.5s ease;
+            }
+
+            .plan-upper {
+              margin: 0;
+
+              .icon-box {
+                .icon {
+                  content: "";
+                }
+              }
+            }
+          }
+
+          .plan-upper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .plan-title {
+              margin: 0;
+              transition: color 0.5s ease;
+            }
+
+            .icon-box,
+            .icon-box-active {
+              color: var(--composer-primary-color);
+              background-color: var(--composer-html-background);
+              width: 20px;
+              height: 20px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              border-radius: var(--composer-border-radius-xl);
+
+              .icon {
+                font-size: 1rem;
+              }
+            }
+
+            .icon-box-active {
+              background-color: var(--composer-font-color-secondary);
+              color: var(--composer-primary-color);
+              .icon {
+                content: "";
+              }
+            }
+          }
+
+          .plan-price-box,
+          .plan-description {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: all 0.5s ease, opacity 0.2s ease;
+            margin: 0;
+          }
+
+          .plan:not(.active) .plan-price-box {
+            opacity: 0;
+            pointer-events: none;
+          }
+
+          .plan.active .plan-price-box {
+            opacity: 1;
+          }
+
+          .plan-upper {
+            padding: var(--composer-gap-sm) 0;
+          }
+
+          .plan-price-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .labels {
+              display: flex;
+              align-items: center;
+              gap: var(--composer-gap-sm);
+
+              .price {
+                font-size: 2rem;
+                transition: color 0.5s ease;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    position: relative;
+
+    .max-content {
+      .content {
+        flex-direction: column;
+        gap: var(--composer-gap-lg) !important;
+
+        .left-content,
+        .right-content {
+          max-width: unset;
+        }
+
+        .left-content {
+          width: 100%;
+          text-align: left;
+
+          .buttons,
+          .button-box {
+            margin: auto;
+          }
+          .buttons {
+            .button-box {
+              width: fit-content;
+            }
+          }
+        }
+        .right-content {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    position: relative;
+    justify-content: space-between;
+
+    .max-content {
+      .content {
+        flex-direction: column;
+        gap: var(--composer-gap-md);
+        align-items: center;
+
+        .left-content {
+          .buttons {
+            justify-content: center;
+          }
+        }
+        .right-content {
+          width: 100%;
+
+          .plan {
+            .plan-price-box {
+              display: flex;
+
+              .labels {
+                .price {
+                  font-size: 1rem;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

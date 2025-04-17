@@ -1,40 +1,110 @@
+@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
+
 .container {
   width: 100%;
   display: flex;
-  justify-content: space-around;
-  padding: 20px 0 20px 0;
-  box-shadow: var(--composer-box-shadow);
+  flex-direction: column;
+  gap: var(--composer-gap-md);
+  background-color: var(--composer-html-background);
 
-  .max-content {
-    width: var(--composer-content-width);
-    display: flex;
-    justify-content: center;
-    margin: auto;
-
-    .footer-list-page {
-      display: block;
-      h2 {
-        width: max-content;
-        margin: 40px auto 20px auto;
-      }
-      .item-div {
+  .first-container {
+    padding: var(--composer-gap-md) var(--composer-gap-xl);
+    .first-max-content {
+      .header {
         display: flex;
-        flex-direction: row;
-        .list-group {
-          border-radius: 5px;
-          display: block;
-          margin: 15px 0 0 0;
-          width: 250px;
-          list-style-type: circle;
-          padding: 0 100px 0 30px;
-          .list-item {
-            transition: all 0.5s;
-            text-align: left;
-            width: 200px;
-            margin-top: 10px;
-            &:hover {
-              padding-left: 5px;
-              color: var(--composer-primary-color);
+        justify-content: space-between;
+        align-items: start;
+        width: 100%;
+        gap: var(--composer-gap-md);
+
+        .left {
+          .title{
+            content: "";
+          }
+          .subtitle{
+            color: var(--composer-font-color-primary);
+            font-size: 1.5rem;
+          }
+          &.left-full {
+            width: 100%;
+          }
+        }
+
+        .right {
+          min-width: 10%;
+          display: flex;
+          justify-content: end;
+
+          .button{
+            content: "";
+          }
+        }
+
+        &.center {
+          flex-direction: column;
+          align-items: center;
+
+          .right {
+            justify-content: center;
+            >div {
+              content: "";
+              display: flex;
+              justify-content: center;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .line {
+    border-top: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.5);
+  }
+
+  .second-container {
+    padding: var(--composer-gap-md) var(--composer-gap-xl);
+    .second-max-content {
+      .bottom {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+
+        .links,
+        .footer-text {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          color: var(--composer-font-color-primary);
+        }
+
+        .links {
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--composer-gap-md);
+        }
+
+        .footer-text {
+          justify-content: flex-end;
+        }
+
+        .links {
+          .link-element {
+            .link-text {
+              transition: all 0.3s ease;
+              
+              &[data-animation~="animate1"]:hover {
+                color: var(--composer-primary-color);
+              }
+
+              &[data-animation~="animate2"]:hover {
+                transform: translateY(-3px);
+                color: var(--composer-primary-color);
+              }
+
+              &[data-animation~="animate3"]:hover {
+                transform: scale(1.1);
+                color: var(--composer-primary-color);
+              }
             }
           }
         }
@@ -43,16 +113,126 @@
   }
 }
 
-@media only screen and (max-width: 800px) {
+@container (max-width: #{$composer-tablet-width}) {
   .container {
-    flex-direction: column;
-    gap: 20px;
-    .max-content {
-      .footer-list-page {
-        text-align: center;
-        width: 100%;
-        margin: 0;
+    .first-container {
+      padding: var(--composer-gap-sm) var(--composer-gap-lg);
+      .first-max-content {
+        .header {
+          .left {
+            .title {
+              font-size: 2.5rem;
+            }
+          }
+
+          &.center {
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-md);
+          }
+        }
       }
+    }
+
+    .line {
+      border-top: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.5);
+    }
+
+    .second-container {
+      padding: var(--composer-gap-sm) var(--composer-gap-lg);
+      .second-max-content {
+        .bottom {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          width: 100%;
+
+          .links,
+          .footer-text {
+            flex: 1;
+            display: flex;
+            align-items: center;
+          }
+
+          .links {
+            gap: var(--composer-gap-md);
+
+            .link-element {
+              .link-text {
+                color: var(--composer-font-color-primary);
+                font-size: 1rem;
+                transition: color 0.3s ease;
+              }
+
+              &.has-path .link-text {
+                color: var(--composer-primary-color);
+              }
+            }
+
+          }
+
+          .footer-text {
+            justify-content: flex-start;
+            color: var(--composer-font-color-primary);
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .first-container {
+      padding: var(--composer-gap-md);
+      .first-max-content {
+        .header {
+          flex-direction: column;
+          gap: var(--composer-gap-sm);
+          align-items: center;
+          .left {
+            width: 100%;
+            align-items: center;
+            .subtitle{
+              text-align: center;
+            }
+
+            .title {
+              font-size: 2rem;
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
+
+    .second-container {
+      padding: var(--composer-gap-md);
+      .second-max-content {
+        .bottom {
+          align-items: center;
+          .links {
+            justify-content: center;
+            .link-element{
+              .link-text{
+                text-align: center;
+              }
+            }
+
+            &.center {
+              justify-content: center;
+            }
+          }
+          .footer-text{
+            text-align: center;
+          }
+
+        }
+      }
+    }
+
+    .line {
+      border-top: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.5);
     }
   }
 }

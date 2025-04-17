@@ -1,0 +1,139 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+  position: relative;
+  .max-content {
+    height: 100vh;
+    .wrapper {
+      background-color: color-mix(in srgb,var(--composer-html-background), var(--composer-font-color-primary) 5%);
+      display: flex;
+      gap: var(--composer-gap-xl);
+      border-radius: var(--composer-border-radius-md);
+      height: 100%;
+      align-items: flex-start;
+      .title-container {
+        position: sticky;
+        z-index: 2;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding: var(--composer-gap-xl) var(--composer-gap-md);
+        width: 100%;
+        .title {
+          content: "";
+        }
+      }
+      .cards-container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        overflow: auto;
+        width: 100%;
+        .card {
+          display: flex;
+          flex-direction: column;
+          gap: var(--composer-gap-md);
+          height: 100%;
+          min-height: 100%;
+          padding: var(--composer-gap-xl);
+          opacity: 1;
+          transition: 500ms;
+          position: relative;
+          width: 100%;
+          margin: 0 auto;
+        
+          &.show {
+            opacity: 1;
+          }
+          .card-inner{
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-md);
+            .card-header {
+              display: flex;
+              justify-content: center;
+              flex-direction: column;
+              gap: var(--composer-gap-md);
+              .icon-container{
+                display: flex;
+                flex-wrap: wrap;
+                .icon{
+                  font-size: 1.5rem;
+                  color: var(--composer-font-color-primary);
+                }
+              }
+          
+              .card-title-container {
+                display: flex;
+                align-items: center;
+                gap: var(--composer-gap-md);
+                .card-title {
+                  font-size: 2rem;
+                  color: var(--composer-font-color-primary);
+                }
+                .card-number {
+                  font-size: 1rem;
+                  color: var(--composer-font-color-primary);
+                }
+              }
+            }
+          
+            .description-container {
+              .description {
+                font-size: 1.5rem;
+                color: var(--composer-font-color-primary);
+              }
+            }
+          
+          }
+        }
+      }
+    }
+    .buttons-container {
+      left: 0px;
+      width: 100%;
+      position:absolute;
+      display: flex;
+      justify-content: center;
+      bottom: 30px;
+      .button {
+        content: "";
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container{
+    .max-content{
+      .wrapper {
+        flex-direction: column;
+        gap: var(--composer-gap-md);
+        .title-container {
+          padding: var(--composer-gap-md);
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container{
+    .max-content{
+      .wrapper{
+        .title-container {
+          padding: var(--composer-gap-sm);
+          .title {
+            font-size: 3rem;
+          }
+        }
+        .cards-container{
+          .card{
+            padding: var(--composer-gap-md);
+          }
+        }
+      }
+    }
+  }
+}

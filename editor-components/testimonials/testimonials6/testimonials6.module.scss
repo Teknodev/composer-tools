@@ -1,72 +1,67 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 .container {
-  width: 100%;
-  padding: 50px 0 50px 0;
-  box-shadow: var(--composer-box-shadow);
-  .max-content {
-    width: var(--composer-content-width);
+  .maxContent {
     display: flex;
-    justify-content: space-around;
-    margin: auto;
-
-    .testimonials6 {
-      display: block;
-      width: 100%;
-      h1 {
-        text-align: center;
-        font-weight: 800;
-        line-height: 1.4;
-        font-size: 40px;
-        margin-bottom: 50px;
-      }
-      .card-child {
+    flex-direction: column;
+    gap: calc(var(--composer-gap-lg) * 2);
+    .title {
+      margin: 0px;
+    }
+    .cardContainer {
+      .card {
+        border: solid 1px rgba(var(--composer-font-color-primary-rgb), 0.5);
+        border-radius: var(--composer-border-radius-lg);
+        padding: var(--composer-gap-xl) var(--composer-gap-lg);
         display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        .card {
-          display: grid;
-          margin-bottom: 20px;
-          margin-left: 20px;
-          min-width: 300px;
-          max-width: 300px;
-          height: max-content;
-          border-radius: 20px;
-          background-color: white;
-          box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-          padding: 20px;
-
-          .profile {
+        flex-direction: column;
+        gap: var(--composer-gap-md);
+        background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+        .description {
+          margin: 0px;
+          color: var(--composer-font-color-primary);
+        }
+        .line {
+          width: 100%;
+          height: 1px;
+          border-bottom: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.2);
+        }
+        .bottomContainer {
+          display: flex;
+          gap: var(--composer-gap-md);
+          .image {
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+          }
+          .person {
             display: flex;
-            margin-bottom: 20px;
-            img {
-              border-radius: 100%;
+            flex-direction: column;
+            flex: 1;
+            .name {
+              color: var(--composer-font-color-primary);
+              font-size: 1rem;
             }
-            .profile-text {
-              margin-left: 20px;
-              h2 {
-                font-weight: 600;
-                font-size: 20px;
-                margin-top: 3px;
-                margin-bottom: 0;
-                margin-left: 0;
-                margin-right: 0;
-              }
-              p {
-                margin-top: 3px;
-                margin-bottom: 0;
-                margin-left: 0;
-                margin-right: 0;
-                font-size: 15px;
-                text-transform: uppercase;
-              }
+            .personTitle {
+              font-size: 1rem;
+              color: var(--composer-tertiary-color);
             }
           }
-          span {
-            font-weight: 200;
-            font-size: 15px;
-            margin-top: 20px;
-            margin-bottom: 40px;
-            margin-left: 0;
-            margin-right: 0;
+          .star {
+            .icon {
+              color: var(--composer-primary-color);
+              font-size: 1rem;
+            }
+          }
+        }
+        &:hover {
+          border: solid 1px var(--composer-primary-color);
+          .bottomContainer {
+            .person {
+              .personTitle {
+                color: var(--composer-primary-color);
+              }
+            }
           }
         }
       }
@@ -74,16 +69,12 @@
   }
 }
 
-@media only screen and (max-width: 800px) {
+@container (max-width: #{$composer-phone-width}) {
   .container {
-    flex-direction: column;
-    gap: 20px;
-    .max-content {
-      .testimonials6 {
-        text-align: center;
-        margin: 0;
-        h1 {
-          width: 100%;
+    .maxContent {
+      .cardContainer {
+        .card {
+          padding: var(--composer-gap-lg) var(--composer-gap-md);
         }
       }
     }

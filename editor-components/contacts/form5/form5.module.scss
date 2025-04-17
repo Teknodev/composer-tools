@@ -1,0 +1,153 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+  .max-content {
+    .wrapper {
+      .texts {
+        content: "";
+      }
+
+      .input-items {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 auto;
+        width: 100%;
+
+        .form {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: var(--composer-gap-md);
+
+          .inputs {
+            display: flex;
+            position: relative;
+            width: 100%;
+            justify-content: center;
+            gap: calc(2 * var(--composer-gap-xl));
+          }
+
+          .first-inputs,
+          .second-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-lg);
+            width: 100%;
+
+            .input-container {
+              position: relative;
+
+              .placeholder {
+                position: absolute;
+                left: var(--composer-gap-xs);
+                font-size: 1.5rem;
+                bottom: var(--composer-gap-md);
+                transition: all 0.2s ease;
+                color: var(--composer-font-color-primary);
+              }
+
+              .error-message {
+                color: var(--composer-danger-color);
+                font-size: 1rem;
+                position: absolute;
+                left: 0;
+                bottom: calc(-1 * var(--composer-gap-md));
+              }
+            }
+          }
+
+          .input {
+            border: none;
+            border-bottom: 1px solid var(--composer-font-color-primary);
+            height: var(--composer-gap-lg);
+            margin-bottom: var(--composer-gap-sm);
+            outline: none;
+            width: 100%;
+            background-color: transparent;
+            color: var(--composer-font-color-primary);
+            transform: translateY(var(--composer-gap-xs));
+          }
+
+          .input:focus + .placeholder,
+          .input:not(:placeholder-shown) + .placeholder {
+            bottom: var(--composer-gap-lg);
+          }
+
+          .select {
+            border: none;
+            border-bottom: 1px solid var(--composer-font-color-primary);
+            height: var(--composer-gap-lg);
+            outline: none;
+            width: 100%;
+            background-color: transparent;
+            font-size: 1.5rem;
+            color: var(--composer-font-color-primary);
+            margin-bottom: var(--composer-gap-sm);
+            transform: translateY(var(--composer-gap-xs));
+
+            option {
+              background-color: var(--composer-font-color-secondary);
+              color: var(--composer-font-color-primary);
+              padding: var(--composer-gap-sm);
+            }
+          }
+
+          .select:focus + .placeholder,
+          .select:valid + .placeholder {
+            bottom: 45px;
+          }
+
+          .select:invalid + .placeholder {
+            bottom: 25px;
+          }
+        }
+      }
+
+      .submit-button {
+        align-self: flex-end;
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .wrapper {
+        .input-items {
+          .form {
+            .inputs {
+              padding: 0;
+            }
+          }
+
+          .submit-button {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .wrapper {
+        .input-items {
+          .form {
+            .inputs {
+              flex-direction: column;
+              gap: var(--composer-gap-lg);
+            }
+          }
+
+          .submit-button {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}

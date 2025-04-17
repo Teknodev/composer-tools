@@ -1,0 +1,29 @@
+.container {
+    .max-content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-xl);
+        .heading {
+            .subtitle {content: "";}
+            .title {content: "";}
+            .description {content: "";}
+        }
+        .items {
+            .card {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: var(--composer-gap-md);
+                .image {
+                    object-fit: contain;
+                    width: 160px;
+                    height: 160px;
+                }
+                .text {
+                    flex: 1;
+                    color: var(--composer-font-color-primary);
+                }
+            }
+        }
+    }
+}

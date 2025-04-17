@@ -1,73 +1,17 @@
 import * as React from "react";
 import styles from "./team4.module.scss";
-import { Team, TypeUsableComponentProps } from "../../EditorComponent";
-import ComposerLink from "../../../composer-base-components/Link/link";
+import { Team } from "../../EditorComponent";
+import { Base } from "../../../composer-base-components/base/base";
 
-type SocialMedia = {
-  url: string;
-  icon: string;
-};
 type TeamMember = {
   image: string;
-  name: string;
-  position: string;
-  socialMedias: SocialMedia[];
+  name: React.JSX.Element;
+  position: React.JSX.Element;
+  platforms: { icon: string; url: string }[];
 };
 class Team4 extends Team {
   constructor(props?: any) {
     super(props, styles);
-
-    let placeholder: TypeUsableComponentProps = {
-      type: "object",
-      key: "teamMember",
-      displayer: "Team Member",
-      value: [
-        {
-          type: "image",
-          key: "image",
-          displayer: "Image",
-          value: "",
-        },
-        {
-          type: "string",
-          key: "name",
-          displayer: "Name",
-          value: "Jason Covereye",
-        },
-        {
-          type: "string",
-          key: "position",
-          displayer: "Position",
-          value: "Ceo",
-        },
-        {
-          type: "array",
-          key: "socialMedias",
-          displayer: "Social Medias",
-          value: [
-            {
-              type: "object",
-              key: "media",
-              displayer: "Media",
-              value: [
-                {
-                  type: "image",
-                  key: "icon",
-                  displayer: "Icon",
-                  value: "",
-                },
-                {
-                  type: "string",
-                  key: "url",
-                  displayer: "URL",
-                  value: "",
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    };
 
     this.addProp({
       type: "string",
@@ -79,92 +23,161 @@ class Team4 extends Team {
       type: "string",
       key: "description",
       displayer: "Description",
-      value:
-        "Mauris eleifend, justo at blandit finibus, ante risus bibendum dolor, quis pellentesque odio dui id nisi. ",
+      value: "Learn about the talented and dedicated professionals who make up our team and drive our success.",
     });
     this.addProp({
       type: "array",
       key: "teamMembers",
       displayer: "Team Members",
       value: [
-        JSON.parse(JSON.stringify(placeholder)),
-        JSON.parse(JSON.stringify(placeholder)),
-        JSON.parse(JSON.stringify(placeholder)),
+        {
+          type: "object",
+          key: "teamMember",
+          displayer: "Team Member",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437087c68c3c2002cd307d3?alt=media&timestamp=1719502692150",
+            },
+            {
+              type: "string",
+              key: "name",
+              displayer: "Name",
+              value: "Matilda Jarod",
+            },
+            {
+              type: "string",
+              key: "position",
+              displayer: "Position",
+              value: "Ceo",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "teamMember",
+          displayer: "Team Member",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437087c68c3c2002cd307d2?alt=media&timestamp=1719502692150",
+            },
+            {
+              type: "string",
+              key: "name",
+              displayer: "Name",
+              value: "Reagan Colby",
+            },
+            {
+              type: "string",
+              key: "position",
+              displayer: "Position",
+              value: "Web Developer",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "teamMember",
+          displayer: "Team Member",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437087c68c3c2002cd307d1?alt=media&timestamp=1719502692150",
+            },
+            {
+              type: "string",
+              key: "name",
+              displayer: "Name",
+              value: "Genevieve Sara",
+            },
+            {
+              type: "string",
+              key: "position",
+              displayer: "Position",
+              value: "UI/UX Developer",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "teamMember",
+          displayer: "Team Member",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437087c68c3c2002cd307d3?alt=media&timestamp=1719502692150",
+            },
+            {
+              type: "string",
+              key: "name",
+              displayer: "Name",
+              value: "Matilda Jarod",
+            },
+            {
+              type: "string",
+              key: "position",
+              displayer: "Position",
+              value: "Ceo",
+            },
+          ],
+        },
       ],
+    });
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item count in a row",
+      value: 4,
+      max: 4,
     });
   }
 
-  getName(): string {
-    return "Classic Team List";
+  static getName(): string {
+    return "Team 4";
   }
 
   render() {
+    const titleExist = this.castToString(this.getPropValue("title"));
+    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const hasHeaderExist = titleExist || descriptionExist;
     return (
-      <div
-        className={this.decorateCSS("container")}
-        
-      >
-        <div className={this.decorateCSS("max-content")}>
-          <span className={this.decorateCSS("title")} >
-            {this.getPropValue("title")}
-          </span>
-          <p
-            className={this.decorateCSS("description")}
-            
-          >
-            {this.getPropValue("description")}
-          </p>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          {hasHeaderExist && (
+            <Base.VerticalContent className={this.decorateCSS("up-content")}>
+              {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+              {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+            </Base.VerticalContent>
+          )}
 
-          <div
-            className={this.decorateCSS("team-members")}
-            
-          >
-            {this.castToObject<TeamMember[]>("teamMembers").map(
-              (teamMember: TeamMember, index: number) => (
-                <div
-                  key={index}
-                  className={this.decorateCSS("team-member")}
-                  
-                >
-                  <img
-                    
-                    className={this.decorateCSS("member-image")}
-                    src={teamMember.image}
-                    alt={teamMember.name}
-                  />
-                  <div
-                    
-                    className={this.decorateCSS("name-and-position")}
-                  >
-                    <span>{teamMember.name}</span>
-                    <p>{teamMember.position}</p>
-                  </div>
-
-                  <div
-                    
-                    className={this.decorateCSS("social-media-list")}
-                  >
-                    {teamMember.socialMedias.map(
-                      (socialMedia: SocialMedia, index: number) => (
-                        <ComposerLink path={socialMedia.url}>
-                          <a>
-                            <img
-                              
-                              className={this.decorateCSS("social-media-image")}
-                              src={socialMedia.icon}
-                              key={index}
-                            />
-                          </a>
-                        </ComposerLink>
-                      )
-                    )}
-                  </div>
-                </div>
-              )
-            )}
-          </div>
-        </div>
-      </div>
+          <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("team-members")}>
+            {this.castToObject<TeamMember[]>("teamMembers").map((teamMember: TeamMember, indexTeamMembers: number) => {
+              const teamMemberName = this.castToString(teamMember.name);
+              const teamMemberPosition = this.castToString(teamMember.position);
+              return (
+                (teamMemberName || teamMemberPosition || teamMember.image) && (
+                  <Base.VerticalContent key={indexTeamMembers} className={this.decorateCSS("team-member")}>
+                    {teamMember.image && <img className={this.decorateCSS("member-image")} src={teamMember.image} alt={teamMemberName} />}
+                    <Base.VerticalContent className={this.decorateCSS("name-and-position")}>
+                      {teamMemberName && <Base.H2 className={this.decorateCSS("team-member-name")}>{teamMember.name}</Base.H2>}
+                      {teamMemberPosition && <Base.P className={this.decorateCSS("team-member-position")}>{teamMember.position}</Base.P>}
+                    </Base.VerticalContent>
+                  </Base.VerticalContent>
+                )
+              );
+            })}
+          </Base.ListGrid>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

@@ -1,0 +1,241 @@
+@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
+
+.container {
+  padding: 0;
+  .page {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    height: auto;
+
+      &.image {
+        min-height: 500px;
+      }
+
+      &.no-image {
+        min-height: 250px;
+      }
+    .background-image {
+      width: 100%;
+      object-fit: cover;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+
+    .overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      z-index: 1;
+      background-color: var(--composer-overlay-color);
+    }
+
+    .max-content {
+      width: 100vw;
+      display: flex;
+      overflow: hidden;
+      position: relative;
+      height: auto;
+      min-height: 250px;
+      width: 100%;
+
+    &.image {
+      align-items: center;
+      min-height: 500px;
+
+      .middle-container {
+        align-items: center;
+        .title,
+        .description {
+          text-align: center;
+        }
+      }
+      .hover-container {
+        align-items: center;
+      }
+      .card-title,
+      .card-description {
+        text-align: center;
+      }
+      .buttons-container {
+        align-items: center;
+      }
+    }
+  }
+
+      .middle-container {
+        padding: var(--composer-gap-md) var(--composer-gap-xl);
+        z-index: 3;
+        width: 100%;
+        min-width: 100%;
+        min-height: 100%;
+        height: auto;
+        justify-content: center;
+        position: relative;
+        bottom: 0;
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 0.5s ease 0.2s, transform 0.5s ease 0.3s;
+
+        .title { 
+          &.image{
+            color: white;
+          }
+        }
+
+        .description {
+          font-size: 1.5rem;
+          &.image{
+            color: white;
+          }
+        }
+      }
+
+      .hover-container {
+        padding: var(--composer-gap-md) var(--composer-gap-xl);
+        z-index: 2;
+        width: 100vw;
+        min-width: 100%;
+        min-height: 100%;
+        height: auto;
+        justify-content: center;
+        top: 0;
+        opacity: 0;
+        transition: opacity 0.5s;
+        display: flex;
+        flex-direction: column;
+        transform: translateX(-100%);
+        width: fit-content;
+        align-items: center;
+        transition: opacity 0.5s ease;
+
+        .card-title {
+          &.image{
+            color: white;
+          }
+        }
+        .card-description {
+          &.image{
+            color: white;
+          }
+        }
+
+        .buttons-container {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: var(--composer-gap-sm);
+
+          .image-container {
+            width: 170px;
+            height: 50px;
+
+            .image {
+              width: 100%;
+              height: 100%;
+              cursor: pointer;
+              object-fit: cover;
+              border-radius: var(--composer-border-radius-sm);
+            }
+          }
+
+          .button {
+            .icon, .text {
+              content: "";
+            }
+          }
+        }
+      }
+
+      &:hover {
+        .left-container {
+          left: calc(-50% - 200px);
+          opacity: 0;
+        }
+
+        .right-container {
+          transform: translatex(-50vw);
+          opacity: 0;
+        }
+
+        .middle-container {
+          opacity: 0;
+          pointer-events: none;
+          transform: translateY(var(--composer-gap-xl));
+          transition: opacity 0.5s ease 0.2s, transform 0.5s ease 0.2s;
+        }
+
+        .hover-container {
+          opacity: 1;
+          transition: opacity 0.5s ease 0.5s, transform 0.5s ease 0.5s;
+        }
+      }
+    }
+
+
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .page {
+      .max-content {
+        min-height: 500px;
+
+        .middle-container {
+          padding: var(--composer-gap-md) var(--composer-gap-lg);
+        }
+
+        .hover-container {
+          padding: var(--composer-gap-md) var(--composer-gap-lg);
+
+          .buttons-container {
+            .image-container {
+              width: 152px;
+              height: 45px;
+
+              .image {
+                width: 100%;
+                height: 100%;
+                cursor: pointer;
+                object-fit: cover;
+                border-radius: var(--composer-border-radius-sm);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .page {
+      .max-content {
+        .middle-container {
+          padding: var(--composer-gap-md);
+        }
+
+        .hover-container {
+          padding: var(--composer-gap-md);
+
+          .buttons-container {
+            flex-direction: column;
+            .image-container {
+              width: 150px;
+              height: 45px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

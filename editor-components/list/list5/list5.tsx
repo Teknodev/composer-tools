@@ -1,114 +1,297 @@
-import * as React from "react";
+import { ReactNode } from "react";
 import { BaseList } from "../../EditorComponent";
-import ComposerLink from "../../../composer-base-components/Link/link";
+import React from "react";
 import styles from "./list5.module.scss";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+
+type ListItem = {
+  title: React.JSX.Element;
+  uppericon: React.JSX.Element;
+  text: string;
+  lowericon: React.JSX.Element;
+  url: string;
+}
 
 class List5 extends BaseList {
+  static getName(): string {
+    return "List 5";
+  }
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
+      type: "string",
+      key: "header",
+      displayer: "Header",
+      value: "Bringing Your Vision to Life - AI Image Generation Service",
+    });
+    this.addProp({
+      type: "image",
+      key: "image",
+      displayer: "Background Image",
+      value:
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67484143506a40002c2f0020?alt=media",
+    });
+    this.addProp({
       type: "array",
-      key: "link-main",
-      displayer: "Link Main",
+      key: "list-items",
+      displayer: "List Items",
       value: [
         {
           type: "object",
-          key: "title",
-          displayer: "Title",
+          key: "list-item",
+          displayer: "List Item",
           value: [
             {
               type: "string",
-              key: "link-title",
-              displayer: "Link Title",
-              value: PlaceholderFiller.string(),
+              key: "title",
+              displayer: "Title",
+              value: "Customize & Refine",
+            },
+            {
+              type: "icon",
+              key: "uppericon",
+              displayer: "Upper Icon",
+              value: "VscSettings",
             },
             {
               type: "string",
-              key: "link-badge",
-              displayer: "Link Badge",
-              value: "1",
+              key: "text",
+              displayer: "Text",
+              value: "There are many variations passages Lorem Ipsum available the majority have suffered.",
             },
             {
-              type: "array",
-              key: "link-list",
-              displayer: "Link List",
-              value: [
-                {
-                  type: "object",
-                  key: "link-list-item",
-                  displayer: "Link List Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "list-item",
-                      displayer: "List Item",
-                      value: PlaceholderFiller.string(),
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Link",
-                      value: "",
-                    },
-                    {
-                      type: "string",
-                      key: "badge",
-                      displayer: "Badge",
-                      value: "badge",
-                    },
-                  ],
-                },
-              ],
+              type: "icon",
+              key: "lowericon",
+              displayer: "Lower Icon",
+              value: "FaLongArrowAltRight",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "list-item",
+          displayer: "List Item",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Lower Cost",
+            },
+            {
+              type: "icon",
+              key: "uppericon",
+              displayer: "Upper Icon",
+              value: "RiMoneyDollarCircleLine",
+            },
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "There are many variations passages Lorem Ipsum available the majority have suffered.",
+            },
+            {
+              type: "icon",
+              key: "lowericon",
+              displayer: "Lower Icon",
+              value: "FaLongArrowAltRight",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "list-item",
+          displayer: "List Item",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Speed & Efficiency",
+            },
+            {
+              type: "icon",
+              key: "uppericon",
+              displayer: "Upper Icon",
+              value: "RiSpeedUpFill",
+            },
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "There are many variations passages Lorem Ipsum available the majority have suffered.",
+            },
+            {
+              type: "icon",
+              key: "lowericon",
+              displayer: "LowerIcon",
+              value: "FaLongArrowAltRight",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "list-item",
+          displayer: "List Item",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Quality & Realism",
+            },
+            {
+              type: "icon",
+              key: "uppericon",
+              displayer: "Upper Icon",
+              value: "FaRegImages",
+            },
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "There are many variations passages Lorem Ipsum available the majority have suffered.",
+            },
+            {
+              type: "icon",
+              key: "lowericon",
+              displayer: "Lower Icon",
+              value: "FaLongArrowAltRight",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: "",
             },
           ],
         },
       ],
     });
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item Count in a Row",
+      value: 4
+    });
+    this.addProp({
+      type: "boolean",
+      key: "showIndex",
+      displayer: "Show Index",
+      value: true
+    });
   }
+  render(): ReactNode {
+    const ListItems = this.castToObject<ListItem[]>("list-items");
 
-  getName(): string {
-    return "List 5";
-  }
-
-  render() {
     return (
-      <div
-        className={this.decorateCSS("container")}
-        
-      >
-        <div className={this.decorateCSS("max-content")}>
-          {this.getPropValue("link-main").map((title: any, index: number) => {
-            return (
-              <div
-                className={this.decorateCSS("badge-list")}
-                
-                key={index}
+      <>
+        <Base.Container className={this.decorateCSS("container")}
+          style={{
+            backgroundImage: `url(${this.getPropValue("image")})`,
+            backgroundSize: "cover"
+          }}
+        >
+          <Base.MaxContent className={this.decorateCSS("max-content")}>
+            {this.castToString(this.getPropValue("header")) && (
+              <Base.VerticalContent className={this.decorateCSS("header")}>
+                <Base.SectionTitle className={`${this.decorateCSS("header-title")} ${this.getPropValue("image") && this.decorateCSS("dark")}`}>
+                  {this.getPropValue("header")}
+                </Base.SectionTitle>
+              </Base.VerticalContent>
+            )}
+            {(ListItems.length > 0) && (
+              <Base.ListGrid
+                className={this.decorateCSS("grid")}
+                gridCount={{ pc: this.getPropValue("itemCount") }}
               >
-                <h3 className={this.decorateCSS("title")} >
-                  {title.value[0].value}
-                  <span className={this.decorateCSS("badge")}>{title.value[1].value}</span>
-                </h3>
-
-                <ul className={this.decorateCSS("list-group")}>
-                  {title.value[2].value.map((table: any) => (
-                    <ComposerLink path={table.value[1].value}>
-                      <li className={this.decorateCSS("li")}>
-                        {table.value[0].value}
-                        <span className={this.decorateCSS("badge")}>
-                          {table.value[2].value}
-                        </span>
-                      </li>
-                    </ComposerLink>
-                  ))}
-                </ul>
-              </div>
-            );
-          })}
-        </div>
-      </div>
+                {ListItems.map(
+                  (listItem: any, index: number) => {
+                    return (
+                      <div className={this.decorateCSS("item-box")}>
+                        <ComposerLink path={listItem.url}>
+                          <div
+                            key={index}
+                            className={this.decorateCSS("item-container")}
+                          >
+                            {(listItem.uppericon || this.getPropValue("showIndex")) && (
+                              <div className={this.decorateCSS("header-line")}>
+                                {listItem.uppericon && (
+                                  <div className={this.decorateCSS("left")}>
+                                    <div className={this.decorateCSS("out-icon")}>
+                                      <div className={this.decorateCSS("icon-wrapper")}>
+                                        <ComposerIcon
+                                          name={listItem.uppericon}
+                                          propsIcon={{
+                                            className: this.decorateCSS("icon"),
+                                          }}
+                                        />
+                                      </div>
+                                    </div>
+                                  </div>
+                                )}
+                                {this.getPropValue("showIndex") && (
+                                  <div className={this.decorateCSS("right")}>
+                                    <div className={this.decorateCSS("item-index")}>
+                                      {(index + 1).toLocaleString("en-US", {
+                                        minimumIntegerDigits: 2,
+                                        useGrouping: false,
+                                      })}
+                                    </div>
+                                  </div>
+                                )}
+                              </div>
+                            )}
+                            {this.castToString(listItem.title) && (
+                              <div className={this.decorateCSS("list-item-value-h1")}>
+                                {listItem.title}
+                              </div>
+                            )}
+                            {this.castToString(listItem.text) && (
+                              <div className={this.decorateCSS("list-item-value-p")}>
+                                {listItem.text}
+                              </div>
+                            )}
+                            {listItem.lowericon && (
+                              <ComposerIcon
+                                name={listItem.lowericon}
+                                propsIcon={{
+                                  className: this.decorateCSS("lower-icon"),
+                                }}
+                              />
+                            )}
+                          </div>
+                        </ComposerLink>
+                      </div>
+                    );
+                  }
+                )}
+              </Base.ListGrid>
+            )}
+          </Base.MaxContent>
+        </Base.Container>
+      </>
     );
   }
 }
-
 export default List5;

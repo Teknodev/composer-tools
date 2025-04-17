@@ -1,0 +1,107 @@
+@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
+
+.container {
+  .max-content {
+    .page {
+      .up-content {
+        .title, .description {
+          content: "";
+        }
+      }
+
+      .down-content {
+        .card {
+          width: 100%;
+          height: auto;
+          transition: all 0.8s;
+          flex: 1 1;
+          border-radius: var(--composer-border-radius-xl);
+          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+
+          .text-box {
+            padding: var(--composer-gap-md);
+            width: 100%;
+            transition: 0.5s;
+
+            .text-up {
+              display: flex;
+              gap: var(--composer-gap-md);
+
+              .name {
+                color: var(--composer-font-color-primary);
+                transition: color 0.5s;
+              }
+
+              .job {
+                color: var(--composer-tertiary-color);
+                transition: color 0.5s;
+              }
+            }
+
+            .description {
+              color: var(--composer-tertiary-color);
+              transition: color 0.5s;
+            }
+          }
+
+          .image {
+            height: 500px;
+            width: 100%;
+            object-fit: cover;
+            transition: filter 0.3s ease;
+            border-top-right-radius: var(--composer-border-radius-xl);
+            border-top-left-radius: var(--composer-border-radius-xl);
+          }
+
+          &:hover {
+            background-color: var(--composer-primary-color);
+
+            .text-box .text-up .name {
+              color: var(--composer-font-color-secondary);
+            }
+            .text-box .text-up .job,
+            .text-box .description {
+              color: var(--composer-font-color-secondary);
+            }
+          }
+        }
+      }
+      .button-wrapper{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .button {
+          content: "";
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .page {
+        .down-content {
+          .card {
+            .text-box {
+              .text-up {
+                flex-direction: column;
+                gap: var(--composer-gap-sm);
+
+                .name {
+                  margin: 0;
+                }
+
+                .job {
+                  margin: 0;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

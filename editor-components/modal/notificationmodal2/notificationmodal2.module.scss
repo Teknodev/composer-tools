@@ -1,0 +1,134 @@
+@use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss" as *;
+
+.container {
+  width: auto;
+  max-width: 600px;
+  min-width: 500px;
+
+  max-height: 700px;
+  overflow: auto;
+  border-radius: var(--composer-border-radius-xl);
+
+  .max-content {
+    position: relative;
+
+    .close-icon-wrapper {
+      position: absolute;
+      top: 0;
+      right: 0;
+      cursor: pointer;
+    }
+
+    .exit-icon {
+      font-size: 1.5rem;
+      color: var(--composer-font-color-primary);
+
+      &:hover {
+        color: var(--composer-primary-color);
+      }
+    }
+
+    .content {
+      justify-content: center;
+      align-items: center;
+      padding: var(--composer-gap-md);
+      gap: var(--composer-gap-sm);
+      min-height: 100%;
+
+      .icon {
+        color: var(--composer-primary-color);
+        margin: 0;
+
+        .icon-element {
+          font-size: 3rem;
+        }
+      }
+
+      .notification-title {
+        font-size: 2rem;
+        margin: 0;
+      }
+
+      .displayer-message {
+        color: var(--composer-tertiary-color);
+        text-align: center;
+        margin: 0;
+      }
+
+      .form {
+        display: flex;
+        gap: var(--composer-gap-sm);
+        width: 100%;
+
+        .input-container {
+          width: 100%;
+          position: relative;
+          align-items: stretch;
+
+          .input {
+            flex: 1;
+            padding: var(--composer-gap-sm);
+            border-radius: var(--composer-border-radius-sm);
+            border: none;
+            background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+            color: var(--composer-font-color-primary);
+            width: 100%;
+            outline: none;
+            padding-left: var(--composer-gap-sm);
+            height: 100%;
+
+            &::placeholder {
+              color: var(--composer-tertiary-color);
+            }
+          }
+
+         
+
+          .error {
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            color: var(--warning);
+          }
+        }
+
+         .button {
+            max-width: 40%;
+            justify-content: center;
+          }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    max-width: 300px;
+    min-width: 200px;
+    max-height: 500px;
+
+    .max-content {
+      position: relative;
+
+      .content {
+        .notification-title {
+          font-size: 1.5rem;
+        }
+
+        .form {
+          flex-direction: column;
+          .input-container {
+            .input {
+              padding: var(--composer-gap-sm) var(--composer-gap-xs);
+            }
+          }
+           .button {
+              justify-content: center;
+              text-align: center;
+              min-width: 100%;
+            }
+        }
+      }
+    }
+  }
+}

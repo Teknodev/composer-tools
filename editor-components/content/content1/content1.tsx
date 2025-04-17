@@ -1,87 +1,82 @@
 import * as React from "react";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 import { BaseContent } from "../../EditorComponent";
 import styles from "./content1.module.scss";
-
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 class Content1 extends BaseContent {
   constructor(props?: any) {
     super(props, styles);
+
     this.addProp({
-      type: "object",
-      key: "heading",
-      displayer: "Heading",
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "Are you ready to turn more ad clicks into conversions?",
+    });
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value:
+        "This statement is a call to action aimed at businesses or individuals looking to improve the effectiveness of their online advertising campaigns. ",
+    });
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
       value: [
-        {
-          type: "string",
-          key: "titleColored",
-          displayer: "Title Colored",
-          value: "Are you ready to turn more ad clicks into conversions?",
-        },
-        {
-          type: "string",
-          key: "title",
-          displayer: "Title",
-          value: PlaceholderFiller.string(),
-        },
-        {
-          type: "string",
-          key: "description",
-          displayer: "Description",
-          value: PlaceholderFiller.shortText(),
-        },
-        {
-          type: "string",
-          key: "buttonText",
-          displayer: "Button Text",
-          value: PlaceholderFiller.string(),
-        },
-        {
-          type: "string",
-          key: "buttonTextTwo",
-          displayer: "Button Text Two",
-          value: PlaceholderFiller.string(),
-        },
+        INPUTS.BUTTON("button", "Button", "Button Text", "", null, null,"Primary")
       ],
     });
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2", "animate3"]
+      }
+    });
   }
-  getName(): string {
+  static getName(): string {
     return "Content 1";
   }
   render() {
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     return (
-      <div
-        className={this.decorateCSS("container")}
-        
-      >
-        <div className={this.decorateCSS("max-content")}>
-          <div
-            className={this.decorateCSS("heading-page")}
-            
-          >
-            <h1
-              className={this.decorateCSS("heading-colored")}
-              
-            >
-              {this.getPropValue("heading")[0].value}
-            </h1>
-            <h3>{this.getPropValue("heading")[2].value}</h3>
-            <div
-              className={this.decorateCSS("button-wrapper")}
-              
-            >
-              <span className={this.decorateCSS("button")} >
-                {this.getPropValue("heading")[3].value}
-              </span>
-              <span
-                className={this.decorateCSS("button-reverse")}
-                
-              >
-                {this.getPropValue("heading")[4].value}
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent 
+          className={this.decorateCSS("max-content")}
+          data-animation={this.getPropValue("hoverAnimation").join(" ")}
+        >
+          {this.castToString(this.getPropValue("title")) && (
+            <Base.SectionTitle className={this.decorateCSS("title")}>
+              {this.getPropValue("title")}
+            </Base.SectionTitle>
+          )}
+          {this.castToString(this.getPropValue("description")) && (
+            <Base.SectionDescription className={this.decorateCSS("description")}>
+              {this.getPropValue("description")}
+            </Base.SectionDescription>
+          )}
+          {(buttons.length > 0) && (
+            buttons.map((item: INPUTS.CastedButton, index: number) => {
+              return (
+                <div className={this.decorateCSS("button-container")}>
+                  {this.castToString(item.text) && (
+                    <ComposerLink path={item.url}>
+                      <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                        {item.text}
+                      </Base.Button>
+                    </ComposerLink>
+                  )}
+                </div>
+              )
+            })
+          )}
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

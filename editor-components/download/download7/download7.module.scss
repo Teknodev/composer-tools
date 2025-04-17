@@ -1,0 +1,116 @@
+@use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss" as *;
+
+.container {
+  .max-content {
+    .wrapper {
+      width: 100%;
+      background-size: cover;
+      background-position: center;
+      border-radius: var(--composer-border-radius-xl);
+      position: relative;
+
+      .overlay {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--composer-overlay-color);
+        border-radius: var(--composer-border-radius-xl);
+        z-index: 1;
+      }
+
+      .content-container{
+        height: 100%;
+        justify-content: center;
+        position: relative;
+        z-index: 2;
+        &.image{
+          min-height: 600px;
+          padding: var(--composer-gap-md) var(--composer-gap-xl);
+          align-items: center;
+          text-align: center;
+        }
+        .title {
+          font-size: 1.5rem;
+          content: "";
+          &.image{
+            color: white;
+          }
+        }
+
+        .description {
+          font-size: 2rem;
+          &.image{
+            color: white;
+          }
+        }
+
+        .buttons-container {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          gap: var(--composer-gap-md);
+          .button-wrapper {
+            .button-image {
+              width: 170px;
+              height:50px;
+              border-radius: var(--composer-border-radius-sm);
+              object-fit: cover;
+            }
+            .button-element {
+              .icon, .button-text {
+                content: "";
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .wrapper {
+        .content-container {
+          min-height: 600px;
+          padding: var(--composer-gap-sm) var(--composer-gap-md);
+          .title {
+            font-size: 1rem;
+          }
+          .description {
+            font-size: 1.5rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .wrapper {
+        .content-container {
+          min-height: 600px;
+          padding: var(--composer-gap-sm) var(--composer-gap-md);
+          .description{
+            text-align: center;
+          }
+          .buttons-container{
+            justify-content: center;
+            flex-direction: column;
+            .button-wrapper{
+              .button-image{
+                width: 120px;
+                height: 40px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

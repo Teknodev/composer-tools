@@ -1,178 +1,117 @@
+@use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
 .container {
-  width: 100%;
-  padding-top: 3rem;
-  .max-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: var(--composer-content-width);
-    margin: auto;
-    .page {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-
-      .up-page {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-        white-space: pre-line;
-        word-break: break-all;
-        text-overflow: ellipsis;
-        margin-bottom: 2rem;
-
-        h1 {
-          font-size: 3.5rem;
-          color: rgb(24, 23, 23);
-          opacity: 0.8;
-          margin: unset;
-        }
-
-        p {
-          font-size: 2rem;
-          color: rgb(24, 23, 23);
-          opacity: 0.8;
-        }
-
-        .badge {
-          color: var(--composer-primary-color);
-          border-radius: 10px;
-          font-size: 1rem;
-          background: rgb(244, 244, 244);
-          padding: 5px 7px;
-          display: inline-block;
-          margin-bottom: 1rem;
-        }
-      }
-
-      .down-page {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        gap: 1rem;
-      }
-
-      .card {
-        width: 350px;
-        height: 350px;
-        min-width: 200px;
-        min-height: 200px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background: rgb(244, 244, 244);
-        overflow: hidden;
-        white-space: pre-line;
-        word-break: break-all;
-        text-overflow: ellipsis;
-        margin-bottom: 4rem;
-        text-align: center;
-        padding: 20px;
-        border-radius: 5%;
-
-        h1 {
-          font-size: 1.5rem;
-          letter-spacing: 0.02em;
-          margin: unset;
-          color: rgb(42, 51, 66);
-          opacity: 0.9;
-          margin-bottom: 1rem;
-        }
-
-        p {
-          font-size: 1.3rem;
-          color: rgb(42, 51, 66);
-          opacity: 0.9;
-        }
-
-        .icon {
-          display: flex;
-          justify-content: center;
-          width: 50px;
-          height: 50px;
-          border-radius: 50%;
-          background: var(--composer-primary-color);
-          align-items: center;
-          margin-bottom: 1rem;
-
-          div {
-            color: #fff;
-            font-size: 1.8rem;
-          }
-        }
-      }
-    }
-  }
-}
-
-@media only screen and (max-width: 800px) {
-  .container {
-    width: 100%;
     .max-content {
-      width: var(--composer-content-width);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      .page {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-
-        .up-page {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          overflow: hidden;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-          margin-bottom: 1rem;
+        .wrapper{
+            display: flex;
+            flex-direction: column;
+            .content{
+                display: flex;
+                gap: var(--composer-gap-xl);
+                align-items: center;
+                .items-wrapper {
+                    flex: 1.5;
+                    display: flex;
+                    flex-direction: column;
+                    .title-wrapper{
+                        .title{
+                            content: "";
+                        }
+                    }
+                    .items{
+                        border: 1px solid var(--composer-tertiary-color);
+                        border-bottom: none;
+                        .item {
+                            cursor: pointer;
+                            .title-box {
+                                display: flex;
+                                gap: var(--composer-gap-sm);
+                                border-bottom: 1px solid var(--composer-tertiary-color);
+                                padding: var(--composer-gap-md);
+                                .title-text {
+                                    flex: 1;
+                                    color: var(--composer-font-color-primary);
+                                    font-size: 1.5rem;
+                                }
+            
+                                .icon {
+                                    width: 15px;
+                                    height: 15px;
+                                    color: var(--composer-primary-color);
+                                    transition: color 0.5s ease;
+                                    &.active{
+                                        color: var(--composer-font-color-primary);
+                                    }
+                                }
+                            }
+                        }
+                        .description-box {
+                            overflow: hidden;
+                            max-height: 0px;
+                            transition: max-height 0.5s linear;
+                            border-bottom: 0px;
+                            .description-text {
+                                overflow: hidden;                    
+                                padding: var(--composer-gap-md);
+                                font-size: 1rem;
+                                opacity: 0;
+                                color: var(--composer-font-color-primary);
+                                transition: opacity 0.5s linear;
+                                border-bottom: 1px solid var(--composer-tertiary-color);
+                            }
+                            &.active {
+                                max-height: 150px;
+                                border-bottom: 1px solid var(--composer-tertiary-color);
+                                .description-text{
+                                    opacity: 1;
+                                    border-bottom: 0px;
+                                }
+                            }
+                        }
+            
+                    }
+             
+                }
+        
+                .image-box {
+                    flex: 1;
+                    width: 100%;
+                    .image {
+                        min-height: 600px;
+                        width: 100%;
+                        object-fit: cover;
+                        border-radius: 50%;
+                    }
+                }
+            }
         }
-
-        .down-page {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: space-around;
-        }
-
-        .card {
-          width: 100%;
-          min-width: 150px;
-          display: flex;
-          flex-direction: column;
-          justify-content: unset;
-          align-items: center;
-          background: rgb(244, 244, 244);
-          overflow: hidden;
-          white-space: pre-line;
-          word-break: break-all;
-          text-overflow: ellipsis;
-          margin-bottom: 1rem;
-          text-align: center;
-          border-radius: 5%;
-          margin-bottom: 2rem;
-          padding: 1rem 1rem;
-
-          img {
-            object-fit: cover;
-            width: 30px;
-            border-radius: 50%;
-          }
-        }
-      }
-      h1,
-      h2,
-      h3,
-      h4 {
-        color: var(--composer-tertiary-color);
-      }
     }
-  }
+}
+@container (max-width:#{$composer-tablet-width}){
+    .container{
+        .max-content{
+            .wrapper{
+                .content{
+                    .items-wrapper{
+                        flex: 1;
+                    }
+                    .image-box{
+                        .image{
+                            min-height: 300px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@container (max-width:#{$composer-phone-width}){
+    .container{
+        .max-content{
+            .wrapper{
+                .content{
+                    flex-direction: column;
+                }
+            }
+        }
+    }
 }

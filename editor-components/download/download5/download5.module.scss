@@ -1,78 +1,125 @@
+@use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss" as *;
+
+$min-height: 500px;
+
 .container {
-  width: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  min-height: $min-height;
 
   .max-content {
-    width: var(--composer-content-width);
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
     align-items: center;
-    margin: auto;
-    .basic-page {
-      background-color: rgb(254, 255, 255);
+    position: relative;
+    z-index: 2;
+    min-height: $min-height;
+
+    .page {
       display: flex;
+      flex-direction: column;
+      gap: var(--composer-gap-md);
+      width: 58%;
+      &.no-image{
+        width: 100%;
+      }
 
-      .page-1 {
+      .header {
+        .title,
+        .description {
+          content: "";
+        }
+      }
+
+      .buttons-container {
         display: flex;
-        flex-direction: column;
-        margin: 80px 300px;
-        .box {
-          display: flex;
-          overflow: hidden;
-
-          h5 {
-            font-size: 16px;
-            margin-bottom: 60px;
-            width: 400px;
-          }
-          .button {
+        flex-wrap: wrap;
+        align-items: center;
+        gap: var(--composer-gap-sm);
+        .button-wrapper {
+          width: 170px;
+          height: 50px;
+          >div, >a{
+            width: 100% !important;
+            height: 100%;
             display: flex;
-            justify-content: center;
             align-items: center;
-            width: 200px;
-            height: 50px;
-            border-radius: 20px;
-            border: 0.5px solid var(--composer-primary-color);
-            text-align: center;
-            background-color: var(--composer-primary-color);
+            justify-content: center;
+          }
+          .button-image {
+            height: 100%;
+            width: 100%;
             cursor: pointer;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
+            border-radius: var(--composer-border-radius-sm);
+            object-fit: cover;
+          }
+        }
+          .button-element {
+            .icon, .button-text {
+              content: "";
+            }
+          }
+    
+        &.center {
+          justify-content: center;
+        }
+      }
 
-            .buttonText {
-              color: white;
-              font-size: 15px;
+    }
+  }
+
+  .overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: var(--composer-overlay-color);
+  }
+  &.single{
+    height: auto;
+    .max-content{
+      height: auto;
+    }
+  }
+}
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .page {
+        width: 55% !important;
+
+        .buttons-container{
+          .button-wrapper {
+            .button-image {
+              width: 100%;
             }
           }
         }
       }
-      p {
-        font-size: 1rem;
+      .page-no-image {
+        width: 100%;
       }
+    }
+
+    .overlay {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      background-color: var(--composer-overlay-color);
     }
   }
 }
 
-@media only screen and (max-width: 1200px) {
+@container (max-width: #{$composer-phone-width}) {
   .container {
-    flex-direction: column;
-    gap: 20px;
     .max-content {
-      .basic-page {
-        width: 100%;
-        .page-1 {
-          margin: 80px 50px;
-          .box {
-            text-align: center;
-            h5 {
-              width: 100%;
-            }
-            .button {
-              width: 100%;
-            }
-          }
-        }
+      .page {
+        width: 100% !important;
       }
     }
   }

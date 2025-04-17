@@ -1,88 +1,296 @@
 import * as React from "react";
-import ComposerLink from "../../../composer-base-components/Link/link";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
-import { BaseHeader } from "../../EditorComponent";
 import styles from "./header2.module.scss";
+import { BaseHeader } from "../../EditorComponent";
+import ComposerSlider from "../../../composer-base-components/slider/slider";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { Base } from "../../../composer-base-components/base/base";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+
+type SliderItemType = {
+  image: string;
+  category: React.JSX.Element;
+  title: React.JSX.Element;
+  author: React.JSX.Element;
+  date: React.JSX.Element;
+  description: React.JSX.Element;
+  button: INPUTS.CastedButton;
+  dot: boolean;
+};
 
 class Header2 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
+
     this.addProp({
-      type: "object",
-      key: "wide-text",
-      displayer: "Wide Text",
+      type: "array",
+      displayer: "Slider Carousel",
+      key: "slider",
       value: [
         {
-          type: "string",
-          key: "subtitle",
-          displayer: "Subtitle",
-          value: "Lorem ipsum dolor sit",
+          type: "object",
+          displayer: "Item",
+          key: "item",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Background Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6710cfaa97fe08002c76ce44?alt=media",
+            },
+            {
+              type: "string",
+              key: "category",
+              value: "Culture",
+              displayer: "Category",
+            },
+            {
+              type: "string",
+              key: "title",
+              value: "Back at Harvard after four decades...",
+              displayer: "Title",
+            },
+            {
+              type: "string",
+              key: "author",
+              value: "by John Doe",
+              displayer: "Author",
+            },
+            {
+              type: "boolean",
+              key: "dot",
+              value: true,
+              displayer: "Dot Enabled",
+            },
+            {
+              type: "string",
+              key: "date",
+              value: "22 December",
+              displayer: "Date",
+            },
+            {
+              type: "string",
+              key: "description",
+              value:
+                "Aenean lacinia bibendum nulla sed consectetur. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Aenean lacinia bibendum nulla...",
+              displayer: "Description",
+            },
+            INPUTS.BUTTON("button", "Button", "Read More", "", "FaArrowRightLong", null, "Link"),
+          ],
         },
         {
-          type: "string",
-          key: "title",
-          displayer: "Title",
-          value: "Lorem ipsum dolor sit, amet consectetur adipisicing elit.",
+          type: "object",
+          displayer: "Item",
+          key: "item",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Background Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6710d06f97fe08002c76cf1c?alt=media",
+            },
+            {
+              type: "string",
+              key: "category",
+              value: "Culture",
+              displayer: "Category",
+            },
+            {
+              type: "string",
+              key: "title",
+              value: "A decade spent exploring India's d...",
+              displayer: "Title",
+            },
+            {
+              type: "string",
+              key: "author",
+              value: "by John Doe",
+              displayer: "Author",
+            },
+            {
+              type: "boolean",
+              key: "dot",
+              value: true,
+              displayer: "Dot Enabled",
+            },
+            {
+              type: "string",
+              key: "date",
+              value: "22 December",
+              displayer: "Date",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value:
+                "Aenean lacinia bibendum nulla sed consectetur. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Aenean lacinia bibendum nulla...",
+            },
+            INPUTS.BUTTON("button", "Button", "Read More", "", "FaArrowRightLong", null, "Link"),
+          ],
         },
         {
-          type: "string",
-          key: "description",
-          displayer: "Description",
-          value: PlaceholderFiller.shortText(),
-        },
-        {
-          type: "string",
-          key: "buttonText",
-          displayer: "Button Text",
-          value: PlaceholderFiller.string(),
-        },
-        {
-          type: "image",
-          key: "image",
-          displayer: "Image",
-          value: "https://static.thenounproject.com/png/105256-200.png",
-        },
-        {
-          type: "page",
-          key: "link",
-          displayer: "Link",
-          value: "",
+          type: "object",
+          displayer: "Item",
+          key: "item",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Background Image",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6710d0b497fe08002c76cf66?alt=media",
+            },
+            {
+              type: "string",
+              key: "category",
+              value: "Culture",
+              displayer: "Category",
+            },
+            {
+              type: "string",
+              key: "title",
+              value: "Television’s Carlton Cuse on what...",
+              displayer: "Title",
+            },
+            {
+              type: "string",
+              key: "author",
+              value: "by John Doe",
+              displayer: "Author",
+            },
+            {
+              type: "boolean",
+              key: "dot",
+              value: true,
+              displayer: "Dot Enabled",
+            },
+            {
+              type: "string",
+              key: "date",
+              value: "22 December",
+              displayer: "Date",
+            },
+            {
+              type: "string",
+              key: "description",
+              value:
+                "Aenean lacinia bibendum nulla sed consectetur. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Aenean lacinia bibendum nulla...",
+              displayer: "Description",
+            },
+            INPUTS.BUTTON("button", "Button", "Read More", "", "FaArrowRightLong", null, "Link"),
+          ],
         },
       ],
     });
   }
 
-  getName(): string {
+  static getName(): string {
     return "Header 2";
   }
 
   render() {
+    const settings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      autoplay: false,
+      autoplaySpeed: 5000,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      dotsClass: `slick-dots ${this.decorateCSS("customDots")}`,
+    };
+
+    const sliderItems = this.castToObject<SliderItemType[]>("slider");
+
     return (
-      <div
-        className={this.decorateCSS("container")}
-        
-      >
-        <div className={this.decorateCSS("max-content")}>
-          <section className={this.decorateCSS("wide-text-container")}>
-            <div className={this.decorateCSS("image")}>
-              <img src={this.getPropValue("wide-text")[4].value}></img>
-            </div>
-            <div className={this.decorateCSS("wide-text")}>
-              <h3>{this.getPropValue("wide-text")[0].value}</h3>
-              <h1>{this.getPropValue("wide-text")[1].value}</h1>
-              <p>{this.getPropValue("wide-text")[2].value}</p>
-              <ComposerLink path={this.getPropValue("wide-text")[5].value}>
-                <a
-                  className={this.decorateCSS("button")}
-                  
-                >
-                  {this.getPropValue("wide-text")[3].value}
-                </a>
-              </ComposerLink>
-            </div>
-          </section>
-        </div>
-      </div>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <div className={this.decorateCSS("slider")}>
+            {sliderItems.length > 0 && (
+              <ComposerSlider {...settings}>
+                {sliderItems.map((item: SliderItemType, idx: number) => {
+                  const isCategoryExist = this.castToString(item.category);
+                  const isTitleExist = this.castToString(item.title);
+                  const isAuthorExist = this.castToString(item.author);
+                  const isDateExist = this.castToString(item.date);
+                  const isDescExist = this.castToString(item.description);
+                  const isLinkTextExist = this.castToString(item.button.text);
+
+                  const cardValues =
+                    isLinkTextExist ||
+                    isDescExist ||
+                    isDateExist ||
+                    isAuthorExist ||
+                    isTitleExist ||
+                    isCategoryExist;
+
+                  return (
+                    <div className={this.decorateCSS("slider-item")} key={idx}>
+                      <div
+                        className={this.decorateCSS("slider-item-inner-container")}
+                        style={{
+                          backgroundImage: `url("${item.image}")`,
+                        }}
+                      >
+                        <div className={this.decorateCSS("content-max-width")}>
+                          {cardValues && (
+                            <div className={this.decorateCSS("card")}>
+                              {isCategoryExist && (
+                                <h3 className={this.decorateCSS("category")}>{item.category}</h3>
+                              )}
+                              {isTitleExist && (
+                                <h1 className={this.decorateCSS("title")}>{item.title}</h1>
+                              )}
+                              {(isAuthorExist || isDateExist) && (
+                                <div className={this.decorateCSS("date-author")}>
+                                  {isAuthorExist && (
+                                    <span className={this.decorateCSS("author")}>
+                                      {item.author}
+                                    </span>
+                                  )}
+                                  {isAuthorExist && isDateExist && item.dot && (
+                                    <span className={this.decorateCSS("dot")}>{item.dot}</span>
+                                  )}
+                                  {isDateExist && (
+                                    <span className={this.decorateCSS("date")}>{item.date}</span>
+                                  )}
+                                </div>
+                              )}
+                              {isDescExist && (
+                                <p className={this.decorateCSS("description")}>
+                                  {item.description}
+                                </p>
+                              )}
+                              {isLinkTextExist && (
+                                <div className={this.decorateCSS("link-container")}>
+                                  <ComposerLink path={item.button.url}>
+                                    <Base.Button buttonType={item.button.type} className={this.decorateCSS("link-text")}>
+                                      {item.button.text}
+                                      {item.button.icon && (
+                                        <ComposerIcon
+                                          name={item.button.icon}
+                                          propsIcon={{ className: this.decorateCSS("icon") }}
+                                        />
+                                      )}
+                                    </Base.Button>
+                                  </ComposerLink>
+                                </div>
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </ComposerSlider>
+            )}
+          </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

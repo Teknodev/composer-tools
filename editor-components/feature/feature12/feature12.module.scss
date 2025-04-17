@@ -1,0 +1,98 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+@keyframes slideInLeft {
+  from {
+    transform: translateX(calc(var(--composer-gap-xl) * -1));
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+.container {
+  background-color: var(--composer-html-background);
+  .max-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-md);
+    .header {
+      .upper-title {
+        content: "";
+      }
+      .header-title {
+        content: "";
+      }
+    }
+    .wrapper {
+      gap: 0;
+      .card-item-first,
+      .card-item-count {
+        padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-xl);
+      }
+
+      .card-item-first {
+        align-items: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+        gap: var(--composer-gap-md);
+
+        .title {
+          font-size: 2rem;
+          color: var(--composer-font-color-primary);
+          text-align: center;
+          margin: 0px;
+        }
+
+        .button {
+          content: "";
+        }
+      }
+      .card-item-count {
+        opacity: 0;
+        transform: translateX(calc(var(--composer-gap-xl) * -1));
+        animation-name: slideInLeft;
+        animation-duration: 0.5s;
+        animation-timing-function: ease;
+        animation-fill-mode: forwards;
+        animation-delay: var(--animation-delay); 
+        .message {
+          color: var(--composer-font-color-primary);
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+          overflow: hidden;
+          gap: var(--composer-gap-md);
+
+          .icon-container{
+            .icon {
+              color: var(--composer-primary-color);
+              width: 50px;
+              height: 50px;
+            }
+          }
+          .title,
+          .long-text {
+            color: var(--composer-font-color-primary);
+            text-align: center;
+          }
+      
+          .title {
+            font-size: 1.5rem;
+          }
+      
+          .long-text {
+            font-size: 1.5rem;
+          }
+        }
+      }
+    }
+  }
+}

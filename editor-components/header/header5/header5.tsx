@@ -1,8 +1,19 @@
 import * as React from "react";
-import ComposerLink from "../../../composer-base-components/Link/link";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header5.module.scss";
+import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+
+type Heading = {
+  titleColored: React.JSX.Element;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
+  buttonText: React.JSX.Element;
+  link: string;
+  overlay: boolean;
+  backgroundImage: string;
+};
 
 class Header5 extends BaseHeader {
   constructor(props?: any) {
@@ -15,62 +26,103 @@ class Header5 extends BaseHeader {
         {
           type: "string",
           key: "titleColored",
-          displayer: "Title Colored",
-          value: "Lorem & ipsum",
+          displayer: "Subtitle",
+          value: "Motivation",
         },
         {
           type: "string",
           key: "title",
           displayer: "Title",
-          value: "Lorem ipsum dolor sit",
+          value: "THE ART OF FOOD",
         },
         {
           type: "string",
           key: "description",
           displayer: "Description",
-          value: PlaceholderFiller.shortText(),
+          value: "PHOTOGRAPHY",
+        },
+
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: true,
         },
         {
-          type: "string",
-          key: "buttonText",
-          displayer: "Button Text",
-          value: PlaceholderFiller.string(),
+          type: "image",
+          key: "backgroundImage",
+          displayer: "Background Image",
+          value:
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a765ee2f8a5b002ce6d6a7?alt=media",
         },
-        {
-          type: "page",
-          key: "link",
-          displayer: "Link",
-          value: "",
-        },
+      ],
+    });
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "View More", "", null, null, "Primary")
       ],
     });
   }
 
-  getName(): string {
+  static getName(): string {
     return "Header 5";
   }
 
   render() {
+    const heading = this.castToObject<Heading>("heading");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const isTitleExist = this.castToString(heading.title);
+    const description = this.castToString(heading.description);
+    const isTitleColoredExist = this.castToString(heading.titleColored);
+
     return (
-      <div
-        className={this.decorateCSS("container")}
-        
-      >
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("heading-page")}>
-            <h1 className={this.decorateCSS("heading-colored")}>
-              {this.getPropValue("heading")[0].value}
-            </h1>
-            <h1>{this.getPropValue("heading")[1].value}</h1>
-            <h3>{this.getPropValue("heading")[2].value}</h3>
-            <ComposerLink path={this.getPropValue("heading")[4].value}>
-              <span className={this.decorateCSS("button")} >
-                {this.getPropValue("heading")[3].value}
-              </span>
-            </ComposerLink>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <div
+            className={`${this.decorateCSS("background-layer")} ${heading.backgroundImage && this.decorateCSS("with-image")
+              }`}
+            style={{
+              backgroundImage: `url(${heading.backgroundImage})`,
+            }}
+          >
+            <div className={`${this.decorateCSS("overlay")} ${!heading.overlay && this.decorateCSS("no")}`}>
+              <div className={this.decorateCSS("heading-page")}>
+                {isTitleColoredExist && (
+                  <Base.H1 className={this.decorateCSS("sub-title")}>
+                    {heading.titleColored}
+                  </Base.H1>
+                )}
+                {isTitleExist && (
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
+                    {heading.title}
+                  </Base.SectionTitle>
+                )}
+                {description && (
+                  <Base.SectionDescription className={this.decorateCSS("description")}>
+                    {heading.description}
+                  </Base.SectionDescription>
+                )}
+                <div className={this.decorateCSS("button-container")}>
+                  {buttons.map((item: INPUTS.CastedButton, index: number) => {
+                    if (this.castToString(item.text))
+                      return (
+                        <ComposerLink key={index} path={item.url}>
+                          <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                            {item.text}
+                          </Base.Button>
+                        </ComposerLink>
+                      );
+                  })}
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

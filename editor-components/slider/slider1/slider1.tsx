@@ -1,97 +1,256 @@
 import * as React from "react";
-import styles from "./slider1.module.scss";
 import { BaseSlider } from "../../EditorComponent";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
+import styles from "./slider1.module.scss";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerSlider from "../../../composer-base-components/slider/slider";
+import { Base } from "../../../composer-base-components/base/base";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
+type Slider = {
+  subtitle: React.JSX.Element;
+  title: React.JSX.Element;
+  image: string;
+};
+
+type Social = {
+  icon: string;
+  url: string;
+};
 
 class Slider1 extends BaseSlider {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
+    });
     this.addProp({
       type: "array",
-      key: "images",
-      displayer: "Images",
+      key: "slider",
+      displayer: "Slider",
       value: [
         {
-          type: "image",
-          key: "image",
-          displayer: "Image",
-          value: PlaceholderFiller.image(),
+          type: "object",
+          key: "sliderItem",
+          displayer: "Slider Item",
+          value: [
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "Explore",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Travelling",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67516278506a40002c316b2b?alt=media",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "sliderItem",
+          displayer: "Slider Item",
+          value: [
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "This is a wonderful life",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "I LOVE IT",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67516251506a40002c316acd?alt=media",
+            },
+          ],
         },
       ],
     });
     this.addProp({
-      type: "string",
-      key: "button1",
-      displayer: "Previous Button Title",
-      value: PlaceholderFiller.string(),
+      type: "array",
+      key: "socials",
+      displayer: "Social Media",
+      value: [
+        {
+          type: "object",
+          key: "social",
+          displayer: "Social",
+          value: [
+            {
+              type: "icon",
+              key: "icon",
+              value: "FaInstagram",
+              displayer: "Icon",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "social",
+          displayer: "Social",
+          value: [
+            {
+              type: "icon",
+              key: "icon",
+              value: "BiLogoFacebook",
+              displayer: "Icon",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "social",
+          displayer: "Social",
+          value: [
+            {
+              type: "icon",
+              key: "icon",
+              value: "FaSquareXTwitter",
+              displayer: "Icon",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: "",
+            },
+          ],
+        },
+      ],
     });
-    this.addProp({
-      type: "string",
-      key: "button2",
-      displayer: "Next Button Title",
-      value: PlaceholderFiller.string(),
-    });
-
-    this.state["componentProps"]["count"] = 0;
+    this.setComponentState("slider-ref", React.createRef());
+    this.setComponentState("activeSlide", 0);
   }
 
-  getName(): string {
+  static getName(): string {
     return "Slider 1";
   }
-
-  prevButton(images: string[]) {
-    let count = this.state.componentProps["count"];
-    count--;
-
-    if (count < 0) {
-      count = images.length - 1;
-    }
-
-    this.state.componentProps["count"] = count;
-  }
-
-  nextButton(images: string[]) {
-    let count = this.state.componentProps["count"];
-    count++;
-    if (count == images.length) {
-      count = 0;
-    }
-    this.state.componentProps["count"] = count;
-  }
-
   render() {
-    let items = this.getPropValue("images");
-    let images = new Array();
-    items.forEach((item: { value: any }) => {
-      images.push(item.value);
-    });
+    const settings = {
+      dots: false,
+      infinite: true,
+      speed: 500,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      adaptiveHeight: false,
+      afterChange: (current: number) => {
+        if (this.getComponentState("activeSlide") !== current) {
+          this.setComponentState("activeSlide", current);
+        }
+      },
+    };
+
+    const isOverlayActive = this.getPropValue("overlay");
+    const icons = this.castToObject<Social[]>("socials");
+    const sliderItems = this.castToObject<Slider[]>("slider");
+    const ImagesExist = sliderItems[this.getComponentState("activeSlide")]?.image;
+
+    const alignmentValue = Base.getContentAlignment();
 
     return (
-      <div
-        className={this.decorateCSS("container")}
-        
-      >
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("page")} >
-            <button
-              className={this.decorateCSS("button")}
-              onClick={(e) => this.prevButton(images)}
-            >
-              {this.getPropValue("button1")}
-            </button>
-            <div className={this.decorateCSS("image")} >
-              <img src={images[this.state.componentProps["count"]]} />
-            </div>
-            <button
-              className={this.decorateCSS("button")}
-              onClick={() => this.nextButton(images)}
-            >
-              {this.getPropValue("button1")}
-            </button>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <div className={this.decorateCSS("slider-parent")}>
+            <ComposerSlider {...settings} className={this.decorateCSS("carousel")} ref={this.getComponentState("slider-ref")}>
+              {sliderItems.map((item: Slider, indexSlider: number) => (
+                <div key={indexSlider} className={this.decorateCSS("slider-item")}>
+                  <div className={this.decorateCSS("img-wrapper")}>
+                    {item.image && <img alt="" src={item.image} className={this.decorateCSS("img")} />}
+                    {isOverlayActive && <div className={this.decorateCSS("overlay")}></div>}
+                  </div>
+
+                  <div className={this.decorateCSS("content")}>
+                    <div className={this.decorateCSS("box-parent")}>
+                      {(this.castToString(item.subtitle) || this.castToString(item.title)) && (
+                        <Base.VerticalContent
+                          className={`
+                        ${this.decorateCSS("box")} 
+                      ${item.image && this.decorateCSS("with-img")}
+                      ${alignmentValue === "center" && this.decorateCSS("center")}`}
+                        >
+                          {this.castToString(item.subtitle) && (
+                            <Base.SectionSubTitle
+                              className={`
+                        ${this.decorateCSS("subtitle")} 
+                        ${item.image && this.decorateCSS("with-img")}`}
+                            >
+                              {item.subtitle}
+                            </Base.SectionSubTitle>
+                          )}
+                          {this.castToString(item.title) && <Base.SectionTitle className={`${this.decorateCSS("title")} ${item.image && this.decorateCSS("with-img")}`}>{item.title}</Base.SectionTitle>}
+                        </Base.VerticalContent>
+                      )}
+                    </div>
+
+                    {icons.length > 0 && (
+                      <div className={this.decorateCSS("socials")} id="slider1IconsHeight">
+                        {icons.map((social: Social, index: number) => {
+                          return (
+                            social.icon && (
+                              <ComposerLink key={index} path={social.url}>
+                                <ComposerIcon
+                                  name={social.icon}
+                                  propsIcon={{
+                                    className: `${this.decorateCSS("icon")} ${!item.image && this.decorateCSS("no-img")}`,
+                                  }}
+                                />
+                              </ComposerLink>
+                            )
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </ComposerSlider>
           </div>
-        </div>
-      </div>
+
+          {sliderItems.length > 1 && (
+            <ul className={`${this.decorateCSS("dots")} ${!ImagesExist && this.decorateCSS("dots-2")}`}>
+              {sliderItems.map((_, index) => (
+                <li key={`dot-${index}`} className={`${this.decorateCSS("slick")} ${this.getComponentState("activeSlide") === index && this.decorateCSS("slick-active")}`} onClick={() => this.getComponentState("slider-ref").current.slickGoTo(index)}>
+                  <button />
+                </li>
+              ))}
+            </ul>
+          )}
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
+
 export default Slider1;

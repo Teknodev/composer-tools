@@ -1,0 +1,228 @@
+@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px var(--composer-gap-xl) var(--composer-gap-md) var(--composer-gap-xl);
+  .max-content {
+    .content {
+      display: flex;
+      position: relative;
+      align-items: center;
+      width: 100%;
+      .card {
+        flex: 1;
+        z-index: 1;
+        margin-right: -35%;
+
+        &.card-no-image {
+          margin-right: 0;
+        }
+
+        .card-box {
+          padding: var(--composer-gap-xl) 0;
+          background-color: rgba(var(--composer-html-background-rgb), 0.5);
+          position: relative;
+          max-width: 65%;
+          border-radius: var(--composer-border-radius-sm);
+
+          &.card-box-no-image {
+            max-width: 100%;
+            padding: 0;
+          }
+
+          .buttons {
+            display: flex;
+            gap: var(--composer-gap-md);
+            align-items: center;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+          }
+
+          .card-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: var(--composer-gap-sm);
+            .button-text {
+              margin: 0;
+            }
+            .button-icon {
+              width: var(--composer-gap-md);
+              height: var(--composer-gap-md);
+            }
+          }
+        }
+      }
+
+      .image-box {
+        flex: 1;
+        position: relative;
+        max-width: 1200px;
+
+        &.image-box-full {
+          max-width: 100%;
+          height: 100vh;
+          .button {
+            margin-top: 30%;
+          }
+          .image {
+            width: 100%;
+            height: 100%;
+          }
+        }
+        .video {
+          position: fixed;
+          width: 100vw;
+          height: 100vh;
+          background: var(--composer-overlay-color);
+          top: 0;
+          left: 0;
+          display: grid;
+          place-items: center;
+          z-index: 3;
+
+          .player {
+            width: 100%;
+            max-width: 800px;
+            height: 500px;
+            z-index: 10;
+          }
+        }
+        .button {
+          margin-left: 50%;
+          margin-top: 35%;
+          transform: translate(-50%, -50%);
+          border: none;
+          position: absolute;
+          background: none;
+          cursor: pointer;
+          z-index: 2;
+          border-radius: 50%;
+        }
+
+        .btn-icon {
+          color: var(--composer-font-color-primary);
+          width: var(--composer-gap-xl);
+          height: var(--composer-gap-xl);
+          transition: transform 0.3s ease-in-out;
+
+          position: relative;
+          border-radius: 50%;
+          animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+          0% {
+            box-shadow: 0 0 0 var(--composer-gap-xs) rgba(var(--composer-font-color-primary-rgb), 0.2);
+          }
+          50% {
+            box-shadow: 0 0 0 15px rgba(var(--composer-font-color-primary-rgb), 0.5);
+          }
+          100% {
+            box-shadow: 0 0 0 var(--composer-gap-xs) rgba(var(--composer-font-color-primary-rgb), 0.2);
+          }
+        }
+
+        .image {
+          width: 100%;
+          height: auto;
+          border-radius: var(--composer-border-radius-sm);
+          object-fit: cover;
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 var(--composer-gap-lg) var(--composer-gap-md) var(--composer-gap-lg);
+    .max-content {
+      .content {
+        display: flex;
+        flex-direction: column-reverse;
+        position: relative;
+        align-items: center;
+        width: 100%;
+        .card {
+          position: unset;
+          flex: 1;
+          z-index: 1;
+          margin-right: 0%;
+          width: 100%;
+          .card-box {
+            padding: var(--composer-gap-md) var(--composer-gap-lg);
+            position: relative;
+            max-width: 100%;
+
+            .buttons {
+              flex-direction: column;
+              gap: var(--composer-gap-sm);
+              align-items: baseline;
+            }
+          }
+        }
+        .image-box {
+          flex: 1;
+          position: relative;
+          max-width: 100%;
+          margin-top: 0;
+
+          .video {
+            .player {
+              max-width: 700px;
+              height: 500px;
+            }
+          }
+          .button {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            border: none;
+            background: none;
+            cursor: pointer;
+            z-index: 2;
+            .btn-icon {
+              width: var(--composer-gap-lg);
+              height: var(--composer-gap-lg);
+            }
+          }
+          .image {
+            width: 100%;
+            height: auto;
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    padding: 0 var(--composer-gap-md) var(--composer-gap-md) var(--composer-gap-md);
+
+    .max-content {
+      gap: var(--composer-gap-xs);
+      .content {
+        .card {
+          .card-box {
+            padding: var(--composer-gap-md);
+          }
+        }
+        .image-box {
+          .video {
+            .player {
+              max-width: 350px;
+              height: auto;
+            }
+          }
+        }
+      }
+    }
+  }
+}

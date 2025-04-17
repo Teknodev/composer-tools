@@ -1,0 +1,101 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+@mixin title-child {
+  display: block;
+  margin: auto;
+  width: 100%;
+
+  .subtitle {
+    text-transform: uppercase;
+  }
+
+  .title {
+    width: 100%;
+  }
+
+  .description {
+    width: 100%;
+    color: var(--composer-font-color-primary);
+    margin: 0;
+  }
+}
+
+@mixin progress-container {
+  gap: var(--composer-gap-md);
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+
+  .item {
+    transition: 0.3s;
+    width: 100%;
+
+    .progress-title {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1rem;
+      color: var(--composer-font-color-primary);
+      margin-bottom: var(--composer-gap-xs);
+      gap: var(--composer-gap-md);
+      align-items: center;
+    }
+
+    .progress-percent {
+      display: flex;
+      margin-bottom: var(--composer-gap-xs);
+      color: (--composer-font-color-primary);
+      align-items: end;
+      text-align: end;
+      max-width: 50%;
+
+      .progress-text {
+        width: max-content;
+      }
+    }
+  }
+
+  .progress-active {
+    background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+
+    .progress-passive {
+      animation: fillProgress 2s ease-in-out forwards;
+      height: 3px;
+      background-color: var(--composer-secondary-color);
+    }
+
+    @keyframes fillProgress {
+      from {
+        width: 0%;
+      }
+
+      to {
+        width: progress;
+      }
+    }
+  }
+}
+
+.container {
+  .max-content {
+    display: flex;
+    justify-content: center;
+    gap: var(--composer-gap-lg);
+
+    .title-child {
+      @include title-child;
+    }
+
+    .progress-container {
+      @include progress-container;
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      flex-direction: column;
+    }
+  }
+}

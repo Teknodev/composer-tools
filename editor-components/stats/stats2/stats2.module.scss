@@ -1,46 +1,130 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
 .container {
-  width: 100%;
-  padding: 50px 0 50px 0;
+  color: var(--composer-font-color-primary);
+  display: flex;
+
   .max-content {
     display: flex;
-    justify-content: space-around;
-    width: var(--composer-content-width);
-    margin: auto;
-    .stats2-page {
-      display: block;
-      width: 100%;
-      padding: 20px 100px;
-      .bottom-child {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 50px;
-        width: 900px;
-        margin: 0 auto 0 auto;
-        border-radius: 20px;
-        padding: 40px;
-        .card-title {
-          width: 600px;
-          h1 {
-            width: 100%;
-            font-weight: 800;
-            font-size: 30px;
-            line-height: 1.4;
-            padding-right: 50px;
+    flex-direction: column;
+
+    .header-wrapper {
+      width: 60%;
+
+      &.full-width {
+        min-width: 100%;
+      }
+
+      .header {
+        word-break: break-word;
+        text-align: left;
+      }
+    }
+
+    .bottom-content {
+      flex-wrap: unset;
+
+      .subHeader {
+        flex: 1;
+        position: sticky;
+        top: calc(var(--composer-gap-lg) * 2);
+        display: unset;
+        line-height: 1.5;
+
+        &.full-width {
+          min-width: 100%;
+        }
+
+        .description {
+          max-width: 90%;
+          word-break: break-word;
+          margin-left: 0;
+          text-align: left;
+
+          &.full-width {
+            min-width: 100%;
           }
         }
-        .card {
-          width: 500px;
-          h4 {
-            font-weight: 800;
-            font-size: 35px;
-            line-height: 1.4;
-            margin: 0;
-            margin: 20px 0 10px 0;
+
+        .button-content {
+          > div {
+            width: 100% !important;
+
+            .contact-button {
+              &.button-full-width {
+                max-width: 30%;
+              }
+            }
           }
-          p {
-            font-weight: 500;
-            font-size: 17px;
-            line-height: 1.4;
+        }
+      }
+
+      .no-title {
+        top: 0;
+      }
+
+      .cards-container {
+        gap: 0;
+        flex: 3;
+
+        .listed {
+          display: flex;
+          flex-direction: column;
+          border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
+          padding: var(--composer-gap-md) var(--composer-gap-lg);
+          gap: var(--composer-gap-xl);
+
+          .card-text {
+            position: relative;
+            flex: 1;
+            width: 85%;
+            text-align: left;
+            word-break: break-word;
+            white-space: normal;
+            text-overflow: ellipsis;
+            line-height: 1.5;
+            overflow: hidden;
+            margin-left: 0;
+          }
+
+          .card-amount-container {
+            display: flex;
+            align-items: flex-start;
+
+            .card-icon {
+              font-size: 2.5rem;
+              color: var(--composer-font-color-primary);
+              flex-shrink: 0;
+            }
+
+            .card-amount {
+              position: relative;
+              flex-shrink: 0;
+              text-align: left;
+              font-size: 4rem;
+              font-weight: bold;
+              color: var(--composer-font-color-primary);
+              margin: 0;
+              max-width: 85%;
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+            }
+
+            .card-icon-after {
+              font-size: 2rem;
+              margin-top: auto;
+              margin-bottom: auto;
+              flex-shrink: 0;
+            }
+          }
+
+          &.border-top-none {
+            border-top: none;
+          }
+
+          &.border-bottom-none {
+            border-bottom: none;
           }
         }
       }
@@ -48,27 +132,109 @@
   }
 }
 
-@media only screen and (max-width: 1200px) {
+@container (max-width: #{$composer-tablet-width}) {
   .container {
-    flex-direction: column;
-    gap: 20px;
-
     .max-content {
-      .stats2-page {
-        text-align: center;
-        margin: 0;
-        .bottom-child {
-          margin: 0 auto 0 auto;
-          display: block;
+      .header-wrapper {
+        width: 100%;
+
+        &.full-width {
+          min-width: 100%;
+        }
+      }
+
+      .bottom-content {
+        flex-direction: column;
+
+        .subHeader {
           width: 100%;
-          .card-title {
-            width: 100%;
-            h1 {
-              padding-right: 0;
+          margin-right: 0;
+          position: static;
+
+          .description {
+            max-width: 100%;
+
+            &.full-width {
+              min-width: 100%;
             }
           }
-          .card {
+
+          &.full-width {
+            min-width: 100%;
+          }
+
+          .button-content {
+            display: inherit;
+
+            .contact-button {
+              max-width: 100%;
+
+              &.button-full-width {
+                max-width: 60%;
+              }
+            }
+          }
+        }
+
+        .cards-container {
+          .listed {
             width: 100%;
+            padding: var(--composer-gap-lg) var(--composer-gap-xl);
+            max-width: 100%;
+
+            .card-amount-container {
+              .card-amount {
+                max-width: 80%;
+                font-size: 3.5rem;
+              }
+
+              .card-icon {
+                font-size: 2rem;
+              }
+
+              .card-amoun::after {
+                font-size: 1.5rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .bottom-content {
+        .subHeader {
+          .button-content {
+            .contact-button {
+              &.button-full-width {
+                max-width: 80%;
+              }
+            }
+          }
+        }
+
+        .cards-container {
+          .listed {
+            padding: var(--composer-gap-md) var(--composer-gap-lg);
+
+            .card-amount-container {
+              .card-icon {
+                font-size: 1.5rem;
+              }
+
+              .card-amount {
+                font-size: 3rem;
+                max-width: 70%;
+              }
+
+              .card-icon-after {
+                font-size: 1.5rem;
+              }
+            }
           }
         }
       }

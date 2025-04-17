@@ -1,0 +1,277 @@
+@use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss" as *;
+
+.container {
+  display: flex;
+  max-width: 800px;
+  max-height: 600px;
+  overflow: auto;
+  position: relative;
+  padding: 0;
+
+  .max-content {
+    .modal-content {
+      display: flex;
+      width: 100%;
+      min-height: 500px;
+
+      .border {
+        border: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.5);
+        position: absolute;
+        left: 1.5%;
+        right: 1.5%;
+        height: auto;
+        top: 0;
+        bottom: 0;
+        margin: var(--composer-gap-sm) 0;
+        margin: var(--composer-gap-md);
+        right: 0%;
+        left: 0%;
+        pointer-events: none;
+      }
+
+      .exit-icon {
+        position: absolute;
+        right: var(--composer-gap-lg);
+        top: var(--composer-gap-lg);
+
+        .icon {
+          font-size: 1.5rem;
+          color: white;
+        }
+        .icon-no-image {
+          font-size: 1.5rem;
+          color: var(--composer-font-color-primary);
+        }
+      }
+
+      .form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex-basis: 100%;
+      }
+
+      .left {
+        padding: var(--composer-gap-md);
+      }
+
+      .left,
+      .image {
+        flex-basis: 50%;
+        display: flex;
+        gap: var(--composer-gap-xs);
+
+        &:only-child {
+          flex-basis: 100%;
+          justify-content: center;
+          margin: 0 auto;
+          margin: var(--composer-gap-md);
+        }
+      }
+
+      .left {
+        .title {
+          font-size: 2rem;
+          color: var(--composer-font-color-primary);
+        }
+        .rate-question {
+          color: var(--composer-font-color-primary);
+        }
+        .rate-content {
+          display: flex;
+          justify-content: space-between;
+          gap: var(--composer-gap-md);
+
+          .rateIconsWrapper {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+
+            .icons {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              padding: var(--composer-gap-xs);
+              border-radius: 50%;
+              transition: background-color 0.3s ease, transform 0.3s ease;
+
+              &.selected {
+                background-color: var(--composer-primary-color);
+                color: var(--composer-font-color-primary);
+                transform: scale(1.2);
+              }
+
+              .icon-wrapper {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .icon {
+                  font-size: 1.5rem;
+                  color: var(--composer-font-color-primary);
+                }
+              }
+            }
+          }
+        }
+
+        .radio-question {
+          color: var(--composer-font-color-primary);
+        }
+
+        .question-section {
+          width: 100%;
+          .radio-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            margin-bottom: var(--composer-gap-sm);
+            color: var(--composer-font-color-primary);
+            .radio-input:checked {
+              color: var(--composer-primary-color);
+            }
+          }
+
+          .radio-input {
+            margin-right: var(--composer-gap-xs);
+            cursor: pointer;
+            display: flex !important;
+          }
+        }
+        .error {
+          color: var(--composer-danger-color);
+          font-size: 1rem;
+          margin: 0;
+        }
+
+        .message-question {
+          color: var(--composer-font-color-primary);
+        }
+
+        .message-section {
+          width: 100%;
+
+          .input {
+            width: 100%;
+            padding: var(--composer-gap-sm);
+            border: none;
+            border-bottom: 1px solid var(--composer-primary-color);
+            font-size: 1rem;
+            background-color: transparent;
+            outline: none;
+            color: var(--composer-font-color-primary);
+          }
+        }
+
+        .button-container {
+          width: 100%;
+          .submit-button {
+            width: 100%;
+          }
+        }
+      }
+
+      .image {
+        width: 50%;
+        object-fit: cover;
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    max-width: 750px;
+    max-height: 700px;
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    max-width: 300px !important;
+    max-height: 700px !important;
+
+    .max-content {
+      .modal-content {
+        flex-direction: column-reverse;
+
+        .border {
+          display: none;
+        }
+
+        .exit-icon {
+          position: absolute;
+          right: var(--composer-gap-sm);
+          top: var(--composer-gap-sm);
+          margin: var(--composer-gap-xs);
+
+          .icon {
+            font-size: 1.5rem;
+            color: var(--composer-font-color-primary);
+          }
+        }
+
+        .left {
+          .title {
+            font-size: 1.5rem;
+            text-align: center;
+          }
+          .rate-question{
+            text-align: center;
+          }
+          .rate-content {
+            width: 100%;
+            gap: var(--composer-gap-xs);
+            justify-content: center;
+
+            .rateIconsWrapper {
+              .icons {
+                padding: var(--composer-gap-xs);
+
+                &.selected {
+                  transform: scale(1.1);
+                }
+
+                .icon-wrapper {
+                  .icon {
+                    font-size: 1.5rem;
+                  }
+                }
+              }
+            }
+          }
+          .error{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+          }
+          .message-section {
+            display: flex;
+            .input {
+              padding: var(--composer-gap-xs);
+            }
+          }
+          .button-container{
+            .submit-button{
+              display: flex;
+              justify-content: center;
+            }
+          }
+        }
+
+        .left,
+        .image {
+          &:only-child {
+            margin: var(--composer-gap-sm);
+          }
+        }
+
+        .image {
+          width: 100%;
+          height: 200px;
+          flex-basis: auto;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+}

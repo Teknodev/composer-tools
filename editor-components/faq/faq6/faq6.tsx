@@ -1,155 +1,198 @@
 import * as React from "react";
 import styles from "./faq6.module.scss";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
-import { BaseFAQ, TypeUsableComponentProps } from "../../EditorComponent";
+import { BaseFAQ } from "../../EditorComponent";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
 
-type Card = {
-    title: string,
-    description: string
+class Faq6 extends BaseFAQ {
+  constructor(props?: any) {
+    super(props, styles);
+
+    this.addProp({
+      type: "icon",
+      displayer: "Inactive Icon",
+      key: "inactive_icon",
+      value: "FaMinus"
+    })
+    this.addProp({
+      type: "icon",
+      displayer: "Active Icon",
+      key: "active_icon",
+      value: "FaPlus"
+    })
+
+    this.addProp({
+      type: "image",
+      displayer: "Image",
+      key: "image",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661cd34bd2970002c62977c?alt=media&timestamp=1719584962578"
+    })
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "Frequently Asked Questions"
+    },)
+
+    this.addProp({
+      type: "array",
+      displayer: "List Items",
+      key: "list_items",
+      value: [
+        {
+          type: "object",
+          displayer: "Item",
+          key: "item",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title of Item",
+              value: "Ut Neque Augue Interdum Ad Integer Tempus Convallis?"
+            },
+            {
+              type: "string",
+              key: "description",
+              value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In vitae turpis massa sed elementum tempus egestas sed. Diam in arcu cursus euismod.",
+              displayer: "Description of Item"
+            }
+          ]
+        },
+        {
+          type: "object",
+          displayer: "Item",
+          key: "item",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title of Item",
+              value: "Dictum Feugiat Tincidunt Nam Commodo?"
+            },
+            {
+              type: "string",
+              key: "description",
+              value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In vitae turpis massa sed elementum tempus egestas sed. Diam in arcu cursus euismod.",
+              displayer: "Description of Item"
+            }
+          ]
+        },
+        {
+          type: "object",
+          displayer: "Item",
+          key: "item",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title of Item",
+              value: "Scelerisque Metus Sem Nostra Pulvinar Sagittis?"
+            },
+            {
+              type: "string",
+              key: "description",
+              value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In vitae turpis massa sed elementum tempus egestas sed. Diam in arcu cursus euismod.",
+              displayer: "Description of Item"
+            }
+          ]
+        },
+        {
+          type: "object",
+          displayer: "Item",
+          key: "item",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title of Item",
+              value: "Consectetur Scelerisque Lacus Gravida Proin Dolor Sem?"
+            },
+            {
+              type: "string",
+              key: "description",
+              value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In vitae turpis massa sed elementum tempus egestas sed. Diam in arcu cursus euismod.",
+              displayer: "Description of Item"
+            }
+          ]
+        }
+      ]
+    })
+
+    this.setComponentState("active_index", 0);
+
+
+  }
+  static getName(): string {
+    return "FAQ 6";
+  }
+
+  onItemClick(index: number) {
+    const active_index = this.getComponentState("active_index");
+
+    if (active_index == index) {
+      this.setComponentState("active_index", -1);
+    } else {
+      this.setComponentState("active_index", index)
+    }
+  }
+
+  render() {
+    return (
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <div className={this.decorateCSS("wrapper")}>
+            <div className={this.decorateCSS("content")}>
+              {(this.castToString(this.getPropValue("title")) || (this.getPropValue("list_items").length > 0)) && (
+                <div className={this.decorateCSS("items-wrapper")}>
+                  {this.castToString(this.getPropValue("title")) && (
+                    <Base.VerticalContent className={this.decorateCSS("title-wrapper")}>
+                      <Base.SectionTitle className={this.decorateCSS("title")}>
+                        {this.getPropValue("title")}
+                      </Base.SectionTitle>
+                    </Base.VerticalContent>
+                  )}
+                  {(this.getPropValue("list_items").length > 0) && (
+                    <div className={this.decorateCSS("items")}>
+                      {this.getPropValue("list_items").map((item: any, index: number) => {
+                        const is_active = this.getComponentState("active_index") == index;
+
+                        return <div key={index} className={this.decorateCSS("item")} onClick={() => this.onItemClick(index)}>
+                          {(this.castToString(item.getPropValue("title")) || this.getPropValue("inactive_icon") || this.getPropValue("active_icon")) && (
+                            <div className={this.decorateCSS("title-box")}>
+                              {this.castToString(item.getPropValue("title")) && (
+                                <div className={this.decorateCSS("title-text")}>{item.getPropValue("title")}</div>
+                              )}
+                              {(this.getPropValue("inactive_icon") || this.getPropValue("active_icon")) && (
+                                <ComposerIcon
+                                  propsIcon={{ className: `${this.decorateCSS("icon")} ${is_active ? this.decorateCSS("active") : ""}` }}
+                                  name={is_active ? this.getPropValue("inactive_icon") : this.getPropValue("active_icon")}
+                                />
+                              )}
+                            </div>
+                          )}
+                          {this.castToString(item.getPropValue("description")) && (
+                            <div className={`${this.decorateCSS("description-box")} ${is_active && this.decorateCSS("active")}`}>
+                              <div className={this.decorateCSS("description-text")}>{item.getPropValue("description")}</div>
+                            </div>
+                          )}
+                        </div>
+                      })}
+                    </div>
+                  )}
+                </div>
+              )}
+              {this.getPropValue("image") && (
+                <div className={this.decorateCSS("image-box")}>
+                  <img className={this.decorateCSS("image")} src={this.getPropValue("image")} alt={this.getPropValue("image")} />
+                </div>
+              )}
+            </div>
+          </div>
+        </Base.MaxContent>
+      </Base.Container>
+    );
+  }
 }
 
-class FaqPost extends BaseFAQ {
-    constructor(props?: any) {
-        super(props, styles)
-
-        let placeholder: TypeUsableComponentProps = {
-            type: "object",
-            key: "items",
-            displayer: "Items",
-            value: [
-                {
-                    type: "string",
-                    key: "title",
-                    displayer: "Title",
-                    value: PlaceholderFiller.shortText()
-                },
-                {
-                    type: "string",
-                    key: "description",
-                    displayer: "Description",
-                    value: PlaceholderFiller.mediumText()
-                },
-            ]
-        };
-
-        this.addProp({
-            type: "string",
-            key: "subtitle",
-            displayer: "Subtitle",
-            value: "FAQ"
-        });
-
-        this.addProp({
-            type: "string",
-            key: "title1",
-            displayer: "Title",
-            value: PlaceholderFiller.shortText()
-        });
-
-        this.addProp({
-            type: "image",
-            key: "icon",
-            displayer: "Icon",
-            value: "https://cdn-icons-png.flaticon.com/512/4700/4700822.png"
-        });
-
-        this.addProp({
-            type: "string",
-            key: "badge",
-            displayer: "Badge",
-            value: "FAQ",
-        });
-
-        this.addProp({
-            type: "number",
-            key: "itemCount",
-            displayer: "Row",
-            value: 3
-        });
-
-        this.addProp({
-            type: "array",
-            key: "card",
-            displayer: "Card",
-            value: [
-                JSON.parse(JSON.stringify(placeholder)),
-                JSON.parse(JSON.stringify(placeholder)),
-                JSON.parse(JSON.stringify(placeholder)),
-                JSON.parse(JSON.stringify(placeholder)),
-                JSON.parse(JSON.stringify(placeholder)),
-                JSON.parse(JSON.stringify(placeholder)),
-                JSON.parse(JSON.stringify(placeholder)),
-                JSON.parse(JSON.stringify(placeholder)),
-                JSON.parse(JSON.stringify(placeholder)),
-            ]
-        });
-    }
-    getName(): string {
-        return "FAQ POST"
-    }
-
-    render() {
-
-        const littleScreen = {
-            width: "100%",
-            display: "flex",
-            flex: "wrap",
-            justifyContent: "center",
-        }
-
-        const wideScreen = {
-            width: 90 / this.getPropValue("itemCount") + "%",
-            display: "flex",
-            justifyContent: "center",
-        }
-
-        let style = function () {
-            if (window.innerWidth < 800) {
-                return littleScreen;
-            } else {
-                return wideScreen;
-            }
-        };
-        return (
-            <div className={this.decorateCSS("container")}>
-                <div className={this.decorateCSS("max-content")}>
-                    <div className={this.decorateCSS("page")}>
-                        <div className={this.decorateCSS("up-page")}>
-                            <div
-                                className={this.decorateCSS("badge")}
-                            >
-                                {this.getPropValue("badge")}
-                            </div>
-                            <h1>{this.getPropValue("subtitle")}</h1>
-                            <p>{this.getPropValue("title1")}</p>
-                        </div>
-                        <div className={this.decorateCSS("down-page")}>
-                            {this.castToObject<Card[]>("card").map((card: Card, index: any) => {
-                                return (
-                                    <div
-                                        style={style()}
-                                    >
-                                        <div
-                                            className={this.decorateCSS("card")}
-                                            key={index}
-                                        >
-                                            <div className={this.decorateCSS("icon")}>
-                                                <div>
-                                                    ?
-                                                </div>
-                                            </div>
-                                            <h1>{card.title}</h1>
-                                            <p>{card.description}</p>
-                                        </div>
-                                    </div>
-                                )
-                            })}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        )
-    }
-};
-
-export default FaqPost;
+export default Faq6;

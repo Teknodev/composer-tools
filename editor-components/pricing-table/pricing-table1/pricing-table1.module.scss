@@ -1,70 +1,169 @@
-.container {
-  width: 100%;
-  padding: 20px 0 20px 0;
+@use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss" as *;
 
+.container {
   .max-content {
-    width: var(--composer-content-width);
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    margin: auto;
 
-    .price {
+    .table {
       display: flex;
       flex-direction: column;
-      text-align: center;
-      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-      border-radius: 10px;
-      padding: 20px;
-      min-width: 300px;
-      height: max-content;
-      margin: 15px 0 15px 0;
-      .title {
-        display: block;
-        margin: auto auto 10px auto;
-        max-width: 150px;
-        font-weight: 450;
+      width: 100%;
+      @container (max-width: #{$composer-tablet-width}) {
+        .items {
+          .item-card {
+            width: 100% !important;
+            flex: unset !important;
+            border: 1px solid var(--composer-primary-color);
+            overflow: hidden;
+          }
+        }
       }
-      .price-text {
-        display: block;
-        margin: auto auto 10px auto;
-        max-width: 200px;
-        font-weight: bold;
-        font-size: 3em;
+
+      .top-titles {
+        .title {
+          content: "";
+        }
       }
-      .duration-text {
-        display: block;
-        margin: auto auto 10px auto;
-        font-weight: 450;
-        font-size: 1.2em;
-        color: rgb(200, 200, 200);
+
+      .items {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+
+        .item-card {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: var(--composer-gap-md);
+          flex: 1;
+          border-radius: var(--composer-border-radius-md);
+          overflow: hidden;
+
+          &.active {
+            box-shadow: var(--composer-box-shadow);
+          }
+
+          .popular-box {
+            opacity: 0;
+            width: 100%;
+            text-align: center;
+            background-image: linear-gradient(to right, var(--composer-primary-color), var(--composer-secondary-color));
+            padding: var(--composer-gap-sm) 0;
+
+            &.active {
+              opacity: 1;
+            }
+            .popular-text {
+              margin: 0;
+              text-align: center;
+              color: var(--composer-font-color-secondary);
+            }
+          }
+
+          .cardsubtitle {
+            background: color-mix(in srgb, var(--composer-primary-color), #fff 80%);
+            color: var(--composer-primary-color);
+            padding: var(--composer-gap-xs) var(--composer-gap-md);
+            border-radius: var(--composer-border-radius-xl);
+            font-size: 1rem;
+          }
+
+          .card-title {
+            margin: 0 0 var(--composer-gap-sm) 0;
+            font-size: 1.5rem;
+            color: var(--composer-font-color-primary);
+          }
+
+          .card-list {
+            width: 100%;
+
+            .card-list-item {
+              display: flex;
+              align-items: center;
+              gap: var(--composer-gap-xs);
+              padding: var(--composer-gap-sm) var(--composer-gap-lg);
+              border-top: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
+              color: var(--composer-font-color-primary);
+              font-size: 1rem;
+              width: 100%;
+
+              .icon {
+                min-width: var(--composer-gap-sm);
+                color: var(--composer-font-color-primary);
+                font-size: 1rem;
+              }
+            }
+            .list-item {
+              content: "";
+            }
+          }
+
+          .card-bottom {
+            padding: var(--composer-gap-md) var(--composer-gap-lg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            font-size: 1rem;
+            color: var(--composer-font-color-primary);
+            &.active {
+              background: var(--composer-primary-color);
+              color: var(--composer-font-color-secondary);
+              .card-button {
+                background: var(--composer-font-color-secondary);
+                color: var(--composer-primary-color);
+              }
+            }
+
+            .card-price {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: var(--composer-gap-xs);
+              margin: var(--composer-gap-xs);
+              .price {
+                font-size: 2.5rem;
+              }
+              .card-duration {
+                font-size: 1rem;
+              }
+            }
+
+            .card-button {
+              width: 100%;
+              justify-content: center;
+            }
+
+            .pricingTitle {
+              margin-top: var(--composer-gap-md);
+              font-size: 1rem;
+            }
+          }
+        }
       }
-      .button {
-        cursor: pointer;
-        text-decoration: none;
-        text-align: center;
-        transition: 0.3s;
-        display: block;
-        margin: 20px auto 10px auto;
-        color: white;
-        background-color: var(--composer-primary-color);
-        padding: 15px 30px;
-        border-radius: 5px;
-        border: 1px solid transparent;
-        &:hover {
-          color: var(--composer-primary-color);
-          background-color: transparent;
-          border: 1px solid var(--composer-primary-color);
+
+      .titles {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        margin: var(--composer-gap-lg) 0;
+        flex-wrap: wrap;
+        gap: var(--composer-gap-md);
+        color: var(--composer-font-color-primary);
+
+        .title-bottom {
+          font-size: 1rem;
+          display: flex;
+          align-items: center;
+          gap: var(--composer-gap-xs);
         }
       }
     }
-  
-  }
-  }
-
-@media only screen and (max-width: 800px) {
-  .container {
-    flex-direction: column;
-    gap: 20px;
   }
 }

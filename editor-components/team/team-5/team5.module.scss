@@ -1,132 +1,89 @@
-$transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
+@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
+
 .container {
-  width: 100%;
   .max-content {
-    width: var(--composer-content-width);
     display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
+    flex-direction: column;
+    gap: calc(var(--composer-gap-lg) * 2);
 
-    .all-page {
-      width: 100%;
+    .container-top {
       display: flex;
-      flex-direction: column;
-      justify-content: center;
       align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      width: 100%;
 
-      .up-page {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        padding: 0 20px 0 20px;
-        margin-bottom: 5rem;
-        .badge {
-          color: var(--composer-primary-color);
-          border-radius: 10px;
-          font-size: 0.8rem;
-          background: rgb(244, 244, 244);
-          padding: 3px 5px;
-          display: inline-block;
-        }
-
-        .description {
-          font-size: 1.1rem;
-          max-width: 600px;
-          line-height: 1.7rem;
-        }
-        .title {
-          display: flex;
-          justify-content: space-between;
-          .left {
-            max-width: 50%;
-            display: flex;
-            flex-direction: column;
-          }
-
-          .right {
-            display: flex;
-            justify-content: end;
-            align-items: center;
-            gap: 1rem;
-            .button {
-              border: 0px solid;
-              border-radius: 3px;
-              color: #fff;
-              cursor: pointer;
-              padding: 10px;
-              background: transparent;
-              transition: $transition;
-              opacity: 0.9;
-              &:hover {
-                opacity: 1;
-              }
-            }
-
-            .primary {
-              background-color: var(--composer-primary-color);
-            }
-            .secondary {
-              border: 1px solid rgb(200, 200, 200);
-              color: black;
-            }
-          }
+      .title-container {
+        width: 40%;
+        .title{
+          margin: 0px;
         }
       }
 
-      .down-page {
-        width: 100%;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        flex-wrap: wrap;
+      .description-container {
+        width: 40%;
 
-        .all-card {
+        .description-inner {
+          text-align: right;
+          margin: 0px;
+        }
+      }
+    }
+
+    .container-bottom {
+      gap: var(--composer-gap-xl);
+
+      .egg-item {
+        justify-content: center;
+        align-items: center;
+
+        .image-container {
+          width: 100%;
           display: flex;
           justify-content: center;
-          .card {
-            width: 350px;
-            height: 350px;
-            min-width: 300px;
-            min-height: 300px;
-            display: flex;
-            flex-direction: column;
-            padding: 10px;
-            margin-bottom: 1rem;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
+          align-items: center;
+          position: relative;
+          max-width: 400px;
 
-            .name {
-              font-size: 2rem;
-              margin: 2rem 0rem 0rem;
-              opacity: 0.7;
-              transition: $transition;
-            }
-            .position {
-              color: var(--composer-primary-color);
-              opacity: 0.7;
-              transition: $transition;
-            }
+          .background-image,
+          .member-image {
+            width: 80%;
+            aspect-ratio: 1;
+          }
 
-            img {
-              width: 100%;
-              height: 250px;
-              object-fit: cover;
-              transition: $transition;
-            }
+          .background-image {
+            width: 70%;
+          }
 
-            &:hover {
-              .name {
-                opacity: 1;
-              }
-              .position {
-                opacity: 1;
-              }
-              img {
-                transform: scale(1.1);
-              }
-            }
+          .member-image {
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            top: -14.5%;
+            z-index: 2;
+          }
+        }
+
+        .icon-container {
+          display: flex;
+          justify-content: center;
+          position: relative;
+          column-gap: var(--composer-gap-sm);
+          color: var(--composer-primary-color);
+          font-size: 2rem;
+          margin-top: 1.5rem;
+        }
+
+        .members-container {
+          align-items: center;
+          .name {
+            color: var(--composer-font-color-primary);
+          }
+
+          .occupation {
+            text-align: center;
+            color: var(--composer-tertiary-color);
           }
         }
       }
@@ -134,144 +91,24 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
   }
 }
 
-@media only screen and (max-width: 800px) {
+@container (max-width: #{$composer-tablet-width}) {
   .container {
-    width: 100%;
     .max-content {
-      width: var(--composer-content-width);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: auto;
-      max-width: 100%;
-  
-      .all-page {
-        width: 100%;
-        display: flex;
+      .container-top {
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
-  
-        .up-page {
+        .title-container {
           width: 100%;
-          display: flex;
-          flex-direction: column;
-          padding: 0 20px 0 20px;
-          margin-bottom: 2rem;
-          .badge {
-            color: var(--composer-primary-color);
-            border-radius: 10px;
-            font-size: 0.8rem;
-            background: rgb(244, 244, 244);
-            padding: 3px 5px;
-            display: inline-block;
-          }
-  
-          .description {
-            font-size: 1.1rem;
-            max-width: unset;
-            width: 100%;
-            line-height: 1.7rem;
-          }
           .title {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            .left {
-              max-width: 50%;
-              display: flex;
-              flex-direction: column;
-            }
-  
-            .right {
-              display: flex;
-              justify-content: end;
-              align-items: center;
-              gap: 1rem;
-              .button {
-                border: 0px solid;
-                border-radius: 3px;
-                color: #fff;
-                cursor: pointer;
-                padding: 10px;
-                background: transparent;
-                transition: $transition;
-                opacity: 0.9;
-                &:hover {
-                  opacity: 1;
-                }
-              }
-  
-              .primary {
-                background-color: var(--composer-primary-color);
-              }
-              .secondary {
-                border: 1px solid rgb(200, 200, 200);
-                color: black;
-              }
-            }
+            margin: 0;
           }
         }
-  
-        .down-page {
+        .description-container {
           width: 100%;
-          display: flex;
-          justify-content: space-around;
-          align-items: center;
-          flex-wrap: wrap;
-  
-          .all-card {
-            width: 100% !important;
-            display: flex;
-            justify-content: unset;
-            .card {
-              width: 350px;
-              height: 350px;
-              min-width: 300px;
-              min-height: 300px;
-              display: flex;
-              flex-direction: column;
-              padding: 10px;
-              margin-bottom: 1rem;
-              overflow: hidden;
-              white-space: nowrap;
-              text-overflow: ellipsis;
-  
-              .name {
-                font-size: 2rem;
-                margin: 2rem 0rem 0rem;
-                opacity: 0.7;
-                transition: $transition;
-              }
-              .position {
-                color: var(--composer-primary-color);
-                opacity: 0.7;
-                transition: $transition;
-              }
-  
-              img {
-                width: 100%;
-                height: 250px;
-                object-fit: cover;
-                transition: $transition;
-              }
-  
-              &:hover {
-                .name {
-                  opacity: 1;
-                }
-                .position {
-                  opacity: 1;
-                }
-                img {
-                  transform: scale(1.1);
-                }
-              }
-            }
+          .description-inner {
+            text-align: left;
           }
         }
       }
     }
   }
-  
 }

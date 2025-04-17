@@ -1,194 +1,93 @@
+@use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss" as *;
+
 .container {
-  width: 100%;
-  height: 100%;
-  box-shadow: var(--composer-box-shadow);
-  padding: 20px 0 20px 0;
-
+  background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
   .max-content {
-    width: var(--composer-content-width);
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    align-items: center;
-    margin: auto;
+    flex-direction: column;
+    gap: var(--composer-gap-lg);
 
-    .basic-page {
-      width: 100%;
-      height: 100%;
-      background-color: rgb(254, 255, 255);
-      display: flex;
-      justify-content: space-around;
-
-      &.basic-page-reverse {
-        flex-flow: row-reverse;
-      }
-
-      .page-1 {
-        width: 50%;
-        border-right: 1px solid;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-
-        &.page-1-border {
-          border-right: unset;
-          border-left: 1px solid;
-        }
-        .box {
-          margin-bottom: 40px;
-          margin-left: 15%;
-          overflow: hidden;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-
-          .button {
-            cursor: pointer;
-            text-align: center;
-            transition: 0.3s;
-            display: block;
-            background-color: var(--composer-primary-color);
-            padding: 5px 20px;
-            border-radius: 5px;
-            border: 1px solid transparent;
-            width: 200px;
-            margin-bottom: 20px;
-            font-size: 1.5rem;
-            text-align: center;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            color: #fff;
-            &:hover {
-              background-color: transparent;
-              border: 1px solid var(--composer-primary-color);
-              transition: 0.3s;
-              color: var(--composer-primary-color);
-            }
-            &.button-color {
-              background-color: var(--composer-secondary-color);
-              border: 1px solid var(--composer-secondary-color);
-
-              &:hover {
-                background-color: transparent;
-                color: var(--composer-secondary-color);
-              }
-            }
+    .header {
+      align-items: center;
+      .title {
+        &.line{
+          position: relative;
+          margin-bottom: var(--composer-gap-lg);
+          text-align: center;
+          &::after {
+            content: "";
+            position: absolute;
+            bottom: calc(-1 * var(--composer-gap-md));
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            border-bottom: var(--composer-gap-xs) solid var(--composer-primary-color);
           }
         }
       }
-      .page-2 {
-        width: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        img {
-          width: 60%;
-          height: 80%;
-          background-size: cover;
-        }
+      .description {
+        color: var(--composer-font-color-primary);
+        text-align: center;
       }
-      p {
-        font-size: 1rem;
+    }
+
+    .box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--composer-gap-md);
+
+      .button-wrapper {
+        .button {
+          padding: var(--composer-gap-md) var(--composer-gap-lg);
+          .button-text{
+            font-size: 1.5rem;
+          }
+          .icon{
+            font-size:1.5rem;
+          }
+        }
       }
     }
   }
 }
 
-@media only screen and (max-width: 800px) {
+@container (max-width: #{$composer-tablet-width}) {
   .container {
-    width: 100%;
-
     .max-content {
-      width: var(--composer-content-width);
-      display: flex;
-      justify-content: center;
-
-      .basic-page {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column !important;
-        justify-content: center;
-        align-items: center;
-
-        &.basic-page-reverse {
-          flex-flow: unset;
-        }
-
-        .page-1 {
-          width: 100%;
-          border-right: unset;
-          border-bottom: unset;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          margin-bottom: 20px;
-          .box {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 10px;
-            margin-left: unset;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-
-            .button {
-              cursor: pointer;
-              text-align: center;
-              transition: 0.3s;
-              display: block;
-              background-color: var(--composer-primary-color);
-              padding: 5px 20px;
-              border-radius: 5px;
-              border: 1px solid transparent;
-              width: 100px;
-              margin-bottom: unset;
+      .box {
+        justify-content: space-between;
+        .button-wrapper {
+          .button {
+            padding: var(--composer-gap-sm) var(--composer-gap-md);
+            .button-text {              
               font-size: 1rem;
-              text-align: center;
-              overflow: hidden;
-              white-space: nowrap;
-              text-overflow: ellipsis;
-              color: #fff;
-              &:hover {
-                background-color: transparent;
-                border: 1px solid var(--composer-primary-color);
-                transition: 0.3s;
-                color: var(--composer-primary-color);
-              }
-              &.button-color {
-                background-color: var(--composer-secondary-color);
-                border: 1px solid var(--composer-secondary-color);
-
-                &:hover {
-                  background-color: transparent;
-                  color: var(--composer-secondary-color);
-                }
-              }
+            }
+            .icon {
+              font-size: 1rem;
             }
           }
         }
-        .page-2 {
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      gap: var(--composer-gap-sm);
+      .header{
+        align-items: center !important;
+      }
+      .box {
+        flex-direction: column;
+        justify-content: center;
+        .button-wrapper {
           width: 100%;
           display: flex;
           justify-content: center;
-          align-items: center;
-          img {
-            width: 100%;
-            background-size: cover;
-          }
-        }
-
-        p {
-          font-size: 0.5rem;
-        }
-
-        h1 {
-          font-size: 1rem;
         }
       }
     }

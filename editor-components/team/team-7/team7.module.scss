@@ -1,0 +1,175 @@
+@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
+
+.container {
+  .max-content {
+    .basic-page {
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      gap: var(--composer-gap-sm);
+      .up-page {
+        width: 100%;
+        gap: var(--composer-gap-sm);
+        .badge {
+          margin-bottom: 0;
+        }
+        .up-page-bottom {
+          display: flex;
+          width: 100%;
+          align-items: center;
+          gap: var(--composer-gap-md);
+          margin: 0;
+          .title {
+            width: 100%;
+            flex: 1;
+            margin: 0;
+          }
+          .description{
+            color: var(--composer-tertiary-color);
+            flex: 1;
+            &.middle{
+              margin: 0;
+              text-align: right;
+            }
+            &.left{
+              text-align: left;
+            }
+          }
+        }
+      }
+
+      .up-page-center {
+        width: 100%;
+        gap: var(--composer-gap-sm);
+
+        .badge {
+          margin-bottom: 0;
+        }
+        .title {
+          margin: 0;
+        }
+        .description {
+          color: var(--composer-tertiary-color);
+          margin: 0;
+        }
+      }
+
+      .down-page {
+        gap: var(--composer-gap-md);
+        .card {
+          display: flex;
+          flex-direction: column;
+          position: relative;
+          height: auto;
+          gap: var(--composer-gap-sm);
+
+          .image-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            max-height: 350px;
+          }
+
+          .image-wrapper {
+            position: relative;
+          }
+
+          .person-image {
+            height: 350px;
+            min-height: 350px;
+            width: 100%;
+            object-fit: cover;
+            border-radius: var(--composer-border-radius-md);
+            border-bottom: 3px solid var(--composer-primary-color);
+          }
+
+          .overlay {
+            position: absolute;
+            border-radius: var(--composer-border-radius-md);
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 20%;
+            background: linear-gradient(to top, var(--composer-primary-color), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 1;
+          }
+
+          .image-container:hover .overlay {
+            opacity: 1;
+          }
+
+          .icons-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: var(--composer-gap-sm);
+            opacity: 0;
+            padding: 0.5rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            z-index: -1;      
+          }
+
+          .image-container:hover .icons-bar {
+            transform: translateY(0);
+            opacity: 1;
+            z-index: 5;
+          }
+          .icon {
+            color: var(--composer-font-color-secondary);
+            font-size: 1.5rem;
+            transition: 0.3s;
+
+            &:hover {
+              transform: translateY(0);
+              color: var(--composer-secondary-color);
+            }
+          }
+
+          .text-group {
+            width: 100%;
+            justify-content: center;
+            margin: 0 auto;
+            transition: transform 0.3s ease;
+
+            .item-name {
+              text-align: center;
+              width: 100%;
+              color: var(--composer-font-color-primary);
+            }
+            .item-position {
+              text-align: center;
+              width: 100%;
+              color: var(--composer-tertiary-color);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container{
+    .max-content{
+      .basic-page{
+        .up-page {
+          .up-page-bottom {
+            flex-direction: column;
+            align-items: baseline;
+
+            .description {
+              text-align: left;
+            }
+          }
+        }
+      }
+    }
+  }
+
+}

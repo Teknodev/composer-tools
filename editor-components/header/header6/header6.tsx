@@ -1,142 +1,225 @@
 import * as React from "react";
-import ComposerLink from "../../../composer-base-components/Link/link";
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header6.module.scss";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+
+interface TitleItem {
+  title: React.JSX.Element;
+  titleAnimation: boolean;
+}
+interface Title2Item {
+  title2: React.JSX.Element;
+  title2Animation: boolean;
+}
+interface DescriptionItem {
+  description: React.JSX.Element;
+  descriptionAnimation: boolean;
+}
+interface Image2Item {
+  image2: string;
+  image2Animation: boolean;
+}
+interface ButtonItem {
+  buttonText: React.JSX.Element;
+  url: string;
+  buttonAnimation: boolean;
+}
 
 class Header6 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
       type: "object",
-      key: "icons",
-      displayer: "Icons",
+      key: "titleItem",
+      displayer: "Title Item",
       value: [
         {
-          type: "image",
-          key: "mail-icon",
-          value:
-            "https://static-00.iconduck.com/assets.00/mail-icon-512x419-8cvam21t.png",
-          displayer: "Mail Icon",
+          type: "string",
+          key: "title",
+          displayer: "Title",
+          value: "Envision",
         },
         {
-          type: "image",
-          key: "phone-icon",
-          value: "https://cdn-icons-png.flaticon.com/512/5068/5068731.png",
-          displayer: "Phone Icon",
-        },
-        {
-          type: "image",
-          key: "icon-left",
-          value:
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/1200px-Facebook_Logo_%282019%29.png",
-          displayer: "Left Icon",
-        },
-        {
-          type: "image",
-          key: "icon-center",
-          value:
-            "https://cdn4.iconfinder.com/data/icons/social-media-icons-the-circle-set/48/twitter_circle-512.png",
-          displayer: "Center Icon",
-        },
-        {
-          type: "image",
-          key: "icon-right",
-          value: "https://cdn-icons-png.flaticon.com/512/174/174855.png",
-          displayer: "Right Icon",
-        },
-        {
-          type: "page",
-          key: "icon-left-link",
-          value: "",
-          displayer: "Left Icon Link",
-        },
-        {
-          type: "page",
-          key: "icon-center-link",
-          value: "",
-          displayer: "Center Icon Link",
-        },
-        {
-          type: "page",
-          key: "icon-right-link",
-          value: "",
-          displayer: "Right Icon Link",
+          type: "boolean",
+          key: "titleAnimation",
+          displayer: "Title Animation",
+          value: true,
         },
       ],
     });
     this.addProp({
       type: "object",
-      key: "header",
-      displayer: "Header",
+      key: "title2Item",
+      displayer: "Title2 Item",
       value: [
         {
           type: "string",
-          key: "mail",
-          value: "mail@gmail.com",
-          displayer: "Mail",
+          key: "title2",
+          displayer: "Title2",
+          value: "Brand 2020",
         },
         {
-          type: "string",
-          key: "phone",
-          value: "+1-202-555-0000",
-          displayer: "Phone",
+          type: "boolean",
+          key: "title2Animation",
+          displayer: "Title Animation",
+          value: true,
         },
       ],
     });
+    this.addProp({
+      type: "object",
+      key: "descriptionItem",
+      displayer: "Description Item",
+      value: [
+        {
+          type: "string",
+          key: "description",
+          displayer: "Description",
+          value: "Carefully crafted with unique layouts you can easily create websites.",
+        },
+        {
+          type: "boolean",
+          key: "descriptionAnimation",
+          displayer: "Description Animation",
+          value: true,
+        },
+      ],
+    });
+    this.addProp({
+      type: "image",
+      key: "image1",
+      displayer: "Background Image",
+      value:
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617f52bd2970002c624523?alt=media&timestamp=1719483639150",
+    });
+
+    this.addProp({
+      type: "object",
+      key: "image2Item",
+      displayer: "Image Item",
+      value: [
+        {
+          type: "image",
+          key: "image2",
+          displayer: "Image",
+          value:
+            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617f52bd2970002c624524?alt=media&timestamp=1719483639150",
+        },
+        {
+          type: "boolean",
+          key: "image2Animation",
+          displayer: "Image Animation",
+          value: true,
+        },
+      ],
+    });
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      additionalParams: {
+        maxElementCount: 2,
+      },
+      value: [
+        INPUTS.BUTTON("button", "Button", "Explore", "", null, null, "Primary")
+      ],
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "buttonAnimation",
+      displayer: "Button Animation",
+      value: true,
+    },)
   }
-  getName(): string {
+
+  static getName(): string {
     return "Header 6";
   }
   render() {
+    const title = this.castToObject<TitleItem>("titleItem");
+    const title2 = this.castToObject<Title2Item>("title2Item");
+    const description = this.castToObject<DescriptionItem>("descriptionItem");
+    const image2 = this.castToObject<Image2Item>("image2Item");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+
+    const showLeftContent =
+      this.castToString(title.title) ||
+      this.castToString(title2.title2) ||
+      this.castToString(description.description) ||
+      buttons.length > 0
+
+    const showRightContent = this.getPropValue("image1") || image2.image2;
+
     return (
-      <div
-        className={this.decorateCSS("container")}
-        
-      >
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("infobar-left")}>
-            <h3>
-              <img
-                
-                className={this.decorateCSS("member-image")}
-                src={this.getPropValue("icons")[0].value}
-              />
-              {this.getPropValue("header")[0].value}
-            </h3>
-            <h3>
-              <img
-                
-                className={this.decorateCSS("member-image")}
-                src={this.getPropValue("icons")[1].value}
-              />
-              {this.getPropValue("header")[1].value}
-            </h3>
-          </div>
-          <div className={this.decorateCSS("infobar-right")}>
-            <ComposerLink path={this.getPropValue("icons")[5].value}>
-              <img
-                
-                className={this.decorateCSS("member-image")}
-                src={this.getPropValue("icons")[2].value}
-              />
-            </ComposerLink>
-            <ComposerLink path={this.getPropValue("icons")[6].value}>
-              <img
-                
-                className={this.decorateCSS("member-image")}
-                src={this.getPropValue("icons")[3].value}
-              />
-            </ComposerLink>
-            <ComposerLink path={this.getPropValue("icons")[7].value}>
-              <img
-                
-                className={this.decorateCSS("member-image")}
-                src={this.getPropValue("icons")[4].value}
-              />
-            </ComposerLink>
-          </div>
-        </div>
-      </div>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <section className={this.decorateCSS("child-container")}>
+            {showLeftContent ? (
+              <div className={this.decorateCSS("left-content")}>
+                {(this.castToString(title.title) || this.castToString(title2.title2)) && (
+                  <div className={this.decorateCSS("title-container")}>
+                    {this.castToString(title.title) && (
+                      <h2 className={`${this.decorateCSS("title")} ${!title.titleAnimation && this.decorateCSS("noanimation")}`}>
+                        {title.title}
+                      </h2>
+                    )}
+                    {this.castToString(title2.title2) && (
+                      <h3 className={`${this.decorateCSS("title2")} ${!title2.title2Animation && this.decorateCSS("noanimation")}`}>
+                        {title2.title2}
+                      </h3>
+                    )}
+                  </div>
+                )}
+                {this.castToString(description.description) && (
+                  <p className={`${this.decorateCSS("description")} ${!description.descriptionAnimation && this.decorateCSS("noanimation")}`}>
+                    {description.description}
+                  </p>
+                )}
+                {this.getPropValue("buttons").length > 0 && (
+                  <div className={this.decorateCSS("buttondiv")}>
+                    {buttons.map((item: INPUTS.CastedButton, indexButtons: number) => (
+                      <ComposerLink path={item.url} key={indexButtons}>
+                        <Base.Button buttonType={item.type}
+                          className={`${this.decorateCSS("button")} ${!this.getPropValue("buttonAnimation") && this.decorateCSS("noanimation")}`}
+                        >
+                          {item.text}
+                        </Base.Button>
+                      </ComposerLink>
+                    ))
+
+                    }
+                  </div>
+                )}
+              </div>
+            ) : null}
+
+            {showRightContent ? (
+              <div className={this.decorateCSS("right-content")}>
+                {this.getPropValue("image1") && (
+                  <img
+                    src={this.getPropValue("image1")}
+                    alt={this.getPropValue("image1")}
+                    className={this.decorateCSS("image1")}
+                  />
+                )}
+                {image2.image2 && (
+                  <img
+                    src={image2.image2}
+                    alt={image2.image2}
+                    className={`${this.decorateCSS("image2")} 
+                    ${(!image2.image2Animation) && this.decorateCSS("noanimation")}
+                    ${(!this.getPropValue("image1")) && this.decorateCSS("without-image1")}`}
+                  />
+                )}
+              </div>
+            ) : null}
+          </section>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

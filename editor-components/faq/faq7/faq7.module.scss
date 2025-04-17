@@ -1,0 +1,97 @@
+.container {
+    .max-content {
+        .page {
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-md);
+            .up-page {
+                .title, .description {
+                    content: "";
+                }
+            }
+            .down-page {
+                display: flex;
+                flex-direction: column;
+                gap: var(--composer-gap-md);
+                .card {
+                    border-radius: var(--composer-border-radius-xs);
+                    width: 100%;
+                    background-color: color-mix(
+                        in srgb,
+                        var(--composer-html-background),
+                        var(--composer-font-color-primary) 5%
+                      );
+                      padding: var(--composer-gap-lg);
+                      position: relative;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      flex-direction: column;
+                      cursor: pointer;
+                      .line{
+                        content: "";
+                        background-color: var(--composer-primary-color);
+                        position: absolute;
+                        width: 2px;
+                        height: 50%;
+                        left: 0px;
+                      }
+  
+                    .child-container {
+                        display: flex;
+                        width: 100%;
+                        gap: var(--composer-gap-xs);
+                        .card-title-wrapper {
+                            flex:1;
+                            .card-title {
+                                font-size:1rem;
+                                color: var(--composer-font-color-primary);
+                                transition: color 0.5s ease;
+                                &.active{
+                                   color: var(--composer-primary-color); 
+                                }
+                            }
+                        }
+                        .icon-wrapper{                        
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;            
+                            .icon {
+                                color: var(--composer-font-color-primary);
+                                width: 15px;
+                                height: 15px;
+                            }
+                        }
+                    }
+                    .inner-card {
+                        overflow: hidden;
+                        max-height: 0px;
+                        transition: max-height 1s linear;
+                        &.active {
+                            max-height: 150px;
+                        }
+                        .inner-text{
+                            font-size: 1rem;
+                            color: var( --composer-tertiary-color);
+                            opacity: 0;
+                            transition: opacity 1s linear;
+                            padding: var(--composer-gap-md) var(--composer-gap-md) var(--composer-gap-md) 0px;
+                            &.active {
+                                opacity: 1;
+                            }
+                        }
+                    }
+                }
+            }
+            .button-wrapper{
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                .button{
+                    content: "";
+                }
+            }
+        }
+
+    }
+}

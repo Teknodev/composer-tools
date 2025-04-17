@@ -1,112 +1,176 @@
 import * as React from "react";
-import styles from "./faq1.module.scss"
+import styles from "./faq1.module.scss";
 import { BaseFAQ } from "../../EditorComponent";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
+import { Base } from "../../../composer-base-components/base/base";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type FAQ = {
-    subtitle: string,
-    text: string,
-    image: string,
-}
+  subtitle: React.JSX.Element;
+  text: React.JSX.Element;
+  image: string;
+};
 
-class Faq extends BaseFAQ {
-    constructor(props?: any) {
-        super(props, styles);
+class Faq1 extends BaseFAQ {
+  constructor(props?: any) {
+    super(props, styles);
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Frequently Asked Questions"
+    })
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "Have Any Questions?"
+    })
+    this.addProp({
+      type: "icon",
+      key: "icon",
+      displayer: "Icon",
+      value: "IoIosArrowDown"
+    })
 
-        this.addProp({
-            type: "array",
-            key: "card",
-            displayer: "Card",
-            value: [
-                {
-                    type: "object",
-                    key: "block",
-                    displayer: "Card",
-                    value: [
-                        {
-                            type: "string",
-                            key: "subtitle",
-                            displayer: "Question",
-                            value: PlaceholderFiller.string()
-                        },
-                        {
-                            type: "string",
-                            key: "text",
-                            displayer: "Answer",
-                            value: PlaceholderFiller.string()
-                        },
-                    ]
-                },
-                {
-                    type: "object",
-                    key: "block",
-                    displayer: "Card",
-                    value: [
-                        {
-                            type: "string",
-                            key: "subtitle",
-                            displayer: "Question",
-                            value: PlaceholderFiller.string()
-                        },
-                        {
-                            type: "string",
-                            key: "text",
-                            displayer: "Answer",
-                            value: PlaceholderFiller.string()
-                        },
-                    ]
-                },
-                {
-                    type: "object",
-                    key: "block",
-                    displayer: "Card",
-                    value: [
-                        {
-                            type: "string",
-                            key: "subtitle",
-                            displayer: "Question",
-                            value: PlaceholderFiller.string()
-                        },
-                        {
-                            type: "string",
-                            key: "text",
-                            displayer: "Answer",
-                            value: PlaceholderFiller.string()
-                        },
-                    ]
-                }
+    this.addProp({
+      type: "array",
+      key: "card",
+      displayer: "Card",
+      value: [
+        {
+          type: "object",
+          key: "block",
+          displayer: "Card",
+          value: [
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Question",
+              value: "Which payment options are available?",
+            },
+            {
+              type: "string",
+              key: "text",
+              displayer: "Answer",
+              value: "Cash",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "block",
+          displayer: "Card",
+          value: [
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Question",
+              value: "Which payment options are available?",
+            },
+            {
+              type: "string",
+              key: "text",
+              displayer: "Answer",
+              value: "Checks",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "block",
+          displayer: "Card",
+          value: [
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Question",
+              value: "Do you accept credit cards or other forms of payment?",
+            },
+            {
+              type: "string",
+              key: "text",
+              displayer: "Answer",
+              value: "Yes, I do",
+            },
+          ],
+        },
+      ],
+    });
 
-            ],
-        });
+    this.setComponentState("selectCardIndex", null);
+  }
+
+  static getName(): string {
+    return "FAQ 1";
+  }
+
+  cardClicked(index: number) {
+    const currentSelectCardIndex = this.getComponentState("selectCardIndex");
+
+    if (currentSelectCardIndex === index) {
+      this.setComponentState("selectCardIndex", null);
     }
-
-    getName(): string {
-        return "FAQ-1";
+    else {
+      this.setComponentState("selectCardIndex", index);
     }
+  }
 
-    render() {
-        return (
-            <div
-                className={this.decorateCSS("container")}
-                
-            >
-                <div className={this.decorateCSS("max-content")}>
-                    <div className={this.decorateCSS("page")}>
-
-                        {this.castToObject<FAQ[]>("card").map((card: FAQ) => (
-                            <div className={this.decorateCSS("card")} >
-                                <div className={this.decorateCSS("in-box")}>
-                                    <h2>{card.subtitle}</h2>
-                                    <img src={"https://www.svgrepo.com/show/80156/down-arrow.svg"} className={this.decorateCSS("img-1")} />
-                                </div>
-                                <p>{card.text}</p>
-                            </div>
-                        ))}
+  render() {
+    return (
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          {(this.castToString(this.getPropValue("subtitle")) || this.castToString(this.getPropValue("title"))) && (
+            <Base.VerticalContent className={this.decorateCSS("title-container")}>
+              {this.castToString(this.getPropValue("subtitle")) && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {this.getPropValue("subtitle")}
+                </Base.SectionSubTitle>
+              )}
+              {this.castToString(this.getPropValue("title")) && (
+                <Base.SectionTitle className={this.decorateCSS("title")}>
+                  {this.getPropValue("title")}
+                </Base.SectionTitle>
+              )}
+            </Base.VerticalContent>
+          )}
+          {(this.getPropValue("card").length > 0) && (
+            <div className={this.decorateCSS("page")}>
+              {this.castToObject<FAQ[]>("card").map((card: FAQ, indexCard: number) => (
+                <div
+                  className={this.decorateCSS("card")}
+                  onClick={() => {
+                    this.cardClicked(indexCard);
+                  }}
+                >
+                  {(this.castToString(card.subtitle) || this.getPropValue("icon")) && (
+                    <div className={this.decorateCSS("in-box")}>
+                      {this.castToString(card.subtitle) && (
+                        <div className={this.decorateCSS("card-subtitle")}>{card.subtitle}</div>
+                      )}
+                      {this.getPropValue("icon") && (
+                        <ComposerIcon name={this.getPropValue("icon")} propsIcon={{
+                          className: `${this.decorateCSS("icon")} 
+                           ${this.getComponentState("selectCardIndex") === indexCard ? this.decorateCSS("rotate") : ""}`
+                        }}></ComposerIcon>
+                      )}
                     </div>
+                  )}
+                  {this.castToString(card.text) && (
+                    <div className={`${this.decorateCSS("card-inner")} ${this.getComponentState("selectCardIndex") === indexCard ? this.decorateCSS("cardActive") : ""}`}>
+                      <div className={this.decorateCSS("card-text")}>
+                        {card.text}
+                      </div>
+                    </div>
+                  )}
                 </div>
+              ))}
             </div>
-        );
-    }
+          )}
+
+        </Base.MaxContent>
+      </Base.Container>
+    );
+  }
 }
 
-export default Faq;
+export default Faq1;

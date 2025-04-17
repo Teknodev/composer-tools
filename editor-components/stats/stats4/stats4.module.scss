@@ -1,90 +1,110 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
 .container {
-  width: 100%;
-  padding: 50px 0 50px 0;
   .max-content {
-    width: var(--composer-content-width);
     display: flex;
-    justify-content: space-around;
-    margin: auto;
-    .stats4-page {
-      display: block;
+    align-items: center;
+
+    .stats-container {
       width: 100%;
-      padding: 20px 100px;
-      .bottom-child {
+
+      .upper-container {
         display: flex;
-        justify-content: space-between;
-        margin-top: 50px;
-        margin: 0 auto 0 auto;
-        border-radius: 20px;
-        padding: 40px;
-        .title {
-          display: block;
-          h1 {
-            font-weight: 800;
-            font-size: 40px;
-            line-height: 1.4;
-            padding-right: 50px;
-          }
-          h3 {
-            width: 45%;
-            font-weight: 100;
-            font-size: 18px;
-            line-height: 1.4;
-            margin-bottom: 80px;
+        justify-content: center;
+        align-items: flex-start;
+        gap: var(--composer-gap-md);
+        flex-wrap: unset;
+        gap: calc(2 * var(--composer-gap-xl));
+
+        .upper-container-main {
+          width: 100%;
+        }
+
+        .faq {
+          width: 100%;
+          color: var(--composer-font-color-primary);
+
+          .faq-item {
+            .bottom-line {
+              height: 1px;
+              width: 100%;
+              background-color: var(--composer-font-color-primary);
+              margin: 0;
+            }
+
+            .faq-item-header {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+
+              .faq-item-title {
+                content: "";
+                margin-left: 0;
+                text-align: left;
+              }
+
+              .faq-item-button {
+                border: none;
+                font-size: 1rem;
+                background: none;
+                color: var(--composer-font-color-primary);
+              }
+            }
+
+            .faq-item-content {
+              overflow: hidden;
+              max-height: 0;
+              transition: 0.3s;
+              margin: 0;
+              opacity: 0;
+              color: var(--composer-tertiary-color);
+
+              &.show-faq-item {
+                max-height: 400px;
+                padding: var(--composer-gap-xs) 0 var(--composer-gap-md) 0;
+                opacity: 1;
+              }
+
+              .faq-text {
+                text-align: left;
+              }
+            }
           }
         }
-        .card {
-          min-width: 500px;
-          max-width: 500px;
-          height: 600px;
-          border-radius: 10px;
-          padding: 40px;
-          .text-child {
-            display: flex;
-            background-color: var(--composer-primary-color);
-            color: white;
-            padding: 5px 30px;
-            border-radius: 10px;
-            margin-top: 300px;
-            h4 {
-              font-weight: 800;
-              font-size: 35px;
-              line-height: 1.4;
-              margin: 17px 0 0 0;
-              width: 100px;
-            }
-            p {
-              width: 40%;
-              font-weight: 500;
-              font-size: 17px;
-              line-height: 1.4;
-            }
+      }
+
+      .stats {
+        margin-top: var(--composer-gap-lg);
+
+        .stat-item {
+          .stat-line {
+            background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
+            width: 100%;
+            height: 1px;
+            margin-bottom: var(--composer-gap-sm);
           }
-          .text-child-blur {
-            display: flex;
-            color: white;
-            padding: 5px 30px;
-            border-radius: 10px;
-            margin-top: 20px;
-            background-size: cover;
-            background: linear-gradient(
-              180deg,
-              rgba(255, 255, 255, 0.2) 0%,
-              rgba(255, 255, 255, 0.2) 100%
-            );
-            backdrop-filter: blur(10px);
-            h4 {
-              font-weight: 800;
-              font-size: 35px;
-              line-height: 1.4;
-              margin: 17px 0 0 0;
-              width: 100px;
-            }
-            p {
-              width: 40%;
-              font-weight: 500;
-              font-size: 17px;
-              line-height: 1.4;
+
+          .stat-item-title {
+            color: var(--composer-font-color-primary);
+            margin-top: 0;
+            overflow-wrap: break-word;
+          }
+
+          .stat-item-content {
+            color: var(--composer-font-color-primary);
+            margin-top: 0;
+            overflow-wrap: break-word;
+          }
+
+          .stat-item-stat-value {
+            color: var(--composer-font-color-primary);
+            margin-top: 0;
+            margin-bottom: 0;
+            font-size: 3rem;
+
+            .stat-value-icon {
+              font-size: 1.5rem;
+              vertical-align: middle;
             }
           }
         }
@@ -93,32 +113,18 @@
   }
 }
 
-@media only screen and (max-width: 1400px) {
+@container (max-width: #{$composer-tablet-width}) {
   .container {
-    gap: 20px;
     .max-content {
-      width: var(--composer-content-width);
-      flex-direction: column;
-      .stats4-page {
-        text-align: center;
-        margin: 0;
-        padding: 0;
-        .bottom-child {
-          display: block;
-          margin: 0 auto 0 auto;
-          .title {
-            width: 100%;
-            h1 {
-              width: 100%;
-              padding-right: 0;
-            }
-            h3 {
+      .stats-container {
+        .upper-container {
+          flex-direction: column;
+          gap: 0;
+
+          .upper-container-main {
+            .main-description {
               width: 100%;
             }
-          }
-          .card {
-            min-width: 100%;
-            max-width: 100%;
           }
         }
       }

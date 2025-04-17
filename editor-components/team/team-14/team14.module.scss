@@ -1,0 +1,126 @@
+@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
+
+.container {
+  .max-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-md);
+
+    .up-page {
+      .title {
+        content: "";
+      }
+
+      .subtitle {
+        color: var(--composer-font-color-primary);
+      }
+    }
+
+    .down-page {
+      gap: var(--composer-gap-md) 0;
+      .card {
+        display: flex;
+        justify-content: center;
+
+        .portfolio {
+          display: flex;
+          justify-content: center;
+          position: relative;
+          overflow: hidden;
+          width: 90%;
+          max-width: 100%;
+          height: 600px;
+          transition: width 0.4s ease;
+
+          &:hover {
+            width: 100%;
+
+            .info {
+              transform: translateY(-15%);
+              opacity: 1;
+            }
+
+            .image {
+              filter: grayscale(0%);
+            }
+          }
+
+          .image {
+            filter: grayscale(100%);
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: var(--composer-border-radius-md);
+            transition: filter 0.3s, border-radius 0.3s;
+          }
+
+          .info {
+            position: absolute;
+            bottom: 0;
+            width: 70%;
+            max-width: 100%;
+            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 10%);
+            padding: 1rem;
+            opacity: 0;
+            transform: translateY(100%);
+            transition: opacity 0.3s, transform 0.5s ease-in-out;
+            border-radius: var(--composer-border-radius-md);
+
+            .name,
+            .position,
+            .description {
+              color: var(--composer-font-color-primary);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .down-page {
+        .card {
+          .portfolio {
+            height: 450px;
+
+            .info {
+              max-height: 400px;
+              overflow: auto;
+            }
+
+            &:hover {
+              .info {
+                transform: translateY(-5%);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      gap: var(--composer-gap-sm);
+
+      .down-page {
+        .card {
+          .portfolio {
+            width: 90%;
+            height: 400px;
+
+            .info {
+              max-height: 300px;
+              overflow: auto;
+            }
+          }
+        }
+      }
+    }
+  }
+}

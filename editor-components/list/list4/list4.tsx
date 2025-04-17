@@ -1,95 +1,205 @@
 import * as React from "react";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 import { BaseList } from "../../EditorComponent";
 import styles from "./list4.module.scss";
+import { Base } from "../../../composer-base-components/base/base";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
-class List4 extends BaseList {
+type Card = {
+  description: string;
+  icon: React.JSX.Element;
+  title: string;
+};
+
+class list4 extends BaseList {
   constructor(props?: any) {
     super(props, styles);
 
     this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Our Services",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "We are delivering beautiful digital products for you.",
+    });
+
+    this.addProp({
       type: "array",
-      key: "features-main",
-      displayer: "Features Main",
+      key: "content-card",
+      displayer: "Content Card",
       value: [
         {
           type: "object",
-          key: "title",
-          displayer: "Title",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "string",
-              key: "list-title",
-              displayer: "List Title",
-              value: PlaceholderFiller.string(),
+              key: "title",
+              displayer: "Title",
+              value: "Creative Idea",
             },
             {
-              type: "array",
-              key: "features-list",
-              displayer: "Features List",
-              value: [
-                {
-                  type: "object",
-                  key: "feature-list-item",
-                  displayer: "Feature List Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "list-item",
-                      displayer: "List Item",
-                      value: PlaceholderFiller.string(),
-                    },
-                  ],
-                },
-              ],
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value:
+                "Web design encompasses many different skills and disciplines in the production of all web.",
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaTooth",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [,
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "High Creative Minds",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value:
+                "Web design encompasses many different skills and disciplines in the production of all web.",
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaPencilAlt",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Business Planning",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value:
+                "Web design encompasses many different skills and disciplines in the production of all web.",
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "FaSuitcaseRolling",
             },
           ],
         },
       ],
     });
+
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item count in a row",
+      value: 3,
+    });
+    this.addProp({
+      type: "boolean",
+      key: "showIndex",
+      displayer: "Show Index",
+      value: true,
+    });
+
   }
 
-  getName(): string {
-    return "List 4";
+  static getName(): string {
+    return "list 4";
   }
 
   render() {
     return (
-      <div
-        className={this.decorateCSS("container")}
-        
-      >
-        <div className={this.decorateCSS("max-content")}>
-          {this.getPropValue("features-main").map((title: any, index: number) => {
-            return (
-              <div
-                key={index}
-                className={this.decorateCSS("feature-list")}
-                
-              >
-                <div>
-                  <h3
-                    className={this.decorateCSS("title")}
-                    
+      <Base.Container className={this.decorateCSS("container")} >
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <Base.VerticalContent>
+            <Base.SectionSubTitle>
+              {this.getPropValue("subtitle")}
+            </Base.SectionSubTitle>
+            <Base.SectionTitle>
+              {this.getPropValue("title")}
+            </Base.SectionTitle>
+          </Base.VerticalContent>
+          <Base.ListGrid className={this.decorateCSS("card-child")} gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2 }}>
+            {this.castToObject<Card[]>("content-card").map(
+              (card: any, index: number) => (
+                <div
+                  key={index}
+                  className={this.decorateCSS("card-item-count")}
+                >
+                  <div className={this.decorateCSS("line-box")}>
+                    <div className={this.decorateCSS("line-1")}></div>
+                    <div className={this.decorateCSS("line-2")}></div>
+                    <div className={this.decorateCSS("line-3")}></div>
+                    <div className={this.decorateCSS("line-4")}></div>
+                  </div>
+                  <div className={`${this.decorateCSS("card-title")} ${this.getPropValue("showIndex") && this.decorateCSS("index")}`}>
+                    {(index + 1).toLocaleString("en-US", {
+                      minimumIntegerDigits: 2,
+                      useGrouping: false,
+                    })}
+                  </div>
+                  <div
+                    key={`cnt-4-card-${index}`}
+                    className={this.decorateCSS("card")}
                   >
-                    {title.value[0].value}
-                  </h3>
-                  <hr />
+                    <Base.VerticalContent className={this.decorateCSS("color-box")}>
+                      {card.icon && (
+                        <ComposerIcon
+                          name={card.icon}
+                          propsIcon={{
+                            className: this.decorateCSS("icon")
+                          }}
+                        />
+                      )}
+
+                      <Base.VerticalContent className={this.decorateCSS("card-title-wrapper")}>
+                        {this.castToString(card.title) && (
+                          <Base.H3 className={this.decorateCSS("card-subtitle")}>
+                            {card.title}
+                          </Base.H3>
+                        )}
+                        {this.castToString(card.description) && (
+                          <Base.P className={this.decorateCSS("card-description")}>
+                            {card.description}
+                          </Base.P>
+                        )}
+                      </Base.VerticalContent>
+                    </Base.VerticalContent>
+                  </div>
                 </div>
-                <ul className={this.decorateCSS("list-group")}>
-                  {title.value[1].value.map((table: any) => {
-                    return table.value.map((tableData: any, index: number) => (
-                      <li key={index}>{tableData.value}</li>
-                    ));
-                  })}
-                </ul>
-              </div>
-            );
-          })}
-        </div>
-      </div>
+              )
+            )}
+          </Base.ListGrid>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
 
-export default List4;
+export default list4;

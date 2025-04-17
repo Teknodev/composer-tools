@@ -1,165 +1,266 @@
 import * as React from "react";
-import ComposerLink from "../../../composer-base-components/Link/link";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseFooter } from "../../EditorComponent";
 import styles from "./footer6.module.scss";
+import { Base } from "../../../composer-base-components/base/base";
+
+type FooterValues = {
+  footerTitle: React.JSX.Element;
+  footerText: FooterTextValues[];
+};
+
+type FooterTextValues = {
+  footerText: React.JSX.Element;
+  path: string;
+};
 
 class Footer6Page extends BaseFooter {
   constructor(props?: any) {
     super(props, styles);
+
     this.addProp({
       type: "string",
-      key: "company-name",
-      displayer: "Company Name",
-      value: PlaceholderFiller.string(),
-    });
-    this.addProp({
-      type: "string",
-      key: "company-desc",
-      displayer: "Company Description",
-      value: PlaceholderFiller.shortText(),
-    });
-    this.addProp({
-      type: "image",
-      key: "company-image",
-      displayer: "Company Image",
-      value: PlaceholderFiller.image(),
-    });
-    this.addProp({
-      type: "string",
-      key: "footer-text",
-      displayer: "Footer Text",
-      value: PlaceholderFiller.shortText(),
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Let’s work together",
     });
 
     this.addProp({
-      type: "object",
-      key: "socialIconInstagram",
-      displayer: "Social Icon Instgram",
-      value: [
-        {
-          type: "page",
-          key: "path",
-          displayer: "Instgram Path",
-          value: "",
-        },
-        {
-          type: "image",
-          key: "icon",
-          displayer: "Instgram Icon",
-          value: PlaceholderFiller.image(),
-        },
-      ],
-    });
-    this.addProp({
-      type: "object",
-      key: "socialIconFacebook",
-      displayer: "Social Icon Facebook",
-      value: [
-        {
-          type: "page",
-          key: "path",
-          displayer: "Facebook Path",
-          value: "",
-        },
-        {
-          type: "image",
-          key: "icon",
-          displayer: "Facebook Path",
-          value: PlaceholderFiller.image(),
-        },
-      ],
-    });
-    this.addProp({
-      type: "object",
-      key: "socialIconLinkedin",
-      displayer: "Social Icon Linkledin",
-      value: [
-        {
-          type: "page",
-          key: "path",
-          displayer: "Linkledin Path",
-          value: "",
-        },
-        {
-          type: "image",
-          key: "icon",
-          displayer: "Linkledin Icon",
-          value: PlaceholderFiller.image(),
-        },
-      ],
-    });
-    this.addProp({
-      type: "object",
-      key: "socialIconTwitter",
-      displayer: "Social Icon Twitter",
-      value: [
-        {
-          type: "page",
-          key: "path",
-          displayer: "Twitter Path",
-          value: "",
-        },
-        {
-          type: "image",
-          key: "icon",
-          displayer: "Twitter Icon",
-          value: PlaceholderFiller.image(),
-        },
-      ],
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "hello@gradastudio.net",
     });
 
     this.addProp({
-      type: "object",
+      type: "array",
       key: "footer",
       displayer: "Footer",
       value: [
         {
           type: "object",
-          key: "footer_value-Comp",
-          displayer: "Footer Values",
+          key: "footer-title",
+          displayer: "Footer Column",
           value: [
             {
+              type: "string",
+              key: "footerTitle",
+              displayer: "Footer Title",
+              value: "Quick Links",
+            },
+            {
               type: "array",
-              key: "column",
-              displayer: "Column",
+              key: "footerText",
+              displayer: "Footer Text",
               value: [
                 {
                   type: "object",
-                  key: "footer_value",
-                  displayer: "Footer Column Values",
+                  key: "footer-text",
+                  displayer: "Text Values",
                   value: [
                     {
                       type: "string",
-                      key: "title",
-                      displayer: "Column Title",
-                      value: PlaceholderFiller.string(),
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "About",
                     },
                     {
-                      type: "array",
-                      key: "title",
-                      displayer: "Column Texts",
-                      value: [
-                        {
-                          type: "object",
-                          key: "title",
-                          displayer: "Column Text",
-                          value: [
-                            {
-                              type: "string",
-                              key: "title",
-                              displayer: "Title",
-                              value: PlaceholderFiller.string(),
-                            },
-                            {
-                              type: "page",
-                              key: "path",
-                              displayer: "Path",
-                              value: "",
-                            },
-                          ],
-                        },
-                      ],
+                      type: "page",
+                      displayer: "Path",
+                      key: "path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "News",
+                    },
+                    {
+                      type: "page",
+                      displayer: "Path",
+                      key: "path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "Contact",
+                    },
+                    {
+                      type: "page",
+                      displayer: "Path",
+                      key: "path",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "footer-title",
+          displayer: "Footer Column",
+          value: [
+            {
+              type: "string",
+              key: "footerTitle",
+              displayer: "Footer Title",
+              value: "Our Address",
+            },
+            {
+              type: "array",
+              key: "footerText",
+              displayer: "Footer Text",
+              value: [
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "Care+ Family Parham Bridges Canton Jackson, MS 39211",
+                    },
+                    {
+                      type: "page",
+                      displayer: "Path",
+                      key: "path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "+1 601 978 2212",
+                    },
+                    {
+                      type: "page",
+                      displayer: "Path",
+                      key: "path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "hello@ozark.com",
+                    },
+                    {
+                      type: "page",
+                      displayer: "Path",
+                      key: "path",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "footer-title",
+          displayer: "Footer Column",
+          value: [
+            {
+              type: "string",
+              key: "footerTitle",
+              displayer: "Footer Title",
+              value: "Get In Touch",
+            },
+            {
+              type: "array",
+              key: "footerText",
+              displayer: "Footer Text",
+              value: [
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "Facebook",
+                    },
+                    {
+                      type: "page",
+                      displayer: "Path",
+                      key: "path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "Twitter",
+                    },
+                    {
+                      type: "page",
+                      displayer: "Path",
+                      key: "path",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "footer-text",
+                  displayer: "Text Values",
+                  value: [
+                    {
+                      type: "string",
+                      key: "footerText",
+                      displayer: "Text",
+                      value: "Instagram",
+                    },
+                    {
+                      type: "page",
+                      displayer: "Path",
+                      key: "path",
+                      value: "",
                     },
                   ],
                 },
@@ -169,111 +270,91 @@ class Footer6Page extends BaseFooter {
         },
       ],
     });
+
+    this.addProp({
+      type: "string",
+      key: "footerDescription",
+      displayer: "Footer Text",
+      value: "2024 © Made with by Blinkpage.",
+    });
+
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate2"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2", "animate3"]
+      }
+    });
   }
 
-  getName(): string {
+  static getName(): string {
     return "Footer 6";
   }
+
   render() {
+    const subtitle = this.getPropValue("subtitle");
+    const title = this.getPropValue("title");
+
+    const subtitleExist = this.castToString(subtitle);
+    const titleExist = this.castToString(title);
+
+    const footer = this.castToObject<any[]>("footer");
+
+    const footerDescription = this.getPropValue("footerDescription");
+    const footerDescriptionExist = this.castToString(footerDescription);
+
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("footer")}>
-            <div className={this.decorateCSS("row")}>
-              <div className={this.decorateCSS("footercol-company")}>
-                <ul className={this.decorateCSS("list-group")}>
-                  <li className={this.decorateCSS("li")}>
-                    <img
-                      className={this.decorateCSS("img")}
-                      src={this.getPropValue("company-image")}
-                      alt="logo"
-                    />
-                  </li>
-                  <li className={this.decorateCSS("company-title")}>
-                    <h4 className={this.decorateCSS("hover_underline")}>
-                      {this.getPropValue("company-name")}
-                    </h4>
-                  </li>
-                  <li className={this.decorateCSS("li")}>
-                    <p>{this.getPropValue("company-desc")}</p>
-                  </li>
-                </ul>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <Base.VerticalContent className={this.decorateCSS("footer-page")}>
+            {(subtitleExist || titleExist) && (
+              <Base.VerticalContent className={this.decorateCSS("header")}>
+                {subtitleExist && <Base.P className={this.decorateCSS("subtitle")}>{subtitle}</Base.P>}
+                {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
+              </Base.VerticalContent>
+            )}
+
+            <div className={this.decorateCSS("middle-container")}>
+              {footer.length > 0 &&
+                footer.map((item: FooterValues, indexFooter: number) => {
+                  const footerTitleExist = this.castToString(item.footerTitle);
+                  const footerExist = footerTitleExist || item.footerText.length > 0;
+                  return (
+                    footerExist && (
+                      <div key={indexFooter} className={this.decorateCSS("list-group")}>
+                        {footerTitleExist && <Base.H2 className={this.decorateCSS("list-title")}>{item.footerTitle}</Base.H2>}
+                        {item.footerText.length > 0 &&
+                          item.footerText.map((item: FooterTextValues, indexFooterText: number) => {
+                            const footerTextExist = this.castToString(item.footerText);
+                            return (
+                              footerTextExist && (
+                                <ComposerLink key={indexFooterText} path={item.path}>
+                                  <Base.P 
+                                    className={this.decorateCSS("text")}
+                                    data-animation={item.path ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                                  >
+                                    {item.footerText}
+                                  </Base.P>
+                                </ComposerLink>
+                              )
+                            );
+                          })}
+                      </div>
+                    )
+                  );
+                })}
+            </div>
+
+            {footerDescriptionExist && (
+              <div className={this.decorateCSS("bottom-container")}>
+                <Base.P className={this.decorateCSS("bottom-text")}>{footerDescription}</Base.P>
               </div>
-              {this.getPropValue("footer")[0].value[0].value.map(
-                (item: any, index: number) => (
-                  <div
-                    key={"footer" + index}
-                    className={this.decorateCSS("footer-col-content")}
-                  >
-                    <ul className={this.decorateCSS("list-group")}>
-                      <li className={this.decorateCSS("li")}>
-                        <h4 className={this.decorateCSS("hover_underline")}>
-                          {item.value[0].value}
-                        </h4>
-                      </li>
-                      {item.value[1].value.map((v: any, index: number) => {
-                        return (
-                          <li key={"item" + index}>
-                            <span>{v.value[0].value}</span>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  </div>
-                )
-              )}
-            </div>
-            <div className={this.decorateCSS("bottom-section")}>
-              <span>{this.getPropValue("footer-text")}</span>
-              <ul className={this.decorateCSS("social_links")}>
-                <li className={this.decorateCSS("li")}>
-                  <span>Follow:</span>
-                </li>
-                <li className={this.decorateCSS("li")}>
-                  <ComposerLink
-                    path={this.getPropValue("socialIconLinkedin")[0].value}
-                  >
-                    <img
-                      src={this.getPropValue("socialIconLinkedin")[1].value}
-                      className={this.decorateCSS("icon")}
-                    />
-                  </ComposerLink>
-                </li>
-                <li className={this.decorateCSS("li")}>
-                  <ComposerLink
-                    path={this.getPropValue("socialIconFacebook")[0].value}
-                  >
-                    <img
-                      src={this.getPropValue("socialIconFacebook")[1].value}
-                      className={this.decorateCSS("icon")}
-                    />
-                  </ComposerLink>
-                </li>
-                <li className={this.decorateCSS("li")}>
-                  <ComposerLink
-                    path={this.getPropValue("socialIconInstagram")[0].value}
-                  >
-                    <img
-                      src={this.getPropValue("socialIconInstagram")[1].value}
-                      className={this.decorateCSS("icon")}
-                    />
-                  </ComposerLink>
-                </li>
-                <li className={this.decorateCSS("li")}>
-                  <ComposerLink
-                    path={this.getPropValue("socialIconTwitter")[0].value}
-                  >
-                    <img
-                      src={this.getPropValue("socialIconTwitter")[1].value}
-                      className={this.decorateCSS("icon")}
-                    />
-                  </ComposerLink>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
+            )}
+          </Base.VerticalContent>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

@@ -1,109 +1,35 @@
 import * as React from "react";
-import ComposerLink from "../../../composer-base-components/Link/link";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseFooter } from "../../EditorComponent";
 import styles from "./footer2.module.scss";
-
-type IconsValues = {
-  socialIcon: string;
-  socialLink: string;
-};
+import { Base } from "../../../composer-base-components/base/base";
 
 type FooterValues = {
-  footerTitle: string;
+  footerTitle: React.JSX.Element;
   footerText: FooterTextValues[];
 };
 
 type FooterTextValues = {
-  footerText: string;
+  footerText: React.JSX.Element;
   path: string;
 };
 
 class Footer2Page extends BaseFooter {
   constructor(props?: any) {
     super(props, styles);
+
     this.addProp({
       type: "image",
-      key: "logo",
-      displayer: "Logo",
-      value: "https://dstal.com.au/wp-content/uploads/2021/09/logoipsum.png",
-    });
-    this.addProp({
-      type: "string",
-      key: "description",
-      displayer: "Description",
-      value: PlaceholderFiller.shortText(),
-    });
-    this.addProp({
-      type: "string",
-      key: "footerDescription",
-      displayer: "Footer Text",
-      value: "Copyright © 2023 All rights reserved.",
+      key: "image",
+      displayer: "Background Image",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676295790655f8002ca84357?alt=media",
     });
 
     this.addProp({
-      type: "array",
-      key: "social",
-      displayer: "Social",
-      value: [
-        {
-          type: "object",
-          key: "footer-social",
-          displayer: "Item",
-          value: [
-            {
-              type: "image",
-              key: "socialIcon",
-              displayer: "Social Icon",
-              value: "https://cdn-icons-png.flaticon.com/512/87/87390.png",
-            },
-            {
-              type: "page",
-              key: "socialLink",
-              displayer: "Social Link",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "footer-social",
-          displayer: "Item",
-          value: [
-            {
-              type: "image",
-              key: "socialIcon",
-              displayer: "Social Icon",
-              value: "https://cdn-icons-png.flaticon.com/512/44/44646.png",
-            },
-            {
-              type: "page",
-              key: "socialLink",
-              displayer: "Social Link",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "footer-social",
-          displayer: "Item",
-          value: [
-            {
-              type: "image",
-              key: "socialIcon",
-              displayer: "Social Icon",
-              value: "https://cdn-icons-png.flaticon.com/512/733/733635.png",
-            },
-            {
-              type: "page",
-              key: "socialLink",
-              displayer: "Social Link",
-              value: "",
-            },
-          ],
-        },
-      ],
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
     });
 
     this.addProp({
@@ -120,7 +46,7 @@ class Footer2Page extends BaseFooter {
               type: "string",
               key: "footerTitle",
               displayer: "Footer Title",
-              value: PlaceholderFiller.string(),
+              value: "New York Office",
             },
             {
               type: "array",
@@ -136,7 +62,7 @@ class Footer2Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: PlaceholderFiller.string(),
+                      value: "555-1234",
                     },
                     {
                       type: "page",
@@ -155,12 +81,12 @@ class Footer2Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: PlaceholderFiller.string(),
+                      value: "info@archy.com",
                     },
                     {
                       type: "page",
-                      key: "path",
                       displayer: "Path",
+                      key: "path",
                       value: "",
                     },
                   ],
@@ -174,26 +100,7 @@ class Footer2Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: PlaceholderFiller.string(),
-                    },
-                    {
-                      type: "page",
-                      key: "path",
-                      displayer: "Path",
-                      value: "",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "footer-text",
-                  displayer: "Text Values",
-                  value: [
-                    {
-                      type: "string",
-                      key: "footerText",
-                      displayer: "Text",
-                      value: PlaceholderFiller.string(),
+                      value: "123 Main Street, Suite 200 City: Anytown State: StateName",
                     },
                     {
                       type: "page",
@@ -216,7 +123,7 @@ class Footer2Page extends BaseFooter {
               type: "string",
               key: "footerTitle",
               displayer: "Footer Title",
-              value: PlaceholderFiller.string(),
+              value: "Paris Office",
             },
             {
               type: "array",
@@ -232,7 +139,7 @@ class Footer2Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: PlaceholderFiller.string(),
+                      value: "+33 1 23 45 67 89",
                     },
                     {
                       type: "page",
@@ -251,7 +158,7 @@ class Footer2Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: PlaceholderFiller.string(),
+                      value: "info@archyparis.com",
                     },
                     {
                       type: "page",
@@ -270,26 +177,7 @@ class Footer2Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: PlaceholderFiller.string(),
-                    },
-                    {
-                      type: "page",
-                      key: "path",
-                      displayer: "Path",
-                      value: "",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "footer-text",
-                  displayer: "Text Values",
-                  value: [
-                    {
-                      type: "string",
-                      key: "footerText",
-                      displayer: "Text",
-                      value: PlaceholderFiller.string(),
+                      value: "123 Rue de la Paix, 75002 Paris, France",
                     },
                     {
                       type: "page",
@@ -312,7 +200,7 @@ class Footer2Page extends BaseFooter {
               type: "string",
               key: "footerTitle",
               displayer: "Footer Title",
-              value: PlaceholderFiller.string(),
+              value: "Berlin Office",
             },
             {
               type: "array",
@@ -328,7 +216,7 @@ class Footer2Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: PlaceholderFiller.string(),
+                      value: "+49 30 12345678",
                     },
                     {
                       type: "page",
@@ -347,7 +235,7 @@ class Footer2Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: PlaceholderFiller.string(),
+                      value: "info@archyberlin.com",
                     },
                     {
                       type: "page",
@@ -366,26 +254,7 @@ class Footer2Page extends BaseFooter {
                       type: "string",
                       key: "footerText",
                       displayer: "Text",
-                      value: PlaceholderFiller.string(),
-                    },
-                    {
-                      type: "page",
-                      key: "path",
-                      displayer: "Path",
-                      value: "",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "footer-text",
-                  displayer: "Text Values",
-                  value: [
-                    {
-                      type: "string",
-                      key: "footerText",
-                      displayer: "Text",
-                      value: PlaceholderFiller.string(),
+                      value: "Mauerstrasse 45, 10117 Berlin, Germany",
                     },
                     {
                       type: "page",
@@ -401,51 +270,80 @@ class Footer2Page extends BaseFooter {
         },
       ],
     });
+
+    this.addProp({
+      type: "string",
+      key: "footerDescription",
+      displayer: "Footer Text",
+      value: "©2023 Blinkpage Inc. - SF",
+    });
+
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2", "animate3"]
+      }
+    });
   }
 
-  getName(): string {
+  static getName(): string {
     return "Footer 2";
   }
 
   render() {
+    const image = this.getPropValue("image");
+    const overlay = this.getPropValue("overlay");
+
+    const footer = this.castToObject<any[]>("footer");
+    const footerDescExist = this.castToString(this.getPropValue("footerDescription"));
+
     return (
-      <div
-        className={this.decorateCSS("container")}
-        
-      >
+      <Base.Container className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("footer-page")}>
-            <div className={this.decorateCSS("subscribe")}>
-              <img src={this.getPropValue("logo")} width={200} height={100} />
-              <p>{this.getPropValue("description")}</p>
-              <div className={this.decorateCSS("social")}>
-                {this.castToObject<any[]>("social").map((item: IconsValues) => (
-                  <ComposerLink path={item.socialLink}>
-                    <img src={item.socialIcon} width={20} height={20} />
-                  </ComposerLink>
-                ))}
+          <div className={this.decorateCSS("footer-page")} style={{ backgroundImage: `url(${image})` }}>
+            {(footer.length > 0 || image) && (
+              <Base.MaxContent
+                className={`${this.decorateCSS("items")} ${!image && this.decorateCSS("no-image")}`}>
+                {this.castToObject<any[]>("footer").map((item: FooterValues, indexFooter: number) => {
+                  const titleExist = this.castToString(item.footerTitle);
+                  return (
+                    <div key={indexFooter} className={this.decorateCSS("list")}>
+                      {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{item.footerTitle}</Base.SectionTitle>}
+                      {item.footerText.map((v: FooterTextValues, indexFooterText: number) => {
+                        const textExist = this.castToString(v.footerText);
+                        return (
+                          textExist && (
+                            <ComposerLink key={indexFooterText} path={v.path}>
+                              <Base.SectionDescription 
+                                className={this.decorateCSS("text")}
+                                data-animation={v.path ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                                data-has-link={Boolean(v.path)}
+                              >
+                                {v.footerText}
+                              </Base.SectionDescription>
+                            </ComposerLink>
+                          )
+                        );
+                      })}
+                    </div>
+                  );
+                })}
+              </Base.MaxContent>
+            )}
+            {overlay && image && <div className={this.decorateCSS("overlay")}></div>}
+          </div>
+          <Base.MaxContent>
+            {footerDescExist && (
+              <div className={this.decorateCSS("footer-bottom")}>
+                <Base.P className={this.decorateCSS("footerDescription")}>{this.getPropValue("footerDescription")}</Base.P>
               </div>
-            </div>
-            <div className={this.decorateCSS("items")}>
-              {this.castToObject<any[]>("footer").map((item: FooterValues) => (
-                <ul className={this.decorateCSS("list")}>
-                  <li className={this.decorateCSS("title")}>
-                    <h2>{item.footerTitle}</h2>
-                  </li>
-                  {item.footerText.map((v: FooterTextValues) => (
-                    <ComposerLink path={v.path}>
-                      <li className={this.decorateCSS("text")}>{v.footerText}</li>
-                    </ComposerLink>
-                  ))}
-                </ul>
-              ))}
-            </div>
-          </div>
-          <div className={this.decorateCSS("footer-bottom")}>
-            <h2>{this.getPropValue("footerDescription")}</h2>
-          </div>
+            )}
+          </Base.MaxContent>
         </div>
-      </div>
+      </Base.Container>
     );
   }
 }

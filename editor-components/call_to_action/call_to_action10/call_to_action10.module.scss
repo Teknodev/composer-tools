@@ -1,0 +1,72 @@
+@use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
+.container {
+    .max-content {
+        .call-to-action10-page {
+            align-items: center;
+            gap: var(--composer-gap-md);
+            .title {
+                position: relative;
+                margin: 0px;
+                padding-bottom: var(--composer-gap-lg);
+                .icon {
+                    position: absolute;
+                    bottom: 0rem;
+                    right: 0;
+                    font-size: 3rem;
+                }
+            }
+            .description {
+                margin: 0px;
+            }
+
+            .button {
+                content: "";
+            }
+            .card-container{
+                width: 100%;
+                .card{
+                    display: flex;
+                    flex-direction: column;
+                    background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);                    border-radius: var(--composer-border-radius-sm);
+                    padding: var(--composer-gap-lg);
+                    gap: var(--composer-gap-lg);
+                    .icon-wrapper{
+                        background-color: var(--composer-primary-color);
+                        border-radius: 50%;
+                        padding: var(--composer-gap-md);
+                        width: fit-content;
+                        .icon{
+                            color: var(--composer-font-color-secondary);
+                            width: 25px;
+                            height: 25px;
+
+                        }
+                    }
+                    .card-title{
+                        color: var(--composer-font-color-primary);
+                        margin:0px;
+                    }
+                    .card-description{
+                        margin: 0px;
+                        color: var(--composer-font-color-primary);
+                    }
+                }
+            }
+
+        }
+    }
+}
+@container (max-width: #{$composer-phone-width}){
+    .container{
+        .max-content{
+            .call-to-action10-page{
+                .title{
+                    padding-bottom: var(--composer-gap-md);
+                    .icon {
+                        font-size: 2rem;
+                    }
+                }
+            }
+        }
+    }
+}

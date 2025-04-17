@@ -1,193 +1,476 @@
 import * as React from "react";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 import styles from "./team5.module.scss";
-import { Team, TypeUsableComponentProps } from "../../EditorComponent";
-import ComposerLink from "../../../composer-base-components/Link/link";
+import { Team } from "../../EditorComponent";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+import { Base } from "../../../composer-base-components/base/base";
 
-type Meet = {
-  image: string;
-  name: string;
-  position: string;
+type eggs = {
+  background: string;
+  picture: string;
+  socials: Array<{ icon: string; url: string }>;
+  name: React.JSX.Element;
+  occupation: React.JSX.Element;
 };
 
-type Button = {
-  link: string;
-  text: string;
-  isPrimary: boolean;
-};
 class Team5 extends Team {
   constructor(props?: any) {
     super(props, styles);
-
-    let placeholder: TypeUsableComponentProps = {
-      type: "object",
-      key: "item",
-      displayer: "Items",
-      value: [
-        {
-          type: "image",
-          key: "image",
-          displayer: "Image",
-          value: PlaceholderFiller.image(),
-        },
-        {
-          type: "string",
-          key: "name",
-          displayer: "Person Name",
-          value: PlaceholderFiller.string(),
-        },
-        {
-          type: "string",
-          key: "position",
-          displayer: "Position",
-          value: PlaceholderFiller.string(),
-        },
-      ],
-    };
 
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: PlaceholderFiller.string(),
+      value: "Introduce Our Team Work Members",
     });
-
     this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
-      value: PlaceholderFiller.mediumText(),
+      value: "Viverra tempor, turpis egestas lectus enim viverra diam est tincidunt tortor sit pretium pulvinaron maecenas aliquet in cursus egestas ac elit massa ut et in gravida",
     });
-
-    this.addProp({
-      type: "string",
-      key: "badge",
-      displayer: "Badge",
-      value: "Team",
-    });
-
     this.addProp({
       type: "array",
-      key: "buttons",
-      displayer: "Buttons",
+      key: "teamList",
+      displayer: "Team Members",
       value: [
         {
           type: "object",
-          key: "button",
-          displayer: "Button",
+          key: "object",
+          displayer: "Team List",
           value: [
             {
+              type: "image",
+              key: "background",
+              displayer: "Background",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b0eebd2970002c627c24?alt=media&timestamp=1719502692150",
+            },
+            {
+              type: "image",
+              key: "picture",
+              displayer: "Picture",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b0eebd2970002c627c26?alt=media&timestamp=1719502692150",
+            },
+            {
+              type: "array",
+              key: "socials",
+              displayer: "Socials",
+              value: [
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "BiLogoFacebook",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Url",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "BiLogoInstagram",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Url",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "AiOutlineTwitter",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Url",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
               type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "Open Positions",
+              key: "name",
+              displayer: "Name",
+              value: "Ronald R.",
             },
             {
-              type: "page",
-              key: "link",
-              displayer: "Link",
-              value: "",
+              type: "string",
+              key: "occupation",
+              displayer: "Position",
+              value: "Office Manager",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "object",
+          displayer: "Team List",
+          value: [
+            {
+              type: "image",
+              key: "background",
+              displayer: "Background",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b0eebd2970002c627c24?alt=media&timestamp=1719502692150",
             },
             {
-              type: "boolean",
-              key: "isPrimary",
-              displayer: "Is primary",
-              value: true,
+              type: "image",
+              key: "picture",
+              displayer: "Picture",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b0eebd2970002c627c28?alt=media&timestamp=1719502692150",
+            },
+            {
+              type: "array",
+              key: "socials",
+              displayer: "Socials",
+              value: [
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "BiLogoFacebook",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Url",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "BiLogoInstagram",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Url",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "AiOutlineTwitter",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Url",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              type: "string",
+              key: "name",
+              displayer: "Name",
+              value: "McKinney",
+            },
+            {
+              type: "string",
+              key: "occupation",
+              displayer: "Occupation",
+              value: "Receptionist",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "object",
+          displayer: "Team List",
+          value: [
+            {
+              type: "image",
+              key: "background",
+              displayer: "Background",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b0eebd2970002c627c24?alt=media&timestamp=1719502692150",
+            },
+            {
+              type: "image",
+              key: "picture",
+              displayer: "Picture",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b0eebd2970002c627c27?alt=media&timestamp=1719502692150",
+            },
+            {
+              type: "array",
+              key: "socials",
+              displayer: "Socials",
+              value: [
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "BiLogoFacebook",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Url",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "BiLogoInstagram",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Url",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "AiOutlineTwitter",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Url",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              type: "string",
+              key: "name",
+              displayer: "Name",
+              value: "Olivia Davis",
+            },
+            {
+              type: "string",
+              key: "occupation",
+              displayer: "Position",
+              value: "Accounting",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "object",
+          displayer: "Team List",
+          value: [
+            {
+              type: "image",
+              key: "background",
+              displayer: "Background",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b0eebd2970002c627c24?alt=media&timestamp=1719502692150",
+            },
+            {
+              type: "image",
+              key: "picture",
+              displayer: "Picture",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b0eebd2970002c627c25?alt=media&timestamp=1719502692150",
+            },
+            {
+              type: "array",
+              key: "socials",
+              displayer: "Socials",
+              value: [
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "BiLogoFacebook",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Url",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "BiLogoInstagram",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Url",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "social",
+                  displayer: "Social",
+                  value: [
+                    {
+                      type: "icon",
+                      key: "icon",
+                      displayer: "Icon",
+                      value: "AiOutlineTwitter",
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Url",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              type: "string",
+              key: "name",
+              displayer: "Name",
+              value: "Robertson",
+            },
+            {
+              type: "string",
+              key: "occupation",
+              displayer: "Position",
+              value: "Pet Trainer",
             },
           ],
         },
       ],
     });
-
-    this.addProp({
-      type: "array",
-      key: "items",
-      displayer: "Card",
-      value: [
-        JSON.parse(JSON.stringify(placeholder)),
-        JSON.parse(JSON.stringify(placeholder)),
-        JSON.parse(JSON.stringify(placeholder)),
-        JSON.parse(JSON.stringify(placeholder)),
-        JSON.parse(JSON.stringify(placeholder)),
-        JSON.parse(JSON.stringify(placeholder)),
-      ],
-    });
-
     this.addProp({
       type: "number",
       key: "itemCount",
       displayer: "Item count in a row",
-      value: 3,
+      value: 4,
+      max: 5,
     });
   }
 
-  getName(): string {
-    return "Team Meet";
+  static getName(): string {
+    return "Team 5";
   }
 
   render() {
+    const titleExist = this.castToString(this.getPropValue("title"));
+    const descriptionExist = this.castToString(this.getPropValue("description"));
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("all-page")}>
-            <div className={this.decorateCSS("up-page")}>
-              <div>
-                <div className={this.decorateCSS("badge")}>
-                  {this.getPropValue("badge")}
-                </div>
-              </div>
-              <div className={this.decorateCSS("title")}>
-                <div className={this.decorateCSS("left")}>
-                  <h1>{this.getPropValue("title")}</h1>
-                </div>
-                <div className={this.decorateCSS("right")}>
-                  {this.castToObject<Button[]>("buttons").map((b) => (
-                    <ComposerLink path={b.link}>
-                      <button
-                        className={
-                          this.decorateCSS("button") +
-                          " " +
-                          (b.isPrimary
-                            ? this.decorateCSS("primary")
-                            : this.decorateCSS("secondary"))
-                        }
-                      >
-                        {b.text}
-                      </button>
-                    </ComposerLink>
-                  ))}
-                </div>
-              </div>
-              <p className={this.decorateCSS("description")}>
-                {this.getPropValue("description")}
-              </p>
-            </div>
-            <div className={this.decorateCSS("down-page")}>
-              {this.castToObject<Meet[]>("items").map((item: Meet, index) => {
-                return (
-                  <div className={this.decorateCSS("all-card")} style={{width: 100 / this.getPropValue("itemCount") + "%"}}>
-                    <div className={this.decorateCSS("card")} key={index}>
-                      <div
-                        style={{
-                          height: "220px",
-                          overflow: "hidden",
-                          width: "100%",
-                        }}
-                      >
-                        <img src={item.image} alt={item.name} />
-                      </div>
-                      <h2 className={this.decorateCSS("name")}>{item.name}</h2>
-                      <p className={this.decorateCSS("position")}>
-                        {item.position}
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <div className={this.decorateCSS("container-top")}>
+            <div className={this.decorateCSS("title-container")}>{titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}</div>
+            <div className={this.decorateCSS("description-container")}>{descriptionExist && <Base.SectionDescription className={this.decorateCSS("description-inner")}>{this.getPropValue("description")}</Base.SectionDescription>}</div>
           </div>
-        </div>
-      </div>
+
+          <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("container-bottom")}>
+            {this.castToObject<eggs[]>("teamList").map((item: eggs, index: number) => {
+              const itemName = this.castToString(item.name);
+              const itemOccupation = this.castToString(item.occupation);
+              const hasItem = itemName || itemOccupation || item.background || item.picture || item.socials.length > 0;
+
+              return (
+                hasItem && (
+                  <Base.VerticalContent key={index} className={this.decorateCSS("egg-item")}>
+                    <div className={this.decorateCSS("image-container")}>
+                      {item.background && <img className={this.decorateCSS("background-image")} src={item.background} alt="" />}
+                      {item.picture && <img className={this.decorateCSS("member-image")} src={item.picture} alt="" />}
+                    </div>
+                    <Base.Row className={this.decorateCSS("icon-container")}>
+                      {item.socials.map((value, i) => (
+                        <ComposerLink key={i} path={value.url}>
+                          <ComposerIcon name={value.icon} />
+                        </ComposerLink>
+                      ))}
+                    </Base.Row>
+                    <Base.VerticalContent className={this.decorateCSS("members-container")}>
+                      {itemName && <Base.H4 className={this.decorateCSS("name")}>{item.name}</Base.H4>}
+                      {itemOccupation && <Base.H5 className={this.decorateCSS("occupation")}>{item.occupation}</Base.H5>}
+                    </Base.VerticalContent>
+                  </Base.VerticalContent>
+                )
+              );
+            })}
+          </Base.ListGrid>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }

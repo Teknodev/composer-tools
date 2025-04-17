@@ -1,46 +1,86 @@
 import * as React from "react";
 import { BaseFooter } from "../../EditorComponent";
-import { PlaceholderFiller } from "../../../custom-hooks/placeholder-filler/placeholder-filler";
 import styles from "./footer7.module.scss";
-import ComposerLink from "../../../composer-base-components/Link/link";
-
-type Footer = {
-  title: string;
-  text1: string;
-};
+import { Base } from "composer-tools/composer-base-components/base/base";
+import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 
 class Footer7Page extends BaseFooter {
   constructor(props?: any) {
     super(props, styles);
 
     this.addProp({
+      type: "image",
+      key: "logo",
+      displayer: "Logo",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676e80240655f8002cadb8be?alt=media",
+    });
+
+    this.addProp({
+      type: "page",
+      key: "logoUrl",
+      displayer: "Logo Url",
+      value:""
+    });
+
+    this.addProp({
       type: "array",
-      key: "items",
-      displayer: "Card",
+      key: "links",
+      displayer: "Footer Links",
       value: [
         {
           type: "object",
-          key: "item",
-          displayer: "Item",
+          key: "content",
+          displayer: "Content Elements",
           value: [
             {
               type: "string",
-              key: "title",
-              displayer: "Title",
-              value: PlaceholderFiller.string(),
+              key: "text",
+              displayer: "Text",
+              value: "FAQs",
             },
             {
-              type: "array",
-              key: "text1",
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "content",
+          displayer: "Content Elements",
+          value: [
+            {
+              type: "string",
+              key: "text",
               displayer: "Text",
-              value: [
-                {
-                  type: "string",
-                  key: "text",
-                  displayer: "Text",
-                  value: PlaceholderFiller.string(),
-                },
-              ],
+              value: "Privacy Policy",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "content",
+          displayer: "Content Elements",
+          value: [
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "About Us",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Url",
+              value: "",
             },
           ],
         },
@@ -48,77 +88,78 @@ class Footer7Page extends BaseFooter {
     });
 
     this.addProp({
-      type: "object",
-      key: "link",
-      displayer: "Links of Icon",
-      value: Array(4)
-        .fill(0)
-        .map((_, index) => {
-          return {
-            type: "page",
-            key: `link${index + 1}`,
-            displayer: `Link-${index + 1}`,
-            value: PlaceholderFiller.string(),
-          };
-        }),
+      type: "string",
+      key: "footerText",
+      displayer: "Footer Text",
+      value: "Composer by Blinkpage. All rights reserved",
     });
 
     this.addProp({
-      type: "string",
-      key: "title3",
-      displayer: "Subtitle",
-      value: PlaceholderFiller.string(),
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2", "animate3"]
+      }
     });
   }
 
-  getName(): string {
+  static getName(): string {
     return "Footer 7";
   }
 
   render() {
+    const logo = this.getPropValue("logo");
+    const logoUrl = this.getPropValue("logoUrl");
+    const links = this.castToObject<any[]>("links");
+
+    const footerTextExist = this.castToString(this.getPropValue("footerText"));
+
+    const alignment = Base.getContentAlignment();
+
     return (
-      <div
-        className={this.decorateCSS("container")}
-        
-      >
-        <div className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("little-container")}>
-            <div className={this.decorateCSS("page-1")}>
-              {this.castToObject<Footer[]>("items").map(
-                (item: any, index: number) => {
-                  return (
-                    <div key={`box-${index}`} className={this.decorateCSS("box")}>
-                      <h1>{item.title}</h1>
-                      {item.text1.map((key: any) => (
-                        <p key={key.value}>{key.value}</p>
-                      ))}
-                    </div>
-                  );
-                }
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <div className={this.decorateCSS("footer-page")}>
+            {logo && (
+             <ComposerLink path={logoUrl}>
+               <div className={this.decorateCSS("left")}>
+                <img src={logo} className={this.decorateCSS("image")} alt="" />
+              </div>
+             </ComposerLink>
+            )}
+
+            <div
+              className={`${this.decorateCSS("right")} ${!logo && this.decorateCSS("full-width")}`}>
+              {links.length > 0 && (
+                <div className={this.decorateCSS("upper")}>
+                  {links.map((item: any, index: number) => {
+                    const textExist = this.castToString(item.text);
+                    return (
+                      textExist && (
+                        <div
+                          className={`${this.decorateCSS("link-element")} ${item.url && this.decorateCSS("has-path")}`}
+                          data-animation={item.url ? this.getPropValue("hoverAnimation").join(" ") : ""}>
+                          <ComposerLink key={index} path={item.url}>
+                            <Base.P className={this.decorateCSS("link-text")}>{item.text}</Base.P>
+                          </ComposerLink>
+                        </div>
+                      )
+                    );
+                  })}
+                </div>
+              )}
+              {footerTextExist && (
+                <div className={this.decorateCSS("bottom")}>
+                  <Base.P className={`${this.decorateCSS("text")} ${!logo && this.decorateCSS("left")}`}
+                  >{this.getPropValue("footerText")}</Base.P>
+                </div>
               )}
             </div>
-            <div className={this.decorateCSS("page-2")}>
-              <div className={this.decorateCSS("left")}>
-                <h2>{this.getPropValue("title3")}</h2>
-              </div>
-              <div className={this.decorateCSS("right")}>
-                <ComposerLink path={this.getPropValue("link")[0].value}>
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/1200px-Facebook_Logo_%282019%29.png" />
-                </ComposerLink>
-                <ComposerLink path={this.getPropValue("link")[1].value}>
-                  <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" />
-                </ComposerLink>
-                <ComposerLink path={this.getPropValue("link")[2].value}>
-                  <img src="https://cdn-icons-png.flaticon.com/512/145/145807.png" />
-                </ComposerLink>
-                <ComposerLink path={this.getPropValue("link")[3].value}>
-                  <img src="https://cdn4.iconfinder.com/data/icons/social-media-icons-the-circle-set/48/twitter_circle-512.png" />
-                </ComposerLink>
-              </div>
-            </div>
           </div>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container >
     );
   }
 }

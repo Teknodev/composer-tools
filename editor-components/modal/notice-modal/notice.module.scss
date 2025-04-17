@@ -1,0 +1,92 @@
+@use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss" as *;
+
+.container {
+  max-width: 600px;
+  max-height: 700px;
+  overflow: auto;
+  border-radius: var(--composer-border-radius-md);
+
+  .max-content {
+    .content {
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      width: 100%;
+      gap: var(--composer-gap-sm);
+      padding: var(--composer-gap-md);
+
+      .exit-icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+        .exitIcon {
+          font-size: 1.5rem;
+          cursor: pointer;
+          color: var(--composer-font-color-primary);
+        }
+      }
+
+      .icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .icon-element {
+          color: var(--composer-font-color-primary);
+          font-size: 3rem;
+        }
+      }
+
+      .title,
+      .subtitle {
+        color: var(--composer-font-color-primary);
+        margin: 0;
+        text-align: center;
+      }
+
+      .description {
+        color: var(--composer-font-color-primary);
+        text-align: center;
+      }
+
+      .button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+
+        .button-element {
+          content: "";
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    max-width: 500px;
+    max-height: 600px;
+
+    .max-content {
+      .content {
+        gap: var(--composer-gap-xs);
+        padding: var(--composer-gap-xs);
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    max-width: 300px;
+    max-height: 500px;
+
+    .max-content {
+      .content {
+        gap: var(--composer-gap-xs);
+        padding: var(--composer-gap-xs);
+      }
+    }
+  }
+}

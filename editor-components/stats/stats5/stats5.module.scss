@@ -1,85 +1,101 @@
-.container {
-  width: 100%;
-  padding: 50px 0 50px 0;
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
+.container {
   .max-content {
-    width: var(--composer-content-width);
-    display: flex;
-    justify-content: space-around;
-    margin: auto;
-    .stats5-page {
-      display: block;
-      width: 100%;
-      padding: 20px 100px;
-      h1 {
-        text-align: center;
-        width: 100%;
-        font-weight: 800;
-        font-size: 30px;
-        line-height: 1.4;
-      }
-      h3 {
-        margin: 0 auto 0 auto;
-        text-align: center;
-        width: 45%;
-        font-weight: 100;
-        font-size: 18px;
-        line-height: 1.4;
-        margin-bottom: 80px;
-      }
-      .bottom-child {
+    .bottom-child {
+      .card {
         display: flex;
-        justify-content: space-between;
-        margin-top: 50px;
-        width: 900px;
-        margin: 0 auto 0 auto;
-        .card {
-          width: 350px;
-          box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-          border-radius: 20px;
-          padding: 30px;
-          margin-right: 20px;
-          h4 {
-            text-align: center;
-            font-weight: 800;
-            font-size: 35px;
-            line-height: 1.4;
-            color: var(--composer-primary-color);
-            margin: 0;
+        justify-content: center;
+        flex-wrap: wrap;
+        align-items: center;
+        text-align: center;
+        min-height: 100px;
+        width: 100%;
+        position: relative;
+        padding: var(--composer-gap-md);
+
+        &.stick {
+          &:not(:last-child)::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            top: 35%;
+            bottom: 35%;
+            width: 1px;
+            background-color: var(--composer-font-color-primary);
           }
-          p {
-            text-align: center;
-            font-weight: 500;
-            font-size: 17px;
-            line-height: 1.4;
+        }
+
+        .card-data-title {
+          font-size: 13rem;
+          color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+          margin: 0;
+          white-space: normal;
+          word-break: break-word;
+          overflow-wrap: break-word;
+        }
+
+        .card-data-description {
+          font-size: 2rem;
+          color: var(--composer-font-color-primary);
+          margin: 0;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .bottom-child {
+        .card {
+          padding: 0 !important;
+          margin: 0px !important;
+
+          &.stick {
+            &:nth-child(2n)::after {
+              display: none !important;
+            }
+          }
+
+          .card-data-title {
+            font-size: 5rem !important;
+          }
+
+          .card-data-description {
+            font-size: 1.5rem !important;
           }
         }
       }
     }
   }
-  
 }
 
-@media only screen and (max-width: 1200px) {
+@container (max-width: #{$composer-phone-width}) {
   .container {
-    flex-direction: column;
-    gap: 20px;
-
     .max-content {
-      width: var(--composer-content-width);
-
-      .stats5-page {
-        text-align: center;
-        margin: 0;
-        padding: 0;
-        .bottom-child {
+      .bottom-child {
+        .card {
+          height: auto;
           width: 100%;
-          display: block;
-          .card {
+
+          &::after {
+            display: none;
+          }
+
+          .card-data-title {
+            font-size: 7rem;
+          }
+
+          .card-data-description {
+            font-size: 1.5rem;
             width: 100%;
-            h5 {
-              margin-top: 20px;
-            }
+            text-align: center;
           }
         }
       }

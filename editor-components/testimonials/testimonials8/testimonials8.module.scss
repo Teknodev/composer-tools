@@ -1,101 +1,195 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 .container {
-  width: 100%;
-  padding: 50px 0 50px 0;
-  box-shadow: var(composer-box-shadow);
-  .max-content {
-    width: var(--composer-content-width);
+  .maxContent {
     display: flex;
-    margin: auto;
-
     .testimonials8 {
-      display: block;
       width: 100%;
-      h1 {
-        margin: 0 auto 10px auto;
-        text-align: center;
-        font-weight: 800;
-        line-height: 1.4;
-        font-size: 40px;
-        margin-bottom: 80px;
-        margin-left: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: var(--composer-gap-xl);
+      .title {
+        width: 100%;
+        margin: 0px;
       }
-      h3 {
-        margin: 0 auto 10px auto;
-        text-align: center;
-        font-weight: 200;
-        line-height: 1.4;
-        font-size: 18px;
-        margin-left: 20px;
-      }
-      .card-child {
+      .content {
+        width: 100%;
         display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        img {
-          margin-bottom: 20px;
-        }
-        .card {
-          display: block;
-          margin-bottom: 20px;
-          min-width: 400px;
-          max-width: 400px;
-          height: max-content;
-          border-radius: 20px;
-          margin-left: 100px;
-          margin-right: 100px;
-          .profile {
-            display: flex;
-            margin: 0 auto 0 auto;
-            width: max-content;
-            img {
-              border-radius: 100%;
-            }
-            .profile-text {
-              margin-left: 20px;
-              h2 {
-                font-weight: 600;
-                font-size: 20px;
-                margin-top: 3px;
-                margin-bottom: 0;
-                margin-left: 0;
-                margin-right: 0;
-              }
-              p {
-                margin-top: 3px;
-                margin-bottom: 0;
-                margin-left: 0;
-                margin-right: 0;
-                font-size: 15px;
-                text-transform: uppercase;
+        position: relative;
+        > div {
+          > div {
+            > div {
+              display: flex;
+              height: 100%;
+              align-items: stretch;
+              > div {
+                padding: 0px var(--composer-gap-xs);
+                height: auto;
+                > div {
+                  height: 100%;
+                }
               }
             }
           }
-          h5 {
-            opacity: 0.8;
-            font-weight: 800;
-            font-size: 18px;
-            margin-top: 10px;
-            margin-bottom: 0;
-            margin-left: 0;
-            margin-right: 0;
-            text-align: center;
+        }
+
+        .prevArrow,
+        .nextArrow {
+          position: absolute;
+          top: calc(50% - var(--composer-gap-md));
+          transform: translateY(-50%);
+          display: flex;
+          align-items: center;
+          z-index: 1;
+          background-color: transparent;
+          border: none;
+          width: var(--composer-gap-lg);
+          height: var(--composer-gap-lg);
+          border: 1px solid var(--composer-font-color-primary);
+          border-radius: 50%;
+          justify-content: center;
+          color: var(--composer-font-color-primary);
+        }
+        .prevArrow {
+          left: 0;
+        }
+        .nextArrow {
+          right: 0;
+        }
+        > div {
+          width: 100%;
+          > div {
+            padding-bottom: var(--composer-gap-lg);
+          }
+          > ul {
+            left: 0px;
+            bottom: 0px;
+            > li {
+              > button {
+                &::before {
+                  color: var(--composer-font-color-primary);
+                }
+              }
+            }
+          }
+        }
+        .card {
+          background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+          border-radius: var(--composer-border-radius-md);
+          padding: var(--composer-gap-xl);
+          display: flex;
+          flex-direction: column;
+          gap: var(--composer-gap-md);
+          margin-bottom: var(--composer-gap-md);
+          height: 100%;
+          .topContainer {
+            display: flex;
+            gap: var(--composer-gap-sm);
+            align-items: center;
+            .image {
+              width: var(--composer-gap-xl);
+              height: var(--composer-gap-xl);
+              border-radius: 50%;
+              object-fit: cover;
+            }
+            .personal {
+              display: flex;
+              flex-direction: column;
+              gap: var(--composer-gap-sm);
+              .name {
+                color: var(--composer-font-color-primary);
+              }
+              .personTitle {
+                color: var(--composer-tertiary-color);
+              }
+            }
+          }
+          .description {
+            color: var(--composer-font-color-primary);
+          }
+          .bottomContainer {
+            display: flex;
+            gap: var(--composer-gap-sm);
+            .star {
+              display: flex;
+              gap: var(--composer-gap-xs);
+
+              .icon {
+                color: var(--composer-primary-color);
+                font-size: 1rem;
+              }
+            }
+            .line {
+              width: 1px;
+              background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
+            }
+            .starNumber {
+              color: var(--composer-secondary-color);
+              display: flex;
+              align-items: center;
+            }
+          }
+        }
+      }
+      .contentPaddingLeft {
+        padding-left: calc(var(--composer-gap-xl) * 3);
+      }
+
+      .contentPaddingRight {
+        padding-right: calc(var(--composer-gap-xl) * 3);
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .maxContent {
+      .testimonials8 {
+        gap: var(--composer-gap-md);
+        .content {
+          padding: 0px;
+          .prevArrow,
+          .nextArrow {
+            display: none;
+          }
+          > div {
+            padding: 0px;
+            > div {
+              padding-bottom: var(--composer-gap-sm);
+              > div {
+                > div {
+                  padding: var(--composer-gap-sm);
+                }
+              }
+            }
+          }
+          .card {
+            padding: var(--composer-gap-lg);
           }
         }
       }
     }
   }
 }
-
-@media only screen and (max-width: 800px) {
+@container (max-width: #{$composer-phone-width}) {
   .container {
-    flex-direction: column;
-    gap: 20px;
-    .max-content {
+    .maxContent {
       .testimonials8 {
-        text-align: center;
-        margin: 0;
-        h1 {
-          width: 100%;
+        .content {
+          .prevArrow,
+          .nextArrow {
+            width: 30px;
+            height: 30px;
+          }
+          .card {
+            padding: var(--composer-gap-sm);
+            .topContainer {
+              .image {
+                width: var(--composer-gap-lg);
+                height: var(--composer-gap-lg);
+              }
+            }
+          }
         }
       }
     }
