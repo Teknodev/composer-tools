@@ -224,9 +224,12 @@ import ConfirmationModal2 from "./modal/confirmation-modal-2/confirmation-modal-
 import BannerComponent1 from "../editor-components/banner/banner1/banner1";
 import BannerComponent2 from "../editor-components/banner/banner2/banner2";
 import ECommerce5 from "./e-commerce/e-commerce5";
+import SocialComponent1 from "./social/social1/social1";
 
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
+    SocialComponent1,
+
     NotificationModal1,
     ConfirmationModal1,
     DownloadComponent1,
