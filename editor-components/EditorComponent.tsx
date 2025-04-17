@@ -774,6 +774,9 @@ export abstract class BaseContacts extends Component {
 export abstract class BaseFeature extends Component {
   static category = CATEGORIES.FEATURE;
 }
+export abstract class BaseSocial extends Component {
+  static category = CATEGORIES.SOCIAL;
+}
 
 export abstract class BaseSocial extends Component {
   static category = CATEGORIES.SOCIAL;
