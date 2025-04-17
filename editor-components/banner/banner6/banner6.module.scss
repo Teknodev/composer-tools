@@ -1,0 +1,101 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+    padding: calc(var(--composer-gap-xl) * 2.5) var(--composer-gap-xl) !important;
+    position: relative;
+    overflow: hidden;
+    .vector1 {
+        position: absolute;
+        top: -30px;
+        left: 600px;
+    }
+    .vector2 {
+        position: absolute;
+        right: 200px;
+    }
+    .max-content {
+        .section {
+            .title {
+                max-width: 70%;
+                max-height: 80%;
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 5;
+                text-overflow: ellipsis;
+            }
+            .description {
+                opacity: 0.7;
+                max-width: 70%;
+                max-height: 80%;
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 5;
+                text-overflow: ellipsis;
+            }
+            .breadcrumb {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                max-width: 100%;
+
+                * {
+                    overflow: hidden;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 5;
+                    text-overflow: ellipsis;
+                }
+
+                .home {
+                    color: var(--composer-font-color-primary);
+                    margin-right: var(--composer-gap-sm);
+                    &:hover {
+                        transition: color 0.3 ease;
+                        color: var(--composer-primary-color);
+                    }
+                }
+                .icon {
+                    color: var(--composer-font-color-primary);
+                    margin-right: var(--composer-gap-sm);
+                    min-width: 1rem;
+                }
+                .current {
+                    color: var(--composer-primary-color);
+                }
+            }
+
+            &.with-image {
+                .title, .description, .home, .icon {
+                    color: black;
+                }
+            }
+        }
+    }
+}
+
+@container (max-width : #{$composer-tablet-width}) {
+    .container {
+        .vector1 {
+            left: 300px !important;
+        }
+        .vector2 {
+            right: 100px;
+        }
+    }
+}
+
+@container (max-width : #{$composer-phone-width}) { 
+    .container {
+        .vector1, .vector2 {
+            display: none;
+        }
+        .section {
+            .title, .description {
+                max-width: 100% !important;
+            }
+        }
+    }
+}
