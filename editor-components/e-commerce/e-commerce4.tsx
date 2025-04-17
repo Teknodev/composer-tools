@@ -2,9 +2,9 @@ import * as React from "react";
 import { Base } from "composer-tools/composer-base-components/base/base";
 import styles from "./e-commerce4.module.scss";
 import { BaseECommerce } from "composer-tools/editor-components/EditorComponent";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
+import { ComposerIcon } from "composer-tools/composer-base-components/icon/icon";
 
 interface SizeOption {
     sizeName: string;
