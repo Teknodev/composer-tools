@@ -1,4 +1,4 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container-main{
     width: 100%;
@@ -16,8 +16,8 @@
     }
     .vector2 {
         position: absolute;
-        left: 30px;
-        bottom: 45px;
+        left: var(--composer-gap-lg);
+        bottom: var(--composer-gap-lg);
 
         &.animated {
             animation: animation1 1.3s infinite alternate;
@@ -25,8 +25,8 @@
     }
     .vector3 {
         position: absolute;
-        right: 50px;
-        bottom: 20px;
+        right: var(--composer-gap-xl);
+        bottom: var(--composer-gap-md);
 
         &.animated {
             animation: animation2 1s infinite alternate;
@@ -91,8 +91,6 @@
                         align-items: center;
 
                         .link {
-                            //flex: 1;
-
                             .homepage {
                                 font-size: 1rem !important;
                                 &.image {
