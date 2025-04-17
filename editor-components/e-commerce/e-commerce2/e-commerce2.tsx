@@ -1084,21 +1084,18 @@ class ECommerce2 extends BaseECommerce {
     };
 
     render() {
+        const imageGallery = this.castToObject<ImageGallery[]>("imageGalleries");
+        const allText = this.castToString(this.getPropValue("allText"));
         const currentImageCount = this.getComponentState("imageCount");
         const initialImageCount = this.getPropValue("imageCountInitial");
         const moreImages = this.getComponentState("moreImages");
-
-        const imageGallery = this.castToObject<ImageGallery[]>("imageGalleries");
         const selectedSection = this.getComponentState("selectedSection");
         const selectedIndex = this.getComponentState("selectedIndex");
-        const allText = this.castToString(this.getPropValue("allText"));
 
-        // Image count kontrolü
         if (currentImageCount !== initialImageCount + moreImages) {
             this.setComponentState("imageCount", initialImageCount + moreImages);
         }
 
-        // Tüm görselleri tekilleştir
         const allImages = imageGallery.reduce((acc: Image[], gallery) => {
             gallery.images.forEach((image) => {
                 if (!acc.some((img) => img.cardImage === image.cardImage)) {
@@ -1108,14 +1105,12 @@ class ECommerce2 extends BaseECommerce {
             return acc;
         }, []);
 
-        // Seçilen bölümdeki görseller
         const selectedImages = selectedIndex === -1
             ? allImages
             : imageGallery[selectedIndex].images;
 
         const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
-        // Filtrelenmiş ve slice edilmiş görseller
         const filteredImages = imageGallery
             .filter((gallery) =>
                 selectedSection === allText ||
@@ -1130,13 +1125,10 @@ class ECommerce2 extends BaseECommerce {
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-
-                    {/* Başlık Butonları */}
                     <div className={this.decorateCSS("section-title-container")}>
                         <button
                             className={`${this.decorateCSS("section-title")} ${selectedSection === allText ? this.decorateCSS("active-section-title") : ""}`}
-                            onClick={this.handleSectionClickAll}
-                        >
+                            onClick={this.handleSectionClickAll}>
                             {allText}
                         </button>
                         {imageGallery.map((item, index) => {
@@ -1146,35 +1138,26 @@ class ECommerce2 extends BaseECommerce {
                                 <button
                                     key={index}
                                     className={`${this.decorateCSS("section-title")} ${isActive ? this.decorateCSS("active-section-title") : ""}`}
-                                    onClick={() => this.handleSectionClick(item.sectionTitle, index)}
-                                >
+                                    onClick={() => this.handleSectionClick(item.sectionTitle, index)}>
                                     {item.sectionTitle}
                                 </button>
                             );
                         })}
                     </div>
-
-                    {/* Görsel Grid */}
                     <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("grid")}>
                         {filteredImages.map((image, imgIndex) => (
                             <div key={imgIndex} className={this.decorateCSS("card-container")}>
                                 <div className={this.decorateCSS("image-container")}>
-
-                                    {/* Alt Metin ve İkon */}
                                     <div className={`${this.decorateCSS("image-bottom")} animate__animated animate__fadeInUp`}>
                                         <div className={this.decorateCSS("image-bottom-text")}>{image.bottomText}</div>
                                         <div className={this.decorateCSS("image-bottom-icon")}>
                                             <ComposerIcon name={image.bottomIcon} />
                                         </div>
                                     </div>
-
-                                    {/* Sol/Sağ Metin */}
                                     <div className={this.decorateCSS("image-text")}>
                                         {image.leftText && <div className={this.decorateCSS("leftText")}>{image.leftText}</div>}
                                         {image.rightText && <div className={this.decorateCSS("rightText")}>{image.rightText}</div>}
                                     </div>
-
-                                    {/* Görsel */}
                                     {image.cardImage && (
                                         <img
                                             alt={image.cardImage}
@@ -1183,8 +1166,6 @@ class ECommerce2 extends BaseECommerce {
                                         />
                                     )}
                                 </div>
-
-                                {/* Açıklama Alanı */}
                                 <div className={this.decorateCSS("text-container")}>
                                     {image.title && <div className={this.decorateCSS("title")}>{image.title}</div>}
                                     {image.price && <div className={this.decorateCSS("price")}>{image.price}</div>}
@@ -1197,15 +1178,12 @@ class ECommerce2 extends BaseECommerce {
                             </div>
                         ))}
                     </Base.ListGrid>
-
-                    {/* Daha Fazla Butonu */}
                     {currentImageCount < selectedImages.length && (
                         <div className={this.decorateCSS("button-wrapper")}>
                             <Base.Button
                                 buttonType={button.type}
                                 className={this.decorateCSS("button")}
-                                onClick={this.handleButtonClick}
-                            >
+                                onClick={this.handleButtonClick}>
                                 {button.text}
                             </Base.Button>
                         </div>
@@ -1215,6 +1193,5 @@ class ECommerce2 extends BaseECommerce {
         );
     }
 }
-
 
 export default ECommerce2;
