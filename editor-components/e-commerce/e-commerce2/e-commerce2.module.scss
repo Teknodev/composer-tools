@@ -1,4 +1,5 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
+  as *;
 .container {
   background-color: var(--composer-html-background);
   .max-content {

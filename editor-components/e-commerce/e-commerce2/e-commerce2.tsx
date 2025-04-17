@@ -1066,26 +1066,40 @@ class ECommerce2 extends BaseECommerce {
     }
     handleSectionClick(sectionTitle: React.ReactNode, index: number): void {
         this.setComponentState("selectedSection", this.castToString(sectionTitle));
-        this.setComponentState("selectedIndex", index)
+        this.setComponentState("selectedIndex", index);
         this.setComponentState("imageCount", this.getPropValue("imageCount"));
         this.setComponentState("moreImages", 0);
     }
+
     handleSectionClickAll(): void {
         this.setComponentState("selectedSection", this.castToString(this.getPropValue("allText")));
-        this.setComponentState("selectedIndex", -1)
+        this.setComponentState("selectedIndex", -1);
         this.setComponentState("moreImages", 0);
     }
 
-    handleButtonClick = () => {
-        this.setComponentState("moreImages", this.getComponentState("moreImages") + this.getPropValue("imageCount"))
+    handleButtonClick = (): void => {
+        const currentMoreImages = this.getComponentState("moreImages");
+        const imageCountToAdd = this.getPropValue("imageCount");
+        this.setComponentState("moreImages", currentMoreImages + imageCountToAdd);
     };
 
     render() {
-        if (this.getComponentState("imageCount") !== this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"))
-            this.setComponentState("imageCount", this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"));
+        const currentImageCount = this.getComponentState("imageCount");
+        const initialImageCount = this.getPropValue("imageCountInitial");
+        const moreImages = this.getComponentState("moreImages");
+
         const imageGallery = this.castToObject<ImageGallery[]>("imageGalleries");
         const selectedSection = this.getComponentState("selectedSection");
-        const allImages = imageGallery.reduce((acc: Image[], gallery: ImageGallery) => {
+        const selectedIndex = this.getComponentState("selectedIndex");
+        const allText = this.castToString(this.getPropValue("allText"));
+
+        // Image count kontrolü
+        if (currentImageCount !== initialImageCount + moreImages) {
+            this.setComponentState("imageCount", initialImageCount + moreImages);
+        }
+
+        // Tüm görselleri tekilleştir
+        const allImages = imageGallery.reduce((acc: Image[], gallery) => {
             gallery.images.forEach((image) => {
                 if (!acc.some((img) => img.cardImage === image.cardImage)) {
                     acc.push(image);
@@ -1093,99 +1107,105 @@ class ECommerce2 extends BaseECommerce {
             });
             return acc;
         }, []);
-        const sectionImage = (this.getComponentState("selectedIndex") !== -1) ? imageGallery[this.getComponentState("selectedIndex")].images : "";
-        const selectedImageGallery =
-            this.getComponentState("selectedIndex") === -1 ? allImages
-                : sectionImage;
+
+        // Seçilen bölümdeki görseller
+        const selectedImages = selectedIndex === -1
+            ? allImages
+            : imageGallery[selectedIndex].images;
 
         const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+
+        // Filtrelenmiş ve slice edilmiş görseller
+        const filteredImages = imageGallery
+            .filter((gallery) =>
+                selectedSection === allText ||
+                (gallery.sectionTitle && this.castToString(gallery.sectionTitle) === selectedSection)
+            )
+            .reduce((acc: Image[], gallery) => {
+                acc.push(...gallery.images);
+                return acc;
+            }, [])
+            .slice(0, currentImageCount);
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
+
+                    {/* Başlık Butonları */}
                     <div className={this.decorateCSS("section-title-container")}>
-                        {
-                            <button
-                                className={`${this.decorateCSS("section-title")} ${selectedSection === this.castToString(this.getPropValue("allText")) ? this.decorateCSS("active-section-title") : ""}`}
-                                onClick={() => this.handleSectionClickAll()}
-                            >
-                                {this.getPropValue("allText")}
-                            </button>
-                        }
-                        {
-                            imageGallery.map((item: ImageGallery, index: number) => (
+                        <button
+                            className={`${this.decorateCSS("section-title")} ${selectedSection === allText ? this.decorateCSS("active-section-title") : ""}`}
+                            onClick={this.handleSectionClickAll}
+                        >
+                            {allText}
+                        </button>
+                        {imageGallery.map((item, index) => {
+                            const title = this.castToString(item.sectionTitle);
+                            const isActive = title === selectedSection;
+                            return (
                                 <button
                                     key={index}
-                                    className={`${this.decorateCSS("section-title")} ${this.castToString(item.sectionTitle) === selectedSection ? this.decorateCSS("active-section-title") : ""}`}
+                                    className={`${this.decorateCSS("section-title")} ${isActive ? this.decorateCSS("active-section-title") : ""}`}
                                     onClick={() => this.handleSectionClick(item.sectionTitle, index)}
                                 >
                                     {item.sectionTitle}
                                 </button>
-                            ))
-                        }
+                            );
+                        })}
                     </div>
+
+                    {/* Görsel Grid */}
                     <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("grid")}>
-                        {imageGallery
-                            .filter(
-                                (item: ImageGallery) =>
-                                    selectedSection === this.castToString(this.getPropValue("allText")) ||
-                                    (item.sectionTitle &&
-                                        selectedSection &&
-                                        this.castToString(item.sectionTitle) === selectedSection)
-                            )
-                            .reduce((acc: Image[], item: ImageGallery) => {
-                                acc.push(...item.images);
-                                return acc;
-                            }, [])
-                            .slice(0, this.getComponentState("imageCount"))
-                            .map((image: Image, imgIndex: number) => (
-                                <div key={imgIndex} className={this.decorateCSS("card-container")}>
-                                    <div className={this.decorateCSS("image-container")}>
-                                        <div className={`${this.decorateCSS("image-bottom")} animate__animated animate__fadeInUp`}>
-                                            <div className={this.decorateCSS("image-bottom-text")}>
-                                                {image.bottomText}
-                                            </div>
-                                            <div className={this.decorateCSS("image-bottom-icon")}>
-                                                <ComposerIcon
-                                                    name={image.bottomIcon}
-                                                />
-                                            </div>
+                        {filteredImages.map((image, imgIndex) => (
+                            <div key={imgIndex} className={this.decorateCSS("card-container")}>
+                                <div className={this.decorateCSS("image-container")}>
+
+                                    {/* Alt Metin ve İkon */}
+                                    <div className={`${this.decorateCSS("image-bottom")} animate__animated animate__fadeInUp`}>
+                                        <div className={this.decorateCSS("image-bottom-text")}>{image.bottomText}</div>
+                                        <div className={this.decorateCSS("image-bottom-icon")}>
+                                            <ComposerIcon name={image.bottomIcon} />
                                         </div>
-                                        <div className={this.decorateCSS("image-text")}>
-                                            {this.castToString(image.leftText) && (
-                                                <div className={this.decorateCSS("leftText")}>{image.leftText}</div>
-                                            )}
-                                            {this.castToString(image.rightText) && (
-                                                <div className={this.decorateCSS("rightText")}>{image.rightText}</div>
-                                            )}
-                                        </div>
-                                        {image.cardImage && (
-                                            <img
-                                                alt={image.cardImage}
-                                                src={image.cardImage}
-                                                className={this.decorateCSS("image")}
-                                            />
-                                        )}
                                     </div>
-                                    <div className={this.decorateCSS("text-container")}>
-                                        {this.castToString(image.title) && (
-                                            <div className={this.decorateCSS("title")}>{image.title}</div>
-                                        )}
-                                        {this.castToString(image.price) && (
-                                            <div className={this.decorateCSS("price")}>{image.price}</div>
-                                        )}
-                                        {this.castToString(image.subTitle) && (
-                                            <div className={`${this.decorateCSS("subTitle")} animate__animated animate__fadeInLeft`}>
-                                                {image.subTitle}
-                                            </div>
-                                        )}
+
+                                    {/* Sol/Sağ Metin */}
+                                    <div className={this.decorateCSS("image-text")}>
+                                        {image.leftText && <div className={this.decorateCSS("leftText")}>{image.leftText}</div>}
+                                        {image.rightText && <div className={this.decorateCSS("rightText")}>{image.rightText}</div>}
                                     </div>
+
+                                    {/* Görsel */}
+                                    {image.cardImage && (
+                                        <img
+                                            alt={image.cardImage}
+                                            src={image.cardImage}
+                                            className={this.decorateCSS("image")}
+                                        />
+                                    )}
                                 </div>
-                            ))}
+
+                                {/* Açıklama Alanı */}
+                                <div className={this.decorateCSS("text-container")}>
+                                    {image.title && <div className={this.decorateCSS("title")}>{image.title}</div>}
+                                    {image.price && <div className={this.decorateCSS("price")}>{image.price}</div>}
+                                    {image.subTitle && (
+                                        <div className={`${this.decorateCSS("subTitle")} animate__animated animate__fadeInLeft`}>
+                                            {image.subTitle}
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        ))}
                     </Base.ListGrid>
-                    {(this.getComponentState("imageCount") < selectedImageGallery.length) && (
+
+                    {/* Daha Fazla Butonu */}
+                    {currentImageCount < selectedImages.length && (
                         <div className={this.decorateCSS("button-wrapper")}>
-                            <Base.Button buttonType={button.type} className={this.decorateCSS("button")} onClick={this.handleButtonClick} >
+                            <Base.Button
+                                buttonType={button.type}
+                                className={this.decorateCSS("button")}
+                                onClick={this.handleButtonClick}
+                            >
                                 {button.text}
                             </Base.Button>
                         </div>
@@ -1195,5 +1215,3 @@ class ECommerce2 extends BaseECommerce {
         );
     }
 }
-
-export default ECommerce2;
