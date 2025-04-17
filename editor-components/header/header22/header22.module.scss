@@ -1,4 +1,4 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 @keyframes scaleUpDown {
   0% {
     transform: scale(1.5);
@@ -151,10 +151,8 @@
                   }
                 }
 
-                .link-button-container {
-                  .button {
-                    font-size: 1rem;
-                  }
+                .button {
+                  font-size: 1rem;
                 }
               }
             }
@@ -254,7 +252,7 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .container {
     padding: 0 var(--composer-gap-lg) var(--composer-gap-md) 0;
     .max-content {
@@ -285,10 +283,8 @@
                     .title {
                       font-size: 2rem;
                     }
-                    .link-button-container {
-                      .button {
-                        font-size: 1rem;
-                      }
+                    .button {
+                      font-size: 1rem;
                     }
                   }
                 }
@@ -352,10 +348,8 @@
                     .title {
                       font-size: 1rem;
                     }
-                    .link-button-container {
-                      .button {
-                        font-size: 1rem;
-                      }
+                    .button {
+                      font-size: 1rem;
                     }
                   }
                 }

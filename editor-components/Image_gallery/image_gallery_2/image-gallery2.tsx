@@ -7,7 +7,7 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type ImageType = {
     image: string;
-    imageTitle: JSX.Element;
+    imageTitle: React.JSX.Element;
 };
 
 type sectionType = {
@@ -810,7 +810,7 @@ class ImageGallery2 extends BaseImageGallery {
 
                     </div>
                     {modalOpen && (
-                        <Base.Overlay className={this.decorateCSS("modal")}>
+                        <Base.Overlay isVisible={true} className={this.decorateCSS("modal")}>
                             <div className={this.decorateCSS("modal-wrapper")}
                                 onClick={this.closeModal}>
                                 <div

@@ -233,15 +233,15 @@ For the prop above, the type will be like:
 
 ```javascript
 type CardItemType = {
-  title: JSX.Element;
+  title: React.JSX.Element;
   value: number;
   icon: string;
 }
 ```
 
-### Why JSX.Element for a String??
+### Why React.JSX.Element for a String??
 
-For a property that user can enter a value by hand, we use JSX.Element.
+For a property that user can enter a value by hand, we use React.JSX.Element.
 For these props the entered value is returned with a `<blinkpage>` element and will be rendered with it.
 
 That is why we should check if a singular prop does exist or not using `this.castToString()`. Because
@@ -308,14 +308,14 @@ We should cast our arrays and its items to map. It will make our job easier to d
 Let's assume we have a type named "Card". This Card will take props like: title, background image, button text, button link etc.
 ```javascript
 type Card = {
-  title: JSX.Element;
+  title: React.JSX.Element;
   backgroundImage: string;
-  buttonText: JSX.Element;
+  buttonText: React.JSX.Element;
   buttonLink: string;
 }
 ```
 
-Why JSX.Element and not string? You can read [here](#why-jsxelement-for-a-string).<br>
+Why React.JSX.Element and not string? You can read [here](#why-jsxelement-for-a-string).<br>
 Then we need to map our array which contains so many "Card"s.
 
 **TIP:** It's better to reference our array between `render` and `return` statements. It will better for a much more cleaner code.

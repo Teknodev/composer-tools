@@ -1,4 +1,3 @@
-import axios from "axios";
 import * as React from "react";
 import { getProjectHook } from "../custom-hooks/project";
 import { EventEmitter, EVENTS } from "../EventEmitter";
@@ -7,6 +6,92 @@ import { renderToString } from "react-dom/server";
 import { THEMES, TTheme } from "./location/themes";
 import InlineEditor from "../../custom-hooks/UseInlineEditor";
 import { v4 as uuidv4 } from 'uuid';
+
+export const currencies = [
+  { code: "AFN", symbol: "؋", name: "Afghan Afghani" },
+  { code: "ALL", symbol: "Lek", name: "Albanian Lek" },
+  { code: "DZD", symbol: "د.ج", name: "Algerian Dinar" },
+  { code: "AOA", symbol: "Kz", name: "Angolan Kwanza" },
+  { code: "ARS", symbol: "$", name: "Argentine Peso" },
+  { code: "AMD", symbol: "֏", name: "Armenian Dram" },
+  { code: "AWG", symbol: "ƒ", name: "Aruban Florin" },
+  { code: "AUD", symbol: "A$", name: "Australian Dollar" },
+  { code: "AZN", symbol: "₼", name: "Azerbaijani Manat" },
+  { code: "BSD", symbol: "B$", name: "Bahamian Dollar" },
+  { code: "BHD", symbol: ".د.ب", name: "Bahraini Dinar" },
+  { code: "BDT", symbol: "৳", name: "Bangladeshi Taka" },
+  { code: "BBD", symbol: "Bds$", name: "Barbadian Dollar" },
+  { code: "BYR", symbol: "Br", name: "Belarusian Ruble" },
+  { code: "BEF", symbol: "fr", name: "Belgian Franc" },
+  { code: "BZD", symbol: "BZ$", name: "Belize Dollar" },
+  { code: "BMD", symbol: "$", name: "Bermudan Dollar" },
+  { code: "BTN", symbol: "Nu.", name: "Bhutanese Ngultrum" },
+  { code: "BTC", symbol: "₿", name: "Bitcoin" },
+  { code: "BOB", symbol: "Bs.", name: "Bolivian Boliviano" },
+  { code: "BAM", symbol: "KM", name: "Bosnia-Herzegovina Convertible Mark" },
+  { code: "BWP", symbol: "P", name: "Botswanan Pula" },
+  { code: "BRL", symbol: "R$", name: "Brazilian Real" },
+  { code: "GBP", symbol: "£", name: "British Pound Sterling" },
+  { code: "BND", symbol: "B$", name: "Brunei Dollar" },
+  { code: "BGN", symbol: "лв", name: "Bulgarian Lev" },
+  { code: "BIF", symbol: "FBu", name: "Burundian Franc" },
+  { code: "KHR", symbol: "៛", name: "Cambodian Riel" },
+  { code: "CAD", symbol: "C$", name: "Canadian Dollar" },
+  { code: "CVE", symbol: "$", name: "Cape Verdean Escudo" },
+  { code: "KYD", symbol: "CI$", name: "Cayman Islands Dollar" }, 
+  { code: "CLP", symbol: "$", name: "Chilean Peso" },
+  { code: "CNY", symbol: "CN¥", name: "Chinese Yuan" },
+  { code: "COP", symbol: "Col$", name: "Colombian Peso" },
+  { code: "CRC", symbol: "₡", name: "Costa Rican Colón" },
+  { code: "HRK", symbol: "kn", name: "Croatian Kuna" },
+  { code: "CZK", symbol: "Kč", name: "Czech Republic Koruna" },
+  { code: "DKK", symbol: "kr", name: "Danish Krone" },
+  { code: "DOP", symbol: "RD$", name: "Dominican Peso" },
+  { code: "EGP", symbol: "E£", name: "Egyptian Pound" },
+  { code: "EUR", symbol: "€", name: "Euro" },
+  { code: "GHS", symbol: "₵", name: "Ghanaian Cedi" },
+  { code: "HKD", symbol: "HK$", name: "Hong Kong Dollar" },
+  { code: "HUF", symbol: "Ft", name: "Hungarian Forint" },
+  { code: "INR", symbol: "₹", name: "Indian Rupee" },
+  { code: "IDR", symbol: "Rp", name: "Indonesian Rupiah" },
+  { code: "ILS", symbol: "₪", name: "Israeli New Sheqel" },
+  { code: "JPY", symbol: "¥", name: "Japanese Yen" },
+  { code: "KES", symbol: "KSh", name: "Kenyan Shilling" },
+  { code: "KRW", symbol: "₩", name: "South Korean Won" },
+  { code: "KWD", symbol: "د.ك", name: "Kuwaiti Dinar" },
+  { code: "LAK", symbol: "₭", name: "Laotian Kip" },
+  { code: "LBP", symbol: "ل.ل", name: "Lebanese Pound" },
+  { code: "LKR", symbol: "Rs", name: "Sri Lankan Rupee" },
+  { code: "MAD", symbol: "د.م.", name: "Moroccan Dirham" },
+  { code: "MXN", symbol: "MEX$", name: "Mexican Peso" },
+  { code: "MYR", symbol: "RM", name: "Malaysian Ringgit" },
+  { code: "NOK", symbol: "kr", name: "Norwegian Krone" },
+  { code: "NZD", symbol: "NZ$", name: "New Zealand Dollar" },
+  { code: "PEN", symbol: "S/.", name: "Peruvian Nuevo Sol" },
+  { code: "PHP", symbol: "₱", name: "Philippine Peso" },
+  { code: "PKR", symbol: "₨", name: "Pakistani Rupee" },
+  { code: "PLN", symbol: "zł", name: "Polish Zloty" },
+  { code: "QAR", symbol: "ر.ق", name: "Qatari Rial" },
+  { code: "RON", symbol: "lei", name: "Romanian Leu" },
+  { code: "RUB", symbol: "₽", name: "Russian Ruble" },
+  { code: "SAR", symbol: "﷼", name: "Saudi Riyal" },
+  { code: "SEK", symbol: "kr", name: "Swedish Krona" },
+  { code: "SGD", symbol: "S$", name: "Singapore Dollar" },
+  { code: "THB", symbol: "฿", name: "Thai Baht" },
+  { code: "TRY", symbol: "₺", name: "Turkish Lira" },
+  { code: "TWD", symbol: "NT$", name: "New Taiwan Dollar" },
+  { code: "UAH", symbol: "₴", name: "Ukrainian Hryvnia" },
+  { code: "USD", symbol: "$", name: "US Dollar" },
+  { code: "VEF", symbol: "Bs", name: "Venezuelan Bolívar" },
+  { code: "VND", symbol: "₫", name: "Vietnamese Dong" },
+  { code: "ZAR", symbol: "R", name: "South African Rand" },
+  { code: "AED", symbol: "د.إ", name: "United Arab Emirates Dirham" },
+  { code: "XAF", symbol: "FCFA", name: "Central African CFA Franc" },
+  { code: "XOF", symbol: "CFA", name: "West African CFA Franc" },
+  { code: "XPF", symbol: "₣", name: "CFP Franc" }
+];
+export type CurrencyCode = (typeof currencies )[number]["code"];
+
 
 export function generateComponentId(){
   return uuidv4();
@@ -17,10 +102,32 @@ type PreSufFix = {
   className: string;
 };
 
+export type InteractionType ={
+  type?: string,
+  modal?: string,
+  trigger_action?: string,
+  visible_on?: string,
+  show_once?: false,
+};
+export type PageInteractionType ={
+  type?: string;
+  modal?: string;
+  scroll_depth?: number;
+  delay_time?: number;
+  visible_on?: string;
+  show_once?: boolean;
+  trigger_action?: string;
+};
+
 export type TypeLocation = {
   lng: number;
   lat: number;
 };
+
+type currencyAdditionalParams ={
+  showCode?: boolean;
+  showSymbol?:boolean;
+}
 
 type GetPropValueProperties = {
   parent_object?: TypeUsableComponentProps[];
@@ -28,23 +135,42 @@ type GetPropValueProperties = {
   suffix?: PreSufFix;
   prefix?: PreSufFix;
 };
-type TypeCSSProp = { [key: string]: { id: string; class: string }[] };
+
+type RangeInputAdditionalParams = { 
+  maxRange?: number; 
+  minRange?: number; 
+  step?: number;
+};
+
+export type CSSClass = {
+  id: string;
+  class: string;
+}
+
+export type TypeCSSProp = { [key: string]: CSSClass[] };
+
 export interface iComponent {
   render(): any;
   getInstanceName(): string;
   getName(): string;
   getProps(): TypeUsableComponentProps[];
+  getShadowProps(): TypeUsableComponentProps[];
   getPropValue(
     propName: string,
     properties?: GetPropValueProperties
   ): TypeUsableComponentProps;
   getExportedCSSClasses(): { [key: string]: string };
-  getCSSClasses(sectionName?: string | null): any;
+  getCSSClasses(): TypeCSSProp;
+  getCSSClasses(sectionName: string | null): CSSClass[];
+  getCSSClasses(sectionName?: string | null): TypeCSSProp | CSSClass[];
+  getInteractions(sectionName?: string | null): any;
   addProp(prop: TypeUsableComponentProps): void;
   setProp(key: string, value: any): void;
   setCSSClasses(key: string, value: { id: string; class: string }[]): void;
+  setInteraction(key: string, value: InteractionType[]): void;
   decorateCSS(cssValue: string): string;
   getCategory(): CATEGORIES;
+  initializeProp(prop: TypeUsableComponentProps): void;
   id: string;
 }
 type AvailablePropTypes =
@@ -59,21 +185,29 @@ type AvailablePropTypes =
   | { type: "select"; value: string }
   | { type: "color"; value: string }
   | { type: "icon"; value: string }
+  | { type: "email"; value: string }
   | { type: "location"; value: TypeLocation }
+  | { type: "range"; value: string; additionalParams?: RangeInputAdditionalParams}
+  | { type: "currency"; value: { value: string; currency?: CurrencyCode }; additionalParams?: currencyAdditionalParams}
+  | { type: "tag"; value: string[]}
+  | { type: "phone"; value: string }
   | { type: "dateTime"; value: string ; additionalParams? : {mode?:string, timeInterval?:number, yearRange? : number, yearStart?: number}}
   | { type: "multiSelect"; value: string[] }
+  | { type: "file"; value: string }
+  | { type: "embededLink"; value: string }
 
 export type TypeReactComponent = {
   type: string;
   props?: TypeUsableComponentProps[];
   cssClasses?: TypeCSSProp;
+  interactions?: Record<string, InteractionType[]>;
   id?: string;
 };
 export type TypeUsableComponentProps = {
   id?: string;
   key: string;
   displayer: string;
-  additionalParams?: { selectItems?: string[]; maxElementCount?: number };
+  additionalParams?: { selectItems?: string[]; maxElementCount?: number};
   max?: number;
 } & AvailablePropTypes & {
   getPropValue?: (
@@ -109,8 +243,12 @@ export enum CATEGORIES {
   LOCATION = "location",
   HTTP_CODES = "HTTPCodes",
   BANNER = "banner",
+  SOCIAL = "social"
 }
 
+export function generateId(key: string): string {
+  return key + "-" + Math.round(Math.random() * 1000000000).toString();
+}
 //@ts-ignore
 export abstract class Component
   extends React.Component<{}, { states: any; componentProps: any }>
@@ -135,12 +273,13 @@ export abstract class Component
     Object.keys(this.styles).forEach((key, index) => {
       sectionsKeyValue[key] = [];
     });
-
+    
     this.state = {
       states: {},
       componentProps: {
         props: props?.props || [],
-        cssClasses: props?.cssClasses || sectionsKeyValue,
+        cssClasses: props?.cssClasses || {...sectionsKeyValue},
+        interactions: props?.interactions || {...sectionsKeyValue}
       },
     };
 
@@ -283,6 +422,7 @@ export abstract class Component
           value={prop.value as string}
           props={this.getProps()}
           sanitizedHtml={sanitizedHtml}
+          componentId={this.id}
         />
       );
     };
@@ -293,7 +433,8 @@ export abstract class Component
     }
 
     const memorizedElement: MemorizedElement  = this.memorizedElements[prop.id];
-    const isValueChanged = memorizedElement?.value && prop.value != memorizedElement?.value;
+    const isValueChanged = (!!memorizedElement?.value || memorizedElement?.value == "") 
+    && prop.value != memorizedElement?.value;
 
     if(!memorizedElement.jsxElement || isValueChanged){
       memorizedElement["jsxElement"] = <SanitizeHTML html={prop?.value}></SanitizeHTML>;
@@ -306,28 +447,32 @@ export abstract class Component
   getExportedCSSClasses() {
     return this.styles;
   }
-  getCSSClasses(sectionName: string | null = null): string {
-    return sectionName
-      ? this.state.componentProps.cssClasses[sectionName]
-      : this.state.componentProps.cssClasses;
+  getCSSClasses(): TypeCSSProp;
+  getCSSClasses(sectionName: string | null): CSSClass[];
+  getCSSClasses(sectionName: string | null = null): TypeCSSProp | CSSClass[] {
+    const { cssClasses } = this.state.componentProps;
+    
+    return sectionName 
+      ? cssClasses[sectionName]
+      : cssClasses;
   }
+
+  private attachPropId(_prop: TypeUsableComponentProps) {
+    if (_prop.type == "array" || _prop.type == "object") {
+      (_prop.value as TypeUsableComponentProps[]).forEach(
+        (v: TypeUsableComponentProps) => this.attachPropId(v)
+      );
+    } else {
+      _prop.id = generateId(_prop.key)
+    }
+
+    return _prop;
+  }
+
   addProp(prop: TypeUsableComponentProps) {
     this.shadowProps.push(JSON.parse(JSON.stringify(prop)));
     if (this.getProp(prop.key)) return;
-    const attachPropId = (_prop: TypeUsableComponentProps) => {
-      if (_prop.type == "array" || _prop.type == "object") {
-        _prop.value = (_prop.value as TypeUsableComponentProps[]).map(
-          (v: TypeUsableComponentProps) => attachPropId(v)
-        );
-      } else {
-        _prop.id =
-          _prop.key + "-" + Math.round(Math.random() * 1000000000).toString();
-      }
-      return _prop;
-    };
-    prop = attachPropId(prop);
-    prop = this.attachValueGetter(prop);
-
+    this.initializeProp(prop);
     this.state.componentProps.props.push(prop);
   }
 
@@ -370,20 +515,34 @@ export abstract class Component
     this.state.componentProps.cssClasses[key] = value;
     this.setState({ componentProps: this.state.componentProps });
   }
-
-  decorateCSS(cssValue: string) {
-    let cssClass = [this.styles[cssValue]];
+  setInteraction(key: string, value: InteractionType[]) {
+    this.state.componentProps.interactions[key] = value;
+    this.setState({ componentProps: this.state.componentProps });
+  }
+  getInteractions(sectionName: string | null = null): string {
+    return sectionName
+      ? this.state.componentProps.interactions[sectionName]
+      : this.state.componentProps.interactions;
+  }
+  decorateCSS(section: string) {
+    let cssClass = [this.styles[section]];
+    
     let cssManuplations = Object.entries(this.getCSSClasses()).filter(
       ([p, v]) => v.length > 0
     );
 
     cssManuplations.forEach(([key, value]: any) => {
-      if (key === cssValue) {
+      if (key === section) {
         value.forEach((el: any) => {
           cssClass.push(el.class);
         });
       }
     });
+
+    cssClass.push(
+      generateAutoClassName(this.id, section)
+    );
+    
     return cssClass.join(" ");
   }
 
@@ -415,6 +574,7 @@ export abstract class Component
     }
     return propValue;
   }
+  
 
   castToObject<Type>(propName: string): Type {
     let i = this.state.componentProps.props
@@ -425,7 +585,7 @@ export abstract class Component
     return castedObject;
   }
 
-  castToString(elem: JSX.Element): string {
+  castToString(elem: React.JSX.Element): string {
     return elem.props?.html?.replace(/<\/?[^>]+(>|$)/g, "");
   }
 
@@ -491,6 +651,16 @@ export abstract class Component
     });
 
     EventEmitter.emit(EVENTS.INSERT_FORM, { name, data: inputData, project });
+  }
+
+  /**
+   * Assigns a unique ID to the given property and integrates a method for retrieving its current value.
+   * This ensures each property is distinct and always reflects the latest state.
+   * The function directly modifies the prop object in place so it's not necessary to return it.
+   */
+  initializeProp(prop: TypeUsableComponentProps) {
+    this.attachPropId(prop);
+    this.attachValueGetter(prop);
   }
 }
 
@@ -604,3 +774,11 @@ export abstract class BaseContacts extends Component {
 export abstract class BaseFeature extends Component {
   static category = CATEGORIES.FEATURE;
 }
+
+export abstract class BaseSocial extends Component {
+  static category = CATEGORIES.SOCIAL;
+}
+
+export function generateAutoClassName(componentId: string, section: string){
+  return `auto-generate-${componentId}-${section}`;
+};

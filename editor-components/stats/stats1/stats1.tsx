@@ -6,8 +6,8 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type CardData = {
-  cardValue: JSX.Element;
-  cardLabel: JSX.Element;
+  cardValue: React.JSX.Element;
+  cardLabel: React.JSX.Element;
 };
 
 class Stats1Page extends BaseStats {

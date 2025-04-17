@@ -1,4 +1,4 @@
-@import "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss";
+@use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
   padding: 0;
@@ -35,6 +35,27 @@
 
           .text {
             margin: 0;
+            transition: all 0.3s ease;
+            width: fit-content;
+
+            &[data-has-link="true"] {
+              cursor: pointer;
+              
+              &[data-animation~="animate1"]:hover {
+                transform: translateY(calc(var(--composer-gap-xs) * -1));
+                color: var(--composer-primary-color);
+              }
+
+              &[data-animation~="animate2"]:hover {
+                color: var(--composer-primary-color);
+              }
+
+              &[data-animation~="animate3"]:hover {
+                transform: scale(1.1);
+                text-decoration: underline;
+                color: var(--composer-primary-color);
+              }
+            }
           }
         }
 
@@ -69,7 +90,7 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .container {
     padding: 0;
 
@@ -105,6 +126,12 @@
           padding: var(--composer-gap-md);
           min-height: 300px;
           gap: var(--composer-gap-xl);
+          .list{
+            align-items: center;
+            .title,.text{
+              text-align: center;
+            }
+          }
         }
       }
 

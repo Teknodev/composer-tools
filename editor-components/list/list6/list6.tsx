@@ -5,10 +5,10 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
 
 type listItem = {
-  itemIndex: JSX.Element;
-  itemTitle: JSX.Element;
+  itemIndex: React.JSX.Element;
+  itemTitle: React.JSX.Element;
   itemIcon: string;
-  itemText: JSX.Element;
+  itemText: React.JSX.Element;
 };
 
 class List6 extends BaseList {

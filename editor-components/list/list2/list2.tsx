@@ -6,11 +6,11 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type CardItem = {
-  page: JSX.Element;
+  page: string;
   image: string;
   count: number;
-  count_text: JSX.Element;
-  card_text: JSX.Element;
+  count_text: React.JSX.Element;
+  card_text: React.JSX.Element;
 };
 
 class List2 extends BaseList {

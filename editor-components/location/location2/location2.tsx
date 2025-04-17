@@ -31,9 +31,9 @@ type MarkerObject = {
 
 type ContentItemType = {
   contentIcon: string;
-  contentTitle: JSX.Element;
+  contentTitle: React.JSX.Element;
   contentDescriptionArray: {
-    text: JSX.Element;
+    text: React.JSX.Element;
   }[];
 };
 

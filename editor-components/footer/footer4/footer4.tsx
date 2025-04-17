@@ -9,12 +9,12 @@ import * as Yup from "yup";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type FooterValues = {
-  footerTitle: JSX.Element;
+  footerTitle: React.JSX.Element;
   footerText: FooterTextValues[];
 };
 
 type FooterTextValues = {
-  footerText: JSX.Element;
+  footerText: React.JSX.Element;
   path: string;
 };
 
@@ -384,7 +384,7 @@ class Footer4Page extends BaseFooter {
       type: "string",
       key: "rightTitle",
       displayer: "Form Title",
-      value: "Let’s stay in touch",
+      value: "Let's stay in touch",
     });
 
     this.addProp({
@@ -473,6 +473,16 @@ class Footer4Page extends BaseFooter {
       ],
     });
 
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2", "animate3"]
+      }
+    });
+
     this.setComponentState("placeholderText", this.castToString(this.getPropValue("subscriptionPlaceholder")));
   }
 
@@ -517,8 +527,8 @@ class Footer4Page extends BaseFooter {
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("max-content")}>
-          <Base.Container>
-            <Base.MaxContent>
+          <Base.Container className={this.decorateCSS("first-container")}>
+            <Base.MaxContent className={this.decorateCSS("first-max-content")}>
               <div className={this.decorateCSS("footer-page")}>
                 <div className={this.decorateCSS("items")}>
                   {leftExist && (
@@ -557,7 +567,13 @@ class Footer4Page extends BaseFooter {
                               return (
                                 footerTextExist && (
                                   <ComposerLink key={indexFooterText} path={item.path}>
-                                    <Base.P className={this.decorateCSS("text")}>{item.footerText}</Base.P>
+                                    <Base.P 
+                                      className={this.decorateCSS("text")}
+                                      data-animation={item.path ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                                      data-has-link={Boolean(item.path)}
+                                    >
+                                      {item.footerText}
+                                    </Base.P>
                                   </ComposerLink>
                                 )
                               );
@@ -620,8 +636,8 @@ class Footer4Page extends BaseFooter {
 
           {line && <div className={this.decorateCSS("line")}></div>}
 
-          <Base.Container>
-            <Base.MaxContent>
+          <Base.Container className={this.decorateCSS("second-container")}>
+            <Base.MaxContent className={this.decorateCSS("second-max-content")}>
               <Base.VerticalContent className={this.decorateCSS("bottom")}>
                 {footerDescriptionExist && <Base.P className={this.decorateCSS("footer-text")}>{this.getPropValue("footerDescription")}</Base.P>}
 
@@ -634,7 +650,13 @@ class Footer4Page extends BaseFooter {
                         textExist && (
                           <div className={this.decorateCSS("link-element")}>
                             <ComposerLink key={index} path={item.url}>
-                              <Base.P className={this.decorateCSS("link-text")}>{item.text}</Base.P>
+                              <Base.P 
+                                className={this.decorateCSS("link-text")}
+                                data-animation={item.url ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                                data-has-link={Boolean(item.url)}
+                              >
+                                {item.text}
+                              </Base.P>
                             </ComposerLink>
                           </div>
                         )

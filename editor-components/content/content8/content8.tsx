@@ -7,7 +7,7 @@ import { Base } from "composer-tools/composer-base-components/base/base";
 type ProgressItem = {
   progressTitle: string;
   progress: number;
-  progressText: JSX.Element;
+  progressText: React.JSX.Element;
   icon: string;
 };
 
@@ -196,6 +196,15 @@ class Content8 extends BaseContent {
       ],
     });
     this.setComponentState("is_video_visible", false);
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2"]
+      }
+    });
   }
   static getName(): string {
     return "Content 8";
@@ -216,7 +225,10 @@ class Content8 extends BaseContent {
             {(image1 || image2) && (
               <div className={this.decorateCSS("left-page")}>
                 {image1 && (
-                  <div className={`${this.decorateCSS("up-image")} ${!image2 && this.decorateCSS("without-image2")}`}>
+                  <div 
+                    className={`${this.decorateCSS("up-image")} ${!image2 && this.decorateCSS("without-image2")}`}
+                    data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                  >
                     <img
                       className={this.decorateCSS("image1")}
                       src={this.getPropValue("image1")}
@@ -225,7 +237,13 @@ class Content8 extends BaseContent {
                   </div>
                 )}
                 {image2 && (
-                  <div className={`${this.decorateCSS("down-image")} ${!image1 && this.decorateCSS("without-image1")}`}>
+                  <div 
+                    className={`${this.decorateCSS("down-image")} 
+                      ${!image1 && this.decorateCSS("without-image1")}
+                      ${this.getComponentState("is_video_visible") ? this.decorateCSS("video-active") : ""}`
+                    }
+                    data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                  >
                     <img
                       className={this.decorateCSS("image2")}
                       src={this.getPropValue("image2")}
@@ -235,7 +253,7 @@ class Content8 extends BaseContent {
                       this.setComponentState("is_video_visible", true)
                     }}>
                      {videoLinkExist && <div className={this.decorateCSS("icon-container")}>
-                        <ComposerIcon name={this.getPropValue("playIcon")} propsIcon={{ className: this.decorateCSS("icon") }} />
+                        <ComposerIcon name={this.getPropValue("playIcon")} propsIcon={{ className: this.decorateCSS("play-icon") }} />
                       </div>}
                     </div>
                     {this.getComponentState("is_video_visible") && (
@@ -282,7 +300,11 @@ class Content8 extends BaseContent {
                   <Base.Row className={this.decorateCSS("progress-container")}>
                     {this.castToObject<ProgressItem[]>("items").map(
                       (item: ProgressItem, index: number) => (
-                        <div className={this.decorateCSS("item")} key={index}>
+                        <div 
+                          className={this.decorateCSS("item")} 
+                          key={index}
+                          data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                        >
                           <div className={this.decorateCSS("progress-content")}>
                             <div
                               className={this.decorateCSS("progress-title-container")}
@@ -318,7 +340,8 @@ class Content8 extends BaseContent {
                                   className={this.decorateCSS("progress")}
                                   style={{
                                     width: `${item.progress}%`,
-                                  }}
+                                    '--progress-width': `${item.progress}%`,
+                                  } as React.CSSProperties}
                                 />
                               </div>
 

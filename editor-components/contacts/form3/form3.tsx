@@ -12,7 +12,7 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 type Left = {
   contactName: string;
   contactIcon: string;
-  image: JSX.Element;
+  image: React.JSX.Element;
 };
 
 type Social = {
@@ -620,7 +620,7 @@ class Form3 extends BaseContacts {
 
                           return (
                             <div className={`${this.decorateCSS("icon-container")} ${!background && this.decorateCSS("icon-container-no-image")}`}>
-                              <ComposerLink key={index} path={social.url} className={this.decorateCSS("icon-element")}>
+                              <ComposerLink key={index} path={social.url}>
                                 <ComposerIcon
                                   name={social.icon}
                                   propsIcon={{

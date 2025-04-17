@@ -1,4 +1,4 @@
-@import "./utitilities/viewports.module.scss";
+@use "./utitilities/viewports.module.scss" as *;
 
 .h1{
      font-size: calc(2.8 * var(--project-font-size));
@@ -41,6 +41,7 @@
     width: 100%;
     padding: 80px 50px;
     background-color: var(--composer-html-background);
+    container-type: inline-size;
 
     &.full {
         padding: 80px 0px;
@@ -219,6 +220,7 @@
     display: grid;
     grid-template-columns: repeat(var(--composer-grid-count), 1fr);
     gap: var(--composer-gap-md);
+    container-type: inline-size;
     @container (max-width: #{$composer-tablet-width}) {
         grid-template-columns: repeat(var(--composer-grid-count-tablet), 1fr);
     }
@@ -369,6 +371,7 @@
     align-items: center;
     z-index: 100;
     background: var(--composer-html-background);
+    container-type: inline-size;
 
     &.sticky,
     &.stickycolorful,
@@ -406,7 +409,7 @@
     justify-content: space-between;
     align-items: center;
 
-    @container (max-width: #{$composer-tablet-width-lg}) {
+    @container (max-width: #{$composer-tablet-width}) {
         padding: var(--composer-gap-md) var(--composer-gap-lg);
     }
 

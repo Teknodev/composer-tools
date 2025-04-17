@@ -1,5 +1,8 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
+.container{
+  z-index: 101;
+}
 .navbarContainer {
   padding-top: var(--composer-gap-sm);
   padding-bottom: var(--composer-gap-sm);
@@ -210,7 +213,9 @@
       color: white !important;
     }
   }
-
+  .mobileRight{
+    display: none;
+  }
   .hamburgerNav {
     display: none;
   }
@@ -230,19 +235,19 @@
     width: 100%;
     background: var(--composer-html-background);
     max-height: 0;
-    visibility: hidden;
     z-index: 100;
     overflow: hidden;
-
     transition: all 0.3s ease;
 
     &.active {
       max-height: 50vh;
       opacity: 1;
-      overflow: scroll;
-      visibility: visible;
       transition: all 0.3s ease-out;
     }
+    &.overflowShow{
+      overflow-y: auto;
+    }
+
 
     .hamburgerMenu {
 
@@ -365,10 +370,11 @@
     align-items: center;
     gap: var(--composer-gap-md);
     margin-top: var(--composer-gap-sm);
-
-    .icon {
-      font-size: 1.5rem;
-      color: var(--composer-font-color-primary);
+    .icon-container{
+      .icon {
+        font-size: 1.5rem;
+        color: var(--composer-font-color-primary);
+      }
     }
   }
 }
@@ -383,14 +389,7 @@
   transition: all 0.3s ease !important;
 }
 .hamburgerOverlay {
-  display: none;
-  position: absolute;
-  top: 10%;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--composer-overlay-color);
-  z-index: 99;
+  content: "";
 }
 
 .transparentBackground {
@@ -416,13 +415,15 @@
   }
 
   .icons{
-    .icon{
-      color: white;
+    .icon-container{
+      .icon{
+        color: white;
+      }
     }
   }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .navbarContainer {
     &.filledBackground {
       background: var(--composer-html-background) !important;
@@ -442,6 +443,11 @@
         padding: var(--composer-gap-md) var(--composer-gap-lg);
       }
     }
+    .mobileRight{
+      display: flex;
+      align-items: center;
+      gap: var(--composer-gap-sm);
+    }
     .logo {
       max-height: 50px;
       justify-content: flex-start;
@@ -451,11 +457,6 @@
     }
 
     .hamburgerNav {
-      display: block;
-    }
-  }
-  .hamburgerOverlay {
-    &.overlayActive {
       display: block;
     }
   }
