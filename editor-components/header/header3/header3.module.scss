@@ -209,6 +209,7 @@
             .description {
               @include contentInitialStyle(2rem);
               @include textEllipsis(4);
+              color: var(--composer-font-color-primary);
               // bottom: calc(-1 * 20vw);
               // color: var(--composer-tertiary-color);
               // width: -webkit-fill-available;
