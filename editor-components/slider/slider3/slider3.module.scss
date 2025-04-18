@@ -1,4 +1,4 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
   padding: 0;
@@ -19,7 +19,7 @@
       width: 100%;
       display: flex;
 
-      @container (max-width: #{$composer-tablet-width-lg}) {
+      @container (max-width: #{$composer-tablet-width}) {
         padding: var(--composer-gap-md) var(--composer-gap-lg);
       }
 
@@ -67,7 +67,7 @@
           height: 45px;
           cursor: pointer;
 
-          @container (max-width: #{$composer-tablet-width-lg}) {
+          @container (max-width: #{$composer-tablet-width}) {
             width: 35px;
             height: 35px;
           }
@@ -102,7 +102,7 @@
               height: auto;
               width: 800px;
 
-              @container (max-width: #{$composer-tablet-width-lg}) {
+              @container (max-width: #{$composer-tablet-width}) {
                 width: 500px;
               }
 
@@ -149,7 +149,7 @@
           height: 100%;
           cursor: pointer;
 
-          @container (max-width: #{$composer-tablet-width-lg}) {
+          @container (max-width: #{$composer-tablet-width}) {
             max-width: 500px;
           }
 

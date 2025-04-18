@@ -1,4 +1,4 @@
-@import "../../../composer-base-components/base//utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base//utitilities/viewports.module.scss" as *;
 .container {
   background-repeat: no-repeat;
   background-size: cover;
@@ -64,7 +64,7 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
       .wrapper {

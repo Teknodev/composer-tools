@@ -194,6 +194,7 @@ type AvailablePropTypes =
   | { type: "dateTime"; value: string ; additionalParams? : {mode?:string, timeInterval?:number, yearRange? : number, yearStart?: number}}
   | { type: "multiSelect"; value: string[] }
   | { type: "file"; value: string }
+  | { type: "embededLink"; value: string }
 
 export type TypeReactComponent = {
   type: string;
@@ -421,6 +422,7 @@ export abstract class Component
           value={prop.value as string}
           props={this.getProps()}
           sanitizedHtml={sanitizedHtml}
+          componentId={this.id}
         />
       );
     };

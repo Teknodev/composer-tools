@@ -1,4 +1,4 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 @mixin transitionAll($second: 1s) {
   transition: all $second ease-out;
@@ -209,14 +209,14 @@
             .description {
               @include contentInitialStyle(2rem);
               @include textEllipsis(4);
-              bottom: -20vw;
-              color: var(--composer-tertiary-color);
-              width: -webkit-fill-available;
+              // bottom: calc(-1 * 20vw);
+              // color: var(--composer-tertiary-color);
+              // width: -webkit-fill-available;
             }
 
             .button-container {
               position: relative;
-              bottom: -20vw;
+              bottom: calc(-1 * 20vw);
               opacity: 0;
               .button {
                 text-transform: capitalize;
@@ -369,7 +369,7 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
       .pagination {
@@ -413,7 +413,7 @@
   }
 }
 
-@container (max-width: #{$composer-phone-width-sm}) {
+@container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
       .slider {

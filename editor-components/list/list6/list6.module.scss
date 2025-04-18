@@ -1,4 +1,4 @@
-@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
+@use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
 .container {
   .max-content {
     display: flex;
@@ -103,7 +103,7 @@
     transform: translateY(0);
   }
 }
-@container (max-width: #{$composer-tablet-width-lg}){
+@container (max-width: #{$composer-tablet-width}){
   .container {
     .max-content {
       .list-item {
