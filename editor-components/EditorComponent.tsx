@@ -5,7 +5,7 @@ import sanitizeHtml from "sanitize-html";
 import { renderToString } from "react-dom/server";
 import { THEMES, TTheme } from "./location/themes";
 import InlineEditor from "../../custom-hooks/UseInlineEditor";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 export const currencies = [
   { code: "AFN", symbol: "؋", name: "Afghan Afghani" },
@@ -38,7 +38,7 @@ export const currencies = [
   { code: "KHR", symbol: "៛", name: "Cambodian Riel" },
   { code: "CAD", symbol: "C$", name: "Canadian Dollar" },
   { code: "CVE", symbol: "$", name: "Cape Verdean Escudo" },
-  { code: "KYD", symbol: "CI$", name: "Cayman Islands Dollar" }, 
+  { code: "KYD", symbol: "CI$", name: "Cayman Islands Dollar" },
   { code: "CLP", symbol: "$", name: "Chilean Peso" },
   { code: "CNY", symbol: "CN¥", name: "Chinese Yuan" },
   { code: "COP", symbol: "Col$", name: "Colombian Peso" },
@@ -88,12 +88,11 @@ export const currencies = [
   { code: "AED", symbol: "د.إ", name: "United Arab Emirates Dirham" },
   { code: "XAF", symbol: "FCFA", name: "Central African CFA Franc" },
   { code: "XOF", symbol: "CFA", name: "West African CFA Franc" },
-  { code: "XPF", symbol: "₣", name: "CFP Franc" }
+  { code: "XPF", symbol: "₣", name: "CFP Franc" },
 ];
-export type CurrencyCode = (typeof currencies )[number]["code"];
+export type CurrencyCode = (typeof currencies)[number]["code"];
 
-
-export function generateComponentId(){
+export function generateComponentId() {
   return uuidv4();
 }
 
@@ -102,14 +101,14 @@ type PreSufFix = {
   className: string;
 };
 
-export type InteractionType ={
-  type?: string,
-  modal?: string,
-  trigger_action?: string,
-  visible_on?: string,
-  show_once?: false,
+export type InteractionType = {
+  type?: string;
+  modal?: string;
+  trigger_action?: string;
+  visible_on?: string;
+  show_once?: false;
 };
-export type PageInteractionType ={
+export type PageInteractionType = {
   type?: string;
   modal?: string;
   scroll_depth?: number;
@@ -124,10 +123,10 @@ export type TypeLocation = {
   lat: number;
 };
 
-type currencyAdditionalParams ={
+type currencyAdditionalParams = {
   showCode?: boolean;
-  showSymbol?:boolean;
-}
+  showSymbol?: boolean;
+};
 
 type GetPropValueProperties = {
   parent_object?: TypeUsableComponentProps[];
@@ -136,16 +135,16 @@ type GetPropValueProperties = {
   prefix?: PreSufFix;
 };
 
-type RangeInputAdditionalParams = { 
-  maxRange?: number; 
-  minRange?: number; 
+type RangeInputAdditionalParams = {
+  maxRange?: number;
+  minRange?: number;
   step?: number;
 };
 
 export type CSSClass = {
   id: string;
   class: string;
-}
+};
 
 export type TypeCSSProp = { [key: string]: CSSClass[] };
 
@@ -187,14 +186,31 @@ type AvailablePropTypes =
   | { type: "icon"; value: string }
   | { type: "email"; value: string }
   | { type: "location"; value: TypeLocation }
-  | { type: "range"; value: string; additionalParams?: RangeInputAdditionalParams}
-  | { type: "currency"; value: { value: string; currency?: CurrencyCode }; additionalParams?: currencyAdditionalParams}
-  | { type: "tag"; value: string[]}
+  | {
+      type: "range";
+      value: string;
+      additionalParams?: RangeInputAdditionalParams;
+    }
+  | {
+      type: "currency";
+      value: { value: string; currency?: CurrencyCode };
+      additionalParams?: currencyAdditionalParams;
+    }
+  | { type: "tag"; value: string[] }
   | { type: "phone"; value: string }
-  | { type: "dateTime"; value: string ; additionalParams? : {mode?:string, timeInterval?:number, yearRange? : number, yearStart?: number}}
+  | {
+      type: "dateTime";
+      value: string;
+      additionalParams?: {
+        mode?: string;
+        timeInterval?: number;
+        yearRange?: number;
+        yearStart?: number;
+      };
+    }
   | { type: "multiSelect"; value: string[] }
   | { type: "file"; value: string }
-  | { type: "embededLink"; value: string }
+  | { type: "embededLink"; value: string };
 
 export type TypeReactComponent = {
   type: string;
@@ -207,17 +223,17 @@ export type TypeUsableComponentProps = {
   id?: string;
   key: string;
   displayer: string;
-  additionalParams?: { selectItems?: string[]; maxElementCount?: number};
+  additionalParams?: { selectItems?: string[]; maxElementCount?: number };
   max?: number;
 } & AvailablePropTypes & {
-  getPropValue?: (
-    propName: string,
-    properties?: GetPropValueProperties
-  ) => any;
-};
+    getPropValue?: (
+      propName: string,
+      properties?: GetPropValueProperties
+    ) => any;
+  };
 
 type MemorizedElement = {
-  jsxElement?: React.JSX.Element,
+  jsxElement?: React.JSX.Element;
   value?: string;
 };
 
@@ -243,6 +259,7 @@ export enum CATEGORIES {
   LOCATION = "location",
   HTTP_CODES = "HTTPCodes",
   BANNER = "banner",
+  SOCIAL = "social",
   ECOMMERCE = "ecommerce",
 }
 
@@ -258,9 +275,13 @@ export abstract class Component
   private styles: any;
   public id: string;
   static category: CATEGORIES;
-  private memorizedElements: {[id: string]: MemorizedElement} = {};
+  private memorizedElements: { [id: string]: MemorizedElement } = {};
 
-  componentDidUpdate(prevProps: Readonly<{}>, prevState: Readonly<{ states: any; componentProps: any; }>, snapshot?: any): void {
+  componentDidUpdate(
+    prevProps: Readonly<{}>,
+    prevState: Readonly<{ states: any; componentProps: any }>,
+    snapshot?: any
+  ): void {
     EventEmitter.emit(EVENTS.COMPONENT_DID_UPDATE, { data: this });
   }
 
@@ -273,13 +294,13 @@ export abstract class Component
     Object.keys(this.styles).forEach((key, index) => {
       sectionsKeyValue[key] = [];
     });
-    
+
     this.state = {
       states: {},
       componentProps: {
         props: props?.props || [],
-        cssClasses: props?.cssClasses || {...sectionsKeyValue},
-        interactions: props?.interactions || {...sectionsKeyValue}
+        cssClasses: props?.cssClasses || { ...sectionsKeyValue },
+        interactions: props?.interactions || { ...sectionsKeyValue },
       },
     };
 
@@ -327,8 +348,13 @@ export abstract class Component
     return this.shadowProps;
   }
 
-  private getFilteredProp(key: string, props: TypeUsableComponentProps[]): TypeUsableComponentProps | null {
-    return props.find((prop: TypeUsableComponentProps) => prop.key === key) || null;
+  private getFilteredProp(
+    key: string,
+    props: TypeUsableComponentProps[]
+  ): TypeUsableComponentProps | null {
+    return (
+      props.find((prop: TypeUsableComponentProps) => prop.key === key) || null
+    );
   }
 
   getShadowProp(key: string): TypeUsableComponentProps | null {
@@ -366,7 +392,6 @@ export abstract class Component
 
     return doc.body.innerHTML;
   }
-
 
   getPropValueAsElement(
     prop: TypeUsableComponentProps,
@@ -427,17 +452,19 @@ export abstract class Component
       );
     };
 
-
-    if(!this.memorizedElements[prop.id]) {
+    if (!this.memorizedElements[prop.id]) {
       this.memorizedElements[prop.id] = {};
     }
 
-    const memorizedElement: MemorizedElement  = this.memorizedElements[prop.id];
-    const isValueChanged = (!!memorizedElement?.value || memorizedElement?.value == "") 
-    && prop.value != memorizedElement?.value;
+    const memorizedElement: MemorizedElement = this.memorizedElements[prop.id];
+    const isValueChanged =
+      (!!memorizedElement?.value || memorizedElement?.value == "") &&
+      prop.value != memorizedElement?.value;
 
-    if(!memorizedElement.jsxElement || isValueChanged){
-      memorizedElement["jsxElement"] = <SanitizeHTML html={prop?.value}></SanitizeHTML>;
+    if (!memorizedElement.jsxElement || isValueChanged) {
+      memorizedElement["jsxElement"] = (
+        <SanitizeHTML html={prop?.value}></SanitizeHTML>
+      );
       memorizedElement["value"] = prop.value as string;
     }
 
@@ -451,10 +478,8 @@ export abstract class Component
   getCSSClasses(sectionName: string | null): CSSClass[];
   getCSSClasses(sectionName: string | null = null): TypeCSSProp | CSSClass[] {
     const { cssClasses } = this.state.componentProps;
-    
-    return sectionName 
-      ? cssClasses[sectionName]
-      : cssClasses;
+
+    return sectionName ? cssClasses[sectionName] : cssClasses;
   }
 
   private attachPropId(_prop: TypeUsableComponentProps) {
@@ -463,7 +488,7 @@ export abstract class Component
         (v: TypeUsableComponentProps) => this.attachPropId(v)
       );
     } else {
-      _prop.id = generateId(_prop.key)
+      _prop.id = generateId(_prop.key);
     }
 
     return _prop;
@@ -526,7 +551,7 @@ export abstract class Component
   }
   decorateCSS(section: string) {
     let cssClass = [this.styles[section]];
-    
+
     let cssManuplations = Object.entries(this.getCSSClasses()).filter(
       ([p, v]) => v.length > 0
     );
@@ -539,17 +564,17 @@ export abstract class Component
       }
     });
 
-    cssClass.push(
-      generateAutoClassName(this.id, section)
-    );
-    
+    cssClass.push(generateAutoClassName(this.id, section));
+
     return cssClass.join(" ");
   }
 
   private attachValueGetter(propValue: TypeUsableComponentProps) {
     if (Array.isArray(propValue.value)) {
       if (propValue.type === "multiSelect") {
-        propValue.value = propValue.value.filter((value) => typeof value === "string") as string[];
+        propValue.value = propValue.value.filter(
+          (value) => typeof value === "string"
+        ) as string[];
         return propValue;
       }
       propValue.value = propValue.value.filter((value) => value != null);
@@ -574,7 +599,6 @@ export abstract class Component
     }
     return propValue;
   }
-  
 
   castToObject<Type>(propName: string): Type {
     let i = this.state.componentProps.props
@@ -778,7 +802,10 @@ export abstract class BaseContacts extends Component {
 export abstract class BaseFeature extends Component {
   static category = CATEGORIES.FEATURE;
 }
+export abstract class BaseSocial extends Component {
+  static category = CATEGORIES.SOCIAL;
+}
 
-export function generateAutoClassName(componentId: string, section: string){
+export function generateAutoClassName(componentId: string, section: string) {
   return `auto-generate-${componentId}-${section}`;
-};
+}
