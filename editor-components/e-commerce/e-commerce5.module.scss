@@ -33,17 +33,17 @@
 }
 
 .container {
-    padding: 30px 0;
+    padding: var(--composer-gap-md) 0;
     background-color: var(--composer-html-background);
 
     .max-content {
         width: 100%;
-        padding: 0 24px;
+        padding: 0 var(--composer-gap-md);
 
         .title-tab {
             display: flex;
-            margin: 20px 0;
-            gap: 32px;
+            margin: var(--composer-gap-md) 0;
+            gap: var(--composer-gap-md);
             flex-wrap: wrap;
             flex-direction: column;
             width: 100%;
@@ -51,7 +51,7 @@
 
             .title {
                 color: var(--composer-font-color-primary);
-                font-size: 36px;
+                font-size: 2.5rem;
                 text-align: center;
                 margin: 0;
             }
@@ -59,17 +59,17 @@
             .section-title-container {
                 display: flex;
                 align-items: center;
-                gap: 24px;
+                gap: var(--composer-gap-md);
                 width: 100%;
                 justify-content: center;
 
                 .section {
                     position: relative;
-                    font-size: 16px;
+                    font-size: 1.2rem;
                     color: var(--composer-font-color-primary);
                     cursor: pointer;
                     transition: color 0.3s ease;
-                    padding: 4px;
+                    padding: var(--padding-xs);
                     text-align: center;
 
                     &::after {
@@ -97,8 +97,8 @@
                 .section-active {
                     position: relative;
                     color: var(--composer-primary-color);
-                    font-size: 16px;
-                    padding: 4px;
+                    font-size: 1.2rem;
+                    padding: var(--composer-gap-xs);
 
                     &::after {
                         content: '';
@@ -117,7 +117,7 @@
         }
 
         .wrapper {
-            padding: 20px 0;
+            padding: var(--composer-gap-md) 0;
 
             .slider-parent {
                 .carousel {
@@ -126,7 +126,7 @@
                         align-items: center;
                         flex-direction: column;
                         justify-content: center;
-                        gap: var(--gap-xl);
+                        gap: var(--composer-gap-md);
 
                         &:hover {
                             .image-wrapper img {
@@ -159,7 +159,7 @@
                         }
 
                         .collection {
-                            font-size: 16px;
+                            font-size: 1.2rem;
                             text-align: center;
                             color: var(--composer-font-color-primary);
                             transition: color 0.3s ease-in-out;
