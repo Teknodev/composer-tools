@@ -7,8 +7,6 @@ import { ComposerIcon } from "composer-tools/composer-base-components/icon/icon"
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 import ComposerSlider from "composer-tools/composer-base-components/slider/slider";
 import { getCurrencyInfo } from "components/setting-input/inputs/currency";
-import { Diversity1 } from "@mui/icons-material";
-import { FaBullseye } from "react-icons/fa6";
 
 type Images ={
   item: string;
