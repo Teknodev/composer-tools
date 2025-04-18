@@ -205,6 +205,7 @@ import ImageGalleryCompanent5 from "./Image_gallery/image_gallery_5/image-galler
 import ImageGalleryCompanent6 from "./Image_gallery/image_gallery_6/image-gallery6";
 import ImageGalleryCompanent7 from "./Image_gallery/image_gallery_7/image-gallery7";
 import ImageGalleryCompanent8 from "./Image_gallery/image_gallery_8/image-gallery8";
+import ImageGalleryCompanent9 from "./Image_gallery/image_gallery_9/image-gallery9";
 import NotificationModal1 from "./modal/notification-modal1/notificationmodal1";
 import ConfirmationModal1 from "./modal/confirmation-modal1/confirmationmodal1";
 import TermsOfUseModal from "./modal/terms-of-use/terms-of-use";
@@ -225,6 +226,7 @@ import BannerComponent1 from "../editor-components/banner/banner1/banner1";
 import BannerComponent2 from "../editor-components/banner/banner2/banner2";
 import BannerComponent7 from "../editor-components/banner/banner7/banner7";
 import SocialComponent1 from "./social/social1/social1";
+import SocialComponent3 from "../editor-components/social/social3/social3";
 
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
@@ -360,6 +362,7 @@ function Registerables(composer: ComponentsRegistery) {
     ImageGalleryCompanent6,
     ImageGalleryCompanent7,
     ImageGalleryCompanent8,
+    ImageGalleryCompanent9,
     FeatureComponent1,
     FeatureComponent2,
     FeatureComponent3,
@@ -453,6 +456,7 @@ function Registerables(composer: ComponentsRegistery) {
     BannerComponent1,
     BannerComponent2,
     BannerComponent7,
+    SocialComponent3
   ]);
 }
 
