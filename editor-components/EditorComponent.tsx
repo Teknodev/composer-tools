@@ -243,6 +243,7 @@ export enum CATEGORIES {
   LOCATION = "location",
   HTTP_CODES = "HTTPCodes",
   BANNER = "banner",
+  SOCIAL = "social",
   ECOMMERCE ="ecommerce"
 }
 
@@ -774,6 +775,10 @@ export abstract class BaseContacts extends Component {
 export abstract class BaseFeature extends Component {
   static category = CATEGORIES.FEATURE;
 }
+export abstract class BaseSocial extends Component {
+  static category = CATEGORIES.SOCIAL;
+}
+
 
 export abstract class BaseECommerce extends Component {
   static category = CATEGORIES.ECOMMERCE;
