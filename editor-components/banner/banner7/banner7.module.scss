@@ -13,6 +13,9 @@
     min-height: 400px;
     overflow: hidden;
     object-fit: cover;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 
     &::before {
         content: "";
@@ -39,11 +42,11 @@
             display: flex;
             flex-wrap: wrap;
             align-items: center;
-            gap: var(--gap-md);
-            padding: 40px 50px 60px;
+            gap: var(--composer-gap-sm);
+            padding: var(--composer-gap-lg) var(--composer-gap-xl);
             background: var(--composer-html-background);
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            font-size: 16px;
+            font-size: 1.2rem;
             color: var(--composer-font-color-primary);
             width: 35%;
             max-width: 80%;
@@ -60,12 +63,12 @@
                 display: flex;
                 flex-wrap: nowrap;
                 align-items: flex-start;
-                gap: 8px;
-                row-gap: 4px;
+                gap: var(--composer-gap-sm);
+                row-gap: var(--composer-gap-xs);
 
                 .home-page,
                 .about-page {
-                    flex: 0 0 calc(50% - 4px);
+                    flex: 0 0 calc(50% - var(--composer-gap-xs));
                     min-width: 0;
                     max-width: 100%;
                     @include textEllipsis(2);
@@ -100,7 +103,7 @@
         .breadcrumb-wrapper {
             .crumber-content {
                 width: 70%;
-                font-size: 14px;
+                font-size: 1rem;
 
                 .title {
                     font-size: 3rem;

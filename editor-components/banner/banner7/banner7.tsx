@@ -64,9 +64,6 @@ class Banner7 extends BaseBanner {
         className={this.decorateCSS("container")}
         style={{
           backgroundImage: `url(${this.getPropValue("backgroundImage")})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
         }}
       >
         {isCrumberVisible && (
@@ -78,10 +75,7 @@ class Banner7 extends BaseBanner {
                 </Base.MaxContent>
               )}
               <div className={this.decorateCSS("breadcrumb-items")}>
-                <ComposerLink
-                  path={navigateToUrl}
-                  className={this.decorateCSS("home-link")}
-                >
+                <ComposerLink path={navigateToUrl}>
                   <span className={this.decorateCSS("home-page")}>
                     {this.getPropValue("homepage")}
                   </span>
