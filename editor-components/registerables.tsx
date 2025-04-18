@@ -224,6 +224,7 @@ import Location6 from "./location/location6/location6";
 import ConfirmationModal2 from "./modal/confirmation-modal-2/confirmation-modal-2";
 import BannerComponent1 from "../editor-components/banner/banner1/banner1";
 import BannerComponent2 from "../editor-components/banner/banner2/banner2";
+import BannerComponent5 from "../editor-components/banner/banne5/banner5";
 import SocialComponent1 from "./social/social1/social1";
 import SocialComponent3 from "../editor-components/social/social3/social3";
 
@@ -454,6 +455,7 @@ function Registerables(composer: ComponentsRegistery) {
     ConfirmationModal2,
     BannerComponent1,
     BannerComponent2,
+    BannerComponent5,
     SocialComponent3
   ]);
 }
