@@ -778,9 +778,6 @@ export abstract class BaseSocial extends Component {
   static category = CATEGORIES.SOCIAL;
 }
 
-export abstract class BaseSocial extends Component {
-  static category = CATEGORIES.SOCIAL;
-}
 
 export function generateAutoClassName(componentId: string, section: string){
   return `auto-generate-${componentId}-${section}`;
