@@ -200,7 +200,7 @@ class Header24 extends BaseHeader {
       dots: false,
       infinite: true,
       speed: 500,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -290,30 +290,6 @@ class Header24 extends BaseHeader {
                         </div>
                       )}
                     </div>
-                    {slider.length > 1 && (
-                      <div className={this.decorateCSS("arrow-wrapper")}>
-                        <div
-                          className={currentBackgroundImage ? this.decorateCSS("arrow-prev-wrapper") : this.decorateCSS("arrow-prev-wrapper-no-image")}
-                          onClick={() => {
-                            sliderRef.current.slickPrev();
-                          }}
-                        >
-                          <div className={this.decorateCSS("arrow-prev")}>
-                            <ComposerIcon name={this.getPropValue("prevIcon")} propsIcon={{ className: this.decorateCSS("icon") }} />
-                          </div>
-                        </div>
-                        <div
-                          className={currentBackgroundImage ? this.decorateCSS("arrow-next-wrapper") : this.decorateCSS("arrow-next-wrapper-no-image")}
-                          onClick={() => {
-                            sliderRef.current.slickNext();
-                          }}
-                        >
-                          <div className={this.decorateCSS("arrow-next")}>
-                            <ComposerIcon name={this.getPropValue("nextIcon")} propsIcon={{ className: this.decorateCSS("icon") }} />
-                          </div>
-                        </div>
-                      </div>
-                    )}
                   </div>
                 ))}
               </ComposerSlider>
@@ -340,6 +316,23 @@ class Header24 extends BaseHeader {
             )}
         </div> 
       </div>
+      {slider.length > 1 && (
+        <div className={this.decorateCSS("arrow-wrapper")}>
+            <div className={currentBackgroundImage ? this.decorateCSS("arrow-prev-wrapper") : this.decorateCSS("arrow-prev-wrapper-no-image")}
+            onClick={() => {sliderRef.current.slickPrev();}}>
+              <div className={this.decorateCSS("arrow-prev")}>
+                <ComposerIcon name={this.getPropValue("prevIcon")} propsIcon={{ className: this.decorateCSS("icon") }} />
+              </div>
+            </div>
+          <div
+            className={currentBackgroundImage ? this.decorateCSS("arrow-next-wrapper") : this.decorateCSS("arrow-next-wrapper-no-image")}
+            onClick={() => {sliderRef.current.slickNext();}}>
+              <div className={this.decorateCSS("arrow-next")}>
+                <ComposerIcon name={this.getPropValue("nextIcon")} propsIcon={{ className: this.decorateCSS("icon") }} />
+              </div>
+          </div>
+        </div>
+      )}
       </Base.Container>
 
       </>

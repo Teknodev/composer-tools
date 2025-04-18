@@ -177,48 +177,7 @@
               }
             }
           }
-          .arrow-wrapper {
-            position: absolute;
-            display: flex;
-            width: 100%;
-            height: 100%;
-            top: 0px;
-            left: 0px;
-            z-index: 10;
 
-            .arrow-prev-wrapper,
-            .arrow-next-wrapper,
-            .arrow-next-wrapper-no-image,
-            .arrow-prev-wrapper-no-image {
-              position: absolute;
-              top: 50%;
-              transform: translateY(-50%);
-              .arrow-prev,
-              .arrow-next {
-                .icon {
-                  font-size: 3.5rem;
-                  color: white;
-                }
-              }
-            }
-            .arrow-next-wrapper-no-image,
-            .arrow-prev-wrapper-no-image {
-              .arrow-prev,
-              .arrow-next {
-                .icon {
-                  color: var(--composer-font-color-primary);
-                }
-              }
-            }
-            .arrow-prev-wrapper,
-            .arrow-prev-wrapper-no-image {
-              left: 50px;
-            }
-            .arrow-next-wrapper,
-            .arrow-next-wrapper-no-image {
-              right: 50px;
-            }
-          }
         }
       }
     }
@@ -264,6 +223,48 @@
       }
     }
 
+  }
+  .arrow-wrapper {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    z-index: 10;
+
+    .arrow-prev-wrapper,
+    .arrow-next-wrapper,
+    .arrow-next-wrapper-no-image,
+    .arrow-prev-wrapper-no-image {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      .arrow-prev,
+      .arrow-next {
+        .icon {
+          font-size: 3.5rem;
+          color: white;
+        }
+      }
+    }
+    .arrow-next-wrapper-no-image,
+    .arrow-prev-wrapper-no-image {
+      .arrow-prev,
+      .arrow-next {
+        .icon {
+          color: var(--composer-font-color-primary);
+        }
+      }
+    }
+    .arrow-prev-wrapper,
+    .arrow-prev-wrapper-no-image {
+      left: 50px;
+    }
+    .arrow-next-wrapper,
+    .arrow-next-wrapper-no-image {
+      right: 50px;
+    }
   }
   .background-wrapper{
     width: 100%;
@@ -334,10 +335,6 @@
                 }
               }
             }
-            .arrow-wrapper {
-              display: none;
-            }
-
             .background-image {
               height: 100%;
 
@@ -349,6 +346,9 @@
           }
         }
       }
+    }
+    .arrow-wrapper {
+      display: none;
     }
   }
 }
@@ -381,17 +381,11 @@
                 }
               }
             }
-            .arrow-wrapper {
-              display: none;
-            }
             .no-image-content {
               padding-bottom: 30px;
             }
           }
         }
-      }
-      .dots-container{
-        display: none;
       }
     }
   }
