@@ -231,7 +231,6 @@ import SocialComponent3 from "../editor-components/social/social3/social3";
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
     SocialComponent1,
-
     NotificationModal1,
     ConfirmationModal1,
     DownloadComponent1,
