@@ -44,18 +44,21 @@
           position: absolute;
           top: var(--composer-gap-md);
           left: var(--composer-gap-md);
-          background-color: var(--composer-tertiary-color);
-          opacity: 0.3;
+          background-color: rgba(255, 255, 255, 0.304);
           border-radius: 50%;
           width: 30px;
           height: 30px;
           display: flex;
           align-items: center;
           justify-content: center;
+          cursor: pointer;
   
-          .close-icon,
-          .share-icon {
-            color: var(--composer-font-color-primary);
+          .close-icon {
+            color: rgba(0, 0, 0, 0.5);
+            font-size: 2rem;
+          }
+          .share-icon{
+            color: white;
             font-size: 2rem;
           }
         }
@@ -100,6 +103,7 @@
   
               .share-popup-close {
                 pointer-events: auto;
+                cursor: pointer;
   
                 .share-close-icon {
                   color: var(--composer-font-color-primary);
@@ -129,6 +133,7 @@
                 .social-icon {
                   font-size: 1.5rem;
                   color: var(--composer-font-color-primary);
+                  cursor: pointer;
                 }
               }
             }
@@ -178,6 +183,7 @@
                         align-items: center;
                         justify-content: center;
                         transition: all 0.5s ease;
+                        cursor:pointer;
                         .icon{
                             font-size: 1.5rem;
                             color:var(--composer-font-color-primary);
@@ -211,6 +217,7 @@
                     transform: translateY(-50%);
                     color: var(--composer-font-color-primary);
                     font-size: 1.5rem;
+                    cursor: pointer;
                 }
                 .next-arrow{
                     right: calc(-1 * var(--composer-gap-md));

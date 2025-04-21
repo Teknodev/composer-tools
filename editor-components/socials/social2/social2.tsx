@@ -276,7 +276,7 @@ class Social2 extends BaseSocial {
         },
         ]
     })      
-    this.setComponentState("activeVideoIndex",0);
+
     this.setComponentState("intervalId", 0);
     this.setComponentState("slider-ref", React.createRef());
     this.setComponentState("sliderRefOverlay", React.createRef());
@@ -289,126 +289,114 @@ class Social2 extends BaseSocial {
     this.setComponentState("videoRefs", React.createRef());
     this.getComponentState("videoRefs").current = [];
     this.setComponentState("activeIndexRef", React.createRef());
+    this.setComponentState("activeVideoIndex",React.createRef());
     
   }
 
   static getName(): string {
     return "Social 2";
   }
-  
-//   componentDidMount() {
-
-//     this.setComponentState("activeVideoIndex", 0);
-
-//     const totalVideos = this.getVideoCount(); 
-
-
-//     const videoInterval = setInterval(() => {
-//       const previousVideo = document.getElementById(
-//         `my-video-${this.getComponentState("activeVideoIndex")}`
-//       ) as HTMLVideoElement;
-//       console.log("previousVideo", previousVideo)
-
-//       if (previousVideo) {
-//         previousVideo.pause();
-//         previousVideo.currentTime = 0;
-//       }
-//       const nextIndex = (this.getComponentState("activeVideoIndex") + 1) % totalVideos;
-//       this.setComponentState("activeVideoIndex", nextIndex);
-
-//       // Yeni videoyu başlat
-//       const currentVideo = document.getElementById(
-//         `my-video-${nextIndex}`
-//       ) as HTMLVideoElement;
-
-//       if (currentVideo) {
-//         console.log("deneme")
-//         currentVideo.play();
-//       }
-//     }, 5000); // her 5 saniyede bir
-
-//     this.setComponentState("intervalId", videoInterval);
-
-//     // const interval = setInterval(() => {
-//     //   const currentIndex = this.getComponentState("activeVideoIndex") || 0;
-//     //   const sliderItems = this.getPropValue("sliderItems") || [];
-//     //   const nextIndex = (currentIndex + 1) % sliderItems.length;
-//     //   const sliderRef = this.getComponentState("slider-ref");
-//     // //   this.setComponentState("activeVideoIndex", nextIndex);
-//     // //   sliderRef.current.slickGoTo(Math.max((this.getComponentState("activeVideoIndex") - (this.getComponentState("slideToShow") - 1)), 0))
-//     // }, 5000);
-//     // this.setComponentState("intervalId", interval); 
-//   }  
-
-  
 componentDidMount() {
+    const containerRef = this.getComponentState("containerRef");
+    const container = containerRef.current;
+    if (!container) return;
+
+    const boundingClient = container.getBoundingClientRect();
+    this.setComponentState("width", boundingClient.width);
+
+    const observer = new ResizeObserver(() => {
+        const boundingClient = container.getBoundingClientRect();
+        this.setComponentState("width", boundingClient.width);
+      
+        let newSlideToShow = 5;
+        if (boundingClient.width < 400) {
+          newSlideToShow = 1;
+        } else if (boundingClient.width < 1000) {
+          newSlideToShow = 2;
+        }
+      
+        this.setComponentState("slideToShow", newSlideToShow);
+      });
+    this.setComponentState("observer", observer);
+    observer.observe(container);
+
+
     const sliderItems = this.getPropValue("sliderItems") || [];
   
-    // activeIndexRef'i başta 0 olarak ayarlıyoruz
     const activeIndexRef = this.getComponentState("activeIndexRef");
     if (activeIndexRef) {
-      activeIndexRef.current = 0; // İlk video index 0
+      activeIndexRef.current = -1;
     }
-  
-    // DOM'un tamamen oluşmasını beklemek için setTimeout kullanıyoruz
-    setTimeout(() => {
-      const interval = setInterval(() => {
+
+    const interval = setInterval(() => {
         if (!activeIndexRef) return;
-  
+
         const current = activeIndexRef.current || 0;
-        const next = (current + 1) % sliderItems.length;
-        
-        // Aktif slaytlardan ilgili index'li videoyu bul
-        const currentSlide = document.querySelector(`.slick-slide.slick-active [data-video-index="${current}"]`) as HTMLVideoElement;
-        const nextSlide = document.querySelector(`.slick-slide.slick-active [data-video-index="${next}"]`) as HTMLVideoElement;
-        
-        if (currentSlide) {
-          currentSlide.pause();
-          currentSlide.currentTime = 0;
-        }
-        if (nextSlide) {
-          nextSlide.play();
-        }
+        const next = (current + 1) % sliderItems.length; 
         activeIndexRef.current = next;
 
-        const currentIndex = this.getComponentState("activeIndexRef") || 0;
-        const nextIndex = (currentIndex + 1) % sliderItems.length;
         const sliderRef = this.getComponentState("slider-ref");
-            this.setComponentState("activeIndexRef", nextIndex);
-        sliderRef.current.slickGoTo(Math.max((this.getComponentState("activeIndexRef") - (this.getComponentState("slideToShow") - 1)), 0))
+        const currentIndex = this.getComponentState("activeVideoIndex") || 0;
+        const nextIndex = (currentIndex + 1) % sliderItems.length;
+        this.setComponentState("activeVideoIndex", nextIndex);
+        sliderRef.current.slickGoTo(Math.max((this.getComponentState("activeVideoIndex") - (this.getComponentState("slideToShow") - 1)), 0));
+
+        setTimeout(() => {
+        const nextSlide = document.querySelector(`.slick-slide.slick-active [data-video-index="${next}"]`) as HTMLVideoElement;
+        const currentSlide = document.querySelector(`.slick-slide.slick-active [data-video-index="${current}"]`) as HTMLVideoElement;
+        if (nextSlide !== null) {
+            nextSlide.play();
+        }   
+        if (currentSlide) {
+            currentSlide.pause();
+            currentSlide.currentTime = 0;
+          }
+        }, 100);
   
       }, 5000);
   
-      this.setComponentState("intervalId", interval);
-    }, 100); // DOM tamamen yerleşene kadar 100ms bekliyoruz
+    this.setComponentState("intervalId", interval);
   }
   
   
   
   componentWillUnmount() {
-    // const observer = this.getComponentState("observer");
-    // if (observer) observer.disconnect();
+    const observer = this.getComponentState("observer");
+    if (observer) observer.disconnect();
     const interval = this.getComponentState("intervalId");
     if (interval) {
       clearInterval(interval);
       
     }
   }
-  getVideoCount =() =>{
-    let count = 0;
-    while (document.getElementById(`my-video-${count}`)) {
-      count++;
+  handleRightArrowClick = () => {
+    const sliderRef = this.getComponentState("slider-ref");
+    const slider = sliderRef.current;
+    const currentSlide = slider.innerSlider.state.currentSlide;
+    const totalSlides = slider.innerSlider.props.children.length;
+    const slidesToShow = slider.innerSlider.props.slidesToShow;
+
+    if (currentSlide >= totalSlides - slidesToShow) {
+      slider.slickGoTo(0);
+    } else {
+      slider.slickNext();
     }
-    return count;
-  }
-  handleRightArrowClick= ()  => {
-    const sliderRef = this.getComponentState("slider-ref")
-    sliderRef.current.slickNext();
-  }
-  handleLeftArrowClick= ()  => {
-    const sliderRef = this.getComponentState("slider-ref")
-    sliderRef.current.slickPrev();
-  }
+  };
+  
+  handleLeftArrowClick = () => {
+    const sliderRef = this.getComponentState("slider-ref");
+    const slider = sliderRef.current;
+    const currentSlide = slider.innerSlider.state.currentSlide;
+    const totalSlides = slider.innerSlider.props.children.length;
+    const slidesToShow = slider.innerSlider.props.slidesToShow;
+  
+    if (currentSlide === 0) {
+      slider.slickGoTo(totalSlides - slidesToShow);
+    } else {
+      slider.slickPrev();
+    }
+  };
+  
   handleVideoPlay =(index: number) => {
     this.setComponentState("selectedVideo", index);
     this.setComponentState("videoActive", true);
@@ -428,9 +416,6 @@ componentDidMount() {
       videoRefs.current[index] = el;
     }
   }
-  
-
-
   render() {
     const sliderItems = this.castToObject<SlideItems[]>("sliderItems");
     const sliderRef = this.getComponentState("slider-ref");
@@ -441,7 +426,7 @@ componentDidMount() {
     const settings = {
         dots: false,
         arrows: false,
-        infinite: true,
+        infinite: false,
         autoplay: false,
         slidesToShow: 5,
         slidesToScroll: 1,
@@ -462,6 +447,7 @@ componentDidMount() {
               },
             },
           ],
+    
     };
     
     
@@ -480,17 +466,7 @@ componentDidMount() {
         swipeToSlide: true,
         initialSlide:selectedIndex, 
         
-    };
-    // {sliderItems.map((item, index: number) => {
-    //     setTimeout(() => {
-    //       const videoEl = document.getElementById(`my-video-${index}`);
-    //       console.log("videoEl", videoEl)
-    //       if (videoEl) {
-    //         console.log(`Video ${index} src:`, videoEl.getAttribute("src"));
-    //       }
-    //     }, 0);
-    // } // render sonrasına bırakır
-    // )}      
+    };   
     
     return (
         <>
@@ -514,7 +490,6 @@ componentDidMount() {
                                     key={`video-${index}`}
                                     id={`video-${index}`}
                                     data-video-index={index}
-                                    // ref={(el) => this.handleVideoRefs(el, index)}
                                     muted={true}
                                     playsInline
                                     loop
