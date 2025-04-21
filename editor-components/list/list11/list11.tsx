@@ -179,72 +179,74 @@ class List11 extends BaseList {
 
     render() {
         const listItems = this.castToObject<ListItems[]>("listItems");
-        const isTitleExist = this.getPropValue("title");
-        const isSubTitleExist = this.getPropValue("subTitle")
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    {isTitleExist && (
-                        <div className={this.decorateCSS("title-container")}>
-                            <Base.SectionTitle className={this.decorateCSS("title")}>
-                                {isTitleExist}
-                            </Base.SectionTitle>
-                        </div>
-                    )}
-                    {isSubTitleExist && (
-                        <div className={this.decorateCSS("subTitle-container")}>
-                            <Base.SectionDescription className={this.decorateCSS("subTitle")}>
-                                {isSubTitleExist}
-                            </Base.SectionDescription>
-                        </div>
-                    )}
-                    <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }}>
-                        {listItems.map((item: ListItems, index: number) => (
-                            <div key={index} className={this.decorateCSS("card")}>
-                                <div className={this.decorateCSS("card-items")}>
-                                    <div className={this.decorateCSS("card-image")}>
+                    <div className={this.decorateCSS("wrapper")}>
+                        <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
+                            {this.castToString(this.getPropValue("title")) && (
+                                <div className={this.decorateCSS("title-container")}>
+                                    <Base.SectionTitle className={this.decorateCSS("title")}>
+                                        {this.getPropValue("title")}
+                                    </Base.SectionTitle>
+                                </div>
+                            )}
+                            {this.castToString(this.getPropValue("subTitle")) && (
+                                <div className={this.decorateCSS("subTitle-container")}>
+                                    <Base.SectionDescription className={this.decorateCSS("subTitle")}>
+                                        {this.getPropValue("subTitle")}
+                                    </Base.SectionDescription>
+                                </div>
+                            )}
+                        </Base.VerticalContent>
+                        <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }}>
+                            {listItems.map((item: ListItems, index: number) => (
+                                <div key={index} className={this.decorateCSS("card")}>
+                                    <div className={this.decorateCSS("card-items")}>
                                         {item.itemImage && (
-                                            <img className={this.decorateCSS("card-image")} src={item.itemImage} alt={item.itemImage} />
+                                            <div className={this.decorateCSS("card-image-container")}>
+                                                <img className={this.decorateCSS("card-image")} src={item.itemImage} alt={item.itemImage} />
+                                            </div>
+                                        )}
+                                        {this.castToString(item.itemTitle) && (
+                                            <div className={this.decorateCSS("card-title")}>
+                                                {item.itemTitle}
+                                            </div>
+                                        )}
+                                        {this.castToString(item.itemDescription) && (
+                                            <div className={this.decorateCSS("card-description")}>
+                                                {item.itemDescription}
+                                            </div>
+                                        )}
+                                        {(this.castToString(item.navigateToText) || (item.icon)) && (
+                                            <ComposerLink path={item.navigateTo}>
+                                                <div className={this.decorateCSS("navigate-container")}>
+                                                    {this.castToString(item.navigateToText) && (
+                                                        <div className={this.decorateCSS("navigate-to")}>
+                                                            {item.navigateToText}
+                                                        </div>
+                                                    )}
+                                                    {item.icon && (
+                                                        <ComposerIcon
+                                                            name={item.icon}
+                                                            propsIcon={{
+                                                                className: this.decorateCSS("navigate-icon"),
+                                                            }}
+                                                        />
+                                                    )}
+                                                </div>
+                                            </ComposerLink>
                                         )}
                                     </div>
-                                    {item.itemTitle && (
-                                        <div className={this.decorateCSS("card-title")}>
-                                            {item.itemTitle}
-                                        </div>
-                                    )}
-                                    {item.itemDescription && (
-                                        <div className={this.decorateCSS("card-description")}>
-                                            {item.itemDescription}
-                                        </div>
-                                    )}
-                                    <ComposerLink
-                                        path={item.navigateTo}
-                                    >
-                                        <div className={this.decorateCSS("navigate-container")}>
-                                            <div className={this.decorateCSS("navigate-to")}>
-                                                {item.navigateToText}
-                                            </div>
-                                            <ComposerIcon
-                                                name={item.icon}
-                                                propsIcon={{
-                                                    className: this.decorateCSS("navigate-icon"),
-                                                }}
-                                            />
-                                        </div>
-
-                                    </ComposerLink>
                                 </div>
-                            </div>
-                        ))}
-
-                    </Base.ListGrid>
+                            ))}
+                        </Base.ListGrid>
+                    </div>
                 </Base.MaxContent >
             </Base.Container >
         )
     }
-
 }
-
 
 export default List11;
