@@ -7,6 +7,8 @@ import { ComposerIcon } from "composer-tools/composer-base-components/icon/icon"
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 import ComposerSlider from "composer-tools/composer-base-components/slider/slider";
 import { getCurrencyInfo } from "components/setting-input/inputs/currency";
+import { copyToClipboard } from "utils/copy-utils";
+import { TbGridScan } from "react-icons/tb";
 
 type Images ={
   item: string;
@@ -42,6 +44,13 @@ type Socials ={
   icon: string;
   text:  React.JSX.Element;
   link: string;
+}
+
+type ShareCopyLink ={
+  text: React.JSX.Element;
+  copiedText: React.JSX.Element;
+  isActive: boolean;
+  icon: string;
 }
 
 
@@ -244,33 +253,38 @@ class ECommerce6 extends BaseECommerce {
           },
         ]
         },
-        {
-          type: "object",
-          key: "socailIcon",
-          displayer: "Socail Icon",
-          value:[
-          {
-            type: "icon",
-            key: "icon",
-            displayer: "Icon",
-            value: "AiOutlinePaperClip"
-          },
-          {
-            type: "string",
-            key: "text",
-            displayer: "Text",
-            value: "Copy Link"
-          },
-          {
-            type: "page",
-            key: "link",
-            displayer: "Link",
-            value: ""
-          },
-        ]
-        },
     ]
     })
+    this.addProp({
+      type: "object",
+      key: "shareCopyLink",
+      displayer: "Share Copy Link",
+      value: [
+      {
+        type: "string",
+        key: "text",
+        displayer: "Text",
+        value: "Copy Link"   
+      },
+      {
+        type: "string",
+        key: "copiedText",
+        displayer: "Copied Text",
+        value: "Copied!"   
+      },
+      {
+        type: "icon",
+        key: "icon",
+        displayer: "Icon",
+        value: "AiOutlinePaperClip"
+      },
+      {
+        type: "boolean",
+        key: "isActive",
+        displayer: "Is Active",
+        value: true   
+      }
+    ]})
     this.addProp({
       type:"string",
       key: "sizeLabel",
@@ -570,6 +584,7 @@ class ECommerce6 extends BaseECommerce {
     this.setComponentState("slider-ref-small-image", React.createRef());
     this.setComponentState("slider-ref-small-image-mobile", React.createRef());
     this.setComponentState("lastPropCount", countValue);
+    this.setComponentState("copied", false);
   }
 
   static getName(): string {
@@ -643,6 +658,11 @@ class ECommerce6 extends BaseECommerce {
     sliderRef.current.slickGoTo(index);
     this.setComponentState("selectedImage", index)
   }
+  handleCopy = () =>{
+    const currentUrl = window.location.href;
+    copyToClipboard(currentUrl);
+    this.setComponentState("copied", true)
+  }
   componentDidUpdate() {
     const currentPropCount = this.castToObject<CountSections>("countSection")?.count;
     const lastPropCount = this.getComponentState("lastPropCount");
@@ -663,6 +683,7 @@ class ECommerce6 extends BaseECommerce {
     const socials = this.castToObject<Socials[]>("socials");
     const currencySymbol = getCurrencyInfo(sizeSections[this.getComponentState("selectedSizeSection")]?.cost?.currency)?.symbol;
     const currencyValue = sizeSections[this.getComponentState("selectedSizeSection")]?.cost?.value || ""
+    const shareCopyLink = this.castToObject<ShareCopyLink>("shareCopyLink");
     const isTitle = this.castToString(this.getPropValue("title"));
     const isShareIcon =shareSection.shareIcon;
     const isSahreTitle = this.castToString(shareSection.title);
@@ -682,8 +703,8 @@ class ECommerce6 extends BaseECommerce {
       slidesToScroll: 1,
       centerMode: false,
       adaptiveHeight: false,
-      afterChange: (currentIndex: number) => {
-        this.setComponentState("selectedImage", currentIndex);
+      beforeChange: (oldIndex: number, newIndex: number) => {
+        this.setComponentState("selectedImage", newIndex);
       },
     };
     const settingsSmallImage = {
@@ -810,6 +831,12 @@ class ECommerce6 extends BaseECommerce {
                         </div>
                       )
                     })}
+                    {shareCopyLink.isActive && (
+                      <div className={this.decorateCSS("social")} onClick={() =>this.handleCopy()}>
+                        <ComposerIcon name={shareCopyLink.icon} propsIcon={{className: this.decorateCSS("social-icon")}}/>
+                        <div className={this.decorateCSS("social-text")}>{this.getComponentState("copied") ? shareCopyLink.copiedText: shareCopyLink.text}</div>
+                      </div>
+                    )}
                     </div>
                   )} 
                 </div>
