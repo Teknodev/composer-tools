@@ -1,0 +1,79 @@
+.container {
+    width: 100%;
+    background-position: center;
+
+    .max-content {
+        .section {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+
+            .boxes {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .leftBox,
+                .rightBox {
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    text-align: center;
+                }
+
+                .middleBox {
+                    flex: 2;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    text-align: center;
+                }
+
+                .circle {
+                    width: 150px;
+                    height: 150px;
+                    background-color: white;
+                    border-radius: 50%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    overflow: hidden;
+                    margin-bottom: 1rem;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                }
+
+                .img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    border-radius: 50%;
+                }
+
+                .titles {
+                    margin-bottom: 2rem;
+
+                    .text1,
+                    .text2,
+                    .text3 {
+                        font-size: 1rem;
+                        font-weight: 500;
+                        color: white;
+                    }
+                }
+
+                .section-wrapper {
+                    margin-bottom: 2rem;
+                }
+
+                .title,
+                .subtitle {
+                    font-size: 2rem;
+                    font-weight: 700;
+                    color: white;
+                    margin-bottom: 1rem;
+                }
+            }
+        }
+    }
+}
