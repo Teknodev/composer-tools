@@ -10,7 +10,7 @@ class LinkedinWidget extends BaseSocialWidget {
             type: "embededLink",
             key: "embededLink",
             displayer: "Embeded Link",
-            value: `<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7313930170497744896?collapsed=1" height="399" width="504" frameborder="0" allowfullscreen="" title="Gömülü gönderi"></iframe>`,
+            value: `<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7312821815867817985" height="842" width="504" frameborder="0" allowfullscreen="" title="Gömülü gönderi"></iframe>`,
         });
     }
 
