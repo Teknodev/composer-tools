@@ -243,7 +243,8 @@ export enum CATEGORIES {
   LOCATION = "location",
   HTTP_CODES = "HTTPCodes",
   BANNER = "banner",
-  SOCIAL = "social"
+  SOCIAL = "social",
+  SOCIALWIDGET = "socialWidget"
 }
 
 export function generateId(key: string): string {
@@ -778,6 +779,9 @@ export abstract class BaseSocial extends Component {
   static category = CATEGORIES.SOCIAL;
 }
 
+export abstract class BaseSocialWidget extends Component {
+  static category = CATEGORIES.SOCIALWIDGET;
+}
 
 export function generateAutoClassName(componentId: string, section: string){
   return `auto-generate-${componentId}-${section}`;
