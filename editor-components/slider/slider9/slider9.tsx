@@ -290,8 +290,6 @@ class Slider9 extends BaseSlider {
       slidesToShow: 3,
       slidesToScroll: 1,
       vertical: true,
-      verticalSwiping: true,
-      swipeToSlide: true,
       afterChange: (current: number) => {
         this.setComponentState("currentSlideIndex", current);
         const horizontalSliderRef = this.getComponentState("horizontal-slider-ref");
