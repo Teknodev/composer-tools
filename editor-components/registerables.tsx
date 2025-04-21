@@ -227,6 +227,7 @@ import BannerComponent2 from "../editor-components/banner/banner2/banner2";
 import ECommerce5 from "./e-commerce/e-commerce5";
 import SocialComponent1 from "./social/social1/social1";
 import SocialComponent3 from "../editor-components/social/social3/social3";
+import SocialWidget1 from "../editor-components/social_widget/social_widget1/social_widget1";
 
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
@@ -456,6 +457,7 @@ function Registerables(composer: ComponentsRegistery) {
     BannerComponent2,
     SocialComponent3,
     ECommerce5,
+    SocialWidget1
   ]);
 }
 
