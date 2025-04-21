@@ -226,6 +226,7 @@ import BannerComponent1 from "../editor-components/banner/banner1/banner1";
 import BannerComponent2 from "../editor-components/banner/banner2/banner2";
 import SocialComponent1 from "./social/social1/social1";
 import SocialComponent3 from "../editor-components/social/social3/social3";
+import SocialWidget1 from "../editor-components/social_widget/social_widget1/social_widget1";
 import SocialWidget4 from "../editor-components/social_widget/social_widget4/social_widget4";
 
 function Registerables(composer: ComponentsRegistery) {
@@ -456,6 +457,7 @@ function Registerables(composer: ComponentsRegistery) {
     BannerComponent1,
     BannerComponent2,
     SocialComponent3,
+    SocialWidget1,
     SocialWidget4
   ]);
 }
