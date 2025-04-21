@@ -283,26 +283,123 @@ class Social2 extends BaseSocial {
     this.setComponentState("videoActive", false);
     this.setComponentState("selectedVideo", 0);
     this.setComponentState("shareContainerActive", false)
+    this.setComponentState("slideToShow", 5);
+    this.setComponentState("containerRef", React.createRef())
+    this.setComponentState("width", 0);
+    this.setComponentState("videoRefs", React.createRef());
+    this.getComponentState("videoRefs").current = [];
+    this.setComponentState("activeIndexRef", React.createRef());
+    
   }
 
   static getName(): string {
     return "Social 2";
   }
   
-  componentDidMount() {
-    const interval = setInterval(() => {
-      const currentIndex = this.getComponentState("activeVideoIndex") || 0;
-      const sliderItems = this.getPropValue("sliderItems") || [];
-      const nextIndex = (currentIndex + 1) % sliderItems.length;
-      this.setComponentState("activeVideoIndex", nextIndex);
-    }, 5000);
-    this.setComponentState("intervalId", interval); 
-  }  
+//   componentDidMount() {
+
+//     this.setComponentState("activeVideoIndex", 0);
+
+//     const totalVideos = this.getVideoCount(); 
+
+
+//     const videoInterval = setInterval(() => {
+//       const previousVideo = document.getElementById(
+//         `my-video-${this.getComponentState("activeVideoIndex")}`
+//       ) as HTMLVideoElement;
+//       console.log("previousVideo", previousVideo)
+
+//       if (previousVideo) {
+//         previousVideo.pause();
+//         previousVideo.currentTime = 0;
+//       }
+//       const nextIndex = (this.getComponentState("activeVideoIndex") + 1) % totalVideos;
+//       this.setComponentState("activeVideoIndex", nextIndex);
+
+//       // Yeni videoyu başlat
+//       const currentVideo = document.getElementById(
+//         `my-video-${nextIndex}`
+//       ) as HTMLVideoElement;
+
+//       if (currentVideo) {
+//         console.log("deneme")
+//         currentVideo.play();
+//       }
+//     }, 5000); // her 5 saniyede bir
+
+//     this.setComponentState("intervalId", videoInterval);
+
+//     // const interval = setInterval(() => {
+//     //   const currentIndex = this.getComponentState("activeVideoIndex") || 0;
+//     //   const sliderItems = this.getPropValue("sliderItems") || [];
+//     //   const nextIndex = (currentIndex + 1) % sliderItems.length;
+//     //   const sliderRef = this.getComponentState("slider-ref");
+//     // //   this.setComponentState("activeVideoIndex", nextIndex);
+//     // //   sliderRef.current.slickGoTo(Math.max((this.getComponentState("activeVideoIndex") - (this.getComponentState("slideToShow") - 1)), 0))
+//     // }, 5000);
+//     // this.setComponentState("intervalId", interval); 
+//   }  
+
+  
+componentDidMount() {
+    const sliderItems = this.getPropValue("sliderItems") || [];
+  
+    // activeIndexRef'i başta 0 olarak ayarlıyoruz
+    const activeIndexRef = this.getComponentState("activeIndexRef");
+    if (activeIndexRef) {
+      activeIndexRef.current = 0; // İlk video index 0
+    }
+  
+    // DOM'un tamamen oluşmasını beklemek için setTimeout kullanıyoruz
+    setTimeout(() => {
+      const interval = setInterval(() => {
+        if (!activeIndexRef) return;
+  
+        const current = activeIndexRef.current || 0;
+        const next = (current + 1) % sliderItems.length;
+        
+        // Aktif slaytlardan ilgili index'li videoyu bul
+        const currentSlide = document.querySelector(`.slick-slide.slick-active [data-video-index="${current}"]`) as HTMLVideoElement;
+        const nextSlide = document.querySelector(`.slick-slide.slick-active [data-video-index="${next}"]`) as HTMLVideoElement;
+        
+        if (currentSlide) {
+          currentSlide.pause();
+          currentSlide.currentTime = 0;
+        }
+        if (nextSlide) {
+          nextSlide.play();
+        }
+        activeIndexRef.current = next;
+
+        const currentIndex = this.getComponentState("activeIndexRef") || 0;
+        const nextIndex = (currentIndex + 1) % sliderItems.length;
+        const sliderRef = this.getComponentState("slider-ref");
+            this.setComponentState("activeIndexRef", nextIndex);
+        sliderRef.current.slickGoTo(Math.max((this.getComponentState("activeIndexRef") - (this.getComponentState("slideToShow") - 1)), 0))
+  
+      }, 5000);
+  
+      this.setComponentState("intervalId", interval);
+    }, 100); // DOM tamamen yerleşene kadar 100ms bekliyoruz
+  }
+  
+  
+  
   componentWillUnmount() {
+    // const observer = this.getComponentState("observer");
+    // if (observer) observer.disconnect();
     const interval = this.getComponentState("intervalId");
     if (interval) {
       clearInterval(interval);
+      
     }
+  }
+  getVideoCount =() =>{
+    let count = 0;
+    while (document.getElementById(`my-video-${count}`)) {
+      count++;
+    }
+    return count;
   }
   handleRightArrowClick= ()  => {
     const sliderRef = this.getComponentState("slider-ref")
@@ -325,6 +422,13 @@ class Social2 extends BaseSocial {
   handleShareClose = () =>{
     this.setComponentState("shareContainerActive", false)
   }
+  handleVideoRefs = (el:any, index:number) => {
+    const videoRefs = this.getComponentState("videoRefs");
+    if (videoRefs?.current) {
+      videoRefs.current[index] = el;
+    }
+  }
+  
 
 
   render() {
@@ -332,36 +436,36 @@ class Social2 extends BaseSocial {
     const sliderRef = this.getComponentState("slider-ref");
     const socialIcons = this.castToObject<SocialIcon[]>("socialIcons");
     const selectedIndex = this.getComponentState("selectedVideo");
+
+
     const settings = {
         dots: false,
         arrows: false,
         infinite: true,
-        speed: 500,
         autoplay: false,
-        autoplaySpeed: 8000,
-        slidesToShow: 5.1,
+        slidesToShow: 5,
         slidesToScroll: 1,
         adaptiveHeight: false,
         responsive: [
             {
               breakpoint: 1024,
               settings: {
-                autoplaySpeed: 6000,
-                slidesToShow: 2.2,
+                slidesToShow: 2,
                 slidesToScroll: 1,
               },
             },
             {
               breakpoint: 640,
               settings: {
-                autoplaySpeed: 5000,
-                slidesToShow: 1.1,
+                slidesToShow: 1,
                 slidesToScroll: 1,
               },
             },
           ],
-      };
-      const settingsVideo = {
+    };
+    
+    
+    const settingsVideo = {
         dots: false,
         arrows: false,
         infinite: true,
@@ -376,11 +480,21 @@ class Social2 extends BaseSocial {
         swipeToSlide: true,
         initialSlide:selectedIndex, 
         
-      };
-     
+    };
+    // {sliderItems.map((item, index: number) => {
+    //     setTimeout(() => {
+    //       const videoEl = document.getElementById(`my-video-${index}`);
+    //       console.log("videoEl", videoEl)
+    //       if (videoEl) {
+    //         console.log(`Video ${index} src:`, videoEl.getAttribute("src"));
+    //       }
+    //     }, 0);
+    // } // render sonrasına bırakır
+    // )}      
+    
     return (
         <>
-        <Base.Container className={this.decorateCSS("container")}>
+        <Base.Container className={this.decorateCSS("container")} id={"container"}  >
             <Base.MaxContent className={this.decorateCSS("max-content")}>
                 {this.castToString(this.getPropValue("title")) && (
                 <Base.VerticalContent className={this.decorateCSS("upper-container")}>
@@ -390,19 +504,21 @@ class Social2 extends BaseSocial {
                 </Base.VerticalContent>
                 )}
                 {(sliderItems.length > 0) && (
-                <div className={this.decorateCSS("slider-container")}>
+                <div className={this.decorateCSS("slider-container")} ref={this.getComponentState("containerRef")}>
                     <ComposerSlider {...settings} ref={sliderRef} key={this.getComponentState("selectedVideo")}  className={this.decorateCSS("slider")}>
                         {sliderItems.map((item, index: number) => {
-                            const isActive = index === this.getComponentState("activeVideoIndex");
                             return (
                             <div key={index} className={this.decorateCSS("slider-item")}>
                                 {item.videoUrl && (
                                     <video
-                                    key={`${item.videoUrl}-${isActive}`}
-                                    autoPlay={isActive}
-                                    muted
+                                    key={`video-${index}`}
+                                    id={`video-${index}`}
+                                    data-video-index={index}
+                                    // ref={(el) => this.handleVideoRefs(el, index)}
+                                    muted={true}
                                     playsInline
                                     loop
+                                    preload="auto"
                                     className={this.decorateCSS("video")}
                                     src={item.videoUrl}
                                     />
@@ -427,14 +543,14 @@ class Social2 extends BaseSocial {
                 <div className={`${this.decorateCSS("overlay")} ${this.getComponentState("shareContainerActive") && this.decorateCSS("popup-active")}`} >
                     <ComposerSlider {...settingsVideo} ref={this.getComponentState("sliderRefOverlay")} className={this.decorateCSS("slider-container")}>
                             {sliderItems.map((item, index: number) => {
-                                const isActive = index === this.getComponentState("activeVideoIndex");
+                                // const isActive = index === this.getComponentState("activeVideoIndex");
                                     return (
                                         <div key={index} className={this.decorateCSS("video-container")}>
                                                 {item.videoUrl && (
                                                     <video
-                                                    key={`${item.videoUrl}-${isActive}`}
+                                                    key={`${item.videoUrl}-${index}`}
                                                     autoPlay={true}
-                                                    muted
+                                                    muted={false}
                                                     playsInline
                                                     loop
                                                     controls
@@ -504,14 +620,14 @@ class Social2 extends BaseSocial {
         <Base.Overlay className={`${this.decorateCSS("base-overlay")}  ${this.getComponentState("shareContainerActive") && this.decorateCSS("popup-active")}`} isVisible={(this.getComponentState("videoActive") && !this.getPropValue("videoIframe"))}>
             <ComposerSlider {...settingsVideo} className={this.decorateCSS("slider-container")}>
                 {sliderItems.map((item, index: number) => {
-                    const isActive = index === this.getComponentState("activeVideoIndex");
+                    // const isActive = index === this.getComponentState("activeVideoIndex");
                         return (
                             <div key={index} className={this.decorateCSS("video-container")}>
                                     {item.videoUrl && (
                                         <video
-                                        key={`${item.videoUrl}-${isActive}`}
+                                        key={`${item.videoUrl}-${index}`}
                                         autoPlay={true}
-                                        muted
+                                        muted={false}
                                         playsInline
                                         loop
                                         controls
