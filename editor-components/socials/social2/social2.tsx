@@ -834,7 +834,6 @@ componentDidMount() {
   render() {
     const sliderItems = this.castToObject<SlideItems[]>("sliderItems");
     const sliderRef = this.getComponentState("slider-ref");
-    const socialIcons = this.castToObject<SocialIcon[]>("socialIcons");
     const selectedIndex = this.getComponentState("selectedVideo");
 
 
@@ -964,7 +963,7 @@ componentDidMount() {
                                                         <ComposerIcon name={this.getPropValue("shareIcon")} propsIcon={{className: this.decorateCSS("share-icon"), onClick : () => this.handleShareOpen()}}></ComposerIcon>
                                                     </div>
                                                 )}
-                                                {(this.castToString(this.getPropValue("sharePopupTitle")) || this.getPropValue("closeIcon") || (socialIcons.length > 0)) && (
+                                                {(this.castToString(this.getPropValue("sharePopupTitle")) || this.getPropValue("closeIcon") || (item.socialIcons.length > 0)) && (
                                                 <div className={`${this.decorateCSS("share-wrapper")} ${this.getComponentState("shareContainerActive") && this.decorateCSS("active")}`}>
                                                     <div className={this.decorateCSS("share-popup-container")}>
                                                         {(this.castToString(this.getPropValue("sharePopupTitle")) || this.getPropValue("closeIcon")) && (
@@ -1040,7 +1039,7 @@ componentDidMount() {
                                             <ComposerIcon name={this.getPropValue("shareIcon")} propsIcon={{className: this.decorateCSS("share-icon"), onClick : () => this.handleShareOpen()}}></ComposerIcon>
                                         </div>
                                     )}
-                                    {(this.castToString(this.getPropValue("sharePopupTitle")) || this.getPropValue("closeIcon") || (socialIcons.length > 0)) && (
+                                    {(this.castToString(this.getPropValue("sharePopupTitle")) || this.getPropValue("closeIcon") || (item.socialIcons.length > 0)) && (
                                         <div className={`${this.decorateCSS("share-wrapper")} ${this.getComponentState("shareContainerActive") && this.decorateCSS("active")}`}>
                                             <div className={this.decorateCSS("share-popup-container")}>
                                                 {(this.castToString(this.getPropValue("sharePopupTitle")) || this.getPropValue("closeIcon")) && (

@@ -266,6 +266,28 @@
     }
 }
 @container (max-width: #{$composer-phone-width}) {
+  .container{
+    .max-content{
+      .slider-container{
+        .slider{
+          >div{
+            >div{
+              align-items: stretch;
+              >div{
+                height: auto !important;
+                >div{
+                  height: 100%;
+                }
+              }
+            }
+        }
+          .slider-item{
+            aspect-ratio: auto;
+          }
+        }
+      }
+    }
+  }
     .base-overlay{
         .video-container{
             .selected-video{
