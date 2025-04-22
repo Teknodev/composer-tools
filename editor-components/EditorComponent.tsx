@@ -317,9 +317,9 @@ type GetPropValueProperties = {
   prefix?: PreSufFix;
 };
 
-type RangeInputAdditionalParams = { 
-  maxRange?: number; 
-  minRange?: number; 
+type RangeInputAdditionalParams = {
+  maxRange?: number;
+  minRange?: number;
   step?: number;
 };
 
@@ -432,37 +432,61 @@ export function generateId(key: string): string {
   return key + "-" + Math.round(Math.random() * 1000000000).toString();
 }
 
-function handlePropSync(
-  currentProps: TypeUsableComponentProps[],
+function syncComplexPropValues(
+  shadowPropType: TypeUsableComponentProps["type"],
   shadowProps: TypeUsableComponentProps[],
-  component: Component
+  currentProps: TypeUsableComponentProps[]
 ) {
-  
-  shadowProps.forEach((shadowProp) => {
-    const existingIndex = currentProps.findIndex((prop) => prop.key === shadowProp.key);
-    const shadowPropCopy = structuredClone(shadowProp);
+  const isComplexType = (type: string) => type === "object" || type === "array";
+  const isArray = shadowPropType === "array";
 
-    if (existingIndex === -1) {
-      if (shadowPropCopy.type === "string") {
-        shadowPropCopy.value = "";
+  if (isArray) {
+    const templateProp = shadowProps[0];
+    currentProps.forEach(currentProp => {
+      if (isComplexType(templateProp.type)) {
+        syncComplexPropValues(
+          templateProp.type,
+          templateProp.value as TypeUsableComponentProps[],
+          currentProp.value as TypeUsableComponentProps[]
+        );
       }
-      component.addProp(shadowPropCopy);
+
+      currentProp.type = templateProp.type;
+      currentProp.value = templateProp.type === "string" ? "" : structuredClone(templateProp.value);
+    });
+    return;
+  }
+
+  shadowProps.forEach(shadowProp => {
+    const index = currentProps.findIndex(prop => prop.key === shadowProp.key);
+    const existingProp = index !== -1 ? currentProps[index] : null;
+
+    if (!existingProp) {
+      const newProp = structuredClone(shadowProp);
+      newProp.id = generateId(newProp.key);
+      if (newProp.type === "string") newProp.value = "";
+      currentProps.push(newProp);
       return;
     }
 
-    const existingProp = currentProps[existingIndex];
-    const typeChanged = existingProp.type !== shadowProp.type;
+    if (existingProp.type !== shadowProp.type) {
+      const cloneShadow = structuredClone(shadowProp.value) as TypeUsableComponentProps;
+      cloneShadow.id = generateId(cloneShadow.key);
+      existingProp.type = shadowProp.type;
+      existingProp.value = shadowProp.type === "string" ? "" : ;
+      return;
+    }
 
-    if (typeChanged) {
-      currentProps[existingIndex].type = shadowPropCopy.type;
-      currentProps[existingIndex].value = shadowPropCopy.value;
+    if (isComplexType(existingProp.type)) {
+      syncComplexPropValues(
+        existingProp.type,
+        shadowProp.value as TypeUsableComponentProps[],
+        existingProp.value as TypeUsableComponentProps[]
+      );
     }
   });
-
-  component.setState(
-    JSON.parse(JSON.stringify(component.state))
-  );
 }
+
 
 //@ts-ignore
 export abstract class Component
@@ -505,9 +529,6 @@ export abstract class Component
     }
 
     EventEmitter.emit(EVENTS.COMPONENT_ADDED, { data: this });
-    setTimeout(() => {
-      handlePropSync(props.props, this.shadowProps, this);
-    }, 0);
   }
 
   static getName(): string {
@@ -695,29 +716,37 @@ export abstract class Component
   }
 
   setProp(key: string, value: any): void {
-    let i = this.state.componentProps.props
-      .map((prop: any) => prop.key)
-      .indexOf(key);
+    setTimeout(() => {
+      let i = this.state.componentProps.props.map((prop: any) => prop.key).indexOf(key);
 
-    const prop: TypeUsableComponentProps = this.state.componentProps.props[i];
+      const prop: TypeUsableComponentProps = this.state.componentProps.props[i];
 
-    const isInvalidIndex = i === -1;
-    const isMatchingSimpleValue =
-      prop.type !== "array" && prop.type !== "object" && prop.value === value;
-    const isMatchingComplexValue =
-      (prop.type === "array" || prop.type === "object") &&
-      prop.value.every((item) => item.getPropValue) &&
-      prop.value === value;
+      const isInvalidIndex = i === -1;
+      const isComplexType = prop.type === "array" || prop.type === "object";
 
-    if (isInvalidIndex || isMatchingSimpleValue || isMatchingComplexValue) {
-      return;
-    }
+      const isMatchingSimpleValue =
+        prop.type !== "array" && prop.type !== "object" && prop.value === value;
+      const isMatchingComplexValue =
+        isComplexType && prop.value.every((item) => item.getPropValue) && prop.value === value;
 
-    this.state.componentProps.props[i].value = value;
-    this.state.componentProps.props[i] = this.attachValueGetter(
-      this.state.componentProps.props[i]
-    );
-    this.setState({ componentProps: { ...this.state.componentProps } });
+      if (isInvalidIndex || isMatchingSimpleValue || isMatchingComplexValue) {
+        return;
+      }
+
+      const shadowProp = this.getShadowProp(key);
+
+      if (isComplexType && shadowProp) {
+        syncComplexPropValues(shadowProp.type, shadowProp.value as TypeUsableComponentProps[], value);
+      }
+
+      console.log("value: ", value)
+
+      this.state.componentProps.props[i].value = value;
+      this.state.componentProps.props[i] = this.attachValueGetter(
+        this.state.componentProps.props[i]
+      );
+      this.setState({ componentProps: { ...this.state.componentProps } });
+    }, 0);
   }
 
   setComponentState(key: string, value: any): void {
