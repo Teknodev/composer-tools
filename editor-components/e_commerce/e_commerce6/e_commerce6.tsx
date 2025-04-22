@@ -681,6 +681,7 @@ class ECommerce6 extends BaseECommerce {
     const images = this.castToObject<Images[]>("images");
     const deliveryType = this.castToObject<DeliveryType[]>("deliveryTypes");
     const socials = this.castToObject<Socials[]>("socials");
+    const sliderRef = this.getComponentState("slider-ref");
     const currencySymbol = getCurrencyInfo(sizeSections[this.getComponentState("selectedSizeSection")]?.cost?.currency)?.symbol;
     const currencyValue = sizeSections[this.getComponentState("selectedSizeSection")]?.cost?.value || ""
     const shareCopyLink = this.castToObject<ShareCopyLink>("shareCopyLink");
@@ -703,15 +704,18 @@ class ECommerce6 extends BaseECommerce {
       slidesToScroll: 1,
       centerMode: false,
       adaptiveHeight: false,
+      speed: 500,
+      autoplaySpeed: 5000,
       beforeChange: (oldIndex: number, newIndex: number) => {
         this.setComponentState("selectedImage", newIndex);
+        this.getComponentState("slider-ref-small-image-mobile").current.slickGoTo(this.getComponentState("selectedImage"));
+        this.getComponentState("slider-ref-small-image").current.slickGoTo(this.getComponentState("selectedImage"));
       },
     };
     const settingsSmallImage = {
       arrows: false,
       dots: false,
       infinite: true,
-      speed: 500,
       autoplay: true,
       slidesToShow:4,
       slidesToScroll: 1,
@@ -722,8 +726,6 @@ class ECommerce6 extends BaseECommerce {
       arrows: false,
       dots: false,
       infinite: true,
-      speed: 500,
-      autoplay: true,
       slidesToShow: 3,
       slidesToScroll: 1,
     };
@@ -782,10 +784,7 @@ class ECommerce6 extends BaseECommerce {
             <div className={this.decorateCSS("image-icon-left")}>
               <ComposerIcon name={this.getPropValue("leftArrow")} 
               propsIcon={{className: this.decorateCSS("icon"),
-              onClick: () => {
-              const sliderRef = this.getComponentState("slider-ref");
-              sliderRef.current.slickPrev();
-              }}}/>
+              onClick: () => {sliderRef.current.slickPrev()}}}/>
             </div>
             <ComposerSlider {...settings} className={this.decorateCSS("slider-container")} ref={this.getComponentState("slider-ref")}>
               {images.map((item: Images, index: number)=>{
@@ -800,10 +799,7 @@ class ECommerce6 extends BaseECommerce {
             </ComposerSlider>
             <div className={this.decorateCSS("image-icon-right")}>
               <ComposerIcon name={this.getPropValue("rightArrow")} propsIcon={{className: this.decorateCSS("icon"),
-              onClick: () => {
-              const sliderRef = this.getComponentState("slider-ref");
-              sliderRef.current.slickNext();
-              }}}/>
+              onClick: () => {sliderRef.current.slickNext()}}}/>
             </div> 
             </div>
           )}
@@ -971,7 +967,7 @@ class ECommerce6 extends BaseECommerce {
             )}
             {images.length > 0 && this.getPropValue("sliderDotIcon") && (
               <div className={this.decorateCSS("dots")}>
-                {images.map((item:any, index:number) =>{
+                {images.map((item, index:number) =>{
                   return(
                     <div className={this.decorateCSS("dot")} onClick={()=> this.handleDotClick(index)}>
                       <ComposerIcon name={this.getPropValue("sliderDotIcon")} propsIcon={{className: `${this.decorateCSS("icon")} ${(this.getComponentState("selectedImage")=== index) && this.decorateCSS("active")}`}}/>
