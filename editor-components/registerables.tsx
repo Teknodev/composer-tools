@@ -20,6 +20,7 @@ import ListComponent7 from "./list/list7/list7";
 import ListComponent8 from "./list/list8/list8";
 import ListComponent9 from "./list/list9/list9";
 import ListComponent10 from "./list/list10/list10";
+import ListComponent11 from "./list/list11/list11";
 import ListComponent12 from "./list/list12/list12";
 import LocationComponent1 from "./location/location1/location1";
 import LocationComponent3 from "./location/location3/location3";
@@ -227,6 +228,8 @@ import BannerComponent1 from "../editor-components/banner/banner1/banner1";
 import BannerComponent2 from "../editor-components/banner/banner2/banner2";
 import SocialComponent1 from "./social/social1/social1";
 import SocialComponent3 from "../editor-components/social/social3/social3";
+import SocialWidget1 from "../editor-components/social_widget/social_widget1/social_widget1";
+import SocialWidget4 from "../editor-components/social_widget/social_widget4/social_widget4";
 
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
@@ -255,6 +258,7 @@ function Registerables(composer: ComponentsRegistery) {
     ListComponent8,
     ListComponent9,
     ListComponent10,
+    ListComponent11,
     ListComponent12,
     ContentComponent1,
     ContentComponent2,
@@ -456,6 +460,9 @@ function Registerables(composer: ComponentsRegistery) {
     ConfirmationModal2,
     BannerComponent1,
     BannerComponent2,
+    SocialComponent3,
+    SocialWidget1,
+    SocialWidget4,
     SocialComponent3,
   ]);
 }
