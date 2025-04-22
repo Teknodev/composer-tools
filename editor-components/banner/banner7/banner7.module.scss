@@ -46,7 +46,7 @@
             padding: var(--composer-gap-lg) var(--composer-gap-xl);
             background: var(--composer-html-background);
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: var(--composer-font-color-primary);
             width: 35%;
             max-width: 80%;
@@ -65,6 +65,10 @@
                 align-items: flex-start;
                 gap: var(--composer-gap-sm);
                 row-gap: var(--composer-gap-xs);
+
+                .home-link {
+                    content: "";
+                }
 
                 .home-page,
                 .about-page {

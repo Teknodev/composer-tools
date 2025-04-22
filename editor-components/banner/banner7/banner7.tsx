@@ -75,7 +75,10 @@ class Banner7 extends BaseBanner {
                 </Base.MaxContent>
               )}
               <div className={this.decorateCSS("breadcrumb-items")}>
-                <ComposerLink path={navigateToUrl}>
+                <ComposerLink
+                  path={navigateToUrl}
+                  className={this.decorateCSS("home-link")}
+                >
                   <span className={this.decorateCSS("home-page")}>
                     {this.getPropValue("homepage")}
                   </span>
