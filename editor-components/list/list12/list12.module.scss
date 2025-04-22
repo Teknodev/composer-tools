@@ -1,77 +1,111 @@
+@use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
+
 .container {
     width: 100%;
     background-position: center;
 
     .max-content {
-        .section {
+        width: 80%;
+
+        .boxes {
             display: flex;
             justify-content: center;
             align-items: flex-start;
 
-            .boxes {
+            .leftBox,
+            .rightBox {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .middleBox {
+                flex: 2;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .circle,
+            .icon {
+                width: 160px;
+                height: 160px;
+                border-radius: 50%;
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                overflow: hidden;
+                margin-bottom: 1rem;
+            }
 
-                .leftBox,
-                .rightBox {
-                    flex: 1;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    text-align: center;
+            .img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .titles {
+                margin-bottom: 2rem;
+
+                .text1,
+                .text2,
+                .text3 {
+                    font-size: 1rem;
+                    font-weight: 300;
+                    color: var(--composer-font-color-primary);
+                }
+            }
+
+            .section-wrapper {
+                margin-bottom: 2rem;
+            }
+
+            .title,
+            .subtitle {
+                font-size: 3rem;
+                font-weight: 400;
+                color: var(--composer-font-color-primary);
+                margin-bottom: 1rem;
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        .max-content {
+            .boxes {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                .leftBox {
+                    order: 2;
                 }
 
                 .middleBox {
-                    flex: 2;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    text-align: center;
+                    order: 1;
                 }
 
-                .circle {
-                    width: 150px;
-                    height: 150px;
-                    background-color: white;
-                    border-radius: 50%;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    overflow: hidden;
-                    margin-bottom: 1rem;
-                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                }
-
-                .img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    border-radius: 50%;
+                .rightBox {
+                    order: 3;
                 }
 
                 .titles {
-                    margin-bottom: 2rem;
 
                     .text1,
                     .text2,
                     .text3 {
                         font-size: 1rem;
-                        font-weight: 500;
-                        color: white;
                     }
-                }
-
-                .section-wrapper {
-                    margin-bottom: 2rem;
                 }
 
                 .title,
                 .subtitle {
                     font-size: 2rem;
-                    font-weight: 700;
-                    color: white;
-                    margin-bottom: 1rem;
                 }
             }
         }
