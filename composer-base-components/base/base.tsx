@@ -224,8 +224,7 @@ export namespace Base {
   export function Overlay({ className, isVisible, ...props}: any) {
 
     const [width, setWidth] = useState(0);
-    const [height, setHeight] = useState(0);
-    const [x, setX] = useState(0);
+    const [height, setHeight] = useState(0);    
     const [y, setY] = useState(0);
 
     useEffect(() => {
@@ -236,7 +235,6 @@ export namespace Base {
         const boundingClient = playgroundEl.getBoundingClientRect();
         setWidth(boundingClient.width);
         setHeight(boundingClient.height);
-        setX(boundingClient.x);
         setY(boundingClient.y);
       }); 
       resizeObserver.observe(playgroundEl); 
@@ -250,7 +248,7 @@ export namespace Base {
       };
     }, [isVisible ,width]);
     if(isVisible) {
-      return <div style={{width, height, left: x, top: y}} className={`${styles.overlay} ${className}`} {...props}></div>;
+      return <div style={{width, height, top: y}} className={`${styles.overlay} ${className}`} {...props}></div>;
     }
     
   }
