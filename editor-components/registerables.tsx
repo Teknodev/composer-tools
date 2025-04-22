@@ -464,6 +464,7 @@ function Registerables(composer: ComponentsRegistery) {
     SocialWidget1,
     SocialWidget4,
     SocialComponent3,
+    SocialWidget4,
   ]);
 }
 
