@@ -7,12 +7,12 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 interface ImageGallery {
-  sectionTitle: React.ReactNode;
+  sectionTitle: React.JSX.Element;
   sliderContent: Contents[];
 }
 
 interface Contents {
-  collection: React.ReactNode;
+  collection: React.JSX.Element;
   sectionImage: string;
 }
 
@@ -350,7 +350,7 @@ class ECommerce5 extends BaseECommerce {
           className={
             this.getComponentState("current-slide") === i
               ? this.decorateCSS("currentPaging")
-              : ""
+              : this.decorateCSS("defaultClass")
           }
         ></button>
       ),
@@ -383,24 +383,25 @@ class ECommerce5 extends BaseECommerce {
         },
       ],
     };
-    const title = this.getPropValue("title");
+    const category = this.getPropValue("title");
 
-    const titleExist = this.castToString(title);
+    const title = this.castToString(category);
 
     return (
       <div className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("title-tab")}>
-            {titleExist && (
+            {title && (
               <Base.SectionTitle className={this.decorateCSS("title")}>
-                {titleExist}
+                {title}
               </Base.SectionTitle>
             )}
 
             <div className={this.decorateCSS("section-title-container")}>
               {slides.map((item: ImageGallery, index: number) => {
+                const sectionTitle = this.castToString(item.sectionTitle);
                 return (
-                  item.sectionTitle && (
+                  sectionTitle && (
                     <div
                       key={index}
                       className={
@@ -421,7 +422,7 @@ class ECommerce5 extends BaseECommerce {
                         }
                       }}
                     >
-                      {item.sectionTitle}
+                      {sectionTitle}
                     </div>
                   )
                 );
@@ -440,29 +441,32 @@ class ECommerce5 extends BaseECommerce {
                 {...settings}
                 className={this.decorateCSS("carousel")}
               >
-                {content.map((item: Contents, index: number) => (
-                  <div
-                    className={this.decorateCSS("slider-inner-div")}
-                    key={item.sectionImage + item.collection}
-                  >
-                    {item.sectionImage && (
-                      <div className={this.decorateCSS("image-box")}>
-                        <div className={this.decorateCSS("image-wrapper")}>
-                          <img
-                            alt=""
-                            src={item.sectionImage}
-                            className={this.decorateCSS("img")}
-                          />
+                {content.map((item: Contents) => {
+                  const collection = this.castToString(item.collection);
+                  return (
+                    <div
+                      className={this.decorateCSS("slider-inner-div")}
+                      key={item.sectionImage + item.collection}
+                    >
+                      {item.sectionImage && (
+                        <div className={this.decorateCSS("image-box")}>
+                          <div className={this.decorateCSS("image-wrapper")}>
+                            <img
+                              alt=""
+                              src={item.sectionImage}
+                              className={this.decorateCSS("img")}
+                            />
+                          </div>
                         </div>
-                      </div>
-                    )}
-                    {item.collection && (
-                      <div className={this.decorateCSS("collection")}>
-                        {item.collection}
-                      </div>
-                    )}
-                  </div>
-                ))}
+                      )}
+                      {collection && (
+                        <div className={this.decorateCSS("collection")}>
+                          {collection}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
               </ComposerSlider>
             </div>
           </div>

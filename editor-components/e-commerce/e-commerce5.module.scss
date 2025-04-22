@@ -65,7 +65,7 @@
 
                 .section {
                     position: relative;
-                    font-size: 1.2rem;
+                    font-size: 1rem;
                     color: var(--composer-font-color-primary);
                     cursor: pointer;
                     transition: color 0.3s ease;
@@ -97,7 +97,7 @@
                 .section-active {
                     position: relative;
                     color: var(--composer-primary-color);
-                    font-size: 1.2rem;
+                    font-size: 1rem;
                     padding: var(--composer-gap-xs);
 
                     &::after {
@@ -159,7 +159,7 @@
                         }
 
                         .collection {
-                            font-size: 1.2rem;
+                            font-size: 1rem;
                             text-align: center;
                             color: var(--composer-font-color-primary);
                             transition: color 0.3s ease-in-out;
@@ -223,6 +223,11 @@
                     background-color: var(--composer-primary-color);
                 }
             }
+
+            .defaultClass {
+                background-color: transparent;
+            }
+
         }
     }
 }
