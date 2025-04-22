@@ -20,6 +20,7 @@ import ListComponent7 from "./list/list7/list7";
 import ListComponent8 from "./list/list8/list8";
 import ListComponent9 from "./list/list9/list9";
 import ListComponent10 from "./list/list10/list10";
+import ListComponent11 from "./list/list11/list11";
 import LocationComponent1 from "./location/location1/location1";
 import LocationComponent3 from "./location/location3/location3";
 import ContentComponent1 from "./content/content1/content1";
@@ -228,6 +229,8 @@ import ECommerce5 from "./e-commerce/e-commerce5";
 import SocialComponent1 from "./social/social1/social1";
 import SocialComponent3 from "../editor-components/social/social3/social3";
 import SocialWidget1 from "../editor-components/social_widget/social_widget1/social_widget1";
+import SocialWidget3 from "../editor-components/social_widget/social_widget3/social_widget3";
+import SocialWidget4 from "../editor-components/social_widget/social_widget4/social_widget4";
 
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
@@ -255,6 +258,7 @@ function Registerables(composer: ComponentsRegistery) {
     ListComponent8,
     ListComponent9,
     ListComponent10,
+    ListComponent11,
     ContentComponent1,
     ContentComponent2,
     ContentComponent3,
@@ -457,7 +461,9 @@ function Registerables(composer: ComponentsRegistery) {
     BannerComponent2,
     SocialComponent3,
     ECommerce5,
-    SocialWidget1
+    SocialWidget1,
+    SocialWidget3,
+    SocialWidget4,
   ]);
 }
 
