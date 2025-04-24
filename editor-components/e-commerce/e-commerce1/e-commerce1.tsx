@@ -8,7 +8,6 @@ import React from "react";
 
 type Image = {
   image: string,
-  popup: string,
 }
 
 type Category = {
@@ -38,12 +37,6 @@ class ECommerce1 extends BaseECommerce {
               displayer: "Product Image",
               value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3d91c1ef0f002c95c2af?alt=media",
             },
-            {
-              type: "image",
-              key: "popup",
-              displayer: "Popup Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3d91c1ef0f002c95c2af?alt=media",
-            }
           ]
         },
         {
@@ -57,12 +50,6 @@ class ECommerce1 extends BaseECommerce {
               displayer: "Product Image",
               value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3dbcc1ef0f002c95c2cc?alt=media",
             },
-            {
-              type: "image",
-              key: "popup",
-              displayer: "Popup Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3dbcc1ef0f002c95c2cc?alt=media",
-            }
           ]
         },
         {
@@ -76,12 +63,6 @@ class ECommerce1 extends BaseECommerce {
               displayer: "Product Image",
               value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3dd6c1ef0f002c95c2e4?alt=media",
             },
-            {
-              type: "image",
-              key: "popup",
-              displayer: "Popup Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3dd6c1ef0f002c95c2e4?alt=media",
-            }
           ]
         },
         {
@@ -95,12 +76,6 @@ class ECommerce1 extends BaseECommerce {
               displayer: "Product Image",
               value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3df1c1ef0f002c95c2f9?alt=media",
             },
-            {
-              type: "image",
-              key: "popup",
-              displayer: "Popup Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3df1c1ef0f002c95c2f9?alt=media",
-            }
           ]
         },
         {
@@ -114,12 +89,6 @@ class ECommerce1 extends BaseECommerce {
               displayer: "Product Image",
               value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3e06c1ef0f002c95c301?alt=media",
             },
-            {
-              type: "image",
-              key: "popup",
-              displayer: "Popup Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3e06c1ef0f002c95c301?alt=media",
-            }
           ]
         },
       ],
@@ -461,7 +430,7 @@ class ECommerce1 extends BaseECommerce {
           {isActive && (
             <div className={this.decorateCSS("image-popup")}>
               <div className={this.decorateCSS("popup-content")}>
-                <img src={images[activeImage]?.popup} className={this.decorateCSS("popup-image")}/>
+                <img src={images[activeImage]?.image} className={this.decorateCSS("popup-image")}/>
                 <div className={this.decorateCSS("items")}>
                   <div className={this.decorateCSS("icon-group")}>
                     <ComposerIcon name={leftPopupArrow} propsIcon={{className: this.decorateCSS("left-arrow"), onClick: moveLeft}} />
