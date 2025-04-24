@@ -1,4 +1,4 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 @mixin cardStyle {
   top: unset;
@@ -185,7 +185,7 @@
   }
 }
 
-@container (max-width : #{$composer-phone-width-sm}) {
+@container (max-width : #{$composer-phone-width}) {
   .container {
     padding: 0px 40px 20px 40px !important;
     .max-content {
