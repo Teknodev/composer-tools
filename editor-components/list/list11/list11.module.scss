@@ -1,0 +1,80 @@
+@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss"
+  as *;
+
+.container {
+  .max-content {
+    display: flex;
+    flex-direction: column;
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: var(--composer-gap-md);
+      .vertical-content {
+        .title-container {
+          display: flex;
+          flex-direction: column;
+          .title {
+            margin: 0;
+            font-weight: bold;
+          }
+        }
+        .subTitle-container {
+          .subTitle {
+            opacity: 0.7;
+          }
+        }
+      }
+
+      .card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: color-mix(
+          in srgb,
+          var(--composer-html-background),
+          var(--composer-font-color-primary) 5%
+        );
+        border-radius: var(--composer-border-radius-md);
+        padding: var(--padding-xl);
+        .card-items {
+          display: flex;
+          flex-direction: column;
+          gap: var(--composer-gap-md);
+          .card-image-container {
+            .card-image {
+              width: 100%;
+              height: 100%;
+              border-radius: var(--composer-border-radius-md);
+              object-fit: cover;
+              object-position: center;
+            }
+          }
+          .card-title {
+            font-size: 1.5rem;
+            color: var(--composer-font-color-primary);
+            font-weight: bold;
+          }
+          .card-description {
+            font-size: 1rem;
+            color: var(--composer-font-color-primary);
+            opacity: 0.7;
+          }
+          .navigate-container {
+            display: flex;
+            align-items: center;
+            color: var(--composer-primary-color);
+            .navigate-to {
+              font-size: 1rem;
+              margin-right: 0.5rem;
+              font-weight: bold;
+            }
+            .navigate-icon {
+              min-width: 10px;
+              min-height: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
