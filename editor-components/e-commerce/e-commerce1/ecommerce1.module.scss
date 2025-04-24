@@ -1,4 +1,4 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
     .max-content {
@@ -41,6 +41,7 @@
                         font-size: 1rem; 
                         opacity: 0.7; 
                         z-index: 20;
+                        color: var(--composer-tertiary-color);
                     }
 
                     .left-arrow, .right-arrow {
@@ -49,6 +50,8 @@
                         color: black;
                         z-index: 21;
                         top: 50%;
+                        color: var(--composer-tertiary-color);
+                        cursor: pointer;
                     }
 
                     .left-arrow {
@@ -92,7 +95,7 @@
                 .vertical {
                     .title {
                         font-size: 2rem !important;
-                        margin-bottom: calc(0 - var(--composer-gap-sm));
+                        margin-bottom: var(--composer-gap-sm) !important;
                     }
                     .price {
                         font-size: 2rem;
@@ -108,11 +111,12 @@
                         }
                         .review-count {
                             margin-left: var(--composer-gap-xs);
-                            color: var(--composer-font-color-primary);
+                            color: var(--composer-tertiary-color);
                         }
                     }
                     .description {
-                        content: "";
+                        color: var(--composer-tertiary-color);
+                        margin-bottom: var(--composer-gap-lg);
                     }
                     .inputs {
                         display: flex;
@@ -120,21 +124,22 @@
                             display: flex;
                             justify-content: center;
                             align-items: center;
-                            border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
+                            border: 1px solid var(--composer-tertiary-color);
                             border-right: none;
                             border-radius: var(--composer-border-radius-xs);
                             border-top-right-radius: 0;
                             border-bottom-right-radius: 0;
                             padding: var(--composer-gap-sm);
+                            width: 175px;
                             .label {
-                                color: var(--composer-font-color-primary);
+                                color: var(--composer-tertiary-color);
                                 padding-right: var(--composer-gap-lg);
                             }
                             .left-icon, .right-icon {
                                 flex: 1;
                                 font-size: 1.5rem !important;
                                 min-width: 1.5rem;
-                                color: var(--composer-font-color-primary);
+                                color: var(--composer-tertiary-color);
                                 cursor: pointer;
                                 transition: opacity 0.3s ease;
                                 &:hover {
@@ -146,13 +151,17 @@
                                 background-color: transparent;
                                 border: none;
                                 text-align: center;
-                                color: var(--composer-font-color-primary);
+                                color: var(--composer-tertiary-color);
                                 outline: none;
                             }
                         }
                         .button {
                             border-top-left-radius: 0;
                             border-bottom-left-radius: 0;
+                            width: 175px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
                         }
                     }
                     .wishlist {
@@ -289,7 +298,7 @@
                         margin: 0 !important;
                     }
                     .review-area {
-                        margin-top: var(--composer-gap-xl) !important;
+                        margin-top: var(--composer-gap-md) !important;
                     }
                 }
             }
@@ -320,6 +329,23 @@
                         .product-img {
                             width: 100%;
                             height: auto !important;
+                        }
+                    }
+                }
+                .right {
+                    .vertical {
+                        .inputs {
+                            flex-direction: column;
+                            width: 100%;
+
+                            .button, .count-input {
+                                width: 100% !important;
+                                height: var(--composer-gap-xl) !important;
+                            }
+
+                            .count-input {
+                                border-right: 1px solid var(--composer-tertiary-color);
+                            }
                         }
                     }
                 }

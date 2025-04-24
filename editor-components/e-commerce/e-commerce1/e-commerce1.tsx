@@ -36,13 +36,13 @@ class ECommerce1 extends BaseECommerce {
               type: "image",
               key: "image",
               displayer: "Product Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68023af6bf76cc002cc3fd06?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3d91c1ef0f002c95c2af?alt=media",
             },
             {
               type: "image",
               key: "popup",
               displayer: "Popup Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68023af6bf76cc002cc3fd06?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3d91c1ef0f002c95c2af?alt=media",
             }
           ]
         },
@@ -55,13 +55,13 @@ class ECommerce1 extends BaseECommerce {
               type: "image",
               key: "image",
               displayer: "Product Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68023b1fbf76cc002cc3fd29?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3dbcc1ef0f002c95c2cc?alt=media",
             },
             {
               type: "image",
               key: "popup",
               displayer: "Popup Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68023b1fbf76cc002cc3fd29?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3dbcc1ef0f002c95c2cc?alt=media",
             }
           ]
         },
@@ -74,13 +74,51 @@ class ECommerce1 extends BaseECommerce {
               type: "image",
               key: "image",
               displayer: "Product Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68023d1ebf76cc002cc40119?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3dd6c1ef0f002c95c2e4?alt=media",
             },
             {
               type: "image",
               key: "popup",
               displayer: "Popup Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68023d1ebf76cc002cc40119?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3dd6c1ef0f002c95c2e4?alt=media",
+            }
+          ]
+        },
+        {
+          type: "object",
+          key: "item4",
+          displayer: "Item",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Product Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3df1c1ef0f002c95c2f9?alt=media",
+            },
+            {
+              type: "image",
+              key: "popup",
+              displayer: "Popup Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3df1c1ef0f002c95c2f9?alt=media",
+            }
+          ]
+        },
+        {
+          type: "object",
+          key: "item5",
+          displayer: "Item",
+          value: [
+            {
+              type: "image",
+              key: "image",
+              displayer: "Product Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3e06c1ef0f002c95c301?alt=media",
+            },
+            {
+              type: "image",
+              key: "popup",
+              displayer: "Popup Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3e06c1ef0f002c95c301?alt=media",
             }
           ]
         },
@@ -336,7 +374,11 @@ class ECommerce1 extends BaseECommerce {
                 {images.map((item: Image, index: number) => {
                   return (
                     <div className={this.decorateCSS("img-container")}>
-                      <img key={index} src={item.image} className={`${this.decorateCSS("img")} ${index === this.getComponentState("activeSliderIndex") && this.decorateCSS("active") }`}/>
+                      <img 
+                        key={index} src={item.image} 
+                        className={`${this.decorateCSS("img")} ${index === this.getComponentState("activeSliderIndex") && this.decorateCSS("active") }`}
+                        onClick={() => handleImageClick(index)}
+                      />
                     </div>
                   )
                 })}
