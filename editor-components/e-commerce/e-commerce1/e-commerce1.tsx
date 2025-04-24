@@ -3,6 +3,8 @@ import styles from "./ecommerce1.module.scss";
 import { Base } from "composer-tools/composer-base-components/base/base";
 import { ComposerIcon } from "composer-tools/composer-base-components/icon/icon";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
+import ComposerSlider from "composer-tools/composer-base-components/slider/slider";
+import React from "react";
 
 type Image = {
   image: string,
@@ -34,13 +36,13 @@ class ECommerce1 extends BaseECommerce {
               type: "image",
               key: "image",
               displayer: "Product Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67dbc9f6fb049c002cc28545?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68023af6bf76cc002cc3fd06?alt=media",
             },
             {
               type: "image",
               key: "popup",
               displayer: "Popup Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67dc0753fb049c002cc2b94b?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68023af6bf76cc002cc3fd06?alt=media",
             }
           ]
         },
@@ -53,13 +55,13 @@ class ECommerce1 extends BaseECommerce {
               type: "image",
               key: "image",
               displayer: "Product Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67dbca09fb049c002cc2858e?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68023b1fbf76cc002cc3fd29?alt=media",
             },
             {
               type: "image",
               key: "popup",
               displayer: "Popup Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67dc0fc7fb049c002cc2bb80?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68023b1fbf76cc002cc3fd29?alt=media",
             }
           ]
         },
@@ -72,54 +74,16 @@ class ECommerce1 extends BaseECommerce {
               type: "image",
               key: "image",
               displayer: "Product Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67dbca1cfb049c002cc285a1?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68023d1ebf76cc002cc40119?alt=media",
             },
             {
               type: "image",
               key: "popup",
               displayer: "Popup Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67dc1041fb049c002cc2bb94?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68023d1ebf76cc002cc40119?alt=media",
             }
           ]
         },
-        {
-          type: "object",
-          key: "item4",
-          displayer: "Item",
-          value: [
-            {
-              type: "image",
-              key: "image",
-              displayer: "Product Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67dbca2cfb049c002cc28613?alt=media",
-            },
-            {
-              type: "image",
-              key: "popup",
-              displayer: "Popup Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67dc0789fb049c002cc2b966?alt=media",
-            }
-          ]
-        },
-        {
-          type: "object",
-          key: "item5",
-          displayer: "Item",
-          value: [
-            {
-              type: "image",
-              key: "image",
-              displayer: "Product Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67dbca3efb049c002cc2862d?alt=media",
-            },
-            {
-              type: "image",
-              key: "popup",
-              displayer: "Popup Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67dc0796fb049c002cc2b96f?alt=media",
-            }
-          ]
-        }
       ],
     });
     this.addProp({
@@ -240,6 +204,8 @@ class ECommerce1 extends BaseECommerce {
     this.setComponentState("count", 0);
     this.setComponentState("activeImage", 0);
     this.setComponentState("isActive", false);
+    this.setComponentState("sliderRef", React.createRef());
+    this.setComponentState("activeSliderIndex", 0);
   }
 
   static getName(): string {
@@ -288,6 +254,51 @@ class ECommerce1 extends BaseECommerce {
       }
     }
 
+    const moveRightSlider = () => {
+      const slider = this.getComponentState("sliderRef").current;
+      if (slider) {
+        slider.slickNext();
+      }
+
+      let len = images.length-1;
+      let index = this.getComponentState("activeSliderIndex");
+      if (len <= index) {
+        this.setComponentState("activeSliderIndex", 0);
+      }
+      else {
+        this.setComponentState("activeSliderIndex", index+1);
+      }
+    }
+
+    const moveLeftSlider = () => {
+      const slider = this.getComponentState("sliderRef").current;
+      if (slider) {
+        slider.slickPrev();
+      }
+
+      let len = images.length-1;
+      let index = this.getComponentState("activeSliderIndex");
+      if (index == 0) {
+        this.setComponentState("activeSliderIndex", len);
+      }
+      else {
+        this.setComponentState("activeSliderIndex", index-1);
+      }
+    }
+
+    const settings = {
+      arrows: false,
+      dots: false,
+      speed: 725,
+      autoplay: false,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      infinity: true,
+      afterChange: (current: number) => this.setComponentState("activeSliderIndex", current)
+    }
+
+    const sliderRef = this.getComponentState("sliderRef");
+
     const images = this.castToObject<Image[]>("images");
     const categories = this.castToObject<Category[]>("categories");
     const tags = this.castToObject<Tag[]>("tags");
@@ -322,17 +333,29 @@ class ECommerce1 extends BaseECommerce {
           <div className={this.decorateCSS("section")}>
             <div className={this.decorateCSS("left")}>
               <div className={this.decorateCSS("left-images")}>
-                {images.slice(1).map((item: Image, index: number) => {
+                {images.map((item: Image, index: number) => {
                   return (
                     <div className={this.decorateCSS("img-container")}>
-                      <img key={index} src={item.image} className={this.decorateCSS("img")} onClick={() => handleImageClick(index+1)} />
+                      <img key={index} src={item.image} className={`${this.decorateCSS("img")} ${index === this.getComponentState("activeSliderIndex") && this.decorateCSS("active") }`}/>
                     </div>
                   )
                 })}
               </div>
               <div className={this.decorateCSS("right-image")}>
-                <img src={images[0]?.image} className={this.decorateCSS("product-img")} onClick={() => handleImageClick(0)} />
                 {isNew && (<span className={this.decorateCSS("new")}>NEW</span>)}
+                <ComposerIcon name={leftPopupArrow} propsIcon={{className: this.decorateCSS("left-arrow"), onClick: moveLeftSlider}} />
+                <ComposerIcon name={rightPopupArrow} propsIcon={{className: this.decorateCSS("right-arrow"), onClick: moveRightSlider}} />
+                {images.length > 0 && (
+                  <ComposerSlider ref={sliderRef} {...settings} className={this.decorateCSS("carousel")}>
+                    {images.map((item: Image, index: number) => {
+                      return (
+                        <div className={this.decorateCSS("card")}>
+                          <img src={item.image} className={this.decorateCSS("product-img")} onClick={() => handleImageClick(index)} />
+                        </div>
+                      )
+                    })}
+                  </ComposerSlider>
+                )}
               </div>
             </div>
             <div className={this.decorateCSS("right")}>
@@ -354,7 +377,7 @@ class ECommerce1 extends BaseECommerce {
                 <div className={this.decorateCSS("inputs")}>
                   <div className={this.decorateCSS("count-input")}>
                     <label className={this.decorateCSS("label")}>Quantity</label>
-                    <ComposerIcon name={leftIcon} propsIcon={{className: this.decorateCSS("left-icon"), onClick: handleLeftClick }}/>
+                    <ComposerIcon name={leftIcon} propsIcon={{className: this.decorateCSS("left-icon"), onClick: handleLeftClick}}/>
                     <input type="number" value={count} className={this.decorateCSS("input")} min="0" readOnly />
                     <ComposerIcon name={rightIcon} propsIcon={{className: this.decorateCSS("right-icon"), onClick: handleRightClick}}/>
                   </div>
@@ -394,7 +417,7 @@ class ECommerce1 extends BaseECommerce {
             </div>
           </div>
           {isActive && (
-            <div className={this.decorateCSS("image-popup")} onClick={handleClose}>
+            <div className={this.decorateCSS("image-popup")}>
               <div className={this.decorateCSS("popup-content")}>
                 <img src={images[activeImage]?.popup} className={this.decorateCSS("popup-image")}/>
                 <div className={this.decorateCSS("items")}>
