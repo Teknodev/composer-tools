@@ -1,0 +1,279 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
+  as *;
+
+.container {
+  .max-content {
+    display: flex;
+    flex-direction: column;
+
+    .header-container {
+      display: flex;
+      .heading {
+        font-size: 1rem;
+      }
+      .title-container {
+        margin-bottom: 3rem;
+        .title {
+          font-size: 3rem;
+          text-align: center;
+          background-color: transparent;
+          background-image: linear-gradient(
+            160deg,
+            var(--composer-primary-color) -30%,
+            var(--composer-font-color-primary) 100%
+          );
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+      }
+    }
+
+    .side-container {
+      display: flex;
+      gap: var(--composer-gap-md);
+
+      .left-side {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        gap: var(--composer-gap-md);
+        width: 100%;
+        .top-left-side {
+          display: flex;
+          height: 100%;
+          &[data-animation~="animate1"] {
+            &:hover {
+              border: 1px solid var(--composer-primary-color);
+              box-shadow: 0px 0px 25px -10px var(--composer-primary-color);
+              border-radius: var(--composer-border-radius-md);
+            }
+          }
+
+          .top-left-side-card {
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+            gap: var(--composer-gap-xl);
+            background-color: color-mix(
+              in srgb,
+              var(--composer-html-background),
+              var(--composer-font-color-primary) 5%
+            );
+            border-radius: var(--composer-border-radius-md);
+            padding: var(--padding-xl);
+            .top-left-side-image {
+              > img {
+                width: 60px;
+                height: 60px;
+              }
+            }
+            .top-left-side-card-text-container {
+              display: flex;
+              flex-direction: column;
+              gap: var(--composer-gap-sm);
+              color: var(--composer-font-color-primary);
+              .top-left-side-card-title {
+                background-color: transparent;
+                background-image: linear-gradient(
+                  160deg,
+                  var(--composer-font-color-primary) 0%,
+                  var(--composer-tertiary-color) 100%
+                );
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                font-size: 2rem;
+              }
+              .top-left-side-card-description {
+                font-size: 1rem;
+                opacity: 0.7;
+              }
+            }
+          }
+        }
+        .bottom-left-side {
+          height: 100%;
+          .bottom-left-side-card {
+            display: flex;
+            flex-direction: column;
+            border-radius: var(--composer-border-radius-md);
+            padding: var(--padding-xl);
+            gap: var(--composer-gap-md);
+            overflow: hidden;
+            height: 100%;
+            background-color: var(--composer-primary-color);
+            .bottom-left-side-card-image {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              transform: translateY(4rem);
+              > img {
+                max-height: 500px;
+                object-fit: contain;
+              }
+            }
+            .bottom-left-side-card-text-container {
+              display: flex;
+              flex-direction: column;
+              gap: var(--composer-gap-sm);
+              .bottom-left-side-card-title {
+                font-size: 2rem;
+                color: var(--composer-html-background);
+                background-color: transparent;
+                background-image: linear-gradient(
+                  160deg,
+                  var(--composer-font-color-secondary) 0%,
+                  var(--composer-font-color-primary) 100%
+                );
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+              }
+              .bottom-left-side-card-description {
+                font-size: 1rem;
+                opacity: 0.7;
+                color: var(--composer-font-color-secondary);
+              }
+            }
+          }
+        }
+      }
+      .right-side {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        gap: var(--composer-gap-md);
+        width: 100%;
+
+        &.rows-1 {
+          .top-right-side-container,
+          .bottom-right-side-container,
+          .bottom-right-side-container-2 {
+            flex: 1;
+            height: 100%;
+          }
+        }
+
+        &.rows-2 {
+          .top-right-side-container,
+          .bottom-right-side-container,
+          .bottom-right-side-container-2 {
+            flex: 1;
+            height: calc(0% - var(--composer-gap-md) / 2);
+          }
+        }
+
+        &.rows-3 {
+          .top-right-side-container,
+          .bottom-right-side-container,
+          .bottom-right-side-container-2 {
+            flex: 1;
+            height: calc(33.333% - var(--composer-gap-md) * 2 / 3);
+          }
+        }
+
+        .top-right-side-container,
+        .bottom-right-side-container,
+        .bottom-right-side-container-2 {
+          display: flex;
+          width: 100%;
+          gap: var(--composer-gap-md);
+
+          .card-container {
+            display: flex;
+            justify-content: space-around;
+            flex-direction: column;
+            gap: var(--composer-gap-xl);
+            background-color: color-mix(
+              in srgb,
+              var(--composer-html-background),
+              var(--composer-font-color-primary) 5%
+            );
+            border-radius: var(--composer-border-radius-md);
+            padding: var(--padding-xl);
+            height: 100%;
+            flex: 1;
+
+            &[data-animation~="animate1"] {
+              &:hover {
+                border: 1px solid var(--composer-primary-color);
+                box-shadow: 0px 0px 25px -10px var(--composer-primary-color);
+                border-radius: var(--composer-border-radius-md);
+              }
+            }
+
+            &.single-card {
+              width: 100%;
+            }
+
+            .image-container {
+              > img {
+                width: 60px;
+                height: 60px;
+              }
+            }
+            .card-text-container {
+              display: flex;
+              flex-direction: column;
+              gap: var(--composer-gap-sm);
+              .card-title {
+                font-size: 2rem;
+                background-color: transparent;
+                background-image: linear-gradient(
+                  160deg,
+                  var(--composer-font-color-primary) 0%,
+                  var(--composer-tertiary-color) 100%
+                );
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+              }
+              .card-description {
+                font-size: 1rem;
+                opacity: 0.7;
+                color: var(--composer-font-color-primary);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .side-container {
+        flex-direction: column;
+      }
+
+      .right-side {
+        &.rows-1,
+        &.rows-2,
+        &.rows-3 {
+          .top-right-side-container,
+          .bottom-right-side-container,
+          .bottom-right-side-container-2 {
+            height: auto;
+          }
+        }
+
+        .top-right-side-container,
+        .bottom-right-side-container,
+        .bottom-right-side-container-2 {
+          flex-direction: column;
+
+          .card-container {
+            width: 100%;
+          }
+        }
+      }
+
+      .left-side {
+        .bottom-left-side {
+          .bottom-left-side-card {
+            min-height: 500px;
+          }
+        }
+      }
+    }
+  }
+}
