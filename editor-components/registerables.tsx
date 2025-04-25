@@ -20,6 +20,7 @@ import ListComponent7 from "./list/list7/list7";
 import ListComponent8 from "./list/list8/list8";
 import ListComponent9 from "./list/list9/list9";
 import ListComponent10 from "./list/list10/list10";
+import ListComponent11 from "./list/list11/list11";
 import LocationComponent1 from "./location/location1/location1";
 import LocationComponent3 from "./location/location3/location3";
 import ContentComponent1 from "./content/content1/content1";
@@ -222,11 +223,15 @@ import Location4 from "./location/location4/location4";
 import Location5 from "./location/location5/location5";
 import Location6 from "./location/location6/location6";
 import ConfirmationModal2 from "./modal/confirmation-modal-2/confirmation-modal-2";
-import BannerComponent1 from "../editor-components/banner/banner1/banner1";
-import BannerComponent2 from "../editor-components/banner/banner2/banner2";
-import BannerComponent5 from "../editor-components/banner/banne5/banner5";
+import BannerComponent1 from "./banner/banner1/banner1";
+import BannerComponent2 from "./banner/banner2/banner2";
+import BannerComponent4 from "./banner/banner4/banner4";
+import BannerComponent5 from "./banner/banner5/banner5";
 import SocialComponent1 from "./social/social1/social1";
-import SocialComponent3 from "../editor-components/social/social3/social3";
+import SocialComponent3 from "./social/social3/social3";
+import SocialWidget1 from "./social_widget/social_widget1/social_widget1";
+import SocialWidget3 from "./social_widget/social_widget3/social_widget3";
+import SocialWidget4 from "./social_widget/social_widget4/social_widget4";
 
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
@@ -255,6 +260,7 @@ function Registerables(composer: ComponentsRegistery) {
     ListComponent8,
     ListComponent9,
     ListComponent10,
+    ListComponent11,
     ContentComponent1,
     ContentComponent2,
     ContentComponent3,
@@ -455,8 +461,12 @@ function Registerables(composer: ComponentsRegistery) {
     ConfirmationModal2,
     BannerComponent1,
     BannerComponent2,
+    BannerComponent4,
     BannerComponent5,
-    SocialComponent3
+    SocialComponent3,
+    SocialWidget1,
+    SocialWidget3,
+    SocialWidget4,
   ]);
 }
 
