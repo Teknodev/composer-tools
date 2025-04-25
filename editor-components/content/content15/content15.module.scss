@@ -1,0 +1,75 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
+  as *;
+.container {
+  background-color: color-mix(
+    in srgb,
+    var(--composer-html-background),
+    var(--composer-font-color-primary) 5%
+  );
+  border-radius: var(--composer-border-radius-sm);
+  .max-content {
+    display: flex;
+    .grid {
+      .card-1 {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-md);
+        color: var(--composer-font-color-primary);
+        .title {
+          font-size: 2rem;
+        }
+        .sub-title {
+          font-size: 1rem;
+          opacity: 0.5;
+        }
+      }
+      .card-2 {
+        color: var(--composer-font-color-primary);
+        .text-1 {
+          font-size: 1rem;
+          opacity: 0.7;
+        }
+      }
+      .card-3 {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-md);
+        .text-2 {
+          font-size: 1rem;
+          opacity: 0.7;
+          color: var(--composer-font-color-primary);
+        }
+        .information {
+          display: flex;
+          flex-direction: column;
+          gap: var(--composer-gap-xs);
+          .name {
+            font-size: 1.5rem;
+            color: var(--composer-primary-color);
+          }
+          .job-title {
+            font-size: 1rem;
+            opacity: 0.5;
+            color: var(--composer-font-color-primary);
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .max-content {
+    .grid {
+      grid-template-columns: repeat(var(--composer-grid-count), 1fr);
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .max-content {
+    .grid {
+      grid-template-columns: repeat(var(--composer-grid-count-phone), 1fr);
+    }
+  }
+}
