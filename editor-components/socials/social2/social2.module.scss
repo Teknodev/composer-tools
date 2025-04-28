@@ -1,0 +1,299 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+@mixin overlayBaseStyles {
+
+    &.popup-active {
+      pointer-events: none;
+    }
+  
+    .slider-container {
+      .video-container {
+        height: 100%;
+        width: 100%;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        width: 360px !important;
+        height: 656px;
+        position: relative;
+  
+        .selected-video {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+          border-radius: var(--composer-border-radius-xs);
+        }
+  
+        .video-text-container {
+          position: absolute;
+          bottom: calc(var(--composer-gap-lg) * 2);
+          padding: 0px var(--composer-gap-md);
+  
+          .video-text {
+            color: var(--composer-font-color-primary);
+            font-size: 1rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+        }
+  
+        .close-icon-container,
+        .share-icon-container {
+          position: absolute;
+          top: var(--composer-gap-md);
+          left: var(--composer-gap-md);
+          background-color: rgba(255, 255, 255, 0.304);
+          border-radius: 50%;
+          width: 30px;
+          height: 30px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+  
+          .close-icon {
+            color: rgba(0, 0, 0, 0.5);
+            font-size: 2rem;
+          }
+          .share-icon{
+            color: white;
+            font-size: 2rem;
+          }
+        }
+  
+        .share-icon-container {
+          left: auto;
+          right: var(--composer-gap-md);
+          background-color: transparent;
+        }
+  
+        .share-wrapper {
+          right: var(--composer-gap-md);
+          left: 0px;
+          background-color: transparent;
+          position: absolute;
+          bottom: 0px;
+          width: 100%;
+          height: 0px;
+          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+          border-radius: var(--composer-border-radius-xs);
+          display: flex;
+          gap: var(--composer-gap-md);
+          flex-direction: column;
+          transition: all 0.5s ease;
+  
+          &.active {
+            height: 150px;
+          }
+  
+          .share-popup-container {
+            padding: var(--composer-gap-sm);
+            height: 100%;
+  
+            .share-popup-upper {
+              display: flex;
+  
+              .share-popup-title {
+                color: var(--composer-font-color-primary);
+                font-size: 1.5rem;
+                flex: 1;
+              }
+  
+              .share-popup-close {
+                pointer-events: auto;
+                cursor: pointer;
+  
+                .share-close-icon {
+                  color: var(--composer-font-color-primary);
+                  font-size: 1.5rem;
+                }
+              }
+            }
+  
+            .social-icons-container {
+              display: flex;
+              gap: var(--composer-gap-md);
+              align-items: center;
+              justify-content: center;
+              height: 100%;
+              pointer-events: auto;
+  
+              .social-icons {
+                border: 1px solid var(--composer-tertiary-color);
+                padding: var(--composer-gap-sm);
+                border-radius: 50%;
+                transition: all 0.5s ease;
+  
+                &:hover {
+                  transform: scale(1.2);
+                }
+  
+                .social-icon {
+                  font-size: 1.5rem;
+                  color: var(--composer-font-color-primary);
+                  cursor: pointer;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+.container{
+    position: relative;
+    .max-content{
+        .upper-container{
+            .title{
+                content: "";
+            }
+        }
+    
+        .slider-container{
+            width: 100%;
+            position: relative;
+            .slider{
+                width: 100%;
+                >div{
+                    >div{
+                        display: flex;
+                        gap: var(--composer-gap-md);
+                    }
+                }
+                .slider-item {
+                    aspect-ratio: 9 / 16;
+                    width: 100%;
+                    overflow: hidden;
+                    position: relative;
+                    .video {
+                      width: 100%;
+                      height: 100%;
+                      object-fit: cover;
+                      border-radius: var(--composer-border-radius-xs);
+                    }
+                    .icon-container{
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        transition: all 0.5s ease;
+                        cursor:pointer;
+                        .icon{
+                            font-size: 1.5rem;
+                            color:white;
+                        }
+                        &::after {
+                            position: absolute;
+                            content: "";
+                            border: 1px solid white;
+                            border-radius: 50%;
+                            background-color: transparent;
+                            width: 50px;
+                            height: 50px;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            transition: all 0.5s ease;
+                        }
+                        &:hover{
+                            &::after{
+                                width: 60px;
+                                height: 60px;
+                            }
+                        }
+                    }
+                }
+            }
+            .arrows{
+                .next-arrow,.prev-arrow{
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    color: var(--composer-font-color-primary);
+                    font-size: 1.5rem;
+                    cursor: pointer;
+                }
+                .next-arrow{
+                    right: calc(-1 * var(--composer-gap-md));
+                }
+                .prev-arrow{
+                    left: calc(-1 * var(--composer-gap-md));
+                }
+            }
+        }
+    }
+    .overlay{
+        position: absolute;
+        width: 360px;
+        height: 656px;
+        bottom: var(--composer-gap-md);
+        right: var(--composer-gap-md);
+        @include overlayBaseStyles;    
+    }
+}
+.base-overlay{
+    @include overlayBaseStyles;
+    .slider-container{
+        >div{
+            >div{
+                >div{
+                    >div{
+                        justify-content: center;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container{
+        .max-content{
+            .slider-container{
+                .slider{
+                    .slider-item {
+                        aspect-ratio: 1 / 1.8;
+                    }
+                }
+            }
+        }
+    }
+}
+@container (max-width: #{$composer-phone-width}) {
+  .container{
+    .max-content{
+      .slider-container{
+        .slider{
+          >div{
+            >div{
+              align-items: stretch;
+              >div{
+                height: auto !important;
+                >div{
+                  height: 100%;
+                }
+              }
+            }
+        }
+          .slider-item{
+            aspect-ratio: auto;
+          }
+        }
+      }
+    }
+  }
+    .base-overlay{
+        .video-container{
+            .selected-video{
+                height: 50%;
+                width: 90%;
+            }
+        }
+    }
+}
