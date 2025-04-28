@@ -1,4 +1,3 @@
-import * as React from "react";
 import styles from "./banner7.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { BaseBanner } from "../../EditorComponent";
@@ -61,9 +60,17 @@ class Banner7 extends BaseBanner {
 
     return (
       <Base.Container
-        className={this.decorateCSS("container")}
+        className={`${this.decorateCSS("container")} ${
+          this.getPropValue("backgroundImage")
+            ? this.decorateCSS("background")
+            : this.decorateCSS("no-background")
+        }`}
         style={{
-          backgroundImage: `url(${this.getPropValue("backgroundImage")})`,
+          ...(this.getPropValue("backgroundImage")
+            ? {
+                backgroundImage: `url(${this.getPropValue("backgroundImage")})`,
+              }
+            : {}),
         }}
       >
         {isCrumberVisible && (

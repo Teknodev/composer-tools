@@ -461,7 +461,6 @@ function Registerables(composer: ComponentsRegistery) {
     BannerComponent1,
     BannerComponent2,
     BannerComponent7,
-    SocialComponent3
     SocialComponent3,
     SocialWidget1,
     SocialWidget3,

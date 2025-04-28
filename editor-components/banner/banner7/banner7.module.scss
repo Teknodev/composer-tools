@@ -1,13 +1,5 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
-@mixin textEllipsis($lines: 2, $important: false) {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: $lines#{if($important, " !important", "")};
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
 .container {
     position: relative;
     min-height: 400px;
@@ -26,6 +18,14 @@
         bottom: 0;
         background-color: rgba(0, 0, 0, 0.4);
         z-index: 1;
+    }
+
+    &.no-background {
+        background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+
+        &::before {
+            content: none;
+        }
     }
 
     >* {
@@ -56,7 +56,6 @@
                 font-family: var(--composer-font-family);
                 font-weight: bold;
                 color: var(--composer-font-color-primary);
-                @include textEllipsis(2);
             }
 
             .breadcrumb-items {
@@ -72,10 +71,7 @@
 
                 .home-page,
                 .about-page {
-                    flex: 0 0 calc(50% - var(--composer-gap-xs));
-                    min-width: 0;
-                    max-width: 100%;
-                    @include textEllipsis(2);
+                    content: "";
                 }
 
                 .home-page:hover {
