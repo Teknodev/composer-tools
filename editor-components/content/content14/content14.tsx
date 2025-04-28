@@ -37,26 +37,30 @@ class Content14 extends BaseContent {
         const titleExist = this.getPropValue("title");
         const textExist = this.getPropValue("text");
 
+        const showContent = this.castToString(subTitleExist) || this.castToString(titleExist) || this.castToString(textExist);
+
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <div className={this.decorateCSS("content")}>
-                        {this.castToString(subTitleExist) && (
-                            <Base.SectionSubTitle className={this.decorateCSS("sub-title")}>
-                                {subTitleExist}
-                            </Base.SectionSubTitle>
-                        )}
-                        {this.castToString(titleExist) && (
-                            <Base.SectionTitle className={this.decorateCSS("title")}>
-                                {titleExist}
-                            </Base.SectionTitle>
-                        )}
-                        {this.castToString(textExist) && (
-                            <Base.SectionDescription className={this.decorateCSS("text-container")}>
-                                {textExist}
-                            </Base.SectionDescription>
-                        )}
-                    </div>
+                    {showContent && (
+                        <div className={this.decorateCSS("content")}>
+                            {this.castToString(subTitleExist) && (
+                                <Base.SectionSubTitle className={this.decorateCSS("sub-title")}>
+                                    {subTitleExist}
+                                </Base.SectionSubTitle>
+                            )}
+                            {this.castToString(titleExist) && (
+                                <Base.SectionTitle className={this.decorateCSS("title")}>
+                                    {titleExist}
+                                </Base.SectionTitle>
+                            )}
+                            {this.castToString(textExist) && (
+                                <Base.SectionDescription className={this.decorateCSS("text-container")}>
+                                    {textExist}
+                                </Base.SectionDescription>
+                            )}
+                        </div>
+                    )}
                 </Base.MaxContent>
             </Base.Container>
         )
