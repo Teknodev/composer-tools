@@ -2,7 +2,6 @@ import * as React from "react";
 import styles from "./content17.module.scss";
 import { BaseContent } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
-import { display } from "@mui/system";
 
 class Content17 extends BaseContent {
     constructor(props?: any) {
