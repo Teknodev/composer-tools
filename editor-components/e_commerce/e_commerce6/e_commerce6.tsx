@@ -8,7 +8,6 @@ import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 import ComposerSlider from "composer-tools/composer-base-components/slider/slider";
 import { getCurrencyInfo } from "components/setting-input/inputs/currency";
 import { copyToClipboard } from "utils/copy-utils";
-import { TbGridScan } from "react-icons/tb";
 
 type Images ={
   item: string;
@@ -740,7 +739,7 @@ class ECommerce6 extends BaseECommerce {
               <ComposerSlider  {...settingsSmallImage} className={this.decorateCSS("small-images-container")} ref={this.getComponentState("slider-ref-small-image")}>
                 {images.map((item: Images, index: number)=>{
                   return(
-                    <div className={this.decorateCSS("small-image")}>
+                    <div className={this.decorateCSS("small-image")} key={index}>
                       <img src={item.item} className={this.decorateCSS("image")} onClick={()=> this.handleDotClick(index)}></img>
                       {this.getPropValue("smallImageOverlay") && (
                         <div className={`${this.decorateCSS("overlay")} ${this.getComponentState("selectedImage") === index && this.decorateCSS("selected-image")}`}
@@ -754,7 +753,7 @@ class ECommerce6 extends BaseECommerce {
               <ComposerSlider  {...settingsSmallImageMobile} className={this.decorateCSS("small-images-container-mobile")} ref={this.getComponentState("slider-ref-small-image-mobile")}>
                 {images.map((item: Images, index: number)=>{
                   return(
-                    <div className={this.decorateCSS("small-image")}>
+                    <div className={this.decorateCSS("small-image")} key={index}>
                       <img src={item.item} className={this.decorateCSS("image")} onClick={()=> this.handleDotClick(index)}></img>
                       {this.getPropValue("smallImageOverlay") && (
                         <div className={`${this.decorateCSS("overlay")} ${this.getComponentState("selectedImage") === index && this.decorateCSS("selected-image")}`}
@@ -789,7 +788,7 @@ class ECommerce6 extends BaseECommerce {
             <ComposerSlider {...settings} className={this.decorateCSS("slider-container")} ref={this.getComponentState("slider-ref")}>
               {images.map((item: Images, index: number)=>{
                   return(
-                  <div className={this.decorateCSS("slider")}>
+                  <div className={this.decorateCSS("slider")} key={index}>
                     <div className={this.decorateCSS("big-image-container")}>
                       <img src={item.item} onClick={()=> this.toggleZoomImage()} className={this.decorateCSS("big-image")}></img>
                     </div>
@@ -821,7 +820,7 @@ class ECommerce6 extends BaseECommerce {
                     <div className={this.decorateCSS("socials")}>
                     {socials.map((item:Socials, index: number)=> {
                       return(
-                        <div className={this.decorateCSS("social")}>
+                        <div className={this.decorateCSS("social")} key={index}>
                           <ComposerIcon name={item.icon} propsIcon={{className: this.decorateCSS("social-icon")}}/>
                           <ComposerLink path={item.link} ><div className={this.decorateCSS("social-text")}>{item.text}</div></ComposerLink>
                         </div>
@@ -858,7 +857,7 @@ class ECommerce6 extends BaseECommerce {
               {sizeSections.map((item:SizeSections, index: number)=>{
                 return(
                   <div className={`${this.decorateCSS("size-select")} ${this.getComponentState("selectedSizeSection") === index && this.decorateCSS("active")}`} 
-                  onClick={() => this.toggleSize(index)}>
+                  onClick={() => this.toggleSize(index)} key={index}>
                   {item.size && <div className={this.decorateCSS("size")}>{item.size}</div>}
                   {this.castToString(item.type) && <div className={this.decorateCSS("type")}>{item.type}</div>}                
                   </div>
@@ -901,7 +900,7 @@ class ECommerce6 extends BaseECommerce {
             <div className={this.decorateCSS("delivery-types")}>
             {deliveryType.map((item: DeliveryType , index: number) => {
               return(
-                <div className={this.decorateCSS("delivery-type")}>
+                <div className={this.decorateCSS("delivery-type")} key={index}>
                   {item.isRadioButtonActive &&
                     <div onClick={() => this.handleRadioButton(index)} className={`${this.decorateCSS("radio-button")}
                     ${(this.getComponentState("selectedRadioButton") === index) && this.decorateCSS("active")}`}></div>
@@ -920,7 +919,7 @@ class ECommerce6 extends BaseECommerce {
               <div className={this.decorateCSS("sections")}>
                 {itemDetails.map((item: ItemDetails , index: number)=>{
                   return(
-                    <div className={this.decorateCSS("section")}>
+                    <div className={this.decorateCSS("section")} key={index}>
                       {(this.castToString(item.title) || this.getPropValue("upArrowIcon") || this.getPropValue("downArrowIcon")) && (
                         <div className={this.decorateCSS("title-container")}>
                           {this.castToString(item.title) && <div className={this.decorateCSS("title")} onClick={() => this.toggleDescription(index)}>{item.title}</div>}
@@ -969,7 +968,7 @@ class ECommerce6 extends BaseECommerce {
               <div className={this.decorateCSS("dots")}>
                 {images.map((item, index:number) =>{
                   return(
-                    <div className={this.decorateCSS("dot")} onClick={()=> this.handleDotClick(index)}>
+                    <div className={this.decorateCSS("dot")} onClick={()=> this.handleDotClick(index)} key={index}>
                       <ComposerIcon name={this.getPropValue("sliderDotIcon")} propsIcon={{className: `${this.decorateCSS("icon")} ${(this.getComponentState("selectedImage")=== index) && this.decorateCSS("active")}`}}/>
                     </div>
                   )
