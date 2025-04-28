@@ -1,0 +1,57 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
+  as *;
+
+.container {
+  background-color: color-mix(
+    in srgb,
+    var(--composer-html-background),
+    var(--composer-font-color-primary) 5%
+  );
+
+  .max-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-md);
+    .top-container {
+      .sub-title {
+        content: "";
+      }
+      .title {
+        margin-top: 0;
+      }
+    }
+    .text-container {
+      columns: 2;
+      column-gap: 4rem;
+      color: var(--composer-font-color-primary);
+      font-size: 1rem;
+      .text-1,
+      .text-2 {
+        display: flex;
+      }
+    }
+    .bottom-container {
+      color: var(--composer-font-color-primary);
+      text-align: center;
+      .signature {
+        > img {
+          width: 150px;
+          height: 100px;
+          object-fit: contain;
+        }
+      }
+      .name {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .text-container {
+    columns: 1 !important;
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-md);
+  }
+}
