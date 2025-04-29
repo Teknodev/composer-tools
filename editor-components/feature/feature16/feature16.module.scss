@@ -15,15 +15,6 @@
         margin-bottom: 3rem;
         .title {
           font-size: 3rem;
-          text-align: center;
-          background-color: transparent;
-          background-image: linear-gradient(
-            160deg,
-            var(--composer-primary-color) -30%,
-            var(--composer-font-color-primary) 100%
-          );
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
         }
       }
     }
@@ -41,11 +32,14 @@
         .top-left-side {
           display: flex;
           height: 100%;
+          border-radius: var(--composer-border-radius-md);
+          border: 1px solid transparent;
+          box-sizing: border-box;
           &[data-animation~="animate1"] {
             &:hover {
               border: 1px solid var(--composer-primary-color);
               box-shadow: 0px 0px 25px -10px var(--composer-primary-color);
-              border-radius: var(--composer-border-radius-md);
+              transition: all 0.3s ease;
             }
           }
 
@@ -73,14 +67,7 @@
               gap: var(--composer-gap-sm);
               color: var(--composer-font-color-primary);
               .top-left-side-card-title {
-                background-color: transparent;
-                background-image: linear-gradient(
-                  160deg,
-                  var(--composer-font-color-primary) 0%,
-                  var(--composer-tertiary-color) 100%
-                );
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
+                color: var(--composer-font-color-primary);
                 font-size: 2rem;
               }
               .top-left-side-card-description {
@@ -117,15 +104,7 @@
               gap: var(--composer-gap-sm);
               .bottom-left-side-card-title {
                 font-size: 2rem;
-                color: var(--composer-html-background);
-                background-color: transparent;
-                background-image: linear-gradient(
-                  160deg,
-                  var(--composer-font-color-secondary) 0%,
-                  var(--composer-font-color-primary) 100%
-                );
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
+                color: var(--composer-font-color-secondary);
               }
               .bottom-left-side-card-description {
                 font-size: 1rem;
@@ -191,12 +170,14 @@
             padding: var(--padding-xl);
             height: 100%;
             flex: 1;
+            border: 1px solid transparent;
+            box-sizing: border-box;
 
             &[data-animation~="animate1"] {
               &:hover {
                 border: 1px solid var(--composer-primary-color);
                 box-shadow: 0px 0px 25px -10px var(--composer-primary-color);
-                border-radius: var(--composer-border-radius-md);
+                transition: all 0.3s ease;
               }
             }
 
@@ -216,14 +197,7 @@
               gap: var(--composer-gap-sm);
               .card-title {
                 font-size: 2rem;
-                background-color: transparent;
-                background-image: linear-gradient(
-                  160deg,
-                  var(--composer-font-color-primary) 0%,
-                  var(--composer-tertiary-color) 100%
-                );
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
+                color: var(--composer-font-color-primary);
               }
               .card-description {
                 font-size: 1rem;

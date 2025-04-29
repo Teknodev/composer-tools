@@ -320,11 +320,11 @@ class Feature16 extends BaseFeature {
                             )}
                         </Base.SectionSubTitle>
                         {this.castToString(this.getPropValue("title")) && (
-                            <div className={this.decorateCSS("title-container")}>
+                            <Base.SectionTitle className={this.decorateCSS("title-container")}>
                                 <div className={this.decorateCSS("title")}>
                                     {this.getPropValue("title")}
                                 </div>
-                            </div>
+                            </Base.SectionTitle>
                         )}
                     </Base.VerticalContent>
                     <div className={this.decorateCSS("side-container")}>
