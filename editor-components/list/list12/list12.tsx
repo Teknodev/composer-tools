@@ -158,7 +158,9 @@ class List12 extends BaseList {
 
             <div className={this.decorateCSS("middleBox")}>
               {(box2.title || box2.subtitle) && (
-                <div className={this.decorateCSS("section-wrapper")}>
+                <Base.SectionTitle
+                  className={this.decorateCSS("section-wrapper")}
+                >
                   {box2.title && (
                     <div className={this.decorateCSS("title")}>
                       {box2.title}
@@ -169,7 +171,7 @@ class List12 extends BaseList {
                       {box2.subtitle}
                     </div>
                   )}
-                </div>
+                </Base.SectionTitle>
               )}
               {(box2.item || box2.icon) && (
                 <div className={this.decorateCSS("circle")}>
