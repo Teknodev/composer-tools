@@ -73,7 +73,7 @@
               }
               .top-left-side-card-description {
                 font-size: 1rem;
-                opacity: 0.7;
+                color: var(--composer-tertiary-color);
               }
             }
           }
@@ -109,7 +109,6 @@
               }
               .bottom-left-side-card-description {
                 font-size: 1rem;
-                opacity: 0.7;
                 color: var(--composer-font-color-secondary);
               }
             }
@@ -202,8 +201,7 @@
               }
               .card-description {
                 font-size: 1rem;
-                opacity: 0.7;
-                color: var(--composer-font-color-primary);
+                color: var(--composer-tertiary-color);
               }
             }
           }
@@ -216,6 +214,13 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
+      .header-container {
+        align-items: center;
+        .title {
+          text-align: center;
+        }
+      }
+
       .side-container {
         flex-direction: column;
       }
