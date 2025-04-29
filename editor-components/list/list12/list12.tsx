@@ -149,24 +149,23 @@ class List12 extends BaseList {
                   )}
                 </div>
               )}
-              {box1.text && (
+              {this.castToString(box1.text) && (
                 <div className={this.decorateCSS("titles")}>
                   <div className={this.decorateCSS("text1")}>{box1.text}</div>
                 </div>
               )}
             </div>
-
             <div className={this.decorateCSS("middleBox")}>
-              {(box2.title || box2.subtitle) && (
+              {this.castToString(box2.title || box2.subtitle) && (
                 <Base.SectionTitle
                   className={this.decorateCSS("section-wrapper")}
                 >
-                  {box2.title && (
+                  {this.castToString(box2.title) && (
                     <div className={this.decorateCSS("title")}>
                       {box2.title}
                     </div>
                   )}
-                  {box2.subtitle && (
+                  {this.castToString(box2.subtitle) && (
                     <div className={this.decorateCSS("subtitle")}>
                       {box2.subtitle}
                     </div>
@@ -191,7 +190,7 @@ class List12 extends BaseList {
                   )}
                 </div>
               )}
-              {box2.text && (
+              {this.castToString(box2.text) && (
                 <div className={this.decorateCSS("titles")}>
                   <div className={this.decorateCSS("text2")}>{box2.text}</div>
                 </div>
@@ -217,7 +216,7 @@ class List12 extends BaseList {
                   )}
                 </div>
               )}
-              {box3.text && (
+              {this.castToString(box3.text) && (
                 <div className={this.decorateCSS("titles")}>
                   <div className={this.decorateCSS("text3")}>{box3.text}</div>
                 </div>
