@@ -232,6 +232,7 @@ import SocialComponent2 from "../editor-components/socials/social2/social2";
 import SocialComponent3 from "../editor-components/social/social3/social3";
 import SocialComponent4 from "../editor-components/social/social4/social4";
 import SocialWidget1 from "../editor-components/social_widget/social_widget1/social_widget1";
+import SocialWidget2 from "../editor-components/social_widget/social_widget2/social_widget2";
 import SocialWidget3 from "../editor-components/social_widget/social_widget3/social_widget3";
 import SocialWidget4 from "../editor-components/social_widget/social_widget4/social_widget4";
 import SocialWidget5 from "../editor-components/social_widget/social_widget5/social_widget5";
@@ -470,6 +471,7 @@ function Registerables(composer: ComponentsRegistery) {
     SocialComponent3,
     SocialComponent4,
     SocialWidget1,
+    SocialWidget2,
     SocialWidget3,
     SocialWidget4,
     SocialWidget5,
