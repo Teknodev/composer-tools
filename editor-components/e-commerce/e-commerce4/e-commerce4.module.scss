@@ -8,7 +8,7 @@
         align-items: flex-start;
         justify-content: center;
         gap: var(--composer-gap-sm);
-        padding: var(--padding-sm);
+        padding: var(--composer-gap-xs);
         position: relative;
         overflow: hidden;
 
@@ -83,7 +83,7 @@
             background-color: var(--composer-font-color-primary);
             color: var(--composer-html-background);
             border-radius: 50%;
-            padding: var(--padding-md);
+            padding: var(--composer-gap-sm);
             white-space: nowrap;
           }
 
@@ -93,10 +93,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: var(--padding-md);
+            padding: var(--composer-gap-sm);
             .cardLeftText {
               color: var(--composer-html-background);
-              padding: var(--padding-xs) var(--padding-md);
+              padding: var(--composer-gap-xs) var(--composer-gap-sm);
               font-size: 1rem;
               background-color: var(--composer-secondary-color);
               border-radius: var(--composer-border-radius-lg);
@@ -139,7 +139,7 @@
             position: absolute;
             top: 5%;
             right: 2%;
-            padding: var(--padding-md);
+            padding: var(--composer-gap-sm);
             .right-side-items {
               display: flex;
               justify-content: space-between;
@@ -155,7 +155,7 @@
                 height: 1.5rem;
                 background-color: var(--composer-font-color-primary);
                 color: var(--composer-html-background);
-                padding: var(--padding-md) var(--padding-sm);
+                padding: var(--composer-gap-sm) var(--composer-gap-xs);
                 border-radius: var(--border-radius-sm);
                 .card-right-text {
                   font-size: 1rem;
@@ -171,7 +171,7 @@
                 justify-content: center;
                 align-items: center;
                 text-align: center;
-                padding: var(--padding-sm);
+                padding: var(--composer-gap-xs);
                 cursor: pointer;
                 &:hover {
                   background-color: var(--composer-font-color-primary);
@@ -193,7 +193,7 @@
           display: flex;
           flex-grow: 1;
           flex-direction: column;
-          gap: var(--gap-sm);
+          gap: var(--composer-gap-xs);
           font-size: 1rem;
           color: var(--composer-font-color-primary);
           &.text-sold-out {
@@ -235,7 +235,7 @@
       justify-content: center;
       margin-top: 1rem;
 
-      .button {
+      .button { 
         content: "";
       }
     }
