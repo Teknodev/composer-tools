@@ -282,6 +282,32 @@ class Feature16 extends BaseFeature {
         return "Future16";
     }
 
+    renderCard(cardData, prefix, isAlone = false) {
+        const className = `${this.decorateCSS("card")} ${isAlone ? this.decorateCSS("single-card") : ""}`;
+
+        return (
+            <div className={className} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                {cardData[`${prefix}Image`] && (
+                    <div className={this.decorateCSS("card-image")}>
+                        <img src={cardData[`${prefix}Image`]} alt="Content" />
+                    </div>
+                )}
+                <div className={this.decorateCSS("card-text-container")}>
+                    {cardData[`${prefix}Title`] && (
+                        <div className={this.decorateCSS("card-title")}>
+                            {cardData[`${prefix}Title`]}
+                        </div>
+                    )}
+                    {cardData[`${prefix}Description`] && (
+                        <div className={this.decorateCSS("card-description")}>
+                            {cardData[`${prefix}Description`]}
+                        </div>
+                    )}
+                </div>
+            </div>
+        );
+    }
+
     render() {
         const topLeftSide = this.castToObject<any>("topLeftSide")
         const bottomLeftSide = this.castToObject<any>("bottomLeftSide");
@@ -308,7 +334,6 @@ class Feature16 extends BaseFeature {
 
         const visibleRowCount = [topRowVisible, middleRowVisible, bottomRowVisible].filter(Boolean).length;
 
-
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -331,26 +356,12 @@ class Feature16 extends BaseFeature {
                     <div className={this.decorateCSS("side-container")}>
                         {renderLeftSide && (
                             <div className={this.decorateCSS("left-side")}>
-                                {topLeftSide.visibility ? (
+                                {topLeftSide.visibility && (
                                     <div className={this.decorateCSS("top-left-side")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                                        <div className={this.decorateCSS("top-left-side-card")}>
-                                            {topLeftSide.topLeftSideImage && (
-                                                <div className={this.decorateCSS("top-left-side-image")}>
-                                                    <img src={topLeftSide.topLeftSideImage} alt="" />
-                                                </div>
-                                            )}
-                                            <div className={this.decorateCSS("top-left-side-card-text-container")}>
-                                                <div className={this.decorateCSS("top-left-side-card-title")}>
-                                                    {topLeftSide.topLeftSideTitle}
-                                                </div>
-                                                <div className={this.decorateCSS("top-left-side-card-description")}>
-                                                    {topLeftSide.topLeftSideDescription}
-                                                </div>
-                                            </div>
-                                        </div>
+                                        {topLeftSide.visibility && this.renderCard(topLeftSide, "topLeftSide", !bottomLeftSide.visibility)}
                                     </div>
-                                ) : null}
-                                {bottomLeftSide.visibility ? (
+                                )}
+                                {bottomLeftSide.visibility && (
                                     <div className={this.decorateCSS("bottom-left-side")}>
                                         <div className={this.decorateCSS("bottom-left-side-card")}>
                                             <div className={this.decorateCSS("bottom-left-side-card-text-container")}>
@@ -372,147 +383,27 @@ class Feature16 extends BaseFeature {
                                             )}
                                         </div>
                                     </div>
-                                ) : null}
+                                )}
                             </div>
                         )}
                         {renderRightSide && (
                             <div className={`${this.decorateCSS("right-side")} ${this.decorateCSS("rows-" + visibleRowCount)}`}>
                                 {topRowVisible && (
                                     <div className={this.decorateCSS("top-right-side-container")}>
-                                        {topRightSide.visibility ? (
-                                            <div className={`${this.decorateCSS("card-container")} ${!topRightSide2.visibility ? this.decorateCSS("single-card") : ""}`} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                                                {topRightSide.topRightSideImage && (
-                                                    <div className={this.decorateCSS("image-container")}>
-                                                        <img src={topRightSide.topRightSideImage} alt="Content" />
-                                                    </div>
-                                                )}
-                                                <div className={this.decorateCSS("card-text-container")}>
-                                                    {topRightSide.topRightSideTitle && (
-                                                        <div className={this.decorateCSS("card-title")}>
-                                                            {topRightSide.topRightSideTitle}
-                                                        </div>
-                                                    )}
-                                                    {topRightSide.topRightSideDescription && (
-                                                        <div className={this.decorateCSS("card-description")}>
-                                                            {topRightSide.topRightSideDescription}
-                                                        </div>
-                                                    )}
-                                                </div>
-                                            </div>
-                                        ) : null}
-                                        {topRightSide2.visibility ? (
-                                            <div className={`${this.decorateCSS("card-container")} ${!topRightSide.visibility ? this.decorateCSS("single-card") : ""}`} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                                                {topRightSide2.topRightSide2Image && (
-                                                    <div className={this.decorateCSS("image-container")}>
-                                                        <img src={topRightSide2.topRightSide2Image} alt="Content" />
-                                                    </div>
-                                                )}
-                                                <div className={this.decorateCSS("card-text-container")}>
-                                                    {topRightSide2.topRightSide2Title && (
-                                                        <div className={this.decorateCSS("card-title")}>
-                                                            {topRightSide2.topRightSide2Title}
-                                                        </div>
-                                                    )}
-                                                    {topRightSide2.topRightSide2Description && (
-                                                        <div className={this.decorateCSS("card-description")}>
-                                                            {topRightSide2.topRightSide2Description}
-                                                        </div>
-                                                    )}
-                                                </div>
-                                            </div>
-                                        ) : null}
+                                        {topRightSide.visibility && this.renderCard(topRightSide, "topRightSide", !topRightSide2.visibility)}
+                                        {topRightSide2.visibility && this.renderCard(topRightSide2, "topRightSide2", !topRightSide.visibility)}
                                     </div>
                                 )}
                                 {middleRowVisible && (
                                     <div className={this.decorateCSS("bottom-right-side-container")}>
-                                        {middleRightSide.visibility ? (
-                                            <div className={`${this.decorateCSS("card-container")} ${!middleRightSide2.visibility ? this.decorateCSS("single-card") : ""}`} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                                                {middleRightSide.middleRightSideImage && (
-                                                    <div className={this.decorateCSS("image-container")}>
-                                                        <img src={middleRightSide.middleRightSideImage} alt="Content" />
-                                                    </div>
-                                                )}
-                                                <div className={this.decorateCSS("card-text-container")}>
-                                                    {middleRightSide.middleRightSideTitle && (
-                                                        <div className={this.decorateCSS("card-title")}>
-                                                            {middleRightSide.middleRightSideTitle}
-                                                        </div>
-                                                    )}
-                                                    {middleRightSide.middleRightSideDescription && (
-                                                        <div className={this.decorateCSS("card-description")}>
-                                                            {middleRightSide.middleRightSideDescription}
-                                                        </div>
-                                                    )}
-                                                </div>
-                                            </div>
-                                        ) : null}
-                                        {middleRightSide2.visibility ? (
-                                            <div className={`${this.decorateCSS("card-container")} ${!middleRightSide.visibility ? this.decorateCSS("single-card") : ""}`} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                                                {middleRightSide2.middleRightSide2Image && (
-                                                    <div className={this.decorateCSS("image-container")}>
-                                                        <img src={middleRightSide2.middleRightSide2Image} alt="Content" />
-                                                    </div>
-                                                )}
-                                                <div className={this.decorateCSS("card-text-container")}>
-                                                    {middleRightSide2.middleRightSide2Title && (
-                                                        <div className={this.decorateCSS("card-title")}>
-                                                            {middleRightSide2.middleRightSide2Title}
-                                                        </div>
-                                                    )}
-                                                    {middleRightSide2.middleRightSide2Description && (
-                                                        <div className={this.decorateCSS("card-description")}>
-                                                            {middleRightSide2.middleRightSide2Description}
-                                                        </div>
-                                                    )}
-                                                </div>
-                                            </div>
-                                        ) : null}
+                                        {middleRightSide.visibility && this.renderCard(middleRightSide, "middleRightSide", !middleRightSide2.visibility)}
+                                        {middleRightSide2.visibility && this.renderCard(middleRightSide2, "middleRightSide2", !middleRightSide.visibility)}
                                     </div>
                                 )}
                                 {bottomRowVisible && (
                                     <div className={this.decorateCSS("bottom-right-side-container-2")}>
-                                        {bottomRightSide.visibility ? (
-                                            <div className={`${this.decorateCSS("card-container")} ${!bottomRightSide2.visibility ? this.decorateCSS("single-card") : ""}`} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                                                {bottomRightSide.bottomRightSideImage && (
-                                                    <div className={this.decorateCSS("image-container")}>
-                                                        <img src={bottomRightSide.bottomRightSideImage} alt="Content" />
-                                                    </div>
-                                                )}
-                                                <div className={this.decorateCSS("card-text-container")}>
-                                                    {bottomRightSide.bottomRightSideTitle && (
-                                                        <div className={this.decorateCSS("card-title")}>
-                                                            {bottomRightSide.bottomRightSideTitle}
-                                                        </div>
-                                                    )}
-                                                    {bottomRightSide.bottomRightSideDescription && (
-                                                        <div className={this.decorateCSS("card-description")}>
-                                                            {bottomRightSide.bottomRightSideDescription}
-                                                        </div>
-                                                    )}
-                                                </div>
-                                            </div>
-                                        ) : null}
-                                        {bottomRightSide2.visibility ? (
-                                            <div className={`${this.decorateCSS("card-container")} ${!bottomRightSide.visibility ? this.decorateCSS("single-card") : ""}`} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                                                {bottomRightSide2.bottomRightSide2Image && (
-                                                    <div className={this.decorateCSS("image-container")}>
-                                                        <img src={bottomRightSide2.bottomRightSide2Image} alt="Content" />
-                                                    </div>
-                                                )}
-                                                <div className={this.decorateCSS("card-text-container")}>
-                                                    {bottomRightSide2.bottomRightSide2Title && (
-                                                        <div className={this.decorateCSS("card-title")}>
-                                                            {bottomRightSide2.bottomRightSide2Title}
-                                                        </div>
-                                                    )}
-                                                    {bottomRightSide2.bottomRightSide2Description && (
-                                                        <div className={this.decorateCSS("card-description")}>
-                                                            {bottomRightSide2.bottomRightSide2Description}
-                                                        </div>
-                                                    )}
-                                                </div>
-                                            </div>
-                                        ) : null}
+                                        {bottomRightSide.visibility && this.renderCard(bottomRightSide, "bottomRightSide", !bottomRightSide2.visibility)}
+                                        {bottomRightSide2.visibility && this.renderCard(bottomRightSide2, "bottomRightSide2", !bottomRightSide.visibility)}
                                     </div>
                                 )}
                             </div>
