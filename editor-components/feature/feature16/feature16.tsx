@@ -308,11 +308,12 @@ class Feature16 extends BaseFeature {
 
         const visibleRowCount = [topRowVisible, middleRowVisible, bottomRowVisible].filter(Boolean).length;
 
+
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <Base.VerticalContent className={this.decorateCSS("header-container")}>
-                        <Base.SectionSubTitle>
+                    <div className={this.decorateCSS("header-container")}>
+                        <Base.SectionSubTitle className={this.decorateCSS("sub-title")}>
                             {this.castToString(this.getPropValue("heading")) && (
                                 <div className={this.decorateCSS("heading")}>
                                     {this.getPropValue("heading")}
@@ -326,7 +327,7 @@ class Feature16 extends BaseFeature {
                                 </div>
                             </Base.SectionTitle>
                         )}
-                    </Base.VerticalContent>
+                    </div>
                     <div className={this.decorateCSS("side-container")}>
                         {renderLeftSide && (
                             <div className={this.decorateCSS("left-side")}>
@@ -517,7 +518,7 @@ class Feature16 extends BaseFeature {
                             </div>
                         )}
                     </div>
-                </Base.MaxContent>
+                </Base.MaxContent >
             </Base.Container >
         )
     }

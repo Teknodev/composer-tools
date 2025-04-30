@@ -8,12 +8,15 @@
 
     .header-container {
       display: flex;
+      flex-direction: column;
       margin-bottom: 1rem;
       .heading {
+        display: flex;
         font-size: 1rem;
       }
       .title-container {
         margin-bottom: 3rem;
+        margin-top: 0;
         .title {
           font-size: 3rem;
         }
@@ -216,6 +219,14 @@
     .max-content {
       .header-container {
         align-items: center;
+        .sub-title {
+          transform: translateX(0);
+          &::before {
+            content: none;
+          }
+        }
+        .heading {
+        }
         .title {
           text-align: center;
         }
