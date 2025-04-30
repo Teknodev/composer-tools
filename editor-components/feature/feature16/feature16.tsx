@@ -337,7 +337,7 @@ class Feature16 extends BaseFeature {
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <div className={this.decorateCSS("header-container")}>
+                    <Base.VerticalContent className={this.decorateCSS("header-container")}>
                         <Base.SectionSubTitle className={this.decorateCSS("sub-title")}>
                             {this.castToString(this.getPropValue("heading")) && (
                                 <div className={this.decorateCSS("heading")}>
@@ -352,7 +352,7 @@ class Feature16 extends BaseFeature {
                                 </div>
                             </Base.SectionTitle>
                         )}
-                    </div>
+                    </Base.VerticalContent>
                     <div className={this.decorateCSS("side-container")}>
                         {renderLeftSide && (
                             <div className={this.decorateCSS("left-side")}>
