@@ -234,6 +234,7 @@ import SocialComponent4 from "../editor-components/social/social4/social4";
 import SocialWidget1 from "../editor-components/social_widget/social_widget1/social_widget1";
 import SocialWidget3 from "../editor-components/social_widget/social_widget3/social_widget3";
 import SocialWidget4 from "../editor-components/social_widget/social_widget4/social_widget4";
+import SocialWidget5 from "../editor-components/social_widget/social_widget5/social_widget5";
 
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
@@ -471,6 +472,7 @@ function Registerables(composer: ComponentsRegistery) {
     SocialWidget1,
     SocialWidget3,
     SocialWidget4,
+    SocialWidget5,
   ]);
 }
 
