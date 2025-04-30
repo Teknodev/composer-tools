@@ -75,7 +75,7 @@
       text-align: center;
     }
     .navigate-container {
-      padding: var(--padding-md) var(--padding-xxl);
+      padding: var(--composer-gap-sm) (calc(1.5 * var(--composer-gap-md)));
       display: flex;
       justify-content: center;
       align-items: center;
