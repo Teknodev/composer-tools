@@ -31,16 +31,16 @@
 
       .card {
         display: flex;
+        justify-content: space-between;
         width: 100%;
         flex-direction: column;
-        gap: calc(1.5 * (var(--composer-gap-xl)));
         background-color: color-mix(
           in srgb,
           var(--composer-html-background),
           var(--composer-font-color-primary) 5%
         );
         border-radius: var(--composer-border-radius-md);
-        padding: calc(1.5 * var(--gap-xl));
+        padding: calc(1.5 * var(--composer-gap-md));
         border: 1px solid transparent;
         &[data-animation~="animate1"] {
           &:hover {
@@ -81,11 +81,13 @@
         gap: var(--composer-gap-md);
         width: 100%;
         .top-left-side {
-          display: flex;
           height: 100%;
           border-radius: var(--composer-border-radius-md);
           border: 1px solid transparent;
           box-sizing: border-box;
+          .card {
+            gap: var(--composer-gap-xl);
+          }
           &[data-animation~="animate1"] {
             &:hover {
               border: 1px solid var(--composer-primary-color);
@@ -100,8 +102,7 @@
             display: flex;
             flex-direction: column;
             border-radius: var(--composer-border-radius-md);
-            padding: calc(1.5 * var(--gap-xl));
-            gap: var(--composer-gap-md);
+            padding: calc(1.5 * var(--composer-gap-md));
             overflow: hidden;
             height: 100%;
             background-color: var(--composer-primary-color);
@@ -233,7 +234,6 @@
 @container (max-width: #{$composer-tablet-width}) {
   .side-container {
     .card {
-      gap: var(--composer-gap-xl) !important;
       .card-text-container {
         gap: var(--composer-gap-sm) !important;
       }
