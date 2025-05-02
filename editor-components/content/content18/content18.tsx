@@ -59,51 +59,56 @@ class Content18 extends BaseContent {
         const showTextContainer = this.castToString(text1) || this.castToString(text2);
         const showTopContainer = this.castToString(subTitle) || this.castToString(title);
         const showBottomContainer = this.castToString(signature) || this.castToString(name);
+        const showContentContainer = showTopContainer || showTextContainer || showBottomContainer;
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    {showTopContainer && (
-                        <div className={this.decorateCSS("top-container")}>
-                            {this.castToString(subTitle) && (
-                                <Base.SectionSubTitle className={this.decorateCSS("sub-title")}>
-                                    {subTitle}
-                                </Base.SectionSubTitle>
-                            )}
-                            {this.castToString(title) && (
-                                <Base.SectionTitle className={this.decorateCSS("title")}>
-                                    {title}
-                                </Base.SectionTitle>
-                            )}
-                        </div>
-                    )}
-                    {showTextContainer && (
-                        <div className={this.decorateCSS("text-container")}>
-                            {this.castToString(text1) && (
-                                <div className={this.decorateCSS("text-1")}>
-                                    {text1}
+                    {showContentContainer && (
+                        <Base.VerticalContent className={this.decorateCSS("content")}>
+                            {showTopContainer && (
+                                <div className={this.decorateCSS("top-container")}>
+                                    {this.castToString(subTitle) && (
+                                        <Base.SectionSubTitle className={this.decorateCSS("sub-title")}>
+                                            {subTitle}
+                                        </Base.SectionSubTitle>
+                                    )}
+                                    {this.castToString(title) && (
+                                        <Base.SectionTitle className={this.decorateCSS("title")}>
+                                            {title}
+                                        </Base.SectionTitle>
+                                    )}
                                 </div>
                             )}
-                            {this.castToString(text2) && (
-                                <div className={this.decorateCSS("text-2")}>
-                                    {text2}
+                            {showTextContainer && (
+                                <div className={this.decorateCSS("text-container")}>
+                                    {this.castToString(text1) && (
+                                        <div className={this.decorateCSS("text-1")}>
+                                            {text1}
+                                        </div>
+                                    )}
+                                    {this.castToString(text2) && (
+                                        <div className={this.decorateCSS("text-2")}>
+                                            {text2}
+                                        </div>
+                                    )}
                                 </div>
                             )}
-                        </div>
-                    )}
-                    {showBottomContainer && (
-                        <div className={this.decorateCSS("bottom-container")}>
-                            {signature && (
-                                <div className={this.decorateCSS("signature")}>
-                                    <img src={signature} alt="" />
+                            {showBottomContainer && (
+                                <div className={this.decorateCSS("bottom-container")}>
+                                    {signature && (
+                                        <div className={this.decorateCSS("signature")}>
+                                            <img src={signature} alt="" />
+                                        </div>
+                                    )}
+                                    {this.castToString(name) && (
+                                        <div className={this.decorateCSS("name")}>
+                                            {name}
+                                        </div>
+                                    )}
                                 </div>
                             )}
-                            {this.castToString(name) && (
-                                <div className={this.decorateCSS("name")}>
-                                    {name}
-                                </div>
-                            )}
-                        </div>
+                        </Base.VerticalContent>
                     )}
                 </Base.MaxContent>
             </Base.Container>

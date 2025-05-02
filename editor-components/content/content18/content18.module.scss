@@ -7,51 +7,65 @@
     var(--composer-html-background),
     var(--composer-font-color-primary) 5%
   );
-
   .max-content {
     display: flex;
     flex-direction: column;
     gap: var(--composer-gap-md);
-    .top-container {
-      .sub-title {
-        content: "";
-      }
-      .title {
-        margin-top: 0;
-      }
-    }
-    .text-container {
-      columns: 2;
-      column-gap: 4rem;
-      color: var(--composer-font-color-primary);
-      font-size: 1rem;
-      .text-1,
-      .text-2 {
+    .content {
+      gap: var(--composer-gap-md);
+      display: flex;
+      .top-container {
         display: flex;
-      }
-    }
-    .bottom-container {
-      color: var(--composer-font-color-primary);
-      text-align: center;
-      .signature {
-        > img {
-          width: 150px;
-          height: 100px;
-          object-fit: contain;
+        flex-direction: column;
+        gap: var(--composer-gap-sm);
+        .sub-title,
+        .title {
+          margin: 0;
         }
       }
-      .name {
+      .text-container {
+        color: var(--composer-font-color-primary);
         font-size: 1rem;
+        text-align: justify;
+        display: flex;
+        gap: var(--composer-gap-md);
+        .text-1,
+        .text-2 {
+          flex: 1;
+        }
+      }
+      .bottom-container {
+        color: var(--composer-font-color-primary);
+        text-align: center;
+        .signature {
+          > img {
+            width: 150px;
+            height: 100px;
+            object-fit: contain;
+          }
+        }
+        .name {
+          font-size: 1rem;
+        }
       }
     }
   }
 }
 
 @container (max-width: #{$composer-phone-width}) {
-  .text-container {
-    columns: 1 !important;
-    display: flex;
-    flex-direction: column;
-    gap: var(--composer-gap-md);
+  .content {
+    align-items: center !important;
+    .sub-title {
+      text-align: center !important;
+      transform: translateX(0) !important;
+      &::before {
+        content: none !important;
+      }
+    }
+    .text-container {
+      display: flex;
+      flex-direction: column;
+      gap: var(--composer-gap-md);
+    }
   }
 }
