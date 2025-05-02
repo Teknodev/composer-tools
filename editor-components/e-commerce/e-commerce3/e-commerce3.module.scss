@@ -15,7 +15,7 @@
                     padding: var(--composer-gap-md) var(--composer-gap-lg);
                     border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
                     border-bottom: none !important;
-                    .title {
+                    .tab-title{
                         font-size: 1rem;
                         font-weight: bold;
                         color: var(--composer-font-color-primary);
@@ -25,7 +25,7 @@
                         border: none !important;
                         background-color: var(--composer-font-color-primary);
 
-                        .title {
+                        .tab-title {
                             color: var(--composer-html-background) !important;
                         }
                     }
@@ -39,11 +39,14 @@
         border-bottom: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
         background-color: var(--composer-html-background);
 
-        .max-content {
+        .wrapper {
             .section {
                 .tabs {
-                    .tab {
+                    .tab-content {
                         .title {
+                            color: var(--composer-font-color-primary);
+                        }
+                        .description{
                             color: var(--composer-font-color-primary);
                         }
                         .content {
@@ -53,7 +56,7 @@
                                 display: flex;
                                 flex-direction: column;
                                 gap: var(--composer-gap-sm);
-                                .item {
+                                .detail-title, .property-title {
                                     color: var(--composer-font-color-primary);
                                     font-size: 1rem;
                                 }
@@ -63,14 +66,15 @@
                                 flex-direction: column;
                                 gap: var(--composer-gap-sm);
     
-                                .item {
+                                .detail-value {
                                     color: var(--composer-font-color-primary);
                                     font-size: 1rem;
                                 }
 
                                 .box {
                                     display: flex;
-                                    .item {
+                                    min-height: 16px;
+                                    .property-value {
                                         color: var(--composer-font-color-primary);
                                         font-size: 1rem;
                                         padding-right: var(--composer-gap-sm);

@@ -265,7 +265,6 @@ class ECommerce3 extends BaseECommerce {
 
     const tabs = this.castToObject<Tab[]>("tabs");
     const activeTab = this.getComponentState("activeTab");
-
     return (
       <div className={this.decorateCSS("container")}>
         <Base.Container className={this.decorateCSS("container-top")}>
@@ -273,51 +272,65 @@ class ECommerce3 extends BaseECommerce {
             <div className={this.decorateCSS("tab-buttons")}>
               {tabs.map((item: Tab, index: number) => {
                 return (
-                  <div className={`${this.decorateCSS("tab")} ${index === activeTab && this.decorateCSS("active")}`} onClick={() => handleChangeTab(index)}>
-                    <span className={this.decorateCSS("title")}>{item.tabTitle}</span>
-                  </div>
+                  <>
+                    {this.castToString(item.tabTitle) && (
+                      <div className={`${this.decorateCSS("tab")} ${index === activeTab && this.decorateCSS("active")}`} onClick={() => handleChangeTab(index)}>
+                        <span className={this.decorateCSS("tab-title")}>{item.tabTitle}</span>
+                      </div>
+                    )}
+                  </>                  
                 )
               })}
             </div>
           </Base.MaxContent>
         </Base.Container>
         <Base.Container className={this.decorateCSS("container-bottom")}>
-          <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <Base.MaxContent className={this.decorateCSS("wrapper")}>
             <div className={this.decorateCSS("section")}>
               <div className={this.decorateCSS("tabs")}>
                 {tabs.map((item: Tab, index: number) => (
                   index === activeTab && (
-                    <div className={this.decorateCSS("tab")}>
+                    <div className={this.decorateCSS("tab-content")}>
                       <Base.VerticalContent className={this.decorateCSS("vertical")}>
-                        {item.title && <Base.H2 className={this.decorateCSS("title")}>{item.title}</Base.H2>}
-                        {item.description && <Base.SectionDescription className={this.decorateCSS("description")}>{item.description}</Base.SectionDescription>}
+                        {this.castToString(item.title) && <Base.H2 className={this.decorateCSS("title")}>{item.title}</Base.H2>}
+                        {this.castToString(item.description) && <Base.SectionDescription className={this.decorateCSS("description")}>{item.description}</Base.SectionDescription>}
                         <div className={this.decorateCSS("content")}>
                           <div className={this.decorateCSS("left")}>
                           {(item.details ?? []).map((detail: Details) => {
-                            return detail.title ? (
-                              <span className={this.decorateCSS("item")}>{detail.title}</span>
+                            return this.castToString(detail.title) || this.castToString(detail.value)? (
+                              <span className={this.decorateCSS("detail-title")}>{detail.title}</span>
                             ) : null;
                           })}
-                          {(item.properties ?? []).map((property: Properties) => {
-                            return property.title? (
-                              <span className={this.decorateCSS("item")}>{property.title}</span>
+                          {(item.properties ?? []).map((property: Properties, index:number) => {
+                            return (this.castToString(property.title) || property.items.length > 0) ? (
+                              <span className={this.decorateCSS("property-title")}>{property.title}</span>
                             ) : null;
                           })}
                           </div>
                           <div className={this.decorateCSS("right")}>
                           {(item.details ?? []).map((detail: Details) => {
-                            return detail.value ? (
-                              <span className={this.decorateCSS("item")}>{detail.value}</span>
+                            return this.castToString(detail.value) || this.castToString(detail.title) ? (
+                              <span className={this.decorateCSS("detail-value")}>{detail.value}</span>
                             ) : null;
                           })}
+
                           {(item.properties ?? []).map((property: Properties) => (
-                            <div className={this.decorateCSS("box")}>
-                              {(property.items ?? []).length > 0 && property.items.map((propItem, index) => (
-                                <span key={index} className={this.decorateCSS("item")}>
-                                  {propItem.title}
-                                </span>
-                              ))}
+                            <>
+                            {(this.castToString(property.title)|| (property.items.length > 0)) && (
+                              <div className={this.decorateCSS("box")}>
+                              {(property.items ?? []).length > 0 ? property.items.map((propItem, index) => {
+                                return(
+                                  <>
+                                      <span key={index} className={this.decorateCSS("property-value")}>
+                                      {propItem.title}
+                                      </span>
+                                  </>
+                                )
+                              }
+                              ) : (<span key={index} className={this.decorateCSS("property-value")}></span>)}
                             </div>
+                            )}
+                            </>
                           ))}
                           </div>
                         </div>
