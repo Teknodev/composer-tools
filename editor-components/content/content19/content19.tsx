@@ -129,9 +129,9 @@ class Content19 extends BaseContent {
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     {showLeftSide && (
-                        <div className={this.decorateCSS("left-side-container")}>
-                            <div className={this.decorateCSS("left-side-container-wrap")}>
-                                <div className={this.decorateCSS("left-side")}>
+                        <div className={this.decorateCSS("side-container")}>
+                            <div className={this.decorateCSS("side-container-wrap")}>
+                                <div className={this.decorateCSS("side")}>
                                     {this.castToString(leftSideSubTitle) && (
                                         <Base.SectionSubTitle className={this.decorateCSS("sub-title")}>
                                             {leftSideSubTitle}
@@ -159,7 +159,10 @@ class Content19 extends BaseContent {
                                                 )}
                                                 {rightNavigateIcon && (
                                                     <ComposerIcon
-                                                        name={leftNavigateIcon}>
+                                                        name={leftNavigateIcon}
+                                                        propsIcon={{
+                                                            className: this.decorateCSS("left-navigate-icon"),
+                                                        }}>
                                                     </ComposerIcon>
                                                 )}
                                             </div>
@@ -180,9 +183,9 @@ class Content19 extends BaseContent {
                         </div>
                     )}
                     {showRightSide && (
-                        <div className={this.decorateCSS("right-side-container")}>
-                            <div className={this.decorateCSS("right-side-container-wrap")}>
-                                <div className={this.decorateCSS("right-side")}>
+                        <div className={this.decorateCSS("side-container")}>
+                            <div className={this.decorateCSS("side-container-wrap")}>
+                                <div className={this.decorateCSS("side")}>
                                     {this.castToString(rightSideSubTitle) && (
                                         <Base.SectionSubTitle className={this.decorateCSS("sub-title")}>
                                             {rightSideSubTitle}
@@ -210,7 +213,10 @@ class Content19 extends BaseContent {
                                                 )}
                                                 {rightNavigateIcon && (
                                                     <ComposerIcon
-                                                        name={rightNavigateIcon}>
+                                                        name={rightNavigateIcon}
+                                                        propsIcon={{
+                                                            className: this.decorateCSS("right-navigate-icon"),
+                                                        }}>
                                                     </ComposerIcon>
                                                 )}
                                             </div>
