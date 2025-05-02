@@ -49,42 +49,50 @@ class Content17 extends BaseContent {
         const text1 = this.getPropValue("text1");
         const text2 = this.getPropValue("text2");
 
+        const showTopContainer = this.castToString(title) || image1 || image2;
+        const showBottomContainer = this.castToString(text1) || this.castToString(text2);
+        const showSideContainer = showTopContainer || showBottomContainer;
+
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <div className={this.decorateCSS("side-container")}>
-                        <div className={this.decorateCSS("top-container")}>
-                            {this.castToString(title) && (
-                                <Base.SectionTitle className={this.decorateCSS("title")}>
-                                    {title}
-                                </Base.SectionTitle>
-                            )}
-                            {image1 && (
-                                <div className={this.decorateCSS("image-1")}>
-                                    <img src={image1} className={this.decorateCSS("image")} alt="" />
+                    {showSideContainer && (
+                        <div className={this.decorateCSS("side-container")}>
+                            {showTopContainer && (
+                                <div className={this.decorateCSS("top-container")}>
+                                    {this.castToString(title) && (
+                                        <Base.SectionTitle className={this.decorateCSS("title")}>
+                                            {title}
+                                        </Base.SectionTitle>
+                                    )}
+                                    {image1 && (
+                                        <div className={this.decorateCSS("image-1")}>
+                                            <img src={image1} className={this.decorateCSS("image")} alt="" />
+                                        </div>
+                                    )}
+                                    {image2 && (
+                                        <div className={this.decorateCSS("image-2")}>
+                                            <img src={image2} className={this.decorateCSS("image")} alt="" />
+                                        </div>
+                                    )}
                                 </div>
                             )}
-                            {image2 && (
-                                <div className={this.decorateCSS("image-2")}>
-                                    <img src={image2} className={this.decorateCSS("image")} alt="" />
+                            {showBottomContainer && (
+                                <div className={this.decorateCSS("bottom-container")}>
+                                    {this.castToString(text1) && (
+                                        <div className={this.decorateCSS("text-1")}>
+                                            {text1}
+                                        </div>
+                                    )}
+                                    {this.castToString(text2) && (
+                                        <div className={this.decorateCSS("text-2")}>
+                                            {text2}
+                                        </div>
+                                    )}
                                 </div>
                             )}
-                            <div></div>
-                            <div></div>
                         </div>
-                        <div className={this.decorateCSS("bottom-container")}>
-                            {this.castToString(text1) && (
-                                <div className={this.decorateCSS("text-1")}>
-                                    {text1}
-                                </div>
-                            )}
-                            {this.castToString(text2) && (
-                                <div className={this.decorateCSS("text-2")}>
-                                    {text2}
-                                </div>
-                            )}
-                        </div>
-                    </div>
+                    )}
                 </Base.MaxContent>
             </Base.Container>
         )
