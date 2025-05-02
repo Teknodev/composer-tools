@@ -9,15 +9,16 @@
       display: flex;
       flex-direction: column;
       .sub-title {
-        content: "";
+        margin: 0;
       }
       .title {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
       .text-container {
         columns: 2;
         column-gap: 4rem;
         text-align: left;
+        column-fill: balance;
       }
     }
   }

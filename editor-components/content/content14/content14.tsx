@@ -43,7 +43,7 @@ class Content14 extends BaseContent {
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     {showContent && (
-                        <div className={this.decorateCSS("content")}>
+                        <Base.VerticalContent className={this.decorateCSS("content")}>
                             {this.castToString(subTitleExist) && (
                                 <Base.SectionSubTitle className={this.decorateCSS("sub-title")}>
                                     {subTitleExist}
@@ -59,7 +59,7 @@ class Content14 extends BaseContent {
                                     {textExist}
                                 </Base.SectionDescription>
                             )}
-                        </div>
+                        </Base.VerticalContent>
                     )}
                 </Base.MaxContent>
             </Base.Container>
