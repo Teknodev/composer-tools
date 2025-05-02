@@ -61,12 +61,12 @@ class Content17 extends BaseContent {
                             )}
                             {image1 && (
                                 <div className={this.decorateCSS("image-1")}>
-                                    <img src={image1} alt="" />
+                                    <img src={image1} className={this.decorateCSS("image")} alt="" />
                                 </div>
                             )}
                             {image2 && (
                                 <div className={this.decorateCSS("image-2")}>
-                                    <img src={image2} alt="" />
+                                    <img src={image2} className={this.decorateCSS("image")} alt="" />
                                 </div>
                             )}
                             <div></div>
