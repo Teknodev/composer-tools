@@ -15,10 +15,13 @@
         margin-top: 1rem;
       }
       .text-container {
-        columns: 2;
-        column-gap: 4rem;
-        text-align: left;
-        column-fill: balance;
+        display: flex;
+        gap: var(--composer-gap-md);
+        .left-text,
+        .right-text {
+          flex: 1;
+          text-align: justify;
+        }
       }
     }
   }
@@ -27,8 +30,23 @@
 @container (max-width: #{$composer-phone-width}) {
   .max-content {
     .content {
+      align-items: center !important;
+      .sub-title {
+        transform: translateX(0) !important;
+        &::before {
+          content: none !important;
+        }
+      }
+      .title {
+        text-align: center;
+      }
       .text-container {
-        columns: 1 !important;
+        flex-direction: column;
+        .left-text,
+        .right-text {
+          width: 100% !important;
+          text-align: center;
+        }
       }
     }
   }

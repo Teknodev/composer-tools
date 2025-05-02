@@ -21,9 +21,15 @@ class Content14 extends BaseContent {
         })
         this.addProp({
             type: "string",
-            key: "text",
-            displayer: "Text",
-            value: "In a word, the whale was seized and sold, and his Grace in the Duke of Wellington received the money. Thinking that abis viewed in some particular lights, the case might by ai bare a possibility in some small degree be deemed, undere the offs circumstances, a rather hard one, an honest mans clergyman ofi the town addressed a note to. In a word, the whale was seized and sold, and his Grace the Duke of In a word, the whale was seized and sold, and his Grace in the Duke of Wellington received the money. Thinking that abis viewed in some particular lights, the case might by ai bare a possibility in some small degree be deemed, undere the offs circumstances, a rather hard one, an honest mans clergyman ofi the town addressed a note to. In a word, the whale was seized and sold, and his Grace the Duke of"
+            key: "leftText",
+            displayer: "Left Text",
+            value: "In a word, the whale was seized and sold, and his Grace in the Duke of Wellington received the money. Thinking that abis viewed in some particular lights, the case might by ai bare a possibility in some small degree be deemed, undere the offs circumstances, a rather hard one, an honest mans clergyman ofi the town addressed a note to. In a word, the whale was seized and sold, and his Grace the Duke of"
+        })
+        this.addProp({
+            type: "string",
+            key: "rightText",
+            displayer: "Right Text",
+            value: "In a word, the whale was seized and sold, and his Grace in the Duke of Wellington received the money. Thinking that abis viewed in some particular lights, the case might by ai bare a possibility in some small degree be deemed, undere the offs circumstances, a rather hard one, an honest mans clergyman ofi the town addressed a note to. In a word, the whale was seized and sold, and his Grace the Duke of"
         })
     }
 
@@ -35,9 +41,11 @@ class Content14 extends BaseContent {
 
         const subTitleExist = this.getPropValue("subTitle");
         const titleExist = this.getPropValue("title");
-        const textExist = this.getPropValue("text");
+        const leftText = this.getPropValue("leftText");
+        const rightText = this.getPropValue("rightText");
 
-        const showContent = this.castToString(subTitleExist) || this.castToString(titleExist) || this.castToString(textExist);
+        const showContent = this.castToString(subTitleExist) || this.castToString(titleExist) || this.castToString(leftText) || this.castToString(rightText);
+        const showTextContainer = this.castToString(leftText) || this.castToString(rightText);
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
@@ -54,10 +62,19 @@ class Content14 extends BaseContent {
                                     {titleExist}
                                 </Base.SectionTitle>
                             )}
-                            {this.castToString(textExist) && (
-                                <Base.SectionDescription className={this.decorateCSS("text-container")}>
-                                    {textExist}
-                                </Base.SectionDescription>
+                            {showTextContainer && (
+                                <div className={this.decorateCSS("text-container")}>
+                                    {this.castToString(leftText) && (
+                                        <Base.SectionDescription className={this.decorateCSS("left-text")}>
+                                            {leftText}
+                                        </Base.SectionDescription>
+                                    )}
+                                    {this.castToString(rightText) && (
+                                        <Base.SectionDescription className={this.decorateCSS("right-text")}>
+                                            {rightText}
+                                        </Base.SectionDescription>
+                                    )}
+                                </div>
                             )}
                         </Base.VerticalContent>
                     )}
