@@ -289,7 +289,7 @@ class Feature16 extends BaseFeature {
             <div className={className} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                 {cardData[`${prefix}Image`] && (
                     <div className={this.decorateCSS("card-image")}>
-                        <img src={cardData[`${prefix}Image`]} alt="Content" />
+                        <img src={cardData[`${prefix}Image`]} className={this.decorateCSS("image")} alt="Content" />
                     </div>
                 )}
                 <div className={this.decorateCSS("card-text-container")}>
