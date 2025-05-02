@@ -2,6 +2,8 @@ import * as React from "react";
 import styles from "./content16.module.scss";
 import { BaseContent } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 
 class Content16 extends BaseContent {
     constructor(props?: any) {
@@ -42,6 +44,8 @@ class Content16 extends BaseContent {
             displayer: "Text 2",
             value: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Design, integre mea ut, eu eos vide errem noluisse. Putent laoreet et ius. Lorem ipsum dolor sit amet, consectetur adipisicing elit."
         })
+        this.addProp(INPUTS.BUTTON("button", "Button", "VIEW SERVICES", "", null, null, "Primary"));
+
     }
 
     static getName(): string {
@@ -63,6 +67,7 @@ class Content16 extends BaseContent {
         const showSection1TextContainer = this.castToString(section1Text1) || this.castToString(section1Text2);
         const showSection2TextContainer = this.castToString(section2Text1) || this.castToString(section2Text2);
         const showSectionContainer = this.castToString(section1) || this.castToString(section2);
+        const buttonType: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
@@ -103,6 +108,15 @@ class Content16 extends BaseContent {
                             {section2Text2 && (
                                 <div className={this.decorateCSS("section-2-text-2")}>{section2Text2}</div>
                             )}
+                        </div>
+                    )}
+                    {buttonType.text && (
+                        <div className={this.decorateCSS("button-container")}>
+                            <ComposerLink path={buttonType.url}>
+                                <Base.Button buttonType={buttonType.type} className={this.decorateCSS("button")}>
+                                    {buttonType.text}
+                                </Base.Button>
+                            </ComposerLink>
                         </div>
                     )}
                 </Base.MaxContent>

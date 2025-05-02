@@ -2,27 +2,22 @@
   as *;
 
 .container {
-  background-color: color-mix(
-    in srgb,
-    var(--composer-html-background),
-    var(--composer-font-color-primary) 5%
-  );
-
+  background-color: var(--composer-html-background);
   .max-content {
     display: flex;
     flex-direction: column;
+    gap: var(--composer-gap-xl);
     .section-container {
       display: flex;
       width: 100%;
       justify-content: center;
       align-items: center;
-      gap: var(--composer-gap-lg);
-      margin-bottom: 2rem;
+      gap: var(--composer-gap-xl);
       font-size: 1.5rem;
       .section-1,
       .section-2 {
         display: inline-block;
-        border-bottom: 2px solid var(--composer-font-color-primary);
+        border-bottom: 2px solid var(--composer-tertiary-color);
         color: var(--composer-font-color-primary);
         width: 200px;
         text-align: center;
@@ -36,20 +31,29 @@
     .section-1-text-container,
     .section-2-text-container {
       display: flex;
+      flex: 1;
       gap: var(--composer-gap-md);
-      columns: 2;
-      column-gap: 4rem;
       animation: fadeIn 0.5s ease;
       color: var(--composer-font-color-primary);
+      text-align: justify;
       .section-1-text-1,
       .section-1-text-2 {
-        content: "";
+        flex: 1;
       }
     }
 
     .section-hidden {
       display: none;
       opacity: 0;
+    }
+
+    .button-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .button {
+        border-radius: var(--composer-border-radius-xl);
+      }
     }
   }
 }
