@@ -16,7 +16,7 @@ class Content15 extends BaseContent {
         this.addProp({
             type: "string",
             key: "subTitle",
-            displayer: "Sub Title",
+            displayer: "Subtitle",
             value: "Working Since 1976"
         })
         this.addProp({
@@ -64,13 +64,13 @@ class Content15 extends BaseContent {
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <Base.ListGrid gridCount={{ pc: 3 }} className={this.decorateCSS("grid")}>
+                    <div className={this.decorateCSS("content")}>
                         {showCard1 && (
                             <div className={this.decorateCSS("card-1")}>
                                 {this.castToString(title) && (
-                                    <div className={this.decorateCSS("title")}>
+                                    <Base.SectionTitle className={this.decorateCSS("title")}>
                                         {title}
-                                    </div>
+                                    </Base.SectionTitle>
                                 )}
                                 {this.castToString(subTitle) && (
                                     <div className={this.decorateCSS("sub-title")}>
@@ -82,36 +82,36 @@ class Content15 extends BaseContent {
                         {showCard2 && (
                             <div className={this.decorateCSS("card-2")}>
                                 {this.castToString(text1) && (
-                                    <div className={this.decorateCSS("text-1")}>
+                                    <Base.P className={this.decorateCSS("text-1")}>
                                         {text1}
-                                    </div>
+                                    </Base.P>
                                 )}
                             </div>
                         )}
                         {showCard3 && (
                             <div className={this.decorateCSS("card-3")}>
                                 {this.castToString(text2) && (
-                                    <div className={this.decorateCSS("text-2")}>
+                                    <Base.P className={this.decorateCSS("text-2")}>
                                         {text2}
-                                    </div>
+                                    </Base.P>
                                 )}
                                 {showInformation && (
                                     <div className={this.decorateCSS("information")}>
                                         {this.castToString(name) && (
-                                            <div className={this.decorateCSS("name")}>
+                                            <Base.P className={this.decorateCSS("name")}>
                                                 {name}
-                                            </div>
+                                            </Base.P>
                                         )}
                                         {this.castToString(jobTitle) && (
-                                            <div className={this.decorateCSS("job-title")}>
+                                            <Base.P className={this.decorateCSS("job-title")}>
                                                 {jobTitle}
-                                            </div>
+                                            </Base.P>
                                         )}
                                     </div>
                                 )}
                             </div>
                         )}
-                    </Base.ListGrid>
+                    </div>
                 </Base.MaxContent>
             </Base.Container >
         )
