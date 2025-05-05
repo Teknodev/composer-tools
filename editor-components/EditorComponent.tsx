@@ -437,54 +437,78 @@ function syncComplexPropValues(
   shadowProps: TypeUsableComponentProps[],
   currentProps: TypeUsableComponentProps[]
 ) {
-  const isComplexType = (type: string) => type === "object" || type === "array";
-  const isArray = shadowPropType === "array";
-
-  if (isArray) {
-    const templateProp = shadowProps[0];
-    currentProps.forEach(currentProp => {
-      if (isComplexType(templateProp.type)) {
-        syncComplexPropValues(
-          templateProp.type,
-          templateProp.value as TypeUsableComponentProps[],
-          currentProp.value as TypeUsableComponentProps[]
-        );
-      }
-
-      currentProp.type = templateProp.type;
-      currentProp.value = templateProp.type === "string" ? "" : structuredClone(templateProp.value);
-    });
+  if (shadowPropType === "array") {
+    syncArrayItems(shadowProps, currentProps);
     return;
   }
+  
+  syncObjectProperties(shadowProps, currentProps);
+}
 
-  shadowProps.forEach(shadowProp => {
-    const index = currentProps.findIndex(prop => prop.key === shadowProp.key);
-    const existingProp = index !== -1 ? currentProps[index] : null;
+function syncArrayItems(
+  templateItems: TypeUsableComponentProps[],
+  currentItems: TypeUsableComponentProps[]
+) {
+  for (let i = 0; i < currentItems.length; i++) {
+    const currentItem = currentItems[i];
+    const shadowItem = templateItems[i] || templateItems[0];
+    
+    syncSingleProperty(currentItem, shadowItem);
+  }
+}
 
-    if (!existingProp) {
-      const newProp = structuredClone(shadowProp);
-      newProp.id = generateId(newProp.key);
-      if (newProp.type === "string") newProp.value = "";
-      currentProps.push(newProp);
-      return;
-    }
+function syncObjectProperties(
+  shadowProps: TypeUsableComponentProps[],
+  currentProps: TypeUsableComponentProps[]
+) {
+  for (const shadowProp of shadowProps) {
+    const currentProp = currentProps.find(p => p.key === shadowProp.key);
+    if (!currentProp) continue;
+    
+    syncSingleProperty(currentProp, shadowProp);
+  }
+}
 
-    if (existingProp.type !== shadowProp.type) {
-      const cloneShadow = structuredClone(shadowProp.value) as TypeUsableComponentProps;
-      cloneShadow.id = generateId(cloneShadow.key);
-      existingProp.type = shadowProp.type;
-      existingProp.value = shadowProp.type === "string" ? "" : ;
-      return;
-    }
 
-    if (isComplexType(existingProp.type)) {
-      syncComplexPropValues(
-        existingProp.type,
-        shadowProp.value as TypeUsableComponentProps[],
-        existingProp.value as TypeUsableComponentProps[]
-      );
-    }
-  });
+function syncSingleProperty(
+  currentProp: TypeUsableComponentProps,
+  shadowProp: TypeUsableComponentProps
+) {
+  const isComplexType = (type: string) => type === "object" || type === "array";
+
+  if (currentProp.type !== shadowProp.type) {
+    resetProperty(currentProp, shadowProp);
+  } else if (isComplexType(currentProp.type)) {
+    syncComplexPropValues(
+      currentProp.type,
+      shadowProp.value as TypeUsableComponentProps[],
+      currentProp.value as TypeUsableComponentProps[]
+    );
+  }
+}
+
+
+function resetProperty(
+  currentProp: TypeUsableComponentProps,
+  shadowProp: TypeUsableComponentProps
+) {
+  const isComplexType = (type: string): boolean => type === "object" || type === "array";
+
+  currentProp.type = shadowProp.type;
+  currentProp.id = generateId(shadowProp.key);
+  
+  if (shadowProp.type === "string") {
+    currentProp.value = "";
+  } else if (isComplexType(shadowProp.type)) {
+    currentProp.value = [];
+    syncComplexPropValues(
+      shadowProp.type,
+      shadowProp.value as TypeUsableComponentProps[],
+      currentProp.value as TypeUsableComponentProps[]
+    );
+  } else {
+    currentProp.value = structuredClone(shadowProp.value);
+  }
 }
 
 
