@@ -6,22 +6,28 @@
             display: flex;
             position: relative;
             gap: calc(2 * var(--composer-gap-xl));
-
+            width: 100%;
             .left {
                 display: flex;
                 flex: 1;
+                overflow: hidden;
                 gap: var(--composer-gap-md);
+                max-height: 600px;
                 .left-images {
+                    max-height: 100%;
                     display: flex;
                     flex-direction: column;
-                    justify-content: flex-start;
+                    gap: var(--composer-gap-md);
+                    overflow: hidden;
+                    width: 15%;
                     .img-container {
+                        flex: 1;
                         .img {
-                            border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
                             border-radius: var(--composer-border-radius-xs);
-                            max-width: 85px;
                             opacity: 0.5;
-
+                            height: 100%;
+                            width: 100%;
+                            object-fit: cover;
                             &.active {
                                 opacity: 1;
                             }
@@ -30,17 +36,16 @@
                 }
                 .right-image {
                     position: relative;
-                    flex: 1;
-                    max-width: 550px;
                     max-height: 100%;
-
+                    width: 85%;
+                    overflow: hidden;
                     .new { 
                         position: absolute; 
                         left: var(--composer-gap-md); 
                         top: var(--composer-gap-md); 
                         font-size: 1rem; 
                         opacity: 0.7; 
-                        z-index: 20;
+                        z-index: 2;
                         color: var(--composer-tertiary-color);
                     }
 
@@ -48,7 +53,7 @@
                         position: absolute; 
                         font-size: 2rem; 
                         color: black;
-                        z-index: 21;
+                        z-index: 2;
                         top: 50%;
                         color: var(--composer-tertiary-color);
                         cursor: pointer;
@@ -64,15 +69,12 @@
 
                     .carousel {
                         height: 100%;
-                        > div {
+                        >div{
                             height: 100%;
-                            > div {
+                            >div{
                                 height: 100%;
-                                > div {
-                                    height: 550px !important;
-                                    padding-bottom: var(--composer-gap-sm);
-    
-                                    > div {
+                                >div{
+                                    >div{
                                         height: 100%;
                                     }
                                 }
@@ -81,43 +83,60 @@
                     }
 
                     .card {
+                        width: 100%;
+                        height: 100%;
                         .product-img { 
-                            border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2); 
                             border-radius: var(--composer-border-radius-xs); 
-                            max-width: 550px;
-                            height: 550px;
+                            height: 100%;
+                            width: 100%;
+                            object-fit: cover;
                         } 
                     }
                 }
             }
 
             .right {
+                flex: 1;
+                overflow: hidden;
                 .vertical {
-                    .title {
-                        font-size: 2rem !important;
-                        margin-bottom: var(--composer-gap-sm) !important;
-                    }
-                    .price {
-                        font-size: 2rem;
-                        color: var(--composer-font-color-primary);
-                    }
-                    .review-area {
+                    gap: var(--composer-gap-lg);
+                    .title-and-price{
                         display: flex;
-                        align-items: center;
-                        margin-top: calc(1.5 * var(--composer-gap-xl));
-                        .star {
-                            color: #ebbc00;
-                            font-size: 1rem !important;
+                        flex-direction: column;
+                        gap: var(--composer-gap-xs);
+                        .title {
+                            font-size: 2rem;
+                            margin: 0px;
                         }
-                        .review-count {
-                            margin-left: var(--composer-gap-xs);
+                        .price {
+                            font-size: 2rem;
+                            color: var(--composer-font-color-primary);
+                        }
+                    }
+                    .review-and-description{
+                        .review-area {
+                            display: flex;
+                            align-items: center;
+                            gap: var(--composer-gap-sm);
+                            .stars {
+                                .star{
+                                    color: #ebbc00;
+                                    font-size: 1rem !important;
+                                }
+                            }
+                            .review {
+                                display: flex;
+                                gap: var(--composer-gap-xs);
+                                .review-count, .review-text{
+                                    color: var(--composer-font-color-primary);
+                                }
+                            }
+                        }
+                        .description {
                             color: var(--composer-tertiary-color);
                         }
                     }
-                    .description {
-                        color: var(--composer-tertiary-color);
-                        margin-bottom: var(--composer-gap-lg);
-                    }
+
                     .inputs {
                         display: flex;
                         .count-input {
@@ -158,17 +177,13 @@
                         .button {
                             border-top-left-radius: 0;
                             border-bottom-left-radius: 0;
-                            width: 175px;
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
+                            height: 100%;
                         }
                     }
                     .wishlist {
                         display: flex;
                         align-items: center;
                         gap: var(--composer-gap-xs);
-                        padding: var(--composer-gap-lg) 0;
                         cursor: pointer;
                         transition: opacity 0.3s ease;
                         &:hover {
@@ -190,7 +205,7 @@
                         .code-area {
                             display: flex;
                             align-items: center;
-
+                            gap: var(--composer-gap-xs);
                             .code-tag, .code {
                                 color: var(--composer-font-color-primary);
                                 font-size: 1rem;
@@ -206,8 +221,8 @@
                                 color: var(--composer-font-color-primary);
                             }
                             .category, .tag {
-                                font-size: 1rem !important;
-                                color: var(--composer-font-color-primary);
+                                font-size: 1rem;
+                                color: var(--composer-tertiary-color);
                                 cursor: pointer;
                                 transition: opacity 0.3s ease;
                                 &:hover {
@@ -230,18 +245,44 @@
             max-height: 100vh;
             top: 0;
             left: 0;
-            z-index: 200;
+            z-index: 3;
             overflow: auto;
+            padding: var(--composer-gap-lg) 0px;
             .popup-content {
                 width: 40%;
-                .popup-image {
+                height: 100%;
+                position: relative;
+                .image-container {
+                    position: relative;
+                    overflow: hidden;
                     width: 100%;
-                }
+                    height: calc(100% - 60px);
+                  }
+                  .image {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    opacity: 0;
+                    transition: opacity 1s ease-in-out;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                  }
+                  
+                  .image.active {
+                    opacity: 1;
+                    z-index: 1;
+                  }
                 .items {
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
                     padding: var(--composer-gap-xs) var(--composer-gap-sm);
+                    position: absolute;
+                    left: 0px;
+                    width: 100%;
+                    height: 50px;
+                    bottom: 0px;
                     .icon-group {
                         .left-arrow, .right-arrow {
                             color: var(--composer-font-color-primary);
@@ -294,6 +335,9 @@
                     }
                 }
                 .right {
+                    .vertical{
+                        align-items: center;
+                    }
                     .title {
                         margin: 0 !important;
                     }
@@ -313,13 +357,17 @@
                 flex-direction: column;
                 .left {
                     flex-direction: column-reverse;
+                    max-height: fit-content;
                     .left-images {
                         flex-direction: row;
                         flex-wrap: wrap;
                         justify-content: flex-start;
                         gap: var(--composer-gap-sm);
-
+                        width: 100%;
                         .img-container {
+                            width: calc(50% - (var(--composer-gap-sm) / 2));
+                            height: 50%;
+                            flex: auto;
                             .img {
                                 width: 100%;
                             }
@@ -337,7 +385,7 @@
                         .inputs {
                             flex-direction: column;
                             width: 100%;
-
+                            gap: var(--composer-gap-sm);
                             .button, .count-input {
                                 width: 100% !important;
                                 height: var(--composer-gap-xl) !important;

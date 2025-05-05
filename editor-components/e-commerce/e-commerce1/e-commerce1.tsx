@@ -5,19 +5,37 @@ import { ComposerIcon } from "composer-tools/composer-base-components/icon/icon"
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 import ComposerSlider from "composer-tools/composer-base-components/slider/slider";
 import React from "react";
+import { getCurrencyInfo } from "components/setting-input/inputs/currency";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { display } from "@mui/system";
+import { validate } from "uuid";
 
 type Image = {
   image: string,
 }
-
-type Category = {
-  category: string,
-}
-
 type Tag = {
   tag: string,
 }
+type  WishlistItem={
+  wishlistIcon: string,
+  wishlistText: React.JSX.Element,
+}
+type  ReviewItem={
+  reviewText: React.JSX.Element,
+  reviewCount: number,
+  starIcon: string,
+  starIconBorder: string,
+  point: number
+}
 
+type  productCodeItem={
+  text: React.JSX.Element,
+  code: React.JSX.Element,
+}
+
+type Category = {
+  category: React.JSX.Element,
+}
 class ECommerce1 extends BaseECommerce {
   constructor(props?: any) {
     super(props, styles);
@@ -78,20 +96,25 @@ class ECommerce1 extends BaseECommerce {
             },
           ]
         },
-        {
-          type: "object",
-          key: "item5",
-          displayer: "Item",
-          value: [
-            {
-              type: "image",
-              key: "image",
-              displayer: "Product Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3e06c1ef0f002c95c301?alt=media",
-            },
-          ]
-        },
       ],
+    });
+    this.addProp({
+      type:"icon",
+      key: "leftArrow",
+      displayer: "Left Arrow",
+      value: "IoMdArrowDropleft"
+    });
+    this.addProp({
+      type:"icon",
+      key: "rightArrow",
+      displayer: "Right Arrow",
+      value: "IoMdArrowDropright"
+    });
+    this.addProp({
+      type:"icon",
+      key: "closeIcon",
+      displayer: "Close Icon",
+      value: "MdClose"
     });
     this.addProp({
       type: "string",
@@ -100,24 +123,52 @@ class ECommerce1 extends BaseECommerce {
       value: "Basket With Handles",
     });
     this.addProp({
-      type: "number",
+      type: "currency",
       key: "price",
       displayer: "Price",
-      value: 160,
+      value: {
+        value:"160",
+        currency: "USD"
+      }
     });
     this.addProp({
-      type: "number",
-      key: "point",
-      displayer: "Point",
-      value: 5,
-      max: 5,
-    });
-    this.addProp({
-      type: "number",
-      key: "review",
-      displayer: "Review Count",
-      value: 1,
-    });
+      type: "object",
+      key: "reviewItem",
+      displayer: "Review Item",
+      value:[
+      {
+        type: "string",
+        key: "reviewText",
+        displayer: "Review Text",
+        value: "CUSTOM REVIEW",
+      },
+      {
+        type: "number",
+        key: "reviewCount",
+        displayer: "Review Count",
+        value: 1,
+      },
+      {
+        type: "number",
+        key: "point",
+        displayer: "Point",
+        value: 5,
+        max: 5,
+      },
+      {
+        type: "icon",
+        key: "starIcon",
+        displayer: "Star Icon",
+        value:"MdOutlineStar"
+      },
+      {
+        type: "icon",
+        key: "starIconBorder",
+        displayer: "Star Icon Border",
+        value:"MdOutlineStarBorder"
+      }
+    ]
+    })
     this.addProp({
       type: "string",
       key: "description",
@@ -125,31 +176,70 @@ class ECommerce1 extends BaseECommerce {
       value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut ullamcorper leo, eget euismod orci. Cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus. Vestibulum ultricies aliquam convallis.",
     });
     this.addProp({
-      type: "page",
-      key: "cart",
-      displayer: "Cart Page",
-      value: "",
-    });
+      type:"string",
+      key: "quantityText",
+      displayer:"Quantity Text",
+      value:"Quantity"
+    })
+    this.addProp(INPUTS.BUTTON("button", "Button", "ADD TO CART", "", null, null, "Black"));
+    this.addProp({
+      type: "object", 
+      key: "wishlist",
+      displayer: "Wishlist",
+      value: [
+      {
+        type: "icon",
+        key: "wishlistIcon",
+        displayer: "Wishlist Icon",
+        value:"FaHeart",
+      },
+      {
+        type: "string",
+        key: "wishlistText",
+        displayer: "Wishlist Text",
+        value:"ADD TO WISHLIST",
+      },
+    ]
+    })
+    this.addProp({
+      type: "object",
+      key: "productCode",
+      displayer: "Product Code",
+      value:[
+      {
+        type: "string",
+        key: "text",
+        displayer: "Text",
+        value: "SKU: ",
+      },
+      {
+        type: "string",
+        key: "code",
+        displayer: "Code",
+        value: "008",
+      }
+    ]
+    })
     this.addProp({
       type: "string",
-      key: "code",
-      displayer: "Code",
-      value: "008",
-    });
+      key: "newText",
+      displayer: "New Text",
+      value:"NEW"
+    })
     this.addProp({
-      type: "boolean",
-      key: "shownew",
-      displayer: "Show New Title",
-      value: true,
-    });
+      type: "string",
+      key: "categoriesText",
+      displayer:"Categories Text",
+      value:"Categories: "
+    })
     this.addProp({
       type: "array",
-      key: "categories",
+      key: "items",
       displayer: "Categories",
       value: [
         {
           type: "object",
-          key: "item1",
+          key: "item",
           displayer: "Item",
           value: [
             {
@@ -162,7 +252,7 @@ class ECommerce1 extends BaseECommerce {
         },
         {
           type: "object",
-          key: "item1",
+          key: "item",
           displayer: "Item",
           value: [
             {
@@ -174,7 +264,13 @@ class ECommerce1 extends BaseECommerce {
           ]
         },
       ],
-    });
+    })
+    this.addProp({
+      type:"string",
+      key: "tagsText",
+      displayer:"Tags Text",
+      value:"Tags: "
+    })
     this.addProp({
       type: "array",
       key: "tags",
@@ -305,136 +401,185 @@ class ECommerce1 extends BaseECommerce {
     }
 
     const sliderRef = this.getComponentState("sliderRef");
-
     const images = this.castToObject<Image[]>("images");
-    const categories = this.castToObject<Category[]>("categories");
+    const categoryItem = this.castToObject<Category[]>("items");
     const tags = this.castToObject<Tag[]>("tags");
-
     const title = this.getPropValue("title");
     const titleExist = this.castToString(title);
     const price = this.getPropValue("price");
-    const point = this.getPropValue("point");
-    const review = this.getPropValue("review");
     const description = this.getPropValue("description");
     const descriptionExist = this.castToString(description);
-    const cart = this.getPropValue("cart");
-    const code = this.getPropValue("code");
-    const codeExist = this.castToString(code);
-    const isNew = this.getPropValue("shownew");
+    const productItem = this.castToObject<productCodeItem>("productCode")
     const count = this.getComponentState("count");
     const activeImage = this.getComponentState("activeImage");
     const isActive = this.getComponentState("isActive");
-
-    const starIcon = "MdOutlineStar";
-    const starIconBorder = "MdOutlineStarBorder";
-    const leftIcon = "IoMdArrowDropleft";
-    const rightIcon = "IoMdArrowDropright";
-    const heartIcon = "FaHeart";
-    const leftPopupArrow = "IoIosArrowBack";
-    const rightPopupArrow = "IoIosArrowForward";
-    const closeIcon = "MdClose";
-
+    const leftIcon = this.getPropValue("leftArrow");
+    const rightIcon = this.getPropValue("rightArrow");
+    const closeIcon = this.getPropValue("closeIcon");
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const wishlist = this.castToObject<WishlistItem>("wishlist");
+    const reviewItem = this.castToObject<ReviewItem>("reviewItem");
+    const isRightExist = titleExist || price.value || reviewItem.point || reviewItem.reviewCount || this.castToString(reviewItem.reviewText) || reviewItem.starIcon || reviewItem.starIconBorder ||
+    descriptionExist || this.castToString(this.getPropValue("quantityText")) || leftIcon || rightIcon || button.text || this.castToString(wishlist.wishlistText) || wishlist.wishlistIcon || 
+    this.castToString(productItem.text) || this.castToString(productItem.code) || this.castToString(this.getPropValue("categoriesText")) || (categoryItem.length > 0) || this.castToString(this.getPropValue("tagsText")) || (tags.length > 0)
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("section")}>
-            <div className={this.decorateCSS("left")}>
-              <div className={this.decorateCSS("left-images")}>
-                {images.map((item: Image, index: number) => {
-                  return (
-                    <div className={this.decorateCSS("img-container")}>
-                      <img 
-                        key={index} src={item.image} 
-                        className={`${this.decorateCSS("img")} ${index === this.getComponentState("activeSliderIndex") && this.decorateCSS("active") }`}
-                        onClick={() => handleImageClick(index)}
-                      />
-                    </div>
-                  )
-                })}
-              </div>
-              <div className={this.decorateCSS("right-image")}>
-                {isNew && (<span className={this.decorateCSS("new")}>NEW</span>)}
-                <ComposerIcon name={leftPopupArrow} propsIcon={{className: this.decorateCSS("left-arrow"), onClick: moveLeftSlider}} />
-                <ComposerIcon name={rightPopupArrow} propsIcon={{className: this.decorateCSS("right-arrow"), onClick: moveRightSlider}} />
-                {images.length > 0 && (
-                  <ComposerSlider ref={sliderRef} {...settings} className={this.decorateCSS("carousel")}>
-                    {images.map((item: Image, index: number) => {
+            {(images.length > 0) && (
+              <div className={this.decorateCSS("left")}>
+                <div className={this.decorateCSS("left-images")}>
+                  {images.map((item: Image, index: number) => {
                       return (
-                        <div className={this.decorateCSS("card")}>
-                          <img src={item.image} className={this.decorateCSS("product-img")} onClick={() => handleImageClick(index)} />
+                        <div className={this.decorateCSS("img-container")}>
+                          {item.image && (
+                            <img 
+                            key={index} src={item.image} 
+                            className={`${this.decorateCSS("img")} ${index === this.getComponentState("activeSliderIndex") && this.decorateCSS("active") }`}
+                            onClick={() => handleImageClick(index)}
+                          />
+                          )}
                         </div>
                       )
                     })}
-                  </ComposerSlider>
-                )}
+                </div>
+                <div className={this.decorateCSS("right-image")}>
+                  {this.castToString(this.getPropValue("newText")) && (<span className={this.decorateCSS("new")}>{this.getPropValue("newText")}</span>)}
+                  <ComposerIcon name={leftIcon} propsIcon={{className: this.decorateCSS("left-arrow"), onClick: moveLeftSlider}} />
+                  <ComposerIcon name={rightIcon} propsIcon={{className: this.decorateCSS("right-arrow"), onClick: moveRightSlider}} />
+                  {images.length > 0 && (
+                    <ComposerSlider ref={sliderRef} {...settings} className={this.decorateCSS("carousel")}>
+                      {images.map((item: Image, index: number) => {
+                        return (
+                          <div className={this.decorateCSS("card")}>
+                            <img src={item.image} className={this.decorateCSS("product-img")} onClick={() => handleImageClick(index)} />
+                          </div>
+                        )
+                      })}
+                    </ComposerSlider>
+                  )}
+                </div>
               </div>
-            </div>
-            <div className={this.decorateCSS("right")}>
-              <Base.VerticalContent className={this.decorateCSS("vertical")}>
-                {titleExist && (<Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>)}
-                <span className={this.decorateCSS("price")}>${price}</span>
-                <div className={this.decorateCSS("review-area")}>
-                  {[...Array(5)].map((_, index) => {
-                    return (
-                      <ComposerIcon
-                        name={index < point ? starIcon : starIconBorder}
-                        propsIcon={{ className: this.decorateCSS("star") }}
-                      />
-                    );
-                  })}
-                  <span className={this.decorateCSS("review-count")}>({review} CUSTOMER REVIEW)</span>
+            )}
+            {isRightExist && (
+              <div className={this.decorateCSS("right")}>
+                <Base.VerticalContent className={this.decorateCSS("vertical")}>
+                {(titleExist && price.value) && (
+                  <div className={this.decorateCSS("title-and-price")}>
+                    {titleExist && (<Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>)}
+                    {price.value && (<span className={this.decorateCSS("price")}>{getCurrencyInfo(price.currency)?.symbol}{price.value}</span>)}
                 </div>
-                {descriptionExist && (<Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>)}
-                <div className={this.decorateCSS("inputs")}>
-                  <div className={this.decorateCSS("count-input")}>
-                    <label className={this.decorateCSS("label")}>Quantity</label>
-                    <ComposerIcon name={leftIcon} propsIcon={{className: this.decorateCSS("left-icon"), onClick: handleLeftClick}}/>
-                    <input type="number" value={count} className={this.decorateCSS("input")} min="0" readOnly />
-                    <ComposerIcon name={rightIcon} propsIcon={{className: this.decorateCSS("right-icon"), onClick: handleRightClick}}/>
-                  </div>
-                  <Base.Button className={this.decorateCSS("button")} buttonType="Black">ADD TO CART</Base.Button>
-                </div>
-                <ComposerLink path={cart}>
-                  <div className={this.decorateCSS("wishlist")}>
-                    <ComposerIcon name={heartIcon} propsIcon={{className: this.decorateCSS("heart-icon")}}/>
-                    <span className={this.decorateCSS("cart-title")}>ADD TO WISHLIST</span>
-                  </div>
-                </ComposerLink>
-                <div className={this.decorateCSS("bottom")}>
-                  {codeExist && (
-                    <div className={this.decorateCSS("code-area")}>
-                      <span className={this.decorateCSS("code-tag")}>SKU:</span>
-                      <span className={this.decorateCSS("code")}>{code}</span>
+                )}
+                {(reviewItem.point || reviewItem.reviewCount || this.castToString(reviewItem.reviewText) || reviewItem.starIcon || reviewItem.starIconBorder || descriptionExist) &&(
+                  <div className={this.decorateCSS("review-and-description")}>
+                  {(reviewItem.point || reviewItem.reviewCount || this.castToString(reviewItem.reviewText) || reviewItem.starIcon || reviewItem.starIconBorder) && (
+                    <div className={this.decorateCSS("review-area")}>  
+                      {(reviewItem.starIcon || reviewItem.starIconBorder || reviewItem.point) && (
+                        <div className={this.decorateCSS("stars")}>
+                          {[...Array(5)].map((_, index) => {
+                            return (
+                              <ComposerIcon
+                                name={index < reviewItem.point ? reviewItem.starIcon : reviewItem.starIconBorder}
+                                propsIcon={{ className: this.decorateCSS("star") }}
+                              />
+                            );
+                          })}
+                        </div> 
+                      )}               
+                      {(reviewItem.reviewCount || this.castToString(reviewItem.reviewText)) && (
+                        <div className={this.decorateCSS("review")}>
+                          {reviewItem.reviewCount && (<div className={this.decorateCSS("review-count")}>{reviewItem.reviewCount}</div>)}
+                          {this.castToString(reviewItem.reviewText) && (<div className={this.decorateCSS("review-text")}>{reviewItem.reviewText}</div>)}
+                        </div>
+                      )}
                     </div>
                   )}
-                  <div className={this.decorateCSS("categories")}>
-                    <span className={this.decorateCSS("categoryLabel")}>Categories:</span>
-                    {categories.map((item: Category) => {
-                      return (
-                        <span className={this.decorateCSS("category")}>{item.category}</span>
-                      )
-                    })}
+                  {descriptionExist && (<Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>)}
                   </div>
-                  <div className={this.decorateCSS("tags")}>
-                    <span className={this.decorateCSS("tagLabel")}>Tags:</span>
-                    {tags.map((item: Tag) => {
-                      return (
-                        <span className={this.decorateCSS("tag")}>{item.tag}</span>
-                      )
-                    })}
-                  </div>
-                </div>
-              </Base.VerticalContent>
-            </div>
+                )}
+                  {(this.castToString(this.getPropValue("quantityText")) || leftIcon || rightIcon || button.text) && (
+                    <div className={this.decorateCSS("inputs")}>
+                      {(this.castToString(this.getPropValue("quantityText")) || leftIcon || rightIcon) && (
+                        <div className={this.decorateCSS("count-input")}>
+                          {this.castToString(this.getPropValue("quantityText")) && (<label className={this.decorateCSS("label")}>{this.getPropValue("quantityText")}</label>)}
+                          {leftIcon && (<ComposerIcon name={leftIcon} propsIcon={{className: this.decorateCSS("left-icon"), onClick: handleLeftClick}}/>)}
+                          <input type="number" value={count} className={this.decorateCSS("input")} min="0" readOnly />
+                          {rightIcon && (<ComposerIcon name={rightIcon} propsIcon={{className: this.decorateCSS("right-icon"), onClick: handleRightClick}}/>)}
+                        </div>
+                      )}
+                      {button.text && (
+                        <ComposerLink path={button.url}>
+                          <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>{button.text}</Base.Button>
+                        </ComposerLink>
+                      )}
+                    </div>                  
+                  )}
+                  {(this.castToString(wishlist.wishlistText) || wishlist.wishlistIcon) &&(
+                    <div className={this.decorateCSS("wishlist")}>
+                      <ComposerIcon name={wishlist.wishlistIcon} propsIcon={{className: this.decorateCSS("heart-icon")}}/>
+                      {this.castToString(wishlist.wishlistText) && (<span className={this.decorateCSS("cart-title")}>{wishlist.wishlistText}</span>)}
+                    </div>
+                  )}
+                  {(this.castToString(productItem.text) || this.castToString(productItem.code) || this.castToString(this.getPropValue("categoriesText")) || (categoryItem.length > 0) || this.castToString(this.getPropValue("tagsText")) || (tags.length > 0)) && (
+                    <div className={this.decorateCSS("bottom")}>
+                      {(this.castToString(productItem.text) || this.castToString(productItem.code)) && (
+                        <div className={this.decorateCSS("code-area")}>
+                          {this.castToString(productItem.text) && (<span className={this.decorateCSS("code-tag")}>{productItem.text}</span>)}
+                          {this.castToString(productItem.code) && (<span className={this.decorateCSS("code")}>{productItem.code}</span>)}
+                        </div>
+                      )}
+                      {(this.castToString(this.getPropValue("categoriesText")) || (categoryItem.length > 0)) && (
+                        <div className={this.decorateCSS("categories")}>
+                          {this.castToString(this.getPropValue("categoriesText")) && (<span className={this.decorateCSS("categoryLabel")}>{this.getPropValue("categoriesText")}</span>)}
+                          {(categoryItem.length > 0) && (
+                            categoryItem.map((item) => {
+                              return (
+                                <span className={this.decorateCSS("category")}>{item.category}</span>
+                              )
+                            })
+                          )}
+                        </div>
+                      )}
+                      {(this.castToString(this.getPropValue("tagsText")) || (tags.length > 0)) && (
+                        <div className={this.decorateCSS("tags")}>
+                          {this.castToString(this.getPropValue("tagsText")) && (<span className={this.decorateCSS("tagLabel")}>{this.getPropValue("tagsText")}</span>)}
+                          {(tags.length > 0) && (
+                            tags.map((item: Tag) => {
+                              return (
+                                <span className={this.decorateCSS("tag")}>{item.tag}</span>
+                              )
+                            })
+                          )}
+                        </div> 
+                      )}
+                    </div>
+                  )}
+                </Base.VerticalContent>
+              </div>
+            )}
           </div>
           {isActive && (
             <div className={this.decorateCSS("image-popup")}>
               <div className={this.decorateCSS("popup-content")}>
-                <img src={images[activeImage]?.image} className={this.decorateCSS("popup-image")}/>
+                <div className={this.decorateCSS("image-container")}>
+                  {images.map((img: Image, index) => {
+                    return(
+                      <img
+                      key={index}
+                      src={img.image}
+                      className={
+                        this.decorateCSS("image") +
+                        (index === activeImage ? " " + this.decorateCSS("active") : "")
+                      }
+                    />
+                    )
+                  }
+                  )}
+                </div>
                 <div className={this.decorateCSS("items")}>
                   <div className={this.decorateCSS("icon-group")}>
-                    <ComposerIcon name={leftPopupArrow} propsIcon={{className: this.decorateCSS("left-arrow"), onClick: moveLeft}} />
-                    <ComposerIcon name={rightPopupArrow} propsIcon={{className: this.decorateCSS("right-arrow"), onClick: moveRight}} />
+                    <ComposerIcon name={leftIcon} propsIcon={{className: this.decorateCSS("left-arrow"), onClick: moveLeft}} />
+                    <ComposerIcon name={rightIcon} propsIcon={{className: this.decorateCSS("right-arrow"), onClick: moveRight}} />
                   </div>
                   <span className={this.decorateCSS("pages")}>
                     {activeImage+1}/{images.length}
