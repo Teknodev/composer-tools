@@ -13,8 +13,8 @@ type FooterValues = {
 
 type FooterTextValues = {
   footerIcon: string;
-  footerText: React.JSX.Element;
-  path: string;
+  nav_title: React.JSX.Element;
+  nav_navigate_to: string;
 };
 
 class Footer8Page extends BaseFooter {
@@ -69,14 +69,14 @@ class Footer8Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "nav_title",
                       displayer: "Text",
                       value: "Contact",
                     },
                     {
                       type: "page",
                       displayer: "Path",
-                      key: "path",
+                      key: "nav_navigate_to",
                       value: "",
                     },
                   ],
@@ -89,14 +89,14 @@ class Footer8Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "nav_title",
                       displayer: "Text",
                       value: "Blog",
                     },
 
                     {
                       type: "page",
-                      key: "path",
+                      key: "nav_navigate_to",
                       displayer: "Path",
                       value: "",
                     },
@@ -109,14 +109,14 @@ class Footer8Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "nav_title",
                       displayer: "Text",
                       value: "Our Story",
                     },
 
                     {
                       type: "page",
-                      key: "path",
+                      key: "nav_navigate_to",
                       displayer: "Path",
                       value: "",
                     },
@@ -129,14 +129,14 @@ class Footer8Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "nav_title",
                       displayer: "Text",
                       value: "Careers",
                     },
 
                     {
                       type: "page",
-                      key: "path",
+                      key: "nav_navigate_to",
                       displayer: "Path",
                       value: "",
                     },
@@ -169,14 +169,14 @@ class Footer8Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "nav_title",
                       displayer: "Text",
                       value: "Press",
                     },
                     {
                       type: "page",
                       displayer: "Path",
-                      key: "path",
+                      key: "nav_navigate_to",
                       value: "",
                     },
                   ],
@@ -189,14 +189,14 @@ class Footer8Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "nav_title",
                       displayer: "Text",
                       value: "Brand Assets",
                     },
 
                     {
                       type: "page",
-                      key: "path",
+                      key: "nav_navigate_to",
                       displayer: "Path",
                       value: "",
                     },
@@ -209,14 +209,14 @@ class Footer8Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "nav_title",
                       displayer: "Text",
                       value: "Changelog",
                     },
 
                     {
                       type: "page",
-                      key: "path",
+                      key: "nav_navigate_to",
                       displayer: "Path",
                       value: "",
                     },
@@ -229,14 +229,14 @@ class Footer8Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "nav_title",
                       displayer: "Text",
                       value: "Help centre",
                     },
 
                     {
                       type: "page",
-                      key: "path",
+                      key: "nav_navigate_to",
                       displayer: "Path",
                       value: "",
                     },
@@ -269,14 +269,14 @@ class Footer8Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "nav_title",
                       displayer: "Text",
                       value: "Documentation",
                     },
                     {
                       type: "page",
                       displayer: "Path",
-                      key: "path",
+                      key: "nav_navigate_to",
                       value: "",
                     },
                   ],
@@ -288,13 +288,13 @@ class Footer8Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "nav_title",
                       displayer: "Text",
                       value: "Tutorials",
                     },
                     {
                       type: "page",
-                      key: "path",
+                      key: "nav_navigate_to",
                       displayer: "Path",
                       value: "",
                     },
@@ -307,13 +307,13 @@ class Footer8Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "nav_title",
                       displayer: "Text",
                       value: "API Reference",
                     },
                     {
                       type: "page",
-                      key: "path",
+                      key: "nav_navigate_to",
                       displayer: "Path",
                       value: "",
                     },
@@ -346,14 +346,14 @@ class Footer8Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "nav_title",
                       displayer: "Text",
                       value: "Support",
                     },
                     {
                       type: "page",
                       displayer: "Path",
-                      key: "path",
+                      key: "nav_navigate_to",
                       value: "",
                     },
                   ],
@@ -365,13 +365,13 @@ class Footer8Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "nav_title",
                       displayer: "Text",
                       value: "Feedback",
                     },
                     {
                       type: "page",
-                      key: "path",
+                      key: "nav_navigate_to",
                       displayer: "Path",
                       value: "",
                     },
@@ -384,13 +384,13 @@ class Footer8Page extends BaseFooter {
                   value: [
                     {
                       type: "string",
-                      key: "footerText",
+                      key: "nav_title",
                       displayer: "Text",
                       value: "Live Chat",
                     },
                     {
                       type: "page",
-                      key: "path",
+                      key: "nav_navigate_to",
                       displayer: "Path",
                       value: "",
                     },
@@ -590,16 +590,16 @@ class Footer8Page extends BaseFooter {
                           {item.footerText.length > 0 && (
                             <Base.VerticalContent className={this.decorateCSS("text-container")}>
                               {item.footerText.map((v: FooterTextValues, indexFooterText: number) => {
-                                const footerTextExist = this.castToString(v.footerText);
+                                const footerTextExist = this.castToString(v.nav_title);
                                 const elementExist = footerTextExist;
                                 return (
                                   elementExist && (
-                                    <ComposerLink key={indexFooterText} path={v.path}>
+                                    <ComposerLink key={indexFooterText} path={v.nav_navigate_to}>
                                       <div 
-                                        className={`${this.decorateCSS("element")} ${v.path && this.decorateCSS("has-path")}`}
-                                        data-animation={v.path ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                                        className={`${this.decorateCSS("element")} ${v.nav_navigate_to && this.decorateCSS("has-path")}`}
+                                        data-animation={v.nav_navigate_to ? this.getPropValue("hoverAnimation").join(" ") : ""}
                                       >
-                                        {footerTextExist && <Base.P className={this.decorateCSS("text")}>{v.footerText}</Base.P>}
+                                        {footerTextExist && <Base.P className={this.decorateCSS("text")}>{v.nav_title}</Base.P>}
                                       </div>
                                     </ComposerLink>
                                   )

@@ -9,6 +9,7 @@ import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 type SlideItems ={
     videoUrl: string;
     videoText: React.JSX.Element
+    socialIcons: SocialIcon[]
 }
 type SocialIcon ={
     icon: string;
@@ -47,6 +48,89 @@ class Social2 extends BaseSocial {
                 displayer: "Video Text",
                 value: "🍀Acne safe skincare routine with CHANDO Himalaya Toner - Himalayan Essence Toner Essence - Rejuvenation Repairing Essence Cream - Time Frozen Aging Resistance Activating Essence Cream"
             },
+            {
+                type:"array",
+                key:"socialIcons",
+                displayer:"Social Icons",
+                value:[
+                {
+                    type:"object",
+                    key: "socialIcon",
+                    displayer: "Social Icon",
+                    value:[
+                    {
+                        type: "icon",
+                        key: "icon",
+                        displayer: "Icon",
+                        value:"RiFacebookFill"
+                    },
+                    {
+                        type: "page",
+                        key: "socialLink",
+                        displayer: "Social Link",
+                        value:""
+                    },
+                    ]
+                },
+                {
+                    type:"object",
+                    key: "socialIcon",
+                    displayer: "Social Icon",
+                    value:[
+                    {
+                        type: "icon",
+                        key: "icon",
+                        displayer: "Icon",
+                        value:"ImLinkedin2"
+                    },
+                    {
+                        type: "page",
+                        key: "socialLink",
+                        displayer: "Social Link",
+                        value:""
+                    }
+                    ]
+                },
+                {
+                    type:"object",
+                    key: "socialIcon",
+                    displayer: "Social Icon",
+                    value:[
+                    {
+                        type: "icon",
+                        key: "icon",
+                        displayer: "Icon",
+                        value:"SiWhatsapp"
+                    },
+                    {
+                        type: "page",
+                        key: "socialLink",
+                        displayer: "Social Link",
+                        value:""
+                    }
+                    ]
+                },
+                {
+                    type:"object",
+                    key: "socialIcon",
+                    displayer: "Social Icon",
+                    value:[
+                    {
+                        type: "icon",
+                        key: "icon",
+                        displayer: "Icon",
+                        value:"FaTwitter"
+                    },
+                    {
+                        type: "page",
+                        key: "socialLink",
+                        displayer: "Social Link",
+                        value:""
+                    }
+                    ]
+                },
+                ]
+            }
             ],
         },
         {
@@ -66,6 +150,89 @@ class Social2 extends BaseSocial {
                 key: "videoText",
                 displayer: "Video Text",
                 value: ""
+            },
+            {
+                type:"array",
+                key:"socialIcons",
+                displayer:"Social Icons",
+                value:[
+                {
+                    type:"object",
+                    key: "socialIcon",
+                    displayer: "Social Icon",
+                    value:[
+                    {
+                        type: "icon",
+                        key: "icon",
+                        displayer: "Icon",
+                        value:"RiFacebookFill"
+                    },
+                    {
+                        type: "page",
+                        key: "socialLink",
+                        displayer: "Social Link",
+                        value:""
+                    },
+                    ]
+                },
+                {
+                    type:"object",
+                    key: "socialIcon",
+                    displayer: "Social Icon",
+                    value:[
+                    {
+                        type: "icon",
+                        key: "icon",
+                        displayer: "Icon",
+                        value:"ImLinkedin2"
+                    },
+                    {
+                        type: "page",
+                        key: "socialLink",
+                        displayer: "Social Link",
+                        value:""
+                    }
+                    ]
+                },
+                {
+                    type:"object",
+                    key: "socialIcon",
+                    displayer: "Social Icon",
+                    value:[
+                    {
+                        type: "icon",
+                        key: "icon",
+                        displayer: "Icon",
+                        value:"SiWhatsapp"
+                    },
+                    {
+                        type: "page",
+                        key: "socialLink",
+                        displayer: "Social Link",
+                        value:""
+                    }
+                    ]
+                },
+                {
+                    type:"object",
+                    key: "socialIcon",
+                    displayer: "Social Icon",
+                    value:[
+                    {
+                        type: "icon",
+                        key: "icon",
+                        displayer: "Icon",
+                        value:"FaTwitter"
+                    },
+                    {
+                        type: "page",
+                        key: "socialLink",
+                        displayer: "Social Link",
+                        value:""
+                    }
+                    ]
+                },
+                ]
             }
             ],
         },
@@ -86,6 +253,89 @@ class Social2 extends BaseSocial {
                 key: "videoText",
                 displayer: "Video Text",
                 value: "Skincare Over 40: Achieve Porcelain Skin with This 3-Step Routine ft. Chando Himalaya! Want flawless, porcelain-like skin like the girls on Douyin? While we can’t be them, we can definitely get our skin looking and feeling just as smooth! Thanks to Chando Himalaya and its star ingredient HiMurchaSin, glowing skin is as easy as 1, 2, 3! @chandohimalaya_official #SkincareOver40 #PorcelainSkin #DouyinBeauty #ChandoHimalaya #GlassSkinGoals #AntiAgingRoutine #FlawlessSkin Comment SHOP below to receive a DM with the link to shop this post on my LTK ⬇ https://liketk.it/4UMpx #ltkbeauty #ltkstyletip #ltkover40"
+            },
+            {
+                type:"array",
+                key:"socialIcons",
+                displayer:"Social Icons",
+                value:[
+                {
+                    type:"object",
+                    key: "socialIcon",
+                    displayer: "Social Icon",
+                    value:[
+                    {
+                        type: "icon",
+                        key: "icon",
+                        displayer: "Icon",
+                        value:"RiFacebookFill"
+                    },
+                    {
+                        type: "page",
+                        key: "socialLink",
+                        displayer: "Social Link",
+                        value:""
+                    },
+                    ]
+                },
+                {
+                    type:"object",
+                    key: "socialIcon",
+                    displayer: "Social Icon",
+                    value:[
+                    {
+                        type: "icon",
+                        key: "icon",
+                        displayer: "Icon",
+                        value:"ImLinkedin2"
+                    },
+                    {
+                        type: "page",
+                        key: "socialLink",
+                        displayer: "Social Link",
+                        value:""
+                    }
+                    ]
+                },
+                {
+                    type:"object",
+                    key: "socialIcon",
+                    displayer: "Social Icon",
+                    value:[
+                    {
+                        type: "icon",
+                        key: "icon",
+                        displayer: "Icon",
+                        value:"SiWhatsapp"
+                    },
+                    {
+                        type: "page",
+                        key: "socialLink",
+                        displayer: "Social Link",
+                        value:""
+                    }
+                    ]
+                },
+                {
+                    type:"object",
+                    key: "socialIcon",
+                    displayer: "Social Icon",
+                    value:[
+                    {
+                        type: "icon",
+                        key: "icon",
+                        displayer: "Icon",
+                        value:"FaTwitter"
+                    },
+                    {
+                        type: "page",
+                        key: "socialLink",
+                        displayer: "Social Link",
+                        value:""
+                    }
+                    ]
+                },
+                ]
             }
             ],
         },
@@ -106,6 +356,89 @@ class Social2 extends BaseSocial {
                 key: "videoText",
                 displayer: "Video Text",
                 value: "One drop to zap that fatigue from your skin! Try CHANDO's Himalaya 3-step routine and let Himalayan yeast transform you from saggy to sassy! 🍃#chandohimalaya #FindYourBeauty #fallskincare #HiMurchaSin"
+            },
+            {
+                type:"array",
+                key:"socialIcons",
+                displayer:"Social Icons",
+                value:[
+                {
+                    type:"object",
+                    key: "socialIcon",
+                    displayer: "Social Icon",
+                    value:[
+                    {
+                        type: "icon",
+                        key: "icon",
+                        displayer: "Icon",
+                        value:"RiFacebookFill"
+                    },
+                    {
+                        type: "page",
+                        key: "socialLink",
+                        displayer: "Social Link",
+                        value:""
+                    },
+                    ]
+                },
+                {
+                    type:"object",
+                    key: "socialIcon",
+                    displayer: "Social Icon",
+                    value:[
+                    {
+                        type: "icon",
+                        key: "icon",
+                        displayer: "Icon",
+                        value:"ImLinkedin2"
+                    },
+                    {
+                        type: "page",
+                        key: "socialLink",
+                        displayer: "Social Link",
+                        value:""
+                    }
+                    ]
+                },
+                {
+                    type:"object",
+                    key: "socialIcon",
+                    displayer: "Social Icon",
+                    value:[
+                    {
+                        type: "icon",
+                        key: "icon",
+                        displayer: "Icon",
+                        value:"SiWhatsapp"
+                    },
+                    {
+                        type: "page",
+                        key: "socialLink",
+                        displayer: "Social Link",
+                        value:""
+                    }
+                    ]
+                },
+                {
+                    type:"object",
+                    key: "socialIcon",
+                    displayer: "Social Icon",
+                    value:[
+                    {
+                        type: "icon",
+                        key: "icon",
+                        displayer: "Icon",
+                        value:"FaTwitter"
+                    },
+                    {
+                        type: "page",
+                        key: "socialLink",
+                        displayer: "Social Link",
+                        value:""
+                    }
+                    ]
+                },
+                ]
             }
             ],
         },
@@ -126,6 +459,89 @@ class Social2 extends BaseSocial {
                 key: "videoText",
                 displayer: "Video Text",
                 value: "Just tried the CHANDO Himalaya Green Tea Purifying Mask! 🧖‍♀️ It's so relaxing, even your hubby is considering a spa day. Who knew green tea could be this persuasive? #chandohimalaya #FindYourBeauty #fallskincare"
+            },
+            {
+                type:"array",
+                key:"socialIcons",
+                displayer:"Social Icons",
+                value:[
+                {
+                    type:"object",
+                    key: "socialIcon",
+                    displayer: "Social Icon",
+                    value:[
+                    {
+                        type: "icon",
+                        key: "icon",
+                        displayer: "Icon",
+                        value:"RiFacebookFill"
+                    },
+                    {
+                        type: "page",
+                        key: "socialLink",
+                        displayer: "Social Link",
+                        value:""
+                    },
+                    ]
+                },
+                {
+                    type:"object",
+                    key: "socialIcon",
+                    displayer: "Social Icon",
+                    value:[
+                    {
+                        type: "icon",
+                        key: "icon",
+                        displayer: "Icon",
+                        value:"ImLinkedin2"
+                    },
+                    {
+                        type: "page",
+                        key: "socialLink",
+                        displayer: "Social Link",
+                        value:""
+                    }
+                    ]
+                },
+                {
+                    type:"object",
+                    key: "socialIcon",
+                    displayer: "Social Icon",
+                    value:[
+                    {
+                        type: "icon",
+                        key: "icon",
+                        displayer: "Icon",
+                        value:"SiWhatsapp"
+                    },
+                    {
+                        type: "page",
+                        key: "socialLink",
+                        displayer: "Social Link",
+                        value:""
+                    }
+                    ]
+                },
+                {
+                    type:"object",
+                    key: "socialIcon",
+                    displayer: "Social Icon",
+                    value:[
+                    {
+                        type: "icon",
+                        key: "icon",
+                        displayer: "Icon",
+                        value:"FaTwitter"
+                    },
+                    {
+                        type: "page",
+                        key: "socialLink",
+                        displayer: "Social Link",
+                        value:""
+                    }
+                    ]
+                },
+                ]
             }
             ],
         },
@@ -146,6 +562,89 @@ class Social2 extends BaseSocial {
                 key: "videoText",
                 displayer: "Video Text",
                 value: ""
+            },
+            {
+                type:"array",
+                key:"socialIcons",
+                displayer:"Social Icons",
+                value:[
+                {
+                    type:"object",
+                    key: "socialIcon",
+                    displayer: "Social Icon",
+                    value:[
+                    {
+                        type: "icon",
+                        key: "icon",
+                        displayer: "Icon",
+                        value:"RiFacebookFill"
+                    },
+                    {
+                        type: "page",
+                        key: "socialLink",
+                        displayer: "Social Link",
+                        value:""
+                    },
+                    ]
+                },
+                {
+                    type:"object",
+                    key: "socialIcon",
+                    displayer: "Social Icon",
+                    value:[
+                    {
+                        type: "icon",
+                        key: "icon",
+                        displayer: "Icon",
+                        value:"ImLinkedin2"
+                    },
+                    {
+                        type: "page",
+                        key: "socialLink",
+                        displayer: "Social Link",
+                        value:""
+                    }
+                    ]
+                },
+                {
+                    type:"object",
+                    key: "socialIcon",
+                    displayer: "Social Icon",
+                    value:[
+                    {
+                        type: "icon",
+                        key: "icon",
+                        displayer: "Icon",
+                        value:"SiWhatsapp"
+                    },
+                    {
+                        type: "page",
+                        key: "socialLink",
+                        displayer: "Social Link",
+                        value:""
+                    }
+                    ]
+                },
+                {
+                    type:"object",
+                    key: "socialIcon",
+                    displayer: "Social Icon",
+                    value:[
+                    {
+                        type: "icon",
+                        key: "icon",
+                        displayer: "Icon",
+                        value:"FaTwitter"
+                    },
+                    {
+                        type: "page",
+                        key: "socialLink",
+                        displayer: "Social Link",
+                        value:""
+                    }
+                    ]
+                },
+                ]
             }
             ],
         },
@@ -192,90 +691,7 @@ class Social2 extends BaseSocial {
         key: "sharePopupTitle",
         displayer: "Share Popup Ttitle",
         value:"Share"
-    }) 
-    this.addProp({
-        type:"array",
-        key:"socialIcons",
-        displayer:"Social Icons",
-        value:[
-        {
-            type:"object",
-            key: "socialIcon",
-            displayer: "Social Icon",
-            value:[
-            {
-                type: "icon",
-                key: "icon",
-                displayer: "Icon",
-                value:"RiFacebookFill"
-            },
-            {
-                type: "page",
-                key: "socialLink",
-                displayer: "Social Link",
-                value:""
-            },
-            ]
-        },
-        {
-            type:"object",
-            key: "socialIcon",
-            displayer: "Social Icon",
-            value:[
-            {
-                type: "icon",
-                key: "icon",
-                displayer: "Icon",
-                value:"ImLinkedin2"
-            },
-            {
-                type: "page",
-                key: "socialLink",
-                displayer: "Social Link",
-                value:""
-            }
-            ]
-        },
-        {
-            type:"object",
-            key: "socialIcon",
-            displayer: "Social Icon",
-            value:[
-            {
-                type: "icon",
-                key: "icon",
-                displayer: "Icon",
-                value:"SiWhatsapp"
-            },
-            {
-                type: "page",
-                key: "socialLink",
-                displayer: "Social Link",
-                value:""
-            }
-            ]
-        },
-        {
-            type:"object",
-            key: "socialIcon",
-            displayer: "Social Icon",
-            value:[
-            {
-                type: "icon",
-                key: "icon",
-                displayer: "Icon",
-                value:"FaTwitter"
-            },
-            {
-                type: "page",
-                key: "socialLink",
-                displayer: "Social Link",
-                value:""
-            }
-            ]
-        },
-        ]
-    })      
+    })   
 
     this.setComponentState("intervalId", 0);
     this.setComponentState("slider-ref", React.createRef());
@@ -366,7 +782,6 @@ componentDidMount() {
     const interval = this.getComponentState("intervalId");
     if (interval) {
       clearInterval(interval);
-      
     }
   }
   handleRightArrowClick = () => {
@@ -419,7 +834,6 @@ componentDidMount() {
   render() {
     const sliderItems = this.castToObject<SlideItems[]>("sliderItems");
     const sliderRef = this.getComponentState("slider-ref");
-    const socialIcons = this.castToObject<SocialIcon[]>("socialIcons");
     const selectedIndex = this.getComponentState("selectedVideo");
 
 
@@ -518,7 +932,6 @@ componentDidMount() {
                 <div className={`${this.decorateCSS("overlay")} ${this.getComponentState("shareContainerActive") && this.decorateCSS("popup-active")}`} >
                     <ComposerSlider {...settingsVideo} ref={this.getComponentState("sliderRefOverlay")} className={this.decorateCSS("slider-container")}>
                             {sliderItems.map((item, index: number) => {
-                                // const isActive = index === this.getComponentState("activeVideoIndex");
                                     return (
                                         <div key={index} className={this.decorateCSS("video-container")}>
                                                 {item.videoUrl && (
@@ -550,7 +963,7 @@ componentDidMount() {
                                                         <ComposerIcon name={this.getPropValue("shareIcon")} propsIcon={{className: this.decorateCSS("share-icon"), onClick : () => this.handleShareOpen()}}></ComposerIcon>
                                                     </div>
                                                 )}
-                                                {(this.castToString(this.getPropValue("sharePopupTitle")) || this.getPropValue("closeIcon") || (socialIcons.length > 0)) && (
+                                                {(this.castToString(this.getPropValue("sharePopupTitle")) || this.getPropValue("closeIcon") || (item.socialIcons.length > 0)) && (
                                                 <div className={`${this.decorateCSS("share-wrapper")} ${this.getComponentState("shareContainerActive") && this.decorateCSS("active")}`}>
                                                     <div className={this.decorateCSS("share-popup-container")}>
                                                         {(this.castToString(this.getPropValue("sharePopupTitle")) || this.getPropValue("closeIcon")) && (
@@ -565,14 +978,14 @@ componentDidMount() {
                                                             )}
                                                             </div>
                                                         )}
-                                                        {socialIcons.length > 0 && 
+                                                        {item.socialIcons.length > 0 && 
                                                             <div className={this.decorateCSS("social-icons-container")}>
-                                                            {socialIcons.map((item) =>{
+                                                            {item.socialIcons.map((social) =>{
                                                                 return(
-                                                                    <ComposerLink path={item.socialLink}>
-                                                                        {item.icon && (
+                                                                    <ComposerLink path={social.socialLink}>
+                                                                        {social.icon && (
                                                                         <div className={this.decorateCSS("social-icons")}>
-                                                                            <ComposerIcon name={item.icon} propsIcon={{className: this.decorateCSS("social-icon")}}></ComposerIcon>
+                                                                            <ComposerIcon name={social.icon} propsIcon={{className: this.decorateCSS("social-icon")}}></ComposerIcon>
                                                                         </div>
                                                                         )}
                                                                     </ComposerLink>
@@ -595,7 +1008,6 @@ componentDidMount() {
         <Base.Overlay className={`${this.decorateCSS("base-overlay")}  ${this.getComponentState("shareContainerActive") && this.decorateCSS("popup-active")}`} isVisible={(this.getComponentState("videoActive") && !this.getPropValue("videoIframe"))}>
             <ComposerSlider {...settingsVideo} className={this.decorateCSS("slider-container")}>
                 {sliderItems.map((item, index: number) => {
-                    // const isActive = index === this.getComponentState("activeVideoIndex");
                         return (
                             <div key={index} className={this.decorateCSS("video-container")}>
                                     {item.videoUrl && (
@@ -627,7 +1039,7 @@ componentDidMount() {
                                             <ComposerIcon name={this.getPropValue("shareIcon")} propsIcon={{className: this.decorateCSS("share-icon"), onClick : () => this.handleShareOpen()}}></ComposerIcon>
                                         </div>
                                     )}
-                                    {(this.castToString(this.getPropValue("sharePopupTitle")) || this.getPropValue("closeIcon") || (socialIcons.length > 0)) && (
+                                    {(this.castToString(this.getPropValue("sharePopupTitle")) || this.getPropValue("closeIcon") || (item.socialIcons.length > 0)) && (
                                         <div className={`${this.decorateCSS("share-wrapper")} ${this.getComponentState("shareContainerActive") && this.decorateCSS("active")}`}>
                                             <div className={this.decorateCSS("share-popup-container")}>
                                                 {(this.castToString(this.getPropValue("sharePopupTitle")) || this.getPropValue("closeIcon")) && (
@@ -642,14 +1054,14 @@ componentDidMount() {
                                                     )}
                                                     </div>
                                                 )}
-                                                {socialIcons.length > 0 && 
+                                                {item.socialIcons.length > 0 && 
                                                     <div className={this.decorateCSS("social-icons-container")}>
-                                                    {socialIcons.map((item) =>{
+                                                    {item.socialIcons.map((social) =>{
                                                         return(
-                                                            <ComposerLink path={item.socialLink}>
-                                                                {item.icon && (
+                                                            <ComposerLink path={social.socialLink}>
+                                                                {social.icon && (
                                                                 <div className={this.decorateCSS("social-icons")}>
-                                                                    <ComposerIcon name={item.icon} propsIcon={{className: this.decorateCSS("social-icon")}}></ComposerIcon>
+                                                                    <ComposerIcon name={social.icon} propsIcon={{className: this.decorateCSS("social-icon")}}></ComposerIcon>
                                                                 </div>
                                                                 )}
                                                             </ComposerLink>

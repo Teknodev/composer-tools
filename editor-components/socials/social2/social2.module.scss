@@ -186,12 +186,12 @@
                         cursor:pointer;
                         .icon{
                             font-size: 1.5rem;
-                            color:var(--composer-font-color-primary);
+                            color:white;
                         }
                         &::after {
                             position: absolute;
                             content: "";
-                            border: 1px solid var(--composer-font-color-primary);
+                            border: 1px solid white;
                             border-radius: 50%;
                             background-color: transparent;
                             width: 50px;
@@ -266,6 +266,28 @@
     }
 }
 @container (max-width: #{$composer-phone-width}) {
+  .container{
+    .max-content{
+      .slider-container{
+        .slider{
+          >div{
+            >div{
+              align-items: stretch;
+              >div{
+                height: auto !important;
+                >div{
+                  height: 100%;
+                }
+              }
+            }
+        }
+          .slider-item{
+            aspect-ratio: auto;
+          }
+        }
+      }
+    }
+  }
     .base-overlay{
         .video-container{
             .selected-video{
