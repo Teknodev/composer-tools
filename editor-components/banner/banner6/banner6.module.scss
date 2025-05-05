@@ -2,17 +2,23 @@
 
 .container {
     background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-    padding: calc(var(--composer-gap-xl) * 2.5) var(--composer-gap-xl) !important;
+    padding: calc(var(--composer-gap-xl) * 3) var(--composer-gap-xl) !important;
     position: relative;
     overflow: hidden;
     .vector1 {
         position: absolute;
-        top: -30px;
+        top: 0px;
         left: 600px;
+        object-fit: cover;
+        max-height: 200px; 
+        max-width: 50%;       
     }
     .vector2 {
         position: absolute;
         right: 200px;
+        max-height: 200px; 
+        max-width: 50%;
+        object-fit: cover;
     }
     .max-content {
         .section {
@@ -37,7 +43,6 @@
             }
             .breadcrumb {
                 display: flex;
-                flex-wrap: wrap;
                 align-items: center;
                 max-width: 100%;
 
