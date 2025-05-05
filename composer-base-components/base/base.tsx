@@ -221,7 +221,7 @@ export namespace Base {
     return <div className={`${styles.row} ${className}`} {...props}></div>;
   }
 
-  export function Overlay({ className, isVisible, ...props}: any) {
+  export function Overlay({ className, isVisible, isModal=false, ...props}: any) {
 
     const [width, setWidth] = useState(0);
     const [height, setHeight] = useState(0);
@@ -250,9 +250,8 @@ export namespace Base {
       };
     }, [isVisible ,width]);
     if(isVisible) {
-      return <div style={{width, height, left: x, top: y}} className={`${styles.overlay} ${className}`} {...props}></div>;
+      return <div style={{width, height, left: x, top: y,  ...(isModal && { zIndex: 102 })}} className={`${styles.overlay} ${className}`} {...props}></div>;
     }
-    
   }
 
   export namespace Navigator {
