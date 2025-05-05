@@ -423,12 +423,11 @@ class Feature4 extends BaseFeature {
     return (
       <Base.Container
         className={this.decorateCSS("container")}
-        style={{ backgroundImage: `url(${this.getPropValue("backgroundImage")})` }}
-      >
+        style={{ backgroundImage: `url(${this.getPropValue("backgroundImage")})` }}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ListGrid gridCount={{ pc: itemCount }} className={this.decorateCSS("content")}>
             {(subtitleExist || titleExist || linkTextExist) && (
-              <div className={this.decorateCSS("featured-card")}>
+              <Base.VerticalContent className={this.decorateCSS("featured-card")}>
                 {subtitleExist && (
                   <Base.SectionSubTitle className={`
                     ${this.decorateCSS("section-subtitle")}
@@ -454,9 +453,8 @@ class Feature4 extends BaseFeature {
                     </ComposerLink>
                   </Base.Row>
                 )}
-              </div>
+              </Base.VerticalContent>
             )}
-
             {cards?.length > 0 && cards.map((card: Card, index: number) => {
               const titleExist = !!this.castToString(card.title);
               const subtitleExist = !!this.castToString(card.subtitle);
@@ -497,14 +495,11 @@ class Feature4 extends BaseFeature {
                     {(descExist || card?.buttons?.length > 0) && (
                       <div
                         className={this.decorateCSS("overlay")}
-                        style={{ backgroundImage: `url(${card.image})` }}
-                      >
+                        style={{ backgroundImage: `url(${card.image})` }}>
                         <Base.VerticalContent
                           className={`
                             ${this.decorateCSS("overlay-content")}
-                            ${imageOverlay ? this.decorateCSS("apply-overlay") : ""}
-                          `}
-                        >
+                            ${imageOverlay ? this.decorateCSS("apply-overlay") : ""}`}>
                           {descExist && (
                             <Base.P
                               className={`

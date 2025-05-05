@@ -1,4 +1,5 @@
-@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
+  as *;
 
 .container {
   background-color: var(--composer-html-background);
@@ -9,10 +10,8 @@
     .content {
       .featured-card {
         display: flex;
-        justify-content: center;
         flex-direction: column;
         gap: var(--composer-gap-sm);
-        padding-bottom: var(--composer-gap-lg);
 
         .section-subtitle {
           margin-top: 0;
@@ -21,7 +20,7 @@
 
         .black {
           color: black;
-          &::before{
+          &::before {
             background-color: black;
           }
         }
@@ -30,7 +29,7 @@
           margin-top: 0;
           margin-bottom: 0;
         }
-        .card-link-container{
+        .card-link-container {
           .featured-card-link {
             content: "";
           }
@@ -51,9 +50,11 @@
 
       .card-item-count {
         position: relative;
-        background-color: color-mix(in srgb,
-            var(--composer-html-background),
-            var(--composer-font-color-primary) 5%);
+        background-color: color-mix(
+          in srgb,
+          var(--composer-html-background),
+          var(--composer-font-color-primary) 5%
+        );
 
         &:hover .overlay {
           opacity: 1;
@@ -95,6 +96,7 @@
           .long-text {
             font-size: 1.5rem;
             color: var(--composer-font-color-primary);
+            text-align: center;
 
             &.image-or-overlay-exist {
               color: var(--text-color-white);
@@ -108,7 +110,8 @@
             gap: var(--composer-gap-sm);
 
             .overlay-link {
-              content: "";
+              color: var(--text-color-white);
+              border: 1px solid var(--text-color-white);
             }
           }
         }
@@ -164,6 +167,7 @@
           .vertical {
             padding: var(--composer-gap-md);
             justify-content: center;
+            align-items: center;
 
             .title {
               font-size: 1rem;
@@ -180,5 +184,27 @@
   }
 }
 
+@container (max-width: #{$composer-phone-width}) {
+  .section-subtitle {
+    transform: translateX(0) !important;
+    &::before {
+      content: none !important;
+    }
+  }
 
-@container (max-width: #{$composer-phone-width}) {}
+  .section-title {
+    text-align: center !important;
+  }
+
+  .featured-card {
+    align-items: center !important;
+    .card-link-container {
+      margin-bottom: 1rem;
+      .featured-card-link-with-image {
+        display: flex;
+        align-items: center;
+        text-align: center !important;
+      }
+    }
+  }
+}
