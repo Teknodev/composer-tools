@@ -292,7 +292,7 @@ class ECommerce3 extends BaseECommerce {
                   index === activeTab && (
                     <div className={this.decorateCSS("tab-content")}>
                       <Base.VerticalContent className={this.decorateCSS("vertical")}>
-                        {this.castToString(item.title) && <Base.H2 className={this.decorateCSS("title")}>{item.title}</Base.H2>}
+                        {this.castToString(item.title) && <Base.SectionTitle className={this.decorateCSS("title")}>{item.title}</Base.SectionTitle>}
                         {this.castToString(item.description) && <Base.SectionDescription className={this.decorateCSS("description")}>{item.description}</Base.SectionDescription>}
                         <div className={this.decorateCSS("content")}>
                           <div className={this.decorateCSS("left")}>
