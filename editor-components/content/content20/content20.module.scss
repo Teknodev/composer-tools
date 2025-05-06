@@ -191,6 +191,15 @@
                     .description{
                         text-align: center;
                     }
+                    &.row-reverse{
+                        align-items: center;
+                        .subtitle{
+                            transform: none;                        
+                        }
+                        .subtitle,.description,.title{
+                            text-align: center;
+                        }
+                    }
                 }
             }
         }
