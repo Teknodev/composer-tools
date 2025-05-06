@@ -21,7 +21,7 @@ class Content20 extends BaseContent {
         type: "image",
         key: "backgroundImage",
         displayer: "Background Image",
-        value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680f8656c1ef0f002c967a40?alt=media&timestamp=1745847898598",
+        value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6819c14f2bb4c4002cf20be0?alt=media",
     });
     this.addProp({
         type: "array",
@@ -128,7 +128,7 @@ class Content20 extends BaseContent {
                         type: "boolean",
                         key: "rowReverse",
                         displayer: "Row Reverse",
-                        value: false,
+                        value: true,
                     },
                     {
                         type: "boolean",
@@ -160,6 +160,7 @@ class Content20 extends BaseContent {
 
   render() {
     const items = this.castToObject<ItemType[]>("items");
+    const isBackgroundImageExist = this.getPropValue("backgroundImage")
     return (
       <Base.Container className={this.decorateCSS("container")}   style={{backgroundImage: `url(${this.getPropValue("backgroundImage")})`,backgroundSize: 'cover',backgroundPosition: 'center',backgroundRepeat: 'no-repeat',}}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -175,17 +176,17 @@ class Content20 extends BaseContent {
                     )}
                     {(item.lineActive || item.dotActive || item.middleLineActive || item.year)  && (
                         <div className={this.decorateCSS("middle-container")}>
-                            {item.lineActive && (<div className={this.decorateCSS("line-wrapper")}><div className={this.decorateCSS("line")}></div></div>)}
+                            {item.lineActive && (<div className={this.decorateCSS("line-wrapper")}><div className={`${this.decorateCSS("line")} ${!isBackgroundImageExist && (this.decorateCSS("without-image"))}`}></div></div>)}
                             {item.dotActive && (
                                 <div className={this.decorateCSS("dot-wrapper")}>
-                                    <div className={this.decorateCSS("dot")}></div>
+                                    <div className={`${this.decorateCSS("dot")} ${!isBackgroundImageExist && this.decorateCSS("without-image")}`}></div>
                                 </div>
                             )}
                             {(item.middleLineActive || item.year) && (
                                 <div className={`${this.decorateCSS("middle-line-and-year")} ${item.rowReverse && this.decorateCSS("row-reverse")}}`}>
                                     <div className={`${this.decorateCSS("line-and-year")} ${item.rowReverse && this.decorateCSS("row-reverse")}}`}>
-                                        {item.middleLineActive && (<div className={this.decorateCSS("middle-line")}></div>)}                                
-                                        {item.year && (<div className={`${this.decorateCSS("year")} ${!item.middleLineActive && (this.decorateCSS("without-middle-line"))}`}>{item.year}</div>)}
+                                        {item.middleLineActive && (<div className={`${this.decorateCSS("middle-line")} ${!isBackgroundImageExist && (this.decorateCSS("without-image"))}`}></div>)}                                
+                                        {item.year && (<div className={`${this.decorateCSS("year")} ${!item.middleLineActive && (this.decorateCSS("without-middle-line"))} ${!isBackgroundImageExist && this.decorateCSS("without-image")}`}>{item.year}</div>)}
                                     </div>
                                 </div>
                             )}
@@ -193,9 +194,9 @@ class Content20 extends BaseContent {
                     )}
                     {(this.castToString(item.subtitle) || this.castToString(item.title) || this.castToString(item.description)) && (
                         <Base.VerticalContent className={`${this.decorateCSS("right-container")} ${item.rowReverse && this.decorateCSS("row-reverse")}}`}>
-                            {this.castToString(item.subtitle) && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{item.subtitle}</Base.SectionSubTitle>)}
-                            {this.castToString(item.title) && (<Base.SectionTitle className={this.decorateCSS("title")}>{item.title}</Base.SectionTitle>)}
-                            {this.castToString(item.description) && (<Base.SectionDescription className={this.decorateCSS("description")}>{item.description}</Base.SectionDescription>)}
+                            {this.castToString(item.subtitle) && (<Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${isBackgroundImageExist && this.decorateCSS("with-image")}`}>{item.subtitle}</Base.SectionSubTitle>)}
+                            {this.castToString(item.title) && (<Base.SectionTitle className={`${this.decorateCSS("title")} ${isBackgroundImageExist && this.decorateCSS("with-image")}`}>{item.title}</Base.SectionTitle>)}
+                            {this.castToString(item.description) && (<Base.SectionDescription className={`${this.decorateCSS("description")} ${isBackgroundImageExist && this.decorateCSS("with-image")}`}>{item.description}</Base.SectionDescription>)}
                         </Base.VerticalContent>
                     )}
                 </div>
