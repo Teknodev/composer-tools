@@ -19,6 +19,7 @@ type Tag = {
 type  WishlistItem={
   wishlistIcon: string,
   wishlistText: React.JSX.Element,
+  wishlistUrl: string,
 }
 type  ReviewItem={
   reviewText: React.JSX.Element,
@@ -198,6 +199,12 @@ class ECommerce1 extends BaseECommerce {
         key: "wishlistText",
         displayer: "Wishlist Text",
         value:"ADD TO WISHLIST",
+      },
+      {
+        type: "page",
+        key: "wishlistUrl",
+        displayer: "Wishlist Url",
+        value:"",
       },
     ]
     })
@@ -463,12 +470,12 @@ class ECommerce1 extends BaseECommerce {
             )}
             {isRightExist && (
               <div className={this.decorateCSS("right")}>
-                <Base.VerticalContent className={this.decorateCSS("vertical")}>
+                <div className={this.decorateCSS("vertical")}>
                 {(titleExist && price.value) && (
                   <div className={this.decorateCSS("title-and-price")}>
                     {titleExist && (<Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>)}
                     {price.value && (<span className={this.decorateCSS("price")}>{getCurrencyInfo(price.currency)?.symbol}{price.value}</span>)}
-                </div>
+                  </div>
                 )}
                 {(reviewItem.point || reviewItem.reviewCount || this.castToString(reviewItem.reviewText) || reviewItem.starIcon || reviewItem.starIconBorder || descriptionExist) &&(
                   <div className={this.decorateCSS("review-and-description")}>
@@ -488,13 +495,15 @@ class ECommerce1 extends BaseECommerce {
                       )}               
                       {(reviewItem.reviewCount || this.castToString(reviewItem.reviewText)) && (
                         <div className={this.decorateCSS("review")}>
+                          <span className={this.decorateCSS("brackets")}>(</span>
                           {reviewItem.reviewCount && (<div className={this.decorateCSS("review-count")}>{reviewItem.reviewCount}</div>)}
                           {this.castToString(reviewItem.reviewText) && (<div className={this.decorateCSS("review-text")}>{reviewItem.reviewText}</div>)}
+                          <span className={this.decorateCSS("brackets")}>)</span> 
                         </div>
                       )}
                     </div>
                   )}
-                  {descriptionExist && (<Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>)}
+                  {descriptionExist && (<div className={this.decorateCSS("description")}>{description}</div>)}
                   </div>
                 )}
                   {(this.castToString(this.getPropValue("quantityText")) || leftIcon || rightIcon || button.text) && (
@@ -515,10 +524,12 @@ class ECommerce1 extends BaseECommerce {
                     </div>                  
                   )}
                   {(this.castToString(wishlist.wishlistText) || wishlist.wishlistIcon) &&(
-                    <div className={this.decorateCSS("wishlist")}>
-                      <ComposerIcon name={wishlist.wishlistIcon} propsIcon={{className: this.decorateCSS("heart-icon")}}/>
-                      {this.castToString(wishlist.wishlistText) && (<span className={this.decorateCSS("cart-title")}>{wishlist.wishlistText}</span>)}
-                    </div>
+                    <ComposerLink path={wishlist.wishlistUrl}>
+                      <div className={this.decorateCSS("wishlist")}>
+                        <ComposerIcon name={wishlist.wishlistIcon} propsIcon={{className: this.decorateCSS("heart-icon")}}/>
+                        {this.castToString(wishlist.wishlistText) && (<span className={this.decorateCSS("cart-title")}>{wishlist.wishlistText}</span>)}
+                      </div>
+                    </ComposerLink>
                   )}
                   {(this.castToString(productItem.text) || this.castToString(productItem.code) || this.castToString(this.getPropValue("categoriesText")) || (categoryItem.length > 0) || this.castToString(this.getPropValue("tagsText")) || (tags.length > 0)) && (
                     <div className={this.decorateCSS("bottom")}>
@@ -554,7 +565,7 @@ class ECommerce1 extends BaseECommerce {
                       )}
                     </div>
                   )}
-                </Base.VerticalContent>
+                </div>
               </div>
             )}
           </div>

@@ -1,6 +1,19 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
+@keyframes fadeOutIn {
+    0% {
+        opacity: 1;
+    }
+      70% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+  }
+
 .container {
+    position: relative;
     .max-content {
         .section {
             display: flex;
@@ -99,14 +112,17 @@
                 flex: 1;
                 overflow: hidden;
                 .vertical {
+                    display: flex;
+                    flex-direction: column;
                     gap: var(--composer-gap-lg);
                     .title-and-price{
                         display: flex;
                         flex-direction: column;
-                        gap: var(--composer-gap-xs);
+                        gap: var(--composer-gap-sm);
                         .title {
                             font-size: 2rem;
                             margin: 0px;
+                            text-align: start;
                         }
                         .price {
                             font-size: 2rem;
@@ -114,6 +130,9 @@
                         }
                     }
                     .review-and-description{
+                        display: flex;
+                        flex-direction: column;
+                        gap: var(--composer-gap-sm);
                         .review-area {
                             display: flex;
                             align-items: center;
@@ -127,13 +146,14 @@
                             .review {
                                 display: flex;
                                 gap: var(--composer-gap-xs);
-                                .review-count, .review-text{
+                                .review-count, .review-text, .brackets{
                                     color: var(--composer-font-color-primary);
                                 }
                             }
                         }
                         .description {
                             color: var(--composer-tertiary-color);
+                            font-size: 1rem;
                         }
                     }
 
@@ -236,7 +256,7 @@
         }
         .image-popup {
             background-color: var(--composer-overlay-color);
-            position: fixed;
+            position: absolute;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -263,15 +283,14 @@
                     top: 0;
                     left: 0;
                     opacity: 0;
-                    transition: opacity 1s ease-in-out;
                     width: 100%;
                     height: 100%;
                     object-fit: cover;
-                  }
-                  
-                  .image.active {
-                    opacity: 1;
-                    z-index: 1;
+                    &.active{
+                        animation: fadeOutIn 1s forwards;
+                        z-index: 1;
+                        animation-timing-function: cubic-bezier(0.6, 0.05, 0.2, 1);
+                    }
                   }
                 .items {
                     display: flex;
@@ -341,6 +360,12 @@
                     .review-area {
                         margin-top: var(--composer-gap-md) !important;
                     }
+                }
+            }
+            .image-popup{
+                .popup-content{
+                    width: 70%;
+                    height: 80%;                  
                 }
             }
         }
