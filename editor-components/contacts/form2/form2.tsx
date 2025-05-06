@@ -363,7 +363,6 @@ class Form2 extends BaseContacts {
                                   className={`${this.decorateCSS("input")} ${!imageExist && this.decorateCSS("input-no-image")} ${this.decorateCSS("textarea")}`}
                                   rows={12}
                                   onChange={handleChange}
-                                  name={getInputName(index, input.getPropValue("label"))}
                                 />
                               ) : (
                                 <input
