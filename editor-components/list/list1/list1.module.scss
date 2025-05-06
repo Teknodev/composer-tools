@@ -138,12 +138,14 @@
         &[data-animation~="animate1"]:hover {
           .img-div .img {
             transform: scale(1.1);
+            transition: transform 0.5s ease-in-out;
           }
         }
 
         &[data-animation~="animate2"]:hover {
           .img-div .img {
             transform: rotate(360deg);
+            transition: transform 0.3s ease-in-out;
           }
         }
         &[data-animation~="animate3"] {
@@ -158,7 +160,7 @@
               width: 0;
               height: 1px;
               background-color: var(--composer-primary-color);
-              transition: width 0.5s;
+              transition: width 0.5s ease-in-out;
               border-radius: var(--composer-border-radius-xs);
             }
           }
@@ -173,7 +175,8 @@
         }
         &[data-animation~="animate4"]:hover {
           .link {
-            animation: breathing 2s ease-out infinite normal;
+            animation: breathing 2s infinite normal;
+            transition: animation 2s ease-in-out;
           }
         }
       }
