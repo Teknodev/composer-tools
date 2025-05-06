@@ -238,7 +238,7 @@ class List3 extends BaseList {
       displayer: "Hover Animation Style",
       value: ["animate1"],
       additionalParams: {
-        selectItems: ["animate1", "animate2", "animate3", "animate4"]
+        selectItems: ["animate1", "animate2", "animate3", "animate4", "animate5"]
       }
     });
   }
@@ -272,7 +272,7 @@ class List3 extends BaseList {
                 )}
                 {this.castToString(buttonType.text) && (
                   <ComposerLink path={buttonType.url}>
-                    <Base.Button buttonType={buttonType.type} className={this.decorateCSS("button")}>
+                    <Base.Button buttonType={buttonType.type} className={this.decorateCSS("button")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                       <div className={this.decorateCSS("button-text")}>
                         {buttonType.text}
                       </div>

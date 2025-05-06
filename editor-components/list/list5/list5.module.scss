@@ -31,12 +31,7 @@
           padding: var(--composer-gap-xl) var(--composer-gap-lg);
           gap: var(--composer-gap-md);
           transition: all 0.3s ease;
-          &:hover {
-            .out-icon {
-              transform: rotate(360deg);
-              transition: transform 0.3s;
-            }
-          }
+
           &[data-animation~="animate1"]:hover {
             background-color: var(--composer-primary-color);
           }
@@ -46,7 +41,7 @@
           }
 
           &[data-animation~="animate3"]:hover {
-            transform: scale(1.03);
+            transform: scale(1.05);
           }
 
           &[data-animation~="animate4"]:hover {
@@ -82,6 +77,13 @@
               transition: all 0.3s ease;
             }
           }
+          &[data-animation~="animate5"]:hover {
+            .out-icon {
+              transform: rotate(360deg);
+              transition: transform 0.3s;
+            }
+          }
+
           .header-line {
             display: flex;
             justify-content: center;

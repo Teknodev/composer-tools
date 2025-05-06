@@ -133,7 +133,7 @@ class list4 extends BaseList {
       displayer: "Hover Animation Style",
       value: ["animate1"],
       additionalParams: {
-        selectItems: ["animate1", "animate2", "animate3"]
+        selectItems: ["animate1", "animate2"]
       }
     });
   }

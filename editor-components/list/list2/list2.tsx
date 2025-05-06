@@ -292,7 +292,7 @@ class List2 extends BaseList {
       displayer: "Hover Animation Style",
       value: ["animate1"],
       additionalParams: {
-        selectItems: ["animate1", "animate2", "animate3"]
+        selectItems: ["animate1", "animate2", "animate3", "animate4", "animate5"]
       }
     });
     this.setComponentState("moreImages", 0);
@@ -314,7 +314,7 @@ class List2 extends BaseList {
     const buttonType: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container className={this.decorateCSS("container")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             {(this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("description"))) && (

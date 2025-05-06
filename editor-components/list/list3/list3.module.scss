@@ -24,6 +24,18 @@
           position: relative;
           transition: all 0.6s ease;
           font-size: 1rem;
+
+          &[data-animation~="animate5"]:hover {
+            .button-text {
+              transform: translateX(-5px);
+            }
+
+            .button-icon {
+              opacity: 1;
+              right: -8px;
+            }
+          }
+
           .button-text {
             transition: transform 0.5s ease;
           }
@@ -36,15 +48,6 @@
             opacity: 0;
             transform: translateX(-15px);
             transition: all 0.6s ease, right 0.6s ease, opacity 0.6s ease;
-          }
-          &:hover {
-            .button-text {
-              transform: translateX(-5px);
-            }
-            .button-icon {
-              opacity: 1;
-              right: -8px;
-            }
           }
         }
       }
@@ -59,7 +62,7 @@
         &[data-animation~="animate1"]:hover {
           background-color: var(--composer-primary-color);
           color: var(--composer-font-color-secondary);
-          transform: scale(1.05);
+          transform: scale(1.1);
 
           .itemTitle {
             color: var(--composer-font-color-secondary);
