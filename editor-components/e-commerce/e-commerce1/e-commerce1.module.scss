@@ -138,6 +138,7 @@
                             align-items: center;
                             gap: var(--composer-gap-sm);
                             .stars {
+                                display: flex;
                                 .star{
                                     color: #ebbc00;
                                     font-size: 1rem !important;
@@ -164,12 +165,14 @@
                             justify-content: center;
                             align-items: center;
                             border: 1px solid var(--composer-tertiary-color);
-                            border-right: none;
                             border-radius: var(--composer-border-radius-xs);
                             border-top-right-radius: 0;
                             border-bottom-right-radius: 0;
                             padding: var(--composer-gap-sm);
                             width: 175px;
+                            &.with-button{
+                                border-right: none;
+                            }
                             .label {
                                 color: var(--composer-tertiary-color);
                                 padding-right: var(--composer-gap-lg);

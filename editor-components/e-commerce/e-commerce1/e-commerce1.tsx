@@ -1,5 +1,5 @@
 import { BaseECommerce } from "composer-tools/editor-components/EditorComponent";
-import styles from "./ecommerce1.module.scss";
+import styles from "./e-commerce1.module.scss";
 import { Base } from "composer-tools/composer-base-components/base/base";
 import { ComposerIcon } from "composer-tools/composer-base-components/icon/icon";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
@@ -471,7 +471,7 @@ class ECommerce1 extends BaseECommerce {
             {isRightExist && (
               <div className={this.decorateCSS("right")}>
                 <div className={this.decorateCSS("vertical")}>
-                {(titleExist && price.value) && (
+                {(titleExist || price.value) && (
                   <div className={this.decorateCSS("title-and-price")}>
                     {titleExist && (<Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>)}
                     {price.value && (<span className={this.decorateCSS("price")}>{getCurrencyInfo(price.currency)?.symbol}{price.value}</span>)}
@@ -509,14 +509,14 @@ class ECommerce1 extends BaseECommerce {
                   {(this.castToString(this.getPropValue("quantityText")) || leftIcon || rightIcon || button.text) && (
                     <div className={this.decorateCSS("inputs")}>
                       {(this.castToString(this.getPropValue("quantityText")) || leftIcon || rightIcon) && (
-                        <div className={this.decorateCSS("count-input")}>
+                        <div className={`${this.decorateCSS("count-input")} ${this.castToString(button.text) && this.decorateCSS("with-button")}`}>
                           {this.castToString(this.getPropValue("quantityText")) && (<label className={this.decorateCSS("label")}>{this.getPropValue("quantityText")}</label>)}
                           {leftIcon && (<ComposerIcon name={leftIcon} propsIcon={{className: this.decorateCSS("left-icon"), onClick: handleLeftClick}}/>)}
                           <input type="number" value={count} className={this.decorateCSS("input")} min="0" readOnly />
                           {rightIcon && (<ComposerIcon name={rightIcon} propsIcon={{className: this.decorateCSS("right-icon"), onClick: handleRightClick}}/>)}
                         </div>
                       )}
-                      {button.text && (
+                      {this.castToString(button.text) && (
                         <ComposerLink path={button.url}>
                           <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>{button.text}</Base.Button>
                         </ComposerLink>
