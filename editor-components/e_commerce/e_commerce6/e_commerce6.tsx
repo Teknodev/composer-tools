@@ -693,7 +693,9 @@ class ECommerce6 extends BaseECommerce {
     const isRightContainer = isTitle || isShareIcon || isSahreTitle || socials.length > 0 || sizeSections.length > 0 || 
     isSizeLabel || countSection.addIcon || countSection.minusIcon || countSection.count || this.castToString(button.text) || deliveryType.length > 0 
     || isItemDetailTitle || itemDetails.length>0 || this.getPropValue("upArrowIcon") || this.getPropValue("downArrowIcon") || countSection.count;
-
+    const slidesToShow = images.length > 3 ? 4 : images.length;
+    const sliderKey = `infinite-${images.length > 3}-slides-${slidesToShow}`;
+    
     const settings = {
       dots: false,
       button: false,
@@ -707,16 +709,27 @@ class ECommerce6 extends BaseECommerce {
       autoplaySpeed: 5000,
       beforeChange: (oldIndex: number, newIndex: number) => {
         this.setComponentState("selectedImage", newIndex);
-        this.getComponentState("slider-ref-small-image-mobile").current.slickGoTo(this.getComponentState("selectedImage"));
-        this.getComponentState("slider-ref-small-image").current.slickGoTo(this.getComponentState("selectedImage"));
-      },
+      
+        const mobileSliderRef = this.getComponentState("slider-ref-small-image-mobile")?.current;
+        const desktopSliderRef = this.getComponentState("slider-ref-small-image")?.current;
+      
+        if (images.length > 0) {
+          if (mobileSliderRef && typeof mobileSliderRef.slickGoTo === "function") {
+            mobileSliderRef.slickGoTo(newIndex);
+          }
+          if (desktopSliderRef && typeof desktopSliderRef.slickGoTo === "function") {
+            desktopSliderRef.slickGoTo(newIndex);
+          }
+        }
+      }
+      
     };
     const settingsSmallImage = {
       arrows: false,
       dots: false,
       infinite: true,
       autoplay: true,
-      slidesToShow:4,
+      slidesToShow:images.length > 3 ? 4 : images.length,
       slidesToScroll: 1,
       vertical: true,
       verticalSwiping: true,
@@ -736,11 +749,11 @@ class ECommerce6 extends BaseECommerce {
         <div className={this.decorateCSS("left-container")}> 
           {images.length > 0 && (
             <div className={this.decorateCSS("small-image-slider")}>
-              <ComposerSlider  {...settingsSmallImage} className={this.decorateCSS("small-images-container")} ref={this.getComponentState("slider-ref-small-image")}>
+              <ComposerSlider  {...settingsSmallImage} key={sliderKey} className={this.decorateCSS("small-images-container")} ref={this.getComponentState("slider-ref-small-image")}>
                 {images.map((item: Images, index: number)=>{
                   return(
                     <div className={this.decorateCSS("small-image")} key={index}>
-                      <img src={item.item} className={this.decorateCSS("image")} onClick={()=> this.handleDotClick(index)}></img>
+                      <img src={item.item} alt={`Image ${index}`}className={this.decorateCSS("image")} onClick={()=> this.handleDotClick(index)}></img>
                       {this.getPropValue("smallImageOverlay") && (
                         <div className={`${this.decorateCSS("overlay")} ${this.getComponentState("selectedImage") === index && this.decorateCSS("selected-image")}`}
                         onClick={()=> this.handleDotClick(index)}
@@ -764,16 +777,20 @@ class ECommerce6 extends BaseECommerce {
                   )
                 })}
               </ComposerSlider>
-              {this.castToString(button.text) && (
+              {(this.getPropValue("imageDownArrow") || this.getPropValue("imageUpArrow")) && (
               <div className={this.decorateCSS("arrow-buttons")}>
-                <div className={this.decorateCSS("image-down-arrow")}>
-                  <ComposerIcon name={this.getPropValue("leftArrow")} propsIcon = {{className: this.decorateCSS("icon"),
-                    onClick: () => {this.handleClickLeft()}}}/>
-                </div>
-                <div className={this.decorateCSS("image-up-arrow")}>
-                  <ComposerIcon name={this.getPropValue("rightArrow")} propsIcon = {{className: this.decorateCSS("icon"),
-                    onClick: () => {this.handleClickRight()}}}/>
-                </div>
+                {this.getPropValue("imageDownArrow") && (
+                  <div className={this.decorateCSS("image-down-arrow")}>
+                    <ComposerIcon name={this.getPropValue("imageDownArrow")} propsIcon = {{className: this.decorateCSS("icon"),
+                      onClick: () => {this.handleClickLeft()}}}/>
+                  </div>
+                )}
+                {this.getPropValue("imageUpArrow") && (
+                  <div className={this.decorateCSS("image-up-arrow")}>
+                    <ComposerIcon name={this.getPropValue("imageUpArrow")} propsIcon = {{className: this.decorateCSS("icon"),
+                      onClick: () => {this.handleClickRight()}}}/>
+                  </div>
+                )}
               </div>
               )}              
             </div>
@@ -820,10 +837,14 @@ class ECommerce6 extends BaseECommerce {
                     <div className={this.decorateCSS("socials")}>
                     {socials.map((item:Socials, index: number)=> {
                       return(
-                        <div className={this.decorateCSS("social")} key={index}>
-                          <ComposerIcon name={item.icon} propsIcon={{className: this.decorateCSS("social-icon")}}/>
-                          <ComposerLink path={item.link} ><div className={this.decorateCSS("social-text")}>{item.text}</div></ComposerLink>
-                        </div>
+                        <>
+                        {(item.icon || this.castToString(item.text)) && (
+                          <div className={this.decorateCSS("social")} key={index}>
+                            {item.icon && (<ComposerIcon name={item.icon} propsIcon={{className: this.decorateCSS("social-icon")}}/>)}
+                            {item.text && (<ComposerLink path={item.link} ><div className={this.decorateCSS("social-text")}>{item.text}</div></ComposerLink>)}
+                          </div>
+                        )}
+                        </>
                       )
                     })}
                     {shareCopyLink.isActive && (
@@ -889,9 +910,11 @@ class ECommerce6 extends BaseECommerce {
               )}
               {this.castToString(button.text) && (
               <div className={this.decorateCSS("add-button")}>
-                <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                    {button.text}
-                </Base.Button>
+                <ComposerLink path={button.url}>
+                  <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                      {button.text}
+                  </Base.Button>
+                </ComposerLink>
               </div>
               )}
             </div>
@@ -901,10 +924,6 @@ class ECommerce6 extends BaseECommerce {
             {deliveryType.map((item: DeliveryType , index: number) => {
               return(
                 <div className={this.decorateCSS("delivery-type")} key={index}>
-                  {item.isRadioButtonActive &&
-                    <div onClick={() => this.handleRadioButton(index)} className={`${this.decorateCSS("radio-button")}
-                    ${(this.getComponentState("selectedRadioButton") === index) && this.decorateCSS("active")}`}></div>
-                  }
                   {this.castToString(item.description) && (<div className={this.decorateCSS("delivery")}>{item.description}</div>)}                
                 </div>
               )

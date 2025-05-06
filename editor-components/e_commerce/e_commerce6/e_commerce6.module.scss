@@ -73,11 +73,6 @@
                             color: var(--composer-font-color-primary);
                         }
                     }
-                    .image-down-arrow, .image-up-arrow{
-                        .icon{
-                            transform: rotate(90deg);
-                        }
-                    }
                 }
             }
 
@@ -364,15 +359,6 @@
                     display: flex;
                     align-items: center;
                     gap: var(--composer-gap-sm);
-                    .radio-button{
-                        width: 10px;
-                        height: 10px;
-                        border: 1px solid var(--composer-font-color-primary);
-                        border-radius: 50%;
-                        &.active{
-                            background-color: var(--composer-primary-color);
-                        }
-                    }
                     .delivery{
                         color: var(--composer-font-color-primary);
                         font-size: 1rem
@@ -546,25 +532,23 @@
                     }
                 }
                 .arrow-buttons{
+                    .image-down-arrow, .image-up-arrow{
+                        .icon{
+                            font-size: 1.5rem;
+                            transform: rotate(90deg);
+                        }
+                    }
                     .image-up-arrow{
                         position: absolute;
                         right: 0px;
                         top: 0;
                         height: 100%;
-                        .icon{
-                            font-size: 1.5rem;
-                            transform: rotate(0deg);
-                        }
                     }
                     .image-down-arrow{
                         position: absolute;
                         left: 0px;
                         top: 0;
                         height: 100%;
-                        .icon{
-                            font-size: 1.5rem;
-                            transform: rotate(0deg);
-                        }
                     }
                 }
             }
