@@ -1,4 +1,4 @@
-@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
 @mixin transitionAll($second: 1s) {
   transition: all $second ease-out;
@@ -217,7 +217,7 @@
 
             .button-container {
               position: relative;
-              bottom: calc(-1 * 20vw);
+              bottom: -20vw;
               opacity: 0;
               .button {
                 text-transform: capitalize;
