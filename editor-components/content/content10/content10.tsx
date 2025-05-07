@@ -126,7 +126,7 @@ class Content10 extends BaseContent {
 
 
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container className={`${this.decorateCSS("container")} ${this.getComponentState("is_video_visible") && this.decorateCSS("with-overlay")}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ContainerGrid className={this.decorateCSS("content")}>
             {videoImage && (
@@ -230,8 +230,7 @@ class Content10 extends BaseContent {
               </Base.VerticalContent>
             )}
           </Base.ContainerGrid>
-        </Base.MaxContent>
-        {this.getComponentState("is_video_visible") && (
+          {this.getComponentState("is_video_visible") && (
           <Base.Overlay
             onClick={() => this.setComponentState("is_video_visible", false)} className={this.decorateCSS("overlay")}
             isVisible={true}
@@ -265,6 +264,7 @@ class Content10 extends BaseContent {
             )}
           </Base.Overlay>
         )}
+        </Base.MaxContent>
       </Base.Container>
     );
   }

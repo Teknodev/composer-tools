@@ -53,7 +53,7 @@ class Content12 extends BaseContent {
 
     return (
       <Base.Container
-        className={this.decorateCSS("container")}
+        className={`${this.decorateCSS("container")} ${this.getComponentState("is_video_visible") && this.decorateCSS("with-overlay")}`}
         style={{
           backgroundImage: `url(${this.getPropValue("cover-image")})`,
         }}
