@@ -328,6 +328,16 @@ class Team15 extends Team {
       value: 4,
       max: 6,
     });
+
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2"]
+      }
+    });
   }
 
   static getName(): string {
@@ -354,12 +364,12 @@ class Team15 extends Team {
                 const cardExists = imageExists || titleExists || descriptionExists;
                 return (
                   cardExists && (
-                    <div key={index} className={this.decorateCSS("card")}>
+                    <div key={index} className={this.decorateCSS("card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                       {imageExists && <img src={card.getPropValue("image")} className={this.decorateCSS("image")} alt="" />}
                       {overlay && <div className={this.decorateCSS("overlay")}></div>}
                       {overlay && <div className={this.decorateCSS("overlay2")}></div>}
                       <div className={this.decorateCSS("card-content")}>
-                        {titleExists && <Base.H2 className={this.decorateCSS("title")}>{card.getPropValue("title")}</Base.H2>}
+                        {titleExists && <Base.H2 className={this.decorateCSS("title")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>{card.getPropValue("title")}</Base.H2>}
                         <div className={this.decorateCSS("labels")}>
                           {card.icons.length > 0 && firstIcon && (
                             <Base.VerticalContent className={this.decorateCSS("icon-list-container")}>

@@ -26,7 +26,6 @@
         .info {
           position: relative;
           transform: translateX(-100%);
-          transition: 0.5s transform ease-out, 0.5s opacity ease-out;
           opacity: 0;
           background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
           top: 0px;
@@ -55,10 +54,6 @@
                 width: 1.5rem;
                 height: 1.5rem;
                 transition: 0.8s;
-
-                &:hover {
-                  color: var(--composer-primary-color);
-                }
               }
             }
           }
@@ -68,6 +63,30 @@
           .info {
             transform: translateX(0px);
             opacity: 1;
+          }
+        }
+
+        &[data-animation~="animate1"] { 
+          .info {
+            transition: 0.5s transform ease-out, 0.5s opacity ease-out;
+          }
+        }
+
+        &[data-animation~="animate2"] { 
+          .info .icon:hover {
+            color: var(--composer-primary-color);
+          }
+        }
+
+        &[data-animation~="animate3"] { 
+          @keyframes bounce {
+            0%   { transform: translateY(0); }
+            30%  { transform: translateY(-6px); }
+            60%  { transform: translateY(2px); }
+            100% { transform: translateY(0); }
+          }
+          .info .icon:hover {
+            animation: bounce 0.8s ease;
           }
         }
       }
