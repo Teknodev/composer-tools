@@ -127,6 +127,15 @@ class list4 extends BaseList {
       value: true,
     });
 
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2", "animate3"]
+      }
+    });
   }
 
   static getName(): string {
@@ -137,11 +146,11 @@ class list4 extends BaseList {
     return (
       <Base.Container className={this.decorateCSS("container")} >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent>
-            <Base.SectionSubTitle>
+          <Base.VerticalContent className={this.decorateCSS("header")}>
+            <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
               {this.getPropValue("subtitle")}
             </Base.SectionSubTitle>
-            <Base.SectionTitle>
+            <Base.SectionTitle className={this.decorateCSS("title")}>
               {this.getPropValue("title")}
             </Base.SectionTitle>
           </Base.VerticalContent>
@@ -168,7 +177,10 @@ class list4 extends BaseList {
                     key={`cnt-4-card-${index}`}
                     className={this.decorateCSS("card")}
                   >
-                    <Base.VerticalContent className={this.decorateCSS("color-box")}>
+                    <Base.VerticalContent
+                      className={this.decorateCSS("color-box")}
+                      data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                    >
                       {card.icon && (
                         <ComposerIcon
                           name={card.icon}
@@ -180,7 +192,9 @@ class list4 extends BaseList {
 
                       <Base.VerticalContent className={this.decorateCSS("card-title-wrapper")}>
                         {this.castToString(card.title) && (
-                          <Base.H3 className={this.decorateCSS("card-subtitle")}>
+                          <Base.H3
+                            className={this.decorateCSS("card-subtitle")}
+                          >
                             {card.title}
                           </Base.H3>
                         )}

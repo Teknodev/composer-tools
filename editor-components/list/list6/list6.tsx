@@ -37,6 +37,15 @@ class List6 extends BaseList {
       displayer: "Line Active",
       value: true,
     });
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2", "animate3", "animate4"]
+      }
+    });
 
     this.addProp({
       type: "array",
@@ -191,7 +200,10 @@ class List6 extends BaseList {
           )}
           <div className={this.decorateCSS("list-item")}>
             {listItems.map((listItem: listItem, index: number) => (
-              <div className={`${this.decorateCSS("item-container")} ${this.getPropValue("lineActive") && this.decorateCSS("line")}`}>
+              <div
+                className={`${this.decorateCSS("item-container")} ${this.getPropValue("lineActive") && this.decorateCSS("line")}`}
+                data-animation={this.getPropValue("hoverAnimation").join(" ")}
+              >
                 {this.castToString(listItem.itemIndex) && (
                   <div className={this.decorateCSS("index")}>
                     {listItem.itemIndex}

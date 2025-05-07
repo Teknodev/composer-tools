@@ -156,6 +156,15 @@ class List10 extends BaseList {
             value: 3,
             max: 4,
         });
+        this.addProp({
+            type: "multiSelect",
+            key: "hoverAnimation",
+            displayer: "Hover Animation Style",
+            value: ["animate1"],
+            additionalParams: {
+                selectItems: ["animate1", "animate2", "animate3", "animate4"]
+            }
+        });
     }
     static getName(): string {
         return "List 10";
@@ -194,7 +203,10 @@ class List10 extends BaseList {
 
                             return (
                                 <ComposerLink key={index} path={card.url}>
-                                    <div className={this.decorateCSS("card")}>
+                                    <div
+                                        className={this.decorateCSS("card")}
+                                        data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                                    >
                                         <div className={this.decorateCSS("badge")}>
                                             {card.badge}
                                         </div>
