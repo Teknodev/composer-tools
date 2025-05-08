@@ -19,7 +19,9 @@
                     > div {
                         > div {
                           > div {
-                            padding-bottom: var(--composer-gap-sm);
+                            &:not(:last-child) {
+                                padding-bottom: var(--composer-gap-sm);
+                            }
                             height: 150px;
                             > div {
                               height: 100%;
@@ -61,6 +63,7 @@
                 .arrow-buttons{
                     display: flex;
                     gap: var(--composer-gap-md);
+                    padding-top: var(--composer-gap-sm);
                     .image-down-arrow, .image-up-arrow{
                         flex: 1;
                         border: 1px solid var(--composer-font-color-primary);
@@ -161,17 +164,24 @@
                 background-color: var(--composer-tertiary-color);
             }
             .upper-container{
+                align-items: start;
                 .title-with-share{
                     display: flex;
-                    color: var(--composer-font-color-primary);
                     width: 100%;
                     .title{
+                        margin: 0;
                         flex: 1;
                         font-size: 2rem;
+                        text-align: start;
                     }
                     .share-container{
                         color: var(--composer-font-color-primary);
                         position: relative;
+                        &.without-title{
+                            width: 100%;
+                            display: flex;
+                            justify-content: end;
+                        }
                         &:hover{
                             .socials {
                                 display: flex;
@@ -233,6 +243,7 @@
         
                                 .social-icon{
                                     font-size: 1rem;
+                                    min-width: 1rem;
                                     color: var(--composer-font-color-primary);
                                 }
                                 .social-text{
