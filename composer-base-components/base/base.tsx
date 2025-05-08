@@ -239,11 +239,13 @@ export namespace Base {
         setHeight(boundingClient.height);
         setX(boundingClient.x);
         setY(boundingClient.y);
-        if (isVisible) {
-          setCurrentOpacity(1);
-        }
       }); 
+
       resizeObserver.observe(playgroundEl); 
+      if (isVisible) {
+        setCurrentOpacity(1);
+      }
+
       if(!isVisible){
         resizeObserver.disconnect();
         setCurrentOpacity(0);
