@@ -102,15 +102,19 @@ class banner6 extends BaseBanner {
             )}
             <div className={this.decorateCSS("breadcrumb")}>
               {homeExist && (
-                <ComposerLink path={homePage}>
-                  <Base.P className={this.decorateCSS("home")}>{home}</Base.P>
-                </ComposerLink>
+                <div className={this.decorateCSS("home-container")}>
+                  <ComposerLink path={homePage}>
+                    <Base.P className={this.decorateCSS("home")}>{home}</Base.P>
+                  </ComposerLink>
+                </div>
               )}
               {icon && (
                 <ComposerIcon name={icon} propsIcon={{ className: this.decorateCSS("icon")}} />
               )}
               {currentExist && (
-                <Base.P className={this.decorateCSS("current")}>{current}</Base.P>
+                <div className={this.decorateCSS("current-container")}>
+                  <Base.P className={this.decorateCSS("current")}>{current}</Base.P>
+                </div>
               )}
             </div>
           </Base.VerticalContent>

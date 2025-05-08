@@ -46,6 +46,9 @@
                 align-items: center;
                 max-width: 100%;
                 gap: var(--composer-gap-xs);
+                .home-container, .current-container{
+                    content: "";
+                }
                 .home,.current{
                     overflow: hidden;
                     display: -webkit-box;
@@ -53,7 +56,6 @@
                     -webkit-line-clamp: 5;
                     text-overflow: ellipsis;
                     margin: 0px;
-                    min-width: 50px;
                     white-space: normal;
                 }
 
