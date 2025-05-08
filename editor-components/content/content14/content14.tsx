@@ -39,12 +39,12 @@ class Content14 extends BaseContent {
 
     render() {
 
-        const subTitleExist = this.getPropValue("subTitle");
-        const titleExist = this.getPropValue("title");
+        const subTitle = this.getPropValue("subTitle");
+        const title = this.getPropValue("title");
         const leftText = this.getPropValue("leftText");
         const rightText = this.getPropValue("rightText");
 
-        const showContent = this.castToString(subTitleExist) || this.castToString(titleExist) || this.castToString(leftText) || this.castToString(rightText);
+        const showContent = this.castToString(subTitle) || this.castToString(title) || this.castToString(leftText) || this.castToString(rightText);
         const showTextContainer = this.castToString(leftText) || this.castToString(rightText);
 
         return (
@@ -52,14 +52,14 @@ class Content14 extends BaseContent {
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     {showContent && (
                         <Base.VerticalContent className={this.decorateCSS("content")}>
-                            {this.castToString(subTitleExist) && (
+                            {this.castToString(subTitle) && (
                                 <Base.SectionSubTitle className={this.decorateCSS("sub-title")}>
-                                    {subTitleExist}
+                                    {subTitle}
                                 </Base.SectionSubTitle>
                             )}
-                            {this.castToString(titleExist) && (
+                            {this.castToString(title) && (
                                 <Base.SectionTitle className={this.decorateCSS("title")}>
-                                    {titleExist}
+                                    {title}
                                 </Base.SectionTitle>
                             )}
                             {showTextContainer && (
