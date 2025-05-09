@@ -226,17 +226,18 @@ import Location4 from "./location/location4/location4";
 import Location5 from "./location/location5/location5";
 import Location6 from "./location/location6/location6";
 import ConfirmationModal2 from "./modal/confirmation-modal-2/confirmation-modal-2";
-import BannerComponent1 from "../editor-components/banner/banner1/banner1";
-import BannerComponent2 from "../editor-components/banner/banner2/banner2";
-import BannerComponent4 from "../editor-components/banner/banner4/banner4";
+import BannerComponent1 from "./banner/banner1/banner1";
+import BannerComponent2 from "./banner/banner2/banner2";
+import BannerComponent4 from "./banner/banner4/banner4";
+import BannerComponent5 from "./banner/banner5/Banner5";
 import SocialComponent1 from "./social/social1/social1";
 import SocialComponent2 from "../editor-components/socials/social2/social2";
-import SocialComponent3 from "../editor-components/social/social3/social3";
+import SocialComponent3 from "./social/social3/social3";
 import SocialComponent4 from "../editor-components/social/social4/social4";
-import SocialWidget1 from "../editor-components/social_widget/social_widget1/social_widget1";
+import SocialWidget1 from "./social_widget/social_widget1/social_widget1";
 import SocialWidget2 from "../editor-components/social_widget/social_widget2/social_widget2";
-import SocialWidget3 from "../editor-components/social_widget/social_widget3/social_widget3";
-import SocialWidget4 from "../editor-components/social_widget/social_widget4/social_widget4";
+import SocialWidget3 from "./social_widget/social_widget3/social_widget3";
+import SocialWidget4 from "./social_widget/social_widget4/social_widget4";
 import SocialWidget5 from "../editor-components/social_widget/social_widget5/social_widget5";
 
 function Registerables(composer: ComponentsRegistery) {
@@ -472,6 +473,7 @@ function Registerables(composer: ComponentsRegistery) {
     BannerComponent2,
     SocialComponent2,
     BannerComponent4,
+    BannerComponent5,
     SocialComponent3,
     SocialComponent4,
     SocialWidget1,
