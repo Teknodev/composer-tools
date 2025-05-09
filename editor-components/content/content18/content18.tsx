@@ -7,6 +7,12 @@ class Content18 extends BaseContent {
     constructor(props?: any) {
         super(props, styles);
         this.addProp({
+            type: "image",
+            key: "bgImage",
+            displayer: "Background Image",
+            value: "https://media-hosting.imagekit.io/7f30160e25db4eaa/2.png?Expires=1841393288&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=1USxrh5u-ox2-aetiBNC69LxS-g4XW8KabxU5~s3eGrVkcfzaA8M3AsAHQX34s~qkGnPWbYjvA5sR9fdakwqLWGrAgD142TUsXVXXD8UL7g4JmZiOI6SSK0uNS5LeLnxDSUIZqNCl6L6YRv3QU75gPf-wqPnoDjsRCI~y5qJcJBa0ZgOLs6nu6t30dAxvwK~QXVm5VpNM3F0OvlEawuD8lfozNtAzA97xQb1ll1JdgwvD~-ZfLcCjkI~iIMcLgdK~m5y31YGqyMqw19XMjA9LgFPkP7QxmfTImd1DVfYuiqzqZzMpbvK8GC1kYe3gmnMvT60dNjIYyOXSfzqvUZTpw__"
+        })
+        this.addProp({
             type: "string",
             key: "subTitle",
             displayer: "Sub Title",
@@ -49,6 +55,7 @@ class Content18 extends BaseContent {
     }
 
     render() {
+        const bgImage = this.getPropValue("bgImage");
         const subTitle = this.getPropValue("subTitle");
         const title = this.getPropValue("title");
         const text1 = this.getPropValue("text1");
@@ -61,15 +68,26 @@ class Content18 extends BaseContent {
         const showBottomContainer = this.castToString(signature) || this.castToString(name);
         const showContentContainer = showTopContainer || showTextContainer || showBottomContainer;
 
+        const subTitleType = Base.getSectionSubTitleType();
+        const alignmentValue = Base.getContentAlignment();
+
         return (
-            <Base.Container className={this.decorateCSS("container")}>
+            <Base.Container className={`${this.decorateCSS("container")} `} style={{
+                backgroundImage: `url(${bgImage})`,
+            }}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     {showContentContainer && (
-                        <Base.VerticalContent className={this.decorateCSS("content")}>
+                        <div className={this.decorateCSS("content")}>
                             {showTopContainer && (
-                                <div className={this.decorateCSS("top-container")}>
+                                <div
+                                    className={this.decorateCSS(
+                                        bgImage ? "top-container-with-bg" : "top-container"
+                                    )}>
                                     {this.castToString(subTitle) && (
-                                        <Base.SectionSubTitle className={this.decorateCSS("sub-title")}>
+                                        <Base.SectionSubTitle className={`${subTitleType === "badge"
+                                            ? this.decorateCSS("sub-title-badge")
+                                            : this.decorateCSS("sub-title")
+                                            }`}>
                                             {subTitle}
                                         </Base.SectionSubTitle>
                                     )}
@@ -80,8 +98,13 @@ class Content18 extends BaseContent {
                                     )}
                                 </div>
                             )}
+
                             {showTextContainer && (
-                                <div className={this.decorateCSS("text-container")}>
+                                <div
+                                    className={this.decorateCSS(
+                                        bgImage ? "text-container-with-bg" : "text-container"
+                                    )}
+                                >
                                     {this.castToString(text1) && (
                                         <div className={this.decorateCSS("text-1")}>
                                             {text1}
@@ -95,7 +118,11 @@ class Content18 extends BaseContent {
                                 </div>
                             )}
                             {showBottomContainer && (
-                                <div className={this.decorateCSS("bottom-container")}>
+                                <div
+                                    className={this.decorateCSS(
+                                        bgImage ? "bottom-container-with-bg" : "bottom-container"
+                                    )}
+                                >
                                     {signature && (
                                         <div className={this.decorateCSS("signature")}>
                                             <img src={signature} alt="" />
@@ -108,7 +135,7 @@ class Content18 extends BaseContent {
                                     )}
                                 </div>
                             )}
-                        </Base.VerticalContent>
+                        </div>
                     )}
                 </Base.MaxContent>
             </Base.Container>
