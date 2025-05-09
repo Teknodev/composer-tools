@@ -162,7 +162,7 @@ class Content20 extends BaseContent {
     const items = this.castToObject<ItemType[]>("items");
     const isBackgroundImageExist = this.getPropValue("backgroundImage")
     return (
-      <Base.Container className={this.decorateCSS("container")}   style={{backgroundImage: `url(${this.getPropValue("backgroundImage")})`,backgroundSize: 'cover',backgroundPosition: 'center',backgroundRepeat: 'no-repeat',}}>
+      <Base.Container className={this.decorateCSS("container")}   style={{backgroundImage: `url(${this.getPropValue("backgroundImage")})`}}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
         {items.map((item, index: number)=> {
             return(

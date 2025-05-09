@@ -1,5 +1,8 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 .container{
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     .max-content{
         display: flex;
         flex-direction: column;
