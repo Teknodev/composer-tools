@@ -825,15 +825,13 @@ export abstract class Component
   }
 
   insertForm(name: string, data: Object) {
-    const project = getProjectHook()._id;
-
     const inputData: { [key: string]: any } = {};
     const entries = Object.entries(data);
     entries.forEach(([_, value], index) => {
       inputData[`input_${index}`] = value;
     });
 
-    EventEmitter.emit(EVENTS.INSERT_FORM, { name, data: inputData, project });
+    EventEmitter.emit(EVENTS.INSERT_FORM, { name, data: inputData });
   }
 
   /**
