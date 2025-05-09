@@ -7,6 +7,7 @@
     display: flex;
     flex-direction: column;
     gap: var(--composer-gap-xl);
+
     .section-container {
       display: flex;
       width: 100%;
@@ -14,13 +15,15 @@
       align-items: center;
       gap: var(--composer-gap-xl);
       font-size: 1.5rem;
-      .section-1,
-      .section-2 {
+
+      .section-title {
         display: inline-block;
         border-bottom: 2px solid var(--composer-tertiary-color);
-        color: var(--composer-font-color-primary);
-        width: 200px;
+        width: 250px;
         text-align: center;
+        font-size: 2rem;
+        transition: all 0.3s ease-in-out;
+        cursor: pointer;
 
         &.active {
           border-color: var(--composer-primary-color);
@@ -28,16 +31,17 @@
       }
     }
 
-    .section-1-text-container,
-    .section-2-text-container {
+    .active-section-content {
       display: flex;
       flex: 1;
       gap: var(--composer-gap-md);
       animation: fadeIn 0.5s ease;
       color: var(--composer-font-color-primary);
       text-align: justify;
-      .section-1-text-1,
-      .section-1-text-2 {
+
+      .text-1,
+      .text-2 {
+        content: "";
         flex: 1;
       }
     }
@@ -52,7 +56,7 @@
       align-items: center;
       justify-content: center;
       .button {
-        border-radius: var(--composer-border-radius-xl);
+        border-radius: var(--composer-border-radius-sm);
       }
     }
   }
@@ -68,11 +72,19 @@
 }
 
 @container (max-width: #{$composer-phone-width}) {
-  .section-1-text-container,
-  .section-2-text-container {
-    columns: 1 !important;
-    .section-1-text-1,
-    .section-2-text-1 {
+  .section-container {
+    gap: var(--composer-gap-md) !important;
+    flex-wrap: wrap;
+
+    .section-title {
+      margin: 0;
+    }
+  }
+
+  .active-section-content {
+    flex-direction: column;
+
+    .text-1 {
       margin-bottom: 1rem;
     }
   }

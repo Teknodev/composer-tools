@@ -5,47 +5,74 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 
+interface Section {
+    sectionTitle: React.JSX.Element;
+    text1: string;
+    text2: string;
+}
+
 class Content16 extends BaseContent {
     constructor(props?: any) {
         super(props, styles);
         this.addProp({
-            type: "string",
-            key: "section1",
-            displayer: "Section 1",
-            value: "What We Do"
-        })
-        this.addProp({
-            type: "string",
-            key: "section1Text1",
-            displayer: "Text 1",
-            value: "Graphic design, integre mea ut, eu eos vide errem noluisse. Putent laoreet et ius. Vel utroque dissentias ut, nam ad soleat alterum maluisset, cu est copiosae intellegat inciderint. Nam ei eirmod consequuntur, quod nostrum consectetuer usu ut. Vim veniam singulis senserit an, sumo consul mentitum duo ea. Copiosae antiopam ius ea, meis explicari reformidans vix cu. Ut possit patrioque prodesset est, vivendum concludaturque conclusion emque eam."
-        })
-        this.addProp({
-            type: "string",
-            key: "section1Text2",
-            displayer: "Text 2",
-            value: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Design, integre mea ut, eu eos vide errem noluisse. Putent laoreet et ius. Lorem ipsum dolor sit amet, consectetur adipisicing elit."
-        })
-        this.addProp({
-            type: "string",
-            key: "section2",
-            displayer: "Section 2",
-            value: "Our Skills"
-        })
-        this.addProp({
-            type: "string",
-            key: "section2Text1",
-            displayer: "Text 1",
-            value: "Design, integre mea ut, eu eos vide errem noluisse. Putent laoreet et ius. Vel utroque dissentias ut, nam ad soleat alterum maluisset, cu est copiosae intellegat inciderint. Nam ei eirmod consequuntur, quod nostrum consectetuer usu ut. Vim veniam singulis senserit an, sumo consul mentitum duo ea. Copiosae antiopam ius ea, meis explicari reformidans vix cu. Ut possit patrioque prodesset est, vivendum concludaturque conclusionemque eam."
-        })
-        this.addProp({
-            type: "string",
-            key: "section2Text2",
-            displayer: "Text 2",
-            value: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Design, integre mea ut, eu eos vide errem noluisse. Putent laoreet et ius. Lorem ipsum dolor sit amet, consectetur adipisicing elit."
-        })
-        this.addProp(INPUTS.BUTTON("button", "Button", "VIEW SERVICES", "", null, null, "Primary"));
+            type: "array",
+            key: "sections",
+            displayer: "Sections",
+            value: [
+                {
+                    type: "object",
+                    key: "section",
+                    displayer: "Section",
+                    value: [
+                        {
+                            type: "string",
+                            key: "sectionTitle",
+                            displayer: "Section Title",
+                            value: "What We Do"
+                        },
+                        {
+                            type: "string",
+                            key: "text1",
+                            displayer: "Text 1",
+                            value: "Graphic design, integre mea ut, eu eos vide errem noluisse. Putent laoreet et ius. Vel utroque dissentias ut, nam ad soleat alterum maluisset, cu est copiosae intellegat inciderint. Nam ei eirmod consequuntur, quod nostrum consectetuer usu ut. Vim veniam singulis senserit an, sumo consul mentitum duo ea. Copiosae antiopam ius ea, meis explicari reformidans vix cu. Ut possit patrioque prodesset est, vivendum concludaturque conclusion emque eam."
+                        },
+                        {
+                            type: "string",
+                            key: "text2",
+                            displayer: "Text 2",
+                            value: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Design, integre mea ut, eu eos vide errem noluisse. Putent laoreet et ius. Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+                        }
+                    ]
+                },
+                {
+                    type: "object",
+                    key: "section",
+                    displayer: "Section",
+                    value: [
+                        {
+                            type: "string",
+                            key: "sectionTitle",
+                            displayer: "Section Title",
+                            value: "Our Services"
+                        },
+                        {
+                            type: "string",
+                            key: "text1",
+                            displayer: "Text 1",
+                            value: "Our comprehensive services include branding, web design, print materials, and digital marketing. We pride ourselves on delivering exceptional designs that communicate your brand's message effectively. Our team of experts work closely with you to understand your vision and bring it to life."
+                        },
+                        {
+                            type: "string",
+                            key: "text2",
+                            displayer: "Text 2",
+                            value: "From concept to completion, we manage every aspect of your design project. Our process is collaborative and transparent, ensuring you are involved and informed at every stage. We believe in creating designs that not only look great but also achieve your business objectives and resonate with your target audience."
+                        }
+                    ]
+                }
+            ]
+        });
 
+        this.addProp(INPUTS.BUTTON("button", "Button", "VIEW SERVICES", "", null, null, "Primary"));
     }
 
     static getName(): string {
@@ -53,63 +80,59 @@ class Content16 extends BaseContent {
     }
 
     componentDidMount() {
-        this.setComponentState("activeSection", "section1");
+        this.setComponentState("activeSection", 0);
+    }
+
+
+    getValueFromSection(sectionData: any, key: any) {
+        const item = sectionData.find(item => item.key === key);
+        return item ? item.value : "";
     }
 
     render() {
-        const section1 = this.getPropValue("section1")
-        const section2 = this.getPropValue("section2")
-        const section1Text1 = this.getPropValue("section1Text1");
-        const section1Text2 = this.getPropValue("section1Text2");
-        const section2Text1 = this.getPropValue("section2Text1");
-        const section2Text2 = this.getPropValue("section2Text2");
-        const activeSection = this.getComponentState("activeSection");
-        const showSection1TextContainer = this.castToString(section1Text1) || this.castToString(section1Text2);
-        const showSection2TextContainer = this.castToString(section2Text1) || this.castToString(section2Text2);
-        const showSectionContainer = this.castToString(section1) || this.castToString(section2);
+        const sections = this.castToObject<any[]>("sections");
+        const activeSection = this.getComponentState("activeSection") || 0;
         const buttonType: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+
+        const parsedSections: Section[] = sections.map((section: any) => {
+            const sectionData = section.value;
+            return {
+                sectionTitle: this.getValueFromSection(sectionData, "sectionTitle"),
+                text1: this.getValueFromSection(sectionData, "text1"),
+                text2: this.getValueFromSection(sectionData, "text2"),
+            };
+        });
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    {showSectionContainer && (
-                        <div className={this.decorateCSS("section-container")}>
-                            <div
-                                className={`${this.decorateCSS("section-1")} ${activeSection === "section1" ? this.decorateCSS("active") : ""}`}
-                                onClick={() => this.setComponentState("activeSection", "section1")}
+                    <div className={this.decorateCSS("section-container")}>
+                        {parsedSections.map((section: Section, index: number) => (
+                            <Base.SectionTitle
+                                key={`section-title-${index}`}
+                                className={`${this.decorateCSS("section-title")} ${activeSection === index ? this.decorateCSS("active") : ""}`}
+                                onClick={() => this.setComponentState("activeSection", index)}
                             >
-                                {this.castToString(section1)}
-                            </div>
-                            <div
-                                className={`${this.decorateCSS("section-2")} ${activeSection === "section2" ? this.decorateCSS("active") : ""}`}
-                                onClick={() => this.setComponentState("activeSection", "section2")}
-                            >
-                                {this.castToString(section2)}
-                            </div>
+                                {section.sectionTitle}
+                            </Base.SectionTitle>
+                        ))}
+                    </div>
 
-                        </div>
-                    )}
-                    {activeSection === "section1" && showSection1TextContainer && (
-                        <div className={this.decorateCSS("section-1-text-container")}>
-                            {section1Text1 && (
-                                <div className={this.decorateCSS("section-1-text-1")}>{section1Text1}</div>
+                    {parsedSections[activeSection] && (
+                        <div className={this.decorateCSS("active-section-content")}>
+                            {parsedSections[activeSection].text1 && (
+                                <div className={this.decorateCSS("text-1")}>
+                                    {parsedSections[activeSection].text1}
+                                </div>
                             )}
-                            {section1Text2 && (
-                                <div className={this.decorateCSS("section-1-text-2")}>{section1Text2}</div>
+                            {parsedSections[activeSection].text2 && (
+                                <div className={this.decorateCSS("text-2")}>
+                                    {parsedSections[activeSection].text2}
+                                </div>
                             )}
                         </div>
                     )}
 
-                    {activeSection === "section2" && showSection2TextContainer && (
-                        <div className={this.decorateCSS("section-2-text-container")}>
-                            {section2Text1 && (
-                                <div className={this.decorateCSS("section-2-text-1")}>{section2Text1}</div>
-                            )}
-                            {section2Text2 && (
-                                <div className={this.decorateCSS("section-2-text-2")}>{section2Text2}</div>
-                            )}
-                        </div>
-                    )}
                     {buttonType.text && (
                         <div className={this.decorateCSS("button-container")}>
                             <ComposerLink path={buttonType.url}>
@@ -121,7 +144,7 @@ class Content16 extends BaseContent {
                     )}
                 </Base.MaxContent>
             </Base.Container>
-        )
+        );
     }
 }
 
