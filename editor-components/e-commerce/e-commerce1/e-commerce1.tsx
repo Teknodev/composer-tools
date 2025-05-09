@@ -313,6 +313,7 @@ class ECommerce1 extends BaseECommerce {
     });
     this.setComponentState("count", 0);
     this.setComponentState("activeImage", 0);
+    this.setComponentState("prevIndex", 0);
     this.setComponentState("isActive", false);
     this.setComponentState("sliderRef", React.createRef());
     this.setComponentState("activeSliderIndex", 0);
@@ -348,9 +349,11 @@ class ECommerce1 extends BaseECommerce {
       let index = this.getComponentState("activeImage");
       if (index === 0) {
         this.setComponentState("activeImage", images.length-1);
+        this.setComponentState("prevIndex", index)
       }
       else {
         this.setComponentState("activeImage", index-1);
+        this.setComponentState("prevIndex", index)
       }
     }
 
@@ -358,9 +361,11 @@ class ECommerce1 extends BaseECommerce {
       let index = this.getComponentState("activeImage");
       if (index+1 === images.length) {
         this.setComponentState("activeImage", 0);
+        this.setComponentState("prevIndex", index)
       }
       else {
         this.setComponentState("activeImage", index+1);
+        this.setComponentState("prevIndex", index)
       }
     }
 
@@ -573,16 +578,20 @@ class ECommerce1 extends BaseECommerce {
             <div className={this.decorateCSS("image-popup")}>
               <div className={this.decorateCSS("popup-content")}>
                 <div className={this.decorateCSS("image-container")}>
-                  {images.map((img: Image, index) => {
+                  {images.map((img: Image, index) => { 
                     return(
-                      <img
-                      key={index}
-                      src={img.image}
-                      className={
-                        this.decorateCSS("image") +
-                        (index === activeImage ? " " + this.decorateCSS("active") : "")
-                      }
-                    />
+                      <>
+                        <img
+                        key={index}
+                        src={img.image}
+                        className={`${this.decorateCSS("image")} ${((index === activeImage) &&this.decorateCSS("active"))}`}
+                        />
+                        <img
+                        key={index}
+                        src={img.image}
+                        className={`${this.decorateCSS("image")} ${(index === this.getComponentState("prevIndex") ) &&  this.decorateCSS("exits")}`}
+                      />
+                      </>
                     )
                   }
                   )}

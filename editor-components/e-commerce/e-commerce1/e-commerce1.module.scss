@@ -2,7 +2,7 @@
 
 @keyframes fadeOutIn {
     0% {
-        opacity: 1;
+        opacity: 0;
     }
       70% {
         opacity: 0;
@@ -10,6 +10,17 @@
       100% {
         opacity: 1;
       }
+  }
+  @keyframes fadeInOut {
+    0% {
+        opacity: 1;
+    }
+    70% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
   }
 
 .container {
@@ -291,6 +302,11 @@
                     object-fit: cover;
                     &.active{
                         animation: fadeOutIn 1s forwards;
+                        z-index: 1;
+                        animation-timing-function: cubic-bezier(0.6, 0.05, 0.2, 1);
+                    }
+                    &.exits{
+                        animation: fadeInOut 1s forwards;
                         z-index: 1;
                         animation-timing-function: cubic-bezier(0.6, 0.05, 0.2, 1);
                     }
