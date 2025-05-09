@@ -33,22 +33,10 @@ class Banner5 extends BaseBanner {
             value: "RxDividerVertical",
         });
         this.addProp({
-            type: "icon",
-            key: "currentIcon",
-            displayer: "Current Icon",
-            value: "",
-        });
-        this.addProp({
             type: "string",
             key: "currentTitle",
             displayer: "Current Page",
             value: "Current Page",
-        });
-        this.addProp({
-            type: "page",
-            key: "currentPage",
-            displayer: "Current Link",
-            value: "",
         });
     }
 
@@ -61,7 +49,7 @@ class Banner5 extends BaseBanner {
         const currentPage = this.getPropValue("currentTitle");
         const icon = this.getPropValue("icon");
 
-        const titleExist = this.castToString(homeTitle);
+        const title = this.castToString(homeTitle);
         const currentExist = this.castToString(currentPage);
 
         return (
@@ -72,7 +60,7 @@ class Banner5 extends BaseBanner {
                             <ComposerLink path={this.getPropValue("homePage")}>
                                 <ComposerIcon name={this.getPropValue("homeIcon")} propsIcon={{ className: this.decorateCSS("pageIcon") }} />
                             </ComposerLink>
-                            {titleExist && (
+                            {title && (
                                 <span className={this.decorateCSS("page-title")}>{homeTitle}</span>
                             )}
                         </div>
@@ -82,9 +70,6 @@ class Banner5 extends BaseBanner {
                             </div>
                         )}
                         <div className={this.decorateCSS("link")}>
-                            <ComposerLink path={this.getPropValue("currentPage")}>
-                                <ComposerIcon name={this.getPropValue("currentIcon")} propsIcon={{ className: this.decorateCSS("pageIcon") }} />
-                            </ComposerLink>
                             {currentExist && (
                                 <span className={this.decorateCSS("page-title")}>{currentPage}</span>
                             )}
