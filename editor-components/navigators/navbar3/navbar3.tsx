@@ -1055,6 +1055,20 @@ class Navbar3 extends BaseNavigator {
       value: "MdKeyboardArrowRight",
     });
     this.addProp({
+      type: "icon",
+      key: "hamburgerIcon",
+      displayer: "Hamburger Icon",
+      value: "MdMenu",
+    });
+
+    this.addProp({
+      type: "icon",
+      key: "closeIcon",
+      displayer: "Close Icon",
+      value: "RxCross2",
+    });
+    
+    this.addProp({
       type: "array",
       key: "icons",
       displayer: "Icons",
@@ -1136,20 +1150,6 @@ class Navbar3 extends BaseNavigator {
           ],
         },
       ],
-    });
-
-    this.addProp({
-      type: "icon",
-      key: "hamburgerIcon",
-      displayer: "Hamburger Icon",
-      value: "MdMenu",
-    });
-
-    this.addProp({
-      type: "icon",
-      key: "closeIcon",
-      displayer: "Close Icon",
-      value: "RxCross2",
     });
 
     this.setComponentState("isScrolled", false);

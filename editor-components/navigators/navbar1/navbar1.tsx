@@ -1072,13 +1072,6 @@ class Navbar1 extends BaseNavigator {
     });
     this.addProp({
       type: "icon",
-      key: "languageIcon",
-      displayer: "Language Icon",
-      value: "IoIosArrowDown",
-    });
-
-    this.addProp({
-      type: "icon",
       key: "hamburgerIcon",
       displayer: "Hamburger Icon",
       value: "RxHamburgerMenu",
