@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Testimonials } from "../../EditorComponent";
 import styles from "./testimonials14.module.scss";
-import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
@@ -18,6 +17,9 @@ interface ArrowItem {
 }
 
 class Testimonials14 extends Testimonials {
+    private autoplayInterval: NodeJS.Timeout | null = null;
+    private readonly autoplaySpeed: number = 3000;
+
     constructor(props?: any) {
         super(props, styles);
         this.addProp({
@@ -150,7 +152,7 @@ class Testimonials14 extends Testimonials {
                     ]
                 },
             ]
-        })
+        });
         this.addProp({
             type: "object",
             key: "arrows",
@@ -175,121 +177,182 @@ class Testimonials14 extends Testimonials {
             key: "divider",
             displayer: "Divider",
             value: true,
-        })
-        this.setComponentState("active_index", 0);
-        this.setComponentState("slider-ref", React.createRef());
+        });
+        this.addProp({
+            type: "boolean",
+            key: "dividerTop",
+            displayer: "Divider Top",
+            value: true,
+        });
+        this.addProp({
+            type: "boolean",
+            key: "dividerBottom",
+            displayer: "Divider Bottom",
+            value: true,
+        });
+
+        this.setComponentState("activeIndex", 0);
+        this.setComponentState("contentAnimationClass", "animate__fadeIn");
     }
 
     static getName(): string {
         return "Testimonials 14";
     }
 
-    onImageClick(itemIndex: number) {
-        this.setComponentState("active_index", itemIndex);
-        this.getComponentState("slider-ref").current.slickGoTo(itemIndex);
+    componentDidMount() {
+        this.startAutoplay();
     }
+
+    componentWillUnmount() {
+        this.stopAutoplay();
+    }
+
+    startAutoplay = () => {
+        const images = this.castToObject<Images[]>("images");
+        if (images.length > 1 && this.autoplaySpeed > 0) {
+            this.autoplayInterval = setInterval(this.goToNext, this.autoplaySpeed);
+        }
+    };
+
+    stopAutoplay = () => {
+        if (this.autoplayInterval) {
+            clearInterval(this.autoplayInterval);
+            this.autoplayInterval = null;
+        }
+    };
+
+    onImageClick = (index: number) => {
+        this.stopAutoplay();
+        this.setComponentState("contentAnimationClass", "animate__fadeOut");
+        setTimeout(() => {
+            this.setComponentState("activeIndex", index);
+            this.setComponentState("contentAnimationClass", "animate__fadeIn");
+            this.startAutoplay();
+        }, 750);
+    };
+
+    goToPrev = () => {
+        this.stopAutoplay();
+        this.setComponentState("contentAnimationClass", "animate__fadeOut");
+        const images = this.castToObject<Images[]>("images");
+        setTimeout(() => {
+            const activeIndex = this.getComponentState("activeIndex");
+            const prevIndex = (activeIndex - 1 + images.length) % images.length;
+            this.setComponentState("activeIndex", prevIndex);
+            this.setComponentState("contentAnimationClass", "animate__fadeIn");
+            this.startAutoplay();
+        }, 750);
+    };
+
+    goToNext = () => {
+        this.stopAutoplay();
+        this.setComponentState("contentAnimationClass", "animate__fadeOut");
+        const images = this.castToObject<Images[]>("images");
+        setTimeout(() => {
+            const activeIndex = this.getComponentState("activeIndex");
+            const nextIndex = (activeIndex + 1) % images.length;
+            this.setComponentState("activeIndex", nextIndex);
+            this.setComponentState("contentAnimationClass", "animate__fadeIn");
+            this.startAutoplay();
+        }, 750);
+    };
 
     render() {
         const images = this.castToObject<Images[]>("images");
         const arrows = this.castToObject<ArrowItem>("arrows");
-        const sliderRef = this.getComponentState("slider-ref");
         const showDivider = this.getPropValue("divider");
-
-        const settings = {
-            dots: false,
-            infinite: true,
-            arrows: false,
-            speed: 1500,
-            autoplay: true,
-            autoplaySpeed: 3000,
-            slidesToShow: 1,
-            fade: true,
-            beforeChange: (nextIndex: number) => {
-                this.setComponentState("active_index", nextIndex);
-            },
-        };
+        const showDividerTop = this.getPropValue("dividerTop");
+        const showDividerBottom = this.getPropValue("dividerBottom");
+        const activeIndex = this.getComponentState("activeIndex");
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    {images.length > 0 && (
-                        <div className={this.decorateCSS("images")}>
-                            {images.map((item: Images, itemIndex: number) => {
-                                return item.authorImage && (
-                                    <img
-                                        src={item.authorImage}
-                                        className={`${this.decorateCSS("image")} ${this.getComponentState("active_index") === itemIndex ? this.decorateCSS("active") : ""}`}
-                                        onClick={() => this.onImageClick(itemIndex)}
-                                        alt={`${item.authorName}`}
-                                    />
-                                );
-                            })}
-                        </div>
-                    )}
-                    {showDivider && (
-                        <div className={this.decorateCSS("divider")} />
+                    {showDividerTop && (
+                        <div className={this.decorateCSS("divider-top")} />
                     )}
                     <div className={this.decorateCSS("content")}>
-                        <ComposerSlider {...settings} ref={sliderRef}>
-                            {images.map((item: Images, index: number) => {
-                                return (
-                                    <div className={this.decorateCSS("items")}>
-                                        <div className={this.decorateCSS("icon-and-name")}>
-                                            {item.icon && (
-                                                <ComposerIcon
-                                                    name={item.icon}
-                                                    propsIcon={{
-                                                        className: this.decorateCSS("icon"),
-                                                    }}
-                                                />
-                                            )}
-                                            {this.castToString(item.authorName) && (
-                                                <Base.SectionTitle className={this.decorateCSS("author-name")}>
-                                                    {item.authorName}
-                                                </Base.SectionTitle>
-                                            )}
-                                        </div>
-                                        {this.castToString(item.comment) && (
-                                            <Base.SectionDescription className={this.decorateCSS("comment")}>
-                                                {item.comment}
-                                            </Base.SectionDescription>
-                                        )}
-                                    </div>
-                                )
-                            })}
-                        </ComposerSlider>
-                    </div>
-                    <div className={this.decorateCSS("arrow-container")}>
-                        {arrows.prevArrow && images.length > 1 && (
-                            <button
-                                className={this.decorateCSS("prevArrow")}
-                                onClick={() => {
-                                    sliderRef.current.slickPrev();
-                                }}>
-                                <ComposerIcon
-                                    name={arrows.prevArrow}
-                                    propsIcon={{ className: this.decorateCSS("arrow") }}
-                                />
-                            </button>
+                        {images.length > 0 && (
+                            <div className={this.decorateCSS("images")}>
+                                {images.map((item: Images, itemIndex: number) => (
+                                    item.authorImage && (
+                                        <img
+                                            key={itemIndex}
+                                            src={item.authorImage}
+                                            className={`${this.decorateCSS("image")}
+                                                ${activeIndex === itemIndex ? this.decorateCSS("active") : ""}`}
+                                            onClick={() => this.onImageClick(itemIndex)}
+                                        />
+                                    )
+                                ))}
+                            </div>
                         )}
-                        {arrows.nextArrow && images.length > 1 && (
-                            <button
-                                className={this.decorateCSS("nextArrow")}
-                                onClick={() => {
-                                    sliderRef.current.slickNext();
-                                }}>
-                                <ComposerIcon
-                                    name={arrows.nextArrow}
-                                    propsIcon={{
-                                        className: this.decorateCSS("arrow"),
-                                    }}
-                                />
-                            </button>
+                        {showDivider && (
+                            <div className={this.decorateCSS("divider")} />
                         )}
+                        <div className={this.decorateCSS("item-content")}>
+                            <div key={activeIndex}
+                                className={`${this.decorateCSS("items")} animate__animated
+                                ${this.getComponentState("contentAnimationClass")}`}>
+                                <div className={this.decorateCSS("icon-and-name")}>
+                                    {images[activeIndex].icon ? (
+                                        <ComposerIcon
+                                            name={images[activeIndex].icon}
+                                            propsIcon={{
+                                                className: this.decorateCSS("icon"),
+                                            }}
+                                        />
+                                    ) : (<span className={this.decorateCSS("span-icon")} />)}
+                                    {this.castToString(images[activeIndex].authorName) && (
+                                        <Base.SectionTitle className={this.decorateCSS("author-name")}>
+                                            {images[activeIndex].authorName}
+                                        </Base.SectionTitle>
+                                    )}
+                                </div>
+                                {this.castToString(images[activeIndex].comment) && (
+                                    <Base.SectionDescription className={this.decorateCSS("comment")}>
+                                        {images[activeIndex].comment}
+                                    </Base.SectionDescription>
+                                )}
+                            </div>
+                        </div>
+                        <div className={this.decorateCSS("arrow-container")}>
+                            {arrows.prevArrow && images.length > 1 && (
+                                <button
+                                    className={this.decorateCSS("prevArrow")}
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        this.goToPrev();
+                                    }}>
+                                    <ComposerIcon
+                                        name={arrows.prevArrow}
+                                        propsIcon={{ className: this.decorateCSS("arrow") }}
+                                    />
+                                </button>
+                            )}
+                            {arrows.nextArrow && images.length > 1 && (
+                                <button
+                                    className={this.decorateCSS("nextArrow")}
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        this.goToNext();
+                                    }}>
+                                    <ComposerIcon
+                                        name={arrows.nextArrow}
+                                        propsIcon={{
+                                            className: this.decorateCSS("arrow"),
+                                        }}
+                                    />
+                                </button>
+                            )}
+                        </div>
                     </div>
+                    {showDividerBottom && (
+                        <div className={this.decorateCSS("divider-bottom")} />
+                    )}
                 </Base.MaxContent >
             </Base.Container >
-        )
+        );
     }
 }
 
