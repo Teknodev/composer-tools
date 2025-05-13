@@ -4,17 +4,21 @@ import styles from "./e-commerce3.module.scss";
 import { Base } from "composer-tools/composer-base-components/base/base";
 
 type Tab = {
-  title: string,
-  description: string,
-  weight: number,
-  unit: string,
-  dimensions: string,
+  tabTitle: React.JSX.Element,
+  title: React.JSX.Element,
+  description: React.JSX.Element,
+  details: Details[],
   properties: Properties[];
 }
 
+type Details = {
+  title: React.JSX.Element,
+  value: React.JSX.Element,
+}
+
 type Properties = {
-  type: "color" | "material",
-  name: string,
+  title: React.JSX.Element,
+  items: { title: React.JSX.Element }[], 
 }
 
 class ECommerce3 extends BaseECommerce {
@@ -32,6 +36,63 @@ class ECommerce3 extends BaseECommerce {
           value: [
             {
               type: "string",
+              key: "tabTitle",
+              displayer: "Tab Title",
+              value: "DESCRIPTION",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "DESCRIPTION",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut ullamcorper leo, eget euismod orci. Cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus. Vestibulum ultricies aliquam convallis. Maecenas ut tellus mi. Proin tincidunt, lectus eu volutpat mattis, ante metus lacinia tellus, vitae condimentum nulla enim bibendum nibh. Praesent turpis risus, interdum nec venenatis id, pretium sit amet purus. Interdum et malesuada fames.",
+            },
+            {
+              type: "array",
+              key: "details",
+              displayer: "Details",
+              value: [
+                {
+                  type: "object",
+                  key: "detail",
+                  displayer: "Detail",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "",
+                    },
+                    {
+                      type: "string",
+                      key: "value",
+                      displayer: "Value",
+                      value: "",
+                    }
+                  ]
+                },
+              ]
+            },
+          ]
+        },
+        {
+          type: "object",
+          key: "tab",
+          displayer: "Tab",
+          value: [
+            {
+              type: "string",
+              key: "tabTitle",
+              displayer: "Tab Title",
+              value: "ADDITIONAL INFORMATION",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "ADDITIONAL INFORMATION",
@@ -43,25 +104,49 @@ class ECommerce3 extends BaseECommerce {
               value: "",
             },
             {
-              type: "number",
-              key: "weight",
-              displayer: "Weight",
-              value: 2,
-            },
-            {
-              type: "select",
-              key: "unit",
-              displayer: "Weight Unit",
-              value: "kg",
-              additionalParams: {
-                selectItems: ["kg","lb"],
-              }
-            },
-            {
-              type: "string",
-              key: "dimensions",
-              displayer: "Dimensions",
-              value: "10x10x15 cm",
+              type: "array",
+              key: "details",
+              displayer: "Details",
+              value: [
+                {
+                  type: "object",
+                  key: "detail",
+                  displayer: "Detail",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Weight",
+                    },
+                    {
+                      type: "string",
+                      key: "value",
+                      displayer: "Value",
+                      value: "2 kg",
+                    }
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "detail",
+                  displayer: "Detail",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Dimensions",
+                    },
+                    {
+                      type: "string",
+                      key: "value",
+                      displayer: "Value",
+                      value: "10x10x15 cm",
+                    }
+                  ]
+                }
+              ]
             },
             {
               type: "array",
@@ -74,19 +159,43 @@ class ECommerce3 extends BaseECommerce {
                   displayer: "Property",
                   value: [
                     {
-                      type: "select",
-                      key: "type",
-                      displayer: "Type",
-                      value: "color",
-                      additionalParams: {
-                        selectItems: ["color","material"],
-                      }
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Color",
                     },
                     {
-                      type: "string",
-                      key: "name",
-                      displayer: "Name",
-                      value: "Beige",
+                      type: "array",
+                      key: "items",
+                      displayer: "Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "property",
+                          displayer: "Property",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "Beige",
+                            },
+                          ]
+                        },
+                        {
+                          type: "object",
+                          key: "property",
+                          displayer: "Property",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "Black",
+                            },
+                          ]
+                        },
+                      ],
                     }
                   ]
                 },
@@ -96,63 +205,43 @@ class ECommerce3 extends BaseECommerce {
                   displayer: "Property",
                   value: [
                     {
-                      type: "select",
-                      key: "type",
-                      displayer: "Type",
-                      value: "color",
-                      additionalParams: {
-                        selectItems: ["color","material"],
-                      }
+                      type: "string",
+                      key: "title",
+                      displayer: "Title",
+                      value: "Material",
                     },
                     {
-                      type: "string",
-                      key: "name",
-                      displayer: "Name",
-                      value: "Black",
-                    }
-                  ]
-                },
-                {
-                  type: "object",
-                  key: "property",
-                  displayer: "Property",
-                  value: [
-                    {
-                      type: "select",
-                      key: "type",
-                      displayer: "Type",
-                      value: "material",
-                      additionalParams: {
-                        selectItems: ["color","material"],
-                      }
-                    },
-                    {
-                      type: "string",
-                      key: "name",
-                      displayer: "Name",
-                      value: "Metal",
-                    }
-                  ]
-                },
-                {
-                  type: "object",
-                  key: "property",
-                  displayer: "Property",
-                  value: [
-                    {
-                      type: "select",
-                      key: "type",
-                      displayer: "Type",
-                      value: "material",
-                      additionalParams: {
-                        selectItems: ["color","material"],
-                      }
-                    },
-                    {
-                      type: "string",
-                      key: "name",
-                      displayer: "Name",
-                      value: "Wood",
+                      type: "array",
+                      key: "items",
+                      displayer: "Items",
+                      value: [
+                        {
+                          type: "object",
+                          key: "property",
+                          displayer: "Property",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "Metal",
+                            },
+                          ]
+                        },
+                        {
+                          type: "object",
+                          key: "property",
+                          displayer: "Property",
+                          value: [
+                            {
+                              type: "string",
+                              key: "title",
+                              displayer: "Title",
+                              value: "Black",
+                            },
+                          ]
+                        },
+                      ],
                     }
                   ]
                 },
@@ -160,75 +249,6 @@ class ECommerce3 extends BaseECommerce {
             },
           ]
         },
-        {
-            type: "object",
-            key: "tab",
-            displayer: "Tab",
-            value: [
-              {
-                type: "string",
-                key: "title",
-                displayer: "Title",
-                value: "DESCRIPTION",
-              },
-              {
-                type: "string",
-                key: "description",
-                displayer: "Description",
-                value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut ullamcorper leo, eget euismod orci. Cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus. Vestibulum ultricies aliquam convallis. Maecenas ut tellus mi. Proin tincidunt, lectus eu volutpat mattis, ante metus lacinia tellus, vitae condimentum nulla enim bibendum nibh. Praesent turpis risus, interdum nec venenatis id, pretium sit amet purus. Interdum et malesuada fames.",
-              },
-              {
-                type: "number",
-                key: "weight",
-                displayer: "Weight",
-                value: null,
-              },
-              {
-                type: "select",
-                key: "unit",
-                displayer: "Weight Unit",
-                value: null,
-                additionalParams: {
-                  selectItems: ["kg","lb"],
-                }
-              },
-              {
-                type: "string",
-                key: "dimensions",
-                displayer: "Dimensions",
-                value: "",
-              },
-              {
-                type: "array",
-                key: "properties",
-                displayer: "Properties",
-                value: [
-                  {
-                    type: "object",
-                    key: "property",
-                    displayer: "Property",
-                    value: [
-                      {
-                        type: "select",
-                        key: "type",
-                        displayer: "Type",
-                        value: "",
-                        additionalParams: {
-                          selectItems: ["color","material"],
-                        }
-                      },
-                      {
-                        type: "string",
-                        key: "name",
-                        displayer: "Name",
-                        value: "",
-                      }
-                    ]
-                  },
-                ]
-              },
-            ]
-          }
       ]
     });
     this.setComponentState("activeTab", 0);
@@ -245,7 +265,6 @@ class ECommerce3 extends BaseECommerce {
 
     const tabs = this.castToObject<Tab[]>("tabs");
     const activeTab = this.getComponentState("activeTab");
-
     return (
       <div className={this.decorateCSS("container")}>
         <Base.Container className={this.decorateCSS("container-top")}>
@@ -253,54 +272,66 @@ class ECommerce3 extends BaseECommerce {
             <div className={this.decorateCSS("tab-buttons")}>
               {tabs.map((item: Tab, index: number) => {
                 return (
-                  <div className={`${this.decorateCSS("tab")} ${index === activeTab && this.decorateCSS("active")}`} onClick={() => handleChangeTab(index)}>
-                    <span className={this.decorateCSS("title")}>{item.title}</span>
-                  </div>
+                  <>
+                    {this.castToString(item.tabTitle) && (
+                      <div className={`${this.decorateCSS("tab")} ${index === activeTab && this.decorateCSS("active")}`} onClick={() => handleChangeTab(index)}>
+                        <span className={this.decorateCSS("tab-title")}>{item.tabTitle}</span>
+                      </div>
+                    )}
+                  </>                  
                 )
               })}
             </div>
           </Base.MaxContent>
         </Base.Container>
         <Base.Container className={this.decorateCSS("container-bottom")}>
-          <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <Base.MaxContent className={this.decorateCSS("wrapper")}>
             <div className={this.decorateCSS("section")}>
               <div className={this.decorateCSS("tabs")}>
                 {tabs.map((item: Tab, index: number) => (
                   index === activeTab && (
-                    <div className={this.decorateCSS("tab")}>
+                    <div className={this.decorateCSS("tab-content")}>
                       <Base.VerticalContent className={this.decorateCSS("vertical")}>
-                        {item.title && <Base.H2 className={this.decorateCSS("title")}>{item.title}</Base.H2>}
-                        {item.description && <Base.SectionDescription className={this.decorateCSS("description")}>{item.description}</Base.SectionDescription>}
+                        {this.castToString(item.title) && <Base.SectionTitle className={this.decorateCSS("title")}>{item.title}</Base.SectionTitle>}
+                        {this.castToString(item.description) && <Base.SectionDescription className={this.decorateCSS("description")}>{item.description}</Base.SectionDescription>}
                         <div className={this.decorateCSS("content")}>
                           <div className={this.decorateCSS("left")}>
-                            {item.weight && <span className={this.decorateCSS("item")}>Weight</span>}
-                            {this.castToString(item.dimensions) && <span className={this.decorateCSS("item")}>Dimensions</span>}
-                            {item.properties.filter((_) => _.type === "color").length > 0 && this.castToString(item.properties.filter((_) => _.type === "color")[0].name) ? <span className={this.decorateCSS("item")}>Color</span> : ""}
-                            {item.properties.filter((_) => _.type === "material").length > 0 && this.castToString(item.properties.filter((_) => _.type === "material")[0].name) ? <span className={this.decorateCSS("item")}>Material</span> : ""}
+                          {(item.details ?? []).map((detail: Details) => {
+                            return this.castToString(detail.title) || this.castToString(detail.value)? (
+                              <span className={this.decorateCSS("detail-title")}>{detail.title}</span>
+                            ) : null;
+                          })}
+                          {(item.properties ?? []).map((property: Properties, index:number) => {
+                            return (this.castToString(property.title) || property.items.length > 0) ? (
+                              <span className={this.decorateCSS("property-title")}>{property.title}</span>
+                            ) : null;
+                          })}
                           </div>
                           <div className={this.decorateCSS("right")}>
-                            {item.weight && <span className={this.decorateCSS("item")}>{item.weight + " " + item.unit}</span>}
-                            {this.castToString(item.dimensions)  && <span className={this.decorateCSS("item")}>{item.dimensions}</span>}
-                            {item.properties.filter((_) => _.type === "color").length > 0 && (
+                          {(item.details ?? []).map((detail: Details) => {
+                            return this.castToString(detail.value) || this.castToString(detail.title) ? (
+                              <span className={this.decorateCSS("detail-value")}>{detail.value}</span>
+                            ) : null;
+                          })}
+
+                          {(item.properties ?? []).map((property: Properties) => (
+                            <>
+                            {(this.castToString(property.title)|| (property.items.length > 0)) && (
                               <div className={this.decorateCSS("box")}>
-                                {item.properties.filter((_) => _.type === "color").map((value: Properties, index: number) => {
-                                  const lenght = item.properties.filter((_) => _.type === "color").length
-                                  return (
-                                    <span className={this.decorateCSS("item")}>{value.name}{index+1 !== lenght && ", "}</span>
-                                  )
-                                })}
-                              </div>
+                              {(property.items ?? []).length > 0 ? property.items.map((propItem, index) => {
+                                return(
+                                  <>
+                                      <span key={index} className={this.decorateCSS("property-value")}>
+                                      {propItem.title}
+                                      </span>
+                                  </>
+                                )
+                              }
+                              ) : (<span key={index} className={this.decorateCSS("property-value")}></span>)}
+                            </div>
                             )}
-                            {item.properties.filter((_) => _.type === "material").length > 0 && (
-                              <div className={this.decorateCSS("box")}>
-                                {item.properties.filter((_) => _.type === "material").map((value: Properties, index: number) => {
-                                  const lenght = item.properties.filter((_) => _.type === "material").length;
-                                  return (
-                                    <span className={this.decorateCSS("item")}>{value.name}{index+1 !== lenght && ", "}</span>
-                                  )
-                                })}
-                              </div>
-                            )}
+                            </>
+                          ))}
                           </div>
                         </div>
                       </Base.VerticalContent>
