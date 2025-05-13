@@ -44,6 +44,9 @@
                     gap: var(--composer-gap-md);
                     overflow: hidden;
                     width: 15%;
+                    &.without-right{
+                        width: 10%;
+                    }
                     .img-container {
                         flex: 1;
                         .img {
@@ -63,6 +66,9 @@
                     max-height: 100%;
                     width: 85%;
                     overflow: hidden;
+                    &.without-right{
+                        width: 90%;
+                    }
                     .new { 
                         position: absolute; 
                         left: var(--composer-gap-md); 
@@ -225,7 +231,8 @@
                         }
                         .heart-icon {
                             color: var(--composer-font-color-primary);
-                            font-size: 1rem;
+                            min-width: 16px;
+                            min-height: 16px;
                         }
                         .cart-title {
                             color: var(--composer-font-color-primary);

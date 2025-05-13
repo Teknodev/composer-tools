@@ -101,15 +101,15 @@ class ECommerce1 extends BaseECommerce {
     });
     this.addProp({
       type:"icon",
-      key: "leftArrow",
-      displayer: "Left Arrow",
-      value: "IoMdArrowDropleft"
+      key: "leftArrowImage",
+      displayer: "Left Arrow Image",
+      value: "SlArrowLeft"
     });
     this.addProp({
       type:"icon",
-      key: "rightArrow",
-      displayer: "Right Arrow",
-      value: "IoMdArrowDropright"
+      key: "rightArrowImage",
+      displayer: "Right Arrow Image",
+      value: "SlArrowRight"
     });
     this.addProp({
       type:"icon",
@@ -182,6 +182,18 @@ class ECommerce1 extends BaseECommerce {
       displayer:"Quantity Text",
       value:"Quantity"
     })
+    this.addProp({
+      type:"icon",
+      key: "leftArrow",
+      displayer: "Left Arrow",
+      value: "IoMdArrowDropleft"
+    });
+    this.addProp({
+      type:"icon",
+      key: "rightArrow",
+      displayer: "Right Arrow",
+      value: "IoMdArrowDropright"
+    });
     this.addProp(INPUTS.BUTTON("button", "Button", "ADD TO CART", "", null, null, "Black"));
     this.addProp({
       type: "object", 
@@ -425,6 +437,8 @@ class ECommerce1 extends BaseECommerce {
     const count = this.getComponentState("count");
     const activeImage = this.getComponentState("activeImage");
     const isActive = this.getComponentState("isActive");
+    const leftIconImage = this.getPropValue("leftArrowImage");
+    const rightIconImage = this.getPropValue("rightArrowImage");
     const leftIcon = this.getPropValue("leftArrow");
     const rightIcon = this.getPropValue("rightArrow");
     const closeIcon = this.getPropValue("closeIcon");
@@ -432,7 +446,7 @@ class ECommerce1 extends BaseECommerce {
     const wishlist = this.castToObject<WishlistItem>("wishlist");
     const reviewItem = this.castToObject<ReviewItem>("reviewItem");
     const isRightExist = titleExist || price.value || reviewItem.point || reviewItem.reviewCount || this.castToString(reviewItem.reviewText) || reviewItem.starIcon || reviewItem.starIconBorder ||
-    descriptionExist || this.castToString(this.getPropValue("quantityText")) || leftIcon || rightIcon || button.text || this.castToString(wishlist.wishlistText) || wishlist.wishlistIcon || 
+    descriptionExist || this.castToString(this.getPropValue("quantityText")) || leftIcon || rightIcon || this.castToString(button.text) || this.castToString(wishlist.wishlistText) || wishlist.wishlistIcon || 
     this.castToString(productItem.text) || this.castToString(productItem.code) || this.castToString(this.getPropValue("categoriesText")) || (categoryItem.length > 0) || this.castToString(this.getPropValue("tagsText")) || (tags.length > 0)
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -440,7 +454,7 @@ class ECommerce1 extends BaseECommerce {
           <div className={this.decorateCSS("section")}>
             {(images.length > 0) && (
               <div className={this.decorateCSS("left")}>
-                <div className={this.decorateCSS("left-images")}>
+                <div className={`${this.decorateCSS("left-images")} ${!isRightExist && this.decorateCSS("without-right")}`}>
                   {images.map((item: Image, index: number) => {
                       return (
                         <div className={this.decorateCSS("img-container")}>
@@ -455,10 +469,10 @@ class ECommerce1 extends BaseECommerce {
                       )
                     })}
                 </div>
-                <div className={this.decorateCSS("right-image")}>
+                <div className={`${this.decorateCSS("right-image")} ${!isRightExist && this.decorateCSS("without-right")}`}>
                   {this.castToString(this.getPropValue("newText")) && (<span className={this.decorateCSS("new")}>{this.getPropValue("newText")}</span>)}
-                  <ComposerIcon name={leftIcon} propsIcon={{className: this.decorateCSS("left-arrow"), onClick: moveLeftSlider}} />
-                  <ComposerIcon name={rightIcon} propsIcon={{className: this.decorateCSS("right-arrow"), onClick: moveRightSlider}} />
+                  <ComposerIcon name={leftIconImage} propsIcon={{className: this.decorateCSS("left-arrow"), onClick: moveLeftSlider}} />
+                  <ComposerIcon name={rightIconImage} propsIcon={{className: this.decorateCSS("right-arrow"), onClick: moveRightSlider}} />
                   {images.length > 0 && (
                     <ComposerSlider ref={sliderRef} {...settings} className={this.decorateCSS("carousel")}>
                       {images.map((item: Image, index: number) => {
@@ -511,7 +525,7 @@ class ECommerce1 extends BaseECommerce {
                   {descriptionExist && (<div className={this.decorateCSS("description")}>{description}</div>)}
                   </div>
                 )}
-                  {(this.castToString(this.getPropValue("quantityText")) || leftIcon || rightIcon || button.text) && (
+                  {(this.castToString(this.getPropValue("quantityText")) || leftIcon || rightIcon || this.castToString(button.text)) && (
                     <div className={this.decorateCSS("inputs")}>
                       {(this.castToString(this.getPropValue("quantityText")) || leftIcon || rightIcon) && (
                         <div className={`${this.decorateCSS("count-input")} ${this.castToString(button.text) && this.decorateCSS("with-button")}`}>
