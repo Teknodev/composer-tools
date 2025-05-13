@@ -23,7 +23,7 @@
           display: flex;
           align-items: center;
           flex-direction: column;
-          gap: var(--composer-gap-md);
+          gap: var(--composer-gap-sm);
           color: var(--composer-font-color-primary);
         }
       }
@@ -50,14 +50,19 @@
     }
 
     .sub-title {
-      color: var(--composer-primary-color);
-      margin-bottom: 0;
+      margin: 0;
+      font-size: 1rem;
+      transform: translateX(0) !important;
+      &::before {
+        display: none;
+      }
     }
     .title {
       margin: 0;
+      font-size: 2rem;
     }
     .text {
-      text-align: justify;
+      text-align: center;
     }
     .navigate-container {
       padding: var(--composer-gap-sm) (calc(1.5 * var(--composer-gap-md)));

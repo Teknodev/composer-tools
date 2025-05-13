@@ -90,7 +90,7 @@ class Content19 extends BaseContent {
             type: "multiSelect",
             key: "hoverAnimation",
             displayer: "Hover Animation Style",
-            value: ["animate1"],
+            value: ["animate1", "animate2"],
             additionalParams: {
                 selectItems: ["animate1", "animate2"]
             }
