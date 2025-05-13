@@ -9,9 +9,9 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
   icon: string;
-  title: JSX.Element;
-  description: JSX.Element;
-  num: JSX.Element;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
+  num: React.JSX.Element;
 };
 
 

@@ -8,13 +8,13 @@ import { Base } from "../../../composer-base-components/base/base";
 type CardData = {
   image: string;
   mini: boolean;
-  date: JSX.Element;
-  readTime: JSX.Element;
-  title: JSX.Element;
-  description: JSX.Element;
+  date: React.JSX.Element;
+  readTime: React.JSX.Element;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
   profileImage: string;
-  fullname: JSX.Element;
-  profileDescription: JSX.Element;
+  fullname: React.JSX.Element;
+  profileDescription: React.JSX.Element;
   url: string;
 };
 
@@ -523,7 +523,7 @@ class Feature1 extends BaseFeature {
     };
 
     const Blocks = ({ cards }: { cards: CardData[]; }) => {
-      const blocks: JSX.Element[] = [];
+      const blocks: React.JSX.Element[] = [];
       const data: any = [];
 
       for (let i = 0; i < cards.length; i++) {
@@ -575,7 +575,7 @@ class Feature1 extends BaseFeature {
       return <>{blocks.map((block, index) => <React.Fragment key={index}>{block}</React.Fragment>)}</>;
     };
 
-    const Block = ({ children }: { children: JSX.Element; }) => {
+    const Block = ({ children }: { children: React.JSX.Element; }) => {
       return (
         <div className={this.decorateCSS("block")}>
           {children}

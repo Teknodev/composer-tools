@@ -1,4 +1,4 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
     .max-content {
@@ -55,6 +55,48 @@
                 position: relative;
                 display: flex;
                 justify-content: flex-end;
+
+                &[data-animation~="animate1"] {
+                    .image1, .image2 {
+                        transition: transform 0.3s ease;
+                    }
+
+                    .image-text {
+                        transition: transform 0.3s ease;
+                    }
+
+                    &:hover {
+                        .image1, .image2 {
+                            transform: scale(1.05);
+                        }
+
+                        .image-text {
+                            animation: squarePattern 4s infinite;
+                        }
+                    }
+                }
+
+                &[data-animation~="animate2"] {
+                    .image1, .image2 {
+                        transition: all 0.5s ease;
+                    }
+
+                    .image-text {
+                        transition: all 0.5s ease;
+                    }
+
+                    &:hover {
+                        .image1, .image2 {
+                            transform: scale(1.07);
+                            filter: brightness(1.1);
+                        }
+
+                        .image-text {
+                            animation: rotateAndScale 3s infinite;
+                        }
+                    }
+                }
+
                 .image-text {
                     position: absolute;
                     z-index: 10;
@@ -103,7 +145,7 @@
     }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
     .container {
 
         .max-content {
@@ -124,5 +166,41 @@
                 }
             }
         }
+    }
+}
+
+@keyframes squarePattern {
+    0% {
+        transform: translateX(-60%) translate(0, 0);
+    }
+    25% {
+        transform: translateX(-60%) translate(calc(var(--composer-gap-sm) * -1), 0);
+    }
+    50% {
+        transform: translateX(-60%) translate(calc(var(--composer-gap-sm) * -1), calc(var(--composer-gap-sm) * -1));
+    }
+    75% {
+        transform: translateX(-60%) translate(0, calc(var(--composer-gap-sm) * -1));
+    }
+    100% {
+        transform: translateX(-60%) translate(0, 0);
+    }
+}
+
+@keyframes rotateAndScale {
+    0% {
+        transform: translateX(-60%) rotate(0deg);
+    }
+    25% {
+        transform: translateX(-60%) rotate(5deg) scale(1.1);
+    }
+    50% {
+        transform: translateX(-60%) rotate(0deg) scale(1.15);
+    }
+    75% {
+        transform: translateX(-60%) rotate(-5deg) scale(1.1);
+    }
+    100% {
+        transform: translateX(-60%) rotate(0deg);
     }
 }

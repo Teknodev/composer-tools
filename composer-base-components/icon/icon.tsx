@@ -7,7 +7,7 @@ interface TypesPropsIcon {
   propsIcon?: IconBaseProps;
 }
 
-export function ComposerIcon({ name, propsIcon }: TypesPropsIcon): JSX.Element {
+export function ComposerIcon({ name, propsIcon }: TypesPropsIcon): React.JSX.Element {
   if (!name) return <></>;
 
   let ElementIcon: any = null;

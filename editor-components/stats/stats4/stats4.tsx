@@ -5,14 +5,14 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
 
 type Faq = {
-  title: JSX.Element;
-  content: JSX.Element;
+  title: React.JSX.Element;
+  content: React.JSX.Element;
 };
 
 type Stat = {
-  title: JSX.Element;
-  content: JSX.Element;
-  stat: JSX.Element;
+  title: React.JSX.Element;
+  content: React.JSX.Element;
+  stat: React.JSX.Element;
 };
 
 class Stats4Page extends BaseStats {

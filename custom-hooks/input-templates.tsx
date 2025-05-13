@@ -3,7 +3,7 @@ import { TypeUsableComponentProps } from "composer-tools/editor-components/Edito
 
 export namespace INPUTS {
   export type CastedButton = {
-    text: JSX.Element;
+    text: React.JSX.Element;
     url: string;
     icon: string;
     image: string;

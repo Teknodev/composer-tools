@@ -1,8 +1,9 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
   padding-top: var(--composer-gap-sm);
   padding-bottom: var(--composer-gap-sm);
+  z-index: 101;
 
   .maxContent {
     display: flex;
@@ -174,7 +175,9 @@
         }
       }
     }
-
+.mobileRight{
+  display: none;
+}
     .menuIcon,
     .closeIcon {
       display: none;
@@ -203,6 +206,9 @@
 
         &.open {
           transform: translateX(0);
+        }
+        &.overflowShow{
+          overflow-y: auto;
         }
 
         .mobileCloseButton {
@@ -381,11 +387,16 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .container {
     .maxContent {
+      .mobileRight{
+        display: flex;
+        gap: var(--composer-gap-sm);
+      }
       .logo {
         .logoImg {
+          width: fit-content;
           max-height: 50px;
         }
       }
@@ -399,6 +410,9 @@
             }
           }
         }
+      }
+      .localizationMobile{
+        display: flex;
       }
       .menuIcon,
       .closeIcon {
@@ -426,7 +440,6 @@
             font-weight: bold;
           }
         }
-      // }
    
     }
     .overlay {

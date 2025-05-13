@@ -8,9 +8,9 @@ import { ComposerIcon } from "composer-tools/composer-base-components/icon/icon"
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type ISliderData = {
-  title: JSX.Element;
+  title: React.JSX.Element;
   image: string;
-  subtitle: JSX.Element;
+  subtitle: React.JSX.Element;
   button: INPUTS.CastedButton;
 };
 class Header16 extends BaseHeader {

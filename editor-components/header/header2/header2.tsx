@@ -9,11 +9,11 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type SliderItemType = {
   image: string;
-  category: JSX.Element;
-  title: JSX.Element;
-  author: JSX.Element;
-  date: JSX.Element;
-  description: JSX.Element;
+  category: React.JSX.Element;
+  title: React.JSX.Element;
+  author: React.JSX.Element;
+  date: React.JSX.Element;
+  description: React.JSX.Element;
   button: INPUTS.CastedButton;
   dot: boolean;
 };

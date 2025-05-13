@@ -1,14 +1,64 @@
-@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
+@use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
 .container {
     background-size: cover;
-    background-position: center center;
-    aspect-ratio: 25 / 9;
+    background-position: center center;    
     display: flex;
     align-items: center;
+    position: relative;
+    overflow: hidden;
+    min-height: 700px;
+
+    &[data-animation~="animate1"] {
+        &::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: inherit;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.5s ease;
+            z-index: 0;
+        }
+
+        &:hover {
+            &::before {
+                transform: scale(1.1);
+            }
+        }
+
+    }
+
+    &[data-animation~="animate2"] {
+        &::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: inherit;
+            background-size: cover;
+            background-position: center;
+            z-index: 0;
+            transition: all 0.5s ease;
+        }
+
+        &:hover {
+            &::before {
+                filter: blur(var(--composer-gap-xs)) brightness(0.7);
+            }
+
+            .max-content {
+                .title-wrapper {
+                    .title {
+                        transform: scale(1.2);
+                    }
+                }
+            }
+        }
+    }
 
     .max-content {
         display: flex;
         justify-content: center;
+        z-index: 1;
         .title-wrapper{
             .title{
                 font-size: 2rem;
@@ -53,15 +103,15 @@
     }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
     .container {
-        aspect-ratio: 9 / 3;
+        min-height: 600px;
     }
 }
 
 @container (max-width: #{$composer-phone-width}) {
     .container {
-        aspect-ratio: 3 / 1;
+        min-height: 500px;
         .max-content {
             .title-wrapper{
                 .title, .title-no-image {

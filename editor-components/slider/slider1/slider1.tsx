@@ -7,8 +7,8 @@ import { Base } from "../../../composer-base-components/base/base";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type Slider = {
-  subtitle: JSX.Element;
-  title: JSX.Element;
+  subtitle: React.JSX.Element;
+  title: React.JSX.Element;
   image: string;
 };
 
