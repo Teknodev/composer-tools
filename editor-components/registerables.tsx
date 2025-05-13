@@ -231,6 +231,7 @@ import ConfirmationModal2 from "./modal/confirmation-modal-2/confirmation-modal-
 import BannerComponent1 from "../editor-components/banner/banner1/banner1";
 import BannerComponent2 from "../editor-components/banner/banner2/banner2";
 import BannerComponent4 from "../editor-components/banner/banner4/banner4";
+import BannerComponent6 from "../editor-components/banner/banner6/banner6";
 import SocialComponent1 from "./social/social1/social1";
 import SocialComponent2 from "../editor-components/socials/social2/social2";
 import SocialComponent3 from "../editor-components/social/social3/social3";
@@ -474,8 +475,9 @@ function Registerables(composer: ComponentsRegistery) {
     ConfirmationModal2,
     BannerComponent1,
     BannerComponent2,
-    SocialComponent2,
     BannerComponent4,
+    BannerComponent6,
+    SocialComponent2,
     SocialComponent3,
     SocialComponent4,
     SocialWidget1,
