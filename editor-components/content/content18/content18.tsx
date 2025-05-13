@@ -10,7 +10,7 @@ class Content18 extends BaseContent {
             type: "image",
             key: "bgImage",
             displayer: "Background Image",
-            value: "https://media-hosting.imagekit.io/7f30160e25db4eaa/2.png?Expires=1841393288&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=1USxrh5u-ox2-aetiBNC69LxS-g4XW8KabxU5~s3eGrVkcfzaA8M3AsAHQX34s~qkGnPWbYjvA5sR9fdakwqLWGrAgD142TUsXVXXD8UL7g4JmZiOI6SSK0uNS5LeLnxDSUIZqNCl6L6YRv3QU75gPf-wqPnoDjsRCI~y5qJcJBa0ZgOLs6nu6t30dAxvwK~QXVm5VpNM3F0OvlEawuD8lfozNtAzA97xQb1ll1JdgwvD~-ZfLcCjkI~iIMcLgdK~m5y31YGqyMqw19XMjA9LgFPkP7QxmfTImd1DVfYuiqzqZzMpbvK8GC1kYe3gmnMvT60dNjIYyOXSfzqvUZTpw__"
+            value: "https://res.cloudinary.com/db4ayioxs/image/upload/v1747148312/uploads/1747148311367-Ads%C3%84%C2%B1z_tasar%C3%84%C2%B1m_%2818%29.png.png"
         })
         this.addProp({
             type: "string",
@@ -65,16 +65,16 @@ class Content18 extends BaseContent {
 
         const showTextContainer = this.castToString(text1) || this.castToString(text2);
         const showTopContainer = this.castToString(subTitle) || this.castToString(title);
-        const showBottomContainer = this.castToString(signature) || this.castToString(name);
+        const showBottomContainer = (signature) || this.castToString(name);
         const showContentContainer = showTopContainer || showTextContainer || showBottomContainer;
 
         const subTitleType = Base.getSectionSubTitleType();
-        const alignmentValue = Base.getContentAlignment();
 
         return (
-            <Base.Container className={`${this.decorateCSS("container")} `} style={{
-                backgroundImage: `url(${bgImage})`,
-            }}>
+            <Base.Container className={`${this.decorateCSS("container")} `}
+                style={{
+                    backgroundImage: `url(${bgImage})`,
+                }}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     {showContentContainer && (
                         <div className={this.decorateCSS("content")}>
@@ -84,15 +84,18 @@ class Content18 extends BaseContent {
                                         bgImage ? "top-container-with-bg" : "top-container"
                                     )}>
                                     {this.castToString(subTitle) && (
-                                        <Base.SectionSubTitle className={`${subTitleType === "badge"
-                                            ? this.decorateCSS("sub-title-badge")
-                                            : this.decorateCSS("sub-title")
-                                            }`}>
+                                        <Base.SectionSubTitle
+                                            className={`${subTitleType === "badge"
+                                                ? this.decorateCSS("sub-title-badge")
+                                                : this.decorateCSS("sub-title")
+                                                } ${bgImage ? this.decorateCSS("sub-title-with-bg") : ""}`}>
                                             {subTitle}
                                         </Base.SectionSubTitle>
                                     )}
                                     {this.castToString(title) && (
-                                        <Base.SectionTitle className={this.decorateCSS("title")}>
+                                        <Base.SectionTitle
+                                            className={`${this.decorateCSS("title")} 
+                                            ${bgImage ? this.decorateCSS("title-with-bg") : ""}`}>
                                             {title}
                                         </Base.SectionTitle>
                                     )}
@@ -103,8 +106,7 @@ class Content18 extends BaseContent {
                                 <div
                                     className={this.decorateCSS(
                                         bgImage ? "text-container-with-bg" : "text-container"
-                                    )}
-                                >
+                                    )}>
                                     {this.castToString(text1) && (
                                         <div className={this.decorateCSS("text-1")}>
                                             {text1}
@@ -118,14 +120,12 @@ class Content18 extends BaseContent {
                                 </div>
                             )}
                             {showBottomContainer && (
-                                <div
-                                    className={this.decorateCSS(
-                                        bgImage ? "bottom-container-with-bg" : "bottom-container"
-                                    )}
-                                >
+                                <div className={this.decorateCSS(
+                                    bgImage ? "bottom-container-with-bg" : "bottom-container"
+                                )}>
                                     {signature && (
                                         <div className={this.decorateCSS("signature")}>
-                                            <img src={signature} alt="" />
+                                            <img src={signature} alt="" className={this.decorateCSS("signature-image")} />
                                         </div>
                                     )}
                                     {this.castToString(name) && (
