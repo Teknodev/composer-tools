@@ -8,6 +8,8 @@ type CardType = {
     title: React.ReactNode;
     image: string;
     text: string;
+    link: string;
+    cardLink: string;
 };
 
 type AnimateTexts = {
@@ -63,16 +65,16 @@ class ImageGallery10 extends BaseImageGallery {
                     displayer: "Card Item",
                     value: [
                         {
+                            type: "page",
+                            key: "cardLink",
+                            displayer: "URL",
+                            value: "",
+                        },
+                        {
                             type: "string",
                             key: "title",
                             displayer: "Title",
                             value: "Drawing",
-                        },
-                        {
-                            type: "page",
-                            key: "link",
-                            displayer: "URL",
-                            value: "",
                         },
                         {
                             type: "string",
@@ -82,7 +84,7 @@ class ImageGallery10 extends BaseImageGallery {
                         },
                         {
                             type: "page",
-                            key: "link2",
+                            key: "link",
                             displayer: "URL",
                             value: "",
                         },
@@ -101,6 +103,12 @@ class ImageGallery10 extends BaseImageGallery {
                     displayer: "Card Item",
                     value: [
                         {
+                            type: "page",
+                            key: "cardLink",
+                            displayer: "URL",
+                            value: "",
+                        },
+                        {
                             type: "string",
                             key: "title",
                             displayer: "Title",
@@ -111,6 +119,12 @@ class ImageGallery10 extends BaseImageGallery {
                             key: "text",
                             displayer: "Text",
                             value: "Lorem Ipsum Dolor",
+                        },
+                        {
+                            type: "page",
+                            key: "link",
+                            displayer: "URL",
+                            value: "",
                         },
                         {
                             type: "image",
@@ -127,6 +141,12 @@ class ImageGallery10 extends BaseImageGallery {
                     displayer: "Card Item",
                     value: [
                         {
+                            type: "page",
+                            key: "cardLink",
+                            displayer: "URL",
+                            value: "",
+                        },
+                        {
                             type: "string",
                             key: "title",
                             displayer: "Title",
@@ -137,6 +157,12 @@ class ImageGallery10 extends BaseImageGallery {
                             key: "text",
                             displayer: "Text",
                             value: "Lorem Ipsum Dolor",
+                        },
+                        {
+                            type: "page",
+                            key: "link",
+                            displayer: "URL",
+                            value: "",
                         },
                         {
                             type: "image",
@@ -153,6 +179,12 @@ class ImageGallery10 extends BaseImageGallery {
                     displayer: "Card Item",
                     value: [
                         {
+                            type: "page",
+                            key: "cardLink",
+                            displayer: "URL",
+                            value: "",
+                        },
+                        {
                             type: "string",
                             key: "title",
                             displayer: "Title",
@@ -163,6 +195,12 @@ class ImageGallery10 extends BaseImageGallery {
                             key: "text",
                             displayer: "Text",
                             value: "Lorem Ipsum Dolor",
+                        },
+                        {
+                            type: "page",
+                            key: "link",
+                            displayer: "URL",
+                            value: "",
                         },
                         {
                             type: "image",
@@ -179,6 +217,12 @@ class ImageGallery10 extends BaseImageGallery {
                     displayer: "Card Item",
                     value: [
                         {
+                            type: "page",
+                            key: "cardLink",
+                            displayer: "URL",
+                            value: "",
+                        },
+                        {
                             type: "string",
                             key: "title",
                             displayer: "Title",
@@ -189,6 +233,12 @@ class ImageGallery10 extends BaseImageGallery {
                             key: "text",
                             displayer: "Text",
                             value: "Lorem Ipsum Dolor",
+                        },
+                        {
+                            type: "page",
+                            key: "link",
+                            displayer: "URL",
+                            value: "",
                         },
                         {
                             type: "image",
@@ -205,6 +255,12 @@ class ImageGallery10 extends BaseImageGallery {
                     displayer: "Card Item",
                     value: [
                         {
+                            type: "page",
+                            key: "cardLink",
+                            displayer: "URL",
+                            value: "",
+                        },
+                        {
                             type: "string",
                             key: "title",
                             displayer: "Title",
@@ -215,6 +271,12 @@ class ImageGallery10 extends BaseImageGallery {
                             key: "text",
                             displayer: "Text",
                             value: "Lorem Ipsum Dolor",
+                        },
+                        {
+                            type: "page",
+                            key: "link",
+                            displayer: "URL",
+                            value: "",
                         },
                         {
                             type: "image",
@@ -231,6 +293,12 @@ class ImageGallery10 extends BaseImageGallery {
                     displayer: "Card Item",
                     value: [
                         {
+                            type: "page",
+                            key: "cardLink",
+                            displayer: "URL",
+                            value: "",
+                        },
+                        {
                             type: "string",
                             key: "title",
                             displayer: "Title",
@@ -241,6 +309,12 @@ class ImageGallery10 extends BaseImageGallery {
                             key: "text",
                             displayer: "Text",
                             value: "Lorem Ipsum Dolor",
+                        },
+                        {
+                            type: "page",
+                            key: "link",
+                            displayer: "URL",
+                            value: "",
                         },
                         {
                             type: "image",
@@ -257,6 +331,12 @@ class ImageGallery10 extends BaseImageGallery {
                     displayer: "Card Item",
                     value: [
                         {
+                            type: "page",
+                            key: "cardLink",
+                            displayer: "URL",
+                            value: "",
+                        },
+                        {
                             type: "string",
                             key: "title",
                             displayer: "Title",
@@ -267,6 +347,12 @@ class ImageGallery10 extends BaseImageGallery {
                             key: "text",
                             displayer: "Text",
                             value: "Lorem Ipsum Dolor",
+                        },
+                        {
+                            type: "page",
+                            key: "link",
+                            displayer: "URL",
+                            value: "",
                         },
                         {
                             type: "image",
@@ -283,6 +369,12 @@ class ImageGallery10 extends BaseImageGallery {
                     displayer: "Card Item",
                     value: [
                         {
+                            type: "page",
+                            key: "cardLink",
+                            displayer: "URL",
+                            value: "",
+                        },
+                        {
                             type: "string",
                             key: "title",
                             displayer: "Title",
@@ -293,6 +385,12 @@ class ImageGallery10 extends BaseImageGallery {
                             key: "text",
                             displayer: "Text",
                             value: "Lorem Ipsum Dolor",
+                        },
+                        {
+                            type: "page",
+                            key: "link",
+                            displayer: "URL",
+                            value: "",
                         },
                         {
                             type: "image",
@@ -385,14 +483,12 @@ class ImageGallery10 extends BaseImageGallery {
 
         return (
             <Base.Container
-                className={this.decorateCSS("container")}
-            >
+                className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     {header && (
                         <div className={this.decorateCSS("header-wrapper")}>
                             <Base.SectionTitle
-                                className={this.decorateCSS("header-title")}
-                            >
+                                className={this.decorateCSS("header-title")}>
                                 <div className={this.decorateCSS("title-content")}>
                                     {this.getPropValue("header")}
                                 </div>
@@ -408,40 +504,32 @@ class ImageGallery10 extends BaseImageGallery {
                         cardList.length > 0 && (
                             <Base.ListGrid
                                 className={this.decorateCSS("grid")}
-                                gridCount={{ pc: this.getPropValue("itemCount") }}
-                            >
+                                gridCount={{ pc: this.getPropValue("itemCount") }}>
                                 {cardList.map((cardItem: any, index: number) => (
-                                    <div className={this.decorateCSS("item-box")} key={index}>
-                                        <div
-                                            className={this.decorateCSS("item-container")}
-                                            style={{ backgroundImage: `url(${cardItem.image})` }}
-                                        >
-                                            <div className={this.decorateCSS("overlay-content")}>
-                                                <ComposerLink
-                                                    path={cardItem.link}
-                                                >
+                                    <ComposerLink path={cardItem.cardLink} isFullWidth={true}>
+                                        <div className={this.decorateCSS("item-box")} key={index}>
+                                            <div className={this.decorateCSS("item-container")}
+                                                style={{ backgroundImage: `url(${cardItem.image})` }}>
+                                                <div className={this.decorateCSS("overlay-content")}>
                                                     {this.castToString(cardItem.title) && (
                                                         <div
-                                                            className={this.decorateCSS("card-item-value-h1")}
-                                                        >
+                                                            className={this.decorateCSS("card-item-value-h1")}>
                                                             {cardItem.title}
                                                         </div>
                                                     )}
-                                                </ComposerLink>
-                                                <ComposerLink
-                                                    path={cardItem.link2}
-                                                >
-                                                    {this.castToString(cardItem.text) && (
-                                                        <div
-                                                            className={this.decorateCSS("card-item-value-p")}
-                                                        >
-                                                            {cardItem.text}
-                                                        </div>
-                                                    )}
-                                                </ComposerLink>
+                                                    <ComposerLink
+                                                        path={cardItem.link}>
+                                                        {this.castToString(cardItem.text) && (
+                                                            <div
+                                                                className={this.decorateCSS("card-item-value-p")}>
+                                                                {cardItem.text}
+                                                            </div>
+                                                        )}
+                                                    </ComposerLink>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </ComposerLink>
                                 ))}
                             </Base.ListGrid>
                         )
