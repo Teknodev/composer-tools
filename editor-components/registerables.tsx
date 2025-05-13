@@ -161,6 +161,7 @@ import TestimonialsComponent10 from "./testimonials/testimonials10/testimonials1
 import TestimonialsComponent11 from "./testimonials/testimonials11/testimonials11";
 import TestimonialsComponent12 from "./testimonials/testimonials12/testimonials12";
 import TestimonialsComponent13 from "./testimonials/testimonials13/testimonials13";
+import TestimonialsComponent14 from "./testimonials/testimonials14/testimonials14";
 import StatsComponent1 from "./stats/stats1/stats1";
 import StatsComponent2 from "./stats/stats2/stats2";
 import StatsComponent3 from "./stats/stats3/stats3";
@@ -424,6 +425,7 @@ function Registerables(composer: ComponentsRegistery) {
     TestimonialsComponent11,
     TestimonialsComponent12,
     TestimonialsComponent13,
+    TestimonialsComponent14,
     StatsComponent1,
     StatsComponent2,
     StatsComponent3,
