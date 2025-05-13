@@ -39,6 +39,7 @@ import ContentComponent12 from "./content/content12/content12";
 import ContentComponent13 from "./content/content13/content13";
 import ContentComponent14 from "./content/content14/content14";
 import ContentComponent17 from "./content/content17/content17";
+import ContentComponent20 from "./content/content20/content20";
 import SliderComponent1 from "./slider/slider1/slider1";
 import SliderComponent2 from "./slider/slider2/slider2";
 import SliderComponent3 from "./slider/slider3/slider3";
@@ -286,6 +287,7 @@ function Registerables(composer: ComponentsRegistery) {
     ContentComponent13,
     ContentComponent14,
     ContentComponent17,
+    ContentComponent20,
     SliderComponent1,
     SliderComponent2,
     SliderComponent3,
