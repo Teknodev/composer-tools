@@ -190,6 +190,12 @@ class Testimonials14 extends Testimonials {
             displayer: "Divider Bottom",
             value: true,
         });
+        this.addProp({
+            type: "boolean",
+            key: "textAnimation",
+            displayer: "Text Animation",
+            value: true,
+        });
 
         this.setComponentState("activeIndex", 0);
         this.setComponentState("contentAnimationClass", "animate__fadeIn");
@@ -221,40 +227,40 @@ class Testimonials14 extends Testimonials {
         }
     };
 
+    private updateActiveIndexWithAnimation = (newIndex: number) => {
+        const textAnimation = this.getPropValue("textAnimation");
+        if (textAnimation) {
+            this.setComponentState("contentAnimationClass", "animate__fadeOut");
+            setTimeout(() => {
+                this.setComponentState("activeIndex", newIndex);
+                this.setComponentState("contentAnimationClass", "animate__fadeIn");
+                this.startAutoplay();
+            }, 750);
+        } else {
+            this.setComponentState("activeIndex", newIndex);
+            this.startAutoplay();
+        }
+    };
+
     onImageClick = (index: number) => {
         this.stopAutoplay();
-        this.setComponentState("contentAnimationClass", "animate__fadeOut");
-        setTimeout(() => {
-            this.setComponentState("activeIndex", index);
-            this.setComponentState("contentAnimationClass", "animate__fadeIn");
-            this.startAutoplay();
-        }, 750);
+        this.updateActiveIndexWithAnimation(index);
     };
 
     goToPrev = () => {
         this.stopAutoplay();
-        this.setComponentState("contentAnimationClass", "animate__fadeOut");
         const images = this.castToObject<Images[]>("images");
-        setTimeout(() => {
-            const activeIndex = this.getComponentState("activeIndex");
-            const prevIndex = (activeIndex - 1 + images.length) % images.length;
-            this.setComponentState("activeIndex", prevIndex);
-            this.setComponentState("contentAnimationClass", "animate__fadeIn");
-            this.startAutoplay();
-        }, 750);
+        const activeIndex = this.getComponentState("activeIndex");
+        const prevIndex = (activeIndex - 1 + images.length) % images.length;
+        this.updateActiveIndexWithAnimation(prevIndex);
     };
 
     goToNext = () => {
         this.stopAutoplay();
-        this.setComponentState("contentAnimationClass", "animate__fadeOut");
         const images = this.castToObject<Images[]>("images");
-        setTimeout(() => {
-            const activeIndex = this.getComponentState("activeIndex");
-            const nextIndex = (activeIndex + 1) % images.length;
-            this.setComponentState("activeIndex", nextIndex);
-            this.setComponentState("contentAnimationClass", "animate__fadeIn");
-            this.startAutoplay();
-        }, 750);
+        const activeIndex = this.getComponentState("activeIndex");
+        const nextIndex = (activeIndex + 1) % images.length;
+        this.updateActiveIndexWithAnimation(nextIndex);
     };
 
     render() {
@@ -264,6 +270,8 @@ class Testimonials14 extends Testimonials {
         const showDividerTop = this.getPropValue("dividerTop");
         const showDividerBottom = this.getPropValue("dividerBottom");
         const activeIndex = this.getComponentState("activeIndex");
+        const textAnimation = this.getPropValue("textAnimation");
+        const animationClass = textAnimation ? `animate__animated ${this.getComponentState("contentAnimationClass")}` : "";
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
@@ -292,8 +300,7 @@ class Testimonials14 extends Testimonials {
                         )}
                         <div className={this.decorateCSS("item-content")}>
                             <div key={activeIndex}
-                                className={`${this.decorateCSS("items")} animate__animated
-                                ${this.getComponentState("contentAnimationClass")}`}>
+                                className={`${this.decorateCSS("items")} ${animationClass}`}>
                                 <div className={this.decorateCSS("icon-and-name")}>
                                     {images[activeIndex].icon ? (
                                         <ComposerIcon
