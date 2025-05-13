@@ -5,6 +5,8 @@
     padding: calc(var(--composer-gap-xl) * 3) var(--composer-gap-xl) !important;
     position: relative;
     overflow: hidden;
+    background-repeat: no-repeat;
+    background-size: cover;
     .vector1 {
         position: absolute;
         top: 0px;
