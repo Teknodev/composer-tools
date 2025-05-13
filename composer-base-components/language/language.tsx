@@ -7,7 +7,6 @@ import Accordion from "../ui/accordion/Accordion";
 interface ComposerLanguageCommonProps {
   icon?: string;
   title?: "code" | "name";
-  shouldUpdateUrl?: boolean;
 }
 
 interface DropdownProps extends ComposerLanguageCommonProps {
