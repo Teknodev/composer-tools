@@ -229,6 +229,7 @@ class Testimonials14 extends Testimonials {
 
     private updateActiveIndexWithAnimation = (newIndex: number) => {
         const textAnimation = this.getPropValue("textAnimation");
+        this.stopAutoplay();
         if (textAnimation) {
             this.setComponentState("contentAnimationClass", "animate__fadeOut");
             setTimeout(() => {
@@ -243,12 +244,10 @@ class Testimonials14 extends Testimonials {
     };
 
     onImageClick = (index: number) => {
-        this.stopAutoplay();
         this.updateActiveIndexWithAnimation(index);
     };
 
     goToPrev = () => {
-        this.stopAutoplay();
         const images = this.castToObject<Images[]>("images");
         const activeIndex = this.getComponentState("activeIndex");
         const prevIndex = (activeIndex - 1 + images.length) % images.length;
@@ -256,7 +255,6 @@ class Testimonials14 extends Testimonials {
     };
 
     goToNext = () => {
-        this.stopAutoplay();
         const images = this.castToObject<Images[]>("images");
         const activeIndex = this.getComponentState("activeIndex");
         const nextIndex = (activeIndex + 1) % images.length;
