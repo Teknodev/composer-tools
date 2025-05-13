@@ -7,6 +7,7 @@ import Accordion from "../ui/accordion/Accordion";
 interface ComposerLanguageCommonProps {
   icon?: string;
   title?: "code" | "name";
+  shouldUpdateUrl?: boolean;
 }
 
 interface DropdownProps extends ComposerLanguageCommonProps {
@@ -41,26 +42,30 @@ const ComposerLanguage = (props: ComposerLanguageProps) => {
 
   const handleLanguageChange = async (lang: { code: string; name: string }) => {
     setComposerToolsCurrentLanguage(lang);
+
+    const isPreview = window.location.pathname.includes('/preview/');
   
-    let currentPath = window.location.pathname;
-    const normalizedPath = currentPath.replace(/\/$/, "");
-    const pathParts = normalizedPath.split("/");
-  
-    const isLanguageSlugMissing = pathParts.length < 2;
-    const isFirstSegmentNotALanguageCode = !pathParts[1]?.match(/^[a-z]{2}$/i);
-  
-    if (isLanguageSlugMissing || isFirstSegmentNotALanguageCode) {
-      pathParts.splice(1, 0, lang.code);
-    } else {
-      pathParts[1] = lang.code;
-    }
-  
-    let newUrl = pathParts.join("/") + window.location.search + window.location.hash;
-    const isUrlChanged = newUrl !== window.location.pathname + window.location.search + window.location.hash;
-  
-    if (isUrlChanged) {
-      window.history.pushState(null, "", newUrl);
-      window.dispatchEvent(new Event("popstate"));
+    if (isPreview) {
+      let currentPath = window.location.pathname;
+      const normalizedPath = currentPath.replace(/\/$/, "");
+      const pathParts = normalizedPath.split("/");
+    
+      const isLanguageSlugMissing = pathParts.length < 2;
+      const isFirstSegmentNotALanguageCode = !pathParts[1]?.match(/^[a-z]{2}$/i);
+    
+      if (isLanguageSlugMissing || isFirstSegmentNotALanguageCode) {
+        pathParts.splice(1, 0, lang.code);
+      } else {
+        pathParts[1] = lang.code;
+      }
+    
+      let newUrl = pathParts.join("/") + window.location.search + window.location.hash;
+      const isUrlChanged = newUrl !== window.location.pathname + window.location.search + window.location.hash;
+    
+      if (isUrlChanged) {
+        window.history.pushState(null, "", newUrl);
+        window.dispatchEvent(new Event("popstate"));
+      }
     }
   };
    
