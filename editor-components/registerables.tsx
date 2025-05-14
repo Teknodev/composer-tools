@@ -232,7 +232,7 @@ import ConfirmationModal2 from "./modal/confirmation-modal-2/confirmation-modal-
 import BannerComponent1 from "./banner/banner1/banner1";
 import BannerComponent2 from "./banner/banner2/banner2";
 import BannerComponent4 from "./banner/banner4/banner4";
-import BannerComponent5 from "./banner/banner5/Banner5";
+import BannerComponent5 from "./banner/banner5/banner5";
 import BannerComponent6 from "../editor-components/banner/banner6/banner6";
 import SocialComponent1 from "./social/social1/social1";
 import SocialComponent2 from "../editor-components/socials/social2/social2";
