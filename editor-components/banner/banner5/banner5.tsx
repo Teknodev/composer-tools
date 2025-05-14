@@ -38,6 +38,12 @@ class Banner5 extends BaseBanner {
             displayer: "Current Page",
             value: "Current Page",
         });
+        this.addProp({
+            type: "icon",
+            key: "currentIcon",
+            displayer: "Current Icon",
+            value: "",
+        });
     }
 
     static getName(): string {
@@ -46,32 +52,33 @@ class Banner5 extends BaseBanner {
 
     render() {
         const homeTitle = this.getPropValue("homeTitle");
-        const currentPage = this.getPropValue("currentTitle");
+        const currentTitle = this.getPropValue("currentTitle");
         const icon = this.getPropValue("icon");
 
-        const title = this.castToString(homeTitle);
-        const currentExist = this.castToString(currentPage);
+        const homePage = this.castToString(homeTitle);
+        const currentPage = this.castToString(currentTitle);
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={this.decorateCSS("section")}>
-                        <div className={this.decorateCSS("link")}>
-                            <ComposerLink path={this.getPropValue("homePage")}>
+                        <ComposerLink path={this.getPropValue("homePage")}>
+                            <div className={this.decorateCSS("link")}>
                                 <ComposerIcon name={this.getPropValue("homeIcon")} propsIcon={{ className: this.decorateCSS("pageIcon") }} />
-                            </ComposerLink>
-                            {title && (
-                                <span className={this.decorateCSS("page-title")}>{homeTitle}</span>
-                            )}
-                        </div>
+                                {homePage && (
+                                    <span className={this.decorateCSS("home-page-title")}>{homeTitle}</span>
+                                )}
+                            </div>
+                        </ComposerLink>
                         {icon && (
                             <div className={this.decorateCSS("item")}>
                                 <ComposerIcon name={icon} propsIcon={{ className: this.decorateCSS("icon") }} />
                             </div>
                         )}
                         <div className={this.decorateCSS("link")}>
-                            {currentExist && (
-                                <span className={this.decorateCSS("page-title")}>{currentPage}</span>
+                            <ComposerIcon name={this.getPropValue("currentIcon")} propsIcon={{ className: this.decorateCSS("pageIcon") }} />
+                            {currentPage && (
+                                <span className={this.decorateCSS("current-page-title")}>{currentTitle}</span>
                             )}
                         </div>
                     </div>

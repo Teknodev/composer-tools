@@ -17,20 +17,30 @@
       .link {
         display: flex;
         align-items: center;
+        gap: var(--composer-gap-xs);
+        cursor: pointer;
         .pageIcon {
           display: flex;
           align-items: center;
           color: var(--composer-font-color-primary) !important;
-          min-width: 1.5rem;
+          min-width: 1rem;
+          min-height: 1rem;
 
           &:hover {
             color: var(--composer-primary-color) !important;
           }
         }
 
-        .page-title {
+        .home-page-title,
+        .current-page-title {
           font-size: 1rem;
           color: var(--composer-font-color-primary);
+        }
+
+        .home-page-title {
+          &:hover {
+            color: var(--composer-primary-color);
+          }
         }
       }
 
