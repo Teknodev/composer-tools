@@ -37,6 +37,9 @@ import ContentComponent10 from "./content/content10/content10";
 import ContentComponent11 from "./content/content11/content11";
 import ContentComponent12 from "./content/content12/content12";
 import ContentComponent13 from "./content/content13/content13";
+import ContentComponent14 from "./content/content14/content14";
+import ContentComponent17 from "./content/content17/content17";
+import ContentComponent20 from "./content/content20/content20";
 import SliderComponent1 from "./slider/slider1/slider1";
 import SliderComponent2 from "./slider/slider2/slider2";
 import SliderComponent3 from "./slider/slider3/slider3";
@@ -159,6 +162,7 @@ import TestimonialsComponent10 from "./testimonials/testimonials10/testimonials1
 import TestimonialsComponent11 from "./testimonials/testimonials11/testimonials11";
 import TestimonialsComponent12 from "./testimonials/testimonials12/testimonials12";
 import TestimonialsComponent13 from "./testimonials/testimonials13/testimonials13";
+import TestimonialsComponent14 from "./testimonials/testimonials14/testimonials14";
 import StatsComponent1 from "./stats/stats1/stats1";
 import StatsComponent2 from "./stats/stats2/stats2";
 import StatsComponent3 from "./stats/stats3/stats3";
@@ -229,6 +233,7 @@ import BannerComponent1 from "./banner/banner1/banner1";
 import BannerComponent2 from "./banner/banner2/banner2";
 import BannerComponent4 from "./banner/banner4/banner4";
 import BannerComponent5 from "./banner/banner5/Banner5";
+import BannerComponent6 from "../editor-components/banner/banner6/banner6";
 import SocialComponent1 from "./social/social1/social1";
 import SocialComponent2 from "../editor-components/socials/social2/social2";
 import SocialComponent3 from "./social/social3/social3";
@@ -281,6 +286,9 @@ function Registerables(composer: ComponentsRegistery) {
     ContentComponent11,
     ContentComponent12,
     ContentComponent13,
+    ContentComponent14,
+    ContentComponent17,
+    ContentComponent20,
     SliderComponent1,
     SliderComponent2,
     SliderComponent3,
@@ -421,6 +429,7 @@ function Registerables(composer: ComponentsRegistery) {
     TestimonialsComponent11,
     TestimonialsComponent12,
     TestimonialsComponent13,
+    TestimonialsComponent14,
     StatsComponent1,
     StatsComponent2,
     StatsComponent3,
@@ -469,8 +478,9 @@ function Registerables(composer: ComponentsRegistery) {
     ConfirmationModal2,
     BannerComponent1,
     BannerComponent2,
-    SocialComponent2,
     BannerComponent4,
+    BannerComponent6,
+    SocialComponent2,
     BannerComponent5,
     SocialComponent3,
     SocialComponent4,
