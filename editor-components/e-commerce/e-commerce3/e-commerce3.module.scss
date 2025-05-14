@@ -43,11 +43,19 @@
             .section {
                 .tabs {
                     .tab-content {
+                        .vertical{
+                            align-items: start;
+                            gap: var(--composer-gap-md);
+                        }
                         .title {
                             font-size: 2rem;
+                            text-align: start;
+                            margin: 0;
                         }
                         .description{
                             color: var(--composer-font-color-primary);
+                            text-align: start;
+                            margin: 0;
                         }
                         .content {
                             display: flex;
