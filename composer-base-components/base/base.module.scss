@@ -264,7 +264,7 @@
   gap: var(--composer-gap-sm);
   transition: 0.3s;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: var(--project-font-size);
   border-radius: var(--composer-border-radius-sm);
 
   &.primary {
