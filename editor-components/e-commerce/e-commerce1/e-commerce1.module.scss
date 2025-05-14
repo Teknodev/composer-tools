@@ -412,6 +412,9 @@
                         justify-content: flex-start;
                         gap: var(--composer-gap-sm);
                         width: 100%;
+                        &.without-right{
+                            width: 100%;
+                        }
                         .img-container {
                             width: calc(50% - (var(--composer-gap-sm) / 2));
                             height: 50%;
