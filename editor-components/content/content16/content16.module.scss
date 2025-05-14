@@ -6,7 +6,7 @@
   .max-content {
     display: flex;
     flex-direction: column;
-    gap: var(--composer-gap-xl);
+    gap: var(--composer-gap-lg);
 
     .section-container {
       display: flex;
@@ -15,15 +15,24 @@
       align-items: center;
       gap: var(--composer-gap-xl);
       font-size: 1.5rem;
+      margin-bottom: 2rem;
 
       .section-title {
         display: inline-block;
+        flex: 1;
         border-bottom: 2px solid var(--composer-tertiary-color);
-        width: 250px;
+        padding-bottom: var(--composer-gap-sm);
         text-align: center;
         font-size: 2rem;
+        margin: 0;
         transition: all 0.3s ease-in-out;
         cursor: pointer;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        &:hover {
+          border-color: var(--composer-primary-color);
+        }
 
         &.active {
           border-color: var(--composer-primary-color);
@@ -32,17 +41,19 @@
     }
 
     .active-section-content {
-      display: flex;
-      flex: 1;
-      gap: var(--composer-gap-md);
-      animation: fadeIn 0.5s ease;
-      color: var(--composer-font-color-primary);
-      text-align: justify;
-
-      .text-1,
-      .text-2 {
-        content: "";
+      width: 100%;
+      .section-content-wrapper {
+        display: flex;
         flex: 1;
+        gap: var(--composer-gap-xl);
+        animation: fadeIn 0.5s ease;
+        color: var(--composer-font-color-primary);
+        text-align: justify;
+        width: 100%;
+        .text-1,
+        .text-2 {
+          width: 100%;
+        }
       }
     }
 
@@ -55,6 +66,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      width: 100%;
       .button {
         border-radius: var(--composer-border-radius-sm);
       }
@@ -72,20 +84,21 @@
 }
 
 @container (max-width: #{$composer-phone-width}) {
+  .max-content {
+    gap: var(--composer-gap-lg) !important;
+  }
+
   .section-container {
     gap: var(--composer-gap-md) !important;
-    flex-wrap: wrap;
-
+    flex-direction: column;
     .section-title {
-      margin: 0;
+      font-size: 1.5rem !important;
+      width: 100% !important;
     }
   }
 
-  .active-section-content {
-    flex-direction: column;
-
-    .text-1 {
-      margin-bottom: 1rem;
-    }
+  .section-content-wrapper {
+    flex-direction: column !important;
+    gap: var(--composer-gap-md) !important;
   }
 }

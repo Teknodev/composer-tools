@@ -7,8 +7,8 @@ import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 
 interface Section {
     sectionTitle: React.JSX.Element;
-    text1: string;
-    text2: string;
+    text1: React.JSX.Element;
+    text2: React.JSX.Element;
 }
 
 class Content16 extends BaseContent {
@@ -73,67 +73,61 @@ class Content16 extends BaseContent {
         });
 
         this.addProp(INPUTS.BUTTON("button", "Button", "VIEW SERVICES", "", null, null, "Primary"));
+        this.setComponentState("activeSection", 0);
     }
 
     static getName(): string {
         return "Content 16";
     }
 
-    componentDidMount() {
-        this.setComponentState("activeSection", 0);
-    }
-
-
-    getValueFromSection(sectionData: any, key: any) {
-        const item = sectionData.find(item => item.key === key);
-        return item ? item.value : "";
-    }
 
     render() {
-        const sections = this.castToObject<any[]>("sections");
-        const activeSection = this.getComponentState("activeSection") || 0;
+        const sections = this.castToObject<Section[]>("sections");
+        const activeSection = this.getComponentState("activeSection");
         const buttonType: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
-        const parsedSections: Section[] = sections.map((section: any) => {
-            const sectionData = section.value;
-            return {
-                sectionTitle: this.getValueFromSection(sectionData, "sectionTitle"),
-                text1: this.getValueFromSection(sectionData, "text1"),
-                text2: this.getValueFromSection(sectionData, "text2"),
-            };
-        });
+        if (!sections || sections.length === 0) {
+            return null;
+        }
+
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={this.decorateCSS("section-container")}>
-                        {parsedSections.map((section: Section, index: number) => (
-                            <Base.SectionTitle
-                                key={`section-title-${index}`}
-                                className={`${this.decorateCSS("section-title")} ${activeSection === index ? this.decorateCSS("active") : ""}`}
-                                onClick={() => this.setComponentState("activeSection", index)}
-                            >
-                                {section.sectionTitle}
-                            </Base.SectionTitle>
+                        {sections.map((section: Section, index: number) => (
+                            this.castToString(section.sectionTitle) ? (
+                                <Base.SectionTitle
+                                    key={`section-title-${index}`}
+                                    className={`${this.decorateCSS("section-title")} ${activeSection === index ? this.decorateCSS("active") : ""}`}
+                                    onClick={() => this.setComponentState("activeSection", index)}
+                                >
+                                    {section.sectionTitle}
+                                </Base.SectionTitle>
+                            ) : null
                         ))}
                     </div>
 
-                    {parsedSections[activeSection] && (
-                        <div className={this.decorateCSS("active-section-content")}>
-                            {parsedSections[activeSection].text1 && (
-                                <div className={this.decorateCSS("text-1")}>
-                                    {parsedSections[activeSection].text1}
+                    <div className={this.decorateCSS("active-section-content")}>
+                        {sections.map((section: Section, index: number) => (
+                            index === activeSection && (
+                                <div key={`section-content-${index}`} className={this.decorateCSS("section-content-wrapper")}>
+                                    {this.castToString(section.text1) && (
+                                        <div className={this.decorateCSS("text-1")}>
+                                            {section.text1}
+                                        </div>
+                                    )}
+                                    {this.castToString(section.text2) && (
+                                        <div className={this.decorateCSS("text-2")}>
+                                            {section.text2}
+                                        </div>
+                                    )}
                                 </div>
-                            )}
-                            {parsedSections[activeSection].text2 && (
-                                <div className={this.decorateCSS("text-2")}>
-                                    {parsedSections[activeSection].text2}
-                                </div>
-                            )}
-                        </div>
-                    )}
+                            )
+                        ))}
+                    </div>
 
-                    {buttonType.text && (
+                    {this.castToString(buttonType.text) && (
                         <div className={this.decorateCSS("button-container")}>
                             <ComposerLink path={buttonType.url}>
                                 <Base.Button buttonType={buttonType.type} className={this.decorateCSS("button")}>
