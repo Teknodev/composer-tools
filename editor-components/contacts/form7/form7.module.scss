@@ -1,4 +1,4 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
   .max-content {
@@ -85,7 +85,7 @@
               }
 
               .input.error {
-                border-bottom-color: var(--danger-color);
+                border-bottom-color: var(--composer-danger-color);
               }
 
               .icon {
@@ -106,7 +106,7 @@
         }
 
         .error-message {
-          color: var(--danger-color);
+          color: var(--composer-danger-color);
           font-size: 1rem;
           margin-top: var(--composer-gap-xs);
         }
@@ -125,7 +125,7 @@
   gap: var(--composer-gap-md);
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
       .wrapper,

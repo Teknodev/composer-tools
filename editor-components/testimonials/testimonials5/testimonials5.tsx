@@ -6,16 +6,16 @@ import { Base } from "../../../composer-base-components/base/base";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 
 interface LeftItem {
-  subtitle: JSX.Element;
-  title: JSX.Element;
+  subtitle: React.JSX.Element;
+  title: React.JSX.Element;
   prevIcon: string;
   nextIcon: string;
 }
 
 interface SliderItem {
   image: string;
-  sliderTitle: JSX.Element;
-  description: JSX.Element;
+  sliderTitle: React.JSX.Element;
+  description: React.JSX.Element;
   nextIcon: string;
   star: number;
   starIcon: string;

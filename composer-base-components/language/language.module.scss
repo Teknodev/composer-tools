@@ -1,5 +1,6 @@
 .label{
     color: var(--composer-font-color-primary);
+    font-size: var(--project-font-size) !important;
 }
 
 .accordionList{
@@ -18,4 +19,6 @@
 
 .languageIcon{
     color: var(--composer-font-color-primary);
+    width: var(--project-font-size);
+    height: var(--project-font-size);
 }

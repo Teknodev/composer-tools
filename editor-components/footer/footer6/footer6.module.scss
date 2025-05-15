@@ -1,6 +1,7 @@
-@import "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss";
+@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
+  padding: var(--composer-gap-md) var(--composer-gap-xl);
   .max-content {
     .footer-page {
       justify-content: center;
@@ -32,7 +33,7 @@
           max-width: 290px;
           text-align: center;
 
-          .title {
+          .list-title {
             font-size: 1.5rem;
             color: var(--composer-font-color-primary);
           }
@@ -40,6 +41,44 @@
           .text {
             font-size: 1rem;
             color: var(--composer-font-color-primary);
+            position: relative;
+            transition: all 0.3s ease;
+            width: fit-content;
+            
+            &[data-animation~="animate1"] {
+              &::after {
+                content: '';
+                position: absolute;
+                bottom: -2px;
+                left: 0;
+                width: 0;
+                height: 1px;
+                background-color: var(--composer-primary-color);
+                transition: width 0.3s ease;
+              }
+              
+              &:hover {
+                color: var(--composer-primary-color);
+                
+                &::after {
+                  width: 100%;
+                }
+              }
+            }
+
+            &[data-animation~="animate2"] {
+              &:hover {
+                transform: translateX(var(--composer-gap-sm));
+                color: var(--composer-primary-color);
+              }
+            }
+
+            &[data-animation~="animate3"] {
+              &:hover {
+                transform: scale(1.1);
+                color: var(--composer-primary-color);
+              }
+            }
           }
         }
       }
@@ -57,8 +96,9 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .container {
+    padding: var(--composer-gap-md) var(--composer-gap-lg);
     .max-content {
       .footer-page {
         gap: var(--composer-gap-md);
@@ -78,6 +118,7 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
+    padding: var(--composer-gap-md);
     .max-content {
       .footer-page {
         justify-content: center;
@@ -99,7 +140,16 @@
 
           .list-group {
             flex: 1;
+            width: 100%;
+            align-items: center;
             max-width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            .text{
+
+              text-align: center;
+            }
           }
         }
       }

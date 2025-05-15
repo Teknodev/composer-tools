@@ -7,15 +7,15 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type LeftContent = {
-  subtitle: JSX.Element;
-  title: JSX.Element;
-  description: JSX.Element;
+  subtitle: React.JSX.Element;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
 };
 
 type Card = {
   icon: string;
-  title: JSX.Element;
-  description: JSX.Element;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
 };
 
 class Feature11 extends BaseFeature {

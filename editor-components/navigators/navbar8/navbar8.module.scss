@@ -1,4 +1,4 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container{
   padding-top: var(--composer-gap-sm);
@@ -215,7 +215,11 @@
           align-items: center;
           justify-content: center;
           gap: var(--composer-gap-xs);
+<<<<<<< HEAD
           .socialMediaLink{
+=======
+          .socialMediaIconContainer{
+>>>>>>> main
             .socialMediaIcon {
               font-size: 2rem;
               color: var(--composer-font-color-primary);
@@ -275,7 +279,7 @@
    transition: all 0.3s ease;
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
 
   .maxContent{
     .logo{

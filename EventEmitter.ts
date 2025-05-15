@@ -10,8 +10,9 @@ export enum EVENTS {
   CLEAR_CHANGES = "clearChanges",
   COMPONENT_ADDED = "componentAdded",
   INSERT_FORM = "insertForm",
-  SET_COMPONENT_STATE = "setComponentState",
   RENDER_CONTENT_TAB = "renderContentTab",
+  COMPONENT_DID_UPDATE = "componentDidUpdate",
+  CSS_CLASSES_CHANGED = "cssClassesChanged"
 }
 
 class EventQ {

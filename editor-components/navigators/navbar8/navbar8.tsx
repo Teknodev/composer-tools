@@ -13,7 +13,7 @@ type Icon = {
 };
 
 type MenuItems = {
-  title: JSX.Element;
+  title: React.JSX.Element;
   url: string;
 };
 
@@ -94,12 +94,12 @@ class Navbar8 extends BaseNavigator {
     this.addProp({
       type: "object",
       key: "language",
-      displayer: "Language",
+      displayer: "Language Settings",
       value: [
         {
           type: "select",
           key: "label",
-          displayer: "Label",
+          displayer: "Language Label",
           value: "code",
           additionalParams: {
             selectItems: ["code", "name"],
@@ -397,7 +397,7 @@ class Navbar8 extends BaseNavigator {
       socialMediaLinks.length > 0 || dropdownSocialMediaTitle;
 
     return (
-      <Base.Navigator.Container position={position} positionContainer={`${this.decorateCSS("container")} ${backgroundChange ? this.decorateCSS("openedContainer") : ""}`} 
+      <Base.Navigator.Container screenSize={1960} position={position} positionContainer={`${this.decorateCSS("container")} ${backgroundChange ? this.decorateCSS("openedContainer") : ""}`} 
       hamburgerNavActive={isMenuOpen}
       setIsScrolled={(value: boolean) => this.setComponentState("isScrolled", value)}
       >
@@ -415,6 +415,7 @@ class Navbar8 extends BaseNavigator {
                   onClick={()=>this.handleCloseMenu()}
                   src={currentLogo.image}
                   className={`${this.decorateCSS("logoImage")} ${backgroundChange ? this.decorateCSS("openedLogoImage") : ""}`}
+                  onClick={()=> this.handleCloseMenu()}
                 />
               </ComposerLink>
             </div>
@@ -500,16 +501,22 @@ class Navbar8 extends BaseNavigator {
               {leftSide && (
                 <div className={this.decorateCSS("dropdownItemList")}>
                   {itemList.map((item: MenuItems, index: number) =>  {
-                    return this.castToString(item.title) && (
+                    return this.castToString(item.title) && ( 
                       <div
                           className={this.decorateCSS("dropdownItem")}
                           key={index}
                           onClick={() => this.setComponentState("isMenuOpen", false)}
                         >
                       <ComposerLink path={item.url}>
+<<<<<<< HEAD
                             <p 
                             onClick={()=>{this.handleCloseMenu()}}
                             className={this.decorateCSS("dropdownItem")}>
+=======
+                            <p className={this.decorateCSS("dropdownItem")} 
+                            onClick={()=> this.handleCloseMenu()}
+                            >
+>>>>>>> main
                               {item.title}
                             </p>
                         </ComposerLink>
@@ -531,6 +538,7 @@ class Navbar8 extends BaseNavigator {
                               this.handleCloseMenu()
                               this.setComponentState("isMenuOpen", false)}}
                           >
+<<<<<<< HEAD
                               <ComposerLink path={item.url}>
                                 <ComposerIcon
                                   name={item.icon}
@@ -540,6 +548,19 @@ class Navbar8 extends BaseNavigator {
                                   }}
                                 />
                               </ComposerLink>
+=======
+                            <ComposerLink path={item.url}>
+                              <div className={this.decorateCSS("socialMediaIconContainer")} onClick={()=> this.handleCloseMenu()}>
+                              <ComposerIcon
+                                name={item.icon}
+                                propsIcon={{
+                                  className:
+                                    this.decorateCSS("socialMediaIcon"),
+                                }}
+                              />
+                              </div>
+                            </ComposerLink>
+>>>>>>> main
                           </div>
                         ))}
                       </div>
