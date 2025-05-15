@@ -444,6 +444,9 @@
 
                             .count-input {
                                 border-right: 1px solid var(--composer-tertiary-color);
+                                &.with-button{
+                                    border-right: 1px solid var(--composer-tertiary-color);
+                                }
                             }
                         }
                     }

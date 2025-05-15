@@ -44,6 +44,9 @@ class ECommerce1 extends BaseECommerce {
       type: "array",
       key: "images",
       displayer: "Product Images",
+      additionalParams: {
+        maxElementCount: 5,
+      },
       value: [
         {
           type: "object",
@@ -116,6 +119,24 @@ class ECommerce1 extends BaseECommerce {
       key: "closeIcon",
       displayer: "Close Icon",
       value: "MdClose"
+    });
+    this.addProp({
+      type:"icon",
+      key: "closeIconPopup",
+      displayer: "Close Icon Popup",
+      value: "MdClose"
+    });
+    this.addProp({
+      type:"icon",
+      key: "leftArrowPopup",
+      displayer: "Left Arrow Popup",
+      value: "IoMdArrowDropleft"
+    });
+    this.addProp({
+      type:"icon",
+      key: "rightArrowPopup",
+      displayer: "Right Arrow Popup",
+      value: "IoMdArrowDropright"
     });
     this.addProp({
       type: "string",
@@ -612,13 +633,13 @@ class ECommerce1 extends BaseECommerce {
                 </div>
                 <div className={this.decorateCSS("items")}>
                   <div className={this.decorateCSS("icon-group")}>
-                    <ComposerIcon name={leftIcon} propsIcon={{className: this.decorateCSS("left-arrow"), onClick: moveLeft}} />
-                    <ComposerIcon name={rightIcon} propsIcon={{className: this.decorateCSS("right-arrow"), onClick: moveRight}} />
+                    <ComposerIcon name={this.getPropValue("leftArrowPopup")} propsIcon={{className: this.decorateCSS("left-arrow"), onClick: moveLeft}} />
+                    <ComposerIcon name={this.getPropValue("rightArrowPopup")} propsIcon={{className: this.decorateCSS("right-arrow"), onClick: moveRight}} />
                   </div>
                   <span className={this.decorateCSS("pages")}>
                     {activeImage+1}/{images.length}
                   </span>
-                  <ComposerIcon name={closeIcon} propsIcon={{className: this.decorateCSS("close"), onClick: handleClose}} />
+                  <ComposerIcon name={this.getPropValue("closeIconPopup")} propsIcon={{className: this.decorateCSS("close"), onClick: handleClose}} />
                 </div>
               </div>
             </div>
