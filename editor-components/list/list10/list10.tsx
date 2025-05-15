@@ -6,9 +6,9 @@ import { Base } from "../../../composer-base-components/base/base";
 
 type Card = {
     image: string;
-    badge: JSX.Element;
-    description: JSX.Element;
-    bottomText: JSX.Element;
+    badge: React.JSX.Element;
+    description: React.JSX.Element;
+    bottomText: React.JSX.Element;
     url: string;
 };
 

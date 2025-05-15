@@ -1,4 +1,4 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container{
   z-index: 101;
@@ -262,7 +262,9 @@
       color: white !important;
     }
   }
-
+  .mobileRight{
+    display: none;
+  }
   .hamburgerNav {
     display: none;
   }
@@ -477,7 +479,7 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .navbarContainer {
     &.filledBackground {
       background: var(--composer-html-background) !important;
@@ -496,6 +498,11 @@
       .hamburgerContainer{
         padding: var(--composer-gap-md) var(--composer-gap-lg);
       }
+    }
+    .mobileRight{
+      display: flex;
+      align-items: center;
+      gap: var(--composer-gap-sm);
     }
     .logo {
       max-height: 50px;

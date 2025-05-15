@@ -1,4 +1,4 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .laneContainer {
   padding-top: calc(var(--composer-gap-md) * 1.5);
@@ -294,7 +294,7 @@
     }
   }
 
-  .localizationContainer {
+  .localizationContainer, .mobileLocalizationContainer {
     position: absolute;
     right: 0;
     .localizationLabel{
@@ -458,7 +458,9 @@
     var(--composer-font-color-primary) 5%
   );
 }
-
+.mobileRight{
+  display: none;
+}
 .hamburgerIconContainer {
   display: none;
   cursor: pointer;
@@ -585,11 +587,6 @@
       .localizationContainer {
         display: none;
       }
-      .mobilelocalizationContainer {
-        .localizationHeader {
-          color: var(--composer-font-color-primary);
-        }
-      }
     }
 
     .hamburgerIconContainer {
@@ -616,7 +613,7 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .maxContent {
     .pcNavbar {
       flex: 1;
@@ -630,6 +627,16 @@
   }
 }
 @container (max-width: #{$composer-phone-width}) {
+  .mobileRight{
+    display: flex;
+    width: 100%;
+    position: relative;
+    .mobileLocalizationContainer{
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
   .overlay{
     &.active{
       display: block;

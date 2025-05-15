@@ -228,6 +228,15 @@ class Content2 extends BaseContent {
         },
       ],
     });
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2"]
+      }
+    });
   }
   static getName(): string {
     return "Content 2";
@@ -252,7 +261,10 @@ class Content2 extends BaseContent {
           {itemLeft.Visibility && (
             <div className={this.decorateCSS("left")}>
               <ComposerLink path={itemLeft.url} isFullWidth={true}>
-                <div className={`${this.decorateCSS("item")} ${!itemLeft.image ? this.decorateCSS("no-image") : ""}`}>
+                <div 
+                  className={`${this.decorateCSS("item")} ${!itemLeft.image ? this.decorateCSS("no-image") : ""}`}
+                  data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                >
                   {itemLeft.image &&
                     <div className={this.decorateCSS("background-image")}>
                       <img
@@ -296,7 +308,10 @@ class Content2 extends BaseContent {
                 <div className={this.decorateCSS("top")}>
                   {itemTopRight.Visibility ? (
                     <ComposerLink path={itemTopRight.url} isFullWidth={true}>
-                      <div className={`${this.decorateCSS("item")} ${!itemTopLeft.image ? this.decorateCSS("no-image") : ""}`}>
+                      <div 
+                        className={`${this.decorateCSS("item")} ${!itemTopLeft.image ? this.decorateCSS("no-image") : ""}`}
+                        data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                      >
                         {itemTopRight.image && (
                           <div className={this.decorateCSS("background-image")}>
                             <img
@@ -340,7 +355,10 @@ class Content2 extends BaseContent {
                   ) : null}
                   {itemTopLeft.Visibility ? (
                     <ComposerLink path={itemTopLeft.url} isFullWidth={true}>
-                      <div className={`${this.decorateCSS("item")} ${!itemTopLeft.image ? this.decorateCSS("no-image") : ""}`}>
+                      <div 
+                        className={`${this.decorateCSS("item")} ${!itemTopLeft.image ? this.decorateCSS("no-image") : ""}`}
+                        data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                      >
                         {itemTopLeft.image && (
                           <div className={this.decorateCSS("background-image")}>
                             <img
@@ -388,7 +406,10 @@ class Content2 extends BaseContent {
                 <div className={this.decorateCSS("bottom")}>
                   {itemBottomLeft.Visibility ? (
                     <ComposerLink path={itemBottomLeft.url} isFullWidth={true}>
-                      <div className={`${this.decorateCSS("item")} ${!itemBottomLeft.image ? this.decorateCSS("no-image") : ""}`}>
+                      <div 
+                        className={`${this.decorateCSS("item")} ${!itemBottomLeft.image ? this.decorateCSS("no-image") : ""}`}
+                        data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                      >
                         {itemBottomLeft.image &&
                           <div className={this.decorateCSS("background-image")}>
                             <img
@@ -432,7 +453,10 @@ class Content2 extends BaseContent {
                   ) : null}
                   {itemBottomRight.Visibility ? (
                     <ComposerLink path={itemBottomRight.url} isFullWidth={true}>
-                      <div className={`${this.decorateCSS("item")} ${!itemBottomRight.image ? this.decorateCSS("no-image") : ""}`}>
+                      <div 
+                        className={`${this.decorateCSS("item")} ${!itemBottomRight.image ? this.decorateCSS("no-image") : ""}`}
+                        data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                      >
                         {itemBottomRight.image &&
                           <div className={this.decorateCSS("background-image")}>
                             <img

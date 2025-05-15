@@ -1,4 +1,5 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
+  as *;
 $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
 .container {
@@ -57,7 +58,11 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
           gap: var(--composer-gap-md);
 
           .listArray {
-            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-secondary) 5%);
+            background-color: color-mix(
+              in srgb,
+              var(--composer-html-background),
+              var(--composer-font-color-secondary) 5%
+            );
             color: var(--composer-font-color-primary);
             box-shadow: var(--box-shadow-active);
             width: 100%;
@@ -147,7 +152,8 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               font-size: 1rem;
               background-color: transparent;
               color: var(--composer-font-color-primary);
-              border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.5);
+              border: 1px solid
+                rgba(var(--composer-font-color-primary-rgb), 0.5);
             }
 
             .item-price {
@@ -173,7 +179,11 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
         }
         .right-page {
           width: 40%;
-          background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-secondary) 5%);
+          background: color-mix(
+            in srgb,
+            var(--composer-html-background),
+            var(--composer-font-color-secondary) 5%
+          );
           box-shadow: var(--box-shadow-active);
           border-radius: var(--composer-border-radius-md);
           display: flex;
@@ -211,8 +221,10 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 display: flex;
                 align-items: center;
                 gap: var(--composer-gap-sm);
-                padding: var(--composer-gap-sm) 0 var(--composer-gap-md) var(--composer-gap-md);
-                border-bottom: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
+                padding: var(--composer-gap-sm) 0 var(--composer-gap-md)
+                  var(--composer-gap-md);
+                border-bottom: 1px solid
+                  rgba(var(--composer-font-color-primary-rgb), 0.2);
                 color: var(--composer-font-color-primary);
 
                 .dash_icon {
@@ -230,8 +242,10 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 display: flex;
                 align-items: center;
                 gap: var(--composer-gap-sm);
-                padding: var(--composer-gap-sm) 0 var(--composer-gap-md) var(--composer-gap-md);
-                border-bottom: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
+                padding: var(--composer-gap-sm) 0 var(--composer-gap-md)
+                  var(--composer-gap-md);
+                border-bottom: 1px solid
+                  rgba(var(--composer-font-color-primary-rgb), 0.2);
                 color: var(--composer-tertiary-color);
 
                 .dash_icon {
@@ -246,7 +260,11 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             }
 
             .body-bottom {
-              background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+              background-color: color-mix(
+                in srgb,
+                var(--composer-html-background),
+                var(--composer-font-color-primary) 5%
+              );
               padding: var(--composer-gap-md);
               display: flex;
               width: 100%;
@@ -255,11 +273,14 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               justify-content: space-between;
               border-radius: var(--composer-border-radius-md);
 
-              .buttons {
+              .button-container {
                 display: flex;
-                max-width: 50%;
-                gap: var(--composer-gap-sm);
                 flex-wrap: wrap;
+                justify-content: center;
+                gap: var(--composer-gap-sm);
+                .button {
+                  content: "";
+                }
               }
 
               .bottom-text {
@@ -274,7 +295,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
   }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
       align-items: center;

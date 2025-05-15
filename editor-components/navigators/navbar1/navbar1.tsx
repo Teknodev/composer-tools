@@ -8,7 +8,7 @@ import { Base } from "composer-tools/composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 interface MenuItems {
-  title: JSX.Element;
+  title: React.JSX.Element;
   navigate_to: string;
   menuType: string;
   sub_items: MenuItems[];
@@ -23,6 +23,7 @@ interface Language {
   label: "code" | "name";
   icon: string;
   showLanguage: boolean;
+  showLocalizationAlways: boolean;
   showDivider: boolean;
 }
 
@@ -1103,23 +1104,21 @@ class Navbar1 extends BaseNavigator {
       displayer: "Dropdown Icon",
       value: "MdArrowDropDown",
     });
-
     this.addProp({
       type: "icon",
       key: "rightIcon",
       displayer: "Right Arrow Icon",
       value: "MdKeyboardArrowRight",
     });
-
     this.addProp({
       type: "object",
       key: "language",
-      displayer: "Language",
+      displayer: "Language Settings",
       value: [
         {
           type: "select",
           key: "label",
-          displayer: "Label",
+          displayer: "Language Label",
           value: "code",
           additionalParams: {
             selectItems: ["code", "name"],
@@ -1136,6 +1135,12 @@ class Navbar1 extends BaseNavigator {
           key: "showLanguage",
           displayer: "Show Language",
           value: true,
+        },
+        {
+          type: "boolean",
+          key: "showLocalizationAlways",
+          displayer: "Pin to Navbar",
+          value:true      
         },
         {
           type: "boolean",
@@ -1212,6 +1217,10 @@ class Navbar1 extends BaseNavigator {
     } else {
       this.setComponentState("subNavActive", index);
     }
+  }
+
+  componentWillUnmount(): void {
+    this.handleCloseMenu();
   }
 
   render() {
@@ -1405,9 +1414,17 @@ class Navbar1 extends BaseNavigator {
                   type="dropdown"
                   title={language.label}
                   icon={language.icon}
+<<<<<<< HEAD
                   dropdownButtonClassName={this.decorateCSS("localization")}
                   dropdownLabelClassName={`${this.decorateCSS("localizationLabel")}  ${animations}`}
                   iconClassName={`${this.decorateCSS("languageIcon")} ${animations}`}
+=======
+                  dropdownButtonClassName={`${this.decorateCSS("localization")} ${language.showLocalizationAlways && this.decorateCSS("active")}`}
+                  dropdownLabelClassName={`${this.decorateCSS(
+                    "localizationLabel"
+                  )}`}
+                  iconClassName={this.decorateCSS("languageIcon")}
+>>>>>>> main
                   dropdownItemClassName={this.decorateCSS("localizationItem")}
                   dropdownContentClassName={`${this.decorateCSS("localizationContent")} ${animations}`}
                   divider={language.showDivider}
@@ -1568,10 +1585,10 @@ class Navbar1 extends BaseNavigator {
                         )}
                       </div>
                     ))}
-                    {divider && language.showLanguage && (
+                    {divider && language.showLanguage && !language.showLocalizationAlways && (
                       <div className={this.decorateCSS("divider")}></div>
                     )}
-                    <div className={this.decorateCSS("accordionLocalization")}>
+                    <div className={`${this.decorateCSS("accordionLocalization")} ${!language.showLocalizationAlways && this.decorateCSS("active")}`}>
                       {language.showLanguage && (
                         <ComposerLanguage
                           type="accordion"

@@ -7,13 +7,13 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
-  title: JSX.Element;
-  description: JSX.Element;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
   icon: string;
 };
 
 type FirstItem = {
-  title: JSX.Element;
+  title: React.JSX.Element;
   backgroundImage: string;
   overlay: boolean;
 };

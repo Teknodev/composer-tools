@@ -1,4 +1,4 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
     padding-top: 0px;
@@ -41,35 +41,53 @@
                     position: relative;
                     display: flex;
                     gap: var(--composer-gap-md);
+                    transition: all 0.3s ease;
+
+                    .tab-text {
+                        content: "";
+                    }
 
                     .square {
                         width: 14px;
                         height: 14px;
-                        display: none;
+                        display: block;
+                        opacity: 0;
                         justify-content: flex-end;
                         position: absolute;
                         right: -7px;
                         transform: rotate(45deg);
                         background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
                         border-radius: 0px 0px 0px var(--composer-border-radius-sm);
+                        z-index: 2;
+                        transition: opacity 0.5s ease;
+                    }
+
+                    &[data-animation~="animate1"] {
+                        .tab-text {
+                            transition: all 0.5s ease;
+                        }
+                        
+                        &:hover {
+                            .tab-text {
+                                color: var(--composer-font-color-secondary);
+                                font-weight: bold;
+                                transform: scale(1.1);
+                            }
+
+                            .square {
+                                opacity: 1;
+                            }
+                        }
                     }
 
                     &.active {
                         color: var(--composer-font-color-secondary);
                         font-weight: bold;
                         .square {
-                            display: block;
+                            opacity: 1;
                         }
                     }
 
-                    &:hover {
-                        color: var(--composer-font-color-secondary);
-                        transform: scale(1, 1);
-                        font-weight: bold;
-                        .square {
-                            display: block;
-                        }
-                    }
                 }
             }
 

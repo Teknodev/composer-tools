@@ -1,4 +1,4 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .navbarContainer {
   padding-top: var(--composer-gap-sm);
@@ -456,6 +456,10 @@
   }
 
   .accordionLocalization {
+    display: none;
+    &.active{
+      display: flex;
+    }
     .localization {
       color: var(--composer-font-color-primary);
       .localizationTitle{
@@ -488,7 +492,7 @@
 }
 
 .filledBackground {
-  background: transparent;
+  background: var(--composer-html-background);
   z-index: 101;
 }
 
@@ -531,7 +535,7 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .navbarContainer {
     .maxContent {
       z-index: 101;
@@ -541,6 +545,9 @@
       .rightSide {
         .localization {
           display: none;
+          &.active{
+            display: flex;
+          }
         }
       }
 

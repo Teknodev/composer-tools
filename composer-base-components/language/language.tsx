@@ -47,7 +47,7 @@ const ComposerLanguage = (props: ComposerLanguageProps) => {
     const pathParts = normalizedPath.split("/");
   
     const isLanguageSlugMissing = pathParts.length < 2;
-    const isFirstSegmentNotALanguageCode = !pathParts[1].match(/^[a-z]{2}$/i);
+    const isFirstSegmentNotALanguageCode = !pathParts[1]?.match(/^[a-z]{2}$/i);
   
     if (isLanguageSlugMissing || isFirstSegmentNotALanguageCode) {
       pathParts.splice(1, 0, lang.code);
@@ -83,7 +83,7 @@ const ComposerLanguage = (props: ComposerLanguageProps) => {
         labelClassName={`${styles["label"]} ${dropdownLabelClassName}`}
         dropdownButtonClassName={dropdownButtonClassName}
         icon={icon}
-        iconClassName={iconClassName}
+        iconClassName={`${styles.languageIcon} ${iconClassName}`}
         disabled={false}
         dropdownContentClassName={dropdownContentClassName}
       >
@@ -94,7 +94,7 @@ const ComposerLanguage = (props: ComposerLanguageProps) => {
             onClick={() => handleLanguageChange(lang)}
             divider={divider && index < composerToolsLanguages.length - 1}
           >
-            <span className={dropdownItemClassName}>
+            <span className={`${styles.label} ${dropdownItemClassName}`}>
               {lang[title].toUpperCase()}
             </span>
           </DropDownItem>
@@ -122,7 +122,7 @@ const ComposerLanguage = (props: ComposerLanguageProps) => {
         contentClassName={contentClassName}
         openClassName={openClassName}
         icon={icon}
-        accordionIconClassName={accordionIconClassName}
+        accordionIconClassName={`${styles.languageIcon} ${accordionIconClassName}`}
         titleClassName={titleClassName}
       >
         <ul

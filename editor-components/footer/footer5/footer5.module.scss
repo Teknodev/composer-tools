@@ -1,12 +1,14 @@
-@import "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss";
+@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: var(--composer-gap-md);
+  background-color: var(--composer-html-background);
 
   .first-container {
+    padding: var(--composer-gap-md) var(--composer-gap-xl);
     .first-max-content {
       .header {
         display: flex;
@@ -16,6 +18,13 @@
         gap: var(--composer-gap-md);
 
         .left {
+          .title{
+            content: "";
+          }
+          .subtitle{
+            color: var(--composer-font-color-primary);
+            font-size: 1.5rem;
+          }
           &.left-full {
             width: 100%;
           }
@@ -53,6 +62,7 @@
   }
 
   .second-container {
+    padding: var(--composer-gap-md) var(--composer-gap-xl);
     .second-max-content {
       .bottom {
         display: flex;
@@ -76,14 +86,37 @@
         .footer-text {
           justify-content: flex-end;
         }
+
+        .links {
+          .link-element {
+            .link-text {
+              transition: all 0.3s ease;
+              
+              &[data-animation~="animate1"]:hover {
+                color: var(--composer-primary-color);
+              }
+
+              &[data-animation~="animate2"]:hover {
+                transform: translateY(-3px);
+                color: var(--composer-primary-color);
+              }
+
+              &[data-animation~="animate3"]:hover {
+                transform: scale(1.1);
+                color: var(--composer-primary-color);
+              }
+            }
+          }
+        }
       }
     }
   }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .container {
     .first-container {
+      padding: var(--composer-gap-sm) var(--composer-gap-lg);
       .first-max-content {
         .header {
           .left {
@@ -106,6 +139,7 @@
     }
 
     .second-container {
+      padding: var(--composer-gap-sm) var(--composer-gap-lg);
       .second-max-content {
         .bottom {
           display: flex;
@@ -150,16 +184,22 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .first-container {
+      padding: var(--composer-gap-md);
       .first-max-content {
         .header {
           flex-direction: column;
           gap: var(--composer-gap-sm);
-
+          align-items: center;
           .left {
             width: 100%;
+            align-items: center;
+            .subtitle{
+              text-align: center;
+            }
 
             .title {
               font-size: 2rem;
+              text-align: center;
             }
           }
         }
@@ -167,15 +207,24 @@
     }
 
     .second-container {
+      padding: var(--composer-gap-md);
       .second-max-content {
         .bottom {
-
+          align-items: center;
           .links {
-            justify-content: start;
+            justify-content: center;
+            .link-element{
+              .link-text{
+                text-align: center;
+              }
+            }
 
             &.center {
               justify-content: center;
             }
+          }
+          .footer-text{
+            text-align: center;
           }
 
         }

@@ -7,7 +7,7 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type CardItem = {
-  icon: JSX.Element,
+  icon: React.JSX.Element,
   title: string,
   description: string,
 };

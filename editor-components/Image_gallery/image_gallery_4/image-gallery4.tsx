@@ -6,14 +6,14 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type NavItem = {
-  title: JSX.Element;
+  title: React.JSX.Element;
   hasSubnav: boolean;
   subnavItems: SubnavItem[];
   images: Image[];
 };
 
 type SubnavItem = {
-  title: JSX.Element;
+  title: React.JSX.Element;
   images: Image[];
 };
 

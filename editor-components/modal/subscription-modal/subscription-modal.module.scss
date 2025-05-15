@@ -1,9 +1,8 @@
-@import "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss";
+@use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
   max-width: 800px;
   max-height: 800px;
-  width: auto;
   overflow: auto;
   position: relative;
   padding: 0;
@@ -89,7 +88,7 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .container {
     max-width: 700px;
     max-height: 750px;

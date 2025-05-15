@@ -1,4 +1,4 @@
-@import "./utitilities/viewports.module.scss";
+@use "./utitilities/viewports.module.scss" as *;
 
 .h1{
      font-size: calc(2.8 * var(--project-font-size));
@@ -41,6 +41,7 @@
     width: 100%;
     padding: 80px 50px;
     background-color: var(--composer-html-background);
+    container-type: inline-size;
 
     &.full {
         padding: 80px 0px;
@@ -212,6 +213,12 @@
     .sectionTitle{
         margin-bottom: 20px;
     }
+    .sectionTitle{
+        line-height: 1em;
+    }
+    .sectionDescription{
+        line-height: 1.5em;
+    }
 }
 
 .listGrid{
@@ -257,7 +264,7 @@
   gap: var(--composer-gap-sm);
   transition: 0.3s;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: var(--project-font-size);
   border-radius: var(--composer-border-radius-sm);
 
   &.primary {
@@ -346,7 +353,7 @@
 
 .overlay{
   position: fixed;
-  left: 0;
+  left: auto;
   top: 0;
   z-index: 100;
   width: 100vw;
@@ -370,6 +377,7 @@
     align-items: center;
     z-index: 100;
     background: var(--composer-html-background);
+    container-type: inline-size;
 
     &.sticky,
     &.stickycolorful,
@@ -407,7 +415,7 @@
     justify-content: space-between;
     align-items: center;
 
-    @container (max-width: #{$composer-tablet-width-lg}) {
+    @container (max-width: #{$composer-tablet-width}) {
         padding: var(--composer-gap-md) var(--composer-gap-lg);
     }
 

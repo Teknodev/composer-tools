@@ -13,7 +13,7 @@ type Icon = {
 };
 
 type MenuItems = {
-  title: JSX.Element;
+  title: React.JSX.Element;
   url: string;
 };
 
@@ -94,12 +94,12 @@ class Navbar8 extends BaseNavigator {
     this.addProp({
       type: "object",
       key: "language",
-      displayer: "Language",
+      displayer: "Language Settings",
       value: [
         {
           type: "select",
           key: "label",
-          displayer: "Label",
+          displayer: "Language Label",
           value: "code",
           additionalParams: {
             selectItems: ["code", "name"],

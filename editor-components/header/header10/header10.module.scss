@@ -1,4 +1,4 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 .container {
   padding-top: 0;
   padding-bottom: 0;
@@ -183,6 +183,7 @@
               font-size: 1.5rem;
               color: var(--composer-font-color-primary);
               margin: 0;
+              text-align: justify;
             }
 
             .description1 {
@@ -190,6 +191,7 @@
               font-size: 1rem;
               color: var(--composer-font-color-primary);
               margin: 0px;
+              text-align: justify;
             }
           }
           .column-right-page-content {
@@ -221,7 +223,7 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .container {
     padding: 0px 40px 20px 40px;
     .max-content {
@@ -279,6 +281,7 @@
             z-index: 1;
             align-items: start;
             padding: 0px;
+            flex: auto;
             .icon {
               display: none;
             }

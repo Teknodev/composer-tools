@@ -10,9 +10,9 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 type ISliderData = {
   rightImage: string;
   leftImage: string;
-  subtitle: JSX.Element;
-  title: JSX.Element;
-  description: JSX.Element;
+  subtitle: React.JSX.Element;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
   sliderNumber: number;
   actions: INPUTS.CastedButton[];
 };

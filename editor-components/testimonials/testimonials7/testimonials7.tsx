@@ -7,9 +7,9 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 
 type Item = {
   image: string;
-  name: JSX.Element;
-  nameId: JSX.Element;
-  description: JSX.Element;
+  name: React.JSX.Element;
+  nameId: React.JSX.Element;
+  description: React.JSX.Element;
 };
 class Testimonials7Page extends Testimonials {
   constructor(props?: any) {

@@ -30,6 +30,16 @@ class Content12 extends BaseContent {
       value: "RxCross2",
     });
 
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2"]
+      }
+    });
+
     this.setComponentState("is_video_visible", false);
   }
 
@@ -43,10 +53,11 @@ class Content12 extends BaseContent {
 
     return (
       <Base.Container
-        className={this.decorateCSS("container")}
+        className={`${this.decorateCSS("container")} ${this.getComponentState("is_video_visible") && this.decorateCSS("with-overlay")}`}
         style={{
           backgroundImage: `url(${this.getPropValue("cover-image")})`,
         }}
+        data-animation={this.getPropValue("hoverAnimation").join(" ")}
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div
@@ -64,6 +75,7 @@ class Content12 extends BaseContent {
             <Base.Overlay
               onClick={() => this.setComponentState("is_video_visible", false)}
               className={this.decorateCSS("overlay")}
+              isVisible={true}
             >
               <div className={this.decorateCSS("video-container")}>
                 <div

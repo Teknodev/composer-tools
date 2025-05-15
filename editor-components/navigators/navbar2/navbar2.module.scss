@@ -1,4 +1,4 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
   padding-top: var(--composer-gap-sm);
@@ -221,7 +221,9 @@
         }
       }
     }
-
+.mobileRight{
+  display: none;
+}
     .menuIcon,
     .closeIcon {
       display: none;
@@ -442,11 +444,16 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .container {
     .maxContent {
+      .mobileRight{
+        display: flex;
+        gap: var(--composer-gap-sm);
+      }
       .logo {
         .logoImg {
+          width: fit-content;
           max-height: 50px;
         }
       }
@@ -460,6 +467,9 @@
             }
           }
         }
+      }
+      .localizationMobile{
+        display: flex;
       }
       .menuIcon,
       .closeIcon {
@@ -499,7 +509,6 @@
             font-weight: bold;
           }
         }
-      // }
    
     }
     .overlay {
