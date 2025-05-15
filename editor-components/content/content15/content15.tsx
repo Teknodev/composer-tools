@@ -56,15 +56,23 @@ class Content15 extends BaseContent {
         const text2 = this.getPropValue("text2");
         const name = this.getPropValue("name");
         const jobTitle = this.getPropValue("jobTitle");
-        const showCard1 = this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("subTitle"));
-        const showCard2 = this.castToString(this.getPropValue("text1"));
-        const showCard3 = this.castToString(this.getPropValue("text2")) || this.castToString(this.getPropValue("name")) || this.castToString(this.getPropValue("jobTitle"));
-        const showInformation = this.castToString(name) || this.castToString(jobTitle)
+
+        const showCard1 = this.castToString(title) || this.castToString(subTitle);
+        const showCard2 = this.castToString(text1);
+        const showCard3 = this.castToString(text2) || this.castToString(name) || this.castToString(jobTitle);
+        const showInformation = this.castToString(name) || this.castToString(jobTitle);
+
+        const isText1Empty = !this.castToString(text1) || this.castToString(text1).trim() === "";
+        const isText2Empty = !this.castToString(text2) || this.castToString(text2).trim() === "";
+
+        const areBothTextsEmpty = isText1Empty && isText2Empty;
+
+        const contentClass = areBothTextsEmpty ? "content-column" : "content";
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <div className={this.decorateCSS("content")}>
+                    <div className={this.decorateCSS(contentClass)}>
                         {showCard1 && (
                             <div className={this.decorateCSS("card-1")}>
                                 {this.castToString(title) && (
@@ -79,41 +87,85 @@ class Content15 extends BaseContent {
                                 )}
                             </div>
                         )}
-                        {showCard2 && (
-                            <div className={this.decorateCSS("card-2")}>
-                                {this.castToString(text1) && (
-                                    <Base.P className={this.decorateCSS("text-1")}>
-                                        {text1}
-                                    </Base.P>
-                                )}
-                            </div>
-                        )}
-                        {showCard3 && (
-                            <div className={this.decorateCSS("card-3")}>
-                                {this.castToString(text2) && (
-                                    <Base.P className={this.decorateCSS("text-2")}>
-                                        {text2}
-                                    </Base.P>
-                                )}
-                                {showInformation && (
-                                    <div className={this.decorateCSS("information")}>
-                                        {this.castToString(name) && (
-                                            <Base.P className={this.decorateCSS("name")}>
-                                                {name}
-                                            </Base.P>
-                                        )}
-                                        {this.castToString(jobTitle) && (
-                                            <Base.P className={this.decorateCSS("job-title")}>
-                                                {jobTitle}
-                                            </Base.P>
-                                        )}
-                                    </div>
-                                )}
-                            </div>
+
+                        {areBothTextsEmpty ? (
+                            showInformation && (
+                                <div className={this.decorateCSS("information")}>
+                                    {this.castToString(name) && (
+                                        <Base.P className={this.decorateCSS("name")}>
+                                            {name}
+                                        </Base.P>
+                                    )}
+                                    {this.castToString(jobTitle) && (
+                                        <Base.P className={this.decorateCSS("job-title")}>
+                                            {jobTitle}
+                                        </Base.P>
+                                    )}
+                                </div>
+                            )
+                        ) : (
+                            isText2Empty ? (
+                                <div className={this.decorateCSS("content-right-section-empty")}>
+                                    {showCard2 && (
+                                        <Base.P className={this.decorateCSS("text-1")}>
+                                            {text1}
+                                        </Base.P>
+                                    )}
+                                    {showInformation && (
+                                        <div className={this.decorateCSS("information-below-text1")}>
+                                            {this.castToString(name) && (
+                                                <Base.P className={this.decorateCSS("name")}>
+                                                    {name}
+                                                </Base.P>
+                                            )}
+                                            {this.castToString(jobTitle) && (
+                                                <Base.P className={this.decorateCSS("job-title")}>
+                                                    {jobTitle}
+                                                </Base.P>
+                                            )}
+                                        </div>
+                                    )}
+                                </div>
+                            ) : (
+                                <>
+                                    {showCard2 && (
+                                        <div className={this.decorateCSS("card-2")}>
+                                            {this.castToString(text1) && (
+                                                <Base.P className={this.decorateCSS("text-1")}>
+                                                    {text1}
+                                                </Base.P>
+                                            )}
+                                        </div>
+                                    )}
+                                    {showCard3 && (
+                                        <div className={this.decorateCSS("card-3")}>
+                                            {this.castToString(text2) && (
+                                                <Base.P className={this.decorateCSS("text-2")}>
+                                                    {text2}
+                                                </Base.P>
+                                            )}
+                                            {showInformation && (
+                                                <div className={this.decorateCSS("information")}>
+                                                    {this.castToString(name) && (
+                                                        <Base.P className={this.decorateCSS("name")}>
+                                                            {name}
+                                                        </Base.P>
+                                                    )}
+                                                    {this.castToString(jobTitle) && (
+                                                        <Base.P className={this.decorateCSS("job-title")}>
+                                                            {jobTitle}
+                                                        </Base.P>
+                                                    )}
+                                                </div>
+                                            )}
+                                        </div>
+                                    )}
+                                </>
+                            )
                         )}
                     </div>
                 </Base.MaxContent>
-            </Base.Container >
+            </Base.Container>
         )
     }
 }
