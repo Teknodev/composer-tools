@@ -224,8 +224,7 @@ export namespace Base {
   export function Overlay({ className, isVisible, isModal=false, ...props}: any) {
 
     const [width, setWidth] = useState(0);
-    const [height, setHeight] = useState(0);
-    const [x, setX] = useState(0);
+    const [height, setHeight] = useState(0);    
     const [y, setY] = useState(0);
     const [currentOpacity, setCurrentOpacity] = useState(0);
 
@@ -237,7 +236,6 @@ export namespace Base {
         const boundingClient = playgroundEl.getBoundingClientRect();
         setWidth(boundingClient.width);
         setHeight(boundingClient.height);
-        setX(boundingClient.x);
         setY(boundingClient.y);
       }); 
 
@@ -259,7 +257,7 @@ export namespace Base {
     if(isVisible) {
       return (
         <div
-          style={{ width, height, left: x, top: y, opacity: currentOpacity, ...(isModal && { zIndex: 102 }) }}
+          style={{ width, height, top: y, opacity: currentOpacity, ...(isModal && { zIndex: 102 }) }}
           className={`${styles.overlay} ${className}`}
           {...props}
         >
