@@ -40,6 +40,7 @@ import ContentComponent13 from "./content/content13/content13";
 import ContentComponent14 from "./content/content14/content14";
 import ContentComponent17 from "./content/content17/content17";
 import ContentComponent19 from "./content/content19/content19";
+import ContentComponent20 from "./content/content20/content20";
 import SliderComponent1 from "./slider/slider1/slider1";
 import SliderComponent2 from "./slider/slider2/slider2";
 import SliderComponent3 from "./slider/slider3/slider3";
@@ -232,6 +233,7 @@ import ConfirmationModal2 from "./modal/confirmation-modal-2/confirmation-modal-
 import BannerComponent1 from "../editor-components/banner/banner1/banner1";
 import BannerComponent2 from "../editor-components/banner/banner2/banner2";
 import BannerComponent4 from "../editor-components/banner/banner4/banner4";
+import BannerComponent6 from "../editor-components/banner/banner6/banner6";
 import SocialComponent1 from "./social/social1/social1";
 import SocialComponent2 from "../editor-components/socials/social2/social2";
 import SocialComponent3 from "../editor-components/social/social3/social3";
@@ -287,6 +289,7 @@ function Registerables(composer: ComponentsRegistery) {
     ContentComponent14,
     ContentComponent17,
     ContentComponent19,
+    ContentComponent20,
     SliderComponent1,
     SliderComponent2,
     SliderComponent3,
@@ -476,8 +479,9 @@ function Registerables(composer: ComponentsRegistery) {
     ConfirmationModal2,
     BannerComponent1,
     BannerComponent2,
-    SocialComponent2,
     BannerComponent4,
+    BannerComponent6,
+    SocialComponent2,
     SocialComponent3,
     SocialComponent4,
     SocialWidget1,
