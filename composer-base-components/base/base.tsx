@@ -227,6 +227,7 @@ export namespace Base {
     const [height, setHeight] = useState(0);
     const [x, setX] = useState(0);
     const [y, setY] = useState(0);
+    const [currentOpacity, setCurrentOpacity] = useState(0);
 
     useEffect(() => {
       document.documentElement.style.overflow = "hidden";
@@ -239,9 +240,15 @@ export namespace Base {
         setX(boundingClient.x);
         setY(boundingClient.y);
       }); 
+
       resizeObserver.observe(playgroundEl); 
+      if (isVisible) {
+        setCurrentOpacity(1);
+      }
+
       if(!isVisible){
         resizeObserver.disconnect();
+        setCurrentOpacity(0);
       }
 
       return () => {
@@ -250,7 +257,14 @@ export namespace Base {
       };
     }, [isVisible ,width]);
     if(isVisible) {
-      return <div style={{width, height, left: x, top: y,  ...(isModal && { zIndex: 102 })}} className={`${styles.overlay} ${className}`} {...props}></div>;
+      return (
+        <div
+          style={{ width, height, left: x, top: y, opacity: currentOpacity, ...(isModal && { zIndex: 102 }) }}
+          className={`${styles.overlay} ${className}`}
+          {...props}
+        >
+        </div>
+      );
     }
   }
 
