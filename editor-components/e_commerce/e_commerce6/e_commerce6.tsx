@@ -8,6 +8,7 @@ import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 import ComposerSlider from "composer-tools/composer-base-components/slider/slider";
 import { getCurrencyInfo } from "components/setting-input/inputs/currency";
 import { copyToClipboard } from "utils/copy-utils";
+import { ImageSearch } from "@mui/icons-material";
 
 type Images = {
   item: string;
@@ -610,7 +611,7 @@ class ECommerce6 extends BaseECommerce {
     this.setComponentState("slider-ref-small-image-mobile", React.createRef());
     this.setComponentState("lastPropCount", countValue);
     this.setComponentState("copied", false);
-    this.setComponentState("activeSlideIndex", 0);
+    this.setComponentState("activeSlideIndex", 3);
   }
 
   static getName(): string {
@@ -798,16 +799,6 @@ class ECommerce6 extends BaseECommerce {
       slidesToScroll: 1,
       vertical: true,
       verticalSwiping: true,
-      beforeChange: (oldIndex: number, newIndex: number) => {
-        if((newIndex + 4) < images.length){
-          this.setComponentState("activeSlideIndex", newIndex + 4)
-          console.log("newIndex", newIndex)
-          console.log("oldIndex", oldIndex)
-        }
-        else{
-          this.setComponentState("activeSlideIndex", ((images.length - newIndex + 4) - 1))
-        }
-      }
     };
     const settingsSmallImageMobile = {
       arrows: false,
@@ -815,12 +806,7 @@ class ECommerce6 extends BaseECommerce {
       infinite: true,
       slidesToShow: 3,
       slidesToScroll: 1,
-      // beforeChange: (oldIndex: number, newIndex: number) => {
-      //   console.log("oldIndex", oldIndex)
-      //   console.log("newIndex", newIndex)
-      // }
     };
-console.log("index", this.getComponentState("activeSlideIndex"))
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -836,7 +822,7 @@ console.log("index", this.getComponentState("activeSlideIndex"))
                   {images.map((item: Images, index: number) => {
                     return (
                       <div
-                        className={`${this.decorateCSS("small-image")} ${(this.getComponentState("activeSlideIndex") === index) && this.decorateCSS("last-image")}`}
+                        className={`${this.decorateCSS("small-image")}`}
                         key={index}
                       >
                         <img

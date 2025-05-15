@@ -14,12 +14,14 @@
             height: 600px;
             .small-image-slider{
                 width: 15%;
+                transform: translateY(-11px);
                 .small-images-container, .small-images-container-mobile{
                     height: 100%;
                     > div {
                         > div {
                           > div {
-                            height: 150px;
+                            padding-top: 10px;
+                            height: 153px;
                             > div {
                               height: 100%;
                             }
@@ -32,13 +34,6 @@
                         overflow: hidden;
                         height: 100%;
                         outline: none;
-                        padding-bottom: var(--composer-gap-sm);
-                        &.last-image{
-                            padding-bottom: 0px;
-                            .overlay{
-                                height: 100%;
-                            }
-                        }
                         .image{
                             width: 100%;
                             height: 100%;
@@ -67,7 +62,7 @@
                 .arrow-buttons{
                     display: flex;
                     gap: var(--composer-gap-md);
-                    padding-top: var(--composer-gap-sm);
+                    padding-top: var(--composer-gap-md);
                     .image-down-arrow, .image-up-arrow{
                         flex: 1;
                         border: 1px solid var(--composer-font-color-primary);
@@ -530,6 +525,7 @@
                 position: relative;
                 display: flex;
                 justify-content: center;
+                transform: none;
                 .small-images-container{
                     display: none;
                 }
@@ -540,6 +536,7 @@
                     > div {
                         > div {
                           > div {
+                            padding-top: 0px;
                             padding-bottom: 0px;
                             padding-left: var(--composer-gap-md);
                           }
