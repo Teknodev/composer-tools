@@ -7,8 +7,8 @@ import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 
 interface Section {
     sectionTitle: React.JSX.Element;
-    text1: React.JSX.Element;
-    text2: React.JSX.Element;
+    text1: string;
+    text2: string;
 }
 
 class Content16 extends BaseContent {
