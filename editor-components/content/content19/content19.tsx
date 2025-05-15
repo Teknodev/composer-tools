@@ -146,7 +146,7 @@ class Content19 extends BaseContent {
                             data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                             <div className={this.decorateCSS("middle-container-wrap")}>
                                 <div className={this.decorateCSS("middle")}>
-                                    <img src={image} alt="" className={this.decorateCSS("image")} />
+                                    <img src={image} alt={image} className={this.decorateCSS("image")} />
                                 </div>
                             </div>
                         </div>
