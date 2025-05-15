@@ -40,10 +40,10 @@
         width: 100%;
         .middle {
           width: 100%;
-          > img {
+          .image {
             width: 100%;
-            height: 500px;
-            object-fit: contain;
+            max-height: 1000px;
+            object-fit: cover;
           }
         }
       }
@@ -64,66 +64,70 @@
     .text {
       text-align: center;
     }
-    .navigate-container {
-      padding: var(--composer-gap-sm) (calc(1.5 * var(--composer-gap-md)));
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: var(--composer-gap-sm);
+
+    .button {
       position: relative;
-      overflow: hidden;
-      background: none;
-      border: 1px solid var(--composer-font-color-primary);
-      position: relative;
-      font-size: 1rem;
+      .text-and-icon {
+        display: flex;
+        align-items: center;
+      }
       .navigate-text {
-        content: "";
+        display: inline-block;
       }
       .right-navigate-icon,
       .left-navigate-icon {
         min-width: 15px;
         min-height: 15px;
+        display: inline-block;
+        margin-left: 1rem;
       }
+      &[data-animation~="animate2"] {
+        border-radius: var(--composer-border-radius-sm);
+        position: relative;
+        z-index: 1;
 
-      &::before,
-      &::after {
-        content: "";
-        position: absolute;
-        pointer-events: none;
-        box-sizing: border-box;
-      }
+        &::before,
+        &::after {
+          content: "";
+          position: absolute;
+          pointer-events: none;
+          box-sizing: border-box;
+          border-radius: var(--composer-border-radius-sm);
+          border-color: var(--composer-font-color-primary);
+          z-index: -1;
+        }
 
-      &::before {
-        top: 0;
-        left: 0;
-        width: 0;
-        height: 0;
-        border-top: 1px solid var(--composer-font-color-primary);
-        border-right: 1px solid var(--composer-font-color-primary);
-        transition: height 0.25s ease-out, width 0.25s ease-out 0.25s;
-      }
-
-      &::after {
-        top: 0;
-        left: 0;
-        width: 0;
-        height: 0;
-        border-left: 1px solid var(--composer-font-color-primary);
-        border-bottom: 1px solid var(--composer-font-color-primary);
-        transition: width 0.25s ease-out, height 0.25s ease-out 0.25s;
-      }
-
-      &[data-animation~="animate2"]:hover {
-        color: var(--composer-font-color-primary);
         &::before {
-          width: 100%;
-          height: 100%;
+          top: 0;
+          left: 0;
+          width: 0;
+          height: 0;
+          border-top: 1px solid var(--composer-font-color-primary);
+          border-right: 1px solid var(--composer-font-color-primary);
+          transition: height 0.25s ease-out, width 0.25s ease-out 0.25s;
+        }
+
+        &::after {
+          top: 0;
+          left: 0;
+          width: 0;
+          height: 0;
+          border-left: 1px solid var(--composer-font-color-primary);
+          border-bottom: 1px solid var(--composer-font-color-primary);
           transition: width 0.25s ease-out, height 0.25s ease-out 0.25s;
         }
-        &::after {
-          width: 100%;
-          height: 100%;
-          transition: height 0.25s ease-out, width 0.25s ease-out 0.25s;
+
+        &:hover {
+          &::before {
+            width: 100%;
+            height: 100%;
+            transition: width 0.25s ease-out, height 0.25s ease-out 0.25s;
+          }
+          &::after {
+            width: 100%;
+            height: 100%;
+            transition: height 0.25s ease-out, width 0.25s ease-out 0.25s;
+          }
         }
       }
     }
@@ -133,9 +137,11 @@
 @keyframes fadeInUp {
   0% {
     transform: translateY(20px);
+    opacity: 0;
   }
   100% {
     transform: translateY(0);
+    opacity: 1;
   }
 }
 
