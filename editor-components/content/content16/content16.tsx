@@ -18,6 +18,9 @@ class Content16 extends BaseContent {
             type: "array",
             key: "sections",
             displayer: "Sections",
+            additionalParams: {
+                maxElementCount: 4,
+            },
             value: [
                 {
                     type: "object",
