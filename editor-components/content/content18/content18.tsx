@@ -125,7 +125,7 @@ class Content18 extends BaseContent {
                                 )}>
                                     {signature && (
                                         <div className={this.decorateCSS("signature")}>
-                                            <img src={signature} alt="" className={this.decorateCSS("signature-image")} />
+                                            <img src={signature} alt={signature} className={this.decorateCSS("signature-image")} />
                                         </div>
                                     )}
                                     {this.castToString(name) && (
