@@ -1,4 +1,4 @@
-@import "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss";
+@use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss" as *;
 @keyframes bounceText {
   0% { transform: translateY(0); }
   50% { transform: translateY(-5px); }
@@ -206,7 +206,7 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .container {
     position: relative;
 

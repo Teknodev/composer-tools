@@ -7,27 +7,27 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Pricing = {
-  title: JSX.Element;
+  title: React.JSX.Element;
   product: Array<{
     cardTitle1: string;
     description: string;
-    badge: JSX.Element;
+    badge: React.JSX.Element;
     property: string;
-    title: JSX.Element;
+    title: React.JSX.Element;
     subtitle: string;
     product: {
       per: string;
       price: string;
       plan: string;
-      tag: JSX.Element;
+      tag: React.JSX.Element;
       check_icon: string;
       circle_icon: string;
     }[];
     right_items: {
       enable: boolean;
-      text: JSX.Element;
-      badge: JSX.Element;
-      title: JSX.Element;
+      text: React.JSX.Element;
+      badge: React.JSX.Element;
+      title: React.JSX.Element;
       list: {
         property: string;
         dash_icon: string;
@@ -1147,24 +1147,31 @@ class PricingMultipleTwo extends BasePricingTable {
 
                           {plan[planIndex]?.right_items?.buttons.length > 0 && (
                             <div className={this.decorateCSS("body-bottom")}>
-                              <div className={this.decorateCSS("buttons")}>
+                              <div className={this.decorateCSS("button-container")}>
                                 {plan[planIndex]?.right_items?.buttons.map((button: any, buttonIndex: number) => {
                                   const buttonText = this.castToString(button.getPropValue("text"));
-
                                   return (
                                     buttonText && (
                                       <ComposerLink key={buttonIndex} path={button.getPropValue("url")}>
-                                        <Base.Button buttonType={button.getPropValue("type")} className={this.decorateCSS("button")}>
-                                          {button.getPropValue("text")}
+                                        <Base.Button
+                                          buttonType={button.getPropValue("type")}
+                                          className={this.decorateCSS("button")}
+                                        >
+                                          {buttonText}
                                         </Base.Button>
                                       </ComposerLink>
                                     )
                                   );
                                 })}
                               </div>
-                              {plan[planIndex].right_items.text && <span className={this.decorateCSS("bottom-text")}>{plan[planIndex].right_items.text}</span>}
+                              {plan[planIndex]?.right_items?.text && (
+                                <span className={this.decorateCSS("bottom-text")}>
+                                  {plan[planIndex].right_items.text}
+                                </span>
+                              )}
                             </div>
                           )}
+
                         </Base.VerticalContent>
                       </div>
                     )}

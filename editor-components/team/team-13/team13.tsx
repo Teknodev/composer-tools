@@ -8,8 +8,8 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 interface Card {
   image: string;
-  name: JSX.Element;
-  job: JSX.Element;
+  name: React.JSX.Element;
+  job: React.JSX.Element;
   icons: { icon: string; url: string }[];
 }
 interface Icon {

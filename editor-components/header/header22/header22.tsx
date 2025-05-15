@@ -10,7 +10,7 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type SliderObject = {
-  title: JSX.Element;
+  title: React.JSX.Element;
   right_image: string;
   left_image: string;
   button: INPUTS.CastedButton[];
@@ -249,7 +249,7 @@ class Header22 extends BaseHeader {
                                 if (buttonText) {
                                   return (
                                     <div className={this.decorateCSS("link-button-container")}>
-                                      <ComposerLink className={this.decorateCSS("link-button")} key={`hdr-22-${indexButton}`} path={buttonItem.url}>
+                                      <ComposerLink key={`hdr-22-${indexButton}`} path={buttonItem.url}>
                                         <Base.Button buttonType={buttonItem.type} className={this.decorateCSS("button")}>
                                           {buttonItem.text}
                                         </Base.Button>

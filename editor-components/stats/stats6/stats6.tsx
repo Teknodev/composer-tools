@@ -4,8 +4,8 @@ import styles from "./stats6.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
 type CardData = {
-  cardValue: JSX.Element;
-  cardDescription: JSX.Element;
+  cardValue: React.JSX.Element;
+  cardDescription: React.JSX.Element;
 };
 
 class Stats6Page extends BaseStats {

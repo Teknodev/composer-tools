@@ -8,9 +8,9 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type PricingItems = {
   button: any;
-  cardTitle: JSX.Element;
-  cardPrice: JSX.Element;
-  cardDuration: JSX.Element;
+  cardTitle: React.JSX.Element;
+  cardPrice: React.JSX.Element;
+  cardDuration: React.JSX.Element;
   cardIcon: string;
   cardList: ListItem[];
   buttonType: INPUTS.CastedButton;
@@ -18,7 +18,7 @@ type PricingItems = {
 
 type ListItem = {
   listIcon: string;
-  cardListItem: JSX.Element;
+  cardListItem: React.JSX.Element;
 };
 
 class PricingTable2 extends BasePricingTable {

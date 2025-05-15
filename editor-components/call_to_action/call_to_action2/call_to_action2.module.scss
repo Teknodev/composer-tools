@@ -1,4 +1,4 @@
-@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
+@use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
 
 @keyframes button {
   70% {
@@ -14,7 +14,9 @@
 
 .container {
   position: relative;
-
+  &.with-overlay{
+    z-index: 103;
+  }
   .background {
     top: 0px;
     left: 0px;

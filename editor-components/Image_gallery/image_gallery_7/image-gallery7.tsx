@@ -6,8 +6,8 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type CardItemType = {
     image: string;
-    title: JSX.Element;
-    subtitle: JSX.Element;
+    title: React.JSX.Element;
+    subtitle: React.JSX.Element;
 };
 class ImageGallery7 extends BaseImageGallery {
     constructor(props?: any) {

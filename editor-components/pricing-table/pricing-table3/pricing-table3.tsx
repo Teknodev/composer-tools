@@ -8,15 +8,15 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
   icon: string;
-  title: JSX.Element;
-  price: JSX.Element;
+  title: React.JSX.Element;
+  price: React.JSX.Element;
   tagSettings: TagSettings;
-  items: { value: JSX.Element }[];
+  items: { value: React.JSX.Element }[];
   button: any;
 };
 
 type TagSettings = {
-  tag: JSX.Element;
+  tag: React.JSX.Element;
   showTag: boolean;
 };
 
@@ -391,7 +391,7 @@ class PricingTable3 extends BasePricingTable {
                         {card.items.length > 0 && (
                           <div className={this.decorateCSS("body")}>
                             <Base.VerticalContent className={this.decorateCSS("items")}>
-                              {card.items.map((item: { value: JSX.Element }, idx: number) => {
+                              {card.items.map((item: { value: React.JSX.Element }, idx: number) => {
                                 const itemExist = this.castToString(item.value);
                                 return (
                                   itemExist && (

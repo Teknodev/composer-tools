@@ -1,6 +1,7 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .pcNavbarContainer {
+  z-index: 101;
   .maxContent {
     display: flex;
     justify-content: space-between;
@@ -205,7 +206,6 @@
   align-items: center;
   justify-content: flex-end;
   gap: var(--composer-gap-sm);
-
   .icon {
     display: flex;
     justify-content: center;
@@ -259,7 +259,7 @@
 
 .smallDeviceNavbar {
   display: none;
-  z-index: 100;
+  z-index: 101;
 
   .maxContent {
     display: flex;
@@ -278,7 +278,9 @@
         justify-content: flex-start;
       }
     }
-
+    .mobileRight{
+        display: none;
+    }
     .mobileMenuButton,
     .mobileCloseButton {
       cursor: pointer;
@@ -294,17 +296,16 @@
       height: 0;
       width: 100%;
       overflow: hidden;
-      background: var(--composer-overlay-color);
       transition: height 0.3s ease;
-      z-index: 100;
-
       &.open {
         height: 100vh;
         transition: height 0.3s ease;
       }
+      &.overflowShow{
+        overflow-y: auto;
+      }
 
       .mobileMenuContent {
-        overflow: scroll;
         background-color: var(--composer-html-background);
         padding: 0 var(--composer-gap-md);
 
@@ -404,9 +405,12 @@
     }
   }
 }
+.overlay{
+  content: "";
+}
 
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .pcNavbarContainer {
     display: none;
   }
@@ -439,12 +443,18 @@
             justify-content: center;
             gap: var(--composer-gap-sm);
             padding: var(--composer-gap-md) 0;
-
-            .icon {
-              color: var(--composer-font-color-primary);
+            .icons{
+              .icon {
+                color: var(--composer-font-color-primary);
+              }
             }
           }
         }
+      }
+      .mobileRight{
+        display: flex;
+        gap: var(--composer-gap-sm);
+        align-items: center;
       }
 
       .logo {

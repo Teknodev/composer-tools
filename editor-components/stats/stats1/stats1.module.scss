@@ -1,4 +1,4 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
   .max-content {
@@ -13,7 +13,7 @@
       .left-container {
         max-width: 100%;
         
-        .subtitle,  .description,  .button-text-wrapper {
+        .subtitle,  .description,  .button-text-wrapper, .title {
           content: "";
         }
       }
@@ -82,7 +82,7 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
       .stats1-page {

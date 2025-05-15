@@ -1,11 +1,17 @@
-@import '../../../composer-base-components/base/utitilities/viewports.module.scss';
+@use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
 .container {
+  .with-overlay{
+    z-index: 103;
+  }
     .max-content {
+      display: flex;
+      justify-content: center;
       .content {
         display: flex;
         flex-direction: column;
         gap: var(--composer-gap-xl);
         align-items: center;
+        width: 100%;
         .section-selector-text {
           display: flex;
           gap: var(--composer-gap-xl);

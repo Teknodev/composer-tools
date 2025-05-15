@@ -1,4 +1,4 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 $icon-size: 56px;
 
@@ -61,7 +61,7 @@ $icon-size: 56px;
                     background-color: var(--composer-font-color-primary);
                     position: absolute;
                     left: 100%;
-                    top: $icon-size / 2;
+                    top: calc($icon-size / 2);
                     transform: translateX(calc(-50% + var(--composer-gap-sm)));
                     opacity: .2;
                 }

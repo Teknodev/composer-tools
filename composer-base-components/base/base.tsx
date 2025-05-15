@@ -12,7 +12,7 @@ export type TypeButton =
   | "White"
   | "Black";
 export namespace Base {
-  const rootStyles = (typeof window !== 'undefined') ? getComputedStyle(document.documentElement) : {getPropertyValue: () => ""};
+  const rootStyles = (typeof window !== 'undefined') ? getComputedStyle(document.documentElement) : { getPropertyValue: () => "" };
 
   function getStyleValue(cssVariable: string) {
     return rootStyles.getPropertyValue(cssVariable).trim();
@@ -110,11 +110,9 @@ export namespace Base {
     const viewType = getViewType();
     return (
       <div
-        className={`${styles.container} ${styles[alignment]} ${
-          styles[viewType]
-        } ${className} ${isModal ? styles.modalContainer : ""} ${
-          isFull ? styles.full : ""
-        }`}
+        className={`${styles.container} ${styles[alignment]} ${styles[viewType]
+          } ${className} ${isModal ? styles.modalContainer : ""} ${isFull ? styles.full : ""
+          }`}
         {...props}
       >
         {children}
@@ -212,9 +210,8 @@ export namespace Base {
   }) {
     return (
       <button
-        className={`${styles.button} ${
-          styles[(buttonType || "Primary").toLocaleLowerCase()]
-        } ${className}`}
+        className={`${styles.button} ${styles[(buttonType || "Primary").toLocaleLowerCase()]
+          } ${className}`}
         {...props}
       ></button>
     );
@@ -224,14 +221,49 @@ export namespace Base {
     return <div className={`${styles.row} ${className}`} {...props}></div>;
   }
 
-  export function Overlay({ className, ...props }: any) {
+  export function Overlay({ className, isVisible, isModal=false, ...props}: any) {
+
+    const [width, setWidth] = useState(0);
+    const [height, setHeight] = useState(0);    
+    const [y, setY] = useState(0);
+    const [currentOpacity, setCurrentOpacity] = useState(0);
+
     useEffect(() => {
       document.documentElement.style.overflow = "hidden";
+      let playgroundEl = document.getElementById("playground");
+
+      let resizeObserver = new ResizeObserver(() => { 
+        const boundingClient = playgroundEl.getBoundingClientRect();
+        setWidth(boundingClient.width);
+        setHeight(boundingClient.height);
+        setY(boundingClient.y);
+      }); 
+
+      resizeObserver.observe(playgroundEl); 
+      if (isVisible) {
+        setCurrentOpacity(1);
+      }
+
+      if(!isVisible){
+        resizeObserver.disconnect();
+        setCurrentOpacity(0);
+      }
+
       return () => {
         document.documentElement.style.overflow = "";
+        resizeObserver.disconnect();
       };
-    }, []);
-    return <div className={`${styles.overlay} ${className}`} {...props}></div>;
+    }, [isVisible ,width]);
+    if(isVisible) {
+      return (
+        <div
+          style={{ width, height, top: y, opacity: currentOpacity, ...(isModal && { zIndex: 102 }) }}
+          className={`${styles.overlay} ${className}`}
+          {...props}
+        >
+        </div>
+      );
+    }
   }
 
   export namespace Navigator {
@@ -240,8 +272,9 @@ export namespace Base {
       children,
       position,
       hamburgerNavActive = false,
-      setIsScrolled = (scrolled: boolean) => {},
-      setIsBigScreen = (bigScreen: boolean) => {},
+      setIsScrolled = (scrolled: boolean) => { },
+      setIsBigScreen = (bigScreen: boolean) => { },
+      screenSize,
       ...props
     }: {
       className?: string;
@@ -251,6 +284,7 @@ export namespace Base {
       setIsScrolled?: (scrolled: boolean) => void;
       setIsBigScreen?: (bigScreen: boolean) => void;
       [key: string]: any;
+      screenSize?: number
     }) {
       const positionClass = position
         ?.split(" ")
@@ -258,8 +292,7 @@ export namespace Base {
         .join("");
 
       const resizeObserverRef = useRef<ResizeObserver | null>(null);
-      const mediaSize = 1025;
-
+      const mediaSize = screenSize ? screenSize : 1025;
       useEffect(() => {
         const wrapperContainer = getWrapperContainer();
         const handleScroll = () => {
@@ -286,36 +319,45 @@ export namespace Base {
           }
         };
 
-        if(!hamburgerNavActive){
+        if (!hamburgerNavActive) {
           changeNavbarBackground(wrapperContainer.scrollY > 50 && positionClass !== "absolute");
         }
-
         const handleResize = () => {
-          const wrapperContainer = getWrapperContainer();
-          const matchedMedia =
-            wrapperContainer.wrapper === window
-              ? window.matchMedia(`(min-width: ${mediaSize}px)`).matches
-              : (wrapperContainer.wrapper as HTMLElement).clientWidth >=
-                mediaSize;
-          if (matchedMedia) {
-            Base.Navigator.changeScrollBehaviour("auto");
-            setIsBigScreen && setIsBigScreen(true);
-          } else if (hamburgerNavActive) {
-            Base.Navigator.changeScrollBehaviour("hidden");
-            setIsBigScreen && setIsBigScreen(false);
-          }
+          requestAnimationFrame(() => {
+            const wrapperContainer = getWrapperContainer();
+            const matchedMedia =
+              wrapperContainer.wrapper === window
+                ? window.matchMedia(`(min-width: ${mediaSize}px)`).matches
+                : (wrapperContainer.wrapper as HTMLElement).clientWidth >= mediaSize;
+            if (matchedMedia) {
+              Base.Navigator.changeScrollBehaviour("auto");
+              setIsBigScreen && setIsBigScreen(true);
+            } else if (hamburgerNavActive) {
+              Base.Navigator.changeScrollBehaviour("hidden");
+              setIsBigScreen && setIsBigScreen(false);
+            }else if (!matchedMedia){
+              setIsBigScreen && setIsBigScreen(false);
+            }
+          });
         };
 
+
         const createResizeListener = () => {
+          if (resizeObserverRef.current) {
+            resizeObserverRef.current.disconnect(); // Ensure old observer is removed
+          }
+
           const wrapperContainer = getWrapperContainer();
           if (wrapperContainer.wrapper === window) {
             window.addEventListener("resize", handleResize);
             return;
           }
-          resizeObserverRef.current = new ResizeObserver(handleResize);
-          resizeObserverRef.current.observe(
-            wrapperContainer.wrapper as HTMLElement
-          );
+
+          resizeObserverRef.current = new ResizeObserver(() => {
+            requestAnimationFrame(handleResize); // Avoid infinite loops
+          });
+
+          resizeObserverRef.current.observe(wrapperContainer.wrapper as HTMLElement);
         };
 
         wrapperContainer.wrapper.addEventListener("scroll", handleScroll);
@@ -346,6 +388,7 @@ export namespace Base {
     }
 
     export function getWrapperContainer() {
+      if(typeof window === 'undefined') return;
       const playground = document.getElementById("playground") as HTMLElement;
       const isPlayground = !!playground;
       return {
@@ -359,7 +402,7 @@ export namespace Base {
     export function changeScrollBehaviour(behaviour: "hidden" | "auto") {
       const wrapperContainer = getWrapperContainer();
       if (!wrapperContainer) return;
-      wrapperContainer.style.overflow = behaviour;
+      wrapperContainer.style.overflowY = behaviour;
     }
   }
 }

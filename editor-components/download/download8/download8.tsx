@@ -7,7 +7,7 @@ import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Button = {
-  buttonText: JSX.Element;
+  buttonText: React.JSX.Element;
   buttonIcon: string;
   url: string;
   buttonImage: string;

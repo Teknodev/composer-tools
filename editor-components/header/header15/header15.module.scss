@@ -1,4 +1,4 @@
-@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 .container {
   min-height: 100vh;
   position: relative;
@@ -115,6 +115,7 @@
                   .button-box {
                     min-width: fit-content;
                     .button {
+                      content: "";
                     }
                   }
                 }
@@ -127,7 +128,7 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width-lg}) {
+@container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
       .wrapper {

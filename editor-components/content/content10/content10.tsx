@@ -13,7 +13,7 @@ class Content10 extends BaseContent {
       type: "video",
       displayer: "Video Link",
       key: "video",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b9f4473292c6002b23c4b0?alt=media",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e77bd0181a1002c334f66?alt=media&timestamp=1719564238038",
     });
     this.addProp({
       type: "image",
@@ -87,6 +87,16 @@ class Content10 extends BaseContent {
       ],
     });
 
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2"]
+      }
+    });
+
     this.setComponentState("is_video_visible", false);
   }
 
@@ -116,11 +126,14 @@ class Content10 extends BaseContent {
 
 
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container className={`${this.decorateCSS("container")} ${this.getComponentState("is_video_visible") && this.decorateCSS("with-overlay")}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ContainerGrid className={this.decorateCSS("content")}>
             {videoImage && (
-              <div className={this.decorateCSS("video-part")}>
+              <div 
+                className={this.decorateCSS("video-part")}
+                data-animation={this.getPropValue("hoverAnimation").join(" ")}
+              >
                 <img
                   alt="video image"
                   src={videoImage}
@@ -154,13 +167,13 @@ class Content10 extends BaseContent {
                 {this.castToString(titleText) && (
                   <Base.SectionTitle className={this.decorateCSS("title-text")}>{titleText}</Base.SectionTitle>
                 )}
-                {this.castToString(description) && (
+                {(this.castToString(description) || line) && (
                   <div className={this.decorateCSS("description-div")}>
-                    {this.castToString(description) && line && (
+                    {line && (
                       <hr className={this.decorateCSS("line")} />
                     )}
                     {this.castToString(description) && (
-                      <Base.SectionDescription className={this.decorateCSS("description")}>
+                      <Base.SectionDescription className={`${this.decorateCSS("description")} ${!line && this.decorateCSS("without-line")}`}>
                         {description}
                       </Base.SectionDescription>
                     )}
@@ -217,10 +230,10 @@ class Content10 extends BaseContent {
               </Base.VerticalContent>
             )}
           </Base.ContainerGrid>
-        </Base.MaxContent>
-        {this.getComponentState("is_video_visible") && (
+          {this.getComponentState("is_video_visible") && (
           <Base.Overlay
             onClick={() => this.setComponentState("is_video_visible", false)} className={this.decorateCSS("overlay")}
+            isVisible={true}
           >
             <div className={this.decorateCSS("video-container")}>
               <div
@@ -251,6 +264,7 @@ class Content10 extends BaseContent {
             )}
           </Base.Overlay>
         )}
+        </Base.MaxContent>
       </Base.Container>
     );
   }

@@ -7,7 +7,7 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 type TImage = {
   image: string;
   imageLink: string;
-  itemText: JSX.Element;
+  itemText: React.JSX.Element;
 };
 
 class LogoComp6Page extends LogoClouds {
