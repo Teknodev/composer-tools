@@ -7,6 +7,10 @@ interface ComposerToolsData {
   setComposerToolsLanguages: (languages: Array<{code: string; name: string}>) => void;
   addComposerToolsLanguage: (languageCode: string) => void;
   removeComposerToolsLanguage: (languageCode: string) => void;
+  isPreviewDataContext: boolean;
+  setIsPreviewDataContext: (isPreview: boolean) => void;
+  isLocalizationChange: boolean;
+  setIsLocalizationChange: (isLocalizationChange: boolean) => void;
 }
 
 export const DataContext = createContext<ComposerToolsData | undefined>(undefined);
@@ -18,6 +22,8 @@ interface DataProviderProps {
 export const DataContextProvider: React.FC<DataProviderProps> = ({ children }) => {
   const [composerToolsLanguages, setComposerToolsLanguages] = useState<Array<{code: string; name: string}>>([]);
   const [composerToolsCurrentLanguage, setComposerToolsCurrentLanguage] = useState<{code: string; name: string}>({code: "", name: ""});
+  const [isPreviewDataContext, setIsPreviewDataContext] = useState<boolean>(false);
+  const [isLocalizationChange, setIsLocalizationChange] = useState<boolean>(false);
 
   const addComposerToolsLanguage = (languageCode: string) => {
     if (!composerToolsLanguages.some(lang => lang.code === languageCode)) {
@@ -50,7 +56,11 @@ export const DataContextProvider: React.FC<DataProviderProps> = ({ children }) =
     addComposerToolsLanguage,
     removeComposerToolsLanguage,
     setComposerToolsCurrentLanguage: setLanguageAsCurrent,
-    setComposerToolsLanguages
+    setComposerToolsLanguages,
+    isPreviewDataContext,
+    setIsPreviewDataContext,
+    isLocalizationChange,
+    setIsLocalizationChange
   };
 
   return (

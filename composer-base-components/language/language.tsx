@@ -37,14 +37,15 @@ const ComposerLanguage = (props: ComposerLanguageProps) => {
     composerToolsLanguages,
     composerToolsCurrentLanguage,
     setComposerToolsCurrentLanguage,
+    isPreviewDataContext,
+    setIsLocalizationChange
   } = useComposerToolsData();
 
   const handleLanguageChange = async (lang: { code: string; name: string }) => {
+    setIsLocalizationChange(false);
     setComposerToolsCurrentLanguage(lang);
-
-    const isPreview = window.location.pathname.includes('/preview/');
-  
-    if (isPreview) {
+    
+    if (isPreviewDataContext) {
       let currentPath = window.location.pathname;
       const normalizedPath = currentPath.replace(/\/$/, "");
       const pathParts = normalizedPath.split("/");
