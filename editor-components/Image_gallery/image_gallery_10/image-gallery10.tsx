@@ -18,7 +18,7 @@ type AnimateTexts = {
 
 class ImageGallery10 extends BaseImageGallery {
 
-    private intervalId: number | null = null;
+    private intervalId: NodeJS.Timeout | null = null;
 
     constructor(props?: any) {
         super(props, styles);
@@ -49,6 +49,32 @@ class ImageGallery10 extends BaseImageGallery {
                             key: "animateText",
                             displayer: "Animate Text",
                             value: "feel safe",
+                        },
+                    ]
+                },
+                {
+                    type: "object",
+                    key: "animate-text",
+                    displayer: "Animate Text",
+                    value: [
+                        {
+                            type: "string",
+                            key: "animateText",
+                            displayer: "Animate Text",
+                            value: "passionate",
+                        },
+                    ]
+                },
+                {
+                    type: "object",
+                    key: "animate-text",
+                    displayer: "Animate Text",
+                    value: [
+                        {
+                            type: "string",
+                            key: "animateText",
+                            displayer: "Animate Text",
+                            value: "delighted",
                         },
                     ]
                 }
@@ -417,7 +443,7 @@ class ImageGallery10 extends BaseImageGallery {
 
     private clearAnimationInterval() {
         if (this.intervalId) {
-            window.clearInterval(this.intervalId);
+            clearInterval(this.intervalId);
             this.intervalId = null;
         }
     }
@@ -425,11 +451,11 @@ class ImageGallery10 extends BaseImageGallery {
     private startAnimationInterval() {
         this.clearAnimationInterval();
 
-        const texts = this.state.states.texts as string[];
+        const texts = this.getComponentState("texts") as string[];
         if (!texts || texts.length === 0) return;
 
-        this.intervalId = window.setInterval(() => {
-            const currentIndex = this.state.states.currentIndex as number;
+        this.intervalId = setInterval(() => {
+            const currentIndex = this.getComponentState("currentIndex") as number;
             const nextIndex = (currentIndex + 1) % texts.length;
 
             this.setComponentState("currentIndex", nextIndex);
@@ -450,7 +476,7 @@ class ImageGallery10 extends BaseImageGallery {
     componentDidUpdate() {
         const animateTexts = this.castToObject<AnimateTexts[]>("animate-texts");
         const newTexts = animateTexts?.map((item: AnimateTexts) => item.animateText) || [];
-        const currentTexts = this.state.states.texts as string[];
+        const currentTexts = this.getComponentState("texts") as string[];
 
         const textsChanged = JSON.stringify(newTexts) !== JSON.stringify(currentTexts);
 
@@ -478,7 +504,7 @@ class ImageGallery10 extends BaseImageGallery {
     render() {
         const cardList = this.castToObject<CardType[]>("card-items");
         const header = this.castToString(this.getPropValue("header"));
-        const currentText = this.state.states.currentText as string;
+        const currentText = this.getComponentState("currentText") as string;
         const showAnimateText = this.getPropValue("showAnimateText");
 
         return (
@@ -517,15 +543,15 @@ class ImageGallery10 extends BaseImageGallery {
                                                             {cardItem.title}
                                                         </div>
                                                     )}
-                                                    <ComposerLink
-                                                        path={cardItem.link}>
-                                                        {this.castToString(cardItem.text) && (
+                                                    {this.castToString(cardItem.text) && (
+                                                        <ComposerLink
+                                                            path={cardItem.link}>
                                                             <div
                                                                 className={this.decorateCSS("card-item-value-p")}>
                                                                 {cardItem.text}
                                                             </div>
-                                                        )}
-                                                    </ComposerLink>
+                                                        </ComposerLink>
+                                                    )}
                                                 </div>
                                             </div>
                                         </div>
