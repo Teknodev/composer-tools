@@ -19,9 +19,6 @@
                     > div {
                         > div {
                           > div {
-                            &:not(:last-child) {
-                                padding-bottom: var(--composer-gap-sm);
-                            }
                             height: 150px;
                             > div {
                               height: 100%;
@@ -35,6 +32,13 @@
                         overflow: hidden;
                         height: 100%;
                         outline: none;
+                        padding-bottom: var(--composer-gap-sm);
+                        &.last-image{
+                            padding-bottom: 0px;
+                            .overlay{
+                                height: 100%;
+                            }
+                        }
                         .image{
                             width: 100%;
                             height: 100%;
@@ -48,7 +52,7 @@
                             top: 0px;
                             left: 0px;
                             width: 100%;
-                            height: 100%;
+                            height: clac(100% - var(--composer-gap-sm));
                             border-radius: var(--composer-border-radius-xs);
                             &.selected-image{
                                 background-color: transparent;
