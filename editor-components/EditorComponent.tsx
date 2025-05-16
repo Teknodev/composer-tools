@@ -426,7 +426,8 @@ export enum CATEGORIES {
   BANNER = "banner",
   ECOMMERCE = "ecommerce",
   SOCIAL = "social",
-  SOCIALWIDGET = "socialWidget"
+  SOCIALWIDGET = "socialWidget",
+  ECOMMERCE = "ecommerce",
 }
 
 export function generateId(key: string): string {
@@ -824,15 +825,13 @@ export abstract class Component
   }
 
   insertForm(name: string, data: Object) {
-    const project = getProjectHook()._id;
-
     const inputData: { [key: string]: any } = {};
     const entries = Object.entries(data);
     entries.forEach(([_, value], index) => {
       inputData[`input_${index}`] = value;
     });
 
-    EventEmitter.emit(EVENTS.INSERT_FORM, { name, data: inputData, project });
+    EventEmitter.emit(EVENTS.INSERT_FORM, { name, data: inputData });
   }
 
   /**
@@ -971,3 +970,7 @@ export abstract class BaseSocialWidget extends Component {
 export function generateAutoClassName(componentId: string, section: string) {
   return `auto-generate-${componentId}-${section}`;
 };
+
+export abstract class BaseECommerce extends Component {  
+  static category = CATEGORIES.ECOMMERCE;
+}

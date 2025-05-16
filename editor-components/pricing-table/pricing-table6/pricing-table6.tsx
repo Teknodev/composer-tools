@@ -1134,24 +1134,31 @@ class PricingMultipleTwo extends BasePricingTable {
 
                           {plan[planIndex]?.right_items?.buttons.length > 0 && (
                             <div className={this.decorateCSS("body-bottom")}>
-                              <div className={this.decorateCSS("buttons")}>
+                              <div className={this.decorateCSS("button-container")}>
                                 {plan[planIndex]?.right_items?.buttons.map((button: any, buttonIndex: number) => {
                                   const buttonText = this.castToString(button.getPropValue("text"));
-
                                   return (
                                     buttonText && (
                                       <ComposerLink key={buttonIndex} path={button.getPropValue("url")}>
-                                        <Base.Button buttonType={button.getPropValue("type")} className={this.decorateCSS("button")}>
-                                          {button.getPropValue("text")}
+                                        <Base.Button
+                                          buttonType={button.getPropValue("type")}
+                                          className={this.decorateCSS("button")}
+                                        >
+                                          {buttonText}
                                         </Base.Button>
                                       </ComposerLink>
                                     )
                                   );
                                 })}
                               </div>
-                              {plan[planIndex].right_items.text && <span className={this.decorateCSS("bottom-text")}>{plan[planIndex].right_items.text}</span>}
+                              {plan[planIndex]?.right_items?.text && (
+                                <span className={this.decorateCSS("bottom-text")}>
+                                  {plan[planIndex].right_items.text}
+                                </span>
+                              )}
                             </div>
                           )}
+
                         </Base.VerticalContent>
                       </div>
                     )}
