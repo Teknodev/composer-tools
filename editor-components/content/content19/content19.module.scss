@@ -31,11 +31,9 @@
 
     .middle-container {
       flex: 1;
-
-      &[data-animation~="animate1"] {
-        animation: fadeInUp 1s ease;
+      &[data-animation~="animate1"]:hover {
+        animation: fadeInUp 1s ease-in;
       }
-
       .middle-container-wrap {
         width: 100%;
         .middle {
