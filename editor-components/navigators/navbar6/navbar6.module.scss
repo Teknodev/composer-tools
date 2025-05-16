@@ -59,9 +59,14 @@
 
         .menuItemTitle {
           font-size: 1rem;
-          font-weight: 500;
+          font-weight: normal;
           transition: all 0.3s ease;
           color: var(--composer-font-color-primary);
+          &.animation1{
+            &:hover{
+              font-weight: bold;
+            }
+          }
         }
 
         .dropdownIcon {
@@ -113,9 +118,14 @@
 
                 .dropdownItemTitle {
                   font-size: 1rem;
-                  font-weight: 400;
+                  font-weight: normal;
                   color: var(--composer-font-color-primary);
                   transition: color 0.3s ease;
+                  &.animation1{
+                    &:hover{
+                      font-weight: bold;
+                    }
+                  }
                 }
               }
             }
@@ -129,12 +139,15 @@
               background-color: var(--composer-primary-color);
               transition: width 0.3s ease;
             }
+            &.animation2{
+              &:hover{
+                &::after {
+                  width: calc(100% - (var(--composer-gap-md) * 2));
+                }
+              }
+            }
 
             &:hover {
-              &::after {
-                width: calc(100% - (var(--composer-gap-md) * 2));
-              }
-
               .subdropdown {
                 opacity: 1;
                 visibility: visible;
@@ -169,6 +182,19 @@
                 border-radius: var(--composer-border-radius-sm);
                 position: relative;
                 color: var(--composer-font-color-primary);
+                font-weight: normal;
+                &.animation1{
+                  &:hover{
+                    font-weight: bold;
+                  }
+                }
+                &.animation2{
+                  &:hover{
+                    &::after {
+                      width: calc(100% - (var(--composer-gap-md) * 2));
+                    }
+                  }
+                }
 
                 &::after {
                   content: "";
@@ -178,12 +204,6 @@
                   height: 1px;
                   background-color: var(--composer-primary-color);
                   transition: width 0.3s ease;
-                }
-
-                &:hover {
-                  &::after {
-                    width: calc(100% - (var(--composer-gap-md) * 2));
-                  }
                 }
               }
             }
@@ -223,13 +243,32 @@
     .localization, .localizationItem, .localizationContent{
       content: "";
     }
-
-    .localizationLabel {
-      color: var(--composer-font-color-primary);
-      gap: var(--composer-gap-xs);
-      font-weight: bold;
+    .localization{
+      .localizationLabel {
+        color: var(--composer-font-color-primary);
+        gap: var(--composer-gap-xs);
+        font-weight: normal;
+        transition: all 0.3s ease;
+        &.animation1{
+          &:hover{
+            font-weight: bold;
+          }
+        }
+      }
+      .localizationContent{
+        .localizationItem{
+          font-weight: normal;
+          transition: all 0.3s ease;
+        }
+        &.animation1{
+          &:hover{
+            .localizationItem{
+              font-weight: bold;
+            }
+          }
+        }
+      }
     }
-
   }
 
   .pcNavbarContainer > :first-child {
@@ -379,16 +418,22 @@
         }
       }
     }
-
-
- 
-
+    .accordion{
+      gap: var(--composer-gap-md);
+    }
   .languageAccordion {
     color: var(--composer-font-color-primary);
 
-    languageAccordionTitle {
+    .languageAccordionTitle {
       margin: 0;
       font-size: 1rem;
+      font-weight: normal;
+      transition: all 0.3s ease;
+      &.animation1{
+        &:hover{
+          font-weight: bold;
+        }
+      }
     }
   }
   .languageAccordionItem {

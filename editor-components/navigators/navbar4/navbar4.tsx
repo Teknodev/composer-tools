@@ -1250,6 +1250,15 @@ class Navbar4 extends BaseNavigator {
       displayer: "Hamburger Menu Title",
       value: "MENU",
     });
+    this.addProp({
+      type:"multiSelect",
+      key: "animations",
+      displayer: "Animations",
+      value: ["animation1","animation2"],
+      additionalParams:{
+        selectItems:["animation1", "animation2"]
+      }
+    });
 
     this.setComponentState("isScrolled", false);
     this.setComponentState("hamburgerNavActive", false);
@@ -1329,7 +1338,9 @@ class Navbar4 extends BaseNavigator {
 
     const isBigScreen = this.getComponentState("isBigScreen")
     
-    const isVisible = isHamburgerActive && !isBigScreen
+    const isVisible = isHamburgerActive && !isBigScreen;
+
+    const animations = this.getPropValue("animations") && this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ");
 
     return (
       <>
@@ -1452,7 +1463,7 @@ class Navbar4 extends BaseNavigator {
                                 />
                               )}
                               <span
-                                className={this.decorateCSS("menuItemTitle")}
+                                className={`${this.decorateCSS("menuItemTitle")} ${animations}`}
                               >
                                 {item.title}
                               </span>
@@ -1464,9 +1475,7 @@ class Navbar4 extends BaseNavigator {
                                 (subItem: any, subIndex: number) => this.castToString(subItem.title) && (
                                   <div
                                     key={subIndex}
-                                    className={this.decorateCSS(
-                                      "dropdownItemContainer"
-                                    )}
+                                    className={`${this.decorateCSS("dropdownItemContainer")} ${animations}`}
                                   >
                                     <div
                                       className={this.decorateCSS(
@@ -1479,11 +1488,7 @@ class Navbar4 extends BaseNavigator {
                                             "dropdownItemContent"
                                           )}
                                         >
-                                          <span
-                                            className={this.decorateCSS(
-                                              "dropdownItemTitle"
-                                            )}
-                                          >
+                                          <span className={`${this.decorateCSS("dropdownItemTitle")} ${animations}`}>
                                             {subItem.title}
                                           </span>
                                         </div>
@@ -1517,9 +1522,7 @@ class Navbar4 extends BaseNavigator {
                                             ) => this.castToString(subSubItem.title) && (
                                               <div
                                                 key={subSubIndex}
-                                                className={this.decorateCSS(
-                                                  "subdropdownItem"
-                                                )}
+                                                className={`${this.decorateCSS("subdropdownItem")} ${animations}`}
                                               >
                                                 <ComposerLink
                                                   path={subSubItem.navigate_to}
@@ -1554,17 +1557,11 @@ class Navbar4 extends BaseNavigator {
                   type="dropdown"
                   title={language.label}
                   icon={language.icon}
-                  dropdownButtonClassName={`${this.decorateCSS(
-                    "localization"
-                  )}`}
-                  dropdownLabelClassName={`${this.decorateCSS(
-                    "localizationLabel"
-                  )}`}
+                  dropdownButtonClassName={`${this.decorateCSS("localization")}`}
+                  dropdownLabelClassName={`${this.decorateCSS("localizationLabel")} ${animations}`}
                   iconClassName={this.decorateCSS("languageIcon")}
                   dropdownItemClassName={this.decorateCSS("localizationItem")}
-                  dropdownContentClassName={this.decorateCSS(
-                    "localizationContent"
-                  )}
+                  dropdownContentClassName={`${this.decorateCSS("localizationContent")} ${animations}`}
                   divider={language.showDivider}
                 />
               )}
@@ -1770,13 +1767,8 @@ class Navbar4 extends BaseNavigator {
                         type="accordion"
                         title={language.label}
                         headerClassName={`${this.decorateCSS("localization")}`}
-                        itemClassName={`${this.decorateCSS(
-                          "localizationItem"
-                        )}`}
-                        titleClassName={`${this.decorateCSS(
-                          "localizationTitle"
-                        )}`}
-                        
+                        itemClassName={`${this.decorateCSS("localizationItem")} ${animations}`}
+                        titleClassName={`${this.decorateCSS("localizationTitle")} ${animations}`}
                       />
                     )}
 

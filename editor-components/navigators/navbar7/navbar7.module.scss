@@ -214,15 +214,36 @@
     color: var(--composer-font-color-primary);
   }
 
-  .localization, .localizationItem, .localizationContent {
+  .localization {
     content: "";
+  }
+  .localizationContent{  
+    transition: all 0.3s ease;  
+    .localizationItem{
+      font-weight: normal;      
+      transition: all 0.3s ease;
+    }
+    &.animation1{
+      &:hover{
+        .localizationItem{
+          font-weight: bold;
+        }
+      }
+    }
+
   }
 
   .localizationLabel {
     color: var(--composer-font-color-primary);
     gap: var(--composer-gap-xs);
     margin-left: var(--composer-gap-sm);
-    font-weight: bold;
+    font-weight: normal;
+    transition: all 0.3s ease;
+    &.animation1{
+      &:hover{
+        font-weight: bold;
+      }
+    }
   }
 }
 
