@@ -6,7 +6,7 @@ import { ComposerIcon } from "../../composer-base-components/icon/icon";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 interface ImageGallery {
-    sectionTitle: React.ReactNode;
+    sectionTitle: string;
     images: Image[];
 }
 
@@ -33,6 +33,18 @@ interface Image {
 class ECommerce2 extends BaseECommerce {
     constructor(props?: any) {
         super(props, styles);
+        this.addProp({
+            type: "boolean",
+            key: "showAll",
+            displayer: "Show All Category",
+            value: true,
+        });
+        this.addProp({
+            type: "string",
+            key: "allText",
+            displayer: "All Button Text",
+            value: "All",
+        });
         this.addProp({
             type: "array",
             key: "imageGalleries",
@@ -94,7 +106,7 @@ class ECommerce2 extends BaseECommerce {
                                             type: "string",
                                             key: "bottomText",
                                             displayer: "Bottom Text",
-                                            value: "Quick Look",
+                                            value: "QUICK LOOK",
                                         },
                                         {
                                             type: "icon",
@@ -227,7 +239,7 @@ class ECommerce2 extends BaseECommerce {
                                             type: "string",
                                             key: "bottomText",
                                             displayer: "Bottom Text",
-                                            value: "Quick Look",
+                                            value: "QUICK LOOK",
                                         },
                                         {
                                             type: "icon",
@@ -360,7 +372,7 @@ class ECommerce2 extends BaseECommerce {
                                             type: "string",
                                             key: "bottomText",
                                             displayer: "Bottom Text",
-                                            value: "Quick Look",
+                                            value: "QUICK LOOK",
                                         },
                                         {
                                             type: "icon",
@@ -493,7 +505,7 @@ class ECommerce2 extends BaseECommerce {
                                             type: "string",
                                             key: "bottomText",
                                             displayer: "Bottom Text",
-                                            value: "Quick Look",
+                                            value: "QUICK LOOK",
                                         },
                                         {
                                             type: "icon",
@@ -626,7 +638,7 @@ class ECommerce2 extends BaseECommerce {
                                             type: "string",
                                             key: "bottomText",
                                             displayer: "Bottom Text",
-                                            value: "Quick Look",
+                                            value: "QUICK LOOK",
                                         },
                                         {
                                             type: "icon",
@@ -759,7 +771,7 @@ class ECommerce2 extends BaseECommerce {
                                             type: "string",
                                             key: "bottomText",
                                             displayer: "Bottom Text",
-                                            value: "Quick Look",
+                                            value: "QUICK LOOK",
                                         },
                                         {
                                             type: "icon",
@@ -891,7 +903,7 @@ class ECommerce2 extends BaseECommerce {
                                             type: "string",
                                             key: "bottomText",
                                             displayer: "Bottom Text",
-                                            value: "Quick Look",
+                                            value: "QUICK LOOK",
                                         },
                                         {
                                             type: "icon",
@@ -1022,7 +1034,7 @@ class ECommerce2 extends BaseECommerce {
                                             type: "string",
                                             key: "bottomText",
                                             displayer: "Bottom Text",
-                                            value: "Quick Look",
+                                            value: "QUICK LOOK",
                                         },
                                         {
                                             type: "icon",
@@ -1174,7 +1186,7 @@ class ECommerce2 extends BaseECommerce {
                                             type: "string",
                                             key: "bottomText",
                                             displayer: "Bottom Text",
-                                            value: "Quick Look",
+                                            value: "QUICK LOOK",
                                         },
                                         {
                                             type: "icon",
@@ -1326,7 +1338,7 @@ class ECommerce2 extends BaseECommerce {
                                             type: "string",
                                             key: "bottomText",
                                             displayer: "Bottom Text",
-                                            value: "Quick Look",
+                                            value: "QUICK LOOK",
                                         },
                                         {
                                             type: "icon",
@@ -1459,7 +1471,7 @@ class ECommerce2 extends BaseECommerce {
                                             type: "string",
                                             key: "bottomText",
                                             displayer: "Bottom Text",
-                                            value: "Quick Look",
+                                            value: "QUICK LOOK",
                                         },
                                         {
                                             type: "icon",
@@ -1611,7 +1623,7 @@ class ECommerce2 extends BaseECommerce {
                                             type: "string",
                                             key: "bottomText",
                                             displayer: "Bottom Text",
-                                            value: "Quick Look",
+                                            value: "QUICK LOOK",
                                         },
                                         {
                                             type: "icon",
@@ -1743,7 +1755,7 @@ class ECommerce2 extends BaseECommerce {
                                             type: "string",
                                             key: "bottomText",
                                             displayer: "Bottom Text",
-                                            value: "Quick Look",
+                                            value: "QUICK LOOK",
                                         },
                                         {
                                             type: "icon",
@@ -1896,7 +1908,7 @@ class ECommerce2 extends BaseECommerce {
                                             type: "string",
                                             key: "bottomText",
                                             displayer: "Bottom Text",
-                                            value: "Quick Look",
+                                            value: "QUICK LOOK",
                                         },
                                         {
                                             type: "icon",
@@ -2029,7 +2041,7 @@ class ECommerce2 extends BaseECommerce {
                                             type: "string",
                                             key: "bottomText",
                                             displayer: "Bottom Text",
-                                            value: "Quick Look",
+                                            value: "QUICK LOOK",
                                         },
                                         {
                                             type: "icon",
@@ -2162,7 +2174,7 @@ class ECommerce2 extends BaseECommerce {
                                             type: "string",
                                             key: "bottomText",
                                             displayer: "Bottom Text",
-                                            value: "Quick Look",
+                                            value: "QUICK LOOK",
                                         },
                                         {
                                             type: "icon",
@@ -2280,12 +2292,6 @@ class ECommerce2 extends BaseECommerce {
             value: 4,
         });
         this.addProp({
-            type: "string",
-            key: "allText",
-            displayer: "All Button Text",
-            value: "All",
-        });
-        this.addProp({
             type: "object",
             key: "arrows",
             displayer: "Arrows",
@@ -2311,32 +2317,29 @@ class ECommerce2 extends BaseECommerce {
             value: "IoIosClose",
         })
 
-        this.addProp(
-            INPUTS.BUTTON(
-                "button",
-                "Button",
-                "Load More",
-                null,
-                null,
-                null,
-                "Primary"
-            )
-        );
+        this.addProp(INPUTS.BUTTON("button", "Button", "Load More", null, null, null, "Primary"));
 
-        this.setComponentState("selectedSection", this.castToString(this.getPropValue("allText")));
-        this.setComponentState("selectedIndex", -1);
+        this.setComponentState("selectedIndex", 0);
         this.setComponentState("moreImages", 0);
-
         this.setComponentState("activePopup", null);
         this.setComponentState("popupImageIndex", 0);
+        this.setComponentState("imageCount", this.getPropValue("imageCountInitial"));
 
-        this.setComponentState("active_index", 0);
-        this.setComponentState("slider-ref", React.createRef());
     }
 
     static getName(): string {
         return "ECommerce 2";
     }
+
+    componentDidMount(): void {
+        const imageGallery = this.castToObject<ImageGallery[]>("imageGalleries");
+        let firstSectionTitle = null;
+        if (imageGallery && imageGallery.length > 0 && imageGallery[0].sectionTitle !== undefined) {
+            firstSectionTitle = this.castToString(imageGallery[0].sectionTitle);
+        }
+        this.setComponentState("selectedSection", firstSectionTitle);
+    }
+
     handleSectionClick(sectionTitle: React.ReactNode, index: number): void {
         this.setComponentState("selectedSection", this.castToString(sectionTitle));
         this.setComponentState("selectedIndex", index);
@@ -2391,7 +2394,6 @@ class ECommerce2 extends BaseECommerce {
         this.setComponentState("popupImageIndex", 0);
     };
 
-
     render() {
         const imageGallery = this.castToObject<ImageGallery[]>("imageGalleries");
         const currentImageCount = this.getComponentState("imageCount");
@@ -2401,6 +2403,9 @@ class ECommerce2 extends BaseECommerce {
         const selectedIndex = this.getComponentState("selectedIndex");
         const allText = this.castToString(this.getPropValue("allText"));
         const arrows = this.castToObject<ArrowItem>("arrows");
+        const showAll = this.getPropValue("showAll");
+        const button: INPUTS.CastedButton =
+            this.castToObject<INPUTS.CastedButton>("button");
 
         if (currentImageCount !== initialImageCount + moreImages) {
             this.setComponentState("imageCount", initialImageCount + moreImages);
@@ -2418,9 +2423,6 @@ class ECommerce2 extends BaseECommerce {
         const selectedImages =
             selectedIndex === -1 ? allImages : imageGallery[selectedIndex].images;
 
-        const button: INPUTS.CastedButton =
-            this.castToObject<INPUTS.CastedButton>("button");
-
         const filteredImages = imageGallery
             .filter(
                 (gallery) =>
@@ -2437,94 +2439,111 @@ class ECommerce2 extends BaseECommerce {
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <div className={this.decorateCSS("section-title-container")}>
-                        <button
-                            className={`${this.decorateCSS("section-title")} ${selectedSection === allText
-                                ? this.decorateCSS("active-section-title") : ""}`}
-                            onClick={() => this.handleSectionClickAll()}>
-                            {allText}
-                        </button>
+                    <Base.Row className={this.decorateCSS("section-title-container")}>
+                        {showAll && allText && (
+                            <button
+                                className={`${this.decorateCSS("section-title")}
+                                           ${selectedIndex === -1 ? this.decorateCSS("active-section-title") : ""
+                                    }`}
+                                onClick={() => this.handleSectionClickAll()}>
+                                {allText}
+                            </button>
+                        )}
                         {imageGallery.map((item, index) => {
-                            const title = this.castToString(item.sectionTitle);
-                            const isActive = title === selectedSection;
+                            if (!item.sectionTitle) return null;
                             return (
-                                <button
-                                    key={index}
-                                    className={`${this.decorateCSS("section-title")} ${isActive ? this.decorateCSS("active-section-title") : ""
-                                        }`}
-                                    onClick={() =>
-                                        this.handleSectionClick(item.sectionTitle, index)
-                                    }>
-                                    {item.sectionTitle}
-                                </button>
+                                <>
+                                    {this.castToString(item.sectionTitle) && (
+                                        <button
+                                            key={index}
+                                            className={`${this.decorateCSS("section-title")} ${index === selectedIndex ? this.decorateCSS("active-section-title") : "" // Burası zaten selectedIndex kullanıyordu
+                                                }`}
+                                            onClick={() =>
+                                                this.handleSectionClick(item.sectionTitle, index)
+                                            }>
+                                            {item.sectionTitle}
+                                        </button>
+                                    )}
+                                </>
                             );
                         })}
-                    </div>
+                    </Base.Row>
                     <Base.ListGrid
                         gridCount={{ pc: this.getPropValue("itemCount") }}
                         className={this.decorateCSS("grid")}>
-                        {filteredImages.map((image, imgIndex) => (
-                            <div
-                                key={imgIndex}
-                                className={this.decorateCSS("card-container")}>
-                                <div className={this.decorateCSS("image-container")}>
-                                    <div
-                                        className={`${this.decorateCSS(
-                                            "image-bottom"
-                                        )} animate__animated animate__fadeInUp`}>
-                                        <div
-                                            className={this.decorateCSS("image-bottom-text")}
-                                            onClick={(e) => this.handleQuickLookClick(image, e)}>
-                                            {this.castToString(image.bottomText)}
+                        {filteredImages.map((image, imgIndex) => {
+                            const shouldRenderCard =
+                                this.castToString(image.title) ||
+                                this.castToString(image.price) ||
+                                this.castToString(image.subTitle) ||
+                                image.cardImage ||
+                                this.castToString(image.bottomText) ||
+                                image.bottomIcon ||
+                                this.castToString(image.leftText) ||
+                                this.castToString(image.rightText);
+
+                            return (
+                                shouldRenderCard && (
+                                    <div key={imgIndex} className={this.decorateCSS("card-container")}>
+                                        <div className={this.decorateCSS("image-container")}>
+                                            <div
+                                                className={`${this.decorateCSS("image-bottom")} animate__animated animate__fadeInUp`}>
+                                                {this.castToString(image.bottomText) && (
+                                                    <div
+                                                        className={this.decorateCSS("image-bottom-text")}
+                                                        onClick={(e) => this.handleQuickLookClick(image, e)}>
+                                                        {image.bottomText}
+                                                    </div>
+                                                )}
+                                                {image.bottomIcon && (
+                                                    <div className={this.decorateCSS("image-bottom-icon")}>
+                                                        <ComposerIcon name={image.bottomIcon} />
+                                                    </div>
+                                                )}
+                                            </div>
+                                            <div className={this.decorateCSS("image-text")}>
+                                                {this.castToString(image.leftText) && (
+                                                    <div className={this.decorateCSS("leftText")}>
+                                                        {image.leftText}
+                                                    </div>
+                                                )}
+                                                {this.castToString(image.rightText) && (
+                                                    <div className={this.decorateCSS("rightText")}>
+                                                        {image.rightText}
+                                                    </div>
+                                                )}
+                                            </div>
+                                            {image.cardImage && (
+                                                <img
+                                                    alt={image.cardImage}
+                                                    src={image.cardImage}
+                                                    className={this.decorateCSS("image")}
+                                                />
+                                            )}
                                         </div>
-                                        <div className={this.decorateCSS("image-bottom-icon")}>
-                                            <ComposerIcon name={image.bottomIcon} />
+                                        <div className={this.decorateCSS("text-container")}>
+                                            {this.castToString(image.title) && (
+                                                <div className={this.decorateCSS("title")}>
+                                                    {image.title}
+                                                </div>
+                                            )}
+                                            {this.castToString(image.price) && (
+                                                <div className={this.decorateCSS("price")}>
+                                                    {image.price}
+                                                </div>
+                                            )}
+                                            {this.castToString(image.subTitle) && (
+                                                <div className={`${this.decorateCSS("subTitle")} animate__animated animate__fadeInLeft`}>
+                                                    {image.subTitle}
+                                                </div>
+                                            )}
                                         </div>
                                     </div>
-                                    <div className={this.decorateCSS("image-text")}>
-                                        {image.leftText && (
-                                            <div className={this.decorateCSS("leftText")}>
-                                                {image.leftText}
-                                            </div>
-                                        )}
-                                        {image.rightText && (
-                                            <div className={this.decorateCSS("rightText")}>
-                                                {image.rightText}
-                                            </div>
-                                        )}
-                                    </div>
-                                    {image.cardImage && (
-                                        <img
-                                            alt={image.cardImage}
-                                            src={image.cardImage}
-                                            className={this.decorateCSS("image")}
-                                        />
-                                    )}
-                                </div>
-                                <div className={this.decorateCSS("text-container")}>
-                                    {image.title && (
-                                        <div className={this.decorateCSS("title")}>
-                                            {image.title}
-                                        </div>
-                                    )}
-                                    {image.price && (
-                                        <div className={this.decorateCSS("price")}>
-                                            {image.price}
-                                        </div>
-                                    )}
-                                    {image.subTitle && (
-                                        <div
-                                            className={`${this.decorateCSS(
-                                                "subTitle"
-                                            )} animate__animated animate__fadeInLeft`}>
-                                            {image.subTitle}
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
-                        ))}
+                                )
+                            );
+                        })}
                     </Base.ListGrid>
-                    {currentImageCount < selectedImages.length && (
+                    {currentImageCount < selectedImages.length && this.castToString(button.text) && (
                         <div className={this.decorateCSS("button-wrapper")}>
                             <Base.Button
                                 buttonType={button.type}
@@ -2539,36 +2558,41 @@ class ECommerce2 extends BaseECommerce {
                             <div className={this.decorateCSS("popup-content")} onClick={this.closePopup}>
                                 <div className={this.decorateCSS("popup-image-container")} onClick={(e) => e.stopPropagation()}>
                                     <img src={this.getComponentState("activePopup").popupImages[this.getComponentState("popupImageIndex")].popupImg}
-                                        alt="Popup Image"
-                                    />
+                                        alt="Popup Image" className={this.decorateCSS("popup-image")} />
                                     {this.getComponentState("activePopup").popupImages.length > 1 && (
                                         <>
-                                            <button
-                                                className={this.decorateCSS("prevArrow")}
-                                                onClick={this.handlePrevImage}>
-                                                <ComposerIcon
-                                                    name={arrows.prevArrow}
-                                                    propsIcon={{ className: this.decorateCSS("arrow") }}
-                                                />
-                                            </button>
-                                            <button
-                                                className={this.decorateCSS("nextArrow")}
-                                                onClick={this.handleNextImage}>
-                                                <ComposerIcon
-                                                    name={arrows.nextArrow}
-                                                    propsIcon={{ className: this.decorateCSS("arrow") }}
-                                                />
-                                            </button>
+                                            {arrows.prevArrow && (
+                                                <button
+                                                    className={this.decorateCSS("prevArrow")}
+                                                    onClick={this.handlePrevImage}>
+                                                    <ComposerIcon
+                                                        name={arrows.prevArrow}
+                                                        propsIcon={{ className: this.decorateCSS("arrow") }}
+                                                    />
+                                                </button>
+                                            )}
+                                            {arrows.nextArrow && (
+                                                <button
+                                                    className={this.decorateCSS("nextArrow")}
+                                                    onClick={this.handleNextImage}>
+                                                    <ComposerIcon
+                                                        name={arrows.nextArrow}
+                                                        propsIcon={{ className: this.decorateCSS("arrow") }}
+                                                    />
+                                                </button>
+                                            )}
                                         </>
                                     )}
-                                    <button
-                                        className={this.decorateCSS("popup-close")}
-                                        onClick={this.closePopup}>
-                                        <ComposerIcon
-                                            name={this.getPropValue("closeIcon")}
-                                            propsIcon={{ className: this.decorateCSS("arrow") }}
-                                        />
-                                    </button>
+                                    {this.getPropValue("closeIcon") && (
+                                        <button
+                                            className={this.decorateCSS("popup-close")}
+                                            onClick={this.closePopup}>
+                                            <ComposerIcon
+                                                name={this.getPropValue("closeIcon")}
+                                                propsIcon={{ className: this.decorateCSS("arrow") }}
+                                            />
+                                        </button>
+                                    )}
                                 </div>
                             </div>
                         </div>
