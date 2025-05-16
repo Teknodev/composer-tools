@@ -1414,17 +1414,9 @@ class Navbar1 extends BaseNavigator {
                   type="dropdown"
                   title={language.label}
                   icon={language.icon}
-<<<<<<< HEAD
-                  dropdownButtonClassName={this.decorateCSS("localization")}
                   dropdownLabelClassName={`${this.decorateCSS("localizationLabel")}  ${animations}`}
                   iconClassName={`${this.decorateCSS("languageIcon")} ${animations}`}
-=======
                   dropdownButtonClassName={`${this.decorateCSS("localization")} ${language.showLocalizationAlways && this.decorateCSS("active")}`}
-                  dropdownLabelClassName={`${this.decorateCSS(
-                    "localizationLabel"
-                  )}`}
-                  iconClassName={this.decorateCSS("languageIcon")}
->>>>>>> main
                   dropdownItemClassName={this.decorateCSS("localizationItem")}
                   dropdownContentClassName={`${this.decorateCSS("localizationContent")} ${animations}`}
                   divider={language.showDivider}

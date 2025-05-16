@@ -391,13 +391,8 @@ class Navbar2 extends BaseNavigator {
                     >
                       <ComposerLink path={item.nav_navigate_to}>
                         <div className={this.decorateCSS("menuItem")}>
-<<<<<<< HEAD
                           <span className={`${this.decorateCSS("menuItemTitle")} ${animations}`}>
-                            {item.title}
-=======
-                          <span className={this.decorateCSS("menuItemTitle")}>
                             {item.nav_title}
->>>>>>> main
                           </span>
                           {item.menuType === "Dropdown" && (
                             <ComposerIcon
@@ -427,17 +422,8 @@ class Navbar2 extends BaseNavigator {
                                           "dropdownItemContent"
                                         )}
                                       >
-<<<<<<< HEAD
                                         <span className={`${this.decorateCSS("dropdownItemTitle")} ${animations}`}>
-                                          {subItem.title}
-=======
-                                        <span
-                                          className={this.decorateCSS(
-                                            "dropdownItemTitle"
-                                          )}
-                                        >
                                           {subItem.nav_title}
->>>>>>> main
                                         </span>
                                       </div>
                                     </ComposerLink>

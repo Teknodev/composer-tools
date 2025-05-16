@@ -1516,23 +1516,13 @@ class Navbar6 extends BaseNavigator {
                   ))}
                   {(language.showLanguage && !language.showLocalizationAlways) &&
                   <ComposerLanguage
-<<<<<<< HEAD
                     type="accordion"
                     title="name"
                     headerClassName={this.decorateCSS("languageAccordion")}
                     itemClassName={this.decorateCSS("languageAccordionItem")}
                     titleClassName={`${this.decorateCSS("languageAccordionTitle")} ${animations}`}
                   />
-=======
-                  type="accordion"
-                  title="name"
-                  headerClassName={this.decorateCSS("languageAccordion")}
-                  itemClassName={this.decorateCSS("languageAccordionItem")}
-                  titleClassName={this.decorateCSS("languageAccordionTitle")}
-                />
                   }
-
->>>>>>> main
                 </nav>
 
                 {icons.length > 0 && (
