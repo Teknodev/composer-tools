@@ -1039,6 +1039,16 @@ class PricingMultipleTwo extends BasePricingTable {
         },
       ],
     });
+    this.addProp({
+      type:"multiSelect",
+      key: "animations",
+      displayer: "Animations",
+      value: ["animation1", "animation2", "animation3"],
+      additionalParams:{
+        selectItems:["animation1", "animation2", "animation3"]
+      }
+    })
+
     this.setActiveTab(0);
     this.setActivePlan(0);
   }
@@ -1089,7 +1099,9 @@ class PricingMultipleTwo extends BasePricingTable {
                   <>
                     <div className={this.decorateCSS("left-page")}>
                       {plan.map((tab: any, index: number) => (
-                        <div className={this.decorateCSS("listArray") + " " + (this.getComponentState("activePlan") == index && this.decorateCSS("active"))} onClick={() => this.setActivePlan(index)} key={index}>
+                        <div className={`${this.decorateCSS("listArray") + " " + (this.getComponentState("activePlan") == index && this.decorateCSS("active"))} 
+                        ${this.getPropValue("animations")  && this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ")} `} 
+                        onClick={() => this.setActivePlan(index)} key={index}>
                           <div className={this.decorateCSS("plan-icons")}>
                             <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={planIndex == index ? tab.check_icon : tab.circle_icon}></ComposerIcon>
                             <Base.P className={this.decorateCSS("plan")}> {tab.plan}</Base.P>
@@ -1103,7 +1115,8 @@ class PricingMultipleTwo extends BasePricingTable {
                       ))}
                     </div>
                     {rightItemExist && (
-                      <div className={this.decorateCSS("right-page")}>
+                      <div className={`${this.decorateCSS("right-page")} ${this.getPropValue("animations")  
+                      && this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ")} `}>
                         <Base.VerticalContent className={this.decorateCSS("content")}>
                           {plan[planIndex].right_items.badge && this.castToString(plan[planIndex].right_items.badge) && <Base.H5 className={this.decorateCSS("badge")}>{plan[planIndex].right_items.badge}</Base.H5>}
                           {this.castToString(plan[planIndex].right_items.title) && <Base.H2 className={this.decorateCSS("title")}>{plan[planIndex].right_items.title}</Base.H2>}

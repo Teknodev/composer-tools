@@ -323,6 +323,15 @@ class PricingTable3 extends BasePricingTable {
         },
       ],
     });
+    this.addProp({
+      type:"multiSelect",
+      key: "animations",
+      displayer: "Animations",
+      value: ["animation1", "animation2"],
+      additionalParams:{
+        selectItems:["animation1", "animation2"]
+      }
+    })
   }
 
   static getName(): string {
@@ -347,11 +356,11 @@ class PricingTable3 extends BasePricingTable {
                 {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                 {descExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
                 {buttonExist && (
-                  <ComposerLink path={featuredButton.url}>
-                    <div className={this.decorateCSS("featured-button-container")}>
-                      <Base.Button buttonType={featuredButton.type}>{featuredButton.text}</Base.Button>
-                    </div>
-                  </ComposerLink>
+                      <Base.Button buttonType={featuredButton.type} className={this.decorateCSS("button")}>
+                        <ComposerLink path={featuredButton.url}>
+                          {featuredButton.text}
+                        </ComposerLink>
+                      </Base.Button>  
                 )}
               </Base.VerticalContent>
             )}
@@ -362,10 +371,11 @@ class PricingTable3 extends BasePricingTable {
                   const titleExist = this.castToString(card.title);
 
                   return (
-                    <div key={idx} className={`${this.decorateCSS("card-container")} ${showTag && this.decorateCSS("active")}`}>
+                    <div key={idx} className={`${this.decorateCSS("card-container")} ${showTag && this.decorateCSS("active")} ${this.getPropValue("animations") &&
+                          this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ")}`}>
                       <Base.VerticalContent className={this.decorateCSS("card")}>
                         {showTag && this.castToString(card.tagSettings.tag) && <div className={this.decorateCSS("tag")}>{card.tagSettings.tag}</div>}
-
+                        <Base.VerticalContent className={`${this.decorateCSS("card-content")} }`}>
                         <Base.VerticalContent className={this.decorateCSS("header")}>
                           {card.icon && (
                             <ComposerIcon
@@ -404,6 +414,7 @@ class PricingTable3 extends BasePricingTable {
                             </ComposerLink>
                           </div>
                         )}
+                        </Base.VerticalContent>
                       </Base.VerticalContent>
                     </div>
                   );

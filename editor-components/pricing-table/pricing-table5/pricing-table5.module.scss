@@ -1,4 +1,9 @@
 @use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss" as *;
+@keyframes bounceText {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+  100% { transform: translateY(0); }
+}
 
 .container {
   .max-content {
@@ -58,6 +63,34 @@
           box-shadow: var(--box-shadow-active);
           color: var(--composer-font-color-primary);
           cursor: pointer;
+          position: relative;
+          overflow: hidden;
+          &::before{
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--composer-primary-color);
+            transition: width 0.8s ease-in-out;
+           
+          }
+          &.animation1:hover{
+            &::before{
+              width: 100%;
+            }
+          }
+          &.animation2:hover{
+            .plan-price-box{
+              .labels{
+                animation: bounceText 0.8s ease-in-out infinite;
+              }
+              .plan-button{
+                content: "";
+              }
+            }
+          }
 
           &.active {
             background: var(--composer-primary-color);
