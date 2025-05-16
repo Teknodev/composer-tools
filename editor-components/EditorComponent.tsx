@@ -852,6 +852,12 @@ export abstract class Component
   initializeProp(prop: TypeUsableComponentProps) {
     this.attachPropId(prop);
     this.attachValueGetter(prop);
+
+    const isComplexProp = prop.type == "array" || prop.type == "object";
+    
+    if (isComplexProp) {
+      prop.value.forEach(this.initializeProp);
+    }
   }
 }
 
