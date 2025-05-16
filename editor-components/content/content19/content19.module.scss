@@ -53,6 +53,7 @@
       margin: 0;
       font-size: 1rem;
       transform: translateX(0) !important;
+      text-align: center;
       &::before {
         display: none;
       }
@@ -60,6 +61,7 @@
     .title {
       margin: 0;
       font-size: 2rem;
+      text-align: center;
     }
     .text {
       text-align: center;
