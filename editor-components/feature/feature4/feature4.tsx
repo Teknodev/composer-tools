@@ -420,6 +420,8 @@ class Feature4 extends BaseFeature {
 
     const imageOverlay = !!this.getPropValue("imageOverlay");
 
+    const subtitleType = Base.getSectionSubTitleType();
+
     return (
       <Base.Container
         className={this.decorateCSS("container")}
@@ -431,7 +433,7 @@ class Feature4 extends BaseFeature {
                 {subtitleExist && (
                   <Base.SectionSubTitle className={`
                     ${this.decorateCSS("section-subtitle")}
-                    ${this.getPropValue("backgroundImage") ? this.decorateCSS("black") : ""}
+                    ${this.getPropValue("backgroundImage") && (subtitleType !== "badge") ? this.decorateCSS("black") : ""}
                   `}>
                     {this.getPropValue("subtitle")}
                   </Base.SectionSubTitle>
@@ -481,72 +483,71 @@ class Feature4 extends BaseFeature {
                         </div>
                       )}
                       {titleExist && (
-                        <Base.H3 className={this.decorateCSS("title")}>
+                        <Base.H3 className={`${this.decorateCSS("title")} 
+                          ${this.getPropValue("backgroundImage") && this.decorateCSS("title-with-bg")} }`}>
                           {card.title}
                         </Base.H3>
                       )}
                       {subtitleExist && (
-                        <Base.P className={this.decorateCSS("subtitle")}>
+                        <Base.P className={`${this.decorateCSS("subtitle")} 
+                        ${this.getPropValue("backgroundImage") && this.decorateCSS("subtitle-with-bg")} }`}>
                           {card.subtitle}
                         </Base.P>
                       )}
                     </Base.VerticalContent>
 
-                    {(descExist || card?.buttons?.length > 0) && (
-                      <div
-                        className={this.decorateCSS("overlay")}
-                        style={{ backgroundImage: `url(${card.image})` }}>
-                        <Base.VerticalContent
-                          className={`
-                            ${this.decorateCSS("overlay-content")}
+                    {
+                      (descExist || card?.buttons?.length > 0) && (
+                        <div
+                          className={this.decorateCSS("overlay")}
+                          style={{ backgroundImage: `url(${card.image})` }}>
+                          <Base.VerticalContent className={`${this.decorateCSS("overlay-content")}
                             ${imageOverlay ? this.decorateCSS("apply-overlay") : ""}`}>
-                          {descExist && (
-                            <Base.P
-                              className={`
+                            {descExist && (
+                              <Base.P
+                                className={`
                                 ${this.decorateCSS("long-text")}
                                 ${card.image || imageOverlay ? this.decorateCSS("image-or-overlay-exist") : ""}
                               `}
-                            >
-                              {card.description}
-                            </Base.P>
-                          )}
+                              >
+                                {card.description}
+                              </Base.P>
+                            )}
 
-                          {card?.buttons?.length > 0 && (
-                            <div className={this.decorateCSS("overlay-links-container")}>
-                              {card?.buttons.map(
-                                (item: Button, index: number) => {
-                                  if (!this.castToString(item.text)) return null;
-
-                                  return (
-                                    <Base.Button
-                                      buttonType={"Tertiary"}
-                                      key={index}
-                                      className={`
-                                        ${this.decorateCSS("overlay-link")}
-                                        ${card.image || imageOverlay ? this.decorateCSS("image-or-overlay-exist") : ""}
-                                      `}
-                                    >
-                                      <ComposerLink path={item.page}>
-                                        {item.text}
-                                      </ComposerLink>
-                                    </Base.Button>
-                                  );
-                                }
-                              )}
-                            </div>
-                          )}
-                        </Base.VerticalContent>
-                      </div>
-                    )}
+                            {card?.buttons?.length > 0 && (
+                              <div className={this.decorateCSS("overlay-links-container")}>
+                                {card?.buttons.map(
+                                  (item: Button, index: number) => {
+                                    if (!this.castToString(item.text)) return null;
+                                    {
+                                      return (
+                                        <Base.Button
+                                          buttonType={"Tertiary"}
+                                          key={index}
+                                          className={`${this.decorateCSS("overlay-link")} 
+                                              ${card.image || imageOverlay ? this.decorateCSS("image-or-overlay-exist") : ""}`}>
+                                          <ComposerLink path={item.page}>
+                                            {item.text}
+                                          </ComposerLink>
+                                        </Base.Button>
+                                      );
+                                    }
+                                  }
+                                )}
+                              </div>
+                            )}
+                          </Base.VerticalContent>
+                        </div>
+                      )
+                    }
                   </div>
                 );
               }
-
               return null;
             })}
           </Base.ListGrid>
         </Base.MaxContent>
-      </Base.Container>
+      </Base.Container >
     );
   }
 }

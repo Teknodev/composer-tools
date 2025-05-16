@@ -11,6 +11,7 @@
       .featured-card {
         display: flex;
         flex-direction: column;
+        justify-content: center;
         gap: var(--composer-gap-sm);
 
         .section-subtitle {
@@ -20,6 +21,7 @@
 
         .black {
           color: black;
+          max-width: 90%;
           &::before {
             background-color: black;
           }
@@ -50,14 +52,12 @@
 
       .card-item-count {
         position: relative;
-        background-color: color-mix(
-          in srgb,
-          var(--composer-html-background),
-          var(--composer-font-color-primary) 5%
-        );
+        background-color: transparent;
+        border: 1px solid var(--composer-tertiary-color);
 
         &:hover .overlay {
           opacity: 1;
+          border: 0.5px solid var(--composer-tertiary-color);
         }
 
         &:hover .vertical {
@@ -73,7 +73,7 @@
           left: 0;
           width: 100%;
           height: 100%;
-          color: white;
+          color: var(--text-color-white);
           text-align: center;
           z-index: 1;
           opacity: 0;
@@ -97,6 +97,11 @@
             font-size: 1.5rem;
             color: var(--composer-font-color-primary);
             text-align: center;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            line-clamp: 5;
+            -webkit-line-clamp: 5;
 
             &.image-or-overlay-exist {
               color: var(--text-color-white);
@@ -122,11 +127,12 @@
           padding: var(--composer-gap-lg) var(--composer-gap-xl);
           transition: opacity 0.6s ease;
           gap: var(--composer-gap-sm);
+          justify-content: center;
 
           .icon-container {
             background-color: var(--composer-primary-color);
-            width: 75px;
-            height: 75px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
@@ -134,8 +140,8 @@
 
             .icon {
               margin: 0;
-              width: 50px;
-              height: 50px;
+              width: 30px;
+              height: 30px;
               color: var(--composer-font-color-secondary);
             }
           }
@@ -144,12 +150,18 @@
             color: var(--composer-font-color-primary);
             margin-top: 0;
             margin-bottom: 0;
+            &.title-with-bg {
+              color: #000000;
+            }
           }
 
           .subtitle {
             color: var(--composer-font-color-primary);
             margin-top: 0;
             margin-bottom: 0;
+            &.subtitle-with-bg {
+              color: #000000;
+            }
           }
         }
       }
