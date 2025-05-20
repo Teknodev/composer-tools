@@ -13,10 +13,11 @@
       }
 
       .item-div {
+        gap:var(--composer-gap-lg);
         .card-item-count {
           transition-duration: 0.8s;
           &.animation1:hover{
-            transform: scale(1.1);
+            transform: scale(1.05);
           }
           &.animation2:hover{
             transform: translateY(calc(-1 * var(--composer-gap-sm)));

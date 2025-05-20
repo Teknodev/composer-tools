@@ -136,6 +136,11 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 animation: bounceText 0.8s ease-in-out infinite;
               }
             }
+            &.animation4:hover{
+              .item-price{
+                transform: scale(1.05);
+              }
+            }
 
             .plan-icons {
               display: flex;
@@ -173,6 +178,8 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               justify-content: flex-end;
               flex-grow: 1;
               color: var(--composer-font-color-primary);
+              transform: scale(1);
+              transition: all 0.8s ease;
               .price,
               .per {
                 padding: var(--composer-gap-xs);
@@ -213,6 +220,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             padding: 0;
             max-width: 100%;
             margin-top: var(--composer-gap-md);
+            gap: var(--composer-gap-md);
 
             .badge {
               background-color: transparent;

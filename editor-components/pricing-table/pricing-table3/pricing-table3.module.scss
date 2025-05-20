@@ -63,6 +63,17 @@
       }
     }
   }
+  &.animation3:hover{
+    .card{
+      .card-content{
+        .header{
+          .price{
+            transform: scale(1.1);
+          }
+        }
+      }
+    }
+  }
 }
 
 .card-container.active {
@@ -104,6 +115,8 @@
       .price {
         margin: 0;
         color: var(--composer-font-color-primary);
+        transform: scale(1);
+        transition: all 0.8s ease;
       }
     }
   

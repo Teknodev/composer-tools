@@ -54,6 +54,15 @@
               }
             }
           }
+          &.animation3:hover{
+            .column-button-container{
+              .column-button{
+                >blinkpage{
+                  transform: scale(1.1);
+                }
+              }
+            }
+          }
           .title-container {
             margin: 0;
             height: var(--composer-gap-xl);
@@ -121,6 +130,9 @@
           }
           .column-button{
             content: "";
+            >blinkpage{
+              transition: all 0.8s ease;
+            }
           }
         }
       }

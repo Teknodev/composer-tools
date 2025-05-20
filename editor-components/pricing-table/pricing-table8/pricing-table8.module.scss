@@ -48,6 +48,13 @@
               }
             }
           }
+          &.animation3:hover{
+            .pricing{
+              .icon{
+                transform: rotate(360deg);
+              }
+            }
+          }
 
           cursor: pointer;
           .pricing {
@@ -112,6 +119,8 @@
               left: 42%;
               border-radius: 50%;
               border: 2px solid var(--composer-secondary-color);
+              transform: rotate(0deg);
+              transition: all 0.8s ease;
             }
           }
           &.middle-card {

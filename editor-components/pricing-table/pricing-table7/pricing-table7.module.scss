@@ -1,4 +1,10 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+$transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
+@keyframes bounceText {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+  100% { transform: translateY(0); }
+}
 
 .container {
   .max-content {
@@ -115,13 +121,18 @@
         justify-content: center;
         transition: 0.5s;
         &.animation1:hover {
-          box-shadow: var(--box-shadow-active);
-          transform: translateY(calc(-1 * var(--composer-gap-sm)));
+          .price{
+            box-shadow: var(--box-shadow-active);
+            transform: translateY(calc(-1 * var(--composer-gap-sm)));
+          }          
         }
         &.animation2:hover {
           .price{
-            .divider {
-              background-color:var(--composer-primary-color);
+            .dividers{
+              .divider2 {
+                width: 100%;
+                display:flex
+              }
             }
           }
         }
@@ -132,7 +143,13 @@
             }
           }
         }
-
+        &.animation4:hover{
+          .price{
+            .price-text{
+              animation: bounceText 0.8s ease-in-out infinite;
+            }
+          }
+        }
         .price {
           box-shadow: var(--box-shadow-active);
           border-radius: var(--composer-border-radius-xl);
@@ -142,6 +159,7 @@
           position: relative;
           gap: var(--composer-gap-md);
           background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+          transition: 0.5s;
           .popular-box {
             box-shadow: var(--box-shadow-active);
             width: fit-content;
@@ -190,13 +208,26 @@
             font-weight: bold;
             color: var(--composer-font-color-primary);
           }
-          .divider{
+          .dividers{
+            width: 100%;
+            position: relative;
+          }
+          .divider, .divider2{
             background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
             border-radius: var(--composer-border-radius-md);
             width: 100%;
             margin: 0;
-            position: relative;
+            position: absolute;
+            top: 0;
+            left: 0;
             transition: 0.8s;
+            z-index: 1;
+            height: 2px;
+          }
+          .divider2{
+            z-index: 2;
+            width: 0px;
+            background-color:var(--composer-primary-color);
           }
           .description {
             color: var(--composer-tertiary-color);

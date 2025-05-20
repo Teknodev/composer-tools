@@ -506,9 +506,9 @@ class PricingMultiple extends BasePricingTable {
       type:"multiSelect",
       key: "animations",
       displayer: "Animations",
-      value: ["animation1","animation2"],
+      value: ["animation1","animation2", "animation3"],
       additionalParams:{
-        selectItems:["animation1","animation2"]
+        selectItems:["animation1","animation2", "animation3"]
       }
     })
   }

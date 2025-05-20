@@ -327,13 +327,12 @@ class PricingTable3 extends BasePricingTable {
       type:"multiSelect",
       key: "animations",
       displayer: "Animations",
-      value: ["animation1", "animation2"],
+      value: ["animation1", "animation2", "animation3"],
       additionalParams:{
-        selectItems:["animation1", "animation2"]
+        selectItems:["animation1", "animation2", "animation3"]
       }
     })
   }
-
   static getName(): string {
     return "Pricing 3";
   }
@@ -346,6 +345,7 @@ class PricingTable3 extends BasePricingTable {
     const buttonExist = this.castToString(featuredButton.text);
     const hasCards = cards?.length > 0;
     const hasVisibleTag = cards?.some((card) => card.tagSettings.showTag);
+    const animations = this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ");
 
     return (
       <Base.Container className={`${this.decorateCSS("container")} ${!hasVisibleTag && this.decorateCSS("container-alternate")}`}>
@@ -371,8 +371,7 @@ class PricingTable3 extends BasePricingTable {
                   const titleExist = this.castToString(card.title);
 
                   return (
-                    <div key={idx} className={`${this.decorateCSS("card-container")} ${showTag && this.decorateCSS("active")} ${this.getPropValue("animations") &&
-                          this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ")}`}>
+                    <div key={idx} className={`${this.decorateCSS("card-container")} ${showTag && this.decorateCSS("active")} ${this.getPropValue("animations") && animations}`}>
                       <Base.VerticalContent className={this.decorateCSS("card")}>
                         {showTag && this.castToString(card.tagSettings.tag) && <div className={this.decorateCSS("tag")}>{card.tagSettings.tag}</div>}
                         <Base.VerticalContent className={`${this.decorateCSS("card-content")} }`}>

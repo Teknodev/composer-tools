@@ -48,6 +48,15 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 }
               }
             }
+            &.animation3:hover{
+              .card-up{
+                .card-up-texts{
+                  .price-pricing{
+                    transform: scale(1.1);
+                  }
+                }
+              }
+            }
 
             &.focused {
               scale: 1.06;
@@ -138,6 +147,8 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
       .price-pricing {
         margin-top: var(--composer-gap-md);
         color: var(--composer-font-color-primary);
+        transform: scale(1);
+        transition: all 0.8s ease;
       }
     }
   }
