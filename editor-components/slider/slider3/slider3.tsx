@@ -1,7 +1,5 @@
 import * as React from "react";
 import { BaseSlider } from "../../EditorComponent";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import styles from "./slider3.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";

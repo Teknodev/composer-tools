@@ -4,8 +4,6 @@ import styles from "./header32.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 
 type Card = {
   backgroundImage: string;
