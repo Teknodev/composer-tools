@@ -36,7 +36,7 @@ class Testimonials14 extends Testimonials {
                             type: "image",
                             key: "authorImage",
                             displayer: "User Image",
-                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/682c3b012bb4c4002cf82575?alt=media"
+                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/682c7b9e2bb4c4002cf86e1b?alt=media"
                         },
                         {
                             type: "icon",
