@@ -425,7 +425,8 @@ export enum CATEGORIES {
   HTTP_CODES = "HTTPCodes",
   BANNER = "banner",
   SOCIAL = "social",
-  SOCIALWIDGET = "socialWidget"
+  SOCIALWIDGET = "socialWidget",
+  ECOMMERCE = "ecommerce",
 }
 
 export function generateId(key: string): string {
@@ -737,6 +738,16 @@ export abstract class Component
     if (this.getProp(prop.key)) return;
     this.initializeProp(prop);
     this.state.componentProps.props.push(prop);
+    EventEmitter.emit(EVENTS.RENDER_CONTENT_TAB)
+  }
+
+  removeProp(key: string) {
+    this.shadowProps = this.shadowProps.filter((el) => el.key !== key);
+    this.state.componentProps.props = this.state.componentProps.props.filter(
+      (el: any) => el.key !== key
+    );
+    
+    EventEmitter.emit(EVENTS.RENDER_CONTENT_TAB)
   }
 
   setProp(key: string, value: any): void {
@@ -914,15 +925,13 @@ export abstract class Component
   }
 
   insertForm(name: string, data: Object) {
-    const project = getProjectHook()._id;
-
     const inputData: { [key: string]: any } = {};
     const entries = Object.entries(data);
     entries.forEach(([_, value], index) => {
       inputData[`input_${index}`] = value;
     });
 
-    EventEmitter.emit(EVENTS.INSERT_FORM, { name, data: inputData, project });
+    EventEmitter.emit(EVENTS.INSERT_FORM, { name, data: inputData });
   }
 
   /**
@@ -1057,3 +1066,7 @@ export abstract class BaseSocialWidget extends Component {
 export function generateAutoClassName(componentId: string, section: string){
   return `auto-generate-${componentId}-${section}`;
 };
+
+export abstract class BaseECommerce extends Component {  
+  static category = CATEGORIES.ECOMMERCE;
+}

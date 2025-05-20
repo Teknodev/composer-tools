@@ -41,14 +41,13 @@
         }
 
         .menuItemTitle {
-          font-size: 1rem;
           font-weight: 500;
           transition: all 0.3s ease;
           color: var(--composer-font-color-primary);
         }
 
         .dropdownIcon {
-          font-size: 1.2rem;
+          font-size: calc(1.5 * var(--project-font-size));
           color: var(--composer-font-color-primary);
           transition: all 0.3s ease;
         }
@@ -96,7 +95,7 @@
                 align-items: center;
 
                 .dropdownItemTitle {
-                  font-size: 1rem;
+                  font-size: calc(1 * var(--project-font-size));
                   font-weight: 400;
                   color: var(--composer-font-color-primary);
                   transition: color 0.3s ease;
@@ -127,7 +126,7 @@
             }
 
             .rightIcon {
-              font-size: 1rem;
+              font-size: calc(1 * var(--project-font-size));
               color: var(--composer-font-color-primary);
               transition: all 0.3s ease;
             }
@@ -181,7 +180,7 @@
     .menuIcon,
     .closeIcon {
       display: none;
-      font-size: 1.5rem;
+      font-size: calc(1.5 * var(--project-font-size));
       color: var(--composer-font-color-primary);
     }
 
@@ -219,7 +218,7 @@
           border: none;
           cursor: pointer;
           color: var(--composer-font-color-primary);
-          font-size: 2.5rem;
+          font-size: calc(2.5 * var(--project-font-size));
           display: flex;
           align-items: center;
           justify-content: center;
@@ -241,13 +240,13 @@
               cursor: pointer;
 
               .hamburgerMenuItemTitle {
+                margin: 0;
                 color: var(--composer-font-color-primary);
-                font-size: 1.5rem;
                 font-weight: bold;
               }
 
               .dropdownIcon {
-                font-size: 1.5rem;
+                font-size: calc(1.5 * var(--project-font-size));
                 color: var(--composer-font-color-primary);
                 transition: transform 0.3s ease;
 
@@ -277,12 +276,12 @@
 
                   .hamburgerMenuItemTitle {
                     color: var(--composer-font-color-primary);
-                    font-size: 1rem;
                     font-weight: 400;
+                    margin: 0;
                   }
 
                   .dropdownIcon {
-                    font-size: 1.5rem;
+                    font-size: calc(1.5 * var(--project-font-size));
                     transition: transform 0.3s ease;
                     color: var(--composer-font-color-primary);
                     &.active {
@@ -306,8 +305,8 @@
 
                     .hamburgerSubSubmenuItemTitle {
                       color: var(--composer-font-color-primary);
-                      font-size: 1rem;
                       font-weight: 400;
+                      margin: 0;
                     }
                   }
                 }
@@ -325,7 +324,7 @@
 
     .languageDropdownLabel {
       color: var(--composer-font-color-primary);
-      font-size: 1rem;
+      font-size: calc(1 * var(--project-font-size));
     }
 
     .languageAccordion,
@@ -337,7 +336,7 @@
 
     .languageAccordionTitle {
       color: var(--composer-font-color-primary);
-      font-size: 1rem;
+      font-size: calc(1 * var(--project-font-size));
     }
   }
 
@@ -406,7 +405,7 @@
         .menuItemContainer {
           .menuItem {
             .dropdownIcon {
-              font-size: 2rem;
+              font-size: calc(2 * var(--project-font-size));
             }
           }
         }
@@ -426,15 +425,15 @@
             margin-top: calc(2 * var(--composer-gap-xl));
           }
           .languageAccordionTitle {
-            font-size: 1.5rem;
+            font-size: calc(1.5 * var(--project-font-size));
             font-weight: bold;
           }
           .languageAccordionItem{
-            font-size: 1rem;
+            font-size: calc(1 * var(--project-font-size));
             font-weight: bold;
           }
           .languageAccordionIcon {
-            font-size: 1.5rem;
+            font-size: calc(1.5 * var(--project-font-size));
             color: var(--composer-font-color-primary);
             transition: transform 0.3s ease;
             font-weight: bold;
@@ -457,17 +456,8 @@
         .mobileMenu {
           padding-left: var(--composer-gap-md);
           padding-right: var(--composer-gap-md);
-          .hamburgerMenu {
-            .hamburgerMenuItem {
-              .hamburgerMenuItemHeader {
-                .hamburgerMenuItemTitle {
-                  font-size: 1rem;
-                }
-              }
-            }
-          }
           .languageAccordionTitle {
-            font-size: 1rem;
+            font-size: calc(1 * var(--project-font-size));
             font-weight: bold;
           }
         }

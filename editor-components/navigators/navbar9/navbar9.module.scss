@@ -57,14 +57,14 @@
           }
 
           .menuItemTitle {
-            font-size: 1rem;
             font-weight: 500;
+            margin: 0;
             transition: all 0.3s ease;
             color: var(--composer-font-color-primary);
           }
 
           .dropdownIcon {
-            font-size: 1.5rem;
+            font-size: calc(1.5 * var(--project-font-size));
             color: var(--composer-font-color-primary);
             transition: all 0.3s ease;
           }
@@ -112,7 +112,7 @@
                   align-items: center;
 
                   .dropdownItemTitle {
-                    font-size: 1rem;
+                    margin: 0;
                     font-weight: 400;
                     color: var(--composer-font-color-primary);
                     transition: color 0.3s ease;
@@ -143,7 +143,7 @@
               }
 
               .rightIcon {
-                font-size: 1rem;
+                font-size: calc(1 * var(--project-font-size));
                 color: var(--composer-font-color-primary);
                 transition: all 0.3s ease;
               }
@@ -162,6 +162,13 @@
                 transform: translateX(10px);
                 transition: all 0.3s ease;
                 z-index: 101;
+
+                .dropdownItemTitle {
+                  margin: 0;
+                  font-weight: 400;
+                  color: var(--composer-font-color-primary);
+                  transition: color 0.3s ease;
+                }
 
                 .subdropdownItem {
                   padding: var(--composer-gap-sm) var(--composer-gap-sm);
@@ -223,7 +230,7 @@
   .hamburgerIcon {
     display: none;
     cursor: pointer;
-    font-size: 1.5rem;
+    font-size: calc(1.5 * var(--project-font-size));
     color: var(--composer-font-color-primary);
   }
 
@@ -261,13 +268,13 @@
 
           .hamburgerMenuItemTitle {
             color: var(--composer-font-color-primary);
-            font-size: 1rem;
+            margin: 0;
             font-weight: 500;
           }
 
           .dropdownIcon {
             color: var(--composer-font-color-primary);
-            font-size: 1.5rem;
+            font-size: calc(1.5 * var(--project-font-size));
             transform: rotate(-90deg);
             transition: transform 0.3s ease;
 
@@ -297,13 +304,17 @@
               color: var(--composer-font-color-primary);
 
               .hamburgerMenuItemTitle {
-                font-size: 1rem;
+                margin: 0;
                 font-weight: bold;
                 color: var(--composer-font-color-primary);
               }
-
+              .hamburgerDropdownItemTitle{
+                margin: 0;
+                font-weight: bold;
+                color: var(--composer-font-color-primary);
+              }
               .dropdownIcon{
-                font-size: 1.5rem;
+                font-size: calc(1.5 * var(--project-font-size));
                 transition: transform 0.3s ease;
                 color: var(--composer-font-color-primary);
                 &.active {
@@ -312,7 +323,7 @@
               }
 
               .rightIcon {
-                font-size: 1rem;
+                font-size: calc(1 * var(--project-font-size));
                 transition: transform 0.3s ease;
                 color: var(--composer-font-color-primary);
                 &.active {
@@ -337,7 +348,7 @@
 
                 .hamburgerSubSubmenuItemTitle {
                   color: var(--composer-font-color-primary);
-                  font-size: 1rem;
+                  margin: 0;
                   font-weight: 400;
                 }
               }
@@ -372,7 +383,7 @@
     margin-top: var(--composer-gap-sm);
     .icon-container{
       .icon {
-        font-size: 1.5rem;
+        font-size: calc(1.5 * var(--project-font-size));
         color: var(--composer-font-color-primary);
       }
     }
@@ -476,7 +487,7 @@
           .hamburgerMenuItem {
             .hamburgerMenuItemHeader {
               .dropdownIcon {
-                font-size: 1.5rem;
+                font-size: calc(1.5 * var(--project-font-size));
               }
             }
           }
