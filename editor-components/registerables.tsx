@@ -38,6 +38,11 @@ import ContentComponent11 from "./content/content11/content11";
 import ContentComponent12 from "./content/content12/content12";
 import ContentComponent13 from "./content/content13/content13";
 import ContentComponent14 from "./content/content14/content14";
+import ContentComponent15 from "./content/content15/content15";
+import ContentComponent16 from "./content/content16/content16";
+import ContentComponent17 from "./content/content17/content17";
+import ContentComponent18 from "./content/content18/content18";
+import ContentComponent20 from "./content/content20/content20";
 import SliderComponent1 from "./slider/slider1/slider1";
 import SliderComponent2 from "./slider/slider2/slider2";
 import SliderComponent3 from "./slider/slider3/slider3";
@@ -160,6 +165,7 @@ import TestimonialsComponent10 from "./testimonials/testimonials10/testimonials1
 import TestimonialsComponent11 from "./testimonials/testimonials11/testimonials11";
 import TestimonialsComponent12 from "./testimonials/testimonials12/testimonials12";
 import TestimonialsComponent13 from "./testimonials/testimonials13/testimonials13";
+import TestimonialsComponent14 from "./testimonials/testimonials14/testimonials14";
 import StatsComponent1 from "./stats/stats1/stats1";
 import StatsComponent2 from "./stats/stats2/stats2";
 import StatsComponent3 from "./stats/stats3/stats3";
@@ -210,6 +216,7 @@ import ImageGalleryCompanent6 from "./Image_gallery/image_gallery_6/image-galler
 import ImageGalleryCompanent7 from "./Image_gallery/image_gallery_7/image-gallery7";
 import ImageGalleryCompanent8 from "./Image_gallery/image_gallery_8/image-gallery8";
 import ImageGalleryCompanent9 from "./Image_gallery/image_gallery_9/image-gallery9";
+import ImageGalleryComponent10 from "./Image_gallery/image_gallery_10/image-gallery10";
 import NotificationModal1 from "./modal/notification-modal1/notificationmodal1";
 import ConfirmationModal1 from "./modal/confirmation-modal1/confirmationmodal1";
 import TermsOfUseModal from "./modal/terms-of-use/terms-of-use";
@@ -226,19 +233,22 @@ import Location4 from "./location/location4/location4";
 import Location5 from "./location/location5/location5";
 import Location6 from "./location/location6/location6";
 import ConfirmationModal2 from "./modal/confirmation-modal-2/confirmation-modal-2";
-import BannerComponent1 from "../editor-components/banner/banner1/banner1";
-import BannerComponent2 from "../editor-components/banner/banner2/banner2";
-import BannerComponent4 from "../editor-components/banner/banner4/banner4";
+import BannerComponent1 from "./banner/banner1/banner1";
+import BannerComponent2 from "./banner/banner2/banner2";
+import BannerComponent4 from "./banner/banner4/banner4";
+import BannerComponent5 from "./banner/banner5/banner5";
+import BannerComponent6 from "../editor-components/banner/banner6/banner6";
 import ECommerce1 from "./e-commerce/e-commerce1/e-commerce1";
 import SocialComponent1 from "./social/social1/social1";
 import SocialComponent2 from "../editor-components/socials/social2/social2";
-import SocialComponent3 from "../editor-components/social/social3/social3";
+import SocialComponent3 from "./social/social3/social3";
 import SocialComponent4 from "../editor-components/social/social4/social4";
-import SocialWidget1 from "../editor-components/social_widget/social_widget1/social_widget1";
+import SocialWidget1 from "./social_widget/social_widget1/social_widget1";
 import SocialWidget2 from "../editor-components/social_widget/social_widget2/social_widget2";
-import SocialWidget3 from "../editor-components/social_widget/social_widget3/social_widget3";
-import SocialWidget4 from "../editor-components/social_widget/social_widget4/social_widget4";
+import SocialWidget3 from "./social_widget/social_widget3/social_widget3";
+import SocialWidget4 from "./social_widget/social_widget4/social_widget4";
 import SocialWidget5 from "../editor-components/social_widget/social_widget5/social_widget5";
+import ECommerce3 from "./e-commerce/e-commerce3/e-commerce3";
 
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
@@ -283,6 +293,11 @@ function Registerables(composer: ComponentsRegistery) {
     ContentComponent12,
     ContentComponent13,
     ContentComponent14,
+    ContentComponent15,
+    ContentComponent16,
+    ContentComponent17,
+    ContentComponent18,
+    ContentComponent20,
     SliderComponent1,
     SliderComponent2,
     SliderComponent3,
@@ -378,6 +393,7 @@ function Registerables(composer: ComponentsRegistery) {
     ImageGalleryCompanent7,
     ImageGalleryCompanent8,
     ImageGalleryCompanent9,
+    ImageGalleryComponent10,
     FeatureComponent1,
     FeatureComponent2,
     FeatureComponent3,
@@ -423,6 +439,7 @@ function Registerables(composer: ComponentsRegistery) {
     TestimonialsComponent11,
     TestimonialsComponent12,
     TestimonialsComponent13,
+    TestimonialsComponent14,
     StatsComponent1,
     StatsComponent2,
     StatsComponent3,
@@ -471,8 +488,10 @@ function Registerables(composer: ComponentsRegistery) {
     ConfirmationModal2,
     BannerComponent1,
     BannerComponent2,
-    SocialComponent2,
     BannerComponent4,
+    BannerComponent5,
+    BannerComponent6,
+    SocialComponent2,
     ECommerce1,
     SocialComponent3,
     SocialComponent4,
@@ -481,6 +500,7 @@ function Registerables(composer: ComponentsRegistery) {
     SocialWidget3,
     SocialWidget4,
     SocialWidget5,
+    ECommerce3
   ]);
 }
 

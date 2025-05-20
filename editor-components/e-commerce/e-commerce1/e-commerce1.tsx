@@ -372,6 +372,7 @@ class ECommerce1 extends BaseECommerce {
     const handleImageClick = (index: number) => {
       this.setComponentState("isActive", true);
       this.setComponentState("activeImage", index);
+      this.setComponentState("prevIndex", null);
     }
 
     const handleClose = () => {
@@ -462,7 +463,6 @@ class ECommerce1 extends BaseECommerce {
     const rightIconImage = this.getPropValue("rightArrowImage");
     const leftIcon = this.getPropValue("leftArrow");
     const rightIcon = this.getPropValue("rightArrow");
-    const closeIcon = this.getPropValue("closeIcon");
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
     const wishlist = this.castToObject<WishlistItem>("wishlist");
     const reviewItem = this.castToObject<ReviewItem>("reviewItem");

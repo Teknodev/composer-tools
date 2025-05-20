@@ -424,9 +424,9 @@ export enum CATEGORIES {
   LOCATION = "location",
   HTTP_CODES = "HTTPCodes",
   BANNER = "banner",
-  ECOMMERCE = "ecommerce",
   SOCIAL = "social",
-  SOCIALWIDGET = "socialWidget"
+  SOCIALWIDGET = "socialWidget",
+  ECOMMERCE = "ecommerce",
 }
 
 export function generateId(key: string): string {
@@ -657,6 +657,16 @@ export abstract class Component
     if (this.getProp(prop.key)) return;
     this.initializeProp(prop);
     this.state.componentProps.props.push(prop);
+    EventEmitter.emit(EVENTS.RENDER_CONTENT_TAB)
+  }
+
+  removeProp(key: string) {
+    this.shadowProps = this.shadowProps.filter((el) => el.key !== key);
+    this.state.componentProps.props = this.state.componentProps.props.filter(
+      (el: any) => el.key !== key
+    );
+    
+    EventEmitter.emit(EVENTS.RENDER_CONTENT_TAB)
   }
 
   setProp(key: string, value: any): void {
