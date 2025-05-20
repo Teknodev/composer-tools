@@ -4,30 +4,50 @@
      font-size: calc(2.8 * var(--project-font-size));
      margin-top: 1em;
      margin-bottom: 1em;
+
+     @container (max-width: #{$composer-tablet-width}) {
+          font-size: calc(2.5 * var(--project-font-size));
+     }
 }
 
 .h2{
-    font-size: calc(1.5 * var(--project-font-size));
+    font-size: calc(2 * var(--project-font-size));
     margin-top: 1em;
     margin-bottom: 1em;
+
+    @container (max-width: #{$composer-tablet-width}) {
+        font-size: calc(1.8 * var(--project-font-size));
+    }
 }
 
 .h3{
-    font-size: calc(1.17 * var(--project-font-size));
+    font-size: calc(1.5 * var(--project-font-size));
     margin-top: 1em;
     margin-bottom: 1em;
+
+    @container (max-width: #{$composer-tablet-width}) {
+        font-size: calc(1.4 * var(--project-font-size));
+    }
 }
 
 .h4{
-    font-size: calc(1.1 * var(--project-font-size));
+    font-size: calc(1.3 * var(--project-font-size));
     margin-top: 1em;
     margin-bottom: 1em;
+
+    @container (max-width: #{$composer-tablet-width}) {
+        font-size: calc(1.2 * var(--project-font-size));
+    }
 }
 
 .h5{
-    font-size: calc(1.05 * var(--project-font-size));
+    font-size: calc(1.1 * var(--project-font-size));
     margin-top: 1em;
     margin-bottom: 1em;
+
+    @container (max-width: #{$composer-tablet-width}) {
+        font-size: calc(1.05 * var(--project-font-size));
+    }
 }
 
 .p{
@@ -182,13 +202,23 @@
     padding: 20px;
     .h1{
         font-size: calc(2.5 * var(--project-font-size));
+        @container (max-width: #{$composer-tablet-width}) {
+            font-size: calc(2 * var(--project-font-size));
+        }
     }
     .h2{
         font-size: calc(1.35 * var(--project-font-size));
+        @container (max-width: #{$composer-tablet-width}) {
+            font-size: calc(1.2 * var(--project-font-size));
+        }
     }
     .h3{
         font-size: calc(1.15 * var(--project-font-size));
+        @container (max-width: #{$composer-tablet-width}) {
+            font-size: calc(1 * var(--project-font-size));
+        }
     }
+
 }
 
 .maxContent{
@@ -429,5 +459,65 @@
     background: var(--composer-html-background) !important;
     color: var(--composer-font-color-primary) !important;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+
+// Base Language styles
+.label{
+    color: var(--composer-font-color-primary);
+    font-size: var(--project-font-size) !important;
+}
+
+.accordionList{
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-sm);
+    list-style-type: none;
+    padding-left: var(--composer-gap-sm);
+    margin: 0;
+    color: var(--composer-font-color-primary);
+
+    .accordionLanguageOption{
+        display: flex;   
+    }
+}
+
+.languageIcon{
+    color: var(--composer-font-color-primary);
+    width: var(--project-font-size);
+    height: var(--project-font-size);
+}
+
+// Base Icon styles
+.iconInputContainer {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-md);
+    width: 100%;
+
+    .iconInput {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 4px;
+        cursor: pointer;
+        
+        .iconContainer{
+            display: flex;
+            background-color: var(--color-gray-secondary);
+            border-radius: var(--border-radius-sm);
+            padding: var(--padding-sm) var(--padding-md);
+        }
+        
+        img {
+            width: 16px;
+            height: 16px;
+        }
+    }
+
+    .selectButton {
+        color: var(--color-gray-200);
+        text-decoration: underline;
+        cursor: pointer;
+    }
 }
 

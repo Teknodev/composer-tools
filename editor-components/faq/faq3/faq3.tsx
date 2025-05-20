@@ -1,7 +1,7 @@
 import * as React from "react";
 import styles from "./faq3.module.scss";
 import { BaseFAQ } from "../../EditorComponent";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
@@ -322,7 +322,7 @@ class Faq3 extends BaseFAQ {
                                 </div>
                                 {(this.getPropValue("inactive_icon") || this.getPropValue("active_icon")) && (
                                   <div className={this.decorateCSS("card-right")}>
-                                    <ComposerIcon
+                                    <Base.Icon
                                       propsIcon={{
                                         className: this.decorateCSS("icon"),
                                       }}

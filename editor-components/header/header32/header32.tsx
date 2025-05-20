@@ -2,7 +2,7 @@ import * as React from "react";
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header32.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -419,7 +419,7 @@ class Header32 extends BaseHeader {
                                         ).current.slickPrev();
                                       }}
                                     >
-                                      <ComposerIcon
+                                      <Base.Icon
                                         name={this.getPropValue("leftButtonIcon")}
                                         propsIcon={{
                                           className: `${this.decorateCSS(
@@ -447,7 +447,7 @@ class Header32 extends BaseHeader {
                                         ).current.slickNext();
                                       }}
                                     >
-                                      <ComposerIcon
+                                      <Base.Icon
                                         name={this.getPropValue(
                                           "rightButtonIcon"
                                         )}

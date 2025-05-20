@@ -2,7 +2,7 @@ import * as React from "react";
 import { Testimonials } from "../../EditorComponent";
 import styles from "./testimonials14.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 
 interface Images {
     authorName: string;
@@ -301,7 +301,7 @@ class Testimonials14 extends Testimonials {
                                 className={`${this.decorateCSS("items")} ${animationClass}`}>
                                 <div className={this.decorateCSS("icon-and-name")}>
                                     {images[activeIndex].icon ? (
-                                        <ComposerIcon
+                                        <Base.Icon
                                             name={images[activeIndex].icon}
                                             propsIcon={{
                                                 className: this.decorateCSS("icon"),
@@ -329,7 +329,7 @@ class Testimonials14 extends Testimonials {
                                         e.stopPropagation();
                                         this.goToPrev();
                                     }}>
-                                    <ComposerIcon
+                                    <Base.Icon
                                         name={arrows.prevArrow}
                                         propsIcon={{ className: this.decorateCSS("arrow") }}
                                     />
@@ -342,7 +342,7 @@ class Testimonials14 extends Testimonials {
                                         e.stopPropagation();
                                         this.goToNext();
                                     }}>
-                                    <ComposerIcon
+                                    <Base.Icon
                                         name={arrows.nextArrow}
                                         propsIcon={{
                                             className: this.decorateCSS("arrow"),

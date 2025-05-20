@@ -2,7 +2,7 @@ import * as React from "react";
 import { BaseNavigator } from "../../EditorComponent";
 import styles from "./navbar8.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "composer-tools/composer-base-components/base/base";
 import ComposerLanguage from "composer-tools/composer-base-components/language/language";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
@@ -432,7 +432,7 @@ class Navbar8 extends BaseNavigator {
 
           <div className={this.decorateCSS("icons")}>
           {language.showLanguage && (
-              <ComposerLanguage
+              <Base.Language
                 type="dropdown"
                 title={language.label}
                 icon={language.icon}
@@ -448,7 +448,7 @@ class Navbar8 extends BaseNavigator {
             )}
             {isMenuOpen ? (
       
-                <ComposerIcon
+                <Base.Icon
                   name={this.getPropValue("closeIcon")}
                   propsIcon={{
                     className: `${this.decorateCSS("closeIcon")} ${backgroundChange && this.decorateCSS("openedCloseIcon")}`, onClick: this.handleCloseMenu
@@ -456,7 +456,7 @@ class Navbar8 extends BaseNavigator {
                 />
             ) : (
 
-                <ComposerIcon
+                <Base.Icon
                   name={this.getPropValue("hamburgerIcon")}
                   propsIcon={{
                     className: `${this.decorateCSS("menuIcon")} ${backgroundChange && this.decorateCSS("openedMenuIcon")}`, onClick: this.handleMenuClick
@@ -531,7 +531,7 @@ class Navbar8 extends BaseNavigator {
                           >
                             <ComposerLink path={item.url}>
                               <div className={this.decorateCSS("socialMediaIconContainer")} onClick={()=> this.handleCloseMenu()}>
-                              <ComposerIcon
+                              <Base.Icon
                                 name={item.icon}
                                 propsIcon={{
                                   className:

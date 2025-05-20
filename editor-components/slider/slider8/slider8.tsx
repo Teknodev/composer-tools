@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styles from "./slider8.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
@@ -297,7 +297,7 @@ class Slider8 extends BaseSlider {
                                     this.getComponentState("slider-ref").current.slickPrev();
                                   }}
                                 >
-                                  <ComposerIcon
+                                  <Base.Icon
                                     name={leftNavButton}
                                     propsIcon={{
                                       className: `${this.decorateCSS("Icon")}`,
@@ -312,7 +312,7 @@ class Slider8 extends BaseSlider {
                                     this.getComponentState("slider-ref").current.slickNext();
                                   }}
                                 >
-                                  <ComposerIcon
+                                  <Base.Icon
                                     name={rightNavButton}
                                     propsIcon={{
                                       className: `${this.decorateCSS("Icon")}`,

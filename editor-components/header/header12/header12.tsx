@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styles from "./header12.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 
 
 type SliderItem = {
@@ -444,7 +444,7 @@ function LeftSliderArrow(props?: any) {
         customFunction();
       }}
     >
-      <ComposerIcon propsIcon={props.decorateIcon} name={icon} />
+      <Base.Icon propsIcon={props.decorateIcon} name={icon} />
     </div>
   );
 }
@@ -460,7 +460,7 @@ function RightSliderArrow(props?: any) {
         customFunction();
       }}
     >
-      <ComposerIcon propsIcon={props.decorateIcon} name={icon} />
+      <Base.Icon propsIcon={props.decorateIcon} name={icon} />
     </div>
   );
 }
