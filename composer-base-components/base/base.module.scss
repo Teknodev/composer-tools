@@ -200,6 +200,7 @@
 
 .modalContainer{
     padding: 20px;
+    container-type: normal;
     .h1{
         font-size: calc(2.5 * var(--project-font-size));
         @container (max-width: #{$composer-tablet-width}) {
@@ -207,16 +208,19 @@
         }
     }
     .h2{
-        font-size: calc(1.35 * var(--project-font-size));
+        font-size: calc(2 * var(--project-font-size));
+        @container (max-width: #{$composer-tablet-width}) {
+            font-size: calc(1.5 * var(--project-font-size));
+        }
+    }
+    .h3{
+        font-size: calc(1.5 * var(--project-font-size));
         @container (max-width: #{$composer-tablet-width}) {
             font-size: calc(1.2 * var(--project-font-size));
         }
     }
-    .h3{
-        font-size: calc(1.15 * var(--project-font-size));
-        @container (max-width: #{$composer-tablet-width}) {
-            font-size: calc(1 * var(--project-font-size));
-        }
+    .p{
+        font-size: calc(1 * var(--project-font-size));
     }
 
 }
