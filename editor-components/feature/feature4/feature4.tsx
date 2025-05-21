@@ -471,29 +471,33 @@ class Feature4 extends BaseFeature {
                 return (
                   <div
                     key={index}
-                    className={this.decorateCSS("card-item-count")}
-                  >
+                    className={`${this.getPropValue("backgroundImage") ? this.decorateCSS("card-item-count") : this.decorateCSS("card-item-count-no-bg")}`}>
                     <Base.VerticalContent className={this.decorateCSS("vertical")}>
                       {!!card.icon && (
-                        <div className={this.decorateCSS("icon-container")}>
+                        <div className={`${this.getPropValue("backgroundImage") ? this.decorateCSS("icon-container") : this.decorateCSS("icon-container-no-bg")}`}>
                           <ComposerIcon
                             propsIcon={{ className: this.decorateCSS("icon") }}
                             name={card.icon}
                           />
                         </div>
-                      )}
-                      {titleExist && (
-                        <Base.H3 className={`${this.decorateCSS("title")} 
-                          ${this.getPropValue("backgroundImage") && this.decorateCSS("title-with-bg")} }`}>
-                          {card.title}
-                        </Base.H3>
-                      )}
-                      {subtitleExist && (
-                        <Base.P className={`${this.decorateCSS("subtitle")} 
+                      )
+                      }
+                      {
+                        titleExist && (
+                          <Base.H3 className={`${this.decorateCSS("title")}
+                    ${this.getPropValue("backgroundImage") && this.decorateCSS("title-with-bg")} } `}>
+                            {card.title}
+                          </Base.H3>
+                        )
+                      }
+                      {
+                        subtitleExist && (
+                          <Base.P className={`${this.decorateCSS("subtitle")} 
                         ${this.getPropValue("backgroundImage") && this.decorateCSS("subtitle-with-bg")} }`}>
-                          {card.subtitle}
-                        </Base.P>
-                      )}
+                            {card.subtitle}
+                          </Base.P>
+                        )
+                      }
                     </Base.VerticalContent>
 
                     {
@@ -543,10 +547,9 @@ class Feature4 extends BaseFeature {
                   </div>
                 );
               }
-              return null;
             })}
-          </Base.ListGrid>
-        </Base.MaxContent>
+          </Base.ListGrid >
+        </Base.MaxContent >
       </Base.Container >
     );
   }
