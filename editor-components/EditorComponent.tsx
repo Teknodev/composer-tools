@@ -965,6 +965,10 @@ export abstract class BaseContacts extends Component {
 export abstract class BaseFeature extends Component {
   static category = CATEGORIES.FEATURE;
 }
+
+export abstract class BaseECommerce extends Component {
+  static category = CATEGORIES.ECOMMERCE;
+}
 export abstract class BaseSocial extends Component {
   static category = CATEGORIES.SOCIAL;
 }
@@ -976,7 +980,3 @@ export abstract class BaseSocialWidget extends Component {
 export function generateAutoClassName(componentId: string, section: string){
   return `auto-generate-${componentId}-${section}`;
 };
-
-export abstract class BaseECommerce extends Component {  
-  static category = CATEGORIES.ECOMMERCE;
-}
