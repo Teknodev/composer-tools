@@ -20,7 +20,7 @@
         }
         .subTitle-container {
           .subTitle {
-            opacity: 0.7;
+            color: var(--composer-tertiary-color);
           }
         }
       }
@@ -36,7 +36,7 @@
             var(--composer-font-color-primary) 5%
           );
           border-radius: var(--composer-border-radius-md);
-          padding: var(--padding-xl);
+          padding: var(--composer-gap-md);
           .card-items {
             display: flex;
             flex-direction: column;
@@ -57,8 +57,7 @@
             }
             .card-description {
               font-size: 1rem;
-              color: var(--composer-font-color-primary);
-              opacity: 0.7;
+              color: var(--composer-tertiary-color);
             }
             .navigate-container {
               display: flex;
