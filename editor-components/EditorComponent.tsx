@@ -317,9 +317,9 @@ type GetPropValueProperties = {
   prefix?: PreSufFix;
 };
 
-type RangeInputAdditionalParams = { 
-  maxRange?: number; 
-  minRange?: number; 
+type RangeInputAdditionalParams = {
+  maxRange?: number;
+  minRange?: number;
   step?: number;
 };
 
@@ -432,6 +432,8 @@ export enum CATEGORIES {
 export function generateId(key: string): string {
   return key + "-" + Math.round(Math.random() * 1000000000).toString();
 }
+
+
 //@ts-ignore
 export abstract class Component
   extends React.Component<{}, { states: any; componentProps: any }>
@@ -669,30 +671,67 @@ export abstract class Component
     EventEmitter.emit(EVENTS.RENDER_CONTENT_TAB)
   }
 
+  private syncComplexValue(source: TypeUsableComponentProps[], target: TypeUsableComponentProps[]): void {
+    source.forEach(sourceProp => {
+      const targetIndex = target.findIndex(prop => prop.key === sourceProp.key);
+      if (targetIndex === -1) return;
+      
+      const targetProp = target[targetIndex];
+      const isTypeChanged = targetProp.type !== sourceProp.type;
+      const isComplexType = sourceProp.type === "array" || sourceProp.type === "object";
+
+      if (isTypeChanged) {
+        targetProp.type = sourceProp.type;
+        targetProp.value = sourceProp.value;
+        return;
+      }
+
+      if (isComplexType) {
+        this.syncComplexValue(
+          sourceProp.value as TypeUsableComponentProps[],
+          targetProp.value as TypeUsableComponentProps[]
+        );
+      }
+    });
+  }
+
   setProp(key: string, value: any): void {
-    let i = this.state.componentProps.props
-      .map((prop: any) => prop.key)
-      .indexOf(key);
+    setTimeout(() => {
+      const propIndex = this.state.componentProps.props.findIndex((prop: any) => prop.key === key);
+      if (propIndex === -1) return;
 
-    const prop: TypeUsableComponentProps = this.state.componentProps.props[i];
+      const propInState: TypeUsableComponentProps = this.state.componentProps.props[propIndex];
+      const shadowProp = this.getShadowProp(key);
+      if (!shadowProp) return;
 
-    const isInvalidIndex = i === -1;
-    const isMatchingSimpleValue =
-      prop.type !== "array" && prop.type !== "object" && prop.value === value;
-    const isMatchingComplexValue =
-      (prop.type === "array" || prop.type === "object") &&
-      prop.value.every((item) => item.getPropValue) &&
-      prop.value === value;
+      const isComplexType = propInState.type === "array" || propInState.type === "object";
+      const isTypeChanged = propInState.type !== shadowProp.type;
 
-    if (isInvalidIndex || isMatchingSimpleValue || isMatchingComplexValue) {
-      return;
-    }
+      if (isTypeChanged) {
+        propInState.type = shadowProp.type;
+        value = structuredClone(shadowProp.value);
+      }
 
-    this.state.componentProps.props[i].value = value;
-    this.state.componentProps.props[i] = this.attachValueGetter(
-      this.state.componentProps.props[i]
-    );
-    this.setState({ componentProps: { ...this.state.componentProps } });
+      if (isComplexType) {
+        this.syncComplexValue(
+          structuredClone(shadowProp.value) as TypeUsableComponentProps[],
+          value
+        );
+      }
+
+      const isMatchingValue = 
+        (!isComplexType && propInState.value === value) ||
+        (isComplexType && propInState.value.every((item) => item.getPropValue) && propInState.value === value);
+
+      if (isMatchingValue) return;
+
+      this.state.componentProps.props[propIndex].value = value;
+      this.state.componentProps.props[propIndex] = this.attachValueGetter(
+        this.state.componentProps.props[propIndex]
+      );
+      
+      this.setState({ componentProps: { ...this.state.componentProps } });
+    }, 0);
   }
 
   setComponentState(key: string, value: any): void {
@@ -778,8 +817,9 @@ export abstract class Component
     return castedObject;
   }
 
-  castToString(elem: React.JSX.Element): string {
-    return elem.props?.html?.replace(/<\/?[^>]+(>|$)/g, "");
+  castToString(elem: React.JSX.Element): string | React.JSX.Element {
+    const isValid = React.isValidElement(elem);    
+    return isValid ? elem.props?.html?.replace(/<\/?[^>]+(>|$)/g, ""): elem;
   }
 
   private castingProcess(object: any) {
