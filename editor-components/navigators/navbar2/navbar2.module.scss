@@ -41,8 +41,7 @@
         }
 
         .menuItemTitle {
-          font-size: 1rem;
-          font-weight: normal;
+          font-weight: 500;
           transition: all 0.3s ease;
           color: var(--composer-font-color-primary);
           &.animation1{
@@ -53,7 +52,7 @@
         }
 
         .dropdownIcon {
-          font-size: 1.2rem;
+          font-size: calc(1.5 * var(--project-font-size));
           color: var(--composer-font-color-primary);
           transition: all 0.3s ease;
         }
@@ -101,8 +100,8 @@
                 align-items: center;
 
                 .dropdownItemTitle {
-                  font-size: 1rem;
-                  font-weight: normal;
+                  font-size: calc(1 * var(--project-font-size));
+                  font-weight: 400;
                   color: var(--composer-font-color-primary);
                   transition: color 0.3s ease;
                   &.animation1{
@@ -144,7 +143,7 @@
             }
 
             .rightIcon {
-              font-size: 1rem;
+              font-size: calc(1 * var(--project-font-size));
               color: var(--composer-font-color-primary);
               transition: all 0.3s ease;
             }
@@ -227,7 +226,7 @@
     .menuIcon,
     .closeIcon {
       display: none;
-      font-size: 1.5rem;
+      font-size: calc(1.5 * var(--project-font-size));
       color: var(--composer-font-color-primary);
     }
 
@@ -265,7 +264,7 @@
           border: none;
           cursor: pointer;
           color: var(--composer-font-color-primary);
-          font-size: 2.5rem;
+          font-size: calc(2.5 * var(--project-font-size));
           display: flex;
           align-items: center;
           justify-content: center;
@@ -287,6 +286,7 @@
               cursor: pointer;
 
               .hamburgerMenuItemTitle {
+                margin: 0;
                 color: var(--composer-font-color-primary);
                 font-size: 1.5rem;
                 font-weight: normal;
@@ -299,7 +299,7 @@
               }
 
               .dropdownIcon {
-                font-size: 1.5rem;
+                font-size: calc(1.5 * var(--project-font-size));
                 color: var(--composer-font-color-primary);
                 transition: transform 0.3s ease;
 
@@ -329,8 +329,9 @@
 
                   .hamburgerMenuItemTitle {
                     color: var(--composer-font-color-primary);
+                    font-weight: 400;
+                    margin: 0;
                     font-size: 1rem;
-                    font-weight: normal;
                     transition: all 0.8s ease;
                     &.animation1{
                       &:hover{
@@ -340,7 +341,7 @@
                   }
 
                   .dropdownIcon {
-                    font-size: 1.5rem;
+                    font-size: calc(1.5 * var(--project-font-size));
                     transition: transform 0.3s ease;
                     color: var(--composer-font-color-primary);
                     &.active {
@@ -364,8 +365,8 @@
 
                     .hamburgerSubSubmenuItemTitle {
                       color: var(--composer-font-color-primary);
-                      font-size: 1rem;
-                      font-weight: normal;
+                      font-weight: 400;
+                      margin: 0;
                       &.animation1{
                         &:hover{
                           font-weight: bold;
@@ -386,6 +387,11 @@
       min-height: 20px;
     }
 
+    .languageDropdownLabel {
+      color: var(--composer-font-color-primary);
+      font-size: calc(1 * var(--project-font-size));
+    }
+
     .languageAccordion,
     .languageAccordionItem {
       color: var(--composer-font-color-primary);
@@ -394,7 +400,7 @@
 
     .languageAccordionTitle {
       color: var(--composer-font-color-primary);
-      font-size: 1rem;
+      font-size: calc(1 * var(--project-font-size));
     }
   }
 
@@ -463,7 +469,7 @@
         .menuItemContainer {
           .menuItem {
             .dropdownIcon {
-              font-size: 2rem;
+              font-size: calc(2 * var(--project-font-size));
             }
           }
         }
@@ -493,17 +499,20 @@
             }
           }
           .languageAccordionItem{
-            font-size: 1rem;
-            font-weight: normal;
+            font-size: calc(1 * var(--project-font-size));
+            font-weight: bold;
             transition: all 0.3s ease;
             &.animation1{
               &:hover{
                 font-weight:bold
               }
             }
+
+            font-size: calc(1.5 * var(--project-font-size));
+            font-weight: bold;
           }
           .languageAccordionIcon {
-            font-size: 1.5rem;
+            font-size: calc(1.5 * var(--project-font-size));
             color: var(--composer-font-color-primary);
             transition: transform 0.3s ease;
             font-weight: bold;
@@ -526,17 +535,9 @@
         .mobileMenu {
           padding-left: var(--composer-gap-md);
           padding-right: var(--composer-gap-md);
-          .hamburgerMenu {
-            .hamburgerMenuItem {
-              .hamburgerMenuItemHeader {
-                .hamburgerMenuItemTitle {
-                  font-size: 1rem;
-                }
-              }
-            }
-          }
           .languageAccordionTitle {
-            font-size: 1rem;
+            font-size: calc(1 * var(--project-font-size));
+            font-weight: bold;
           }
         }
     

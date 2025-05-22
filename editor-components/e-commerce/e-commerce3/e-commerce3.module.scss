@@ -1,0 +1,104 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    background-color: var(--composer-html-background);
+    width: 100%;
+    padding: var(--composer-gap-lg) 0;
+    .container-top {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        .max-content {
+            .tab-buttons {
+                display: flex;
+                flex-wrap: wrap;
+                .tab {
+                    padding: var(--composer-gap-md) var(--composer-gap-lg);
+                    border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
+                    border-bottom: none !important;
+                    .tab-title{
+                        font-size: 1rem;
+                        font-weight: bold;
+                        color: var(--composer-font-color-primary);
+                    }
+        
+                    &.active {
+                        border: none !important;
+                        background-color: var(--composer-font-color-primary);
+
+                        .tab-title {
+                            color: var(--composer-html-background) !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    .container-bottom {
+        border-top: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
+        border-bottom: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
+        background-color: var(--composer-html-background);
+
+        .wrapper {
+            .section {
+                .tabs {
+                    .tab-content {
+                        .vertical{
+                            align-items: start;
+                            gap: var(--composer-gap-md);
+                        }
+                        .title {
+                            font-size: 2rem;
+                            text-align: start;
+                            margin: 0;
+                        }
+                        .description{
+                            color: var(--composer-font-color-primary);
+                            text-align: start;
+                            margin: 0;
+                        }
+                        .content {
+                            display: flex;
+                            gap: var(--composer-gap-md);
+                            .left {
+                                display: flex;
+                                flex-direction: column;
+                                gap: var(--composer-gap-sm);
+                                .detail-title, .property-title {
+                                    color: var(--composer-font-color-primary);
+                                    font-size: 1rem;
+                                }
+                            }
+                            .right {
+                                display: flex;
+                                flex-direction: column;
+                                gap: var(--composer-gap-sm);
+    
+                                .detail-value {
+                                    color: var(--composer-font-color-primary);
+                                    font-size: 1rem;
+                                }
+
+                                .box {
+                                    display: flex;
+                                    min-height: 16px;
+                                    .property-value {
+                                        color: var(--composer-font-color-primary);
+                                        font-size: 1rem;
+                                        padding-right: var(--composer-gap-sm);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) { 
+    .tab-buttons {
+        flex-direction: column;
+    }
+}

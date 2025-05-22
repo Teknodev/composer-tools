@@ -58,8 +58,8 @@
         }
 
         .menuItemTitle {
-          font-size: 1rem;
-          font-weight: normal;
+          margin: 0;
+          font-weight: 500;
           transition: all 0.3s ease;
           color: var(--composer-font-color-primary);
           &.animation1{
@@ -70,7 +70,7 @@
         }
 
         .dropdownIcon {
-          font-size: 1.5rem;
+          font-size: calc(1.5 * var(--project-font-size));
           color: var(--composer-font-color-primary);
           transition: all 0.3s ease;
         }
@@ -117,8 +117,8 @@
                 align-items: center;
 
                 .dropdownItemTitle {
-                  font-size: 1rem;
-                  font-weight: normal;
+                  margin: 0;
+                  font-weight: 400;
                   color: var(--composer-font-color-primary);
                   transition: color 0.3s ease;
                   &.animation1{
@@ -156,7 +156,7 @@
             }
 
             .rightIcon {
-              font-size: 1rem;
+              font-size: calc(1 * var(--project-font-size));
               color: var(--composer-font-color-primary);
               transition: all 0.3s ease;
             }
@@ -193,7 +193,12 @@
                     &::after {
                       width: calc(100% - (var(--composer-gap-md) * 2));
                     }
-                  }
+                  }              
+                .dropdownItemTitle {
+                  margin: 0;
+                  font-weight: 400;
+                  color: var(--composer-font-color-primary);
+                  transition: color 0.3s ease;
                 }
 
                 &::after {
@@ -212,6 +217,7 @@
       }
     }
   }
+}
   .mobileRight{
     display: none;
   }
@@ -228,7 +234,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 1.5rem;
+        font-size: calc(1.5 * var(--project-font-size));
         color: var(--composer-font-color-primary);
       }
     }
@@ -284,13 +290,13 @@
 
   .hamburgerIcon {
     display: none;
-    font-size: 1.5rem;
+    font-size: calc(1.5 * var(--project-font-size));
     color: var(--composer-font-color-primary);
   }
 
   .closeIcon {
     display: none;
-    font-size: 1.5rem;
+    font-size: calc(1.5 * var(--project-font-size));
     color: var(--composer-font-color-primary);
   }
 
@@ -322,7 +328,7 @@
         cursor: pointer;
         color: var(--composer-font-color-primary);
         padding: var(--composer-gap-md) 0;
-        font-size: 2.5rem;
+        font-size: calc(2.5 * var(--project-font-size));
         display: flex;
         justify-content: flex-end;
         align-items: center;
@@ -344,12 +350,12 @@
   
             .hamburgerMenuItemTitle {
               color: var(--composer-font-color-primary);
-              font-size: 1rem;
+              margin: 0;
               font-weight: bold;
             }
   
             .dropdownIcon {
-              font-size: 1.5rem;
+              font-size: calc(1.5 * var(--project-font-size));
               color: var(--composer-font-color-primary);
               transition: transform 0.3s ease;
   
@@ -379,12 +385,12 @@
   
                 .hamburgerMenuItemTitle {
                   color: var(--composer-font-color-primary);
-                  font-size: 1rem;
+                  margin: 0;
                   font-weight: 400;
                 }
   
                 .dropdownIcon {
-                  font-size: 1.5rem;
+                  font-size: calc(1.5 * var(--project-font-size));
                   transition: transform 0.3s ease;
                   color: var(--composer-font-color-primary);
                   &.active {
@@ -408,7 +414,7 @@
   
                   .hamburgerSubSubmenuItemTitle {
                     color: var(--composer-font-color-primary);
-                    font-size: 1rem;
+                    margin: 0;
                     font-weight: 400;
                   }
                 }
@@ -426,9 +432,9 @@
 
     .languageAccordionTitle {
       margin: 0;
-      font-size: 1rem;
       font-weight: normal;
       transition: all 0.3s ease;
+      font-size: calc(1 * var(--project-font-size));
       &.animation1{
         &:hover{
           font-weight: bold;
@@ -529,7 +535,7 @@
           gap: var(--composer-gap-sm);
           .icon {
             color: var(--composer-font-color-primary);
-            font-size: 1.5rem;
+            font-size: calc(1.5 * var(--project-font-size));
           }
         }
       }

@@ -37,12 +37,12 @@
         flex-direction: column;
         gap: var(--composer-gap-xs);
         .informationTitle {
-          font-size: 1rem;
+          font-size: calc(1 * var(--project-font-size));
           font-weight: 600;
           color: var(--composer-font-color-primary);
         }
         .informationDescription {
-          font-size: 1rem;
+          font-size: calc(1 * var(--project-font-size));
           font-weight: 400;
           max-width: 200px;
           color: var(--composer-font-color-primary);
@@ -54,7 +54,7 @@
       gap: var(--composer-gap-sm);
 
       .icon {
-        font-size: 1.5rem;
+        font-size: calc(1.5 * var(--project-font-size));
         color: var(--composer-font-color-primary);
       }
     }
@@ -130,8 +130,8 @@
         }
 
         .menuItemTitle {
-          font-size: 1rem;
-          font-weight: normal;
+          margin:0;
+          font-weight: 500;
           transition: all 0.3s ease;
           color: var(--composer-font-color-primary);
           &.animation1{
@@ -142,7 +142,7 @@
         }
 
         .dropdownIcon {
-          font-size: 1rem;
+          font-size: calc(1 * var(--project-font-size));
           transition: all 0.3s ease;
           color: var(--composer-font-color-primary);
         }
@@ -194,8 +194,8 @@
                 gap: var(--composer-gap-sm);
 
                 .dropdownItemTitle {
-                  font-size: 1rem;
-                  font-weight: normal;
+                  margin: 0;
+                  font-weight: 400;
                   color: var(--composer-font-color-primary);
                   transition: all 0.3s ease;
                   &.animation1{
@@ -234,7 +234,7 @@
             }
 
             .rightIcon {
-              font-size: 1rem;
+              font-size: calc(1 * var(--project-font-size));
               color: var(--composer-font-color-primary);
               transition: all 0.3s ease;
             }
@@ -263,6 +263,12 @@
                 position: relative;
                 color: var(--composer-font-color-primary);
                 font-weight: normal;
+                .dropdownItemTitle {
+                  margin: 0;
+                  font-weight: 400;
+                  color: var(--composer-font-color-primary);
+                  transition: color 0.3s ease;
+                }
 
                 &::after {
                   content: "";
@@ -359,7 +365,7 @@
               color: var(--composer-font-color-primary);
   
               .hamburgerMenuItemTitle {
-                font-size: 1rem;
+                margin: 0;
                 font-weight: 500;
                 color: var(--composer-font-color-primary);
               }
@@ -385,14 +391,13 @@
                   cursor: pointer;
                   color: var(--composer-font-color-primary);
   
-                  .hamburgerMenuItemTitle {
-                    font-size: 1rem;
+                  .hamburgerMenuItemTitle, .hamburgerDropdownItemTitle {
+                    margin: 0;
                     font-weight: 400;
                     color: var(--composer-font-color-primary);
                   }
-  
                   .rightIcon {
-                    font-size: 1.5rem;
+                    font-size: calc(1.5 * var(--project-font-size));
                     transition: all 0.3s ease;
                     color: var(--composer-font-color-primary);
                     &.active {
@@ -415,7 +420,7 @@
                     padding: var(--composer-gap-xs) 0;
   
                     .hamburgerSubSubmenuItemTitle {
-                      font-size: 1rem;
+                      margin: 0;
                       font-weight: 400;
                       color: var(--composer-font-color-primary);
                     }
@@ -425,7 +430,7 @@
             }
           }
           .dropdownIcon {
-            font-size: 1.5rem;
+            font-size: calc(1.5 * var(--project-font-size));
             transition: all 0.3s ease;
             color: var(--composer-font-color-primary);
             transform: rotate(0deg);
@@ -466,10 +471,11 @@
   cursor: pointer;
   .hamburgerIcon,
   .closeIcon {
-    font-size: 1.5rem;
+    font-size: calc(1.5 * var(--project-font-size));
     color: var(--composer-font-color-primary);
   }
   .hamburgerMenuTitle {
+    margin: 0;
     color: var(--composer-font-color-primary);
   }
 }

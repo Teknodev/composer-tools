@@ -13,7 +13,7 @@
     align-items: center;
 
     .laneContact {
-      font-size: 1rem;
+      font-size: calc(1 * var(--project-font-size));
       color: var(--composer-font-color-primary);
     }
 
@@ -21,7 +21,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1rem;
+      font-size: calc(1 * var(--project-font-size));
       color: var(--composer-font-color-primary);
     }
 
@@ -84,7 +84,7 @@
       .hamburgerIcon,
       .closeIcon {
         cursor: pointer;
-        font-size: 1.5rem;
+        font-size: calc(1.5 * var(--project-font-size));
         color: var(--composer-font-color-primary);
         transition: all 0.3s ease;
       }
@@ -160,9 +160,9 @@
       }
 
       .menuItemTitle {
-        font-size: 1rem;
-        font-weight: normal;
+        font-weight: 500;
         color: var(--composer-font-color-primary);
+        margin: 0;
         transition: all 0.3s ease;
         &.animation1{
           &:hover{
@@ -172,7 +172,7 @@
       }
 
       .dropdownIcon {
-        font-size: 1.5rem;
+        font-size: calc(1.5 * var(--project-font-size));
         color: var(--composer-font-color-primary);
 
       }
@@ -220,8 +220,8 @@
               align-items: center;
 
               .dropdownItemTitle {
-                font-size: 1rem;
-                font-weight: normal;
+                margin: 0;
+                font-weight: 400;
                 color: var(--composer-font-color-primary);
                 transition: all 0.3s ease;
                 &.animation1{
@@ -257,7 +257,7 @@
             }  
           }
           .rightIcon {
-            font-size: 1.5rem;
+            font-size: calc(1.5 * var(--project-font-size));
             color: var(--composer-font-color-primary);
             transition: all 0.3s ease;
           }
@@ -315,7 +315,7 @@
   .icons {
     gap: var(--composer-gap-sm);
     .icon-element {
-      font-size: 1.5rem;
+      font-size: calc(1.5 * var(--project-font-size));
       display: flex;
       align-items: center;
       justify-content: center;
@@ -411,8 +411,13 @@
             cursor: pointer;
 
             .hamburgerMenuItemTitle {
-              font-size: 1rem;
+              margin: 0;
               font-weight: 500;
+              color: var(--composer-font-color-primary);
+            }
+            .hamburgerDropdownItemTitle{
+              margin: 0;
+              font-weight: 400;
               color: var(--composer-font-color-primary);
             }
           }
@@ -436,15 +441,18 @@
                 padding: var(--composer-gap-xs) 0;
                 cursor: pointer;
                 color: var(--composer-font-color-primary);
-
                 .hamburgerMenuItemTitle {
-                  font-size: 1rem;
+                  margin: 0;
                   font-weight: 400;
                   color: var(--composer-font-color-primary);
                 }
-
+                .hamburgerDropdownItemTitle{
+                  margin: 0;
+                  font-weight: 400;
+                  color: var(--composer-font-color-primary);
+                }
                 .rightIcon {
-                  font-size: 1.5rem;
+                  font-size: calc(1.5 * var(--project-font-size));
                   transition: all 0.3s ease;
                   color: var(--composer-font-color-primary);
                   &.active {
@@ -467,7 +475,7 @@
                   padding: var(--composer-gap-xs) 0;
 
                   .hamburgerSubSubmenuItemTitle {
-                    font-size: 1rem;
+                    margin: 0;
                     font-weight: 400;
                     color: var(--composer-font-color-primary);
                   }
@@ -477,7 +485,7 @@
           }
         }
         .dropdownIcon {
-          font-size: 1.5rem;
+          font-size: calc(1.5 * var(--project-font-size));
           transition: all 0.3s ease;
           color: var(--composer-font-color-primary);
           transform: rotate(-90deg);

@@ -225,8 +225,8 @@ class Navbar2 extends BaseNavigator {
 
     this.addProp({
       type: "icon",
-      key: "menuIcon",
-      displayer: "Menu Icon",
+      key: "hamburgerIcon",
+      displayer: "Hamburger Icon",
       value: "FaBars",
     });
 
@@ -391,9 +391,9 @@ class Navbar2 extends BaseNavigator {
                     >
                       <ComposerLink path={item.nav_navigate_to}>
                         <div className={this.decorateCSS("menuItem")}>
-                          <span className={`${this.decorateCSS("menuItemTitle")} ${animations}`}>
+                          <Base.P className={`${this.decorateCSS("menuItemTitle")} ${animations}`}>
                             {item.nav_title}
-                          </span>
+                          </Base.P>
                           {item.menuType === "Dropdown" && (
                             <ComposerIcon
                               name={this.getPropValue("dropdownIcon")}
@@ -498,7 +498,7 @@ class Navbar2 extends BaseNavigator {
           )}
           <div className={this.decorateCSS("mobileRight")}>
           <ComposerIcon
-            name={this.getPropValue("menuIcon")}
+            name={this.getPropValue("hamburgerIcon")}
             propsIcon={{
               className: this.decorateCSS("menuIcon"),
               onClick: this.toggleMobileMenu,
@@ -552,12 +552,12 @@ class Navbar2 extends BaseNavigator {
                             onClick={() => this.navClick(index)}
                           >
                             <ComposerLink path={item.nav_navigate_to}>
-                              <span
-                                className={`${this.decorateCSS("hamburgerMenuItemTitle")} ${animations}`}
+
+                              <Base.P className={`${this.decorateCSS("hamburgerMenuItemTitle")} ${animations}`}
                                 onClick={()=> this.toggleMobileMenu()}
                               >
                                 {item.nav_title}
-                              </span>
+                              </Base.P>
                             </ComposerLink>
                             {item.menuType === "Dropdown" && (
                               <ComposerIcon
@@ -604,12 +604,11 @@ class Navbar2 extends BaseNavigator {
                                       }
                                     >
                                       <ComposerLink path={subItem.nav_navigate_to}>
-                                        <span
-                                          className={`${this.decorateCSS("hamburgerMenuItemTitle")} ${animations}`}
+                                        <Base.P className={`${this.decorateCSS("hamburgerMenuItemTitle")} ${animations}`}
                                           onClick={()=> this.toggleMobileMenu()}
                                         >
                                           {subItem.nav_title}
-                                        </span>
+                                        </Base.P>
                                       </ComposerLink>
                                       {subItem.sub_items.length > 0 &&
                                         subItem.sub_items.some((item: any) =>
@@ -662,12 +661,12 @@ class Navbar2 extends BaseNavigator {
                                                 <ComposerLink
                                                   path={subSubItem.nav_navigate_to}
                                                 >
-                                                  <span
+                                                  <Base.P
                                                     className={`${this.decorateCSS("hamburgerSubSubmenuItemTitle")} ${animations}`}
                                                     onClick={()=> this.toggleMobileMenu()}
                                                   >
                                                     {subSubItem.nav_title}
-                                                  </span>
+                                                  </Base.P>
                                                 </ComposerLink>
                                               </div>
                                             )

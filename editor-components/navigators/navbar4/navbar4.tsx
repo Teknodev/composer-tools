@@ -1220,7 +1220,7 @@ class Navbar4 extends BaseNavigator {
     this.addProp({
       type: "icon",
       key: "dropdownIcon",
-      displayer: "Menu Icon",
+      displayer: "Dropdown Icon",
       value: "GoPlus",
     });
 
@@ -1462,11 +1462,9 @@ class Navbar4 extends BaseNavigator {
                                   }}
                                 />
                               )}
-                              <span
-                                className={`${this.decorateCSS("menuItemTitle")} ${animations}`}
-                              >
+                              <Base.P className={`${this.decorateCSS("menuItemTitle")} ${animations}`}>
                                 {item.title}
-                              </span>
+                              </Base.P>
                             </div>
                           </ComposerLink>
                           {item.menuType === "Dropdown" && (
@@ -1488,9 +1486,9 @@ class Navbar4 extends BaseNavigator {
                                             "dropdownItemContent"
                                           )}
                                         >
-                                          <span className={`${this.decorateCSS("dropdownItemTitle")} ${animations}`}>
+                                          <Base.P className={`${this.decorateCSS("dropdownItemTitle")} ${animations}`}>
                                             {subItem.title}
-                                          </span>
+                                          </Base.P>
                                         </div>
                                       </ComposerLink>
                                       {subItem.sub_items.length > 0 &&
@@ -1527,13 +1525,13 @@ class Navbar4 extends BaseNavigator {
                                                 <ComposerLink
                                                   path={subSubItem.navigate_to}
                                                 >
-                                                  <span
+                                                  <Base.P
                                                     className={this.decorateCSS(
                                                       "dropdownItemTitle"
                                                     )}
                                                   >
                                                     {subSubItem.title}
-                                                  </span>
+                                                  </Base.P>
                                                 </ComposerLink>
                                               </div>
                                             )
@@ -1585,9 +1583,9 @@ class Navbar4 extends BaseNavigator {
                   }}
                 />
               )}
-              <span className={this.decorateCSS("hamburgerMenuTitle")}>
+              <Base.P className={this.decorateCSS("hamburgerMenuTitle")}>
                 {hamburgerMenuTitle}
-              </span>
+              </Base.P>
             </div> 
             <div className={this.decorateCSS("mobileLocalizationContainer")}>
               {(language.showLanguage && language.showLocalizationAlways) && (
@@ -1632,14 +1630,14 @@ class Navbar4 extends BaseNavigator {
                         onClick={() => this.navClick(index)}
                       >
                         <ComposerLink path={item.navigate_to}>
-                          <span
+                          <Base.P
                             className={`${this.decorateCSS(
                               "hamburgerMenuItemTitle"
                             )}`}
                             onClick={()=> this.handleCloseMenu()}
                           >
                             {item.title}
-                          </span>
+                          </Base.P>
                         </ComposerLink>
                         {item.menuType === "Dropdown" && (
                           <ComposerIcon
@@ -1682,14 +1680,14 @@ class Navbar4 extends BaseNavigator {
                                     }
                                   >
                                     <ComposerLink path={subItem.navigate_to}>
-                                      <span
+                                      <Base.P
                                         className={this.decorateCSS(
                                           "hamburgerDropdownItemTitle"
                                         )}
                                         onClick={()=> this.handleCloseMenu()}
                                       >
                                         {subItem.title}
-                                      </span>
+                                      </Base.P>
                                     </ComposerLink>
                                     {subItem.sub_items.length > 0 &&
                                       subItem.sub_items.some((item: any) =>
@@ -1740,14 +1738,14 @@ class Navbar4 extends BaseNavigator {
                                               <ComposerLink
                                                 path={subSubItem.navigate_to}
                                               >
-                                                <span
+                                                <Base.P
                                                   className={this.decorateCSS(
                                                     "hamburgerSubSubmenuItemTitle"
                                                   )}
                                                   onClick={()=> this.handleCloseMenu()}
                                                 >
                                                   {subSubItem.title}
-                                                </span>
+                                                </Base.P>
                                               </ComposerLink>
                                             </div>
                                           )

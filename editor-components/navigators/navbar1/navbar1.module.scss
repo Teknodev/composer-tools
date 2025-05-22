@@ -44,9 +44,9 @@
         }
 
         .menuItemTitle {
-          font-size: 1rem;
           font-weight: normal;
           transition: all 0.8s ease;
+          font-weight: 500;
           color: var(--composer-font-color-primary);
           &.animation1{
             &:hover{
@@ -56,7 +56,7 @@
         }
 
         .dropdownIcon {
-          font-size: 1.5rem;
+          font-size: calc(1.5 * var(--project-font-size));
           color: var(--composer-font-color-primary);
           transition: all 0.3s ease;
         }
@@ -104,8 +104,7 @@
                 align-items: center;
 
                 .dropdownItemTitle {
-                  font-size: 1rem;
-                  font-weight: normal;
+                  font-weight: 400;
                   color: var(--composer-font-color-primary);
                   transition: all 0.8s ease;
                   &.animation1{
@@ -140,7 +139,7 @@
               }  
             }
             .rightIcon {
-              font-size: 1.5rem;
+              font-size: calc(1.5 * var(--project-font-size));
               color: var(--composer-font-color-primary);
               transition: all 0.3s ease;
             }
@@ -206,50 +205,6 @@
     background-color: var(--composer-primary-color);
     margin-top: var(--composer-gap-md);
   }
-
-  .rightSide {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--composer-gap-md);
-
-    .buttons{
-      display: flex;
-      gap: var(--composer-gap-sm);
-    }
-    .localization{
-      transition: all 0.3s ease;
-      .localizationLabel{
-        font-weight: normal;
-        &.animation1{
-          &:hover{
-            font-weight: bold;
-          }
-        }
-      }
-      .localizationContent{
-        font-weight: normal;
-        &.animation1{
-          &:hover{
-            font-weight: bold;
-          }
-        }
-      }
-    }
-  }
-
-  .hamburgerIcon,
-  .closeIcon {
-    display: none;
-    cursor: pointer;
-    font-size: 1.5rem;
-    color: var(--composer-font-color-primary);
-  }
-
-  .overlay {
-    content: "";
-  }
-
   .hamburgerNav {
     display: none;
     position: absolute;
@@ -285,8 +240,8 @@
               position: relative;
 
               .hamburgerMenuItemTitle {
-                font-size: 1rem;
-                font-weight: normal;
+                margin: 0;
+                font-weight: 500;
                 color: var(--composer-font-color-primary);
                 transition: all 0.8s ease;
                 &.animation1{
@@ -342,8 +297,8 @@
                   position: relative;
 
                   .hamburgerMenuItemTitle {
-                    font-size: 1rem;
-                    font-weight: normal;
+                    margin: 0;
+                    font-weight: 400;
                     color: var(--composer-font-color-primary);
                     transition: all 0.8s ease;
                     &.animation1{
@@ -352,9 +307,11 @@
                       }
                     }
                   }
-
+                  .hamburgerDropdownItemTitle{
+                    margin: 0;
+                  }
                   .rightIcon {
-                    font-size: 1.5rem;
+                    font-size: calc(1.5 * var(--project-font-size));
                     transition: all 0.3s ease;
                     color: var(--composer-font-color-primary);
                     &.active {
@@ -401,8 +358,8 @@
                     position: relative;
 
                     .hamburgerSubSubmenuItemTitle {
-                      font-size: 1rem;
-                      font-weight: normal;
+                      margin: 0;
+                      font-weight: 400;
                       color: var(--composer-font-color-primary);
                       cursor: pointer;
                       transition: all 0.8s ease;
@@ -441,7 +398,7 @@
             }
           }
           .dropdownIcon {
-            font-size: 1.5rem;
+            font-size: calc(1.5 * var(--project-font-size));
             transition: all 0.3s ease;
             color: var(--composer-font-color-primary);
             transform: rotate(0deg);
@@ -454,6 +411,49 @@
       }
     }
   }
+  .rightSide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--composer-gap-md);
+
+    .buttons{
+      display: flex;
+      gap: var(--composer-gap-sm);
+    }
+    .localization{
+      transition: all 0.3s ease;
+      .localizationLabel{
+        font-weight: normal;
+        &.animation1{
+          &:hover{
+            font-weight: bold;
+          }
+        }
+      }
+      .localizationContent{
+        font-weight: normal;
+        &.animation1{
+          &:hover{
+            font-weight: bold;
+          }
+        }
+      }
+  }
+
+  .hamburgerIcon,
+  .closeIcon {
+    display: none;
+    cursor: pointer;
+    font-size: calc(1.5 * var(--project-font-size));
+    color: var(--composer-font-color-primary);
+  }
+
+  .overlay {
+    content: "";
+  }
+
+
 
   .accordionLocalization {
     display: none;
@@ -483,7 +483,7 @@
     }
   }
 }
-
+}
 .maxContent {
   p {
     padding: 0;
@@ -549,6 +549,11 @@
             display: flex;
           }
         }
+        .hamburgerIcon,
+        .closeIcon {
+          display: flex;
+        }
+    
       }
 
       .logo {
@@ -556,10 +561,6 @@
           max-height: 50px;
         }
       }
-    }
-    .hamburgerIcon,
-    .closeIcon {
-      display: flex;
     }
 
     .hamburgerNav {
