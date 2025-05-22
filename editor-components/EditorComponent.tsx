@@ -459,22 +459,58 @@ export abstract class Component
       sectionsKeyValue[key] = [];
     });
     
+    const compProps = (props?.props || []).map((p: TypeUsableComponentProps) => this.attachValueGetter(p));
+
     this.state = {
       states: {},
       componentProps: {
-        props: props?.props || [],
+      props: compProps,
         cssClasses: props?.cssClasses || {...sectionsKeyValue},
         interactions: props?.interactions || {...sectionsKeyValue}
       },
     };
 
-    if (props?.props?.length) {
-      props?.props.forEach((prop: TypeUsableComponentProps) => {
-        this.setProp(prop.key, prop.value);
-      });
-    }
 
     EventEmitter.emit(EVENTS.COMPONENT_ADDED, { data: this });
+  }
+
+  componentWillMount(){
+    this.getProps().forEach(({key, value}) => {
+      const propIndex = this.state.componentProps.props.findIndex((prop: any) => prop.key === key);
+      if (propIndex === -1) return;
+
+      const propInState: TypeUsableComponentProps = this.state.componentProps.props[propIndex];
+      const shadowProp = this.getShadowProp(key);
+      if (!shadowProp) return;
+
+      const isComplexType = propInState.type === "array" || propInState.type === "object";
+      const isTypeChanged = propInState.type !== shadowProp.type;
+
+      if (isTypeChanged) {
+        
+        propInState.type = shadowProp.type;
+        value = structuredClone(shadowProp.value);
+      }
+
+      if (isComplexType) {
+        this.syncComplexValue(
+          structuredClone(shadowProp.value) as TypeUsableComponentProps[],
+          value as TypeUsableComponentProps[]
+        );
+      }
+
+      const isMatchingValue = 
+        (!isComplexType && propInState.value === value) ||
+        (isComplexType && propInState.value.every((item) => item.getPropValue) && propInState.value === value);
+
+      if (isMatchingValue) return;
+
+      this.state.componentProps.props[propIndex].value = value;
+      this.state.componentProps.props[propIndex] = this.attachValueGetter(
+        this.state.componentProps.props[propIndex]
+      );
+
+    })
   }
 
   static getName(): string {
@@ -677,6 +713,7 @@ export abstract class Component
       if (targetIndex === -1) return;
       
       const targetProp = target[targetIndex];
+      // console.log("targetProp: ", targetProp)
       const isTypeChanged = targetProp.type !== sourceProp.type;
       const isComplexType = sourceProp.type === "array" || sourceProp.type === "object";
 
@@ -696,42 +733,29 @@ export abstract class Component
   }
 
   setProp(key: string, value: any): void {
-    setTimeout(() => {
-      const propIndex = this.state.componentProps.props.findIndex((prop: any) => prop.key === key);
-      if (propIndex === -1) return;
+    let i = this.state.componentProps.props
+      .map((prop: any) => prop.key)
+      .indexOf(key);
 
-      const propInState: TypeUsableComponentProps = this.state.componentProps.props[propIndex];
-      const shadowProp = this.getShadowProp(key);
-      if (!shadowProp) return;
+    const prop: TypeUsableComponentProps = this.state.componentProps.props[i];
 
-      const isComplexType = propInState.type === "array" || propInState.type === "object";
-      const isTypeChanged = propInState.type !== shadowProp.type;
+    const isInvalidIndex = i === -1;
+    const isMatchingSimpleValue =
+      prop.type !== "array" && prop.type !== "object" && prop.value === value;
+    const isMatchingComplexValue =
+      (prop.type === "array" || prop.type === "object") &&
+      prop.value.every((item) => item.getPropValue) &&
+      prop.value === value;
 
-      if (isTypeChanged) {
-        propInState.type = shadowProp.type;
-        value = structuredClone(shadowProp.value);
-      }
+    if (isInvalidIndex || isMatchingSimpleValue || isMatchingComplexValue) {
+      return;
+    }
 
-      if (isComplexType) {
-        this.syncComplexValue(
-          structuredClone(shadowProp.value) as TypeUsableComponentProps[],
-          value
-        );
-      }
-
-      const isMatchingValue = 
-        (!isComplexType && propInState.value === value) ||
-        (isComplexType && propInState.value.every((item) => item.getPropValue) && propInState.value === value);
-
-      if (isMatchingValue) return;
-
-      this.state.componentProps.props[propIndex].value = value;
-      this.state.componentProps.props[propIndex] = this.attachValueGetter(
-        this.state.componentProps.props[propIndex]
-      );
-      
-      this.setState({ componentProps: { ...this.state.componentProps } });
-    }, 0);
+    this.state.componentProps.props[i].value = value;
+    this.state.componentProps.props[i] = this.attachValueGetter(
+      this.state.componentProps.props[i]
+    );
+    this.setState({ componentProps: { ...this.state.componentProps } });
   }
 
   setComponentState(key: string, value: any): void {
