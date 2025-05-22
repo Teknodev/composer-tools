@@ -1,9 +1,30 @@
-@use "../../../../composer-tools/composer-base-components//base/utitilities/viewports.module.scss" as *;
+@use "../../../../composer-tools/composer-base-components//base/utitilities/viewports.module.scss"
+  as *;
 
 @keyframes bounceText {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
-  100% { transform: translateY(0); }
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes breathe {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 
 .container {
@@ -23,7 +44,8 @@
           gap: var(--composer-gap-md);
         }
 
-        .subtitle, .title {
+        .subtitle,
+        .title {
           content: "";
         }
 
@@ -55,7 +77,11 @@
 
         .plan {
           width: 100%;
-          background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+          background: color-mix(
+            in srgb,
+            var(--composer-html-background),
+            var(--composer-font-color-primary) 5%
+          );
           padding: var(--composer-gap-sm) var(--composer-gap-md);
           border-radius: var(--composer-gap-xs) !important;
           display: flex;
@@ -66,7 +92,7 @@
           cursor: pointer;
           position: relative;
           overflow: hidden;
-          &::before{
+          &::before {
             content: "";
             position: absolute;
             bottom: 0;
@@ -75,27 +101,30 @@
             height: 1px;
             background: var(--composer-primary-color);
             transition: width 0.8s ease-in-out;
-           
           }
-          &.animation1:hover{
-            &::before{
+          &.animation1:hover {
+            &::before {
               width: 100%;
             }
           }
-          &.animation2:hover{
-            .plan-price-box{
-              .labels{
+          &.animation2:hover {
+            .plan-price-box {
+              .labels {
                 animation: bounceText 0.8s ease-in-out infinite;
               }
-              .plan-button{
+              .plan-button {
                 content: "";
               }
             }
           }
-          &.animation3:hover{
-            .plan-price-box{
-              .labels{
-                transform: scale(1.05);
+          &.animation3:hover {
+            .plan-price-box {
+              .labels {
+                animation-name: breathe;
+                animation-duration: 1s;
+                animation-timing-function: ease-in-and-out;
+                animation-iteration-count: infinite;
+                animation-direction: alternate;
               }
             }
           }

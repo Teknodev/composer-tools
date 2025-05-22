@@ -1,4 +1,17 @@
 $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
+@keyframes breathe {
+  0% {
+    transform: scale(1.1);
+  }
+  
+  50% {
+    transform: scale(1.05);
+  }
+  
+  100% {
+    transform: scale(1.1);
+  }
+}
 
 .container {
   .max-content {
@@ -52,7 +65,11 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               .card-up{
                 .card-up-texts{
                   .price-pricing{
-                    transform: scale(1.1);
+                    animation-name: breathe;
+                    animation-duration: 2s;
+                    animation-timing-function: ease-in-out;
+                    animation-iteration-count: infinite;
+                    animation-direction: alternate;
                   }
                 }
               }
@@ -147,8 +164,6 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
       .price-pricing {
         margin-top: var(--composer-gap-md);
         color: var(--composer-font-color-primary);
-        transform: scale(1);
-        transition: all 0.8s ease;
       }
     }
   }
