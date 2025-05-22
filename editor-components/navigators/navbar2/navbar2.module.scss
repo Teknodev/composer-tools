@@ -44,6 +44,11 @@
           font-weight: 500;
           transition: all 0.3s ease;
           color: var(--composer-font-color-primary);
+          &.animation1{
+            &:hover{
+              font-weight: bold;
+            }
+          }
         }
 
         .dropdownIcon {
@@ -99,10 +104,14 @@
                   font-weight: 400;
                   color: var(--composer-font-color-primary);
                   transition: color 0.3s ease;
+                  &.animation1{
+                    &:hover{
+                      font-weight: bold;
+                    }
+                  }
                 }
               }
             }
-
             &::after {
               content: "";
               position: absolute;
@@ -112,12 +121,20 @@
               background-color: var(--composer-primary-color);
               transition: width 0.3s ease;
             }
-
-            &:hover {
-              &::after {
-                width: calc(100% - (var(--composer-gap-md) * 2));
+            &.animation2{
+              &:hover{
+                &::after {
+                  width: calc(100% - (var(--composer-gap-md) * 2));
+                }
+  
+                .subdropdown {
+                  opacity: 1;
+                  visibility: visible;
+                  transform: translateX(0);
+                }
               }
-
+            }
+            &:hover{
               .subdropdown {
                 opacity: 1;
                 visibility: visible;
@@ -152,7 +169,16 @@
                 border-radius: var(--composer-border-radius-sm);
                 position: relative;
                 color: var(--composer-font-color-primary);
-
+                .dropdownItemTitle{
+                  color: var(--composer-font-color-primary);
+                  font-weight: normal;
+                  transition: all 0.3s ease;
+                  &.animation1{
+                    &:hover{
+                      font-weight: bold;
+                    }
+                  }
+                }
                 &::after {
                   content: "";
                   position: absolute;
@@ -162,13 +188,33 @@
                   background-color: var(--composer-primary-color);
                   transition: width 0.3s ease;
                 }
-
-                &:hover {
-                  &::after {
-                    width: calc(100% - (var(--composer-gap-md) * 2));
+                &.animation2{
+                  &:hover {
+                    &::after {
+                      width: calc(100% - (var(--composer-gap-md) * 2));
+                    }
                   }
                 }
               }
+            }
+          }
+        }
+      }
+      .localization{
+        transition: all 0.3s ease;
+        .localizationLabel{
+          font-weight: normal;
+          &.animation1{
+            &:hover{
+              font-weight: bold;
+            }
+          }
+        }
+        .localizationContent{
+          font-weight: normal;
+          &.animation1{
+            &:hover{
+              font-weight: bold;
             }
           }
         }
@@ -242,7 +288,14 @@
               .hamburgerMenuItemTitle {
                 margin: 0;
                 color: var(--composer-font-color-primary);
-                font-weight: bold;
+                font-size: 1.5rem;
+                font-weight: normal;
+                transition: all 0.8s ease;
+                &.animation1{
+                  &:hover{
+                    font-weight: bold;
+                  }
+                }
               }
 
               .dropdownIcon {
@@ -278,6 +331,13 @@
                     color: var(--composer-font-color-primary);
                     font-weight: 400;
                     margin: 0;
+                    font-size: 1rem;
+                    transition: all 0.8s ease;
+                    &.animation1{
+                      &:hover{
+                        font-weight: bold;
+                      }
+                    }
                   }
 
                   .dropdownIcon {
@@ -307,6 +367,11 @@
                       color: var(--composer-font-color-primary);
                       font-weight: 400;
                       margin: 0;
+                      &.animation1{
+                        &:hover{
+                          font-weight: bold;
+                        }
+                      }
                     }
                   }
                 }
@@ -331,7 +396,6 @@
     .languageAccordionItem {
       color: var(--composer-font-color-primary);
       text-transform: uppercase;
-      font-weight: bold;
     }
 
     .languageAccordionTitle {
@@ -425,11 +489,26 @@
             margin-top: calc(2 * var(--composer-gap-xl));
           }
           .languageAccordionTitle {
-            font-size: calc(1.5 * var(--project-font-size));
-            font-weight: bold;
+            font-size: 1.5rem;
+            font-weight: normal;
+            transition: all 0.3s ease;
+            &.animation1{
+              &:hover{
+                font-weight:bold
+              }
+            }
           }
           .languageAccordionItem{
             font-size: calc(1 * var(--project-font-size));
+            font-weight: bold;
+            transition: all 0.3s ease;
+            &.animation1{
+              &:hover{
+                font-weight:bold
+              }
+            }
+
+            font-size: calc(1.5 * var(--project-font-size));
             font-weight: bold;
           }
           .languageAccordionIcon {

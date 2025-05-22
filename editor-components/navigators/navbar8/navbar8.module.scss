@@ -80,8 +80,6 @@
         content: "";
       }
     }
-
-   
   }
 
   .icons {
@@ -102,9 +100,28 @@
 
     .localizationLabel{
       color: white;
-
+      font-weight: normal;
+      transition: all 0.3s ease;
+      &.animation1{
+        &:hover{
+          font-weight: bold;
+        }
+      }
       &.openedLabel{
         content: "";
+      }
+    }
+    .localizationContent{
+      .localizationItem{
+        font-weight: normal;
+        transition: all 0.3s ease;
+      }
+      &.animation1{
+        &:hover{
+          .localizationItem{
+            font-weight: bold;
+          }
+        }
       }
     }
 
@@ -191,6 +208,13 @@
         text-align: center;
         color: var(--composer-font-color-primary);
         font-size: calc(1.5 * (var(--project-font-size) + 4px));
+        font-weight: normal;
+        transition: all 0.3s ease;
+        &.animation1{
+          &:hover{
+            font-weight: bold;
+          }
+        }
       }
 
       .socialMediaLinks {
@@ -210,9 +234,17 @@
           justify-content: center;
           gap: var(--composer-gap-xs);
           .socialMediaIconContainer{
+            transition: all 0.3s ease;
             .socialMediaIcon {
               font-size: calc(2 * var(--project-font-size));
               color: var(--composer-font-color-primary);
+            }
+            &.animation2{
+              &:hover{
+                .socialMediaIcon{
+                  color: var(--composer-primary-color);
+                }
+              }
             }
           }
         }

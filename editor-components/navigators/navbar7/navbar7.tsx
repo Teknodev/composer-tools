@@ -1053,7 +1053,15 @@ class Navbar7 extends BaseNavigator {
       displayer: "Close Icon",
       value: "IoMdClose",
     });
-
+    this.addProp({
+      type:"multiSelect",
+      key: "animations",
+      displayer: "Animations",
+      value: ["animation1","animation2"],
+      additionalParams:{
+        selectItems:["animation1", "animation2"]
+      }
+    })
     this.setComponentState("isScrolled", false);
     this.setComponentState("isBigScreen", false);
     this.setComponentState("isMobileMenuOpen", false);
@@ -1131,7 +1139,8 @@ class Navbar7 extends BaseNavigator {
 
     const language = this.castToObject<Language>("language");
 
-    const isVisible = (isMobileMenuOpen && !isBigScreen)
+    const isVisible = (isMobileMenuOpen && !isBigScreen);
+    const animations = this.getPropValue("animations") && this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ")
     
     return (
       <>
@@ -1293,14 +1302,10 @@ class Navbar7 extends BaseNavigator {
                     dropdownButtonClassName={`${this.decorateCSS(
                       "localization"
                     )}`}
-                    dropdownLabelClassName={`${this.decorateCSS(
-                      "localizationLabel"
-                    )}`}
+                    dropdownLabelClassName={`${this.decorateCSS("localizationLabel")} ${animations}`}
                     iconClassName={this.decorateCSS("languageIcon")}
-                    dropdownItemClassName={this.decorateCSS("localizationItem")}
-                    dropdownContentClassName={this.decorateCSS(
-                      "localizationContent"
-                    )}
+                    dropdownItemClassName={`${this.decorateCSS("localizationItem")}`}
+                    dropdownContentClassName={`${this.decorateCSS("localizationContent")} ${animations}`}
                     divider={language.showDivider}
                   />
                 )}
