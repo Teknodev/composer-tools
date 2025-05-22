@@ -38,7 +38,7 @@ export const currencies = [
   { code: "KHR", symbol: "៛", name: "Cambodian Riel" },
   { code: "CAD", symbol: "C$", name: "Canadian Dollar" },
   { code: "CVE", symbol: "$", name: "Cape Verdean Escudo" },
-  { code: "KYD", symbol: "CI$", name: "Cayman Islands Dollar" }, 
+  { code: "KYD", symbol: "CI$", name: "Cayman Islands Dollar" },
   { code: "CLP", symbol: "$", name: "Chilean Peso" },
   { code: "CNY", symbol: "CN¥", name: "Chinese Yuan" },
   { code: "COP", symbol: "Col$", name: "Colombian Peso" },
@@ -271,10 +271,10 @@ export const LANGUAGES = [
   { code: "za", name: "Zhuang, Chuang", nativeName: "Saɯ cueŋƅ, Saw cuengh" },
 ];
 
-export type CurrencyCode = (typeof currencies )[number]["code"];
+export type CurrencyCode = (typeof currencies)[number]["code"];
 
 
-export function generateComponentId(){
+export function generateComponentId() {
   return uuidv4();
 }
 
@@ -283,14 +283,14 @@ type PreSufFix = {
   className: string;
 };
 
-export type InteractionType ={
+export type InteractionType = {
   type?: string,
   modal?: string,
   trigger_action?: string,
   visible_on?: string,
   show_once?: false,
 };
-export type PageInteractionType ={
+export type PageInteractionType = {
   type?: string;
   modal?: string;
   scroll_depth?: number;
@@ -305,9 +305,9 @@ export type TypeLocation = {
   lat: number;
 };
 
-type currencyAdditionalParams ={
+type currencyAdditionalParams = {
   showCode?: boolean;
-  showSymbol?:boolean;
+  showSymbol?: boolean;
 }
 
 type GetPropValueProperties = {
@@ -317,9 +317,9 @@ type GetPropValueProperties = {
   prefix?: PreSufFix;
 };
 
-type RangeInputAdditionalParams = { 
-  maxRange?: number; 
-  minRange?: number; 
+type RangeInputAdditionalParams = {
+  maxRange?: number;
+  minRange?: number;
   step?: number;
 };
 
@@ -368,11 +368,11 @@ type AvailablePropTypes =
   | { type: "icon"; value: string }
   | { type: "email"; value: string }
   | { type: "location"; value: TypeLocation }
-  | { type: "range"; value: string; additionalParams?: RangeInputAdditionalParams}
-  | { type: "currency"; value: { value: string; currency?: CurrencyCode }; additionalParams?: currencyAdditionalParams}
-  | { type: "tag"; value: string[]}
+  | { type: "range"; value: string; additionalParams?: RangeInputAdditionalParams }
+  | { type: "currency"; value: { value: string; currency?: CurrencyCode }; additionalParams?: currencyAdditionalParams }
+  | { type: "tag"; value: string[] }
   | { type: "phone"; value: string }
-  | { type: "dateTime"; value: string ; additionalParams? : {mode?:string, timeInterval?:number, yearRange? : number, yearStart?: number}}
+  | { type: "dateTime"; value: string; additionalParams?: { mode?: string, timeInterval?: number, yearRange?: number, yearStart?: number } }
   | { type: "multiSelect"; value: string[] }
   | { type: "file"; value: string }
   | { type: "embededLink"; value: string }
@@ -388,7 +388,7 @@ export type TypeUsableComponentProps = {
   id?: string;
   key: string;
   displayer: string;
-  additionalParams?: { selectItems?: string[]; maxElementCount?: number};
+  additionalParams?: { selectItems?: string[]; maxElementCount?: number };
   max?: number;
 } & AvailablePropTypes & {
   getPropValue?: (
@@ -424,9 +424,9 @@ export enum CATEGORIES {
   LOCATION = "location",
   HTTP_CODES = "HTTPCodes",
   BANNER = "banner",
+  ECOMMERCE = "ecommerce",
   SOCIAL = "social",
   SOCIALWIDGET = "socialWidget",
-  ECOMMERCE = "ecommerce",
 }
 
 export function generateId(key: string): string {
@@ -435,13 +435,12 @@ export function generateId(key: string): string {
 //@ts-ignore
 export abstract class Component
   extends React.Component<{}, { states: any; componentProps: any }>
-  implements iComponent
-{
+  implements iComponent {
   private shadowProps: TypeUsableComponentProps[] = [];
   private styles: any;
   public id: string;
   static category: CATEGORIES;
-  private memorizedElements: {[id: string]: MemorizedElement} = {};
+  private memorizedElements: { [id: string]: MemorizedElement } = {};
 
   componentDidUpdate(prevProps: Readonly<{}>, prevState: Readonly<{ states: any; componentProps: any; }>, snapshot?: any): void {
     EventEmitter.emit(EVENTS.COMPONENT_DID_UPDATE, { data: this });
@@ -456,13 +455,13 @@ export abstract class Component
     Object.keys(this.styles).forEach((key, index) => {
       sectionsKeyValue[key] = [];
     });
-    
+
     this.state = {
       states: {},
       componentProps: {
         props: props?.props || [],
-        cssClasses: props?.cssClasses || {...sectionsKeyValue},
-        interactions: props?.interactions || {...sectionsKeyValue}
+        cssClasses: props?.cssClasses || { ...sectionsKeyValue },
+        interactions: props?.interactions || { ...sectionsKeyValue }
       },
     };
 
@@ -611,15 +610,15 @@ export abstract class Component
     };
 
 
-    if(!this.memorizedElements[prop.id]) {
+    if (!this.memorizedElements[prop.id]) {
       this.memorizedElements[prop.id] = {};
     }
 
-    const memorizedElement: MemorizedElement  = this.memorizedElements[prop.id];
-    const isValueChanged = (!!memorizedElement?.value || memorizedElement?.value == "") 
-    && prop.value != memorizedElement?.value;
+    const memorizedElement: MemorizedElement = this.memorizedElements[prop.id];
+    const isValueChanged = (!!memorizedElement?.value || memorizedElement?.value == "")
+      && prop.value != memorizedElement?.value;
 
-    if(!memorizedElement.jsxElement || isValueChanged){
+    if (!memorizedElement.jsxElement || isValueChanged) {
       memorizedElement["jsxElement"] = <SanitizeHTML html={prop?.value}></SanitizeHTML>;
       memorizedElement["value"] = prop.value as string;
     }
@@ -634,8 +633,8 @@ export abstract class Component
   getCSSClasses(sectionName: string | null): CSSClass[];
   getCSSClasses(sectionName: string | null = null): TypeCSSProp | CSSClass[] {
     const { cssClasses } = this.state.componentProps;
-    
-    return sectionName 
+
+    return sectionName
       ? cssClasses[sectionName]
       : cssClasses;
   }
@@ -719,7 +718,7 @@ export abstract class Component
   }
   decorateCSS(section: string) {
     let cssClass = [this.styles[section]];
-    
+
     let cssManuplations = Object.entries(this.getCSSClasses()).filter(
       ([p, v]) => v.length > 0
     );
@@ -735,7 +734,7 @@ export abstract class Component
     cssClass.push(
       generateAutoClassName(this.id, section)
     );
-    
+
     return cssClass.join(" ");
   }
 
@@ -767,7 +766,7 @@ export abstract class Component
     }
     return propValue;
   }
-  
+
 
   castToObject<Type>(propName: string): Type {
     let i = this.state.componentProps.props
@@ -923,6 +922,10 @@ export abstract class BaseBanner extends Component {
   static category = CATEGORIES.BANNER;
 }
 
+export abstract class BaseECommerce extends Component {
+  static category = CATEGORIES.ECOMMERCE;
+}
+
 export abstract class Location extends Component {
   static category = CATEGORIES.LOCATION;
   protected themes: TTheme[] = THEMES;
@@ -973,10 +976,8 @@ export abstract class BaseSocialWidget extends Component {
   static category = CATEGORIES.SOCIALWIDGET;
 }
 
-export function generateAutoClassName(componentId: string, section: string){
+export function generateAutoClassName(componentId: string, section: string) {
   return `auto-generate-${componentId}-${section}`;
 };
 
-export abstract class BaseECommerce extends Component {  
-  static category = CATEGORIES.ECOMMERCE;
-}
+
