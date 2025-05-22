@@ -713,7 +713,7 @@ export abstract class Component
       if (targetIndex === -1) return;
       
       const targetProp = target[targetIndex];
-      // console.log("targetProp: ", targetProp)
+
       const isTypeChanged = targetProp.type !== sourceProp.type;
       const isComplexType = sourceProp.type === "array" || sourceProp.type === "object";
 
