@@ -248,6 +248,7 @@ import SocialWidget3 from "./social_widget/social_widget3/social_widget3";
 import SocialWidget4 from "./social_widget/social_widget4/social_widget4";
 import SocialWidget5 from "../editor-components/social_widget/social_widget5/social_widget5";
 import ECommerce3 from "./e-commerce/e-commerce3/e-commerce3";
+import ComingSoon1 from "./coming-soon/coming-soon1/coming-soon1";
 
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
@@ -498,7 +499,8 @@ function Registerables(composer: ComponentsRegistery) {
     SocialWidget3,
     SocialWidget4,
     SocialWidget5,
-    ECommerce3
+    ECommerce3,
+    ComingSoon1
   ]);
 }
 
