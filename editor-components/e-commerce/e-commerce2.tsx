@@ -4,6 +4,7 @@ import styles from "./e-commerce2.module.scss";
 import { BaseECommerce } from "composer-tools/editor-components/EditorComponent";
 import { ComposerIcon } from "../../composer-base-components/icon/icon";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 
 interface ImageGallery {
     sectionTitle: string;
@@ -28,6 +29,7 @@ interface Image {
     bottomText: string;
     bottomIcon: string;
     subTitle: string;
+    navigateTo: string;
 }
 
 class ECommerce2 extends BaseECommerce {
@@ -42,8 +44,8 @@ class ECommerce2 extends BaseECommerce {
         this.addProp({
             type: "string",
             key: "allText",
-            displayer: "All Button Text",
-            value: "All",
+            displayer: "All Text",
+            value: "ALL",
         });
         this.addProp({
             type: "array",
@@ -58,8 +60,8 @@ class ECommerce2 extends BaseECommerce {
                         {
                             type: "string",
                             key: "sectionTitle",
-                            displayer: "Section Title",
-                            value: "Home Decor",
+                            displayer: "Category Title",
+                            value: "HOME DECOR",
                         },
                         {
                             type: "array",
@@ -81,8 +83,8 @@ class ECommerce2 extends BaseECommerce {
                                         {
                                             type: "string",
                                             key: "title",
-                                            displayer: "Title 1",
-                                            value: "Basket With Handles",
+                                            displayer: "Title",
+                                            value: "BASKET WITH HANDLES",
                                         },
                                         {
                                             type: "string",
@@ -117,8 +119,14 @@ class ECommerce2 extends BaseECommerce {
                                         {
                                             type: "string",
                                             key: "subTitle",
-                                            displayer: "Sub Title",
-                                            value: "Add to Cart",
+                                            displayer: "Subtitle",
+                                            value: "ADD TO CART",
+                                        },
+                                        {
+                                            type: "page",
+                                            key: "navigateTo",
+                                            displayer: "Navigate To",
+                                            value: "",
                                         },
                                         {
                                             type: "array",
@@ -214,8 +222,8 @@ class ECommerce2 extends BaseECommerce {
                                         {
                                             type: "string",
                                             key: "title",
-                                            displayer: "Title 1",
-                                            value: "Deco Accessory",
+                                            displayer: "Title",
+                                            value: "DEPO ACCESSORY",
                                         },
                                         {
                                             type: "string",
@@ -250,8 +258,14 @@ class ECommerce2 extends BaseECommerce {
                                         {
                                             type: "string",
                                             key: "subTitle",
-                                            displayer: "Sub Title",
-                                            value: "Add to Cart",
+                                            displayer: "Subtitle",
+                                            value: "ADD TO CART",
+                                        },
+                                        {
+                                            type: "page",
+                                            key: "navigateTo",
+                                            displayer: "Navigate To",
+                                            value: "",
                                         },
                                         {
                                             type: "array",
@@ -347,8 +361,8 @@ class ECommerce2 extends BaseECommerce {
                                         {
                                             type: "string",
                                             key: "title",
-                                            displayer: "Title 1",
-                                            value: "Flower Vase",
+                                            displayer: "Title",
+                                            value: "FLOWER VASE",
                                         },
                                         {
                                             type: "string",
@@ -383,8 +397,14 @@ class ECommerce2 extends BaseECommerce {
                                         {
                                             type: "string",
                                             key: "subTitle",
-                                            displayer: "Sub Title",
-                                            value: "Add to Cart",
+                                            displayer: "Subtitle",
+                                            value: "ADD TO CART",
+                                        },
+                                        {
+                                            type: "page",
+                                            key: "navigateTo",
+                                            displayer: "Navigate To",
+                                            value: "",
                                         },
                                         {
                                             type: "array",
@@ -480,8 +500,8 @@ class ECommerce2 extends BaseECommerce {
                                         {
                                             type: "string",
                                             key: "title",
-                                            displayer: "Title 1",
-                                            value: "Wall Clock",
+                                            displayer: "Title",
+                                            value: "WALL CLOCK",
                                         },
                                         {
                                             type: "string",
@@ -516,8 +536,14 @@ class ECommerce2 extends BaseECommerce {
                                         {
                                             type: "string",
                                             key: "subTitle",
-                                            displayer: "Sub Title",
-                                            value: "Add to Cart",
+                                            displayer: "Subtitle",
+                                            value: "ADD TO CART",
+                                        },
+                                        {
+                                            type: "page",
+                                            key: "navigateTo",
+                                            displayer: "Navigate To",
+                                            value: "",
                                         },
                                         {
                                             type: "array",
@@ -613,8 +639,8 @@ class ECommerce2 extends BaseECommerce {
                                         {
                                             type: "string",
                                             key: "title",
-                                            displayer: "Title 1",
-                                            value: "Newspaper Storage",
+                                            displayer: "Title",
+                                            value: "NEWSPAPER STORAGE",
                                         },
                                         {
                                             type: "string",
@@ -649,8 +675,14 @@ class ECommerce2 extends BaseECommerce {
                                         {
                                             type: "string",
                                             key: "subTitle",
-                                            displayer: "Sub Title",
-                                            value: "Add to Cart",
+                                            displayer: "Subtitle",
+                                            value: "ADD TO CART",
+                                        },
+                                        {
+                                            type: "page",
+                                            key: "navigateTo",
+                                            displayer: "Navigate To",
+                                            value: "",
                                         },
                                         {
                                             type: "array",
@@ -746,8 +778,8 @@ class ECommerce2 extends BaseECommerce {
                                         {
                                             type: "string",
                                             key: "title",
-                                            displayer: "Title 1",
-                                            value: "Pottery Vase",
+                                            displayer: "Title",
+                                            value: "POTTERY VASE",
                                         },
                                         {
                                             type: "string",
@@ -782,8 +814,14 @@ class ECommerce2 extends BaseECommerce {
                                         {
                                             type: "string",
                                             key: "subTitle",
-                                            displayer: "Sub Title",
-                                            value: "Add to Cart",
+                                            displayer: "Subtitle",
+                                            value: "ADD TO CART",
+                                        },
+                                        {
+                                            type: "page",
+                                            key: "navigateTo",
+                                            displayer: "Navigate To",
+                                            value: "",
                                         },
                                         {
                                             type: "array",
@@ -799,7 +837,8 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "image",
                                                             key: "popupImg",
                                                             displayer: "Popup Image ",
-                                                            value: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-2-600x728.jpg",
+                                                            value:
+                                                                "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-2-600x728.jpg",
                                                         },
                                                     ],
                                                 },
@@ -878,8 +917,8 @@ class ECommerce2 extends BaseECommerce {
                                         {
                                             type: "string",
                                             key: "title",
-                                            displayer: "Title 1",
-                                            value: "Rose Holdback",
+                                            displayer: "Title",
+                                            value: "ROSE HOLDBACK",
                                         },
                                         {
                                             type: "string",
@@ -914,8 +953,14 @@ class ECommerce2 extends BaseECommerce {
                                         {
                                             type: "string",
                                             key: "subTitle",
-                                            displayer: "Sub Title",
-                                            value: "Add to Cart",
+                                            displayer: "Subtitle",
+                                            value: "ADD TO CART",
+                                        },
+                                        {
+                                            type: "page",
+                                            key: "navigateTo",
+                                            displayer: "Navigate To",
+                                            value: "",
                                         },
                                         {
                                             type: "array",
@@ -931,7 +976,8 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "image",
                                                             key: "popupImg",
                                                             displayer: "Popup Image ",
-                                                            value: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-3-1-600x728.jpg",
+                                                            value:
+                                                                "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-3-1-600x728.jpg",
                                                         },
                                                     ],
                                                 },
@@ -1004,13 +1050,14 @@ class ECommerce2 extends BaseECommerce {
                                             type: "image",
                                             key: "cardImage",
                                             displayer: "Card Image",
-                                            value: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-1-600x728.jpg",
+                                            value:
+                                                "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-1-600x728.jpg",
                                         },
                                         {
                                             type: "string",
                                             key: "title",
-                                            displayer: "Title 1",
-                                            value: "Table Lamp",
+                                            displayer: "Title",
+                                            value: "TABLE LAMP",
                                         },
                                         {
                                             type: "string",
@@ -1045,8 +1092,14 @@ class ECommerce2 extends BaseECommerce {
                                         {
                                             type: "string",
                                             key: "subTitle",
-                                            displayer: "Sub Title",
-                                            value: "Add to Cart",
+                                            displayer: "Subtitle",
+                                            value: "ADD TO CART",
+                                        },
+                                        {
+                                            type: "page",
+                                            key: "navigateTo",
+                                            displayer: "Navigate To",
+                                            value: "",
                                         },
                                         {
                                             type: "array",
@@ -1062,7 +1115,8 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "image",
                                                             key: "popupImg",
                                                             displayer: "Popup Image ",
-                                                            value: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-1-600x728.jpg",
+                                                            value:
+                                                                "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-1-600x728.jpg",
                                                         },
                                                     ],
                                                 },
@@ -1138,8 +1192,8 @@ class ECommerce2 extends BaseECommerce {
                         {
                             type: "string",
                             key: "sectionTitle",
-                            displayer: "Section Title",
-                            value: "Lightning",
+                            displayer: "Category Title",
+                            value: "LIGHTNING",
                         },
                         {
                             type: "array",
@@ -1161,8 +1215,8 @@ class ECommerce2 extends BaseECommerce {
                                         {
                                             type: "string",
                                             key: "title",
-                                            displayer: "Title 1",
-                                            value: "Table Lamp",
+                                            displayer: "Title",
+                                            value: "TABLE LAMP",
                                         },
                                         {
                                             type: "string",
@@ -1197,8 +1251,14 @@ class ECommerce2 extends BaseECommerce {
                                         {
                                             type: "string",
                                             key: "subTitle",
-                                            displayer: "Sub Title",
-                                            value: "Add to Cart",
+                                            displayer: "Subtitle",
+                                            value: "ADD TO CART",
+                                        },
+                                        {
+                                            type: "page",
+                                            key: "navigateTo",
+                                            displayer: "Navigate To",
+                                            value: "",
                                         },
                                         {
                                             type: "array",
@@ -1214,7 +1274,8 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "image",
                                                             key: "popupImg",
                                                             displayer: "Popup Image ",
-                                                            value: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-1-600x728.jpg",
+                                                            value:
+                                                                "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-1-600x728.jpg",
                                                         },
                                                     ],
                                                 },
@@ -1290,8 +1351,8 @@ class ECommerce2 extends BaseECommerce {
                         {
                             type: "string",
                             key: "sectionTitle",
-                            displayer: "Section Title",
-                            value: "Decoration",
+                            displayer: "Category Title",
+                            value: "DECORATION",
                         },
                         {
                             type: "array",
@@ -1313,8 +1374,8 @@ class ECommerce2 extends BaseECommerce {
                                         {
                                             type: "string",
                                             key: "title",
-                                            displayer: "Title 1",
-                                            value: "Basket With Handles",
+                                            displayer: "Title",
+                                            value: "BASKET WITH HANDLES",
                                         },
                                         {
                                             type: "string",
@@ -1349,8 +1410,14 @@ class ECommerce2 extends BaseECommerce {
                                         {
                                             type: "string",
                                             key: "subTitle",
-                                            displayer: "Sub Title",
-                                            value: "Add to Cart",
+                                            displayer: "Subtitle",
+                                            value: "ADD TO CART",
+                                        },
+                                        {
+                                            type: "page",
+                                            key: "navigateTo",
+                                            displayer: "Navigate To",
+                                            value: "",
                                         },
                                         {
                                             type: "array",
@@ -1446,8 +1513,8 @@ class ECommerce2 extends BaseECommerce {
                                         {
                                             type: "string",
                                             key: "title",
-                                            displayer: "Title 1",
-                                            value: "Rose Holdback",
+                                            displayer: "Title",
+                                            value: "ROSE HOLDBACK",
                                         },
                                         {
                                             type: "string",
@@ -1482,8 +1549,14 @@ class ECommerce2 extends BaseECommerce {
                                         {
                                             type: "string",
                                             key: "subTitle",
-                                            displayer: "Sub Title",
-                                            value: "Add to Cart",
+                                            displayer: "Subtitle",
+                                            value: "ADD TO CART",
+                                        },
+                                        {
+                                            type: "page",
+                                            key: "navigateTo",
+                                            displayer: "Navigate To",
+                                            value: "",
                                         },
                                         {
                                             type: "array",
@@ -1499,7 +1572,8 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "image",
                                                             key: "popupImg",
                                                             displayer: "Popup Image ",
-                                                            value: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-3-1-600x728.jpg",
+                                                            value:
+                                                                "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-3-1-600x728.jpg",
                                                         },
                                                     ],
                                                 },
@@ -1575,8 +1649,8 @@ class ECommerce2 extends BaseECommerce {
                         {
                             type: "string",
                             key: "sectionTitle",
-                            displayer: "Section Title",
-                            value: "Vases",
+                            displayer: "Category Title",
+                            value: "VASES",
                         },
                         {
                             type: "array",
@@ -1598,8 +1672,8 @@ class ECommerce2 extends BaseECommerce {
                                         {
                                             type: "string",
                                             key: "title",
-                                            displayer: "Title 1",
-                                            value: "Pottery Vase",
+                                            displayer: "Title",
+                                            value: "POTTERY VASE",
                                         },
                                         {
                                             type: "string",
@@ -1634,8 +1708,14 @@ class ECommerce2 extends BaseECommerce {
                                         {
                                             type: "string",
                                             key: "subTitle",
-                                            displayer: "Sub Title",
-                                            value: "Add to Cart",
+                                            displayer: "Subtitle",
+                                            value: "ADD TO CART",
+                                        },
+                                        {
+                                            type: "page",
+                                            key: "navigateTo",
+                                            displayer: "Navigate To",
+                                            value: "",
                                         },
                                         {
                                             type: "array",
@@ -1651,7 +1731,8 @@ class ECommerce2 extends BaseECommerce {
                                                             type: "image",
                                                             key: "popupImg",
                                                             displayer: "Popup Image ",
-                                                            value: "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-2-600x728.jpg",
+                                                            value:
+                                                                "https://depot.qodeinteractive.com/wp-content/uploads/2017/01/h1-product-2-600x728.jpg",
                                                         },
                                                     ],
                                                 },
@@ -1730,8 +1811,8 @@ class ECommerce2 extends BaseECommerce {
                                         {
                                             type: "string",
                                             key: "title",
-                                            displayer: "Title 1",
-                                            value: "Flower Vase",
+                                            displayer: "Title",
+                                            value: "FLOWER VASE",
                                         },
                                         {
                                             type: "string",
@@ -1766,8 +1847,14 @@ class ECommerce2 extends BaseECommerce {
                                         {
                                             type: "string",
                                             key: "subTitle",
-                                            displayer: "Sub Title",
-                                            value: "Add to Cart",
+                                            displayer: "Subtitle",
+                                            value: "ADD TO CART",
+                                        },
+                                        {
+                                            type: "page",
+                                            key: "navigateTo",
+                                            displayer: "Navigate To",
+                                            value: "",
                                         },
                                         {
                                             type: "array",
@@ -1860,8 +1947,8 @@ class ECommerce2 extends BaseECommerce {
                         {
                             type: "string",
                             key: "sectionTitle",
-                            displayer: "Section Title",
-                            value: "Basics",
+                            displayer: "Category Title",
+                            value: "BASICS",
                         },
                         {
                             type: "array",
@@ -1883,8 +1970,8 @@ class ECommerce2 extends BaseECommerce {
                                         {
                                             type: "string",
                                             key: "title",
-                                            displayer: "Title 1",
-                                            value: "Deco Accessory",
+                                            displayer: "Title",
+                                            value: "DECO ACCESSORY",
                                         },
                                         {
                                             type: "string",
@@ -1919,8 +2006,14 @@ class ECommerce2 extends BaseECommerce {
                                         {
                                             type: "string",
                                             key: "subTitle",
-                                            displayer: "Sub Title",
-                                            value: "Add to Cart",
+                                            displayer: "Subtitle",
+                                            value: "ADD TO CART",
+                                        },
+                                        {
+                                            type: "page",
+                                            key: "navigateTo",
+                                            displayer: "Navigate To",
+                                            value: "",
                                         },
                                         {
                                             type: "array",
@@ -2016,8 +2109,8 @@ class ECommerce2 extends BaseECommerce {
                                         {
                                             type: "string",
                                             key: "title",
-                                            displayer: "Title 1",
-                                            value: "Wall Clock",
+                                            displayer: "Title",
+                                            value: "WALL CLOCK",
                                         },
                                         {
                                             type: "string",
@@ -2052,8 +2145,14 @@ class ECommerce2 extends BaseECommerce {
                                         {
                                             type: "string",
                                             key: "subTitle",
-                                            displayer: "Sub Title",
-                                            value: "Add to Cart",
+                                            displayer: "Subtitle",
+                                            value: "ADD TO CART",
+                                        },
+                                        {
+                                            type: "page",
+                                            key: "navigateTo",
+                                            displayer: "Navigate To",
+                                            value: "",
                                         },
                                         {
                                             type: "array",
@@ -2149,8 +2248,8 @@ class ECommerce2 extends BaseECommerce {
                                         {
                                             type: "string",
                                             key: "title",
-                                            displayer: "Title 1",
-                                            value: "Newspaper Storage",
+                                            displayer: "Title",
+                                            value: "NEWSPAPER STORAGE",
                                         },
                                         {
                                             type: "string",
@@ -2185,8 +2284,14 @@ class ECommerce2 extends BaseECommerce {
                                         {
                                             type: "string",
                                             key: "subTitle",
-                                            displayer: "Sub Title",
-                                            value: "Add to Cart",
+                                            displayer: "Subtitle",
+                                            value: "ADD TO CART",
+                                        },
+                                        {
+                                            type: "page",
+                                            key: "navigateTo",
+                                            displayer: "Navigate To",
+                                            value: "",
                                         },
                                         {
                                             type: "array",
@@ -2315,7 +2420,13 @@ class ECommerce2 extends BaseECommerce {
             key: "closeIcon",
             displayer: "Close Icon",
             value: "IoIosClose",
-        })
+        });
+        this.addProp({
+            type: "boolean",
+            key: "imgCounter",
+            displayer: "Image Page Number",
+            value: true,
+        });
 
         this.addProp(INPUTS.BUTTON("button", "Button", "Load More", null, null, null, "Primary"));
 
@@ -2323,8 +2434,11 @@ class ECommerce2 extends BaseECommerce {
         this.setComponentState("moreImages", 0);
         this.setComponentState("activePopup", null);
         this.setComponentState("popupImageIndex", 0);
-        this.setComponentState("imageCount", this.getPropValue("imageCountInitial"));
-
+        this.setComponentState(
+            "imageCount",
+            this.getPropValue("imageCountInitial")
+        );
+        document.addEventListener("keydown", this.handleKeyDown);
     }
 
     static getName(): string {
@@ -2334,7 +2448,11 @@ class ECommerce2 extends BaseECommerce {
     componentDidMount(): void {
         const imageGallery = this.castToObject<ImageGallery[]>("imageGalleries");
         let firstSectionTitle = null;
-        if (imageGallery && imageGallery.length > 0 && imageGallery[0].sectionTitle !== undefined) {
+        if (
+            imageGallery &&
+            imageGallery.length > 0 &&
+            imageGallery[0].sectionTitle !== undefined
+        ) {
             firstSectionTitle = this.castToString(imageGallery[0].sectionTitle);
         }
         this.setComponentState("selectedSection", firstSectionTitle);
@@ -2348,7 +2466,10 @@ class ECommerce2 extends BaseECommerce {
     }
 
     handleSectionClickAll(): void {
-        this.setComponentState("selectedSection", this.castToString(this.getPropValue("allText")));
+        this.setComponentState(
+            "selectedSection",
+            this.castToString(this.getPropValue("allText"))
+        );
         this.setComponentState("selectedIndex", -1);
         this.setComponentState("moreImages", 0);
         const initialImageCount = this.getPropValue("imageCountInitial");
@@ -2362,13 +2483,12 @@ class ECommerce2 extends BaseECommerce {
     };
 
     handleQuickLookClick = (image: Image, event: React.MouseEvent): void => {
-        event.stopPropagation();
+        event.preventDefault();
         this.setComponentState("activePopup", image);
         this.setComponentState("popupImageIndex", 0);
     };
 
-    handleNextImage = (e) => {
-        e.stopPropagation();
+    handleNextImage = () => {
         const activePopup = this.getComponentState("activePopup");
         const currentIndex = this.getComponentState("popupImageIndex");
         const totalImages = activePopup.popupImages.length;
@@ -2378,8 +2498,7 @@ class ECommerce2 extends BaseECommerce {
         this.setComponentState("popupImageIndex", newIndex);
     };
 
-    handlePrevImage = (e) => {
-        e.stopPropagation();
+    handlePrevImage = () => {
         const activePopup = this.getComponentState("activePopup");
         const currentIndex = this.getComponentState("popupImageIndex");
         const totalImages = activePopup.popupImages.length;
@@ -2394,8 +2513,33 @@ class ECommerce2 extends BaseECommerce {
         this.setComponentState("popupImageIndex", 0);
     };
 
+    handleKeyDown = (event: KeyboardEvent) => {
+        switch (event.key) {
+            case "ArrowLeft":
+                this.handlePrevImage();
+                break;
+            case "ArrowRight":
+                this.handleNextImage();
+                break;
+            case "Escape":
+                this.closePopup();
+                break;
+            default:
+                break;
+        }
+    };
+
     render() {
         const imageGallery = this.castToObject<ImageGallery[]>("imageGalleries");
+
+        if (
+            !imageGallery ||
+            imageGallery.length === 0 ||
+            !imageGallery.some((gallery) => gallery.sectionTitle)
+        ) {
+            return null;
+        }
+
         const currentImageCount = this.getComponentState("imageCount");
         const initialImageCount = this.getPropValue("imageCountInitial");
         const moreImages = this.getComponentState("moreImages");
@@ -2404,8 +2548,10 @@ class ECommerce2 extends BaseECommerce {
         const allText = this.castToString(this.getPropValue("allText"));
         const arrows = this.castToObject<ArrowItem>("arrows");
         const showAll = this.getPropValue("showAll");
-        const button: INPUTS.CastedButton =
-            this.castToObject<INPUTS.CastedButton>("button");
+        const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+        const imgCounter = this.getPropValue("imgCounter");
+        const activePopup = this.getComponentState("activePopup");
+        const imgCount = activePopup ? `${this.getComponentState("popupImageIndex") + 1} of ${activePopup.popupImages.length}` : "";
 
         if (currentImageCount !== initialImageCount + moreImages) {
             this.setComponentState("imageCount", initialImageCount + moreImages);
@@ -2437,14 +2583,14 @@ class ECommerce2 extends BaseECommerce {
             .slice(0, currentImageCount);
 
         return (
-            <Base.Container className={this.decorateCSS("container")}>
+            <Base.Container
+                className={`${this.decorateCSS("container")} ${this.decorateCSS("with-overlay")}`}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <Base.Row className={this.decorateCSS("section-title-container")}>
                         {showAll && allText && (
                             <button
-                                className={`${this.decorateCSS("section-title")}
-                                           ${selectedIndex === -1 ? this.decorateCSS("active-section-title") : ""
-                                    }`}
+                                className={`${this.decorateCSS("section-title")} 
+                                ${selectedIndex === -1 ? this.decorateCSS("active-section-title") : ""}`}
                                 onClick={() => this.handleSectionClickAll()}>
                                 {allText}
                             </button>
@@ -2456,11 +2602,9 @@ class ECommerce2 extends BaseECommerce {
                                     {this.castToString(item.sectionTitle) && (
                                         <button
                                             key={index}
-                                            className={`${this.decorateCSS("section-title")} ${index === selectedIndex ? this.decorateCSS("active-section-title") : "" // Burası zaten selectedIndex kullanıyordu
-                                                }`}
-                                            onClick={() =>
-                                                this.handleSectionClick(item.sectionTitle, index)
-                                            }>
+                                            className={`${this.decorateCSS("section-title")} 
+                                            ${index === selectedIndex ? this.decorateCSS("active-section-title") : ""}`}
+                                            onClick={() => this.handleSectionClick(item.sectionTitle, index)}>
                                             {item.sectionTitle}
                                         </button>
                                     )}
@@ -2468,9 +2612,7 @@ class ECommerce2 extends BaseECommerce {
                             );
                         })}
                     </Base.Row>
-                    <Base.ListGrid
-                        gridCount={{ pc: this.getPropValue("itemCount") }}
-                        className={this.decorateCSS("grid")}>
+                    <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("grid")}>
                         {filteredImages.map((image, imgIndex) => {
                             const shouldRenderCard =
                                 this.castToString(image.title) ||
@@ -2485,42 +2627,46 @@ class ECommerce2 extends BaseECommerce {
                             return (
                                 shouldRenderCard && (
                                     <div key={imgIndex} className={this.decorateCSS("card-container")}>
-                                        <div className={this.decorateCSS("image-container")}>
-                                            <div
-                                                className={`${this.decorateCSS("image-bottom")} animate__animated animate__fadeInUp`}>
-                                                {this.castToString(image.bottomText) && (
-                                                    <div
-                                                        className={this.decorateCSS("image-bottom-text")}
-                                                        onClick={(e) => this.handleQuickLookClick(image, e)}>
-                                                        {image.bottomText}
-                                                    </div>
-                                                )}
-                                                {image.bottomIcon && (
-                                                    <div className={this.decorateCSS("image-bottom-icon")}>
-                                                        <ComposerIcon name={image.bottomIcon} />
-                                                    </div>
+                                        <ComposerLink path={image.navigateTo}>
+                                            <div className={this.decorateCSS("image-container")}>
+                                                <div className={`${this.decorateCSS("image-bottom")} animate__animated animate__fadeInUp`}>
+                                                    {this.castToString(image.bottomText) && (
+                                                        <div
+                                                            className={this.decorateCSS("image-bottom-text")}
+                                                            onClick={(e) =>
+                                                                this.handleQuickLookClick(image, e)
+                                                            }>
+                                                            {this.castToString(image.bottomText)}
+                                                        </div>
+                                                    )}
+                                                    {image.bottomIcon && (
+                                                        <div
+                                                            className={this.decorateCSS("image-bottom-icon")}>
+                                                            <ComposerIcon name={image.bottomIcon} />
+                                                        </div>
+                                                    )}
+                                                </div>
+                                                <div className={this.decorateCSS("image-text")}>
+                                                    {this.castToString(image.leftText) && (
+                                                        <div className={this.decorateCSS("leftText")}>
+                                                            {image.leftText}
+                                                        </div>
+                                                    )}
+                                                    {this.castToString(image.rightText) && (
+                                                        <div className={this.decorateCSS("rightText")}>
+                                                            {image.rightText}
+                                                        </div>
+                                                    )}
+                                                </div>
+                                                {image.cardImage && (
+                                                    <img
+                                                        alt={image.cardImage}
+                                                        src={image.cardImage}
+                                                        className={this.decorateCSS("image")}
+                                                    />
                                                 )}
                                             </div>
-                                            <div className={this.decorateCSS("image-text")}>
-                                                {this.castToString(image.leftText) && (
-                                                    <div className={this.decorateCSS("leftText")}>
-                                                        {image.leftText}
-                                                    </div>
-                                                )}
-                                                {this.castToString(image.rightText) && (
-                                                    <div className={this.decorateCSS("rightText")}>
-                                                        {image.rightText}
-                                                    </div>
-                                                )}
-                                            </div>
-                                            {image.cardImage && (
-                                                <img
-                                                    alt={image.cardImage}
-                                                    src={image.cardImage}
-                                                    className={this.decorateCSS("image")}
-                                                />
-                                            )}
-                                        </div>
+                                        </ComposerLink>
                                         <div className={this.decorateCSS("text-container")}>
                                             {this.castToString(image.title) && (
                                                 <div className={this.decorateCSS("title")}>
@@ -2533,7 +2679,8 @@ class ECommerce2 extends BaseECommerce {
                                                 </div>
                                             )}
                                             {this.castToString(image.subTitle) && (
-                                                <div className={`${this.decorateCSS("subTitle")} animate__animated animate__fadeInLeft`}>
+                                                <div
+                                                    className={`${this.decorateCSS("subTitle")} animate__animated animate__fadeInLeft`}>
                                                     {image.subTitle}
                                                 </div>
                                             )}
@@ -2543,60 +2690,85 @@ class ECommerce2 extends BaseECommerce {
                             );
                         })}
                     </Base.ListGrid>
-                    {currentImageCount < selectedImages.length && this.castToString(button.text) && (
-                        <div className={this.decorateCSS("button-wrapper")}>
-                            <Base.Button
-                                buttonType={button.type}
-                                className={this.decorateCSS("button")}
-                                onClick={this.handleButtonClick}>
-                                {button.text}
-                            </Base.Button>
-                        </div>
-                    )}
-                    {this.getComponentState("activePopup") && (
-                        <div className={this.decorateCSS("popup-overlay")} onClick={this.closePopup}>
-                            <div className={this.decorateCSS("popup-content")} onClick={this.closePopup}>
-                                <div className={this.decorateCSS("popup-image-container")} onClick={(e) => e.stopPropagation()}>
-                                    <img src={this.getComponentState("activePopup").popupImages[this.getComponentState("popupImageIndex")].popupImg}
-                                        alt="Popup Image" className={this.decorateCSS("popup-image")} />
-                                    {this.getComponentState("activePopup").popupImages.length > 1 && (
-                                        <>
-                                            {arrows.prevArrow && (
-                                                <button
-                                                    className={this.decorateCSS("prevArrow")}
-                                                    onClick={this.handlePrevImage}>
-                                                    <ComposerIcon
-                                                        name={arrows.prevArrow}
-                                                        propsIcon={{ className: this.decorateCSS("arrow") }}
-                                                    />
-                                                </button>
-                                            )}
-                                            {arrows.nextArrow && (
-                                                <button
-                                                    className={this.decorateCSS("nextArrow")}
-                                                    onClick={this.handleNextImage}>
-                                                    <ComposerIcon
-                                                        name={arrows.nextArrow}
-                                                        propsIcon={{ className: this.decorateCSS("arrow") }}
-                                                    />
-                                                </button>
-                                            )}
-                                        </>
-                                    )}
-                                    {this.getPropValue("closeIcon") && (
-                                        <button
-                                            className={this.decorateCSS("popup-close")}
-                                            onClick={this.closePopup}>
-                                            <ComposerIcon
-                                                name={this.getPropValue("closeIcon")}
-                                                propsIcon={{ className: this.decorateCSS("arrow") }}
-                                            />
-                                        </button>
-                                    )}
-                                </div>
+                    {currentImageCount < selectedImages.length &&
+                        this.castToString(button.text) && (
+                            <div className={this.decorateCSS("button-wrapper")}>
+                                <Base.Button
+                                    buttonType={button.type}
+                                    className={this.decorateCSS("button")}
+                                    onClick={this.handleButtonClick}>
+                                    {button.text}
+                                </Base.Button>
                             </div>
-                        </div>
-                    )}
+                        )}
+                    {this.getComponentState("activePopup") &&
+                        this.getComponentState("activePopup").popupImages &&
+                        this.getComponentState("activePopup").popupImages.length > 0 && (
+                            <Base.Overlay
+                                className={this.decorateCSS("popup-overlay")}
+                                onClick={this.closePopup}
+                                isVisible={true}>
+                                <div
+                                    className={this.decorateCSS("popup-content-wrapper")}
+                                    onClick={(e) => e.stopPropagation()}>
+                                    <div className={this.decorateCSS("popup-image-container")}>
+                                        <img
+                                            src={this.getComponentState("activePopup").popupImages[this.getComponentState("popupImageIndex")].popupImg}
+                                            alt="Popup Image"
+                                            className={this.decorateCSS("popup-image")}
+                                        />
+                                        {this.getComponentState("activePopup").popupImages.length > 1 && (
+                                            <>
+                                                {arrows.prevArrow && (
+                                                    <button
+                                                        className={this.decorateCSS("prevArrow")}
+                                                        onClick={this.handlePrevImage}>
+                                                        <ComposerIcon
+                                                            name={arrows.prevArrow}
+                                                            propsIcon={{
+                                                                className: this.decorateCSS("arrow"),
+                                                            }}
+                                                        />
+                                                    </button>
+                                                )}
+                                                {arrows.nextArrow && (
+                                                    <button
+                                                        className={this.decorateCSS("nextArrow")}
+                                                        onClick={this.handleNextImage}>
+                                                        <ComposerIcon
+                                                            name={arrows.nextArrow}
+                                                            propsIcon={{
+                                                                className: this.decorateCSS("arrow"),
+                                                            }}
+                                                        />
+                                                    </button>
+                                                )}
+                                            </>
+                                        )}
+                                        {this.getPropValue("closeIcon") && (
+                                            <button
+                                                className={this.decorateCSS("popup-close")}
+                                                onClick={this.closePopup}>
+                                                <ComposerIcon
+                                                    name={this.getPropValue("closeIcon")}
+                                                    propsIcon={{ className: this.decorateCSS("arrow") }}
+                                                />
+                                            </button>
+                                        )}
+                                    </div>
+                                    <div className={this.decorateCSS("image-info")}>
+                                        <div className={this.decorateCSS("image-title")}>
+                                            {this.getComponentState("activePopup").title}
+                                        </div>
+                                        {imgCounter && (
+                                            <div className={this.decorateCSS("image-count")}>
+                                                {imgCount}
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                            </Base.Overlay>
+                        )}
                 </Base.MaxContent>
             </Base.Container>
         );
