@@ -40,7 +40,7 @@ class Header28 extends BaseHeader {
               key: "image",
               displayer: "Image",
               value:
-                "https://viseo.progressionstudios.com/wp-content/uploads/2017/04/dark-poison-large-1400x700.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6823844d2bb4c4002cf57937?alt=media",
             },
             {
               type: "video",
@@ -85,7 +85,7 @@ class Header28 extends BaseHeader {
               key: "image",
               displayer: "Image",
               value:
-                "https://viseo.progressionstudios.com/wp-content/uploads/2017/04/front-lines-1400x700.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/682384e32bb4c4002cf57948?alt=media",
             },
             {
               type: "video",
@@ -130,7 +130,7 @@ class Header28 extends BaseHeader {
               key: "image",
               displayer: "Image",
               value:
-                "https://viseo.progressionstudios.com/wp-content/uploads/2017/04/dep-space-1400x700.jpg",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/682384f22bb4c4002cf57950?alt=media",
             },
             {
               type: "video",
