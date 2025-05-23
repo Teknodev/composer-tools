@@ -2,7 +2,7 @@ import * as React from "react";
 import styles from "./header22.module.scss";
 import { BaseHeader } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
@@ -277,7 +277,7 @@ class Header22 extends BaseHeader {
                       this.getComponentState("slider-ref").current.slickPrev();
                     }}
                   >
-                    <ComposerIcon name={this.getPropValue("prev-button-icon")} propsIcon={{ className: `${this.decorateCSS("icon")}` }} />
+                    <Base.Icon name={this.getPropValue("prev-button-icon")} propsIcon={{ className: `${this.decorateCSS("icon")}` }} />
                   </button>
 
                   <button
@@ -286,7 +286,7 @@ class Header22 extends BaseHeader {
                       this.getComponentState("slider-ref").current.slickNext();
                     }}
                   >
-                    <ComposerIcon name={this.getPropValue("next-button-icon")} propsIcon={{ className: `${this.decorateCSS("icon")}` }} />
+                    <Base.Icon name={this.getPropValue("next-button-icon")} propsIcon={{ className: `${this.decorateCSS("icon")}` }} />
                   </button>
                 </div>
               )}

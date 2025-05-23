@@ -1,6 +1,6 @@
 import * as React from "react";
 import { BaseSlider } from "../../EditorComponent";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import styles from "./slider10.module.scss";
@@ -409,7 +409,7 @@ class Slider10 extends BaseSlider {
                         }}
                         className={this.decorateCSS("slider-button")}
                       >
-                        <ComposerIcon
+                        <Base.Icon
                           propsIcon={{
                             className: this.decorateCSS("slider-arrow-icon"),
                           }}
@@ -424,7 +424,7 @@ class Slider10 extends BaseSlider {
                           sliderRef.current.slickNext();
                         }}
                       >
-                        <ComposerIcon
+                        <Base.Icon
                           name={nextIcon}
                           propsIcon={{
                             className: this.decorateCSS("slider-arrow-icon"),

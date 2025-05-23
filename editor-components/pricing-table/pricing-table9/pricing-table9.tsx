@@ -2,7 +2,7 @@ import * as React from "react";
 import { BasePricingTable } from "../../EditorComponent";
 import styles from "./pricing-table9.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
@@ -772,7 +772,7 @@ class PricingTable9 extends BasePricingTable {
                         <div key={`content-${contentIndex}`} className={this.decorateCSS("content-item")}>
                           {content?.icon && (
                             <span className={this.decorateCSS("content-icon")}>
-                              <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={content.icon} />
+                              <Base.Icon propsIcon={{ className: this.decorateCSS("icon") }} name={content.icon} />
                             </span>
                           )}
                           {this.castToString(content.text) && <Base.P className={this.decorateCSS("content-text")}>{content?.text}</Base.P>}
@@ -816,7 +816,7 @@ class PricingTable9 extends BasePricingTable {
                           <div key={`content-${contentIndex}`} className={this.decorateCSS("content-item")}>
                             {content?.icon && (
                               <span className={this.decorateCSS("content-icon")}>
-                                <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={content.icon} />
+                                <Base.Icon propsIcon={{ className: this.decorateCSS("icon") }} name={content.icon} />
                               </span>
                             )}
                             {this.castToString(content.text) && <Base.P className={this.decorateCSS("content-text")}>{content?.text}</Base.P>}

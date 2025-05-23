@@ -2,7 +2,7 @@ import * as React from "react";
 import styles from "./team12.module.scss";
 import { Team, TypeUsableComponentProps } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 
 type Platform = { url: string; icon: string };
@@ -268,12 +268,12 @@ class Team12 extends Team {
                           {teamMember.platforms.map((platform: any) => (
                             <div className={this.decorateCSS("platform")}>
                               <ComposerLink path={platform.getPropValue("url")}>
-                                <ComposerIcon
+                                <Base.Icon
                                   name={platform.getPropValue("icon")}
                                   propsIcon={{
                                     className: this.decorateCSS("icon"),
                                   }}
-                                ></ComposerIcon>
+                                ></Base.Icon>
                               </ComposerLink>
                             </div>
                           ))}

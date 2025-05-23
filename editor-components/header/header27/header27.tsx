@@ -2,7 +2,7 @@ import * as React from "react";
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header27.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
@@ -454,7 +454,7 @@ class Header27 extends BaseHeader {
                                     >
                                       {item.button.text}
                                       {item.button.icon && (
-                                        <ComposerIcon
+                                        <Base.Icon
                                           name={item.button.icon}
                                           propsIcon={{
                                             className:

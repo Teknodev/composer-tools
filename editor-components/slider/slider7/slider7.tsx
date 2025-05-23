@@ -2,7 +2,7 @@ import * as React from "react";
 import { BaseSlider } from "../../EditorComponent";
 import styles from "./slider7.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 
 type Card = {
@@ -216,7 +216,7 @@ class Slider7 extends BaseSlider {
 
           {previousArrow &&
             <div className={this.decorateCSS("prevArrow")}>
-              <ComposerIcon
+              <Base.Icon
                 name={this.getPropValue("previousArrow")}
                 propsIcon={{
                   onClick: () => {
@@ -228,7 +228,7 @@ class Slider7 extends BaseSlider {
 
           {nextArrow &&
             <div className={this.decorateCSS("nextArrow")}>
-              <ComposerIcon
+              <Base.Icon
                 name={this.getPropValue("nextArrow")}
                 propsIcon={{
                   onClick: () => {
