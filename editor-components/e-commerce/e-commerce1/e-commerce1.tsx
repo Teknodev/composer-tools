@@ -552,7 +552,29 @@ class ECommerce1 extends BaseECommerce {
                         <div className={`${this.decorateCSS("count-input")} ${this.castToString(button.text) && this.decorateCSS("with-button")}`}>
                           {this.castToString(this.getPropValue("quantityText")) && (<label className={this.decorateCSS("label")}>{this.getPropValue("quantityText")}</label>)}
                           {leftIcon && (<ComposerIcon name={leftIcon} propsIcon={{className: this.decorateCSS("left-icon"), onClick: handleLeftClick}}/>)}
-                          <input type="number" value={count} className={this.decorateCSS("input")} min="0" readOnly />
+                          <input
+                              type="number"
+                              min={1}
+                              className={this.decorateCSS("input")}
+                              value={
+                                this.getComponentState("count") !== undefined
+                                  ? String(this.getComponentState("count"))
+                                  : ""
+                              }
+                              onChange={(e) => {
+                                const value = e.target.value;
+                                if (value === "") {
+                                  this.setComponentState("count", "");
+                                  return;
+                                }
+
+                                const parsed = parseInt(value, 10);
+                                if (!isNaN(parsed) && parsed >= 1) {
+                                  this.setComponentState("count", parsed);
+                                }
+                              }}
+                            />
+
                           {rightIcon && (<ComposerIcon name={rightIcon} propsIcon={{className: this.decorateCSS("right-icon"), onClick: handleRightClick}}/>)}
                         </div>
                       )}
