@@ -44,13 +44,13 @@ class Header22 extends BaseHeader {
               type: "image",
               key: "right_image",
               displayer: "Right Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619d5dbd2970002c62664e?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6823844d2bb4c4002cf57937?alt=media",
             },
             {
               type: "image",
               key: "left_image",
               displayer: "Left Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619d5dbd2970002c62664d?alt=media&timestamp=1719483639150",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6825e16e2bb4c4002cf72e95?alt=media",
             },
             {
               type: "array",
@@ -75,13 +75,13 @@ class Header22 extends BaseHeader {
               type: "image",
               key: "right_image",
               displayer: "Right Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6703c7d1cf1798002cc82f40?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6825dde32bb4c4002cf715ad?alt=media",
             },
             {
               type: "image",
               key: "left_image",
               displayer: "Left Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6703c7a3cf1798002cc82f0f?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/682495362bb4c4002cf5d857?alt=media",
             },
             {
               type: "array",
@@ -106,13 +106,13 @@ class Header22 extends BaseHeader {
               type: "image",
               key: "right_image",
               displayer: "Right Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/670526d9cf1798002cc89a4b?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/682384e32bb4c4002cf57948?alt=media",
             },
             {
               type: "image",
               key: "left_image",
               displayer: "Left Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/670526f8cf1798002cc89a6d?alt=media",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6824a9782bb4c4002cf5edfd?alt=media",
             },
             {
               type: "array",

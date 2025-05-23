@@ -55,7 +55,7 @@ class Header21 extends BaseHeader {
       type: "image",
       key: "image",
       displayer: "Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b08ed003b007002cc77884?alt=media",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/682f09152bb4c4002cf956d7?alt=media",
     });
 
     this.addProp({
@@ -69,7 +69,7 @@ class Header21 extends BaseHeader {
       type: "video",
       displayer: "Video",
       key: "video",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b08ebb03b007002cc77877?alt=media",
+      value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/682ce1f72bb4c4002cf8a76d?alt=media",
     });
 
     this.setComponentState("is_video_visible", false);

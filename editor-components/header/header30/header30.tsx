@@ -14,7 +14,7 @@ class Header30 extends BaseHeader {
       key: "video",
       displayer: "Background Video",
       value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a35bbd2970002c626c45?alt=media&timestamp=1719483639151",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/682ce1f72bb4c4002cf8a76d?alt=media",
     });
 
     this.addProp({
@@ -34,7 +34,7 @@ class Header30 extends BaseHeader {
       key: "image",
       displayer: "Image",
       value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a311bd2970002c626c17?alt=media&timestamp=1719483639151",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68248e7e2bb4c4002cf5d1c6?alt=media",
     });
     this.addProp({
       type: "string",

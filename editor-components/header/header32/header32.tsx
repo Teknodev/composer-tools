@@ -33,7 +33,7 @@ class Header32 extends BaseHeader {
               key: "backgroundImage",
               displayer: "Background Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a383502f8a5b002ce6aa53?alt=media",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/682f08e12bb4c4002cf956cf?alt=media",
             },
             {
               type: "string",
@@ -72,7 +72,7 @@ class Header32 extends BaseHeader {
               key: "backgroundImage",
               displayer: "Background Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a383962f8a5b002ce6aa92?alt=media",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/682f09152bb4c4002cf956d7?alt=media",
             },
             {
               type: "string",
@@ -111,7 +111,7 @@ class Header32 extends BaseHeader {
               key: "backgroundImage",
               displayer: "Background Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a383c62f8a5b002ce6aac7?alt=media",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/682f09ec2bb4c4002cf95742?alt=media",
             },
             {
               type: "string",
@@ -150,7 +150,7 @@ class Header32 extends BaseHeader {
               key: "backgroundImage",
               displayer: "Background Image",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a383fd2f8a5b002ce6aae3?alt=media",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/682f0a0a2bb4c4002cf95755?alt=media",
             },
             {
               type: "string",

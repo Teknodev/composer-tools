@@ -13,7 +13,7 @@ class Header1 extends BaseHeader {
       key: "background-layout",
       displayer: "Background Layout",
       value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243d7?alt=media&timestamp=1719483639150",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/682db4072bb4c4002cf8dd33?alt=media",
     });
     this.addProp({
       type: "image",
@@ -67,7 +67,7 @@ class Header1 extends BaseHeader {
               key: "image",
               displayer: "Image-1",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243d8?alt=media&timestamp=1719483639150",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6823844d2bb4c4002cf57937?alt=media",
             },
           ],
         },
@@ -105,7 +105,7 @@ class Header1 extends BaseHeader {
               key: "image",
               displayer: "Image-2",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243d9?alt=media&timestamp=1719483639150",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/682384e32bb4c4002cf57948?alt=media",
             },
           ],
         },
@@ -143,7 +143,7 @@ class Header1 extends BaseHeader {
               key: "image",
               displayer: "Image-3",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243da?alt=media&timestamp=1719483639150",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/682384f22bb4c4002cf57950?alt=media",
             },
           ],
         },
@@ -181,7 +181,7 @@ class Header1 extends BaseHeader {
               key: "image",
               displayer: "Image-4",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243db?alt=media&timestamp=1719483639150",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/682384fe2bb4c4002cf57958?alt=media",
             },
           ],
         },
@@ -219,7 +219,7 @@ class Header1 extends BaseHeader {
               key: "image",
               displayer: "Image-5",
               value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617d8fbd2970002c6243dc?alt=media&timestamp=1719483639150",
+                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/682385092bb4c4002cf57960?alt=media",
             },
           ],
         },
