@@ -3,9 +3,6 @@ import { BaseHeader } from "../../EditorComponent";
 import styles from "./header28.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-
 class Header28 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
