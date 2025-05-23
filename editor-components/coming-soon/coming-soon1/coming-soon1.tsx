@@ -1,5 +1,5 @@
 import { BaseComingSoon } from "composer-tools/editor-components/EditorComponent";
-import styles from "./coming-soon.module.scss";
+import styles from "./coming-soon1.module.scss";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import { Base } from "composer-tools/composer-base-components/base/base";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
@@ -30,7 +30,7 @@ class ComingSoon1 extends BaseComingSoon {
       type: "dateTime",
       key: "dateTime",
       displayer: "Date Time",
-      value: "2025/05/03 13:00",
+      value: "2026/05/03 13:00",
       additionalParams: {
         yearRange: 1000,
         yearStart: 2000,
@@ -145,14 +145,14 @@ class ComingSoon1 extends BaseComingSoon {
                     <Base.H1 className={this.decorateCSS("days-count")}>
                       {this.getComponentState("days")}
                     </Base.H1>
-                    <div className={this.decorateCSS("days-text")}>days</div>
+                    <div className={this.decorateCSS("days-text")}>DAYS</div>
                   </div>
 
                   <div className={this.decorateCSS("hours-container")}>
                     <Base.H1 className={this.decorateCSS("hours-count")}>
                       {this.getComponentState("hours")}
                     </Base.H1>
-                    <div className={this.decorateCSS("hours-text")}>hours</div>
+                    <div className={this.decorateCSS("hours-text")}>HOURS</div>
                   </div>
 
                   <div className={this.decorateCSS("minutes-container")}>
@@ -160,7 +160,7 @@ class ComingSoon1 extends BaseComingSoon {
                       {this.getComponentState("minutes")}
                     </Base.H1>
                     <div className={this.decorateCSS("minutes-text")}>
-                      minutes
+                      MINUTES
                     </div>
                   </div>
 
@@ -169,7 +169,7 @@ class ComingSoon1 extends BaseComingSoon {
                       {this.getComponentState("seconds")}
                     </Base.H1>
                     <div className={this.decorateCSS("seconds-text")}>
-                      seconds
+                      SECONDS
                     </div>
                   </div>
                 </div>
