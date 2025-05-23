@@ -16,7 +16,7 @@ class List12 extends BaseList {
       key: "image",
       displayer: "Background Image",
       value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67484143506a40002c2f0020?alt=media",
+        "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6830212384626f002ca470c8?alt=media",
     });
 
     this.addProp({
@@ -113,12 +113,22 @@ class List12 extends BaseList {
         },
       ],
     });
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2", "animate3", "animate4"]
+      }
+    });
   }
 
   render() {
     const box1 = this.castToObject<any>("box1");
     const box2 = this.castToObject<any>("box2");
     const box3 = this.castToObject<any>("box3");
+    const hasBackgroundImage = this.getPropValue("image");
 
     return (
       <Base.Container
@@ -132,7 +142,7 @@ class List12 extends BaseList {
           <div className={this.decorateCSS("boxes")}>
             <div className={this.decorateCSS("leftBox")}>
               {(box1.item || box1.icon) && (
-                <div className={this.decorateCSS("circle")}>
+                <div className={`${this.decorateCSS("circle")} ${hasBackgroundImage ? this.decorateCSS("with-bg") : ""}`} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                   {box1.item ? (
                     <img
                       className={this.decorateCSS("img")}
@@ -151,7 +161,7 @@ class List12 extends BaseList {
               )}
               {this.castToString(box1.text) && (
                 <div className={this.decorateCSS("titles")}>
-                  <div className={this.decorateCSS("text1")}>{box1.text}</div>
+                  <div className={`${this.decorateCSS("text1")} ${hasBackgroundImage ? this.decorateCSS("with-bg") : ""}`}>{box1.text}</div>
                 </div>
               )}
             </div>
@@ -161,19 +171,19 @@ class List12 extends BaseList {
                   className={this.decorateCSS("section-wrapper")}
                 >
                   {this.castToString(box2.title) && (
-                    <div className={this.decorateCSS("title")}>
+                    <div className={`${this.decorateCSS("title")} ${hasBackgroundImage ? this.decorateCSS("with-bg") : ""}`}>
                       {box2.title}
                     </div>
                   )}
                   {this.castToString(box2.subtitle) && (
-                    <div className={this.decorateCSS("subtitle")}>
+                    <div className={`${this.decorateCSS("subtitle")} ${hasBackgroundImage ? this.decorateCSS("with-bg") : ""}`}>
                       {box2.subtitle}
                     </div>
                   )}
                 </Base.SectionTitle>
               )}
               {(box2.item || box2.icon) && (
-                <div className={this.decorateCSS("circle")}>
+                <div className={`${this.decorateCSS("circle")} ${hasBackgroundImage ? this.decorateCSS("with-bg") : ""}`} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                   {box2.item ? (
                     <img
                       className={this.decorateCSS("img")}
@@ -192,14 +202,14 @@ class List12 extends BaseList {
               )}
               {this.castToString(box2.text) && (
                 <div className={this.decorateCSS("titles")}>
-                  <div className={this.decorateCSS("text2")}>{box2.text}</div>
+                  <div className={`${this.decorateCSS("text2")} ${hasBackgroundImage ? this.decorateCSS("with-bg") : ""}`}>{box2.text}</div>
                 </div>
               )}
             </div>
 
             <div className={this.decorateCSS("rightBox")}>
               {(box3.item || box3.icon) && (
-                <div className={this.decorateCSS("circle")}>
+                <div className={`${this.decorateCSS("circle")} ${hasBackgroundImage ? this.decorateCSS("with-bg") : ""}`} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                   {box3.item ? (
                     <img
                       className={this.decorateCSS("img")}
@@ -218,7 +228,7 @@ class List12 extends BaseList {
               )}
               {this.castToString(box3.text) && (
                 <div className={this.decorateCSS("titles")}>
-                  <div className={this.decorateCSS("text3")}>{box3.text}</div>
+                  <div className={`${this.decorateCSS("text3")} ${hasBackgroundImage ? this.decorateCSS("with-bg") : ""}`}>{box3.text}</div>
                 </div>
               )}
             </div>

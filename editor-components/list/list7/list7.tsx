@@ -98,6 +98,15 @@ class List7 extends BaseList {
       displayer: "Show Index",
       value: true,
     });
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2", "animate3", "animate4"]
+      }
+    });
   }
   render() {
     const ListItems = this.castToObject<listItem[]>("list-items");
@@ -113,7 +122,10 @@ class List7 extends BaseList {
                   className={this.decorateCSS("all-card")}
                 >
                   {(this.getPropValue("showIndex") || this.castToString(item.title) || this.castToString(item.text)) && (
-                    <Base.VerticalContent className={this.decorateCSS("item-content")}>
+                    <Base.VerticalContent
+                      className={this.decorateCSS("item-content")}
+                      data-animation={this.getPropValue("hoverAnimation")}
+                    >
                       {this.getPropValue("showIndex") && (
                         <Base.H1 className={this.decorateCSS("index")}>{index < 9 ? `0${index + 1}` : index + 1}</Base.H1>
                       )}
@@ -121,7 +133,7 @@ class List7 extends BaseList {
                         <Base.H3 className={this.decorateCSS("title")}>{item.title}</Base.H3>
                       )}
                       {this.castToString(item.text) && (
-                        <Base.P className={this.decorateCSS("list-item-p")}>{item.text}</Base.P>
+                        <Base.P className={this.decorateCSS("description")}>{item.text}</Base.P>
                       )}
                     </Base.VerticalContent>
                   )}

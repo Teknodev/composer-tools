@@ -200,6 +200,15 @@ class List5 extends BaseList {
       displayer: "Show Index",
       value: true
     });
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2", "animate3", "animate4", "animate5", "animate6"]
+      }
+    });
   }
   render(): ReactNode {
     const ListItems = this.castToObject<ListItem[]>("list-items");
@@ -233,6 +242,7 @@ class List5 extends BaseList {
                           <div
                             key={index}
                             className={this.decorateCSS("item-container")}
+                            data-animation={this.getPropValue("hoverAnimation").join(" ")}
                           >
                             {(listItem.uppericon || this.getPropValue("showIndex")) && (
                               <div className={this.decorateCSS("header-line")}>
@@ -263,12 +273,12 @@ class List5 extends BaseList {
                               </div>
                             )}
                             {this.castToString(listItem.title) && (
-                              <div className={this.decorateCSS("list-item-value-h1")}>
+                              <div className={this.decorateCSS("list-item-title")}>
                                 {listItem.title}
                               </div>
                             )}
                             {this.castToString(listItem.text) && (
-                              <div className={this.decorateCSS("list-item-value-p")}>
+                              <div className={this.decorateCSS("list-item-text")}>
                                 {listItem.text}
                               </div>
                             )}

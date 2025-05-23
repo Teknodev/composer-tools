@@ -286,6 +286,15 @@ class List2 extends BaseList {
       ],
     });
     this.addProp(INPUTS.BUTTON("button", "Button", "View More Categories", "", null, null, "Primary"));
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2", "animate3", "animate4", "animate5"]
+      }
+    });
     this.setComponentState("moreImages", 0);
     ;
   }
@@ -305,7 +314,7 @@ class List2 extends BaseList {
     const buttonType: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container className={this.decorateCSS("container")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             {(this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("description"))) && (
@@ -333,7 +342,10 @@ class List2 extends BaseList {
               >
                 {cards.slice(0, this.getComponentState("imageCount")).map((item: CardItem, index: number) => (
                   <ComposerLink key={index} path={item.page}>
-                    <div className={this.decorateCSS("card")}>
+                    <div
+                      className={this.decorateCSS("card")}
+                      data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                    >
                       {item.image && (
                         <img className={this.decorateCSS("card-image")} src={item.image} alt={item.image} />
                       )}
@@ -356,7 +368,7 @@ class List2 extends BaseList {
                                   </div>
                                 )}
                                 {this.castToString(item.count_text) && (
-                                  <div className={this.decorateCSS("second-text")}>
+                                  <div className={this.decorateCSS("second-count")}>
                                     {item.count_text}
                                   </div>
                                 )}
