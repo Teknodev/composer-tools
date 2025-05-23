@@ -2,7 +2,7 @@ import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseContent } from "../../EditorComponent";
 import styles from "./content10.module.scss";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
@@ -126,7 +126,7 @@ class Content10 extends BaseContent {
 
 
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container className={`${this.decorateCSS("container")} ${this.getComponentState("is_video_visible") && this.decorateCSS("with-overlay")}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ContainerGrid className={this.decorateCSS("content")}>
             {videoImage && (
@@ -150,12 +150,12 @@ class Content10 extends BaseContent {
                       <div className={this.decorateCSS("play-container")}>
                         <div className={this.decorateCSS("outer-circle")}></div>
                         <div className={this.decorateCSS("inner-circle")}></div>
-                        <ComposerIcon
+                        <Base.Icon
                           name={playIcon}
                           propsIcon={{
                             className: this.decorateCSS("play-image"),
                           }}
-                        ></ComposerIcon>
+                        ></Base.Icon>
                       </div>
                     )}
                   </span>
@@ -183,7 +183,7 @@ class Content10 extends BaseContent {
                 <Base.Row className={this.decorateCSS("description-author")}>
                   {authorIcon && (
                     <div className={this.decorateCSS("author-icon")}>
-                      <ComposerIcon
+                      <Base.Icon
                         name={authorIcon}
                         propsIcon={{
                           className: this.decorateCSS("author-icon-photo"),
@@ -230,8 +230,7 @@ class Content10 extends BaseContent {
               </Base.VerticalContent>
             )}
           </Base.ContainerGrid>
-        </Base.MaxContent>
-        {this.getComponentState("is_video_visible") && (
+          {this.getComponentState("is_video_visible") && (
           <Base.Overlay
             onClick={() => this.setComponentState("is_video_visible", false)} className={this.decorateCSS("overlay")}
             isVisible={true}
@@ -255,7 +254,7 @@ class Content10 extends BaseContent {
                 className={this.decorateCSS("close-icon-box")}
                 onClick={() => this.setComponentState("is_video_visible", false)}
               >
-                <ComposerIcon
+                <Base.Icon
                   propsIcon={{
                     className: this.decorateCSS("close-icon"),
                   }}
@@ -265,6 +264,7 @@ class Content10 extends BaseContent {
             )}
           </Base.Overlay>
         )}
+        </Base.MaxContent>
       </Base.Container>
     );
   }

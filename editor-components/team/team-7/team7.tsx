@@ -2,7 +2,7 @@ import * as React from "react";
 import styles from "./team7.module.scss";
 import { Team, TypeUsableComponentProps } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 
 type Icons = {
@@ -307,7 +307,7 @@ class Team7 extends Team {
                           {item.icons &&
                             item.icons.map((card: Icons, indexIcons: number) => (
                               <ComposerLink key={indexIcons} path={card.url}>
-                                <ComposerIcon name={card.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                                <Base.Icon name={card.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
                               </ComposerLink>
                             ))}
                         </div>

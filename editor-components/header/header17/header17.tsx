@@ -3,7 +3,7 @@ import styles from "./header17.module.scss";
 import { BaseHeader } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "composer-tools/composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
@@ -172,7 +172,7 @@ class Header17 extends BaseHeader {
                     </Base.MaxContent>
                   </Base.Container>
                   {slider.length > 1 && (
-                    <ComposerIcon
+                    <Base.Icon
                       name={this.getPropValue("next_icon")}
                       propsIcon={{
                         className: `${this.decorateCSS("next-icon")} ${!image && this.decorateCSS("slider-icon-without-image")}`,
@@ -183,7 +183,7 @@ class Header17 extends BaseHeader {
                     />
                   )}
                   {slider.length > 1 && (
-                    <ComposerIcon
+                    <Base.Icon
                       name={this.getPropValue("prev_icon")}
                       propsIcon={{
                         className: `${this.decorateCSS("prev-icon")} ${!image && this.decorateCSS("slider-icon-without-image")}`,

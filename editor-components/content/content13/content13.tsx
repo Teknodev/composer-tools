@@ -1,7 +1,7 @@
 import * as React from "react";
 import { BaseContent } from "../../EditorComponent";
 import styles from "./content13.module.scss";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
@@ -162,7 +162,7 @@ class Content13 extends BaseContent {
 
                 {(this.getPropValue("phoneIcon") || isPhoneExist) && (
                   <div className={this.decorateCSS("phone-icon")}>
-                    <ComposerIcon
+                    <Base.Icon
                       propsIcon={{ className: this.decorateCSS("icon") }}
                       name={this.getPropValue("phoneIcon")}
                     />

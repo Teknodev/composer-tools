@@ -2,7 +2,7 @@ import * as React from "react";
 import { BaseList } from "../../EditorComponent";
 import styles from "./list4.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 
 type Card = {
   description: string;
@@ -170,7 +170,7 @@ class list4 extends BaseList {
                   >
                     <Base.VerticalContent className={this.decorateCSS("color-box")}>
                       {card.icon && (
-                        <ComposerIcon
+                        <Base.Icon
                           name={card.icon}
                           propsIcon={{
                             className: this.decorateCSS("icon")

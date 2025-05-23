@@ -3,7 +3,7 @@ import styles from "./header13.module.scss";
 import { BaseHeader } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 
 type RightItem = {
@@ -305,7 +305,7 @@ class Header13 extends BaseHeader {
                     {rightItems.map((item: RightItem) => {
                       return (
                         <ComposerLink path={item.link}>
-                          <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={item.icon} />
+                          <Base.Icon propsIcon={{ className: this.decorateCSS("icon") }} name={item.icon} />
                         </ComposerLink>
                       );
                     })}

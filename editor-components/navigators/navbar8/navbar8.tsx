@@ -2,7 +2,7 @@ import * as React from "react";
 import { BaseNavigator } from "../../EditorComponent";
 import styles from "./navbar8.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "composer-tools/composer-base-components/base/base";
 import ComposerLanguage from "composer-tools/composer-base-components/language/language";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
@@ -94,12 +94,12 @@ class Navbar8 extends BaseNavigator {
     this.addProp({
       type: "object",
       key: "language",
-      displayer: "Language",
+      displayer: "Language Settings",
       value: [
         {
           type: "select",
           key: "label",
-          displayer: "Label",
+          displayer: "Language Label",
           value: "code",
           additionalParams: {
             selectItems: ["code", "name"],
@@ -422,9 +422,9 @@ class Navbar8 extends BaseNavigator {
           {titleContainer && (
             <div className={this.decorateCSS("titleContainer")}>
               <div className={this.decorateCSS("titleContainerContent")}>
-                {title && <h1 className={`${this.decorateCSS("title")} ${backgroundChange ? this.decorateCSS("openedTitle") : ""}`}>{this.getPropValue("title")}</h1>}
+                {title && <Base.H1 className={`${this.decorateCSS("title")} ${backgroundChange ? this.decorateCSS("openedTitle") : ""}`}>{this.getPropValue("title")}</Base.H1>}
                 {subtitle && (
-                  <h4 className={`${this.decorateCSS("subtitle")} ${backgroundChange ? this.decorateCSS("openedSubtitle") : ""}`}>{this.getPropValue("subtitle")}</h4>
+                  <Base.P className={`${this.decorateCSS("subtitle")} ${backgroundChange ? this.decorateCSS("openedSubtitle") : ""}`}>{this.getPropValue("subtitle")}</Base.P>
                 )}
               </div>
             </div>
@@ -432,7 +432,7 @@ class Navbar8 extends BaseNavigator {
 
           <div className={this.decorateCSS("icons")}>
           {language.showLanguage && (
-              <ComposerLanguage
+              <Base.Language
                 type="dropdown"
                 title={language.label}
                 icon={language.icon}
@@ -448,7 +448,7 @@ class Navbar8 extends BaseNavigator {
             )}
             {isMenuOpen ? (
       
-                <ComposerIcon
+                <Base.Icon
                   name={this.getPropValue("closeIcon")}
                   propsIcon={{
                     className: `${this.decorateCSS("closeIcon")} ${backgroundChange && this.decorateCSS("openedCloseIcon")}`, onClick: this.handleCloseMenu
@@ -456,7 +456,7 @@ class Navbar8 extends BaseNavigator {
                 />
             ) : (
 
-                <ComposerIcon
+                <Base.Icon
                   name={this.getPropValue("hamburgerIcon")}
                   propsIcon={{
                     className: `${this.decorateCSS("menuIcon")} ${backgroundChange && this.decorateCSS("openedMenuIcon")}`, onClick: this.handleMenuClick
@@ -483,14 +483,14 @@ class Navbar8 extends BaseNavigator {
               {rightSide && (
                 <div className={this.decorateCSS("dropdownRightSide")}>
                   {dropdownTitle && (
-                    <h1 className={this.decorateCSS("dropdownTitle")}>
+                    <Base.H1 className={this.decorateCSS("dropdownTitle")}>
                       {this.getPropValue("dropdownTitle")}
-                    </h1>
+                    </Base.H1>
                   )}
                   {dropdownDescription && (
-                    <p className={this.decorateCSS("dropdownDescription")}>
+                    <Base.P className={this.decorateCSS("dropdownDescription")}>
                       {this.getPropValue("dropdownDescription")}
-                    </p>
+                    </Base.P>
                   )}
                 </div>
               )}
@@ -507,11 +507,11 @@ class Navbar8 extends BaseNavigator {
                           onClick={() => this.setComponentState("isMenuOpen", false)}
                         >
                       <ComposerLink path={item.url}>
-                            <p className={this.decorateCSS("dropdownItem")} 
+                            <Base.H2 className={this.decorateCSS("dropdownItem")} 
                             onClick={()=> this.handleCloseMenu()}
                             >
                               {item.title}
-                            </p>
+                            </Base.H2>
                         </ComposerLink>
                        </div>
                     )
@@ -519,9 +519,9 @@ class Navbar8 extends BaseNavigator {
                   )}
                   {socialMediaLinksCondition && (
                     <div className={this.decorateCSS("socialMediaLinks")}>
-                      <h1 className={this.decorateCSS("socialMediaLinksTitle")}>
+                      <Base.H3 className={this.decorateCSS("socialMediaLinksTitle")}>
                         {this.getPropValue("dropdownSocialMediaTitle")}
-                      </h1>
+                      </Base.H3>
                       <div className={this.decorateCSS("socialMediaLinksList")}>
                         {socialMediaLinks.map((item: any, index: number) => (
                           <div
@@ -531,7 +531,7 @@ class Navbar8 extends BaseNavigator {
                           >
                             <ComposerLink path={item.url}>
                               <div className={this.decorateCSS("socialMediaIconContainer")} onClick={()=> this.handleCloseMenu()}>
-                              <ComposerIcon
+                              <Base.Icon
                                 name={item.icon}
                                 propsIcon={{
                                   className:

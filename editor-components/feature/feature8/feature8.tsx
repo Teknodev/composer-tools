@@ -2,7 +2,7 @@ import * as React from "react";
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature8.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 
 type Card = {
   icon: string;
@@ -262,7 +262,7 @@ class Feature8 extends BaseFeature {
                 return (
                   <div className={this.decorateCSS("card")}>
                     {card.icon && (
-                      <ComposerIcon
+                      <Base.Icon
                         name={card.icon}
                         propsIcon={{ className: this.decorateCSS("icon") }}
                       />

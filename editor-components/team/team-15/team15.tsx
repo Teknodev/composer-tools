@@ -2,7 +2,7 @@ import * as React from "react";
 import { Team, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./team15.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 
 type Card = {
@@ -377,7 +377,7 @@ class Team15 extends Team {
                                 return (
                                   <div key={indexIcons} className={this.decorateCSS("icon-item")}>
                                     <ComposerLink path={icon.url}>
-                                      <ComposerIcon name={icon.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                                      <Base.Icon name={icon.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
                                     </ComposerLink>
                                   </div>
                                 );
@@ -387,11 +387,11 @@ class Team15 extends Team {
                           {descriptionExists && <Base.P className={this.decorateCSS("description")}>{card.getPropValue("description")}</Base.P>}
                           <div className={this.decorateCSS("icons")}>
                             <ComposerLink path={card.getPropValue("firstIconUrl")}>
-                              <ComposerIcon name={card.getPropValue("firstIcon")} propsIcon={{ className: this.decorateCSS("firstIcon") }} />
+                              <Base.Icon name={card.getPropValue("firstIcon")} propsIcon={{ className: this.decorateCSS("firstIcon") }} />
                             </ComposerLink>
 
                             <ComposerLink path={card.getPropValue("secondIconUrl")}>
-                              <ComposerIcon name={card.getPropValue("secondIcon")} propsIcon={{ className: this.decorateCSS("secondIcon") }} />
+                              <Base.Icon name={card.getPropValue("secondIcon")} propsIcon={{ className: this.decorateCSS("secondIcon") }} />
                             </ComposerLink>
                           </div>
                         </div>

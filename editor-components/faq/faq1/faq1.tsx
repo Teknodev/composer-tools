@@ -2,7 +2,7 @@ import * as React from "react";
 import styles from "./faq1.module.scss";
 import { BaseFAQ } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 
 type FAQ = {
   subtitle: React.JSX.Element;
@@ -148,10 +148,10 @@ class Faq1 extends BaseFAQ {
                         <div className={this.decorateCSS("card-subtitle")}>{card.subtitle}</div>
                       )}
                       {this.getPropValue("icon") && (
-                        <ComposerIcon name={this.getPropValue("icon")} propsIcon={{
+                        <Base.Icon name={this.getPropValue("icon")} propsIcon={{
                           className: `${this.decorateCSS("icon")} 
                            ${this.getComponentState("selectCardIndex") === indexCard ? this.decorateCSS("rotate") : ""}`
-                        }}></ComposerIcon>
+                        }}></Base.Icon>
                       )}
                     </div>
                   )}

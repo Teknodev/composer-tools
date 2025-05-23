@@ -3,7 +3,7 @@ import { BaseList } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import styles from "./list1.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
@@ -352,7 +352,7 @@ class List1 extends BaseList {
                             {item.button.text}
                           </div >
                           {item.icon && (
-                            <ComposerIcon
+                            <Base.Icon
                               name={item.icon}
                               propsIcon={{
                                 className: this.decorateCSS("icon"),

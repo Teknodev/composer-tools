@@ -2,7 +2,7 @@ import * as React from "react";
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header34.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 interface Slider {
@@ -229,7 +229,7 @@ class Header34 extends BaseHeader {
             )}`}
             onClick={handlePrev}
           >
-            <ComposerIcon name={this.getPropValue("prev_icon")} />
+            <Base.Icon name={this.getPropValue("prev_icon")} />
           </div>
 
           <div
@@ -238,7 +238,7 @@ class Header34 extends BaseHeader {
             )}`}
             onClick={handleNext}
           >
-            <ComposerIcon name={this.getPropValue("next_icon")} />
+            <Base.Icon name={this.getPropValue("next_icon")} />
           </div>
 
           <div className={this.decorateCSS("dots")}>

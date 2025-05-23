@@ -4,7 +4,7 @@ import styles from "./slider1.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 
 type Slider = {
   subtitle: React.JSX.Element;
@@ -220,7 +220,7 @@ class Slider1 extends BaseSlider {
                           return (
                             social.icon && (
                               <ComposerLink key={index} path={social.url}>
-                                <ComposerIcon
+                                <Base.Icon
                                   name={social.icon}
                                   propsIcon={{
                                     className: `${this.decorateCSS("icon")} ${!item.image && this.decorateCSS("no-img")}`,

@@ -1,7 +1,7 @@
 import * as React from "react";
 import styles from "./faq8.module.scss";
 import { BaseFAQ } from "../../EditorComponent";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 
 type Category = {
@@ -702,7 +702,7 @@ class Faq8 extends BaseFAQ {
                           {(this.getPropValue("dot_icon") || this.getPropValue("arrow-right") || this.castToString(category.categoryName)) && (
                             <div className={this.decorateCSS("category")}>
                               {this.getPropValue("dot_icon") && (
-                                <ComposerIcon
+                                <Base.Icon
                                   name={this.getPropValue("dot_icon")}
                                   propsIcon={{
                                     className: `${this.decorateCSS(
@@ -720,7 +720,7 @@ class Faq8 extends BaseFAQ {
                           )}
                           {this.getPropValue("arrow-right") && (
                             <div className={this.decorateCSS("right")}>
-                              <ComposerIcon
+                              <Base.Icon
                                 name={this.getPropValue("arrow-right")}
                                 propsIcon={{
                                   className: this.decorateCSS("arrow-right")
@@ -749,7 +749,7 @@ class Faq8 extends BaseFAQ {
                             <div className={`${this.decorateCSS("question-title")} ${this.getComponentState("activeIndex2") === questionIndex ? this.decorateCSS("active") : ""}`}>
                               {question.qq}
                             </div>
-                            <ComposerIcon name={this.getPropValue("arrow-down")} propsIcon={{ className: `${this.decorateCSS("question-icon")} ${this.getComponentState("activeIndex2") === questionIndex ? this.decorateCSS("active") : ""}` }} />
+                            <Base.Icon name={this.getPropValue("arrow-down")} propsIcon={{ className: `${this.decorateCSS("question-icon")} ${this.getComponentState("activeIndex2") === questionIndex ? this.decorateCSS("active") : ""}` }} />
                           </div>
                         )}
                         {this.castToString(question.answer) && (

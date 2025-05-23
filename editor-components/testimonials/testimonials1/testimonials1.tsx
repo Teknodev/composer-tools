@@ -2,7 +2,7 @@ import * as React from "react";
 import { Testimonials } from "../../EditorComponent";
 import styles from "./testimonials1.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 
 class Testimonials1Page extends Testimonials {
@@ -162,7 +162,7 @@ class Testimonials1Page extends Testimonials {
                 <ComposerSlider {...settings} ref={this.getComponentState("slider-ref")}>
                   {this.castToObject<any>("items").map((item: any, index: number) => (
                     <div className={this.decorateCSS("items")}>
-                      {item.icons && <ComposerIcon name={item.icons} propsIcon={{ className: `${this.decorateCSS("icons")} ${!imageExist && this.decorateCSS("icons-no-image")}` }} />}
+                      {item.icons && <Base.Icon name={item.icons} propsIcon={{ className: `${this.decorateCSS("icons")} ${!imageExist && this.decorateCSS("icons-no-image")}` }} />}
                       {this.castToString(item.longtext) && <div className={`${this.decorateCSS("longtext")} ${!imageExist && this.decorateCSS("longtext-no-image")}`}>{item.longtext}</div>}
                       {this.castToString(item.name) && <div className={`${this.decorateCSS("name")} ${!imageExist && this.decorateCSS("name-no-image")}`}>{item.name}</div>}
                     </div>

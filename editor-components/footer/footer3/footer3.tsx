@@ -3,7 +3,7 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { BaseFooter } from "../../EditorComponent";
 import styles from "./footer3.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 
 type FooterValues = {
   icon: string;
@@ -645,7 +645,7 @@ class Footer3Page extends BaseFooter {
                                       data-animation={item.url ? this.getPropValue("hoverAnimation").join(" ") : ""}
                                       data-has-link={Boolean(item.url)}
                                     >
-                                      <ComposerIcon 
+                                      <Base.Icon 
                                         propsIcon={{ className: this.decorateCSS("icon") }} 
                                         name={item.icon} 
                                       />
@@ -680,7 +680,7 @@ class Footer3Page extends BaseFooter {
                                           data-animation={v.path ? this.getPropValue("hoverAnimation").join(" ") : ""}
                                         >
                                           {v.footerIcon && (
-                                            <ComposerIcon 
+                                            <Base.Icon 
                                               propsIcon={{ 
                                                 className: this.decorateCSS("element-icon")
                                               }} 

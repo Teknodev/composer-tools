@@ -3,7 +3,7 @@ import { Testimonials } from "../../EditorComponent";
 import styles from "./testimonials13.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 type Card = {
   image: string;
   text: React.JSX.Element;
@@ -285,7 +285,7 @@ class Testimonials13Page extends Testimonials {
                                   }}
                                   className={this.decorateCSS("button")}
                                 >
-                                  <ComposerIcon name={this.getPropValue("prevIcon")} propsIcon={{ className: this.decorateCSS("prev-arrow") }}></ComposerIcon>
+                                  <Base.Icon name={this.getPropValue("prevIcon")} propsIcon={{ className: this.decorateCSS("prev-arrow") }}></Base.Icon>
                                 </button>
                               )}
                               {item.image && <div className={this.decorateCSS("img-div")}>{item.image && <img alt={item.image} src={item.image} className={this.decorateCSS("img")} />}</div>}
@@ -296,7 +296,7 @@ class Testimonials13Page extends Testimonials {
                                   }}
                                   className={this.decorateCSS("button")}
                                 >
-                                  <ComposerIcon name={this.getPropValue("nextIcon")} propsIcon={{ className: this.decorateCSS("next-arrow") }}></ComposerIcon>
+                                  <Base.Icon name={this.getPropValue("nextIcon")} propsIcon={{ className: this.decorateCSS("next-arrow") }}></Base.Icon>
                                 </button>
                               )}
                             </div>
@@ -308,7 +308,7 @@ class Testimonials13Page extends Testimonials {
                               )}
                               {(this.getPropValue("sliderIcon") || this.castToString(item.author) || this.castToString(item.subtitle)) && (
                                 <Base.VerticalContent className={this.decorateCSS("bottom-container")}>
-                                  {this.getPropValue("sliderIcon") && <ComposerIcon name={this.getPropValue("sliderIcon")} propsIcon={{ className: this.decorateCSS("item-icon") }}></ComposerIcon>}
+                                  {this.getPropValue("sliderIcon") && <Base.Icon name={this.getPropValue("sliderIcon")} propsIcon={{ className: this.decorateCSS("item-icon") }}></Base.Icon>}
                                   {this.castToString(item.author) && <Base.H2 className={this.decorateCSS("first-header")}>{item.author}</Base.H2>}
                                   {this.castToString(item.subtitle) && <Base.P className={this.decorateCSS("item-title")}>{item.subtitle}</Base.P>}
                                 </Base.VerticalContent>

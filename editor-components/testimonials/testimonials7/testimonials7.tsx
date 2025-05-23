@@ -3,7 +3,7 @@ import { Testimonials } from "../../EditorComponent";
 import styles from "./testimonials7.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 
 type Item = {
   image: string;
@@ -207,7 +207,7 @@ class Testimonials7Page extends Testimonials {
                         }}
                         className={`${this.decorateCSS("button-left")} ${!this.getPropValue("cover-image") && this.decorateCSS("button-left-no-image")}`}
                       >
-                        <ComposerIcon name={this.getPropValue("prevIcon")} propsIcon={{ className: this.decorateCSS("arrow") }}></ComposerIcon>
+                        <Base.Icon name={this.getPropValue("prevIcon")} propsIcon={{ className: this.decorateCSS("arrow") }}></Base.Icon>
                       </button>
                     )}
                     {(this.castToString(item.description) || item.image || this.castToString(item.name) || this.castToString(item.nameId)) && (
@@ -231,7 +231,7 @@ class Testimonials7Page extends Testimonials {
                         }}
                         className={`${this.decorateCSS("button-right")} ${!this.getPropValue("cover-image") && this.decorateCSS("button-right-no-image")}`}
                       >
-                        <ComposerIcon name={this.getPropValue("nextIcon")} propsIcon={{ className: this.decorateCSS("arrow") }}></ComposerIcon>
+                        <Base.Icon name={this.getPropValue("nextIcon")} propsIcon={{ className: this.decorateCSS("arrow") }}></Base.Icon>
                       </button>
                     )}
                   </div>

@@ -3,7 +3,7 @@ import { Testimonials } from "../../EditorComponent";
 import styles from "./testimonials4.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 
 interface SliderItem {
   icon: string;
@@ -217,7 +217,7 @@ class Testimonials4Page extends Testimonials {
                 sliderRef.current.slickPrev();
               }}
             >
-              <ComposerIcon name={arrows.prevArrow} propsIcon={{ className: `${this.decorateCSS("arrow")} ${!this.getPropValue("cover-image") && this.decorateCSS("arrow-dark")} ` }}></ComposerIcon>
+              <Base.Icon name={arrows.prevArrow} propsIcon={{ className: `${this.decorateCSS("arrow")} ${!this.getPropValue("cover-image") && this.decorateCSS("arrow-dark")} ` }}></Base.Icon>
             </button>
           )}
 
@@ -227,7 +227,7 @@ class Testimonials4Page extends Testimonials {
                 const hasContent = item.icon || this.castToString(item.description) || this.castToString(item.title) || this.castToString(item.subtitle);
                 return (
                   <div className={hasContent && this.decorateCSS("items")}>
-                    {item.icon && <ComposerIcon name={item.icon} propsIcon={{ className: `${this.decorateCSS("icon")} ${!this.getPropValue("cover-image") && this.decorateCSS("icon-dark")}` }} />}
+                    {item.icon && <Base.Icon name={item.icon} propsIcon={{ className: `${this.decorateCSS("icon")} ${!this.getPropValue("cover-image") && this.decorateCSS("icon-dark")}` }} />}
                     {this.castToString(item.description) && <Base.P className={`${this.decorateCSS("longtext")} ${!this.getPropValue("cover-image") && this.decorateCSS("longtext-dark")} `}>{item.description}</Base.P>}
                     {(this.castToString(item.title) || this.castToString(item.subtitle)) && (
                       <div className={this.decorateCSS("person-text")}>
@@ -254,7 +254,7 @@ class Testimonials4Page extends Testimonials {
                 sliderRef.current.slickNext();
               }}
             >
-              <ComposerIcon name={arrows.nextArrow} propsIcon={{ className: `${this.decorateCSS("arrow")} ${!this.getPropValue("cover-image") && this.decorateCSS("arrow-dark")} ` }}></ComposerIcon>
+              <Base.Icon name={arrows.nextArrow} propsIcon={{ className: `${this.decorateCSS("arrow")} ${!this.getPropValue("cover-image") && this.decorateCSS("arrow-dark")} ` }}></Base.Icon>
             </button>
           )}
         </Base.MaxContent>

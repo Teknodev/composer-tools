@@ -3,7 +3,7 @@ import { BaseHeader } from "../../EditorComponent";
 import styles from "./header8.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 
 type ISliderData = {
   title: string;
@@ -338,7 +338,7 @@ class Header8 extends BaseHeader {
                   sliderRef.current.slickPrev();
                 }}>
                   <div className={this.decorateCSS("arrow-prev")}>
-                    <ComposerIcon
+                    <Base.Icon
                       name={this.getPropValue("previousArrow")}
                       propsIcon={{ className: this.decorateCSS("icon") }}
                     />
@@ -348,7 +348,7 @@ class Header8 extends BaseHeader {
                   sliderRef.current.slickNext();
                 }}>
                   <div className={this.decorateCSS("arrow-next")}>
-                    <ComposerIcon
+                    <Base.Icon
                       name={this.getPropValue("nextArrow")}
                       propsIcon={{ className: this.decorateCSS("icon") }}
                     />

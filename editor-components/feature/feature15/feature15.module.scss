@@ -4,7 +4,9 @@
     position: relative;
     padding-top: 0px;
     padding-bottom: 0px;
-
+    &.with-overlay{
+        z-index: 103;
+    }
     &.no-image{
         padding-top: var(--composer-gap-md);
         padding-bottom: var(--composer-gap-md);

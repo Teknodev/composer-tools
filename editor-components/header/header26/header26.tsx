@@ -2,7 +2,7 @@ import * as React from "react";
 import styles from "./header26.module.scss";
 import { BaseHeader } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type Slide = {
@@ -297,13 +297,13 @@ class Header26 extends BaseHeader {
                             className={this.decorateCSS("up-arrow")}
                             onClick={handlePrevClick}
                           >
-                            <ComposerIcon name={this.getPropValue("up_icon")} propsIcon={{ className: this.decorateCSS("icon") }} />
+                            <Base.Icon name={this.getPropValue("up_icon")} propsIcon={{ className: this.decorateCSS("icon") }} />
                           </div>
                           <div
                             className={this.decorateCSS("down-arrow")}
                             onClick={handleNextClick}
                           >
-                            <ComposerIcon name={this.getPropValue("down_icon")} propsIcon={{ className: this.decorateCSS("icon") }} />
+                            <Base.Icon name={this.getPropValue("down_icon")} propsIcon={{ className: this.decorateCSS("icon") }} />
                           </div>
                         </div>
                       }

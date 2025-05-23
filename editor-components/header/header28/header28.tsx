@@ -2,9 +2,6 @@ import * as React from "react";
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header28.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 
 class Header28 extends BaseHeader {
   constructor(props?: any) {
@@ -264,7 +261,7 @@ class Header28 extends BaseHeader {
                         this.setComponentState("play-video", false)
                       }
                     >
-                      <ComposerIcon
+                      <Base.Icon
                         propsIcon={{
                           className: this.decorateCSS("close-button-icon"),
                         }}
@@ -284,7 +281,7 @@ class Header28 extends BaseHeader {
                       : () => { }
                   }
                 >
-                  <ComposerIcon name={this.getPropValue("play_icon")} />
+                  <Base.Icon name={this.getPropValue("play_icon")} />
                 </div>
               )}
               <div

@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styles from './Dropdown.module.scss';
-import { ComposerIcon } from '../../icon/icon';
 import { Base } from "composer-tools/composer-base-components/base/base";
 
 
@@ -66,7 +65,7 @@ const Dropdown: React.FC<DropdownProps> = ({
         disabled={disabled}
       >
         <span className={`${styles.label} ${labelClassName || ''}`}>{buttonLabel}</span>
-        {icon && <ComposerIcon name={icon} propsIcon={{className: `${styles.icon} ${iconClassName || ''}`}}/>}
+        {icon && <Base.Icon name={icon} propsIcon={{className: `${styles.icon} ${iconClassName || ''}`}}/>}
       </button>
       {isOpen && (
         <div className={`${styles.dropdownContent} ${dropdownContentClassName || ''} ${shouldOpenLeft ? styles.openLeft : ''}`} onClick={closeDropdown}>

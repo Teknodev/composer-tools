@@ -1,7 +1,7 @@
 import * as React from "react";
 import { BaseImageGallery } from "../../EditorComponent";
 import styles from "./image-gallery2.module.scss";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
@@ -748,7 +748,7 @@ class ImageGallery2 extends BaseImageGallery {
         const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
         return (
-            <Base.Container className={this.decorateCSS("container")}>
+            <Base.Container className={`${this.decorateCSS("container")}${modalOpen && this.decorateCSS("with-overlay")}`}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={this.decorateCSS("content")}>
                         <div className={this.decorateCSS("section-selector-text")}>
@@ -788,7 +788,7 @@ class ImageGallery2 extends BaseImageGallery {
                                             />
                                             <div className={this.decorateCSS("overlay")} />
                                             <div className={this.decorateCSS("magnifier-icon-wrapper")}>
-                                                <ComposerIcon
+                                                <Base.Icon
                                                     propsIcon={{
                                                         className: this.decorateCSS("magnifier-icon"),
                                                     }}
@@ -821,7 +821,7 @@ class ImageGallery2 extends BaseImageGallery {
                                         className={this.decorateCSS("close")}
                                         onClick={this.closeModal}
                                     >
-                                        <ComposerIcon
+                                        <Base.Icon
                                             propsIcon={{ className: this.decorateCSS("icon") }}
                                             name={closeModalIcon}
                                         />
@@ -850,7 +850,7 @@ class ImageGallery2 extends BaseImageGallery {
                                 className={this.decorateCSS("prev")}
                                 onClick={this.prevImage}
                             >
-                                <ComposerIcon
+                                <Base.Icon
                                     propsIcon={{ className: this.decorateCSS("icon") }}
                                     name={previousImageIcon}
                                 />
@@ -859,7 +859,7 @@ class ImageGallery2 extends BaseImageGallery {
                                 className={this.decorateCSS("next")}
                                 onClick={this.nextImage}
                             >
-                                <ComposerIcon
+                                <Base.Icon
                                     propsIcon={{ className: this.decorateCSS("icon") }}
                                     name={nextImageIcon}
                                 />

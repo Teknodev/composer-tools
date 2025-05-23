@@ -1,7 +1,7 @@
 import * as React from "react";
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature15.module.scss";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 interface Card {
     icon: string;
@@ -187,7 +187,7 @@ class Feature15 extends BaseFeature {
     render() {
         const closeIcon: string = this.getPropValue("closeIcon");
         return (
-            <Base.Container className={`${this.decorateCSS("container")} ${!this.getPropValue("cover_image") ? this.decorateCSS("no-image") : ""}`}>
+            <Base.Container className={`${this.decorateCSS("container")} ${!this.getPropValue("cover_image") ? this.decorateCSS("no-image") : ""} ${this.getComponentState("is_video_visible") && this.decorateCSS("with-overlay")}`}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <Base.ListGrid
                         gridCount={{ pc: 2 }}
@@ -198,7 +198,7 @@ class Feature15 extends BaseFeature {
                                 <div key={index} className={this.decorateCSS("card")}>
                                     {card.icon && (
                                         <div className={this.decorateCSS("icon-box")}>
-                                            <ComposerIcon
+                                            <Base.Icon
                                                 name={card.icon}
                                                 propsIcon={{ className: this.decorateCSS("icon") }}
                                             />
@@ -240,7 +240,7 @@ class Feature15 extends BaseFeature {
                                         this.setComponentState("is_video_visible", true);
                                     }}
                                 >
-                                    <ComposerIcon
+                                    <Base.Icon
                                         name={this.getPropValue("play_icon")}
                                         propsIcon={{ className: this.decorateCSS("play-icon") }}
                                     />
@@ -274,7 +274,7 @@ class Feature15 extends BaseFeature {
                                     className={this.decorateCSS("close-icon-box")}
                                     onClick={() => this.setComponentState("is_video_visible", false)}
                                 >
-                                    <ComposerIcon
+                                    <Base.Icon
                                         propsIcon={{
                                             className: this.decorateCSS("close-icon"),
                                         }}

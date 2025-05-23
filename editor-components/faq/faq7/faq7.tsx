@@ -2,7 +2,7 @@ import * as React from "react";
 import styles from "./faq7.module.scss";
 import { BaseFAQ } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
@@ -232,7 +232,7 @@ class Faq7 extends BaseFAQ {
                             )}
                             {(this.getPropValue("iconActive") || this.getPropValue("iconInactive")) && (
                               <div className={this.decorateCSS("icon-wrapper")}>
-                                <ComposerIcon name={isActive ? this.getPropValue("iconActive") : this.getPropValue("iconInactive")} propsIcon={{ className: this.decorateCSS("icon") }} />
+                                <Base.Icon name={isActive ? this.getPropValue("iconActive") : this.getPropValue("iconInactive")} propsIcon={{ className: this.decorateCSS("icon") }} />
                               </div>
                             )}
                           </div>

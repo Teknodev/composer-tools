@@ -2,7 +2,7 @@ import * as React from "react";
 import styles from "./faq5.module.scss";
 import { BaseFAQ } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 
 type Card = {
   sectionTitle: React.JSX.Element;
@@ -573,7 +573,7 @@ class Faq5 extends BaseFAQ {
                               )}
                               {(this.getPropValue("activeIcon") || this.getPropValue("inactiveIcon")) && (
                                 <div className={this.decorateCSS("icon-wrapper")}>
-                                  <ComposerIcon name={this.getComponentState("activeCard") === index
+                                  <Base.Icon name={this.getComponentState("activeCard") === index
                                     ? this.getPropValue("activeIcon")
                                     : this.getPropValue("inactiveIcon")}
                                     propsIcon={{ className: this.decorateCSS("icon") }}

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { BaseStats } from "../../EditorComponent";
 import styles from "./stats4.module.scss";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 
 type Faq = {
@@ -386,14 +386,14 @@ class Stats4Page extends BaseStats {
                                 }}
                               >
                                 {this.getComponentState("selectedFaqIndex") === index ? (
-                                  <ComposerIcon
+                                  <Base.Icon
                                     propsIcon={{
                                       className: this.decorateCSS("Icon"),
                                     }}
                                     name={collapseIcon}
                                   />
                                 ) : (
-                                  <ComposerIcon
+                                  <Base.Icon
                                     propsIcon={{
                                       className: this.decorateCSS("Icon"),
                                     }}
@@ -441,7 +441,7 @@ class Stats4Page extends BaseStats {
                             {statValue}
                             {statIcon && (
                               <span className={this.decorateCSS("stat-value-icon")}>
-                                <ComposerIcon
+                                <Base.Icon
                                   propsIcon={{
                                     className: this.decorateCSS("stat-icon"),
                                   }}

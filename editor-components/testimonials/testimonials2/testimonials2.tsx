@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Testimonials } from "../../EditorComponent";
 import styles from "./testimonials2.module.scss";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
 
@@ -277,7 +277,7 @@ class Testimonials2Page extends Testimonials {
                   {(item.star > 0 || item.icon) && (
                     <Base.Row className={this.decorateCSS("icon-element")}>
                       {[...Array(Number(item.star))].map((_: any, index: number) => (
-                        <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={item.icon} />
+                        <Base.Icon propsIcon={{ className: this.decorateCSS("icon") }} name={item.icon} />
                       ))}
                     </Base.Row>
                   )}

@@ -2,7 +2,7 @@ import * as React from "react";
 import { Testimonials } from "../../EditorComponent";
 import styles from "./testimonials6.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 
 interface CardItem {
   star: number;
@@ -326,7 +326,7 @@ class Testimonials6Page extends Testimonials {
                     {item.star > 0 && (
                       <div className={this.decorateCSS("star")}>
                         {[...Array(Number(item.star))].map((_: any, index: number) => (
-                          <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={this.getPropValue("starIcon")} />
+                          <Base.Icon propsIcon={{ className: this.decorateCSS("icon") }} name={this.getPropValue("starIcon")} />
                         ))}
                       </div>
                     )}

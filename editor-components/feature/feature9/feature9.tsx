@@ -1,7 +1,7 @@
 import React from "react";
 
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature9.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
@@ -272,7 +272,7 @@ class Feature9 extends BaseFeature {
                           <div className={this.decorateCSS("card-header")}>
                             {card.icon &&
                               <div className={this.decorateCSS("icon-container")}>
-                                <ComposerIcon
+                                <Base.Icon
                                   name={card.icon}
                                   propsIcon={{
                                     className: this.decorateCSS("icon"),

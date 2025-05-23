@@ -2,7 +2,7 @@ import * as React from "react";
 import { BaseContacts } from "../../EditorComponent";
 import styles from "./form1.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 
 class Form1 extends BaseContacts {
   constructor(props?: any) {
@@ -245,7 +245,7 @@ class Form1 extends BaseContacts {
                     ${item.isIconFilled && this.decorateCSS("filled")}
                   `}
                       >
-                        <ComposerIcon
+                        <Base.Icon
                           name={item.icon}
                           propsIcon={{
                             className: this.decorateCSS("icon"),
