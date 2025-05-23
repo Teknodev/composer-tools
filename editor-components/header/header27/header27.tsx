@@ -2,7 +2,7 @@ import * as React from "react";
 import { BaseHeader } from "../../EditorComponent";
 import styles from "./header27.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -456,7 +456,7 @@ class Header27 extends BaseHeader {
                                     >
                                       {item.button.text}
                                       {item.button.icon && (
-                                        <ComposerIcon
+                                        <Base.Icon
                                           name={item.button.icon}
                                           propsIcon={{
                                             className:

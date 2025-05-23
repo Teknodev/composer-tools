@@ -1,6 +1,6 @@
 import * as React from "react";
 import { BaseFeature } from "../../EditorComponent";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import styles from "./feature4.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
@@ -474,8 +474,9 @@ class Feature4 extends BaseFeature {
                     className={`${this.getPropValue("backgroundImage") ? this.decorateCSS("card-item-count") : this.decorateCSS("card-item-count-no-bg")}`}>
                     <Base.VerticalContent className={this.decorateCSS("vertical")}>
                       {!!card.icon && (
+
                         <div className={`${this.getPropValue("backgroundImage") ? this.decorateCSS("icon-container") : this.decorateCSS("icon-container-no-bg")}`}>
-                          <ComposerIcon
+                          <Base.Icon
                             propsIcon={{ className: this.decorateCSS("icon") }}
                             name={card.icon}
                           />

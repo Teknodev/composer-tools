@@ -3,7 +3,7 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action4.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 interface ListItem {
@@ -178,7 +178,7 @@ class CallToAction4Page extends BaseCallToAction {
                       <div className={this.decorateCSS("list")}>
                         {this.getPropValue("icon") && (
                           <div className={this.decorateCSS("icon-container")}>
-                            <ComposerIcon name={this.getPropValue("icon")} propsIcon={{ className: this.decorateCSS("icon") }} />
+                            <Base.Icon name={this.getPropValue("icon")} propsIcon={{ className: this.decorateCSS("icon") }} />
                           </div>
                         )}
                         {this.castToString(item.description) && <div className={this.decorateCSS("description")}>{item.description}</div>}

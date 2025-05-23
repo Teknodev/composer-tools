@@ -3,7 +3,7 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature10.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
@@ -315,7 +315,7 @@ class Feature10 extends BaseFeature {
                       sliderRef.current.slickPrev();
                     }}
                     className={this.decorateCSS("arrow-left")}>
-                    <ComposerIcon name={this.getPropValue("leftArrow")} propsIcon={{ className: this.decorateCSS("icon") }} ></ComposerIcon>
+                    <Base.Icon name={this.getPropValue("leftArrow")} propsIcon={{ className: this.decorateCSS("icon") }} ></Base.Icon>
                   </button>
                 )}
                 {this.getPropValue("rightArrow") && (
@@ -324,7 +324,7 @@ class Feature10 extends BaseFeature {
                       sliderRef.current.slickNext();
                     }}
                     className={this.decorateCSS("arrow-right")}>
-                    <ComposerIcon name={this.getPropValue("rightArrow")} propsIcon={{ className: this.decorateCSS("icon") }}></ComposerIcon>
+                    <Base.Icon name={this.getPropValue("rightArrow")} propsIcon={{ className: this.decorateCSS("icon") }}></Base.Icon>
                   </button>
                 )}
               </div>

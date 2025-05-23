@@ -2,7 +2,7 @@ import * as React from "react";
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature11.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
@@ -275,7 +275,7 @@ class Feature11 extends BaseFeature {
                       key={index}
                       className={this.decorateCSS("card-container")}
                     >
-                      {card.icon && <ComposerIcon name={card.icon} propsIcon={{ className: this.decorateCSS("card-icon") }} />}
+                      {card.icon && <Base.Icon name={card.icon} propsIcon={{ className: this.decorateCSS("card-icon") }} />}
                       <Base.VerticalContent className={this.decorateCSS("card-content")}>
                         {titleExist && (
                           <Base.H3 className={this.decorateCSS("card-title")}>

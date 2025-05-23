@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styles from "./content6.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
 
@@ -382,12 +382,12 @@ class Content6 extends BaseContent {
                     }>
                     {text}
                   </div>
-                  <ComposerIcon
+                  <Base.Icon
                     name={rightTextArrow}
                     propsIcon={{
                       className: `${this.decorateCSS("icon")} ${disableAnimation && this.decorateCSS("no-animation")}`
                     }}
-                  ></ComposerIcon>
+                  ></Base.Icon>
                 </div>
               </ComposerLink>
             </div>
@@ -419,7 +419,7 @@ class Content6 extends BaseContent {
                 }}
                 className={this.decorateCSS("slider-button-left")}
               >
-                <ComposerIcon
+                <Base.Icon
                   propsIcon={{
                     className: this.decorateCSS("icon"),
                   }}
@@ -509,7 +509,7 @@ class Content6 extends BaseContent {
                 }}
                 className={this.decorateCSS("slider-button-right")}
               >
-                <ComposerIcon
+                <Base.Icon
                   propsIcon={{
                     className: this.decorateCSS("icon"),
                   }}

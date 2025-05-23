@@ -1,0 +1,53 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
+  as *;
+.container {
+  .max-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .content {
+      display: flex;
+      flex-direction: column;
+      .sub-title {
+        margin: 0;
+      }
+      .title {
+        margin-top: 1rem;
+      }
+      .text-container {
+        display: flex;
+        gap: var(--composer-gap-md);
+        .left-text,
+        .right-text {
+          flex: 1;
+          text-align: justify;
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .max-content {
+    .content {
+      align-items: center !important;
+      .sub-title {
+        transform: translateX(0) !important;
+        &::before {
+          content: none !important;
+        }
+      }
+      .title {
+        text-align: center;
+      }
+      .text-container {
+        flex-direction: column;
+        .left-text,
+        .right-text {
+          width: 100% !important;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
