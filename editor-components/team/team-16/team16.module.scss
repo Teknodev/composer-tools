@@ -44,24 +44,49 @@
             }
           }
 
-          .image {
-            height: 500px;
-            width: 100%;
-            object-fit: cover;
-            transition: filter 0.3s ease;
+          .image-wrapper {
+            overflow: hidden;
             border-top-right-radius: var(--composer-border-radius-xl);
             border-top-left-radius: var(--composer-border-radius-xl);
+
+            .image {
+              height: 500px;
+              width: 100%;
+              object-fit: cover;
+              transition: filter 0.3s, transform 0.3s ease-in-out;
+            }
           }
 
-          &:hover {
-            background-color: var(--composer-primary-color);
-
-            .text-box .text-up .name {
-              color: var(--composer-font-color-secondary);
+          &[data-animation~="animate1"] {
+            &:hover {
+              background-color: var(--composer-primary-color);
+  
+              .text-box .text-up .name {
+                color: var(--composer-font-color-secondary);
+              }
+              .text-box .text-up .job,
+              .text-box .description {
+                color: var(--composer-font-color-secondary);
+              }
             }
-            .text-box .text-up .job,
-            .text-box .description {
-              color: var(--composer-font-color-secondary);
+          }
+
+          &[data-animation~="animate2"] { 
+            &:hover {
+              .image-wrapper .image {
+                transform: scale(1.1);
+              }
+            }
+          }
+
+          &[data-animation~="animate3"] { 
+            .image-wrapper .image { filter: grayscale(100%) }
+            &:hover { .image-wrapper .image { filter: grayscale(0%);}}
+          }
+
+          &[data-animation~="animate4"] { 
+            &:hover {
+              transform: translateY(-5px);
             }
           }
         }
