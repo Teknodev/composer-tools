@@ -1,10 +1,13 @@
-@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
+@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss"
+  as *;
 
 .container {
   .max-content {
     .page {
+      gap: var(--composer-gap-md);
       .up-content {
-        .title, .description {
+        .title,
+        .description {
           content: "";
         }
       }
@@ -15,8 +18,12 @@
           height: auto;
           transition: all 0.8s;
           flex: 1 1;
-          border-radius: var(--composer-border-radius-xl);
-          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+          border-radius: var(--composer-border-radius-md);
+          background-color: color-mix(
+            in srgb,
+            var(--composer-html-background),
+            var(--composer-font-color-primary) 5%
+          );
 
           .text-box {
             padding: var(--composer-gap-md);
@@ -46,8 +53,8 @@
 
           .image-wrapper {
             overflow: hidden;
-            border-top-right-radius: var(--composer-border-radius-xl);
-            border-top-left-radius: var(--composer-border-radius-xl);
+            border-top-right-radius: var(--composer-border-radius-md);
+            border-top-left-radius: var(--composer-border-radius-md);
 
             .image {
               height: 500px;
@@ -60,7 +67,7 @@
           &[data-animation~="animate1"] {
             &:hover {
               background-color: var(--composer-primary-color);
-  
+
               .text-box .text-up .name {
                 color: var(--composer-font-color-secondary);
               }
@@ -71,7 +78,7 @@
             }
           }
 
-          &[data-animation~="animate2"] { 
+          &[data-animation~="animate2"] {
             &:hover {
               .image-wrapper .image {
                 transform: scale(1.1);
@@ -79,19 +86,25 @@
             }
           }
 
-          &[data-animation~="animate3"] { 
-            .image-wrapper .image { filter: grayscale(100%) }
-            &:hover { .image-wrapper .image { filter: grayscale(0%);}}
+          &[data-animation~="animate3"] {
+            .image-wrapper .image {
+              filter: grayscale(100%);
+            }
+            &:hover {
+              .image-wrapper .image {
+                filter: grayscale(0%);
+              }
+            }
           }
 
-          &[data-animation~="animate4"] { 
+          &[data-animation~="animate4"] {
             &:hover {
               transform: translateY(-5px);
             }
           }
         }
       }
-      .button-wrapper{
+      .button-wrapper {
         width: 100%;
         display: flex;
         align-items: center;

@@ -1,4 +1,5 @@
-@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
+@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss"
+  as *;
 
 .container {
   .max-content {
@@ -11,13 +12,21 @@
         min-height: 700px;
         height: 100%;
         justify-content: space-between;
+        transition: all 0.3s ease;
+        &[data-animation~="animate4"]:hover {
+          .icon-item {
+            animation: pulseScale 2s ease-in-out infinite;
+          }
+        }
         .title {
           font-size: 5rem;
           width: 85%;
+          margin-bottom: 0;
         }
 
         .label {
           width: 70%;
+          gap: var(--composer-gap-xl);
           .description {
             color: var(--composer-tertiary-color);
             width: 100%;
@@ -48,23 +57,7 @@
           font-size: 1.5rem;
 
           .icon-item {
-            &[data-animation~="animate4"] { 
-              .icon {
-                @keyframes pulseScale {
-                  0%, 100% {
-                    transform: scale(1.1);
-                  }
-                  50% {
-                    transform: scale(1);
-                  }
-                }
-
-                &:hover {
-                  transition: all 0.3s ease;
-                  animation: pulseScale 2s ease-in-out infinite;
-                }
-              }
-            }
+            content: "";
           }
         }
       }
@@ -76,24 +69,23 @@
         gap: var(--composer-gap-sm);
 
         .img-wrapper {
-          border-radius: var(--composer-border-radius-sm);
           overflow: hidden;
-          
+
           .image {
             flex: 1;
             width: 100%;
             min-height: 600px;
             height: 100%;
             object-fit: cover;
-  
-            &[data-animation~="animate1"] { 
+
+            &[data-animation~="animate1"] {
               transition: transform 0.7s ease;
               &:hover {
                 transform: scale(1.2);
               }
             }
 
-            &[data-animation~="animate3"] { 
+            &[data-animation~="animate3"] {
               filter: grayscale(100%);
               transition: filter 0.3s ease;
 
@@ -106,8 +98,9 @@
 
           &[data-animation~="animate2"] {
             @keyframes pulseShadow {
-              0%, 100% {
-                box-shadow: 0 0 0 var(--composer-primary-color); 
+              0%,
+              100% {
+                box-shadow: 0 0 0 var(--composer-primary-color);
               }
               50% {
                 box-shadow: 0 0 20px 5px var(--composer-primary-color);
@@ -120,7 +113,7 @@
               animation: pulseShadow 2s ease-in-out infinite;
               transition: box-shadow 0.5s ease-in-out;
             }
-          } 
+          }
         }
 
         .name {
@@ -139,18 +132,18 @@
     .max-content {
       .content {
         .featured-card {
-          width: 100% ;
-          height: auto ;
-          min-height: auto ;
+          width: 100%;
+          height: auto;
+          min-height: auto;
           .title {
-            font-size: 4rem ;
+            font-size: 4rem;
             width: 100%;
           }
 
           .label {
-            margin-bottom: var(--composer-gap-md) ;
+            margin-bottom: var(--composer-gap-md);
             .description {
-              width: 100% ;
+              width: 100%;
             }
           }
 
@@ -165,8 +158,8 @@
         .team-card {
           min-height: 300px;
           .image {
-            min-height: 500px ;
-            height: auto ;
+            min-height: 500px;
+            height: auto;
           }
         }
       }
@@ -191,7 +184,7 @@
         }
 
         .team-card {
-          width: 100% ;
+          width: 100%;
           min-height: 450px;
 
           .image {
@@ -205,5 +198,15 @@
         }
       }
     }
+  }
+}
+
+@keyframes pulseScale {
+  0%,
+  100% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(1);
   }
 }

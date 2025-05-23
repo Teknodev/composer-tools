@@ -169,7 +169,7 @@ class Team14 extends Team {
       displayer: "Hover Animation Style",
       value: ["animate1"],
       additionalParams: {
-        selectItems: ["animate1", "animate2", "animate3"]
+        selectItems: ["animate1", "animate2", "animate3", "animate4"]
       }
     });
   }
@@ -210,7 +210,7 @@ class Team14 extends Team {
 
                   return (
                     <div className={this.decorateCSS("card")}>
-                      <div className={this.decorateCSS("portfolio")}>
+                      <div className={this.decorateCSS("portfolio")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                         {image && <img className={this.decorateCSS("image")} src={image} alt={name} key={index} data-animation={this.getPropValue("hoverAnimation").join(" ")} />}
                         {(name || position || description) && (
                           <Base.VerticalContent className={this.decorateCSS("info")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>

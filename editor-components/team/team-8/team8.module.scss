@@ -1,4 +1,5 @@
-@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
+@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss"
+  as *;
 
 .container {
   position: relative;
@@ -18,15 +19,15 @@
     .text-box {
       z-index: 2;
       .title {
-        &.image{
+        &.image {
           color: white;
         }
-        &.no-image{
+        &.no-image {
           color: var(--composer-font-color-primary);
         }
       }
       .description {
-        &.image{
+        &.image {
           color: white;
         }
       }
@@ -61,57 +62,56 @@
                   height: 120px;
                   border-radius: 50%;
                   overflow: hidden;
-                  img {
+                  .img {
                     width: 100%;
                     height: 100%;
                     object-fit: cover;
-                    transition: transform 0.3s ease;
+                    transition: transform 0.3s ease-in-out;
                   }
                 }
               }
 
               .header-page {
                 align-items: center;
+                transition: transform 0.3s ease-in-out;
                 .item-title {
-                  &.image{
+                  &.image {
                     color: white;
                   }
-                  &.no-image{
+                  &.no-image {
                     color: var(--composer-font-color-primary);
                   }
                 }
 
                 .first-header {
-                  &.image{
+                  &.image {
                     color: white;
                   }
-                  &.no-image{
+                  &.no-image {
                     color: var(--composer-font-color-primary);
                   }
                 }
               }
             }
-            &[data-animation~="animate1"] { 
+            &[data-animation~="animate1"] {
               &:hover {
-                img {
+                .img {
                   transform: scale(1.1);
                 }
               }
             }
-            &[data-animation~="animate1"] { 
-              .header-page * {
-                transition: transform 0.3s ease;
-              }
+            &[data-animation~="animate2"] {
               &:hover {
-                .header-page * {
+                .header-page {
                   transform: scale(1.1);
+                  transition: transform 0.3s ease-in-out;
                 }
               }
             }
-            &[data-animation~="animate3"] { 
+            &[data-animation~="animate3"] {
               .img-div {
                 position: relative;
-                overflow: hidden; 
+                overflow: hidden;
                 &::after {
                   content: "";
                   position: absolute;
@@ -124,7 +124,7 @@
                   pointer-events: none;
                   box-sizing: border-box;
                   z-index: -1;
-                  transition: all 0.4s ease;
+                  transition: all 0.5s ease-in-out;
                 }
               }
               &:hover {
@@ -139,11 +139,11 @@
               }
             }
 
-            &[data-animation~="animate4"] { 
+            &[data-animation~="animate4"] {
               &.no-image {
                 .img-div {
                   position: relative;
-                  overflow: hidden; 
+                  overflow: hidden;
                   &::after {
                     content: "";
                     position: absolute;
@@ -170,7 +170,7 @@
                   }
                 }
               }
-            } 
+            }
           }
         }
       }
@@ -215,5 +215,28 @@
         background: white;
       }
     }
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+    border-top: 1px solid white;
+  }
+  25% {
+    transform: rotate(90deg);
+    border-top: 1px solid white;
+  }
+  50% {
+    transform: rotate(180deg);
+    border-top: 1px solid white;
+  }
+  75% {
+    transform: rotate(270deg);
+    border-top: 1px solid white;
+  }
+  100% {
+    transform: rotate(360deg);
+    border-top: 1px solid white;
   }
 }

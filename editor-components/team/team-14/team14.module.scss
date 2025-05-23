@@ -1,4 +1,5 @@
-@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
+@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss"
+  as *;
 
 .container {
   .max-content {
@@ -34,12 +35,12 @@
           transition: width 0.4s ease;
 
           &:hover {
-            &[data-animation~="animate1"] {
-              width: 100%;
+            &[data-animation~="animate3"] {
+              filter: blur(3px);
             }
 
             .info {
-              &[data-animation~="animate1"] {
+              &[data-animation~="animate4"] {
                 transform: translateY(-15%);
                 opacity: 1;
               }
@@ -54,10 +55,6 @@
                 transition: transform 0.3s ease;
                 transform: scale(1.1);
               }
-
-              &[data-animation~="animate3"] {
-                filter: blur(3px);
-              }
             }
           }
 
@@ -67,7 +64,8 @@
             height: 100%;
             object-fit: cover;
             border-radius: var(--composer-border-radius-md);
-            transition: filter 0.3s ease, border-radius 0.3s ease, transform 0.3s ease;
+            transition: filter 0.3s ease, border-radius 0.3s ease,
+              transform 0.3s ease;
           }
 
           .info {
@@ -75,12 +73,26 @@
             bottom: 0;
             width: 70%;
             max-width: 100%;
-            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 10%);
+            background-color: color-mix(
+              in srgb,
+              var(--composer-html-background),
+              var(--composer-font-color-primary) 10%
+            );
             padding: 1rem;
-            opacity: 0;
-            transform: translateY(100%);
-            transition: opacity 0.3s, transform 0.5s ease-in-out;
             border-radius: var(--composer-border-radius-md);
+
+            &[data-animation~="animate1"] {
+              opacity: 0;
+              transform: translateY(100%);
+              transition: opacity 0.3s, transform 0.5s ease-in-out;
+            }
+
+            &[data-animation~="animate2"],
+            &[data-animation~="animate3"] {
+              opacity: 1;
+              transform: translateY(0);
+              transition: opacity 0.3s, transform 0.5s ease-in-out;
+            }
 
             .name,
             .position,
@@ -105,11 +117,25 @@
             .info {
               max-height: 400px;
               overflow: auto;
+
+              &[data-animation~="animate1"] {
+                opacity: 0;
+                transform: translateY(100%);
+              }
             }
 
             &:hover {
               .info {
-                transform: translateY(-5%);
+                &[data-animation~="animate1"] {
+                  transform: translateY(-5%);
+                  opacity: 1;
+                }
+
+                &[data-animation~="animate2"],
+                &[data-animation~="animate3"] {
+                  transform: translateY(0);
+                  opacity: 1;
+                }
               }
             }
           }
@@ -133,6 +159,26 @@
             .info {
               max-height: 300px;
               overflow: auto;
+
+              &[data-animation~="animate1"] {
+                opacity: 0;
+                transform: translateY(100%);
+              }
+            }
+
+            &:hover {
+              .info {
+                &[data-animation~="animate1"] {
+                  transform: translateY(-5%);
+                  opacity: 1;
+                }
+
+                &[data-animation~="animate2"],
+                &[data-animation~="animate3"] {
+                  transform: translateY(0);
+                  opacity: 1;
+                }
+              }
             }
           }
         }

@@ -11,6 +11,7 @@
     }
 
     .team-members {
+      gap: var(--composer-gap-lg);
       .team-member {
         flex: 1 1;
         min-width: 250px;
@@ -27,7 +28,7 @@
           &[data-animation~="animate3"] {
             filter: grayscale(100%);
             transition: filter 0.5s ease-in-out;
-  
+
             &:hover {
               filter: grayscale(0%);
             }

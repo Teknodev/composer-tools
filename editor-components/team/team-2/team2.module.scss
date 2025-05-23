@@ -1,4 +1,5 @@
-@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
+@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss"
+  as *;
 
 .container {
   .max-content {
@@ -10,20 +11,20 @@
       justify-content: center;
       align-items: center;
       transition: transform 0.5s;
-
-      :hover {
-        background-color: var(--composer-html-background);
-      }
     }
 
     .description {
-      content: "";    
+      content: "";
     }
     .team {
       flex: 1 1;
       gap: var(--composer-gap-xs);
       box-shadow: var(--box-shadow-active);
-      background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+      background-color: color-mix(
+        in srgb,
+        var(--composer-html-background),
+        var(--composer-font-color-primary) 5%
+      );
       border-radius: var(--composer-border-radius-md);
       padding: var(--composer-gap-md);
       min-width: 250px;
@@ -65,14 +66,14 @@
         &[data-animation~="animate2"] {
           .icon {
             transition: color 0.3s ease;
-  
+
             &:hover {
               transition: color 0.3s ease;
               color: var(--composer-primary-color);
             }
           }
         }
-        &[data-animation~="animate4"] { 
+        &[data-animation~="animate4"] {
           .icon {
             transition: transform 0.3s ease;
 
@@ -81,12 +82,20 @@
             }
           }
         }
-        &[data-animation~="animate5"] { 
+        &[data-animation~="animate5"] {
           @keyframes bounce {
-            0%   { transform: translateY(0); }
-            30%  { transform: translateY(-6px); }
-            60%  { transform: translateY(2px); }
-            100% { transform: translateY(0); }
+            0% {
+              transform: translateY(0);
+            }
+            30% {
+              transform: translateY(-6px);
+            }
+            60% {
+              transform: translateY(2px);
+            }
+            100% {
+              transform: translateY(0);
+            }
           }
           .icon {
             &:hover {
@@ -100,7 +109,7 @@
         transition: background-color 0.3s ease;
 
         &:hover {
-          transition: background-color 0.3s ease;
+          background-color: var(--composer-html-background);
         }
       }
       &[data-animation~="animate3"] {
@@ -115,7 +124,7 @@
         transition: transform 0.3s ease;
 
         &:hover {
-          transform: scale(1.1);
+          transform: scale(1.05);
           transition: transform 0.3s ease;
         }
       }

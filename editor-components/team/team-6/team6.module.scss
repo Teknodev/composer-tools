@@ -1,4 +1,5 @@
-@use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss" as *;
+@use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss"
+  as *;
 $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
 .container {
@@ -33,38 +34,38 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 overflow: hidden;
                 border-radius: var(--composer-border-radius-lg);
                 height: 550px;
-                
+
                 .image {
                   width: 100%;
                   height: 100%;
                   object-fit: cover;
                   margin-bottom: var(--composer-gap-sm);
                   transition: $transition;
-  
+
                   &[data-animation~="animate1"] {
                     transition: transform 0.3s ease;
-                    &:hover { 
+                    &:hover {
                       transition: transform 0.3s ease;
                       transform: scale(1.1);
                     }
                   }
                 }
-                
+
                 .overlay-bar {
                   .features {
                     width: 100%;
-  
+
                     .feature {
                       display: flex;
                       align-items: center;
                       color: var(--composer-tertiary-color);
                       margin: 0;
                       gap: var(--composer-gap-md);
-  
+
                       .icon {
                         font-size: 2rem;
                       }
-  
+
                       .feature-element {
                         width: 100%;
                         text-align: left;
@@ -73,12 +74,12 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                   }
                 }
 
-                &[data-animation~="animate2"] { 
+                &[data-animation~="animate2"] {
                   display: inline-block;
                   position: relative;
 
                   &::after {
-                    content: '';
+                    content: "";
                     position: absolute;
                     bottom: 0;
                     left: 0;

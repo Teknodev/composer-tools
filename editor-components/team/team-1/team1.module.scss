@@ -1,4 +1,5 @@
-@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
+@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss"
+  as *;
 
 .container {
   .max-content {
@@ -43,10 +44,9 @@
               position: relative;
               display: inline-block;
 
-
               &[data-animation~="animate5"] {
                 &::after {
-                  content: '';
+                  content: "";
                   position: absolute;
                   left: 0;
                   bottom: -2px;
@@ -94,12 +94,20 @@
                 }
               }
             }
-            &[data-animation~="animate7"] { 
+            &[data-animation~="animate7"] {
               @keyframes bounce {
-                0%   { transform: translateY(0); }
-                30%  { transform: translateY(-6px); }
-                60%  { transform: translateY(2px); }
-                100% { transform: translateY(0); }
+                0% {
+                  transform: translateY(0);
+                }
+                30% {
+                  transform: translateY(-6px);
+                }
+                60% {
+                  transform: translateY(2px);
+                }
+                100% {
+                  transform: translateY(0);
+                }
               }
               .icon {
                 &:hover {
@@ -150,7 +158,7 @@
           &:hover {
             .card {
               .card-description {
-                transform: scale(125%);
+                transform: scale(1.1);
               }
             }
           }
@@ -158,13 +166,13 @@
             &:hover {
               .card {
                 .card-description {
-                  transform: scale(125%) translateX(20px) !important;
+                  transform: scale(1.1) translateX(20px) !important;
                 }
               }
             }
           }
         }
-        &[data-animation~="animate6"] { 
+        &[data-animation~="animate6"] {
           &:hover {
             transform: translateY(-20px);
           }

@@ -1,4 +1,5 @@
-@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
+@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss"
+  as *;
 
 .container {
   .max-content {
@@ -15,7 +16,7 @@
 
       .title-container {
         width: 40%;
-        .title{
+        .title {
           margin: 0px;
         }
       }
@@ -36,6 +37,13 @@
       .egg-item {
         justify-content: center;
         align-items: center;
+        transition: transform 0.3s ease;
+
+        &[data-animation~="animate1"] {
+          &:hover {
+            transform: scale(1.1);
+          }
+        }
 
         .image-container {
           width: 100%;
@@ -64,15 +72,6 @@
             top: -14.5%;
             z-index: 2;
           }
-
-          &[data-animation~="animate1"] {
-            &:hover {
-              .background-image, .member-image {
-                transition: transform 0.3s ease;
-                transform: scale(1.1);
-              }
-            }
-          }
         }
 
         .icon-container {
@@ -95,12 +94,20 @@
               }
             }
           }
-          &[data-animation~="animate4"] { 
+          &[data-animation~="animate4"] {
             @keyframes bounce {
-              0%   { transform: translateY(0); }
-              30%  { transform: translateY(-6px); }
-              60%  { transform: translateY(2px); }
-              100% { transform: translateY(0); }
+              0% {
+                transform: translateY(0);
+              }
+              30% {
+                transform: translateY(-6px);
+              }
+              60% {
+                transform: translateY(2px);
+              }
+              100% {
+                transform: translateY(0);
+              }
             }
             .icon {
               &:hover {
@@ -126,7 +133,8 @@
 
         &[data-animation~="animate2"] {
           &:hover {
-            .name, .occupation {
+            .name,
+            .occupation {
               transition: transform 0.3s ease;
               transform: scale(1.1);
             }

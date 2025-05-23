@@ -1,15 +1,16 @@
-@use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss" as *;
+@use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss"
+  as *;
 
 .container {
   .max-content {
     display: flex;
     .page {
       width: 100%;
-      .text-group{
-        .title{
+      .text-group {
+        .title {
           content: "";
         }
-        .subtilte{
+        .subtilte {
           content: "";
         }
       }
@@ -22,14 +23,19 @@
             min-width: 300px;
             position: relative;
             padding: var(--composer-gap-md);
-            border: 1px solid color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+            border: 1px solid
+              color-mix(
+                in srgb,
+                var(--composer-html-background),
+                var(--composer-font-color-primary) 5%
+              );
             &.card-image {
               margin-left: var(--composer-gap-lg);
             }
 
             &[data-animation~="animate1"] {
               &::after {
-                content: '';
+                content: "";
                 position: absolute;
                 top: 0;
                 left: 0;
@@ -38,13 +44,13 @@
                 background-color: var(--composer-primary-color);
                 transform: scaleY(0);
                 transform-origin: top;
-                transition: transform 0.3s ease;
+                transition: transform 0.5s ease;
                 z-index: 1;
               }
               &:hover {
                 &::after {
                   transform: scaleY(1);
-                  transition: transform 0.3s ease;
+                  transition: transform 0.5s ease;
                 }
               }
             }
@@ -53,7 +59,11 @@
           .card-items {
             height: 100%;
             padding: var(--composer-gap-md) 0;
-            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+            background-color: color-mix(
+              in srgb,
+              var(--composer-html-background),
+              var(--composer-font-color-primary) 5%
+            );
           }
           .item-content {
             margin-left: -55px;
@@ -107,19 +117,19 @@
               transition: 0.3s;
             }
 
-            &[data-animation~="animate2"] { 
+            &[data-animation~="animate2"] {
               .icons {
                 transition: transform 0.3s ease;
-    
+
                 &:hover {
                   transform: scale(125%);
                 }
               }
             }
-            &[data-animation~="animate3"] { 
+            &[data-animation~="animate3"] {
               .icons {
                 transition: color 0.3s ease;
-    
+
                 &:hover {
                   color: var(--composer-primary-color);
                 }
@@ -134,8 +144,8 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    .max-content{
-      .page{
+    .max-content {
+      .page {
         .down-page {
           .all-card {
             .card {
@@ -156,21 +166,21 @@
 
   @container (max-width: #{$composer-phone-width}) {
     .container {
-      .max-content{
-        .page{
-          .down-page{
+      .max-content {
+        .page {
+          .down-page {
             .all-card {
-              .card{
+              .card {
                 margin-left: var(--composer-gap-md);
-                .card-items{
-                  .item-content{
-                    .box-image{
+                .card-items {
+                  .item-content {
+                    .box-image {
                       .profile-image {
                         margin-left: var(--composer-gap-md);
                       }
                     }
-                    .box-text{
-                      padding: 0 var(--composer-gap-lg) 
+                    .box-text {
+                      padding: 0 var(--composer-gap-lg);
                     }
                     .icon-group {
                       gap: var(--composer-gap-xs) !important;
@@ -185,7 +195,7 @@
               }
             }
           }
-        }      
+        }
       }
     }
   }

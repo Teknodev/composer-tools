@@ -199,7 +199,7 @@ class Team13 extends Team {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ListGrid gridCount={{ pc: 3, tablet: 2, phone: 1 }} className={this.decorateCSS("content")}>
             {hasFeaturedCard && (
-              <Base.VerticalContent className={this.decorateCSS("featured-card")}>
+              <Base.VerticalContent className={this.decorateCSS("featured-card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                 <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
                 <Base.VerticalContent className={this.decorateCSS("label")}>
                   <Base.P className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.P>
@@ -212,7 +212,7 @@ class Team13 extends Team {
                   <Base.Row className={this.decorateCSS("icon-container")}>
                     {icons.map((icon: any, indexIcons: number) => {
                       return (
-                        <div key={indexIcons} className={this.decorateCSS("icon-item")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                        <div key={indexIcons} className={this.decorateCSS("icon-item")}>
                           <ComposerLink path={icon.url}>
                             <Base.Icon
                               name={icon.name}
