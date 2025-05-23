@@ -94,12 +94,12 @@ class Navbar8 extends BaseNavigator {
     this.addProp({
       type: "object",
       key: "language",
-      displayer: "Language",
+      displayer: "Language Settings",
       value: [
         {
           type: "select",
           key: "label",
-          displayer: "Label",
+          displayer: "Language Label",
           value: "code",
           additionalParams: {
             selectItems: ["code", "name"],
@@ -422,9 +422,9 @@ class Navbar8 extends BaseNavigator {
           {titleContainer && (
             <div className={this.decorateCSS("titleContainer")}>
               <div className={this.decorateCSS("titleContainerContent")}>
-                {title && <h1 className={`${this.decorateCSS("title")} ${backgroundChange ? this.decorateCSS("openedTitle") : ""}`}>{this.getPropValue("title")}</h1>}
+                {title && <Base.H1 className={`${this.decorateCSS("title")} ${backgroundChange ? this.decorateCSS("openedTitle") : ""}`}>{this.getPropValue("title")}</Base.H1>}
                 {subtitle && (
-                  <h4 className={`${this.decorateCSS("subtitle")} ${backgroundChange ? this.decorateCSS("openedSubtitle") : ""}`}>{this.getPropValue("subtitle")}</h4>
+                  <Base.P className={`${this.decorateCSS("subtitle")} ${backgroundChange ? this.decorateCSS("openedSubtitle") : ""}`}>{this.getPropValue("subtitle")}</Base.P>
                 )}
               </div>
             </div>
@@ -483,14 +483,14 @@ class Navbar8 extends BaseNavigator {
               {rightSide && (
                 <div className={this.decorateCSS("dropdownRightSide")}>
                   {dropdownTitle && (
-                    <h1 className={this.decorateCSS("dropdownTitle")}>
+                    <Base.H1 className={this.decorateCSS("dropdownTitle")}>
                       {this.getPropValue("dropdownTitle")}
-                    </h1>
+                    </Base.H1>
                   )}
                   {dropdownDescription && (
-                    <p className={this.decorateCSS("dropdownDescription")}>
+                    <Base.P className={this.decorateCSS("dropdownDescription")}>
                       {this.getPropValue("dropdownDescription")}
-                    </p>
+                    </Base.P>
                   )}
                 </div>
               )}
@@ -507,11 +507,11 @@ class Navbar8 extends BaseNavigator {
                           onClick={() => this.setComponentState("isMenuOpen", false)}
                         >
                       <ComposerLink path={item.url}>
-                            <p className={this.decorateCSS("dropdownItem")} 
+                            <Base.H2 className={this.decorateCSS("dropdownItem")} 
                             onClick={()=> this.handleCloseMenu()}
                             >
                               {item.title}
-                            </p>
+                            </Base.H2>
                         </ComposerLink>
                        </div>
                     )
@@ -519,9 +519,9 @@ class Navbar8 extends BaseNavigator {
                   )}
                   {socialMediaLinksCondition && (
                     <div className={this.decorateCSS("socialMediaLinks")}>
-                      <h1 className={this.decorateCSS("socialMediaLinksTitle")}>
+                      <Base.H3 className={this.decorateCSS("socialMediaLinksTitle")}>
                         {this.getPropValue("dropdownSocialMediaTitle")}
-                      </h1>
+                      </Base.H3>
                       <div className={this.decorateCSS("socialMediaLinksList")}>
                         {socialMediaLinks.map((item: any, index: number) => (
                           <div

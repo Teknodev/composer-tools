@@ -209,7 +209,7 @@ class List11 extends BaseList {
                                 </div>
                             )}
                         </Base.VerticalContent>
-                        <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }}>
+                        <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("grid")}>
                             {listItems.map((item: ListItems, index: number) => (
                                 <div key={index} className={this.decorateCSS("card")}
                                     data-animation={this.getPropValue("hoverAnimation").join(" ")}>

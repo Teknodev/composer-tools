@@ -20,93 +20,93 @@
         }
         .subTitle-container {
           .subTitle {
-            opacity: 0.7;
+            color: var(--composer-tertiary-color);
           }
         }
       }
 
-      .card {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background-color: color-mix(
-          in srgb,
-          var(--composer-html-background),
-          var(--composer-font-color-primary) 5%
-        );
-        border-radius: var(--composer-border-radius-md);
-        padding: var(--padding-xl);
-        transition: transform 0.5s ease-in-out;
-        .card-items {
+      .grid {
+        .card {
           display: flex;
           flex-direction: column;
-          gap: var(--composer-gap-md);
-          .card-image-container {
-            transition: transform 0.5s ease-in-out;
-            .card-image {
-              width: 100%;
-              height: 100%;
-              border-radius: var(--composer-border-radius-md);
-              object-fit: cover;
-              object-position: center;
-            }
-          }
-          .card-title {
-            font-size: 1.5rem;
-            color: var(--composer-font-color-primary);
-            font-weight: bold;
-          }
-          .card-description {
-            font-size: 1rem;
-            color: var(--composer-font-color-primary);
-            opacity: 0.7;
-          }
-          .navigate-container {
+          align-items: center;
+          background-color: color-mix(
+            in srgb,
+            var(--composer-html-background),
+            var(--composer-font-color-primary) 5%
+          );
+          border-radius: var(--composer-border-radius-md);
+          padding: var(--composer-gap-md);
+          transition: transform 0.5s ease-in-out;
+          .card-items {
             display: flex;
-            align-items: center;
-            color: var(--composer-primary-color);
-            overflow: hidden;
-            width: 100%;
-            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-            .navigate-to {
-              font-size: 1rem;
-              margin-right: 0.5rem;
+            flex-direction: column;
+            gap: var(--composer-gap-md);
+            .card-image-container {
+              transition: transform 0.5s ease-in-out;
+              .card-image {
+                width: 100%;
+                height: 100%;
+                border-radius: var(--composer-border-radius-md);
+                object-fit: cover;
+                object-position: center;
+              }
+            }
+            .card-title {
+              font-size: 1.5rem;
+              color: var(--composer-font-color-primary);
               font-weight: bold;
-              white-space: nowrap;
             }
-            .navigate-icon {
-              min-width: 10px;
-              min-height: 10px;
+            .card-description {
+              font-size: 1rem;
+              color: var(--composer-tertiary-color);
+            }
+            .navigate-container {
+              display: flex;
+              align-items: center;
+              color: var(--composer-primary-color);
+              overflow: hidden;
+              width: 100%;
+              transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+              .navigate-to {
+                font-size: 1rem;
+                margin-right: 0.5rem;
+                font-weight: bold;
+                white-space: nowrap;
+              }
+              .navigate-icon {
+                min-width: 10px;
+                min-height: 10px;
+              }
             }
           }
-        }
-
-        &[data-animation~="animate1"]:hover {
-          transform: translateY(-10px);
-        }
-
-        &[data-animation~="animate2"]:hover {
-          .navigate-container {
-            animation: slideOutFade 1.5s linear, shake 0.5s linear 2s 1;
+          &[data-animation~="animate1"]:hover {
+            transform: translateY(-10px);
           }
-        }
 
-        &[data-animation~="animate2"]:not(:hover) {
-          .navigate-container {
-            animation: resetShake 0.3s linear;
-            transform: translateX(0%);
-            opacity: 1;
+          &[data-animation~="animate2"]:hover {
+            .navigate-container {
+              animation: slideOutFade 1.5s linear, shake 0.5s linear 2s 1;
+            }
           }
-        }
 
-        &[data-animation~="animate3"]:hover {
-          .card-image-container {
-            transform: scale(1.05);
+          &[data-animation~="animate2"]:not(:hover) {
+            .navigate-container {
+              animation: resetShake 0.3s linear;
+              transform: translateX(0%);
+              opacity: 1;
+            }
           }
-        }
 
-        &[data-animation~="animate4"]:hover {
-          box-shadow: var(--composer-box-shadow);
+          &[data-animation~="animate3"]:hover {
+            .card-image-container {
+              transform: scale(1.05);
+            }
+          }
+
+          &[data-animation~="animate4"]:hover {
+            box-shadow: var(--composer-box-shadow);
+          }
         }
       }
     }
