@@ -583,11 +583,13 @@ class ECommerce1 extends BaseECommerce {
                         <div className={this.decorateCSS("categories")}>
                           {this.castToString(this.getPropValue("categoriesText")) && (<span className={this.decorateCSS("categoryLabel")}>{this.getPropValue("categoriesText")}</span>)}
                           {(categoryItem.length > 0) && (
-                            categoryItem.map((item) => {
+                            <div className={this.decorateCSS("categoryText")}>
+                              {categoryItem.map((item) => {
                               return (
                                 <span className={this.decorateCSS("category")}>{item.category}</span>
                               )
-                            })
+                              })}
+                            </div>
                           )}
                         </div>
                       )}
@@ -595,11 +597,13 @@ class ECommerce1 extends BaseECommerce {
                         <div className={this.decorateCSS("tags")}>
                           {this.castToString(this.getPropValue("tagsText")) && (<span className={this.decorateCSS("tagLabel")}>{this.getPropValue("tagsText")}</span>)}
                           {(tags.length > 0) && (
-                            tags.map((item: Tag) => {
-                              return (
-                                <span className={this.decorateCSS("tag")}>{item.tag}</span>
-                              )
-                            })
+                            <div className={this.decorateCSS("tagText")}>
+                              {tags.map((item: Tag) => {
+                                return (
+                                  <span className={this.decorateCSS("tag")}>{item.tag}</span>
+                                )
+                              })}
+                            </div>
                           )}
                         </div> 
                       )}

@@ -255,11 +255,17 @@
                         .categories, .tags {
                             display: flex;
                             align-items: center;
-                            gap: var(--composer-gap-xs);
+                            gap: var(--composer-gap-xs);                            
     
                             .categoryLabel, .tagLabel {
                                 font-size: 1rem;
                                 color: var(--composer-font-color-primary);
+                            }
+                            .categoryText, .tagText{
+                                max-width: 100%;
+                                display: flex;
+                                flex-wrap: wrap;
+                                gap: var(--composer-gap-xs);
                             }
                             .category, .tag {
                                 font-size: 1rem;
