@@ -170,7 +170,16 @@ class List11 extends BaseList {
                     ]
                 },
             ]
-        })
+        });
+        this.addProp({
+            type: "multiSelect",
+            key: "hoverAnimation",
+            displayer: "Hover Animation Style",
+            value: ["animate1"],
+            additionalParams: {
+                selectItems: ["animate1", "animate2", "animate3", "animate4"]
+            }
+        });
     }
 
     static getName(): string {
@@ -202,7 +211,8 @@ class List11 extends BaseList {
                         </Base.VerticalContent>
                         <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }}>
                             {listItems.map((item: ListItems, index: number) => (
-                                <div key={index} className={this.decorateCSS("card")}>
+                                <div key={index} className={this.decorateCSS("card")}
+                                    data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                                     <div className={this.decorateCSS("card-items")}>
                                         {item.itemImage && (
                                             <div className={this.decorateCSS("card-image-container")}>

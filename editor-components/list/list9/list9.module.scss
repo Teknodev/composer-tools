@@ -15,41 +15,39 @@
         transform: translateY(0px) scale(1);
         overflow: hidden;
 
-        &[data-animation=""]:hover {
-          .little-container {
-            background: rgba(var(--composer-primary-color-rgb), 0.95);
-            bottom: -5%;
-
-            .title,
-            .description {
-              color: var(--composer-font-color-secondary);
-            }
-            .icon {
-              color: var(--composer-font-color-secondary);
-            }
-            .description {
-              max-height: 300px;
-              opacity: 1;
-            }
-          }
-
-          .image-container {
-            .image {
-              transform: scale(1.1);
-            }
-          }
-        }
-
         &[data-animation~="animate1"] {
           &:hover {
+            .image-container {
+              height: 100%;
+
+              .image {
+                transform: scale(1.05);
+              }
+
+              &:after {
+                opacity: 1;
+                background: linear-gradient(
+                  0deg,
+                  rgba(var(--composer-primary-color-rgb), 0.9) 0%,
+                  transparent 80%,
+                  transparent 100%
+                );
+                clip-path: none;
+                transition: opacity 0.5s ease-in-out;
+              }
+            }
+
             .little-container {
               bottom: 0;
+
               .title {
                 color: var(--composer-font-color-secondary);
               }
+
               .icon {
                 color: var(--composer-font-color-secondary);
               }
+
               .description {
                 color: var(--composer-font-color-secondary);
                 max-height: 300px;
@@ -57,17 +55,44 @@
                 margin-top: 1rem;
               }
             }
-            .image-container {
-              height: 100%;
+          }
+        }
 
-              .image {
-                transform: scale(1.05);
-              }
-              &:after {
-                opacity: 1;
-                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-              }
-            }
+        .image-container {
+          &:after {
+            content: "";
+            background: linear-gradient(
+              0deg,
+              rgba(var(--composer-primary-color-rgb), 0.9) 0%,
+              transparent 80%,
+              transparent 100%
+            );
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+          }
+        }
+
+        .image-container {
+          &:after {
+            content: "";
+            background: linear-gradient(
+              0deg,
+              rgba(var(--composer-primary-color-rgb), 0.8) 0%,
+              transparent 80%,
+              transparent 100%
+            );
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
           }
         }
 
@@ -137,6 +162,33 @@
           &:hover {
             transform: translateY(calc(-1 * var(--composer-gap-xs))) scale(1.1);
             z-index: 5;
+          }
+        }
+
+        &[data-animation="animate4"]:hover {
+          .little-container {
+            background: rgba(var(--composer-primary-color-rgb), 0.95);
+            bottom: -5%;
+
+            .title,
+            .description {
+              color: var(--composer-font-color-secondary);
+            }
+            .icon {
+              color: var(--composer-font-color-secondary);
+            }
+            .description {
+              max-height: 300px;
+              opacity: 1;
+            }
+          }
+        }
+
+        &[data-animation~="animate5"]:hover {
+          .image-container {
+            .image {
+              transform: scale(1.1);
+            }
           }
         }
 
@@ -213,34 +265,42 @@
     .max-content {
       .grid-container {
         .card[data-animation~="animate1"] {
-          .little-container {
-            .icon {
-              width: 30px;
-              height: 30px;
-              color: var(--composer-font-color-secondary);
-            }
-            .title {
-              color: var(--composer-font-color-secondary);
-            }
-            .description {
-              color: var(--composer-font-color-secondary);
-              max-height: 300px;
-              opacity: 1;
-            }
-          }
           .image-container {
             height: 100%;
 
             .image {
               transform: scale(1.05);
             }
+
             &:after {
               background: linear-gradient(
                 0deg,
-                rgb(0, 0, 0) 0%,
-                transparent 85%,
+                rgba(0, 0, 0, 0.8) 0%,
+                // Yumuşak başlangıç
+                transparent 70%,
                 transparent 100%
               );
+              opacity: 0.7;
+              clip-path: none;
+              transition: opacity 0.8s ease-in-out;
+            }
+          }
+
+          .little-container {
+            .icon {
+              width: 30px;
+              height: 30px;
+              color: var(--composer-font-color-secondary);
+            }
+
+            .title {
+              color: var(--composer-font-color-secondary);
+            }
+
+            .description {
+              color: var(--composer-font-color-secondary);
+              max-height: 300px;
+              opacity: 1;
             }
           }
         }

@@ -32,31 +32,11 @@
             transition: all 0.4s ease;
           }
 
-          .cards {
-            .icon-title-container {
-              .icon {
-                transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-              }
-              .title {
-                transition: all 0.4s ease;
-                position: relative;
-              }
-            }
-            .description {
-              transition: all 0.4s ease;
-            }
-          }
-
           &:hover {
             padding-left: var(--composer-gap-lg);
             border-radius: var(--composer-border-radius-sm);
 
             .cards {
-              .icon-title-container {
-                .icon {
-                  transform: rotate(360deg);
-                }
-              }
               .description {
                 padding-left: var(--composer-gap-sm);
               }
@@ -64,21 +44,32 @@
           }
         }
 
-        &[data-animation~="animate3"]:hover {
-          .index,
-          .icon,
-          .title,
-          .description {
-            animation: breathing 2s ease-out infinite normal;
+        &[data-animation~="animate3"] {
+          .cards {
+            .icon-title-container {
+              .icon {
+                transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+              }
+            }
+          }
+          &:hover {
+            .cards {
+              .icon-title-container {
+                .icon {
+                  transform: rotate(360deg);
+                  transition: transform 0.3s;
+                }
+              }
+            }
           }
         }
 
         &[data-animation~="animate4"]:hover {
           .index,
+          .icon,
           .title,
           .description {
-            text-shadow: 3px 8px 3px rgba(99, 99, 99, 0.2);
-            transition: all 0.3s ease-in-out;
+            animation: breathing 2s ease-out infinite normal;
           }
         }
 

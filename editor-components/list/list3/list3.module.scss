@@ -62,7 +62,7 @@
         &[data-animation~="animate1"]:hover {
           background-color: var(--composer-primary-color);
           color: var(--composer-font-color-secondary);
-          transform: scale(1.1);
+          transform: scaleY(1.1);
 
           .itemTitle {
             color: var(--composer-font-color-secondary);
@@ -148,6 +148,7 @@
               left: -10%;
               bottom: 50%;
               animation: pulse-animation 2s infinite;
+              transition: animation 2s ease-in-out;
             }
           }
         }
@@ -160,7 +161,8 @@
               width: 100%;
               height: 100%;
               background-color: var(--composer-font-color-primary);
-              animation: animate 3s linear 1;
+              animation: animate 1.5s linear 1;
+              transition: animation 1.5s ease-in-out;
             }
           }
         }
@@ -219,10 +221,10 @@
 
 @keyframes pulse-animation {
   0% {
-    box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 0 0px rgba(var(--composer-font-color-primary-rgb), 0.5);
   }
   100% {
-    box-shadow: 0 0 0 5px rgba(0, 0, 0, 0);
+    box-shadow: 0 0 0 7px rgba(var(--composer-font-color-primary-rgb), 0);
   }
 }
 

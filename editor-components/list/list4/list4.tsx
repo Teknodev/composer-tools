@@ -133,7 +133,7 @@ class list4 extends BaseList {
       displayer: "Hover Animation Style",
       value: ["animate1"],
       additionalParams: {
-        selectItems: ["animate1", "animate2"]
+        selectItems: ["animate1", "animate2", "animate3", "animate4"]
       }
     });
   }
@@ -167,7 +167,8 @@ class list4 extends BaseList {
                     <div className={this.decorateCSS("line-3")}></div>
                     <div className={this.decorateCSS("line-4")}></div>
                   </div>
-                  <div className={`${this.decorateCSS("card-title")} ${this.getPropValue("showIndex") && this.decorateCSS("index")}`}>
+                  <div className={`${this.decorateCSS("card-title")} ${this.getPropValue("showIndex") && this.decorateCSS("index")}`}
+                    data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                     {(index + 1).toLocaleString("en-US", {
                       minimumIntegerDigits: 2,
                       useGrouping: false,
@@ -211,7 +212,7 @@ class list4 extends BaseList {
             )}
           </Base.ListGrid>
         </Base.MaxContent>
-      </Base.Container>
+      </Base.Container >
     );
   }
 }

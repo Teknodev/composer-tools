@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseContent, BaseList } from "../../EditorComponent";
+import { BaseList } from "../../EditorComponent";
 import styles from "./list9.module.scss";
 import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
@@ -168,7 +168,7 @@ class List9 extends BaseList {
             displayer: "Hover Animation Style",
             value: ["animate1"],
             additionalParams: {
-                selectItems: ["animate1", "animate2", "animate3"]
+                selectItems: ["animate1", "animate2", "animate3", "animate4", "animate5"]
             }
         });
     }
