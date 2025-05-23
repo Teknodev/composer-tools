@@ -13,17 +13,15 @@
             height: 100%;
             height: 600px;
             .small-image-slider{
-                width: 15%;
-                transform: translateY(-11px);
+                width: 150px;
                 .small-images-container, .small-images-container-mobile{
                     height: 100%;
                     > div {
+                        height: 600px !important;
                         > div {
                           > div {
-                            padding-top: var(--composer-gap-md);
-                            height: 153px;
                             > div {
-                              height: 100%;
+                              display: block;
                             }
                           }
                         }
@@ -34,6 +32,7 @@
                         overflow: hidden;
                         height: 100%;
                         outline: none;
+                        aspect-ratio: 1 / 1;
                         .image{
                             width: 100%;
                             height: 100%;
@@ -334,23 +333,36 @@
                     align-items: center;
                     justify-content: center;
                     flex: 1;
-                    position: relative;
                     .minus-icon, .add-icon{
+                    height: 100%; 
+                    position: relative; 
+                    width: 50%;
+                        .icon{
                      position: absolute;
                      top: 50%;
-                     transform: translateY(-50%);   
-                        .icon{
+                     transform: translateY(-50%);
                             font-size: 1rem;
                         }
                     }
                     .minus-icon{
-                        left: var(--composer-gap-sm);
+                        .icon{
+                            left: var(--composer-gap-sm);
+                        }
+                        
                     }
                     .add-icon{
-                        right: var(--composer-gap-sm);
+                        .icon{
+                            right: var(--composer-gap-sm);
+                        }   
                     }
                     .number{
+                        background-color: transparent;
+                        outline: none;
+                        color: var(--composer-font-color-primary);
                         font-size: 1rem;
+                        text-align: center;
+                        border: none;
+                        width: 100%;
                     }
                 }
                 .add-button{
@@ -520,6 +532,7 @@
         .left-container{
             flex-direction: column-reverse;
             gap: var(--composer-gap-md);
+            height: auto;
             .small-image-slider{
                 width: 100%;
                 position: relative;
@@ -534,6 +547,7 @@
                     width: 85%;
                     margin-left: calc(-1 * var(--composer-gap-md));
                     > div {
+                        height: auto !important;
                         > div {
                           > div {
                             padding-top: 0px;

@@ -121,6 +121,18 @@ class ECommerce6 extends BaseECommerce {
     });
     this.addProp({
       type: "icon",
+      key: "closeIcon",
+      displayer: "Close Icon",
+      value: "IoMdClose",
+    });
+    this.addProp({
+      type: "icon",
+      key: "sliderDotIcon",
+      displayer: "Slider Dot Icon",
+      value: "GoDotFill",
+    });
+    this.addProp({
+      type: "icon",
       key: "imageDownArrow",
       displayer: "Image Down Arrow",
       value: "MdKeyboardArrowDown",
@@ -573,18 +585,6 @@ class ECommerce6 extends BaseECommerce {
       key: "upArrowIcon",
       displayer: "Up Arrow Icon",
       value: "MdKeyboardArrowUp",
-    });
-    this.addProp({
-      type: "icon",
-      key: "closeIcon",
-      displayer: "Close Icon",
-      value: "IoMdClose",
-    });
-    this.addProp({
-      type: "icon",
-      key: "sliderDotIcon",
-      displayer: "Slider Dot Icon",
-      value: "GoDotFill",
     });
 
     this.addProp(
@@ -1154,9 +1154,27 @@ class ECommerce6 extends BaseECommerce {
                         </div>
                       )}
                       {countSection.count && (
-                        <div className={this.decorateCSS("number")}>
-                          {this.getComponentState("itemCount")}
-                        </div>
+                        <input
+                          type="number"
+                          min={1}
+                          className={this.decorateCSS("number")}
+                          value={this.getComponentState("itemCount")}
+                          onChange={(e) => {
+                            const value = e.target.value;
+
+                            if (value === "") {
+                              this.setComponentState("itemCount", "");
+                              return;
+                            }
+                          
+                            const parsed = parseInt(value, 10);
+                            if (!isNaN(parsed) && parsed >= 1) {
+                              this.setComponentState("itemCount", parsed);
+                            }
+                          }}
+                          
+                        />
+
                       )}
                       {countSection.addIcon && (
                         <div
