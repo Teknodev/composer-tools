@@ -491,37 +491,4 @@
     height: var(--project-font-size);
 }
 
-// Base Icon styles
-.iconInputContainer {
-    display: flex;
-    align-items: center;
-    gap: var(--gap-md);
-    width: 100%;
-
-    .iconInput {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        gap: 4px;
-        cursor: pointer;
-        
-        .iconContainer{
-            display: flex;
-            background-color: var(--color-gray-secondary);
-            border-radius: var(--border-radius-sm);
-            padding: var(--padding-sm) var(--padding-md);
-        }
-        
-        img {
-            width: 16px;
-            height: 16px;
-        }
-    }
-
-    .selectButton {
-        color: var(--color-gray-200);
-        text-decoration: underline;
-        cursor: pointer;
-    }
-}
 
