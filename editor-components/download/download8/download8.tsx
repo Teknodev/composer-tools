@@ -3,7 +3,7 @@ import styles from "./download8.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseDownload } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Button = {
@@ -166,7 +166,7 @@ class Download8 extends BaseDownload {
                         hasItemExist && (
                           <Base.Row className={this.decorateCSS("list-element")}>
                             {item.itemIcon && (
-                              <ComposerIcon
+                              <Base.Icon
                                 name={item.itemIcon}
                                 propsIcon={{
                                   className: this.decorateCSS("icon"),
@@ -195,7 +195,7 @@ class Download8 extends BaseDownload {
                           ) : (
                             (item.icon || buttonTextExist) && (
                               <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                                {item.icon && <ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }} />}
+                                {item.icon && <Base.Icon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }} />}
                                 {buttonTextExist && item.text && <div className={this.decorateCSS("text")}>{item.text}</div>}
                               </Base.Button>
                             )

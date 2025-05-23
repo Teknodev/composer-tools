@@ -3,7 +3,7 @@ import { BaseNavigator } from "../../EditorComponent";
 import styles from "./navbar9.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLanguage from "composer-tools/composer-base-components/language/language";
 
@@ -1163,7 +1163,7 @@ class Navbar9 extends BaseNavigator {
             <div className={this.decorateCSS("pcNavbarContainer")}>
               {language.showLanguage && (
                 <div className={this.decorateCSS("localizationContainer")}>
-                  <ComposerLanguage
+                  <Base.Language
                     type="dropdown"
                     title={language.label}
                     icon={language.icon}
@@ -1198,7 +1198,7 @@ class Navbar9 extends BaseNavigator {
                             {item.title}
                           </Base.P>
                           {item.menuType === "Dropdown" && (
-                            <ComposerIcon
+                            <Base.Icon
                               name={this.getPropValue("dropdownIcon")}
                               propsIcon={{
                                 className: this.decorateCSS(
@@ -1241,7 +1241,7 @@ class Navbar9 extends BaseNavigator {
                                     subItem.sub_items.some((item: any) =>
                                       this.castToString(item.title)
                                     ) && (
-                                      <ComposerIcon
+                                      <Base.Icon
                                         name={this.getPropValue("rightIcon")}
                                         propsIcon={{
                                           className:
@@ -1301,7 +1301,7 @@ class Navbar9 extends BaseNavigator {
                   {icons.map((icon: Icons, index: number) => (
                     <ComposerLink key={index} path={icon.page}>
                       <div className={this.decorateCSS("icon-container")}  onClick={()=> this.handleCloseMenu()}>
-                        <ComposerIcon
+                        <Base.Icon
                           name={icon.icon}
                           propsIcon={{ className: this.decorateCSS("icon") }}
                         />
@@ -1313,7 +1313,7 @@ class Navbar9 extends BaseNavigator {
             </div>
             <div className={this.decorateCSS("mobileRight")}>
             {hamburgerNavActive ? (
-              <ComposerIcon
+              <Base.Icon
                 name={this.getPropValue("closeIcon")}
                 propsIcon={{
                   className: this.decorateCSS("hamburgerIcon"),
@@ -1321,7 +1321,7 @@ class Navbar9 extends BaseNavigator {
                 }}
               />
             ) : (
-              <ComposerIcon
+              <Base.Icon
                 name={this.getPropValue("hamburgerIcon")}
                 propsIcon={{
                   className: `${this.decorateCSS("hamburgerIcon")} ${
@@ -1333,7 +1333,7 @@ class Navbar9 extends BaseNavigator {
             )}
               {(language.showLanguage && language.showLocalizationAlways) && (
                 <div className={this.decorateCSS("localizationContainer")}>
-                  <ComposerLanguage
+                  <Base.Language
                     type="dropdown"
                     title={language.label}
                     icon={language.icon}
@@ -1390,7 +1390,7 @@ class Navbar9 extends BaseNavigator {
                             </Base.P>
                           </ComposerLink>
                           {item.menuType === "Dropdown" && (
-                            <ComposerIcon
+                            <Base.Icon
                               name={this.getPropValue("dropdownIcon")}
                               propsIcon={{
                                 className: `${this.decorateCSS(
@@ -1447,7 +1447,7 @@ class Navbar9 extends BaseNavigator {
                                       subItem.sub_items.some((item: any) => this.castToString(item.title)) && (
                                         this.castToString(item.title)
                                       ) && (
-                                        <ComposerIcon
+                                        <Base.Icon
                                           name={this.getPropValue("rightIcon")}
                                           propsIcon={{
                                             className: `${this.decorateCSS(
@@ -1516,7 +1516,7 @@ class Navbar9 extends BaseNavigator {
 
 
                       {(language.showLanguage && !language.showLocalizationAlways) && (
-                        <ComposerLanguage
+                        <Base.Language
                           type="accordion"
                           title={language.label}
                           headerClassName={`${this.decorateCSS(
@@ -1536,7 +1536,7 @@ class Navbar9 extends BaseNavigator {
                     {icons.map((icon: Icons, index: number) => (
                       <ComposerLink key={index} path={icon.page}>
                         <div className={this.decorateCSS("icon-container")} onClick={()=> this.handleCloseMenu()}>
-                          <ComposerIcon name={icon.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                          <Base.Icon name={icon.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
                         </div>
                       </ComposerLink>
                     ))}

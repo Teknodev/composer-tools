@@ -1,6 +1,6 @@
 import * as React from "react";
 import { BaseFeature } from "../../EditorComponent";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import styles from "./feature13.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
@@ -410,7 +410,7 @@ class Feature13 extends BaseFeature {
                         onClick={this.sliderPrev}
                         className={this.decorateCSS("slider-button")}
                       >
-                        <ComposerIcon
+                        <Base.Icon
                           propsIcon={{ className: this.decorateCSS("Icon") }}
                           name={this.getPropValue("sliderGoLeft")}
                         />
@@ -421,7 +421,7 @@ class Feature13 extends BaseFeature {
                         onClick={this.sliderNext}
                         className={this.decorateCSS("slider-button")}
                       >
-                        <ComposerIcon
+                        <Base.Icon
                           propsIcon={{ className: this.decorateCSS("Icon") }}
                           name={this.getPropValue("sliderGoRight")}
                         />

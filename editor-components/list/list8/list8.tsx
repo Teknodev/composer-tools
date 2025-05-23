@@ -2,7 +2,7 @@ import { BaseList } from "../../EditorComponent";
 import React from "react";
 import styles from "./list8.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
@@ -185,7 +185,7 @@ class List8 extends BaseList {
                     )}
                     {item.icon && (
                       <div className={this.decorateCSS("icon-box")}>
-                        <ComposerIcon
+                        <Base.Icon
                           name={item.icon}
                           propsIcon={{
                             className: this.decorateCSS("icon"),
