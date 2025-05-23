@@ -114,23 +114,26 @@ class ImageGallery3 extends BaseImageGallery {
 
     render() {
         const type = this.getPropValue("type");
-        const header = this.getPropValue("header");
+        const header = this.castToObject("header");
+        const titleIsVisible = this.castToString(header.title);
+        const subtitleIsVisible = this.castToString(header.sub_title);
+        const headerVisible = titleIsVisible || subtitleIsVisible;
+
         const images = this.castToObject<ImageItem[]>("images");
         const headerImageCount = type === "Header One Image" ? 1 : 2;
         const remainingImages = images.slice(headerImageCount);
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
-                {/* Header Section */}
                 <div className={this.decorateCSS("header-section")}>
                     <Base.MaxContent className={this.decorateCSS("max-content")}>
-                        {header && (
+                        {headerVisible && (
                             <div className={this.decorateCSS("header")}>
-                                <Base.H2 className={this.decorateCSS("title")}>{header[0].value}</Base.H2>
-                                {header[0].value && header[1].value && header[2].value && (
+                                {titleIsVisible && <Base.H2 className={this.decorateCSS("title")}>{header.title}</Base.H2>}
+                                {header.is_line_visible && (
                                     <div className={this.decorateCSS("line")}></div>
                                 )}
-                                <Base.H3 className={this.decorateCSS("subtitle")}>{header[1].value}</Base.H3>
+                                {subtitleIsVisible && <Base.H3 className={this.decorateCSS("subtitle")}>{header.sub_title}</Base.H3>}
                             </div>
                         )}
                         {type === "Header One Image" && images[0] && (
@@ -151,59 +154,49 @@ class ImageGallery3 extends BaseImageGallery {
                     </Base.MaxContent>
                 </div>
 
-                {/* Remaining Images Section */}
                 {remainingImages.length > 0 && (
                     <div className={this.decorateCSS("remaining-images")}>
                         <Base.MaxContent className={this.decorateCSS("max-content")}>
-                            {Array.from({ length: Math.ceil(remainingImages.length / 9) }).map((_, patternIndex) => {
-                                const startIndex = patternIndex * 9;
-                                const patternImages = remainingImages.slice(startIndex, startIndex + 9);
+                            {(() => {
+                                const rows: React.ReactNode[] = [];
+                                let currentIndex = 0;
                                 
-                                return (
-                                    <React.Fragment key={patternIndex}>
-                                        {patternImages.length > 0 && (
-                                            <div className={this.decorateCSS("image-row")}>
-                                                {patternImages.slice(0, 3).map((item, index) => (
-                                                    <div key={`3-${index}`} className={this.decorateCSS("image-box")}>
-                                                        <img className={this.decorateCSS("image")} src={item.image} />
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        )}
+                                const pattern = [3, 2, 1, 3, 2, 1];
+                                
+                                const totalImages = remainingImages.length;
+                                const imagesPerPattern = pattern.reduce((a, b) => a + b, 0);
+                                const completePatterns = Math.ceil(totalImages / imagesPerPattern);
+                                
+                                for (let patternIndex = 0; patternIndex < completePatterns; patternIndex++) {
+                                    pattern.forEach((imagesInRow, rowIndex) => {
+                                        const startIndex = currentIndex;
+                                        const endIndex = Math.min(startIndex + imagesInRow, totalImages);
                                         
-                                        {patternImages.length > 3 && (
-                                            <div className={this.decorateCSS("image-row")}>
-                                                {patternImages.slice(3, 5).map((item, index) => (
-                                                    <div key={`2-${index}`} className={this.decorateCSS("image-box")}>
-                                                        <img className={this.decorateCSS("image")} src={item.image} />
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        )}
-                                        
-                                        {patternImages.length > 5 && (
-                                            <div className={this.decorateCSS("image-row")}>
-                                                {patternImages.slice(5, 6).map((item, index) => (
-                                                    <div key={`1-${index}`} className={this.decorateCSS("image-box")}>
-                                                        <img className={this.decorateCSS("image")} src={item.image} />
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        )}
-                                        
-                                        {/* Row with 3 images */}
-                                        {patternImages.length > 6 && (
-                                            <div className={this.decorateCSS("image-row")}>
-                                                {patternImages.slice(6, 9).map((item, index) => (
-                                                    <div key={`3-2-${index}`} className={this.decorateCSS("image-box")}>
-                                                        <img className={this.decorateCSS("image")} src={item.image} />
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        )}
-                                    </React.Fragment>
-                                );
-                            })}
+                                        if (startIndex < totalImages) {
+                                            const rowImages = remainingImages.slice(startIndex, endIndex);
+                                            
+                                            const isIncompleteRow = rowImages.length < imagesInRow;
+                                            
+                                            rows.push(
+                                                <div 
+                                                    key={`${patternIndex}-${rowIndex}`} 
+                                                    className={`${this.decorateCSS("image-row")} ${this.decorateCSS(isIncompleteRow ? 'row-1' : `row-${imagesInRow}`)}`}
+                                                >
+                                                    {rowImages.map((item, index) =>  item.image && (
+                                                        <div key={`${patternIndex}-${rowIndex}-${index}`} className={this.decorateCSS("image-box")}>
+                                                            <img className={this.decorateCSS("image")} src={item.image} />
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            );
+                                            
+                                            currentIndex = endIndex;
+                                        }
+                                    });
+                                }
+                                
+                                return rows;
+                            })()}
                         </Base.MaxContent>
                     </div>
                 )}

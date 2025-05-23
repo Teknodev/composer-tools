@@ -58,8 +58,7 @@
 
       .image-row {
         display: flex;
-        justify-content: space-between;
-        gap: var(--composer-gap-md);
+        gap: var(--composer-gap-lg);
         width: 100%;
 
         .image-box {
@@ -76,15 +75,19 @@
           }
         }
 
-        // For rows with 2 images
-        &:nth-child(2n) {
+        &.row-3 {
+          .image-box {
+            max-width: calc(33.333% - var(--composer-gap-md));
+          }
+        }
+
+        &.row-2 {
           .image-box {
             max-width: calc(50% - var(--composer-gap-md));
           }
         }
 
-        // For rows with 1 image
-        &:nth-child(3n) {
+        &.row-1 {
           .image-box {
             max-width: 100%;
           }
@@ -112,7 +115,7 @@
     .max-content {
       .image-row {
         flex-direction: column;
-        gap: var(--composer-gap-md);
+        gap: var(--composer-gap-md) !important;
 
         .image-box {
           max-width: 100% !important;
