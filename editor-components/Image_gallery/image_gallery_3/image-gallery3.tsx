@@ -78,32 +78,6 @@ class ImageGallery3 extends BaseImageGallery {
                         }
                     ]
                 },
-                {
-                    type: "object",
-                    key: "image",
-                    displayer: "Image",
-                    value: [
-                        {
-                            type: "image",
-                            key: "image",
-                            displayer: "Image",
-                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c2ffbd2970002c628d96?alt=media&timestamp=1719564433797"
-                        }
-                    ]
-                },
-                {
-                    type: "object",
-                    key: "image",
-                    displayer: "Image",
-                    value: [
-                        {
-                            type: "image",
-                            key: "image",
-                            displayer: "Image",
-                            value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c2ffbd2970002c628d95?alt=media&timestamp=1719564433797"
-                        }
-                    ]
-                }
             ]
         });
     }
