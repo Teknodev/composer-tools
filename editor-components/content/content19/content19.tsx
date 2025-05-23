@@ -2,7 +2,6 @@ import * as React from "react";
 import styles from "./content19.module.scss";
 import { BaseContent } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "composer-tools/composer-base-components/icon/icon";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
@@ -115,12 +114,12 @@ class Content19 extends BaseContent {
                                                     </div>
                                                 )}
                                                 {sideButton.icon && (
-                                                    <ComposerIcon
+                                                    <Base.Icon
                                                         name={sideButton.icon}
                                                         propsIcon={{
                                                             className: this.decorateCSS(`${side}-navigate-icon`),
                                                         }}>
-                                                    </ComposerIcon>
+                                                    </Base.Icon>
                                                 )}
                                             </div>
                                         </ComposerLink>
