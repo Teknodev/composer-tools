@@ -3,7 +3,7 @@ import { Location } from "../../EditorComponent";
 import styles from "./location6.module.scss";
 import ComposerMap from "../../../composer-base-components/map/map";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 
 type Address = {
@@ -451,7 +451,7 @@ class Location6 extends Location {
                                   {buttonTextExist && <Base.P className={this.decorateCSS("text")}>{button?.text}</Base.P>}
                                   {buttonInfoExist && <Base.P className={this.decorateCSS("info")}>{button?.info}</Base.P>}
                                 </div>
-                                {button.icon && <ComposerIcon name={button.icon} propsIcon={{ className: this.decorateCSS("icon") }} />}
+                                {button.icon && <Base.Icon name={button.icon} propsIcon={{ className: this.decorateCSS("icon") }} />}
                               </div>
                             </ComposerLink>
                           </div>

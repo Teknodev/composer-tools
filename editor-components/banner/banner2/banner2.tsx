@@ -3,7 +3,7 @@ import styles from "./banner2.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { BaseBanner } from "../../EditorComponent";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 
 class Banner2 extends BaseBanner {
   constructor(props?: any) {
@@ -75,7 +75,7 @@ class Banner2 extends BaseBanner {
                   {this.getPropValue("homepage")}
                 </span>
               </ComposerLink>
-              <ComposerIcon
+              <Base.Icon
                 name={this.getPropValue("crumberIcon")}
                 propsIcon={{
                   className: this.decorateCSS("crumberIcon"),

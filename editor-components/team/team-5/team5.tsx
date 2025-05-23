@@ -2,7 +2,6 @@ import * as React from "react";
 import styles from "./team5.module.scss";
 import { Team } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
 
 type eggs = {
@@ -465,7 +464,7 @@ class Team5 extends Team {
                     <Base.Row className={this.decorateCSS("icon-container")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                       {item.socials.map((value, i) => (
                         <ComposerLink key={i} path={value.url}>
-                          <ComposerIcon name={value.icon} propsIcon={{className: this.decorateCSS("icon")}} />
+                          <Base.Icon name={value.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
                         </ComposerLink>
                       ))}
                     </Base.Row>

@@ -2,7 +2,7 @@ import * as React from "react";
 import styles from "./team1.module.scss";
 import { Team, TypeUsableComponentProps } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 
 type Platform = {
@@ -333,7 +333,7 @@ class Team1 extends Team {
                       {card.platforms.map((item: Platform, indexPlatforms: number) => {
                         return (
                           <ComposerLink key={indexPlatforms} path={item.url}>
-                            <ComposerIcon
+                            <Base.Icon
                               name={item.icon}
                               propsIcon={{
                                 className: this.decorateCSS("icon"),

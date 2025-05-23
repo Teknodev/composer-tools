@@ -1,8 +1,6 @@
 import * as React from "react";
 import { BaseSlider } from "../../EditorComponent";
 import styles from "./slider5.module.scss";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 
 type Card = {

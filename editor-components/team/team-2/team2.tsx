@@ -2,7 +2,7 @@ import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Team, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./team2.module.scss";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 
 type Platform = {
@@ -374,7 +374,7 @@ class Team2 extends Team {
                     {team.platforms &&
                       team.platforms.map((item: Platform, indexPlatforms: number) => (
                         <ComposerLink key={indexPlatforms} path={item.url}>
-                          <ComposerIcon
+                          <Base.Icon
                             name={item.icon}
                             propsIcon={{
                               className: this.decorateCSS("icon"),
