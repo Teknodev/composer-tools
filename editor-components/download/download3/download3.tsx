@@ -3,7 +3,7 @@ import styles from "./download3.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseDownload } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 class Download3 extends BaseDownload {
@@ -83,7 +83,7 @@ class Download3 extends BaseDownload {
                               (buttonTextExist || item.icon) && (
                                 <Base.Button buttonType={item.type} className={this.decorateCSS("button-element")}>
                                   {item.icon && (
-                                    <ComposerIcon
+                                    <Base.Icon
                                       name={item.icon}
                                       propsIcon={{
                                         className: this.decorateCSS("button-icon"),
@@ -119,7 +119,7 @@ class Download3 extends BaseDownload {
                             buttonTextExist && (
                               <Base.Button className={this.decorateCSS("button-element")}>
                                 {item.icon && (
-                                  <ComposerIcon
+                                  <Base.Icon
                                     name={item.icon}
                                     propsIcon={{
                                       className: this.decorateCSS("button-icon"),
