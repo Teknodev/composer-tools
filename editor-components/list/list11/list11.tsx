@@ -3,7 +3,6 @@ import { Base } from "../../../composer-base-components/base/base";
 import { BaseList } from "../../EditorComponent";
 import styles from "./list11.module.scss";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "composer-tools/composer-base-components/icon/icon";
 
 interface ListItems {
     itemTitle: React.ReactNode;
@@ -200,7 +199,7 @@ class List11 extends BaseList {
                                 </div>
                             )}
                         </Base.VerticalContent>
-                        <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }}>
+                        <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("grid")}>
                             {listItems.map((item: ListItems, index: number) => (
                                 <div key={index} className={this.decorateCSS("card")}>
                                     <div className={this.decorateCSS("card-items")}>
@@ -228,7 +227,7 @@ class List11 extends BaseList {
                                                         </div>
                                                     )}
                                                     {item.icon && (
-                                                        <ComposerIcon
+                                                        <Base.Icon
                                                             name={item.icon}
                                                             propsIcon={{
                                                                 className: this.decorateCSS("navigate-icon"),

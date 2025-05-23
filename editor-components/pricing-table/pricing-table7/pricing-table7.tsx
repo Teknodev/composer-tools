@@ -2,7 +2,7 @@ import * as React from "react";
 import { BasePricingTable } from "../../EditorComponent";
 import styles from "./pricing-table7.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
@@ -884,7 +884,7 @@ class PricingTable7 extends BasePricingTable {
           <span className={`${this.decorateCSS("slider")} ${this.decorateCSS("round")}`}></span>
         </div>
         <Base.P className={`${this.decorateCSS("yearlyText")} ${planType === "yearly-plans" ? this.decorateCSS("active") : ""}`}>{ this.getPropValue("text1")}</Base.P>
-        <ComposerIcon name={durationIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
+        <Base.Icon name={durationIcon} propsIcon={{ className: this.decorateCSS("icon") }} />
         <Base.P className={this.decorateCSS("planDiscount")}>{plansDiscountText}</Base.P>
       </div>
     );
@@ -961,7 +961,7 @@ class PricingTable7 extends BasePricingTable {
                       <Base.VerticalContent className={this.decorateCSS("features")}>
                         {pricing.item.map((data: any, index: number) => (
                           <Base.H5 className={this.decorateCSS("features-element")} key={`price7-list-${index}`}>
-                            <ComposerIcon name={data.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                            <Base.Icon name={data.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
                             {data.itemText}
                           </Base.H5>
                         ))}

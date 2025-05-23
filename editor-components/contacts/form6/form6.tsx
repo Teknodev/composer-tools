@@ -4,7 +4,7 @@ import styles from "./form6.module.scss";
 import { ErrorMessage, Formik, Form } from "formik";
 import * as Yup from "yup";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 class Form6 extends BaseContacts {
@@ -484,7 +484,7 @@ class Form6 extends BaseContacts {
                                   />
                                 ) : (
                                   <>
-                                    <ComposerIcon name={input.getPropValue("icon")} propsIcon={{ className: this.decorateCSS("input-icon") }} />
+                                    <Base.Icon name={input.getPropValue("icon")} propsIcon={{ className: this.decorateCSS("input-icon") }} />
 
                                     <input
                                       id={getInputName(index)}

@@ -3,7 +3,7 @@ import { Testimonials } from "../../EditorComponent";
 import styles from "./testimonials8.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 
 type Item = {
   image: string;
@@ -237,7 +237,7 @@ class Testimonials8Page extends Testimonials {
                     sliderRef.current.slickPrev();
                   }}
                 >
-                  <ComposerIcon name={arrows.prevArrow} propsIcon={{ className: this.decorateCSS("arrow") }}></ComposerIcon>
+                  <Base.Icon name={arrows.prevArrow} propsIcon={{ className: this.decorateCSS("arrow") }}></Base.Icon>
                 </button>
               )}
               <ComposerSlider {...settings} ref={sliderRef}>
@@ -256,7 +256,7 @@ class Testimonials8Page extends Testimonials {
                       {item.starNumber > 0 && item.starIcon && (
                         <div className={this.decorateCSS("star")}>
                           {[...Array(Number(item.starNumber))].map((_: any, index: number) => (
-                            <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={item.starIcon} />
+                            <Base.Icon propsIcon={{ className: this.decorateCSS("icon") }} name={item.starIcon} />
                           ))}
                         </div>
                       )}
@@ -273,7 +273,7 @@ class Testimonials8Page extends Testimonials {
                     sliderRef.current.slickNext();
                   }}
                 >
-                  <ComposerIcon name={arrows.nextArrow} propsIcon={{ className: this.decorateCSS("arrow") }}></ComposerIcon>
+                  <Base.Icon name={arrows.nextArrow} propsIcon={{ className: this.decorateCSS("arrow") }}></Base.Icon>
                 </button>
               )}
             </div>

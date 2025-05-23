@@ -2,7 +2,7 @@ import * as React from "react";
 import { BaseContent, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./content4.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 
 type ITabs = {
@@ -309,7 +309,7 @@ class Content4 extends BaseContent {
                         </div>
                       )}
                       {isTabIconVisible && (
-                        <ComposerIcon
+                        <Base.Icon
                           name={tab.icon}
                           propsIcon={{
                             className: this.decorateCSS("icon"),
@@ -384,7 +384,7 @@ class Content4 extends BaseContent {
                                   >
                                     {tab.image_container.box2_text}
                                   </div>
-                                  <ComposerIcon
+                                  <Base.Icon
                                     name={tab.image_container.box2_icon}
                                     propsIcon={{
                                       className: this.decorateCSS("box2-icon"),
@@ -434,7 +434,7 @@ class Content4 extends BaseContent {
                                 isIconContainerVisible && (
                                   <div className={this.decorateCSS("icon-container")}>
                                     {iconContainer.icon && (
-                                      <ComposerIcon
+                                      <Base.Icon
                                         name={iconContainer.icon}
                                         propsIcon={{
                                           className: this.decorateCSS("icon"),

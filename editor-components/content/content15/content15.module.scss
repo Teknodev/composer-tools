@@ -1,0 +1,223 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
+  as *;
+
+.container {
+  background-color: color-mix(
+    in srgb,
+    var(--composer-html-background),
+    var(--composer-font-color-primary) 5%
+  );
+  .max-content {
+    display: flex;
+
+    .content {
+      display: flex;
+      flex: 1;
+      gap: var(--composer-gap-xl);
+      flex-wrap: wrap;
+
+      .card-1 {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        min-width: 200px;
+        gap: var(--composer-gap-xs);
+        color: var(--composer-font-color-primary);
+
+        .title {
+          margin: 0;
+          font-size: 2rem;
+          text-align: left;
+        }
+
+        .sub-title {
+          font-size: 1rem;
+          color: var(--composer-tertiary-color);
+          margin: 0;
+          text-align: left;
+        }
+      }
+
+      .card-2 {
+        color: var(--composer-font-color-primary);
+        display: flex;
+        flex: 2;
+        min-width: 300px;
+
+        .text-1 {
+          font-size: 1rem;
+          color: var(--composer-tertiary-color);
+          text-align: justify;
+          margin: 0;
+        }
+      }
+
+      .card-3 {
+        display: flex;
+        flex-direction: column;
+        flex: 2;
+        min-width: 300px;
+        gap: var(--composer-gap-md);
+
+        .text-2 {
+          font-size: 1rem;
+          color: var(--composer-tertiary-color);
+          text-align: justify;
+          margin: 0;
+        }
+
+        .information {
+          display: flex;
+          flex-direction: column;
+          gap: var(--composer-gap-xs);
+          align-items: flex-start;
+
+          .name {
+            font-size: 1.5rem;
+            color: var(--composer-primary-color);
+            margin: 0;
+          }
+
+          .job-title {
+            font-size: 1rem;
+            color: var(--composer-tertiary-color);
+            margin: 0;
+          }
+        }
+      }
+
+      .content-right-section-empty {
+        display: flex;
+        flex-direction: column;
+        flex: 3;
+        min-width: 400px;
+        gap: var(--composer-gap-md);
+
+        .text-1 {
+          font-size: 1rem;
+          color: var(--composer-tertiary-color);
+          text-align: justify;
+          margin: 0;
+        }
+
+        .information-below-text1 {
+          display: flex;
+          flex-direction: column;
+          gap: var(--composer-gap-xs);
+          align-items: flex-start;
+
+          .name {
+            font-size: 1.5rem;
+            color: var(--composer-primary-color);
+            margin: 0;
+          }
+
+          .job-title {
+            font-size: 1rem;
+            color: var(--composer-tertiary-color);
+            margin: 0;
+          }
+        }
+      }
+    }
+
+    .content-column {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      gap: var(--composer-gap-md);
+
+      .card-1 {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-xs);
+        color: var(--composer-font-color-primary);
+        align-items: flex-start;
+
+        .title {
+          margin: 0;
+          font-size: 2rem;
+          text-align: left;
+        }
+
+        .sub-title {
+          font-size: 1rem;
+          color: var(--composer-tertiary-color);
+          margin: 0;
+          text-align: left;
+        }
+      }
+
+      .information {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-xs);
+        align-self: flex-start;
+        align-items: flex-start;
+
+        .name {
+          font-size: 1.5rem;
+          color: var(--composer-primary-color);
+          margin: 0;
+        }
+
+        .job-title {
+          font-size: 1rem;
+          color: var(--composer-tertiary-color);
+          margin: 0;
+        }
+      }
+      .card-2,
+      .card-3,
+      .content-right-section-empty {
+        display: none;
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .max-content {
+    .card-1 {
+      gap: var(--composer-gap-md) !important;
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .max-content {
+    .content {
+      flex-direction: column;
+      gap: var(--composer-gap-md) !important;
+
+      .card-1 {
+        gap: var(--composer-gap-xs) !important;
+        .title {
+          font-size: 1.5rem !important;
+        }
+      }
+
+      .content-right-section-empty {
+        gap: var(--composer-gap-md) !important;
+
+        .information-below-text1 {
+          align-items: flex-start !important;
+        }
+      }
+    }
+
+    .content-column {
+      gap: var(--composer-gap-md) !important;
+
+      .card-1 {
+        gap: var(--composer-gap-xs) !important;
+        align-items: flex-start !important;
+      }
+
+      .information {
+        align-self: flex-start !important;
+        align-items: flex-start !important;
+      }
+    }
+  }
+}
