@@ -12,7 +12,7 @@
       gap: var(--composer-gap-md);
       width: 80%;
       .left-side {
-        flex: 1.5;
+        flex: 1;
         gap: var(--composer-gap-md);
         .title {
           font-size: 4rem;
@@ -44,7 +44,7 @@
         flex: 1;
         display: flex;
         justify-content: center;
-        gap: var(--composer-gap-md);
+        gap: var(--composer-gap-lg);
         .counter{
             display: flex;
             flex-direction: column;

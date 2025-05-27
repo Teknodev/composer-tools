@@ -2,7 +2,7 @@ import * as React from "react";
 import { BaseNavigator } from "../../EditorComponent";
 import styles from "./navbar2.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "composer-tools/composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLanguage from "composer-tools/composer-base-components/language/language";
@@ -386,7 +386,7 @@ class Navbar2 extends BaseNavigator {
                             {item.nav_title}
                           </Base.P>
                           {item.menuType === "Dropdown" && (
-                            <ComposerIcon
+                            <Base.Icon
                               name={this.getPropValue("dropdownIcon")}
                               propsIcon={{
                                 className: this.decorateCSS("dropdownIcon"),
@@ -428,7 +428,7 @@ class Navbar2 extends BaseNavigator {
                                       subItem.sub_items.some((item: any) =>
                                         this.castToString(item.nav_title)
                                       ) && (
-                                        <ComposerIcon
+                                        <Base.Icon
                                           name={this.getPropValue("rightIcon")}
                                           propsIcon={{
                                             className:
@@ -483,7 +483,7 @@ class Navbar2 extends BaseNavigator {
               )}
               {divider && <div className={this.decorateCSS("divider")} />}
               {language.showLanguage && (
-                <ComposerLanguage
+                <Base.Language
                   type="dropdown"
                   title={language.label}
                   icon={language.icon}
@@ -504,7 +504,7 @@ class Navbar2 extends BaseNavigator {
             </nav>
           )}
           <div className={this.decorateCSS("mobileRight")}>
-          <ComposerIcon
+          <Base.Icon
             name={this.getPropValue("hamburgerIcon")}
             propsIcon={{
               className: this.decorateCSS("menuIcon"),
@@ -512,7 +512,7 @@ class Navbar2 extends BaseNavigator {
             }}
           />
            {language.showLanguage && language.showLocalizationAlways &&(
-                <ComposerLanguage
+                <Base.Language
                   type="dropdown"
                   title={language.label}
                   icon={language.icon}
@@ -534,7 +534,7 @@ class Navbar2 extends BaseNavigator {
 
             <div className={`${this.decorateCSS("mobileMenu")} ${isMobileMenuOpen ? this.decorateCSS("open") : ""}
             ${this.getComponentState("navbarOverflowShow") ? this.decorateCSS("overflowShow") : ""}`}>
-              <ComposerIcon
+              <Base.Icon
                 name={this.getPropValue("closeIcon")}
                 propsIcon={{
                   className: this.decorateCSS("closeIcon"),
@@ -569,7 +569,7 @@ class Navbar2 extends BaseNavigator {
                               </Base.P>
                             </ComposerLink>
                             {item.menuType === "Dropdown" && (
-                              <ComposerIcon
+                              <Base.Icon
                                 name={this.getPropValue("rightIcon")}
                                 propsIcon={{
                                   className: `${this.decorateCSS(
@@ -626,7 +626,7 @@ class Navbar2 extends BaseNavigator {
                                         subItem.sub_items.some((item: any) =>
                                           this.castToString(item.nav_title)
                                         ) && (
-                                          <ComposerIcon
+                                          <Base.Icon
                                             name={this.getPropValue(
                                               "rightIcon"
                                             )}
@@ -696,7 +696,7 @@ class Navbar2 extends BaseNavigator {
                       )
                   )}
                   {(!language.showLocalizationAlways && language.showLanguage) &&
-                    <ComposerLanguage
+                    <Base.Language
                     type="accordion"
                     title="name"
                     headerClassName={this.decorateCSS("languageAccordion")}

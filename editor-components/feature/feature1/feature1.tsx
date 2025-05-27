@@ -1,7 +1,7 @@
 import * as React from "react";
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature1.module.scss";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
 
@@ -444,7 +444,7 @@ class Feature1 extends BaseFeature {
                 {(dateExist) && (
                   <div className={this.decorateCSS("date")}>
                     {dateIcon &&
-                      <ComposerIcon
+                      <Base.Icon
                         name={dateIcon}
                         propsIcon={{
                           className: this.decorateCSS("date-icon"),
@@ -459,7 +459,7 @@ class Feature1 extends BaseFeature {
                 {(readTimeExist) && (
                   <div className={this.decorateCSS("time")}>
                     {timeIcon &&
-                      <ComposerIcon
+                      <Base.Icon
                         name={timeIcon}
                         propsIcon={{
                           className: this.decorateCSS("time-icon"),
@@ -597,7 +597,7 @@ class Feature1 extends BaseFeature {
                           this.getPropValue("rightSideText")
                         )}
                         {!!rightSideIcon && (
-                          <ComposerIcon
+                          <Base.Icon
                             name={rightSideIcon}
                             propsIcon={{ className: this.decorateCSS("right-side-icon") }}
                           />

@@ -2,7 +2,6 @@ import React from "react";
 import { BaseComingSoon } from "../../EditorComponent";
 import styles from "./coming-soon4.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
@@ -134,7 +133,7 @@ class ComingSoon4 extends BaseComingSoon {
                               className={this.decorateCSS("button")}
                             >
                               {button.icon && (
-                                <ComposerIcon
+                                <Base.Icon
                                   name={button.icon}
                                   propsIcon={{
                                     className: this.decorateCSS("icon"),

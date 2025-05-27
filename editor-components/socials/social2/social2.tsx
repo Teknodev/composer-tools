@@ -3,7 +3,6 @@ import { BaseSocial } from "../../EditorComponent";
 import styles from "./social2.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "composer-tools/composer-base-components/icon/icon";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 
 type SlideItems ={
@@ -914,7 +913,7 @@ componentDidMount() {
                                 )}
                                 {this.getPropValue("playIcon") && (
                                 <div className={this.decorateCSS("icon-container")} onClick={()=> {this.handleVideoPlay(index)}}>
-                                    <ComposerIcon name= {this.getPropValue("playIcon")} propsIcon={{className: this.decorateCSS("icon")}}/>
+                                    <Base.Icon name= {this.getPropValue("playIcon")} propsIcon={{className: this.decorateCSS("icon")}}/>
                                 </div>
                                 )}
                             </div>
@@ -922,8 +921,8 @@ componentDidMount() {
                         })}
                     </ComposerSlider>
                     <div className={this.decorateCSS("arrows")}>
-                        <ComposerIcon name={this.getPropValue("nextArrow")} propsIcon={{className: this.decorateCSS("next-arrow") ,onClick: () => { this.handleRightArrowClick()}}}/>
-                        <ComposerIcon name={this.getPropValue("prevArrow")} propsIcon={{className: this.decorateCSS("prev-arrow"),onClick: () => { this.handleLeftArrowClick()}}}/>
+                        <Base.Icon name={this.getPropValue("nextArrow")} propsIcon={{className: this.decorateCSS("next-arrow") ,onClick: () => { this.handleRightArrowClick()}}}/>
+                        <Base.Icon name={this.getPropValue("prevArrow")} propsIcon={{className: this.decorateCSS("prev-arrow"),onClick: () => { this.handleLeftArrowClick()}}}/>
                     </div>
                 </div>
                 )}
@@ -955,12 +954,12 @@ componentDidMount() {
                                                 )}
                                                 {this.getPropValue("closeIcon") && (
                                                     <div className={this.decorateCSS("close-icon-container")}>
-                                                        <ComposerIcon name={this.getPropValue("closeIcon")} propsIcon={{className: this.decorateCSS("close-icon"), onClick : () => this.handleVideoClose()}}></ComposerIcon>
+                                                        <Base.Icon name={this.getPropValue("closeIcon")} propsIcon={{className: this.decorateCSS("close-icon"), onClick : () => this.handleVideoClose()}}></Base.Icon>
                                                     </div>
                                                 )}
                                                 {this.getPropValue("shareIcon") && (
                                                     <div className={this.decorateCSS("share-icon-container")}>
-                                                        <ComposerIcon name={this.getPropValue("shareIcon")} propsIcon={{className: this.decorateCSS("share-icon"), onClick : () => this.handleShareOpen()}}></ComposerIcon>
+                                                        <Base.Icon name={this.getPropValue("shareIcon")} propsIcon={{className: this.decorateCSS("share-icon"), onClick : () => this.handleShareOpen()}}></Base.Icon>
                                                     </div>
                                                 )}
                                                 {(this.castToString(this.getPropValue("sharePopupTitle")) || this.getPropValue("closeIcon") || (item.socialIcons.length > 0)) && (
@@ -973,7 +972,7 @@ componentDidMount() {
                                                             )}
                                                             {this.getPropValue("closeIcon") && (
                                                             <div className={this.decorateCSS("share-popup-close")} onClick={() => this.handleShareClose()}>
-                                                                <ComposerIcon name={this.getPropValue("closeIcon")} propsIcon={{className: this.decorateCSS("share-close-icon")}}></ComposerIcon>
+                                                                <Base.Icon name={this.getPropValue("closeIcon")} propsIcon={{className: this.decorateCSS("share-close-icon")}}></Base.Icon>
                                                             </div>
                                                             )}
                                                             </div>
@@ -985,7 +984,7 @@ componentDidMount() {
                                                                     <ComposerLink path={social.socialLink}>
                                                                         {social.icon && (
                                                                         <div className={this.decorateCSS("social-icons")}>
-                                                                            <ComposerIcon name={social.icon} propsIcon={{className: this.decorateCSS("social-icon")}}></ComposerIcon>
+                                                                            <Base.Icon name={social.icon} propsIcon={{className: this.decorateCSS("social-icon")}}></Base.Icon>
                                                                         </div>
                                                                         )}
                                                                     </ComposerLink>
@@ -1031,12 +1030,12 @@ componentDidMount() {
                                     )}
                                     {this.getPropValue("closeIcon") && (
                                         <div className={this.decorateCSS("close-icon-container")}>
-                                            <ComposerIcon name={this.getPropValue("closeIcon")} propsIcon={{className: this.decorateCSS("close-icon"), onClick : () => this.handleVideoClose()}}></ComposerIcon>
+                                            <Base.Icon name={this.getPropValue("closeIcon")} propsIcon={{className: this.decorateCSS("close-icon"), onClick : () => this.handleVideoClose()}}></Base.Icon>
                                         </div>
                                     )}
                                     {this.getPropValue("shareIcon") && (
                                         <div className={this.decorateCSS("share-icon-container")}>
-                                            <ComposerIcon name={this.getPropValue("shareIcon")} propsIcon={{className: this.decorateCSS("share-icon"), onClick : () => this.handleShareOpen()}}></ComposerIcon>
+                                            <Base.Icon name={this.getPropValue("shareIcon")} propsIcon={{className: this.decorateCSS("share-icon"), onClick : () => this.handleShareOpen()}}></Base.Icon>
                                         </div>
                                     )}
                                     {(this.castToString(this.getPropValue("sharePopupTitle")) || this.getPropValue("closeIcon") || (item.socialIcons.length > 0)) && (
@@ -1049,7 +1048,7 @@ componentDidMount() {
                                                     )}
                                                     {this.getPropValue("closeIcon") && (
                                                     <div className={this.decorateCSS("share-popup-close")} onClick={() => this.handleShareClose()}>
-                                                        <ComposerIcon name={this.getPropValue("closeIcon")} propsIcon={{className: this.decorateCSS("share-close-icon")}}></ComposerIcon>
+                                                        <Base.Icon name={this.getPropValue("closeIcon")} propsIcon={{className: this.decorateCSS("share-close-icon")}}></Base.Icon>
                                                     </div>
                                                     )}
                                                     </div>
@@ -1061,7 +1060,7 @@ componentDidMount() {
                                                             <ComposerLink path={social.socialLink}>
                                                                 {social.icon && (
                                                                 <div className={this.decorateCSS("social-icons")}>
-                                                                    <ComposerIcon name={social.icon} propsIcon={{className: this.decorateCSS("social-icon")}}></ComposerIcon>
+                                                                    <Base.Icon name={social.icon} propsIcon={{className: this.decorateCSS("social-icon")}}></Base.Icon>
                                                                 </div>
                                                                 )}
                                                             </ComposerLink>
