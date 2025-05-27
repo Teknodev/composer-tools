@@ -2,7 +2,7 @@ import * as React from "react";
 import { BaseContent } from "../../EditorComponent";
 import styles from "./content11.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 
 interface ListItem {
@@ -221,7 +221,7 @@ class Content11 extends BaseContent {
                   {this.getPropValue("sectionTitle")}
                 </Base.SectionTitle>
                 {icon && (
-                  <ComposerIcon
+                  <Base.Icon
                     propsIcon={{ className: this.decorateCSS("icon") }}
                     name={this.getPropValue("icon")}
                   />
@@ -267,7 +267,7 @@ class Content11 extends BaseContent {
                 return (
                   icons.icon && (
                     <ComposerLink path={icons.link}>
-                      <ComposerIcon
+                      <Base.Icon
                         propsIcon={{ className: this.decorateCSS("Icon") }}
                         name={icons.icon}
                       />

@@ -3,7 +3,7 @@ import styles from "./download10.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseDownload, TypeUsableComponentProps } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 class Download10 extends BaseDownload {
@@ -181,7 +181,7 @@ class Download10 extends BaseDownload {
                           ) : (
                             (buttonTextExist || item.icon) && (
                               <Base.Button buttonType={item.type} className={this.decorateCSS("button-element")}>
-                                {item.icon && <ComposerIcon name={item.icon} propsIcon={{ className: this.decorateCSS("button-icon") }} />}
+                                {item.icon && <Base.Icon name={item.icon} propsIcon={{ className: this.decorateCSS("button-icon") }} />}
                                 {buttonTextExist && <div className={this.decorateCSS("button-text")}>{item.text}</div>}
                               </Base.Button>
                             )
@@ -196,7 +196,7 @@ class Download10 extends BaseDownload {
                 <Base.VerticalContent className={this.decorateCSS("stats")}>
                   {reviewTitle && <Base.H5 className={this.decorateCSS("stats-title")}>{this.getPropValue("text1")}</Base.H5>}
                   <Base.Row className={this.decorateCSS("down-description")}>
-                    <div className={this.decorateCSS("stars")}>{icons.map((icon: any, index: number) => icon.icon && <ComposerIcon name={icon.icon} propsIcon={{ className: this.decorateCSS("icon") }} />)}</div>
+                    <div className={this.decorateCSS("stars")}>{icons.map((icon: any, index: number) => icon.icon && <Base.Icon name={icon.icon} propsIcon={{ className: this.decorateCSS("icon") }} />)}</div>
                     {reviewScore && <Base.P className={this.decorateCSS("info")}>{this.getPropValue("text2")}</Base.P>}
                   </Base.Row>
                 </Base.VerticalContent>

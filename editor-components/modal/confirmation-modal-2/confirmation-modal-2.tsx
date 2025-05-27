@@ -2,7 +2,7 @@ import * as React from "react";
 import ComposerModalClose from "../../../composer-base-components/close/close";
 import { BaseModal } from "../../EditorComponent";
 import styles from "./confirmation-modal-2.module.scss";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
@@ -287,7 +287,7 @@ class ConfirmationModal2 extends BaseModal {
 
             <div className={this.decorateCSS("exit-icon-container")}>
               <ComposerModalClose>
-                <ComposerIcon propsIcon={{ className: `${this.decorateCSS("exit-icon")} ${!backgroundImage && this.decorateCSS("exit-icon-no-image")}` }} name={this.getPropValue("exitIcon")} />
+                <Base.Icon propsIcon={{ className: `${this.decorateCSS("exit-icon")} ${!backgroundImage && this.decorateCSS("exit-icon-no-image")}` }} name={this.getPropValue("exitIcon")} />
               </ComposerModalClose>
             </div>
 
@@ -340,7 +340,7 @@ class ConfirmationModal2 extends BaseModal {
             <div className={this.decorateCSS("contact-infos")}>
               {contactInfos.map((value: ContactInfo, item: number) => (
                 <div className={this.decorateCSS("contact-info")}>
-                  {value.icon && <ComposerIcon name={value.icon} propsIcon={{ className: this.decorateCSS("contact-icon") }}></ComposerIcon>}
+                  {value.icon && <Base.Icon name={value.icon} propsIcon={{ className: this.decorateCSS("contact-icon") }}></Base.Icon>}
                   {this.castToString(value.text) && <Base.P className={this.decorateCSS("contact-text")}>{value.text}</Base.P>}
                 </div>
               ))}

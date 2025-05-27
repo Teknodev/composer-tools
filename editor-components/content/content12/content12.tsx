@@ -2,7 +2,6 @@ import * as React from "react";
 import styles from "./content12.module.scss";
 import { BaseContent } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "composer-tools/composer-base-components/icon/icon";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 class Content12 extends BaseContent {
@@ -94,7 +93,7 @@ class Content12 extends BaseContent {
               </div>
               {closeIcon && (
                 <div className={this.decorateCSS("close-icon-box")}>
-                  <ComposerIcon
+                  <Base.Icon
                     propsIcon={{
                       className: this.decorateCSS("close-icon"),
                     }}
