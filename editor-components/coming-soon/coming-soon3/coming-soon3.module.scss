@@ -23,6 +23,7 @@
       justify-content: center;
       align-items: center;
       width: 100%;
+      gap: var(--composer-gap-xl);
       .counter-container{
         display: flex;
         gap: var(--composer-gap-lg);
@@ -30,85 +31,93 @@
             display: flex;
             flex-direction: column;
             gap: var(--composer-gap-lg);
+            align-items: center;
             .count{
                 color: var(--composer-font-color-primary);
                 margin: 0px; 
+                font-size: 5rem;
             }
             .text{
                 color: var(--composer-font-color-primary);
             }
         }
       }
-
-      .title-wrapper {
-        position: relative;
-        padding: 0px var(--composer-gap-sm);
-        width: 75%;
-        justify-content: center;
+      .bottom{
+        width: 100%;
         display: flex;
-
-        &.title-wrapper-animation {
-          opacity: 0;
-          animation: slide-in 1s ease-out 1s forwards;
-        }
-        .title {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--composer-gap-md);
+        .title-wrapper {
+          position: relative;
+          padding: 0px var(--composer-gap-sm);
+          width: 75%;
           justify-content: center;
           display: flex;
-          position: relative;
-          min-width: 500px;
-          width: 70%;
-          .title-text {
-            font-size: 8rem;
-            color: var(--composer-font-color-primary);
+  
+          &.title-wrapper-animation {
+            opacity: 0;
+            animation: slide-in 1s ease-out 1s forwards;
           }
-          .error-message {
-            position: absolute;
-            padding: var(--composer-gap-xs);
-            left: 0px;
-            bottom: var(--composer-gap-xl);
-            width: fit-content;
-            background-color: var(--composer-primary-color);
-            border-radius: var(--composer-border-radius-md);
-            .text {
-              color: var(--composer-font-color-secondary);
-              font-size: 1.5rem;
+          .title {
+            justify-content: center;
+            display: flex;
+            position: relative;
+            min-width: 500px;
+            width: 70%;
+            .title-text {
+              font-size: 8rem;
+              color: var(--composer-font-color-primary);
+            }
+            .error-message {
+              position: absolute;
+              padding: var(--composer-gap-xs);
+              left: 0px;
+              bottom: var(--composer-gap-xl);
+              width: fit-content;
+              background-color: var(--composer-primary-color);
+              border-radius: var(--composer-border-radius-md);
+              .text {
+                color: var(--composer-font-color-secondary);
+                font-size: 1.5rem;
+              }
             }
           }
+          .line-right,
+          .line-left {
+            position: absolute;
+            background-color: var(--composer-font-color-primary);
+            height: 2px;
+            width: 150px;
+          }
+          .line-right {
+            bottom: 0px;
+            right: 0px;
+          }
+          .line-left {
+            top: 0px;
+            left: 0px;
+          }
         }
-        .line-right,
-        .line-left {
-          position: absolute;
-          background-color: var(--composer-font-color-primary);
-          height: 2px;
-          width: 150px;
+  
+        .description {
+          font-size: 2rem;
+          color: var(--composer-font-color-primary);
+          width: 50%;
+  
+          &.description-animation {
+            opacity: 0;
+            animation: slide-in 1s ease-out 1.3s forwards;
+          }
         }
-        .line-right {
-          bottom: 0px;
-          right: 0px;
-        }
-        .line-left {
-          top: 0px;
-          left: 0px;
-        }
-      }
-
-      .description {
-        font-size: 2rem;
-        color: var(--composer-font-color-primary);
-        width: 50%;
-
-        &.description-animation {
-          opacity: 0;
-          animation: slide-in 1s ease-out 1.3s forwards;
-        }
-      }
-
-      .button {
-        content: "";
-
-        &.button-animation {
-          opacity: 0;
-          animation: slide-in 1s ease-out 1.6s forwards;
+  
+        .button {
+          content: "";
+  
+          &.button-animation {
+            opacity: 0;
+            animation: slide-in 1s ease-out 1.6s forwards;
+          }
         }
       }
     }
@@ -118,23 +127,25 @@
   .container {
     .max-content {
       .content {
-        .title-wrapper {
-          width: 100%;
-          .title {
-            min-width: 200px;
-            .title-text {
-              font-size: 7rem;
+        .bottom{
+          .title-wrapper {
+            width: 100%;
+            .title {
+              min-width: 200px;
+              .title-text {
+                font-size: 7rem;
+              }
+            }
+            .line-right,
+            .line-left {
+              width: 100px;
             }
           }
-          .line-right,
-          .line-left {
-            width: 100px;
+          .description {
+            width: 65%;
+            font-size: 1.5rem;
           }
-        }
-        .description {
-          width: 65%;
-          font-size: 1.5rem;
-        }
+        }        
       }
     }
   }
@@ -145,21 +156,27 @@
       .content {
         gap: var(--composer-gap-lg);
         .counter-container{
+          gap: var(--composer-gap-md);
             .counter{
                 gap: var(--composer-gap-md);
+                .count{
+                  font-size: 3.5rem;
+                }
             }
         }
-        .title-wrapper {
-          .title {
-            width: 80%;
-            .title-text {
-              font-size: 5.5rem;
+        .bottom{
+          .title-wrapper {
+            .title {
+              width: 80%;
+              .title-text {
+                font-size: 5.5rem;
+              }
             }
           }
-        }
-        .description {
-          width: 70%;
-          font-size: 1.5rem;
+          .description {
+            width: 70%;
+            font-size: 1.5rem;
+          }
         }
       }
     }

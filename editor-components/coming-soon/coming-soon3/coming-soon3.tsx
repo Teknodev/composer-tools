@@ -158,7 +158,8 @@ class ComingSoon3 extends BaseComingSoon {
                 </div>
               </div>
             )}
-
+            {(this.getPropValue("lineActive") || this.castToString(title) || this.castToString(subtitle) || this.castToString(description) || this.castToString(button.text)) && (
+            <div className={this.decorateCSS("bottom")}>
             <div
               className={`${this.decorateCSS("title-wrapper")} ${
                 animationActive && this.decorateCSS("title-wrapper-animation")
@@ -207,6 +208,8 @@ class ComingSoon3 extends BaseComingSoon {
                   {button.text}
                 </Base.Button>
               </ComposerLink>
+            )}
+            </div>
             )}
           </div>
         </div>
