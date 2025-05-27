@@ -102,7 +102,7 @@ class COMING_SOON2 extends BaseComingSoon {
         }}
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("content")}>
+          <div className={`${this.decorateCSS("content")} ${!home && this.decorateCSS("without-right")}`}>
             {(this.getPropValue("dateTime") || this.castToString(title)) && (
               <div className={this.decorateCSS("left-side")}>
                 <div className={this.decorateCSS("left-text")}>
