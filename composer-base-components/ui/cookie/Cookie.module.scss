@@ -50,24 +50,14 @@
   align-items: center;
   box-shadow: 0 4px 24px 0 rgba(44, 48, 77, 0.10);
   gap: 1.2rem;
-
-  &.light {
-    background: #f8f5f1;
-    color: #2d314d;
-    .button:hover {
-      background: #ede8e1;
-      border-color: #cfc7bb;
-    }
-  }
-  &.dark {
-    background: #23263a;
-    color: #fff;
-    .button {
-      border-color: #44475a;
-      &:hover {
-        background: #2d314d;
-        border-color: #5a5e7a;
-      }
+  background: #23263a;
+  color: #fff;
+  color: #fff;
+  .button {
+    border-color: #44475a;
+    &:hover {
+      background: #2d314d;
+      border-color: #5a5e7a;
     }
   }
 
@@ -82,6 +72,42 @@
     right: 1.5rem;
     top: 50%;
     transform: translateY(-50%);
+  }
+
+  &.fixedTop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: calc(100% - 20px);
+    margin: 10px;
+    z-index: 999;
+  }
+
+  &.fixedBottom {
+    position: fixed;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 200px);
+    max-width: 800px;
+    z-index: 999;
+  }
+
+  &.fixedLeft {
+    position: fixed;
+    left: 20px;
+    top: 75%;
+    width: 500px;
+    z-index: 999;
+  }
+
+  &.fixedRight {
+    position: fixed;
+    right: 20px;
+    top: 75%;
+    width: 500px;
+    z-index: 999;
   }
 
   .iconWrapper {

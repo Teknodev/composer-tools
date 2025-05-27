@@ -8,8 +8,9 @@ interface CookieProps {
   onDecline?: () => void;
   acceptButtonText?: string;
   declineButtonText?: string;
-  variant?: "light" | "dark";
   size?: "long" | "box";
+  fixed?: boolean;
+  position?: "top" | "bottom" | "left" | "right";
 }
 
 const Cookie: React.FC<CookieProps> = ({
@@ -18,11 +19,29 @@ const Cookie: React.FC<CookieProps> = ({
   onDecline,
   acceptButtonText = "Allow",
   declineButtonText = "Decline",
-  variant = "dark",
-  size = "box"
+  size = "box",
+  fixed = false,
+  position = "bottom"
 }) => {
+  const getFixedStyles = () => {
+    if (!fixed) return '';
+    
+    switch (position) {
+      case 'top':
+        return styles.fixedTop;
+      case 'bottom':
+        return styles.fixedBottom;
+      case 'left':
+        return styles.fixedLeft;
+      case 'right':
+        return styles.fixedRight;
+      default:
+        return styles.fixedBottom;
+    }
+  };
+
   return (
-    <div className={`${styles.cookieContainer} ${styles[variant]} ${size === "long" ? styles.longBanner : styles.boxBanner}`}> 
+    <div className={`${styles.cookieContainer} ${getFixedStyles()} ${size === "long" ? styles.longBanner : styles.boxBanner}`}> 
       <div className={styles.iconWrapper}>
         <FaCookieBite className={styles.icon} />
       </div>
