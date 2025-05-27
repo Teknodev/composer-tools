@@ -443,8 +443,39 @@ export abstract class Component
   static category: CATEGORIES;
   private memorizedElements: {[id: string]: MemorizedElement} = {};
 
-  componentDidUpdate(prevProps: Readonly<{}>, prevState: Readonly<{ states: any; componentProps: any; }>, snapshot?: any): void {
+  componentDidUpdate(
+    prevProps: Readonly<{}>,
+    prevState: Readonly<{ states: any; componentProps: any; }>,
+    snapshot?: any
+  ): void {
     EventEmitter.emit(EVENTS.COMPONENT_DID_UPDATE, { data: this });
+    this.onComponentDidUpdate?.(prevProps, prevState, snapshot);
+  }
+
+  componentDidMount(): void {
+    this.onComponentDidMount?.();
+  }
+
+  componentWillUnmount(): void {
+    this.onComponentWillUnmount?.();
+  }
+
+  shouldComponentUpdate(
+    nextProps: Readonly<{}>,
+    nextState: Readonly<{ states: any; componentProps: any; }>
+  ): boolean {
+    return this.onShouldComponentUpdate?.(nextProps, nextState) ?? true;
+  }
+
+  getSnapshotBeforeUpdate(
+    prevProps: Readonly<{}>,
+    prevState: Readonly<{ states: any; componentProps: any; }>
+  ): any {
+    return this.onGetSnapshotBeforeUpdate?.(prevProps, prevState);
+  }
+
+  componentDidCatch(error: Error, info: { componentStack: string }): void {
+    this.onComponentDidCatch?.(error, info);
   }
 
   constructor(props: any, styles: any) {
@@ -852,6 +883,49 @@ export abstract class Component
   initializeProp(prop: TypeUsableComponentProps) {
     this.attachPropId(prop);
     this.attachValueGetter(prop);
+  }
+
+
+  onComponentDidMount() {
+  // Called once, immediately after the component is inserted into the DOM
+  // Override in child components
+  }
+
+  onComponentDidUpdate(
+    prevProps: Readonly<any>,
+    prevState: Readonly<any>,
+    snapshot?: any
+  ) {
+    // Called immediately after updating occurs
+    // Override in child components
+  }
+
+  onComponentWillUnmount() {
+    // Called immediately before a component is destroyed
+    // Override in child components
+  }
+
+  onShouldComponentUpdate(
+    nextProps: Readonly<any>,
+    nextState: Readonly<any>
+  ): boolean {
+    // Return true to re-render, false to skip rendering
+    // Override in child components
+    return true;
+  }
+
+  onGetSnapshotBeforeUpdate(
+    prevProps: Readonly<any>,
+    prevState: Readonly<any>
+  ): any {
+    // Called right before DOM updates (used with getSnapshotBeforeUpdate)
+    // Override in child components
+    return null;
+  }
+
+  onComponentDidCatch(error: Error, info: { componentStack: string }) {
+    // Error boundary: catch errors in descendants
+    // Override in child components
   }
 }
 
