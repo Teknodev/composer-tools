@@ -3,7 +3,7 @@ import styles from "./banner5.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { BaseBanner } from "../../EditorComponent";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 
 class Banner5 extends BaseBanner {
     constructor(props?: any) {
@@ -64,7 +64,7 @@ class Banner5 extends BaseBanner {
                     <div className={this.decorateCSS("section")}>
                         <ComposerLink path={this.getPropValue("homePage")}>
                             <div className={this.decorateCSS("link")}>
-                                <ComposerIcon name={this.getPropValue("homeIcon")} propsIcon={{ className: this.decorateCSS("pageIcon") }} />
+                                <Base.Icon name={this.getPropValue("homeIcon")} propsIcon={{ className: this.decorateCSS("pageIcon") }} />
                                 {homePage && (
                                     <span className={this.decorateCSS("home-page-title")}>{homeTitle}</span>
                                 )}
@@ -72,11 +72,11 @@ class Banner5 extends BaseBanner {
                         </ComposerLink>
                         {icon && (
                             <div className={this.decorateCSS("item")}>
-                                <ComposerIcon name={icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                                <Base.Icon name={icon} propsIcon={{ className: this.decorateCSS("icon") }} />
                             </div>
                         )}
                         <div className={this.decorateCSS("link")}>
-                            <ComposerIcon name={this.getPropValue("currentIcon")} propsIcon={{ className: this.decorateCSS("pageIcon") }} />
+                            <Base.Icon name={this.getPropValue("currentIcon")} propsIcon={{ className: this.decorateCSS("pageIcon") }} />
                             {currentPage && (
                                 <span className={this.decorateCSS("current-page-title")}>{currentTitle}</span>
                             )}

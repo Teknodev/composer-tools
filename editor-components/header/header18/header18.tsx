@@ -3,7 +3,7 @@ import styles from "./header18.module.scss";
 import { BaseHeader } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 
 type Slide = {
@@ -417,7 +417,7 @@ class Header18 extends BaseHeader {
                 </div>
               )}
               {prevIconExist && slides.length > 1 && (
-                <ComposerIcon
+                <Base.Icon
                   name={this.getPropValue("prev_icon")}
                   propsIcon={{
                     className: `${this.decorateCSS("prev-icon")} ${!cover && this.decorateCSS("prev-icon-no-image")}`,
@@ -426,7 +426,7 @@ class Header18 extends BaseHeader {
                 />
               )}
               {nextIconExist && slides.length > 1 && (
-                <ComposerIcon
+                <Base.Icon
                   name={this.getPropValue("next_icon")}
                   propsIcon={{
                     className: `${this.decorateCSS("next-icon")} ${!cover && this.decorateCSS("next-icon-no-image")}`,

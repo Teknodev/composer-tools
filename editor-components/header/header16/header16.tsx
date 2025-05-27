@@ -4,7 +4,6 @@ import { BaseHeader } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "composer-tools/composer-base-components/base/base";
-import { ComposerIcon } from "composer-tools/composer-base-components/icon/icon";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type ISliderData = {
@@ -159,7 +158,7 @@ class Header16 extends BaseHeader {
               }}
               className={`${this.decorateCSS("slider-button-left")} ${!slider[activeSlideIndex].image && this.decorateCSS("slider-button-no-image")}`}
             >
-              <ComposerIcon
+              <Base.Icon
                 propsIcon={{
                   className: this.decorateCSS("icon"),
                 }}
@@ -225,7 +224,7 @@ class Header16 extends BaseHeader {
               }}
               className={`${this.decorateCSS("slider-button-right")} ${!slider[activeSlideIndex].image && this.decorateCSS("slider-button-no-image")}`}
             >
-              <ComposerIcon
+              <Base.Icon
                 propsIcon={{
                   className: this.decorateCSS("icon"),
                 }}

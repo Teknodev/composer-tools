@@ -3,7 +3,7 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { BaseFooter } from "../../EditorComponent";
 import styles from "./footer8.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 
 type FooterValues = {
   icon: string;
@@ -648,7 +648,7 @@ class Footer8Page extends BaseFooter {
                               className={`${this.decorateCSS("socials-element")} ${this.decorateCSS("socials-element")}`}
                               data-animation={item.url ? this.getPropValue("hoverAnimation").join(" ") : ""}
                             >
-                              <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={item.icon} />
+                              <Base.Icon propsIcon={{ className: this.decorateCSS("icon") }} name={item.icon} />
                               <Base.P className={this.decorateCSS("socials-text")}>{item.text}</Base.P>
                             </div>
                           </ComposerLink>

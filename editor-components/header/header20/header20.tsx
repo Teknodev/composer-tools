@@ -2,7 +2,7 @@ import * as React from "react";
 import styles from "./header20.module.scss";
 import { BaseHeader } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 
 type SliderItem = {
@@ -802,7 +802,7 @@ class Header20 extends BaseHeader {
                       {(up_icon || down_icon) && (
                         <div className={this.decorateCSS("navigation")}>
                           {up_icon && (
-                            <ComposerIcon
+                            <Base.Icon
                               name={up_icon}
                               propsIcon={{
                                 className: this.decorateCSS("icon"),
@@ -811,7 +811,7 @@ class Header20 extends BaseHeader {
                             />
                           )}
                           {down_icon && (
-                            <ComposerIcon
+                            <Base.Icon
                               name={down_icon}
                               propsIcon={{
                                 className: this.decorateCSS("icon"),
@@ -829,7 +829,7 @@ class Header20 extends BaseHeader {
                       <div className={this.decorateCSS("icon-text-container")}>
                         {this.castToString(iconText.iconText) && <div className={this.decorateCSS("icon_text")}>{iconText.iconText}</div>}
                         {iconText.icon && (
-                          <ComposerIcon
+                          <Base.Icon
                             name={iconText.icon}
                             propsIcon={{
                               className: this.decorateCSS("icon-next-to-text"),
