@@ -1,7 +1,6 @@
 import { BaseECommerce } from "composer-tools/editor-components/EditorComponent";
 import styles from "./e-commerce1.module.scss";
 import { Base } from "composer-tools/composer-base-components/base/base";
-import { ComposerIcon } from "composer-tools/composer-base-components/icon/icon";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 import ComposerSlider from "composer-tools/composer-base-components/slider/slider";
 import React from "react";
@@ -45,7 +44,7 @@ class ECommerce1 extends BaseECommerce {
       key: "images",
       displayer: "Product Images",
       additionalParams: {
-        maxElementCount: 5,
+        maxElementCount: 4,
       },
       value: [
         {
@@ -492,8 +491,8 @@ class ECommerce1 extends BaseECommerce {
                 </div>
                 <div className={`${this.decorateCSS("right-image")} ${!isRightExist && this.decorateCSS("without-right")}`}>
                   {this.castToString(this.getPropValue("newText")) && (<span className={this.decorateCSS("new")}>{this.getPropValue("newText")}</span>)}
-                  <ComposerIcon name={leftIconImage} propsIcon={{className: this.decorateCSS("left-arrow"), onClick: moveLeftSlider}} />
-                  <ComposerIcon name={rightIconImage} propsIcon={{className: this.decorateCSS("right-arrow"), onClick: moveRightSlider}} />
+                  <Base.Icon name={leftIconImage} propsIcon={{className: this.decorateCSS("left-arrow"), onClick: moveLeftSlider}} />
+                  <Base.Icon name={rightIconImage} propsIcon={{className: this.decorateCSS("right-arrow"), onClick: moveRightSlider}} />
                   {images.length > 0 && (
                     <ComposerSlider ref={sliderRef} {...settings} className={this.decorateCSS("carousel")}>
                       {images.map((item: Image, index: number) => {
@@ -525,7 +524,7 @@ class ECommerce1 extends BaseECommerce {
                         <div className={this.decorateCSS("stars")}>
                           {[...Array(5)].map((_, index) => {
                             return (
-                              <ComposerIcon
+                              <Base.Icon
                                 name={index < reviewItem.point ? reviewItem.starIcon : reviewItem.starIconBorder}
                                 propsIcon={{ className: this.decorateCSS("star") }}
                               />
@@ -551,7 +550,7 @@ class ECommerce1 extends BaseECommerce {
                       {(this.castToString(this.getPropValue("quantityText")) || leftIcon || rightIcon) && (
                         <div className={`${this.decorateCSS("count-input")} ${this.castToString(button.text) && this.decorateCSS("with-button")}`}>
                           {this.castToString(this.getPropValue("quantityText")) && (<label className={this.decorateCSS("label")}>{this.getPropValue("quantityText")}</label>)}
-                          {leftIcon && (<ComposerIcon name={leftIcon} propsIcon={{className: this.decorateCSS("left-icon"), onClick: handleLeftClick}}/>)}
+                          {leftIcon && (<Base.Icon name={leftIcon} propsIcon={{className: this.decorateCSS("left-icon"), onClick: handleLeftClick}}/>)}
                           <input
                               type="number"
                               min={1}
@@ -575,7 +574,7 @@ class ECommerce1 extends BaseECommerce {
                               }}
                             />
 
-                          {rightIcon && (<ComposerIcon name={rightIcon} propsIcon={{className: this.decorateCSS("right-icon"), onClick: handleRightClick}}/>)}
+                          {rightIcon && (<Base.Icon name={rightIcon} propsIcon={{className: this.decorateCSS("right-icon"), onClick: handleRightClick}}/>)}
                         </div>
                       )}
                       {this.castToString(button.text) && (
@@ -588,7 +587,7 @@ class ECommerce1 extends BaseECommerce {
                   {(this.castToString(wishlist.wishlistText) || wishlist.wishlistIcon) &&(
                     <ComposerLink path={wishlist.wishlistUrl}>
                       <div className={this.decorateCSS("wishlist")}>
-                        <ComposerIcon name={wishlist.wishlistIcon} propsIcon={{className: this.decorateCSS("heart-icon")}}/>
+                        <Base.Icon name={wishlist.wishlistIcon} propsIcon={{className: this.decorateCSS("heart-icon")}}/>
                         {this.castToString(wishlist.wishlistText) && (<span className={this.decorateCSS("cart-title")}>{wishlist.wishlistText}</span>)}
                       </div>
                     </ComposerLink>
@@ -659,13 +658,13 @@ class ECommerce1 extends BaseECommerce {
                 </div>
                 <div className={this.decorateCSS("items")}>
                   <div className={this.decorateCSS("icon-group")}>
-                    <ComposerIcon name={this.getPropValue("leftArrowPopup")} propsIcon={{className: this.decorateCSS("left-arrow"), onClick: moveLeft}} />
-                    <ComposerIcon name={this.getPropValue("rightArrowPopup")} propsIcon={{className: this.decorateCSS("right-arrow"), onClick: moveRight}} />
+                    <Base.Icon name={this.getPropValue("leftArrowPopup")} propsIcon={{className: this.decorateCSS("left-arrow"), onClick: moveLeft}} />
+                    <Base.Icon name={this.getPropValue("rightArrowPopup")} propsIcon={{className: this.decorateCSS("right-arrow"), onClick: moveRight}} />
                   </div>
                   <span className={this.decorateCSS("pages")}>
                     {activeImage+1}/{images.length}
                   </span>
-                  <ComposerIcon name={this.getPropValue("closeIconPopup")} propsIcon={{className: this.decorateCSS("close"), onClick: handleClose}} />
+                  <Base.Icon name={this.getPropValue("closeIconPopup")} propsIcon={{className: this.decorateCSS("close"), onClick: handleClose}} />
                 </div>
               </div>
             </div>

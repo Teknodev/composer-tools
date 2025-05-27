@@ -361,7 +361,7 @@
         .max-content {
             .section {
                 flex-direction: column;
-                gap: var(--composer-gap-md);
+                gap: var(--composer-gap-lg);
                 .left {
                     .left-images {
                         justify-content: flex-start;
@@ -446,6 +446,7 @@
                             .button, .count-input {
                                 width: 100% !important;
                                 height: var(--composer-gap-xl) !important;
+                                justify-content: center;
                             }
 
                             .count-input {
