@@ -11,6 +11,7 @@ interface CookieProps {
   size?: "long" | "box";
   fixed?: boolean;
   position?: "top" | "bottom" | "left" | "right";
+  learnMoreLink?: string;
 }
 
 const Cookie: React.FC<CookieProps> = ({
@@ -21,7 +22,8 @@ const Cookie: React.FC<CookieProps> = ({
   declineButtonText = "Decline",
   size = "box",
   fixed = false,
-  position = "bottom"
+  position = "bottom",
+  learnMoreLink
 }) => {
   const getFixedStyles = () => {
     if (!fixed) return '';
@@ -45,7 +47,14 @@ const Cookie: React.FC<CookieProps> = ({
       <div className={styles.iconWrapper}>
         <FaCookieBite className={styles.icon} />
       </div>
-      <p className={styles.text}>{text}</p>
+      <div className={styles.textWrapper}>
+        <p className={styles.text}>{text}</p>
+        {learnMoreLink && (
+          <a href={learnMoreLink} className={styles.learnMore}>
+            Learn More
+          </a>
+        )}
+      </div>
       <div className={styles.buttonGroup}>
         <button className={styles.button} onClick={onAccept}>{acceptButtonText}</button>
         {declineButtonText && (
