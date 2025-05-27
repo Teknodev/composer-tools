@@ -973,10 +973,11 @@ export abstract class BaseSocialWidget extends Component {
   static category = CATEGORIES.SOCIALWIDGET;
 }
 
+export abstract class BaseECommerce extends Component {
+  static category = CATEGORIES.ECOMMERCE;
+}
+
 export function generateAutoClassName(componentId: string, section: string){
   return `auto-generate-${componentId}-${section}`;
 };
 
-export abstract class BaseECommerce extends Component {  
-  static category = CATEGORIES.ECOMMERCE;
-}
