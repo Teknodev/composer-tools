@@ -3,7 +3,6 @@ import { BaseECommerce, CurrencyCode } from "../../EditorComponent";
 import styles from "./e_commerce6.module.scss";
 import { Base } from "composer-tools/composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import { ComposerIcon } from "composer-tools/composer-base-components/icon/icon";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 import ComposerSlider from "composer-tools/composer-base-components/slider/slider";
 import { getCurrencyInfo } from "components/setting-input/inputs/currency";
@@ -878,7 +877,7 @@ class ECommerce6 extends BaseECommerce {
                   <div className={this.decorateCSS("arrow-buttons")}>
                     {this.getPropValue("imageDownArrow") && (
                       <div className={this.decorateCSS("image-down-arrow")}>
-                        <ComposerIcon
+                        <Base.Icon
                           name={this.getPropValue("imageDownArrow")}
                           propsIcon={{
                             className: this.decorateCSS("icon"),
@@ -891,7 +890,7 @@ class ECommerce6 extends BaseECommerce {
                     )}
                     {this.getPropValue("imageUpArrow") && (
                       <div className={this.decorateCSS("image-up-arrow")}>
-                        <ComposerIcon
+                        <Base.Icon
                           name={this.getPropValue("imageUpArrow")}
                           propsIcon={{
                             className: this.decorateCSS("icon"),
@@ -907,7 +906,7 @@ class ECommerce6 extends BaseECommerce {
               </div>
               <div className={this.decorateCSS("slider-parent")}>
                 <div className={this.decorateCSS("image-icon-left")}>
-                  <ComposerIcon
+                  <Base.Icon
                     name={this.getPropValue("leftArrow")}
                     propsIcon={{
                       className: this.decorateCSS("icon"),
@@ -939,7 +938,7 @@ class ECommerce6 extends BaseECommerce {
                   })}
                 </ComposerSlider>
                 <div className={this.decorateCSS("image-icon-right")}>
-                  <ComposerIcon
+                  <Base.Icon
                     name={this.getPropValue("rightArrow")}
                     propsIcon={{
                       className: this.decorateCSS("icon"),
@@ -987,7 +986,7 @@ class ECommerce6 extends BaseECommerce {
                           >
                             <div className={this.decorateCSS("share-wrapper")}>
                               {isShareIcon && (
-                                <ComposerIcon
+                                <Base.Icon
                                   name={shareSection.shareIcon}
                                   propsIcon={{
                                     className: this.decorateCSS("share-icon"),
@@ -1014,7 +1013,7 @@ class ECommerce6 extends BaseECommerce {
                                               key={index}
                                             >
                                               {item.icon && (
-                                                <ComposerIcon
+                                                <Base.Icon
                                                   name={item.icon}
                                                   propsIcon={{
                                                     className:
@@ -1046,7 +1045,7 @@ class ECommerce6 extends BaseECommerce {
                                       className={this.decorateCSS("social")}
                                       onClick={() => this.handleCopy()}
                                     >
-                                      <ComposerIcon
+                                      <Base.Icon
                                         name={shareCopyLink.icon}
                                         propsIcon={{
                                           className:
@@ -1147,7 +1146,7 @@ class ECommerce6 extends BaseECommerce {
                           className={this.decorateCSS("minus-icon")}
                           onClick={() => this.handleMinus()}
                         >
-                          <ComposerIcon
+                          <Base.Icon
                             name={countSection.minusIcon}
                             propsIcon={{ className: this.decorateCSS("icon") }}
                           />
@@ -1181,7 +1180,7 @@ class ECommerce6 extends BaseECommerce {
                           className={this.decorateCSS("add-icon")}
                           onClick={() => this.handleAdd()}
                         >
-                          <ComposerIcon
+                          <Base.Icon
                             name={countSection.addIcon}
                             propsIcon={{ className: this.decorateCSS("icon") }}
                           />
@@ -1266,7 +1265,7 @@ class ECommerce6 extends BaseECommerce {
                                           this.getPropValue(
                                             "downArrowIcon"
                                           )) && (
-                                          <ComposerIcon
+                                          <Base.Icon
                                             name={
                                               this.getComponentState(
                                                 "openIndex"
@@ -1326,7 +1325,7 @@ class ECommerce6 extends BaseECommerce {
               className={this.decorateCSS("close-icon")}
               onClick={() => this.handleClickClose()}
             >
-              <ComposerIcon
+              <Base.Icon
                 name={this.getPropValue("closeIcon")}
                 propsIcon={{ className: this.decorateCSS("icon") }}
               />
@@ -1337,7 +1336,7 @@ class ECommerce6 extends BaseECommerce {
               className={this.decorateCSS("left-icon")}
               onClick={() => this.handleClickPrevOverlay()}
             >
-              <ComposerIcon
+              <Base.Icon
                 name={this.getPropValue("leftArrow")}
                 propsIcon={{ className: this.decorateCSS("icon") }}
               />
@@ -1348,7 +1347,7 @@ class ECommerce6 extends BaseECommerce {
               className={this.decorateCSS("right-icon")}
               onClick={() => this.handleClickNextOverlay()}
             >
-              <ComposerIcon
+              <Base.Icon
                 name={this.getPropValue("rightArrow")}
                 propsIcon={{ className: this.decorateCSS("icon") }}
               />
@@ -1373,7 +1372,7 @@ class ECommerce6 extends BaseECommerce {
                     onClick={() => this.handleDotClick(index)}
                     key={index}
                   >
-                    <ComposerIcon
+                    <Base.Icon
                       name={this.getPropValue("sliderDotIcon")}
                       propsIcon={{
                         className: `${this.decorateCSS("icon")} ${

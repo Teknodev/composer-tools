@@ -2,7 +2,7 @@
 import * as React from "react";
 import { BaseImageGallery } from "../../EditorComponent";
 import styles from "./image-gallery6.module.scss";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
@@ -592,7 +592,7 @@ class ImageGallery6 extends BaseImageGallery {
                                                                         )}
                                                                         {item.nextArrow && (
                                                                             <div className={this.decorateCSS("button")}>
-                                                                                <ComposerIcon name={item.nextArrow} propsIcon={{ className: this.decorateCSS("icon") }}></ComposerIcon>
+                                                                                <Base.Icon name={item.nextArrow} propsIcon={{ className: this.decorateCSS("icon") }}></Base.Icon>
                                                                             </div>
                                                                         )}
                                                                     </div>
@@ -655,7 +655,7 @@ class ImageGallery6 extends BaseImageGallery {
                                                                         {item.nextArrow && (
 
                                                                             <button className={this.decorateCSS("button")}>
-                                                                                <ComposerIcon name={item.nextArrow} propsIcon={{ className: this.decorateCSS("icon") }}></ComposerIcon>
+                                                                                <Base.Icon name={item.nextArrow} propsIcon={{ className: this.decorateCSS("icon") }}></Base.Icon>
                                                                             </button>
 
                                                                         )}

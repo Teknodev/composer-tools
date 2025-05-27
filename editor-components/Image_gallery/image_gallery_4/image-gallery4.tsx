@@ -1,7 +1,7 @@
 import * as React from "react";
 import { BaseImageGallery } from "../../EditorComponent";
 import styles from "./image-gallery4.module.scss";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
@@ -620,7 +620,7 @@ class ImageGallery4 extends BaseImageGallery {
                         <div className={this.decorateCSS("icon-overlay")} onClick={() => {
                           this.focusImage(index)
                         }}>
-                          <ComposerIcon
+                          <Base.Icon
                             name={this.getPropValue("imageIcon")}
                             propsIcon={{ className: this.decorateCSS("icon") }}
 
@@ -653,7 +653,7 @@ class ImageGallery4 extends BaseImageGallery {
             >
               {this.getPropValue("nextIcon") && (
                 <div className={this.decorateCSS("right-arrow")} onClick={this.nextImage}>
-                  <ComposerIcon
+                  <Base.Icon
                     name={this.getPropValue("nextIcon")}
                     propsIcon={{ className: this.decorateCSS("icon") }}
 
@@ -662,7 +662,7 @@ class ImageGallery4 extends BaseImageGallery {
               )}
               {this.getPropValue("prevIcon") && (
                 <div className={this.decorateCSS("left-arrow")} onClick={this.prevImage}>
-                  <ComposerIcon
+                  <Base.Icon
                     name={this.getPropValue("prevIcon")}
                     propsIcon={{ className: this.decorateCSS("icon") }}
                   />
@@ -686,7 +686,7 @@ class ImageGallery4 extends BaseImageGallery {
                       }}
                       className={this.decorateCSS("close-button")}
                     >
-                      <ComposerIcon
+                      <Base.Icon
                         propsIcon={{ className: this.decorateCSS("close-icon") }}
                         name={this.getPropValue("close-icon")}
                       />

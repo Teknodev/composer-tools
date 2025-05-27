@@ -2,7 +2,7 @@ import * as React from "react";
 import { BaseContent } from "../../EditorComponent";
 import styles from "./content5.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
@@ -297,7 +297,7 @@ class Content5 extends BaseContent {
                     data-animation={this.getPropValue("hoverAnimation").join(" ")}
                     onClick={() => this.setActiveTab(index)}
                   >
-                    <ComposerIcon
+                    <Base.Icon
                       name={tab.icon}
                       propsIcon={{
                         className: this.decorateCSS("tab-icon"),
@@ -327,7 +327,7 @@ class Content5 extends BaseContent {
                   <Base.VerticalContent className={this.decorateCSS("content")}>
                     {tab.icon && (
                       <Base.Row className={this.decorateCSS("icon-wrapper")}>
-                        <ComposerIcon
+                        <Base.Icon
                           name={tab.icon}
                           propsIcon={{
                             className: this.decorateCSS("icon"),
