@@ -2,7 +2,7 @@ import React from "react";
 import { Location } from "../../EditorComponent";
 import styles from "./location1.module.scss";
 import ComposerMap from "../../../composer-base-components/map/map";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
 
@@ -351,7 +351,7 @@ class Location1 extends Location {
                       return (
                         <div className={this.decorateCSS("icon-wrapper")} key={index}>
                           <ComposerLink path={icon.getPropValue("url")}>
-                            <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={icon.getPropValue("icon")} />
+                            <Base.Icon propsIcon={{ className: this.decorateCSS("icon") }} name={icon.getPropValue("icon")} />
                           </ComposerLink>
                         </div>
                       );

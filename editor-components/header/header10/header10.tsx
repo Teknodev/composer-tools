@@ -2,7 +2,7 @@ import * as React from "react";
 import { BaseHeader, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./header10.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
@@ -349,7 +349,7 @@ class Header10 extends BaseHeader {
                               <div className={this.decorateCSS("iconsSection")}>
                                 {this.getPropValue("prevIcon") && (
                                   <div className={this.decorateCSS("prev_icon_wrapper")}>
-                                    <ComposerIcon
+                                    <Base.Icon
                                       name={this.getPropValue("prevIcon")}
                                       propsIcon={{
                                         className: `${this.decorateCSS("prev_icon")}`,
@@ -364,7 +364,7 @@ class Header10 extends BaseHeader {
                                 )}
                                 {this.getPropValue("nextIcon") && (
                                   <div className={this.decorateCSS("next_icon_wrapper")}>
-                                    <ComposerIcon
+                                    <Base.Icon
                                       name={this.getPropValue("nextIcon")}
                                       propsIcon={{
                                         className: `${this.decorateCSS("next_icon")}`,
@@ -432,7 +432,7 @@ class Header10 extends BaseHeader {
                     <div className={this.decorateCSS("right")}>
                       {
                         <div className={this.decorateCSS("icon")}>
-                          <ComposerIcon
+                          <Base.Icon
                             name={this.getPropValue("ampersandIcon")}
                             propsIcon={{
                               className: `${this.decorateCSS(
@@ -467,7 +467,7 @@ class Header10 extends BaseHeader {
                             {item.icons.map(
                               (item: any, indexSlider: number) => (
                                 <ComposerLink path={item.getPropValue("url")}>
-                                  <ComposerIcon
+                                  <Base.Icon
                                     name={item.getPropValue("icon")}
                                   />
                                 </ComposerLink>

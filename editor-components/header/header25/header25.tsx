@@ -3,7 +3,7 @@ import styles from "./header25.module.scss";
 import { BaseHeader } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "composer-tools/composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
@@ -382,7 +382,7 @@ class Header25 extends BaseHeader {
                   <div className={this.decorateCSS("icons")}>
                     {socialMediaIcons.map((item: IconItem, iconIndex: number) => (
                       <ComposerLink path={item.navigate_icon} key={iconIndex}>
-                        <ComposerIcon
+                        <Base.Icon
                           name={item.icon_name}
                           propsIcon={{
                             className: `${this.decorateCSS("icon")}`,
@@ -410,7 +410,7 @@ class Header25 extends BaseHeader {
                       }}
                     >
                       {prevIcon &&
-                        <ComposerIcon
+                        <Base.Icon
                           name={prevIcon}
                           propsIcon={{
                             className: `${this.decorateCSS("arrow")}`,
@@ -435,7 +435,7 @@ class Header25 extends BaseHeader {
                           {nextArrowText}
                         </span>}
                       {nextIcon &&
-                        <ComposerIcon
+                        <Base.Icon
                           name={nextIcon}
                           propsIcon={{
                             className: `${this.decorateCSS("arrow")}`,
@@ -512,7 +512,7 @@ class Header25 extends BaseHeader {
                               >
                                 {sliderItem.button.text}
                                 {sliderItem.button.icon &&
-                                  <ComposerIcon
+                                  <Base.Icon
                                     name={sliderItem.button.icon}
                                     propsIcon={{
                                       className: this.decorateCSS("button-icon"),

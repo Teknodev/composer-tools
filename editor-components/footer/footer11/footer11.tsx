@@ -2,7 +2,7 @@ import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseFooter } from "../../EditorComponent";
 import styles from "./footer11.module.scss";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "../../../composer-base-components/base/base";
 
 type Icons = {
@@ -141,7 +141,7 @@ class Footer11Page extends BaseFooter {
                         className={this.decorateCSS("socials-element")}
                         data-animation={item.url ? this.getPropValue("hoverAnimation").join(" ") : ""}
                       >
-                        <ComposerIcon propsIcon={{ className: this.decorateCSS("icon") }} name={item.icon} />
+                        <Base.Icon propsIcon={{ className: this.decorateCSS("icon") }} name={item.icon} />
                       </div>
                     </ComposerLink>
                   )

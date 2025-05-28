@@ -3,7 +3,7 @@ import styles from "./header31.module.scss";
 import { BaseHeader } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-import { ComposerIcon } from "../../../composer-base-components/icon/icon";
+
 import { Base } from "composer-tools/composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
@@ -903,7 +903,7 @@ class Header31 extends BaseHeader {
                 </div>
                 <div className={this.decorateCSS("main-social")}>
                   {this.getPropValue("social-icon") && (
-                    <ComposerIcon
+                    <Base.Icon
                       name={this.getPropValue("social-icon")}
                       propsIcon={{
                         className: this.decorateCSS("social-icon"),
@@ -921,7 +921,7 @@ class Header31 extends BaseHeader {
                               className={this.decorateCSS("icon-item")}
                             >
                               <ComposerLink path={icon.iconUrl}>
-                                <ComposerIcon
+                                <Base.Icon
                                   name={icon.iconItem}
                                   propsIcon={{
                                     className: this.decorateCSS("icon"),
@@ -938,7 +938,7 @@ class Header31 extends BaseHeader {
                   this.getPropValue("next_icon")) && (
                     <div className={this.decorateCSS("control-nav")}>
                       {this.getPropValue("prev_icon") && (
-                        <ComposerIcon
+                        <Base.Icon
                           name={this.getPropValue("prev_icon")}
                           propsIcon={{
                             className: `${this.decorateCSS(
@@ -958,7 +958,7 @@ class Header31 extends BaseHeader {
                         />
                       )}
                       {this.getPropValue("next_icon") && (
-                        <ComposerIcon
+                        <Base.Icon
                           name={this.getPropValue("next_icon")}
                           propsIcon={{
                             className: `${this.decorateCSS(
