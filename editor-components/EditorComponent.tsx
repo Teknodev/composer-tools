@@ -427,7 +427,7 @@ export enum CATEGORIES {
   SOCIAL = "social",
   SOCIALWIDGET = "socialWidget",
   ECOMMERCE = "ecommerce",
-  COOKIE = "cookie",
+  PRIVACYPOLICY = "privacyPolicy",
 }
 
 export function generateId(key: string): string {
@@ -916,8 +916,8 @@ export abstract class BaseModal extends Component {
   static category = CATEGORIES.MODAL;
 }
 
-export abstract class BaseCookie extends Component {
-  static category = CATEGORIES.COOKIE;
+export abstract class BasePrivacyPolicy extends Component {
+  static category = CATEGORIES.PRIVACYPOLICY;
 }
 
 export abstract class LogoClouds extends Component {

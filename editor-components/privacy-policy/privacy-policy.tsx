@@ -1,9 +1,9 @@
 import { Base } from "composer-tools/composer-base-components/base/base";
 import * as React from "react";
-import { BaseCookie, BaseDownload} from "../EditorComponent";
+import { BasePrivacyPolicy } from "../EditorComponent";
 import styles from "./privacy-policy.module.scss";
 
-class PrivacyPolicyPage extends BaseDownload {
+class PrivacyPolicyPage extends BasePrivacyPolicy {
   constructor(props?: any) {
     super(props, styles);
 
@@ -11,7 +11,7 @@ class PrivacyPolicyPage extends BaseDownload {
       type: "string",
       key: "effectiveDate",
       displayer: "Effective Date",
-      value: "2025-01-01",
+      value: "2030-01-01",
     });
 
     this.addProp({
@@ -101,8 +101,8 @@ class PrivacyPolicyPage extends BaseDownload {
         <Base.MaxContent className={styles.maxContent}>
             <Base.VerticalContent className={styles.container}>
             <span className={styles.text}>Privacy Policy</span>
-            <span className={styles.text}>Effective Date: {this.getPropValue("effectiveDate")}</span>
-            <span className={styles.text}>Last Updated: {this.getPropValue("lastUpdated")}</span>
+            <span className={styles.date}>Effective Date: {this.getPropValue("effectiveDate")}</span>
+            <span className={styles.date}>Last Updated: {this.getPropValue("lastUpdated")}</span>
             <span className={styles.text}>This Privacy Policy describes how your personal information is collected, used, and shared when you visit or interact with this website {this.getPropValue("siteName")}.</span>
             <div className={styles.text}>{this.getPropValue("text")}</div>
         </Base.VerticalContent>
