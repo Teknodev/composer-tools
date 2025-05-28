@@ -1,0 +1,21 @@
+@use "styles/_mixins" as *;
+
+.privacyPolicy {
+  height: 100%;
+  overflow-y: auto;
+
+  .maxContent {
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: var(--padding-md);
+        color: var(--composer-font-color-primary);
+        .text {
+        color: var(--composer-font-color-primary);
+        font-size: calc(var(--project-font-size));
+        }
+    }
+  }
+}
+
+
